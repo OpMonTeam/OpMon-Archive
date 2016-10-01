@@ -1,10 +1,10 @@
 package jlppc.regimys.objects.attacks;
 
+import jlppc.regimys.enums.Type;
 import jlppc.regimys.fight.EndOfTurn;
 import jlppc.regimys.fight.SameAtkPartTwo;
 import jlppc.regimys.objects.Attaque;
 import jlppc.regimys.objects.Pokemon;
-import jlppc.regimys.objects.Type;
 //A voir plus tard
 public abstract class Etreinte extends Attaque {
 	

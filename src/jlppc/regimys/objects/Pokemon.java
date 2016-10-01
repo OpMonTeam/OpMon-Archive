@@ -2,8 +2,10 @@ package jlppc.regimys.objects;
 
 import java.util.Arrays;
 
+import jlppc.regimys.enums.Caractere;
+import jlppc.regimys.enums.Type;
+import jlppc.regimys.enums.Caractere.Stats;
 import jlppc.regimys.launch.Start;
-import jlppc.regimys.objects.Caractere.Stats;
 /**
  * Definit un pokemon.
  * @author Jlppc

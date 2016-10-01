@@ -41,11 +41,43 @@ public class Fight {
 		int defCountDownConf = 0;
 		boolean defConf = false;
 		boolean endOfMatch = false;
-
+		int attaqueAtk = 0;
+		int attaqueDef = 0; 
 		while(!endOfMatch){
 
+			if(!sameAtk){
+				boolean ok = false;
+				System.out.print("Attaquant, choisissez votre attaque ( 1 a 4) : ");
+				attaqueAtk = Start.sc.nextInt() - 1;
+				while(!ok){
+					if(((attaqueAtk < atk.getAttaques().length && attaqueAtk > -1) ? (atk.getAttaques()[attaqueAtk].getPp() <= 0) : true)){
+						System.out.println("Mauvaise attaque ou plus de PP. Reesayez :");
+						attaqueAtk = Start.sc.nextInt() - 1;
+					}else{
+						break;
+					}
+				}
 
-			if(atk.getStatVIT() > def.getStatVIT()){
+			}else{
+				sameAtk = false;
+			}
+
+			if(!sameDef){
+				attaqueDef = Start.rand.nextInt(def.getAttaques().length);
+				boolean ok = false;
+				while(!ok){
+					if(def.getAttaques()[attaqueDef].getPp() <= 0){
+						attaqueDef = Start.rand.nextInt(def.getAttaques().length);
+					}else{
+						break;
+					}
+				}
+			}
+
+
+			System.out.println(atk.getStatVIT() > def.getStatVIT());
+			System.out.println(atk.getAttaques()[attaqueAtk].getPriorite() > def.getAttaques()[attaqueDef].getPriorite());
+			if(atk.getStatVIT() > def.getStatVIT() || atk.getAttaques()[attaqueAtk].getPriorite() > def.getAttaques()[attaqueDef].getPriorite()){
 				atkCanAttack = true;
 				if(atk.getStatus() == Status.GEL){
 					if(Start.rand.nextInt(5) == 2){
@@ -119,49 +151,24 @@ public class Fight {
 							}else{
 								FormattedString.outPrintln("Malgré sa confusion, %o peut attaquer!", atk.getSurnom());
 							}
-							
+
 							atkCountDownConf--;
 						}
 					}
 				}
 				if(atkCanAttack){
-					int attaqueAtk = 0;
-					if(!sameAtk){
-						System.out.print("Attaquant, choisissez votre attaque ( 1 a 4) : ");
-						attaqueAtk = Start.sc.nextInt() - 1;
-					}else{
-						sameAtk = false;
-					}
-
-					try{
-						try {
-							atk.getAttaques()[attaqueAtk].attack(atk, def);
-						} catch (SameAtkPartTwo e) {
-							sameAtk = true;
-						}
-					}catch(NullPointerException | ArrayIndexOutOfBoundsException | NoPP e){
-						System.out.print((e instanceof NoPP) ? "Plus de PP pour cette attaque!" : "Attaque manquante. Reesayez : ");
-						boolean ok = false;
-						while(!ok){
-
-							attaqueAtk = Start.sc.nextInt() - 1;
-							try{
-								try {
-									atk.getAttaques()[attaqueAtk].attack(atk, def);
-								} catch (SameAtkPartTwo e1) {
-									sameAtk = true;
-								}
-								ok = true;
-							}catch(NullPointerException | ArrayIndexOutOfBoundsException | NoPP e1){
-								System.out.print((e1 instanceof NoPP) ? "Plus de PP pour cette attaque!" : "Attaque manquante. Reesayez : ");
-							}
+					try {
+						atk.getAttaques()[attaqueAtk].attack(atk, def);
+					} catch (SameAtkPartTwo e) {
+						sameAtk = true;
+					}finally{
+						if(def.getPV() <= 0 || atk.getPV() <= 0){
+							endOfMatch = true;
+							break;
 						}
 					}
 
-					if(def.getPV() <= 0 || atk.getPV() <= 0){
-						endOfMatch = true;
-						break;
-					}
+
 				}
 
 				defCanAttack = true;
@@ -246,44 +253,17 @@ public class Fight {
 							}else{
 								FormattedString.outPrintln("Malgré sa confusion, %o peut attaquer!", def.getSurnom());
 							}
-							
+
 							defCountDownConf--;
 						}
 					}
 				}
 				if(defCanAttack){
-					int attaqueDef = 0;
-					if(!sameDef){
-						System.out.println("Defenseur, choisissez votre attaque (1 a 4) : ");
-						attaqueDef = Start.sc.nextInt() - 1;
-					}else{
-						sameDef = false;
-					}
 
-					try{
-						try {
-							def.getAttaques()[attaqueDef].attack(def, atk);
-						} catch (SameAtkPartTwo e) {
-							sameDef = true;
-						}
-					}catch(NullPointerException | ArrayIndexOutOfBoundsException | NoPP e){
-						System.out.print((e instanceof NoPP) ? "Plus de PP pour cette attaque!" : "Attaque manquante. Reesayez : ");
-						boolean ok = false;
-						while(!ok){
-
-							attaqueDef = Start.sc.nextInt() - 1;
-							try{
-								try {
-
-									def.getAttaques()[attaqueDef].attack(def, atk);
-								} catch (SameAtkPartTwo e1) {
-									sameDef = true;
-								}
-								ok = true;
-							}catch(NullPointerException | ArrayIndexOutOfBoundsException | NoPP e1){
-								System.out.print((e1 instanceof NoPP) ? "Plus de PP pour cette attaque!" : "Attaque manquante. Reesayez : ");
-							}
-						}
+					try {
+						def.getAttaques()[attaqueDef].attack(def, atk);
+					} catch (SameAtkPartTwo e) {
+						sameDef = true;
 					}
 
 				}
@@ -373,49 +353,25 @@ public class Fight {
 							}else{
 								FormattedString.outPrintln("Malgré sa confusion, %o peut attaquer!", def.getSurnom());
 							}
-							
+
 							defCountDownConf--;
 						}
 					}
 				}
 				if(defCanAttack){
-					int attaqueDef = 0;
-					if(!sameDef){
-						System.out.println("Defenseur, choisissez votre attaque (1 a 4) : ");
-						attaqueDef = Start.sc.nextInt() - 1;
-					}else{
-						sameDef = false;
-					}
-
-					try{
-						try {
-							def.getAttaques()[attaqueDef].attack(def, atk);
-						} catch (SameAtkPartTwo e) {
-							sameDef = true;
-						}
-					}catch(NullPointerException | ArrayIndexOutOfBoundsException | NoPP e){
-						System.out.print((e instanceof NoPP) ? "Plus de PP pour cette attaque!" : "Attaque manquante. Reesayez : ");
-						boolean ok = false;
-						while(!ok){
-
-							attaqueDef = Start.sc.nextInt() - 1;
-							try{
-								try {
-
-									def.getAttaques()[attaqueDef].attack(def, atk);
-								} catch (SameAtkPartTwo e1) {
-									sameDef = true;
-								}
-								ok = true;
-							}catch(NullPointerException | ArrayIndexOutOfBoundsException | NoPP e1){
-								System.out.print((e1 instanceof NoPP) ? "Plus de PP pour cette attaque!" : "Attaque manquante. Reesayez : ");
-							}
+					try {
+						def.getAttaques()[attaqueDef].attack(def, atk);
+					} catch (SameAtkPartTwo e) {
+						sameDef = true;
+					}finally{
+						if(def.getPV() <= 0 || atk.getPV() <= 0){
+							endOfMatch = true;
+							break;
 						}
 					}
-					if(def.getPV() <= 0 || atk.getPV() <= 0){
-						endOfMatch = true;
-						break;
-					}
+
+
+
 				}
 
 				atkCanAttack = true;
@@ -495,46 +451,49 @@ public class Fight {
 							}else{
 								FormattedString.outPrintln("Malgré sa confusion, %o peut attaquer!", atk.getSurnom());
 							}
-							
+
 							atkCountDownConf--;
 						}
 					}
 				}
-				
+
 				if(atkCanAttack){
-					int attaqueAtk = 0;
-					if(!sameAtk){
-						System.out.print("Attaquant, choisissez votre attaque ( 1 a 4) : ");
-						attaqueAtk = Start.sc.nextInt() - 1;
-					}else{
-						sameAtk = false;
+
+					try {
+						atk.getAttaques()[attaqueAtk].attack(atk, def);
+					} catch (SameAtkPartTwo e) {
+						sameAtk = true;
 					}
 
-					try{
-						try {
-							atk.getAttaques()[attaqueAtk].attack(atk, def);
-						} catch (SameAtkPartTwo e) {
-							sameAtk = true;
-						}
-					}catch(NullPointerException | ArrayIndexOutOfBoundsException | NoPP e){
-						System.out.print((e instanceof NoPP) ? "Plus de PP pour cette attaque!" : "Attaque manquante. Reesayez : ");
-						boolean ok = false;
-						while(!ok){
-							attaqueAtk = Start.sc.nextInt() - 1;
-							try{
-								try {
-									atk.getAttaques()[attaqueAtk].attack(atk, def);
-								} catch (SameAtkPartTwo e1) {
-									sameAtk = true;
-								}
-								ok = true;
-							}catch(NullPointerException | ArrayIndexOutOfBoundsException | NoPP e1){
-								System.out.print((e1 instanceof NoPP) ? "Plus de PP pour cette attaque!" : "Attaque manquante. Reesayez : ");
-							}
-						}
-					}
+
+
 				}
+				if(def.getPV() <= 0 || atk.getPV() <= 0){
+					endOfMatch = true;
+					break;
+				}
+				switch(atk.getStatus()){
+				case AUCUN:
+					break;
+				case BRULURE:
+					atk.attacked((atk.getStatPV() / 8));
+					System.out.println(atk.getSurnom() + " souffre de sa brulure! Il perd " + (atk.getStatPV() / 8) + " pv!");
+					break;
+				case GEL:
+					break;
+				case PARALYSIE:
+					break;
+				case POISON:
+					atk.attacked((atk.getStatPV() / 8));
+					System.out.println(atk.getSurnom() + " souffre de son empoisonnement! Il perd " + (atk.getStatPV() / 8) + " pv!");
+					break;
+				case SOMMEIL:
+					break;
+				default:
+					break;
 
+				}
+				
 
 
 			}
@@ -542,33 +501,6 @@ public class Fight {
 				endOfMatch = true;
 				break;
 			}
-			switch(atk.getStatus()){
-			case AUCUN:
-				break;
-			case BRULURE:
-				atk.attacked((atk.getStatPV() / 8));
-				System.out.println(atk.getSurnom() + " souffre de sa brulure! Il perd " + (atk.getStatPV() / 8) + " pv!");
-				break;
-			case GEL:
-				break;
-			case PARALYSIE:
-				break;
-			case POISON:
-				atk.attacked((atk.getStatPV() / 8));
-				System.out.println(atk.getSurnom() + " souffre de son empoisonnement! Il perd " + (atk.getStatPV() / 8) + " pv!");
-				break;
-			case SOMMEIL:
-				break;
-			default:
-				break;
-
-			}
-			if(def.getPV() <= 0 || atk.getPV() <= 0){
-				endOfMatch = true;
-				break;
-			}
-
-
 		}
 		if(def.getPV() <= 0 && atk.getPV() <= 0){
 			System.out.println("Egalité!");

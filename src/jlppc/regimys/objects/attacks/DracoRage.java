@@ -5,11 +5,10 @@ import jlppc.regimys.fight.EndOfTurn;
 import jlppc.regimys.fight.SameAtkPartTwo;
 import jlppc.regimys.objects.Attaque;
 import jlppc.regimys.objects.Pokemon;
-import jlppc.regimys.objects.Pokemon.Status;
 
-public class PoudreToxik extends Attaque {
-	public PoudreToxik() {
-		super("Poudre Toxik", 0, Type.POISON, 75, false, true, -1, false, 35);
+public class DracoRage extends Attaque {
+	public DracoRage() {
+		super("Draco-rage", 0, Type.DRAGON, 100, false, true, -1, false, 10);
 	}
 
 	@Override
@@ -20,15 +19,8 @@ public class PoudreToxik extends Attaque {
 
 	@Override
 	protected void effetApres(Pokemon atk, Pokemon def) throws SameAtkPartTwo {
-		if(def.getType1() != Type.POISON){
-			if(def.setStatus(Status.POISON)){
-				keyout(key("effects.status.poison"), def.getSurnom());
-			}else{
-				keyout(key("effects.status.fail"), def.getSurnom(), "empoisonné");
-			}
-		}else{
-			System.out.println("Mais cela echoue!");
-		}
+		keyout(key("attack.pkmn.attacked"), def.getSurnom(), 40, def.getPV() - 40);
+		def.attacked(40);
 
 	}
 }

@@ -4,7 +4,7 @@ import jlppc.regimys.fight.EndOfTurn;
 import jlppc.regimys.fight.SameAtkPartTwo;
 import jlppc.regimys.objects.Attaque;
 import jlppc.regimys.objects.Pokemon;
-import jlppc.regimys.objects.Type;
+import jlppc.regimys.enums.Type;
 
 public class Surf extends Attaque {
 	public Surf() {

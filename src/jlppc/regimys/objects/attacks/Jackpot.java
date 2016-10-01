@@ -1,10 +1,10 @@
 package jlppc.regimys.objects.attacks;
 
+import jlppc.regimys.enums.Type;
 import jlppc.regimys.fight.EndOfTurn;
 import jlppc.regimys.fight.SameAtkPartTwo;
 import jlppc.regimys.objects.Attaque;
 import jlppc.regimys.objects.Pokemon;
-import jlppc.regimys.objects.Type;
 //TODO quand les combats de desseurs seront O.K, ne pas oublier de rajouter l'argent gagné.
 public class Jackpot extends Attaque {
 	public Jackpot() {

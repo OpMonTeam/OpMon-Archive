@@ -1,5 +1,6 @@
 package jlppc.regimys.objects.attacks;
 
+import jlppc.regimys.enums.Type;
 import jlppc.regimys.objects.*;
 import jlppc.utils.*;
 

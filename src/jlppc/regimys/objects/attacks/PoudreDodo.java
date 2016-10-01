@@ -7,28 +7,24 @@ import jlppc.regimys.objects.Attaque;
 import jlppc.regimys.objects.Pokemon;
 import jlppc.regimys.objects.Pokemon.Status;
 
-public class PoudreToxik extends Attaque {
-	public PoudreToxik() {
-		super("Poudre Toxik", 0, Type.POISON, 75, false, true, -1, false, 35);
+public class PoudreDodo extends Attaque{
+	public PoudreDodo() {
+		super("Poudre Dodo", 0, Type.PLANTE, 75, false ,true, -1, false, 15);
 	}
 
 	@Override
 	protected void effetAvant(Pokemon atk, Pokemon def) throws EndOfTurn, SameAtkPartTwo {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	protected void effetApres(Pokemon atk, Pokemon def) throws SameAtkPartTwo {
-		if(def.getType1() != Type.POISON){
-			if(def.setStatus(Status.POISON)){
-				keyout(key("effects.status.poison"), def.getSurnom());
-			}else{
-				keyout(key("effects.status.fail"), def.getSurnom(), "empoisonné");
-			}
+		if(def.setStatus(Status.SOMMEIL)){
+			keyout(key("effect.status.sommeil"), def.getSurnom());
 		}else{
-			System.out.println("Mais cela echoue!");
+			keyout(key("attack.fail"));
 		}
-
+		
 	}
 }

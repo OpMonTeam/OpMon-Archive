@@ -114,6 +114,7 @@ public class StringKey {
 		//attaque
 		keys.add(new StringKey("attack.pkmn.attacked", "%o a perdu %o pv. Il lui reste %o pv."));
 		keys.add(new StringKey("attack.pkmn.absord", "La vie %o est absorbée! %o gagne %o pv!"));
+		keys.add(new StringKey("attack.fail", "Mais cela échoue!"));
 		
 	}
 	

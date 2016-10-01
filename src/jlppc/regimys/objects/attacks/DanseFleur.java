@@ -6,11 +6,10 @@ import jlppc.regimys.fight.SameAtkPartTwo;
 import jlppc.regimys.launch.Start;
 import jlppc.regimys.objects.Attaque;
 import jlppc.regimys.objects.Pokemon;
-import jlppc.utils.FormattedString;
 
-public class Mania extends Attaque {
-	public Mania() {
-		super("Mania", 120, Type.NORMAL, 100, false, false, 16, false, 10);
+public class DanseFleur extends Attaque {
+	public DanseFleur() {
+		super("Danse-Fleur", 120, Type.PLANTE, 100, true, false, 16, false, 10);
 	}
 
 	@Override
@@ -20,23 +19,25 @@ public class Mania extends Attaque {
 	}
 
 	@Override
-	protected void effetApres(Pokemon atk, Pokemon def) throws SameAtkPartTwo{
+	protected void effetApres(Pokemon atk, Pokemon def) throws SameAtkPartTwo {
 		if(part == 0){
 			part = 1;
 			throw new SameAtkPartTwo();
 		}else if(part == 1){
+			pp++;
 			if(Start.rand.nextBoolean()){
 				part = 2;
 				throw new SameAtkPartTwo();
 			}else{
 				part = 0;
+				atk.confus = true;
+				keyout(key("effects.status.confus"), atk.getSurnom());
 			}
-			
-		}else if(part == 2){
+		}else{
+			pp++;
 			part = 0;
-			FormattedString.outPrintln("%o devient confus!", atk.getSurnom());
 			atk.confus = true;
+			keyout(key("effects.status.confus"), atk.getSurnom());
 		}
-
 	}
 }

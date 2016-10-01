@@ -3,6 +3,7 @@ package jlppc.regimys.objects.attacks;
 import jlppc.regimys.objects.*;
 import jlppc.regimys.objects.Pokemon.Status;
 import jlppc.utils.*;
+import jlppc.regimys.enums.Type;
 import jlppc.regimys.launch.Start;
 
 public class LanceFlammes extends Attaque{

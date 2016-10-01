@@ -1,5 +1,6 @@
 package jlppc.regimys.objects;
 
+import jlppc.regimys.enums.Type;
 import jlppc.regimys.fight.EndOfTurn;
 import jlppc.regimys.fight.NoPP;
 import jlppc.regimys.fight.SameAtkPartTwo;
@@ -18,6 +19,7 @@ public abstract class Attaque extends Typedef{
 	 * La puissance de l'attaque
 	 */
 	protected int puissance;
+	protected int priorite;
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -144,12 +146,8 @@ public abstract class Attaque extends Typedef{
 	 * @throws SameAtkPartTwo - Si le combat doit faire la même attaque a la partie deux (Attaques en deux tours)
 	 * @throws NoPP - Si l'attaque n'a plus de PP.
 	 */
-	public final void attack(Pokemon atk, Pokemon def) throws SameAtkPartTwo, NoPP{
-		if(pp <= 0){
-			throw new NoPP();
-		}else{
-			pp--;
-		}
+	public final void attack(Pokemon atk, Pokemon def) throws SameAtkPartTwo{
+		pp--;
 		try{
 			System.out.println(atk.getSurnom() + " utilise " + nom);
 			if((Start.rand.nextDouble() * 100) > (precision * (atk.getStatPRE() / def.getStatESQ())) && rateJamais == false){
@@ -261,6 +259,22 @@ public abstract class Attaque extends Typedef{
 		this.chanceDeCoups = chanceDeCoups;
 		this.rateJamais = rateJamais;
 		this.pp = this.ppMax = ppMax;
+		priorite = 0;
+	}
+	protected Attaque(String nom, int puissance, Type type, int precision, boolean special, boolean status, int chanceDeCoups, boolean rateJamais, int ppMax, int priorite){
+		this.nom = nom;
+		this.puissance = puissance;
+		this.type = type;
+		this.precision = (short) precision;
+		this.special = special;
+		this.status = status;
+		this.chanceDeCoups = chanceDeCoups;
+		this.rateJamais = rateJamais;
+		this.pp = this.ppMax = ppMax;
+		this.priorite = priorite;
+	}
+	public int getPriorite(){
+		return priorite;
 	}
 	/**
 	 * Action effectuée si l'attaque échoue.

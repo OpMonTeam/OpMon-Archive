@@ -3,7 +3,8 @@ package jlppc.regimys.objects;
 import java.awt.Image;
 import java.util.Arrays;
 
-import jlppc.regimys.objects.Caractere.Stats;
+import jlppc.regimys.enums.Type;
+import jlppc.regimys.enums.Caractere.Stats;
 import jlppc.utils.HashArray;
 /**
  * Tout ce qui définit une espèce de pokemon (ET PAS UN POKEMON ATTENTION!) (Ni un digimon d'ailleurs.)

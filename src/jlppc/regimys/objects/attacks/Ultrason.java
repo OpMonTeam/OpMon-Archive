@@ -2,6 +2,7 @@ package jlppc.regimys.objects.attacks;
 
 import jlppc.regimys.objects.*;
 import jlppc.utils.*;
+import jlppc.regimys.enums.Type;
 import jlppc.regimys.launch.Start;
 
 public class Ultrason extends Attaque{

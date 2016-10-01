@@ -1,4 +1,4 @@
-package jlppc.regimys.objects;
+package jlppc.regimys.enums;
 
 /**
  * WAW! Tous les caractères des pokemon! Je vais pas les documenter un par un, ca serait totalement INUTILE! Sinon y'a pokepedia!
@@ -45,7 +45,8 @@ public enum Caractere {
 	 * Le bonus et malus que offre le caractere.
 	 * <br/> Les deux sont déclarés sur la même ligne parce que... flemme?
 	 */
-	Stats bonus, malus;
+	public final Stats bonus;
+	public final Stats malus;
 	/**
 	 * Le constructeur. Devinez a quoi il sert!
 	 * @param bonus - {@link #bonus}

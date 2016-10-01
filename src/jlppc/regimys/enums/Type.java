@@ -1,4 +1,4 @@
-package jlppc.regimys.objects;
+package jlppc.regimys.enums;
 /**
  * Tout ce qui attrait au type.
  * @author Jlppc
@@ -10,7 +10,7 @@ public enum Type {
 	/**
 	 * L'ID du type.
 	 */
-	public int id;
+	public final int id;
 	//Variables de repere pour le tableau.
 	public static final float PE = 0.5f;//Peu efficace
 	public static final float NE = 1f;//Neutre
