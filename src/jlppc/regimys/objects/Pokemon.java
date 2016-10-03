@@ -55,7 +55,7 @@ public class Pokemon {
 	 */
 	protected int level;
 	/**
-	 * Le caractère du pokemon
+	 * Le caractÃ¨re du pokemon
 	 */
 	protected Caractere caractere;
 	/**
@@ -96,6 +96,8 @@ public class Pokemon {
 	public boolean amour = false;
 	public boolean vampigraine = false;
 	public boolean malediction = false;
+	
+	protected int dresseurID;
 	/**
 	 * L'enumeration des status pokemon.
 	 * @author Jlppc
@@ -387,7 +389,7 @@ public class Pokemon {
 	public synchronized void attacked(int pvPerdus){
 		this.PV = PV  - pvPerdus;
 	}
-	//Les methodes suivantes permettent de modifier les statistiques en suivant les niveaux prédefinis. Il retoure false si les statistiques étaient déjà au plus haut ou plus bas.
+	//Les methodes suivantes permettent de modifier les statistiques en suivant les niveaux prÃ©definis. Il retoure false si les statistiques Ã©taient dÃ©jÃ  au plus haut ou plus bas.
 	public boolean changeATK(int power) {
 		if(power < 0){
 			for(int i = 0; i > power; i--){
@@ -1409,7 +1411,7 @@ return true;
 	/**
 	 * Permet de changer le status du pokemon en suivant certaines regles.
 	 * @param status - Le nouveau status du pokemon
-	 * @return - Si le status a bien été change
+	 * @return - Si le status a bien Ã©tÃ© change
 	 */
 	public boolean setStatus(Status status){
 		
@@ -1420,26 +1422,26 @@ return true;
 			changeATK(1);
 		}
 		else if(status == Status.BRULURE && this.status == Status.BRULURE){
-			System.out.println(surnom + " est déjà brulé!");
+			System.out.println(surnom + " est dÃ©jÃ  brulÃ©!");
 			return false;		}
 		else if(status == Status.PARALYSIE){
 			changeVIT(-1);
 		}else if(status == Status.AUCUN && this.status == Status.PARALYSIE){
 			changeVIT(1);
 		}else if(status == Status.SOMMEIL && this.status == Status.SOMMEIL){
-			System.out.println("Mais " + surnom + " dort déjà!");
+			System.out.println("Mais " + surnom + " dort dÃ©jÃ !");
 			return false;
 		}else if(status == Status.PARALYSIE && this.status == Status.PARALYSIE){
-			System.out.println(surnom + " est déjà paralysé!");
+			System.out.println(surnom + " est dÃ©jÃ  paralysÃ©!");
 			return false;
 		}else if(status == Status.GEL && this.status == Status.GEL){
-			System.out.println(surnom + " est déjà gelé!");
+			System.out.println(surnom + " est dÃ©jÃ  gelÃ©!");
 			return false;
 		}else if(status == Status.POISON && this.status == Status.POISON){
-			System.out.println(surnom + " est déjà empoisonné!");
+			System.out.println(surnom + " est dÃ©jÃ  empoisonnÃ©!");
 			return false;
 		}else if(this.status != Status.AUCUN && status != Status.AUCUN){
-			System.out.println("Mais " + surnom + " a déjà un status!");
+			System.out.println("Mais " + surnom + " a dÃ©jÃ  un status!");
 			return false;
 		}
 		this.status = status;
