@@ -7,53 +7,57 @@ import jlppc.regimys.enums.Type;
 import jlppc.regimys.enums.Caractere.Stats;
 import jlppc.utils.HashArray;
 /**
- * Tout ce qui définit une espèce de pokemon (ET PAS UN POKEMON ATTENTION!) (Ni un digimon d'ailleurs.)
+ * Tout ce qui dÃ©finit une espÃ¨ce de pokemon (ET PAS UN POKEMON ATTENTION!) (Ni un digimon d'ailleurs.)
  * @author Jlppc
  *
  */
 public final class Espece {
 	
 	/**
-	 * Le nom de l'espèce. Pourquoi surnom? Je sais pas.
+	 * Le nom de l'espÃ¨ce. Pourquoi surnom? Je sais pas.
 	 */
 	protected final String surnom;
 	/**
-	 * Le numéro pokedex. Je ne repète que ce qui est dit dans le nom.
+	 * Le numÃ©ro pokedex. Je ne repÃ¨te que ce qui est dit dans le nom.
 	 */
 	protected int numeroPokedex;
 	/**
-	 * Voir nom. Tellement évident.
+	 * Voir nom. Tellement Ã©vident.
 	 */
 	protected Espece evolution;
 	/**
-	 * Le niveau auquel le pokemon évolue.
+	 * Le niveau auquel le pokemon Ã©volue.
 	 */
 	protected int niveauEvolution;
 	/**
-	 * La manière dont le pokemon évolue. Peut prendre les valeurs :<br/><br/>
+	 * La maniÃ¨re dont le pokemon Ã©volue. Peut prendre les valeurs :<br/><br/>
 	 * {@link #EVOLUTION_BY_LEVEL}<br/><br/>
 	 * {@link #EVOLUTION_BY_LOVE}<br/><br/>
 	 * {@link #EVOLUTION_BY_OBJECT}
 	 */
 	protected int maniereEvolution;
 	/**
-	 * Signale que l'évolution est par le niveau. Voir {@link #niveauEvolution} pour savoir lequel.
+	 * Signale que l'Ã©volution est par le niveau. Voir {@link #niveauEvolution} pour savoir lequel.
 	 */
 	public static final int EVOLUTION_BY_LEVEL = 0;
 	/**
-	 * Signale que l'évolution est par un objet (Pierre, truc bizzare qui permet d'évoluer lors d'un échange... ect)
+	 * Signale que l'Ã©volution est par un objet (Pierre, truc bizzare qui permet d'Ã©voluer lors d'un Ã©change... ect)
 	 */
 	public static final int EVOLUTION_BY_OBJECT = 1;
 	/**
-	 * Signale que l'évolution dépend du stade d'attachement avec son pokemon.
+	 * Signale que l'Ã©volution dÃ©pend du stade d'attachement avec son pokemon.
 	 */
 	public static final int EVOLUTION_BY_LOVE = 2;
+	
+	public static final int EVOLUTION_BY_LEARNING = 3;
+	
+	public static final int EVOLUTION_BY_TRADE = 4;
 	/**
-	 * Voir nom. Tellement évident.
+	 * Voir nom. Tellement Ã©vident.
 	 */
 	protected final Type type1;
 	/**
-	 * Voir nom. Tellement évident. Mettre Type.AUCUN si il n'a pas de second type.
+	 * Voir nom. Tellement Ã©vident. Mettre Type.AUCUN si il n'a pas de second type.
 	 */
 	protected final Type type2;
 	/**
@@ -61,19 +65,19 @@ public final class Espece {
 	 */
 	protected HashArray[] atksByLevels;
 	/**
-	 * L'entrée du pokedex (La description)
+	 * L'entrÃ©e du pokedex (La description)
 	 */
 	protected String entreePokedex;
 	/**
-	 * Voir nom. Tellement évident.
+	 * Voir nom. Tellement Ã©vident.
 	 */
 	protected float taille;
 	/**
-	 * Voir nom. Tellement évident.
+	 * Voir nom. Tellement Ã©vident.
 	 */
 	protected float poids;
 	/**
-	 * Voir nom. Tellement évident. Par contre, pourquoi des classes. Parce que class.newInstance !
+	 * Voir nom. Tellement Ã©vident. Par contre, pourquoi des classes. Parce que class.newInstance !
 	 */
 	protected Class<Attaque>[] ctCompatibles;
 	//Les statistiques de l'espece. Les noms sont evidents.
@@ -84,7 +88,7 @@ public final class Espece {
 	protected final int baseVit;
 	protected final int basePV;
 	/**
-	 * Les EV données en fin de combat.
+	 * Les EV donnÃ©es en fin de combat.
 	 */
 	protected Stats EVgiven;
 	//Les sprites. Les noms sont toujours evidents. Ceux qui finissent par S sont les sprites Shiney.
@@ -100,9 +104,9 @@ public final class Espece {
 	/**
 	 * Le constructeur.
 	 * @param atk - L'attaque de base
-	 * @param def - La défense de base
-	 * @param atkSpe - L'attaque spéciale de base
-	 * @param defSpe - La défense spéciale de base
+	 * @param def - La dÃ©fense de base
+	 * @param atkSpe - L'attaque spÃ©ciale de base
+	 * @param defSpe - La dÃ©fense spÃ©ciale de base
 	 * @param vit - La vitesse de base
 	 * @param pv - Les PV de base
 	 * @param name - Le nom de l'espece.
