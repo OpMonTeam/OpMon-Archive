@@ -134,6 +134,27 @@ public enum Type {
 			{PE, TE, NE, PE, TE, TE, PE, PE, TE, NE, TE, NE, IN, NE, NE, PE, PE, NE},
 			{PE, PE, NE, PE, SE, NE, PE, NE, PE, NE, NE, NE, NE, TE, IN, NE, NE, NE}
 	};
+	
+	public static float[][] tableauElectrique = {
+			{TP, TE, PE, NE, PE, PE, TE, PE, PE, PE, PE, IN, PE, PE, SE, NE, NE, TP},
+			{PE, NE, NE, NE, PE, TE, NE, NE, PE, NE, NE, NE, TE, PE, TE, NE, PE, NE},
+			{PE, NE, TE, PE, TP, TE, PE, TE, NE, NE, PE, NE, NE, NE, TE, NE, NE, PE},
+			{TP, NE, NE, PE, NE, NE, PE, PE, NE, NE, TE, NE, NE, NE, TE, NE, NE, PE},
+			{PE, NE, NE, NE, PE, NE, NE, NE, NE, NE, NE, NE, NE, NE, TE, NE, NE, PE},
+			{NE, PE, IN, NE, PE, NE, NE, NE, PE, NE, NE, TE, NE, NE, TE, NE, PE, PE},
+			{TP, NE, NE, TE, PE, PE, PE, PE, PE, NE, PE, NE, NE, TE, SE, NE, NE, PE},
+			{NE, TE, NE, NE, PE, NE, TE, PE, NE, NE, NE, NE, NE, TE, TE, NE, NE, PE},
+			{PE, PE, NE, NE, PE, NE, TE, NE, NE, NE, PE, NE, NE, TE, NE, NE, NE, NE},
+			{PE, TE, NE, NE, PE, NE, NE, NE, NE, NE, NE, NE, NE, NE, TE, IN, NE, PE},
+			{PE, NE, NE, PE, TP, NE, TE, TE, TE, NE, PE, TE, NE, NE, NE, NE, NE, NE},
+			{PE, PE, NE, NE, PE, PE, NE, NE, PE, NE, PE, PE, TE, NE, SE, NE, NE, PE},
+			{PE, PE, NE, NE, PE, NE, NE, NE, TE, NE, NE, NE, PE, NE, TE, TE, TE, PE},
+			{NE, TE, NE, TE, PE, NE, PE, NE, NE, PE, TE, PE, NE, NE, SE, NE, NE, TP},
+			{PE, NE, NE, TE, IN, NE, NE, TE, NE, NE, TE, PE, NE, PE, TE, NE, NE, PE},
+			{PE, IN, NE, NE, PE, NE, NE, NE, PE, IN, NE, PE, NE, NE, TE, TE, TE, PE},
+			{PE, TE, NE, NE, PE, TE, NE, NE, TE, NE, NE, NE, IN, NE, TE, PE, PE, PE},
+			{PE, PE, NE, NE, NE, NE, NE, TE, PE, NE, PE, NE, NE, TE, IN, NE, NE, PE}
+	};
 	/**
 	 * Le nom du type en String
 	 */
