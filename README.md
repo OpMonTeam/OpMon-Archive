@@ -12,7 +12,7 @@ Si vous avez des questions a poser, n'hésitez pas a le demander dans la F.A.Q. 
 
 Changelog:
 <ul>
-<li>0.03 : Modification du systeme de combat</li>
-<li>0.02 : Ajout des status, types, equations de base ect...</li>
-<li>0.01 : Creation du systeme de combat de base</li>
+<li>Alpha 0.03 : Modification du systeme de combat</li>
+<li>Alpha 0.02 : Ajout des status, types, equations de base ect...</li>
+<li>Alpha 0.01 : Creation du systeme de combat de base</li>
 </ul>
