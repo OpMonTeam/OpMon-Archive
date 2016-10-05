@@ -88,6 +88,28 @@ public enum Type {
 			{NE, PE, NE, NE, TE, TE, NE, TE, TP, NE, PE, NE, TE, NE, IN, NE, PE, TE}//Combat + Vol
 			
 	};
+	
+	public static float[][] tableDragon = {
+			{NE, NE, TE, PE, PE, TE, PE, TE, NE, NE, PE, NE, NE, NE, NE, NE, NE, NE},
+			{PE, TE, NE, PE, PE, NE, NE, NE, PE, PE, TP, IN, PE, PE, TE, NE, NE, PE},
+			{NE, NE, TE, PE, PE, SE, PE, TE, PE, NE, PE, NE, TE, PE, NE, NE, PE, TE},
+			{PE, NE, TE, TP, NE, TE, TP, NE, NE, NE, NE, NE, NE, NE, NE, NE, NE, NE},
+			{PE, NE, TE, PE, TP, TE, PE, TE, NE, NE, PE, NE, NE, NE, TE, NE, NE, PE},
+			{TE, PE, IN, PE, PE, TE, PE, TE, PE, NE, PE, TE, NE, NE, NE, NE, PE, NE},
+			{PE, NE, TE, NE, PE, NE, TP, NE, PE, NE, TP, NE, NE, TE, TE, NE, NE, NE},
+			{TE, TE, TE, PE, PE, TE, NE, NE, NE, NE, PE, NE, NE, TE, NE, NE, NE, NE},
+			{NE, PE, TE, PE, PE, TE, NE, TE, NE, NE, TP, NE, NE, TE, PE, NE, NE, TE},
+			{NE, TE, TE, PE, PE, TE, PE, TE, NE, NE, PE, NE, NE, NE, NE, IN, NE, NE},
+			{NE, NE, TE, TP, TP, TE, NE, SE, TE, NE, TP, TE, NE, NE, PE, NE, NE, TE},
+			{NE, PE, TE, PE, PE, NE, PE, TE, PE, NE, TP, PE, TE, NE, TE, NE, NE, NE},
+			{NE, PE, TE, PE, PE, TE, PE, TE, TE, NE, PE, NE, PE, NE, NE, TE, TE, NE},
+			{TE, TE, TE, NE, PE, TE, TP, TE, NE, PE, NE, PE, NE, NE, TE, NE, NE, PE},
+			{NE, NE, TE, NE, IN, TE, PE, SE, NE, NE, NE, PE, NE, PE, NE, NE, NE, NE},
+			{NE, IN, TE, PE, PE, TE, PE, TE, PE, IN, PE, PE, NE, NE, NE, TE, TE, NE},
+			{NE, IN, TE, PE, PE, TE, PE, TE, PE, IN, PE, PE, NE, NE, NE, TE, TE, NE},
+			{NE, PE, TE, PE, NE, TE, PE, SE, PE, NE, TP, NE, NE, TE, IN, NE, NE, NE}
+			
+	};
 	/**
 	 * Le nom du type en String
 	 */
