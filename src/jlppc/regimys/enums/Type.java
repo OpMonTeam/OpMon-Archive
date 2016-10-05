@@ -23,6 +23,7 @@ public enum Type {
 	 * Le type defenseur est le premier IND, le type attaquant le 2e
 	 */
 	public static float[][] tabUnType = {
+			
 			{PE, TE, PE, NE, NE, PE, TE, PE, PE, PE, PE, IN, PE, PE, TE, NE, NE, PE},//Acier
 			{NE, NE, NE, NE, NE, TE, NE, NE, PE, NE, NE, NE, TE, PE, NE, NE, PE, TE},//Combat
 			{NE, NE, TE, PE, PE, TE, PE, TE, NE, NE, PE, NE, NE, NE, NE, NE, NE, NE},//Dragon
@@ -44,7 +45,7 @@ public enum Type {
 	};
 	
 	public static float[][] tableAcier = {
-			{PE, TE, PE, NE, NE, PE, TE, PE, PE, PE, PE, IN, PE, PE, TE, NE, NE, PE},//Acier + Acier
+			{TP, SE, TP, NE, NE, TP, SE, TP, TP, TP, TP, IN, TP, TP, SE, NE, NE, TP},//Acier + Acier
 			{PE, TE, PE, NE, NE, NE, TE, PE, TP, PE, PE, IN, NE, TP, TE, NE, PE, NE},//Acier + Combat
 			{PE, TE, NE, PE, PE, NE, NE, NE, PE, PE, TP, IN, PE, PE, TE, NE, NE, PE},//Acier + Dragon
 			{TP, TE, PE, PE, TE, PE, NE, TP, PE, PE, NE, IN, PE, PE, TE, NE, NE, PE},//Acier + Eau
@@ -63,6 +64,28 @@ public enum Type {
 			{PE, SE, PE, NE, NE, NE, TE, PE, NE, PE, PE, IN, IN, PE, TE, PE, PE, PE},//Acier + Ténèbres
 			{PE, NE, PE, NE, TE, PE, TE, NE, TP, PE, TP, IN, PE, NE, IN, NE, NE, PE}//Acier + Vol
 			
+			
+	};
+	
+	public static float[][] tableCombat = {
+			{NE, NE, NE, NE, NE, TE, NE, NE, PE, NE, NE, NE, TE, PE, NE, NE, PE, TE},//Combat
+			{PE, TE, PE, NE, NE, NE, TE, PE, TP, PE, PE, IN, NE, TP, TE, NE, PE, NE},//Combat + Acier
+			{NE, NE, TE, PE, PE, SE, PE, TE, PE, NE, PE, NE, TE, PE, NE, NE, PE, TE},//Combat + Dragon
+			{PE, NE, NE, PE, TE, TE, PE, PE, PE, NE, TE, NE, TE, PE, NE, NE, PE, TE},//Combat + Eau
+			{PE, NE, NE, NE, PE, TE, NE, NE, PE, NE, NE, NE, TE, PE, TE, NE, PE, NE},//Combat + Electrique
+			{TE, PE, IN, NE, NE, TE, NE, NE, TP, NE, NE, TE, TE, PE, NE, NE, TP, TE},//Combat + Fée
+			{PE, NE, NE, TE, NE, NE, PE, PE, TP, NE, PE, NE, TE, NE, TE, NE, PE, TE},//Combat + Feu
+			{TE, TE, NE, NE, NE, TE, TE, PE, PE, NE, NE, NE, TE, NE, NE, NE, PE, TE},//Combat + Glace
+			{NE, PE, NE, NE, NE, TE, TE, NE, PE, NE, PE, NE, TE, NE, PE, NE, PE, SE},//Combat + Insecte
+			{NE, TE, NE, NE, NE, TE, NE, NE, PE, NE, NE, NE, TE, PE, NE, IN, PE, TE},//Combat + Normal
+			{NE, NE, NE, PE, PE, TE, TE, TE, NE, NE, PE, TE, TE, PE, PE, NE, PE, SE},//Combat + Plante
+			{NE, PE, NE, NE, NE, NE, NE, NE, TP, NE, PE, PE, SE, PE, TE, NE, PE, TE},//Combat + Poison
+			{NE, PE, NE, NE, NE, TE, NE, NE, NE, NE, NE, NE, NE, PE, NE, TE, NE, TE},//Combat + Psy
+			{TE, TE, NE, TE, NE, TE, PE, NE, PE, PE, TE, PE, TE, PE, TE, NE, PE, NE},//Combat + Roche
+			{NE, NE, NE, TE, IN, TE, NE, TE, PE, NE, TE, PE, TE, TP, NE, NE, PE, TE},//Combat + Sol
+			{NE, IN, NE, NE, NE, TE, NE, NE, TP, IN, NE, PE, TE, PE, NE, TE, NE, TE},//Combat + Spectre
+			{NE, TE, NE, NE, NE, SE, NE, NE, NE, NE, NE, NE, IN, PE, NE, PE, TP, TE},//Combat + Ténèbres
+			{NE, PE, NE, NE, TE, TE, NE, TE, TP, NE, PE, NE, TE, NE, IN, NE, PE, TE}//Combat + Vol
 			
 	};
 	/**
