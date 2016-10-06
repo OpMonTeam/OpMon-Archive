@@ -24,17 +24,28 @@ import jlppc.regimys.objects.attacks.ViveAttaque;
  *
  */
 public class Start {
+	
+	public static float version = 0.03;
+	
+	public static char commits = 'k';
+	
+
+	
+	public static int preNbre = 0;
+	
+	public static boolean pre = (preNbre != 0);
+	
 	//Utilitaires pratiques
 	/**
-	 * Aléatoire
+	 * AlÃ©atoire
 	 */
 	public static Random rand = new Random();
 	/**
-	 * Entrées (utilisé au début du programme)
+	 * EntrÃ©es (utilisÃ© au dÃ©but du programme)
 	 */
 	public static Scanner sc = new Scanner(System.in);
 	/**
-	 * Le main, permet de... demmarer le programme. Tu ne le savais pas, espèce d'incompetent? ;-)
+	 * Le main, permet de... demmarer le programme. Tu ne le savais pas, espÃ¨ce d'incompetent? ;-)
 	 * @param args
 	 * @throws IllegalAccessException 
 	 * @throws InstantiationException 
