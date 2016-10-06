@@ -218,6 +218,48 @@ public enum Type {
 			{TE, SE, NE, NE, NE, TE, TE, PE, TE, NE, NE, NE, IN, TE, NE, PE, PE, NE},
 			{TE, NE, NE, NE, TE, NE, TE, NE, PE, NE, PE, NE, NE, SE, IN, NE, NE, NE}
 	};
+	
+	public static float[] tableauInsecte = {
+			{PE, NE, PE, NE, NE, PE, SE, PE, PE, PE, TP, IN, PE, NE, NE, NE, NE, NE},
+			{NE, PE, NE, NE, NE, TE, TE, NE, PE, NE, PE, NE, TE, NE, PE, NE, PE, SE},
+			{NE, PE, TE, PE, PE, TE, NE, TE, NE, NE, TP, NE, NE, TE, PE, NE, NE, TE},
+			{PE, PE, NE, PE, TE, NE, NE, PE, NE, NE, NE, NE, NE, TE, PE, NE, NE, TE},
+			{PE, PE, NE, NE, PE, NE, TE, NE, NE, NE, PE, NE, NE, TE, NE, NE, NE, NE},
+			{TE, TP, IN, NE, NE, NE, TE, NE, PE, NE, PE, TE, NE, TE, PE, NE, PE, TE},
+			{PE, PE, NE, TE, NE, PE, NE, PE, PE, NE, TP, NE, NE, SE, NE, NE, NE, TE},
+			{TE, NE, NE, NE, NE, NE, SE, PE, NE, NE, PE, NE, NE, SE, PE, NE, NE, TE},
+			{NE, PE, NE, NE, NE, NE, TE, NE, NE, NE, PE, NE, NE, TE, PE, NE, NE, TE},
+			{NE, NE, NE, NE, NE, NE, TE, NE, NE, NE, PE, NE, NE, TE, PE, IN, NE, TE},
+			{NE, PE, NE, PE, PE, NE, SE, TE, TE, NE, TP, TE, NE, TE, TP, NE, NE, SE},
+			{NE, TP, NE, NE, NE, PE, TE, NE, PE, NE, TP, PE, TE, TE, NE, NE, NE, TE},
+			{NE, TP, NE, NE, NE, NE, TE, NE, TE, NE, PE, NE, PE, TE, PE, TE, TE, TE},
+			{TE, NE, NE, TE, NE, NE, NE, NE, NE, PE, NE, PE, NE, TE, NE, NE, NE, NE},
+			{NE, PE, NE, TE, IN, NE, TE, TE, NE, NE, NE, PE, NE, NE, PE, NE, NE, TE},
+			{NE, IN, NE, NE, NE, NE, TE, NE, PE, IN, PE, PE, NE, TE, PE, TE, TE, TE},
+			{NE, NE, NE, NE, NE, TE, TE, NE, TE, NE, PE, NE, IN, TE, PE, PE, PE, TE},
+			{NE, TP, NE, NE, TE, NE, TE, TE, PE, NE, TP, NE, NE, SE, IN, NE, NE, TE}
+	};
+	
+	public static float[] tableauNormal = {
+			{PE, SE, PE, NE, NE, PE, TE, PE, PE, PE, PE, IN, NE, PE, TE, IN, PE, PE},
+			{NE, TE, NE, NE, NE, TE, NE, NE, PE, NE, NE, NE, TE, PE, NE, IN, PE, TE},
+			{NE, TE, TE, PE, PE, TE, PE, TE, NE, NE, PE, NE, NE, NE, NE, IN, NE, NE},
+			{PE, TE, NE, PE, TE, NE, PE, PE, NE, NE, TE, NE, NE, NE, NE, IN, NE, NE},
+			{PE, TE, NE, NE, PE, NE, NE, NE, NE, NE, NE, NE, NE, NE, TE, IN, NE, PE},
+			{TE, NE, IN, NE, NE, NE, NE, NE, PE, NE, NE, TE, NE, NE, NE, IN, PE, NE},
+			{PE, TE, NE, TE, NE, PE, PE, PE, PE, NE, PE, NE, NE, TE, TE, IN, NE, NE},
+			{TE, SE, NE, NE, NE, NE, TE, PE, NE, NE, NE, NE, NE, TE, NE, IN, NE, NE},
+			{NE, NE, NE, NE, NE, NE, TE, NE, NE, NE, PE, NE, NE, TE, PE, IN, NE, TE},
+			{NE, TE, NE, NE, NE, NE, NE, NE, NE, NE, NE, NE, NE, NE, NE, IN, IN, IN},
+			{NE, TE, NE, PE, PE, NE, TE, TE, TE, NE, PE, TE, NE, NE, PE, IN, NE, TE},
+			{NE, NE, NE, NE, NE, PE, NE, NE, PE, NE, PE, PE, TE, NE, TE, IN, NE, NE},
+			{NE, NE, NE, NE, NE, NE, NE, NE, TE, NE, NE, NE, PE, NE, NE, IN, TE, NE},
+			{TE, SE, NE, TE, NE, NE, PE, NE, NE, PE, TE, PE, NE, NE, TE, IN, NE, PE},
+			{NE, TE, NE, TE, IN, NE, NE, TE, NE, NE, TE, PE, NE, PE, NE, IN, NE, NE},
+			{NE, IN, NE, NE, NE, NE, NE, NE, PE, IN, NE, PE, NE, NE, NE, IN, TE, NE},
+			{NE, SE, NE, NE, NE, TE, NE, NE, TE, NE, NE, NE, IN, NE, NE, IN, PE, NE},
+			{NE, NE, NE, NE, TE, NE, NE, TE, PE, NE, PE, NE, NE, TE, IN, IN, NE, NE}
+	};
 	/**
 	 * Le nom du type en String
 	 */
