@@ -1,6 +1,9 @@
 # Projet-Pokemon-Regimys
 Bienvenue sur le projet de fan-game pokemon Regimys! Plus d'infos sur le wiki!<br/>
 <br/>Version du jeu : Alpha 0.03<br/><br/>
+Prochaines versions :<ul> <li>Alpha 0.04 : Quand toutes les tables des types auront été ajoutées</li>
+<li>Alpha 0.05 : Quand toutes les attaques et pokemon de la première génération auront été ajoutées</li></ul><br/>
+
 Informations generales:<br/>
 Regimys est un projet de fan-game pokémon débuté en septembre 2016 et imaginé en 2012. 
 Ce fan-game est totalement open-source, ce qui permet aux plus grands fans de venir realiser leurs rêves les plus fous! 
