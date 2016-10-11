@@ -339,11 +339,95 @@ public enum Type {
 			{TE, TE, NE, NE, PE, NE, NE, TE, TE, PE, NE, NE, NE, NE, NE, NE, NE, NE},
 			{TE, NE, NE, TE, NE, PE, PE, NE, PE, PE, NE, TP, TE, NE, SE, NE, NE, PE},
 			{TE, NE, NE, TE, NE, NE, PE, NE, TE, PE, TE, PE, PE, NE, TE, TE, TE, PE},
-			tableType[ROCHE.id],
+			tabUnType[ROCHE.id],
 			{TE, TE, NE, SE, IN, NE, PE, TE, NE, PE, SE, TP, NE, PE, TE, NE, NE, PE},
 			{TE, IN, NE, TE, NE, NE, PE, NE, PE, IN, TE, TP, NE, NE, TE, TE, TE, PE},
 			{TE, SE, NE, TE, NE, TE, PE, NE, TE, PE, TE, PE, IN, NE, TE, PE, PE, PE},
 			{TE, NE, NE, TE, TE, NE, PE, TE, PE, PE, NE, PE, NE, TE, IN, NE, NE, PE}
+	};
+	
+	public static float[][] tableauSol = {
+			{PE, TE, PE, TE, IN, PE, TE, NE, PE, PE, NE, IN, PE, TP, TE, NE, NE, PE},
+			{NE, NE, NE, TE, IN, TE, NE, TE, PE, NE, TE, PE, TE, TP, NE, NE, PE, TE},
+			{NE, NE, TE, NE, IN, TE, PE, SE, NE, NE, NE, PE, NE, PE, NE, NE, NE, NE},
+			{PE, NE, NE, NE, IN, NE, PE, NE, NE, NE, SE, PE, NE, PE, NE, NE, NE, NE},
+			{PE, NE, NE, TE, IN, NE, NE, TE, NE, NE, TE, PE, NE, PE, TE, NE, NE, PE},
+			{TE, NE, IN, TE, IN, NE, NE, TE, PE, NE, TE, NE, NE, PE, NE, NE, PE, NE},
+			{PE, NE, NE, SE, IN, PE, PE, NE, PE, NE, NE, PE, NE, NE, TE, NE, NE, NE},
+			{TE, TE, NE, TE, IN, NE, TE, NE, NE, NE, TE, PE, NE, NE, NE, NE, NE, NE},
+			{NE, PE, NE, TE, IN, NE, TE, TE, NE, NE, NE, PE, NE, NE, PE, NE, NE, TE},
+			{NE, TE, NE, TE, IN, NE, NE, TE, NE, NE, TE, PE, NE, PE, NE, IN, NE, NE},
+			{NE, NE, NE, NE, IN, NE, TE, SE, TE, NE, NE, NE, NE, PE, PE, NE, NE, TE},
+			{NE, PE, NE, TE, IN, PE, NE, TE, PE, NE, NE, TP, TE, PE, TE, NE, NE, NE},
+			{NE, PE, NE, TE, IN, NE, NE, TE, TE, NE, TE, PE, PE, PE, NE, TE, TE, NE},
+			{TE, TE, NE, SE, IN, NE, PE, TE, NE, PE, SE, TP, NE, PE, TE, NE, NE, PE},
+			tabUnType[SOL.id],
+			{NE, IN, NE, TE, IN, NE, NE, TE, PE, IN, TE, TP, NE, PE, NE, TE, TE, NE},
+			{NE, TE, NE, TE, IN, TE, NE, TE, TE, NE, TE, PE, IN, PE, NE, PE, PE, NE},
+			{NE, PE, NE, TE, IN, NE, NE, SE, PE, NE, NE, PE, NE, NE, IN, NE, NE, NE}
+	};
+	
+	public static float[][] tableSpectre = {
+			{PE, IN, PE, NE, NE, PE, TE, PE, TP, IN, PE, IN, PE, PE, TE, TE, TE, PE},
+			{NE, IN, NE, NE, NE, TE, NE, NE, TP, IN, NE, PE, TE, PE, NE, TE, NE, TE},
+			{NE, IN, TE, PE, PE, TE, PE, TE, PE, IN, PE, PE, NE, NE, NE, TE, TE, NE},
+			{PE, IN, NE, PE, TE, NE, PE, PE, PE, IN, TE, PE, NE, NE, NE, TE, TE, NE},
+			{PE, IN, NE, NE, PE, NE, NE, NE, PE, IN, NE, PE, NE, NE, TE, TE, TE, PE},
+			{TE, IN, IN, NE, NE, NE, NE, NE, TP, IN, NE, NE, NE, NE, NE, TE, NE, NE},
+			{PE, IN, NE, TE, NE, PE, PE, PE, TP, IN, PE, PE, NE, TE, TE, TE, TE, NE},
+			{TE, IN, NE, NE, NE, NE, TE, PE, PE, IN, NE, PE, NE, TE, NE, TE, TE, NE},
+			{NE, IN, NE, NE, NE, NE, TE, NE, PE, IN, PE, PE, NE, TE, PE, TE, TE, TE},
+			{NE, IN, NE, NE, NE, NE, NE, NE, PE, IN, NE, PE, NE, NE, NE, IN, TE, NE},
+			{NE, IN, NE, PE, PE, NE, TE, TE, NE, IN, PE, NE, NE, NE, PE, TE, TE, TE},
+			{NE, IN, NE, NE, NE, PE, NE, NE, TP, IN, PE, TP, TE, NE, TE, TE, TE, NE},
+			{NE, IN, NE, NE, NE, NE, NE, NE, NE, IN, NE, PE, PE, NE, NE, SE, SE, NE},
+			{TE, IN, NE, TE, NE, NE, PE, NE, PE, IN, TE, TP, NE, NE, TE, TE, TE, PE},
+			{NE, IN, NE, TE, IN, NE, NE, TE, PE, IN, TE, TP, NE, PE, NE, TE, TE, NE},
+			tabUnType[SPECTRE.id],
+			{NE, IN, NE, NE, NE, TE, NE, NE, NE, IN, NE, PE, IN, NE, NE, NE, NE, NE},
+			{NE, IN, NE, NE, TE, NE, NE, TE, TP, IN, PE, PE, NE, TE, IN, TE, TE, NE}
+	};
+	
+	public static float[][] tableauTenebres = {
+			{PE, SE, PE, NE, NE, NE, TE, PE, NE, PE, PE, IN, IN, PE, TE, PE, PE, PE},
+			{NE, TE, NE, NE, NE, SE, NE, NE, NE, NE, NE, NE, IN, PE, NE, PE, TP, TE},
+			{NE, TE, TE, PE, PE, SE, PE, TE, TE, NE, PE, NE, IN, NE, NE, PE, PE, NE},
+			{PE, TE, NE, PE, TE, TE, PE, PE, TE, NE, TE, NE, IN, NE, NE, PE, PE, NE},
+			{PE, TE, NE, NE, PE, TE, NE, NE, TE, NE, NE, NE, IN, NE, TE, PE, PE, PE},
+			{TE, NE, IN, NE, NE, TE, NE, NE, NE, NE, NE, TE, IN, NE, NE, PE, TP, NE},
+			{PE, TE, NE, TE, NE, NE, PE, PE, NE, NE, PE, NE, IN, TE, TE, PE, PE, NE},
+			{TE, SE, NE, NE, NE, TE, TE, PE, TE, NE, NE, NE, IN, TE, NE, PE, PE, NE},
+			{NE, NE, NE, NE, NE, TE, TE, NE, TE, NE, PE, NE, IN, TE, PE, PE, PE, TE},
+			{NE, SE, NE, NE, NE, TE, NE, NE, TE, NE, NE, NE, IN, NE, NE, IN, PE, NE},
+			{NE, TE, NE, PE, PE, TE, TE, TE, SE, NE, PE, TE, IN, NE, PE, PE, PE, TE},
+			{NE, NE, NE, NE, NE, NE, NE, NE, NE, NE, PE, PE, IN, NE, TE, PE, PE, NE},
+			{NE, NE, NE, NE, NE, TE, NE, NE, SE, NE, NE, NE, IN, NE, NE, IN, IN, IN},
+			{TE, SE, NE, TE, NE, TE, PE, NE, TE, PE, TE, PE, IN, NE, TE, PE, PE, PE},
+			{NE, TE, NE, TE, IN, TE, NE, TE, TE, NE, TE, PE, IN, PE, NE, PE, PE, NE},
+			{NE, IN, NE, NE, NE, TE, NE, NE, NE, IN, NE, PE, IN, NE, NE, NE, NE, NE},
+			tabUnType[TENEBRES.id],
+			{NE, NE, NE, NE, TE, TE, NE, TE, NE, NE, PE, NE, IN, TE, IN, PE, PE, NE}
+	};
+	
+	public static float[][] tableauVol = {
+			{PE, NE, PE, NE, TE, PE, TE, NE, TP, PE, TP, IN, PE, NE, IN, NE, NE, PE},
+			{NE, PE, NE, NE, TE, TE, NE, TE, TP, NE, PE, NE, TE, NE, IN, NE, PE, TE},
+			{NE, PE, TE, PE, NE, TE, PE, SE, PE, NE, TP, NE, NE, TE, IN, NE, NE, NE},
+			{PE, PE, NE, PE, SE, NE, PE, NE, PE, NE, NE, NE, NE, TE, IN, NE, NE, NE},
+			{PE, PE, NE, NE, NE, NE, NE, TE, PE, NE, PE, NE, NE, TE, IN, NE, NE, PE},
+			{TE, TP, IN, NE, TE, NE, NE, TE, TP, NE, PE, TE, NE, TE, IN, NE, PE, NE},
+			{PE, PE, NE, TE, TE, PE, PE, NE, TP, NE, TP, NE, NE, SE, IN, NE, NE, NE},
+			{TE, NE, NE, NE, TE, NE, TE, NE, PE, NE, PE, NE, NE, SE, IN, NE, NE, NE},
+			{NE, TP, NE, NE, TE, NE, TE, TE, PE, NE, TP, NE, NE, SE, IN, NE, NE, TE},
+			{NE, NE, NE, NE, TE, NE, NE, TE, PE, NE, PE, NE, NE, TE, IN, IN, NE, NE},
+			{NE, PE, NE, PE, NE, NE, TE, SE, NE, NE, TP, TE, NE, TE, IN, NE, NE, TE},
+			{NE, TP, NE, NE, TE, PE, NE, TE, TP, NE, TP, PE, TE, TE, IN, NE, NE, NE},
+			{NE, TP, NE, NE, TE, NE, NE, TE, NE, NE, PE, NE, PE, TE, IN, TE, TE, NE},
+			{TE, NE, NE, TE, TE, NE, PE, TE, PE, PE, NE, PE, NE, TE, IN, NE, NE, PE},
+			{NE, PE, NE, TE, IN, NE, NE, SE, PE, NE, NE, PE, NE, NE, IN, NE, NE, NE},
+			{NE, IN, NE, NE, TE, NE, NE, TE, TP, IN, PE, PE, NE, TE, IN, TE, TE, NE},
+			{NE, NE, NE, NE, TE, TE, NE, TE, NE, NE, PE, NE, IN, TE, IN, PE, PE, NE},
+			tabUnType[VOL.id]
 	};
 	/**
 	 * Le nom du type en String
