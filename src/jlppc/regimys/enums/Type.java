@@ -260,6 +260,91 @@ public enum Type {
 			{NE, SE, NE, NE, NE, TE, NE, NE, TE, NE, NE, NE, IN, NE, NE, IN, PE, NE},
 			{NE, NE, NE, NE, TE, NE, NE, TE, PE, NE, PE, NE, NE, TE, IN, IN, NE, NE}
 	};
+	
+	public static float[][] tablePlante = {
+			{PE, TE, PE, PE, PE, PE, SE, NE, NE, PE, TP, IN, PE, PE, NE, NE, NE, NE},
+			{NE, NE, NE, PE, PE, TE, TE, TE, NE, NE, PE, TE, TE, PE, PE, NE, PE, SE},
+			{NE, NE, TE, TP, TP, TE, NE, SE, TE, NE, TP, TE, NE, NE, PE, NE, NE, TE},
+			{PE, NE, NE, TP, NE, NE, NE, NE, TE, NE, NE, TE, NE, NE, PE, NE, NE, TE},
+			{PE, NE, NE, PE, TP, NE, TE, TE, TE, NE, PE, TE, NE, NE, NE, NE, NE, NE},
+			{TE, PE, IN, PE, PE, NE, TE, TE, NE, NE, PE, SE, NE, NE, PE, NE, PE, TE},
+			{PE, NE, NE, NE, PE, PE, NE, NE, NE, NE, TP, TE, NE, TE, NE, NE, NE, TE},
+			{TE, TE, NE, PE, PE, NE, SE, NE, TE, NE, PE, TE, NE, TE, PE, NE, NE, TE},
+			{NE, PE, NE, PE, PE, NE, SE, TE, TE, NE, TP, TE, NE, TE, TP, NE, NE, SE},
+			{NE, TE, NE, PE, PE, NE, TE, TE, TE, NE, PE, TE, NE, NE, PE, IN, NE, TE},
+			{NE, NE, NE, PE, PE, NE, TE, TE, TE, NE, PE, TE, NE, NE, PE, NE, NE, TE},
+			{NE, PE, NE, PE, PE, PE, TE, TE, NE, NE, TP, NE, TE, NE, NE, NE, NE, TE},
+			{NE, PE, NE, PE, PE, NE, TE, TE, SE, NE, PE, TE, PE, NE, PE, TE, TE, TE},
+			{TE, TE, NE, NE, PE, NE, NE, TE, TE, PE, NE, NE, NE, NE, NE, NE, NE, NE},
+			{NE, NE, NE, NE, IN, NE, TE, SE, TE, NE, NE, NE, NE, PE, PE, NE, NE, TE},
+			{NE, IN, NE, PE, PE, NE, TE, TE, NE, IN, PE, NE, NE, NE, PE, TE, TE, TE},
+			{NE, TE, NE, PE, PE, TE, TE, TE, SE, NE, PE, TE, IN, NE, PE, PE, PE, TE},
+			{NE, PE, NE, PE, NE, NE, TE, SE, NE, NE, TP, TE, NE, TE, IN, NE, NE, TE}
+		
+	};
+	
+	public static float[][] tablePoison = {
+			{PE, NE, PE, NE, NE, TP, TE, PE, TP, PE, TP, IN, NE, PE, SE, NE, NE, PE},
+			{NE, PE, NE, NE, NE, NE, NE, NE, TP, NE, PE, PE, SE, PE, TE, NE, PE, TE},
+			{NE, PE, TE, PE, PE, NE, PE, TE, PE, NE, TP, PE, TE, NE, TE, NE, NE, NE},
+			{PE, PE, NE, PE, TE, PE, PE, PE, PE, NE, NE, PE, TE, NE, TE, NE, NE, NE},
+			{PE, PE, NE, NE, PE, PE, NE, NE, PE, NE, PE, PE, TE, NE, SE, NE, NE, PE},
+			{TE, TP, IN, NE, NE, PE, NE, NE, TP, NE, PE, NE, TE, NE, TE, NE, PE, NE},
+			{PE, PE, NE, TE, NE, TP, PE, PE, TP, NE, TP, PE, TE, TE, SE, NE, NE, NE},
+			{TE, NE, NE, NE, NE, PE, TE, PE, PE, NE, PE, PE, TE, TE, TE, NE, NE, NE},
+			{NE, TP, NE, NE, NE, PE, TE, NE, PE, NE, TP, PE, TE, TE, NE, NE, NE, TE},
+			{NE, NE, NE, NE, NE, PE, NE, NE, PE, NE, PE, PE, TE, NE, TE, IN, NE, NE},
+			{NE, PE, NE, PE, PE, PE, TE, TE, NE, NE, TP, NE, TE, NE, NE, NE, NE, TE},
+			{NE, PE, NE, NE, NE, PE, NE, NE, PE, NE, PE, PE, TE, NE, TE, NE, NE, NE},
+			{NE, TP, NE, NE, NE, PE, NE, NE, NE, NE, PE, PE, NE, NE, TE, TE, TE, NE},
+			{TE, NE, NE, TE, NE, PE, PE, NE, PE, PE, NE, TP, TE, NE, SE, NE, NE, PE},
+			{NE, PE, NE, TE, IN, PE, NE, TE, PE, NE, NE, TP, TE, PE, TE, NE, NE, NE},
+			{NE, IN, NE, NE, NE, PE, NE, NE, TP, IN, PE, TP, TE, NE, TE, TE, TE, NE},
+			{NE, NE, NE, NE, NE, NE, NE, NE, NE, NE, PE, PE, IN, NE, TE, PE, PE, NE},
+			{NE, TP, NE, NE, TE, PE, NE, TE, TP, NE, TP, PE, TE, TE, IN, NE, NE, NE}
+	};
+	
+	public static float[][] tableauPsi = {
+			{PE, NE, PE, NE, NE, PE, TE, PE, NE, PE, PE, IN, TP, PE, TE, TE, TE, PE},
+			{NE, PE, NE, NE, NE, TE, NE, NE, NE, NE, NE, NE, NE, PE, NE, TE, NE, TE},
+			{NE, PE, TE, PE, PE, TE, PE, TE, TE, NE, PE, NE, PE, NE, NE, TE, TE, NE},
+			{PE, PE, NE, PE, TE, NE, PE, PE, TE, NE, TE, NE, PE, NE, NE, TE, TE, NE},
+			{PE, PE, NE, NE, PE, NE, NE, NE, TE, NE, NE, NE, PE, NE, TE, TE, TE, PE},
+			{TE, TP, IN, NE, NE, NE, NE, NE, NE, NE, NE, TE, PE, NE, NE, TE, NE, PE},
+			{PE, PE, NE, TE, NE, PE, PE, PE, NE, NE, PE, NE, PE, TE, TE, TE, TE, NE},
+			{TE, NE, NE, NE, NE, NE, TE, PE, TE, NE, NE, NE, PE, TE, NE, TE, TE, NE},
+			{NE, TP, NE, NE, NE, NE, TE, NE, TE, NE, PE, NE, PE, TE, PE, TE, TE, TE},
+			{NE, NE, NE, NE, NE, NE, NE, NE, TE, NE, NE, NE, PE, NE, NE, IN, TE, NE},
+			{NE, PE, NE, PE, PE, NE, TE, TE, SE, NE, PE, TE, PE, NE, PE, TE, TE, TE},
+			{NE, TP, NE, NE, NE, PE, NE, NE, NE, NE, PE, PE, NE, NE, TE, TE, TE, NE},
+			{NE, PE, NE, NE, NE, NE, NE, NE, TE, NE, NE, NE, PE, NE, NE, TE, TE, NE},
+			{TE, NE, NE, TE, NE, NE, PE, NE, TE, PE, TE, PE, PE, NE, TE, TE, TE, PE},
+			{NE, PE, NE, TE, IN, NE, NE, TE, TE, NE, TE, PE, PE, PE, NE, TE, TE, NE},
+			{NE, IN, NE, NE, NE, NE, NE, NE, NE, IN, NE, PE, PE, NE, NE, SE, SE, NE},
+			{NE, NE, NE, NE, NE, TE, NE, NE, SE, NE, NE, NE, IN, NE, NE, IN, IN, IN},
+			{NE, TP, NE, NE, TE, NE, NE, TE, NE, NE, PE, NE, PE, TE, IN, TE, TE, NE}
+	};
+	
+	public static float[][] tableauRoche = {
+			{NE, SE, PE, TE, NE, PE, NE, PE, PE, TP, NE, IN, PE, PE, SE, NE, NE, TP},
+			{TE, TE, NE, TE, NE, TE, PE, NE, PE, PE, TE, PE, TE, PE, TE, NE, PE, NE},
+			{TE, TE, TE, NE, PE, TE, TP, TE, NE, PE, NE, PE, NE, NE, TE, NE, NE, PE},
+			{NE, TE, NE, NE, TE, NE, TP, PE, NE, PE, SE, PE, NE, NE, TE, NE, NE, PE},
+			{NE, TE, NE, TE, PE, NE, PE, NE, NE, PE, TE, PE, NE, NE, SE, NE, NE, TP},
+			{SE, NE, IN, TE, NE, NE, PE, NE, PE, PE, TE, NE, NE, NE, TE, NE, PE, PE},
+			{NE, TE, NE, SE, NE, PE, TP, PE, PE, PE, NE, PE, NE, TE, SE, NE, NE, PE},
+			{SE, SE, NE, TE, NE, NE, NE, PE, NE, PE, TE, PE, NE, TE, TE, NE, NE, PE},
+			{TE, NE, NE, TE, NE, NE, NE, NE, NE, PE, NE, PE, NE, TE, NE, NE, NE, NE},
+			{TE, SE, NE, TE, NE, NE, PE, NE, NE, PE, TE, PE, NE, NE, TE, IN, NE, PE},
+			{TE, TE, NE, NE, PE, NE, NE, TE, TE, PE, NE, NE, NE, NE, NE, NE, NE, NE},
+			{TE, NE, NE, TE, NE, PE, PE, NE, PE, PE, NE, TP, TE, NE, SE, NE, NE, PE},
+			{TE, NE, NE, TE, NE, NE, PE, NE, TE, PE, TE, PE, PE, NE, TE, TE, TE, PE},
+			tableType[ROCHE.id],
+			{TE, TE, NE, SE, IN, NE, PE, TE, NE, PE, SE, TP, NE, PE, TE, NE, NE, PE},
+			{TE, IN, NE, TE, NE, NE, PE, NE, PE, IN, TE, TP, NE, NE, TE, TE, TE, PE},
+			{TE, SE, NE, TE, NE, TE, PE, NE, TE, PE, TE, PE, IN, NE, TE, PE, PE, PE},
+			{TE, NE, NE, TE, TE, NE, PE, TE, PE, PE, NE, PE, NE, TE, IN, NE, NE, PE}
+	};
 	/**
 	 * Le nom du type en String
 	 */
