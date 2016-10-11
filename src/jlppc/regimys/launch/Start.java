@@ -25,15 +25,17 @@ import jlppc.regimys.objects.attacks.ViveAttaque;
  */
 public class Start {
 	
-	public static float version = 0.03;
+	public static float version = 0.04;
 	
-	public static char commits = 'k';
+	public static char commits = ' ';
 	
 
 	
 	public static int preNbre = 0;
 	
 	public static boolean pre = (preNbre != 0);
+	
+	public static String version = "" + version + (pre ? (" pre " + preNbre) : "") + commits;//Actuel : 0.04 
 	
 	//Utilitaires pratiques
 	/**
