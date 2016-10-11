@@ -44,6 +44,8 @@ public enum Type {
 			{NE, PE, NE, NE, TE, NE, NE, TE, PE, NE, PE, NE, NE, TE, IN, NE, NE, NE}//Vol
 	};
 	
+	
+	
 	public static float[][] tableAcier = {
 			{TP, SE, TP, NE, NE, TP, SE, TP, TP, TP, TP, IN, TP, TP, SE, NE, NE, TP},//Acier + Acier
 			{PE, TE, PE, NE, NE, NE, TE, PE, TP, PE, PE, IN, NE, TP, TE, NE, PE, NE},//Acier + Combat
@@ -429,6 +431,9 @@ public enum Type {
 			{NE, NE, NE, NE, TE, TE, NE, TE, NE, NE, PE, NE, IN, TE, IN, PE, PE, NE},
 			tabUnType[VOL.id]
 	};
+	
+	public static float[][][] tableDeuxTypes = {tableAcier, tableCombat, tableDragon, tableEau, tableauElectrique, tableauFee, tableauFeu, tableauGlace, tableauInsecte, tableauNormal, tablePlante, tablePoison, tablePsi, tableRoche, tableSol, tableSpectre, tableTenebres, tableVol};
+	
 	/**
 	 * Le nom du type en String
 	 */
@@ -448,7 +453,7 @@ public enum Type {
 		if(def2 == AUCUN){
 			return tabUnType[def1.id][atk.id];
 		}else{
-			return 1f;
+			return tableDeuxTypes[def1.id][def2.id][atk.id];
 		}
 	}
 	
