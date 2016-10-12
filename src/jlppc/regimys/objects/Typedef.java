@@ -3,6 +3,7 @@ package jlppc.regimys.objects;
 import jlppc.regimys.launch.Start;
 import jlppc.regimys.util.text.StringKey;
 import jlppc.utils.FormattedString;
+import jlppc.utils.HashArray;
 
 public abstract class Typedef {
 	
