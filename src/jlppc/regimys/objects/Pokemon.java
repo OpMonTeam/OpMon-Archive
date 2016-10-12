@@ -6,12 +6,13 @@ import jlppc.regimys.enums.Caractere;
 import jlppc.regimys.enums.Type;
 import jlppc.regimys.enums.Caractere.Stats;
 import jlppc.regimys.launch.Start;
+import jlppc.regimys.objects.Typedef.Null;
 /**
  * Definit un pokemon.
  * @author Jlppc
  *
  */
-public class Pokemon {
+public class Pokemon extends Typedef{
 	/**
 	 * Le nom / surnom du pokemon
 	 */
@@ -55,7 +56,7 @@ public class Pokemon {
 	 */
 	protected int level;
 	/**
-	 * Le caract√®re du pokemon
+	 * Le caractËre du pokemon
 	 */
 	protected Caractere caractere;
 	/**
@@ -96,8 +97,6 @@ public class Pokemon {
 	public boolean amour = false;
 	public boolean vampigraine = false;
 	public boolean malediction = false;
-	
-	protected int dresseurID;
 	/**
 	 * L'enumeration des status pokemon.
 	 * @author Jlppc
@@ -107,7 +106,55 @@ public class Pokemon {
 		BRULURE, PARALYSIE, SOMMEIL, GEL, POISON, AUCUN;
 	}
 	
-	
+	@Override
+	public Object getVar(String name){
+		
+	}
+	@Override
+	public HashArray[] listVar(){
+		HashArray[] tab = {
+			new HashArray("surnom", String.class, NULL),
+			new HashArray("atkIV", Integer.class, atkIV),
+			new HashArray("defIV", Integer.class, defIV),
+			new HashArray("atkSpeIV", Integer.class, atkSpeIV),
+			new HashArray("defSpeIV", Integer.class, defSpeIV),
+			new HashArray("vitIV", Integer.class, vitIV),
+			new HashArray("pvIV", Integer.class, pvIV),
+			new HashArray("atkEV", Integer.class, 0),
+			new HashArray("defEV", Integer.class, 0),
+			new HashArray("atkSpeEV", Integer.class, 0),
+			new HashArray("defSpeEV", Integer.class, 0),
+			new HashArray("vitEV", Integer.class, 0),
+			new HashArray("pvEV", Integer.class, 0),
+			new HashArray("StatATK", Integer.class, NULL),
+			new HashArray("StatDEF", Integer.class, NULL),
+			new HashArray("StatATKSPE", Integer.class, NULL),
+			new HashArray("StatDEFSPE", Integer.class, NULL),
+			new HashArray("StatVIT", Integer.class, NULL),
+			new HashArray("StatPRE", Integer.class, NULL),
+			new HashArray("StatESQ", Integer.class, NULL),
+			new HashArray("StatPV", Integer.class, NULL),
+			new HashArray("StatLove", Integer.class, NULL),
+			new HashArray("atkChange", Integer.class, 0),
+			new HashArray("defChange", Integer.class, 0),
+			new HashArray("atkSpeChange", Integer.class, 0),
+			new HashArray("defSpeChange", Integer.class, 0),
+			new HashArray("vitChange", Integer.class, 0),
+			new HashArray("esqChange", Integer.class, 0),
+			new HashArray("preChange", Integer.class, 0),
+			new HashArray("level", Integer.class, NULL),
+			new HashArray("caractere", Caractere.class, NULL),
+			new HashArray("attaques", "Attaque[]", new Attaque[4]),
+			new HashArray("espece", Espece.class, NULL),
+			new HashArray("PV", Integer.class, NULL)//Non terminÈ
+			
+		};
+		for(HashArray hello, tab){
+			hello.setTag("nom",0);
+			hello.setTag("type", 1);
+			hello.setTag("valeur", 2);
+		}
+	}
 	
 	/**
 	 * Le constructeur.
@@ -389,7 +436,7 @@ public class Pokemon {
 	public synchronized void attacked(int pvPerdus){
 		this.PV = PV  - pvPerdus;
 	}
-	//Les methodes suivantes permettent de modifier les statistiques en suivant les niveaux pr√©definis. Il retoure false si les statistiques √©taient d√©j√† au plus haut ou plus bas.
+	//Les methodes suivantes permettent de modifier les statistiques en suivant les niveaux prÈdefinis. Il retoure false si les statistiques Ètaient dÈj‡ au plus haut ou plus bas.
 	public boolean changeATK(int power) {
 		if(power < 0){
 			for(int i = 0; i > power; i--){
@@ -1411,7 +1458,7 @@ return true;
 	/**
 	 * Permet de changer le status du pokemon en suivant certaines regles.
 	 * @param status - Le nouveau status du pokemon
-	 * @return - Si le status a bien √©t√© change
+	 * @return - Si le status a bien ÈtÈ change
 	 */
 	public boolean setStatus(Status status){
 		
@@ -1422,26 +1469,26 @@ return true;
 			changeATK(1);
 		}
 		else if(status == Status.BRULURE && this.status == Status.BRULURE){
-			System.out.println(surnom + " est d√©j√† brul√©!");
+			System.out.println(surnom + " est dÈj‡ brulÈ!");
 			return false;		}
 		else if(status == Status.PARALYSIE){
 			changeVIT(-1);
 		}else if(status == Status.AUCUN && this.status == Status.PARALYSIE){
 			changeVIT(1);
 		}else if(status == Status.SOMMEIL && this.status == Status.SOMMEIL){
-			System.out.println("Mais " + surnom + " dort d√©j√†!");
+			System.out.println("Mais " + surnom + " dort dÈj‡!");
 			return false;
 		}else if(status == Status.PARALYSIE && this.status == Status.PARALYSIE){
-			System.out.println(surnom + " est d√©j√† paralys√©!");
+			System.out.println(surnom + " est dÈj‡ paralysÈ!");
 			return false;
 		}else if(status == Status.GEL && this.status == Status.GEL){
-			System.out.println(surnom + " est d√©j√† gel√©!");
+			System.out.println(surnom + " est dÈj‡ gelÈ!");
 			return false;
 		}else if(status == Status.POISON && this.status == Status.POISON){
-			System.out.println(surnom + " est d√©j√† empoisonn√©!");
+			System.out.println(surnom + " est dÈj‡ empoisonnÈ!");
 			return false;
 		}else if(this.status != Status.AUCUN && status != Status.AUCUN){
-			System.out.println("Mais " + surnom + " a d√©j√† un status!");
+			System.out.println("Mais " + surnom + " a dÈj‡ un status!");
 			return false;
 		}
 		this.status = status;
