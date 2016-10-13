@@ -57,7 +57,7 @@ public class Pokemon extends Typedef{
 	 */
 	protected int level;
 	/**
-	 * Le caractËre du pokemon
+	 * Le caract√®re du pokemon
 	 */
 	protected Caractere caractere;
 	/**
@@ -109,7 +109,13 @@ public class Pokemon extends Typedef{
 	
 	@Override
 	public Object getVar(String name){
-		return name;
+		for(HashArray obj : listVar()){
+			if(obj.getValue("nom").equals(name) ){
+				return obj.getValue("valeur");
+			}
+		}
+		
+		return null;
 		
 	}
 	@Override
@@ -148,7 +154,17 @@ public class Pokemon extends Typedef{
 			new HashArray("caractere", Caractere.class, NULL),
 			new HashArray("attaques", "Attaque[]", new Attaque[4]),
 			new HashArray("espece", Espece.class, NULL),
-			new HashArray("PV", Integer.class, NULL)//Non terminÈ
+			new HashArray("PV", Integer.class, NULL),
+			new HashArray("status", Status.class, Status.AUCUN),
+			new HashArray("talent", Talent.class, NULL),
+			new HashArray("type1", Type.class, NULL),
+			new HashArray("type2", Type.class, NULL),
+			new HashArray("exp", Integer.class, NULL),
+			new HashArray("confus", Boolean.class, NULL),
+			new HashArray("peur", Boolean.class, NULL),
+			new HashArray("amour", Boolean.class, NULL),
+			new HashArray("vampigraine", Boolean.class, NULL),
+			new HashArray("malediction", Boolean.class, NULL)
 			
 		};
 		for(HashArray hello : tab){
@@ -440,7 +456,7 @@ public class Pokemon extends Typedef{
 	public synchronized void attacked(int pvPerdus){
 		this.PV = PV  - pvPerdus;
 	}
-	//Les methodes suivantes permettent de modifier les statistiques en suivant les niveaux prÈdefinis. Il retoure false si les statistiques Ètaient dÈj‡ au plus haut ou plus bas.
+	//Les methodes suivantes permettent de modifier les statistiques en suivant les niveaux pr√©definis. Il retoure false si les statistiques √©taient d√©j√† au plus haut ou plus bas.
 	public boolean changeATK(int power) {
 		if(power < 0){
 			for(int i = 0; i > power; i--){
@@ -1462,7 +1478,7 @@ return true;
 	/**
 	 * Permet de changer le status du pokemon en suivant certaines regles.
 	 * @param status - Le nouveau status du pokemon
-	 * @return - Si le status a bien ÈtÈ change
+	 * @return - Si le status a bien √©t√© change
 	 */
 	public boolean setStatus(Status status){
 		
@@ -1473,26 +1489,26 @@ return true;
 			changeATK(1);
 		}
 		else if(status == Status.BRULURE && this.status == Status.BRULURE){
-			System.out.println(surnom + " est dÈj‡ brulÈ!");
+			System.out.println(surnom + " est d√©j√† brul√©!");
 			return false;		}
 		else if(status == Status.PARALYSIE){
 			changeVIT(-1);
 		}else if(status == Status.AUCUN && this.status == Status.PARALYSIE){
 			changeVIT(1);
 		}else if(status == Status.SOMMEIL && this.status == Status.SOMMEIL){
-			System.out.println("Mais " + surnom + " dort dÈj‡!");
+			System.out.println("Mais " + surnom + " dort d√©j√†!");
 			return false;
 		}else if(status == Status.PARALYSIE && this.status == Status.PARALYSIE){
-			System.out.println(surnom + " est dÈj‡ paralysÈ!");
+			System.out.println(surnom + " est d√©j√† paralys√©!");
 			return false;
 		}else if(status == Status.GEL && this.status == Status.GEL){
-			System.out.println(surnom + " est dÈj‡ gelÈ!");
+			System.out.println(surnom + " est d√©j√† gel√©!");
 			return false;
 		}else if(status == Status.POISON && this.status == Status.POISON){
-			System.out.println(surnom + " est dÈj‡ empoisonnÈ!");
+			System.out.println(surnom + " est d√©j√† empoisonn√©!");
 			return false;
 		}else if(this.status != Status.AUCUN && status != Status.AUCUN){
-			System.out.println("Mais " + surnom + " a dÈj‡ un status!");
+			System.out.println("Mais " + surnom + " a d√©j√† un status!");
 			return false;
 		}
 		this.status = status;
