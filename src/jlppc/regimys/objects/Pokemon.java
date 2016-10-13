@@ -152,7 +152,7 @@ public class Pokemon extends Typedef{
 			new HashArray("preChange", Integer.class, 0),
 			new HashArray("level", Integer.class, NULL),
 			new HashArray("caractere", Caractere.class, NULL),
-			new HashArray("attaques", "Attaque[]", new Attaque[4]),
+			new HashArray("attaques", Attaque[].class , new Attaque[4]),
 			new HashArray("espece", Espece.class, NULL),
 			new HashArray("PV", Integer.class, NULL),
 			new HashArray("status", Status.class, Status.AUCUN),
