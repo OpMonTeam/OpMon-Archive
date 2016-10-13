@@ -7,6 +7,7 @@ import jlppc.regimys.enums.Type;
 import jlppc.regimys.enums.Caractere.Stats;
 import jlppc.regimys.launch.Start;
 import jlppc.regimys.objects.Typedef.Null;
+import jlppc.utils.HashArray;
 /**
  * Definit un pokemon.
  * @author Jlppc
@@ -108,6 +109,7 @@ public class Pokemon extends Typedef{
 	
 	@Override
 	public Object getVar(String name){
+		return name;
 		
 	}
 	@Override
@@ -149,11 +151,13 @@ public class Pokemon extends Typedef{
 			new HashArray("PV", Integer.class, NULL)//Non terminé
 			
 		};
-		for(HashArray hello, tab){
+		for(HashArray hello : tab){
 			hello.setTag("nom",0);
 			hello.setTag("type", 1);
 			hello.setTag("valeur", 2);
 		}
+		
+		return tab;
 	}
 	
 	/**

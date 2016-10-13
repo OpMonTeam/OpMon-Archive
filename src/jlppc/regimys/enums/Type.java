@@ -432,7 +432,7 @@ public enum Type {
 			tabUnType[VOL.id]
 	};
 	
-	public static float[][][] tableDeuxTypes = {tableAcier, tableCombat, tableDragon, tableEau, tableauElectrique, tableauFee, tableauFeu, tableauGlace, tableauInsecte, tableauNormal, tablePlante, tablePoison, tablePsi, tableRoche, tableSol, tableSpectre, tableTenebres, tableVol};
+	public static float[][][] tableDeuxTypes = {tableAcier, tableCombat, tableDragon, tableEau, tableauElectrique, tableauFee, tableauFeu, tableauGlace, tableauInsecte, tableauNormal, tablePlante, tablePoison, tableauPsi, tableauRoche, tableauSol, tableSpectre, tableauTenebres, tableauVol};
 	
 	/**
 	 * Le nom du type en String
