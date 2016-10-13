@@ -1,9 +1,10 @@
-*.class
+#*.class
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
 # Package Files #
+# Pas de .jar parce que je vais en mettre dans ce dépot
 *.war
 *.ear
 
