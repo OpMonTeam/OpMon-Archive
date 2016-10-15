@@ -1,5 +1,7 @@
 package jlppc.regimys.util;
 
+import jlppc.utils.HashArray;
+
 public final class VarUtil{
   private HashArray[] hash;
   

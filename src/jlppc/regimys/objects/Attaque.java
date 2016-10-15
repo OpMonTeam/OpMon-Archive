@@ -5,8 +5,10 @@ import jlppc.regimys.fight.EndOfTurn;
 import jlppc.regimys.fight.NoPP;
 import jlppc.regimys.fight.SameAtkPartTwo;
 import jlppc.regimys.launch.Start;
+import jlppc.utils.HashArray;
+import jlppc.utils.WIP;
 /**
- * Contient toutes les données permettant de creer une attaque.
+ * Contient toutes les donnï¿½es permettant de creer une attaque.
  * @author Jlppc
  *
  */
@@ -77,7 +79,7 @@ public abstract class Attaque extends Typedef{
 		return true;
 	}
 	/**
-	 * La précision de l'attaque (pourquoi short? Je sais pas.)
+	 * La prï¿½cision de l'attaque (pourquoi short? Je sais pas.)
 	 */
 	protected short precision;
 	/**
@@ -89,11 +91,11 @@ public abstract class Attaque extends Typedef{
 	 */
 	public static final int STATUS_ATK = 0;
 	/**
-	 * Si c'est une attaque de dégats (Je crois AUSSI que c'est inutile...)	 
+	 * Si c'est une attaque de dï¿½gats (Je crois AUSSI que c'est inutile...)	 
 	*/
 	public static final int DEGATS_ATK = 1;
 	/**
-	 * Si l'attaque est physique, cette variable est false. Si elle est spéciale, alors cette variable est... TRUE! BRAVO! Vous avez bien deviné!
+	 * Si l'attaque est physique, cette variable est false. Si elle est spï¿½ciale, alors cette variable est... TRUE! BRAVO! Vous avez bien devinï¿½!
 	 */
 	protected boolean special;
 	/**
@@ -101,7 +103,7 @@ public abstract class Attaque extends Typedef{
 	 */
 	protected boolean status;
 	/**
-	 * La partie de l'attaque (utilisé pour les attaques en 2 tours)
+	 * La partie de l'attaque (utilisï¿½ pour les attaques en 2 tours)
 	 */
 	protected int part = 0;
 	/**
@@ -121,19 +123,19 @@ public abstract class Attaque extends Typedef{
 	 */
 	protected boolean rateJamais = false;
 	/**
-	 * Compte les PV perdus. Est en variable de classe pour pouvoir être accedée par effetAvant et effetAprès. (Vous en avez de la chance les moddeurs!)
+	 * Compte les PV perdus. Est en variable de classe pour pouvoir ï¿½tre accedï¿½e par effetAvant et effetAprï¿½s. (Vous en avez de la chance les moddeurs!)
 	 */
 	protected int pvPerdus;
 	/**
-	 * Un effet qui se passe avant les dégats.
+	 * Un effet qui se passe avant les dï¿½gats.
 	 * @param atk - Le pokemon attaquant
-	 * @param def - Le pokemon défenseur
-	 * @throws EndOfTurn Si le tour doit se terminer avant d'avoir effectué les degats.
+	 * @param def - Le pokemon dï¿½fenseur
+	 * @throws EndOfTurn Si le tour doit se terminer avant d'avoir effectuï¿½ les degats.
 	 * @throws SameAtkPartTwo 
 	 */
 	protected abstract void effetAvant(Pokemon atk, Pokemon def) throws EndOfTurn, SameAtkPartTwo;
 	/**
-	 * Un effet qui se passe après l'attaque.
+	 * Un effet qui se passe aprï¿½s l'attaque.
 	 * @param atk - Le pokemon attaquant
 	 * @param def - Le pokemon defenseur
 	 * @throws SameAtkPartTwo 
@@ -143,7 +145,7 @@ public abstract class Attaque extends Typedef{
 	 * L'action d'attaquer
 	 * @param atk - Le pokemon a qui appartient l'attaque
 	 * @param def - La cible
-	 * @throws SameAtkPartTwo - Si le combat doit faire la même attaque a la partie deux (Attaques en deux tours)
+	 * @throws SameAtkPartTwo - Si le combat doit faire la mï¿½me attaque a la partie deux (Attaques en deux tours)
 	 * @throws NoPP - Si l'attaque n'a plus de PP.
 	 */
 	public final void attack(Pokemon atk, Pokemon def) throws SameAtkPartTwo{
@@ -170,11 +172,11 @@ public abstract class Attaque extends Typedef{
 				}
 				float efficacite = (Type.calcEfficacite(type, def.getType1(), def.getType2()));
 				if(efficacite == 0f){
-					System.out.println("Mais cela échoue!");
+					System.out.println("Mais cela ï¿½choue!");
 				}else if(efficacite == 0.25f || efficacite == 0.5f){
-					System.out.println("Ce n'est pas très efficace...");
+					System.out.println("Ce n'est pas trï¿½s efficace...");
 				}else if(efficacite == 2f){
-					System.out.println("C'est très efficace!");
+					System.out.println("C'est trï¿½s efficace!");
 				}else if(efficacite == 4f){
 					System.out.println("C'est super efficace!");
 				}
@@ -195,7 +197,7 @@ public abstract class Attaque extends Typedef{
 	}
 	
 	
-	//Oh! Des getteurs! Y'en a beaucoup. Je crois pas qu'il soit nécessaire de les documenter.
+	//Oh! Des getteurs! Y'en a beaucoup. Je crois pas qu'il soit nï¿½cessaire de les documenter.
 	public String getNom() {
 		return nom;
 	}
@@ -235,13 +237,18 @@ public abstract class Attaque extends Typedef{
 	public boolean isRateJamais() {
 		return rateJamais;
 	}
+	//Cette methode sera completÃ©e dans le futur
+	@WIP
+	public HashArray[] listVar(){
+		return null;
+	}
 	/**
 	 * Construit une attaque.<br/>
-	 *  Ce constructeur doit obligatoirement être appelé par super dans un constructeur par défaut puisque l'attaque est crée par class.newInstance().
+	 *  Ce constructeur doit obligatoirement ï¿½tre appelï¿½ par super dans un constructeur par dï¿½faut puisque l'attaque est crï¿½e par class.newInstance().
 	 * @param nom - Le nom de l'attaque
 	 * @param puissance - La puissance de l'attaque (Noooon? C'est vrai?)
 	 * @param type - Le type (J'y aurait jamais cru!)
-	 * @param precision - La précision... (J'ai vraiment besoin de préciser? HAHAHAHAHAHAHA!)
+	 * @param precision - La prï¿½cision... (J'ai vraiment besoin de prï¿½ciser? HAHAHAHAHAHAHA!)
 	 * @param special - Bon vous savez quoi? Voir : {@link #special} (J'ai la flemme de tout redocumenter pour le constructeur.)
 	 * @param status - {@link #status} 
 	 * @param chanceDeCoups - {@link #chanceDeCoups}
@@ -277,9 +284,9 @@ public abstract class Attaque extends Typedef{
 		return priorite;
 	}
 	/**
-	 * Action effectuée si l'attaque échoue.
+	 * Action effectuï¿½e si l'attaque ï¿½choue.
 	 * @param atk - Le pokemon attaquant
-	 * @param def - Le pokemon défenseur
+	 * @param def - Le pokemon dï¿½fenseur
 	 */
 	public void siEchoue(Pokemon atk, Pokemon def){
 		
