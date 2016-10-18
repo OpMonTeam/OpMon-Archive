@@ -97,6 +97,7 @@ public abstract class Attaque extends Typedef{
 				new HashArray("rateJamais", Boolean.class, NULL),
 				new HashArray("pvPerdus", Integer.class, NULL)
 		};
+		return toReturn;
 	}
 	/**
 	 * La pr�cision de l'attaque (pourquoi short? Je sais pas.)
