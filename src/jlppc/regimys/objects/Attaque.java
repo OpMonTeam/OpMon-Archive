@@ -78,6 +78,26 @@ public abstract class Attaque extends Typedef{
 		}
 		return true;
 	}
+	
+	//Cette methode sera completée dans le futur
+	@WIP
+	public HashArray[] listVar(){
+		HashArray[] toReturn = {
+				new HashArray("nom", String.class, NULL),
+				new HashArray("puissance", Integer.class,NULL),
+				new HashArray("priorite", Integer.class, NULL),
+				new HashArray("precision", Short.class, NULL),
+				new HashArray("type", Type.class, NULL),
+				new HashArray("special", Boolean.class, NULL),
+				new HashArray("status", Boolean.class, NULL),
+				new HashArray("part", Integer.class, 0),
+				new HashArray("pp", Integer.class, 0),
+				new HashArray("ppMax", Integer.class, NULL),
+				new HashArray("chanceDeCoups", Integer.class, NULL),
+				new HashArray("rateJamais", Boolean.class, NULL),
+				new HashArray("pvPerdus", Integer.class, NULL)
+		};
+	}
 	/**
 	 * La pr�cision de l'attaque (pourquoi short? Je sais pas.)
 	 */
@@ -237,11 +257,7 @@ public abstract class Attaque extends Typedef{
 	public boolean isRateJamais() {
 		return rateJamais;
 	}
-	//Cette methode sera completée dans le futur
-	@WIP
-	public HashArray[] listVar(){
-		return null;
-	}
+	
 	/**
 	 * Construit une attaque.<br/>
 	 *  Ce constructeur doit obligatoirement �tre appel� par super dans un constructeur par d�faut puisque l'attaque est cr�e par class.newInstance().
