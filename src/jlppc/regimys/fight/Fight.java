@@ -75,17 +75,16 @@ public class Fight {
 			}
 
 
-			System.out.println(atk.getStatVIT() > def.getStatVIT());
-			System.out.println(atk.getAttaques()[attaqueAtk].getPriorite() > def.getAttaques()[attaqueDef].getPriorite());
+			
 			if(atk.getStatVIT() > def.getStatVIT() || atk.getAttaques()[attaqueAtk].getPriorite() > def.getAttaques()[attaqueDef].getPriorite()){
 				atkCanAttack = true;
 				if(atk.getStatus() == Status.GEL){
 					if(Start.rand.nextInt(5) == 2){
-						System.out.println(atk.getSurnom() + " est degelé!");
+						System.out.println(atk.getSurnom() + " est degelï¿½!");
 						atk.setStatus(Status.AUCUN);
 						atkCanAttack = true;
 					}else{
-						System.out.println(atk.getSurnom() + " est gelé. Il ne peut pas attaquer.");
+						System.out.println(atk.getSurnom() + " est gelï¿½. Il ne peut pas attaquer.");
 						atkCanAttack = false;
 					}
 				}else if(atk.getStatus() == Status.SOMMEIL){
@@ -117,10 +116,10 @@ public class Fight {
 
 				}else if(atk.getStatus() == Status.PARALYSIE){
 					if(Start.rand.nextInt(4) == 2){
-						System.out.println(def.getSurnom() + " est paralysé, il ne peut pas attaquer.");
+						System.out.println(def.getSurnom() + " est paralysï¿½, il ne peut pas attaquer.");
 						atkCanAttack = false;
 					}else{
-						System.out.println("Malgré sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
+						System.out.println("Malgrï¿½ sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
 					}
 				}else if(atk.confus){
 					if(atkCountDownConf == 0 && atkConf == false){
@@ -149,7 +148,7 @@ public class Fight {
 								atk.attacked(atk.getStatPV() / 8);
 								atkCanAttack = false;
 							}else{
-								FormattedString.outPrintln("Malgré sa confusion, %o peut attaquer!", atk.getSurnom());
+								FormattedString.outPrintln("Malgrï¿½ sa confusion, %o peut attaquer!", atk.getSurnom());
 							}
 
 							atkCountDownConf--;
@@ -174,11 +173,11 @@ public class Fight {
 				defCanAttack = true;
 				if(def.getStatus() == Status.GEL){
 					if(Start.rand.nextInt(5) == 2){
-						System.out.println(def.getSurnom() + " est degelé!");
+						System.out.println(def.getSurnom() + " est degelï¿½!");
 						def.setStatus(Status.AUCUN);
 						defCanAttack = true;
 					}else{
-						System.out.println(def.getSurnom() + " est gelé. Il ne peut pas attaquer.");
+						System.out.println(def.getSurnom() + " est gelï¿½. Il ne peut pas attaquer.");
 						defCanAttack = false;
 					}
 				}else if(def.getStatus() == Status.SOMMEIL){
@@ -205,24 +204,24 @@ public class Fight {
 						}
 					}else if(atk.getStatus() == Status.PARALYSIE){
 						if(Start.rand.nextInt(4) == 2){
-							System.out.println(def.getSurnom() + " est paralysé, il ne peut pas attaquer.");
+							System.out.println(def.getSurnom() + " est paralysï¿½, il ne peut pas attaquer.");
 							defCanAttack = false;
 						}else{
-							System.out.println("Malgré sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
+							System.out.println("Malgrï¿½ sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
 						}
 					}
 
 				}else if(def.getStatus() == Status.PARALYSIE){
 					if(Start.rand.nextInt(4) == 2){
-						System.out.println(def.getSurnom() + " est paralysé, il ne peut pas attaquer.");
+						System.out.println(def.getSurnom() + " est paralysï¿½, il ne peut pas attaquer.");
 						defCanAttack = false;
 					}else{
-						System.out.println("Malgré sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
+						System.out.println("Malgrï¿½ sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
 						defCanAttack = true;
 					}
 				}else if(def.peur){
 					defCanAttack = false;
-					FormattedString.outPrintln("%o à trop peur pour bouger!", def.getSurnom());
+					FormattedString.outPrintln("%o ï¿½ trop peur pour bouger!", def.getSurnom());
 					def.peur = false;
 				}else if(def.confus){
 					if(defCountDownConf == 0 && defConf == false){
@@ -251,7 +250,7 @@ public class Fight {
 								def.attacked(def.getStatPV() / 8);
 								defCanAttack = false;
 							}else{
-								FormattedString.outPrintln("Malgré sa confusion, %o peut attaquer!", def.getSurnom());
+								FormattedString.outPrintln("Malgrï¿½ sa confusion, %o peut attaquer!", def.getSurnom());
 							}
 
 							defCountDownConf--;
@@ -279,11 +278,11 @@ public class Fight {
 				defCanAttack = true;
 				if(def.getStatus() == Status.GEL){
 					if(Start.rand.nextInt(5) == 2){
-						System.out.println(def.getSurnom() + " est degelé!");
+						System.out.println(def.getSurnom() + " est degelï¿½!");
 						def.setStatus(Status.AUCUN);
 						defCanAttack = true;
 					}else{
-						System.out.println(def.getSurnom() + " est gelé. Il ne peut pas attaquer.");
+						System.out.println(def.getSurnom() + " est gelï¿½. Il ne peut pas attaquer.");
 						defCanAttack = false;
 					}
 				}else if(def.getStatus() == Status.SOMMEIL){
@@ -319,10 +318,10 @@ public class Fight {
 
 				}else if(def.getStatus() == Status.PARALYSIE){
 					if(Start.rand.nextInt(4) == 2){
-						System.out.println(def.getSurnom() + " est paralysé, il ne peut pas attaquer.");
+						System.out.println(def.getSurnom() + " est paralysï¿½, il ne peut pas attaquer.");
 						defCanAttack = false;
 					}else{
-						System.out.println("Malgré sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
+						System.out.println("Malgrï¿½ sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
 					}
 				}else if(def.confus){
 					if(defCountDownConf == 0 && defConf == false){
@@ -351,7 +350,7 @@ public class Fight {
 								def.attacked(def.getStatPV() / 8);
 								defCanAttack = false;
 							}else{
-								FormattedString.outPrintln("Malgré sa confusion, %o peut attaquer!", def.getSurnom());
+								FormattedString.outPrintln("Malgrï¿½ sa confusion, %o peut attaquer!", def.getSurnom());
 							}
 
 							defCountDownConf--;
@@ -377,11 +376,11 @@ public class Fight {
 				atkCanAttack = true;
 				if(atk.getStatus() == Status.GEL){
 					if(Start.rand.nextInt(5) == 2){
-						System.out.println(atk.getSurnom() + " est degelé!");
+						System.out.println(atk.getSurnom() + " est degelï¿½!");
 						atk.setStatus(Status.AUCUN);
 						atkCanAttack = true;
 					}else{
-						System.out.println(atk.getSurnom() + " est gelé. Il ne peut pas attaquer.");
+						System.out.println(atk.getSurnom() + " est gelï¿½. Il ne peut pas attaquer.");
 						atkCanAttack = false;
 					}
 				}else if(atk.getStatus() == Status.SOMMEIL){
@@ -413,14 +412,14 @@ public class Fight {
 
 				}else if(atk.getStatus() == Status.PARALYSIE){
 					if(Start.rand.nextInt(4) == 2){
-						System.out.println(def.getSurnom() + " est paralysé, il ne peut pas attaquer.");
+						System.out.println(def.getSurnom() + " est paralysï¿½, il ne peut pas attaquer.");
 						defCanAttack = false;
 					}else{
-						System.out.println("Malgré sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
+						System.out.println("Malgrï¿½ sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
 					}
 				}else if(atk.peur){
 					atkCanAttack = false;
-					FormattedString.outPrintln("%o à trop peur pour bouger!", atk.getSurnom());
+					FormattedString.outPrintln("%o ï¿½ trop peur pour bouger!", atk.getSurnom());
 					atk.peur = false;
 				}else if(atk.confus){
 					if(atkCountDownConf == 0 && atkConf == false){
@@ -449,7 +448,7 @@ public class Fight {
 								atk.attacked(atk.getStatPV() / 8);
 								atkCanAttack = false;
 							}else{
-								FormattedString.outPrintln("Malgré sa confusion, %o peut attaquer!", atk.getSurnom());
+								FormattedString.outPrintln("Malgrï¿½ sa confusion, %o peut attaquer!", atk.getSurnom());
 							}
 
 							atkCountDownConf--;
@@ -503,16 +502,16 @@ public class Fight {
 			}
 		}
 		if(def.getPV() <= 0 && atk.getPV() <= 0){
-			System.out.println("Egalité!");
+			System.out.println("Egalitï¿½!");
 		}
 		else if(def.getPV() <= 0 && atk.getPV() > 0){
 			System.out.println(def.getSurnom() + " est K.O");
-			System.out.println("L'attaquant " + atk.getSurnom() + " a gagné!");
+			System.out.println("L'attaquant " + atk.getSurnom() + " a gagnï¿½!");
 		}else if(atk.getPV() <= 0 && def.getPV() > 0){
 			System.out.println(atk.getSurnom() + " est K.O");
-			System.out.println("Le defenseur " + def.getSurnom() + " a gagné!");
+			System.out.println("Le defenseur " + def.getSurnom() + " a gagnï¿½!");
 		}else{
-			System.out.println("BUG. On sait pas qui a gagné.");
+			System.out.println("BUG. On sait pas qui a gagnï¿½.");
 		}
 		atk.setStats(oldStats[0]);
 		def.setStats(oldStats[1]);
