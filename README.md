@@ -1,5 +1,6 @@
 # Projet-Pokemon-Regimys
 Bienvenue sur le projet de fan-game pokemon Regimys! Plus d'infos sur le wiki!<br/>
+<a href="https://github.com/jlppc/Projet-Pokemon-Regimys/wiki/Journal-du-developpement">Journal de developpement</a><br/>
 <br/>Version du jeu : Alpha 0.04<br/><br/>
 Prochaines versions :<ul>
 <li>Alpha 0.05 : Quand toutes les attaques et pokemon de la première génération auront été ajoutés</li>
