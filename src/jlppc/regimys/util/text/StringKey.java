@@ -15,7 +15,7 @@ public class StringKey {
 	protected String key;
 	protected String string;
 	
-	public StringKey(String str, String key){
+	public StringKey(String key, String str){
 		this.key = key;
 		string = str;
 	}
@@ -43,8 +43,15 @@ public class StringKey {
 		return (searched != null) ? searched.getString(objects) : null;
 		
 	}
-	
-	public static StringKey getStringKey(String key){
+	public static class KeyNotFoundException extends Exception{
+		public KeyNotFoundException(String str){
+			super(str);
+		}
+		public KeyNotFoundException(){
+			
+		}
+	}
+	public static StringKey getStringKey(String key) throws KeyNotFoundException{
 		StringKey searched = null;
 		for(StringKey actual : keys){
 			if(actual.getKey().equalsIgnoreCase(key)){
@@ -52,12 +59,21 @@ public class StringKey {
 				break;
 			}
 		}
+		if(searched == null){
+			throw new KeyNotFoundException(key);
+		}
 		return searched;
 		
 	}
 	
 	public static void outStringKey(StringKey key, Object...objects){
-		System.out.println(key.getString(objects));
+		try{
+			System.out.println(key.getString(objects));
+		}catch(Exception e){
+			System.out.println("Erreur.");
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public static void initialisateKeys(){
@@ -97,7 +113,19 @@ public class StringKey {
 		keys.add(new StringKey("effects.stats.vit.addtwo", "La vitesse de %o augmente beaucoup!"));
 		keys.add(new StringKey("effects.stats.vit.cantadd", "La vitesse de %o ne peut plus augmenter!"));
 		
+		keys.add(new StringKey("effects.stats.esq.low", "L'esquive de %o baisse!"));
+		keys.add(new StringKey("effects.stats.esq.lowtwo", "L'esquive de %o baisse beaucoup!"));
+		keys.add(new StringKey("effects.stats.esq.cantlow", "L'esquive de %o ne peut plus baisser!"));
+		keys.add(new StringKey("effects.stats.esq.add", "L'esquive de %o augmente!"));
+		keys.add(new StringKey("effects.stats.esq.addtwo", "L'esquive de %o augmente beaucoup!"));
+		keys.add(new StringKey("effects.stats.esq.cantadd", "L'esquive de %o ne peut plus augmenter!"));
 		
+		keys.add(new StringKey("effects.stats.pre.low", "La précision de %o baisse!"));
+		keys.add(new StringKey("effects.stats.pre.lowtwo", "La précision de %o baisse beaucoup!"));
+		keys.add(new StringKey("effects.stats.pre.cantlow", "La précision de %o ne peut plus baisser!"));
+		keys.add(new StringKey("effects.stats.pre.add", "La précision de %o augmente!"));
+		keys.add(new StringKey("effects.stats.pre.addtwo", "La précision de %o augmente beaucoup!"));
+		keys.add(new StringKey("effects.stats.pre.cantadd", "La précision de %o ne peut plus augmenter!"));
 		//status
 		keys.add(new StringKey("effects.status.fail", "%o est déja %o!"));
 		keys.add(new StringKey("effects.status.para", "%o est paralysé!"));

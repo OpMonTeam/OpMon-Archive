@@ -20,9 +20,9 @@ public class Telekinesie extends Attaque {
 	@Override
 	protected void effetApres(Pokemon atk, Pokemon def) throws SameAtkPartTwo {
 		if(def.changePRE(-1)){
-			keyout(key("effects.status.pre.low"), def.getSurnom());
+			keyout(key("effects.stats.pre.low"), def.getSurnom());
 		}else{
-			keyout(key("effects.status.pre.cantlow"), def.getSurnom());
+			keyout(key("effects.stats.pre.cantlow"), def.getSurnom());
 		}
 
 	}

@@ -7,7 +7,7 @@ import jlppc.utils.FormattedString;
 /**
  * La classe qui s'occupe de tout ce qui est combat.
  * @author Jlppc
- *
+ * TODO : Faire vampigraine
  */
 public class Fight {
 	public static int oldStats[][] = new int[2][5];
@@ -44,7 +44,8 @@ public class Fight {
 		int attaqueAtk = 0;
 		int attaqueDef = 0; 
 		while(!endOfMatch){
-
+			FormattedString.outPrintln("%o a %o pv.", atk.getSurnom(), atk.getPV());
+			FormattedString.outPrintln("%o a %o pv.", def.getSurnom(), def.getPV());
 			if(!sameAtk){
 				boolean ok = false;
 				System.out.print("Attaquant, choisissez votre attaque ( 1 a 4) : ");
@@ -158,8 +159,9 @@ public class Fight {
 				if(atkCanAttack){
 					try {
 						atk.getAttaques()[attaqueAtk].attack(atk, def);
-					} catch (SameAtkPartTwo e) {
+					}  catch (SameAtkPartTwo e) {
 						sameAtk = true;
+						
 					}finally{
 						if(def.getPV() <= 0 || atk.getPV() <= 0){
 							endOfMatch = true;
@@ -262,6 +264,7 @@ public class Fight {
 					try {
 						def.getAttaques()[attaqueDef].attack(def, atk);
 					} catch (SameAtkPartTwo e) {
+						
 						sameDef = true;
 					}
 
@@ -361,6 +364,7 @@ public class Fight {
 					try {
 						def.getAttaques()[attaqueDef].attack(def, atk);
 					} catch (SameAtkPartTwo e) {
+						
 						sameDef = true;
 					}finally{
 						if(def.getPV() <= 0 || atk.getPV() <= 0){
@@ -461,6 +465,7 @@ public class Fight {
 					try {
 						atk.getAttaques()[attaqueAtk].attack(atk, def);
 					} catch (SameAtkPartTwo e) {
+						
 						sameAtk = true;
 					}
 

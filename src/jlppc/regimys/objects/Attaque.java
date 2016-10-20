@@ -212,6 +212,8 @@ public abstract class Attaque extends Typedef{
 			}
 			effetApres(atk, def);
 			
+		}catch(SameAtkPartTwo e){
+			throw e;
 		}catch(EndOfTurn e){
 			
 		}

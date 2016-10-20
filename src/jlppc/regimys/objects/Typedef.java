@@ -2,6 +2,7 @@ package jlppc.regimys.objects;
 
 import jlppc.regimys.launch.Start;
 import jlppc.regimys.util.text.StringKey;
+import jlppc.regimys.util.text.StringKey.KeyNotFoundException;
 import jlppc.utils.FormattedString;
 import jlppc.utils.HashArray;
 
@@ -41,7 +42,14 @@ public abstract class Typedef {
 	}
 	
 	public StringKey key(String key){
-		return StringKey.getStringKey(key);
+		try{
+			return StringKey.getStringKey(key);
+		}catch(KeyNotFoundException e){
+			e.printStackTrace();
+			System.exit(1);
+		}
+		return null;
+		
 	}
 	
 	public Object getVar(String name){

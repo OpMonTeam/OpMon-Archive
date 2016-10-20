@@ -15,6 +15,7 @@ import jlppc.utils.WIP;
  */
 @WIP
 public class Vol extends Attaque {
+	int esquiveBase;
 	public Vol() {
 		super("Vol", 90, Type.VOL, 95, false, false, 16, false, 15);
 	}
@@ -24,10 +25,12 @@ public class Vol extends Attaque {
 		if(part == 0){
 			part = 1;
 			FormattedString.outPrintln("%o s'envole!", atk.getSurnom());
-			
+			esquiveBase = atk.getStatESQ();
+			atk.setStatESQ(10000);
 			throw new SameAtkPartTwo();
 		}else{
 			part = 0;
+			atk.setStatESQ(esquiveBase);
 			FormattedString.outPrintln("%o fonce sur %o!", atk.getSurnom(), def.getSurnom());
 		}
 

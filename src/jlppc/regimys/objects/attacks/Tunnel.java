@@ -15,6 +15,7 @@ import jlppc.utils.WIP;
  */
 @WIP
 public class Tunnel extends Attaque {
+	int esquiveBase;
 	public Tunnel() {
 		super("Tunnel", 80, Type.SOL, 100, false, false, 16, false, 10);
 	}
@@ -23,11 +24,14 @@ public class Tunnel extends Attaque {
 	protected void effetAvant(Pokemon atk, Pokemon def) throws EndOfTurn, SameAtkPartTwo {
 		if(part == 0){
 			part = 1;
+			esquiveBase = atk.getStatESQ();
+			atk.setStatESQ(10000);
 			FormattedString.outPrintln("%o s'enfonce dans le sol!", atk.getSurnom());
 			
 			throw new SameAtkPartTwo();
 		}else{
 			part = 0;
+			atk.setStatESQ(esquiveBase);
 			FormattedString.outPrintln("%o sort du sol sous les pieds de %o!", atk.getSurnom(), def.getSurnom());
 		}
 
