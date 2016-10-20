@@ -14,21 +14,21 @@ import jlppc.utils.WIP;
  *
  */
 @WIP
-public class Vol extends Attaque {
-	public Vol() {
-		super("Vol", 90, Type.VOL, 95, false, false, 16, false, 15);
+public class Tunnel extends Attaque {
+	public Tunnel() {
+		super("Tunnel", 80, Type.SOL, 100, false, false, 16, false, 10);
 	}
 
 	@Override
 	protected void effetAvant(Pokemon atk, Pokemon def) throws EndOfTurn, SameAtkPartTwo {
 		if(part == 0){
 			part = 1;
-			FormattedString.outPrintln("%o s'envole!", atk.getSurnom());
+			FormattedString.outPrintln("%o s'enfonce dans le sol!", atk.getSurnom());
 			
 			throw new SameAtkPartTwo();
 		}else{
 			part = 0;
-			FormattedString.outPrintln("%o fonce sur %o!", atk.getSurnom(), def.getSurnom());
+			FormattedString.outPrintln("%o sort du sol sous les pieds de %o!", atk.getSurnom(), def.getSurnom());
 		}
 
 	}
