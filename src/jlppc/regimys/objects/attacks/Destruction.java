@@ -5,24 +5,22 @@ import jlppc.regimys.fight.EndOfTurn;
 import jlppc.regimys.fight.SameAtkPartTwo;
 import jlppc.regimys.objects.Attaque;
 import jlppc.regimys.objects.Pokemon;
-import jlppc.utils.FormattedString;
 
-public class GodAttackPleaseDontHackAndCheat extends Attaque {
-	public GodAttackPleaseDontHackAndCheat() {
-		super("Headshot", 65565, Type.NORMAL, 150, true, false, 0, true, 9999);
+public class Destruction extends Attaque {
+	public Destruction() {
+		super("Destruction", 200, Type.NORMAL, 100, false, false, 16, false, 5);
 	}
 
 	@Override
 	protected void effetAvant(Pokemon atk, Pokemon def) throws EndOfTurn, SameAtkPartTwo {
-		this.type = atk.getType1();
+		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	protected void effetApres(Pokemon atk, Pokemon def) throws SameAtkPartTwo {
-		FormattedString.outPrintln("BOOOOOM HEADSHOT!!! Pv restaur�s et pokemon tu�!");
-		atk.heal(atk.getStatPV());
-		def.attacked(99999999);
+		atk.attacked(atk.getPV());
+		fosout("%o s'autodétruit!", atk.getSurnom());
 
 	}
 }

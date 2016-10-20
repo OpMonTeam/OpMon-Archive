@@ -8,7 +8,7 @@ import jlppc.regimys.objects.Pokemon;
 
 public class OmbreNocturne extends Attaque {
 	public OmbreNocturne() {
-		super("Ombre Nocturne", 0, Type.SPECTRE, 100, false, true, -1, false, 20);
+		super("Ombre Nocturne", 0, Type.SPECTRE,  100, false, true, -1, false, 20);
 	}
 
 	@Override
