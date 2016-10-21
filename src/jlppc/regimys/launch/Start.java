@@ -68,7 +68,7 @@ public class Start {
 	 * @throws InstantiationException 
 	 */
 	public static void main(String[] args) throws InstantiationException, IllegalAccessException {
-		System.out.println("Combat pokemon test");
+		/*System.out.println("Combat pokemon test");
 		
 		StringKey.initialisateKeys();
 		
@@ -81,7 +81,7 @@ public class Start {
 		
 		Espece bulbizarre = new Espece(49, 49, 65, 65, 45, 45, "Bulbizarre", Type.PLANTE, Type.AUCUN);
 		Espece salameche = new Espece(52, 43, 60, 50, 65, 39,"Salameche", Type.FEU, Type.AUCUN);
-		Fight.fight(pkm1, pkm2);
+		Fight.fight(pkm1, pkm2);*/
 	}
 
 }

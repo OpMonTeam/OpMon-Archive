@@ -4,56 +4,58 @@ import java.awt.Image;
 import java.util.Arrays;
 
 import jlppc.regimys.enums.Type;
+import jlppc.regimys.objects.items.CT;
 import jlppc.regimys.enums.Caractere.Stats;
 import jlppc.utils.HashArray;
 /**
- * Tout ce qui définit une espèce de pokemon (ET PAS UN POKEMON ATTENTION!) (Ni un digimon d'ailleurs.)
+ * Tout ce qui dï¿½finit une espï¿½ce de pokemon (ET PAS UN POKEMON ATTENTION!) (Ni un digimon d'ailleurs.)
  * @author Jlppc
  *
  */
 public final class Espece {
 	
 	/**
-	 * Le nom de l'espèce. Pourquoi surnom? Je sais pas.
+	 * Le nom de l'espï¿½ce. Pourquoi surnom? Je sais pas.
 	 */
 	protected final String surnom;
 	/**
-	 * Le numéro pokedex. Je ne repète que ce qui est dit dans le nom.
+	 * Le numï¿½ro pokedex. Je ne repï¿½te que ce qui est dit dans le nom.
 	 */
 	protected int numeroPokedex;
 	/**
-	 * Voir nom. Tellement évident.
+	 * Voir nom. Tellement ï¿½vident.
 	 */
 	protected Espece evolution;
 	/**
-	 * Le niveau auquel le pokemon évolue.
+	 * Le niveau auquel le pokemon ï¿½volue.
 	 */
 	protected int niveauEvolution;
 	/**
-	 * La manière dont le pokemon évolue. Peut prendre les valeurs :<br/><br/>
+	 * La maniï¿½re dont le pokemon ï¿½volue. Peut prendre les valeurs :<br/><br/>
 	 * {@link #EVOLUTION_BY_LEVEL}<br/><br/>
 	 * {@link #EVOLUTION_BY_LOVE}<br/><br/>
 	 * {@link #EVOLUTION_BY_OBJECT}
 	 */
 	protected int maniereEvolution;
 	/**
-	 * Signale que l'évolution est par le niveau. Voir {@link #niveauEvolution} pour savoir lequel.
+	 * Signale que l'ï¿½volution est par le niveau. Voir {@link #niveauEvolution} pour savoir lequel.
 	 */
 	public static final int EVOLUTION_BY_LEVEL = 0;
 	/**
-	 * Signale que l'évolution est par un objet (Pierre, truc bizzare qui permet d'évoluer lors d'un échange... ect)
+	 * Signale que l'ï¿½volution est par un objet (Pierre, truc bizzare qui permet d'ï¿½voluer lors d'un ï¿½change... ect)
 	 */
 	public static final int EVOLUTION_BY_OBJECT = 1;
 	/**
-	 * Signale que l'évolution dépend du stade d'attachement avec son pokemon.
+	 * Signale que l'ï¿½volution dï¿½pend du stade d'attachement avec son pokemon.
 	 */
 	public static final int EVOLUTION_BY_LOVE = 2;
+	public static final int NO_EVOLUTION = 3;
 	/**
-	 * Voir nom. Tellement évident.
+	 * Voir nom. Tellement ï¿½vident.
 	 */
 	protected final Type type1;
 	/**
-	 * Voir nom. Tellement évident. Mettre Type.AUCUN si il n'a pas de second type.
+	 * Voir nom. Tellement ï¿½vident. Mettre Type.AUCUN si il n'a pas de second type.
 	 */
 	protected final Type type2;
 	/**
@@ -61,21 +63,21 @@ public final class Espece {
 	 */
 	protected HashArray[] atksByLevels;
 	/**
-	 * L'entrée du pokedex (La description)
+	 * L'entrï¿½e du pokedex (La description)
 	 */
 	protected String entreePokedex;
 	/**
-	 * Voir nom. Tellement évident.
+	 * Voir nom. Tellement ï¿½vident.
 	 */
 	protected float taille;
 	/**
-	 * Voir nom. Tellement évident.
+	 * Voir nom. Tellement ï¿½vident.
 	 */
 	protected float poids;
 	/**
-	 * Voir nom. Tellement évident. Par contre, pourquoi des classes. Parce que class.newInstance !
+	 * Voir nom. Tellement ï¿½vident. Par contre, pourquoi des classes. Parce que class.newInstance !
 	 */
-	protected Class<Attaque>[] ctCompatibles;
+	protected CT[] ctCompatibles;
 	//Les statistiques de l'espece. Les noms sont evidents.
 	protected final int baseAtk;
 	protected final int baseDef;
@@ -84,9 +86,9 @@ public final class Espece {
 	protected final int baseVit;
 	protected final int basePV;
 	/**
-	 * Les EV données en fin de combat.
+	 * Les EV donnï¿½es en fin de combat.
 	 */
-	protected Stats EVgiven;
+	protected Stats[] EVgiven;
 	//Les sprites. Les noms sont toujours evidents. Ceux qui finissent par S sont les sprites Shiney.
 	protected Image miniSprite;
 	protected Image spriteBattleFace;
@@ -97,19 +99,29 @@ public final class Espece {
 	protected Image spriteMapS;
 	protected Image resume;
 	protected Image resumeS;
+	protected int expGiven;
 	/**
-	 * Le constructeur.
-	 * @param atk - L'attaque de base
-	 * @param def - La défense de base
-	 * @param atkSpe - L'attaque spéciale de base
-	 * @param defSpe - La défense spéciale de base
-	 * @param vit - La vitesse de base
-	 * @param pv - Les PV de base
-	 * @param name - Le nom de l'espece.
-	 * @param type1 - {@link #type1}
-	 * @param type2 - {@link #type2}
+	 * 
+	 * @param atk
+	 * @param def
+	 * @param atkSpe
+	 * @param defSpe
+	 * @param vit
+	 * @param pv
+	 * @param name
+	 * @param type1
+	 * @param type2
+	 * @param maniereEvolution
+	 * @param niveauEvolution
+	 * @param evolution
+	 * @param attacksByLevels
+	 * @param ctCombatibles
+	 * @param EVGiven
+	 * @param taille
+	 * @param poids
+	 * @param entreePokedex
 	 */
-	public Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv,  String name, Type type1, Type type2){
+	public Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv,  String name, Type type1, Type type2, int maniereEvolution, int niveauEvolution, Espece evolution, HashArray[] attacksByLevels, CT[] ctCombatibles, Stats[] EVGiven, float taille, float poids, String entreePokedex, int expGiven){
 		baseAtk = atk;
 		baseDef = def;
 		baseAtkSpe = atkSpe;
@@ -119,7 +131,18 @@ public final class Espece {
 		basePV = pv;
 		this.type1 = type1;
 		this.type2 = type2;
+		this.maniereEvolution = maniereEvolution;
+		this.niveauEvolution = niveauEvolution;
+		this.evolution = evolution;
+		this.atksByLevels = attacksByLevels;
+		this.EVgiven = EVGiven;
+		this.poids = poids;
+		this.taille = taille;
+		this.entreePokedex = entreePokedex;
+		this.ctCompatibles = ctCombatibles;
+		this.expGiven = expGiven;
 	}
+	
 	//Les getters. Rien de plus a expliquer.
 	public synchronized final String getSurnom() {
 		return surnom;
@@ -160,8 +183,8 @@ public final class Espece {
 	public synchronized final float getPoids() {
 		return new Float(poids);
 	}
-	public synchronized final Class<Attaque>[] getCtCompatibles() {
-		return Arrays.<Class<Attaque>>copyOf(ctCompatibles, ctCompatibles.length);
+	public synchronized final CT[] getCtCompatibles() {
+		return Arrays.<CT>copyOf(ctCompatibles, ctCompatibles.length);
 	}
 	public synchronized final int getBaseAtk() {
 		return new Integer(baseAtk);
