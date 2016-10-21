@@ -155,6 +155,11 @@ public class Fight {
 							atkCountDownConf--;
 						}
 					}
+				}else if(atk.vampigraine){
+					FormattedString.outPrintln("Vampigraine draine l'energie de %o!", atk.getSurnom());
+					atk.attacked(atk.getPV() / 8);
+					def.heal(atk.getPV() / 8);
+					
 				}
 				if(atkCanAttack){
 					try {
@@ -258,6 +263,11 @@ public class Fight {
 							defCountDownConf--;
 						}
 					}
+				}else if(def.vampigraine){
+					FormattedString.outPrintln("Vampigraine draine l'energie de %o!", def.getSurnom());
+					def.attacked(def.getPV() / 8);
+					atk.heal(def.getPV() / 8);
+					
 				}
 				if(defCanAttack){
 
@@ -359,6 +369,11 @@ public class Fight {
 							defCountDownConf--;
 						}
 					}
+				}else if(def.vampigraine){
+					FormattedString.outPrintln("Vampigraine draine l'energie de %o!", def.getSurnom());
+					def.attacked(def.getPV() / 8);
+					atk.heal(def.getPV() / 8);
+					
 				}
 				if(defCanAttack){
 					try {
@@ -458,6 +473,11 @@ public class Fight {
 							atkCountDownConf--;
 						}
 					}
+				}else if(atk.vampigraine){
+					FormattedString.outPrintln("Vampigraine draine l'energie de %o!", atk.getSurnom());
+					atk.attacked(atk.getPV() / 8);
+					def.heal(atk.getPV() / 8);
+					
 				}
 
 				if(atkCanAttack){
