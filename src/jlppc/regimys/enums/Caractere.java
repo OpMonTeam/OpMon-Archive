@@ -1,7 +1,7 @@
 package jlppc.regimys.enums;
 
 /**
- * WAW! Tous les caractères des pokemon! Je vais pas les documenter un par un, ca serait totalement INUTILE! Sinon y'a pokepedia!
+ * WAW! Tous les caractï¿½res des pokemon! Je vais pas les documenter un par un, ca serait totalement INUTILE! Sinon y'a pokepedia!
  * @author Jlppc
  *
  */
@@ -34,16 +34,18 @@ public enum Caractere {
 	TIMIDE(Stats.VIT, Stats.ATK);
 	
 	/**
-	 * Les statistiques. Permettent de definir les bonus et malus des caractères. (Et un peu plus aussi ;-) )
+	 * Les statistiques. Permettent de definir les bonus et malus des caractï¿½res. (Et un peu plus aussi ;-) )
 	 * @author Jlppc
 	 *
 	 */
 	public enum Stats{
-		ATK, DEF, DEFSPE, ATKSPE, VIT, RIEN;
+		ATK, DEF, DEFSPE, ATKSPE, VIT, RIEN,
+		/**A part, il sert pour les EV*/
+		PV;
 	}
 	/**
 	 * Le bonus et malus que offre le caractere.
-	 * <br/> Les deux sont déclarés sur la même ligne parce que... flemme?
+	 * <br/> Les deux sont dï¿½clarï¿½s sur la mï¿½me ligne parce que... flemme?
 	 */
 	public final Stats bonus;
 	public final Stats malus;
