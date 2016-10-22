@@ -26,6 +26,9 @@ public class Initializer {
 		 listePoke[4] = new Espece(52, 43, 60, 50, 65, 39, "Salamèche", Type.FEU, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 16, listePoke[5], null, null, new Stats[]{Stats.VIT}, 0.6f, 8.5f, "La flamme sur sa queue représente l'énergie vitale de Salamèche. Quand il est vigoureux, elle brûle plus fort.", 65);
 		 listePoke[5] = new Espece(64, 58, 80, 65, 80, 58, "Reptincel", Type.FEU, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 36, listePoke[6], null, null, new Stats[]{Stats.VIT, Stats.ATKSPE}, 1.1f, 19f, "En agitant sa gueue, il peut élever la température à un niveau incroyable", 142);
 		 listePoke[6] = new Espece(84, 78, 109, 85, 100, 78, "Dracaufeu", Type.FEU, Type.VOL, Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.ATKSPE, Stats.ATKSPE, Stats.ATKSPE}, 1.7f, 90.5f, "Quand il crache son souffle brûlant, la flamme au bout de sa queue s'embrase.", 209);
+		 listePoke[7] = new Espece(48, 65, 50, 64, 43, 44, "Carapuce", Type.EAU, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 16, listePoke[8], null, null, new Stats[]{Stats.DEF}, 0.5f, 9f, "Caché sous l'eau, il crache un jet d'eau sur sa proie et se cache à l'intérieur de sa carapace.", 66);
+		 listePoke[8] = new Espece(63, 80, 65, 80, 58, 59, "Carabaffe", Type.EAU, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 36, listePoke[9],null, null, new Stats[]{Stats.DEF, Stats.DEFSPE}, 1f, 22.5f,"On prétend qu'il vit 10 000 ans. Sa queue duveteuse est un symbole de longévité populaire.", 143 );
+		 listePoke[9] = new Espece(83, 100, 85, 105, 78, 79, "Tortank", Type.EAU, Type.AUCUN, Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.DEFSPE, Stats.DEFSPE, Stats.DEFSPE}, 1.6f, 85.5f, "Il écrase ses adversaires de tout son poids pour leur faire perdre connaissance. Il rentre dans sa carapace s'il se sent en danger.", 210);
 	 }
 	 /**
 	  * Initialise les sprites
