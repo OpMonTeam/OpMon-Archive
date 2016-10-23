@@ -32,6 +32,9 @@ public class Initializer {
 		 listePoke[10] = new Espece(30, 35, 20, 20, 45, 45, "Chenipan", Type.INSECTE, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 7, listePoke[11], null, null, new Stats[]{Stats.PV}, 0.3f, 2.9f, "Ses pattes ont des ventouses lui permettant de grimper sur toute surface, notamment les arbres.", 53);
 		 listePoke[11] = new Espece(20, 55, 25, 25, 30, 50, "Chrysacier", Type.INSECTE, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 10, listePoke[12], null, null, new Stats[]{Stats.DEF, Stats.DEF}, 0.7f, 9.9f, "Son corps frêle est protégé par sa carapace d'acier. Il encaisse les coups durs en attendant d'évoluer.", 72);
 		 listePoke[12] = new Espece(45, 50, 90, 80, 70, 60, "Papilusion", Type.INSECTE, Type.VOL, Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.ATKSPE, Stats.ATKSPE, Stats.DEFSPE},1.1f, 32f, "Ses ailes sont recouvertes d'une poudre les protégeant de la pluie. Ce Pokémon peut donc voler pendant de grosses averses.", 160);
+		 listePoke[13] = new Espece(35, 30, 20, 20, 50, 40, "Aspicot", Type.INSECTE, Type.POISON, Espece.EVOLUTION_BY_LEVEL, 7, listePoke[14], null, null, new Stats[]{Stats.VIT}, 0.3f, 3.2f, "Son aiguillon empoisonné est très dangereux. Son corps est coloré afin de repousser ses ennemis.", 52);
+		 listePoke[14] = new Espece(25, 50, 25, 25, 35, 45, "Coconfort", Type.INSECTE, Type.POISON, Espece.EVOLUTION_BY_LEVEL, 10, listePoke[15], null, null, new Stats[]{Stats.DEF, Stats.DEF}, 0.6f, 10f, "Incapable de se déplacer de lui-même, il se défend en durcissant sa carapace.", 71);
+		 listePoke[15] = new Espece(80, 40, 45, 80, 75, 65, "Dardargnan", Type.INSECTE, Type.POISON, Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.ATK, Stats.ATK, Stats.DEFSPE}, 1f, 29.5f, "Il se sert de ses trois aiguillons empoisonnés pour attaquer sans relâche ses adversaires.", 159);
 	 }
 	 /**
 	  * Initialise les sprites
