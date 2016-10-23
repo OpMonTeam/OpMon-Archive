@@ -35,6 +35,9 @@ public class Initializer {
 		 listePoke[13] = new Espece(35, 30, 20, 20, 50, 40, "Aspicot", Type.INSECTE, Type.POISON, Espece.EVOLUTION_BY_LEVEL, 7, listePoke[14], null, null, new Stats[]{Stats.VIT}, 0.3f, 3.2f, "Son aiguillon empoisonné est très dangereux. Son corps est coloré afin de repousser ses ennemis.", 52);
 		 listePoke[14] = new Espece(25, 50, 25, 25, 35, 45, "Coconfort", Type.INSECTE, Type.POISON, Espece.EVOLUTION_BY_LEVEL, 10, listePoke[15], null, null, new Stats[]{Stats.DEF, Stats.DEF}, 0.6f, 10f, "Incapable de se déplacer de lui-même, il se défend en durcissant sa carapace.", 71);
 		 listePoke[15] = new Espece(80, 40, 45, 80, 75, 65, "Dardargnan", Type.INSECTE, Type.POISON, Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.ATK, Stats.ATK, Stats.DEFSPE}, 1f, 29.5f, "Il se sert de ses trois aiguillons empoisonnés pour attaquer sans relâche ses adversaires.", 159);
+		 listePoke[16] = new Espece(45, 40, 35, 35, 56, 40, "Roucool", Type.NORMAL, Type.VOL, Espece.EVOLUTION_BY_LEVEL, 18, listePoke[17], null, null, new Stats[]{Stats.VIT}, 0.3f, 1.8f, "Ce Pokémon docile préfère éviter le combat. Toutefois, il se montre très féroce quand on l'agresse.", 55);
+		 listePoke[17] = new Espece(60, 55, 50, 50, 71, 63, "Roucoups", Type.NORMAL, Type.VOL, Espece.EVOLUTION_BY_LEVEL, 36, listePoke[18], null,null, new Stats[]{Stats.VIT, Stats.VIT}, 1.1f, 30f, "Il protège son territoire avec ardeur et repousse à coup de bec tout intrus.", 113);
+		 listePoke[18] = new Espece(80, 75, 70, 70, 101, 83, "Roucarnage", Type.NORMAL, Type.VOL, Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.VIT, Stats.VIT, Stats.VIT}, 1.5f, 39.5f, "Roucarnage déploie ses ailes majestueuses pour effrayer ses ennemis. Il peut voler à Mach 2.", 172);
 	 }
 	 /**
 	  * Initialise les sprites
