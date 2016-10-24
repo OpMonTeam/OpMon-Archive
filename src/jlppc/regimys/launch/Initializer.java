@@ -54,6 +54,10 @@ public class Initializer {
 		 listePoke[32] = new Espece(57, 40, 40, 40, 50, 46, "Nidoran♂", Type.POISON, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 16, listePoke[33], null, null, new Stats[]{Stats.ATK}, 0.5f, 9f, "Il jauge le terrain en laissant ses oreilles dépasser de l'herbe. Il se défend avec sa corne toxique.", 60);
 		 listePoke[33] = new Espece(72, 57, 55, 55, 65, 61, "Nidorino", Type.POISON, Type.AUCUN, Espece.EVOLUTION_BY_OBJECT, -1, listePoke[34], null, null, new Stats[]{Stats.ATK, Stats.ATK}, 0.9f, 19.5f, "Très agressif, il est prompt à répondre à la violence. La corne sur sa tête est venimeuse.", 118);
 		 listePoke[34] = new Espece(102, 77, 85, 75, 85, 81, "Nidoking", Type.POISON, Type.SOL, Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.ATK, Stats.ATK, Stats.ATK}, 1.4f, 62f, "Un coup de sa puissante queue peut briser un poteau téléphonique comme une allumette.", 195);
+		 listePoke[35] = new Espece(45, 48, 60, 65, 35, 70, "Mélofée", Type.FEE, Type.AUCUN, Espece.EVOLUTION_BY_OBJECT, -1, listePoke[36], null, null, new Stats[]{Stats.PV, Stats.PV}, 06f, 7.5f, "La lumière de la lune qu'il emmagasine dans ses ailes dorsales lui permet de flotter dans les airs.", 68);
+		 listePoke[36] = new Espece(70, 73, 95, 90, 60, 95, "Mélodelfe", Type.FEE, Type.AUCUN, Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.PV, Stats.PV, Stats.PV}, 1.3f, 40f, "Il aime le calme des montagnes. Son ouïe exceptionnelle entendrait une aiguille tomber à 1km.", 129);
+		 listePoke[37] = new Espece(41, 40, 50, 65, 65, 38, "Goupix", Type.FEU, Type.AUCUN, Espece.EVOLUTION_BY_OBJECT, -1, listePoke[38], null, null, new Stats[]{Stats.VIT}, 0.6f, 9.9f, "Avec l'âge, la fourrure de ses six queues devient de plus en plus belle et soyeuse. Elle est chaude au toucher.",63);//TROP KAWAII!!!!
+		 listePoke[38] = new Espece(76, 75, 81, 100, 100, 73, "Feunard", Type.FEU, Type.AUCUN, Espece.NO_EVOLUTION, -1, null,null, null, new Stats[]{Stats.VIT, Stats.DEFSPE}, 1.1f, 19.9f, "Il a neuf longues queues et une fourrure qui brille comme de l'or. On dit qu'il peut vivre 1 000 ans.", 178);
 	 }
 	 /**
 	  * Initialise les sprites
