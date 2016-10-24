@@ -42,6 +42,8 @@ public class Initializer {
 		 listePoke[20] = new Espece(81, 60, 50, 70, 97, 55, "Rattatac", Type.NORMAL, Type.AUCUN, Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.VIT, Stats.VIT}, 0.7f, 18.5f, "Ses pattes arrière lui permettent de traverser les rivières. Il est toujours en quête de nourriture.", 127);
 		 listePoke[21] = new Espece(60, 30, 31, 31, 70, 40, "Piafabec", Type.NORMAL, Type.VOL, Espece.EVOLUTION_BY_LEVEL, 20, listePoke[22], null, null, new Stats[]{Stats.VIT}, 0.3f, 2f, "Il chasse les insectes dans les hautes herbes. Ses petites ailes lui permettent de voler très vite.", 58);
 		 listePoke[22] = new Espece(90, 65, 31, 31, 100, 65, "Rapasdepic", Type.NORMAL, Type.VOL, Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.VIT, Stats.VIT}, 1.2f, 38f, "Il vole à très grande vitesse et attaque en chargeant son ennemi.", 162);
+		 listePoke[23] = new Espece(60, 44, 40, 54, 55, 35, "Abo", Type.POISON, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 22, listePoke[24], null, null, new Stats[]{Stats.ATK}, 2f, 6.9f, "Plus il est âgé, plus son corps est long. Il se love autour des arbres pour se reposer.", 62);
+		 listePoke[24] = new Espece(85, 69, 65, 79, 80, 60, "Arbok", Type.POISON, Type.NORMAL, Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.ATK, Stats.ATK}, 3.5f, 65f, "Pour apeurer ses ennemis, il gonfle sa poitrine et émet d'étranges sons avec sa bouche.", 147);
 	 }
 	 /**
 	  * Initialise les sprites
