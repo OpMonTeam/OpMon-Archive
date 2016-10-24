@@ -44,6 +44,10 @@ public class Initializer {
 		 listePoke[22] = new Espece(90, 65, 31, 31, 100, 65, "Rapasdepic", Type.NORMAL, Type.VOL, Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.VIT, Stats.VIT}, 1.2f, 38f, "Il vole à très grande vitesse et attaque en chargeant son ennemi.", 162);
 		 listePoke[23] = new Espece(60, 44, 40, 54, 55, 35, "Abo", Type.POISON, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 22, listePoke[24], null, null, new Stats[]{Stats.ATK}, 2f, 6.9f, "Plus il est âgé, plus son corps est long. Il se love autour des arbres pour se reposer.", 62);
 		 listePoke[24] = new Espece(85, 69, 65, 79, 80, 60, "Arbok", Type.POISON, Type.NORMAL, Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.ATK, Stats.ATK}, 3.5f, 65f, "Pour apeurer ses ennemis, il gonfle sa poitrine et émet d'étranges sons avec sa bouche.", 147);
+		 listePoke[25] = new Espece(55, 40, 50, 50, 90, 35, "Pikachu", Type.ELECTRIQUE, Type.AUCUN, Espece.EVOLUTION_BY_OBJECT, -1, listePoke[26], null, null, new Stats[]{Stats.VIT, Stats.VIT}, 0.4f, 6f, "Il élève sa queue pour surveiller les environs. Elle attire souvent la foudre dans cette position.", 82);
+		 listePoke[26] = new Espece(90, 55, 90, 80, 110, 60, "Raichu", Type.ELECTRIQUE, Type.AUCUN, Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.VIT, Stats.VIT, Stats.VIT}, 0.8f, 30f, "Il peut terrasser des ennemis bien plus imposants en libérant une décharge de 100 000 V.", 122);
+		 listePoke[27] = new Espece(75, 85, 20, 30, 40, 50, "Sabelette", Type.SOL, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 22, listePoke[28], null, null, new Stats[]{Stats.DEF}, 0.6f, 12f, "Il s'enterre et vit dans les sous-sols. S'il se sent menacé, il se met en boule pour se protéger.", 93);
+		 listePoke[28] = new Espece(100, 110, 45, 55, 65, 75, "Sablaireau", Type.SOL, Type.AUCUN, Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.DEF, Stats.DEF}, 1f, 29.5f, "Il se roule en boule hérissée de piques s'il est menacé, il peut ainsi s'enfuir ou attaquer.", 163);
 	 }
 	 /**
 	  * Initialise les sprites
