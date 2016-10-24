@@ -14,7 +14,7 @@ import jlppc.regimys.util.text.StringKey;
  */
 public class Initializer {
 	public static Espece[] listePoke = new Espece[152];
-	public static Object[] TODO = {null};
+
 	/***
 	 * Initialise les pokemon (espèces)
 	 */
@@ -58,6 +58,17 @@ public class Initializer {
 		 listePoke[36] = new Espece(70, 73, 95, 90, 60, 95, "Mélodelfe", Type.FEE, Type.AUCUN, Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.PV, Stats.PV, Stats.PV}, 1.3f, 40f, "Il aime le calme des montagnes. Son ouïe exceptionnelle entendrait une aiguille tomber à 1km.", 129);
 		 listePoke[37] = new Espece(41, 40, 50, 65, 65, 38, "Goupix", Type.FEU, Type.AUCUN, Espece.EVOLUTION_BY_OBJECT, -1, listePoke[38], null, null, new Stats[]{Stats.VIT}, 0.6f, 9.9f, "Avec l'âge, la fourrure de ses six queues devient de plus en plus belle et soyeuse. Elle est chaude au toucher.",63);//TROP KAWAII!!!!
 		 listePoke[38] = new Espece(76, 75, 81, 100, 100, 73, "Feunard", Type.FEU, Type.AUCUN, Espece.NO_EVOLUTION, -1, null,null, null, new Stats[]{Stats.VIT, Stats.DEFSPE}, 1.1f, 19.9f, "Il a neuf longues queues et une fourrure qui brille comme de l'or. On dit qu'il peut vivre 1 000 ans.", 178);
+		 listePoke[39] = new Espece(45, 20, 45, 25, 20, 115, "Rondoudou", Type.NORMAL, Type.FEE, Espece.EVOLUTION_BY_OBJECT, -1, listePoke[40],null, null, new Stats[]{Stats.PV, Stats.PV}, 0.5f, 5.5f, "En se gonflant, il peut chanter une longue berceuse qui endort inévitablement ses adversaires.", 76);
+		 listePoke[40] = new Espece(70, 45, 85, 50, 45, 140, "Grodoudou", Type.NORMAL, Type.FEE, Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.PV, Stats.PV, Stats.PV}, 1f, 12f, "En cas de danger, il gonfle d'air son corps doux et potelé dans des proportions gigantesques.", 109);
+		 listePoke[41] = new Espece(45, 35, 30, 40, 55, 40, "Nosferapti", Type.POISON, Type.VOL, Espece.EVOLUTION_BY_LEVEL, 22, listePoke[42], null, null, new Stats[]{Stats.VIT}, 0.8f, 7.5f, "Ce pokemon est détesté en raison de sa forte présence dans les grottes. Malgré le fait qu'il n'aie pas d'yeux, ce pokemon arrive a voir avec des utltrasons.", 54);
+		 listePoke[42] = new Espece(80, 70, 65, 75, 90, 75, "Nosferalto", Type.POISON, Type.VOL, Espece.EVOLUTION_BY_LOVE, 1, listePoke[0], null, null, new Stats[]{Stats.VIT, Stats.VIT}, 1.6f, 55f, "Quand il se met à sucer du sang, il ne s'arrête qu'une fois rassasié. C'est un chasseur nocturne.", 171);
+		 listePoke[43] = new Espece(50, 55, 75, 65, 30, 45, "Mystherbe", Type.PLANTE, Type.POISON, Espece.EVOLUTION_BY_LEVEL, 21, listePoke[44], null, null, new Stats[]{Stats.ATKSPE}, 0.5f, 5.4f, "Le jour, il reste en sous-sol et évite le soleil. Il grandit en se baignant au clair de lune.", 78);
+		 listePoke[44] = new Espece(65, 70, 85, 75, 40, 60, "Ortide", Type.PLANTE, Type.POISON, Espece.EVOLUTION_BY_OBJECT, -1, listePoke[45] ,null, null, new Stats[]{Stats.ATKSPE, Stats.ATKSPE}, 0.8f, 8.6f, "Il sent très mauvais ! Mais une personne sur 1 000 aime la puanteur de son corps nauséabond.", 132);
+		 listePoke[45] = new Espece(80, 85, 110, 90, 50, 75, "Rafflesia", Type.PLANTE, Type.POISON, Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.ATKSPE, Stats.ATKSPE, Stats.ATKSPE}, 1.2f, 18.6f, "Il possède des pétales énormes. À chaque pas, ils sèment d'épais nuages de pollen toxique.", 184);
+		 listePoke[46] = new Espece(70, 55, 45, 55, 25, 35, "Paras", Type.INSECTE, Type.PLANTE, Espece.EVOLUTION_BY_LEVEL, 24, listePoke[47], null, null, new Stats[]{Stats.ATK}, 0.3f, 5.4f, "Il s'enfouit sous terre pour ronger des racines afin de nourrir les champignons sur son dos.", 70);
+		 listePoke[47] = new Espece(95, 80, 60, 80, 30, 60, "Parasect", Type.INSECTE, Type.PLANTE, Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.ATK, Stats.ATK, Stats.DEF}, 1f, 29.5f, "Un champignon parasite plus gros que Parasect contrôle son corps. Il répand des spores empoisonnées.", 128);
+		 listePoke[48] = new Espece(55, 50, 40, 55, 45, 60, "Mimitoss", Type.INSECTE, Type.POISON, Espece.EVOLUTION_BY_LEVEL, 31, listePoke[49], null, null, new Stats[]{Stats.DEFSPE}, 1f, 30f, "Il vit à l'ombre des grands arbres où il se nourrit d'insectes. Il est attiré par la lumière.", 75);
+		 listePoke[49] = new Espece(65, 60, 90, 75, 90, 70, "Aéromite", Type.INSECTE, Type.POISON,Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.ATKSPE, Stats.VIT}, 1.5f, 12.5f, "Les écailles qu'il sème ont le pouvoir de paralyser totalement un ennemi.", 138);
 	 }
 	 /**
 	  * Initialise les sprites

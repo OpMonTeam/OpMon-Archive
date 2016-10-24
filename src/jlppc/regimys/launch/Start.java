@@ -3,36 +3,8 @@ package jlppc.regimys.launch;
 import java.util.Random;
 import java.util.Scanner;
 
-import jlppc.regimys.enums.Caractere;
-import jlppc.regimys.enums.Type;
-import jlppc.regimys.fight.Fight;
 import jlppc.regimys.objects.Attaque;
-import jlppc.regimys.objects.Espece;
 import jlppc.regimys.objects.Pokemon;
-import jlppc.regimys.objects.attacks.Berceuse;
-import jlppc.regimys.objects.attacks.BombOeuf;
-import jlppc.regimys.objects.attacks.CageEclair;
-import jlppc.regimys.objects.attacks.Charge;
-import jlppc.regimys.objects.attacks.CrocDeMort;
-import jlppc.regimys.objects.attacks.Explosion;
-import jlppc.regimys.objects.attacks.Flammeche;
-import jlppc.regimys.objects.attacks.FouetLianes;
-import jlppc.regimys.objects.attacks.Furie;
-import jlppc.regimys.objects.attacks.Griffe;
-import jlppc.regimys.objects.attacks.OndeBoreale;
-import jlppc.regimys.objects.attacks.PiedVoltige;
-import jlppc.regimys.objects.attacks.Rugissement;
-import jlppc.regimys.objects.attacks.Soin;
-import jlppc.regimys.objects.attacks.Telekinesie;
-import jlppc.regimys.objects.attacks.Toxik;
-import jlppc.regimys.objects.attacks.Tunnel;
-import jlppc.regimys.objects.attacks.Ultimawashi;
-import jlppc.regimys.objects.attacks.Ultralaser;
-import jlppc.regimys.objects.attacks.Vampigraine;
-import jlppc.regimys.objects.attacks.ViveAttaque;
-import jlppc.regimys.objects.attacks.Vol;
-import jlppc.regimys.objects.attacks.Yoga;
-import jlppc.regimys.util.text.StringKey;
 /**
  * Demmare le programme.
  * @author Jlppc
@@ -67,21 +39,38 @@ public class Start {
 	 * @throws IllegalAccessException 
 	 * @throws InstantiationException 
 	 */
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) throws InstantiationException, IllegalAccessException {
-		/*System.out.println("Combat pokemon test");
+		System.out.println("Choisissez un pokémon avec son numéro pokedex : ");
+		int pkdx = sc.nextInt();
+		boolean ok = false;
+		while(!ok){
+			if(pkdx < 0 || pkdx > 38){
+				System.out.print("Numéro invalide, recommencez : ");
+				pkdx = sc.nextInt();
+			}else{
+				ok = true;
+			}
+		}
+		Class<Attaque>[] atksAtk = new Class[4];
+		for(int i = 0; i < 4; i++){
+			System.out.print("Choisissez l'attaque n" + (i+1) + " (Entrez le nom de l'attaque sans espaces avec des majuscules a chaque debut de mot, et sans accents) : ");
+			String atk = sc.nextLine();
+			try{
+				atksAtk[i] = (Class<Attaque>) Class.forName(atk);
+			}catch(ClassNotFoundException e){
+				System.out.println("Attaque inexistante.");
+				i--;
+			}
+		}
+		System.out.println("Entrez le niveau du pokemon (1-100) (Valeur par défaut : 50) : ");
+		int level = sc.nextInt();
+		if(level < 1 || level > 100){
+			level = 50;
+		}
 		
-		StringKey.initialisateKeys();
+		//A continuer
 		
-		Espece esp1 = new Espece(50, 120, 50, 120, 50,990, "Defia", Type.POISON, Type.NORMAL);
-		Espece esp2 = new Espece(75, 25, 75, 25, 25, 75, "Irregu", Type.PLANTE, Type.COMBAT);
-		Pokemon pkm1 = new Pokemon(esp1, 50, new Attaque[]{Vampigraine.class.newInstance(), Toxik.class.newInstance(), Vol.class.newInstance(), Soin.class.newInstance()},Caractere.DOCILE, null);
-		Pokemon pkm2 = new Pokemon(esp2, 60, new Attaque[]{PiedVoltige.class.newInstance(), Berceuse.class.newInstance(), Ultralaser.class.newInstance(), Yoga.class.newInstance()}, Caractere.BIZARRE, null);
-		
-		
-		
-		Espece bulbizarre = new Espece(49, 49, 65, 65, 45, 45, "Bulbizarre", Type.PLANTE, Type.AUCUN);
-		Espece salameche = new Espece(52, 43, 60, 50, 65, 39,"Salameche", Type.FEU, Type.AUCUN);
-		Fight.fight(pkm1, pkm2);*/
 	}
 
 }
