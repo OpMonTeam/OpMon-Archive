@@ -38,6 +38,10 @@ public class Initializer {
 		 listePoke[16] = new Espece(45, 40, 35, 35, 56, 40, "Roucool", Type.NORMAL, Type.VOL, Espece.EVOLUTION_BY_LEVEL, 18, listePoke[17], null, null, new Stats[]{Stats.VIT}, 0.3f, 1.8f, "Ce Pokémon docile préfère éviter le combat. Toutefois, il se montre très féroce quand on l'agresse.", 55);
 		 listePoke[17] = new Espece(60, 55, 50, 50, 71, 63, "Roucoups", Type.NORMAL, Type.VOL, Espece.EVOLUTION_BY_LEVEL, 36, listePoke[18], null,null, new Stats[]{Stats.VIT, Stats.VIT}, 1.1f, 30f, "Il protège son territoire avec ardeur et repousse à coup de bec tout intrus.", 113);
 		 listePoke[18] = new Espece(80, 75, 70, 70, 101, 83, "Roucarnage", Type.NORMAL, Type.VOL, Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.VIT, Stats.VIT, Stats.VIT}, 1.5f, 39.5f, "Roucarnage déploie ses ailes majestueuses pour effrayer ses ennemis. Il peut voler à Mach 2.", 172);
+		 listePoke[19] = new Espece(56, 35, 25, 35, 72, 30, "Rattata", Type.NORMAL, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 20, listePoke[20], null, null, new Stats[]{Stats.VIT}, 0.3f, 3.5f, "Vivant là où se trouve la nourriture, ce charognard passe ses journées à la rechercher.", 57);
+		 listePoke[20] = new Espece(81, 60, 50, 70, 97, 55, "Rattatac", Type.NORMAL, Type.AUCUN, Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.VIT, Stats.VIT}, 0.7f, 18.5f, "Ses pattes arrière lui permettent de traverser les rivières. Il est toujours en quête de nourriture.", 127);
+		 listePoke[21] = new Espece(60, 30, 31, 31, 70, 40, "Piafabec", Type.NORMAL, Type.VOL, Espece.EVOLUTION_BY_LEVEL, 20, listePoke[22], null, null, new Stats[]{Stats.VIT}, 0.3f, 2f, "Il chasse les insectes dans les hautes herbes. Ses petites ailes lui permettent de voler très vite.", 58);
+		 listePoke[22] = new Espece(90, 65, 31, 31, 100, 65, "Rapasdepic", Type.NORMAL, Type.VOL, Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.VIT, Stats.VIT}, 1.2f, 38f, "Il vole à très grande vitesse et attaque en chargeant son ennemi.", 162);
 	 }
 	 /**
 	  * Initialise les sprites
