@@ -69,6 +69,10 @@ public class Initializer {
 		 listePoke[47] = new Espece(95, 80, 60, 80, 30, 60, "Parasect", Type.INSECTE, Type.PLANTE, Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.ATK, Stats.ATK, Stats.DEF}, 1f, 29.5f, "Un champignon parasite plus gros que Parasect contrôle son corps. Il répand des spores empoisonnées.", 128);
 		 listePoke[48] = new Espece(55, 50, 40, 55, 45, 60, "Mimitoss", Type.INSECTE, Type.POISON, Espece.EVOLUTION_BY_LEVEL, 31, listePoke[49], null, null, new Stats[]{Stats.DEFSPE}, 1f, 30f, "Il vit à l'ombre des grands arbres où il se nourrit d'insectes. Il est attiré par la lumière.", 75);
 		 listePoke[49] = new Espece(65, 60, 90, 75, 90, 70, "Aéromite", Type.INSECTE, Type.POISON,Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.ATKSPE, Stats.VIT}, 1.5f, 12.5f, "Les écailles qu'il sème ont le pouvoir de paralyser totalement un ennemi.", 138);
+		 listePoke[50] = new Espece(55, 25, 35, 45, 95, 10, "Taupiqueur", Type.SOL, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 26, listePoke[51], null, null, new Stats[]{Stats.VIT}, 0.2f, 0.8f, "Son épiderme est très fin. S'il est exposé au soleil, son sang se réchauffe, ce qui l'affaiblit.", 81);
+		 listePoke[51] = new Espece(80, 50, 50, 70, 120, 35, "Triopikeur", Type.SOL, Type.AUCUN, Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.VIT, Stats.VIT}, 0.7f, 33.3f, "Terriblement puissants, ils peuvent creuser un tunnel dans tout type de sol et jusqu'à 100 km de profondeur.", 153);
+		 listePoke[52] = new Espece(45, 35, 40, 40, 90, 40, "Miaouss", Type.NORMAL, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 28, listePoke[53], null, null, new Stats[]{Stats.VIT}, 0.4f, 4.2f, "Son regard s'anime à la vue d'un objet brillant. C'est un Pokémon nocturne.", 69);
+		 listePoke[53] = new Espece(70, 60, 65, 65, 115, 65, "Persian", Type.NORMAL, Type.AUCUN, Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.VIT, Stats.VIT}, 1f, 32f, "Un Pokémon très snob. La taille du joyau qui orne son front alimente bien des débats parmi ses fans.", 148);
 	 }
 	 /**
 	  * Initialise les sprites
