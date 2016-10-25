@@ -9,7 +9,7 @@ import jlppc.regimys.objects.Pokemon.Status;
 
 public class Devoreve extends Attaque {
 	public Devoreve() {
-		super("Dévorêve", 100, Type.PSI, 100, true, false, 16, false, 15);
+		super("Dévorêve", 100, Type.PSY, 100, true, false, 16, false, 15);
 	}
 
 	@Override
