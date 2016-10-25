@@ -9,7 +9,7 @@ import jlppc.regimys.objects.Pokemon.Status;
 
 public class Hypnose extends Attaque {
 	public Hypnose() {
-		super("Hypnose", 0, Type.PSI, 60, false, true, -1, false, 20); 
+		super("Hypnose", 0, Type.PSY, 60, false, true, -1, false, 20); 
 	}
 
 	@Override
