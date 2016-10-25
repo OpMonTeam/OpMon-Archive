@@ -8,7 +8,7 @@ import jlppc.regimys.objects.Pokemon;
 
 public class Yoga extends Attaque {
 	public Yoga() {
-		super("Yoga", 0, Type.PSI, 100, false, true, -1, true, 40);
+		super("Yoga", 0, Type.PSY, 100, false, true, -1, true, 40);
 	}
 
 	@Override

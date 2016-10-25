@@ -8,7 +8,7 @@ import jlppc.regimys.objects.Pokemon;
 
 public class VaguePsy extends Attaque {
 	public VaguePsy() {
-		super("Vargue Psy", 0, Type.PSI, 100, true, true, -1, false, 15);
+		super("Vargue Psy", 0, Type.PSY, 100, true, true, -1, false, 15);
 	}
 
 	@Override

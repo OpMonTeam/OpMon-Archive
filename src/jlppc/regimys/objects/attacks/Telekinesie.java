@@ -8,7 +8,7 @@ import jlppc.regimys.objects.Pokemon;
 
 public class Telekinesie extends Attaque {
 	public Telekinesie() {
-		super("Télékinésie", 0, Type.PSI, 80, false, true, -1, false, 15);
+		super("Télékinésie", 0, Type.PSY, 80, false, true, -1, false, 15);
 	}
 
 	@Override

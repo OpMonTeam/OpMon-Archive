@@ -8,7 +8,7 @@ import jlppc.regimys.objects.Pokemon;
 public class Bouclier extends Attaque {
 
 	public Bouclier(){
-		super("Bouclier", 0, Type.PSI, 100, false, true, -1, true, 20);
+		super("Bouclier", 0, Type.PSY, 100, false, true, -1, true, 20);
 	}
 	
 	@Override
@@ -17,9 +17,9 @@ public class Bouclier extends Attaque {
 	@Override
 	protected void effetApres(Pokemon atk, Pokemon def) {
 		if(atk.changeDEF(2)){
-			System.out.println("La défense de " + atk.getSurnom() + " augmente beaucoup!");
+			System.out.println("La dï¿½fense de " + atk.getSurnom() + " augmente beaucoup!");
 		}else{
-			System.out.println("La défense de " + atk.getSurnom() + " ne peut plus augmenter!");
+			System.out.println("La dï¿½fense de " + atk.getSurnom() + " ne peut plus augmenter!");
 		}
 	}
 
