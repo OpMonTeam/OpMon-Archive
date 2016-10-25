@@ -8,7 +8,7 @@ import jlppc.regimys.objects.Pokemon;
 
 public class Psyko extends Attaque {
 	public Psyko() {
-		super("Psyko", 90, Type.PSI, 100, true, false, 16, false, 10);
+		super("Psyko", 90, Type.PSY, 100, true, false, 16, false, 10);
 	}
 
 	@Override
