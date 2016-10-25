@@ -85,6 +85,9 @@ public class Initializer {
 		 listePoke[63] = new Espece(20, 15, 105, 55, 90, 25, "Abra", Type.PSI, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 16, listePoke[64], null, null, new Stats[]{Stats.ATKSPE}, 0.9f, 19.5f, "Il prévoit les attaques futures et se téléporte pour se mettre à l'abri et éviter le combat.", 75);
 		 listePoke[64] = new Espece(35, 30, 120, 70, 105, 40, "Kadabra", Type.PSI, Type.AUCUN, Espece.EVOLUTION_BY_TRADE, -1, listePoke[65], null, null, new Stats[]{Stats.ATKSPE, Stats.ATKSPE}, 1.3f, 56.5f, "En utilisant ses pouvoirs, il émet des ondes alphas et cause des distorsions électroniques.", 145);
 		 listePoke[65] = new Espece(50, 45, 135, 95, 120, 55, "Alakazam", Type.PSI, Type.AUCUN, Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.ATKSPE, Stats.ATKSPE, Stats.ATKSPE}, 1.5f, 48f, "Son cerveau hors du commun peut effectuer des opérations à la vitesse d'un ordinateur. Il a un QI de 5 000.", 186);
+		 listePoke[66] = new Espece(80, 50, 35, 35, 35, 70, "Machoc", Type.COMBAT, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 28, listePoke[67], null, null, new Stats[]{Stats.ATK}, 0.8f, 19.5f, "Son corps est essentiellement composé de muscles. Même s'il a la taille d'un petit enfant, il peut soulever 100 adultes avec ses bras.", 75);
+		 listePoke[67] = new Espece(100, 70, 50, 60, 45, 80, "Machopeur", Type.COMBAT, Type.AUCUN, Espece.EVOLUTION_BY_TRADE, -1, listePoke[68], null, null, new Stats[]{Stats.ATK, Stats.ATK}, 1.5f, 70.5f, "Son corps est si puissant qu'il lui faut une ceinture de force pour équilibrer ses mouvements.", 146);
+		 listePoke[68] = new Espece(130, 80, 65, 85, 55, 90, "Mackogneur", Type.COMBAT, Type.AUCUN, Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.ATK, Stats.ATK, Stats.ATK}, 1.6f, 130f, "Ses deux paires de bras permettent à Mackogneur d'envoyer une série de 1000 coups de poing en 2s.", 193);
 	 }
 	 /**
 	  * Initialise les sprites
