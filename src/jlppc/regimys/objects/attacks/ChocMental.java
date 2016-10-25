@@ -10,7 +10,7 @@ import jlppc.utils.FormattedString;
 public class ChocMental extends Attaque {
 
 	public ChocMental(){
-		super("Choc Mental", 50, Type.PSI, 100, true, false, 16, false, 25);
+		super("Choc Mental", 50, Type.PSY, 100, true, false, 16, false, 25);
 	}
 	
 	@Override
