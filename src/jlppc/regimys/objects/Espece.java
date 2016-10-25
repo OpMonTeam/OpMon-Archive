@@ -50,6 +50,8 @@ public final class Espece {
 	 */
 	public static final int EVOLUTION_BY_LOVE = 2;
 	public static final int NO_EVOLUTION = 3;
+	
+	public static final int EVOLUTION_BY_TRADE = 4;
 	/**
 	 * Voir nom. Tellement �vident.
 	 */

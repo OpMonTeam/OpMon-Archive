@@ -82,7 +82,9 @@ public class Initializer {
 		 listePoke[60] = new Espece(50, 40, 40, 40, 90, 40, "Ptitard", Type.EAU, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 25, listePoke[61], null, null, new Stats[]{Stats.VIT}, 0.6f, 12.4f, "Sa peau est si mince qu'on voit ses organes internes. Il tient à peine sur ses nouveaux pieds.", 77);
 		 listePoke[61] = new Espece(65, 65, 50, 50, 90, 65, "Têtarte", Type.EAU, Type.AUCUN, Espece.EVOLUTION_BY_OBJECT, -1, listePoke[62], null, null, new Stats[]{Stats.VIT, Stats.VIT}, 1f, 20f, " Ce Pokémon amphibie transpire continuellement quand il est hors de l'eau afin d'hydrater son corps.", 131);
 		 listePoke[62] = new Espece(95, 95, 70, 90, 70, 90, "Tartard", Type.EAU, Type.COMBAT, Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.DEF, Stats.DEF, Stats.DEF}, 1.3f, 54f, "Il possède de sacrés biscoteaux. Il peut parcourir sans relâche l'Océan Pacifique.", 185);
-		 
+		 listePoke[63] = new Espece(20, 15, 105, 55, 90, 25, "Abra", Type.PSI, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 16, listePoke[64], null, null, new Stats[]{Stats.ATKSPE}, 0.9f, 19.5f, "Il prévoit les attaques futures et se téléporte pour se mettre à l'abri et éviter le combat.", 75);
+		 listePoke[64] = new Espece(35, 30, 120, 70, 105, 40, "Kadabra", Type.PSI, Type.AUCUN, Espece.EVOLUTION_BY_TRADE, -1, listePoke[65], null, null, new Stats[]{Stats.ATKSPE, Stats.ATKSPE}, 1.3f, 56.5f, "En utilisant ses pouvoirs, il émet des ondes alphas et cause des distorsions électroniques.", 145);
+		 listePoke[65] = new Espece(50, 45, 135, 95, 120, 55, "Alakazam", Type.PSI, Type.AUCUN, Espece.NO_EVOLUTION, -1, null, null, null, new Stats[]{Stats.ATKSPE, Stats.ATKSPE, Stats.ATKSPE}, 1.5f, 48f, "Son cerveau hors du commun peut effectuer des opérations à la vitesse d'un ordinateur. Il a un QI de 5 000.", 186);
 	 }
 	 /**
 	  * Initialise les sprites
