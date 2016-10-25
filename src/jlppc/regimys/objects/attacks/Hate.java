@@ -8,7 +8,7 @@ import jlppc.regimys.objects.Pokemon;
 
 public class Hate extends Attaque {
 	public Hate() {
-		super("Hâte", 0, Type.PSI, 100, false, true, -1, true, 30);
+		super("Hâte", 0, Type.PSY, 100, false, true, -1, true, 30);
 	}
 
 	@Override
