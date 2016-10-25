@@ -10,7 +10,7 @@ import jlppc.regimys.util.text.StringKey;
 
 public class RafalePsy extends Attaque {
 	public RafalePsy() {
-		super("Rafale Psy", 65, Type.PSI, 100, true, false, 16, false, 20);
+		super("Rafale Psy", 65, Type.PSY, 100, true, false, 16, false, 20);
 	}
 
 	@Override
