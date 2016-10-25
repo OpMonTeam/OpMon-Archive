@@ -4,6 +4,7 @@ import java.awt.Image;
 import java.util.Arrays;
 
 import jlppc.regimys.enums.Type;
+import jlppc.regimys.evolution.Evolution;
 import jlppc.regimys.objects.items.CT;
 import jlppc.regimys.enums.Caractere.Stats;
 import jlppc.utils.HashArray;
@@ -52,6 +53,10 @@ public final class Espece {
 	public static final int NO_EVOLUTION = 3;
 	
 	public static final int EVOLUTION_BY_TRADE = 4;
+	/**
+	 * Va remplacer les autres déclaration d'évolution
+	 */
+	public Evolution evolType;
 	/**
 	 * Voir nom. Tellement �vident.
 	 */
@@ -102,6 +107,11 @@ public final class Espece {
 	protected Image resume;
 	protected Image resumeS;
 	protected int expGiven;
+	public Evolution getEvolType() {
+		return evolType;
+	}
+
+	protected int hashCode;
 	/**
 	 * 
 	 * @param atk
@@ -143,6 +153,7 @@ public final class Espece {
 		this.entreePokedex = entreePokedex;
 		this.ctCompatibles = ctCombatibles;
 		this.expGiven = expGiven;
+		hashCode = hashCode();
 	}
 	
 	//Les getters. Rien de plus a expliquer.
@@ -153,13 +164,7 @@ public final class Espece {
 		return numeroPokedex;
 	}
 	public synchronized final Espece getEvolution() {
-		try {
-			return (Espece) evolution.clone();
-		} catch (CloneNotSupportedException e) {
-
-			e.printStackTrace();
-			return null;
-		}
+		return evolution;
 	}
 	public synchronized final int getNiveauEvolution() {
 		return niveauEvolution;
@@ -208,7 +213,7 @@ public final class Espece {
 	}
 	
 	@Override
-	public int hashCode() {
+	public int hashCode(){
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((EVgiven == null) ? 0 : EVgiven.hashCode());
@@ -387,6 +392,11 @@ public final class Espece {
 			return false;
 		}
 		return true;
+	}
+
+	public int getExp() {
+		
+		return expGiven;
 	}
 	
 }

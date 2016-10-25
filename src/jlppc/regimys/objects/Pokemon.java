@@ -4,10 +4,14 @@ import java.util.Arrays;
 
 import jlppc.regimys.enums.Caractere;
 import jlppc.regimys.enums.Type;
+import jlppc.regimys.evolution.E_Item;
+import jlppc.regimys.evolution.E_Trade;
 import jlppc.regimys.enums.Caractere.Stats;
 import jlppc.regimys.launch.Start;
 import jlppc.regimys.objects.Typedef.Null;
+import jlppc.regimys.objects.items.Item;
 import jlppc.utils.HashArray;
+import jlppc.utils.WIP;
 /**
  * Definit un pokemon.
  * @author Jlppc
@@ -92,12 +96,65 @@ public class Pokemon extends Typedef{
 	 * L'experience du pokemon
 	 */
 	protected int exp;
+	/**
+	 * Le nombre d'xp qu'il faut pour le niveau supérieur
+	 */
+	protected int toNextLevel;
+	protected float expBoost = 1;
 	//Les sous status
 	public boolean confus = false;
 	public boolean peur = false;
 	public boolean amour = false;
 	public boolean vampigraine = false;
 	public boolean malediction = false;
+	
+	@WIP
+	public void win(Pokemon vaincu){
+		exp+=((vaincu.espece.getExp() * vaincu.level) / this.level) * expBoost;
+		if(exp >= toNextLevel){
+			level++;
+			//toNextLevel = formuleCompliquée //Ligne non terminée... TODO!
+		}
+		
+	}
+	
+	public void levelUp(){
+		level++;
+		if(espece.getEvolType().checkEvolve(this)){
+			if(!(espece.getEvolType() instanceof E_Trade)){
+				evolve();
+			}
+			
+		}
+	}
+	
+	public void itemUsed(Item used){
+		if(espece.getEvolType() instanceof E_Item){
+			if(((E_Item) espece.getEvolType()).itemEvolve(used)){
+				evolve();
+			}
+		}else{
+			
+		}
+	}
+	
+	public void traded(){
+		expBoost = 1.5f;
+		if(espece.getEvolType() instanceof E_Trade){
+			evolve();
+		}
+	}
+	
+	public void toolEvTrade(){
+		if(espece.getEvolType() instanceof E_Trade){
+			evolve();
+		}
+	}
+	
+	public void evolve(){
+		this.espece = this.espece.getEvolution();
+		calcStats();
+	}
 	/**
 	 * L'enumeration des status pokemon.
 	 * @author Jlppc
@@ -176,6 +233,15 @@ public class Pokemon extends Typedef{
 		return tab;
 	}
 	
+	public void calcStats(){
+		statATK = (int) Math.round( ( ( ((2 * espece.getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100 ) + 5 ) * ((caractere.bonus == Stats.ATK) ? 1.1 : ((caractere.malus == Stats.ATK) ? 0.9 : 1)));
+		statDEF = (int) Math.round( ( ( ((2 * espece.getBaseDef() + defIV + (defEV / 4)) * level) / 100 ) + 5 ) * ((caractere.bonus == Stats.DEF) ? 1.1 : ((caractere.malus == Stats.DEF) ? 0.9 : 1)));
+		statATKSPE = (int) Math.round( ( ( ((2 * espece.getBaseAtkSpe() + atkSpeIV + (atkSpeEV / 4)) * level) / 100 ) + 5 ) * ((caractere.bonus == Stats.ATKSPE) ? 1.1 : ((caractere.malus == Stats.ATKSPE) ? 0.9 : 1)));
+		statDEFSPE = (int) Math.round( ( ( ((2 * espece.getBaseDefSpe() + defSpeIV + (defSpeEV / 4)) * level) / 100 ) + 5 ) * ((caractere.bonus == Stats.DEFSPE) ? 1.1 : ((caractere.malus == Stats.DEFSPE) ? 0.9 : 1)));
+		statVIT = (int) Math.round( ( ( ((2 * espece.getBaseVit() + vitIV + (vitEV / 4)) * level) / 100 ) + 5 ) * ((caractere.bonus == Stats.VIT) ? 1.1 : ((caractere.malus == Stats.VIT) ? 0.9 : 1)));
+		statPV = Math.round(((2 * espece.getBasePV() + pvIV + (pvEV / 4)) * level) / 100) + level + 10;
+	}
+	
 	/**
 	 * Le constructeur.
 	 * @param espece - {@link #espece}
@@ -185,12 +251,7 @@ public class Pokemon extends Typedef{
 	 * @param talent - {@link #talent}
 	 */
 	public Pokemon(Espece espece, int level, Attaque[] attaques, Caractere caractere, Talent talent){
-		statATK = (int) Math.round( ( ( ((2 * espece.getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100 ) + 5 ) * ((caractere.bonus == Stats.ATK) ? 1.1 : ((caractere.malus == Stats.ATK) ? 0.9 : 1)));
-		statDEF = (int) Math.round( ( ( ((2 * espece.getBaseDef() + defIV + (defEV / 4)) * level) / 100 ) + 5 ) * ((caractere.bonus == Stats.DEF) ? 1.1 : ((caractere.malus == Stats.DEF) ? 0.9 : 1)));
-		statATKSPE = (int) Math.round( ( ( ((2 * espece.getBaseAtkSpe() + atkSpeIV + (atkSpeEV / 4)) * level) / 100 ) + 5 ) * ((caractere.bonus == Stats.ATKSPE) ? 1.1 : ((caractere.malus == Stats.ATKSPE) ? 0.9 : 1)));
-		statDEFSPE = (int) Math.round( ( ( ((2 * espece.getBaseDefSpe() + defSpeIV + (defSpeEV / 4)) * level) / 100 ) + 5 ) * ((caractere.bonus == Stats.DEFSPE) ? 1.1 : ((caractere.malus == Stats.DEFSPE) ? 0.9 : 1)));
-		statVIT = (int) Math.round( ( ( ((2 * espece.getBaseVit() + vitIV + (vitEV / 4)) * level) / 100 ) + 5 ) * ((caractere.bonus == Stats.VIT) ? 1.1 : ((caractere.malus == Stats.VIT) ? 0.9 : 1)));
-		statPV = Math.round(((2 * espece.getBasePV() + pvIV + (pvEV / 4)) * level) / 100) + level + 10;
+		calcStats();
 		this.espece = espece;
 		this.level = level;
 		this.attaques = Arrays.copyOf(attaques, attaques.length);
@@ -211,12 +272,7 @@ public class Pokemon extends Typedef{
 	 * @param talent - {@link #talent}
 	 */
 	public Pokemon(String surnom, Espece espece, int level, Attaque[] attaques, Caractere caractere, Talent talent){
-		statATK = (int) Math.round( ( ( ((2 * espece.getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100 ) + 5 ) * ((caractere.bonus == Stats.ATK) ? 1.1 : ((caractere.malus == Stats.ATK) ? 0.9 : 1)));
-		statDEF = (int) Math.round( ( ( ((2 * espece.getBaseDef() + defIV + (defEV / 4)) * level) / 100 ) + 5 ) * ((caractere.bonus == Stats.DEF) ? 1.1 : ((caractere.malus == Stats.DEF) ? 0.9 : 1)));
-		statATKSPE = (int) Math.round( ( ( ((2 * espece.getBaseAtkSpe() + atkSpeIV + (atkSpeEV / 4)) * level) / 100 ) + 5 ) * ((caractere.bonus == Stats.ATKSPE) ? 1.1 : ((caractere.malus == Stats.ATKSPE) ? 0.9 : 1)));
-		statDEFSPE = (int) Math.round( ( ( ((2 * espece.getBaseDefSpe() + defSpeIV + (defSpeEV / 4)) * level) / 100 ) + 5 ) * ((caractere.bonus == Stats.DEFSPE) ? 1.1 : ((caractere.malus == Stats.DEFSPE) ? 0.9 : 1)));
-		statVIT = (int) Math.round( ( ( ((2 * espece.getBaseVit() + vitIV + (vitEV / 4)) * level) / 100 ) + 5 ) * ((caractere.bonus == Stats.VIT) ? 1.1 : ((caractere.malus == Stats.VIT) ? 0.9 : 1)));
-		statPV = Math.round(((2 * espece.getBasePV() + pvIV + (pvEV / 4)) * level) / 100) + level + 10;
+		calcStats();
 		this.espece = espece;
 		this.level = level;
 		this.attaques = Arrays.copyOf(attaques, attaques.length);
