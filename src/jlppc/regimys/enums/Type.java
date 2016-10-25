@@ -6,7 +6,7 @@ package jlppc.regimys.enums;
  */
 public enum Type {
 	
-	EAU(3, "Eau"), FEU(6, "Feu"), PLANTE(10, "Plante"), ELECTRIQUE(4, "Electrique"), PSI(12, "Psy"), TENEBRES(16,"Ténèbres"), DRAGON(2, "Dragon"), COMBAT(1, "Combat"), ROCHE(13, "Roche"), SOL(14,"Sol"), NORMAL(9, "Normal"), FEE(5, "Fée"), SPECTRE(15, "Spectre"), POISON(11, "Poison"), ACIER(0, "Acier"), INSECTE(8, "Insecte"), VOL(17, "Vol"), GLACE(7, "Glace"), AUCUN(-1, "Aucun");
+	EAU(3, "Eau"), FEU(6, "Feu"), PLANTE(10, "Plante"), ELECTRIQUE(4, "Electrique"), PSY(12, "Psy"), TENEBRES(16,"Ténèbres"), DRAGON(2, "Dragon"), COMBAT(1, "Combat"), ROCHE(13, "Roche"), SOL(14,"Sol"), NORMAL(9, "Normal"), FEE(5, "Fée"), SPECTRE(15, "Spectre"), POISON(11, "Poison"), ACIER(0, "Acier"), INSECTE(8, "Insecte"), VOL(17, "Vol"), GLACE(7, "Glace"), AUCUN(-1, "Aucun");
 	/**
 	 * L'ID du type.
 	 */
@@ -306,7 +306,7 @@ public enum Type {
 			{NE, TP, NE, NE, TE, PE, NE, TE, TP, NE, TP, PE, TE, TE, IN, NE, NE, NE}
 	};
 	
-	public static float[][] tableauPsi = {
+	public static float[][] tableauPsy = {
 			{PE, NE, PE, NE, NE, PE, TE, PE, NE, PE, PE, IN, TP, PE, TE, TE, TE, PE},
 			{NE, PE, NE, NE, NE, TE, NE, NE, NE, NE, NE, NE, NE, PE, NE, TE, NE, TE},
 			{NE, PE, TE, PE, PE, TE, PE, TE, TE, NE, PE, NE, PE, NE, NE, TE, TE, NE},
