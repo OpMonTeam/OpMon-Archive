@@ -8,7 +8,7 @@ Prochaines versions :<ul>
 
 Informations generales:<br/>
 Regimys est un projet de fan-game pokémon imaginé en 2012 et débuté en septembre 2016. 
-Ce fan-game est totalement open-source, ce qui permet aux plus grands fans de venir realiser leurs rêves les plus fous! 
+Ce fan-game est totalement open-source*, ce qui permet aux plus grands fans de venir realiser leurs rêves les plus fous! 
 Vous pouvez ajouter des Pokémon, des attaques, des talents, et autres! 
 Vous n'avez qu'a me proposer vos modifications et je les ajouterai peut-être au jeu. 
 Et si vous me proposez beaucoup de bonnes modifications, et qu'elles sont acceptées, vous deviendrez peut-être collaborateur!<br/>
@@ -22,3 +22,5 @@ Changelog:
 <li>Alpha 0.02 : Ajout des status, types, équations de base ect...</li>
 <li>Alpha 0.01 : Creation du systeme de combat de base</li>
 </ul>
+
+*Totalement open-source de A à Z, nous utilisons le système Gnu/Linux pour créer le jeu, les graphismes sont fait sur GIMP, le scenario sur LibreOffice au format libre ODT, Jlppc utilise le logiciel libre Eclipse pour programmer et bien sur, le code source du jeu est ouvert à tous grâce à GitHub.
