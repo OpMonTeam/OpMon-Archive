@@ -53,6 +53,7 @@ public final class Espece {
 	public static final int NO_EVOLUTION = 3;
 	
 	public static final int EVOLUTION_BY_TRADE = 4;
+	public static final int EVOLUTION_BY_PLACE = 5;
 	/**
 	 * Va remplacer les autres déclaration d'évolution
 	 */
