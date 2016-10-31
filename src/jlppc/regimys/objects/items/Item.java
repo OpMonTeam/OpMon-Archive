@@ -87,6 +87,20 @@ public class Item {
 		
 	}
 	
+	public String getName(){
+		return nom;
+	}
+	
+	public static Item getItem(String name){
+		for(Item tem : itemList){
+			if(tem.getName().equals(name)){
+				return tem;
+			}
+		}
+		
+		return null;
+	}
+	
 	
 	
 }
