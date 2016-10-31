@@ -8,8 +8,12 @@ public class CT extends Item {
 	Class<Attaque> atk;
 	
 	public CT(Class<Attaque> atk) {
-		super();
+		super(atk.getName(), true, false, BagCat.CTS);
 		this.atk = atk;
+	}
+	
+	public static void initCTs(){
+		
 	}
 	
 	

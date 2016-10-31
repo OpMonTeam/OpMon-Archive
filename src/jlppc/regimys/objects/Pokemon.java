@@ -108,6 +108,22 @@ public class Pokemon extends Typedef{
 	public boolean vampigraine = false;
 	public boolean malediction = false;
 	
+	protected Item held;
+	
+	public Item hold(Item item){
+		Item ancien = (Item) held.clone();
+		held = item;
+		return ancien;
+	}
+	
+	public boolean isHoldingItem(){
+		return (held == null);
+	}
+	
+	public Item itemHeld(){
+		return held;
+	}
+	
 	@WIP
 	public void win(Pokemon vaincu){
 		exp+=((vaincu.espece.getExp() * vaincu.level) / this.level) * expBoost;
@@ -127,8 +143,12 @@ public class Pokemon extends Typedef{
 			
 		}
 	}
-	
-	public void itemUsed(Item used){
+	/**
+	 * Permet d'utiliser un item sur le pokémon.
+	 * @param used
+	 * @return un booleen pour savoir si l'item doit être supprimé ou pas. (false si pas supprimé, true sinon)
+	 */
+	public boolean itemUsed(Item used){
 		if(espece.getEvolType() instanceof E_Item){
 			if(((E_Item) espece.getEvolType()).itemEvolve(used)){
 				evolve();
@@ -136,6 +156,8 @@ public class Pokemon extends Typedef{
 		}else{
 			
 		}
+		
+		return false;
 	}
 	
 	public void traded(){

@@ -5,6 +5,7 @@ import jlppc.regimys.enums.Type;
 import jlppc.regimys.objects.Espece;
 import jlppc.regimys.objects.Typedef;
 import jlppc.regimys.objects.Typedef.Null;
+import jlppc.regimys.objects.items.Item;
 import jlppc.regimys.util.text.StringKey;
 
 /**
@@ -114,6 +115,17 @@ public class Initializer {
 	 
 	 public static void initKeys(){
 		 StringKey.initialisateKeys();
+	 }
+	 
+	 public static void initItems(){
+		 Item.init();
+	 }
+	 
+	 public static void init(){
+		 initPokemons();
+		 initSprites();
+		 initKeys();
+		 initItems();
 	 }
 	 
 	 
