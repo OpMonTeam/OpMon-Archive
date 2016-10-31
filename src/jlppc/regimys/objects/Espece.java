@@ -179,7 +179,7 @@ public final class Espece {
 	 * @param poids
 	 * @param entreePokedex
 	 */
-	public Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv,  String name, Type type1, Type type2, int maniereEvolution, int niveauEvolution,Evolution evolType ,Espece evolution, HashArray[] attacksByLevels, CT[] ctCombatibles, Stats[] EVGiven, float taille, float poids, String entreePokedex, int expGiven){
+	public Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv,  String name, Type type1, Type type2, int maniereEvolution, int niveauEvolution,Evolution evolType,HashArray[] attacksByLevels, CT[] ctCombatibles, Stats[] EVGiven, float taille, float poids, String entreePokedex, int expGiven){
 		baseAtk = atk;
 		baseDef = def;
 		baseAtkSpe = atkSpe;
@@ -191,7 +191,7 @@ public final class Espece {
 		this.type2 = type2;
 		this.maniereEvolution = maniereEvolution;
 		this.niveauEvolution = niveauEvolution;
-		this.evolution = evolution;
+		this.evolution = evolType.getEvolution();
 		this.atksByLevels = attacksByLevels;
 		this.EVgiven = EVGiven;
 		this.poids = poids;
