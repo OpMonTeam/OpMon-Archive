@@ -133,51 +133,6 @@ public final class Espece {
 	 * @param taille
 	 * @param poids
 	 * @param entreePokedex
-	 * @deprecated Utiliser le nouveau constructeur
-	 */
-	@Deprecated
-	public Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv,  String name, Type type1, Type type2, int maniereEvolution, int niveauEvolution, Espece evolution, HashArray[] attacksByLevels, CT[] ctCombatibles, Stats[] EVGiven, float taille, float poids, String entreePokedex, int expGiven){
-		baseAtk = atk;
-		baseDef = def;
-		baseAtkSpe = atkSpe;
-		baseDefSpe = defSpe;
-		baseVit = vit;
-		surnom = name;
-		basePV = pv;
-		this.type1 = type1;
-		this.type2 = type2;
-		this.maniereEvolution = maniereEvolution;
-		this.niveauEvolution = niveauEvolution;
-		this.evolution = evolution;
-		this.atksByLevels = attacksByLevels;
-		this.EVgiven = EVGiven;
-		this.poids = poids;
-		this.taille = taille;
-		this.entreePokedex = entreePokedex;
-		this.ctCompatibles = ctCombatibles;
-		this.expGiven = expGiven;
-		hashCode = hashCode();
-	}
-	/**
-	 * 
-	 * @param atk
-	 * @param def
-	 * @param atkSpe
-	 * @param defSpe
-	 * @param vit
-	 * @param pv
-	 * @param name
-	 * @param type1
-	 * @param type2
-	 * @param maniereEvolution
-	 * @param niveauEvolution
-	 * @param evolution
-	 * @param attacksByLevels
-	 * @param ctCombatibles
-	 * @param EVGiven
-	 * @param taille
-	 * @param poids
-	 * @param entreePokedex
 	 */
 	public Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv,  String name, Type type1, Type type2, int maniereEvolution, int niveauEvolution,Evolution evolType,HashArray[] attacksByLevels, CT[] ctCombatibles, Stats[] EVGiven, float taille, float poids, String entreePokedex, int expGiven){
 		baseAtk = atk;
