@@ -124,13 +124,21 @@ public class Pokemon extends Typedef{
 		return held;
 	}
 	
+	/**
+	 * Quand le pokemon a gagné
+	 * @param vaincu
+	 * @return l'exp gagnée
+	 */
 	@WIP
-	public void win(Pokemon vaincu){
+	public int win(Pokemon vaincu){
 		exp+=((vaincu.espece.getExp() * vaincu.level) / this.level) * expBoost;
 		if(exp >= toNextLevel){
 			level++;
 			//toNextLevel = formuleCompliquée //Ligne non terminée... TODO!
 		}
+		
+		return (int) (((vaincu.espece.getExp() * vaincu.level) / this.level) * expBoost);
+		
 		
 	}
 	
