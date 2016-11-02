@@ -129,10 +129,11 @@ public class Initializer {
 	 }
 	 
 	 public static void init(){
-		 initPokemons();
-		 initSprites();
 		 initKeys();
+		 initSprites();
+		
 		 initItems();
+		 initPokemons();
 	 }
 	 
 	 

@@ -3,15 +3,28 @@ package jlppc.regimys.launch;
 import java.util.Random;
 import java.util.Scanner;
 
+import jlppc.regimys.enums.Caractere;
+import jlppc.regimys.fight.Fight;
 import jlppc.regimys.objects.Attaque;
+import jlppc.regimys.objects.Espece;
 import jlppc.regimys.objects.Pokemon;
+import jlppc.regimys.objects.attacks.Berceuse;
+import jlppc.regimys.objects.attacks.Charge;
+import jlppc.regimys.objects.attacks.Rugissement;
+import jlppc.regimys.objects.attacks.Soin;
+import jlppc.regimys.objects.attacks.Triplattaque;
 import jlppc.regimys.playercore.Player;
+import jlppc.regimys.tempgui.ChoosePoke;
+import jlppc.utils.FormattedString;
 /**
  * Demmare le programme.
  * @author Jlppc
  *
  */
 public class Start {
+	static{
+		Initializer.init();
+	}
 	
 	public static float version = 0.04f;
 	
@@ -44,9 +57,39 @@ public class Start {
 	 */
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) throws InstantiationException, IllegalAccessException {
-		System.out.println("Programme actuellement non fonctionnel.");
 		
-		//A continuer
+		String playername;
+		System.out.println("Bienvenue dans le monde non achevé des pokémon! Quel est ton nom? : ");
+		playername = sc.nextLine();
+		joueur = new Player(playername);
+		ChoosePoke cp = new ChoosePoke();
+		System.out.println(cp.getEspChoosen());
+		Espece esp = Initializer.listePoke[cp.getEspChoosen()];
+		System.out.println("Veux-tu donner un surnom a ton Pokémon(true (oui)/false(non)? : ");
+		boolean isS = sc.nextBoolean();
+		String surnom = esp.getSurnom();
+		if(isS){
+			System.out.println("Surnom : ");
+			surnom = sc.nextLine();
+		}
+		System.out.println(esp);
+		Pokemon first = new Pokemon(surnom, esp, 5, new Attaque[]{Charge.class.newInstance(), Rugissement.class.newInstance(), Berceuse.class.newInstance(), Triplattaque.class.newInstance()}, Caractere.HARDI, null);
+		joueur.addPokeToEquipe(first);
+		System.out.println("C'est parti pour les combats!");
+		int combatsNumber = 0;
+		
+		while(true){
+			combatsNumber++;
+			System.out.println("Combat n°" + combatsNumber);
+			Espece eAdv = Initializer.listePoke[rand.nextInt(Initializer.listePoke.length)];
+			while(eAdv == null){
+				eAdv = Initializer.listePoke[rand.nextInt(Initializer.listePoke.length)];
+			}
+			
+			Pokemon adv = new Pokemon(eAdv, joueur.getPoke(1).getLevel() + 2, new Attaque[]{Charge.class.newInstance(), Rugissement.class.newInstance(), Soin.class.newInstance(), Triplattaque.class.newInstance()}, Caractere.HARDI, null);
+			FormattedString.outPrintln("%o vs %o", joueur.getPoke(1).getSurnom(), adv.getSurnom());
+			Fight.fight(joueur.getPoke(1), adv);
+		}
 		
 	}
 

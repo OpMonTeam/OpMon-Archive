@@ -111,7 +111,10 @@ public final class Espece {
 	public Evolution getEvolType() {
 		return evolType;
 	}
-
+	@Override
+	public String toString() {
+		return new String(this.surnom);
+	}
 	protected int hashCode;
 	/**
 	 * 
