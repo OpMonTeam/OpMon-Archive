@@ -2,6 +2,7 @@ package jlppc.regimys.playercore;
 
 import java.util.Vector;
 
+import jlppc.regimys.objects.Attaque;
 import jlppc.regimys.objects.Pokemon;
 import jlppc.utils.WIP;
 @WIP
@@ -31,7 +32,24 @@ public class Player {
 	public Pokemon getPoke(int ID){
 		return equipe[ID];
 	}
-	
+	public void healPoke(){
+		for(Pokemon pkmn : equipe){
+			try{
+				pkmn.heal(pkmn.getStatPV());
+				for(Attaque atk : pkmn.getAttaques()){
+					try{
+						atk.healPP();
+					}catch(NullPointerException e){
+						
+					}
+					
+				}
+			}catch(NullPointerException e){
+				
+			}
+			
+		}
+	}
 	/**
 	 * Ajoute un pokémon dans l'equipe
 	 * @param toAdd

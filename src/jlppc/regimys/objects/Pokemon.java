@@ -131,6 +131,7 @@ public class Pokemon extends Typedef{
 	 */
 	@WIP
 	public int win(Pokemon vaincu){
+		fosout("%o a gagné %o!", surnom, ((vaincu.espece.getExp() * vaincu.level) / this.level) * expBoost);
 		exp+=((vaincu.espece.getExp() * vaincu.level) / this.level) * expBoost;
 		if(exp >= toNextLevel){
 			level++;
@@ -141,9 +142,10 @@ public class Pokemon extends Typedef{
 		
 		
 	}
-	
+	//TODO : Ajouter les exp qu'il faut pour level up
 	public void levelUp(){
 		level++;
+		System.out.println("Level up!");
 		if(espece.getEvolType().checkEvolve(this)){
 			if(!(espece.getEvolType() instanceof E_Trade)){
 				evolve();
@@ -184,6 +186,7 @@ public class Pokemon extends Typedef{
 	public void evolve(){
 		this.espece = this.espece.getEvolution();
 		calcStats();
+		fosout("%o évolue en %o!", surnom, espece.getSurnom());
 	}
 	/**
 	 * L'enumeration des status pokemon.
@@ -281,12 +284,18 @@ public class Pokemon extends Typedef{
 	 * @param talent - {@link #talent}
 	 */
 	public Pokemon(Espece espece, int level, Attaque[] attaques, Caractere caractere, Talent talent){
-		calcStats();
+		statATK = (int) Math.round( ( ( ((2 * espece.getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100 ) + 5 ) * ((caractere.bonus == Stats.ATK) ? 1.1 : ((caractere.malus == Stats.ATK) ? 0.9 : 1)));
+		statDEF = (int) Math.round( ( ( ((2 * espece.getBaseDef() + defIV + (defEV / 4)) * level) / 100 ) + 5 ) * ((caractere.bonus == Stats.DEF) ? 1.1 : ((caractere.malus == Stats.DEF) ? 0.9 : 1)));
+		statATKSPE = (int) Math.round( ( ( ((2 * espece.getBaseAtkSpe() + atkSpeIV + (atkSpeEV / 4)) * level) / 100 ) + 5 ) * ((caractere.bonus == Stats.ATKSPE) ? 1.1 : ((caractere.malus == Stats.ATKSPE) ? 0.9 : 1)));
+		statDEFSPE = (int) Math.round( ( ( ((2 * espece.getBaseDefSpe() + defSpeIV + (defSpeEV / 4)) * level) / 100 ) + 5 ) * ((caractere.bonus == Stats.DEFSPE) ? 1.1 : ((caractere.malus == Stats.DEFSPE) ? 0.9 : 1)));
+		statVIT = (int) Math.round( ( ( ((2 * espece.getBaseVit() + vitIV + (vitEV / 4)) * level) / 100 ) + 5 ) * ((caractere.bonus == Stats.VIT) ? 1.1 : ((caractere.malus == Stats.VIT) ? 0.9 : 1)));
+		statPV = Math.round(((2 * espece.getBasePV() + pvIV + (pvEV / 4)) * level) / 100) + level + 10;
 		this.espece = espece;
 		this.level = level;
 		this.attaques = Arrays.copyOf(attaques, attaques.length);
 		this.caractere = caractere;
 		this.surnom = espece.getSurnom();
+		
 		PV = new Integer(statPV);
 		this.talent = talent;
 		type1 = espece.getType1();
@@ -302,8 +311,14 @@ public class Pokemon extends Typedef{
 	 * @param talent - {@link #talent}
 	 */
 	public Pokemon(String surnom, Espece espece, int level, Attaque[] attaques, Caractere caractere, Talent talent){
-		calcStats();
 		this.espece = espece;
+
+		statATK = (int) Math.round( ( ( ((2 * espece.getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100 ) + 5 ) * ((caractere.bonus == Stats.ATK) ? 1.1 : ((caractere.malus == Stats.ATK) ? 0.9 : 1)));
+		statDEF = (int) Math.round( ( ( ((2 * espece.getBaseDef() + defIV + (defEV / 4)) * level) / 100 ) + 5 ) * ((caractere.bonus == Stats.DEF) ? 1.1 : ((caractere.malus == Stats.DEF) ? 0.9 : 1)));
+		statATKSPE = (int) Math.round( ( ( ((2 * espece.getBaseAtkSpe() + atkSpeIV + (atkSpeEV / 4)) * level) / 100 ) + 5 ) * ((caractere.bonus == Stats.ATKSPE) ? 1.1 : ((caractere.malus == Stats.ATKSPE) ? 0.9 : 1)));
+		statDEFSPE = (int) Math.round( ( ( ((2 * espece.getBaseDefSpe() + defSpeIV + (defSpeEV / 4)) * level) / 100 ) + 5 ) * ((caractere.bonus == Stats.DEFSPE) ? 1.1 : ((caractere.malus == Stats.DEFSPE) ? 0.9 : 1)));
+		statVIT = (int) Math.round( ( ( ((2 * espece.getBaseVit() + vitIV + (vitEV / 4)) * level) / 100 ) + 5 ) * ((caractere.bonus == Stats.VIT) ? 1.1 : ((caractere.malus == Stats.VIT) ? 0.9 : 1)));
+		statPV = Math.round(((2 * espece.getBasePV() + pvIV + (pvEV / 4)) * level) / 100) + level + 10;
 		this.level = level;
 		this.attaques = Arrays.copyOf(attaques, attaques.length);
 		this.caractere = caractere;
@@ -312,6 +327,7 @@ public class Pokemon extends Typedef{
 		this.talent = talent;
 		type1 = espece.getType1();
 		type2 = espece.getType2();
+		System.out.println(this.espece);
 	}
 	
 	//Les getters

@@ -162,6 +162,10 @@ public abstract class Attaque extends Typedef{
 	 * @throws SameAtkPartTwo 
 	 */
 	protected abstract void effetApres(Pokemon atk, Pokemon def) throws SameAtkPartTwo;
+	
+	public void healPP(){
+		pp = ppMax;
+	}
 	/**
 	 * L'action d'attaquer
 	 * @param atk - Le pokemon a qui appartient l'attaque

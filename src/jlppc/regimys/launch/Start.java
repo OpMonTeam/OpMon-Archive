@@ -72,7 +72,6 @@ public class Start {
 			System.out.println("Surnom : ");
 			surnom = sc.nextLine();
 		}
-		System.out.println(esp);
 		Pokemon first = new Pokemon(surnom, esp, 5, new Attaque[]{Charge.class.newInstance(), Rugissement.class.newInstance(), Berceuse.class.newInstance(), Triplattaque.class.newInstance()}, Caractere.HARDI, null);
 		joueur.addPokeToEquipe(first);
 		System.out.println("C'est parti pour les combats!");
@@ -85,10 +84,10 @@ public class Start {
 			while(eAdv == null){
 				eAdv = Initializer.listePoke[rand.nextInt(Initializer.listePoke.length)];
 			}
-			
-			Pokemon adv = new Pokemon(eAdv, joueur.getPoke(1).getLevel() + 2, new Attaque[]{Charge.class.newInstance(), Rugissement.class.newInstance(), Soin.class.newInstance(), Triplattaque.class.newInstance()}, Caractere.HARDI, null);
-			FormattedString.outPrintln("%o vs %o", joueur.getPoke(1).getSurnom(), adv.getSurnom());
-			Fight.fight(joueur.getPoke(1), adv);
+			joueur.healPoke();
+			Pokemon adv = new Pokemon(eAdv, joueur.getPoke(0).getLevel() - rand.nextInt(3), new Attaque[]{Charge.class.newInstance(), Rugissement.class.newInstance(), Soin.class.newInstance(), Triplattaque.class.newInstance()}, Caractere.HARDI, null);
+			FormattedString.outPrintln("%o vs %o", joueur.getPoke(0).getSurnom(), adv.getSurnom());
+			Fight.fight(joueur.getPoke(0), adv);
 		}
 		
 	}

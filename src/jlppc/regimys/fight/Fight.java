@@ -532,11 +532,12 @@ public class Fight {
 		else if(def.getPV() <= 0 && atk.getPV() > 0){
 			System.out.println(def.getSurnom() + " est K.O");
 			System.out.println("L'attaquant " + atk.getSurnom() + " a gagn�!");
-			FormattedString.outPrintln("%o a gagné %o exp.", atk.getSurnom(), atk.win(def));
+			atk.win(def);
 		}else if(atk.getPV() <= 0 && def.getPV() > 0){
 			System.out.println(atk.getSurnom() + " est K.O");
 			System.out.println("Le defenseur " + def.getSurnom() + " a gagn�!");
-			FormattedString.outPrintln("%o a gagné %o exp.", def.getSurnom(), def.win(atk));
+			def.win(atk);
+			
 			
 		}else{
 			System.out.println("BUG. On sait pas qui a gagn�.");
