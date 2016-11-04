@@ -116,6 +116,9 @@ public final class Espece {
 		return new String(this.surnom);
 	}
 	protected int hashCode;
+	
+	protected int expMax;
+	
 	/**
 	 * 
 	 * @param atk
@@ -137,7 +140,7 @@ public final class Espece {
 	 * @param poids
 	 * @param entreePokedex
 	 */
-	public Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv,  String name, Type type1, Type type2, int maniereEvolution, int niveauEvolution,Evolution evolType,HashArray[] attacksByLevels, CT[] ctCombatibles, Stats[] EVGiven, float taille, float poids, String entreePokedex, int expGiven){
+	public Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv,  String name, Type type1, Type type2, int maniereEvolution, int niveauEvolution,Evolution evolType,HashArray[] attacksByLevels, CT[] ctCombatibles, Stats[] EVGiven, float taille, float poids, String entreePokedex, int expGiven, int expMax){
 		baseAtk = atk;
 		baseDef = def;
 		baseAtkSpe = atkSpe;
@@ -159,6 +162,7 @@ public final class Espece {
 		this.expGiven = expGiven;
 		hashCode = hashCode();
 		this.evolType = evolType;
+		this.expMax = expMax;
 	}
 	
 	
