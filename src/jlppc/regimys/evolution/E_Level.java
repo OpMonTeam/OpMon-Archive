@@ -7,8 +7,8 @@ public class E_Level extends Evolution {
 	
 	protected int level;
 	
-	public E_Level(Espece toEvolve, int level) {
-		super(toEvolve);
+	public E_Level(int evo, int level) {
+		super(evo);
 		this.level = level;
 	}
 

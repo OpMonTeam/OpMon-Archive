@@ -4,8 +4,8 @@ import jlppc.regimys.objects.Espece;
 import jlppc.regimys.objects.Pokemon;
 
 public class E_Love extends Evolution {
-	public E_Love(Espece toEvolve) {
-		super(toEvolve);
+	public E_Love(int evo) {
+		super(evo);
 	}
 
 	@Override

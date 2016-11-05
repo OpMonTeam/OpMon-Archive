@@ -10,6 +10,7 @@ import jlppc.regimys.objects.Espece;
 import jlppc.regimys.objects.Pokemon;
 import jlppc.regimys.objects.attacks.Berceuse;
 import jlppc.regimys.objects.attacks.Charge;
+import jlppc.regimys.objects.attacks.GodAttackPleaseDontHackAndCheat;
 import jlppc.regimys.objects.attacks.Rugissement;
 import jlppc.regimys.objects.attacks.Soin;
 import jlppc.regimys.objects.attacks.Triplattaque;
@@ -72,8 +73,9 @@ public class Start {
 			System.out.println("Surnom : ");
 			surnom = sc.nextLine();
 		}
-		Pokemon first = new Pokemon(surnom, esp, 5, new Attaque[]{Charge.class.newInstance(), Rugissement.class.newInstance(), Berceuse.class.newInstance(), Triplattaque.class.newInstance()}, Caractere.HARDI, null);
+		Pokemon first = new Pokemon(surnom, esp, 5, new Attaque[]{GodAttackPleaseDontHackAndCheat.class.newInstance(), Rugissement.class.newInstance(), Berceuse.class.newInstance(), Triplattaque.class.newInstance()}, Caractere.HARDI, null);
 		joueur.addPokeToEquipe(first);
+		System.out.println(first);
 		System.out.println("C'est parti pour les combats!");
 		int combatsNumber = 0;
 		

@@ -9,8 +9,8 @@ public class E_TradeItem extends Evolution {
 	protected Item forEvolve;
 	
 	
-	public E_TradeItem(Espece toEvolve, Item forEvolve) {
-		super(toEvolve);
+	public E_TradeItem(int evo, Item forEvolve) {
+		super(evo);
 		this.forEvolve = forEvolve;
 	}
 

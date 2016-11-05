@@ -1,6 +1,5 @@
 package jlppc.regimys.objects;
 
-import java.io.Serializable;
 import java.util.Arrays;
 
 import jlppc.regimys.enums.Caractere;
@@ -134,7 +133,7 @@ public class Pokemon extends Typedef{
 	public int win(Pokemon vaincu){
 		fosout("%o a gagné %o!", surnom, ((vaincu.espece.getExp() * vaincu.level) / this.level) * expBoost);
 		exp+=((vaincu.espece.getExp() * vaincu.level) / this.level) * expBoost;
-		if(exp >= toNextLevel){
+		while(exp >= toNextLevel){
 			levelUp();
 			
 		}
@@ -203,7 +202,7 @@ public class Pokemon extends Typedef{
 	//TODO : Ajouter les exp qu'il faut pour level up
 	public void levelUp(){
 		level++;
-		System.out.println("Level up!");
+		System.out.println("Level up! Passage au niveau " + level + "!");
 		switch(espece.getCourbe()){
 		case ERRATIQUE:
 			CalcCourbes.erratique(level + 1);
@@ -227,6 +226,7 @@ public class Pokemon extends Typedef{
 		
 		}
 		toNextLevel = toNextLevel - exp;
+		calcStats(this.espece);
 		if(espece.getEvolType().checkEvolve(this)){
 			if(!(espece.getEvolType() instanceof E_Trade)){
 				evolve();
@@ -265,9 +265,13 @@ public class Pokemon extends Typedef{
 	}
 	
 	public void evolve(){
+		boolean changeName = (surnom.equals(espece.getSurnom()));
 		this.espece = this.espece.getEvolution();
-		calcStats();
+		calcStats(espece);
 		fosout("%o évolue en %o!", surnom, espece.getSurnom());
+		if(changeName){
+			surnom = espece.getSurnom();
+		}
 	}
 	/**
 	 * L'enumeration des status pokemon.
@@ -347,14 +351,19 @@ public class Pokemon extends Typedef{
 		return tab;
 	}
 	
-	public void calcStats(){
-		statATK = (int) Math.round( ( ( ((2 * espece.getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100 ) + 5 ) * ((caractere.bonus == Stats.ATK) ? 1.1 : ((caractere.malus == Stats.ATK) ? 0.9 : 1)));
-		statDEF = (int) Math.round( ( ( ((2 * espece.getBaseDef() + defIV + (defEV / 4)) * level) / 100 ) + 5 ) * ((caractere.bonus == Stats.DEF) ? 1.1 : ((caractere.malus == Stats.DEF) ? 0.9 : 1)));
-		statATKSPE = (int) Math.round( ( ( ((2 * espece.getBaseAtkSpe() + atkSpeIV + (atkSpeEV / 4)) * level) / 100 ) + 5 ) * ((caractere.bonus == Stats.ATKSPE) ? 1.1 : ((caractere.malus == Stats.ATKSPE) ? 0.9 : 1)));
-		statDEFSPE = (int) Math.round( ( ( ((2 * espece.getBaseDefSpe() + defSpeIV + (defSpeEV / 4)) * level) / 100 ) + 5 ) * ((caractere.bonus == Stats.DEFSPE) ? 1.1 : ((caractere.malus == Stats.DEFSPE) ? 0.9 : 1)));
-		statVIT = (int) Math.round( ( ( ((2 * espece.getBaseVit() + vitIV + (vitEV / 4)) * level) / 100 ) + 5 ) * ((caractere.bonus == Stats.VIT) ? 1.1 : ((caractere.malus == Stats.VIT) ? 0.9 : 1)));
+	protected Stats malusCara;
+	protected Stats bonusCara;
+	
+	public void calcStats(Espece espece){
+		statATK = (int) Math.round( ( ( ((2 * espece.getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100 ) + 5 ) * ((bonusCara == Stats.ATK) ? 1.1 : ((malusCara == Stats.ATK) ? 0.9 : 1)));
+		statDEF = (int) Math.round( ( ( ((2 * espece.getBaseDef() + defIV + (defEV / 4)) * level) / 100 ) + 5 ) * ((bonusCara == Stats.DEF) ? 1.1 : ((malusCara == Stats.DEF) ? 0.9 : 1)));
+		statATKSPE = (int) Math.round( ( ( ((2 * espece.getBaseAtkSpe() + atkSpeIV + (atkSpeEV / 4)) * level) / 100 ) + 5 ) * ((bonusCara == Stats.ATKSPE) ? 1.1 : ((malusCara == Stats.ATKSPE) ? 0.9 : 1)));
+		statDEFSPE = (int) Math.round( ( ( ((2 * espece.getBaseDefSpe() + defSpeIV + (defSpeEV / 4)) * level) / 100 ) + 5 ) * ((bonusCara == Stats.DEFSPE) ? 1.1 : ((malusCara == Stats.DEFSPE) ? 0.9 : 1)));
+		statVIT = (int) Math.round( ( ( ((2 * espece.getBaseVit() + vitIV + (vitEV / 4)) * level) / 100 ) + 5 ) * ((bonusCara == Stats.VIT) ? 1.1 : ((malusCara == Stats.VIT) ? 0.9 : 1)));
 		statPV = Math.round(((2 * espece.getBasePV() + pvIV + (pvEV / 4)) * level) / 100) + level + 10;
 	}
+	
+	
 	
 	/**
 	 * Le constructeur.
@@ -375,6 +384,8 @@ public class Pokemon extends Typedef{
 		this.level = level;
 		this.attaques = Arrays.copyOf(attaques, attaques.length);
 		this.caractere = caractere;
+		bonusCara = caractere.bonus;
+		malusCara = caractere.malus;
 		this.surnom = espece.getSurnom();
 		
 		PV = new Integer(statPV);
@@ -1752,6 +1763,23 @@ return true;
 		}else{
 			this.PV+=PV;
 		}
+	}
+
+	@Override
+	public String toString() {
+		return "Pokemon [surnom=" + surnom + ", atkIV=" + atkIV + ", defIV=" + defIV + ", atkSpeIV=" + atkSpeIV
+				+ ", defSpeIV=" + defSpeIV + ", vitIV=" + vitIV + ", pvIV=" + pvIV + ", atkEV=" + atkEV + ", defEV="
+				+ defEV + ", atkSpeEV=" + atkSpeEV + ", defSpeEV=" + defSpeEV + ", vitEV=" + vitEV + ", pvEV=" + pvEV
+				+ ", statATK=" + statATK + ", statDEF=" + statDEF + ", statATKSPE=" + statATKSPE + ", statDEFSPE="
+				+ statDEFSPE + ", statVIT=" + statVIT + ", statESQ=" + statESQ + ", statPRE=" + statPRE + ", statPV="
+				+ statPV + ", statLove=" + statLove + ", atkChange=" + atkChange + ", defChange=" + defChange
+				+ ", defSpeChange=" + defSpeChange + ", atkSpeChange=" + atkSpeChange + ", esqChange=" + esqChange
+				+ ", preChange=" + preChange + ", vitChange=" + vitChange + ", level=" + level + ", caractere="
+				+ caractere + ", attaques=" + Arrays.toString(attaques) + ", espece=" + espece + ", PV=" + PV
+				+ ", status=" + status + ", talent=" + talent + ", type1=" + type1 + ", type2=" + type2 + ", exp=" + exp
+				+ ", toNextLevel=" + toNextLevel + ", expBoost=" + expBoost + ", confus=" + confus + ", peur=" + peur
+				+ ", amour=" + amour + ", vampigraine=" + vampigraine + ", malediction=" + malediction + ", held="
+				+ held + "]";
 	}
 
 }

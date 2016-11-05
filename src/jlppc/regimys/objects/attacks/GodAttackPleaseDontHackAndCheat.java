@@ -9,7 +9,7 @@ import jlppc.utils.FormattedString;
 
 public class GodAttackPleaseDontHackAndCheat extends Attaque {
 	public GodAttackPleaseDontHackAndCheat() {
-		super("Headshot", 65565, Type.NORMAL, 150, true, false, 0, true, 9999);
+		super("Headshot", 65565, Type.NORMAL, 150, true, false, 1, true, 9999);
 	}
 
 	@Override

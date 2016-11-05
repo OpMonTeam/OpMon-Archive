@@ -180,7 +180,8 @@ public final class Espece {
 		this.type2 = type2;
 		this.maniereEvolution = maniereEvolution;
 		this.niveauEvolution = niveauEvolution;
-		this.evolution = evolType.getEvolution();
+		this.evolType = evolType;
+		this.evolution = this.evolType.getEvolution();
 		this.atksByLevels = attacksByLevels;
 		this.EVgiven = EVGiven;
 		this.poids = poids;
@@ -189,7 +190,7 @@ public final class Espece {
 		this.ctCompatibles = ctCombatibles;
 		this.expGiven = expGiven;
 		hashCode = hashCode();
-		this.evolType = evolType;
+		
 		this.expMax = expMax;
 		switch (this.expMax) {
 		case 800000:
@@ -473,6 +474,12 @@ public final class Espece {
 	public int getExp() {
 
 		return expGiven;
+	}
+
+	public void checkEvol() {
+		evolType.checkEvo();
+		this.evolution = evolType.getEvolution();
+		
 	}
 
 }

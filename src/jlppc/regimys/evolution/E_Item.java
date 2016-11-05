@@ -8,8 +8,8 @@ public class E_Item extends Evolution {
 	
 	protected Item itemForEvolve;
 	
-	public E_Item(Espece toEvolve, Item forEv) {
-		super(toEvolve);
+	public E_Item(int evo, Item forEv) {
+		super(evo);
 		itemForEvolve = forEv;
 	}
 

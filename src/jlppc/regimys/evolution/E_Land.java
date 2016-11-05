@@ -7,8 +7,8 @@ public class E_Land extends Evolution {
 	
 	Object carteDuLieu;//Pour l'instant, cet objet est de type Object, car la classe permettant de determiner le lieu n'est pas crée.
 	
-	public E_Land(Espece evolution, Object carteDuLieu) {
-		super(evolution);
+	public E_Land(int evo, Object carteDuLieu) {
+		super(evo);
 		this.carteDuLieu = carteDuLieu;
 	}
 

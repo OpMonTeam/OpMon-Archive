@@ -4,7 +4,7 @@ import jlppc.regimys.objects.Pokemon;
 
 public class E_Nope extends Evolution {
 	public E_Nope() {
-		super(null);
+		super(0);
 	}
 
 	@Override
