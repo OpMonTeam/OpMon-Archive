@@ -238,7 +238,7 @@ public class Pokemon extends Typedef{
 			return Math.round(pow(n, 3));
 		}
 		public static int parabolique(int n){
-			return Math.round((1.2f * pow(n, 3)) - (15 * pow(n,2)) + (100 * n) - 140);
+			return Math.round(1.2f * pow(n, 3) - 15 * pow(n,2) + (100 * n) - 140);
 		}
 		public static int rapide(int n){
 			return Math.round(0.8f * pow(n, 3));
@@ -273,6 +273,7 @@ public class Pokemon extends Typedef{
 		
 		
 		}
+		System.out.println(toNextLevel + " et " + exp);
 		if(toNextLevel < exp){throw new ArithmeticException("Erreur lors d'un calcul");}
 		calcStats(this.espece);
 		if(espece.getEvolType().checkEvolve(this)){
