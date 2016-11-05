@@ -1,4 +1,4 @@
-# Projet-Pokemon-Regimys
+# Bienvenue sur le Projet "Pokémon Regimys"!
 Bienvenue sur le projet de fan-game pokemon Regimys! Plus d'infos sur le wiki!<br/>
 <a href="https://github.com/jlppc/Projet-Pokemon-Regimys/wiki/Journal-du-developpement">Journal de developpement</a><br/>
 <br/>Version du jeu : Alpha 0.05<br/><br/>
@@ -8,12 +8,13 @@ Prochaines versions :<ul>
 
 Informations generales:<br/>
 Regimys est un projet de fan-game pokémon imaginé en 2012 et débuté en septembre 2016. 
-Ce fan-game est totalement open-source*, ce qui permet aux plus grands fans de venir realiser leurs rêves les plus fous! 
+Ce fan-game est totalement open-source, ce qui permet aux plus grands fans de venir realiser leurs rêves les plus fous! 
 Vous pouvez ajouter des Pokémon, des attaques, des talents, et autres! 
 Vous n'avez qu'a nous proposer vos modifications et nous les ajouterons peut-être au jeu. 
 Et si vous nous proposez beaucoup de bonnes modifications, et qu'elles sont acceptées, vous deviendrez peut-être collaborateur!<br/>
-Il me reste encore beaucoup de travail!<br/>
-Si vous avez des questions à me poser, n'hésitez pas à les demander dans la F.A.Q. du wiki!<br/><br/><br/>
+Nous sommes a deux sur ce projet : Navet56 et Jlppc.<br/>
+Contacts : jlppcprog@gmail.com pour la programmation | evandib@gmail.com pour les graphismes<br/>
+Si vous avez des questions à poser, n'hésitez pas à les demander dans la F.A.Q. du wiki ou a nous contacter par mail!<br/><br/><br/>
 
 Changelog:
 <ul>
@@ -23,4 +24,3 @@ Changelog:
 <li>Alpha 0.01 : Creation du systeme de combat de base</li>
 </ul>
 
-*Totalement open-source de A à Z, nous utilisons le système Gnu/Linux pour créer le jeu, les graphismes sont fait sur GIMP, le scenario sur LibreOffice au format libre ODT, Jlppc utilise le logiciel libre Eclipse pour programmer et bien sur, le code source du jeu est ouvert à tous grâce à GitHub.
