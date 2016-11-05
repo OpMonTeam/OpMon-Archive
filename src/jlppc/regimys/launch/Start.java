@@ -27,7 +27,7 @@ public class Start {
 		Initializer.init();
 	}
 	
-	public static float version = 0.04f;
+	public static float version = 0.05f;
 	
 	public static char commits = ' ';
 	
