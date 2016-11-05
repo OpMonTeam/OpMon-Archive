@@ -56,26 +56,26 @@ public class Start {
 	 * @throws IllegalAccessException 
 	 * @throws InstantiationException 
 	 */
-	@SuppressWarnings("unchecked")
 	public static void main(String[] args) throws InstantiationException, IllegalAccessException {
 		
 		String playername;
 		System.out.println("Bienvenue dans le monde non achevé des pokémon! Quel est ton nom? : ");
 		playername = sc.nextLine();
 		joueur = new Player(playername);
+		System.out.println("Une boite de dialogue s'est ouverte pour choisir ton Pokémon.");
 		ChoosePoke cp = new ChoosePoke();
-		System.out.println(cp.getEspChoosen());
 		Espece esp = Initializer.listePoke[cp.getEspChoosen()];
+		System.out.println("Pokémon choisi : " + esp.getSurnom());
 		System.out.println("Veux-tu donner un surnom a ton Pokémon(true (oui)/false(non)? : ");
 		boolean isS = sc.nextBoolean();
 		String surnom = esp.getSurnom();
 		if(isS){
+			sc.nextLine();
 			System.out.println("Surnom : ");
 			surnom = sc.nextLine();
 		}
 		Pokemon first = new Pokemon(surnom, esp, 5, new Attaque[]{GodAttackPleaseDontHackAndCheat.class.newInstance(), Rugissement.class.newInstance(), Berceuse.class.newInstance(), Triplattaque.class.newInstance()}, Caractere.HARDI, null);
 		joueur.addPokeToEquipe(first);
-		System.out.println(first);
 		System.out.println("C'est parti pour les combats!");
 		int combatsNumber = 0;
 		

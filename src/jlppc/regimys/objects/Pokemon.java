@@ -132,16 +132,61 @@ public class Pokemon extends Typedef{
 	@WIP
 	public int win(Pokemon vaincu){
 		fosout("%o a gagné %o!", surnom, ((vaincu.espece.getExp() * vaincu.level) / this.level) * expBoost);
+		getEvs(vaincu);
 		exp+=((vaincu.espece.getExp() * vaincu.level) / this.level) * expBoost;
 		while(exp >= toNextLevel && level < 100){
 			levelUp();
 			
 		}
-		
+		calcStats(espece);
 		return (int) (((vaincu.espece.getExp() * vaincu.level) / this.level) * expBoost);
 		
 		
 	}
+	
+	protected void getEvs(Pokemon vaincu){
+		if(!((atkEV + defEV + pvEV + atkSpeEV + defSpeEV + vitEV) > 510)){
+			for(Stats stat : vaincu.getEspece().getEVgiven()){
+				switch(stat){
+				case ATK:
+					if(atkEV < 252){
+						atkEV++;
+					}
+					break;
+				case ATKSPE:
+					if(atkSpeEV < 252){
+						atkSpeEV++;
+					}
+					break;
+				case DEF:
+					if(defEV < 252){
+						atkEV++;
+					}
+					break;
+				case DEFSPE:
+					if(defSpeEV < 252){
+						defSpeEV++;
+					}
+					break;
+				case PV:
+					if(pvEV < 252){
+						pvEV++;
+					}
+					break;
+				case RIEN:
+					break;
+				case VIT:
+					if(vitEV < 252){
+						vitEV++;
+					}
+					break;
+				
+				}
+			}
+			
+		}
+	}
+	
 	@Static
 	protected static class CalcCourbes{
 		private static float p(int x){

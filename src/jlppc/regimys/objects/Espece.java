@@ -121,6 +121,10 @@ public final class Espece {
 	protected Image resumeS;
 	protected int expGiven;
 
+	public Stats[] getEVgiven(){
+		return EVgiven;
+	}
+	
 	public Evolution getEvolType() {
 		return evolType;
 	}
