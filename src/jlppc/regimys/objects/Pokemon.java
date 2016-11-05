@@ -134,8 +134,8 @@ public class Pokemon extends Typedef{
 		fosout("%o a gagné %o!", surnom, ((vaincu.espece.getExp() * vaincu.level) / this.level) * expBoost);
 		exp+=((vaincu.espece.getExp() * vaincu.level) / this.level) * expBoost;
 		if(exp >= toNextLevel){
-			level++;
-			//toNextLevel = formuleCompliquée //Ligne non terminée... TODO!
+			levelUp();
+			
 		}
 		
 		return (int) (((vaincu.espece.getExp() * vaincu.level) / this.level) * expBoost);
@@ -146,6 +146,7 @@ public class Pokemon extends Typedef{
 	public void levelUp(){
 		level++;
 		System.out.println("Level up!");
+		//toNextLevel = formuleCompliquée //Ligne non terminée... TODO!
 		if(espece.getEvolType().checkEvolve(this)){
 			if(!(espece.getEvolType() instanceof E_Trade)){
 				evolve();
