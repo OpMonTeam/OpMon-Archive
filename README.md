@@ -16,7 +16,7 @@ Nous sommes a deux sur ce projet : Navet56 et Jlppc.<br/>
 Contacts : jlppcprog@gmail.com pour la programmation | evandib@gmail.com pour les graphismes<br/>
 Si vous avez des questions à poser, n'hésitez pas à les demander dans la F.A.Q. du wiki ou a nous contacter par mail!<br/><br/><br/>
 
-Changelog:
+Changelog avant la Alpha 0.05. Pour le reste du changelog, il est dans la section Releases
 <ul>
 <li>Alpha 0.04 : Ajout de la gestion des double types</li>
 <li>Alpha 0.03 : Modification du systeme de combat</li>
