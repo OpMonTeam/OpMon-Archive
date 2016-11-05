@@ -1,5 +1,6 @@
 package jlppc.regimys.objects;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 import jlppc.regimys.enums.Caractere;
@@ -8,9 +9,9 @@ import jlppc.regimys.evolution.E_Item;
 import jlppc.regimys.evolution.E_Trade;
 import jlppc.regimys.enums.Caractere.Stats;
 import jlppc.regimys.launch.Start;
-import jlppc.regimys.objects.Typedef.Null;
 import jlppc.regimys.objects.items.Item;
 import jlppc.utils.HashArray;
+import jlppc.utils.Static;
 import jlppc.utils.WIP;
 /**
  * Definit un pokemon.
@@ -142,11 +143,90 @@ public class Pokemon extends Typedef{
 		
 		
 	}
+	@Static
+	protected static class CalcCourbes{
+		private static float p(int x){
+			switch(x){
+			case 0:
+				return 0.000f;
+			case 1:
+				return 0.008f;
+			case 2:
+				return 0.014f;
+			default:
+				throw new ArithmeticException("Erreur dans le calcul de la courbe d'experience");
+			}
+		}
+		public static float pow(float a, float b){
+			return (float) Math.pow(a, b);
+		}
+		public static int erratique(int n){
+			if(0 < n && n <= 50){
+				return Math.round(pow(n, 3) * ((100 - n) / 50));
+			}else if(51 <= n && n <= 68){
+				return Math.round(pow(n, 3) * ((150 - n) / 50));
+			}else if(69 <= n && n <= 98){
+				return Math.round(1.274f - ((1/50) * (n/3)) - p(n % 3));
+			}else if(n >= 99){
+				return Math.round(pow(n, 3) * ((160 - n) / 100));
+			}else{
+				throw new ArithmeticException("Erreur dans le calcul d'experience : niveau <= 0");
+			}
+		}
+		public static int fluctuante(int n){
+			if(0 < n && n <= 15){
+				return Math.round(pow(n, 3) * ((24 + ((n + 1) / 3) / 50)));	
+			}else if(16 <= n && n <= 35){
+				return Math.round(pow(n, 3) * ((14 + n) / 50));
+			}else if(n >= 36){
+				return Math.round(pow(n, 3) * ((32  + (n / 2)) / 50));
+			}else{
+				throw new ArithmeticException("Erreur dans le calcul d'experience : niveau <= 0");
+			}
+		}
+		public static int lente(int n){
+			return Math.round(1.25f * pow(n, 3));
+		}
+		public static int moyenne(int n){
+			return Math.round(pow(n, 3));
+		}
+		public static int parabolique(int n){
+			return Math.round(1.2f * pow(n, 3) - 15 * pow(n,3) + (100 * n) - 140);
+		}
+		public static int rapide(int n){
+			return Math.round(0.8f * pow(n, 3));
+		}
+		
+	}
+	
+	
 	//TODO : Ajouter les exp qu'il faut pour level up
 	public void levelUp(){
 		level++;
 		System.out.println("Level up!");
-		//toNextLevel = formuleCompliquée //Ligne non terminée... TODO!
+		switch(espece.getCourbe()){
+		case ERRATIQUE:
+			CalcCourbes.erratique(level + 1);
+			break;
+		case FLUCTUANTE:
+			CalcCourbes.fluctuante(level + 1);
+			break;
+		case LENTE:
+			CalcCourbes.lente(level + 1);
+			break;
+		case MOYENNE:
+			CalcCourbes.moyenne(level + 1);
+			break;
+		case PARABOLIQUE:
+			CalcCourbes.parabolique(level + 1);
+			break;
+		case RAPIDE:
+			CalcCourbes.rapide(level + 1);
+			break;
+		
+		
+		}
+		toNextLevel = toNextLevel - exp;
 		if(espece.getEvolType().checkEvolve(this)){
 			if(!(espece.getEvolType() instanceof E_Trade)){
 				evolve();
@@ -301,6 +381,29 @@ public class Pokemon extends Typedef{
 		this.talent = talent;
 		type1 = espece.getType1();
 		type2 = espece.getType2();
+		switch(this.espece.getCourbe()){
+		case ERRATIQUE:
+			CalcCourbes.erratique(this.level + 1);
+			break;
+		case FLUCTUANTE:
+			CalcCourbes.fluctuante(this.level + 1);
+			break;
+		case LENTE:
+			CalcCourbes.lente(this.level + 1);
+			break;
+		case MOYENNE:
+			CalcCourbes.moyenne(this.level + 1);
+			break;
+		case PARABOLIQUE:
+			CalcCourbes.parabolique(this.level + 1);
+			break;
+		case RAPIDE:
+			CalcCourbes.rapide(this.level + 1);
+			break;
+		
+		
+		}
+		toNextLevel = toNextLevel - exp;
 	}
 	/**
 	 * Le constructeur avec surnom
@@ -328,7 +431,29 @@ public class Pokemon extends Typedef{
 		this.talent = talent;
 		type1 = espece.getType1();
 		type2 = espece.getType2();
-		System.out.println(this.espece);
+		switch(this.espece.getCourbe()){
+		case ERRATIQUE:
+			CalcCourbes.erratique(this.level + 1);
+			break;
+		case FLUCTUANTE:
+			CalcCourbes.fluctuante(this.level + 1);
+			break;
+		case LENTE:
+			CalcCourbes.lente(this.level + 1);
+			break;
+		case MOYENNE:
+			CalcCourbes.moyenne(this.level + 1);
+			break;
+		case PARABOLIQUE:
+			CalcCourbes.parabolique(this.level + 1);
+			break;
+		case RAPIDE:
+			CalcCourbes.rapide(this.level + 1);
+			break;
+		
+		
+		}
+		toNextLevel = toNextLevel - exp;
 	}
 	
 	//Les getters

@@ -8,13 +8,16 @@ import jlppc.regimys.evolution.Evolution;
 import jlppc.regimys.objects.items.CT;
 import jlppc.regimys.enums.Caractere.Stats;
 import jlppc.utils.HashArray;
+
 /**
- * Tout ce qui d�finit une esp�ce de pokemon (ET PAS UN POKEMON ATTENTION!) (Ni un digimon d'ailleurs.)
+ * Tout ce qui d�finit une esp�ce de pokemon (ET PAS UN POKEMON ATTENTION!) (Ni
+ * un digimon d'ailleurs.)
+ * 
  * @author Jlppc
  *
  */
 public final class Espece {
-	
+
 	/**
 	 * Le nom de l'esp�ce. Pourquoi surnom? Je sais pas.
 	 */
@@ -32,18 +35,23 @@ public final class Espece {
 	 */
 	protected int niveauEvolution;
 	/**
-	 * La mani�re dont le pokemon �volue. Peut prendre les valeurs :<br/><br/>
-	 * {@link #EVOLUTION_BY_LEVEL}<br/><br/>
-	 * {@link #EVOLUTION_BY_LOVE}<br/><br/>
+	 * La mani�re dont le pokemon �volue. Peut prendre les valeurs :<br/>
+	 * <br/>
+	 * {@link #EVOLUTION_BY_LEVEL}<br/>
+	 * <br/>
+	 * {@link #EVOLUTION_BY_LOVE}<br/>
+	 * <br/>
 	 * {@link #EVOLUTION_BY_OBJECT}
 	 */
 	protected int maniereEvolution;
 	/**
-	 * Signale que l'�volution est par le niveau. Voir {@link #niveauEvolution} pour savoir lequel.
+	 * Signale que l'�volution est par le niveau. Voir {@link #niveauEvolution}
+	 * pour savoir lequel.
 	 */
 	public static final int EVOLUTION_BY_LEVEL = 0;
 	/**
-	 * Signale que l'�volution est par un objet (Pierre, truc bizzare qui permet d'�voluer lors d'un �change... ect)
+	 * Signale que l'�volution est par un objet (Pierre, truc bizzare qui permet
+	 * d'�voluer lors d'un �change... ect)
 	 */
 	public static final int EVOLUTION_BY_OBJECT = 1;
 	/**
@@ -51,7 +59,7 @@ public final class Espece {
 	 */
 	public static final int EVOLUTION_BY_LOVE = 2;
 	public static final int NO_EVOLUTION = 3;
-	
+
 	public static final int EVOLUTION_BY_TRADE = 4;
 	public static final int EVOLUTION_BY_PLACE = 5;
 	/**
@@ -63,11 +71,13 @@ public final class Espece {
 	 */
 	protected final Type type1;
 	/**
-	 * Voir nom. Tellement �vident. Mettre Type.AUCUN si il n'a pas de second type.
+	 * Voir nom. Tellement �vident. Mettre Type.AUCUN si il n'a pas de second
+	 * type.
 	 */
 	protected final Type type2;
 	/**
-	 * Les attaques apprises par niveau. Qu'est qu'un {@link HashArray}? Allez voir! Les tags sont : Attaque, Niveau pour chaque case de ce tableau.
+	 * Les attaques apprises par niveau. Qu'est qu'un {@link HashArray}? Allez
+	 * voir! Les tags sont : Attaque, Niveau pour chaque case de ce tableau.
 	 */
 	protected HashArray[] atksByLevels;
 	/**
@@ -83,10 +93,11 @@ public final class Espece {
 	 */
 	protected float poids;
 	/**
-	 * Voir nom. Tellement �vident. Par contre, pourquoi des classes. Parce que class.newInstance !
+	 * Voir nom. Tellement �vident. Par contre, pourquoi des classes. Parce que
+	 * class.newInstance !
 	 */
 	protected CT[] ctCompatibles;
-	//Les statistiques de l'espece. Les noms sont evidents.
+	// Les statistiques de l'espece. Les noms sont evidents.
 	protected final int baseAtk;
 	protected final int baseDef;
 	protected final int baseAtkSpe;
@@ -97,7 +108,8 @@ public final class Espece {
 	 * Les EV donn�es en fin de combat.
 	 */
 	protected Stats[] EVgiven;
-	//Les sprites. Les noms sont toujours evidents. Ceux qui finissent par S sont les sprites Shiney.
+	// Les sprites. Les noms sont toujours evidents. Ceux qui finissent par S
+	// sont les sprites Shiney.
 	protected Image miniSprite;
 	protected Image spriteBattleFace;
 	protected Image spriteBattleFront;
@@ -108,17 +120,30 @@ public final class Espece {
 	protected Image resume;
 	protected Image resumeS;
 	protected int expGiven;
+
 	public Evolution getEvolType() {
 		return evolType;
 	}
+
 	@Override
 	public String toString() {
 		return new String(this.surnom);
 	}
+
 	protected int hashCode;
+
+	public enum CourbeExp {
+		RAPIDE, MOYENNE, PARABOLIQUE, LENTE, ERRATIQUE, FLUCTUANTE;
+	}
+
+	protected CourbeExp courbe;
+
+	public CourbeExp getCourbe(){
+		return courbe;
+	}
 	
 	protected int expMax;
-	
+
 	/**
 	 * 
 	 * @param atk
@@ -140,7 +165,10 @@ public final class Espece {
 	 * @param poids
 	 * @param entreePokedex
 	 */
-	public Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv,  String name, Type type1, Type type2, int maniereEvolution, int niveauEvolution,Evolution evolType,HashArray[] attacksByLevels, CT[] ctCombatibles, Stats[] EVGiven, float taille, float poids, String entreePokedex, int expGiven, int expMax){
+	public Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, String name, Type type1, Type type2,
+			int maniereEvolution, int niveauEvolution, Evolution evolType, HashArray[] attacksByLevels,
+			CT[] ctCombatibles, Stats[] EVGiven, float taille, float poids, String entreePokedex, int expGiven,
+			int expMax) {
 		baseAtk = atk;
 		baseDef = def;
 		baseAtkSpe = atkSpe;
@@ -163,67 +191,105 @@ public final class Espece {
 		hashCode = hashCode();
 		this.evolType = evolType;
 		this.expMax = expMax;
+		switch (this.expMax) {
+		case 800000:
+			courbe = CourbeExp.RAPIDE;
+			break;
+		case 1000000:
+			courbe = CourbeExp.MOYENNE;
+			break;
+		case 1059860:
+			courbe = CourbeExp.PARABOLIQUE;
+			break;
+		case 1250000:
+			courbe = CourbeExp.LENTE;
+			break;
+		case 600000:
+			courbe = CourbeExp.ERRATIQUE;
+			break;
+		case 1640000:
+			courbe = CourbeExp.FLUCTUANTE;
+			break;
+		default:
+			courbe = CourbeExp.MOYENNE;
+		}
 	}
-	
-	
-	//Les getters. Rien de plus a expliquer.
+
+	// Les getters. Rien de plus a expliquer.
 	public synchronized final String getSurnom() {
 		return surnom;
 	}
+
 	public synchronized final int getNumeroPokedex() {
 		return numeroPokedex;
 	}
+
 	public synchronized final Espece getEvolution() {
 		return evolution;
 	}
+
 	public synchronized final int getNiveauEvolution() {
 		return niveauEvolution;
 	}
+
 	public synchronized final int getManiereEvolution() {
 		return maniereEvolution;
 	}
+
 	public synchronized final Type getType1() {
 		return type1;
 	}
+
 	public synchronized final Type getType2() {
 		return type2;
 	}
+
 	public synchronized final HashArray[] getAtksByLevels() {
 		return Arrays.<HashArray>copyOf(atksByLevels, atksByLevels.length);
 	}
+
 	public synchronized final String getEntreePokedex() {
 		return new String(entreePokedex);
 	}
+
 	public synchronized final float getTaille() {
 		return new Float(taille);
 	}
+
 	public synchronized final float getPoids() {
 		return new Float(poids);
 	}
+
 	public synchronized final CT[] getCtCompatibles() {
 		return Arrays.<CT>copyOf(ctCompatibles, ctCompatibles.length);
 	}
+
 	public synchronized final int getBaseAtk() {
 		return new Integer(baseAtk);
 	}
+
 	public synchronized final int getBaseDef() {
-		return  new Integer(baseDef);
+		return new Integer(baseDef);
 	}
+
 	public synchronized final int getBaseAtkSpe() {
 		return new Integer(baseAtkSpe);
 	}
+
 	public synchronized final int getBaseDefSpe() {
 		return new Integer(baseDefSpe);
 	}
+
 	public synchronized final int getBaseVit() {
 		return new Integer(baseVit);
 	}
+
 	public synchronized final int getBasePV() {
 		return new Integer(basePV);
 	}
-	
+
 	@Override
-	public int hashCode(){
+	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((EVgiven == null) ? 0 : EVgiven.hashCode());
@@ -405,8 +471,8 @@ public final class Espece {
 	}
 
 	public int getExp() {
-		
+
 		return expGiven;
 	}
-	
+
 }
