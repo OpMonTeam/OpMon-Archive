@@ -273,8 +273,7 @@ public class Pokemon extends Typedef{
 		
 		
 		}
-		System.out.println(toNextLevel + " et " + exp);
-		if(toNextLevel < exp){throw new ArithmeticException("Erreur lors d'un calcul");}
+		if(toNextLevel < exp){toNextLevel = exp - toNextLevel;}
 		calcStats(this.espece);
 		if(espece.getEvolType().checkEvolve(this)){
 			if(!(espece.getEvolType() instanceof E_Trade)){
