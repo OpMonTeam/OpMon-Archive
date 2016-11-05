@@ -133,7 +133,7 @@ public class Pokemon extends Typedef{
 	public int win(Pokemon vaincu){
 		fosout("%o a gagné %o!", surnom, ((vaincu.espece.getExp() * vaincu.level) / this.level) * expBoost);
 		exp+=((vaincu.espece.getExp() * vaincu.level) / this.level) * expBoost;
-		while(exp >= toNextLevel){
+		while(exp >= toNextLevel && level < 100){
 			levelUp();
 			
 		}
@@ -205,27 +205,27 @@ public class Pokemon extends Typedef{
 		System.out.println("Level up! Passage au niveau " + level + "!");
 		switch(espece.getCourbe()){
 		case ERRATIQUE:
-			CalcCourbes.erratique(level + 1);
+			toNextLevel = CalcCourbes.erratique(level + 1);
 			break;
 		case FLUCTUANTE:
-			CalcCourbes.fluctuante(level + 1);
+			toNextLevel = CalcCourbes.fluctuante(level + 1);
 			break;
 		case LENTE:
-			CalcCourbes.lente(level + 1);
+			toNextLevel = CalcCourbes.lente(level + 1);
 			break;
 		case MOYENNE:
-			CalcCourbes.moyenne(level + 1);
+			toNextLevel = CalcCourbes.moyenne(level + 1);
 			break;
 		case PARABOLIQUE:
-			CalcCourbes.parabolique(level + 1);
+			toNextLevel = CalcCourbes.parabolique(level + 1);
 			break;
 		case RAPIDE:
-			CalcCourbes.rapide(level + 1);
+			toNextLevel = CalcCourbes.rapide(level + 1);
 			break;
 		
 		
 		}
-		toNextLevel = toNextLevel - exp;
+
 		calcStats(this.espece);
 		if(espece.getEvolType().checkEvolve(this)){
 			if(!(espece.getEvolType() instanceof E_Trade)){
