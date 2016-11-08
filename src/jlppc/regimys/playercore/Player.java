@@ -4,14 +4,57 @@ import java.util.Vector;
 
 import jlppc.regimys.objects.Attaque;
 import jlppc.regimys.objects.Pokemon;
+import jlppc.regimys.objects.items.Item;
+import jlppc.utils.HashArray;
 import jlppc.utils.WIP;
 @WIP
 public class Player {
 	
 	private String name;
 	private int dressID;
-	private Vector<Pokemon> pc = new Vector<>();
+	
+
+	
+	private static int[] baies = new int[Item.getItemNumber()];
+	private static int[] obj = new int[Item.getItemNumber()];
+	private static int[] rares = new int[Item.getItemNumber()];
+	private static int[] cts = new int[Item.getItemNumber()];
+	private static int[] soin = new int[Item.getItemNumber()];
+	private static int[] bag = new int[Item.getItemNumber()];
+	private static Vector<Pokemon> pc = new Vector<>();
 	private Pokemon[] equipe = new Pokemon[6];
+	
+	public void addItem(int itemID){
+		
+		switch(Item.getItem(itemID).getBagCat()){
+		case BAIES:
+			bag[itemID]++;
+			break;
+		case CTS:
+			bag[itemID]++;
+			break;
+		case OBJETS:
+			bag[itemID]++;
+			break;
+		case RARES:
+			bag[itemID]++;
+			break;
+		case SOIN:
+			bag[itemID]++;
+			break;
+		}
+	}
+	public int checkItem(int itemID){
+		return bag[itemID];
+	}
+	public boolean deleteItem(int itemID){
+		if(bag[itemID] != 0){
+			bag[itemID]--;
+			return true;
+		}else{
+			return false;
+		}
+	}
 	
 	public Player(String name) {
 		this.name = name;

@@ -11,8 +11,13 @@ public class Item {
 	protected BagCat categorie;
 	
 	
+	
 	public enum BagCat{
 		SOIN, OBJETS, RARES, CTS, BAIES;
+	}
+	
+	public BagCat getBagCat(){
+		return categorie;
 	}
 	
 	public Item(String nom, boolean usable, boolean giveable, BagCat categorie) {
@@ -85,6 +90,16 @@ public class Item {
 		itemList.add(new Item("Pierre Eau", true, false, BagCat.OBJETS));
 		itemList.add(new Item("Pierre Lune", true, false, BagCat.OBJETS));
 		
+	}
+	
+	public static int getItemNumber(){
+		return itemList.size();
+	}
+	
+	
+	
+	public static Item getItem(int id){
+		return itemList.get(id);
 	}
 	
 	public String getName(){
