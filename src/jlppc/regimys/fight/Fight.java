@@ -52,7 +52,7 @@ public class Fight {
 				attaqueAtk = Start.sc.nextInt() - 1;
 				while(!ok){
 					if(((attaqueAtk < atk.getAttaques().length && attaqueAtk > -1) ? (atk.getAttaques()[attaqueAtk].getPp() <= 0) : true)){
-						System.out.println("Mauvaise attaque ou plus de PP. Reesayez :");
+						System.out.println("Vous devez choisir entre 1 et 4, ressayez :");
 						attaqueAtk = Start.sc.nextInt() - 1;
 					}else{
 						break;
@@ -81,11 +81,11 @@ public class Fight {
 				atkCanAttack = true;
 				if(atk.getStatus() == Status.GEL){
 					if(Start.rand.nextInt(5) == 2){
-						System.out.println(atk.getSurnom() + " est degel�!");
+						System.out.println(atk.getSurnom() + " est degelé!");
 						atk.setStatus(Status.AUCUN);
 						atkCanAttack = true;
 					}else{
-						System.out.println(atk.getSurnom() + " est gel�. Il ne peut pas attaquer.");
+						System.out.println(atk.getSurnom() + " est gelé. Il ne peut pas attaquer.");
 						atkCanAttack = false;
 					}
 				}else if(atk.getStatus() == Status.SOMMEIL){
@@ -93,7 +93,7 @@ public class Fight {
 						atkCountDownSommeil = Start.rand.nextInt(3);
 						atkSommeil = true;
 						if(atkCountDownSommeil <= 0){
-							System.out.println(atk.getSurnom() + " se reveille!");
+							System.out.println(atk.getSurnom() + " se réveille!");
 							atkCanAttack = true;
 							atkSommeil = false;
 							atk.setStatus(Status.AUCUN);
@@ -104,7 +104,7 @@ public class Fight {
 						}
 					}else if(atkSommeil == true){
 						if(atkCountDownSommeil <= 0){
-							System.out.println(atk.getSurnom() + " se reveille!");
+							System.out.println(atk.getSurnom() + " se réveille!");
 							atkCanAttack = true;
 							atkSommeil = false;
 							atk.setStatus(Status.AUCUN);
@@ -117,10 +117,10 @@ public class Fight {
 
 				}else if(atk.getStatus() == Status.PARALYSIE){
 					if(Start.rand.nextInt(4) == 2){
-						System.out.println(def.getSurnom() + " est paralys�, il ne peut pas attaquer.");
+						System.out.println(def.getSurnom() + " est paralysé, il ne peut pas attaquer.");
 						atkCanAttack = false;
 					}else{
-						System.out.println("Malgr� sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
+						System.out.println("Malgré sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
 					}
 				}else if(atk.confus){
 					if(atkCountDownConf == 0 && atkConf == false){
@@ -149,7 +149,7 @@ public class Fight {
 								atk.attacked(atk.getStatPV() / 8);
 								atkCanAttack = false;
 							}else{
-								FormattedString.outPrintln("Malgr� sa confusion, %o peut attaquer!", atk.getSurnom());
+								FormattedString.outPrintln("Malgré sa confusion, %o peut attaquer!", atk.getSurnom());
 							}
 
 							atkCountDownConf--;
@@ -180,18 +180,18 @@ public class Fight {
 				defCanAttack = true;
 				if(def.getStatus() == Status.GEL){
 					if(Start.rand.nextInt(5) == 2){
-						System.out.println(def.getSurnom() + " est degel�!");
+						System.out.println(def.getSurnom() + " est degelé!");
 						def.setStatus(Status.AUCUN);
 						defCanAttack = true;
 					}else{
-						System.out.println(def.getSurnom() + " est gel�. Il ne peut pas attaquer.");
+						System.out.println(def.getSurnom() + " est gelé. Il ne peut pas attaquer.");
 						defCanAttack = false;
 					}
 				}else if(def.getStatus() == Status.SOMMEIL){
 					if(defCountDownSommeil <= 0 && defSommeil == false){
 						defCountDownSommeil = Start.rand.nextInt(3);
 						if(defCountDownSommeil <= 0){
-							System.out.println(def.getSurnom() + " se reveille!");
+							System.out.println(def.getSurnom() + " se réveille!");
 							defCanAttack = true;
 							def.setStatus(Status.AUCUN);
 						}else{
@@ -201,7 +201,7 @@ public class Fight {
 						}
 					}else if(defSommeil == true){
 						if(defCountDownSommeil <= 0){
-							System.out.println(def.getSurnom() + " se reveille!");
+							System.out.println(def.getSurnom() + " se réveille!");
 							defCanAttack = true;
 							def.setStatus(Status.AUCUN);
 						}else{
@@ -211,24 +211,24 @@ public class Fight {
 						}
 					}else if(atk.getStatus() == Status.PARALYSIE){
 						if(Start.rand.nextInt(4) == 2){
-							System.out.println(def.getSurnom() + " est paralys�, il ne peut pas attaquer.");
+							System.out.println(def.getSurnom() + " est paralysé, il ne peut pas attaquer.");
 							defCanAttack = false;
 						}else{
-							System.out.println("Malgr� sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
+							System.out.println("Malgré sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
 						}
 					}
 
 				}else if(def.getStatus() == Status.PARALYSIE){
 					if(Start.rand.nextInt(4) == 2){
-						System.out.println(def.getSurnom() + " est paralys�, il ne peut pas attaquer.");
+						System.out.println(def.getSurnom() + " est paralysé, il ne peut pas attaquer.");
 						defCanAttack = false;
 					}else{
-						System.out.println("Malgr� sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
+						System.out.println("Malgré sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
 						defCanAttack = true;
 					}
 				}else if(def.peur){
 					defCanAttack = false;
-					FormattedString.outPrintln("%o � trop peur pour bouger!", def.getSurnom());
+					FormattedString.outPrintln("%o a trop peur pour bouger!", def.getSurnom());
 					def.peur = false;
 				}else if(def.confus){
 					if(defCountDownConf == 0 && defConf == false){
@@ -257,14 +257,14 @@ public class Fight {
 								def.attacked(def.getStatPV() / 8);
 								defCanAttack = false;
 							}else{
-								FormattedString.outPrintln("Malgr� sa confusion, %o peut attaquer!", def.getSurnom());
+								FormattedString.outPrintln("Malgré sa confusion, %o peut attaquer!", def.getSurnom());
 							}
 
 							defCountDownConf--;
 						}
 					}
 				}else if(def.vampigraine){
-					FormattedString.outPrintln("Vampigraine draine l'energie de %o!", def.getSurnom());
+					FormattedString.outPrintln("Vampigraine draine l'énergie de %o!", def.getSurnom());
 					def.attacked(def.getPV() / 8);
 					atk.heal(def.getPV() / 8);
 					
@@ -291,11 +291,11 @@ public class Fight {
 				defCanAttack = true;
 				if(def.getStatus() == Status.GEL){
 					if(Start.rand.nextInt(5) == 2){
-						System.out.println(def.getSurnom() + " est degel�!");
+						System.out.println(def.getSurnom() + " est degelé!");
 						def.setStatus(Status.AUCUN);
 						defCanAttack = true;
 					}else{
-						System.out.println(def.getSurnom() + " est gel�. Il ne peut pas attaquer.");
+						System.out.println(def.getSurnom() + " est gelé. Il ne peut pas attaquer.");
 						defCanAttack = false;
 					}
 				}else if(def.getStatus() == Status.SOMMEIL){
@@ -305,7 +305,7 @@ public class Fight {
 						System.err.println(defCountDownSommeil);
 						defSommeil = true;
 						if(defCountDownSommeil <= 0){
-							System.out.println(def.getSurnom() + " se reveille!");
+							System.out.println(def.getSurnom() + " se réveille!");
 							defCanAttack = true;
 							defSommeil = false;
 							def.setStatus(Status.AUCUN);
@@ -317,7 +317,7 @@ public class Fight {
 					}else if(defSommeil == true){
 						System.err.println(defCountDownSommeil);
 						if(defCountDownSommeil <= 0){
-							System.out.println(def.getSurnom() + " se reveille!");
+							System.out.println(def.getSurnom() + " se réveille!");
 							defCanAttack = true;
 							defSommeil = false;
 							def.setStatus(Status.AUCUN);
@@ -331,10 +331,10 @@ public class Fight {
 
 				}else if(def.getStatus() == Status.PARALYSIE){
 					if(Start.rand.nextInt(4) == 2){
-						System.out.println(def.getSurnom() + " est paralys�, il ne peut pas attaquer.");
+						System.out.println(def.getSurnom() + " est paralysé, il ne peut pas attaquer.");
 						defCanAttack = false;
 					}else{
-						System.out.println("Malgr� sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
+						System.out.println("Malgré sa parlysie, " + def.getSurnom() + " parvient à attaquer!");
 					}
 				}else if(def.confus){
 					if(defCountDownConf == 0 && defConf == false){
@@ -363,14 +363,14 @@ public class Fight {
 								def.attacked(def.getStatPV() / 8);
 								defCanAttack = false;
 							}else{
-								FormattedString.outPrintln("Malgr� sa confusion, %o peut attaquer!", def.getSurnom());
+								FormattedString.outPrintln("Malgré sa confusion, %o peut attaquer!", def.getSurnom());
 							}
 
 							defCountDownConf--;
 						}
 					}
 				}else if(def.vampigraine){
-					FormattedString.outPrintln("Vampigraine draine l'energie de %o!", def.getSurnom());
+					FormattedString.outPrintln("Vampigraine draine l'énergie de %o!", def.getSurnom());
 					def.attacked(def.getPV() / 8);
 					atk.heal(def.getPV() / 8);
 					
@@ -395,11 +395,11 @@ public class Fight {
 				atkCanAttack = true;
 				if(atk.getStatus() == Status.GEL){
 					if(Start.rand.nextInt(5) == 2){
-						System.out.println(atk.getSurnom() + " est degel�!");
+						System.out.println(atk.getSurnom() + " est degelé!");
 						atk.setStatus(Status.AUCUN);
 						atkCanAttack = true;
 					}else{
-						System.out.println(atk.getSurnom() + " est gel�. Il ne peut pas attaquer.");
+						System.out.println(atk.getSurnom() + " est gelé. Il ne peut pas attaquer.");
 						atkCanAttack = false;
 					}
 				}else if(atk.getStatus() == Status.SOMMEIL){
@@ -407,7 +407,7 @@ public class Fight {
 						atkCountDownSommeil = Start.rand.nextInt(3);
 						atkSommeil = true;
 						if(atkCountDownSommeil <= 0){
-							System.out.println(atk.getSurnom() + " se reveille!");
+							System.out.println(atk.getSurnom() + " se réveille!");
 							atkCanAttack = true;
 							atkSommeil = false;
 							atk.setStatus(Status.AUCUN);
@@ -418,7 +418,7 @@ public class Fight {
 						}
 					}else if(atkSommeil == true){
 						if(atkCountDownSommeil <= 0){
-							System.out.println(atk.getSurnom() + " se reveille!");
+							System.out.println(atk.getSurnom() + " se réveille!");
 							atkCanAttack = true;
 							atkSommeil = false;
 							atk.setStatus(Status.AUCUN);
@@ -431,14 +431,14 @@ public class Fight {
 
 				}else if(atk.getStatus() == Status.PARALYSIE){
 					if(Start.rand.nextInt(4) == 2){
-						System.out.println(def.getSurnom() + " est paralys�, il ne peut pas attaquer.");
+						System.out.println(def.getSurnom() + " est paralysé, il ne peut pas attaquer.");
 						defCanAttack = false;
 					}else{
-						System.out.println("Malgr� sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
+						System.out.println("Malgré sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
 					}
 				}else if(atk.peur){
 					atkCanAttack = false;
-					FormattedString.outPrintln("%o � trop peur pour bouger!", atk.getSurnom());
+					FormattedString.outPrintln("%o a trop peur pour bouger!", atk.getSurnom());
 					atk.peur = false;
 				}else if(atk.confus){
 					if(atkCountDownConf == 0 && atkConf == false){
@@ -467,7 +467,7 @@ public class Fight {
 								atk.attacked(atk.getStatPV() / 8);
 								atkCanAttack = false;
 							}else{
-								FormattedString.outPrintln("Malgr� sa confusion, %o peut attaquer!", atk.getSurnom());
+								FormattedString.outPrintln("Malgré sa confusion, %o peut attaquer!", atk.getSurnom());
 							}
 
 							atkCountDownConf--;
@@ -527,20 +527,20 @@ public class Fight {
 			}
 		}
 		if(def.getPV() <= 0 && atk.getPV() <= 0){
-			System.out.println("Egalit�!");
+			System.out.println("Egalité!");
 		}
 		else if(def.getPV() <= 0 && atk.getPV() > 0){
 			System.out.println(def.getSurnom() + " est K.O");
-			System.out.println("L'attaquant " + atk.getSurnom() + " a gagn�!");
+			System.out.println("L'attaquant " + atk.getSurnom() + " a gagné!");
 			atk.win(def);
 		}else if(atk.getPV() <= 0 && def.getPV() > 0){
 			System.out.println(atk.getSurnom() + " est K.O");
-			System.out.println("Le defenseur " + def.getSurnom() + " a gagn�!");
+			System.out.println("Le défenseur " + def.getSurnom() + " a gagné!");
 			def.win(atk);
 			
 			
 		}else{
-			System.out.println("BUG. On sait pas qui a gagn�.");
+			System.out.println("BUG. On sait pas qui a gagné (Cela ne devrait pas arriver...)");
 		}
 		atk.setStats(oldStats[0]);
 		def.setStats(oldStats[1]);
