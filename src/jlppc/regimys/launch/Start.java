@@ -66,7 +66,7 @@ public class Start {
 		ChoosePoke cp = new ChoosePoke();
 		Espece esp = Initializer.listePoke[cp.getEspChoosen()];
 		System.out.println("Pokémon choisi : " + esp.getSurnom());
-		System.out.println("Veux-tu donner un surnom a ton Pokémon(true (oui)/false(non)? : ");
+		System.out.println("Veux-tu donner un surnom a ton Pokémon ? (Tapez true pour Oui et false pour Non ) : ");
 		boolean isS = sc.nextBoolean();
 		String surnom = esp.getSurnom();
 		if(isS){
