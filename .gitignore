@@ -13,3 +13,5 @@ hs_err_pid*
 Book1.xlsx
 Book1.xlsx.gsheet
 *.gsheet
+#Pas de raccourcis
+*.lnk
