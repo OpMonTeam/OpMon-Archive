@@ -14,5 +14,6 @@ public class E_LevelDialog extends EvolutionDialog {
 		JLabel lblNiveauDvolution = new JLabel("Niveau d'évolution");
 		lblNiveauDvolution.setBounds(12, 45, 196, 15);
 		getContentPane().add(lblNiveauDvolution);
+		setVisible(true);
 	}
 }

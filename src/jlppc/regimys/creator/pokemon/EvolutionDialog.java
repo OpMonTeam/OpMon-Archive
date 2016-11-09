@@ -45,7 +45,7 @@ public abstract class EvolutionDialog extends JDialog {
 		btnOk.setBounds(178, 133, 117, 25);
 		getContentPane().add(btnOk);
 		setSize(310, 200);
-		setVisible(true);
+		
 	}
 	
 	public void setVisible(boolean trueOrFalse){

@@ -20,5 +20,6 @@ public class E_TradeItemDialog extends EvolutionDialog {
 		}
 		comboBoxItem.setBounds(113, 34, 175, 24);
 		getContentPane().add(comboBoxItem);
+		setVisible(true);
 	}
 }

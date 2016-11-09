@@ -15,5 +15,6 @@ public class E_LandDialog extends EvolutionDialog {
 		textFieldPlace.setBounds(156, 35, 132, 19);
 		getContentPane().add(textFieldPlace);
 		textFieldPlace.setColumns(10);
+		setVisible(true);
 	}
 }
