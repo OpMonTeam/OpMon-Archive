@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -16,6 +17,7 @@ import jlppc.regimys.enums.Caractere.Stats;
 import jlppc.regimys.enums.Type;
 import jlppc.regimys.objects.items.Item;
 import jlppc.utils.Comparaisons;
+import jlppc.utils.Log;
 
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
@@ -24,24 +26,15 @@ import javax.swing.JEditorPane;
 
 public class Main {
 
-	private JFrame frmCrateurDePokmon;
+	public JFrame frmCrateurDePokmon;
 	private JTextField fieldNom;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		System.out.println("Entrée dans le createur de Pokémon.");
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Main window = new Main();
-					window.frmCrateurDePokmon.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+			
+		
 	}
 
 	/**
@@ -263,7 +256,7 @@ public class Main {
 						}else{
 							toPrint = toPrint.concat(spinnerAtk.getValue() + ", " + spinnerDef.getValue() + ", " + spinnerAtkSpe.getValue() + ", " + spinnerDefSpe.getValue() + ", " + spinnerVit.getValue() + ", " + spinnerPV.getValue() + ", ");
 							if(fieldNom.getText() != null){
-								toPrint = toPrint.concat(fieldNom.getText().concat(", "));
+								toPrint = toPrint.concat("\"" + fieldNom.getText().concat("\", "));
 								if(comboBoxType1.getSelectedItem() != null & comboBoxType2.getSelectedItem() != null){
 									toPrint = toPrint.concat("Type." + types1[comboBoxType1.getSelectedIndex()].enumName + ", Type." + types2[comboBoxType2.getSelectedIndex()].enumName + ", ");
 									if(evolDiag instanceof E_LevelDialog){
@@ -282,8 +275,38 @@ public class Main {
 									}else{
 										toPrint = toPrint.concat("Espece.NO_EVOLUTION, -1, new E_Nope(), "); 
 									}
-									if(true && false){
-										//A continuer ICI!
+									toPrint = toPrint.concat("null, null, new Stats[]{");
+									if(comboBoxEvGiven.getSelectedItem() != null && ((int)spinnerNbreEvGiven.getValue()) > 0){
+										int i = (int) spinnerNbreEvGiven.getValue();
+										int j = 0;
+										for(j = 0; j < i; j++){
+											toPrint = toPrint.concat("Stats." + statsTab[comboBoxEvGiven.getSelectedIndex()].name());
+											if(j != i - 1){
+												toPrint = toPrint.concat(", ");
+											}
+										}
+										toPrint = toPrint.concat("}, ");
+										if(spinnerPoids.getValue() == null || spinnerTaille.getValue() == null || editorDescrPokedex.getText() == null){
+											JOptionPane.showMessageDialog(null, "Vous devez rentrer une valeur dans tous les champs.", "Erreur", JOptionPane.ERROR_MESSAGE);
+											return;
+										}else{
+											toPrint = toPrint.concat(spinnerTaille.getValue() + ", " + spinnerPoids.getValue() + ", \"" + editorDescrPokedex.getText() + "\", ");
+											if( spinnerExpGiven.getValue() == null || spinnerExpLv100.getValue() == null){
+												JOptionPane.showMessageDialog(null, "Vous devez rentrer une valeur dans tous les champs.", "Erreur", JOptionPane.ERROR_MESSAGE);
+												return;
+											}else{
+												try {
+													DialogFinal fin = new DialogFinal(toPrint.concat(spinnerExpGiven.getValue() + ", " + spinnerExpLv100.getValue() + ");"));
+												} catch (IOException e1) {
+													e1.printStackTrace();
+													JOptionPane.showMessageDialog(null, "Le programme a eu une erreur inattendue et doit fermer. Merci de le reporter aux developpeurs.", "Crash", JOptionPane.ERROR_MESSAGE);
+												}
+											}
+										}
+									
+									}else{
+										JOptionPane.showMessageDialog(null, "Vous devez rentrer une valeur dans tous les champs." + Log.saut + "Les EV donnés ne doivent pas être en dessous ou égal a 0.", "Erreur", JOptionPane.ERROR_MESSAGE);
+										return;
 									}
 								}else{
 									JOptionPane.showMessageDialog(null, "Vous devez rentrer une valeur dans tous les champs.", "Erreur", JOptionPane.ERROR_MESSAGE);

@@ -14,8 +14,10 @@ public class DialogFinal extends JDialog {
 
 
 	public DialogFinal(String command) throws IOException {
+		setAlwaysOnTop(true);
+		setSize(100, 100);
 		getContentPane().setLayout(new BorderLayout(0, 0));
-		
+		setVisible(true);
 		JLabel lblCommande = new JLabel("Commande");
 		lblCommande.setHorizontalAlignment(SwingConstants.CENTER);
 		getContentPane().add(lblCommande, BorderLayout.NORTH);
