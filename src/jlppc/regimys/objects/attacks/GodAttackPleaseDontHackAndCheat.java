@@ -20,7 +20,7 @@ public class GodAttackPleaseDontHackAndCheat extends Attaque {
 
 	@Override
 	protected void effetApres(Pokemon atk, Pokemon def) throws SameAtkPartTwo {
-		FormattedString.outPrintln("BOOOOOM HEADSHOT!!! Pv restaur�s et pokemon tu�!");
+		FormattedString.outPrintln("BOOOOOM HEADSHOT!!! Pv restaurés et pokemon tué!");
 		atk.heal(atk.getStatPV());
 		def.attacked(99999999);
 
