@@ -6,11 +6,12 @@ package jlppc.regimys.enums;
  */
 public enum Type {
 	
-	EAU(3, "Eau"), FEU(6, "Feu"), PLANTE(10, "Plante"), ELECTRIQUE(4, "Electrique"), PSY(12, "Psy"), TENEBRES(16,"Ténèbres"), DRAGON(2, "Dragon"), COMBAT(1, "Combat"), ROCHE(13, "Roche"), SOL(14,"Sol"), NORMAL(9, "Normal"), FEE(5, "Fée"), SPECTRE(15, "Spectre"), POISON(11, "Poison"), ACIER(0, "Acier"), INSECTE(8, "Insecte"), VOL(17, "Vol"), GLACE(7, "Glace"), AUCUN(-1, "Aucun");
+	EAU(3, "Eau", "EAU"), FEU(6, "Feu", "FEU"), PLANTE(10, "Plante", "PLANTE"), ELECTRIQUE(4, "Electrique", "ELECTRIQUE"), PSY(12, "Psy", "PSI"), TENEBRES(16,"Ténèbres", "TENEBRES"), DRAGON(2, "Dragon", "DRAGON"), COMBAT(1, "Combat", "COMBAT"), ROCHE(13, "Roche", "ROCHE"), SOL(14,"Sol", "SOL"), NORMAL(9, "Normal","NORMAL"), FEE(5, "Fée", "FEE"), SPECTRE(15, "Spectre", "SPECTRE"), POISON(11, "Poison", "POISON"), ACIER(0, "Acier", "ACIER"), INSECTE(8, "Insecte", "INSECTE"), VOL(17, "Vol", "VOL"), GLACE(7, "Glace", "GLACE"), AUCUN(-1, "Aucun", "AUCUN");
 	/**
 	 * L'ID du type.
 	 */
 	public final int id;
+	public final String enumName;
 	//Variables de repere pour le tableau.
 	public static final float PE = 0.5f;//Peu efficace
 	public static final float NE = 1f;//Neutre
@@ -438,10 +439,16 @@ public enum Type {
 	 * Le nom du type en String
 	 */
 	public final String nom;
-	private Type(int id, String nom){
+	private Type(int id, String nom, String enumName){
 		this.id = id;
 		this.nom = nom;
+		this.enumName = enumName;
 	}
+	
+	public String toString(){
+		return nom;
+	}
+	
 	/**
 	 * Calcule l'efficacité d'une type attaquant contre des types defenseurs.
 	 * @param atk - Le type attaquant

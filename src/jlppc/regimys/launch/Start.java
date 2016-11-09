@@ -17,6 +17,7 @@ import jlppc.regimys.objects.attacks.Triplattaque;
 import jlppc.regimys.playercore.Player;
 import jlppc.regimys.tempgui.ChoosePoke;
 import jlppc.utils.FormattedString;
+import jlppc.utils.Log;
 /**
  * Demmare le programme.
  * @author Jlppc
@@ -57,6 +58,31 @@ public class Start {
 	 * @throws InstantiationException 
 	 */
 	public static void main(String[] args) throws InstantiationException, IllegalAccessException {
+		
+		try{
+			if(args[0].startsWith("--")){
+				if(args[0].equals("--creator")){
+					try{
+						if(args[1].equals("pokemon")){
+							jlppc.regimys.creator.pokemon.Main.main(new String[0]);
+						}else{
+							System.out.println("Un des mots suivants doivent apparaitre après --creator :"  + Log.saut + "<html><ul><li>pokemon</li></ul></html>");
+							System.exit(2);//Les signaux d'exit du programme : 0 : Tout va bien. 1 : Erreur dans le programme 2 : Erreur dans les arguments.
+						}
+					}catch(ArrayIndexOutOfBoundsException | NullPointerException e){
+						System.out.println("Un des mots suivants doivent apparaitre après --creator :"  + Log.saut + "<html><ul><li>pokemon</li></ul></html>");
+						System.exit(2);//Les signaux d'exit du programme : 0 : Tout va bien. 1 : Erreur dans le programme 2 : Erreur dans les arguments.
+					}
+				}else{
+					System.out.println("Page d'aide des arguments de Pokemon Regimys." + Log.saut + "--creator : Permet d'affcher une fenetre de creation d'un objet (Voir --creator aide)" + Log.saut + "--help : Affiche cette page");
+				}
+				System.exit(0);
+			}else{
+				System.out.println("L'ouverture de fichiers de sauvegarde par ce biais n'est actuellement pas disponible. Lancement du jeu...");
+			}
+		}catch(ArrayIndexOutOfBoundsException | NullPointerException e){
+			
+		}
 		
 		String playername;
 		System.out.println("Bienvenue dans le monde non achevé des pokémon! Quel est ton nom? : ");
