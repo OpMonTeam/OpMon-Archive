@@ -29,7 +29,7 @@ public class Start {
 		Initializer.init();
 	}
 	
-	public static float version = 0.05f;
+	public static float version = 0.06f;
 	
 	public static char commits = ' ';
 	
@@ -39,11 +39,11 @@ public class Start {
 	
 	public static boolean pre = (preNbre != 0);
 	
-	public static int sousVers = 2;
+	public static int sousVers = 0;
 	
-	public static boolean sousVersIs = sousVers == 0;
+	public static boolean sousVersIs = (sousVers != 0);
 	
-	public static String versionS = "" + version  + (sousVersIs ? "." + sousVers : "") + (pre ? (" pre " + preNbre) : "") + commits;//Actuel : 0.04 
+	public static String versionS = "Alpha " + version  + (sousVersIs ? "." + sousVers : "") + (pre ? (" pre " + preNbre) : "") + commits;//Actuel : 0.04 
 	
 	//Utilitaires pratiques
 	/**
