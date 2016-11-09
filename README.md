@@ -2,7 +2,7 @@
 Bienvenue sur le projet de fan-game pokemon Regimys! Plus d'infos sur le wiki ou sur la chaine YouTube !<br/>
 <a href="https://github.com/jlppc/Projet-Pokemon-Regimys/wiki/Journal-du-developpement">Journal de developpement</a><br/>
 <a href="https://www.youtube.com/channel/UC8qa9Z52pOHhZ1XjIoTa2kQ">Chaine YouTube du Projet Regimys</a><br/>
-<br/>Version du jeu : Alpha 0.05.2<br/><br/>
+<br/>Version du jeu : Alpha 0.06<br/><br/>
 Prochaines versions :<ul>
 <li>Alpha 0.07 : Quand toutes les attaques et pokemon de la première génération auront été ajoutés et ajout de la gestion des items</li>
 <li>Alpha 0.08 : Quand la gestion de plusieurs pokémons sera au point et quand les pokémons pourront apprendre des attaques par niveau</li>
