@@ -15,13 +15,9 @@ public class Player {
 	
 
 	
-	private static int[] baies = new int[Item.getItemNumber()];
-	private static int[] obj = new int[Item.getItemNumber()];
-	private static int[] rares = new int[Item.getItemNumber()];
-	private static int[] cts = new int[Item.getItemNumber()];
-	private static int[] soin = new int[Item.getItemNumber()];
-	private static int[] bag = new int[Item.getItemNumber()];
-	private static Vector<Pokemon> pc = new Vector<>();
+
+	public int[] bag = new int[Item.getItemNumber()];
+	private Vector<Pokemon> pc = new Vector<>();
 	private Pokemon[] equipe = new Pokemon[6];
 	
 	public void addItem(int itemID){
@@ -45,7 +41,13 @@ public class Player {
 		}
 	}
 	public int checkItem(int itemID){
-		return bag[itemID];
+		try{
+			int toReturn = bag[itemID];
+			return toReturn;
+		}catch(ArrayIndexOutOfBoundsException | NullPointerException e){
+			e.printStackTrace();
+			return 0;
+		}
 	}
 	public boolean deleteItem(int itemID){
 		if(bag[itemID] != 0){

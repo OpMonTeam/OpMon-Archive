@@ -77,6 +77,8 @@ public class StringKey {
 	}
 	
 	public static void initialisateKeys(){
+		//Items
+		keys.add(new StringKey("fight.item.used", "%o utilise un(e) %o!"));
 		//Stats
 		keys.add(new StringKey("effects.stats.atk.low", "L'attaque de %o baisse!"));
 		keys.add(new StringKey("effects.stats.atk.lowtwo", "L'attaque de %o baisse beaucoup!"));
@@ -148,7 +150,14 @@ public class StringKey {
 		keys.add(new StringKey("attack.types.in", "C'est inefficace!"));
 		keys.add(new StringKey("attack.types.te", "C'est très efficace!"));
 		keys.add(new StringKey("attack.types.se", "C'est super efficace!"));
-		
+		//Heal
+		keys.addElement(new StringKey("items.heal", "%o récupère des pv!"));
+		keys.add(new StringKey("items.status.heal", "%o n'a plus de problèmes de status!"));
+		keys.add(new StringKey("status.poison.heal", "%o n'est plus empoisonné!"));
+		keys.add(new StringKey("status.para.heal", "%o n'est plus paralysé!"));
+		keys.add(new StringKey("status.gel.heal", "%o n'est plus gelé!"));
+		keys.add(new StringKey("status.sommeil.heal", "%o se reveille!"));
+		keys.add(new StringKey("status.brulure.heal", "%o n'est plus brulé!"));
 	}
 	
 }

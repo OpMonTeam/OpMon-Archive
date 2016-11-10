@@ -8,7 +8,9 @@ import jlppc.regimys.evolution.E_Item;
 import jlppc.regimys.evolution.E_Trade;
 import jlppc.regimys.enums.Caractere.Stats;
 import jlppc.regimys.launch.Start;
+import jlppc.regimys.objects.items.I_Heal;
 import jlppc.regimys.objects.items.Item;
+import jlppc.regimys.util.text.StringKey;
 import jlppc.utils.HashArray;
 import jlppc.utils.Static;
 import jlppc.utils.WIP;
@@ -293,7 +295,44 @@ public class Pokemon extends Typedef{
 				evolve();
 			}
 		}else{
-			
+			if(used instanceof I_Heal){
+				StringKey.outStringKey(key("fight.item.used"), this.getSurnom(), used.getName());
+				I_Heal usedI = (I_Heal) used;
+				if(usedI.getPvHeal() > 0){
+					this.heal(usedI.getPvHeal());
+					keyout(key("items.heal"), surnom);
+				}
+				if(usedI.isHealAll() && status == Status.AUCUN){
+					this.setStatus(Status.AUCUN);
+					keyout(key("items.status.heal"), surnom);
+				}else if(usedI.getStatusHeald() != Status.AUCUN && status == usedI.getStatusHeald()){
+					setStatus(Status.AUCUN);
+					switch(usedI.getStatusHeald()){
+					case AUCUN:
+						break;
+					case BRULURE:
+						keyout(key("status.brulure.heal"), surnom);
+						break;
+					case GEL:
+						keyout(key("status.gel.heal"), surnom);
+						break;
+					case PARALYSIE:
+						keyout(key("status.para.heal"), surnom);
+						break;
+					case POISON:
+						keyout(key("status.poison.heal"), surnom);
+						break;
+					case SOMMEIL:
+						keyout(key("status.sommeil.heal"), surnom);
+						break;
+					default:
+						break;
+					
+					}
+				}
+				
+				
+			}
 		}
 		
 		return false;

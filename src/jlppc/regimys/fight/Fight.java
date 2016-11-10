@@ -3,6 +3,7 @@ package jlppc.regimys.fight;
 import jlppc.regimys.launch.Start;
 import jlppc.regimys.objects.Pokemon;
 import jlppc.regimys.objects.Pokemon.Status;
+import jlppc.regimys.objects.items.Item;
 import jlppc.utils.FormattedString;
 /**
  * La classe qui s'occupe de tout ce qui est combat.
@@ -47,17 +48,45 @@ public class Fight {
 			FormattedString.outPrintln("%o a %o pv.", atk.getSurnom(), atk.getPV());
 			FormattedString.outPrintln("%o a %o pv.", def.getSurnom(), def.getPV());
 			if(!sameAtk){
-				boolean ok = false;
-				System.out.print("Attaquant, choisissez votre attaque ( 1 a 4) : ");
-				attaqueAtk = Start.sc.nextInt() - 1;
-				while(!ok){
-					if(((attaqueAtk < atk.getAttaques().length && attaqueAtk > -1) ? (atk.getAttaques()[attaqueAtk].getPp() <= 0) : true)){
-						System.out.println("Vous devez choisir entre 1 et 4, ressayez :");
-						attaqueAtk = Start.sc.nextInt() - 1;
-					}else{
-						break;
-					}
+				System.out.println("Choisissez une action (1 pour attaque, 2 pour Objet) :");
+				int choix = Start.sc.nextInt();
+				while(choix <= 0 || choix > 2){
+					System.out.println("Action incorrecte, reesayez (1 pour attaque, 2 pour Objet): ");
+					choix = Start.sc.nextInt();
 				}
+				
+				if(choix == 1){
+					boolean ok = false;
+					System.out.print("Attaquant, choisissez votre attaque ( 1 a 4) : ");
+					attaqueAtk = Start.sc.nextInt() - 1;
+					while(!ok){
+						if(((attaqueAtk < atk.getAttaques().length && attaqueAtk > -1) ? (atk.getAttaques()[attaqueAtk].getPp() <= 0) : true)){
+							System.out.println("Vous devez choisir entre 1 et 4, ressayez :");
+							attaqueAtk = Start.sc.nextInt() - 1;
+						}else{
+							break;
+						}
+					}
+				}else if(choix == 2){
+					System.out.println("Liste des items : ");
+					int i = 0;
+					for(int tem : Start.joueur.bag){
+						if(tem != 0){
+							System.out.println("Nom : " + Item.itemList.get(i).getName() + " ID : " + i + " Nombre : " + tem);
+						}
+						i++;
+					}
+					System.out.println("Entrez l'ID de l'item a utiliser :");
+					int id = Start.sc.nextInt();
+					while(Start.joueur.checkItem(id) == 0 || !Item.getItem(id).isUsableInFight()){;
+						System.out.println("Item indisponible ou inutilisable en combat. Retentez : ");
+						id = Start.sc.nextInt();
+					}
+					atk.itemUsed(Item.getItem(id));
+					Start.joueur.deleteItem(id);
+					attaqueAtk = -1;
+				}
+				
 
 			}else{
 				sameAtk = false;
@@ -77,7 +106,8 @@ public class Fight {
 
 
 			
-			if(atk.getStatVIT() > def.getStatVIT() || atk.getAttaques()[attaqueAtk].getPriorite() > def.getAttaques()[attaqueDef].getPriorite()){
+			if(atk.getStatVIT() > def.getStatVIT() || ((attaqueAtk == -1) ? false : atk.getAttaques()[attaqueAtk].getPriorite() > def.getAttaques()[attaqueDef].getPriorite())){
+				
 				atkCanAttack = true;
 				if(atk.getStatus() == Status.GEL){
 					if(Start.rand.nextInt(5) == 2){
@@ -160,6 +190,9 @@ public class Fight {
 					atk.attacked(atk.getPV() / 8);
 					def.heal(atk.getPV() / 8);
 					
+				}
+				if(attaqueAtk == -1){
+					atkCanAttack = false;
 				}
 				if(atkCanAttack){
 					try {
@@ -479,7 +512,10 @@ public class Fight {
 					def.heal(atk.getPV() / 8);
 					
 				}
-
+				
+				if(attaqueAtk == -1){
+					atkCanAttack = false;
+				}
 				if(atkCanAttack){
 
 					try {

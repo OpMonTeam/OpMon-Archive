@@ -9,7 +9,7 @@ public class Item {
 	protected boolean usable;
 	protected boolean givable;
 	protected BagCat categorie;
-	
+	protected boolean usableInFight;
 	
 	
 	public enum BagCat{
@@ -20,9 +20,10 @@ public class Item {
 		return categorie;
 	}
 	
-	public Item(String nom, boolean usable, boolean giveable, BagCat categorie) {
+	public Item(String nom, boolean usable, boolean usableInFight,boolean giveable, BagCat categorie) {
 		this.nom = nom;
 		this.usable = usable;
+		this.usableInFight = usableInFight;
 		this.givable = giveable;
 		this.categorie = categorie;
 	}
@@ -38,11 +39,12 @@ public class Item {
 		result = prime * result + (givable ? 1231 : 1237);
 		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
 		result = prime * result + (usable ? 1231 : 1237);
+		result = prime * result + (usableInFight ? 1231 : 1237);
 		return result;
 	}
 	
 	public Object clone(){
-		return new Item(nom, usable, givable, categorie);
+		return new Item(nom, usable, usableInFight,givable, categorie);
 	}
 
 
@@ -50,24 +52,35 @@ public class Item {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (!(obj instanceof Item)) {
 			return false;
+		}
 		Item other = (Item) obj;
-		if (categorie != other.categorie)
+		if (categorie != other.categorie) {
 			return false;
-		if (givable != other.givable)
+		}
+		if (givable != other.givable) {
 			return false;
+		}
 		if (nom == null) {
-			if (other.nom != null)
+			if (other.nom != null) {
 				return false;
-		} else if (!nom.equals(other.nom))
+			}
+		} else if (!nom.equals(other.nom)) {
 			return false;
-		if (usable != other.usable)
+		}
+		if (usable != other.usable) {
 			return false;
+		}
+		if (usableInFight != other.usableInFight) {
+			return false;
+		}
 		return true;
 	}
 
@@ -85,10 +98,10 @@ public class Item {
 	public static void init() {
 		I_Heal.init();
 		CT.initCTs();
-		itemList.add(new Item("Pierre Feu", true, false, BagCat.OBJETS));
-		itemList.add(new Item("Pierre Plante", true, false, BagCat.OBJETS));
-		itemList.add(new Item("Pierre Eau", true, false, BagCat.OBJETS));
-		itemList.add(new Item("Pierre Lune", true, false, BagCat.OBJETS));
+		itemList.add(new Item("Pierre Feu", true, false,false, BagCat.OBJETS));
+		itemList.add(new Item("Pierre Plante", true, false, false, BagCat.OBJETS));
+		itemList.add(new Item("Pierre Eau", true, false, false, BagCat.OBJETS));
+		itemList.add(new Item("Pierre Lune", true, false, false, BagCat.OBJETS));
 		
 	}
 	
@@ -114,6 +127,22 @@ public class Item {
 		}
 		
 		return null;
+	}
+	
+	public static int searchItem(Item toSearch){
+		int i = 0;
+		for(Item tem : itemList){
+			if(toSearch.equals(tem)){
+				return i;
+			}
+			i++;
+		}
+		return -1;
+	}
+
+	public boolean isUsableInFight() {
+		// TODO Auto-generated method stub
+		return usableInFight;
 	}
 	
 	
