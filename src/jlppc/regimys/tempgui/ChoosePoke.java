@@ -6,6 +6,8 @@ import javax.swing.JDialog;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -16,6 +18,8 @@ import jlppc.regimys.objects.Espece;
 public class ChoosePoke extends JDialog {
 	
 	protected int espChoosen;
+	JButton btnOk;
+	JComboBox<Espece> comboBox;
 	
 	public int getEspChoosen(){
 		return espChoosen;
@@ -29,16 +33,12 @@ public class ChoosePoke extends JDialog {
 		setSize(300, 220);
 		
 		
-		JComboBox<Espece> comboBox = new JComboBox<Espece>();
-		comboBox.setBounds(12, 60, 263, 24);
-		for(Espece esp : Initializer.listePoke){
-			comboBox.addItem(esp);
-		}
+		
 	
 		
-		getContentPane().add(comboBox);
 		
-		JButton btnOk = new JButton("OK");
+		
+		btnOk = new JButton("OK");
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(Initializer.listePoke[comboBox.getSelectedIndex()]);
@@ -54,9 +54,38 @@ public class ChoosePoke extends JDialog {
 		btnOk.setBounds(48, 142, 117, 25);
 		getContentPane().add(btnOk);
 		
+		comboBox = new JComboBox<Espece>();
+		comboBox.setBounds(12, 60, 263, 24);
+		for(Espece esp : Initializer.listePoke){
+			comboBox.addItem(esp);
+		}
+		comboBox.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER){
+					btnOk.doClick();
+				}
+				
+			}
+		});
+		getContentPane().add(comboBox);
 		JLabel lblChoisissezUnPokmon = new JLabel("Choisissez un Pokémon");
 		lblChoisissezUnPokmon.setBounds(12, 12, 218, 15);
 		getContentPane().add(lblChoisissezUnPokmon);
 		setVisible(true);
+		
 	}
 }
