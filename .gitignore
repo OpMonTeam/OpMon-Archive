@@ -4,7 +4,7 @@
 .mtj.tmp/
 
 # Package Files #
-# Pas de .jar parce que je vais en mettre dans ce dépot
+# Pas de .jar parce que je vais en mettre dans ce dÃ©pot
 *.war
 *.ear
 
@@ -15,3 +15,5 @@ Book1.xlsx.gsheet
 *.gsheet
 #Pas de raccourcis
 *.lnk
+#Pas de lock de OpenOffice
+.lock
