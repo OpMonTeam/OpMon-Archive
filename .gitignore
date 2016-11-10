@@ -17,3 +17,5 @@ Book1.xlsx.gsheet
 *.lnk
 #Pas de lock de OpenOffice
 .lock
+#Pas de fichiers .zip
+.zip
