@@ -179,6 +179,7 @@ public class Initializer {
 		 listePoke[149] = new Espece(134, 95, 100, 100, 80, 91, "Dracoloss", Type.DRAGON, Type.VOL, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.ATK, Stats.ATK, Stats.ATK}, 2.2, 210, "On raconte qu'il vit quelque part en mer. Il guide les équipages naufragés jusqu'à la terre ferme.", 218, 1250000);
 		 listePoke[150] = new Espece(
 	         listePoke[151] = new Espece(
+		 listePoke[387] = new Espece(68, 64, 45, 55, 31, 55, "Tortipouss", Type.PLANTE, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 0,new E_Level(388, 0), null, null, new Stats[]{Stats.ATK}, 0.4, 10.2, "Son corps assimile la lumière du soleil par photosynthèse. Sa carapace est faite de terre durcie.", 64, 1059860);
 		 
 		 for(Espece esp : listePoke){
 			 if(esp != null){
