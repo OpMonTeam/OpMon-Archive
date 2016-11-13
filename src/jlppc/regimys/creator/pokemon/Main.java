@@ -265,7 +265,7 @@ public class Main {
 									}else if(evolDiag instanceof E_ItemDialog){
 										toPrint = toPrint.concat("Espece.EVOLUTION_BY_OBJECT, -1, new E_Item(" + evolDiag.spinner.getValue() + ", Item.getItem(" + ((Item) ((E_ItemDialog)evolDiag).comboBoxItem.getSelectedItem()).getName() + ")), ");
 									}else if(evolDiag instanceof E_TradeItemDialog){
-										toPrint = toPrint.concat("Espece.EVOLUTION_BY_TRADE, -1, new E_TradeItem(" + evolDiag.spinner.getValue() + ", Item.getItem(" + ((Item) ((E_TradeItemDialog)evolDiag).comboBoxItem.getSelectedItem()).getName() + ")), ");
+										toPrint = toPrint.concat("Espece.EVOLUTION_BY_TRADE, -1, new E_TradeItem(" + evolDiag.spinner.getValue() + ", Item.getItem(\"" + ((Item) ((E_TradeItemDialog)evolDiag).comboBoxItem.getSelectedItem()).getName() + "\")), ");
 									}else if(evolDiag instanceof E_TradeDialog){
 										toPrint = toPrint.concat("Espece.EVOLUTION_BY_TRADE, -1, new E_Trade(" + evolDiag.spinner.getValue() + "), ");
 									}else if(evolDiag instanceof E_LoveDialog){
@@ -290,7 +290,7 @@ public class Main {
 											JOptionPane.showMessageDialog(null, "Vous devez rentrer une valeur dans tous les champs.", "Erreur", JOptionPane.ERROR_MESSAGE);
 											return;
 										}else{
-											toPrint = toPrint.concat(spinnerTaille.getValue() + ", " + spinnerPoids.getValue() + ", \"" + editorDescrPokedex.getText() + "\", ");
+											toPrint = toPrint.concat(spinnerTaille.getValue() + "f, " + spinnerPoids.getValue() + "f, \"" + editorDescrPokedex.getText() + "\", ");
 											if( spinnerExpGiven.getValue() == null || spinnerExpLv100.getValue() == null){
 												JOptionPane.showMessageDialog(null, "Vous devez rentrer une valeur dans tous les champs.", "Erreur", JOptionPane.ERROR_MESSAGE);
 												return;
