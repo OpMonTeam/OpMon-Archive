@@ -5,13 +5,13 @@ import java.util.Arrays;
 
 import jlppc.regimys.enums.Type;
 import jlppc.regimys.evolution.Evolution;
+import jlppc.regimys.exceptions.IncorrectValueException;
 import jlppc.regimys.objects.items.CT;
 import jlppc.regimys.enums.Caractere.Stats;
 import jlppc.utils.HashArray;
 
 /**
- * Tout ce qui d�finit une esp�ce de pokemon (ET PAS UN POKEMON ATTENTION!) (Ni
- * un digimon d'ailleurs.)
+ * La classe qui définit une espèce de Pokémon.
  * 
  * @author Jlppc
  *
@@ -92,10 +92,7 @@ public final class Espece {
 	 * Voir nom. Tellement �vident.
 	 */
 	protected float poids;
-	/**
-	 * Voir nom. Tellement �vident. Par contre, pourquoi des classes. Parce que
-	 * class.newInstance !
-	 */
+	/**Liste des CT combatibles avec le Pokémon*/
 	protected CT[] ctCompatibles;
 	// Les statistiques de l'espece. Les noms sont evidents.
 	protected final int baseAtk;
@@ -104,6 +101,15 @@ public final class Espece {
 	protected final int baseDefSpe;
 	protected final int baseVit;
 	protected final int basePV;
+	/**
+	 * Le hashCode de l'espece
+	 */
+	protected int hashCode;
+	/**
+	 * La coubre d'experience du pokémon
+	 */
+	protected CourbeExp courbe;
+	protected int expMax;
 	/**
 	 * Les EV donn�es en fin de combat.
 	 */
@@ -121,32 +127,14 @@ public final class Espece {
 	protected Image resumeS;
 	protected int expGiven;
 
-	public Stats[] getEVgiven(){
-		return EVgiven;
-	}
-	
-	public Evolution getEvolType() {
-		return evolType;
-	}
-
-	@Override
-	public String toString() {
-		return new String(this.surnom);
-	}
-
-	protected int hashCode;
-
 	public enum CourbeExp {
 		RAPIDE, MOYENNE, PARABOLIQUE, LENTE, ERRATIQUE, FLUCTUANTE;
 	}
-
-	protected CourbeExp courbe;
-
-	public CourbeExp getCourbe(){
-		return courbe;
-	}
 	
-	protected int expMax;
+	
+
+	
+	
 
 	/**
 	 * 
@@ -173,6 +161,12 @@ public final class Espece {
 			int maniereEvolution, int niveauEvolution, Evolution evolType, HashArray[] attacksByLevels,
 			CT[] ctCombatibles, Stats[] EVGiven, float taille, float poids, String entreePokedex, int expGiven,
 			int expMax) {
+		if(atk < 0 || def < 0 || atkSpe < 0 || defSpe < 0 || vit < 0 || pv < 0){
+			throw new IncorrectValueException("Stats in Espece execution");
+		}
+		if(expGiven < 0){
+			throw new IncorrectValueException(expGiven, "In Espece initializer");
+		}
 		baseAtk = atk;
 		baseDef = def;
 		baseAtkSpe = atkSpe;
@@ -223,6 +217,14 @@ public final class Espece {
 	// Les getters. Rien de plus a expliquer.
 	public synchronized final String getSurnom() {
 		return surnom;
+	}
+	
+	public Stats[] getEVgiven(){
+		return EVgiven;
+	}
+	
+	public Evolution getEvolType() {
+		return evolType;
 	}
 
 	public synchronized final int getNumeroPokedex() {
@@ -292,6 +294,18 @@ public final class Espece {
 	public synchronized final int getBasePV() {
 		return new Integer(basePV);
 	}
+	
+	@Override
+	public String toString() {
+		return new String(this.surnom);
+	}
+
+	
+
+	public CourbeExp getCourbe(){
+		return courbe;
+	}
+	
 
 	@Override
 	public int hashCode() {

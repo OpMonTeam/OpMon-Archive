@@ -2,6 +2,7 @@ package jlppc.regimys.objects.items;
 
 import java.util.Vector;
 
+import jlppc.regimys.launch.Start;
 import jlppc.regimys.objects.Pokemon;
 
 public class Item {
@@ -11,6 +12,9 @@ public class Item {
 	protected BagCat categorie;
 	protected boolean usableInFight;
 	
+	public String toString(){
+		return nom;
+	}
 	
 	public enum BagCat{
 		SOIN, OBJETS, RARES, CTS, BAIES;
@@ -89,7 +93,7 @@ public class Item {
 
 	public void used(Pokemon given){
 		if(given.itemUsed(this)){
-			//Il faudra supprimer l'item ici
+			Start.joueur.deleteItem(searchItem(this));
 		}
 	}
 	
@@ -120,24 +124,35 @@ public class Item {
 	}
 	
 	public static Item getItem(String name){
-		for(Item tem : itemList){
-			if(tem.getName().equals(name)){
-				return tem;
+		try{
+			for(Item tem : itemList){
+				if(tem.getName().equals(name)){
+					return tem;
+				}
 			}
+		}catch(NullPointerException e){
+			e.printStackTrace();
 		}
+		
 		
 		return null;
 	}
 	
 	public static int searchItem(Item toSearch){
-		int i = 0;
-		for(Item tem : itemList){
-			if(toSearch.equals(tem)){
-				return i;
+		try{
+			int i = 0;
+			for(Item tem : itemList){
+				if(toSearch.equals(tem)){
+					return i;
+				}
+				i++;
 			}
-			i++;
+			
+		}catch(NullPointerException e){
+			e.printStackTrace();
 		}
 		return -1;
+		
 	}
 
 	public boolean isUsableInFight() {

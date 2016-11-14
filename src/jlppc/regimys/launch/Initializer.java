@@ -166,7 +166,6 @@ public class Initializer {
 //		 listePoke[135] = 
 //		 listePoke[136] =
 		 listePoke[137] = new Espece(60, 70, 85, 75, 40, 65, "Porygon", Type.NORMAL, Type.AUCUN, Espece.NO_EVOLUTION, -1, new E_TradeItem(0, Item.getItem("Ameliorator")), null, null, new Stats[]{Stats.ATK}, 0.8f, 36.5f, "Ce Pokémon a été développé en Java, il adore se fofiler dans les programmes pour tout modifier.", 133, 1000000);
-
 		 listePoke[138] = new Espece(40, 100, 90, 55, 35, 35, "Amonita", Type.ROCHE, Type.EAU, Espece.EVOLUTION_BY_LEVEL, 40,new E_Level(138, 40), null, null, new Stats[]{Stats.DEF}, 0.4f, 7.5f, "Recréé à partir d'un fossile, il utilise l'air dans sa coquille pour s'enfoncer dans l'eau ou faire surface.", 99, 1000000);
 		 listePoke[139] = new Espece(60, 125, 115, 70, 55, 70, "Amonistar", Type.ROCHE, Type.EAU, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.DEF, Stats.DEF}, 1f, 35f, "Une fois enroulé autour de sa proie, il ne la laisse pas repartir et la dévore avec ses crocs.", 199, 1000000);
 		 listePoke[140] = new Espece(80, 90, 55, 45, 55, 30, "Kabuto", Type.ROCHE, Type.EAU, Espece.EVOLUTION_BY_LEVEL, 40,new E_Level(140, 40), null, null, new Stats[]{Stats.DEF}, 0.5f, 11.5f, "Ce Pokémon a été reconstitué à partir du fossile d'une ancienne créature. Il se protège à l'aide de sa carapace.", 99, 1000000);

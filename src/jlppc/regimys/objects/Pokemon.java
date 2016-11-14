@@ -109,88 +109,13 @@ public class Pokemon extends Typedef{
 	public boolean amour = false;
 	public boolean vampigraine = false;
 	public boolean malediction = false;
+	protected Stats malusCara;
+	protected Stats bonusCara;
 	
 	protected Item held;
 	
-	public Item hold(Item item){
-		Item ancien = (Item) held.clone();
-		held = item;
-		return ancien;
-	}
 	
-	public boolean isHoldingItem(){
-		return (held == null);
-	}
 	
-	public Item itemHeld(){
-		return held;
-	}
-	
-	/**
-	 * Quand le pokemon a gagné
-	 * @param vaincu
-	 * @return l'exp gagnée
-	 */
-	@WIP
-	public int win(Pokemon vaincu){
-		fosout("%o a gagné %o!", surnom, ((vaincu.espece.getExp() * vaincu.level) / this.level) * expBoost);
-		getEvs(vaincu);
-		exp+=((vaincu.espece.getExp() * vaincu.level) / this.level) * expBoost;
-		while(exp >= toNextLevel && level < 100){
-			if(exp < toNextLevel){
-				break;
-			}
-			levelUp();
-			
-		}
-		calcStats(espece);
-		return (int) (((vaincu.espece.getExp() * vaincu.level) / this.level) * expBoost);
-		
-		
-	}
-	
-	protected void getEvs(Pokemon vaincu){
-		if(!((atkEV + defEV + pvEV + atkSpeEV + defSpeEV + vitEV) > 510)){
-			for(Stats stat : vaincu.getEspece().getEVgiven()){
-				switch(stat){
-				case ATK:
-					if(atkEV < 252){
-						atkEV++;
-					}
-					break;
-				case ATKSPE:
-					if(atkSpeEV < 252){
-						atkSpeEV++;
-					}
-					break;
-				case DEF:
-					if(defEV < 252){
-						atkEV++;
-					}
-					break;
-				case DEFSPE:
-					if(defSpeEV < 252){
-						defSpeEV++;
-					}
-					break;
-				case PV:
-					if(pvEV < 252){
-						pvEV++;
-					}
-					break;
-				case RIEN:
-					break;
-				case VIT:
-					if(vitEV < 252){
-						vitEV++;
-					}
-					break;
-				
-				}
-			}
-			
-		}
-	}
 	
 	@Static
 	protected static class CalcCourbes{
@@ -249,206 +174,9 @@ public class Pokemon extends Typedef{
 	}
 	
 	
-	//TODO : Ajouter les exp qu'il faut pour level up
-	public void levelUp(){
-		level++;
-		System.out.println("Level up! Passage au niveau " + level + "!");
-		switch(espece.getCourbe()){
-		case ERRATIQUE:
-			toNextLevel = CalcCourbes.erratique(level + 1);
-			break;
-		case FLUCTUANTE:
-			toNextLevel = CalcCourbes.fluctuante(level + 1);
-			break;
-		case LENTE:
-			toNextLevel = CalcCourbes.lente(level + 1);
-			break;
-		case MOYENNE:
-			toNextLevel = CalcCourbes.moyenne(level + 1);
-			break;
-		case PARABOLIQUE:
-			toNextLevel = CalcCourbes.parabolique(level + 1);
-			break;
-		case RAPIDE:
-			toNextLevel = CalcCourbes.rapide(level + 1);
-			break;
-		
-		
-		}
-		if(toNextLevel < exp){toNextLevel = exp - toNextLevel;}
-		calcStats(this.espece);
-		if(espece.getEvolType().checkEvolve(this)){
-			if(!(espece.getEvolType() instanceof E_Trade)){
-				evolve();
-			}
-			
-		}
-	}
-	/**
-	 * Permet d'utiliser un item sur le pokémon.
-	 * @param used
-	 * @return un booleen pour savoir si l'item doit être supprimé ou pas. (false si pas supprimé, true sinon)
-	 */
-	public boolean itemUsed(Item used){
-		if(espece.getEvolType() instanceof E_Item){
-			if(((E_Item) espece.getEvolType()).itemEvolve(used)){
-				evolve();
-			}
-		}else{
-			if(used instanceof I_Heal){
-				StringKey.outStringKey(key("fight.item.used"), this.getSurnom(), used.getName());
-				I_Heal usedI = (I_Heal) used;
-				if(usedI.getPvHeal() > 0){
-					this.heal(usedI.getPvHeal());
-					keyout(key("items.heal"), surnom);
-				}
-				if(usedI.isHealAll() && status == Status.AUCUN){
-					this.setStatus(Status.AUCUN);
-					keyout(key("items.status.heal"), surnom);
-				}else if(usedI.getStatusHeald() != Status.AUCUN && status == usedI.getStatusHeald()){
-					setStatus(Status.AUCUN);
-					switch(usedI.getStatusHeald()){
-					case AUCUN:
-						break;
-					case BRULURE:
-						keyout(key("status.brulure.heal"), surnom);
-						break;
-					case GEL:
-						keyout(key("status.gel.heal"), surnom);
-						break;
-					case PARALYSIE:
-						keyout(key("status.para.heal"), surnom);
-						break;
-					case POISON:
-						keyout(key("status.poison.heal"), surnom);
-						break;
-					case SOMMEIL:
-						keyout(key("status.sommeil.heal"), surnom);
-						break;
-					default:
-						break;
-					
-					}
-				}
-				
-				
-			}
-		}
-		
-		return false;
-	}
+
 	
-	public void traded(){
-		expBoost = 1.5f;
-		if(espece.getEvolType() instanceof E_Trade){
-			evolve();
-		}
-	}
 	
-	public void toolEvTrade(){
-		if(espece.getEvolType() instanceof E_Trade){
-			evolve();
-		}
-	}
-	
-	public void evolve(){
-		boolean changeName = (surnom.equals(espece.getSurnom()));
-		this.espece = this.espece.getEvolution();
-		calcStats(espece);
-		fosout("%o évolue en %o!", surnom, espece.getSurnom());
-		if(changeName){
-			surnom = espece.getSurnom();
-		}
-	}
-	/**
-	 * L'enumeration des status pokemon.
-	 * @author Jlppc
-	 *
-	 */
-	public enum Status{
-		BRULURE, PARALYSIE, SOMMEIL, GEL, POISON, AUCUN;
-	}
-	
-	@Override
-	public Object getVar(String name){
-		for(HashArray obj : listVar()){
-			if(obj.getValue("nom").equals(name) ){
-				return obj.getValue("valeur");
-			}
-		}
-		
-		return null;
-		
-	}
-	@Override
-	public HashArray[] listVar(){
-		HashArray[] tab = {
-			new HashArray("surnom", String.class, NULL),
-			new HashArray("atkIV", Integer.class, atkIV),
-			new HashArray("defIV", Integer.class, defIV),
-			new HashArray("atkSpeIV", Integer.class, atkSpeIV),
-			new HashArray("defSpeIV", Integer.class, defSpeIV),
-			new HashArray("vitIV", Integer.class, vitIV),
-			new HashArray("pvIV", Integer.class, pvIV),
-			new HashArray("atkEV", Integer.class, 0),
-			new HashArray("defEV", Integer.class, 0),
-			new HashArray("atkSpeEV", Integer.class, 0),
-			new HashArray("defSpeEV", Integer.class, 0),
-			new HashArray("vitEV", Integer.class, 0),
-			new HashArray("pvEV", Integer.class, 0),
-			new HashArray("StatATK", Integer.class, NULL),
-			new HashArray("StatDEF", Integer.class, NULL),
-			new HashArray("StatATKSPE", Integer.class, NULL),
-			new HashArray("StatDEFSPE", Integer.class, NULL),
-			new HashArray("StatVIT", Integer.class, NULL),
-			new HashArray("StatPRE", Integer.class, NULL),
-			new HashArray("StatESQ", Integer.class, NULL),
-			new HashArray("StatPV", Integer.class, NULL),
-			new HashArray("StatLove", Integer.class, NULL),
-			new HashArray("atkChange", Integer.class, 0),
-			new HashArray("defChange", Integer.class, 0),
-			new HashArray("atkSpeChange", Integer.class, 0),
-			new HashArray("defSpeChange", Integer.class, 0),
-			new HashArray("vitChange", Integer.class, 0),
-			new HashArray("esqChange", Integer.class, 0),
-			new HashArray("preChange", Integer.class, 0),
-			new HashArray("level", Integer.class, NULL),
-			new HashArray("caractere", Caractere.class, NULL),
-			new HashArray("attaques", Attaque[].class , new Attaque[4]),
-			new HashArray("espece", Espece.class, NULL),
-			new HashArray("PV", Integer.class, NULL),
-			new HashArray("status", Status.class, Status.AUCUN),
-			new HashArray("talent", Talent.class, NULL),
-			new HashArray("type1", Type.class, NULL),
-			new HashArray("type2", Type.class, NULL),
-			new HashArray("exp", Integer.class, NULL),
-			new HashArray("confus", Boolean.class, NULL),
-			new HashArray("peur", Boolean.class, NULL),
-			new HashArray("amour", Boolean.class, NULL),
-			new HashArray("vampigraine", Boolean.class, NULL),
-			new HashArray("malediction", Boolean.class, NULL)
-			
-		};
-		for(HashArray hello : tab){
-			hello.setTag("nom",0);
-			hello.setTag("type", 1);
-			hello.setTag("valeur", 2);
-		}
-		
-		return tab;
-	}
-	
-	protected Stats malusCara;
-	protected Stats bonusCara;
-	
-	public void calcStats(Espece espece){
-		statATK = (int) Math.round( ( ( ((2 * espece.getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100 ) + 5 ) * ((bonusCara == Stats.ATK) ? 1.1 : ((malusCara == Stats.ATK) ? 0.9 : 1)));
-		statDEF = (int) Math.round( ( ( ((2 * espece.getBaseDef() + defIV + (defEV / 4)) * level) / 100 ) + 5 ) * ((bonusCara == Stats.DEF) ? 1.1 : ((malusCara == Stats.DEF) ? 0.9 : 1)));
-		statATKSPE = (int) Math.round( ( ( ((2 * espece.getBaseAtkSpe() + atkSpeIV + (atkSpeEV / 4)) * level) / 100 ) + 5 ) * ((bonusCara == Stats.ATKSPE) ? 1.1 : ((malusCara == Stats.ATKSPE) ? 0.9 : 1)));
-		statDEFSPE = (int) Math.round( ( ( ((2 * espece.getBaseDefSpe() + defSpeIV + (defSpeEV / 4)) * level) / 100 ) + 5 ) * ((bonusCara == Stats.DEFSPE) ? 1.1 : ((malusCara == Stats.DEFSPE) ? 0.9 : 1)));
-		statVIT = (int) Math.round( ( ( ((2 * espece.getBaseVit() + vitIV + (vitEV / 4)) * level) / 100 ) + 5 ) * ((bonusCara == Stats.VIT) ? 1.1 : ((malusCara == Stats.VIT) ? 0.9 : 1)));
-		statPV = Math.round(((2 * espece.getBasePV() + pvIV + (pvEV / 4)) * level) / 100) + level + 10;
-	}
 	
 	
 	
@@ -552,6 +280,221 @@ public class Pokemon extends Typedef{
 		
 		}
 		toNextLevel = toNextLevel - exp;
+	}
+	
+	public void levelUp(){
+		level++;
+		System.out.println("Level up! Passage au niveau " + level + "!");
+		switch(espece.getCourbe()){
+		case ERRATIQUE:
+			toNextLevel = CalcCourbes.erratique(level + 1);
+			break;
+		case FLUCTUANTE:
+			toNextLevel = CalcCourbes.fluctuante(level + 1);
+			break;
+		case LENTE:
+			toNextLevel = CalcCourbes.lente(level + 1);
+			break;
+		case MOYENNE:
+			toNextLevel = CalcCourbes.moyenne(level + 1);
+			break;
+		case PARABOLIQUE:
+			toNextLevel = CalcCourbes.parabolique(level + 1);
+			break;
+		case RAPIDE:
+			toNextLevel = CalcCourbes.rapide(level + 1);
+			break;
+		
+		
+		}
+		if(toNextLevel < exp){toNextLevel = exp - toNextLevel;}
+		calcStats(this.espece);
+		if(espece.getEvolType().checkEvolve(this)){
+			if(!(espece.getEvolType() instanceof E_Trade)){
+				evolve();
+			}
+			
+		}
+	}
+	
+	/**
+	 * L'enumeration des status pokemon.
+	 * @author Jlppc
+	 *
+	 */
+	public enum Status{
+		BRULURE, PARALYSIE, SOMMEIL, GEL, POISON, AUCUN;
+	}
+	
+	
+	
+	
+	
+	public boolean isHoldingItem(){
+		return (held == null);
+	}
+	
+	public Item itemHeld(){
+		return held;
+	}
+	
+	/**
+	 * Quand le pokemon a gagné
+	 * @param vaincu
+	 * @return l'exp gagnée
+	 */
+	@WIP
+	public int win(Pokemon vaincu){
+		fosout("%o a gagné %o!", surnom, ((vaincu.espece.getExp() * vaincu.level) / this.level) * expBoost);
+		getEvs(vaincu);
+		exp+=((vaincu.espece.getExp() * vaincu.level) / this.level) * expBoost;
+		while(exp >= toNextLevel && level < 100){
+			if(exp < toNextLevel){
+				break;
+			}
+			levelUp();
+			
+		}
+		calcStats(espece);
+		return (int) (((vaincu.espece.getExp() * vaincu.level) / this.level) * expBoost);
+		
+		
+	}
+	
+	protected void getEvs(Pokemon vaincu){
+		if(!((atkEV + defEV + pvEV + atkSpeEV + defSpeEV + vitEV) > 510)){
+			for(Stats stat : vaincu.getEspece().getEVgiven()){
+				switch(stat){
+				case ATK:
+					if(atkEV < 252){
+						atkEV++;
+					}
+					break;
+				case ATKSPE:
+					if(atkSpeEV < 252){
+						atkSpeEV++;
+					}
+					break;
+				case DEF:
+					if(defEV < 252){
+						atkEV++;
+					}
+					break;
+				case DEFSPE:
+					if(defSpeEV < 252){
+						defSpeEV++;
+					}
+					break;
+				case PV:
+					if(pvEV < 252){
+						pvEV++;
+					}
+					break;
+				case RIEN:
+					break;
+				case VIT:
+					if(vitEV < 252){
+						vitEV++;
+					}
+					break;
+				
+				}
+			}
+			
+		}
+	}
+	
+	
+	public void calcStats(Espece espece){
+		statATK = (int) Math.round( ( ( ((2 * espece.getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100 ) + 5 ) * ((bonusCara == Stats.ATK) ? 1.1 : ((malusCara == Stats.ATK) ? 0.9 : 1)));
+		statDEF = (int) Math.round( ( ( ((2 * espece.getBaseDef() + defIV + (defEV / 4)) * level) / 100 ) + 5 ) * ((bonusCara == Stats.DEF) ? 1.1 : ((malusCara == Stats.DEF) ? 0.9 : 1)));
+		statATKSPE = (int) Math.round( ( ( ((2 * espece.getBaseAtkSpe() + atkSpeIV + (atkSpeEV / 4)) * level) / 100 ) + 5 ) * ((bonusCara == Stats.ATKSPE) ? 1.1 : ((malusCara == Stats.ATKSPE) ? 0.9 : 1)));
+		statDEFSPE = (int) Math.round( ( ( ((2 * espece.getBaseDefSpe() + defSpeIV + (defSpeEV / 4)) * level) / 100 ) + 5 ) * ((bonusCara == Stats.DEFSPE) ? 1.1 : ((malusCara == Stats.DEFSPE) ? 0.9 : 1)));
+		statVIT = (int) Math.round( ( ( ((2 * espece.getBaseVit() + vitIV + (vitEV / 4)) * level) / 100 ) + 5 ) * ((bonusCara == Stats.VIT) ? 1.1 : ((malusCara == Stats.VIT) ? 0.9 : 1)));
+		statPV = Math.round(((2 * espece.getBasePV() + pvIV + (pvEV / 4)) * level) / 100) + level + 10;
+	}
+	/**
+	 * Permet d'utiliser un item sur le pokémon.
+	 * @param used
+	 * @return un booleen pour savoir si l'item doit être supprimé ou pas. (false si pas supprimé, true sinon)
+	 */
+	public boolean itemUsed(Item used){
+		if(espece.getEvolType() instanceof E_Item){
+			if(((E_Item) espece.getEvolType()).itemEvolve(used)){
+				evolve();
+			}
+		}else{
+			if(used instanceof I_Heal){
+				
+				StringKey.outStringKey(key("fight.item.used"), this.getSurnom(), used.getName());
+				I_Heal usedI = (I_Heal) used;
+				if(usedI.getPvHeal() > 0){
+					this.heal(usedI.getPvHeal());
+					keyout(key("items.heal"), surnom);
+				}
+				if(usedI.isHealAll() && status == Status.AUCUN){
+					this.setStatus(Status.AUCUN);
+					keyout(key("items.status.heal"), surnom);
+				}else if(usedI.getStatusHeald() != Status.AUCUN && status == usedI.getStatusHeald()){
+					setStatus(Status.AUCUN);
+					switch(usedI.getStatusHeald()){
+					case AUCUN:
+						break;
+					case BRULURE:
+						keyout(key("status.brulure.heal"), surnom);
+						break;
+					case GEL:
+						keyout(key("status.gel.heal"), surnom);
+						break;
+					case PARALYSIE:
+						keyout(key("status.para.heal"), surnom);
+						break;
+					case POISON:
+						keyout(key("status.poison.heal"), surnom);
+						break;
+					case SOMMEIL:
+						keyout(key("status.sommeil.heal"), surnom);
+						break;
+					default:
+						break;
+					
+					}
+				}
+				
+				
+			}
+		}
+		
+		return false;
+	}
+	
+	public Item hold(Item item){
+		Item ancien = (Item) held.clone();
+		held = item;
+		return ancien;
+	}
+	
+	public void traded(){
+		expBoost = 1.5f;
+		if(espece.getEvolType() instanceof E_Trade){
+			evolve();
+		}
+	}
+	
+	public void toolEvTrade(){
+		if(espece.getEvolType() instanceof E_Trade){
+			evolve();
+		}
+	}
+	
+	public void evolve(){
+		boolean changeName = (surnom.equals(espece.getSurnom()));
+		this.espece = this.espece.getEvolution();
+		calcStats(espece);
+		fosout("%o évolue en %o!", surnom, espece.getSurnom());
+		if(changeName){
+			surnom = espece.getSurnom();
+		}
 	}
 	
 	//Les getters
@@ -1867,6 +1810,11 @@ return true;
 				+ ", toNextLevel=" + toNextLevel + ", expBoost=" + expBoost + ", confus=" + confus + ", peur=" + peur
 				+ ", amour=" + amour + ", vampigraine=" + vampigraine + ", malediction=" + malediction + ", held="
 				+ held + "]";
+	}
+	@Override
+	public HashArray[] listVar() {
+		
+		return null;
 	}
 
 }

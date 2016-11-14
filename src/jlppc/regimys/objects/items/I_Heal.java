@@ -1,5 +1,6 @@
 package jlppc.regimys.objects.items;
 
+import jlppc.regimys.enums.Caractere.Stats;
 import jlppc.regimys.objects.Pokemon.Status;
 
 public class I_Heal extends Item {
