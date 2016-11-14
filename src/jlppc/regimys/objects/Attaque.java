@@ -12,7 +12,7 @@ import jlppc.utils.WIP;
  * @author Jlppc
  *
  */
-public abstract class Attaque extends Typedef{
+public abstract class Attaque extends RegimysObject{
 	/**
 	 * Le nom de l'attaque
 	 */

@@ -6,7 +6,7 @@ import jlppc.regimys.util.text.StringKey.KeyNotFoundException;
 import jlppc.utils.FormattedString;
 import jlppc.utils.HashArray;
 
-public abstract class Typedef {
+public abstract class RegimysObject {
 	
 	
 	

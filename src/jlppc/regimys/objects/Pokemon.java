@@ -19,7 +19,7 @@ import jlppc.utils.WIP;
  * @author Jlppc
  *
  */
-public class Pokemon extends Typedef{
+public class Pokemon extends RegimysObject{
 	/**
 	 * Le nom / surnom du pokemon
 	 */
@@ -724,6 +724,8 @@ public class Pokemon extends Typedef{
 	}
 	public synchronized void attacked(int pvPerdus){
 		this.PV = PV  - pvPerdus;
+		PV = (PV < 0) ? 0 : PV;
+		
 	}
 	//Les methodes suivantes permettent de modifier les statistiques en suivant les niveaux prédefinis. Il retoure false si les statistiques étaient déjà au plus haut ou plus bas.
 	public boolean changeATK(int power) {

@@ -10,8 +10,7 @@ import jlppc.regimys.evolution.E_Nope;
 import jlppc.regimys.evolution.E_Trade;
 import jlppc.regimys.evolution.E_TradeItem;
 import jlppc.regimys.objects.Espece;
-import jlppc.regimys.objects.Typedef;
-import jlppc.regimys.objects.Typedef.Null;
+
 import jlppc.regimys.objects.items.Item;
 import jlppc.regimys.util.text.StringKey;
 
