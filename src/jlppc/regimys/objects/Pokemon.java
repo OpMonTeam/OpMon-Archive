@@ -1811,10 +1811,6 @@ return true;
 				+ ", amour=" + amour + ", vampigraine=" + vampigraine + ", malediction=" + malediction + ", held="
 				+ held + "]";
 	}
-	@Override
-	public HashArray[] listVar() {
-		
-		return null;
-	}
+	
 
 }

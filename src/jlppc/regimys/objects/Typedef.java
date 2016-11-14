@@ -52,26 +52,7 @@ public abstract class Typedef {
 		
 	}
 	
-	public Object getVar(String name){
-		for(HashArray obj : listVar()){
-			if(obj.getValue("nom").equals(name) ){
-				return obj.getValue("valeur");
-			}
-		}
-		
-		return null;
-	}
 	
-	/**
-	*Liste les variables publiques de la classe dans un HashArray sous la forme suivante :<br/>
-	*Soit [] le hashArray, et () un element, séparé par des virgules. Chaque element est présenté comme ceci : (case, tag, element)<br/>
-	*Pour un objet HashArray, une variable. Ici on considère la variable <code>public String nom = "Asriel";</code><br/>
-	*[(0,nom,"nom"),(1,type, String.class),(2,valeur, "Asriel")]<br/>
-	*On considère la variable <code>public int fl = 5;</code><br/>
-	*[(0,nom, "fl"),(1,type, Integer.class),(2, valeur, 5)] (Pour les types primitifs, la classe correspondante est utilisée (ex: Integer pour int, Double pour double))<br/>
-	*Enfin, on considère la variable <code>public Espece espece;</code><br/>
-	*[(0,nom,"espece"),(1,type,Espece.class),(2,valeur,NULL)]
-	*Voila!
-	*/
-	public abstract HashArray[] listVar();
+	
+	
 }
