@@ -19,3 +19,5 @@ Book1.xlsx.gsheet
 .lock
 #Pas de fichiers .zip
 .zip
+#Pas de fichiers de sauvegarde Regimys
+.rsave
