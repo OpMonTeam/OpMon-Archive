@@ -134,11 +134,11 @@ public class Initializer {
 		 listePoke[103] = new Espece(95, 85, 125, 65, 55, 95, "Noadkoko", Type.PLANTE, Type.PSY, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.DEF}, 2f, 120f, "Il stocke tellement d'énergie dans son corps qu'une simple secousse peut le faire exploser.", 215, 1250000);
 		 listePoke[104] = new Espece(50, 95, 40, 50, 35, 50, "Osselait", Type.SOL, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 28,new E_Level(105, 28), null, null, new Stats[]{Stats.DEF}, 0.4f, 6.5f, "Il porte constamment le crâne de sa mère. Personne ne sait à quoi il ressemble sans ce crâne.", 87, 1000000);
 		 listePoke[105] = new Espece(80, 110, 50, 80, 45, 60, "Ossatueur", Type.SOL, Type.AUCUN, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.DEF, Stats.DEF}, 1f, 45f, "Il porte constamment le crâne de sa mère. Personne ne sait à quoi il ressemble sans ce crâne.", 124, 1000000);
-//		 listePoke[106] =
-//		 listePoke[107] =
-//	     listePoke[108] =
-//		 listePoke[109] =
-//		 listePoke[110] =
+		 listePoke[106] = new Espece(120, 53, 35, 110, 87, 50, "Kicklee", Type.COMBAT, Type.AUCUN, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.ATK, Stats.ATK}, 1.4f, 49.8f, "Ses pattes élastiques s'allongent, ce qui ne manque jamais de surprendre au premier combat.", 139, 1000000);
+		 listePoke[107] = new Espece(105, 79, 35, 110, 76, 50, "Tygnon", Type.COMBAT, Type.AUCUN, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.DEFSPE, Stats.DEFSPE}, 1.4f, 50.2f, "Même le béton cède sous ses poings dévastateurs. Au combat, il s'essouffle au bout de 3 minutes.", 140, 1000000);
+        	 listePoke[108] = new Espece(55, 75, 60, 75, 30, 90, "Excelangue", Type.NORMAL, Type.AUCUN, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.PV, Stats.PV}, 1.2f, 65.5f, "Chaque fois qu'Excelangue découvre quelque chose de nouveau, il le lèche. Sa mémoire est basée sur le goût et la texture des objets. Il n'aime pas les choses acides.", 127, 1000000);
+		 listePoke[109] = new Espece(65, 95, 60, 45, 35, 40, "Smogo", Type.POISON, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 35,new E_Level(110, 35), null, null, new Stats[]{Stats.DEF}, 0.6f, 1f, "Son corps très fin en forme de ballon est rempli d'un horrible gaz toxique. L'air est nauséabond à proximité de ce Pokémon.", 114, 1000000);
+		 listePoke[110] = new Espece(90, 120, 85, 70, 60, 65, "Smogogo", Type.POISON, Type.AUCUN, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.DEF}, 1.2f, 9.5f, "Il peut arriver que deux Smogo mutent et s'associent pour former un Smogogo, mais c'est très rare.", 173, 1000000);
 //		 listePoke[111] =
 //		 listePoke[112] =
 //		 listePoke[113] =
