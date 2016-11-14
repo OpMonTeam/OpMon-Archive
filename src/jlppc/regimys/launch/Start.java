@@ -1,8 +1,10 @@
 package jlppc.regimys.launch;
 
+import java.io.File;
 import java.util.Random;
 import java.util.Scanner;
 
+import jlppc.regimys.core.save.Parameters;
 import jlppc.regimys.creator.pokemon.Main;
 import jlppc.regimys.enums.Caractere;
 import jlppc.regimys.fight.Fight;
@@ -20,19 +22,27 @@ import jlppc.regimys.playercore.Player;
 import jlppc.regimys.tempgui.ChoosePoke;
 import jlppc.utils.FormattedString;
 import jlppc.utils.Log;
+import jlppc.utils.Static;
 /**
  * Demmare le programme.
  * @author Jlppc
  *
  */
+@Static
 public class Start {
 	static{
-		Initializer.init();
+		try{
+			Initializer.init();
+		}catch(Throwable e){
+			System.err.println("Une erreur est survenue lors du demmarage du programme. Merci d'en informer de toute urgence le developpeur.");
+			System.exit(-99999);
+		}
+		
 	}
 	
 	public static float version = 0.06f;
 	
-	public static char commits = ' ';
+	public static char commits = 'g';
 	
 
 	
@@ -40,11 +50,11 @@ public class Start {
 	
 	public static boolean pre = (preNbre != 0);
 	
-	public static int sousVers = 0;
+	public static int sousVers = 1;
 	
 	public static boolean sousVersIs = (sousVers != 0);
 	
-	public static String versionS = "Alpha " + version  + (sousVersIs ? "." + sousVers : "") + (pre ? (" pre " + preNbre) : "") + commits;//Actuel : 0.04 
+	public static String versionS = "Alpha " + version  + (sousVersIs ? "." + sousVers : "") + (pre ? (" pre " + preNbre) : "") + commits;
 	
 	//Utilitaires pratiques
 	/**
@@ -79,7 +89,7 @@ public class Start {
 							}
 						}catch(ArrayIndexOutOfBoundsException | NullPointerException e){
 							System.out.println("Un des mots suivants doivent apparaitre après --creator :"  + Log.saut + "<html><ul><li>pokemon</li></ul></html>");
-							System.exit(2);//Les signaux d'exit du programme : 0 : Tout va bien. -1 : Erreur fatale. 1 : Erreur dans le programme 2 : Erreur dans les arguments.
+							System.exit(2);//Les signaux d'exit du programme : 0 : Tout va bien. -99999 : Erreur dans l'initialiseur du programme -1 : Erreur fatale. 1 : Erreur dans le programme 2 : Erreur dans les arguments.
 						}
 					}else if(args[0].equals("--version")){
 						System.out.println("Pokémon Regimys version " + versionS);
@@ -92,29 +102,39 @@ public class Start {
 					System.out.println("L'ouverture de fichiers de sauvegarde par ce biais n'est actuellement pas disponible. Lancement du jeu...");
 				}
 			}catch(ArrayIndexOutOfBoundsException | NullPointerException e){
-
+				
 				String playername;
-				System.out.println("Bienvenue dans le monde non achevé des pokémon! Quel est ton nom? : ");
-				playername = sc.nextLine();
-				joueur = new Player(playername);
-				System.out.println("Une boite de dialogue s'est ouverte pour choisir ton Pokémon.");
-				ChoosePoke cp = new ChoosePoke();
-				Espece esp = Initializer.listePoke[cp.getEspChoosen()];
-				System.out.println("Pokémon choisi : " + esp.getSurnom());
-				System.out.println("Veux-tu donner un surnom a ton Pokémon ? (Tapez true pour Oui et false pour Non ) : ");
-				boolean isS = sc.nextBoolean();
-				String surnom = esp.getSurnom();
-				if(isS){
-					sc.nextLine();
-					System.out.println("Surnom : ");
-					surnom = sc.nextLine();
+				if(Parameters.checkParam("playerexists")){
+					joueur = Player.getPlayer(new File("player.rsave"));
+				}else{
+					System.out.println("Bienvenue dans le monde non achevé des pokémon! Quel est ton nom? : ");
+					playername = sc.nextLine();
+					joueur = new Player(playername);
+					System.out.println("Une boite de dialogue s'est ouverte pour choisir ton Pokémon.");
+					ChoosePoke cp = new ChoosePoke();
+					Espece esp = Initializer.listePoke[cp.getEspChoosen()];
+					System.out.println("Pokémon choisi : " + esp.getSurnom());
+					System.out.println("Veux-tu donner un surnom a ton Pokémon ? (Tapez true pour Oui et false pour Non ) : ");
+					boolean isS = sc.nextBoolean();
+					String surnom = esp.getSurnom();
+					if(isS){
+						sc.nextLine();
+						System.out.println("Surnom : ");
+						surnom = sc.nextLine();
+					}
+					Pokemon first = new Pokemon(surnom, esp, 5, new Attaque[]{GodAttackPleaseDontHackAndCheat.class.newInstance(), Rugissement.class.newInstance(), Berceuse.class.newInstance(), Triplattaque.class.newInstance()}, Caractere.HARDI, null);
+					joueur.addPokeToEquipe(first);
+					System.out.println("C'est parti pour les combats!");
+					
+					joueur.addItem(Item.searchItem(Item.getItem("Potion")));joueur.addItem(Item.searchItem(Item.getItem("Potion")));//Oui il y a deux instructions en deux lignes. ET ALORS?
+					Player.savePlayer(new File("player.rsave"));
+					Parameters.modifyOrAddParam("playerexists", "true", "Définit si le joueur a deja été crée ou non.");
+					
 				}
-				Pokemon first = new Pokemon(surnom, esp, 5, new Attaque[]{GodAttackPleaseDontHackAndCheat.class.newInstance(), Rugissement.class.newInstance(), Berceuse.class.newInstance(), Triplattaque.class.newInstance()}, Caractere.HARDI, null);
-				joueur.addPokeToEquipe(first);
-				System.out.println("C'est parti pour les combats!");
 				int combatsNumber = 0;
-				joueur.addItem(Item.searchItem(Item.getItem("Potion")));joueur.addItem(Item.searchItem(Item.getItem("Potion")));//Oui il y a deux instructions en deux lignes. ET ALORS?
 				while(true){
+
+					Parameters.updateFile();
 					combatsNumber++;
 					System.out.println("Combat n°" + combatsNumber);
 					Espece eAdv = Initializer.listePoke[rand.nextInt(Initializer.listePoke.length)];
@@ -128,6 +148,8 @@ public class Start {
 					int itemID = rand.nextInt(Item.itemList.size());
 					joueur.addItem(itemID);
 					System.out.println("Ajout de l'item " + Item.getItem(itemID).getName());
+					Player.savePlayer(new File("player.rsave"));
+
 				}
 				
 			}

@@ -1,11 +1,12 @@
 package jlppc.regimys.objects.items;
 
+import java.io.Serializable;
 import java.util.Vector;
 
 import jlppc.regimys.launch.Start;
 import jlppc.regimys.objects.Pokemon;
 
-public class Item {
+public class Item implements Serializable{
 	protected String nom;
 	protected boolean usable;
 	protected boolean givable;
@@ -16,7 +17,7 @@ public class Item {
 		return nom;
 	}
 	
-	public enum BagCat{
+	public enum BagCat implements Serializable{
 		SOIN, OBJETS, RARES, CTS, BAIES;
 	}
 	

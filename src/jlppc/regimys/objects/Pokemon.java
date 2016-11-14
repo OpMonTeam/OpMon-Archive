@@ -1,5 +1,6 @@
 package jlppc.regimys.objects;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 import jlppc.regimys.enums.Caractere;
@@ -19,7 +20,7 @@ import jlppc.utils.WIP;
  * @author Jlppc
  *
  */
-public class Pokemon extends RegimysObject{
+public class Pokemon extends RegimysObject implements Serializable{
 	/**
 	 * Le nom / surnom du pokemon
 	 */
@@ -118,7 +119,7 @@ public class Pokemon extends RegimysObject{
 	
 	
 	@Static
-	protected static class CalcCourbes{
+	protected static class CalcCourbes implements Serializable{
 		private static float p(int x){
 			switch(x){
 			case 0:
@@ -322,7 +323,7 @@ public class Pokemon extends RegimysObject{
 	 * @author Jlppc
 	 *
 	 */
-	public enum Status{
+	public enum Status implements Serializable{
 		BRULURE, PARALYSIE, SOMMEIL, GEL, POISON, AUCUN;
 	}
 	
@@ -419,14 +420,14 @@ public class Pokemon extends RegimysObject{
 	 * @return un booleen pour savoir si l'item doit être supprimé ou pas. (false si pas supprimé, true sinon)
 	 */
 	public boolean itemUsed(Item used){
+		fosout("%o utilise un(e) %o!", this.getSurnom(), used.getName());
 		if(espece.getEvolType() instanceof E_Item){
 			if(((E_Item) espece.getEvolType()).itemEvolve(used)){
 				evolve();
 			}
-		}else{
+		}
 			if(used instanceof I_Heal){
 				
-				StringKey.outStringKey(key("fight.item.used"), this.getSurnom(), used.getName());
 				I_Heal usedI = (I_Heal) used;
 				if(usedI.getPvHeal() > 0){
 					this.heal(usedI.getPvHeal());
@@ -463,7 +464,7 @@ public class Pokemon extends RegimysObject{
 				
 				
 			}
-		}
+		
 		
 		return false;
 	}

@@ -1,10 +1,12 @@
 package jlppc.regimys.evolution;
 
+import java.io.Serializable;
+
 import jlppc.regimys.launch.Initializer;
 import jlppc.regimys.objects.Espece;
 import jlppc.regimys.objects.Pokemon;
 
-public abstract class Evolution {
+public abstract class Evolution implements Serializable{
 	
 	protected Espece toEvolve;
 	protected int evo;

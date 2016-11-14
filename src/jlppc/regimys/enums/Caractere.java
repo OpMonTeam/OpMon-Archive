@@ -1,11 +1,13 @@
 package jlppc.regimys.enums;
 
+import java.io.Serializable;
+
 /**
  * WAW! Tous les caract�res des pokemon! Je vais pas les documenter un par un, ca serait totalement INUTILE! Sinon y'a pokepedia!
  * @author Jlppc
  *
  */
-public enum Caractere {
+public enum Caractere implements Serializable{
 	
 	ASSURE(Stats.DEF, Stats.ATK), 
 	BIZARRE(Stats.RIEN, Stats.RIEN),
@@ -38,7 +40,7 @@ public enum Caractere {
 	 * @author Jlppc
 	 *
 	 */
-	public enum Stats{
+	public enum Stats implements Serializable{
 		ATK, DEF, DEFSPE, ATKSPE, VIT, RIEN,
 		/**A part, il sert pour les EV*/
 		PV;

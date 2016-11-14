@@ -1,5 +1,7 @@
 package jlppc.regimys.objects;
 
+import java.io.Serializable;
+
 import jlppc.regimys.enums.Type;
 import jlppc.regimys.fight.EndOfTurn;
 import jlppc.regimys.fight.NoPP;
@@ -12,7 +14,7 @@ import jlppc.utils.WIP;
  * @author Jlppc
  *
  */
-public abstract class Attaque extends RegimysObject{
+public abstract class Attaque extends RegimysObject implements Serializable{
 	/**
 	 * Le nom de l'attaque
 	 */

@@ -1,6 +1,7 @@
 package jlppc.regimys.objects;
 
 import java.awt.Image;
+import java.io.Serializable;
 import java.util.Arrays;
 
 import jlppc.regimys.enums.Type;
@@ -16,7 +17,7 @@ import jlppc.utils.HashArray;
  * @author Jlppc
  *
  */
-public final class Espece {
+public final class Espece implements Serializable{
 
 	/**
 	 * Le nom de l'esp�ce. Pourquoi surnom? Je sais pas.
@@ -127,7 +128,7 @@ public final class Espece {
 	protected Image resumeS;
 	protected int expGiven;
 
-	public enum CourbeExp {
+	public enum CourbeExp implements Serializable{
 		RAPIDE, MOYENNE, PARABOLIQUE, LENTE, ERRATIQUE, FLUCTUANTE;
 	}
 	
@@ -300,8 +301,6 @@ public final class Espece {
 		return new String(this.surnom);
 	}
 
-	
-
 	public CourbeExp getCourbe(){
 		return courbe;
 	}
@@ -311,7 +310,7 @@ public final class Espece {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((EVgiven == null) ? 0 : EVgiven.hashCode());
+		result = prime * result + Arrays.hashCode(EVgiven);
 		result = prime * result + Arrays.hashCode(atksByLevels);
 		result = prime * result + baseAtk;
 		result = prime * result + baseAtkSpe;
@@ -319,9 +318,14 @@ public final class Espece {
 		result = prime * result + baseDefSpe;
 		result = prime * result + basePV;
 		result = prime * result + baseVit;
+		result = prime * result + ((courbe == null) ? 0 : courbe.hashCode());
 		result = prime * result + Arrays.hashCode(ctCompatibles);
 		result = prime * result + ((entreePokedex == null) ? 0 : entreePokedex.hashCode());
-		result = prime * result + ((evolution == null) ? 0 : evolution.hashCode());
+		result = prime * result + ((evolType == null) ? 0 : evolType.hashCode());
+		//result = prime * result + ((evolution == null) ? 0 : evolution.hashCode());
+		result = prime * result + expGiven;
+		result = prime * result + expMax;
+		result = prime * result + hashCode;
 		result = prime * result + maniereEvolution;
 		result = prime * result + ((miniSprite == null) ? 0 : miniSprite.hashCode());
 		result = prime * result + niveauEvolution;
@@ -354,7 +358,7 @@ public final class Espece {
 			return false;
 		}
 		Espece other = (Espece) obj;
-		if (EVgiven != other.EVgiven) {
+		if (!Arrays.equals(EVgiven, other.EVgiven)) {
 			return false;
 		}
 		if (!Arrays.equals(atksByLevels, other.atksByLevels)) {
@@ -378,6 +382,9 @@ public final class Espece {
 		if (baseVit != other.baseVit) {
 			return false;
 		}
+		if (courbe != other.courbe) {
+			return false;
+		}
 		if (!Arrays.equals(ctCompatibles, other.ctCompatibles)) {
 			return false;
 		}
@@ -388,11 +395,27 @@ public final class Espece {
 		} else if (!entreePokedex.equals(other.entreePokedex)) {
 			return false;
 		}
+		if (evolType == null) {
+			if (other.evolType != null) {
+				return false;
+			}
+		} else if (!evolType.equals(other.evolType)) {
+			return false;
+		}
 		if (evolution == null) {
 			if (other.evolution != null) {
 				return false;
 			}
 		} else if (!evolution.equals(other.evolution)) {
+			return false;
+		}
+		if (expGiven != other.expGiven) {
+			return false;
+		}
+		if (expMax != other.expMax) {
+			return false;
+		}
+		if (hashCode != other.hashCode) {
 			return false;
 		}
 		if (maniereEvolution != other.maniereEvolution) {

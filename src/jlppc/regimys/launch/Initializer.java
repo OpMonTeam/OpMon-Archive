@@ -13,12 +13,14 @@ import jlppc.regimys.objects.Espece;
 
 import jlppc.regimys.objects.items.Item;
 import jlppc.regimys.util.text.StringKey;
+import jlppc.utils.Static;
 
 /**
  * Permet d'initialiser des choses.
  * @author Jlppc
  *
  */
+@Static
 public class Initializer {
 	public static Espece[] listePoke = new Espece[152];
 	public static E_Nope ne = new E_Nope(); //ne = No Evolution

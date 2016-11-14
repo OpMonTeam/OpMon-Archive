@@ -1,10 +1,13 @@
 package jlppc.regimys.enums;
+
+import java.io.Serializable;
+
 /**
  * Tout ce qui attrait au type.
  * @author Jlppc
  *
  */
-public enum Type {
+public enum Type implements Serializable{
 	
 	EAU(3, "Eau", "EAU"), FEU(6, "Feu", "FEU"), PLANTE(10, "Plante", "PLANTE"), ELECTRIQUE(4, "Electrique", "ELECTRIQUE"), PSY(12, "Psy", "PSI"), TENEBRES(16,"Ténèbres", "TENEBRES"), DRAGON(2, "Dragon", "DRAGON"), COMBAT(1, "Combat", "COMBAT"), ROCHE(13, "Roche", "ROCHE"), SOL(14,"Sol", "SOL"), NORMAL(9, "Normal","NORMAL"), FEE(5, "Fée", "FEE"), SPECTRE(15, "Spectre", "SPECTRE"), POISON(11, "Poison", "POISON"), ACIER(0, "Acier", "ACIER"), INSECTE(8, "Insecte", "INSECTE"), VOL(17, "Vol", "VOL"), GLACE(7, "Glace", "GLACE"), AUCUN(-1, "Aucun", "AUCUN");
 	/**

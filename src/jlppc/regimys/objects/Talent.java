@@ -1,11 +1,13 @@
 package jlppc.regimys.objects;
+import java.io.Serializable;
+
 import jlppc.regimys.fight.EndOfTurn;
 /**
- * La base du talent des pokemon. La plupart des talents seront traités au cas-par-cas dans Fight ou autre.
+ * La base du talent des pokemon. La plupart des talents seront traitï¿½s au cas-par-cas dans Fight ou autre.
  * @author Jlppc
  *
  */
-public abstract class Talent {
+public abstract class Talent implements Serializable {
 	public static final int ACTIVE_ON_LIFE_LOW = 0;
 	public static final int ALWAYS_ACTIVE = 1;
 	public static final int ACTIVE_ON_ATTACK_TAKEN = 2;
