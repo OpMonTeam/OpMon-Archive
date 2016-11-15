@@ -4,6 +4,7 @@ import jlppc.regimys.launch.Start;
 import jlppc.regimys.objects.Pokemon;
 import jlppc.regimys.objects.Pokemon.Status;
 import jlppc.regimys.objects.items.Item;
+import jlppc.regimys.objects.items.I_Pokeball;
 import jlppc.utils.FormattedString;
 /**
  * La classe qui s'occupe de tout ce qui est combat.
@@ -43,6 +44,7 @@ public class Fight {
 		boolean defConf = false;
 		boolean endOfMatch = false;
 		int attaqueAtk = 0;
+		boolean captured = false;
 		int attaqueDef = 0; 
 		while(!endOfMatch){
 			FormattedString.outPrintln("%o a %o pv.", atk.getSurnom(), atk.getPV());
@@ -82,7 +84,18 @@ public class Fight {
 						System.out.println("Item indisponible ou inutilisable en combat. Retentez : ");
 						id = Start.sc.nextInt();
 					}
-					atk.itemUsed(Item.getItem(id));
+					if(Item.getItem(id) instanceof I_Pokeball){
+						I_Pokeball pkmn = (I_Pokeball) Item.getItem(id);
+						if(def.capture(pkmn)){
+							captured = true;
+							break;
+						}else{
+							System.out.println("Oh non! Presque!"):
+						}
+					}else{
+						atk.itemUsed(Item.getItem(id));
+					}
+					
 					Start.joueur.deleteItem(id);
 					attaqueAtk = -1;
 				}
@@ -562,22 +575,28 @@ public class Fight {
 				break;
 			}
 		}
-		if(def.getPV() <= 0 && atk.getPV() <= 0){
-			System.out.println("Egalité!");
-		}
-		else if(def.getPV() <= 0 && atk.getPV() > 0){
-			System.out.println(def.getSurnom() + " est K.O");
-			System.out.println("L'attaquant " + atk.getSurnom() + " a gagné!");
-			atk.win(def);
-		}else if(atk.getPV() <= 0 && def.getPV() > 0){
-			System.out.println(atk.getSurnom() + " est K.O");
-			System.out.println("Le défenseur " + def.getSurnom() + " a gagné!");
-			def.win(atk);
-			
-			
+		if(captured){
+			System.out.println(def.getSurnom() + " est capturé!");
+			if(!Start.joueur.addPokeToEquipe(def)){
+				System.out.println(def.getSurnom() + " est envoyé dans le PC!");
+			}
 		}else{
-			System.out.println("BUG. On sait pas qui a gagné (Cela ne devrait pas arriver...)");
+			if(def.getPV() <= 0 && atk.getPV() <= 0){
+				System.out.println("Egalité!");
+			}
+			else if(def.getPV() <= 0 && atk.getPV() > 0){
+				System.out.println(def.getSurnom() + " est K.O");
+			System.out.println("L'attaquant " + atk.getSurnom() + " a gagné!");
+					atk.win(def);
+			}else if(atk.getPV() <= 0 && def.getPV() > 0){
+				System.out.println(atk.getSurnom() + " est K.O");
+				System.out.println("Le défenseur " + def.getSurnom() + " a gagné!");
+				def.win(atk);
+			}else{
+				System.out.println("BUG. On sait pas qui a gagné (Cela ne devrait pas arriver...)");
+			}
 		}
+		
 		atk.setStats(oldStats[0]);
 		def.setStats(oldStats[1]);
 	}
