@@ -14,6 +14,7 @@ import jlppc.regimys.objects.items.Item;
 import jlppc.regimys.util.text.StringKey;
 import jlppc.utils.HashArray;
 import jlppc.utils.Static;
+import jlppc.regimys.util.math.Math;
 import jlppc.utils.WIP;
 /**
  * Definit un pokemon.
@@ -115,8 +116,40 @@ public class Pokemon extends RegimysObject implements Serializable{
 	
 	protected Item held;
 	
+	protected int tauxCapture;
 	
 	
+	public boolean captured(I_Pokeball pokeball){
+		int a = Math.round((((3 * pvMax - 2 * PV) * tauxCapture * pokeball.getTauxCapture() * (Comparaisons.multiEgal(status, Status.PARALYSIE, Status.POISON, Status.BRULURE) ? 1.5f : (Comparaisons.multiEgal(status, Status.SOMMEIL, Status.GEL) ? 2 : 1)))/(3 * pvMax)));
+		int b = Math.round((pow(2, 16) - 1) * Math.racine(a/(pow(2, 8) - 1),4));
+		int[] c = {Start.rand.nextInt(65535), Start.rand.nextInt(65535), Start.rand.nextInt(65535), Start.rand.nextInt(65535)};
+		int nbreOk;
+		for(int nbre : c){
+			if(nbre <= b){
+				nbreOk++;
+			}
+		}
+		if(nbreOk == 0){
+			return false;
+		}else{
+			System.out.println("Remue...");
+			if(nbreOk == 1){
+				return false;
+			}
+			System.out.println("Remue...");
+			if(nbreOk == 2){
+				return false;
+			}
+			System.out.println("Remue...");
+			if(nbreOk == 3){
+				return false;
+			}
+			if(nbreOk != 4){
+				throw new InternalException();
+			}
+			return true;
+		}
+	}
 	
 	@Static
 	protected static class CalcCourbes implements Serializable{
