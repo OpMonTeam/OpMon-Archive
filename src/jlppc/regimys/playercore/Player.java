@@ -34,6 +34,10 @@ public class Player implements Serializable {
 	private Vector<Pokemon> pc = new Vector<>();
 	private Pokemon[] equipe = new Pokemon[6];
 	
+	public Pokemon[] getEquipe(){
+		return equipe;
+	}
+	
 	public void addItem(int itemID){
 		
 		switch(Item.getItem(itemID).getBagCat()){

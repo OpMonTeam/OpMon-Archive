@@ -590,8 +590,25 @@ public class Fight {
 					atk.win(def);
 			}else if(atk.getPV() <= 0 && def.getPV() > 0){
 				System.out.println(atk.getSurnom() + " est K.O");
-				System.out.println("Le défenseur " + def.getSurnom() + " a gagné!");
 				def.win(atk);
+				boolean last = false;
+				for(Pokemon pkmn : Start.joueur.getEquipe()){
+					if(pkmn == null){
+						last = true;
+						break;
+					}
+					if(pkmn.getPV() != 0){
+						last = false;
+						fight(pkmn, def);
+						break;
+					}else{
+						last = true;
+					}
+				}
+				if(last == true){
+					System.out.println("Le défenseur " + def.getSurnom() + " a gagné!");
+				}
+				
 			}else{
 				System.out.println("BUG. On sait pas qui a gagné (Cela ne devrait pas arriver...)");
 			}
