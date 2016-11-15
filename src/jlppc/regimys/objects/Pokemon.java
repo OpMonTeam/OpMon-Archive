@@ -238,7 +238,7 @@ public class Pokemon extends RegimysObject implements Serializable{
 		bonusCara = caractere.bonus;
 		malusCara = caractere.malus;
 		this.surnom = espece.getSurnom();
-		
+		tauxCapture = espece.getTauxDeCapture();
 		PV = new Integer(statPV);
 		this.talent = talent;
 		type1 = espece.getType1();

@@ -127,6 +127,7 @@ public final class Espece implements Serializable{
 	protected Image resume;
 	protected Image resumeS;
 	protected int expGiven;
+	protected int tauxDeCapture;
 
 	public enum CourbeExp implements Serializable{
 		RAPIDE, MOYENNE, PARABOLIQUE, LENTE, ERRATIQUE, FLUCTUANTE;
@@ -161,13 +162,14 @@ public final class Espece implements Serializable{
 	public Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, String name, Type type1, Type type2,
 			int maniereEvolution, int niveauEvolution, Evolution evolType, HashArray[] attacksByLevels,
 			CT[] ctCombatibles, Stats[] EVGiven, float taille, float poids, String entreePokedex, int expGiven,
-			int expMax) {
+			int expMax, int tauxDeCapture) {
 		if(atk < 0 || def < 0 || atkSpe < 0 || defSpe < 0 || vit < 0 || pv < 0){
 			throw new IncorrectValueException("Stats in Espece execution");
 		}
 		if(expGiven < 0){
 			throw new IncorrectValueException(expGiven, "In Espece initializer");
 		}
+		this.tauxDeCapture = tauxDeCapture;
 		baseAtk = atk;
 		baseDef = def;
 		baseAtkSpe = atkSpe;
@@ -521,6 +523,58 @@ public final class Espece implements Serializable{
 		evolType.checkEvo();
 		this.evolution = evolType.getEvolution();
 		
+	}
+
+	public int getHashCode() {
+		return hashCode;
+	}
+
+	public int getExpMax() {
+		return expMax;
+	}
+
+	public Image getMiniSprite() {
+		return miniSprite;
+	}
+
+	public Image getSpriteBattleFace() {
+		return spriteBattleFace;
+	}
+
+	public Image getSpriteBattleFront() {
+		return spriteBattleFront;
+	}
+
+	public Image getSpriteMap() {
+		return spriteMap;
+	}
+
+	public Image getSpriteBattleFaceS() {
+		return spriteBattleFaceS;
+	}
+
+	public Image getSpriteBattleFrontS() {
+		return spriteBattleFrontS;
+	}
+
+	public Image getSpriteMapS() {
+		return spriteMapS;
+	}
+
+	public Image getResume() {
+		return resume;
+	}
+
+	public Image getResumeS() {
+		return resumeS;
+	}
+
+	public int getExpGiven() {
+		return expGiven;
+	}
+
+	public int getTauxDeCapture() {
+		return tauxDeCapture;
 	}
 
 }
