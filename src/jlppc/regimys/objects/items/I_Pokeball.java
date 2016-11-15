@@ -1,13 +1,13 @@
 package jlppc.regimys.objects.items;
 
-public I_Pokeball extends Item{
+public class I_Pokeball extends Item{
     float tauxCapture;
     public I_Pokeball(String nom, float tauxCapture){
       super(nom, false, true, true, BagCat.OBJETS);
       this.tauxCapture = tauxCapture;
     }
     
-    public int getTauxCapture(){
+    public float getTauxCapture(){
       return tauxCapture;
     }
     

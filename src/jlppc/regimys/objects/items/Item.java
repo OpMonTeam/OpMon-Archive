@@ -103,6 +103,7 @@ public class Item implements Serializable{
 	public static void init() {
 		I_Heal.init();
 		CT.initCTs();
+		I_Pokeball.initPokeballs();
 		itemList.add(new Item("Pierre Feu", true, false,false, BagCat.OBJETS));
 		itemList.add(new Item("Pierre Plante", true, false, false, BagCat.OBJETS));
 		itemList.add(new Item("Pierre Eau", true, false, false, BagCat.OBJETS));

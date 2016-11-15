@@ -86,11 +86,11 @@ public class Fight {
 					}
 					if(Item.getItem(id) instanceof I_Pokeball){
 						I_Pokeball pkmn = (I_Pokeball) Item.getItem(id);
-						if(def.capture(pkmn)){
+						if(def.captured(pkmn)){
 							captured = true;
 							break;
 						}else{
-							System.out.println("Oh non! Presque!"):
+							System.out.println("Oh non! Presque!");
 						}
 					}else{
 						atk.itemUsed(Item.getItem(id));

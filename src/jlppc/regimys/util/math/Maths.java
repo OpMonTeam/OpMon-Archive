@@ -1,14 +1,14 @@
 package jlppc.regimys.util.math;
 
-import jlppc.utils.static;
+import jlppc.utils.Static;
 
 @Static
-public class Math extends java.util.Math{
+public class Maths{
   public static float racine(float dessous, float exposant){
-    return pow(dessous, 1/exposant);
+    return (float) Math.pow(dessous, 1/exposant);
   }
   
   public static double racine(double dessous, double exposant){
-    return pow(dessous, 1/exposant);
+    return Math.pow(dessous, 1/exposant);
   }
 }

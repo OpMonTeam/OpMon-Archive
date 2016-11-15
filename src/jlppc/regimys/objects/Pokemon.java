@@ -10,11 +10,13 @@ import jlppc.regimys.evolution.E_Trade;
 import jlppc.regimys.enums.Caractere.Stats;
 import jlppc.regimys.launch.Start;
 import jlppc.regimys.objects.items.I_Heal;
+import jlppc.regimys.objects.items.I_Pokeball;
 import jlppc.regimys.objects.items.Item;
 import jlppc.regimys.util.text.StringKey;
+import jlppc.utils.Comparaisons;
 import jlppc.utils.HashArray;
 import jlppc.utils.Static;
-import jlppc.regimys.util.math.Math;
+import jlppc.regimys.util.math.Maths;
 import jlppc.utils.WIP;
 /**
  * Definit un pokemon.
@@ -120,10 +122,10 @@ public class Pokemon extends RegimysObject implements Serializable{
 	
 	
 	public boolean captured(I_Pokeball pokeball){
-		int a = Math.round((((3 * pvMax - 2 * PV) * tauxCapture * pokeball.getTauxCapture() * (Comparaisons.multiEgal(status, Status.PARALYSIE, Status.POISON, Status.BRULURE) ? 1.5f : (Comparaisons.multiEgal(status, Status.SOMMEIL, Status.GEL) ? 2 : 1)))/(3 * pvMax)));
-		int b = Math.round((pow(2, 16) - 1) * Math.racine(a/(pow(2, 8) - 1),4));
+		int a = Math.round((((3 * statPV - 2 * PV) * tauxCapture * pokeball.getTauxCapture() * (Comparaisons.muliEgal(status, Status.PARALYSIE, Status.POISON, Status.BRULURE) ? 1.5f : (Comparaisons.muliEgal(status, Status.SOMMEIL, Status.GEL) ? 2 : 1)))/(3 * statPV)));
+		int b = (int) Math.round((Math.pow(2, 16) - 1) * Maths.racine(a/(Math.pow(2, 8) - 1),4));
 		int[] c = {Start.rand.nextInt(65535), Start.rand.nextInt(65535), Start.rand.nextInt(65535), Start.rand.nextInt(65535)};
-		int nbreOk;
+		int nbreOk = 0;
 		for(int nbre : c){
 			if(nbre <= b){
 				nbreOk++;
@@ -145,7 +147,7 @@ public class Pokemon extends RegimysObject implements Serializable{
 				return false;
 			}
 			if(nbreOk != 4){
-				throw new InternalException();
+				throw new InternalError();
 			}
 			return true;
 		}
