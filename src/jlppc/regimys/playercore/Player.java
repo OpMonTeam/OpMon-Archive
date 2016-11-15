@@ -7,11 +7,13 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Vector;
 
+import jlppc.regimys.core.save.Parameters;
 import jlppc.regimys.launch.Start;
 import jlppc.regimys.objects.Attaque;
 import jlppc.regimys.objects.Pokemon;
@@ -138,7 +140,16 @@ public class Player implements Serializable {
 	
 	public static Player getPlayer(File fle) throws FileNotFoundException, IOException, ClassNotFoundException{
 		ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(fle)));
-		Player player = (Player) ois.readObject();
+		Player player = null;
+		try{
+			player = (Player) ois.readObject();
+		}catch(InvalidClassException e){
+			System.out.println("Votre fichier de sauvegarde n'est plus valide. Merci de relancer le jeu.");
+			fle.delete();
+			Parameters.removeParam("playerexists");
+			Parameters.updateFile();
+			System.exit(1);
+		}
 		ois.close();
 		return player;
 	}

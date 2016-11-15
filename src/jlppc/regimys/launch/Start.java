@@ -104,7 +104,7 @@ public class Start {
 			}catch(ArrayIndexOutOfBoundsException | NullPointerException e){
 				
 				String playername;
-				if(Parameters.checkParam("playerexists")){
+				if((Parameters.checkParam("playerexists") ? Parameters.getParam("playerexists").getValue().equals("true") : false)){
 					joueur = Player.getPlayer(new File("player.rsave"));
 				}else{
 					System.out.println("Bienvenue dans le monde non achevé des pokémon! Quel est ton nom? : ");
