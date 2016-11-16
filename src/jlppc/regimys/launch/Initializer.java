@@ -142,8 +142,8 @@ public class Initializer {
 		 listePoke[110] = new Espece(90, 120, 85, 70, 60, 65, "Smogogo", Type.POISON, Type.AUCUN, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.DEF}, 1.2f, 9.5f, "Il peut arriver que deux Smogo mutent et s'associent pour former un Smogogo, mais c'est très rare.", 173, 1000000, 60);
 		 listePoke[111] = new Espece (85, 95,  30, 30, 25, 30, "Rhinocorne", Type.SOL, Type.ROCHE,Espece.EVOLUTION_BY_LEVEL, 42, new E_Level (112, 42), null, null, new Stats[]{Stats.DEF}, 1f, 115f, "Ses petites jambes ne lui permettent pas de tourner facilement. Il ne peut charger que tout droit.", 135, 1250000, 120);
 		 listePoke[112] = new Espece (130, 120, 45, 45, 40, 105, "Rhinoféros", Type.SOL, Type.ROCHE,Espece.EVOLUTION_BY_TRADE, -1, new E_TradeItem(0, Item.getItem("Protecteur")), null, null, new Stats[]{Stats.ATK, Stats.ATK}, 1.9f, 120f, "Son épiderme très épais lui permet de survivre dans un environnement où il fait plus de 2000°c.", 204, 1250000, 60);
-//		 listePoke[113] =
-//		 listePoke[114] =
+		 listePoke[113] = new Espece (5, 5, 35, 105, 50, 250, "Leveinard", Type.NORMAL, Type.AUCUN,Espece.NO_EVOLUTION, -1, new E_Nope (), null, null, new Stats[]{Stats.PV, Stats.PV}, 1.1f, 34.6f, "Il est censé apporter la joie. Ce Pokémon charitable offre ses œufs aux blessés.", 395, 800000, 30);				      
+//		 listePoke[114] = new Espece (
 //		 listePoke[115] =
 //		 listePoke[116] =
 //		 listePoke[117] =
