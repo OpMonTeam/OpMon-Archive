@@ -22,7 +22,7 @@ import jlppc.regimys.objects.items.Item;
 import jlppc.utils.HashArray;
 import jlppc.utils.WIP;
 @WIP
-public class Player implements Serializable {
+public final class Player implements Serializable {
 	
 	private String name;
 	private int dressID;
@@ -32,9 +32,9 @@ public class Player implements Serializable {
 
 	public int[] bag = new int[Item.getItemNumber()];
 	private Vector<Pokemon> pc = new Vector<>();
-	private Pokemon[] equipe = new Pokemon[6];
+	private Equipe equipe;
 	
-	public Pokemon[] getEquipe(){
+	public Equipe getEquipe(){
 		return equipe;
 	}
 	
@@ -78,6 +78,7 @@ public class Player implements Serializable {
 	
 	public Player(String name) {
 		this.name = name;
+		this.equipe = new Equipe(this.name);
 	}
 	
 	public String getName(){
@@ -93,10 +94,10 @@ public class Player implements Serializable {
 	}
 	
 	public Pokemon getPoke(int ID){
-		return equipe[ID];
+		return equipe.getPokemon(ID);
 	}
 	public void healPoke(){
-		for(Pokemon pkmn : equipe){
+		for(Pokemon pkmn : equipe.getEquipe()){
 			try{
 				pkmn.heal(pkmn.getStatPV());
 				pkmn.setStatus(Status.AUCUN);
@@ -124,16 +125,8 @@ public class Player implements Serializable {
 	 * @return true si le pokemon a été ajouté dans l'equipe, false si dans le PC
 	 */
 	public boolean addPokeToEquipe(Pokemon toAdd){
-		if(equipe[5] == null){
-			int i = 0;
-			for(Pokemon eq : equipe){
-				if(eq == null){
-					equipe[i] = toAdd;
-					return true;
-				}
-				i++;
-			}
-			return false;
+		if(equipe.addPokemon(toAdd)){
+			return true;
 			
 		}else{
 			addPokemonToPC(toAdd);

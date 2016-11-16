@@ -1,13 +1,17 @@
 package jlppc.regimys.playercore;
 
+import java.io.Serializable;
+
 import jlppc.regimys.objects.Pokemon;
 import jlppc.regimys.objects.Pokemon.Status;
 import jlppc.regimys.objects.RegimysObject;
 
-public final class Equipe extends RegimysObject {
+public final class Equipe extends RegimysObject implements Serializable{
 	private Pokemon[] equipe = new Pokemon[6];
+	private String nom;
 	
-	public Equipe(Pokemon...pokemons){
+	public Equipe(String nom, Pokemon...pokemons){
+		this.nom = nom;
 		int i = 0;
 		for(Pokemon pkmn : pokemons){
 			equipe[i] = pkmn;
@@ -16,6 +20,10 @@ public final class Equipe extends RegimysObject {
 				break;
 			}
 		}
+	}
+	
+	public String getNom(){
+		return nom;
 	}
 	
 	public Pokemon[] getEquipe(){
@@ -40,6 +48,7 @@ public final class Equipe extends RegimysObject {
 				equipe[i] = toAdd;
 				return true;
 			}
+			i++;
 		}
 		return false;
 		
@@ -71,8 +80,28 @@ public final class Equipe extends RegimysObject {
 				i++;
 			}
 		}
-		return (i == 5);
+		return (i == 6);
 	}
 	
-	
+	public String toString(){
+		String toReturn = new String("[");
+		for(Pokemon pkmn : equipe){
+			if(pkmn == null){
+				toReturn+="null,";
+			}else{
+				toReturn+=(pkmn.getSurnom() + " - "  + pkmn.getPV() + ",");
+			}
+		}
+		return toReturn;
+	}
+
+	public int getSize() {
+		int toReturn = 0;
+		for(Pokemon pkmn : equipe){
+			if(pkmn != null){
+				toReturn++;
+			}
+		}
+		return toReturn;
+	}
 }

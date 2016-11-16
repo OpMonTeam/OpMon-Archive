@@ -1,6 +1,9 @@
 package jlppc.regimys.launch;
 
+import java.io.EOFException;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -18,6 +21,7 @@ import jlppc.regimys.objects.attacks.Rugissement;
 import jlppc.regimys.objects.attacks.Soin;
 import jlppc.regimys.objects.attacks.Triplattaque;
 import jlppc.regimys.objects.items.Item;
+import jlppc.regimys.playercore.Equipe;
 import jlppc.regimys.playercore.Player;
 import jlppc.regimys.tempgui.ChoosePoke;
 import jlppc.utils.FormattedString;
@@ -39,6 +43,7 @@ public class Start {
 		}
 		
 	}
+	public static String[] trainers = {"Brice", "Evan", "Mael", "Jlppc", "Red", "Blue", "Nikolaï", "N", "Belladonis", "Aristote", "Giovanni", "Flora", "Silver", "Jules Cesar", "Gwendal"};
 	
 	public static float version = 0.06f;
 	
@@ -133,18 +138,24 @@ public class Start {
 				}
 				int combatsNumber = 0;
 				while(true){
-
+					System.out.println("Equipe : " + joueur.getEquipe());
 					Parameters.updateFile();
 					combatsNumber++;
 					System.out.println("Combat n°" + combatsNumber);
-					Espece eAdv = Initializer.listePoke[rand.nextInt(Initializer.listePoke.length)];
-					while(eAdv == null){
-						eAdv = Initializer.listePoke[rand.nextInt(Initializer.listePoke.length)];
-					}
+					
 					joueur.healPoke();
-					Pokemon adv = new Pokemon(eAdv, joueur.getPoke(0).getLevel() - rand.nextInt(3), new Attaque[]{Charge.class.newInstance(), Rugissement.class.newInstance(), Soin.class.newInstance(), Triplattaque.class.newInstance()}, Caractere.HARDI, null);
-					FormattedString.outPrintln("%o niveau %o vs %o niveau %o", joueur.getPoke(0).getSurnom(),joueur.getPoke(0).getLevel(), adv.getSurnom(), adv.getLevel());
-					Fight.fight(joueur.getPoke(0), adv);
+					Pokemon[] equipeAdverse = new Pokemon[6];
+					for(int i = -1; i < rand.nextInt(6); i++){
+						Espece eAdv = Initializer.listePoke[rand.nextInt(Initializer.listePoke.length)];
+						while(eAdv == null){
+							eAdv = Initializer.listePoke[rand.nextInt(Initializer.listePoke.length)];
+						}
+						equipeAdverse[i + 1] = new Pokemon(eAdv, joueur.getPoke(0).getLevel() - rand.nextInt(3), new Attaque[]{Charge.class.newInstance(), Rugissement.class.newInstance(), Soin.class.newInstance(), Triplattaque.class.newInstance()}, Caractere.HARDI, null);
+					}
+					Equipe adv = new Equipe(trainers[rand.nextInt(trainers.length)],equipeAdverse);
+					FormattedString.outPrintln("%o '%o pokemons) vs %o (%o pokemons)!", joueur.getName(), joueur.getEquipe().getSize(), adv.getNom(), adv.getSize());
+
+					Fight.fight(joueur.getEquipe(), adv);
 					int itemID = rand.nextInt(Item.itemList.size());
 					joueur.addItem(itemID);
 					System.out.println("Ajout de l'item " + Item.getItem(itemID).getName());
@@ -156,6 +167,18 @@ public class Start {
 		}catch(Exception | Error e){
 			System.err.println("Une erreur est survenue. Merci de contacter le developpeur.");
 			e.printStackTrace();
+			if(e instanceof FileNotFoundException || e instanceof EOFException){
+				Parameters.modifyOrAddParam("playerexists", "false");
+				if(new File("player.rsave").exists()){
+					new File("player.rsave").delete();
+				}
+				try {
+					Parameters.updateFile();
+				} catch (IOException e1) {
+					System.err.println(-9);
+					System.exit(-9);
+				}
+			}
 			System.exit(-1);
 		}
 		

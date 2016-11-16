@@ -4,6 +4,7 @@ import jlppc.regimys.launch.Start;
 import jlppc.regimys.objects.Pokemon;
 import jlppc.regimys.objects.Pokemon.Status;
 import jlppc.regimys.objects.items.Item;
+import jlppc.regimys.playercore.Equipe;
 import jlppc.regimys.objects.items.I_Pokeball;
 import jlppc.utils.FormattedString;
 /**
@@ -13,7 +14,8 @@ import jlppc.utils.FormattedString;
  */
 public class Fight {
 	public static int oldStats[][] = new int[2][5];
-	public static void fight(Pokemon atk, Pokemon def){
+
+	private static Object[] pokeFight(Pokemon atk, Pokemon def){
 		oldStats[0][0] = new Integer(atk.getStatATK());
 		oldStats[0][1] = new Integer(atk.getStatDEF());
 		oldStats[0][2] = new Integer(atk.getStatATKSPE());
@@ -56,7 +58,7 @@ public class Fight {
 					System.out.println("Action incorrecte, reesayez (1 pour attaque, 2 pour Objet): ");
 					choix = Start.sc.nextInt();
 				}
-				
+
 				if(choix == 1){
 					boolean ok = false;
 					System.out.print("Attaquant, choisissez votre attaque ( 1 a 4) : ");
@@ -81,8 +83,8 @@ public class Fight {
 					System.out.println("Entrez l'ID de l'item a utiliser :");
 					int id = Start.sc.nextInt();
 					while(Start.joueur.checkItem(id) == 0 || !Item.getItem(id).isUsableInFight()){;
-						System.out.println("Item indisponible ou inutilisable en combat. Retentez : ");
-						id = Start.sc.nextInt();
+					System.out.println("Item indisponible ou inutilisable en combat. Retentez : ");
+					id = Start.sc.nextInt();
 					}
 					if(Item.getItem(id) instanceof I_Pokeball){
 						I_Pokeball pkmn = (I_Pokeball) Item.getItem(id);
@@ -95,11 +97,11 @@ public class Fight {
 					}else{
 						atk.itemUsed(Item.getItem(id));
 					}
-					
+
 					Start.joueur.deleteItem(id);
 					attaqueAtk = -1;
 				}
-				
+
 
 			}else{
 				sameAtk = false;
@@ -118,9 +120,9 @@ public class Fight {
 			}
 
 
-			
+
 			if(atk.getStatVIT() > def.getStatVIT() || ((attaqueAtk == -1) ? false : atk.getAttaques()[attaqueAtk].getPriorite() > def.getAttaques()[attaqueDef].getPriorite())){
-				
+
 				atkCanAttack = true;
 				if(atk.getStatus() == Status.GEL){
 					if(Start.rand.nextInt(5) == 2){
@@ -202,7 +204,7 @@ public class Fight {
 					FormattedString.outPrintln("Vampigraine draine l'energie de %o!", atk.getSurnom());
 					atk.attacked(atk.getPV() / 8);
 					def.heal(atk.getPV() / 8);
-					
+
 				}
 				if(attaqueAtk == -1){
 					atkCanAttack = false;
@@ -212,7 +214,7 @@ public class Fight {
 						atk.getAttaques()[attaqueAtk].attack(atk, def);
 					}  catch (SameAtkPartTwo e) {
 						sameAtk = true;
-						
+
 					}finally{
 						if(def.getPV() <= 0 || atk.getPV() <= 0){
 							endOfMatch = true;
@@ -313,14 +315,14 @@ public class Fight {
 					FormattedString.outPrintln("Vampigraine draine l'énergie de %o!", def.getSurnom());
 					def.attacked(def.getPV() / 8);
 					atk.heal(def.getPV() / 8);
-					
+
 				}
 				if(defCanAttack){
 
 					try {
 						def.getAttaques()[attaqueDef].attack(def, atk);
 					} catch (SameAtkPartTwo e) {
-						
+
 						sameDef = true;
 					}
 
@@ -419,13 +421,13 @@ public class Fight {
 					FormattedString.outPrintln("Vampigraine draine l'énergie de %o!", def.getSurnom());
 					def.attacked(def.getPV() / 8);
 					atk.heal(def.getPV() / 8);
-					
+
 				}
 				if(defCanAttack){
 					try {
 						def.getAttaques()[attaqueDef].attack(def, atk);
 					} catch (SameAtkPartTwo e) {
-						
+
 						sameDef = true;
 					}finally{
 						if(def.getPV() <= 0 || atk.getPV() <= 0){
@@ -523,9 +525,9 @@ public class Fight {
 					FormattedString.outPrintln("Vampigraine draine l'energie de %o!", atk.getSurnom());
 					atk.attacked(atk.getPV() / 8);
 					def.heal(atk.getPV() / 8);
-					
+
 				}
-				
+
 				if(attaqueAtk == -1){
 					atkCanAttack = false;
 				}
@@ -534,7 +536,7 @@ public class Fight {
 					try {
 						atk.getAttaques()[attaqueAtk].attack(atk, def);
 					} catch (SameAtkPartTwo e) {
-						
+
 						sameAtk = true;
 					}
 
@@ -566,7 +568,7 @@ public class Fight {
 					break;
 
 				}
-				
+
 
 
 			}
@@ -575,46 +577,183 @@ public class Fight {
 				break;
 			}
 		}
-		if(captured){
-			System.out.println(def.getSurnom() + " est capturé!");
-			if(!Start.joueur.addPokeToEquipe(def)){
-				System.out.println(def.getSurnom() + " est envoyé dans le PC!");
-			}
-		}else{
-			if(def.getPV() <= 0 && atk.getPV() <= 0){
-				System.out.println("Egalité!");
-			}
-			else if(def.getPV() <= 0 && atk.getPV() > 0){
-				System.out.println(def.getSurnom() + " est K.O");
-			System.out.println("L'attaquant " + atk.getSurnom() + " a gagné!");
-					atk.win(def);
-			}else if(atk.getPV() <= 0 && def.getPV() > 0){
-				System.out.println(atk.getSurnom() + " est K.O");
-				def.win(atk);
-				boolean last = false;
-				for(Pokemon pkmn : Start.joueur.getEquipe()){
-					if(pkmn == null){
-						last = true;
-						break;
-					}
-					if(pkmn.getPV() != 0){
-						last = false;
-						fight(pkmn, def);
-						break;
-					}else{
-						last = true;
-					}
-				}
-				if(last == true){
-					System.out.println("Le défenseur " + def.getSurnom() + " a gagné!");
-				}
-				
-			}else{
-				System.out.println("BUG. On sait pas qui a gagné (Cela ne devrait pas arriver...)");
-			}
-		}
-		
-		atk.setStats(oldStats[0]);
-		def.setStats(oldStats[1]);
+		return new Object[]{atk, def, captured};
 	}
+
+	public static void fight(Equipe atk, Equipe def){
+		int attaquantID = 0, defenseurID = 0;
+		while(!(atk.isKo() || def.isKo())){
+			FormattedString.outPrintln("%o niveau %o vs %o niveau %o", atk.getPokemon(attaquantID).getSurnom(),atk.getPokemon(attaquantID).getLevel(), def.getPokemon(defenseurID).getSurnom(), def.getPokemon(defenseurID).getLevel());
+
+			Object[] data = pokeFight(atk.getPokemon(attaquantID), def.getPokemon(defenseurID));
+			Pokemon[] beligerants = {(Pokemon) data[0], (Pokemon) data[1]};
+			if((boolean) data[2]){
+				System.out.println(beligerants[1].getSurnom() + " est capturé!");
+				if(!Start.joueur.addPokeToEquipe(beligerants[1])){
+					System.out.println(beligerants[1].getSurnom() + " est envoyé dans le PC!");
+				}
+				beligerants[1].attacked(beligerants[1].getStatPV());
+				if(def.isKo()){
+					System.out.println("Le combat est terminé!");
+					break;
+				}else{
+					boolean ok = false;
+					while(!ok){
+						int choix = Start.rand.nextInt(6);
+						int i = 0;
+						try{
+							Pokemon pkmn = def.getEquipe()[choix];
+							pkmn.getSurnom();
+							if((pkmn.getPV() <= 0)){
+								throw new NullPointerException();
+							}
+							defenseurID = choix;
+							ok = true;
+							
+						}catch(ArrayIndexOutOfBoundsException | NullPointerException e){
+							i++;
+							if(i >= 250){
+								System.out.println("L'attaquant " + atk.getNom() + " a gagné!");
+								return;
+							}
+						}
+					}
+				}
+			}else{
+				if(beligerants[1].getPV() <= 0 && beligerants[0].getPV() <= 0){
+					System.out.println("Egalité!");
+					if(def.isKo() && atk.isKo()){
+						System.out.println("Personne n'a gagné!");
+					}
+					if(def.isKo()){
+						System.out.println("L'attaquant " + atk.getNom() + " a gagné!");
+					}else{
+						boolean ok = false;
+						while(!ok){
+							int choix = Start.rand.nextInt(6);
+							int i = 0;
+							try{
+								Pokemon pkmn = def.getEquipe()[choix];
+								pkmn.getSurnom();
+								if(pkmn.getPV() <= 0){
+									throw new NullPointerException();
+								}
+								defenseurID = choix;
+								ok = true;
+							}catch(ArrayIndexOutOfBoundsException | NullPointerException e){
+								i++;
+								if(i >= 250){
+									System.out.println("L'attaquant " + atk.getNom() + " a gagné!");
+									return;
+								}
+							}
+						}
+					}
+					if(atk.isKo()){
+						System.out.println("Le défenseur " + def.getNom() + " a gagné!");
+					}else{
+						boolean ok = false;
+						System.out.println("Pokemons restants : ");
+						int i = 0;
+						for(Pokemon pkmn : atk.getEquipe()){
+							if(pkmn != null){
+								if(!(pkmn.getPV() <= 0)){
+									System.out.println(pkmn.getSurnom() + " ID : " + i);
+								}
+							}
+							i++;
+						}
+						while(!ok){
+							System.out.println("Entrez l'ID du pokemon a choisir : ");
+							int choix = Start.sc.nextInt();
+							try{
+								Pokemon pkmn = atk.getEquipe()[choix];
+								pkmn.getSurnom();
+								if(pkmn.getPV() <= 0){
+									throw new NullPointerException();
+								}
+								attaquantID = choix;
+								ok = true;
+							}catch(ArrayIndexOutOfBoundsException | NullPointerException e){
+								System.out.println("Pokemon non valide. Recommencez.");
+							}
+						}
+					}
+				}
+				else if(beligerants[1].getPV() <= 0 && beligerants[0].getPV() > 0){
+					beligerants[1].setStats(oldStats[1]);
+					System.out.println(beligerants[1].getSurnom() + " est K.O");
+					if(def.isKo()){
+						System.out.println("L'attaquant " + atk.getNom() + " a gagné!");
+					}else{
+						boolean ok = false;
+						while(!ok){
+							int choix = Start.rand.nextInt(6);
+							int i = 0;
+							try{
+								Pokemon pkmn = def.getEquipe()[choix];
+								pkmn.getSurnom();
+								if(pkmn.getPV() <= 0){
+									throw new NullPointerException();
+								}
+								defenseurID = choix;
+								ok = true;
+							}catch(ArrayIndexOutOfBoundsException | NullPointerException e){
+								i++;
+								if(i >= 250){
+									System.out.println("L'attaquant " + atk.getNom() + " a gagné!");
+									return;
+								}
+							}
+						}
+					}
+					
+					beligerants[0].win(beligerants[1]);
+				}else if(beligerants[0].getPV() <= 0 && beligerants[1].getPV() > 0){
+					beligerants[0].setStats(oldStats[0]);
+					System.out.println(beligerants[0].getSurnom() + " est K.O");
+					beligerants[1].win(beligerants[0]);
+					if(atk.isKo()){
+						System.out.println("Le défenseur " + def.getNom() + " a gagné!");
+					}else{
+						boolean ok = false;
+						System.out.println("Pokemons restants : ");
+						int i = 0;
+						for(Pokemon pkmn : atk.getEquipe()){
+							if(pkmn != null){
+								if(!(pkmn.getPV() <= 0)){
+									System.out.println(pkmn.getSurnom() + " ID : " + i);
+								}
+							}
+							i++;
+						}
+						while(!ok){
+							System.out.println("Entrez l'ID du pokemon a choisir : ");
+							int choix = Start.sc.nextInt();
+							try{
+								Pokemon pkmn = atk.getEquipe()[choix];
+								pkmn.getSurnom();
+								if(pkmn.getPV() <= 0){
+									throw new NullPointerException();
+								}
+								attaquantID = choix;
+								ok = true;
+							}catch(ArrayIndexOutOfBoundsException | NullPointerException e){
+								System.out.println("Pokemon non valide. Recommencez.");
+							}
+						}
+					}
+
+
+				}else{
+					System.out.println("BUG. On sait pas qui a gagné (Cela ne devrait pas arriver...)");
+				}
+			}
+
+		}
+
+
+	}
+
+
 }
