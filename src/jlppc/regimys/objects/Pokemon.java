@@ -634,8 +634,9 @@ public class Pokemon extends RegimysObject implements Serializable{
 		statVIT = stats[4];
 		statPRE = 100;
 		statESQ = 100;
-		type1 = espece.getType1();
-		type2 = espece.getType2();
+		type1 = types[0];
+		type2 = types[1];
+		this.espece = espece;
 		attaques[0] = attacks[0];
 		attaques[1] = attacks[1];
 		attaques[2] = attacks[2];
