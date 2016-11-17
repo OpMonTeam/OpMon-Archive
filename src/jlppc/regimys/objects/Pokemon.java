@@ -626,7 +626,7 @@ public class Pokemon extends RegimysObject implements Serializable{
 		statPRE = newStat;
 	}
 	//Permet de reset tout les stats. Utiliser avec modération S.V.P
-	public synchronized void setStats(int[] stats, Attaque[] attacks, Type[] types){
+	public synchronized void setStats(int[] stats, Attaque[] attacks, Espece espece, Type[] types){
 		statATK = stats[0];
 		statDEF = stats[1];
 		statATKSPE = stats[2];
