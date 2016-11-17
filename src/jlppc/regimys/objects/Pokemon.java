@@ -625,8 +625,8 @@ public class Pokemon extends RegimysObject implements Serializable{
 	public synchronized void setStatPRE(float newStat) {
 		statPRE = newStat;
 	}
-	//Permet de reset tout les stats.
-	public synchronized void setStats(int[] stats){
+	//Permet de reset tout les stats. Utiliser avec modération S.V.P
+	public synchronized void setStats(int[] stats, Attaque[] attacks, Type[] types){
 		statATK = stats[0];
 		statDEF = stats[1];
 		statATKSPE = stats[2];
@@ -636,6 +636,13 @@ public class Pokemon extends RegimysObject implements Serializable{
 		statESQ = 100;
 		type1 = espece.getType1();
 		type2 = espece.getType2();
+		attaques[0] = attacks[0];
+		attaques[1] = attacks[1];
+		attaques[2] = attacks[2];
+		attaques[3] = attacks[3];
+		type1 = types[0];
+		type2 = types[1];
+		
 	}
 	@Override
 	public int hashCode() {
