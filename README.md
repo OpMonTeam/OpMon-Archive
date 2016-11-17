@@ -4,7 +4,7 @@ Bienvenue sur le projet de fan-game pokemon Regimys! Plus d'infos sur le wiki ou
 <a href="https://www.youtube.com/channel/UC8qa9Z52pOHhZ1XjIoTa2kQ">Chaine YouTube du Projet Regimys</a><br/>
 <br/>Version du jeu : Alpha 0.06.1<br/><br/>
 Prochaines versions :<ul>
-<li>Alpha 0.07 : Quand toutes les attaques et pokemon de la première génération auront été ajoutés et ajout de la gestion des items</li>
+<li>Alpha 0.07 : Quand toutes les attaques et pokemon de la première génération auront été ajoutés et ajout de la gestion des items. Changelog supplémentaire : Ajout de la sauvegarde, des pokeballs, et des combats par equipe</li>
 <li>Alpha 0.08 : Quand la gestion de plusieurs pokémons sera au point et quand les pokémons pourront apprendre des attaques par niveau</li>
 <li>Alpha 0.09 : Quand le systeme de combat sera à peu près fonctionnel en texte, avec les Types, Pokemons et Status de base, mais sans les Talents.</li>
 <li>Alpha 0.1 : Quand les mécaniques mises au point jusqu'en 0.09 seront mises en G.U.I</li></ul>
