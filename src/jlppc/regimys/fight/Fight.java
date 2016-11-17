@@ -14,6 +14,9 @@ import jlppc.utils.FormattedString;
  */
 public class Fight {
 	public static int oldStats[][] = new int[2][5];
+	public static Type oldTypes[][] = new Type[2][2];
+	public static Espece oldEspece[] = new Espece[2];
+	public static Attaque oldAttaques[][] = new Attaque[2][4];
 
 	private static Object[] pokeFight(Pokemon atk, Pokemon def){
 		oldStats[0][0] = new Integer(atk.getStatATK());
@@ -27,6 +30,16 @@ public class Fight {
 		oldStats[1][2] = new Integer(def.getStatATKSPE());
 		oldStats[1][3] = new Integer(def.getStatDEFSPE());
 		oldStats[1][4] = new Integer(def.getStatVIT());
+		
+		oldTypes[0][0] = atk.getType1();
+		oldTypes[0][1] = atk.getType2();
+		oldTypes[1][0] = def.getType1();
+		oldTypes[1][1] = def.getType2();
+		oldEspece[0] = atk.getEspece();
+		oldEspece[1] = def.getEspece();
+		
+		oldAttaques[0] = atk.getAttaques();
+		oldAttaques[1] = def.getAttaques();
 		atk.setStatESQ(100);
 		atk.setStatPRE(100);
 		def.setStatESQ(100);
@@ -621,6 +634,8 @@ public class Fight {
 				}
 			}else{
 				if(beligerants[1].getPV() <= 0 && beligerants[0].getPV() <= 0){
+					beligerants[1].setStats(oldStats[1], oldAttacks[1], oldEspece[1], oldTypes[1]);
+					beligerants[0].setStats(oldStats[0], oldAttacks[0], oldEspece[0], oldTypes[0]);
 					System.out.println("Egalité!");
 					if(def.isKo() && atk.isKo()){
 						System.out.println("Personne n'a gagné!");
@@ -681,7 +696,7 @@ public class Fight {
 					}
 				}
 				else if(beligerants[1].getPV() <= 0 && beligerants[0].getPV() > 0){
-					beligerants[1].setStats(oldStats[1]);
+					beligerants[1].setStats(oldStats[1], oldAttacks[1], oldEspece[1], oldTypes[1]);
 					System.out.println(beligerants[1].getSurnom() + " est K.O");
 					if(def.isKo()){
 						System.out.println("L'attaquant " + atk.getNom() + " a gagné!");
@@ -710,7 +725,7 @@ public class Fight {
 					
 					beligerants[0].win(beligerants[1]);
 				}else if(beligerants[0].getPV() <= 0 && beligerants[1].getPV() > 0){
-					beligerants[0].setStats(oldStats[0]);
+					beligerants[0].setStats(oldStats[0], oldAttacks[0], oldEspece[0], oldTypes[0]);
 					System.out.println(beligerants[0].getSurnom() + " est K.O");
 					beligerants[1].win(beligerants[0]);
 					if(atk.isKo()){
