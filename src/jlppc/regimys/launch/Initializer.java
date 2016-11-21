@@ -124,7 +124,7 @@ public class Initializer {
 		 listePoke[92] = new Espece(35, 30, 100, 35, 80, 30, "Fantominus", Type.SPECTRE, Type.POISON, Espece.EVOLUTION_BY_LEVEL, 25,new E_Level(93, 25), null, null, new Stats[]{Stats.ATKSPE}, 1.3f, 0.1f, "Son corps composé de gaz toxique pourrait asphyxier n'importe qui en quelques secondes.", 95, 1059860, 190);
 		 listePoke[93] = new Espece(50, 45, 115, 55, 95, 45, "Spectrum", Type.SPECTRE, Type.POISON, Espece.EVOLUTION_BY_TRADE, -1, new E_Item(94, Item.getItem("Pierre Feu")), null, null, new Stats[]{Stats.ATK, Stats.ATK}, 1.6f, 0.2f, "Il vole l'énergie vitale de l'ennemi d'un coup de langue gazeuse. Il aime chasser dans l'ombre.", 126, 1059860, 90);
 // PKMS PAR	 listePoke[94] =
-// UN_LAMA		 listePoke[95] = 
+// UN_LAMA	 listePoke[95] = 
 		 listePoke[96] = new Espece(48, 45, 43, 90, 42, 60, "Soporifik", Type.PSY, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 26,new E_Level(97, 26), null, null, new Stats[]{Stats.DEFSPE}, 1f, 32f, "Si vous pensez avoir rêvé mais que vous ne vous en souvenez pas, c'est que Soporifik a tout mangé.", 102, 1000000, 190);
 		 listePoke[97] = new Espece(73, 70, 73, 115, 67, 85, "Hypnomade", Type.PSY, Type.AUCUN, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.DEFSPE, Stats.DEFSPE}, 1f, 75f, "La vue de son pendule oscillant endort en trois secondes, même quand on vient de se réveiller.", 165, 1000000, 75);
 		 listePoke[98] = new Espece(105, 90, 25, 25, 50, 30, "Krabby", Type.EAU, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 28,new E_Level(99, 28), null, null, new Stats[]{Stats.ATK}, 0.4f, 6.5f, "Il creuse son terrier sur des plages sablonneuses. Ses pinces repoussent si on les brise.", 115, 1000000, 255);
@@ -159,13 +159,13 @@ public class Initializer {
 		 listePoke[127] = new Espece(125, 100, 55, 70, 85, 65, "Scarabrute", Type.INSECTE, Type.AUCUN, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.ATK, Stats.ATK}, 1.5f, 55f, "Il attaque sauvagement avec ses cornes. En hiver, il se cache au plus profond des forêts.", 200, 1250000, 45);
 		 listePoke[128] = new Espece(100, 95, 40, 70, 110, 75, "Tauros", Type.NORMAL, Type.AUCUN, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.ATK, Stats.VIT}, 1.4f, 88.4f, "Juste avant d'utiliser Charge, ce Pokémon agite frénétiquement ses trois grandes queues.", 211, 1250000, 45);
 		 listePoke[129] = new Espece(10, 55, 15, 20, 80, 20, "Magicarpe", Type.EAU, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 20, new E_Level(130, 20), null, null, new Stats[]{Stats.VIT}, 0.9f, 10f, "Ce pokémon ne mérite même pas  de description tellement il respire l'inutilité", 20, 1250000, 255);
-		 listePoke[130] = new Espece(95, 125, 79, 60, 100, 81, "Léviator", TYpe.EAU, TYpe.VOL, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.VIT, Stats.VIT}, 6.5f, 235f, "La littérature ancienne fait état d'un Léviator qui aurait rasé un village sous le coup de la colère.", 214, 1250000, 40);
-		 listePoke[131] = new Espece(85, 80, 85, 95, 60, 130, "Lokhlass", Type.EAU, Type.GLACE, Espece;NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.PV, Stats.PV}, 2.5f, 220f, "Ils sont d'une nature gentille. Comme ils se défendent rarement, ils sont en voie d'extinction.", 219, 1250000, 45);
-// PKMS QUI	 listePoke[132] = new Espece(
-// DOIVENT ETRE	 listePoke[133] = new Espece(
-// FAIT		 listePoke[134] = new Espece(
-// PAR		 listePoke[135] = new Espece(
-// NAVET56	 listePoke[136] = new Espece(
+		 listePoke[130] = new Espece(95, 125, 79, 60, 100, 81, "Léviator", TYpe.EAU, Type.VOL, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.VIT, Stats.VIT}, 6.5f, 235f, "La littérature ancienne fait état d'un Léviator qui aurait rasé un village sous le coup de la colère.", 214, 1250000, 40);
+		 listePoke[131] = new Espece(85, 80, 85, 95, 60, 130, "Lokhlass", Type.EAU, Type.GLACE, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.PV, Stats.PV}, 2.5f, 220f, "Ils sont d'une nature gentille. Comme ils se défendent rarement, ils sont en voie d'extinction.", 219, 1250000, 45);
+         	 listePoke[132] = new Espece(48, 48, 48, 48, 48, 48, "Métamorph", Type.NORMAL, Type.AUCUN, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.PV}, 0.3f, 4f, "Métamorph peut modifier sa structure moléculaire pour prendre d'autres formes. Lorsqu'il essaie de se transformer de mémoire, il lui arrive de se tromper sur certains détails.", 61, 1000000, 35);                                                               
+                 listePoke[133] = new Espece(
+         	 listePoke[134] = new Espece(65, 60, 110, 95, 65, 130, "Aquali", Type.EAU, Type.AUCUN, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.PV, Stats.PV}, 1f, 29f, "Il a évolué pour s'adapter au milieu aquatique. Il peut se fondre et disparaître dans l'élément liquide.",  196, 1000000, 45);                                               
+//	         listePoke[135] = new Espece(
+//	         listePoke[136] = new Espece(
 		 listePoke[137] = new Espece(60, 70, 85, 75, 40, 65, "Porygon", Type.NORMAL, Type.AUCUN, Espece.NO_EVOLUTION, -1, new E_TradeItem(0, Item.getItem("Ameliorator")), null, null, new Stats[]{Stats.ATK}, 0.8f, 36.5f, "Ce Pokémon a été développé en Java, il adore se fofiler dans les programmes pour tout modifier.", 133, 1000000, 45);
 		 listePoke[138] = new Espece(40, 100, 90, 55, 35, 35, "Amonita", Type.ROCHE, Type.EAU, Espece.EVOLUTION_BY_LEVEL, 40,new E_Level(138, 40), null, null, new Stats[]{Stats.DEF}, 0.4f, 7.5f, "Recréé à partir d'un fossile, il utilise l'air dans sa coquille pour s'enfoncer dans l'eau ou faire surface.", 99, 1000000, 45);
 		 listePoke[139] = new Espece(60, 125, 115, 70, 55, 70, "Amonistar", Type.ROCHE, Type.EAU, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.DEF, Stats.DEF}, 1f, 35f, "Une fois enroulé autour de sa proie, il ne la laisse pas repartir et la dévore avec ses crocs.", 199, 1000000, 45);
@@ -179,10 +179,10 @@ public class Initializer {
                  listePoke[147] = new Espece(64, 45, 50, 50, 50, 41, "Minidraco", Type.DRAGON, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 0,new E_Level(148, 30), null, null, new Stats[]{Stats.ATK}, 1.8f, 3.3f, "Minidraco mue constamment, renouvelant sans arrêt sa peau. En effet, l'énergie vitale de son corps augmente régulièrement et sa mue lui permet d'éviter d'atteindre des niveaux incontrôlables.", 67, 1250000, 45);
 		 listePoke[148] = new Espece(84, 65, 70, 70, 70, 61, "Draco", Type.DRAGON, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 1,new E_Level(149, 55), null, null, new Stats[]{Stats.ATK, Stats.ATK}, 4f, 16.5f, "Draco stocke une quantité d'énergie considérable dans son corps. On raconte qu'il peut modifier les conditions climatiques autour de lui en déchargeant l'énergie contenue dans les cristaux de son cou et de sa queue.", 144, 1250000, 45);
 		 listePoke[149] = new Espece(134, 95, 100, 100, 80, 91, "Dracoloss", Type.DRAGON, Type.VOL, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.ATK, Stats.ATK, Stats.ATK}, 2.2f, 210f, "On raconte qu'il vit quelque part en mer. Il guide les équipages naufragés jusqu'à la terre ferme.", 218, 1250000, 45);
-		 //listePoke[150] = 
-	     //listePoke[151] = 
+		 listePoke[150] = new Espece(110, 90, 154, 90, 130, 106, "Mewtwo", Type.PSY, Type.AUCUN, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null new Stats[]{Stats.ATKSPE, Stats.ATKSPE, Stats.ATKSPE}, 2f, 122f, "Il est le fruit de nombreuses expériences génétiques horribles et malsaines.", 220, 1250000, 3);                                                                                             
+//	         listePoke[151] = 
 		 //listePoke[387] = new Espece(68, 64, 45, 55, 31, 55, "Tortipouss", Type.PLANTE, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 0,new E_Level(388, 0), null, null, new Stats[]{Stats.ATK}, 0.4f, 10.2f, "Son corps assimile la lumière du soleil par photosynthèse. Sa carapace est faite de terre durcie.", 64, 1059860);
-		 
+		
 		 for(Espece esp : listePoke){
 			 if(esp != null){
 				 esp.checkEvol();
