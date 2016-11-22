@@ -162,7 +162,80 @@ public class Initializer {
 		 listePoke[130] = new Espece(95, 125, 79, 60, 100, 81, "Léviator", TYpe.EAU, Type.VOL, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.VIT, Stats.VIT}, 6.5f, 235f, "La littérature ancienne fait état d'un Léviator qui aurait rasé un village sous le coup de la colère.", 214, 1250000, 40);
 		 listePoke[131] = new Espece(85, 80, 85, 95, 60, 130, "Lokhlass", Type.EAU, Type.GLACE, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.PV, Stats.PV}, 2.5f, 220f, "Ils sont d'une nature gentille. Comme ils se défendent rarement, ils sont en voie d'extinction.", 219, 1250000, 45);
          	 listePoke[132] = new Espece(48, 48, 48, 48, 48, 48, "Métamorph", Type.NORMAL, Type.AUCUN, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.PV}, 0.3f, 4f, "Métamorph peut modifier sa structure moléculaire pour prendre d'autres formes. Lorsqu'il essaie de se transformer de mémoire, il lui arrive de se tromper sur certains détails.", 61, 1000000, 35);                                                               
-                 listePoke[133] = new Espece(
+                 listePoke[133] = new Espece(55, 50, 45, 65, 55, 55, "Evoli", Type.NORMAL, Type.AUCUN, Espece.EVOLUTION_BY_OBJECT, -1, new E_Item(134, "Pierre Eau"), null, null, new Stats[]{Stats.DEFSPE}, 0.3f, 6.5f, "L'ADN de ce Pokémon très particulier recèle de nombreuses possibilités d'évolution.", 92, 1000000, 45){
+		 	@Override
+			public boolean itemUsed(Item used){
+				if(espece.getEvolution() instanceof E_Item){
+					if(used.equals(Item.getItem("Pierre Eau"))){
+						boolean changeName = (surnom.equals(espece.getSurnom()));
+						this.espece = listePoke[134];
+						calcStats(espece);
+						fosout("%o évolue en %o!", surnom, espece.getSurnom());
+						if(changeName){
+							surnom = espece.getSurnom();
+						}
+					}else if(used.equals(Item.getItem("Pierre Feu"))){
+						boolean changeName = (surnom.equals(espece.getSurnom()));
+						this.espece = listePoke[136];
+						calcStats(espece);
+						fosout("%o évolue en %o!", surnom, espece.getSurnom());
+						if(changeName){
+							surnom = espece.getSurnom();
+						}
+					}else if(used.equals(Item.getItem("Perre Plante"))){
+						boolean changeName = (surnom.equals(espece.getSurnom()));
+						this.espece = listePoke[135];
+						calcStats(espece);
+						fosout("%o évolue en %o!", surnom, espece.getSurnom());
+						if(changeName){
+							surnom = espece.getSurnom();
+						}
+					}else{return false;}
+				}
+				if(used instanceof I_Heal){
+
+					I_Heal usedI = (I_Heal) used;
+					if(usedI.getPvHeal() > 0){
+						this.heal(usedI.getPvHeal());
+						keyout(key("items.heal"), surnom);
+					}
+					if(usedI.isHealAll() && status == Status.AUCUN){
+						this.setStatus(Status.AUCUN);
+						keyout(key("items.status.heal"), surnom);
+					}else if(usedI.getStatusHeald() != Status.AUCUN && status == usedI.getStatusHeald()){
+						setStatus(Status.AUCUN);
+						switch(usedI.getStatusHeald()){
+						case AUCUN:
+							break;
+						case BRULURE:
+							keyout(key("status.brulure.heal"), surnom);
+							break;
+						case GEL:
+							keyout(key("status.gel.heal"), surnom);
+							break;
+						case PARALYSIE:
+							keyout(key("status.para.heal"), surnom);
+							break;
+						case POISON:
+							keyout(key("status.poison.heal"), surnom);
+							break;
+						case SOMMEIL:
+							keyout(key("status.sommeil.heal"), surnom);
+							break;
+						default:
+							break;
+
+						}
+					}
+				
+				
+			}
+		
+		
+		return false;
+}
+			}
+		 }; 
          	 listePoke[134] = new Espece(65, 60, 110, 95, 65, 130, "Aquali", Type.EAU, Type.AUCUN, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.PV, Stats.PV}, 1f, 29f, "Il a évolué pour s'adapter au milieu aquatique. Il peut se fondre et disparaître dans l'élément liquide.",  196, 1000000, 45);                                               
 //	         listePoke[135] = new Espece(
 //	         listePoke[136] = new Espece(
