@@ -112,9 +112,9 @@ public class Initializer {
 		 listePoke[80] = new Espece(75, 110, 100, 80, 30, 95, "Flagadoss", Type.EAU, Type.PSY, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.DEF, Stats.DEF}, 1.6f, 78.5f, "Le Kokiyas accroché à sa queue est friand de ce qu'il dévore et ne veut pas lâcher prise.", 164, 1000000, 75);
 		 listePoke[81] = new Espece(35, 70, 95, 55, 45, 25, "Magneti", Type.ELECTRIQUE, Type.ACIER, Espece.EVOLUTION_BY_LEVEL, 30, new E_Level(81, 30), null, null, new Stats[]{Stats.ATKSPE},0.3f, 6f, "Les parties sur les côtés de son corps génèrent une énergie lui permettant de léviter.", 89, 1000000, 190);
 		 listePoke[82] = new Espece(60, 95, 120, 70, 70, 50, "Magnéton", Type.ELECTRIQUE, Type.ACIER, Espece.EVOLUTION_BY_PLACE, -1, new E_Land(0, "Grotte Electrac"), null, null, new Stats[]{Stats.ATKSPE, Stats.ATKSPE}, 1f, 60f, "Des groupes apparaissent si des taches solaires couvrent le soleil. Il brouillent les télévisions.", 161, 1000000, 60);
-		 listePoke[83] = new Espece(65, 55, 58, 62, 52, 52, "Canarticho", Type.NORMAL, Type.VOL, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.ATK}, 0.8f, 15f, "Il utilise le légume qu'il tient comme s'il s'agissait d'une épée.", 94, 1000000, 45);
-// POKEMONS	 listePoke[84] = 
-// QUI		 listePoke[85] =
+		 listePoke[83] = new Espece(65, 55, 58, 62, 52, 52, "Canarticho", Type.NORMAL, Type.VOL, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.ATK}, 0.8f, 15f, "Il utilise le légume qu'il tient comme s'il s'agissait d'une épée.", 94, 1000000, 45);
+		 listePoke[84] = new Espece(85, 45, 35, 35, 75, 35, "Doduo", Type.NORMAL, Type.VOL, Espece.EVOLTUTION_BY_LEVEL, 31, E_Level(31, 85), null, null, new Stats[]{Stats.ATK}, 1.4f, 39.2f, "Ses deux cerveaux semblent communiquer leurs émotions grâce à un lien télépathique.", 96, 1000000, 190);                                                                        
+		 listePoke[85] = new Espece(110, 70, 60, 60, 110, 60, "Dodrio", Type.NORMAL, Type.VOL, Espece.NO_EVOLUTION, -1, E_Nope(), null, null, new Stats[]{Stats.ATK, Stats.ATK}, 1.8f, 85.2f, "Un ennemi ne faisant pas attention à l'une des trois têtes pendant une seconde se fait picorer.", 158, 1000000, 45);
 // DOIVENT	 listePoke[86] =
 // ETRE FAIT	 listePoke[87] =
 // PAR		 listePoke[88] =
