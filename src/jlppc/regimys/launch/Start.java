@@ -47,7 +47,7 @@ public class Start {
 	
 	public static float version = 0.07f;
 	
-	public static char commits = 'g';
+	public static char commits = ' ';
 	
 
 	
@@ -55,7 +55,7 @@ public class Start {
 	
 	public static boolean pre = (preNbre != 0);
 	
-	public static int sousVers = 1;
+	public static int sousVers = 0;
 	
 	public static boolean sousVersIs = (sousVers != 0);
 	
