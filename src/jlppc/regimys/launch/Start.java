@@ -45,7 +45,7 @@ public class Start {
 	}
 	public static String[] trainers = {"Brice", "Evan", "Mael", "Jlppc", "Red", "Blue", "Nikolaï", "N", "Belladonis", "Aristote", "Giovanni", "Flora", "Silver", "Jules Cesar", "Gwendal"};
 	
-	public static float version = 0.06f;
+	public static float version = 0.07f;
 	
 	public static char commits = 'g';
 	
