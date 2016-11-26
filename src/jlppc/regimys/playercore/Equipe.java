@@ -87,12 +87,13 @@ public final class Equipe extends RegimysObject implements Serializable{
 		String toReturn = new String("[");
 		for(Pokemon pkmn : equipe){
 			if(pkmn == null){
-				toReturn+="null,";
+				toReturn+="Vide,";
 			}else{
-				toReturn+=(pkmn.getSurnom() + " - "  + pkmn.getPV() + ",");
+				toReturn+=(pkmn.getSurnom() + " - PV : "  + pkmn.getPV() + ",");
 			}
 		}
-		return toReturn;
+		toReturn = toReturn.substring(0, toReturn.length() - 1);
+		return toReturn + "]";
 	}
 
 	public int getSize() {

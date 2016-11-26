@@ -12,7 +12,7 @@ import jlppc.regimys.enums.Caractere.Stats;
 import jlppc.utils.HashArray;
 
 /**
- * La classe qui dÃ©finit une espÃ¨ce de PokÃ©mon.
+ * La classe qui définit une espÃ¨ce de Pokémon.
  * 
  * @author Jlppc
  *
@@ -20,23 +20,23 @@ import jlppc.utils.HashArray;
 public class Espece implements Serializable{
 
 	/**
-	 * Le nom de l'espï¿½ce. Pourquoi surnom? Je sais pas.
+	 * Le nom de l'espéce. Pourquoi surnom? Je sais pas.
 	 */
 	protected final String surnom;
 	/**
-	 * Le numï¿½ro pokedex. Je ne repï¿½te que ce qui est dit dans le nom.
+	 * Le numéro pokedex. Je ne repéte que ce qui est dit dans le nom.
 	 */
 	protected int numeroPokedex;
 	/**
-	 * Voir nom. Tellement ï¿½vident.
+	 * Voir nom. Tellement évident.
 	 */
 	protected Espece evolution;
 	/**
-	 * Le niveau auquel le pokemon ï¿½volue.
+	 * Le niveau auquel le pokemon évolue.
 	 */
 	protected int niveauEvolution;
 	/**
-	 * La maniï¿½re dont le pokemon ï¿½volue. Peut prendre les valeurs :<br/>
+	 * La maniére dont le pokemon évolue. Peut prendre les valeurs :<br/>
 	 * <br/>
 	 * {@link #EVOLUTION_BY_LEVEL}<br/>
 	 * <br/>
@@ -46,17 +46,17 @@ public class Espece implements Serializable{
 	 */
 	protected int maniereEvolution;
 	/**
-	 * Signale que l'ï¿½volution est par le niveau. Voir {@link #niveauEvolution}
+	 * Signale que l'évolution est par le niveau. Voir {@link #niveauEvolution}
 	 * pour savoir lequel.
 	 */
 	public static final int EVOLUTION_BY_LEVEL = 0;
 	/**
-	 * Signale que l'ï¿½volution est par un objet (Pierre, truc bizzare qui permet
-	 * d'ï¿½voluer lors d'un ï¿½change... ect)
+	 * Signale que l'évolution est par un objet (Pierre, truc bizzare qui permet
+	 * d'évoluer lors d'un échange... ect)
 	 */
 	public static final int EVOLUTION_BY_OBJECT = 1;
 	/**
-	 * Signale que l'ï¿½volution dï¿½pend du stade d'attachement avec son pokemon.
+	 * Signale que l'évolution dépend du stade d'attachement avec son pokemon.
 	 */
 	public static final int EVOLUTION_BY_LOVE = 2;
 	public static final int NO_EVOLUTION = 3;
@@ -64,15 +64,15 @@ public class Espece implements Serializable{
 	public static final int EVOLUTION_BY_TRADE = 4;
 	public static final int EVOLUTION_BY_PLACE = 5;
 	/**
-	 * Va remplacer les autres dÃ©claration d'Ã©volution
+	 * Va remplacer les autres déclaration d'évolution
 	 */
 	public Evolution evolType;
 	/**
-	 * Voir nom. Tellement ï¿½vident.
+	 * Voir nom. Tellement évident.
 	 */
 	protected final Type type1;
 	/**
-	 * Voir nom. Tellement ï¿½vident. Mettre Type.AUCUN si il n'a pas de second
+	 * Voir nom. Tellement évident. Mettre Type.AUCUN si il n'a pas de second
 	 * type.
 	 */
 	protected final Type type2;
@@ -82,18 +82,18 @@ public class Espece implements Serializable{
 	 */
 	protected HashArray[] atksByLevels;
 	/**
-	 * L'entrï¿½e du pokedex (La description)
+	 * L'entrée du pokedex (La description)
 	 */
 	protected String entreePokedex;
 	/**
-	 * Voir nom. Tellement ï¿½vident.
+	 * Voir nom. Tellement évident.
 	 */
 	protected float taille;
 	/**
-	 * Voir nom. Tellement ï¿½vident.
+	 * Voir nom. Tellement évident.
 	 */
 	protected float poids;
-	/**Liste des CT combatibles avec le PokÃ©mon*/
+	/**Liste des CT combatibles avec le Pokémon*/
 	protected CT[] ctCompatibles;
 	// Les statistiques de l'espece. Les noms sont evidents.
 	protected final int baseAtk;
@@ -107,12 +107,12 @@ public class Espece implements Serializable{
 	 */
 	protected int hashCode;
 	/**
-	 * La coubre d'experience du pokÃ©mon
+	 * La coubre d'experience du pokémon
 	 */
 	protected CourbeExp courbe;
 	protected int expMax;
 	/**
-	 * Les EV donnï¿½es en fin de combat.
+	 * Les EV données en fin de combat.
 	 */
 	protected Stats[] EVgiven;
 	// Les sprites. Les noms sont toujours evidents. Ceux qui finissent par S

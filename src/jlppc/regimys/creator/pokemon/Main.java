@@ -50,12 +50,13 @@ public class Main {
 	 */
 	private void initialize() {
 		
+		
 		String[] evols = {"Niveau", "Objet", "Echange", "Echange objet", "Amour", "Lieu", "Non"};
 		Type[] types2 = {Type.ACIER, Type.AUCUN, Type.COMBAT, Type.DRAGON, Type.EAU, Type.ELECTRIQUE, Type.FEE, Type.FEU, Type.GLACE, Type.INSECTE, Type.NORMAL, Type.PLANTE, Type.POISON, Type.PSY, Type.ROCHE, Type.SOL, Type.SPECTRE, Type.TENEBRES, Type.VOL};
 		Type[] types1 = {Type.ACIER, Type.COMBAT, Type.DRAGON, Type.EAU, Type.ELECTRIQUE, Type.FEE, Type.FEU, Type.GLACE, Type.INSECTE, Type.NORMAL, Type.PLANTE, Type.POISON, Type.PSY, Type.ROCHE, Type.SOL, Type.SPECTRE, Type.TENEBRES, Type.VOL};
 
 		frmCrateurDePokmon = new JFrame();
-		frmCrateurDePokmon.setTitle("CrÃ©ateur de PokÃ©mon (PokÃ©mon Regimys)");
+		frmCrateurDePokmon.setTitle("Créateur de Pokémon (Pokémon Regimys) (Pas a jour!!!)");
 		frmCrateurDePokmon.setBounds(100, 100, 531, 350);
 		frmCrateurDePokmon.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCrateurDePokmon.getContentPane().setLayout(null);
@@ -93,7 +94,7 @@ public class Main {
 		spinnerAtk.setBounds(100, 91, 114, 20);
 		frmCrateurDePokmon.getContentPane().add(spinnerAtk);
 		
-		JLabel lblDfense = new JLabel("DÃ©fense");
+		JLabel lblDfense = new JLabel("Défense");
 		lblDfense.setBounds(12, 120, 70, 15);
 		frmCrateurDePokmon.getContentPane().add(lblDfense);
 		
@@ -101,7 +102,7 @@ public class Main {
 		spinnerDef.setBounds(100, 118, 114, 20);
 		frmCrateurDePokmon.getContentPane().add(spinnerDef);
 		
-		JLabel lblAttaqueSpcial = new JLabel("Attaque SpÃ©ciale");
+		JLabel lblAttaqueSpcial = new JLabel("Attaque Spéciale");
 		lblAttaqueSpcial.setBounds(12, 147, 132, 15);
 		frmCrateurDePokmon.getContentPane().add(lblAttaqueSpcial);
 		
@@ -109,7 +110,7 @@ public class Main {
 		spinnerAtkSpe.setBounds(162, 145, 52, 20);
 		frmCrateurDePokmon.getContentPane().add(spinnerAtkSpe);
 		
-		JLabel lblDfenseSpciale = new JLabel("DÃ©fense SpÃ©ciale");
+		JLabel lblDfenseSpciale = new JLabel("Défense Spéciale");
 		lblDfenseSpciale.setBounds(12, 174, 132, 15);
 		frmCrateurDePokmon.getContentPane().add(lblDfenseSpciale);
 		
@@ -142,7 +143,7 @@ public class Main {
 		comboBoxEvo.setBounds(100, 223, 114, 24);
 		frmCrateurDePokmon.getContentPane().add(comboBoxEvo);
 		
-		JButton btnParametresDeLvolution = new JButton("Parametres de l'Ã©volution");
+		JButton btnParametresDeLvolution = new JButton("Parametres de l'évolution");
 		btnParametresDeLvolution.addActionListener(new ActionListener(){
 
 			@Override
@@ -174,7 +175,7 @@ public class Main {
 		btnParametresDeLvolution.setBounds(226, 223, 262, 25);
 		frmCrateurDePokmon.getContentPane().add(btnParametresDeLvolution);
 		
-		JLabel lblDescriptionPokdex = new JLabel("Description PokÃ©dex");
+		JLabel lblDescriptionPokdex = new JLabel("Description Pokédex");
 		lblDescriptionPokdex.setBounds(232, 12, 167, 15);
 		frmCrateurDePokmon.getContentPane().add(lblDescriptionPokdex);
 		
@@ -198,7 +199,7 @@ public class Main {
 		spinnerPoids.setBounds(417, 145, 43, 20);
 		frmCrateurDePokmon.getContentPane().add(spinnerPoids);
 		
-		JLabel lblEvDonns = new JLabel("Ev donnÃ©s");
+		JLabel lblEvDonns = new JLabel("Ev donnés");
 		lblEvDonns.setBounds(12, 255, 87, 15);
 		frmCrateurDePokmon.getContentPane().add(lblEvDonns);
 		
@@ -234,7 +235,7 @@ public class Main {
 		spinnerExpLv100.setBounds(331, 172, 129, 20);
 		frmCrateurDePokmon.getContentPane().add(spinnerExpLv100);
 		
-		JLabel lblStatxpBase = new JLabel("XP donnÃ©s");
+		JLabel lblStatxpBase = new JLabel("XP donnés");
 		lblStatxpBase.setBounds(232, 201, 87, 15);
 		frmCrateurDePokmon.getContentPane().add(lblStatxpBase);
 		
@@ -305,7 +306,7 @@ public class Main {
 										}
 									
 									}else{
-										JOptionPane.showMessageDialog(null, "Vous devez rentrer une valeur dans tous les champs." + Log.saut + "Les EV donnÃ©s ne doivent pas Ãªtre en dessous ou Ã©gal a 0.", "Erreur", JOptionPane.ERROR_MESSAGE);
+										JOptionPane.showMessageDialog(null, "Vous devez rentrer une valeur dans tous les champs." + Log.saut + "Les EV donnés ne doivent pas Ãªtre en dessous ou égal a 0.", "Erreur", JOptionPane.ERROR_MESSAGE);
 										return;
 									}
 								}else{
@@ -322,7 +323,7 @@ public class Main {
 						return;
 					}
 				}else{
-					JOptionPane.showMessageDialog(null, "L'Ã©volution est incorrecte. Merci de verifier de bien avoir reglÃ© les paramÃ¨tres d'evolution.", "Erreur", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "L'évolution est incorrecte. Merci de verifier de bien avoir reglé les paramÃ¨tres d'evolution.", "Erreur", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 			}

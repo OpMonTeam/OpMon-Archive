@@ -87,26 +87,26 @@ public class StringKey {
 		keys.add(new StringKey("effects.stats.atk.addtwo", "L'attaque de %o augmente beaucoup!"));
 		keys.add(new StringKey("effects.stats.atk.cantadd", "L'attaque de %o ne peut plus augmenter!"));
 		
-		keys.add(new StringKey("effects.stats.def.low", "La dÃ©fense de %o baisse!"));
-		keys.add(new StringKey("effects.stats.def.lowtwo", "La dÃ©fense de %o baisse beaucoup!"));
-		keys.add(new StringKey("effects.stats.def.cantlow", "La dÃ©fense de %o ne peut plus baisser!"));
-		keys.add(new StringKey("effects.stats.def.add", "La dÃ©fense de %o augmente!"));
-		keys.add(new StringKey("effects.stats.def.addtwo", "La dÃ©fense de %o augmente beaucoup!"));
-		keys.add(new StringKey("effects.stats.def.cantadd", "La dÃ©fense de %o ne peut plus augmenter!"));
+		keys.add(new StringKey("effects.stats.def.low", "La défense de %o baisse!"));
+		keys.add(new StringKey("effects.stats.def.lowtwo", "La défense de %o baisse beaucoup!"));
+		keys.add(new StringKey("effects.stats.def.cantlow", "La défense de %o ne peut plus baisser!"));
+		keys.add(new StringKey("effects.stats.def.add", "La défense de %o augmente!"));
+		keys.add(new StringKey("effects.stats.def.addtwo", "La défense de %o augmente beaucoup!"));
+		keys.add(new StringKey("effects.stats.def.cantadd", "La défense de %o ne peut plus augmenter!"));
 		
-		keys.add(new StringKey("effects.stats.atkspe.low", "L'attaque spÃ©ciale de %o baisse!"));
-		keys.add(new StringKey("effects.stats.atkspe.lowtwo", "L'attaque spÃ©ciale de %o baisse beaucoup!"));
-		keys.add(new StringKey("effects.stats.atkspe.cantlow", "L'attaque spÃ©ciale de %o ne peut plus baisser!"));
-		keys.add(new StringKey("effects.stats.atkspe.add", "L'attaque spÃ©ciale de %o augmente!"));
-		keys.add(new StringKey("effects.stats.atkspe.addtwo", "L'attaque spÃ©ciale de %o augmente beaucoup!"));
-		keys.add(new StringKey("effects.stats.atkspe.cantadd", "L'attaque spÃ©ciale de %o ne peut plus augmenter!"));
+		keys.add(new StringKey("effects.stats.atkspe.low", "L'attaque spéciale de %o baisse!"));
+		keys.add(new StringKey("effects.stats.atkspe.lowtwo", "L'attaque spéciale de %o baisse beaucoup!"));
+		keys.add(new StringKey("effects.stats.atkspe.cantlow", "L'attaque spéciale de %o ne peut plus baisser!"));
+		keys.add(new StringKey("effects.stats.atkspe.add", "L'attaque spéciale de %o augmente!"));
+		keys.add(new StringKey("effects.stats.atkspe.addtwo", "L'attaque spéciale de %o augmente beaucoup!"));
+		keys.add(new StringKey("effects.stats.atkspe.cantadd", "L'attaque spéciale de %o ne peut plus augmenter!"));
 		
-		keys.add(new StringKey("effects.stats.defspe.low", "La dÃ©fense spÃ©ciale de %o baisse!"));
-		keys.add(new StringKey("effects.stats.defspe.lowtwo", "La dÃ©fense spÃ©ciale de %o baisse beaucoup!"));
-		keys.add(new StringKey("effects.stats.defspe.cantlow", "La dÃ©fense spÃ©ciale de %o ne peut plus baisser!"));
-		keys.add(new StringKey("effects.stats.defspe.add", "La dÃ©fense spÃ©ciale de %o augmente!"));
-		keys.add(new StringKey("effects.stats.defspe.addtwo", "La dÃ©fense spÃ©ciale de %o augmente beaucoup!"));
-		keys.add(new StringKey("effects.stats.defspe.cantadd", "La dÃ©fense spÃ©ciale de %o ne peut plus augmenter!"));
+		keys.add(new StringKey("effects.stats.defspe.low", "La défense spéciale de %o baisse!"));
+		keys.add(new StringKey("effects.stats.defspe.lowtwo", "La défense spéciale de %o baisse beaucoup!"));
+		keys.add(new StringKey("effects.stats.defspe.cantlow", "La défense spéciale de %o ne peut plus baisser!"));
+		keys.add(new StringKey("effects.stats.defspe.add", "La défense spéciale de %o augmente!"));
+		keys.add(new StringKey("effects.stats.defspe.addtwo", "La défense spéciale de %o augmente beaucoup!"));
+		keys.add(new StringKey("effects.stats.defspe.cantadd", "La défense spéciale de %o ne peut plus augmenter!"));
 		
 		keys.add(new StringKey("effects.stats.vit.low", "La vitesse de %o baisse!"));
 		keys.add(new StringKey("effects.stats.vit.lowtwo", "La vitesse de %o baisse beaucoup!"));
@@ -122,42 +122,42 @@ public class StringKey {
 		keys.add(new StringKey("effects.stats.esq.addtwo", "L'esquive de %o augmente beaucoup!"));
 		keys.add(new StringKey("effects.stats.esq.cantadd", "L'esquive de %o ne peut plus augmenter!"));
 		
-		keys.add(new StringKey("effects.stats.pre.low", "La prÃ©cision de %o baisse!"));
-		keys.add(new StringKey("effects.stats.pre.lowtwo", "La prÃ©cision de %o baisse beaucoup!"));
-		keys.add(new StringKey("effects.stats.pre.cantlow", "La prÃ©cision de %o ne peut plus baisser!"));
-		keys.add(new StringKey("effects.stats.pre.add", "La prÃ©cision de %o augmente!"));
-		keys.add(new StringKey("effects.stats.pre.addtwo", "La prÃ©cision de %o augmente beaucoup!"));
-		keys.add(new StringKey("effects.stats.pre.cantadd", "La prÃ©cision de %o ne peut plus augmenter!"));
+		keys.add(new StringKey("effects.stats.pre.low", "La précision de %o baisse!"));
+		keys.add(new StringKey("effects.stats.pre.lowtwo", "La précision de %o baisse beaucoup!"));
+		keys.add(new StringKey("effects.stats.pre.cantlow", "La précision de %o ne peut plus baisser!"));
+		keys.add(new StringKey("effects.stats.pre.add", "La précision de %o augmente!"));
+		keys.add(new StringKey("effects.stats.pre.addtwo", "La précision de %o augmente beaucoup!"));
+		keys.add(new StringKey("effects.stats.pre.cantadd", "La précision de %o ne peut plus augmenter!"));
 		//status
-		keys.add(new StringKey("effects.status.fail", "%o est dÃ©ja %o!"));
-		keys.add(new StringKey("effects.status.para", "%o est paralysÃ©!"));
-		keys.add(new StringKey("effects.status.poison", "%o est empoisonnÃ©"));
-		keys.add(new StringKey("effects.status.brulure", "%o est brÃ»lÃ©!"));
-		keys.add(new StringKey("effects.status.gel", "%o est gelÃ©!"));
-		keys.add(new StringKey("effects.status.sommeil", "%o s'endort profondÃ©mement."));
+		keys.add(new StringKey("effects.status.fail", "%o est déja %o!"));
+		keys.add(new StringKey("effects.status.para", "%o est paralysé!"));
+		keys.add(new StringKey("effects.status.poison", "%o est empoisonné"));
+		keys.add(new StringKey("effects.status.brulure", "%o est brÃ»lé!"));
+		keys.add(new StringKey("effects.status.gel", "%o est gelé!"));
+		keys.add(new StringKey("effects.status.sommeil", "%o s'endort profondémement."));
 		//sous-status
-		keys.add(new StringKey("effects.status.peur", "%o est apeurÃ©!"));
+		keys.add(new StringKey("effects.status.peur", "%o est apeuré!"));
 		keys.add(new StringKey("effects.status.confus", "%o tombe dans la confusion!"));
 		keys.add(new StringKey("effects.status.love", "%o tombe amoureux de %o!"));
 		//effets
 		keys.add(new StringKey("effects.stats.pv.ctrcoup", "%o prend le contrecoup et perd %o pv!"));
 		//attaque
 		keys.add(new StringKey("attack.pkmn.attacked", "%o a perdu %o pv. Il lui reste %o pv."));
-		keys.add(new StringKey("attack.pkmn.absord", "La vie %o est absorbÃ©e! %o gagne %o pv!"));
-		keys.add(new StringKey("attack.fail", "Mais cela Ã©choue!"));
+		keys.add(new StringKey("attack.pkmn.absord", "La vie %o est absorbée! %o gagne %o pv!"));
+		keys.add(new StringKey("attack.fail", "Mais cela échoue!"));
 		//types
-		keys.add(new StringKey("attack.types.tpe", "Ce n'est vraiment pas trÃ¨s efficace..."));
+		keys.add(new StringKey("attack.types.tpe", "Ce n'est vraiment pas très efficace..."));
 		keys.add(new StringKey("attack.types.in", "C'est inefficace!"));
-		keys.add(new StringKey("attack.types.te", "C'est trÃ¨s efficace!"));
+		keys.add(new StringKey("attack.types.te", "C'est très efficace!"));
 		keys.add(new StringKey("attack.types.se", "C'est super efficace!"));
 		//Heal
-		keys.addElement(new StringKey("items.heal", "%o rÃ©cupÃ¨re des pv!"));
-		keys.add(new StringKey("items.status.heal", "%o n'a plus de problÃ¨mes de status!"));
-		keys.add(new StringKey("status.poison.heal", "%o n'est plus empoisonnÃ©!"));
-		keys.add(new StringKey("status.para.heal", "%o n'est plus paralysÃ©!"));
-		keys.add(new StringKey("status.gel.heal", "%o n'est plus gelÃ©!"));
+		keys.addElement(new StringKey("items.heal", "%o récupère des pv!"));
+		keys.add(new StringKey("items.status.heal", "%o n'a plus de problèmes de status!"));
+		keys.add(new StringKey("status.poison.heal", "%o n'est plus empoisonné!"));
+		keys.add(new StringKey("status.para.heal", "%o n'est plus paralysé!"));
+		keys.add(new StringKey("status.gel.heal", "%o n'est plus gelé!"));
 		keys.add(new StringKey("status.sommeil.heal", "%o se reveille!"));
-		keys.add(new StringKey("status.brulure.heal", "%o n'est plus brulÃ©!"));
+		keys.add(new StringKey("status.brulure.heal", "%o n'est plus brulé!"));
 	}
 	
 }

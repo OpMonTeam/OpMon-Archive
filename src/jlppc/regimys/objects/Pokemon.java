@@ -68,7 +68,7 @@ public class Pokemon extends RegimysObject implements Serializable{
 	 */
 	protected int level;
 	/**
-	 * Le caractÃ¨re du pokemon
+	 * Le caractà¨re du pokemon
 	 */
 	protected Caractere caractere;
 	/**
@@ -104,7 +104,7 @@ public class Pokemon extends RegimysObject implements Serializable{
 	 */
 	protected int exp;
 	/**
-	 * Le nombre d'xp qu'il faut pour le niveau supÃ©rieur
+	 * Le nombre d'xp qu'il faut pour le niveau supérieur
 	 */
 	protected int toNextLevel;
 	protected float expBoost = 1;
@@ -376,13 +376,13 @@ public class Pokemon extends RegimysObject implements Serializable{
 	}
 	
 	/**
-	 * Quand le pokemon a gagnÃ©
+	 * Quand le pokemon a gagné
 	 * @param vaincu
-	 * @return l'exp gagnÃ©e
+	 * @return l'exp gagnée
 	 */
 	@WIP
 	public int win(Pokemon vaincu){
-		fosout("%o a gagnÃ© %o!", surnom, ((vaincu.espece.getExp() * vaincu.level) / this.level) * expBoost);
+		fosout("%o a gagné %o!", surnom, ((vaincu.espece.getExp() * vaincu.level) / this.level) * expBoost);
 		getEvs(vaincu);
 		exp+=((vaincu.espece.getExp() * vaincu.level) / this.level) * expBoost;
 		while(exp >= toNextLevel && level < 100){
@@ -451,9 +451,9 @@ public class Pokemon extends RegimysObject implements Serializable{
 		statPV = Math.round(((2 * espece.getBasePV() + pvIV + (pvEV / 4)) * level) / 100) + level + 10;
 	}
 	/**
-	 * Permet d'utiliser un item sur le pokÃ©mon.
+	 * Permet d'utiliser un item sur le pokémon.
 	 * @param used
-	 * @return un booleen pour savoir si l'item doit Ãªtre supprimÃ© ou pas. (false si pas supprimÃ©, true sinon)
+	 * @return un booleen pour savoir si l'item doit àªtre supprimé ou pas. (false si pas supprimé, true sinon)
 	 */
 	public boolean itemUsed(Item used){
 		fosout("%o utilise un(e) %o!", this.getSurnom(), used.getName());
@@ -463,7 +463,7 @@ public class Pokemon extends RegimysObject implements Serializable{
 					boolean changeName = (surnom.equals(espece.getSurnom()));
 					this.espece = Initializer.listePoke[134];
 					calcStats(espece);
-					fosout("%o Ã©volue en %o!", surnom, espece.getSurnom());
+					fosout("%o évolue en %o!", surnom, espece.getSurnom());
 					if(changeName){
 						surnom = espece.getSurnom();
 					}
@@ -471,7 +471,7 @@ public class Pokemon extends RegimysObject implements Serializable{
 					boolean changeName = (surnom.equals(espece.getSurnom()));
 					this.espece = Initializer.listePoke[136];
 					calcStats(espece);
-					fosout("%o Ã©volue en %o!", surnom, espece.getSurnom());
+					fosout("%o évolue en %o!", surnom, espece.getSurnom());
 					if(changeName){
 						surnom = espece.getSurnom();
 					}
@@ -479,7 +479,7 @@ public class Pokemon extends RegimysObject implements Serializable{
 					boolean changeName = (surnom.equals(espece.getSurnom()));
 					this.espece = Initializer.listePoke[135];
 					calcStats(espece);
-					fosout("%o Ã©volue en %o!", surnom, espece.getSurnom());
+					fosout("%o évolue en %o!", surnom, espece.getSurnom());
 					if(changeName){
 						surnom = espece.getSurnom();
 					}
@@ -559,7 +559,7 @@ public class Pokemon extends RegimysObject implements Serializable{
 		boolean changeName = (surnom.equals(espece.getSurnom()));
 		this.espece = this.espece.getEvolution();
 		calcStats(espece);
-		fosout("%o Ã©volue en %o!", surnom, espece.getSurnom());
+		fosout("%o évolue en %o!", surnom, espece.getSurnom());
 		if(changeName){
 			surnom = espece.getSurnom();
 		}
@@ -657,7 +657,7 @@ public class Pokemon extends RegimysObject implements Serializable{
 	public synchronized void setStatPRE(float newStat) {
 		statPRE = newStat;
 	}
-	//Permet de reset tout les stats. Utiliser avec modÃ©ration S.V.P
+	//Permet de reset tout les stats. Utiliser avec modération S.V.P
 	public synchronized void setStats(int[] stats, Attaque[] attacks, Espece espece, Type[] types){
 		statATK = stats[0];
 		statDEF = stats[1];
@@ -803,7 +803,7 @@ public class Pokemon extends RegimysObject implements Serializable{
 		PV = (PV < 0) ? 0 : PV;
 		
 	}
-	//Les methodes suivantes permettent de modifier les statistiques en suivant les niveaux prÃ©definis. Il retoure false si les statistiques Ã©taient dÃ©jÃ  au plus haut ou plus bas.
+	//Les methodes suivantes permettent de modifier les statistiques en suivant les niveaux prédefinis. Il retoure false si les statistiques étaient déjà  au plus haut ou plus bas.
 	public boolean changeATK(int power) {
 		if(power < 0){
 			for(int i = 0; i > power; i--){
@@ -1825,7 +1825,7 @@ return true;
 	/**
 	 * Permet de changer le status du pokemon en suivant certaines regles.
 	 * @param status - Le nouveau status du pokemon
-	 * @return - Si le status a bien Ã©tÃ© change
+	 * @return - Si le status a bien été change
 	 */
 	public boolean setStatus(Status status){
 		
@@ -1836,26 +1836,26 @@ return true;
 			changeATK(1);
 		}
 		else if(status == Status.BRULURE && this.status == Status.BRULURE){
-			System.out.println(surnom + " est dÃ©jÃ  brulÃ©!");
+			System.out.println(surnom + " est déjà  brulé!");
 			return false;		}
 		else if(status == Status.PARALYSIE){
 			changeVIT(-1);
 		}else if(status == Status.AUCUN && this.status == Status.PARALYSIE){
 			changeVIT(1);
 		}else if(status == Status.SOMMEIL && this.status == Status.SOMMEIL){
-			System.out.println("Mais " + surnom + " dort dÃ©jÃ !");
+			System.out.println("Mais " + surnom + " dort déjà !");
 			return false;
 		}else if(status == Status.PARALYSIE && this.status == Status.PARALYSIE){
-			System.out.println(surnom + " est dÃ©jÃ  paralysÃ©!");
+			System.out.println(surnom + " est déjà  paralysé!");
 			return false;
 		}else if(status == Status.GEL && this.status == Status.GEL){
-			System.out.println(surnom + " est dÃ©jÃ  gelÃ©!");
+			System.out.println(surnom + " est déjà  gelé!");
 			return false;
 		}else if(status == Status.POISON && this.status == Status.POISON){
-			System.out.println(surnom + " est dÃ©jÃ  empoisonnÃ©!");
+			System.out.println(surnom + " est déjà  empoisonné!");
 			return false;
 		}else if(this.status != Status.AUCUN && status != Status.AUCUN){
-			System.out.println("Mais " + surnom + " a dÃ©jÃ  un status!");
+			System.out.println("Mais " + surnom + " a déjà  un status!");
 			return false;
 		}
 		this.status = status;

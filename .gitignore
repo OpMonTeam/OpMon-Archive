@@ -21,3 +21,4 @@ Book1.xlsx.gsheet
 .zip
 #Pas de fichiers de sauvegarde Regimys
 .rsave
+*.rsave
