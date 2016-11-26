@@ -1,6 +1,9 @@
 package jlppc.regimys.fight;
 
+import jlppc.regimys.enums.Type;
 import jlppc.regimys.launch.Start;
+import jlppc.regimys.objects.Attaque;
+import jlppc.regimys.objects.Espece;
 import jlppc.regimys.objects.Pokemon;
 import jlppc.regimys.objects.Pokemon.Status;
 import jlppc.regimys.objects.items.Item;
@@ -16,7 +19,7 @@ public class Fight {
 	public static int oldStats[][] = new int[2][5];
 	public static Type oldTypes[][] = new Type[2][2];
 	public static Espece oldEspece[] = new Espece[2];
-	public static Attaque oldAttaques[][] = new Attaque[2][4];
+	public static Attaque oldAttacks[][] = new Attaque[2][4];
 
 	private static Object[] pokeFight(Pokemon atk, Pokemon def){
 		oldStats[0][0] = new Integer(atk.getStatATK());
@@ -38,8 +41,8 @@ public class Fight {
 		oldEspece[0] = atk.getEspece();
 		oldEspece[1] = def.getEspece();
 		
-		oldAttaques[0] = atk.getAttaques();
-		oldAttaques[1] = def.getAttaques();
+		oldAttacks[0] = atk.getAttaques();
+		oldAttacks[1] = def.getAttaques();
 		atk.setStatESQ(100);
 		atk.setStatPRE(100);
 		def.setStatESQ(100);

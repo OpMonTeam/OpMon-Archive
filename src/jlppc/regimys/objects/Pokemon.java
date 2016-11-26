@@ -8,6 +8,7 @@ import jlppc.regimys.enums.Type;
 import jlppc.regimys.evolution.E_Item;
 import jlppc.regimys.evolution.E_Trade;
 import jlppc.regimys.enums.Caractere.Stats;
+import jlppc.regimys.launch.Initializer;
 import jlppc.regimys.launch.Start;
 import jlppc.regimys.objects.items.I_Heal;
 import jlppc.regimys.objects.items.I_Pokeball;
@@ -456,52 +457,83 @@ public class Pokemon extends RegimysObject implements Serializable{
 	 */
 	public boolean itemUsed(Item used){
 		fosout("%o utilise un(e) %o!", this.getSurnom(), used.getName());
-		if(espece.getEvolType() instanceof E_Item){
-			if(((E_Item) espece.getEvolType()).itemEvolve(used)){
-				evolve();
-			}
-		}
-			if(used instanceof I_Heal){
-				
-				I_Heal usedI = (I_Heal) used;
-				if(usedI.getPvHeal() > 0){
-					this.heal(usedI.getPvHeal());
-					keyout(key("items.heal"), surnom);
-				}
-				if(usedI.isHealAll() && status == Status.AUCUN){
-					this.setStatus(Status.AUCUN);
-					keyout(key("items.status.heal"), surnom);
-				}else if(usedI.getStatusHeald() != Status.AUCUN && status == usedI.getStatusHeald()){
-					setStatus(Status.AUCUN);
-					switch(usedI.getStatusHeald()){
-					case AUCUN:
-						break;
-					case BRULURE:
-						keyout(key("status.brulure.heal"), surnom);
-						break;
-					case GEL:
-						keyout(key("status.gel.heal"), surnom);
-						break;
-					case PARALYSIE:
-						keyout(key("status.para.heal"), surnom);
-						break;
-					case POISON:
-						keyout(key("status.poison.heal"), surnom);
-						break;
-					case SOMMEIL:
-						keyout(key("status.sommeil.heal"), surnom);
-						break;
-					default:
-						break;
-					
+		if(this.getEspece().getSurnom().equalsIgnoreCase("Evoli")){
+			if(espece.getEvolType() instanceof E_Item){
+				if(used.equals(Item.getItem("Pierre Eau"))){
+					boolean changeName = (surnom.equals(espece.getSurnom()));
+					this.espece = Initializer.listePoke[134];
+					calcStats(espece);
+					fosout("%o évolue en %o!", surnom, espece.getSurnom());
+					if(changeName){
+						surnom = espece.getSurnom();
 					}
-				}
-				
-				
+				}else if(used.equals(Item.getItem("Pierre Feu"))){
+					boolean changeName = (surnom.equals(espece.getSurnom()));
+					this.espece = Initializer.listePoke[136];
+					calcStats(espece);
+					fosout("%o évolue en %o!", surnom, espece.getSurnom());
+					if(changeName){
+						surnom = espece.getSurnom();
+					}
+				}else if(used.equals(Item.getItem("Perre Plante"))){
+					boolean changeName = (surnom.equals(espece.getSurnom()));
+					this.espece = Initializer.listePoke[135];
+					calcStats(espece);
+					fosout("%o évolue en %o!", surnom, espece.getSurnom());
+					if(changeName){
+						surnom = espece.getSurnom();
+					}
+				}else{return false;}
 			}
-		
-		
+		}else{
+			if(espece.getEvolType() instanceof E_Item){
+				if(((E_Item) espece.getEvolType()).itemEvolve(used)){
+					evolve();
+				}
+			}
+			
+		}
+		if(used instanceof I_Heal){
+			
+			I_Heal usedI = (I_Heal) used;
+			if(usedI.getPvHeal() > 0){
+				this.heal(usedI.getPvHeal());
+				keyout(key("items.heal"), surnom);
+			}
+			if(usedI.isHealAll() && status == Status.AUCUN){
+				this.setStatus(Status.AUCUN);
+				keyout(key("items.status.heal"), surnom);
+			}else if(usedI.getStatusHeald() != Status.AUCUN && status == usedI.getStatusHeald()){
+				setStatus(Status.AUCUN);
+				switch(usedI.getStatusHeald()){
+				case AUCUN:
+					break;
+				case BRULURE:
+					keyout(key("status.brulure.heal"), surnom);
+					break;
+				case GEL:
+					keyout(key("status.gel.heal"), surnom);
+					break;
+				case PARALYSIE:
+					keyout(key("status.para.heal"), surnom);
+					break;
+				case POISON:
+					keyout(key("status.poison.heal"), surnom);
+					break;
+				case SOMMEIL:
+					keyout(key("status.sommeil.heal"), surnom);
+					break;
+				default:
+					break;
+				
+				}
+			}
+			
+			
+			
+		}
 		return false;
+		
 	}
 	
 	public Item hold(Item item){

@@ -17,7 +17,7 @@ import jlppc.utils.HashArray;
  * @author Jlppc
  *
  */
-public final class Espece implements Serializable{
+public class Espece implements Serializable{
 
 	/**
 	 * Le nom de l'esp�ce. Pourquoi surnom? Je sais pas.

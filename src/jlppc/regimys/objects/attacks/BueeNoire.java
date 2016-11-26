@@ -17,8 +17,8 @@ public class BueeNoire extends Attaque {
 
 	@Override
 	protected void effetApres(Pokemon atk, Pokemon def) {
-		atk.setStats(Fight.oldStats[0]);
-		def.setStats(Fight.oldStats[1]);
+		atk.setStats(Fight.oldStats[0], atk.getAttaques(), atk.getEspece(), new Type[]{atk.getType1(), atk.getType2()});
+		def.setStats(Fight.oldStats[1], def.getAttaques(), def.getEspece(), new Type[]{def.getType1(), def.getType2()});
 		System.out.println("Tous les changements de status sont revenus à la normale!");
 
 	}
