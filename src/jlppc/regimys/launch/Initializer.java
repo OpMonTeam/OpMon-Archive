@@ -1,5 +1,7 @@
 package jlppc.regimys.launch;
 
+import javax.sound.midi.Synthesizer;
+
 import jlppc.regimys.enums.Caractere.Stats;
 import jlppc.regimys.enums.Type;
 import jlppc.regimys.evolution.E_Item;
@@ -9,10 +11,13 @@ import jlppc.regimys.evolution.E_Love;
 import jlppc.regimys.evolution.E_Nope;
 import jlppc.regimys.evolution.E_Trade;
 import jlppc.regimys.evolution.E_TradeItem;
+import jlppc.regimys.objects.Attaque;
 import jlppc.regimys.objects.Espece;
 
+import jlppc.regimys.objects.attacks.*;
 import jlppc.regimys.objects.items.Item;
 import jlppc.regimys.util.text.StringKey;
+import jlppc.utils.HashArray;
 import jlppc.utils.Static;
 
 /**
@@ -30,7 +35,7 @@ public class Initializer {
 	 */
 	 public static void initPokemons(){
 		 listePoke[0] = new Espece(136, 0, 1, 1, 29, 33, "MissingNo.", Type.NORMAL, Type.VOL, Espece.EVOLUTION_BY_LEVEL, 80, new E_Level(0, 80), null, null, new Stats[]{Stats.ATK}, 0f, 0f, "ERROR : MISSINGNO.", 0, 1250000, 3);
-		 listePoke[1] = new Espece(49, 49, 65, 65, 45, 45, "Bulbizarre", Type.PLANTE, Type.POISON, Espece.EVOLUTION_BY_LEVEL, 16, new E_Level(2, 16), null, null, new Stats[]{Stats.ATKSPE}, 0.7f, 6.9f, "Il a une étrange graine plantée sur son dos. Elle grandit avec lui depuis sa naissance.", 64, 1059860, 45);
+		 listePoke[1] = new Espece(49, 49, 65, 65, 45, 45, "Bulbizarre", Type.PLANTE, Type.POISON, Espece.EVOLUTION_BY_LEVEL, 16, new E_Level(2, 16), new HashArray[]{new HashArray(0, Charge.class), new HashArray(3, Rugissement.class), new HashArray(7, Vampigraine.class), new HashArray(9, FouetLianes.class), new HashArray(13, PoudreToxik.class), new HashArray(13, PoudreDodo.class), new HashArray(15, Belier.class), new HashArray(19, TranchHerbe.class), new HashArray(21, DouxParfum.class), new HashArray(25, Croissance.class), new HashArray(27, Damocles.class),  new HashArray(33, Synthese.class), new HashArray(37, CanonGraine.class)}, null, new Stats[]{Stats.ATKSPE}, 0.7f, 6.9f, "Il a une étrange graine plantée sur son dos. Elle grandit avec lui depuis sa naissance.", 64, 1059860, 45);
 		 listePoke[2] = new Espece(62, 63, 80, 80, 60, 60, "Herbizarre",Type.PLANTE, Type.POISON, Espece.EVOLUTION_BY_LEVEL, 32, new E_Level(3, 32), null, null, new Stats[]{Stats.ATKSPE, Stats.DEFSPE}, 1f, 13f, "Lorsque le bourgeon sur son dos éclot, il répand un doux parfum pour célébrer sa floraison.", 141, 1059860, 45);
 		 listePoke[3] = new Espece(82, 83, 100, 100, 80, 80, "Florizarre", Type.PLANTE, Type.POISON, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.ATKSPE, Stats.ATKSPE, Stats.DEFSPE}, 2f, 100f, "Ses pétales lui servent Ã  capter la lumière du soleil. Il peut ainsi en canaliser l'énergie.", 236, 1059860, 45);
 		 listePoke[4] = new Espece(52, 43, 60, 50, 65, 39, "Salamèche", Type.FEU, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 16, new E_Level(5, 16), null, null, new Stats[]{Stats.VIT}, 0.6f, 8.5f, "La flamme sur sa queue représente l'énergie vitale de Salamèche. Quand il est vigoureux, elle brÃ»le plus fort.", 65, 1059860, 45);
@@ -53,7 +58,7 @@ public class Initializer {
 		 listePoke[21] = new Espece(60, 30, 31, 31, 70, 40, "Piafabec", Type.NORMAL, Type.VOL, Espece.EVOLUTION_BY_LEVEL, 20, new E_Level(22, 20), null, null, new Stats[]{Stats.VIT}, 0.3f, 2f, "Il chasse les insectes dans les hautes herbes. Ses petites ailes lui permettent de voler très vite.", 58, 1000000, 255);
 		 listePoke[22] = new Espece(90, 65, 31, 31, 100, 65, "Rapasdepic", Type.NORMAL, Type.VOL, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.VIT, Stats.VIT}, 1.2f, 38f, "Il vole Ã  très grande vitesse et attaque en chargeant son ennemi.", 162, 1000000, 90);
 		 listePoke[23] = new Espece(60, 44, 40, 54, 55, 35, "Abo", Type.POISON, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 22, new E_Level(24, 22), null, null, new Stats[]{Stats.ATK}, 2f, 6.9f, "Plus il est Ã¢gé, plus son corps est long. Il se love autour des arbres pour se reposer.", 62, 1000000, 255);
-	         listePoke[24] = new Espece(85, 69, 65, 79, 80, 60, "Arbok", Type.POISON, Type.NORMAL, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.ATK, Stats.ATK}, 3.5f, 65f, "Pour apeurer ses ennemis, il gonfle sa poitrine et émet d'étranges sons avec sa bouche.", 147, 1000000, 90);
+	     listePoke[24] = new Espece(85, 69, 65, 79, 80, 60, "Arbok", Type.POISON, Type.NORMAL, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.ATK, Stats.ATK}, 3.5f, 65f, "Pour apeurer ses ennemis, il gonfle sa poitrine et émet d'étranges sons avec sa bouche.", 147, 1000000, 90);
 		 listePoke[25] = new Espece(55, 40, 50, 50, 90, 35, "Pikachu", Type.ELECTRIQUE, Type.AUCUN, Espece.EVOLUTION_BY_OBJECT, -1, new E_Item(26, Item.getItem("Pierrefoudre")), null, null, new Stats[]{Stats.VIT, Stats.VIT}, 0.4f, 6f, "Il élève sa queue pour surveiller les environs. Elle attire souvent la foudre dans cette position.", 82, 1000000, 190);
 		 listePoke[26] = new Espece(90, 55, 90, 80, 110, 60, "Raichu", Type.ELECTRIQUE, Type.AUCUN, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.VIT, Stats.VIT, Stats.VIT}, 0.8f, 30f, "Il peut terrasser des ennemis bien plus imposants en libérant une décharge de 100 000 V.", 122, 1000000, 75);
 		 listePoke[27] = new Espece(75, 85, 20, 30, 40, 50, "Sabelette", Type.SOL, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 22, new E_Level(28, 22), null, null, new Stats[]{Stats.DEF}, 0.6f, 12f, "Il s'enterre et vit dans les sous-sols. S'il se sent menacé, il se met en boule pour se protéger.", 93, 1000000, 255);
