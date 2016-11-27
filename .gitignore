@@ -22,3 +22,4 @@ Book1.xlsx.gsheet
 #Pas de fichiers de sauvegarde Regimys
 .rsave
 *.rsave
+*.rej
