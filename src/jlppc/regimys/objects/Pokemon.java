@@ -154,8 +154,26 @@ public class Pokemon extends RegimysObject implements Serializable{
 		}
 	}
 	
+	public void setStat(String stat, int newStat){
+		if(stat.equals("atk")){
+			this.statATK = newStat;
+		}else if(stat.equals("def")){
+			statDEF = newStat;
+		}else if(stat.equals("atkspe")){
+			statATKSPE = newStat;
+		}else if(stat.equals("defspe")){
+			statDEFSPE = newStat;
+		}else if(stat.equals("vit")){
+			statVIT = newStat;
+		}else if(stat.equals("pv")){
+			statPV = newStat;
+		}else{
+			
+		}
+	}
+	
 	@Static
-	protected static class CalcCourbes implements Serializable{
+	protected abstract static class CalcCourbes implements Serializable{
 		private static float p(int x){
 			switch(x){
 			case 0:
