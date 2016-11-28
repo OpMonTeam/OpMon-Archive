@@ -24,6 +24,7 @@ public class CT <T> extends Item {
 		itemList.add(new CT<Aiguisage>(Aiguisage.class, 1));
 		itemList.add(new CT<Dracogriffe>(Dracogriffe.class, 2));
 		itemList.add(new CT<ChocPsy>(ChocPsy.class, 3));
+		itemList.add(new CT<Plenitude>(Plenitude.class, 4));
 	}
 	
 	
