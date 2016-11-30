@@ -49,8 +49,7 @@ public enum Caractere implements Serializable{
 	 * Le bonus et malus que offre le caractere.
 	 * <br/> Les deux sont d�clar�s sur la m�me ligne parce que... flemme?
 	 */
-	public final Stats bonus;
-	public final Stats malus;
+	public final Stats bonus, malus;
 	/**
 	 * Le constructeur. Devinez a quoi il sert!
 	 * @param bonus - {@link #bonus}
