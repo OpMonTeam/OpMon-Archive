@@ -14,6 +14,10 @@ public enum Type implements Serializable{
 	 * L'ID du type.
 	 */
 	public final int id;
+	/**Le nom de l'énumeration (Avant que je découvre qu'une methode permettait de l'avoir... ;-( )
+	 * @depracted pour des raisons évidentes
+	 */
+	@Deprecated
 	public final String enumName;
 	//Variables de repere pour le tableau.
 	public static final float PE = 0.5f;//Peu efficace
@@ -48,7 +52,7 @@ public enum Type implements Serializable{
 			{NE, PE, NE, NE, TE, NE, NE, TE, PE, NE, PE, NE, NE, TE, IN, NE, NE, NE}//Vol
 	};
 	
-	
+	//Je ne vais pas documenter tous les tableaux
 	
 	public static float[][] tableAcier = {
 			{TP, SE, TP, NE, NE, TP, SE, TP, TP, TP, TP, IN, TP, TP, SE, NE, NE, TP},//Acier + Acier
@@ -435,7 +439,7 @@ public enum Type implements Serializable{
 			{NE, NE, NE, NE, TE, TE, NE, TE, NE, NE, PE, NE, IN, TE, IN, PE, PE, NE},
 			tabUnType[VOL.id]
 	};
-	
+	/**Un tableau qui réunit tous les tables a double type*/
 	public static float[][][] tableDeuxTypes = {tableAcier, tableCombat, tableDragon, tableEau, tableauElectrique, tableauFee, tableauFeu, tableauGlace, tableauInsecte, tableauNormal, tablePlante, tablePoison, tableauPsy, tableauRoche, tableauSol, tableSpectre, tableauTenebres, tableauVol};
 	
 	/**
