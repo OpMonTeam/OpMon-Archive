@@ -75,6 +75,8 @@ public class Start {
 	 * Entrées (utilisé au début du programme)
 	 */
 	public static Scanner sc = new Scanner(System.in);
+	
+	public static Main window = new Main();
 
 	/**
 	 * Le main, permet de... demmarer le programme. Tu ne le savais pas? ;-)
