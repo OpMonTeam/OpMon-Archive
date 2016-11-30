@@ -3,7 +3,9 @@ package jlppc.regimys.evolution;
 import jlppc.regimys.objects.Espece;
 import jlppc.regimys.objects.Pokemon;
 import jlppc.regimys.objects.items.Item;
-
+/**Classe définissant une évolution par Objet
+ * @author jlppc
+ */
 public class E_Item extends Evolution {
 	
 	protected Item itemForEvolve;
