@@ -1,9 +1,9 @@
-package jlppc.regimys.gui;
+package jlppc.regimys.gui.game;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Plan extends JPanel{
+public final class Plan extends JPanel{
 	
 	JLabel lbls[][][];
 	
