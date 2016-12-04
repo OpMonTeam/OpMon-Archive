@@ -1,11 +1,10 @@
-package jlppc.regimys.gui;
-
-import java.awt.EventQueue;
+package jlppc.regimys.gui.game;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
-public class GameWindow extends JInternalFrame {
+public final class GameWindow extends JInternalFrame {
 	public JLabel[][][] cases = new JLabel[5][16][16];
 	public GameWindow() {
 		super();
@@ -18,6 +17,11 @@ public class GameWindow extends JInternalFrame {
 			}
 		}
 		
+	}
+	
+	public void setPanel(JPanel panel){
+		this.setContentPane(panel);
+		this.repaint();
 	}
 
 	

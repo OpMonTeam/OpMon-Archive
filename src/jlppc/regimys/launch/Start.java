@@ -11,6 +11,7 @@ import jlppc.regimys.core.save.Parameters;
 import jlppc.regimys.creator.pokemon.Main;
 import jlppc.regimys.enums.Caractere;
 import jlppc.regimys.fight.Fight;
+import jlppc.regimys.gui.MainFrame;
 import jlppc.regimys.objects.Attaque;
 import jlppc.regimys.objects.Espece;
 import jlppc.regimys.objects.Pokemon;
@@ -103,6 +104,10 @@ public class Start {
 						}
 					}else if(args[0].equals("--version")){
 						System.out.println("Pokémon Regimys version " + versionS);
+					}else if(args[0].equals("--guitest")){
+						System.out.println("Test du gui de Pokemon Regimys");
+						MainFrame.open();
+						guiMain();
 					}
 					else{
 						System.out.println("Page d'aide des arguments de Pokemon Regimys." + Log.saut + "--creator : Permet d'affcher une fenetre de creation d'un objet (Voir --creator aide)" + Log.saut + "--help : Affiche cette page");
@@ -186,6 +191,11 @@ public class Start {
 			}
 			System.exit(-1);
 		}
+		
+		
+	}
+
+	private static void guiMain() {
 		
 		
 	}

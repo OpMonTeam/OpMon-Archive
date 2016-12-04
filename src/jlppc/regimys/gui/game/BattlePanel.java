@@ -1,9 +1,9 @@
-package jlppc.regimys.gui;
+package jlppc.regimys.gui.game;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 
-public class BattlePanel extends JPanel {
+public final class BattlePanel extends JPanel {
 	public BattlePanel() {
 		super();
 		setLayout(null);
