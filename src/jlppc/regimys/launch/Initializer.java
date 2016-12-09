@@ -198,21 +198,20 @@ public class Initializer {
 		 listePoke[158] = new Espece(65, 64, 44, 48, 43, 50, "Kaiminus", Type.EAU, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 18, new E_Level(158, 18), null, null, new Stats[]{Stats.ATK}, 0.6, 9,5f, "Petit mais costaud, il n'hésite pas à mordre tout ce qui passe à portée de ses dents.", 66, 1059860, 45); 
 		 listePoke[159] = new Espece(80, 80, 59, 63, 58, 65, "Crocrodil", Type.EAU, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 30, new E_Level(159, 30), null, null, new Stats[]{Stats.ATK, Stats.DEF}, 1.1, 25f, "Quand il perd un croc, il en repousse un autre. Sa bouche est en permanence composée de 48 dents.", 143, 1059860, 45); 
 		 listePoke[160] = new Espece(105, 100, 79, 83, 78, 85, "Aligatueur", Type.EAU, Type.AUCUN, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.ATK, Stats.ATK, Stats.DEF}, 2.3f, 88.8f, "Ce Pokémon à l'air pataud est capable d'attaquer à la vitesse de l'éclair pour mordre sa proie.", 210, 1059860, 45);
-		 listePoke[161] =
-		 listePoke[162] =
-		 listePoke[163] =
-	         //listePoke[163] =
-		 //listePoke[164]
-		 //listePoke[165]
-		 //listePoke[166]
-		 //listePoke[167]
-		 //listePoke[168]
-		 //listePoke[169]
-		// listePoke[170]
-		// listePoke[171]
-		 //listePoke[172]
-		 //listePoke[173]
-		 //listePoke[173]
+		 listePoke[161] = new Espece(46, 34, 35, 45, 20, 35, "Fouinette", Type.NORMAL, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 15, new E_Level(162, 15), null, null, new Stats[]{Stats.ATK}, 0.8f, 6f, "S'il fait le guet, il prévient les autres d'un danger en criant et en frappant avec sa queue le sol.", 57, 1000000, 255);
+		 listePoke[162] = new Espece(76, 64, 45, 55, 90, 85, "Fouinar", Type.NORMAL, Type.AUCUN, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.VIT,Stats.VIT}, 1.8f, 32.5f, "Il fabrique un nid qui convient à son corps très fin, et où lui seul peut entrer.", 116, 1000000, 90);
+		 listePoke[163] = new Espece(30, 30, 36, 56, 50, 60, "Hoothoot", Type.NORMAL, Type.VOL, Espece.EVOLUTION_BY_LEVEL, 20, new E_Level(164, 20), null, null, new Stats[]{Stats.PV}, 0.7f, 21.2f, "Il a un sens du timing parfait. Il reste toujours en rythme en balançant la tête.", 58, 1000000, 255);
+		 //listePoke[164] = new Espece(
+		 //listePoke[165] = new Espece(
+		 //listePoke[166] = new Espece(
+		 //listePoke[167] = new Espece(
+		 //listePoke[168] = new Espece(
+		 //listePoke[169] = new Espece(
+		 //listePoke[170] = new Espece(
+		 //listePoke[171] = new Espece(
+		 //listePoke[172] = new Espece(
+		 //listePoke[173] = new Espece(
+		 //listePoke[174] = new Espece(
 		 for(Espece esp : listePoke){
 			
 			 if(esp != null){
