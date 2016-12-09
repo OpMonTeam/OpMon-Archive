@@ -197,7 +197,24 @@ public class Initializer {
 		 listepoke[157] = new Espece(84, 78, 109, 85, 100, 78, "Typlosion", Type.FEU, Type.AUCUN, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.ATKSPE, Stats.ATKSPE, Stats.ATKSPE}, 1.7f, 79.5f, "Il a un coup secret dévastateur. En frottant sa fourrure ardente, il crée une forte explosion.", 209, 1059860, 45); 
 		 listePoke[158] = new Espece(65, 64, 44, 48, 43, 50 "Kaiminus", Type.EAU, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 18, new E_Level(158, 18), null, null, new Stats[]{Stats.ATK}, 0.6, 9,5f, "Petit mais costaud, il n'hésite pas à mordre tout ce qui passe à portée de ses dents.", 66, 1059860, 45); 
 		 listePoke[159] = new Espece(80, 80, 59, 63, 58, 65 "Crocodil", Type.EAU, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 30, new E_Level(159, 30), null, null, new Stats[]{Stats.ATK, Stats.DEF}, 1.1, 25f, "Quand il perd un croc, il en repousse un autre. Sa bouche est en permanence composée de 48 dents.", 143, 1059860, 45); 
+		 listePoke[160] =
+		 listePoke[161] =
+		 listePoke[162] =
+		 listePoke[163] =
+	         //listePoke[163] =
+		 //listePoke[164]
+		 //listePoke[165]
+		 //listePoke[166]
+		 //listePoke[167]
+		 //listePoke[168]
+		 //listePoke[169]
+		// listePoke[170]
+		// listePoke[171]
+		 //listePoke[172]
+		 //listePoke[173]
+		 //listePoke[173]
 		 for(Espece esp : listePoke){
+			
 			 if(esp != null){
 				 esp.checkEvol();
 			 }
