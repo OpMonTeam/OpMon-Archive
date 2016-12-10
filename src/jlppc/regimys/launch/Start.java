@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 import jlppc.regimys.core.save.Parameters;
 import jlppc.regimys.creator.pokemon.Main;
 import jlppc.regimys.enums.Caractere;
@@ -82,12 +84,13 @@ public class Start {
 
 	/**
 	 * Le prochain main du launcher
-	 * @param saves - Les fichiers de sauvegarde
+	 * @param saves - Les fichiers de sauvegarde (0 : Les paramètres, 1 : Le joueur)
 	 */
 	public static void main(File[] saves) throws Throwable{
 		String playername;
+		Parameters.paramInit(saves[0]);
 		if((Parameters.checkParam("playerexists") ? Parameters.getParam("playerexists").getValue().equals("true") : false)){
-			joueur = Player.getPlayer(new File("player.rsave"));
+			joueur = Player.getPlayer(saves[1]);
 		}else{
 			System.out.println("Bienvenue dans le monde non achevÃ© des pokÃ©mon! Quel est ton nom? : ");
 			playername = sc.nextLine();
@@ -109,7 +112,7 @@ public class Start {
 			System.out.println("C'est parti pour les combats!");
 			
 			joueur.addItem(Item.searchItem(Item.getItem("Potion")));joueur.addItem(Item.searchItem(Item.getItem("Potion")));//Oui il y a deux instructions en deux lignes. ET ALORS?
-			Player.savePlayer(new File("player.rsave"));
+			Player.savePlayer(saves[1]);
 			Parameters.modifyOrAddParam("playerexists", "true", "DÃ©finit si le joueur a deja Ã©tÃ© crÃ©e ou non.");
 			
 		}
@@ -136,7 +139,7 @@ public class Start {
 			int itemID = rand.nextInt(Item.itemList.size());
 			joueur.addItem(itemID);
 			System.out.println("Ajout de l'item " + Item.getItem(itemID).getName());
-			Player.savePlayer(new File("player.rsave"));
+			Player.savePlayer(saves[1]);
 
 		}
 		
@@ -168,6 +171,13 @@ public class Start {
 						}
 					}else if(args[0].equals("--version")){
 						System.out.println("Pokémon Regimys version " + versionS);
+					}else if(args[0].equals("--launcher")){
+						try{
+							main(new File[]{new File(args[1]), new File(args[2])});
+						}catch(Throwable e){
+							JOptionPane.showMessageDialog(null, "Désolé, mais cette option ne peut être utilisée que par le launcher (a moins que vous ne sachiez vous en servir)", "Erreur", JOptionPane.ERROR_MESSAGE);
+							System.exit(2);
+						}
 					}
 					else{
 						System.out.println("Page d'aide des arguments de Pokemon Regimys." + Log.saut + "--creator : Permet d'affcher une fenetre de creation d'un objet (Voir --creator aide)" + Log.saut + "--help : Affiche cette page");
