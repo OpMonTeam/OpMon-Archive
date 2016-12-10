@@ -1,17 +1,35 @@
 package jlppc.regimys.objects.items;
 
 import jlppc.regimys.objects.attacks.*;
+
 import jlppc.utils.WIP;
+/**
+ * Définit une CT
+ * @author Jlppc
+ *
+ * @param <T> : La classe de l'attaque
+ */
 @WIP
 public class CT <T> extends Item {
-	
+	/**
+	 * La classe de l'attaque
+	 */
 	Class<T> atk;
-	
+	/**
+	 * 
+	 * @param atk - La classe de l'attaque
+	 * @param ctnumber - Le numéro de CT
+	 */
 	public CT(Class<T> atk, int ctnumber) {
 		super("CT" + ctnumber + atk.getName(), true, false,false, BagCat.CTS);
 		this.atk = atk;
 	}
-	
+	/**
+	 * 
+	 * @param atk - La classe de l'attaque
+	 * @param isCS - Le boolean indiquant si c'est une cs (un peu inutile, puisque ce constructeur n'est destiné qu'aux CS. Il peut neemoins servir pour les CT)
+	 * @param csnumber - Le numéro de la CS
+	 */
 	public CT(Class<T> atk, boolean isCS, int csnumber){
 		super(((isCS) ? "CS" : "CT") + csnumber + atk.getName(), true, false,false, BagCat.CTS);
 	}
@@ -19,7 +37,9 @@ public class CT <T> extends Item {
 	public Class<T> getAtk(){
 		return atk;
 	}
-	
+	/**
+	 * Intialise les CT et CS
+	 */
 	public static void initCTs(){
 		itemList.add(new CT<Aiguisage>(Aiguisage.class, 1));
 		itemList.add(new CT<Dracogriffe>(Dracogriffe.class, 2));

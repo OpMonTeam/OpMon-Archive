@@ -114,14 +114,23 @@ public class Pokemon extends RegimysObject implements Serializable{
 	public boolean amour = false;
 	public boolean vampigraine = false;
 	public boolean malediction = false;
+	//Les bonus et malus des caractères
 	protected Stats malusCara;
 	protected Stats bonusCara;
-	
+	/**
+	 * L'item tenu par le Pokémon.
+	 */
 	protected Item held;
-	
+	/**
+	 * Le taux de capture
+	 */
 	protected int tauxCapture;
 	
-	
+	/**
+	 * Verifie si un pokémon est capturé
+	 * @param pokeball - Le type de pokéball utilisée
+	 * @return true si le pokéon est capturé, false sinon
+	 */
 	public boolean captured(I_Pokeball pokeball){
 		int a = Math.round((((3 * statPV - 2 * PV) * tauxCapture * pokeball.getTauxCapture() * (Comparaisons.muliEgal(status, Status.PARALYSIE, Status.POISON, Status.BRULURE) ? 1.5f : (Comparaisons.muliEgal(status, Status.SOMMEIL, Status.GEL) ? 2 : 1)))/(3 * statPV)));
 		int b = (int) Math.round((Math.pow(2, 16) - 1) * Maths.racine(a/(Math.pow(2, 8) - 1),4));
@@ -153,7 +162,11 @@ public class Pokemon extends RegimysObject implements Serializable{
 			return true;
 		}
 	}
-	
+	/**
+	 * Permet de changer une statistique. A utiliser avec modération
+	 * @param stat - La statistique a changer
+	 * @param newStat - La nouvelle valeur a affecter a cette statistique
+	 */
 	public void setStat(String stat, int newStat){
 		if(stat.equals("atk")){
 			this.statATK = newStat;
@@ -172,6 +185,11 @@ public class Pokemon extends RegimysObject implements Serializable{
 		}
 	}
 	
+	/**
+	 * Les methodes permettant de faire des calculs par rapport aux courbes d'experience.
+	 * @author Jlppc
+	 *
+	 */
 	@Static
 	protected abstract static class CalcCourbes implements Serializable{
 		private static float p(int x){
@@ -336,7 +354,9 @@ public class Pokemon extends RegimysObject implements Serializable{
 		}
 		toNextLevel = toNextLevel - exp;
 	}
-	
+	/**
+	 * Methode appelée quand le pokémon gagne un niveau.
+	 */
 	public void levelUp(){
 		level++;
 		System.out.println("Level up! Passage au niveau " + level + "!");
@@ -415,7 +435,10 @@ public class Pokemon extends RegimysObject implements Serializable{
 		
 		
 	}
-	
+	/**
+	 * Methode appellée quand le pokémon gagne pour distribuer les EV
+	 * @param vaincu
+	 */
 	protected void getEvs(Pokemon vaincu){
 		if(!((atkEV + defEV + pvEV + atkSpeEV + defSpeEV + vitEV) > 510)){
 			for(Stats stat : vaincu.getEspece().getEVgiven()){
@@ -459,7 +482,10 @@ public class Pokemon extends RegimysObject implements Serializable{
 		}
 	}
 	
-	
+	/**
+	 * Recalcule les stats
+	 * @param espece
+	 */
 	public void calcStats(Espece espece){
 		statATK = (int) Math.round( ( ( ((2 * espece.getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100 ) + 5 ) * ((bonusCara == Stats.ATK) ? 1.1 : ((malusCara == Stats.ATK) ? 0.9 : 1)));
 		statDEF = (int) Math.round( ( ( ((2 * espece.getBaseDef() + defIV + (defEV / 4)) * level) / 100 ) + 5 ) * ((bonusCara == Stats.DEF) ? 1.1 : ((malusCara == Stats.DEF) ? 0.9 : 1)));
@@ -553,26 +579,36 @@ public class Pokemon extends RegimysObject implements Serializable{
 		return false;
 		
 	}
-	
+	/**
+	 * Fais tenir un item
+	 * @param item
+	 * @return L'item qui était a la place.
+	 */
 	public Item hold(Item item){
 		Item ancien = (Item) held.clone();
 		held = item;
 		return ancien;
 	}
-	
+	/**
+	 * Methode appelée quand le pokémon est échangé
+	 */
 	public void traded(){
 		expBoost = 1.5f;
 		if(espece.getEvolType() instanceof E_Trade){
 			evolve();
 		}
 	}
-	
+	/**
+	 * SPOILERS!
+	 */
 	public void toolEvTrade(){
 		if(espece.getEvolType() instanceof E_Trade){
 			evolve();
 		}
 	}
-	
+	/**
+	 * Quand le pokémon évolue
+	 */
 	public void evolve(){
 		boolean changeName = (surnom.equals(espece.getSurnom()));
 		this.espece = this.espece.getEvolution();
@@ -675,6 +711,13 @@ public class Pokemon extends RegimysObject implements Serializable{
 	public synchronized void setStatPRE(float newStat) {
 		statPRE = newStat;
 	}
+	/**
+	 * Methode permettant de reset touts les stats et plus
+	 * @param stats - Le tableau des statistiques (0 : atk; 1 : def; 2 : atkspe; 3 : defspe; 4 : vit) 
+	 * @param attacks - Les attaques (de 1 à 4)
+	 * @param espece - L'espece
+	 * @param types - Les types
+	 */
 	//Permet de reset tout les stats. Utiliser avec modération S.V.P
 	public synchronized void setStats(int[] stats, Attaque[] attacks, Espece espece, Type[] types){
 		statATK = stats[0];
@@ -780,6 +823,7 @@ public class Pokemon extends RegimysObject implements Serializable{
 		return true;
 	}
 	//Oh! Un getter intrus! On peut dire qu'il a du... TALENT!
+	//09/12/2016 : Je m'excuse
 	public Talent getTalent() {
 		return talent;
 	}
@@ -1883,6 +1927,10 @@ return true;
 	public Status getStatus(){
 		return status;
 	}
+	/**
+	 * Soigne le pokémon
+	 * @param PV - Le nombre de PV a soigner
+	 */
 	public void heal(int PV){
 		if((PV + this.PV) > statPV){
 			this.PV = statPV;

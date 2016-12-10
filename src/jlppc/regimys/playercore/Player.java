@@ -1,6 +1,7 @@
 package jlppc.regimys.playercore;
 
 import java.io.BufferedInputStream;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,23 +22,46 @@ import jlppc.regimys.objects.Pokemon.Status;
 import jlppc.regimys.objects.items.Item;
 import jlppc.utils.HashArray;
 import jlppc.utils.WIP;
+/**
+ * Définit le joueur
+ * @author Jlppc
+ *
+ */
 @WIP
 public final class Player implements Serializable {
-	
+	/**
+	 * Le nom du joueur
+	 */
 	private String name;
+	/**
+	 * L'ID de dresseur
+	 */
+	@WIP
 	private int dressID;
 	
 
 	
-
+	/**
+	 * Le sac du joueur
+	 */
 	public int[] bag = new int[Item.getItemNumber()];
+	/**
+	 * Le PC du joueur
+	 */
 	private Vector<Pokemon> pc = new Vector<>();
+	/**
+	 * L'equipe du joueur
+	 */
 	private Equipe equipe;
 	
 	public Equipe getEquipe(){
 		return equipe;
 	}
-	
+	/**
+	 * Ajoute un item au sac
+	 * @param itemID - L'ID de l'item a ajouter
+	 */
+	@WIP
 	public void addItem(int itemID){
 		
 		switch(Item.getItem(itemID).getBagCat()){
@@ -58,6 +82,11 @@ public final class Player implements Serializable {
 			break;
 		}
 	}
+	/**
+	 * Verifie si un item est présent dans le sac ou pas
+	 * @param itemID - L'ID de l'item a verifier
+	 * @return le nombre d'items disponibles dans le sac
+	 */
 	public int checkItem(int itemID){
 		try{
 			int toReturn = bag[itemID];
@@ -67,6 +96,11 @@ public final class Player implements Serializable {
 			return 0;
 		}
 	}
+	/**
+	 * Supprime un exemplaire de l'item dans le sac
+	 * @param itemID - L'ID de l'item a supprimer
+	 * @return true si l'item a bien été supprimé
+	 */
 	public boolean deleteItem(int itemID){
 		if(bag[itemID] != 0){
 			bag[itemID]--;
@@ -75,7 +109,10 @@ public final class Player implements Serializable {
 			return false;
 		}
 	}
-	
+	/**
+	 * 
+	 * @param name {@link #name}
+	 */
 	public Player(String name) {
 		this.name = name;
 		this.equipe = new Equipe(this.name);
@@ -96,6 +133,9 @@ public final class Player implements Serializable {
 	public Pokemon getPoke(int ID){
 		return equipe.getPokemon(ID);
 	}
+	/**
+	 * Soigne toute l'equipe, les PP des attaques et tout.
+	 */
 	public void healPoke(){
 		for(Pokemon pkmn : equipe.getEquipe()){
 			try{
@@ -120,7 +160,7 @@ public final class Player implements Serializable {
 		}
 	}
 	/**
-	 * Ajoute un pokÃ©mon dans l'equipe
+	 * Ajoute un pokémon dans l'equipe
 	 * @param toAdd
 	 * @return true si le pokemon a Ã©tÃ© ajoutÃ© dans l'equipe, false si dans le PC
 	 */
@@ -134,7 +174,14 @@ public final class Player implements Serializable {
 		}
 		
 	}
-	
+	/**
+	 * Retourne les données du joueur dans le fichier donné
+	 * @param fle - Le fichier ou se situe le joueur
+	 * @return Le joueur
+	 * @throws FileNotFoundException Si le fichier n'est pas trouvé
+	 * @throws IOException Heu... En cas de problème.
+	 * @throws ClassNotFoundException En cas d'incompatibilité de sauvegarde
+	 */
 	public static Player getPlayer(File fle) throws FileNotFoundException, IOException, ClassNotFoundException{
 		ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(fle)));
 		Player player = null;
@@ -150,7 +197,12 @@ public final class Player implements Serializable {
 		ois.close();
 		return player;
 	}
-	
+	/**
+	 * Sauvegarde le joueur dans un fichier
+	 * @param file - Le fichier dans lequel sauvegarder.
+	 * @throws FileNotFoundException Dafuck.
+	 * @throws IOException Problème?
+	 */
 	public static void savePlayer(File file) throws FileNotFoundException, IOException{
 		file.delete();
 		file.createNewFile();
