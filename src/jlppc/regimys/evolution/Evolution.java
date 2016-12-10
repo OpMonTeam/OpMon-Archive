@@ -6,7 +6,8 @@ import jlppc.regimys.launch.Initializer;
 import jlppc.regimys.objects.Espece;
 import jlppc.regimys.objects.Pokemon;
 /**
- * Classe permettant de dÃ©finir une Ã©volution, qui pourra Ãªtre differente selon les cas
+ * Classe permettant de définir une évolution, qui pourra être differente selon les cas<br/>
+ * Les classes filles ne seront pas documentés, puisque je pense que les noms sont assez explicites.
  * @author jlppc
  */
 public abstract class Evolution implements Serializable{

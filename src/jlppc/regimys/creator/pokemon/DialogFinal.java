@@ -9,10 +9,14 @@ import java.io.IOException;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-
+/**La boite de dialogue qui apparait pour montrer la commande
+ * @author Jlppc
+ */
 public class DialogFinal extends JDialog {
 
-
+	/**Construit la boite de dialogue
+	 * @param command : La commande qui sera affichée
+	 */
 	public DialogFinal(String command) throws IOException {
 		setAlwaysOnTop(true);
 		setSize(100, 100);

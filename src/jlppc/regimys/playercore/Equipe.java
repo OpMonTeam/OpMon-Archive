@@ -5,11 +5,25 @@ import java.io.Serializable;
 import jlppc.regimys.objects.Pokemon;
 import jlppc.regimys.objects.Pokemon.Status;
 import jlppc.regimys.objects.RegimysObject;
-
+/**
+ * Définit une équipe de pokémon
+ * @author Jlppc
+ *
+ */
 public final class Equipe extends RegimysObject implements Serializable{
+	/**
+	 * L'équipe de pokémon
+	 */
 	private Pokemon[] equipe = new Pokemon[6];
+	/**
+	 * Le nom du propriétaire de l'equipe
+	 */
 	private String nom;
-	
+	/**
+	 * 
+	 * @param nom - {@link #nom}
+	 * @param pokemons - {@link equipe}
+	 */
 	public Equipe(String nom, Pokemon...pokemons){
 		this.nom = nom;
 		int i = 0;
@@ -29,7 +43,9 @@ public final class Equipe extends RegimysObject implements Serializable{
 	public Pokemon[] getEquipe(){
 		return equipe;
 	}
-	
+	/**
+	 * Soigne toute l'equipe
+	 */
 	public void heal(){
 		for(Pokemon pkmn : equipe){
 			if(pkmn != null){
@@ -40,7 +56,11 @@ public final class Equipe extends RegimysObject implements Serializable{
 			
 		}
 	}
-	
+	/**
+	 * Ajoute un pokémon a l'équipe
+	 * @param toAdd - Le pokémon a ajouter
+	 * @return false si l'equipe n'a plus de place
+	 */
 	public boolean addPokemon(Pokemon toAdd){
 		int i = 0;
 		for(Pokemon pkmn : equipe){
@@ -53,7 +73,10 @@ public final class Equipe extends RegimysObject implements Serializable{
 		return false;
 		
 	}
-	
+	/**
+	 * Supprime un pokémon de l'équipe
+	 * @param number - le numéro du pokémon a supprimer
+	 */
 	public void removePokemon(int number){
 		int i = 0;
 		for(Pokemon pkmn : equipe){
@@ -70,7 +93,10 @@ public final class Equipe extends RegimysObject implements Serializable{
 	public Pokemon getPokemon(int id){
 		return equipe[id];
 	}
-	
+	/**
+	 * Verifie si l'equipe est K.O
+	 * @return true si oui, false si non
+	 */
 	public boolean isKo(){
 		int i = 0;
 		for(Pokemon pkmn : equipe){
@@ -95,7 +121,10 @@ public final class Equipe extends RegimysObject implements Serializable{
 		toReturn = toReturn.substring(0, toReturn.length() - 1);
 		return toReturn + "]";
 	}
-
+	/**
+	 * 
+	 * @return La taille de l'equipe (Et pas celle du tableau /!\)
+	 */
 	public int getSize() {
 		int toReturn = 0;
 		for(Pokemon pkmn : equipe){

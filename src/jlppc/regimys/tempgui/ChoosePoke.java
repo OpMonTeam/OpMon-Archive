@@ -14,7 +14,13 @@ import javax.swing.JOptionPane;
 
 import jlppc.regimys.launch.Initializer;
 import jlppc.regimys.objects.Espece;
-
+/**
+ * CETTE CLASSE EST TEMPORAIRE!!!
+ * <br/>Cette class définit la boite de dialogue qui s'ouvre pour choisir le pokémon. Sera supprimée lors du passage en graphique.<br/>
+ * Pour cette raison, cette classe ne sera pas commentée.
+ * @author Jlppc
+ *
+ */
 public class ChoosePoke extends JDialog {
 	
 	protected int espChoosen;
