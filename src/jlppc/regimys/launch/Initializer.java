@@ -206,12 +206,15 @@ public class Initializer {
 		 listePoke[166] = new Espece(35, 50, 55, 110, 85, 55, "Coxyclaque", Type.INSECTE, Type.VOL, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.DEFSPE}, 1.4f, 35.6, "Les points sur son dos deviennent plus grands ou plus petits selon le nombre d'étoiles dans le ciel.", 134, 800000, 90);
 		 listePoke[167] = new Espece(60, 40, 40, 40, 30, 40, "Mimigal", Type.INSECTE, Type.POISON, Espece.EVOLUTION_BY_LEVEL, 22, new E_Level(168, 22), null, null, new Stats[]{Stats.ATK}, 0.5f, 8.5f, "Il tisse une toile en utilisant un fil fin mais solide, puis il attend tranquillement sa proie.", 54, 800000, 255);
 		 listePoke[168] = new Espece(90, 70, 60, 70, 40, 70, "Migalos", Type.INSECTE, Type.POISON, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.ATK, Stats.ATK},1.1f, 33.5f, "Il attache un fil à sa proie avant de la libérer. Il s'en servira pour la retrouver, elle et ses amis.", 134, 800000, 90);
-		 listePoke[169] = new Espece(
-		 listePoke[170] = new Espece(
-		 listePoke[171] = new Espece(
-		 listePoke[172] = new Espece(
-		 listePoke[173] = new Espece(
-		 listePoke[174] = new Espece(
+		 //listePoke[169] = new Espece(
+		 //listePoke[170] = new Espece(
+		 //listePoke[171] = new Espece(
+		 //listePoke[172] = new Espece(
+		 //listePoke[173] = new Espece(
+		 //listePoke[174] = new Espece(
+		 listePoke[175] = new Espece(20, 65, 40, 65, 20, 35, "Togepi", Type.FEE, Type.AUCUN, Espece.EVOLUTION_BY_OBJECT, -1, new E_Item(175, Item.getItem("Bonheur")), null, null, new Stats[]{Stats.DEFSPE}, 0.3f, 1.5f, "Sa coquille est remplie de joie. On dit que s’il est bien traité, il porte chance.", 74, 800000, 190);
+		 listePoke[176] = new Espece(40, 85, 80, 105, 40, 55, "Togetic", Type.FEE, Type.VOL, Espece.EVOLUTION_BY_OBJECT, -1, new E_Item(176, Item.geItem("Pierre Eclat")), null, null, new Stats[]{Stats.VIT, Stats.VIT}, 0.6f, 3.2f, "Il se démoralise vite s'il n'est pas avec des gens sympathiques. Il peut léviter sans battre des ailes.", 114, 800000, 75);
+		 listePoke[177] = new Espece(50, 45, 70, 45, 70, 40, "Natu", Type.VOL, Type.PSY, Espece.EVOLUTION_BY_LEVEL, 25, new E_Level(178, 25), null, null, new Stats[]{Stats.ATKSPE}, 0.2f, 2f, "Ses ailes ne sont pas assez développées et il ne peut que planer péniblement. Il fixe toujours quelque chose.", 73, 1000000, 190);
 		 for(Espece esp : listePoke){
 			
 			 if(esp != null){
