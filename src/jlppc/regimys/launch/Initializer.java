@@ -215,8 +215,8 @@ public class Initializer {
 		 listePoke[175] = new Espece(20, 65, 40, 65, 20, 35, "Togepi", Type.FEE, Type.AUCUN, Espece.EVOLUTION_BY_OBJECT, -1, new E_Item(175, Item.getItem("Bonheur")), null, null, new Stats[]{Stats.DEFSPE}, 0.3f, 1.5f, "Sa coquille est remplie de joie. On dit que s’il est bien traité, il porte chance.", 74, 800000, 190);
 		 listePoke[176] = new Espece(40, 85, 80, 105, 40, 55, "Togetic", Type.FEE, Type.VOL, Espece.EVOLUTION_BY_OBJECT, -1, new E_Item(176, Item.geItem("Pierre Eclat")), null, null, new Stats[]{Stats.VIT, Stats.VIT}, 0.6f, 3.2f, "Il se démoralise vite s'il n'est pas avec des gens sympathiques. Il peut léviter sans battre des ailes.", 114, 800000, 75);
 		 listePoke[177] = new Espece(50, 45, 70, 45, 70, 40, "Natu", Type.VOL, Type.PSY, Espece.EVOLUTION_BY_LEVEL, 25, new E_Level(178, 25), null, null, new Stats[]{Stats.ATKSPE}, 0.2f, 2f, "Ses ailes ne sont pas assez développées et il ne peut que planer péniblement. Il fixe toujours quelque chose.", 73, 1000000, 190);
-		[178] =   Espece
- for(Espece esp : listePoke)
+		 //listePoke[178] =
+ 		for(Espece esp : listePoke){
 			
 			 if(esp != null){
 				 esp.checkEvol();
