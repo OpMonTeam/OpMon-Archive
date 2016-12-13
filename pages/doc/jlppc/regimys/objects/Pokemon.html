@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../../../../../stylesheets/github-dark.css" media="screen">
     <link rel="stylesheet" type="text/css" href="../../../../../stylesheets/print.css" media="print">
 
-    <title>Pokémon Regimys - Documentation - </title>
+    <title>Pokémon Regimys - Documentation - Classe Pokemon</title>
   </head>
 
    <body>
@@ -33,35 +33,36 @@
 <a class="anchor" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Classe jlppc.regimys.objects.Pokemon</h1>
 <p>Cette classe définit un pokémon.</p>
 <p><strong>Cette page n'est pas terminée! Merci de patienter...</strong></p>
-<p><ul>
+<ul>
 <li><a href="#vars">Variables</a></li>
+  <li><a href="#sousclasses">Classes internes</a></li>
 </ul>
 <br/>
-</p>
-<p>
+
+
 <ul id="vars">Variables :
-<li><code>public String surnom</code> : Le surnom du pokémon. Si un surnom n'a pas été précisé, le nom de l'espèce est ici</li>
-<li><code>public int atkIV</code></li>
-<li><code>public int defIV</code></li>
-<li><code>public int atkSpeIV</code></li>
-<li><code>public int defSpeIV</code></li>
-<li><code>public int vitIV</code></li>
-<li><code>public int pvIV</code></li>
-<li><code>public int aktEV</code></li>
-<li><code>public int defEV</code></li>
-<li><code>public int atkSpeEV</code></li>
-<li><code>public int defSpeEV</code></li>
-<li><code>public int vitEV</code></li>
-<li><code>public int pvEV</code></li>
-<li><code>public int statATK</code></li>
-<li><code>public int statDEF</code></li>
-<li><code>public int statATKSPE</code></li>
-<li><code>public int statDEFSPE</code></li>
-<li><code>public int statVIT</code></li>
-<li><code>public int statESQ</code></li>
-<li><code>public int statPRE</code></li>
-<li><code>public int statPV</code></li>
-<li><code>public int statLove</code></li>
+<li><code>protected String surnom</code> : Le surnom du pokémon. Si un surnom n'a pas été précisé, le nom de l'espèce est ici</li>
+<li><code>protected int atkIV</code></li>
+<li><code>protected int defIV</code></li>
+<li><code>protected int atkSpeIV</code></li>
+<li><code>protected int defSpeIV</code></li>
+<li><code>protected int vitIV</code></li>
+<li><code>protected int pvIV</code></li>
+<li><code>protected int aktEV</code></li>
+<li><code>protected int defEV</code></li>
+<li><code>protected int atkSpeEV</code></li>
+<li><code>protected int defSpeEV</code></li>
+<li><code>protected int vitEV</code></li>
+<li><code>protected int pvEV</code></li>
+<li><code>protected int statATK</code></li>
+<li><code>protected int statDEF</code></li>
+<li><code>protected int statATKSPE</code></li>
+<li><code>protected int statDEFSPE</code></li>
+<li><code>protected int statVIT</code></li>
+<li><code>protected int statESQ</code></li>
+<li><code>protected int statPRE</code></li>
+<li><code>protected int statPV</code></li>
+<li><code>protected int statLove</code></li>
 <li><code>public int atkChange</code></li>
 <li><code>public int defChange</code></li>
 <li><code>public int atkSpeChange</code></li>
@@ -69,11 +70,28 @@
 <li><code>public int vitChange</code></li>
 <li><code>public int esqChange</code></li>
 <li><code>public int preChange</code></li>
-<li><code>public int level</code> : Le niveau du pokémon.</li>
-<li><code>protected <a href="http://regimys.jlppc.tk/404.html">Caractere</a> caractere</code> : Le caractère du pokémon</li>
-
+<li><code>protected int level</code> : Le niveau du pokémon.</li>
+<li><code>protected <a href="../enums/Caractere.html">Caractere</a> caractere</code> : Le caractère du pokémon</li>
+  <li><code>protected <a href="Attaque.html">Attaque</a>[] attaques</code> : Les 4 attaques du pokémon</li>
+  <li><code>protected <a href="Espece.html">Espece</a> espece</code> : L'espèce du pokémon</li>
+  <li><code>protected int PV</code> : Les PV actuels du pokémon. A ne pas confondre avec statPV, qui represente les PV max</li>
+  <li><code>protected <a href="#Status">Status</a> status</code> : Le status actuel du pokémon</li>
+  <li><code>protected <a href="Talent.html">Talent</a> talent</code> : Le talent du pokémon. A des chance d'être inutile, puisqu' l'heure actuelle nous ne savons pas si nous allons ajouter les talents.</li>
+  <li><code>protected <a href="../enums/Type.html">Type</a>type1</code> : Le type principal du pokémon.</li>
+  <li><code>protected <a href="../enums/Type.html">Type</a>type2</code> : Le type secondaire du pokémon</li>
+  <li><code>protected int toNextLevel</code> : Le nombre d'experience qu'il faut pour acceder au niveau supérieur.</li>
+  <li><code>protected float expBoost</code> : Le boost d'xp du pokémon (Après un échange par exemple)</li>
+  <li><code>public boolean confus</code></li>
+  <li><code>public boolean peur</code></li>
+  <li><code>public boolean amour</code></li>
+  <li><code>public boolean vampigraine</code></li>
+  <li><code>public boolean malediction</code></li>
+  <li><code>protected <a href="items/Item.html">Item</a> held</code> : L'item tenu par le pokémon</li>
+  <li><code>protected int tauxCapture</code> : Le taux du capture du pokémon</li>
 </ul>
-</p>
+<br/>
+Classes internes : <ul id="sousclasses">
+        </ul>
       </section>
       
     </div>
