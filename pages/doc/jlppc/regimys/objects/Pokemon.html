@@ -36,6 +36,8 @@
 <ul>
 <li><a href="#vars">Variables</a></li>
   <li><a href="#sousclasses">Classes internes</a></li>
+  <li><a href="#constructeurs">Constructeurs</a></li>
+  <li><a href="#methodes">Methodes</a></li>
 </ul>
 <br/>
 
@@ -91,6 +93,23 @@
 </ul>
 <br/>
 Classes internes : <ul id="sousclasses">
+        <li id="CalcCourbes"><code>public abstract static class CalcCourbes implements Serializable</code> : Classe permettant de calculer les courbes d'experience. Annotation : @Static. La classe est protected, donc les methodes aussi (bien que notées public)</li>
+        <li id="Status"><code>public enum Status implements Serializable</code> : Enumération des status des pokémon. Liste des enumerations : <ul>
+          <li>BRULURE</li>
+          <li>PARALYSIE</li>
+          <li>SOMMEIL</li>
+          <li>GEL</li>
+          <li>POISON</li>
+          <li>AUCUN</li>
+          </ul></li>
+        </ul>
+Constructeurs : <ul id="constructeurs">
+        <li><code>public Pokemon(<a href="Espece.html">Espece</a> espece, int level, <a href="Attaque.html">Attaque</a>[] attaques, <a href="../enums/Caractere.html">Caractere</a> caractere, <a href="Talent.html">Talent</a> talent)</code> : Constructeur créant un pokémon sans surnom. Les noms des données correspondent a leurs variables.</li>
+        <li><code>public Pokemon(String surnom, <a href="Espece.html">Espece</a> espece, int level, <a href="Attaque.html">Attaque</a>[] attaques, <a href="../enums/Caractere.html">Caractere</a> caractere,  <a href="Talent.html">Talent</a> talent)</code> : Constructeur créant un pokémon avec un surnom. Les noms des
+          données correspondent a leurs variables.</li></ul>
+        Methodes : <ul id="methodes">
+        <li><code>public boolean captured(<a href="items/I_Pokeball.html">I_Pokeball</a> pokeball)</code> : Verifie si le pokémon est capturé. Paramètres : <ul><li>pokeball : La pokeball utilisée</li></ul>Retourne : true si le pokemon est capturé, false sinon.</li>
+        <li><code>public void setStat(String stat, int newStat)</code> : Permet de changer une statistique. A utiliser avec modération. Paramètres : <ul><li>stat : La statistique a changer. Elle peut prendre les valeurs "atk", "def", "atkspe", "defspe", "vit", "pv" selon la statistique a changer.</li><li>newStat : La nouvelle valeur a affecter a cette statistique</li></ul></li>
         </ul>
       </section>
       
