@@ -110,6 +110,14 @@ Constructeurs : <ul id="constructeurs">
         Methodes : <ul id="methodes">
         <li><code>public boolean captured(<a href="items/I_Pokeball.html">I_Pokeball</a> pokeball)</code> : Verifie si le pokémon est capturé.<br/> Paramètres : <ul><li>pokeball : La pokeball utilisée</li></ul>Retourne : true si le pokemon est capturé, false sinon.</li>
         <li><code>public void setStat(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> stat, int newStat)</code> : Permet de changer une statistique. A utiliser avec modération.<br/> Paramètres : <ul><li>stat : La statistique a changer. Elle peut prendre les valeurs "atk", "def", "atkspe", "defspe", "vit", "pv" selon la statistique a changer.</li><li>newStat : La nouvelle valeur a affecter a cette statistique</li></ul></li>
+        <li><code>public void levelUp()</code> : Methode appellée pour faire les actions quand le pokémon gagne un niveau</li>
+        <li><code>public boolean isHoldingItem()</code> : Renvoie si le pokémon tient un objet ou non.</li>
+        <li><code>public Item itemHeld()</code> : Ok j'ai oublié le "get" devant. Je sais.</li>
+        <li><code>public int win(<a href="#main_content">Pokemon</a>vaincu</code> : Quand le pokémon gagne un combat.<br/>Paramètres :<ul><li>vaincu : Le pokémon qui a été vaincu</li></ul><br/>Retourne : L'xp gagnée pour le pokémon.</li>
+          
+        <!--Les deux derniers-->
+        <li><code>public <a href="#Status">Status</a> getStatus()</code></li>
+        <li><code>public void heal(int pv)</code> : Soigne le pokémon.<br/>Paramètres : <ul><li>PV : Le nombe de PV a soigner</li>
         </ul>
       </section>
       
