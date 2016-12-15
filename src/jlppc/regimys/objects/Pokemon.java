@@ -68,7 +68,7 @@ public class Pokemon extends RegimysObject implements Serializable{
 	 */
 	protected int level;
 	/**
-	 * Le caractà¨re du pokemon
+	 * Le caractÃ Â¨re du pokemon
 	 */
 	protected Caractere caractere;
 	/**
@@ -104,7 +104,7 @@ public class Pokemon extends RegimysObject implements Serializable{
 	 */
 	protected int exp;
 	/**
-	 * Le nombre d'xp qu'il faut pour le niveau supérieur
+	 * Le nombre d'xp qu'il faut pour le niveau supÃ©rieur
 	 */
 	protected int toNextLevel;
 	protected float expBoost = 1;
@@ -114,11 +114,11 @@ public class Pokemon extends RegimysObject implements Serializable{
 	public boolean amour = false;
 	public boolean vampigraine = false;
 	public boolean malediction = false;
-	//Les bonus et malus des caractères
+	//Les bonus et malus des caractÃ¨res
 	protected Stats malusCara;
 	protected Stats bonusCara;
 	/**
-	 * L'item tenu par le Pokémon.
+	 * L'item tenu par le PokÃ©mon.
 	 */
 	protected Item held;
 	/**
@@ -127,9 +127,9 @@ public class Pokemon extends RegimysObject implements Serializable{
 	protected int tauxCapture;
 	
 	/**
-	 * Verifie si un pokémon est capturé
-	 * @param pokeball - Le type de pokéball utilisée
-	 * @return true si le pokéon est capturé, false sinon
+	 * Verifie si un pokÃ©mon est capturÃ©
+	 * @param pokeball - Le type de pokÃ©ball utilisÃ©e
+	 * @return true si le pokÃ©on est capturÃ©, false sinon
 	 */
 	public boolean captured(I_Pokeball pokeball){
 		int a = Math.round((((3 * statPV - 2 * PV) * tauxCapture * pokeball.getTauxCapture() * (Comparaisons.muliEgal(status, Status.PARALYSIE, Status.POISON, Status.BRULURE) ? 1.5f : (Comparaisons.muliEgal(status, Status.SOMMEIL, Status.GEL) ? 2 : 1)))/(3 * statPV)));
@@ -163,7 +163,7 @@ public class Pokemon extends RegimysObject implements Serializable{
 		}
 	}
 	/**
-	 * Permet de changer une statistique. A utiliser avec modération
+	 * Permet de changer une statistique. A utiliser avec modÃ©ration
 	 * @param stat - La statistique a changer
 	 * @param newStat - La nouvelle valeur a affecter a cette statistique
 	 */
@@ -355,7 +355,7 @@ public class Pokemon extends RegimysObject implements Serializable{
 		toNextLevel = toNextLevel - exp;
 	}
 	/**
-	 * Methode appelée quand le pokémon gagne un niveau.
+	 * Methode appelÃ©e quand le pokÃ©mon gagne un niveau.
 	 */
 	public void levelUp(){
 		level++;
@@ -414,13 +414,13 @@ public class Pokemon extends RegimysObject implements Serializable{
 	}
 	
 	/**
-	 * Quand le pokemon a gagné
+	 * Quand le pokemon a gagnÃ©
 	 * @param vaincu
-	 * @return l'exp gagnée
+	 * @return l'exp gagnÃ©e
 	 */
 	@WIP
 	public int win(Pokemon vaincu){
-		fosout("%o a gagné %o!", surnom, ((vaincu.espece.getExp() * vaincu.level) / this.level) * expBoost);
+		fosout("%o a gagnÃ© %o!", surnom, ((vaincu.espece.getExp() * vaincu.level) / this.level) * expBoost);
 		getEvs(vaincu);
 		exp+=((vaincu.espece.getExp() * vaincu.level) / this.level) * expBoost;
 		while(exp >= toNextLevel && level < 100){
@@ -436,7 +436,7 @@ public class Pokemon extends RegimysObject implements Serializable{
 		
 	}
 	/**
-	 * Methode appellée quand le pokémon gagne pour distribuer les EV
+	 * Methode appellÃ©e quand le pokÃ©mon gagne pour distribuer les EV
 	 * @param vaincu
 	 */
 	protected void getEvs(Pokemon vaincu){
@@ -495,9 +495,9 @@ public class Pokemon extends RegimysObject implements Serializable{
 		statPV = Math.round(((2 * espece.getBasePV() + pvIV + (pvEV / 4)) * level) / 100) + level + 10;
 	}
 	/**
-	 * Permet d'utiliser un item sur le pokémon.
+	 * Permet d'utiliser un item sur le pokÃ©mon.
 	 * @param used
-	 * @return un booleen pour savoir si l'item doit àªtre supprimé ou pas. (false si pas supprimé, true sinon)
+	 * @return un booleen pour savoir si l'item doit Ã Âªtre supprimÃ© ou pas. (false si pas supprimÃ©, true sinon)
 	 */
 	public boolean itemUsed(Item used){
 		fosout("%o utilise un(e) %o!", this.getSurnom(), used.getName());
@@ -507,7 +507,7 @@ public class Pokemon extends RegimysObject implements Serializable{
 					boolean changeName = (surnom.equals(espece.getSurnom()));
 					this.espece = Initializer.listePoke[134];
 					calcStats(espece);
-					fosout("%o évolue en %o!", surnom, espece.getSurnom());
+					fosout("%o Ã©volue en %o!", surnom, espece.getSurnom());
 					if(changeName){
 						surnom = espece.getSurnom();
 					}
@@ -515,7 +515,7 @@ public class Pokemon extends RegimysObject implements Serializable{
 					boolean changeName = (surnom.equals(espece.getSurnom()));
 					this.espece = Initializer.listePoke[136];
 					calcStats(espece);
-					fosout("%o évolue en %o!", surnom, espece.getSurnom());
+					fosout("%o Ã©volue en %o!", surnom, espece.getSurnom());
 					if(changeName){
 						surnom = espece.getSurnom();
 					}
@@ -523,7 +523,7 @@ public class Pokemon extends RegimysObject implements Serializable{
 					boolean changeName = (surnom.equals(espece.getSurnom()));
 					this.espece = Initializer.listePoke[135];
 					calcStats(espece);
-					fosout("%o évolue en %o!", surnom, espece.getSurnom());
+					fosout("%o Ã©volue en %o!", surnom, espece.getSurnom());
 					if(changeName){
 						surnom = espece.getSurnom();
 					}
@@ -582,7 +582,7 @@ public class Pokemon extends RegimysObject implements Serializable{
 	/**
 	 * Fais tenir un item
 	 * @param item
-	 * @return L'item qui était a la place.
+	 * @return L'item qui Ã©tait a la place.
 	 */
 	public Item hold(Item item){
 		Item ancien = (Item) held.clone();
@@ -590,7 +590,7 @@ public class Pokemon extends RegimysObject implements Serializable{
 		return ancien;
 	}
 	/**
-	 * Methode appelée quand le pokémon est échangé
+	 * Methode appelÃ©e quand le pokÃ©mon est Ã©changÃ©
 	 */
 	public void traded(){
 		expBoost = 1.5f;
@@ -607,13 +607,13 @@ public class Pokemon extends RegimysObject implements Serializable{
 		}
 	}
 	/**
-	 * Quand le pokémon évolue
+	 * Quand le pokÃ©mon Ã©volue
 	 */
 	public void evolve(){
 		boolean changeName = (surnom.equals(espece.getSurnom()));
 		this.espece = this.espece.getEvolution();
 		calcStats(espece);
-		fosout("%o évolue en %o!", surnom, espece.getSurnom());
+		fosout("%o Ã©volue en %o!", surnom, espece.getSurnom());
 		if(changeName){
 			surnom = espece.getSurnom();
 		}
@@ -714,11 +714,11 @@ public class Pokemon extends RegimysObject implements Serializable{
 	/**
 	 * Methode permettant de reset touts les stats et plus
 	 * @param stats - Le tableau des statistiques (0 : atk; 1 : def; 2 : atkspe; 3 : defspe; 4 : vit) 
-	 * @param attacks - Les attaques (de 1 à 4)
+	 * @param attacks - Les attaques (de 1 Ã  4)
 	 * @param espece - L'espece
 	 * @param types - Les types
 	 */
-	//Permet de reset tout les stats. Utiliser avec modération S.V.P
+	//Permet de reset tout les stats. Utiliser avec modÃ©ration S.V.P
 	public synchronized void setStats(int[] stats, Attaque[] attacks, Espece espece, Type[] types){
 		statATK = stats[0];
 		statDEF = stats[1];
@@ -865,7 +865,7 @@ public class Pokemon extends RegimysObject implements Serializable{
 		PV = (PV < 0) ? 0 : PV;
 		
 	}
-	//Les methodes suivantes permettent de modifier les statistiques en suivant les niveaux prédefinis. Il retoure false si les statistiques étaient déjà  au plus haut ou plus bas.
+	//Les methodes suivantes permettent de modifier les statistiques en suivant les niveaux prÃ©definis. Il retoure false si les statistiques Ã©taient dÃ©jÃ Â  au plus haut ou plus bas.
 	public boolean changeATK(int power) {
 		if(power < 0){
 			for(int i = 0; i > power; i--){
@@ -1887,38 +1887,37 @@ return true;
 	/**
 	 * Permet de changer le status du pokemon en suivant certaines regles.
 	 * @param status - Le nouveau status du pokemon
-	 * @return - Si le status a bien été change
+	 * @return - Si le status a bien Ã©tÃ© change
 	 */
 	public boolean setStatus(Status status){
 		
-		if(status == Status.BRULURE){
+		if(status == Status.BRULURE && this.status == Status.BRULURE){
+			System.out.println(surnom + " est dÃ©jÃ Â  brulÃ©!");
+			return false;		
+		}else if(status == Status.SOMMEIL && this.status == Status.SOMMEIL){
+			System.out.println("Mais " + surnom + " dort dÃ©jÃ Â !");
+			return false;
+		}else if(status == Status.PARALYSIE && this.status == Status.PARALYSIE){
+			System.out.println(surnom + " est dÃ©jÃ Â  paralysÃ©!");
+			return false;
+		}else if(status == Status.GEL && this.status == Status.GEL){
+			System.out.println(surnom + " est dÃ©jÃ Â  gelÃ©!");
+			return false;
+		}else if(status == Status.POISON && this.status == Status.POISON){
+			System.out.println(surnom + " est dÃ©jÃ Â  empoisonnÃ©!");
+			return false;
+		}else if(this.status != Status.AUCUN && status != Status.AUCUN){
+			System.out.println("Mais " + surnom + " a dÃ©jÃ Â  un status!");
+			return false;
+		}else if(status == Status.BRULURE){
 			changeATK(-1);
 		}
 		else if(status == Status.AUCUN && this.status == Status.BRULURE){
 			changeATK(1);
-		}
-		else if(status == Status.BRULURE && this.status == Status.BRULURE){
-			System.out.println(surnom + " est déjà  brulé!");
-			return false;		}
-		else if(status == Status.PARALYSIE){
+		}else if(status == Status.PARALYSIE){
 			changeVIT(-1);
 		}else if(status == Status.AUCUN && this.status == Status.PARALYSIE){
 			changeVIT(1);
-		}else if(status == Status.SOMMEIL && this.status == Status.SOMMEIL){
-			System.out.println("Mais " + surnom + " dort déjà !");
-			return false;
-		}else if(status == Status.PARALYSIE && this.status == Status.PARALYSIE){
-			System.out.println(surnom + " est déjà  paralysé!");
-			return false;
-		}else if(status == Status.GEL && this.status == Status.GEL){
-			System.out.println(surnom + " est déjà  gelé!");
-			return false;
-		}else if(status == Status.POISON && this.status == Status.POISON){
-			System.out.println(surnom + " est déjà  empoisonné!");
-			return false;
-		}else if(this.status != Status.AUCUN && status != Status.AUCUN){
-			System.out.println("Mais " + surnom + " a déjà  un status!");
-			return false;
 		}
 		this.status = status;
 		return true;
@@ -1928,7 +1927,7 @@ return true;
 		return status;
 	}
 	/**
-	 * Soigne le pokémon
+	 * Soigne le pokÃ©mon
 	 * @param PV - Le nombre de PV a soigner
 	 */
 	public void heal(int PV){
