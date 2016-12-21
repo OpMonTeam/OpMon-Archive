@@ -1,5 +1,7 @@
 package jlppc.regimys.core;
 
+import java.lang.Thread.State;
+
 import jlppc.regimys.launch.Start;
 
 /**
@@ -32,11 +34,14 @@ public enum GameState {
 		stateThread = new Thread(new Runnable(){
 
 			@Override
-			public void run() {
+			public synchronized void run() {
 				while(true){
 					if(state != MARCHE){
 						try {
-							Start.gameThread.wait();
+							if(Start.gameThread.getState() != State.WAITING){
+								Start.gameThread.wait();
+							}
+							
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 							System.exit(1);
@@ -48,6 +53,8 @@ public enum GameState {
 				
 			}
 			
+			
 		});
+		//stateThread.start();
 	}
 }
