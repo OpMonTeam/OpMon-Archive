@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 
 import jlppc.regimys.gui.dialog.DialogWindow;
 import jlppc.regimys.gui.game.GameWindow;
+import jlppc.regimys.gui.game.StartScene;
 
 import javax.swing.JLabel;
 
@@ -33,10 +34,26 @@ public final class MainFrame extends JFrame {
 		this.setVisible(true);
 	}
 
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void open() {
+		frame = new MainFrame();
+		if(true){
+			while(true){
+				
+			}
+		}
+		else{
+			StartScene ss = new StartScene();
+			frame.gw.setPanel(ss);
+			System.out.println("Dialog1");
+			frame.dw.printText("Bonjour! Bienvenue dans le monde des pokemon!");
+			System.out.println("Fin Dialog1");
+			System.out.println("Dialog 2");
+			frame.dw.printText("Bravo! Le test a reussi! A plus!");
+			System.out.println("Fin dialog 2");
+			System.exit(0);
+		}
+		
 		
 	}
 	

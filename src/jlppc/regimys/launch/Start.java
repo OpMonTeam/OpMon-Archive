@@ -53,6 +53,7 @@ public class Start {
 	/**La lettre du jeu (Va surement être supprimée, puisque jamais mise a jour)*/
 	public static char commits = ' ';
 	
+	public static Thread gameThread;
 
 	/**Le nombre après pre , dans le cas d'un depassement de prévisions*/
 	public static int preNbre = 0;
@@ -106,7 +107,6 @@ public class Start {
 						System.out.println("Pokémon Regimys version " + versionS);
 					}else if(args[0].equals("--guitest")){
 						System.out.println("Test du gui de Pokemon Regimys");
-						MainFrame.open();
 						guiMain();
 					}
 					else{
@@ -196,7 +196,17 @@ public class Start {
 	}
 
 	private static void guiMain() {
+		gameThread = new Thread(new Runnable(){
+
+			@Override
+			public void run() {
+				MainFrame.open();
+				
+			}
+			
+		});
 		
+		gameThread.start();
 		
 	}
 
