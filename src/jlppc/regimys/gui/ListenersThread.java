@@ -13,7 +13,7 @@ public class ListenersThread implements Runnable {
 	@Override
 	public void run() {
 		//Dialog
-		MainFrame.frame.addKeyListener(new KeyListener(){
+		KeyListener keylistenerDialog = new KeyListener(){
 
 			@Override
 			public void keyPressed(KeyEvent arg0) {
@@ -35,9 +35,8 @@ public class ListenersThread implements Runnable {
 				
 			}
 			
-		});
-		
-		MainFrame.frame.addMouseListener(new MouseListener() {
+		};
+		MouseListener mouselistenerDialog = new MouseListener() {
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -68,7 +67,14 @@ public class ListenersThread implements Runnable {
 				// TODO Auto-generated method stub
 				
 			}
-		});
+		};
+		//MainFrame.frame.addKeyListener(keylistenerDialog);
+		MainFrame.frame.dw.addKeyListener(keylistenerDialog);
+		//MainFrame.frame.gw.addKeyListener(keylistenerDialog);
+		
+		MainFrame.frame.addMouseListener(mouselistenerDialog);
+		MainFrame.frame.dw.addMouseListener(mouselistenerDialog);
+		MainFrame.frame.gw.addMouseListener(mouselistenerDialog);
 		
 	
 		

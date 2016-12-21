@@ -7,9 +7,11 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import jlppc.regimys.core.GameState;
 import jlppc.utils.Fonts;
+import jlppc.utils.Log;
 import jlppc.utils.Fonts.Police;
 
 public final class DialogWindow extends JInternalFrame {
@@ -47,14 +49,24 @@ public final class DialogWindow extends JInternalFrame {
 	}
 	
 	public void printText(String text){
-		this.text.setText(text);
+		setContentPane(defaultPanel);
+		repaint();
+		this.text.setText("<HTML>" + text + "</HTML>");
 		GameState.state = GameState.DIALOGUE;
 		while(GameState.state != GameState.MARCHE){
 			System.out.println("Wait...");
 		}
 	}
 	
-	public void nothing(){
-		
+	public int printQuestion(String question, String choix1, String choix2, String choix3){
+		ChoicePanel cp = new ChoicePanel(question, choix1, choix2, choix3, (choix3 != null));
+		setContentPane(cp);
+		repaint();
+		while(cp.getChoice() == -1){
+			System.out.println("Wait...");
+		}
+		return cp.getChoice();
 	}
+	
+	
 }

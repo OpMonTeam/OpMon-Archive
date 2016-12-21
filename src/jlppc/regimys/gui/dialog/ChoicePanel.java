@@ -3,17 +3,25 @@ package jlppc.regimys.gui.dialog;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 
 public final class ChoicePanel extends JPanel {
 	
 	protected int choice = -1;
+	final JButton choix1;
+	final JButton choix2;
+	JButton choix3;
+	Thread actionListeners;
 	
-	public ChoicePanel(String choix1S, String choix2S, String choix3S, boolean threechoices) {
+	public ChoicePanel(String question,String choix1S, String choix2S, String choix3S, boolean threechoices) {
 		super();
 		setLayout(null);
 		
-		JLabel text = new JLabel("");
+		JLabel text = new JLabel(question);
 		text.setBounds(10, 11, 362, 178);
 		add(text);
 		
@@ -22,17 +30,57 @@ public final class ChoicePanel extends JPanel {
 		add(panel);
 		panel.setLayout(null);
 		
-		JButton choix1 = new JButton(choix1S);
+		choix1 = new JButton(choix1S);
 		choix1.setBounds(10, 11, 100, 45);
 		panel.add(choix1);
 		
-		JButton choix2 = new JButton(choix2S);
+		choix2 = new JButton(choix2S);
 		choix2.setBounds(10, 67, 100, 45);
 		panel.add(choix2);
+		if(threechoices){
+			choix3 = new JButton(choix3S);
+			choix3.setBounds(10, 123, 100, 44);
+			panel.add(choix3);
+		}
 		
-		JButton choix3 = new JButton(choix3S);
-		choix3.setBounds(10, 123, 100, 44);
-		panel.add(choix3);
+		
+		actionListeners = new Thread(new Runnable(){
+
+			@Override
+			public void run() {
+				choix1.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						choice = 1;
+						
+					}
+				});
+				
+				choix2.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						choice = 2;
+						
+					}
+				});
+				if(threechoices){
+					choix3.addActionListener(new ActionListener() {
+						
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							choice = 3;
+							
+						}
+					});
+				}
+				
+				
+			}
+			
+		});
+		actionListeners.start();
 		
 		JLabel background = new JLabel("");
 		background.setBounds(0, 0, 512, 200);
@@ -41,6 +89,10 @@ public final class ChoicePanel extends JPanel {
 	
 	public int getChoice(){
 		return choice;
+	}
+	
+	public void setChoice(int ch){
+		this.choice = ch;
 	}
 	
 	
