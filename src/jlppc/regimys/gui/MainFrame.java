@@ -6,8 +6,10 @@ import javax.swing.JPanel;
 import jlppc.regimys.gui.dialog.DialogWindow;
 import jlppc.regimys.gui.game.GameWindow;
 import jlppc.regimys.gui.game.StartScene;
+import jlppc.utils.Log;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public final class MainFrame extends JFrame {
 	public static MainFrame frame;
@@ -15,6 +17,7 @@ public final class MainFrame extends JFrame {
 	protected GameWindow gw;
 	protected DialogWindow dw;
 	public static Thread listeners = new Thread(new ListenersThread());
+	public static String saut = "<br/>";
 
 	public MainFrame() {
 		super();
@@ -51,12 +54,23 @@ public final class MainFrame extends JFrame {
 	public static synchronized void play(){
 		StartScene ss = new StartScene();
 		frame.gw.setPanel(ss);
-		System.out.println("Dialog1");
-		frame.dw.printText("Bonjour! Bienvenue dans le monde des pokemon!");
-		System.out.println("Fin Dialog1");
-		System.out.println("Dialog 2");
-		frame.dw.printText("Bravo! Le test a reussi! A plus!");
-		System.out.println("Fin dialog 2");
+
+		frame.dw.printText("Bonjour! Bienvenue dans le monde inachevé des" + saut + "pokemon!");
+		frame.dw.printText("Je suis le professeur... Heu non, je suis " + saut + "Jlppc, le developpeur du jeu.");
+		frame.dw.printText("Désolé si ce monde est un peu vide... " + saut + "Comme tu peux le voir, je n'ai pas fini de developper le jeu.");
+		frame.dw.printText("Sinon, je blablate, la, mais j'en ai oublié" + saut + "les bonnes manières! Quel est ton nom?");
+		String nom = JOptionPane.showInputDialog("Quel est ton nom?");
+		boolean ok = false;
+		while(!ok){
+			int choix = frame.dw.printQuestion(nom + " est bien ton nom?", "Oui", "Non", null);
+			if(choix == 2){
+				frame.dw.printText("Bien alors quel est ton nom?");
+				nom = JOptionPane.showInputDialog("Quel est ton nom?");
+			}else{
+				ok = true;
+			}
+		}
+		frame.dw.printText("Content pour toi, " + nom + "! Aller salut!");
 		System.exit(0);
 	}
 	
