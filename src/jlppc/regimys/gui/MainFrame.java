@@ -55,10 +55,10 @@ public final class MainFrame extends JFrame {
 		StartScene ss = new StartScene();
 		frame.gw.setPanel(ss);
 
-		frame.dw.printText("Bonjour! Bienvenue dans le monde inachevé des" + saut + "pokemon!");
-		frame.dw.printText("Je suis le professeur... Heu non, je suis " + saut + "Jlppc, le developpeur du jeu.");
-		frame.dw.printText("Désolé si ce monde est un peu vide... " + saut + "Comme tu peux le voir, je n'ai pas fini de developper le jeu.");
-		frame.dw.printText("Sinon, je blablate, la, mais j'en ai oublié" + saut + "les bonnes manières! Quel est ton nom?");
+		frame.dw.printText("Bonjour! Bienvenue dans le monde inachevé des pokemon!");
+		frame.dw.printText("Je suis le professeur... Heu non, je suis Jlppc, le developpeur du jeu.");
+		frame.dw.printText("Désolé si ce monde est un peu vide... Comme tu peux le voir, je n'ai pas fini de developper le jeu.");
+		frame.dw.printText("Sinon, je blablate, la, mais j'en ai oublié les bonnes manières! Quel est ton nom?");
 		String nom = JOptionPane.showInputDialog("Quel est ton nom?");
 		boolean ok = false;
 		while(!ok){
