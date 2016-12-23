@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="../../../../../stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../../../../../stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../../../../../stylesheets/print.css" media="print">
+
+    <title>Pokémon Regimys - Documentation - Classe Pokemon</title>
+  </head>
+
+   <body>
+     <header>
+      <div class="container">
+        <h1>Projet Pokemon Regimys</h1>
+        <h2>Site du jeu Pokemon Regimys</h2>
+
+        <section id="downloads">
+          <a href="../../../../../index.html" class="btn">Accueil</a>
+          <a href="../../../../downloads.html" class="btn">Téléchargements</a>
+          <a href="../../../index.html" class="btn">Documentation</a>
+          <a href="https://github.com/jlppc/Projet-Pokemon-Regimys/zipball/master" class="btn">Télécharger le code source (.zip)</a>
+          <a href="https://github.com/jlppc/Projet-Pokemon-Regimys/tarball/master" class="btn">Télécharger le code source (.tar.gz)</a>
+          <a href="https://github.com/jlppc/Projet-Pokemon-Regimys" class="btn btn-github"><span class="icon"></span>Voir sur github</a>
+        </section>
+      </div>
+    </header>
+    <div class="container">
+      <section id="main_content">
+        <h1>
+<a class="anchor" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Classe jlppc.regimys.objects.Pokemon</h1>
+<p>Cette classe définit un pokémon.</p>
+        <p><span class="keyword">public class</span> Pokemon <span class="keyword">extends</span> <a href="RegimysObject.html">RegimysObject</a> <span class="keyword">implements</span> <a href="http://docs.oracle.com/javase/8/docs/api/java/io/Serializable.html">Serializable</a></p>
+<ul>
+<li><a href="#vars">Variables</a></li>
+  <li><a href="#sousclasses">Classes internes</a></li>
+  <li><a href="#constructeurs">Constructeurs</a></li>
+  <li><a href="#methodes">Methodes</a></li>
+</ul>
+<br/>
+
+
+<ul id="vars">Variables :
+<li><code>protected <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> surnom</code> : Le surnom du pokémon. Si un surnom n'a pas été précisé, le nom de l'espèce est ici</li>
+<li><code>protected int atkIV</code></li>
+<li><code>protected int defIV</code></li>
+<li><code>protected int atkSpeIV</code></li>
+<li><code>protected int defSpeIV</code></li>
+<li><code>protected int vitIV</code></li>
+<li><code>protected int pvIV</code></li>
+<li><code>protected int aktEV</code></li>
+<li><code>protected int defEV</code></li>
+<li><code>protected int atkSpeEV</code></li>
+<li><code>protected int defSpeEV</code></li>
+<li><code>protected int vitEV</code></li>
+<li><code>protected int pvEV</code></li>
+<li><code>protected int statATK</code></li>
+<li><code>protected int statDEF</code></li>
+<li><code>protected int statATKSPE</code></li>
+<li><code>protected int statDEFSPE</code></li>
+<li><code>protected int statVIT</code></li>
+<li><code>protected int statESQ</code></li>
+<li><code>protected int statPRE</code></li>
+<li><code>protected int statPV</code></li>
+<li><code>protected int statLove</code></li>
+<li><code>public int atkChange</code></li>
+<li><code>public int defChange</code></li>
+<li><code>public int atkSpeChange</code></li>
+<li><code>public int defSpeChange</code></li>
+<li><code>public int vitChange</code></li>
+<li><code>public int esqChange</code></li>
+<li><code>public int preChange</code></li>
+<li><code>protected int level</code> : Le niveau du pokémon.</li>
+<li><code>protected <a href="../enums/Caractere.html">Caractere</a> caractere</code> : Le caractère du pokémon</li>
+  <li><code>protected <a href="Attaque.html">Attaque</a>[] attaques</code> : Les 4 attaques du pokémon</li>
+  <li><code>protected <a href="Espece.html">Espece</a> espece</code> : L'espèce du pokémon</li>
+  <li><code>protected int PV</code> : Les PV actuels du pokémon. A ne pas confondre avec statPV, qui represente les PV max</li>
+  <li><code>protected <a href="#Status">Status</a> status</code> : Le status actuel du pokémon</li>
+  <li><code>protected <a href="Talent.html">Talent</a> talent</code> : Le talent du pokémon. A des chance d'être inutile, puisqu' l'heure actuelle nous ne savons pas si nous allons ajouter les talents.</li>
+  <li><code>protected <a href="../enums/Type.html">Type</a> type1</code> : Le type principal du pokémon.</li>
+  <li><code>protected <a href="../enums/Type.html">Type</a> type2</code> : Le type secondaire du pokémon</li>
+  <li><code>protected int toNextLevel</code> : Le nombre d'experience qu'il faut pour acceder au niveau supérieur.</li>
+  <li><code>protected float expBoost</code> : Le boost d'xp du pokémon (Après un échange par exemple)</li>
+  <li><code>public boolean confus</code></li>
+  <li><code>public boolean peur</code></li>
+  <li><code>public boolean amour</code></li>
+  <li><code>public boolean vampigraine</code></li>
+  <li><code>public boolean malediction</code></li>
+  <li><code>protected <a href="items/Item.html">Item</a> held</code> : L'item tenu par le pokémon</li>
+  <li><code>protected int tauxCapture</code> : Le taux du capture du pokémon</li>
+</ul>
+<br/>
+Classes internes : <ul id="sousclasses">
+        <li id="CalcCourbes"><code>public abstract static class CalcCourbes implements Serializable</code> : Classe permettant de calculer les courbes d'experience. <br/>Annotation : @Static. <br/>La classe est protected, donc les methodes aussi (bien que notées public)</li>
+        <li id="Status"><code>public enum Status implements Serializable</code> : Enumération des status des pokémon. <br/>Liste des enumerations : <ul>
+          <li>BRULURE</li>
+          <li>PARALYSIE</li>
+          <li>SOMMEIL</li>
+          <li>GEL</li>
+          <li>POISON</li>
+          <li>AUCUN</li>
+          </ul></li>
+        </ul>
+Constructeurs : <ul id="constructeurs">
+        <li><code>public Pokemon(<a href="Espece.html">Espece</a> espece, int level, <a href="Attaque.html">Attaque</a>[] attaques, <a href="../enums/Caractere.html">Caractere</a> caractere, <a href="Talent.html">Talent</a> talent)</code> : Constructeur créant un pokémon sans surnom. Les noms des données correspondent a leurs variables.</li>
+        <li><code>public Pokemon(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> surnom, <a href="Espece.html">Espece</a> espece, int level, <a href="Attaque.html">Attaque</a>[] attaques, <a href="../enums/Caractere.html">Caractere</a> caractere,  <a href="Talent.html">Talent</a> talent)</code> : Constructeur créant un pokémon avec un surnom. Les noms des
+          données correspondent a leurs variables.</li></ul>
+        Methodes : <ul id="methodes">
+        <li><code>public boolean captured(<a href="items/I_Pokeball.html">I_Pokeball</a> pokeball)</code> : Verifie si le pokémon est capturé.<br/> Arguments : <ul><li>pokeball : La pokeball utilisée</li></ul>Retourne : true si le pokemon est capturé, false sinon.</li>
+        <li><code>public void setStat(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> stat, int newStat)</code> : Permet de changer une statistique. A utiliser avec modération.<br/> Arguments : <ul><li>stat : La statistique a changer. Elle peut prendre les valeurs "atk", "def", "atkspe", "defspe", "vit", "pv" selon la statistique a changer.</li><li>newStat : La nouvelle valeur a affecter a cette statistique</li></ul></li>
+        <li><code>public void levelUp()</code> : Methode appellée pour faire les actions quand le pokémon gagne un niveau</li>
+        <li><code>public boolean isHoldingItem()</code> : Renvoie si le pokémon tient un objet ou non.</li>
+        <li><code>public Item itemHeld()</code> : Ok j'ai oublié le "get" devant. Je sais.</li>
+        <li><code>public int win(<a href="#main_content">Pokemon</a> vaincu)</code> : Quand le pokémon gagne un combat.<br/>Arguments :<ul><li>vaincu : Le pokémon qui a été vaincu</li></ul>Retourne : L'xp gagnée pour le pokémon.</li>
+        <li><code>protected void getEvs(<a href="#main_content">Pokemon</a> vaincu)</code> : Methode appellée pour distribuer les EV.<br/>Arguments :<ul><li>vaincu : Le pokémon vaincu pour recuperer les EV a distribuer</li></ul></li>
+        <li><code>public void calcStats(<a href="Espece.html">Espece</a> espece)</code> : Methode renitialisant les statistiques.<br/>Arguments :<ul><li>espece : L'espece pour recuperer les stats de base</li></ul></li>
+        <li><code>public boolean itemUsed(<a href="items/Item.html">Item</a> used)</code> : Methode appellée lors de l'utilisation d'un item.<br/>Arguments :<ul><li>used : L'item utilisé</li></ul>Retourne  : si l'item doit etre supprimé</li>
+        <li><code>public <a href="items/Item.html">Item</a> hold(<a href="items/Item.html">Item</a> item)</code> : Merhode faisant tenir un objet au pokémon. Arguments :<ul><li>item : L'item a faire tenir. Peut etre null si c'est pour retirer un item.</li></ul>Retourne : L'ancien item tenu, null si aucun item n'est tenu.</li>
+        <li><code>public void traded()</code> : Methode appelée quand le pokémon est échangé</li>
+        <li><code>public void toolEvTrade()</code> : SPOILERS!</li>
+        <li><code>public void evolve()</code> : Methode appelée lorsque le pokémon Evolue.</li>
+        <li><code>public synchronized final <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> getSurnom()</code></li>
+        <li>Dans le code, après cette methode, il y a des getters. Je ne vais pas les documenter ici, puisque c'est inutile, les noms sont explicites. Vous pourrez les retrouver dans le code.</li>
+        <li>Il y aussi deux setters, idem. Aller, cette fois ci, je reprend.</li>
+        <li><code>public synchronized void setStats(int[] stats, <a href="Attaque.html">Attaque</a>[] attacks, <a href="Espece.html">Espece</a> espece, <a href="../enums/Type.html">Type</a>[] types)</code> : Permet de changer toutes les stats avec les arguments. L'esquive et la precision sont remis a 100.<br/>Arguments :<ul>
+          <li>stats : Les statistiques dans cet ordre : atk, def, atkspe, defspe, vit.</li>
+          <li>attacks : Les 4 attaques du pokémon</li>
+          <li>espece : L'espece du pokémon. Le pokemon continuera a porter le nom de son acienne espece si il n'a pas été renommé.</li>
+          <li>types : Les deux types dans l'ordre</li></ul></li>
+        <li>Encore des setters et des getters...</li>
+        <li><code>public synchronized void attaqued(int pvPerdus)</code> : Methode appelée lorsque le pokémon est attaqué.<br/>Arguments : <ul><li>pvPerdus : Les pv a supprimer</li></ul></li>
+        <li><code>public boolean change</code>*stat*<code>(int power)</code> : Changer *stat* par ATK, DEF, ATKSPE, DEFSPE, VIT, ESQ ou PRE dans le nom donné. Ces methodes permettent d'augmenter ou de diminuer leur stat respective.<br/>Arugments :<ul><li>power : Le nombre de niveau a augmenter. Si ce doit etre diminuer, entrez un nombre negatif.</li></ul>Retourne : true si l'augmentation de stat a bien eu lieu, false si elle était trop haute ou trop basse.</li>
+        <li><code>public boolean setStatus(<a href="#status">Status</a> status)</code> : Permet de changer le status.<br/>Arguments : <ul><li>status : Le status a mettre</li></ul>Retourne : true si le changement de status a bien eu lieu, false si il y avait deja un status.</li>
+        <li><code>public <a href="#Status">Status</a> getStatus()</code></li>
+        <li><code>public void heal(int pv)</code> : Soigne le pokémon.<br/>Paramètres : <ul><li>PV : Le nombe de PV a soigner</li></ul></li>
+        </ul>
+      </section>
+      
+    </div>
+
+    
+  </body>
+</html>

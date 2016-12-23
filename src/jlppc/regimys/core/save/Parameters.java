@@ -16,6 +16,7 @@ import java.util.Vector;
 
 import jlppc.utils.Log;
 import jlppc.utils.Static;
+import jlppc.utils.Useless;
 /**
  * Classe permettant de gerer une liste de Param√®tre dans un fichier
  * @author jlppc
@@ -32,10 +33,13 @@ public final class Parameters {
 			super(param);
 		}
 	}
-	/**Le chemin (ou nom) du fichier de param√®tre*/
-	private static final String PARAMETERS_WAY = "params.rsave";
-	/**Le fichier de param√®tre*/
-	private static final File SAVE_FILE = new File(PARAMETERS_WAY);
+	/**Le chemin (ou nom) du fichier de paramËtre<br/>
+	 * Le nom est en majuscules du fait que cette variable Ètait anciennement statique*/
+	@Useless//Avant elle Ètait utile...
+	private static String PARAMETERS_WAY = "";
+	/**Le fichier de paramËtre<br/>
+	 * Le nom est en majuscules du fait que cette variable Ètait anciennement statique*/
+	private static File SAVE_FILE = new File(PARAMETERS_WAY);
 	/**Un scanner*/
 	private static Scanner reader;
 	/**Vector contenant tous les param√®tres*/
@@ -43,6 +47,14 @@ public final class Parameters {
 	/*Charge les param√®tres ou initialise le fichier si il n'existe pas.*/
 	static{
 		
+		
+		
+		
+	}
+	
+	public static void paramInit(File paramsFile){
+		PARAMETERS_WAY = paramsFile.getAbsolutePath();
+		SAVE_FILE = paramsFile.getAbsoluteFile();
 		if(SAVE_FILE.exists() == false){
 			try {
 				SAVE_FILE.createNewFile();
@@ -78,8 +90,6 @@ public final class Parameters {
 			pw.reset();
 			pw.close();
 		}
-		
-		
 	}
 	
 	

@@ -7,15 +7,31 @@ import java.util.Vector;
 
 import jlppc.utils.FormattedString;
 
-
-public class StringKey {
+/**
+ * Utilitaire permettant de faire des clées de chaines de caractères, permettant de les réutiliser plus facilement par la suite.
+ * @author Jlppc
+ *
+ */
+public final class StringKey {
+	/**
+	 * Liste des clées
+	 */
 	public static Vector<StringKey> keys = new Vector<>();
 	
-	
+	/**
+	 * La clée
+	 */
 	protected String key;
+	/**
+	 * La chaine de caractère associée a la clée
+	 */
 	protected String string;
-	
-	public StringKey(String key, String str){
+	/**
+	 * 
+	 * @param key {@link #key}
+	 * @param str {@link #str}
+	 */
+	protected StringKey(String key, String str){
 		this.key = key;
 		string = str;
 	}
@@ -43,6 +59,11 @@ public class StringKey {
 		return (searched != null) ? searched.getString(objects) : null;
 		
 	}
+	/**
+	 * Exception se lancant lors d'une recherche de clée qui n'a pas aboutie.
+	 * @author Jlppc
+	 *
+	 */
 	public static class KeyNotFoundException extends Exception{
 		public KeyNotFoundException(String str){
 			super(str);
@@ -51,6 +72,7 @@ public class StringKey {
 			
 		}
 	}
+
 	public static StringKey getStringKey(String key) throws KeyNotFoundException{
 		StringKey searched = null;
 		for(StringKey actual : keys){
@@ -65,7 +87,11 @@ public class StringKey {
 		return searched;
 		
 	}
-	
+	/**
+	 * Affiche une chaine de caractère StringKey dans la sortie principale du programme.
+	 * @param key - La clée
+	 * @param objects - Les objets qui remplissent les %o
+	 */
 	public static void outStringKey(StringKey key, Object...objects){
 		try{
 			System.out.println(key.getString(objects));
@@ -75,7 +101,9 @@ public class StringKey {
 		}
 		
 	}
-	
+	/**
+	 * Initialise les clées.
+	 */
 	public static void initialisateKeys(){
 		//Items
 		keys.add(new StringKey("fight.item.used", "%o utilise un(e) %o!"));

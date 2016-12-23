@@ -2,15 +2,39 @@ package jlppc.regimys.objects.items;
 
 import jlppc.regimys.enums.Caractere.Stats;
 import jlppc.regimys.objects.Pokemon.Status;
-
+/**
+ * Construit les items de soin
+ * @author Jlppc
+ *
+ */
 public class I_Heal extends Item {
-	
+	/**
+	 * Les PV soignés
+	 */
 	protected int pvHeal;
+	/**
+	 * Le status soigné
+	 */
 	protected Status healed;
+	/**
+	 * Si l'item soigne tous les status
+	 */
 	protected boolean healAll;
+	/**
+	 * Si l'item ajoute une stat (stats+)
+	 */
 	protected Stats statAdd;
+	/**
+	 * Si l'item soigne les PP
+	 */
 	protected boolean PPheal;
+	/**
+	 * Le nombre de PP soignés
+	 */
 	protected int ppHeal;
+	/**
+	 * Si les PP sont soignés dans toutes les attaques.
+	 */
 	protected boolean allAttacksHeal;
 	
 	/**Constructeur Polyvalent*/
@@ -83,7 +107,9 @@ public class I_Heal extends Item {
 	public Object clone(){
 		return new I_Heal(nom, usable, usableInFight, givable, categorie, pvHeal, healed, healAll);
 	}
-	
+	/**
+	 * Intitialise les Items de soin
+	 */
 	public static void init(){
 		itemList.add(new I_Heal("Baie Oran", true, true, true, BagCat.BAIES, 10, Status.AUCUN, false));
 		itemList.add(new I_Heal("Potion", true, true, true, BagCat.SOIN, 20, Status.AUCUN, false));

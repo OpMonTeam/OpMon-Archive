@@ -23,7 +23,11 @@ import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
-
+/**
+ * Classe principale de la boite de dialogue de creation de pokémon.
+ * @author Jlppc
+ *
+ */
 public class Main {
 
 	public JFrame frmCrateurDePokmon;
