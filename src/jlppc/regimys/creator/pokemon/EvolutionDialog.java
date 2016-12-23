@@ -9,7 +9,12 @@ import javax.swing.JSpinner;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
-
+/**
+ * Classe permettant de parametrer une boite de dialogue de paramètres d'évolution.<br/>
+ * Ses classes filles ne seront pas documentées, puisques les noms correspondent aux manières d'évolution des classes filles de Evolution.
+ * @author Jlppc
+ *
+ */
 public abstract class EvolutionDialog extends JDialog {
 	//Ok, dans ces classes, je ne respecte pas les regles du protected blablabla. ET ALORS??? JE FAIS CE QUE JE VEUX, MERDE!
 	JSpinner spinner;

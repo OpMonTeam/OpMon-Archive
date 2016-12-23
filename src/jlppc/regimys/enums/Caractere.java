@@ -3,7 +3,7 @@ package jlppc.regimys.enums;
 import java.io.Serializable;
 
 /**
- * WAW! Tous les caractï¿½res des pokemon! Je vais pas les documenter un par un, ca serait totalement INUTILE! Sinon y'a pokepedia!
+ * WAW! Tous les caractères des pokemon! Je vais pas les documenter un par un, ca serait totalement INUTILE! Sinon y'a pokepedia!
  * @author Jlppc
  *
  */

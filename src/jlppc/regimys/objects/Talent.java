@@ -5,7 +5,7 @@ import jlppc.regimys.fight.EndOfTurn;
 /**
  * La base du talent des pokemon. La plupart des talents seront traitï¿½s au cas-par-cas dans Fight ou autre.
  * @author Jlppc
- *
+ * @warning Ne sera peut-être pas utilisé!!!
  */
 public abstract class Talent implements Serializable {
 	public static final int ACTIVE_ON_LIFE_LOW = 0;

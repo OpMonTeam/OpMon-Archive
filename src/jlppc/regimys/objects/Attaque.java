@@ -23,6 +23,9 @@ public abstract class Attaque extends RegimysObject implements Serializable{
 	 * La puissance de l'attaque
 	 */
 	protected int puissance;
+	/**
+	 * Le niveau de priorité de l'attaque
+	 */
 	protected int priorite;
 	@Override
 	public int hashCode() {
@@ -164,7 +167,9 @@ public abstract class Attaque extends RegimysObject implements Serializable{
 	 * @throws SameAtkPartTwo 
 	 */
 	protected abstract void effetApres(Pokemon atk, Pokemon def) throws SameAtkPartTwo;
-	
+	/**
+	 * Methode pour soigner les PP.
+	 */
 	public void healPP(){
 		pp = ppMax;
 	}
@@ -269,11 +274,11 @@ public abstract class Attaque extends RegimysObject implements Serializable{
 	
 	/**
 	 * Construit une attaque.<br/>
-	 *  Ce constructeur doit obligatoirement ï¿½tre appelï¿½ par super dans un constructeur par dï¿½faut puisque l'attaque est crï¿½e par class.newInstance().
+	 *  Ce constructeur doit obligatoirement être appelé par super dans un constructeur par défaut puisque l'attaque est crée par class.newInstance().
 	 * @param nom - Le nom de l'attaque
 	 * @param puissance - La puissance de l'attaque (Noooon? C'est vrai?)
 	 * @param type - Le type (J'y aurait jamais cru!)
-	 * @param precision - La prï¿½cision... (J'ai vraiment besoin de prï¿½ciser? HAHAHAHAHAHAHA!)
+	 * @param precision - La précision... (J'ai vraiment besoin de préciser? HAHAHAHAHAHAHA!)
 	 * @param special - Bon vous savez quoi? Voir : {@link #special} (J'ai la flemme de tout redocumenter pour le constructeur.)
 	 * @param status - {@link #status} 
 	 * @param chanceDeCoups - {@link #chanceDeCoups}
@@ -293,6 +298,21 @@ public abstract class Attaque extends RegimysObject implements Serializable{
 		this.pp = this.ppMax = ppMax;
 		priorite = 0;
 	}
+	/**
+	 * Construit une attaque.<br/>
+	 *  Ce constructeur doit obligatoirement être appelé par super dans un constructeur par défaut puisque l'attaque est crée par class.newInstance().
+	 * @param nom - Le nom de l'attaque
+	 * @param puissance - La puissance de l'attaque (Noooon? C'est vrai?)
+	 * @param type - Le type (J'y aurait jamais cru!)
+	 * @param precision - La précision... (J'ai vraiment besoin de préciser? HAHAHAHAHAHAHA!)
+	 * @param special - Bon vous savez quoi? Voir : {@link #special} (J'ai la flemme de tout redocumenter pour le constructeur.)
+	 * @param status - {@link #status} 
+	 * @param chanceDeCoups - {@link #chanceDeCoups}
+	 * @param rateJamais - {@link #rateJamais}
+	 * @param ppMax - {@link #ppMax}
+	 * @param priorite - {@link #priorite}
+	 * 
+	 */
 	protected Attaque(String nom, int puissance, Type type, int precision, boolean special, boolean status, int chanceDeCoups, boolean rateJamais, int ppMax, int priorite){
 		this.nom = nom;
 		this.puissance = puissance;
@@ -309,9 +329,9 @@ public abstract class Attaque extends RegimysObject implements Serializable{
 		return priorite;
 	}
 	/**
-	 * Action effectuï¿½e si l'attaque ï¿½choue.
+	 * Action effectuée si l'attaque échoue.
 	 * @param atk - Le pokemon attaquant
-	 * @param def - Le pokemon dï¿½fenseur
+	 * @param def - Le pokemon défenseur
 	 */
 	public void siEchoue(Pokemon atk, Pokemon def){
 		

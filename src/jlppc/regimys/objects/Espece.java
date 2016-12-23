@@ -12,7 +12,7 @@ import jlppc.regimys.enums.Caractere.Stats;
 import jlppc.utils.HashArray;
 
 /**
- * La classe qui définit une espÃ¨ce de Pokémon.
+ * La classe qui définit une espèce de Pokémon.
  * 
  * @author Jlppc
  *
@@ -36,7 +36,7 @@ public class Espece implements Serializable{
 	 */
 	protected int niveauEvolution;
 	/**
-	 * La maniére dont le pokemon évolue. Peut prendre les valeurs :<br/>
+	 * La manière dont le pokemon évolue. Peut prendre les valeurs :<br/>
 	 * <br/>
 	 * {@link #EVOLUTION_BY_LEVEL}<br/>
 	 * <br/>
@@ -110,6 +110,9 @@ public class Espece implements Serializable{
 	 * La coubre d'experience du pokémon
 	 */
 	protected CourbeExp courbe;
+	/**
+	 * L'exp du pokémon au niveau 100
+	 */
 	protected int expMax;
 	/**
 	 * Les EV données en fin de combat.
@@ -128,7 +131,11 @@ public class Espece implements Serializable{
 	protected Image resumeS;
 	protected int expGiven;
 	protected int tauxDeCapture;
-
+    /**
+     * Les differentes courbes d'experiences.
+     * @author Jlppc
+     *
+     */
 	public enum CourbeExp implements Serializable{
 		RAPIDE, MOYENNE, PARABOLIQUE, LENTE, ERRATIQUE, FLUCTUANTE;
 	}
@@ -518,7 +525,9 @@ public class Espece implements Serializable{
 
 		return expGiven;
 	}
-
+	/**
+	 * Permet d'enregistrer l'évolution. Doit être lancé après la déclaration de tous les pokémon.
+	 */
 	public void checkEvol() {
 		evolType.checkEvo();
 		this.evolution = evolType.getEvolution();

@@ -4,7 +4,6 @@ import javax.swing.JLabel;
 import jlppc.regimys.objects.items.Item;
 
 import javax.swing.JComboBox;
-
 public class E_ItemDialog extends EvolutionDialog {
 	JComboBox<Item> comboBoxItem;
 	public E_ItemDialog() {
