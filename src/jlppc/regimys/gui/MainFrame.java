@@ -17,7 +17,8 @@ public final class MainFrame extends JFrame {
 	protected GameWindow gw;
 	protected DialogWindow dw;
 	public static Thread listeners = new Thread(new ListenersThread());
-	public static String saut = "<br/>";
+	public static Thread player;
+	
 
 	public MainFrame() {
 		super();
@@ -52,26 +53,34 @@ public final class MainFrame extends JFrame {
 	}
 	
 	public static synchronized void play(){
-		StartScene ss = new StartScene();
-		frame.gw.setPanel(ss);
+		player = new Thread(new Runnable(){
 
-		frame.dw.printText("Bonjour! Bienvenue dans le monde inachevÃ© des pokemon!");
-		frame.dw.printText("Je suis le professeur... Heu non, je suis Jlppc, le developpeur du jeu.");
-		frame.dw.printText("DÃ©solÃ© si ce monde est un peu vide... Comme tu peux le voir, je n'ai pas fini de developper le jeu.");
-		frame.dw.printText("Sinon, je blablate, la, mais j'en ai oubliÃ© les bonnes maniÃ¨res! Quel est ton nom?");
-		String nom = JOptionPane.showInputDialog("Quel est ton nom?");
-		boolean ok = false;
-		while(!ok){
-			int choix = frame.dw.printQuestion(nom + " est bien ton nom?", "Oui", "Non", null);
-			if(choix == 2){
-				frame.dw.printText("Bien alors quel est ton nom?");
-				nom = JOptionPane.showInputDialog("Quel est ton nom?");
-			}else{
-				ok = true;
+			@Override
+			public void run() {
+				StartScene ss = new StartScene();
+				frame.gw.setPanel(ss);
+				frame.dw.printText("Bonjour! Bienvenue dans le monde inachevé des pokemon!");
+				frame.dw.printText("Je suis le professeur... Heu non, je suis Jlppc, le developpeur du jeu.");
+				frame.dw.printText("Désolé si ce monde est un peu vide... Comme tu peux le voir, je n'ai pas fini de developper le jeu.");
+				frame.dw.printText("Sinon, je blablate, la, mais j'en ai oublié les bonnes manières! Quel est ton nom?");
+				String nom = JOptionPane.showInputDialog("Quel est ton nom?");
+				boolean ok = false;
+				while(!ok){
+					int choix = frame.dw.printQuestion(nom + " est bien ton nom?", "Oui", "Non", null);
+					if(choix == 2){
+						frame.dw.printText("Bien alors quel est ton nom?");
+						nom = JOptionPane.showInputDialog("Quel est ton nom?");
+					}else{
+						ok = true;
+					}
+				}
+				frame.dw.printText("Content pour toi, " + nom + "! Aller salut!");
+				System.exit(0);
 			}
-		}
-		frame.dw.printText("Content pour toi, " + nom + "! Aller salut!");
-		System.exit(0);
+			
+		});
+		player.start();
+		
 	}
 	
 	public GameWindow getGameWindow(){

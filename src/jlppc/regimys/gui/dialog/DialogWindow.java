@@ -40,28 +40,34 @@ public final class DialogWindow extends JInternalFrame {
 		return defaultPanel;
 	}
 	
-	public void continuer(){
+	public synchronized void continuer(){
 		if(GameState.state == GameState.DIALOGUE){
 			text.setText("");
 			GameState.state = GameState.MARCHE;	
+			notify();
 		}
 		
 	}
 	
-	public void printText(String text){
+	public synchronized void printText(String text){
 		setContentPane(defaultPanel);
 		repaint();
 		this.text.setText("<HTML>" + text + "</HTML>");
 		GameState.state = GameState.DIALOGUE;
-		while(GameState.state != GameState.MARCHE){
-			System.out.println("Wait...");
+		try {
+			wait();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.exit(1);
 		}
 	}
 	
-	public int printQuestion(String question, String choix1, String choix2, String choix3){
+	public synchronized int printQuestion(String question, String choix1, String choix2, String choix3){
 		ChoicePanel cp = new ChoicePanel(question, choix1, choix2, choix3, (choix3 != null));
 		setContentPane(cp);
 		repaint();
+		GameState.state = GameState.DIALOGUE;
 		while(cp.getChoice() == -1){
 			System.out.println("Wait...");
 		}
