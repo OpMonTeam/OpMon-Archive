@@ -68,8 +68,8 @@ public class ListenersThread implements Runnable {
 				
 			}
 		};
-		//MainFrame.frame.addKeyListener(keylistenerDialog);
-		MainFrame.frame.dw.addKeyListener(keylistenerDialog);
+		MainFrame.frame.addKeyListener(keylistenerDialog);
+		//MainFrame.frame.dw.addKeyListener(keylistenerDialog);
 		//MainFrame.frame.gw.addKeyListener(keylistenerDialog);
 		
 		MainFrame.frame.addMouseListener(mouselistenerDialog);
