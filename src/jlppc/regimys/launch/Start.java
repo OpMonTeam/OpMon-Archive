@@ -4,6 +4,8 @@ import java.io.EOFException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintStream;
+import java.net.URL;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -29,6 +31,7 @@ import jlppc.regimys.playercore.Player;
 import jlppc.regimys.tempgui.ChoosePoke;
 import jlppc.utils.FormattedString;
 import jlppc.utils.Log;
+import jlppc.utils.Log.Entry;
 import jlppc.utils.Static;
 /**
  * Demmare le programme.
@@ -176,7 +179,6 @@ public class Start {
 					}else if(args[0].equals("--guitest")){
 						System.out.println("Test du gui de Pokemon Regimys");
 						guiMain();
-						System.out.println("PokÃ©mon Regimys version " + versionS);
 					}else if(args[0].equals("--launcher")){
 						try{
 							main(new File[]{new File(args[1]), new File(args[2])});
@@ -270,8 +272,42 @@ public class Start {
 		
 		
 	}
+	
+	public static void gererException(Exception e, boolean fatal){
+		Log.writeT(fatal ? Entry.FATAL : Entry.EXCEPTION, "Exception : " + e.getClass().getCanonicalName());
+		e.printStackTrace();
+		
+		if(fatal){
+			Log.writeT(Entry.FATAL, "Echec de l'execution du programme. Merci de prevenir les developpeurs.");
+			
+			JOptionPane.showMessageDialog(null, "<HTML>Une erreur fatale s'est déclanchée dans le programme.<br/> Merci de prevenir les developpeur en leur joignant les fichiers log.txt et errLog.txt. <br/>Merci d'avance, c'est grace a votre intervention que le jeu s'améliorera.</HTML>", "Erreur fatale", JOptionPane.ERROR_MESSAGE);
+			Log.close();
+			System.exit(1);
+		}
+	}
 
 	private static void guiMain() {
+		File errLog = new File("errLog.txt");
+		try {
+			Log.start();
+			errLog.createNewFile();
+			System.setErr(new PrintStream(errLog));
+		} catch (IOException e) {
+			gererException(e, true);
+		}
+		Log.writeT(Entry.INFO, "Informations systeme : ");
+		Log.writeT(Entry.SYSTEM, "System.getProperty(\"os.name\") : " + System.getProperty("os.name"));
+		Log.writeT(Entry.SYSTEM, "System.getProperty(\"os.version\") : " + System.getProperty("os.version"));
+		Log.writeT(Entry.JAVA, "System.getProperty(\"java.vendor\") : " + System.getProperty("java.vendor"));
+		Log.writeT(Entry.JAVA, "System.getProperty(\"java.version\") : " + System.getProperty("java.version"));
+		Log.writeT(Entry.INFO, "Test de connexion...");
+		try {
+			new URL("http://www.google.com").openConnection();
+			Log.writeT(Entry.INFO, "Connexion a internet établie");
+		} catch (IOException e) {
+			Log.writeT(Entry.WARNING, "Pas de connexion internet.");
+		}
+		
 		gameThread = new Thread(new Runnable(){
 
 			@Override
@@ -281,9 +317,14 @@ public class Start {
 			}
 			
 		});
-		
+		Log.writeT(Entry.INFO, "Lancement...");
 		gameThread.start();
 		
+	}
+
+	public static void exit() {
+		
+		System.exit(0);
 	}
 
 }
