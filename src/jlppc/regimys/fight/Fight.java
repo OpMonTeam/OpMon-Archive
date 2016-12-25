@@ -124,7 +124,63 @@ public class Fight {
 			}
 
 			if(!sameDef){
-				attaqueDef = Start.rand.nextInt(def.getAttaques().length);
+				int prioAtk[] = new int[4];
+				int i = 0;
+				for(Attaque atkke : def.getAttaques()){
+					System.out.println("Attaque " + i);
+					int prioBase = 1;
+					if(Type.calcEfficacite(atkke.getType(), atk.getType1(), atk.getType1()) > 1 && !atkke.isStatus()){
+						prioBase = prioBase * 2;
+						System.out.println("efficacité");
+					}
+					if(atkke.getPriorite() > 0){
+						prioBase = prioBase * 2;
+						System.out.println("priorité");
+					}
+					if(atkke.getPuissance() > 80 && !atkke.isStatus()){
+						prioBase = prioBase * 2;
+						System.out.println("puissance");
+					}
+					if(atkke.isSpecial() && def.getStatATKSPE() > def.getStatATK() && !atkke.isStatus()){
+						prioBase = prioBase * 2;
+						System.out.println("Compatibilité");
+					}else if(!atkke.isSpecial() && def.getStatATK() > def.getStatATKSPE() && !atkke.isStatus()){
+						prioBase = prioBase * 2;
+						System.out.println("Compatibilité");
+					}
+					if(atkke.getChanceDeCoups() < 16 && !atkke.isStatus()){
+						prioBase = prioBase * 2;
+						System.out.println("Critque");
+					}
+					if(atkke.isStatus()){
+						prioBase = (prioBase == 1) ? 1 :(prioBase / 2);
+						System.out.println("Status");
+					}
+					if(atkke.getPp() == 0){
+						System.out.println("PP.");
+						prioBase = 0;
+					}
+					prioAtk[i] = prioBase;
+					i++;
+					
+				}
+				System.out.println("Propabilités de chaque attaque -> 0 : " + prioAtk[0] + "; 1 : " + prioAtk[1] + "; 2 : " + prioAtk[2] + "; 3 : " + prioAtk[3]);
+				int total = prioAtk[0] + prioAtk[1] + prioAtk[2] + prioAtk[3];
+				System.out.println("Total" + " " + total);
+				int nbreInter = Start.rand.nextInt(total);
+				System.out.println("Rand : " + nbreInter);
+				if(nbreInter < prioAtk[0]){
+					attaqueDef = 0;
+				}else if(nbreInter >= prioAtk[0] && nbreInter < prioAtk[0] + prioAtk[1]){
+					attaqueDef = 1;
+				}else if(nbreInter >= prioAtk[0] + prioAtk[1] && nbreInter < total - prioAtk[3]){
+					attaqueDef = 2;
+				}else if(nbreInter >= total - prioAtk[3]){
+					attaqueDef = 3;
+				}else{
+					attaqueDef = Start.rand.nextInt(4);
+					System.out.println("Erreur d'aléatoire. Continuation.");
+				}
 				boolean ok = false;
 				while(!ok){
 					if(def.getAttaques()[attaqueDef].getPp() <= 0){
