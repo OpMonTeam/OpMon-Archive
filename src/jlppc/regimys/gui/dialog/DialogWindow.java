@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import jlppc.regimys.core.GameState;
 import jlppc.utils.Fonts;
 import jlppc.utils.Log;
+import jlppc.utils.Log.Entry;
 import jlppc.utils.Fonts.Police;
 
 public final class DialogWindow extends JInternalFrame {
@@ -19,6 +20,7 @@ public final class DialogWindow extends JInternalFrame {
 	JPanel defaultPanel;
 	public DialogWindow() {
 		super();
+		Log.writeT(Entry.INFO, "Création de la fenetre de dialogue.");
 		defaultPanel = new JPanel();
 		defaultPanel.setLayout(null);
 		this.setContentPane(defaultPanel);
