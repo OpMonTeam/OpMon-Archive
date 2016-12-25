@@ -25,3 +25,5 @@ Book1.xlsx.gsheet
 *.rej
 *.class
 *.info
+*.txt
+*.db
