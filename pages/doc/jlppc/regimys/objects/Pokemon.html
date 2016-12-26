@@ -35,7 +35,7 @@
         <p><span class="keyword"><span class="keyword">public</span> class</span> Pokemon <span class="keyword">extends</span> <a href="RegimysObject.html">RegimysObject</a> <span class="keyword">implements</span> <a href="http://docs.oracle.com/javase/8/docs/api/java/io/Serializable.html">Serializable</a></p>
 <ul>
 <li><a href="#vars">Variables</a></li>
-  <li><a href="#sousclasses">Classes <span class="keyword">int</span>ernes</a></li>
+  <li><a href="#sousclasses">Classes internes</a></li>
   <li><a href="#constructeurs">Constructeurs</a></li>
   <li><a href="#methodes">Methodes</a></li>
 </ul>
@@ -94,7 +94,7 @@
 <br/>
 Classes internes : <ul id="sousclasses">
         <li id="CalcCourbes"><code><span class="keyword">public abstract static class </span> CalcCourbes <span class="keyword">implements</span> Serializable</code> : Classe permettant de calculer les courbes d'experience. <br/>Annotation : @Static. <br/>La classe est <span class="keyword">protected</span>, donc les methodes aussi (bien que notées <span class="keyword">public</span>)</li>
-        <li id="Status"><code><span class="keyword">public</span> <span class="keyword">enum</span> Status implements Serializable</code> : enumération des status des pokémon. <br/>Liste des enumerations : <ul>
+        <li id="Status"><code><span class="keyword">public</span> <span class="keyword">enum</span> Status <span class="keyword">implements</span> Serializable</code> : enumération des status des pokémon. <br/>Liste des enumerations : <ul>
           <li>BRULURE</li>
           <li>PARALYSIE</li>
           <li>SOMMEIL</li>
@@ -112,7 +112,7 @@ Constructeurs : <ul id="constructeurs">
         <li><code><span class="keyword">public</span> <span class="keyword">void</span> setStat(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> stat, <span class="keyword">int</span> newStat)</code> : Permet de changer une statistique. A utiliser avec modération.<br/> Arguments : <ul><li>stat : La statistique a changer. Elle peut prendre les valeurs "atk", "def", "atkspe", "defspe", "vit", "pv" selon la statistique a changer.</li><li>newStat : La nouvelle valeur a affecter a cette statistique</li></ul></li>
         <li><code><span class="keyword">public</span> <span class="keyword">void</span> levelUp()</code> : Methode appellée pour faire les actions quand le pokémon gagne un niveau</li>
         <li><code><span class="keyword">public</span> <span class="keyword">boolean</span> isHoldingItem()</code> : Renvoie si le pokémon tient un objet ou non.</li>
-        <li><code><span class="keyword">public</span> Item itemHeld()</code> : Ok j'ai oublié le "get" devant. Je sais.</li>
+        <li><code><span class="keyword">public</span> <a href="items/Item.html">Item</a> itemHeld()</code> : Ok j'ai oublié le "get" devant. Je sais.</li>
         <li><code><span class="keyword">public</span> <span class="keyword">int</span> win(<a href="#main_content">Pokemon</a> vaincu)</code> : Quand le pokémon gagne un combat.<br/>Arguments :<ul><li>vaincu : Le pokémon qui a été vaincu</li></ul>Retourne : L'xp gagnée pour le pokémon.</li>
         <li><code><span class="keyword">protected</span> <span class="keyword">void</span> getEvs(<a href="#main_content">Pokemon</a> vaincu)</code> : Methode appellée pour distribuer les EV.<br/>Arguments :<ul><li>vaincu : Le pokémon vaincu pour recuperer les EV a distribuer</li></ul></li>
         <li><code><span class="keyword">public</span> <span class="keyword">void</span> calcStats(<a href="Espece.html">Espece</a> espece)</code> : Methode renitialisant les statistiques.<br/>Arguments :<ul><li>espece : L'espece pour recuperer les stats de base</li></ul></li>
