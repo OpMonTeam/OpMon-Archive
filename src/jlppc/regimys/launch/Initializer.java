@@ -219,9 +219,9 @@ public class Initializer {
 		 //listePoke[179] = new Espece(
 		 listePoke[180] = new Espece(55, 55, 80, 60, 45, 70, "Lainergie", Type.ELECTRIQUE, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 30, new E_Level (181, 30), null, null, new Stats[]{Stats.ATKSPE, Stats.ATKSPE}, 0.8f, 13.3f, "Sa queue s'allume lorsque sa laine se charge d'électricité. Il projette des poils électrifiés.", 117, 1059860, 120);  
 	         listePoke[181] = new Espece(75, 85, 115, 90, 55, 90, "Pharamp", Type.ELECTRIQUE, Type.AUCUN, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.ATKSPE, Stats.ATKSPE, Stats.ATKSPE}, 1.4f, 61.5f, "Le bout de sa queue brille si fort qu'il peut être vu de très loin. Il sert de balise aux gens.", 196, 1059860, 45);
-		 //listePoke[182] = new Espece(
-		 //listePoke[183] = new Espece(	 		
-		 //listePoke[184] = new Espece(
+		 listePoke[182] = new Espece(80, 85, 90, 100, 50, 75, "Joliflor", TYpe.PLANTE, Type.AUCUN, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.DEFSPE, Stats.DEFSPE, Stats.DEFSPE}, 0.4f, 5.8f, "Les Joliflor se réunissent souvent pour danser. On pense que c'est un rituel pour appeler le soleil", 184, 1059860, 45);                                                                                                                        
+		 listePoke[183] = new Espece(20, 50, 20, 50, 40, 70, "Marill", Type.EAU, Type.FEE, Espece.EVOLUTION_BY_LEVEL, 18, new E_Level(184,18), null, null, new Stats[]{Stats.DEFSPE, Stats.DEFSPE, Stats.DEFSPE}, 0.4f, 8.5f, "Sa fourrure est imperméable, si bien qu'il reste sec même en jouant dans l'eau", 58, 800000, 190);	
+		 listePoke[184] = new Espece(100, 50, 80, 80, 50, 105, "Azumarill", TYpe.EAU, Type.FEE, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.PV, Stats.PV, Stats.PV}, 0.8f, 28.5f, "Ses longues oreilles font un radar efficace. Elles décèlent les mouvements dans le lit des rivières.", 153, 800000, 75);
 		 //listePoke[185] = new Espece(	 		 
 		 //listePoke[186] = new Espece(
 		 //listePoke[187] = new Espece(	 		 
