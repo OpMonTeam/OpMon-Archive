@@ -11,10 +11,14 @@ import javax.imageio.ImageReader;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import jlppc.regimys.enums.Caractere;
 import jlppc.regimys.gui.dialog.DialogWindow;
 import jlppc.regimys.gui.game.GameWindow;
 import jlppc.regimys.gui.game.StartScene;
+import jlppc.regimys.launch.Initializer;
 import jlppc.regimys.launch.Start;
+import jlppc.regimys.objects.Pokemon;
+import jlppc.regimys.playercore.Player;
 import jlppc.utils.Log;
 import jlppc.utils.Log.Entry;
 
@@ -183,7 +187,21 @@ public final class MainFrame extends JFrame {
 					
 				}
 				frame.dw.printText("Très bon choix! (En fait je dis ça à tout le monde mais bon...)");
-				frame.dw.printText("Bon maintenant plus qu'a attendre que je rajoute des trucs! Amuse toi bien dans ce vide interspacial!");
+				int surnomI = frame.dw.printQuestion("Tu veux donner un surnom a ton pokemon?", "Oui", "Non", null);
+				String surnom = null;
+				if(surnomI == 1){
+					surnom = JOptionPane.showInputDialog(null, "Entrez le surnom de votre pokémon", "Surnommer un pokémon");
+				}
+				Start.joueur = new Player(nom);
+				Pokemon starter;
+				if(surnom != null){
+					starter = new Pokemon((pkmnStart == 1) ? Initializer.listePoke[1] : ((pkmnStart == 2) ? Initializer.listePoke[7] : Initializer.listePoke[4]), 5, null, Caractere.random(), null);
+				}else{
+					starter = new Pokemon(surnom, (pkmnStart == 1) ? Initializer.listePoke[1] : ((pkmnStart == 2) ? Initializer.listePoke[7] : Initializer.listePoke[4]), 5, null, Caractere.random(), null);
+				}
+				Start.joueur.addPokeToEquipe(starter);
+				frame.dw.printText("Bon qu'est-ce que je dois faire après... Ah, je ne m'en rappelle plus. Bon c'est pas grave, on se retrouve quand je m'en rappelle!");
+				
 				System.exit(0);
 			}
 			
