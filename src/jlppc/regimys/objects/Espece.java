@@ -7,12 +7,13 @@ import java.util.Arrays;
 import jlppc.regimys.enums.Type;
 import jlppc.regimys.evolution.Evolution;
 import jlppc.regimys.exceptions.IncorrectValueException;
+import jlppc.regimys.launch.Initializer;
 import jlppc.regimys.objects.items.CT;
 import jlppc.regimys.enums.Caractere.Stats;
 import jlppc.utils.HashArray;
 
 /**
- * La classe qui définit une espèce de Pokémon.
+ * La classe qui dï¿½finit une espï¿½ce de Pokï¿½mon.
  * 
  * @author Jlppc
  *
@@ -20,23 +21,23 @@ import jlppc.utils.HashArray;
 public class Espece implements Serializable{
 
 	/**
-	 * Le nom de l'espéce. Pourquoi surnom? Je sais pas.
+	 * Le nom de l'espï¿½ce. Pourquoi surnom? Je sais pas.
 	 */
 	protected final String surnom;
 	/**
-	 * Le numéro pokedex. Je ne repéte que ce qui est dit dans le nom.
+	 * Le numï¿½ro pokedex. Je ne repï¿½te que ce qui est dit dans le nom.
 	 */
 	protected int numeroPokedex;
 	/**
-	 * Voir nom. Tellement évident.
+	 * Voir nom. Tellement ï¿½vident.
 	 */
 	protected Espece evolution;
 	/**
-	 * Le niveau auquel le pokemon évolue.
+	 * Le niveau auquel le pokemon ï¿½volue.
 	 */
 	protected int niveauEvolution;
 	/**
-	 * La manière dont le pokemon évolue. Peut prendre les valeurs :<br/>
+	 * La maniï¿½re dont le pokemon ï¿½volue. Peut prendre les valeurs :<br/>
 	 * <br/>
 	 * {@link #EVOLUTION_BY_LEVEL}<br/>
 	 * <br/>
@@ -46,17 +47,17 @@ public class Espece implements Serializable{
 	 */
 	protected int maniereEvolution;
 	/**
-	 * Signale que l'évolution est par le niveau. Voir {@link #niveauEvolution}
+	 * Signale que l'ï¿½volution est par le niveau. Voir {@link #niveauEvolution}
 	 * pour savoir lequel.
 	 */
 	public static final int EVOLUTION_BY_LEVEL = 0;
 	/**
-	 * Signale que l'évolution est par un objet (Pierre, truc bizzare qui permet
-	 * d'évoluer lors d'un échange... ect)
+	 * Signale que l'ï¿½volution est par un objet (Pierre, truc bizzare qui permet
+	 * d'ï¿½voluer lors d'un ï¿½change... ect)
 	 */
 	public static final int EVOLUTION_BY_OBJECT = 1;
 	/**
-	 * Signale que l'évolution dépend du stade d'attachement avec son pokemon.
+	 * Signale que l'ï¿½volution dï¿½pend du stade d'attachement avec son pokemon.
 	 */
 	public static final int EVOLUTION_BY_LOVE = 2;
 	public static final int NO_EVOLUTION = 3;
@@ -64,15 +65,15 @@ public class Espece implements Serializable{
 	public static final int EVOLUTION_BY_TRADE = 4;
 	public static final int EVOLUTION_BY_PLACE = 5;
 	/**
-	 * Va remplacer les autres déclaration d'évolution
+	 * Va remplacer les autres dï¿½claration d'ï¿½volution
 	 */
 	public Evolution evolType;
 	/**
-	 * Voir nom. Tellement évident.
+	 * Voir nom. Tellement ï¿½vident.
 	 */
 	protected final Type type1;
 	/**
-	 * Voir nom. Tellement évident. Mettre Type.AUCUN si il n'a pas de second
+	 * Voir nom. Tellement ï¿½vident. Mettre Type.AUCUN si il n'a pas de second
 	 * type.
 	 */
 	protected final Type type2;
@@ -82,18 +83,18 @@ public class Espece implements Serializable{
 	 */
 	protected HashArray[] atksByLevels;
 	/**
-	 * L'entrée du pokedex (La description)
+	 * L'entrï¿½e du pokedex (La description)
 	 */
 	protected String entreePokedex;
 	/**
-	 * Voir nom. Tellement évident.
+	 * Voir nom. Tellement ï¿½vident.
 	 */
 	protected float taille;
 	/**
-	 * Voir nom. Tellement évident.
+	 * Voir nom. Tellement ï¿½vident.
 	 */
 	protected float poids;
-	/**Liste des CT combatibles avec le Pokémon*/
+	/**Liste des CT combatibles avec le Pokï¿½mon*/
 	protected CT[] ctCompatibles;
 	// Les statistiques de l'espece. Les noms sont evidents.
 	protected final int baseAtk;
@@ -107,15 +108,15 @@ public class Espece implements Serializable{
 	 */
 	protected int hashCode;
 	/**
-	 * La coubre d'experience du pokémon
+	 * La coubre d'experience du pokï¿½mon
 	 */
 	protected CourbeExp courbe;
 	/**
-	 * L'exp du pokémon au niveau 100
+	 * L'exp du pokï¿½mon au niveau 100
 	 */
 	protected int expMax;
 	/**
-	 * Les EV données en fin de combat.
+	 * Les EV donnï¿½es en fin de combat.
 	 */
 	protected Stats[] EVgiven;
 	// Les sprites. Les noms sont toujours evidents. Ceux qui finissent par S
@@ -526,7 +527,7 @@ public class Espece implements Serializable{
 		return expGiven;
 	}
 	/**
-	 * Permet d'enregistrer l'évolution. Doit être lancé après la déclaration de tous les pokémon.
+	 * Permet d'enregistrer l'ï¿½volution. Doit ï¿½tre lancï¿½ aprï¿½s la dï¿½claration de tous les pokï¿½mon.
 	 */
 	public void checkEvol() {
 		evolType.checkEvo();
@@ -584,6 +585,16 @@ public class Espece implements Serializable{
 
 	public int getTauxDeCapture() {
 		return tauxDeCapture;
+	}
+	/**
+	 * Permet de savoir le numero pokedex du pokemon (Compteur)
+	 */
+	public static int pokedexNumberInit = 0;
+	public void checkAtkLvls() {
+		this.atksByLevels = Initializer.atkPokeLvl[pokedexNumberInit];
+		this.numeroPokedex = pokedexNumberInit;
+		pokedexNumberInit++;
+		
 	}
 
 }
