@@ -22,24 +22,24 @@ public final class ChoicePanel extends JPanel {
 		setLayout(null);
 		
 		JLabel text = new JLabel(question);
-		text.setBounds(10, 11, 362, 178);
+		text.setBounds(10, 0, 275, 178);
 		add(text);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(382, 11, 120, 178);
+		panel.setBounds(295, 0, 207, 178);
 		add(panel);
 		panel.setLayout(null);
 		
 		choix1 = new JButton(choix1S);
-		choix1.setBounds(10, 11, 100, 45);
+		choix1.setBounds(10, 11, 187, 45);
 		panel.add(choix1);
 		
 		choix2 = new JButton(choix2S);
-		choix2.setBounds(10, 67, 100, 45);
+		choix2.setBounds(10, 67, 187, 45);
 		panel.add(choix2);
 		if(threechoices){
 			choix3 = new JButton(choix3S);
-			choix3.setBounds(10, 123, 100, 44);
+			choix3.setBounds(10, 123, 187, 45);
 			panel.add(choix3);
 		}
 		

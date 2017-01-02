@@ -49,6 +49,7 @@ public class Start {
 		}
 		
 	}
+	public static boolean connected = false;
 	/**
 	 * Liste des noms qui apparaitront dans le Nomdujoueur vs unElementDeCeTableau
 	 */
@@ -229,7 +230,7 @@ public class Start {
 					System.out.println("Equipe : " + joueur.getEquipe());
 					Parameters.updateFile();
 					combatsNumber++;
-					System.out.println("Combat n∞" + combatsNumber);
+					System.out.println("Combat n√©" + combatsNumber);
 					
 					joueur.healPoke();
 					Pokemon[] equipeAdverse = new Pokemon[6];
@@ -280,7 +281,7 @@ public class Start {
 		if(fatal){
 			Log.writeT(Entry.FATAL, "Echec de l'execution du programme. Merci de prevenir les developpeurs.");
 			
-			JOptionPane.showMessageDialog(null, "<HTML>Une erreur fatale s'est dÈclanchÈe dans le programme.<br/> Merci de prevenir les developpeur en leur joignant les fichiers log.txt et errLog.txt. <br/>Merci d'avance, c'est grace a votre intervention que le jeu s'amÈliorera.</HTML>", "Erreur fatale", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "<HTML>Une erreur fatale s'est d√©clanch√©e dans le programme.<br/> Merci de prevenir les developpeur en leur joignant les fichiers log.txt et errLog.txt. <br/>Merci d'avance, c'est grace a votre intervention que le jeu s'am√©liorera.</HTML>", "Erreur fatale", JOptionPane.ERROR_MESSAGE);
 			Log.close();
 			System.exit(1);
 		}
@@ -302,8 +303,9 @@ public class Start {
 		Log.writeT(Entry.JAVA, "System.getProperty(\"java.version\") : " + System.getProperty("java.version"));
 		Log.writeT(Entry.INFO, "Test de connexion...");
 		try {
-			new URL("http://www.google.com").openConnection();
-			Log.writeT(Entry.INFO, "Connexion a internet Ètablie");
+			new URL("http://regimys.jlppc.tk").openConnection().connect();
+			Log.writeT(Entry.INFO, "Connexion a internet √©tablie");
+			connected = true;
 		} catch (IOException e) {
 			Log.writeT(Entry.WARNING, "Pas de connexion internet.");
 		}
