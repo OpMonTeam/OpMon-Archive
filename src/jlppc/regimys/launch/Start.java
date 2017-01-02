@@ -229,7 +229,7 @@ public class Start {
 					System.out.println("Equipe : " + joueur.getEquipe());
 					Parameters.updateFile();
 					combatsNumber++;
-					System.out.println("Combat nÂ°" + combatsNumber);
+					System.out.println("Combat n�" + combatsNumber);
 					
 					joueur.healPoke();
 					Pokemon[] equipeAdverse = new Pokemon[6];

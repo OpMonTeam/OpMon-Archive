@@ -36,7 +36,7 @@ public final class Parameters {
 	/**Le chemin (ou nom) du fichier de paramètre<br/>
 	 * Le nom est en majuscules du fait que cette variable était anciennement statique*/
 	@Useless//Avant elle était utile...
-	private static String PARAMETERS_WAY = "";
+	private static String PARAMETERS_WAY = "params.rsave";
 	/**Le fichier de paramètre<br/>
 	 * Le nom est en majuscules du fait que cette variable était anciennement statique*/
 	private static File SAVE_FILE = new File(PARAMETERS_WAY);
