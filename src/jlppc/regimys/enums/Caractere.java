@@ -2,8 +2,10 @@ package jlppc.regimys.enums;
 
 import java.io.Serializable;
 
+import jlppc.regimys.launch.Start;
+
 /**
- * WAW! Tous les caractères des pokemon! Je vais pas les documenter un par un, ca serait totalement INUTILE! Sinon y'a pokepedia!
+ * WAW! Tous les caractï¿½res des pokemon! Je vais pas les documenter un par un, ca serait totalement INUTILE! Sinon y'a pokepedia!
  * @author Jlppc
  *
  */
@@ -58,6 +60,10 @@ public enum Caractere implements Serializable{
 	private Caractere(Stats bonus, Stats malus){
 		this.bonus = bonus;
 		this.malus = malus;
+	}
+	
+	public static Caractere random(){
+		return Caractere.values()[Start.rand.nextInt(Caractere.values().length)];
 	}
 }
 

@@ -240,6 +240,13 @@ public class Initializer {
 		 atkPokeLvl[3] = new HashArray[]{new HashArray(0, Charge.class), new HashArray(0, Rugissement.class), new HashArray(0, Vampigraine.class), new HashArray(9, FouetLianes.class), new HashArray(13, PoudreToxik.class), new HashArray(13, PoudreDodo.class), new HashArray(15, Belier.class), new HashArray(20, TranchHerbe.class), new HashArray(23, DouxParfum.class), new HashArray(28, Croissance.class), new HashArray(31, Damocles.class), new HashArray(32, DanseFleur.class), new HashArray(45, Synthese.class), new HashArray(50, TempeteFlorale.class), new HashArray(53, LanceSoleil.class)};
 		 atkPokeLvl[4] = new HashArray[]{new HashArray(0, Griffe.class), new HashArray(0, Rugissement.class), new HashArray(7, Flammeche.class), new HashArray(10, Brouillard.class), new HashArray(16, DracoRage.class), new HashArray(19, Grimace.class), new HashArray(25, CrocsFeu.class), new HashArray(28, Rebondifeu.class), new HashArray(34, Tranche.class), new HashArray(43, LanceFlammes.class), new HashArray(46, Feudenfer.class)};
 		 
+		 
+		 for(HashArray[] ha0 : atkPokeLvl){
+			 for(HashArray ha1 : ha0){
+				 ha1.setTag("niveau", 0);
+				 ha1.setTag("attaque", 1);
+			 }
+		 }
 	 }
 	 /**
 	  * Initialise les sprites

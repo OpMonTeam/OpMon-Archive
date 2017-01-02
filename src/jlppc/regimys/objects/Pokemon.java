@@ -2,6 +2,7 @@ package jlppc.regimys.objects;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Vector;
 
 import jlppc.regimys.enums.Caractere;
 import jlppc.regimys.enums.Type;
@@ -270,7 +271,30 @@ public class Pokemon extends RegimysObject implements Serializable{
 		statPV = Math.round(((2 * espece.getBasePV() + pvIV + (pvEV / 4)) * level) / 100) + level + 10;
 		this.espece = espece;
 		this.level = level;
-		this.attaques = Arrays.copyOf(attaques, attaques.length);
+		if(attaques != null){
+			this.attaques = Arrays.copyOf(attaques, attaques.length);
+		}else{
+			this.attaques = new Attaque[4];
+			Vector<Class<Attaque>> atkPssbles = new Vector<>();
+			for(HashArray atk : espece.getAtksByLevels()){
+				if(atk.<Integer>getCastedValue("niveau").intValue() <= level){
+					atkPssbles.add(atk.<Class<Attaque>>getCastedValue("attaque"));
+				}
+			}
+			if(atkPssbles.size() > 4){
+				int i = 0;
+				for(Class<Attaque> atke : atkPssbles){
+					try {
+						this.attaques[i] = atke.newInstance();
+					} catch (InstantiationException | IllegalAccessException e) {
+						Start.gererException(e, false);
+						i--;
+					}
+					i++;
+				}
+			}
+		}
+		
 		this.caractere = caractere;
 		bonusCara = caractere.bonus;
 		malusCara = caractere.malus;
