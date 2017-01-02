@@ -20,7 +20,7 @@ public final class DialogWindow extends JInternalFrame {
 	JPanel defaultPanel;
 	public DialogWindow() {
 		super();
-		Log.writeT(Entry.INFO, "Création de la fenetre de dialogue.");
+		Log.writeT(Entry.INFO, "Crï¿½ation de la fenetre de dialogue.");
 		defaultPanel = new JPanel();
 		defaultPanel.setLayout(null);
 		this.setContentPane(defaultPanel);
@@ -66,7 +66,7 @@ public final class DialogWindow extends JInternalFrame {
 	}
 	
 	public synchronized int printQuestion(String question, String choix1, String choix2, String choix3){
-		ChoicePanel cp = new ChoicePanel(question, choix1, choix2, choix3, (choix3 != null));
+		ChoicePanel cp = new ChoicePanel("<HTML>" + question + "</HTML>", choix1, choix2, choix3, (choix3 != null));
 		setContentPane(cp);
 		repaint();
 		GameState.state = GameState.DIALOGUE;

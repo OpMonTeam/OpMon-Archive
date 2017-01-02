@@ -123,27 +123,67 @@ public final class MainFrame extends JFrame {
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					Start.gererException(e, false);
-					Log.writeT(Entry.ERROR, "L'image du professeur n'a pu etre charg�e, elle ne s'affichera donc pas.");
+					Log.writeT(Entry.ERROR, "L'image du professeur n'a pu etre chargée, elle ne s'affichera donc pas.");
 					ss = new StartScene(null);
 				}
 				frame.gw.setPanel(ss);
 				
-				frame.dw.printText("Bonjour! Bienvenue dans le monde inachev� des pokemon!");
+				frame.dw.printText("Bonjour! Bienvenue dans le monde inachevé des pokemon!");
 				frame.dw.printText("Je suis le professeur... Heu non, je suis Jlppc, le developpeur du jeu.");
-				frame.dw.printText("D�sol� si ce monde est un peu vide... Comme tu peux le voir, je n'ai pas fini de developper le jeu.");
-				frame.dw.printText("Sinon, je blablate, la, mais j'en ai oubli� les bonnes mani�res! Quel est ton nom?");
+				frame.dw.printText("Désolé si ce monde est un peu vide... Comme tu peux le voir, je n'ai pas fini de developper le jeu.");
+				frame.dw.printText("Sinon, je blablate, la, mais j'en ai oublié les bonnes maniéres! Quel est ton nom?");
 				String nom = JOptionPane.showInputDialog("Quel est ton nom?");
+				int essais = 0;
+				boolean aBout = false;;
+				String[] phrases = new String[]{"Bon alors, en vrai, c'est quoi ton nom?", "Oui, bon, c'est drôle, mais quel est ton nom?", "Les blagues les plus courtes sont les meilleures. Quel est ton nom?", "Bon, quel est ton nom enfin!", "Ce n'est plus drôle la.", "..."};
 				boolean ok = false;
 				while(!ok){
 					int choix = frame.dw.printQuestion(nom + " est bien ton nom?", "Oui", "Non", null);
 					if(choix == 2){
-						frame.dw.printText("Bien alors quel est ton nom?");
+						frame.dw.printText(phrases[essais]);
+						essais++;
+						if(!(essais < phrases.length)){
+							aBout = true;
+							essais = 5;
+						}
 						nom = JOptionPane.showInputDialog("Quel est ton nom?");
 					}else{
 						ok = true;
 					}
 				}
-				frame.dw.printText("Content pour toi, " + nom + "! Aller salut!");
+				int pkmnStart = frame.dw.printQuestion("Bon bien alors. Maintenant, choisis un starter. Désolé, pour l'instant l'apparition du choix est nul mais on verra ça plus tard.", "Salamèche", "Carapuce", "Bulbizarre");
+				String[] essaisChoixPoke = new String[]{"Bon, tu veux lequel en fait?", "Oui, bon, c'est cool mais tu veux lequel?", "Tu vas me faire poireauter combien de temps?", "Je veux bien avoir de l'humour mais là ce n'est pas drole...", "Bon stop.", "CHOISIS EN UN BON SANG!", "..."};
+				String[] essaisABout = new String[]{"Pas encore!", "Tu ne vas pas t'y remettre?", "Non mais en fait tu es soulant!", "Je veux bien avoir de l'humour mais là ce n'est pas drole...", "Bon stop.", "CHOISIS EN UN BON SANG!", "..."};
+				essais = 0;
+				while(true){
+					if(pkmnStart == 1){
+						int choix = frame.dw.printQuestion("Tu veux donc Salamèche?", "Oui!", "Non en fait...", null);
+						if(choix != 2){
+							break;
+						}
+					}
+					if(pkmnStart == 2){
+						int choix = frame.dw.printQuestion("Tu veux donc Carapuce?", "Oui!", "Non en fait...", null);
+						if(choix != 2){
+							break;
+						}
+					}
+					if(pkmnStart == 3){
+						int choix = frame.dw.printQuestion("Tu veux donc Bulbizarre?", "Oui!", "Non en fait...", null);
+						if(choix != 2){
+							break;
+						}
+					}
+					pkmnStart = frame.dw.printQuestion((aBout ? essaisABout[essais] : essaisChoixPoke[essais]), "Salamèche", "Carapuce", "Bulbizarre");
+					essais++;
+					if(!(essais < essaisChoixPoke.length)){
+						essais = 5;
+						aBout = true;
+					}
+					
+				}
+				frame.dw.printText("Très bon choix! (En fait je dis ça à tout le monde mais bon...)");
+				frame.dw.printText("Bon maintenant plus qu'a attendre que je rajoute des trucs! Amuse toi bien dans ce vide interspacial!");
 				System.exit(0);
 			}
 			
