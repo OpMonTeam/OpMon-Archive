@@ -71,7 +71,7 @@ public final class DialogWindow extends JInternalFrame {
 		repaint();
 		GameState.state = GameState.DIALOGUE;
 		while(cp.getChoice() == -1){
-			System.out.println("Wait...");
+			System.out.print("");
 		}
 		return cp.getChoice();
 	}
