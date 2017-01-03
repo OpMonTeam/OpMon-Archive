@@ -242,10 +242,13 @@ public class Initializer {
 		 
 		 
 		 for(HashArray[] ha0 : atkPokeLvl){
-			 for(HashArray ha1 : ha0){
-				 ha1.setTag("niveau", 0);
-				 ha1.setTag("attaque", 1);
+			 if(ha0 != null){
+				 for(HashArray ha1 : ha0){
+					 ha1.setTag("niveau", 0);
+					 ha1.setTag("attaque", 1);
+				 }
 			 }
+			 
 		 }
 	 }
 	 /**

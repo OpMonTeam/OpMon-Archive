@@ -45,6 +45,7 @@ public class Start {
 			Initializer.init();
 		}catch(Throwable e){
 			System.err.println("Une erreur est survenue lors du demmarage du programme. Merci d'en informer de toute urgence le developpeur.");
+			e.printStackTrace();
 			System.exit(-99999);
 		}
 		
@@ -85,8 +86,16 @@ public class Start {
 	public static Scanner sc = new Scanner(System.in);
 	
 	public static Main window = new Main();
-	
+	/**
+	 * Le séparateur du systeme (Oui j'aurais pu utiliser System.getProperty mais flemme)
+	 */
 	public static String sep = new String(System.getProperty("os.name").contains("win") ? "\\" : "/");
+	
+	public static File playerSave;
+	
+	public static File params;
+	
+	
 
 	/**
 	 * Le prochain main du launcher
@@ -182,8 +191,12 @@ public class Start {
 						guiMain();
 					}else if(args[0].equals("--launcher")){
 						try{
-							main(new File[]{new File(args[1]), new File(args[2])});
+							params = new File(args[1]);
+							playerSave = new File(args[2]);
+							guiMain();
+							
 						}catch(Throwable e){
+							e.printStackTrace();
 							JOptionPane.showMessageDialog(null, "Désolé, mais cette option ne peut être utilisée que par le launcher (a moins que vous ne sachiez vous en servir)", "Erreur", JOptionPane.ERROR_MESSAGE);
 							System.exit(2);
 						}
@@ -296,6 +309,7 @@ public class Start {
 		} catch (IOException e) {
 			gererException(e, true);
 		}
+		Parameters.paramInit(params);
 		Log.writeT(Entry.INFO, "Informations systeme : ");
 		Log.writeT(Entry.SYSTEM, "System.getProperty(\"os.name\") : " + System.getProperty("os.name"));
 		Log.writeT(Entry.SYSTEM, "System.getProperty(\"os.version\") : " + System.getProperty("os.version"));
