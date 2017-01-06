@@ -45,24 +45,30 @@ public class Espece implements Serializable{
 	 * <br/>
 	 * {@link #EVOLUTION_BY_OBJECT}
 	 */
+	@Deprecated
 	protected int maniereEvolution;
 	/**
 	 * Signale que l'�volution est par le niveau. Voir {@link #niveauEvolution}
 	 * pour savoir lequel.
 	 */
+	@Deprecated
 	public static final int EVOLUTION_BY_LEVEL = 0;
 	/**
 	 * Signale que l'�volution est par un objet (Pierre, truc bizzare qui permet
 	 * d'�voluer lors d'un �change... ect)
 	 */
+	@Deprecated
 	public static final int EVOLUTION_BY_OBJECT = 1;
 	/**
 	 * Signale que l'�volution d�pend du stade d'attachement avec son pokemon.
 	 */
+	@Deprecated
 	public static final int EVOLUTION_BY_LOVE = 2;
+	@Deprecated
 	public static final int NO_EVOLUTION = 3;
-
+	@Deprecated
 	public static final int EVOLUTION_BY_TRADE = 4;
+	@Deprecated
 	public static final int EVOLUTION_BY_PLACE = 5;
 	/**
 	 * Va remplacer les autres d�claration d'�volution
