@@ -191,10 +191,12 @@ public final class MainFrame extends JFrame {
 				String surnom = null;
 				if(surnomI == 1){
 					surnom = JOptionPane.showInputDialog(null, "Entrez le surnom de votre pokémon", "Surnommer un pokémon");
+				}else{
+					frame.dw.printText("Comme tu veux!");
 				}
 				Start.joueur = new Player(nom);
 				Pokemon starter;
-				if(surnom != null){
+				if(surnom == null){
 					starter = new Pokemon((pkmnStart == 1) ? Initializer.listePoke[1] : ((pkmnStart == 2) ? Initializer.listePoke[7] : Initializer.listePoke[4]), 5, null, Caractere.random(), null);
 				}else{
 					starter = new Pokemon(surnom, (pkmnStart == 1) ? Initializer.listePoke[1] : ((pkmnStart == 2) ? Initializer.listePoke[7] : Initializer.listePoke[4]), 5, null, Caractere.random(), null);
