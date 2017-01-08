@@ -42,13 +42,17 @@ public final class DialogWindow extends JInternalFrame {
 		return defaultPanel;
 	}
 	
-	public synchronized void continuer(){
+	public void continuer(){
 		if(GameState.state == GameState.DIALOGUE){
 			text.setText("");
 			GameState.state = GameState.MARCHE;	
-			notify();
+			n();
 		}
 		
+	}
+	
+	public synchronized void n(){
+		notify();
 	}
 	
 	public synchronized void printText(String text){
@@ -69,7 +73,7 @@ public final class DialogWindow extends JInternalFrame {
 		ChoicePanel cp = new ChoicePanel("<HTML>" + question + "</HTML>", choix1, choix2, choix3, (choix3 != null));
 		setContentPane(cp);
 		repaint();
-		GameState.state = GameState.DIALOGUE;
+		GameState.state = GameState.QUESTION;
 		while(cp.getChoice() == -1){
 			System.out.print("");
 		}

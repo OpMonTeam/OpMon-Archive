@@ -5,7 +5,7 @@ import java.lang.Thread.State;
 import jlppc.regimys.launch.Start;
 
 /**
- * Enumération décrivant le status actuel du jeu.
+ * Enumï¿½ration dï¿½crivant le status actuel du jeu.
  * @author Jlppc
  *
  */
@@ -19,13 +19,13 @@ public enum GameState {
 	 */
 	MARCHE,
 	/**
-	 * Quand le jeu est en pause (Fermé, dans le menu ect
+	 * Quand le jeu est en pause (Fermï¿½, dans le menu ect
 	 */
 	PAUSE,
 	/**
 	 * Quand un dialogue est en cours
 	 */
-	DIALOGUE;
+	DIALOGUE, QUESTION;
 	
 	public static Thread stateThread;
 	public static GameState state = MARCHE;
