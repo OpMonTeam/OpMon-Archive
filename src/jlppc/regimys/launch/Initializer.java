@@ -241,7 +241,7 @@ public class Initializer {
 		 atkPokeLvl[4] = new HashArray[]{new HashArray(0, Griffe.class), new HashArray(0, Rugissement.class), new HashArray(7, Flammeche.class), new HashArray(10, Brouillard.class), new HashArray(16, DracoRage.class), new HashArray(19, Grimace.class), new HashArray(25, CrocsFeu.class), new HashArray(28, Rebondifeu.class), new HashArray(34, Tranche.class), new HashArray(43, LanceFlammes.class), new HashArray(46, Feudenfer.class)};
 		 
 		 
-		 for(HashArray[] ha0 : atkPokeLvl){
+		 for(HashArray[] ha0 : atkPokeLvl){//Enregistrement des tags dans les HashArray.
 			 if(ha0 != null){
 				 for(HashArray ha1 : ha0){
 					 ha1.setTag("niveau", 0);

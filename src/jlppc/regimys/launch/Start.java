@@ -33,6 +33,7 @@ import jlppc.utils.FormattedString;
 import jlppc.utils.Log;
 import jlppc.utils.Log.Entry;
 import jlppc.utils.Static;
+import jlppc.utils.WIP;
 /**
  * Demmare le programme.
  * @author Jlppc
@@ -40,7 +41,7 @@ import jlppc.utils.Static;
  */
 @Static
 public class Start {
-	static{
+	static{//Permet d'initialiser toutes les ressources avant meme le début du programme!
 		try{
 			Initializer.init();
 		}catch(Throwable e){
@@ -98,10 +99,10 @@ public class Start {
 	
 
 	/**
-	 * Le prochain main du launcher
+	 * Le prochain main du launcher (Ou pas)
 	 * @param saves - Les fichiers de sauvegarde (0 : Les paramètres, 1 : Le joueur)
 	 */
-	public static void main(File[] saves) throws Throwable{
+	public static void main(File[] saves) throws Throwable{//Cette methode c'est de la merde, allez plutot voir le main de base ;-)
 		String playername;
 		Parameters.paramInit(saves[0]);
 		if((Parameters.checkParam("playerexists") ? Parameters.getParam("playerexists").getValue().equals("true") : false)){
@@ -168,67 +169,68 @@ public class Start {
 	 * @throws InstantiationException 
 	 */
 	public static void main(String[] args){
-		try{
-			try{
-				if(args[0].startsWith("--")){
-					if(args[0].equals("--creator")){
+		try{//Pour attraper tous les problèmes...
+			try{//Verification des arguments
+				if(args[0].startsWith("--")){//La chaine de caractère de début d'argument
+					if(args[0].equals("--creator")){//Lance le créateur (De toutes facons il est pas a jour ;-) )
 						try{
-							if(args[1].equals("pokemon")){
+							if(args[1].equals("pokemon")){//de pokémon
 								window.frmCrateurDePokmon.setVisible(true);
 								
-							}else{
+							}else{//Erreur du créateur
 								System.out.println("Un des mots suivants doivent apparaitre aprÃƒÂ¨s --creator :"  + Log.saut + "<html><ul><li>pokemon</li></ul></html>");
 								System.exit(2);//Les signaux d'exit du programme : 0 : Tout va bien. 1 : Erreur dans le programme 2 : Erreur dans les arguments.
 							}
-						}catch(ArrayIndexOutOfBoundsException | NullPointerException e){
+						}catch(ArrayIndexOutOfBoundsException | NullPointerException e){//Si il n'y a rien après --creator
 							System.out.println("Un des mots suivants doivent apparaitre aprÃƒÂ¨s --creator :"  + Log.saut + "<html><ul><li>pokemon</li></ul></html>");
 							System.exit(2);//Les signaux d'exit du programme : 0 : Tout va bien. -99999 : Erreur dans l'initialiseur du programme -1 : Erreur fatale. 1 : Erreur dans le programme 2 : Erreur dans les arguments.
 						}
-					}else if(args[0].equals("--version")){
+					}else if(args[0].equals("--version")){//Affiche la versions
 						System.out.println("PokÃ©mon Regimys version " + versionS);
-					}else if(args[0].equals("--guitest")){
+					}else if(args[0].equals("--guitest")){//Lance le gui
 						System.out.println("Test du gui de Pokemon Regimys");
 						guiMain();
-					}else if(args[0].equals("--launcher")){
+					}else if(args[0].equals("--launcher")){//Argument qui sera utilisé par le launcher plus tard.
 						try{
 							params = new File(args[1]);
 							playerSave = new File(args[2]);
-							guiMain();
+							guiMain();//Lancement du gui
 							
-						}catch(Throwable e){
+						}catch(Throwable e){//Si le format d'argument est incorrect
 							e.printStackTrace();
 							JOptionPane.showMessageDialog(null, "Désolé, mais cette option ne peut être utilisée que par le launcher (a moins que vous ne sachiez vous en servir)", "Erreur", JOptionPane.ERROR_MESSAGE);
 							System.exit(2);
 						}
 					}
-					else{
+					else{//Si l'argument entré n'existe pas, ou que c'est --help, alors ça affiche ceci.
 						System.out.println("Page d'aide des arguments de Pokemon Regimys." + Log.saut + "--creator : Permet d'affcher une fenetre de creation d'un objet (Voir --creator aide)" + Log.saut + "--help : Affiche cette page");
 					}
 					
-				}else{
-					System.out.println("L'ouverture de fichiers de sauvegarde par ce biais n'est actuellement pas disponible. Lancement du jeu...");
+				}else{//Sinon y'a pas d'argument!
+					System.out.println("Lancement du jeu...");
 				}
-			}catch(ArrayIndexOutOfBoundsException | NullPointerException e){
+			}catch(ArrayIndexOutOfBoundsException | NullPointerException e){//Si il n'y a pas d'argument, il detecte donc une exception.
 				
 				String playername;
-				if((Parameters.checkParam("playerexists") ? Parameters.getParam("playerexists").getValue().equals("true") : false)){
+				if((Parameters.checkParam("playerexists") ? Parameters.getParam("playerexists").getValue().equals("true") : false)){//Verfifie si un joueur n'est pas déjà sauvegardé
 					joueur = Player.getPlayer(new File("player.rsave"));
-				}else{
-					System.out.println("Bienvenue dans le monde non achevÃ© des pokÃ©mon! Quel est ton nom? : ");
+				}else{//Si aucun fichier de sauvegarde n'est trouvé.
+					System.out.println("Bienvenue dans le monde non achevÃ© des pokÃ©mon! Quel est ton nom? : ");//Choix nom
 					playername = sc.nextLine();
 					joueur = new Player(playername);
-					System.out.println("Une boite de dialogue s'est ouverte pour choisir ton PokÃ©mon.");
+					System.out.println("Une boite de dialogue s'est ouverte pour choisir ton PokÃ©mon.");//Choix pokémon
 					ChoosePoke cp = new ChoosePoke();
 					Espece esp = Initializer.listePoke[cp.getEspChoosen()];
 					System.out.println("PokÃ©mon choisi : " + esp.getSurnom());
-					System.out.println("Veux-tu donner un surnom a ton PokÃ©mon ? (Tapez true pour Oui et false pour Non ) : ");
+					System.out.println("Veux-tu donner un surnom a ton PokÃ©mon ? (Tapez true pour Oui et false pour Non ) : ");//Surnom pokémon
 					boolean isS = sc.nextBoolean();
 					String surnom = esp.getSurnom();
-					if(isS){
+					if(isS){//Si on veut donner un surnom
 						sc.nextLine();
 						System.out.println("Surnom : ");
 						surnom = sc.nextLine();
 					}
+					//Creation du pokémon puis du joueur
 					Pokemon first = new Pokemon(surnom, esp, 5, new Attaque[]{GodAttackPleaseDontHackAndCheat.class.newInstance(), Rugissement.class.newInstance(), Berceuse.class.newInstance(), Triplattaque.class.newInstance()}, Caractere.HARDI, null);
 					joueur.addPokeToEquipe(first);
 					System.out.println("C'est parti pour les combats!");
@@ -239,15 +241,15 @@ public class Start {
 					
 				}
 				int combatsNumber = 0;
-				while(true){
-					System.out.println("Equipe : " + joueur.getEquipe());
+				while(true){//Lancement des combats
+					System.out.println("Equipe : " + joueur.getEquipe());//Descritpion des équipes
 					Parameters.updateFile();
 					combatsNumber++;
-					System.out.println("Combat né" + combatsNumber);
+					System.out.println("Combat n°" + combatsNumber);
 					
 					joueur.healPoke();
 					Pokemon[] equipeAdverse = new Pokemon[6];
-					for(int i = -1; i < rand.nextInt(6); i++){
+					for(int i = -1; i < rand.nextInt(6); i++){//Choix des pokémons adverses
 						Espece eAdv = Initializer.listePoke[rand.nextInt(Initializer.listePoke.length)];
 						while(eAdv == null){
 							eAdv = Initializer.listePoke[rand.nextInt(Initializer.listePoke.length)];
@@ -256,20 +258,20 @@ public class Start {
 					}
 					Equipe adv = new Equipe(trainers[rand.nextInt(trainers.length)],equipeAdverse);
 					FormattedString.outPrintln("%o (%o pokemons) vs %o (%o pokemons)!", joueur.getName(), joueur.getEquipe().getSize(), adv.getNom(), adv.getSize());
-
-					Fight.fight(joueur.getEquipe(), adv);
-					int itemID = rand.nextInt(Item.itemList.size());
+					
+					Fight.fight(joueur.getEquipe(), adv);//Lancement du combat
+					int itemID = rand.nextInt(Item.itemList.size());//Ajout d'un item aléatoire
 					joueur.addItem(itemID);
 					System.out.println("Ajout de l'item " + Item.getItem(itemID).getName());
-					Player.savePlayer(new File("player.rsave"));
+					Player.savePlayer(new File("player.rsave"));//Sauvegarde
 
 				}
 				
 			}
-		}catch(Exception | Error e){
+		}catch(Exception | Error e){//Si une erreur est detectée
 			System.err.println("Une erreur est survenue. Merci de contacter le developpeur.");
 			e.printStackTrace();
-			if(e instanceof FileNotFoundException || e instanceof EOFException){
+			if(e instanceof FileNotFoundException || e instanceof EOFException){//Si l'erreur est a cause du fichier de sauvegarde, il le recrée (perte des données) TODO : Creer un outil permettant d'importer de vieilles sauvegardes.
 				Parameters.modifyOrAddParam("playerexists", "false");
 				if(new File("player.rsave").exists()){
 					new File("player.rsave").delete();
@@ -286,12 +288,17 @@ public class Start {
 		
 		
 	}
-	
+	/**
+	 * Permet de gérer une exception. Cette methode va être améliorée
+	 * @param e : L'exception
+	 * @param fatal : Si l'exception doit faire crash le jeu
+	 */
+	@WIP
 	public static void gererException(Exception e, boolean fatal){
 		Log.writeT(fatal ? Entry.FATAL : Entry.EXCEPTION, "Exception : " + e.getClass().getCanonicalName());
 		e.printStackTrace();
 		
-		if(fatal){
+		if(fatal){//Si un crash a lieu
 			Log.writeT(Entry.FATAL, "Echec de l'execution du programme. Merci de prevenir les developpeurs.");
 			
 			JOptionPane.showMessageDialog(null, "<HTML>Une erreur fatale s'est déclanchée dans le programme.<br/> Merci de prevenir les developpeur en leur joignant les fichiers log.txt et errLog.txt. <br/>Merci d'avance, c'est grace a votre intervention que le jeu s'améliorera.</HTML>", "Erreur fatale", JOptionPane.ERROR_MESSAGE);
@@ -299,17 +306,20 @@ public class Start {
 			System.exit(1);
 		}
 	}
-
+	/**
+	 * Le main de la version gui.
+	 */
 	private static void guiMain() {
-		File errLog = new File("errLog.txt");
+		File errLog = new File("errLog.txt");//Initialisation du Log et de l'errLog
 		try {
 			Log.start();
 			errLog.createNewFile();
 			System.setErr(new PrintStream(errLog));
-		} catch (IOException e) {
+		} catch (IOException e) {//Si il y a un problème avec la création du log (GROS PROBLEME ALORS!!!)
 			gererException(e, true);
 		}
 		Parameters.paramInit(params);
+		//Verifications utiles pour le dev
 		Log.writeT(Entry.INFO, "Informations systeme : ");
 		Log.writeT(Entry.SYSTEM, "System.getProperty(\"os.name\") : " + System.getProperty("os.name"));
 		Log.writeT(Entry.SYSTEM, "System.getProperty(\"os.version\") : " + System.getProperty("os.version"));
@@ -317,7 +327,7 @@ public class Start {
 		Log.writeT(Entry.JAVA, "System.getProperty(\"java.version\") : " + System.getProperty("java.version"));
 		Log.writeT(Entry.INFO, "Test de connexion...");
 		try {
-			new URL("http://regimys.jlppc.tk").openConnection().connect();
+			new URL("http://regimys.jlppc.tk").openConnection().connect();//Oui, pour tester la connexion internet, je me connecte au site de Regimys. ET ALORS?
 			Log.writeT(Entry.INFO, "Connexion a internet établie");
 			connected = true;
 		} catch (IOException e) {
@@ -328,17 +338,17 @@ public class Start {
 
 			@Override
 			public void run() {
-				MainFrame.open();
+				MainFrame.open();//Ouverture de la fenetre
 				
 			}
 			
 		});
 		Log.writeT(Entry.INFO, "Lancement...");
-		gameThread.start();
+		gameThread.start();//Start du thread du jeu
 		
 	}
 
-	public static void exit() {
+	public static void exit() {//Je ne dirai meme pas a quoi elle sert, celle-la!
 		
 		System.exit(0);
 	}
