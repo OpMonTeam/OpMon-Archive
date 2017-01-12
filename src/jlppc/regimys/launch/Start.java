@@ -49,15 +49,15 @@ public class Start {
 	/**
 	 * Liste des noms qui apparaitront dans le Nomdujoueur vs unElementDeCeTableau
 	 */
-	public static String[] trainers = {"Brice", "Evan", "Mael", "Jlppc", "Red", "Blue", "NikolaÃƒÂ¯", "N", "Belladonis", "Aristote", "Giovanni", "Flora", "Silver", "Jules Cesar", "Gwendal"};
+	public static String[] trainers = {"Brice", "Evan", "Mael", "Jlppc", "Red", "Blue", "NikolaÏ¯", "N", "Belladonis", "Aristote", "Giovanni", "Flora", "Silver", "Jules Cesar", "Gwendal"};
 	/**La version du jeu*/
 	public static float version = 0.07f;
-	/**La lettre du jeu (Va surement Ãªtre supprimÃ©e, puisque jamais mise a jour)*/
+	/**La lettre du jeu (Va surement ÃƒÂªtre supprimÃƒÂ©e, puisque jamais mise a jour)*/
 	public static char commits = ' ';
 	
 	public static Thread gameThread;
 
-	/**Le nombre aprÃ¨s pre , dans le cas d'un depassement de prÃ©visions*/
+	/**Le nombre aprÃƒÂ¨s pre , dans le cas d'un depassement de prÃƒÂ©visions*/
 	public static int preNbre = 0;
 	/**Verifie si il y a un pre, pour l'inclure dans versionS*/
 	public static boolean pre = (preNbre != 0);
@@ -65,18 +65,18 @@ public class Start {
 	public static int sousVers = 0;
 	/**Verifie si il y a une sous version*/
 	public static boolean sousVersIs = (sousVers != 0);
-	/**Chaine de caractÃ¨re indiquant la version du jeu*/
+	/**Chaine de caractÃƒÂ¨re indiquant la version du jeu*/
 	public static String versionS = "Alpha " + version  + (sousVersIs ? "." + sousVers : "") + (pre ? (" pre " + preNbre) : "") + commits;
 	
 	//Utilitaires pratiques
 	/**
-	 * Le gÃ©nÃ©rateur d'alÃ©atoire du programme. Au lieu de creer plein d'objets Random, je n'en crÃ©e que un, utilisÃ© dans tout le programme.
+	 * Le gÃƒÂ©nÃƒÂ©rateur d'alÃƒÂ©atoire du programme. Au lieu de creer plein d'objets Random, je n'en crÃƒÂ©e que un, utilisÃƒÂ© dans tout le programme.
 	 */
 	public static Random rand = new Random();
 	/**La variable contenant le joueur*/
 	public static Player joueur;
 	/**
-	 * EntrÃ©es (utilisÃ© au dÃ©but du programme)
+	 * EntrÃƒÂ©es (utilisÃƒÂ© au dÃƒÂ©but du programme)
 	 */
 	public static Scanner sc = new Scanner(System.in);
 	
@@ -86,7 +86,7 @@ public class Start {
 
 	/**
 	 * Le prochain main du launcher
-	 * @param saves - Les fichiers de sauvegarde (0 : Les paramètres, 1 : Le joueur)
+	 * @param saves - Les fichiers de sauvegarde (0 : Les paramÃ¨tres, 1 : Le joueur)
 	 */
 	public static void main(File[] saves) throws Throwable{
 		String playername;
@@ -94,14 +94,14 @@ public class Start {
 		if((Parameters.checkParam("playerexists") ? Parameters.getParam("playerexists").getValue().equals("true") : false)){
 			joueur = Player.getPlayer(saves[1]);
 		}else{
-			System.out.println("Bienvenue dans le monde non achevÃ© des pokÃ©mon! Quel est ton nom? : ");
+			System.out.println("Bienvenue dans le monde non achevé des pokémon! Quel est ton nom? : ");
 			playername = sc.nextLine();
 			joueur = new Player(playername);
-			System.out.println("Une boite de dialogue s'est ouverte pour choisir ton PokÃ©mon.");
+			System.out.println("Une boite de dialogue s'est ouverte pour choisir ton Pokémon.");
 			ChoosePoke cp = new ChoosePoke();
 			Espece esp = Initializer.listePoke[cp.getEspChoosen()];
-			System.out.println("PokÃ©mon choisi : " + esp.getSurnom());
-			System.out.println("Veux-tu donner un surnom a ton PokÃ©mon ? (Tapez true pour Oui et false pour Non ) : ");
+			System.out.println("Pokémon choisi : " + esp.getSurnom());
+			System.out.println("Veux-tu donner un surnom a ton Pokémon ? (Tapez true pour Oui et false pour Non ) : ");
 			boolean isS = sc.nextBoolean();
 			String surnom = esp.getSurnom();
 			if(isS){
@@ -115,7 +115,7 @@ public class Start {
 			
 			joueur.addItem(Item.searchItem(Item.getItem("Potion")));joueur.addItem(Item.searchItem(Item.getItem("Potion")));//Oui il y a deux instructions en deux lignes. ET ALORS?
 			Player.savePlayer(saves[1]);
-			Parameters.modifyOrAddParam("playerexists", "true", "DÃ©finit si le joueur a deja Ã©tÃ© crÃ©e ou non.");
+			Parameters.modifyOrAddParam("playerexists", "true", "Définit si le joueur a deja été crée ou non.");
 			
 		}
 		int combatsNumber = 0;
@@ -123,7 +123,7 @@ public class Start {
 			System.out.println("Equipe : " + joueur.getEquipe());
 			Parameters.updateFile();
 			combatsNumber++;
-			System.out.println("Combat nÂ°" + combatsNumber);
+			System.out.println("Combat n°" + combatsNumber);
 			
 			joueur.healPoke();
 			Pokemon[] equipeAdverse = new Pokemon[6];
@@ -164,19 +164,19 @@ public class Start {
 								window.frmCrateurDePokmon.setVisible(true);
 								
 							}else{
-								System.out.println("Un des mots suivants doivent apparaitre aprÃƒÂ¨s --creator :"  + Log.saut + "<html><ul><li>pokemon</li></ul></html>");
+								System.out.println("Un des mots suivants doivent apparaitre après --creator :"  + Log.saut + "<html><ul><li>pokemon</li></ul></html>");
 								System.exit(2);//Les signaux d'exit du programme : 0 : Tout va bien. 1 : Erreur dans le programme 2 : Erreur dans les arguments.
 							}
 						}catch(ArrayIndexOutOfBoundsException | NullPointerException e){
-							System.out.println("Un des mots suivants doivent apparaitre aprÃƒÂ¨s --creator :"  + Log.saut + "<html><ul><li>pokemon</li></ul></html>");
+							System.out.println("Un des mots suivants doivent apparaitre après --creator :"  + Log.saut + "<html><ul><li>pokemon</li></ul></html>");
 							System.exit(2);//Les signaux d'exit du programme : 0 : Tout va bien. -99999 : Erreur dans l'initialiseur du programme -1 : Erreur fatale. 1 : Erreur dans le programme 2 : Erreur dans les arguments.
 						}
 					}else if(args[0].equals("--version")){
-						System.out.println("PokÃ©mon Regimys version " + versionS);
+						System.out.println("Pokémon Regimys version " + versionS);
 					}else if(args[0].equals("--guitest")){
 						System.out.println("Test du gui de Pokemon Regimys");
 						guiMain();
-						System.out.println("Pokémon Regimys version " + versionS);
+						System.out.println("PokÃ©mon Regimys version " + versionS);
 					}else if(args[0].equals("--launcher")){
 						try{
 							main(new File[]{new File(args[1]), new File(args[2])});
@@ -198,14 +198,14 @@ public class Start {
 				if((Parameters.checkParam("playerexists") ? Parameters.getParam("playerexists").getValue().equals("true") : false)){
 					joueur = Player.getPlayer(new File("player.rsave"));
 				}else{
-					System.out.println("Bienvenue dans le monde non achevÃ© des pokÃ©mon! Quel est ton nom? : ");
+					System.out.println("Bienvenue dans le monde non achevÃƒÂ© des pokémon! Quel est ton nom? : ");
 					playername = sc.nextLine();
 					joueur = new Player(playername);
-					System.out.println("Une boite de dialogue s'est ouverte pour choisir ton PokÃ©mon.");
+					System.out.println("Une boite de dialogue s'est ouverte pour choisir ton Pokémon.");
 					ChoosePoke cp = new ChoosePoke();
 					Espece esp = Initializer.listePoke[cp.getEspChoosen()];
-					System.out.println("PokÃ©mon choisi : " + esp.getSurnom());
-					System.out.println("Veux-tu donner un surnom a ton PokÃ©mon ? (Tapez true pour Oui et false pour Non ) : ");
+					System.out.println("Pokémon choisi : " + esp.getSurnom());
+					System.out.println("Veux-tu donner un surnom a ton Pokémon ? (Tapez true pour Oui et false pour Non ) : ");
 					boolean isS = sc.nextBoolean();
 					String surnom = esp.getSurnom();
 					if(isS){
@@ -219,7 +219,7 @@ public class Start {
 					
 					joueur.addItem(Item.searchItem(Item.getItem("Potion")));joueur.addItem(Item.searchItem(Item.getItem("Potion")));//Oui il y a deux instructions en deux lignes. ET ALORS?
 					Player.savePlayer(new File("player.rsave"));
-					Parameters.modifyOrAddParam("playerexists", "true", "DÃ©finit si le joueur a deja Ã©tÃ© crÃ©e ou non.");
+					Parameters.modifyOrAddParam("playerexists", "true", "Définit si le joueur a deja été crée ou non.");
 					
 				}
 				int combatsNumber = 0;
@@ -227,7 +227,7 @@ public class Start {
 					System.out.println("Equipe : " + joueur.getEquipe());
 					Parameters.updateFile();
 					combatsNumber++;
-					System.out.println("Combat n�" + combatsNumber);
+					System.out.println("Combat n°" + combatsNumber);
 					
 					joueur.healPoke();
 					Pokemon[] equipeAdverse = new Pokemon[6];
