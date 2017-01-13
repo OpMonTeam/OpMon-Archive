@@ -49,7 +49,7 @@ public class Start {
 	/**
 	 * Liste des noms qui apparaitront dans le Nomdujoueur vs unElementDeCeTableau
 	 */
-	public static String[] trainers = {"Brice", "Evan", "Mael", "Jlppc", "Red", "Blue", "NikolaÏ¯", "N", "Belladonis", "Aristote", "Giovanni", "Flora", "Silver", "Jules Cesar", "Gwendal"};
+	public static String[] trainers = {"Brice", "Evan", "Mael", "Jlppc", "Red", "Blue", "NikolaÏ¯", "N", "Belladonis", "Aristote", "Giovanni", "Flora", "Silver", "Jules Cesar", "Gwendal", "Brahim"};
 	/**La version du jeu*/
 	public static float version = 0.07f;
 	/**La lettre du jeu (Va surement ÃƒÂªtre supprimÃƒÂ©e, puisque jamais mise a jour)*/
