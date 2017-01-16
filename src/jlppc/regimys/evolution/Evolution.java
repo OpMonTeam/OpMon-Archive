@@ -6,8 +6,8 @@ import jlppc.regimys.launch.Initializer;
 import jlppc.regimys.objects.Espece;
 import jlppc.regimys.objects.Pokemon;
 /**
- * Classe permettant de d�finir une �volution, qui pourra �tre differente selon les cas<br/>
- * Les classes filles ne seront pas document�s, puisque je pense que les noms sont assez explicites.
+ * Classe permettant de définir une évolution, qui pourra être differente selon les cas<br/>
+ * Les classes filles ne seront pas documentés, puisque je pense que les noms sont assez explicites.
  * @author jlppc
  */
 public abstract class Evolution implements Serializable{
@@ -25,7 +25,7 @@ public abstract class Evolution implements Serializable{
 	public Espece getEvolution(){
 		return toEvolve;
 	}
-	/**Permet de charger l'évolution après que tous les pokémons aient été chargés*/
+	/**Permet de charger l'évolution aprÃ¨s que tous les pokémons aient été chargés*/
 	public void checkEvo(){
 		toEvolve = Initializer.listePoke[evo];
 	}
