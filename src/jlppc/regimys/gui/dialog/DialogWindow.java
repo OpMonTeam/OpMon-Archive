@@ -17,7 +17,7 @@ import jlppc.utils.Fonts.Police;
 
 public final class DialogWindow extends JInternalFrame {
 	JLabel text;
-	JPanel defaultPanel;
+	static JPanel defaultPanel;
 	public DialogWindow() {
 		super();
 		Log.writeT(Entry.INFO, "Cr�ation de la fenetre de dialogue.");
@@ -38,7 +38,7 @@ public final class DialogWindow extends JInternalFrame {
 		
 	}
 	
-	public JPanel getDefaultPanel(){
+	public static JPanel getDefaultPanel(){
 		return defaultPanel;
 	}
 	

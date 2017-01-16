@@ -1,6 +1,10 @@
 package jlppc.regimys.fight;
 
 import jlppc.regimys.enums.Type;
+import jlppc.regimys.gui.MainFrame;
+import jlppc.regimys.gui.dialog.AtkPanel;
+import jlppc.regimys.gui.dialog.BattlePanel;
+import jlppc.regimys.gui.dialog.DialogWindow;
 import jlppc.regimys.launch.Start;
 import jlppc.regimys.objects.Attaque;
 import jlppc.regimys.objects.Espece;
@@ -21,6 +25,809 @@ public class Fight {
 	public static Espece oldEspece[] = new Espece[2];
 	public static Attaque oldAttacks[][] = new Attaque[2][4];
 
+	private static Object[] guiPokeFight(Pokemon atk, Pokemon def){
+		oldStats[0][0] = new Integer(atk.getStatATK());
+		oldStats[0][1] = new Integer(atk.getStatDEF());
+		oldStats[0][2] = new Integer(atk.getStatATKSPE());
+		oldStats[0][3] = new Integer(atk.getStatDEFSPE());
+		oldStats[0][4] = new Integer(atk.getStatVIT());
+
+		oldStats[1][0] = new Integer(def.getStatATK());
+		oldStats[1][1] = new Integer(def.getStatDEF());
+		oldStats[1][2] = new Integer(def.getStatATKSPE());
+		oldStats[1][3] = new Integer(def.getStatDEFSPE());
+		oldStats[1][4] = new Integer(def.getStatVIT());
+		
+		oldTypes[0][0] = atk.getType1();
+		oldTypes[0][1] = atk.getType2();
+		oldTypes[1][0] = def.getType1();
+		oldTypes[1][1] = def.getType2();
+		oldEspece[0] = atk.getEspece();
+		oldEspece[1] = def.getEspece();
+		
+		oldAttacks[0] = atk.getAttaques();
+		oldAttacks[1] = def.getAttaques();
+		atk.setStatESQ(100);
+		atk.setStatPRE(100);
+		def.setStatESQ(100);
+		def.setStatPRE(100);
+		boolean sameAtk = false;
+		boolean sameDef = false;
+		System.out.println("Combat : " + atk.getSurnom() + " contre " + def.getSurnom());
+		boolean atkCanAttack = true;
+		boolean defCanAttack = true;
+		int atkCountDownSommeil = 0;
+		boolean atkSommeil = false;
+		int defCountDownSommeil = 0;
+		boolean defSommeil = false;
+		int atkCountDownConf = 0;
+		boolean atkConf = false;
+		int defCountDownConf = 0;
+		boolean defConf = false;
+		boolean endOfMatch = false;
+		int attaqueAtk = 0;
+		boolean captured = false;
+		int attaqueDef = 0; 
+		BattlePanel bp = new BattlePanel(atk.getSurnom());
+		AtkPanel ap = new AtkPanel(atk.getAttaques());
+		while(!endOfMatch){
+			
+			if(!sameAtk){
+				MainFrame.frame.getDialogWindow().setContentPane(bp);
+				MainFrame.frame.getDialogWindow().repaint();
+				int choix = bp.waitForAction();
+				while(true){
+					if(choix == 1){
+						MainFrame.frame.getDialogWindow().setContentPane(ap);
+						MainFrame.frame.getDialogWindow().repaint();
+						attaqueAtk = ap.waitForAtkChosen();
+						break;
+					}else if(choix == 2 || choix == 3){
+						MainFrame.frame.getDialogWindow().printText("Cette fonction n'est actuellement pas disponible");
+					}
+					choix = bp.waitForAction();
+				}
+
+				/*else if(choix == 2){
+					System.out.println("Liste des items : ");
+					int i = 0;
+					for(int tem : Start.joueur.bag){
+						if(tem != 0){
+							System.out.println("Nom : " + Item.itemList.get(i).getName() + " ID : " + i + " Nombre : " + tem);
+						}
+						i++;
+					}
+					System.out.println("Entrez l'ID de l'item a utiliser :");
+					int id = Start.sc.nextInt();
+					while(Start.joueur.checkItem(id) == 0 || !Item.getItem(id).isUsableInFight()){;
+					System.out.println("Item indisponible ou inutilisable en combat. Retentez : ");
+					id = Start.sc.nextInt();
+					}
+					if(Item.getItem(id) instanceof I_Pokeball){
+						I_Pokeball pkmn = (I_Pokeball) Item.getItem(id);
+						if(def.captured(pkmn)){
+							captured = true;
+							break;
+						}else{
+							System.out.println("Oh non! Presque!");
+						}
+					}else{
+						atk.itemUsed(Item.getItem(id));
+					}
+
+					Start.joueur.deleteItem(id);
+					attaqueAtk = -1;
+				}
+
+
+			}else{
+				sameAtk = false;
+			}*/
+
+			if(!sameDef){
+				int prioAtk[] = new int[4];
+				int i = 0;
+				for(Attaque atkke : def.getAttaques()){
+					System.out.println("Attaque " + i);
+					int prioBase = 1;
+					if(Type.calcEfficacite(atkke.getType(), atk.getType1(), atk.getType1()) > 1 && !atkke.isStatus()){
+						prioBase = prioBase * 2;
+						System.out.println("efficacitï¿½");
+					}
+					if(atkke.getPriorite() > 0){
+						prioBase = prioBase * 2;
+						System.out.println("prioritï¿½");
+					}
+					if(atkke.getPuissance() > 80 && !atkke.isStatus()){
+						prioBase = prioBase * 2;
+						System.out.println("puissance");
+					}
+					if(atkke.isSpecial() && def.getStatATKSPE() > def.getStatATK() && !atkke.isStatus()){
+						prioBase = prioBase * 2;
+						System.out.println("Compatibilitï¿½");
+					}else if(!atkke.isSpecial() && def.getStatATK() > def.getStatATKSPE() && !atkke.isStatus()){
+						prioBase = prioBase * 2;
+						System.out.println("Compatibilitï¿½");
+					}
+					if(atkke.getChanceDeCoups() < 16 && !atkke.isStatus()){
+						prioBase = prioBase * 2;
+						System.out.println("Critque");
+					}
+					if(atkke.isStatus()){
+						prioBase = (prioBase == 1) ? 1 :(prioBase / 2);
+						System.out.println("Status");
+					}
+					if(atkke.getPp() == 0){
+						System.out.println("PP.");
+						prioBase = 0;
+					}
+					prioAtk[i] = prioBase;
+					i++;
+					
+				}
+				System.out.println("Propabilitï¿½s de chaque attaque -> 0 : " + prioAtk[0] + "; 1 : " + prioAtk[1] + "; 2 : " + prioAtk[2] + "; 3 : " + prioAtk[3]);
+				int total = prioAtk[0] + prioAtk[1] + prioAtk[2] + prioAtk[3];
+				System.out.println("Total" + " " + total);
+				int nbreInter = Start.rand.nextInt(total);
+				System.out.println("Rand : " + nbreInter);
+				if(nbreInter < prioAtk[0]){
+					attaqueDef = 0;
+				}else if(nbreInter >= prioAtk[0] && nbreInter < prioAtk[0] + prioAtk[1]){
+					attaqueDef = 1;
+				}else if(nbreInter >= prioAtk[0] + prioAtk[1] && nbreInter < total - prioAtk[3]){
+					attaqueDef = 2;
+				}else if(nbreInter >= total - prioAtk[3]){
+					attaqueDef = 3;
+				}else{
+					attaqueDef = Start.rand.nextInt(4);
+					System.out.println("Erreur d'alï¿½atoire. Continuation.");
+				}
+				boolean ok = false;
+				while(!ok){
+					if(def.getAttaques()[attaqueDef].getPp() <= 0){
+						attaqueDef = Start.rand.nextInt(def.getAttaques().length);
+					}else{
+						break;
+					}
+				}
+			}
+
+
+
+			if(atk.getStatVIT() > def.getStatVIT() || ((attaqueAtk == -1) ? false : atk.getAttaques()[attaqueAtk].getPriorite() > def.getAttaques()[attaqueDef].getPriorite())){
+
+				atkCanAttack = true;
+				if(atk.getStatus() == Status.GEL){
+					if(Start.rand.nextInt(5) == 2){
+						System.out.println(atk.getSurnom() + " est degelï¿½!");
+						atk.setStatus(Status.AUCUN);
+						atkCanAttack = true;
+					}else{
+						System.out.println(atk.getSurnom() + " est gelï¿½. Il ne peut pas attaquer.");
+						atkCanAttack = false;
+					}
+				}else if(atk.getStatus() == Status.SOMMEIL){
+					if(atkCountDownSommeil <= 0 && atkSommeil == false){
+						atkCountDownSommeil = Start.rand.nextInt(3);
+						atkSommeil = true;
+						if(atkCountDownSommeil <= 0){
+							System.out.println(atk.getSurnom() + " se rï¿½veille!");
+							atkCanAttack = true;
+							atkSommeil = false;
+							atk.setStatus(Status.AUCUN);
+						}else{
+							System.out.println(atk.getSurnom() + " dort profondement.");
+							atkCanAttack = false;
+							atkCountDownSommeil--;
+						}
+					}else if(atkSommeil == true){
+						if(atkCountDownSommeil <= 0){
+							System.out.println(atk.getSurnom() + " se rï¿½veille!");
+							atkCanAttack = true;
+							atkSommeil = false;
+							atk.setStatus(Status.AUCUN);
+						}else{
+							System.out.println(atk.getSurnom() + " dort profondement.");
+							atkCanAttack = false;
+							atkCountDownSommeil--;
+						}
+					}
+
+				}else if(atk.getStatus() == Status.PARALYSIE){
+					if(Start.rand.nextInt(4) == 2){
+						System.out.println(def.getSurnom() + " est paralysï¿½, il ne peut pas attaquer.");
+						atkCanAttack = false;
+					}else{
+						System.out.println("Malgrï¿½ sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
+					}
+				}else if(atk.confus){
+					if(atkCountDownConf == 0 && atkConf == false){
+						atkCountDownConf = Start.rand.nextInt(4);
+						atkConf = true;
+						if(atkCountDownConf <= 0){
+							System.out.println(atk.getSurnom() + " n'est plus confus!");
+							atkCanAttack = true;
+							atkConf = false;
+							atk.setStatus(Status.AUCUN);
+						}else{
+							System.out.println(atk.getSurnom() + " est confus. Il pert " + (atk.getStatPV() / 8) + " pv.");
+							atk.attacked(atk.getStatPV() / 8);
+							atkCanAttack = false;
+							atkCountDownConf--;
+						}
+					}else if(atkConf == true){
+						if(atkCountDownConf <= 0){
+							System.out.println(atk.getSurnom() + " n'est plus confus!");
+							atkCanAttack = true;
+							atkConf = false;
+							atk.setStatus(Status.AUCUN);
+						}else{
+							if(Start.rand.nextInt(2) == 1){
+								System.out.println(atk.getSurnom() + " est confus. Il pert " + (atk.getStatPV() / 8) + " pv.");
+								atk.attacked(atk.getStatPV() / 8);
+								atkCanAttack = false;
+							}else{
+								FormattedString.outPrintln("Malgrï¿½ sa confusion, %o peut attaquer!", atk.getSurnom());
+							}
+
+							atkCountDownConf--;
+						}
+					}
+				}else if(atk.vampigraine){
+					FormattedString.outPrintln("Vampigraine draine l'energie de %o!", atk.getSurnom());
+					atk.attacked(atk.getPV() / 8);
+					def.heal(atk.getPV() / 8);
+
+				}
+				if(attaqueAtk == -1){
+					atkCanAttack = false;
+				}
+				if(atkCanAttack){
+					try {
+						atk.getAttaques()[attaqueAtk].attack(atk, def);
+					}  catch (SameAtkPartTwo e) {
+						sameAtk = true;
+
+					}finally{
+						if(def.getPV() <= 0 || atk.getPV() <= 0){
+							endOfMatch = true;
+							break;
+						}
+					}
+
+
+				}
+
+				defCanAttack = true;
+				if(def.getStatus() == Status.GEL){
+					if(Start.rand.nextInt(5) == 2){
+						System.out.println(def.getSurnom() + " est degelï¿½!");
+						def.setStatus(Status.AUCUN);
+						defCanAttack = true;
+					}else{
+						System.out.println(def.getSurnom() + " est gelï¿½. Il ne peut pas attaquer.");
+						defCanAttack = false;
+					}
+				}else if(def.getStatus() == Status.SOMMEIL){
+					if(defCountDownSommeil <= 0 && defSommeil == false){
+						defCountDownSommeil = Start.rand.nextInt(3);
+						if(defCountDownSommeil <= 0){
+							System.out.println(def.getSurnom() + " se rï¿½veille!");
+							defCanAttack = true;
+							def.setStatus(Status.AUCUN);
+						}else{
+							System.out.println(def.getSurnom() + " dort profondement.");
+							defCanAttack = false;
+							atkCountDownSommeil--;
+						}
+					}else if(defSommeil == true){
+						if(defCountDownSommeil <= 0){
+							System.out.println(def.getSurnom() + " se rï¿½veille!");
+							defCanAttack = true;
+							def.setStatus(Status.AUCUN);
+						}else{
+							System.out.println(def.getSurnom() + " dort profondement.");
+							defCanAttack = false;
+							atkCountDownSommeil--;
+						}
+					}else if(atk.getStatus() == Status.PARALYSIE){
+						if(Start.rand.nextInt(4) == 2){
+							System.out.println(def.getSurnom() + " est paralysï¿½, il ne peut pas attaquer.");
+							defCanAttack = false;
+						}else{
+							System.out.println("Malgrï¿½ sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
+						}
+					}
+
+				}else if(def.getStatus() == Status.PARALYSIE){
+					if(Start.rand.nextInt(4) == 2){
+						System.out.println(def.getSurnom() + " est paralysï¿½, il ne peut pas attaquer.");
+						defCanAttack = false;
+					}else{
+						System.out.println("Malgrï¿½ sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
+						defCanAttack = true;
+					}
+				}else if(def.peur){
+					defCanAttack = false;
+					FormattedString.outPrintln("%o a trop peur pour bouger!", def.getSurnom());
+					def.peur = false;
+				}else if(def.confus){
+					if(defCountDownConf == 0 && defConf == false){
+						defCountDownConf = Start.rand.nextInt(4);
+						defConf = true;
+						if(defCountDownConf <= 0){
+							System.out.println(def.getSurnom() + " n'est plus confus!");
+							defCanAttack = true;
+							defConf = false;
+							def.setStatus(Status.AUCUN);
+						}else{
+							System.out.println(def.getSurnom() + " est confus. Il pert " + (def.getStatPV() / 8) + " pv.");
+							def.attacked(def.getStatPV() / 8);
+							defCanAttack = false;
+							defCountDownConf--;
+						}
+					}else if(defConf == true){
+						if(defCountDownConf <= 0){
+							System.out.println(def.getSurnom() + " n'est plus confus!");
+							defCanAttack = true;
+							defConf = false;
+							def.setStatus(Status.AUCUN);
+						}else{
+							if(Start.rand.nextInt(2) == 1){
+								System.out.println(def.getSurnom() + " est confus. Il pert " + (def.getStatPV() / 8) + " pv.");
+								def.attacked(def.getStatPV() / 8);
+								defCanAttack = false;
+							}else{
+								FormattedString.outPrintln("Malgrï¿½ sa confusion, %o peut attaquer!", def.getSurnom());
+							}
+
+							defCountDownConf--;
+						}
+					}
+				}else if(def.vampigraine){
+					FormattedString.outPrintln("Vampigraine draine l'ï¿½nergie de %o!", def.getSurnom());
+					def.attacked(def.getPV() / 8);
+					atk.heal(def.getPV() / 8);
+
+				}
+				if(defCanAttack){
+
+					try {
+						def.getAttaques()[attaqueDef].attack(def, atk);
+					} catch (SameAtkPartTwo e) {
+
+						sameDef = true;
+					}
+
+				}
+
+
+
+
+
+
+
+
+			}else{
+				defCanAttack = true;
+				if(def.getStatus() == Status.GEL){
+					if(Start.rand.nextInt(5) == 2){
+						System.out.println(def.getSurnom() + " est degelï¿½!");
+						def.setStatus(Status.AUCUN);
+						defCanAttack = true;
+					}else{
+						System.out.println(def.getSurnom() + " est gelï¿½. Il ne peut pas attaquer.");
+						defCanAttack = false;
+					}
+				}else if(def.getStatus() == Status.SOMMEIL){
+					System.err.println(defCountDownSommeil);
+					if(defCountDownSommeil <= 0 && defSommeil == false){
+						defCountDownSommeil = Start.rand.nextInt(3);
+						System.err.println(defCountDownSommeil);
+						defSommeil = true;
+						if(defCountDownSommeil <= 0){
+							System.out.println(def.getSurnom() + " se rï¿½veille!");
+							defCanAttack = true;
+							defSommeil = false;
+							def.setStatus(Status.AUCUN);
+						}else{
+							System.out.println(def.getSurnom() + " dort profondement.");
+							defCanAttack = false;
+							atkCountDownSommeil--;
+						}
+					}else if(defSommeil == true){
+						System.err.println(defCountDownSommeil);
+						if(defCountDownSommeil <= 0){
+							System.out.println(def.getSurnom() + " se rï¿½veille!");
+							defCanAttack = true;
+							defSommeil = false;
+							def.setStatus(Status.AUCUN);
+						}else{
+							System.out.println(def.getSurnom() + " dort profondement.");
+							defCanAttack = false;
+							defCountDownSommeil--;
+
+						}
+					}
+
+				}else if(def.getStatus() == Status.PARALYSIE){
+					if(Start.rand.nextInt(4) == 2){
+						System.out.println(def.getSurnom() + " est paralysï¿½, il ne peut pas attaquer.");
+						defCanAttack = false;
+					}else{
+						System.out.println("Malgrï¿½ sa parlysie, " + def.getSurnom() + " parvient Ã  attaquer!");
+					}
+				}else if(def.confus){
+					if(defCountDownConf == 0 && defConf == false){
+						defCountDownConf = Start.rand.nextInt(4);
+						defConf = true;
+						if(defCountDownConf <= 0){
+							System.out.println(def.getSurnom() + " n'est plus confus!");
+							defCanAttack = true;
+							defConf = false;
+							def.setStatus(Status.AUCUN);
+						}else{
+							System.out.println(def.getSurnom() + " est confus. Il pert " + (def.getStatPV() / 8) + " pv.");
+							def.attacked(def.getStatPV() / 8);
+							defCanAttack = false;
+							defCountDownConf--;
+						}
+					}else if(defConf == true){
+						if(defCountDownConf <= 0){
+							System.out.println(def.getSurnom() + " n'est plus confus!");
+							defCanAttack = true;
+							defConf = false;
+							def.setStatus(Status.AUCUN);
+						}else{
+							if(Start.rand.nextInt(2) == 1){
+								System.out.println(def.getSurnom() + " est confus. Il pert " + (def.getStatPV() / 8) + " pv.");
+								def.attacked(def.getStatPV() / 8);
+								defCanAttack = false;
+							}else{
+								FormattedString.outPrintln("Malgrï¿½ sa confusion, %o peut attaquer!", def.getSurnom());
+							}
+
+							defCountDownConf--;
+						}
+					}
+				}else if(def.vampigraine){
+					FormattedString.outPrintln("Vampigraine draine l'ï¿½nergie de %o!", def.getSurnom());
+					def.attacked(def.getPV() / 8);
+					atk.heal(def.getPV() / 8);
+
+				}
+				if(defCanAttack){
+					try {
+						def.getAttaques()[attaqueDef].attack(def, atk);
+					} catch (SameAtkPartTwo e) {
+
+						sameDef = true;
+					}finally{
+						if(def.getPV() <= 0 || atk.getPV() <= 0){
+							endOfMatch = true;
+							break;
+						}
+					}
+
+
+
+				}
+
+				atkCanAttack = true;
+				if(atk.getStatus() == Status.GEL){
+					if(Start.rand.nextInt(5) == 2){
+						System.out.println(atk.getSurnom() + " est degelï¿½!");
+						atk.setStatus(Status.AUCUN);
+						atkCanAttack = true;
+					}else{
+						System.out.println(atk.getSurnom() + " est gelï¿½. Il ne peut pas attaquer.");
+						atkCanAttack = false;
+					}
+				}else if(atk.getStatus() == Status.SOMMEIL){
+					if(atkCountDownSommeil == 0 && atkSommeil == false){
+						atkCountDownSommeil = Start.rand.nextInt(3);
+						atkSommeil = true;
+						if(atkCountDownSommeil <= 0){
+							System.out.println(atk.getSurnom() + " se rï¿½veille!");
+							atkCanAttack = true;
+							atkSommeil = false;
+							atk.setStatus(Status.AUCUN);
+						}else{
+							System.out.println(atk.getSurnom() + " dort profondement.");
+							atkCanAttack = false;
+							atkCountDownSommeil--;
+						}
+					}else if(atkSommeil == true){
+						if(atkCountDownSommeil <= 0){
+							System.out.println(atk.getSurnom() + " se rï¿½veille!");
+							atkCanAttack = true;
+							atkSommeil = false;
+							atk.setStatus(Status.AUCUN);
+						}else{
+							System.out.println(atk.getSurnom() + " dort profondement.");
+							atkCanAttack = false;
+							atkCountDownSommeil--;
+						}
+					}
+
+				}else if(atk.getStatus() == Status.PARALYSIE){
+					if(Start.rand.nextInt(4) == 2){
+						System.out.println(def.getSurnom() + " est paralysï¿½, il ne peut pas attaquer.");
+						defCanAttack = false;
+					}else{
+						System.out.println("Malgrï¿½ sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
+					}
+				}else if(atk.peur){
+					atkCanAttack = false;
+					FormattedString.outPrintln("%o a trop peur pour bouger!", atk.getSurnom());
+					atk.peur = false;
+				}else if(atk.confus){
+					if(atkCountDownConf == 0 && atkConf == false){
+						atkCountDownConf = Start.rand.nextInt(4);
+						atkConf = true;
+						if(atkCountDownConf <= 0){
+							System.out.println(atk.getSurnom() + " n'est plus confus!");
+							atkCanAttack = true;
+							atkConf = false;
+							atk.setStatus(Status.AUCUN);
+						}else{
+							System.out.println(atk.getSurnom() + " est confus. Il pert " + (atk.getStatPV() / 8) + " pv.");
+							atk.attacked(atk.getStatPV() / 8);
+							atkCanAttack = false;
+							atkCountDownConf--;
+						}
+					}else if(atkConf == true){
+						if(atkCountDownConf <= 0){
+							System.out.println(atk.getSurnom() + " n'est plus confus!");
+							atkCanAttack = true;
+							atkConf = false;
+							atk.setStatus(Status.AUCUN);
+						}else{
+							if(Start.rand.nextInt(2) == 1){
+								System.out.println(atk.getSurnom() + " est confus. Il pert " + (atk.getStatPV() / 8) + " pv.");
+								atk.attacked(atk.getStatPV() / 8);
+								atkCanAttack = false;
+							}else{
+								FormattedString.outPrintln("Malgrï¿½ sa confusion, %o peut attaquer!", atk.getSurnom());
+							}
+
+							atkCountDownConf--;
+						}
+					}
+				}else if(atk.vampigraine){
+					FormattedString.outPrintln("Vampigraine draine l'energie de %o!", atk.getSurnom());
+					atk.attacked(atk.getPV() / 8);
+					def.heal(atk.getPV() / 8);
+
+				}
+
+				if(attaqueAtk == -1){
+					atkCanAttack = false;
+				}
+				if(atkCanAttack){
+
+					try {
+						atk.getAttaques()[attaqueAtk].attack(atk, def);
+					} catch (SameAtkPartTwo e) {
+
+						sameAtk = true;
+					}
+
+
+
+				}
+				if(def.getPV() <= 0 || atk.getPV() <= 0){
+					endOfMatch = true;
+					break;
+				}
+				switch(atk.getStatus()){
+				case AUCUN:
+					break;
+				case BRULURE:
+					atk.attacked((atk.getStatPV() / 8));
+					System.out.println(atk.getSurnom() + " souffre de sa brulure! Il perd " + (atk.getStatPV() / 8) + " pv!");
+					break;
+				case GEL:
+					break;
+				case PARALYSIE:
+					break;
+				case POISON:
+					atk.attacked((atk.getStatPV() / 8));
+					System.out.println(atk.getSurnom() + " souffre de son empoisonnement! Il perd " + (atk.getStatPV() / 8) + " pv!");
+					break;
+				case SOMMEIL:
+					break;
+				default:
+					break;
+
+				}
+
+
+
+			}
+			if(def.getPV() <= 0 || atk.getPV() <= 0){
+				endOfMatch = true;
+				break;
+			}
+		}
+		return new Object[]{atk, def, captured};
+	}
+	public static void guiFight(Equipe atk, Equipe def){
+		MainFrame.frame.getDialogWindow().printText("Developpeur Jlppc veut se battre!");
+		int attaquantID = 0, defenseurID = 0;
+		while(!(atk.isKo() || def.isKo())){
+			
+
+			Object[] data = guiPokeFight(atk.getPokemon(0), def.getPokemon(0));
+			Pokemon[] beligerants = {(Pokemon) data[0], (Pokemon) data[1]};
+			if((boolean) data[2]){
+				MainFrame.frame.getDialogWindow().printText(beligerants[1].getSurnom() + " est capturÃ©!");
+				if(!Start.joueur.addPokeToEquipe(beligerants[1])){
+					MainFrame.frame.getDialogWindow().printText(beligerants[1].getSurnom() + " est envoyÃ© dans le PC!");
+				}
+				beligerants[1].attacked(beligerants[1].getStatPV());
+				if(def.isKo()){
+					break;
+				}else{
+					boolean ok = false;
+					while(!ok){
+						int choix = Start.rand.nextInt(6);
+						int i = 0;
+						try{
+							Pokemon pkmn = def.getEquipe()[choix];
+							pkmn.getSurnom();
+							if((pkmn.getPV() <= 0)){
+								throw new NullPointerException();
+							}
+							defenseurID = choix;
+							ok = true;
+							
+						}catch(ArrayIndexOutOfBoundsException | NullPointerException e){
+							i++;
+							if(i >= 250){
+								MainFrame.frame.getDialogWindow().printText("L'attaquant " + atk.getNom() + " a gagnï¿½!");
+								return;
+							}
+						}
+					}
+				}
+			}else{
+				if(beligerants[1].getPV() <= 0 && beligerants[0].getPV() <= 0){
+					beligerants[1].setStats(oldStats[1], oldAttacks[1], oldEspece[1], oldTypes[1]);
+					beligerants[0].setStats(oldStats[0], oldAttacks[0], oldEspece[0], oldTypes[0]);
+					MainFrame.frame.getDialogWindow().printText("Egalitï¿½!");
+					if(def.isKo() && atk.isKo()){
+						MainFrame.frame.getDialogWindow().printText("Personne n'a gagnï¿½!");
+					}
+					if(def.isKo()){
+						MainFrame.frame.getDialogWindow().printText("L'attaquant " + atk.getNom() + " a gagnï¿½!");
+					}else{
+						boolean ok = false;
+						while(!ok){
+							int choix = Start.rand.nextInt(6);
+							int i = 0;
+							try{
+								Pokemon pkmn = def.getEquipe()[choix];
+								pkmn.getSurnom();
+								if(pkmn.getPV() <= 0){
+									throw new NullPointerException();
+								}
+								defenseurID = choix;
+								ok = true;
+							}catch(ArrayIndexOutOfBoundsException | NullPointerException e){
+								i++;
+								if(i >= 250){
+									MainFrame.frame.getDialogWindow().printText("L'attaquant " + atk.getNom() + " a gagnï¿½!");
+									return;
+								}
+							}
+						}
+					}
+					if(atk.isKo()){
+						MainFrame.frame.getDialogWindow().printText("Le dï¿½fenseur " + def.getNom() + " a gagnï¿½!");
+					}else{
+						boolean ok = false;
+						MainFrame.frame.getDialogWindow().printText("Pokemons restants : ");
+						int i = 0;
+						for(Pokemon pkmn : atk.getEquipe()){
+							if(pkmn != null){
+								if(!(pkmn.getPV() <= 0)){
+									MainFrame.frame.getDialogWindow().printText(pkmn.getSurnom() + " ID : " + i);
+								}
+							}
+							i++;
+						}
+						while(!ok){
+							MainFrame.frame.getDialogWindow().printText("Entrez l'ID du pokemon a choisir : ");
+							int choix = Start.sc.nextInt();
+							try{
+								Pokemon pkmn = atk.getEquipe()[choix];
+								pkmn.getSurnom();
+								if(pkmn.getPV() <= 0){
+									throw new NullPointerException();
+								}
+								attaquantID = choix;
+								ok = true;
+							}catch(ArrayIndexOutOfBoundsException | NullPointerException e){
+								MainFrame.frame.getDialogWindow().printText("Pokemon non valide. Recommencez.");
+							}
+						}
+					}
+				}
+				else if(beligerants[1].getPV() <= 0 && beligerants[0].getPV() > 0){
+					beligerants[1].setStats(oldStats[1], oldAttacks[1], oldEspece[1], oldTypes[1]);
+					MainFrame.frame.getDialogWindow().printText(beligerants[1].getSurnom() + " est K.O");
+					if(def.isKo()){
+						MainFrame.frame.getDialogWindow().printText("L'attaquant " + atk.getNom() + " a gagnï¿½!");
+					}else{
+						boolean ok = false;
+						while(!ok){
+							int choix = Start.rand.nextInt(6);
+							int i = 0;
+							try{
+								Pokemon pkmn = def.getEquipe()[choix];
+								pkmn.getSurnom();
+								if(pkmn.getPV() <= 0){
+									throw new NullPointerException();
+								}
+								defenseurID = choix;
+								ok = true;
+							}catch(ArrayIndexOutOfBoundsException | NullPointerException e){
+								i++;
+								if(i >= 250){
+									MainFrame.frame.getDialogWindow().printText("L'attaquant " + atk.getNom() + " a gagnï¿½!");
+									return;
+								}
+							}
+						}
+					}
+					
+					beligerants[0].win(beligerants[1]);
+				}else if(beligerants[0].getPV() <= 0 && beligerants[1].getPV() > 0){
+					beligerants[0].setStats(oldStats[0], oldAttacks[0], oldEspece[0], oldTypes[0]);
+					MainFrame.frame.getDialogWindow().printText(beligerants[0].getSurnom() + " est K.O");
+					beligerants[1].win(beligerants[0]);
+					if(atk.isKo()){
+						MainFrame.frame.getDialogWindow().printText("Le dÃ©fenseur " + def.getNom() + " a gagnï¿½!");
+					}else{
+						boolean ok = false;
+						MainFrame.frame.getDialogWindow().printText("Pokemons restants : ");
+						int i = 0;
+						for(Pokemon pkmn : atk.getEquipe()){
+							if(pkmn != null){
+								if(!(pkmn.getPV() <= 0)){
+									MainFrame.frame.getDialogWindow().printText(pkmn.getSurnom() + " ID : " + i);
+								}
+							}
+							i++;
+						}
+						while(!ok){
+							MainFrame.frame.getDialogWindow().printText("Entrez l'ID du pokemon a choisir : ");
+							int choix = Start.sc.nextInt();
+							try{
+								Pokemon pkmn = atk.getEquipe()[choix];
+								pkmn.getSurnom();
+								if(pkmn.getPV() <= 0){
+									throw new NullPointerException();
+								}
+								attaquantID = choix;
+								ok = true;
+							}catch(ArrayIndexOutOfBoundsException | NullPointerException e){
+								MainFrame.frame.getDialogWindow().printText("Pokemon non valide. Recommencez.");
+							}
+						}
+					}
+
+
+				}else{
+					MainFrame.frame.getDialogWindow().printText("BUG. On sait pas qui a gagnÃ© (Cela ne devrait pas arriver...)");
+				}
+			}
+
+		}
+	}
+	
+	
 	private static Object[] pokeFight(Pokemon atk, Pokemon def){
 		oldStats[0][0] = new Integer(atk.getStatATK());
 		oldStats[0][1] = new Integer(atk.getStatDEF());
@@ -131,11 +938,11 @@ public class Fight {
 					int prioBase = 1;
 					if(Type.calcEfficacite(atkke.getType(), atk.getType1(), atk.getType1()) > 1 && !atkke.isStatus()){
 						prioBase = prioBase * 2;
-						System.out.println("efficacité");
+						System.out.println("efficacitï¿½");
 					}
 					if(atkke.getPriorite() > 0){
 						prioBase = prioBase * 2;
-						System.out.println("priorité");
+						System.out.println("prioritï¿½");
 					}
 					if(atkke.getPuissance() > 80 && !atkke.isStatus()){
 						prioBase = prioBase * 2;
@@ -143,10 +950,10 @@ public class Fight {
 					}
 					if(atkke.isSpecial() && def.getStatATKSPE() > def.getStatATK() && !atkke.isStatus()){
 						prioBase = prioBase * 2;
-						System.out.println("Compatibilité");
+						System.out.println("Compatibilitï¿½");
 					}else if(!atkke.isSpecial() && def.getStatATK() > def.getStatATKSPE() && !atkke.isStatus()){
 						prioBase = prioBase * 2;
-						System.out.println("Compatibilité");
+						System.out.println("Compatibilitï¿½");
 					}
 					if(atkke.getChanceDeCoups() < 16 && !atkke.isStatus()){
 						prioBase = prioBase * 2;
@@ -164,7 +971,7 @@ public class Fight {
 					i++;
 					
 				}
-				System.out.println("Propabilités de chaque attaque -> 0 : " + prioAtk[0] + "; 1 : " + prioAtk[1] + "; 2 : " + prioAtk[2] + "; 3 : " + prioAtk[3]);
+				System.out.println("Propabilitï¿½s de chaque attaque -> 0 : " + prioAtk[0] + "; 1 : " + prioAtk[1] + "; 2 : " + prioAtk[2] + "; 3 : " + prioAtk[3]);
 				int total = prioAtk[0] + prioAtk[1] + prioAtk[2] + prioAtk[3];
 				System.out.println("Total" + " " + total);
 				int nbreInter = Start.rand.nextInt(total);
@@ -179,7 +986,7 @@ public class Fight {
 					attaqueDef = 3;
 				}else{
 					attaqueDef = Start.rand.nextInt(4);
-					System.out.println("Erreur d'aléatoire. Continuation.");
+					System.out.println("Erreur d'alï¿½atoire. Continuation.");
 				}
 				boolean ok = false;
 				while(!ok){
@@ -198,11 +1005,11 @@ public class Fight {
 				atkCanAttack = true;
 				if(atk.getStatus() == Status.GEL){
 					if(Start.rand.nextInt(5) == 2){
-						System.out.println(atk.getSurnom() + " est degelé!");
+						System.out.println(atk.getSurnom() + " est degelï¿½!");
 						atk.setStatus(Status.AUCUN);
 						atkCanAttack = true;
 					}else{
-						System.out.println(atk.getSurnom() + " est gelé. Il ne peut pas attaquer.");
+						System.out.println(atk.getSurnom() + " est gelï¿½. Il ne peut pas attaquer.");
 						atkCanAttack = false;
 					}
 				}else if(atk.getStatus() == Status.SOMMEIL){
@@ -210,7 +1017,7 @@ public class Fight {
 						atkCountDownSommeil = Start.rand.nextInt(3);
 						atkSommeil = true;
 						if(atkCountDownSommeil <= 0){
-							System.out.println(atk.getSurnom() + " se réveille!");
+							System.out.println(atk.getSurnom() + " se rï¿½veille!");
 							atkCanAttack = true;
 							atkSommeil = false;
 							atk.setStatus(Status.AUCUN);
@@ -221,7 +1028,7 @@ public class Fight {
 						}
 					}else if(atkSommeil == true){
 						if(atkCountDownSommeil <= 0){
-							System.out.println(atk.getSurnom() + " se réveille!");
+							System.out.println(atk.getSurnom() + " se rï¿½veille!");
 							atkCanAttack = true;
 							atkSommeil = false;
 							atk.setStatus(Status.AUCUN);
@@ -234,10 +1041,10 @@ public class Fight {
 
 				}else if(atk.getStatus() == Status.PARALYSIE){
 					if(Start.rand.nextInt(4) == 2){
-						System.out.println(def.getSurnom() + " est paralysé, il ne peut pas attaquer.");
+						System.out.println(def.getSurnom() + " est paralysï¿½, il ne peut pas attaquer.");
 						atkCanAttack = false;
 					}else{
-						System.out.println("Malgré sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
+						System.out.println("Malgrï¿½ sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
 					}
 				}else if(atk.confus){
 					if(atkCountDownConf == 0 && atkConf == false){
@@ -266,7 +1073,7 @@ public class Fight {
 								atk.attacked(atk.getStatPV() / 8);
 								atkCanAttack = false;
 							}else{
-								FormattedString.outPrintln("Malgré sa confusion, %o peut attaquer!", atk.getSurnom());
+								FormattedString.outPrintln("Malgrï¿½ sa confusion, %o peut attaquer!", atk.getSurnom());
 							}
 
 							atkCountDownConf--;
@@ -300,18 +1107,18 @@ public class Fight {
 				defCanAttack = true;
 				if(def.getStatus() == Status.GEL){
 					if(Start.rand.nextInt(5) == 2){
-						System.out.println(def.getSurnom() + " est degelé!");
+						System.out.println(def.getSurnom() + " est degelï¿½!");
 						def.setStatus(Status.AUCUN);
 						defCanAttack = true;
 					}else{
-						System.out.println(def.getSurnom() + " est gelé. Il ne peut pas attaquer.");
+						System.out.println(def.getSurnom() + " est gelï¿½. Il ne peut pas attaquer.");
 						defCanAttack = false;
 					}
 				}else if(def.getStatus() == Status.SOMMEIL){
 					if(defCountDownSommeil <= 0 && defSommeil == false){
 						defCountDownSommeil = Start.rand.nextInt(3);
 						if(defCountDownSommeil <= 0){
-							System.out.println(def.getSurnom() + " se réveille!");
+							System.out.println(def.getSurnom() + " se rï¿½veille!");
 							defCanAttack = true;
 							def.setStatus(Status.AUCUN);
 						}else{
@@ -321,7 +1128,7 @@ public class Fight {
 						}
 					}else if(defSommeil == true){
 						if(defCountDownSommeil <= 0){
-							System.out.println(def.getSurnom() + " se réveille!");
+							System.out.println(def.getSurnom() + " se rï¿½veille!");
 							defCanAttack = true;
 							def.setStatus(Status.AUCUN);
 						}else{
@@ -331,19 +1138,19 @@ public class Fight {
 						}
 					}else if(atk.getStatus() == Status.PARALYSIE){
 						if(Start.rand.nextInt(4) == 2){
-							System.out.println(def.getSurnom() + " est paralysé, il ne peut pas attaquer.");
+							System.out.println(def.getSurnom() + " est paralysï¿½, il ne peut pas attaquer.");
 							defCanAttack = false;
 						}else{
-							System.out.println("Malgré sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
+							System.out.println("Malgrï¿½ sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
 						}
 					}
 
 				}else if(def.getStatus() == Status.PARALYSIE){
 					if(Start.rand.nextInt(4) == 2){
-						System.out.println(def.getSurnom() + " est paralysé, il ne peut pas attaquer.");
+						System.out.println(def.getSurnom() + " est paralysï¿½, il ne peut pas attaquer.");
 						defCanAttack = false;
 					}else{
-						System.out.println("Malgré sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
+						System.out.println("Malgrï¿½ sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
 						defCanAttack = true;
 					}
 				}else if(def.peur){
@@ -377,14 +1184,14 @@ public class Fight {
 								def.attacked(def.getStatPV() / 8);
 								defCanAttack = false;
 							}else{
-								FormattedString.outPrintln("Malgré sa confusion, %o peut attaquer!", def.getSurnom());
+								FormattedString.outPrintln("Malgrï¿½ sa confusion, %o peut attaquer!", def.getSurnom());
 							}
 
 							defCountDownConf--;
 						}
 					}
 				}else if(def.vampigraine){
-					FormattedString.outPrintln("Vampigraine draine l'énergie de %o!", def.getSurnom());
+					FormattedString.outPrintln("Vampigraine draine l'ï¿½nergie de %o!", def.getSurnom());
 					def.attacked(def.getPV() / 8);
 					atk.heal(def.getPV() / 8);
 
@@ -411,11 +1218,11 @@ public class Fight {
 				defCanAttack = true;
 				if(def.getStatus() == Status.GEL){
 					if(Start.rand.nextInt(5) == 2){
-						System.out.println(def.getSurnom() + " est degelé!");
+						System.out.println(def.getSurnom() + " est degelï¿½!");
 						def.setStatus(Status.AUCUN);
 						defCanAttack = true;
 					}else{
-						System.out.println(def.getSurnom() + " est gelé. Il ne peut pas attaquer.");
+						System.out.println(def.getSurnom() + " est gelï¿½. Il ne peut pas attaquer.");
 						defCanAttack = false;
 					}
 				}else if(def.getStatus() == Status.SOMMEIL){
@@ -425,7 +1232,7 @@ public class Fight {
 						System.err.println(defCountDownSommeil);
 						defSommeil = true;
 						if(defCountDownSommeil <= 0){
-							System.out.println(def.getSurnom() + " se réveille!");
+							System.out.println(def.getSurnom() + " se rï¿½veille!");
 							defCanAttack = true;
 							defSommeil = false;
 							def.setStatus(Status.AUCUN);
@@ -437,7 +1244,7 @@ public class Fight {
 					}else if(defSommeil == true){
 						System.err.println(defCountDownSommeil);
 						if(defCountDownSommeil <= 0){
-							System.out.println(def.getSurnom() + " se réveille!");
+							System.out.println(def.getSurnom() + " se rï¿½veille!");
 							defCanAttack = true;
 							defSommeil = false;
 							def.setStatus(Status.AUCUN);
@@ -451,10 +1258,10 @@ public class Fight {
 
 				}else if(def.getStatus() == Status.PARALYSIE){
 					if(Start.rand.nextInt(4) == 2){
-						System.out.println(def.getSurnom() + " est paralysé, il ne peut pas attaquer.");
+						System.out.println(def.getSurnom() + " est paralysï¿½, il ne peut pas attaquer.");
 						defCanAttack = false;
 					}else{
-						System.out.println("Malgré sa parlysie, " + def.getSurnom() + " parvient Ã  attaquer!");
+						System.out.println("Malgrï¿½ sa parlysie, " + def.getSurnom() + " parvient Ã  attaquer!");
 					}
 				}else if(def.confus){
 					if(defCountDownConf == 0 && defConf == false){
@@ -483,14 +1290,14 @@ public class Fight {
 								def.attacked(def.getStatPV() / 8);
 								defCanAttack = false;
 							}else{
-								FormattedString.outPrintln("Malgré sa confusion, %o peut attaquer!", def.getSurnom());
+								FormattedString.outPrintln("Malgrï¿½ sa confusion, %o peut attaquer!", def.getSurnom());
 							}
 
 							defCountDownConf--;
 						}
 					}
 				}else if(def.vampigraine){
-					FormattedString.outPrintln("Vampigraine draine l'énergie de %o!", def.getSurnom());
+					FormattedString.outPrintln("Vampigraine draine l'ï¿½nergie de %o!", def.getSurnom());
 					def.attacked(def.getPV() / 8);
 					atk.heal(def.getPV() / 8);
 
@@ -515,11 +1322,11 @@ public class Fight {
 				atkCanAttack = true;
 				if(atk.getStatus() == Status.GEL){
 					if(Start.rand.nextInt(5) == 2){
-						System.out.println(atk.getSurnom() + " est degelé!");
+						System.out.println(atk.getSurnom() + " est degelï¿½!");
 						atk.setStatus(Status.AUCUN);
 						atkCanAttack = true;
 					}else{
-						System.out.println(atk.getSurnom() + " est gelé. Il ne peut pas attaquer.");
+						System.out.println(atk.getSurnom() + " est gelï¿½. Il ne peut pas attaquer.");
 						atkCanAttack = false;
 					}
 				}else if(atk.getStatus() == Status.SOMMEIL){
@@ -527,7 +1334,7 @@ public class Fight {
 						atkCountDownSommeil = Start.rand.nextInt(3);
 						atkSommeil = true;
 						if(atkCountDownSommeil <= 0){
-							System.out.println(atk.getSurnom() + " se réveille!");
+							System.out.println(atk.getSurnom() + " se rï¿½veille!");
 							atkCanAttack = true;
 							atkSommeil = false;
 							atk.setStatus(Status.AUCUN);
@@ -538,7 +1345,7 @@ public class Fight {
 						}
 					}else if(atkSommeil == true){
 						if(atkCountDownSommeil <= 0){
-							System.out.println(atk.getSurnom() + " se réveille!");
+							System.out.println(atk.getSurnom() + " se rï¿½veille!");
 							atkCanAttack = true;
 							atkSommeil = false;
 							atk.setStatus(Status.AUCUN);
@@ -551,10 +1358,10 @@ public class Fight {
 
 				}else if(atk.getStatus() == Status.PARALYSIE){
 					if(Start.rand.nextInt(4) == 2){
-						System.out.println(def.getSurnom() + " est paralysé, il ne peut pas attaquer.");
+						System.out.println(def.getSurnom() + " est paralysï¿½, il ne peut pas attaquer.");
 						defCanAttack = false;
 					}else{
-						System.out.println("Malgré sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
+						System.out.println("Malgrï¿½ sa parlysie, " + def.getSurnom() + " parvient a attaquer!");
 					}
 				}else if(atk.peur){
 					atkCanAttack = false;
@@ -587,7 +1394,7 @@ public class Fight {
 								atk.attacked(atk.getStatPV() / 8);
 								atkCanAttack = false;
 							}else{
-								FormattedString.outPrintln("Malgré sa confusion, %o peut attaquer!", atk.getSurnom());
+								FormattedString.outPrintln("Malgrï¿½ sa confusion, %o peut attaquer!", atk.getSurnom());
 							}
 
 							atkCountDownConf--;
@@ -660,13 +1467,13 @@ public class Fight {
 			Object[] data = pokeFight(atk.getPokemon(attaquantID), def.getPokemon(defenseurID));
 			Pokemon[] beligerants = {(Pokemon) data[0], (Pokemon) data[1]};
 			if((boolean) data[2]){
-				System.out.println(beligerants[1].getSurnom() + " est capturé!");
+				System.out.println(beligerants[1].getSurnom() + " est capturï¿½!");
 				if(!Start.joueur.addPokeToEquipe(beligerants[1])){
-					System.out.println(beligerants[1].getSurnom() + " est envoyé dans le PC!");
+					System.out.println(beligerants[1].getSurnom() + " est envoyï¿½ dans le PC!");
 				}
 				beligerants[1].attacked(beligerants[1].getStatPV());
 				if(def.isKo()){
-					System.out.println("Le combat est terminé!");
+					System.out.println("Le combat est terminï¿½!");
 					break;
 				}else{
 					boolean ok = false;
@@ -685,7 +1492,7 @@ public class Fight {
 						}catch(ArrayIndexOutOfBoundsException | NullPointerException e){
 							i++;
 							if(i >= 250){
-								System.out.println("L'attaquant " + atk.getNom() + " a gagné!");
+								System.out.println("L'attaquant " + atk.getNom() + " a gagnï¿½!");
 								return;
 							}
 						}
@@ -695,12 +1502,12 @@ public class Fight {
 				if(beligerants[1].getPV() <= 0 && beligerants[0].getPV() <= 0){
 					beligerants[1].setStats(oldStats[1], oldAttacks[1], oldEspece[1], oldTypes[1]);
 					beligerants[0].setStats(oldStats[0], oldAttacks[0], oldEspece[0], oldTypes[0]);
-					System.out.println("Egalité!");
+					System.out.println("Egalitï¿½!");
 					if(def.isKo() && atk.isKo()){
-						System.out.println("Personne n'a gagné!");
+						System.out.println("Personne n'a gagnï¿½!");
 					}
 					if(def.isKo()){
-						System.out.println("L'attaquant " + atk.getNom() + " a gagné!");
+						System.out.println("L'attaquant " + atk.getNom() + " a gagnï¿½!");
 					}else{
 						boolean ok = false;
 						while(!ok){
@@ -717,14 +1524,14 @@ public class Fight {
 							}catch(ArrayIndexOutOfBoundsException | NullPointerException e){
 								i++;
 								if(i >= 250){
-									System.out.println("L'attaquant " + atk.getNom() + " a gagné!");
+									System.out.println("L'attaquant " + atk.getNom() + " a gagnï¿½!");
 									return;
 								}
 							}
 						}
 					}
 					if(atk.isKo()){
-						System.out.println("Le défenseur " + def.getNom() + " a gagné!");
+						System.out.println("Le dï¿½fenseur " + def.getNom() + " a gagnï¿½!");
 					}else{
 						boolean ok = false;
 						System.out.println("Pokemons restants : ");
@@ -758,7 +1565,7 @@ public class Fight {
 					beligerants[1].setStats(oldStats[1], oldAttacks[1], oldEspece[1], oldTypes[1]);
 					System.out.println(beligerants[1].getSurnom() + " est K.O");
 					if(def.isKo()){
-						System.out.println("L'attaquant " + atk.getNom() + " a gagné!");
+						System.out.println("L'attaquant " + atk.getNom() + " a gagnï¿½!");
 					}else{
 						boolean ok = false;
 						while(!ok){
@@ -775,7 +1582,7 @@ public class Fight {
 							}catch(ArrayIndexOutOfBoundsException | NullPointerException e){
 								i++;
 								if(i >= 250){
-									System.out.println("L'attaquant " + atk.getNom() + " a gagné!");
+									System.out.println("L'attaquant " + atk.getNom() + " a gagnï¿½!");
 									return;
 								}
 							}
@@ -788,7 +1595,7 @@ public class Fight {
 					System.out.println(beligerants[0].getSurnom() + " est K.O");
 					beligerants[1].win(beligerants[0]);
 					if(atk.isKo()){
-						System.out.println("Le défenseur " + def.getNom() + " a gagné!");
+						System.out.println("Le dï¿½fenseur " + def.getNom() + " a gagnï¿½!");
 					}else{
 						boolean ok = false;
 						System.out.println("Pokemons restants : ");
@@ -820,7 +1627,7 @@ public class Fight {
 
 
 				}else{
-					System.out.println("BUG. On sait pas qui a gagné (Cela ne devrait pas arriver...)");
+					System.out.println("BUG. On sait pas qui a gagnï¿½ (Cela ne devrait pas arriver...)");
 				}
 			}
 
