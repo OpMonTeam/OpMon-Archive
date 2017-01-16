@@ -206,7 +206,8 @@ public final class MainFrame extends JFrame {
 					starter = new Pokemon(surnom, (pkmnStart == 1) ? Initializer.listePoke[1] : ((pkmnStart == 2) ? Initializer.listePoke[7] : Initializer.listePoke[4]), 5, null, Caractere.random(), null);
 				}
 				Start.joueur.addPokeToEquipe(starter);
-				frame.dw.printText("Bon qu'est-ce que je dois faire après... Ah, je ne m'en rappelle plus. Bon c'est pas grave, on se retrouve quand je m'en rappelle!");
+				frame.dw.printText("Bon, du coup, je vais te laisser combattre, hein. Aller c'est parti!");
+				
 				
 				System.exit(0);
 			}
@@ -219,6 +220,10 @@ public final class MainFrame extends JFrame {
 	
 	public GameWindow getGameWindow(){
 		return gw;
+	}
+	
+	public DialogWindow getDialogWindow(){
+		return dw;
 	}
 	
 	public void setGameWindowPanel(JPanel panel){
