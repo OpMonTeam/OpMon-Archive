@@ -22,7 +22,7 @@ public class DialogFinal extends JDialog {
 		setSize(100, 100);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		setVisible(true);
-		JLabel lblCommande = new JLabel("Commande");
+		JLabel lblCommande = new JLabel("Commande a copier dans le code");
 		lblCommande.setHorizontalAlignment(SwingConstants.CENTER);
 		getContentPane().add(lblCommande, BorderLayout.NORTH);
 		
