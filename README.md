@@ -1,8 +1,3 @@
-<meta>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-</meta>
 # Bienvenue sur le Projet "Pokémon Regimys"!
 Bienvenue sur le projet de fan-game pokemon Regimys! Plus d'infos sur le wiki ou sur la chaine YouTube !<br/>
 <a href="https://github.com/jlppc/Projet-Pokemon-Regimys/wiki/Journal-du-developpement">Journal de developpement</a><br/>
