@@ -17,7 +17,7 @@ import jlppc.utils.Static;
  */
 @Static
 public class Initializer {
-	/**La liste des pokÃ©mon*/
+	/**La liste des pokémon*/
 	public static Espece[] listePoke = new Espece[252];
 	
 	public static HashArray[][] atkPokeLvl = new HashArray[listePoke.length][];
@@ -246,9 +246,9 @@ public class Initializer {
 		 listePoke[214] = new Espece(125, 75, 40, 95, 85, 80, "Scarhino", Type.INSECTE, Type.COMBAT, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.ATK, Stats.ATK}, 1.5f, 54f, "Sa force herculéenne lui permet de soulever et de jeter plus de 100 fois son poids.", 200, 1250000, 45);
 		 listePoke[215] = new Espece(95, 55, 35, 75, 115, 55, "Farfuret", Type.TENEBRES, Type.GLACE, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.PV, Stats.PV, Stats.PV}, 0.9f, 28f, "Il se nourrit d'œufs volés dans des nids. Ses griffes crochues percent les défenses de l'ennemi.", 132, 1059860, 60);//EVOLUTION A CORRIGER
 		 listePoke[216] = new Espece(80, 50, 50, 50, 40, 60, "Teddiursa", Type.NORMAL, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 30, new E_Level(30, 217), null, null, new Stats[]{Stats.VIT}, 0.6f, 8.8f, "Il se fait des réserves de nourriture dans des cachettes avant l'arrivée de l'hiver.", 70, 1000000, 120);		
-                 //listePoke[217] = new Espece(, , , , , , "", Type., Type., Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats., Stats., Stats.}, f, f, "", 153, 1000000, 45);
-		 //listePoke[218] = new Espece(, , , , , , "", Type., Type., Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats., Stats., Stats.}, f, f, "", 153, 1000000, 45);
-		 //listePoke[219] = new Espece(, , , , , , "", Type., Type., Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats., Stats., Stats.}, f, f, "", 153, 1000000, 45);
+                 listePoke[217] = new Espece(130, 75, 75, 75, 55, 90, "Ursaring", Type.NORMAL, Type.AUCUN, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.atk, Stats.ATK}, 1.8f, 125.8f, "Bien que d'une large corpulence, il grimpe aux arbres pour s'y nourrir et y dormir.", 189, 1000000, 60);
+		 listePoke[218] = new Espece(40, 40, 70, 40, 20, 40, "Limagma", Type.FEU, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 38, new E_Level(38,219), null, null, new Stats[]{Stats.ATKSPE}, 0.7f, 35f, "Son corps est fait de magma. S'il cesse de bouger, il refroidit et durcit.", 78, 1000000, 190);
+		 listePoke[219] = new Espece(50, 120, 90, 80, 30, 60, "Volcaropod", Type.FEU, Type.ROCHE, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.DEF}, 0.8f, 55f, "Son corps en ébullition est aussi chaud que de la lave. Des flammes sortent de sa coquille.", 154, 1000000, 75);
 		 //listePoke[220] = new Espece(, , , , , , "", Type., Type., Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats., Stats., Stats.}, f, f, "", 153, 1000000, 45);
 		 //listePoke[221] = new Espece(, , , , , , "", Type., Type., Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats., Stats., Stats.}, f, f, "", 153, 1000000, 45);
 		 //listePoke[222] = new Espece(, , , , , , "", Type., Type., Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats., Stats., Stats.}, f, f, "", 153, 1000000, 45);
