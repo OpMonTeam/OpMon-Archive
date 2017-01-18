@@ -1,0 +1,13 @@
+# Pour creer une issue de bug, merci de suivre la forme suivante.
+Description du bug:
+
+Log.txt ou lien vers le fichier :
+
+CrashLog.txt ou lien vers le fichier :
+
+# Pour creer une issue d'update, merci de suivre la forme suivante.
+Fonctionnalité a améliorer :
+
+Description de l'ajout :
+
+# Pour creer tout autre forme d'Issue, faites comme vous voulez, mais soyez clair, compréhesible et précis.
