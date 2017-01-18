@@ -14,6 +14,7 @@ import jlppc.utils.Fonts;
 import jlppc.utils.Log;
 import jlppc.utils.Log.Entry;
 import jlppc.utils.Fonts.Police;
+import jlppc.utils.FormattedString;
 
 public final class DialogWindow extends JInternalFrame {
 	JLabel text;
@@ -67,6 +68,10 @@ public final class DialogWindow extends JInternalFrame {
 			e.printStackTrace();
 			System.exit(1);
 		}
+	}
+	
+	public synchronized void printText(String text, Object...objects){
+		printText(new FormattedString(text, objects).toString());
 	}
 	
 	public synchronized int printQuestion(String question, String choix1, String choix2, String choix3){
