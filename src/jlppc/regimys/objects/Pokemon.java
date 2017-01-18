@@ -14,7 +14,6 @@ import jlppc.regimys.launch.Start;
 import jlppc.regimys.objects.items.I_Heal;
 import jlppc.regimys.objects.items.I_Pokeball;
 import jlppc.regimys.objects.items.Item;
-import jlppc.regimys.util.text.StringKey;
 import jlppc.utils.Comparaisons;
 import jlppc.utils.HashArray;
 import jlppc.utils.Static;

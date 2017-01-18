@@ -138,6 +138,7 @@ public class Espece implements Serializable{
 	protected Image resumeS;
 	protected int expGiven;
 	protected int tauxDeCapture;
+
     /**
      * Les differentes courbes d'experiences.
      * @author Jlppc

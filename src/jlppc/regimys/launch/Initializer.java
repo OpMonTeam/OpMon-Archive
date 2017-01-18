@@ -1,5 +1,7 @@
 package jlppc.regimys.launch;
 
+import java.awt.Image;
+
 import jlppc.regimys.enums.Caractere.Stats;
 import jlppc.regimys.enums.Type;
 import jlppc.regimys.evolution.*;
@@ -227,18 +229,18 @@ public class Initializer {
 		 listePoke[195] = new Espece(85, 85, 65, 65, 35, 95, "Maraiste", Type.EAU, Type.FEE, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.PV, Stats.PV}, 0.8f, 28.5f, "Ce Pokémon est très insouciant. Quand il nage, il fonce tête première dans la coque des bateaux", 137, 1000000, 90	);
 		 listePoke[196] = new Espece(65, 60, 130, 95, 110, 65, "Mentali", Type.PSY, Type.AUCUN, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.ATKSPE, Stats.ATKSPE}, 0.9f, 26.5f, "Sa fourrure ultraswagg détecte les vibrations de l'air. Il peut ainsi prédire le temps ou lire les pensées adverses.", 197, 1000000, 45);
 		 listePoke[197] = new Espece(65, 110, 60, 130, 65, 95, "Noctali", Type.TENEBRES, Type.AUCUN, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.DEFSPE, Stats.DEFSPE}, 1f, 27f, "Quand il s'énerve, ses pores sécrètent une sueur empoisonnée qu'il envoie dans les yeux de ses ennemis.", 197, 1000000, 45);
-                 listePoke[198] = new Espece(85, 42, 85, 42, 91, 60, "Cornèbre ", Type.TENEBRES, Type.VOL, Espece.EVOLUTION_BY_OBJECT, -1, new E_Item(0, Item.getItem(Pierre Lune)), null, null, new Stats[]{Stats.VIT}, 0.5f, 2.1f, "Jadis, Cornèbre était craint et détesté, car on disait qu'il portait malheur. Ce Pokémon est attiré par tout ce qui brille. Parfois, il essaye de voler les bagues des filles.", 107, 1059860, 45);
-		 listePoke[199] = new Espece(75, 90, 100, 110, 30, 95, "Roigada", Type.EAU, Type.PSY, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.DEFSPE, Stats.DEFSPE, Stats.DEFSPE}, 2f, 80f, "Tous les jours, Roigada entreprend des recherches pour résoudre les mystères du monde. Cependant, ce Pokémon oublie tout ce qu'il a appris si le Kokiyas qui se trouve sur sa tête s'en va.", 164, 1000000. 70);
-		 listePoke[200] = new Espece(60, 60, 85, 85, 85, 60, "Feuforêve", Type.SPECTRE, Type.AUCUN, Espece.EVOLUTION_BY_OBJECT, -1, new E_Item(0, Item.getItem(Pierre Nuit)), null, null, new Stats[]{Stats.ATKSPE, Stats.DEFSPE}, 0.7f, 1.0f, "Il pousse des hurlements la nuit pour effrayer les gens.", 147, 800000, 45);//Ajoutez la pierre nuit
+                 listePoke[198] = new Espece(85, 42, 85, 42, 91, 60, "Cornèbre ", Type.TENEBRES, Type.VOL, Espece.EVOLUTION_BY_OBJECT, -1, new E_Item(0, Item.getItem("Pierre Lune")), null, null, new Stats[]{Stats.VIT}, 0.5f, 2.1f, "Jadis, Cornèbre était craint et détesté, car on disait qu'il portait malheur. Ce Pokémon est attiré par tout ce qui brille. Parfois, il essaye de voler les bagues des filles.", 107, 1059860, 45);
+		 listePoke[199] = new Espece(75, 90, 100, 110, 30, 95, "Roigada", Type.EAU, Type.PSY, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.DEFSPE, Stats.DEFSPE, Stats.DEFSPE}, 2f, 80f, "Tous les jours, Roigada entreprend des recherches pour résoudre les mystères du monde. Cependant, ce Pokémon oublie tout ce qu'il a appris si le Kokiyas qui se trouve sur sa tête s'en va.", 164, 1000000, 70);
+		 listePoke[200] = new Espece(60, 60, 85, 85, 85, 60, "Feuforêve", Type.SPECTRE, Type.AUCUN, Espece.EVOLUTION_BY_OBJECT, -1, new E_Item(0, Item.getItem("Pierre Nuit")), null, null, new Stats[]{Stats.ATKSPE, Stats.DEFSPE}, 0.7f, 1.0f, "Il pousse des hurlements la nuit pour effrayer les gens.", 147, 800000, 45);//Ajoutez la pierre nuit
 		 listePoke[201] = new Espece(72, 48, 72, 48, 48, 48, "Zarbi", Type.FEE, Type.AUCUN, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.ATK, Stats.ATKSPE}, 0.5f, 5f, "Son corps plat et fin est toujours collé aux murs. On pense que sa forme a une signification.", 61, 1000000, 225);
 		 listePoke[202] = new Espece(33, 58, 33, 58, 33, 190, "Qulbutoké", Type.PSY, Type.AUCUN, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.PV, Stats.PV}, 1.3f, 28.5f, "Pour cacher sa queue imposante, il vit discrètement dans l'obscurité. Il n'attaque jamais le premier.", 177, 1000000, 45);
 		 listePoke[203] = new Espece(80, 65, 90, 65, 85, 70, "Girafarig", Type.NORMAL, Type.PSY, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.ATKSPE, Stats.ATKSPE}, 1.5f, 41.5f, "Sa queue possède un cerveau. Si vous vous en approchez, elle vous sentira et vous mordra.", 149, 1000000, 60);
 		 listePoke[204] = new Espece(65, 90, 35, 35, 15, 50, "Pomdepik", Type.INSECTE, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 31, new E_Level(31, 205), null, null, new Stats[]{Stats.DEF}, 0.6f, 7.2f, "Il renforce sa carapace en y ajoutant des écorces d'arbre. Il devient alors plus lourd.", 60, 1000000, 190);
-		 listePoke[205] = new Espece(90, 140, 60, 60, 40, 75, "Foretress", Type.INSESCTE, Type.ACIER, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.DEF, Stats.DEF}, 1.2f, 125.8f, "Il est totalement fixé à son arbre. Il lance des morceaux de sa carapace pour faire fuir son ennemi, comme un gros lâche", 118, 1000000, 75);
+		 listePoke[205] = new Espece(90, 140, 60, 60, 40, 75, "Foretress", Type.INSECTE, Type.ACIER, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.DEF, Stats.DEF}, 1.2f, 125.8f, "Il est totalement fixé à son arbre. Il lance des morceaux de sa carapace pour faire fuir son ennemi, comme un gros lâche", 118, 1000000, 75);
 		 listePoke[206] = new Espece(70, 70, 65, 65,  45, 100, "Insolourdo", Type.NORMAL, Type.AUCUN, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.PV}, 1.5f, 14f, "Ce Pokemon mérite t'il vraiment une description ?", 125, 1000000, 190);
 		 listePoke[207] = new Espece(75, 105, 35, 65, 85, 65, "Scorplane", Type.VOL, Type.SOL, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.DEF}, 1.1f, 64.8f, "Il vole droit vers le visage de sa cible effrayée et s'y accroche pour lui injecter son poison.", 220, 1059860, 60);//EVOLUTION A CORRIGER
 		 listePoke[208] = new Espece(85, 200, 55, 65, 30, 75, "Steelix", Type.ACIER, Type.SOL, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.DEF, Stats.DEF}, 9.2f, 400f, "    Grâce à la température élevée et à la haute pression souterraines, son corps est plus dur que le métal.", 196, 1000000, 25);
-		 listePoke[209] = new Espece(80, 50, 40, 40, 30, 60, "Snubbull", Type.FEE, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 23, new E_level(23, 210), null, null, new Stats[]{Stats.PV}, 0.6f, 7.8f, "Il est d'une nature joviale. De nombreuses femmes l'apprécient pour sa gentillesse.", 63, 800000, 190)
+		 listePoke[209] = new Espece(80, 50, 40, 40, 30, 60, "Snubbull", Type.FEE, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 23, new E_Level(23, 210), null, null, new Stats[]{Stats.PV}, 0.6f, 7.8f, "Il est d'une nature joviale. De nombreuses femmes l'apprécient pour sa gentillesse.", 63, 800000, 190);
 		 listePoke[210] = new Espece(120, 75, 60, 60, 45, 90, "Granbull", Type.AUCUN, Type.FEE, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.ATK, Stats.ATK}, 1.4f, 48.7f, "Il peut faire fuir presque tous les Pokémon en ouvrant très largement sa mâchoire.", 178, 800000, 75);
 		 listePoke[211] = new Espece(95, 85, 55, 55, 85, 65, "Qwilfish", Type.EAU, Type.FEE, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.ATK},  0.5f, 3.9f, "Pour tirer ses dards empoisonnés, il gonfle son corps en buvant 10 L d'eau subitement.", 100, 800000, 45);
 		 listePoke[212] = new Espece(130, 100, 55, 80, 65, 70, "Cizayox", Type.INSECTE, Type.ACIER, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.ATK, Stats.ATK}, 1.8f, 118f, "Les pinces de ce Pokémon contiennent de l'acier et peuvent réduire en miettes quasiment n'importe quoi.", 200, 1000000, 25);
@@ -298,9 +300,9 @@ public class Initializer {
 			 }
 			 
 		 }
-		 atkPokeLvl[5] = new HashArray[]{new HashArray(0, Griffe.class), new HashArray(0, Rugissement.class), new HashArray(0, Flammeche.class), new HashArray(10, Brouillard.class), new HashArray(16, DragoRage.class), new HashArray(21, Grimace.class), new HashArray(28, CrocsFeu.class), new HashArray(32, Rebondifeu.class), new HashArray(38, Tranche.class), new HashArray(43, LanceFlammes.class), new HashArray(50, DanseFlamme.class), new HashArray(54, Feudenfer.class)};
-		 atkPokeLvl[6] = new HashArray[]{new HashArray(0, Boutefeu.class), new HashArray(0, Canicule.class), new HashArray(0, Dracogriffe.class), new HashArray(0, GriffeOmbre.class), new HashArray(0, LamedAir.class), new HashArray(0, Griffe.class), new HashArray(0, Rugissement.class), new HashArray(7, Flammeche.class), new HashArray(10, Brouillard.class), new HashArray(17, DracoRage.class), new HashArray(21, Grimace.class), new HashArray(28, CrocsFeu.class), new HashArray(32, Rebondifeu.class), new HashArray(36, CruAile.class), new HashArray(41, Tranche.class), new HashArray(47, LanceFlammes.class), new HashArray(56, DanseFlamme.class), new HashArray(62,	
-		 atkPokeLvl[7] = new HashArray[]{new HashArray(0, 				      
+		 //atkPokeLvl[5] = new HashArray[]{new HashArray(0, Griffe.class), new HashArray(0, Rugissement.class), new HashArray(0, Flammeche.class), new HashArray(10, Brouillard.class), new HashArray(16, DragoRage.class), new HashArray(21, Grimace.class), new HashArray(28, CrocsFeu.class), new HashArray(32, Rebondifeu.class), new HashArray(38, Tranche.class), new HashArray(43, LanceFlammes.class), new HashArray(50, DanseFlamme.class), new HashArray(54, Feudenfer.class)};
+		 //atkPokeLvl[6] = new HashArray[]{new HashArray(0, Boutefeu.class), new HashArray(0, Canicule.class), new HashArray(0, Dracogriffe.class), new HashArray(0, GriffeOmbre.class), new HashArray(0, LamedAir.class), new HashArray(0, Griffe.class), new HashArray(0, Rugissement.class), new HashArray(7, Flammeche.class), new HashArray(10, Brouillard.class), new HashArray(17, DracoRage.class), new HashArray(21, Grimace.class), new HashArray(28, CrocsFeu.class), new HashArray(32, Rebondifeu.class), new HashArray(36, CruAile.class), new HashArray(41, Tranche.class), new HashArray(47, LanceFlammes.class), new HashArray(56, DanseFlamme.class), new HashArray(62,	
+		 //atkPokeLvl[7] = new HashArray[]{new HashArray(0, 				      
 		 //atkPokeLvl[8] = new HashArray[]{new HashArray(0,1
 		 //atkPokeLvl[9] = new HashArray[]{new HashArray(0, 					      
 		 //atkPokeLvl[10] = new HashArray[]{new HashArray(0, 					      
@@ -319,6 +321,11 @@ public class Initializer {
 	  * Initialise les sprites
 	  */
 	 public static void initSprites(){
+		 initBackgrounds();
+	 }
+	 public static Image[] backgrounds = new Image[1];
+	 
+	 public static void initBackgrounds(){
 		 
 	 }
 	 /**Initialise les clées de StringKey*/
