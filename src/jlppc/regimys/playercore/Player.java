@@ -23,7 +23,7 @@ import jlppc.regimys.objects.items.Item;
 import jlppc.utils.HashArray;
 import jlppc.utils.WIP;
 /**
- * D�finit le joueur
+ * Définit le joueur
  * @author Jlppc
  *
  */
@@ -34,7 +34,7 @@ public final class Player implements Serializable {
 	 */
 	private String name;
 	/**
-	 * L'ID de dresseur
+	 * L'ID de dresseur (15 chiffres)
 	 */
 	@WIP
 	private int dressID;
@@ -83,7 +83,7 @@ public final class Player implements Serializable {
 		}
 	}
 	/**
-	 * Verifie si un item est pr�sent dans le sac ou pas
+	 * Verifie si un item est présent dans le sac ou pas
 	 * @param itemID - L'ID de l'item a verifier
 	 * @return le nombre d'items disponibles dans le sac
 	 */
@@ -99,7 +99,7 @@ public final class Player implements Serializable {
 	/**
 	 * Supprime un exemplaire de l'item dans le sac
 	 * @param itemID - L'ID de l'item a supprimer
-	 * @return true si l'item a bien �t� supprim�
+	 * @return true si l'item a bien été supprimé
 	 */
 	public boolean deleteItem(int itemID){
 		if(bag[itemID] != 0){
@@ -160,9 +160,9 @@ public final class Player implements Serializable {
 		}
 	}
 	/**
-	 * Ajoute un pok�mon dans l'equipe
+	 * Ajoute un pokémon dans l'equipe
 	 * @param toAdd
-	 * @return true si le pokemon a été ajouté dans l'equipe, false si dans le PC
+	 * @return true si le pokemon a Ã©tÃ© ajoutÃ© dans l'equipe, false si dans le PC
 	 */
 	public boolean addPokeToEquipe(Pokemon toAdd){
 		if(equipe.addPokemon(toAdd)){
@@ -175,12 +175,12 @@ public final class Player implements Serializable {
 		
 	}
 	/**
-	 * Retourne les donn�es du joueur dans le fichier donn�
+	 * Retourne les données du joueur dans le fichier donné
 	 * @param fle - Le fichier ou se situe le joueur
 	 * @return Le joueur
-	 * @throws FileNotFoundException Si le fichier n'est pas trouv�
-	 * @throws IOException Heu... En cas de probl�me.
-	 * @throws ClassNotFoundException En cas d'incompatibilit� de sauvegarde
+	 * @throws FileNotFoundException Si le fichier n'est pas trouvé
+	 * @throws IOException Heu... En cas de problème.
+	 * @throws ClassNotFoundException En cas d'incompatibilité de sauvegarde
 	 */
 	public static Player getPlayer(File fle) throws FileNotFoundException, IOException, ClassNotFoundException{
 		ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(fle)));
@@ -200,8 +200,8 @@ public final class Player implements Serializable {
 	/**
 	 * Sauvegarde le joueur dans un fichier
 	 * @param file - Le fichier dans lequel sauvegarder.
-	 * @throws FileNotFoundException Dafuck.
-	 * @throws IOException Probl�me?
+	 * @throws FileNotFoundException Dafuck. <¨^¨> JE VIENS DE LE CREER DANS LA METHODE LE FICHIER COMMENT TU PEUX NE PAS LE TROUVER???§§§§§§!!!§§§§!!!!
+	 * @throws IOException Problème?
 	 */
 	public static void savePlayer(File file) throws FileNotFoundException, IOException{
 		file.delete();
@@ -209,6 +209,27 @@ public final class Player implements Serializable {
 		ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
 		oos.writeObject(Start.joueur);
 		oos.close();
+	}
+	
+	public static int[] save(){
+		int[] vars = new int[name.length() + 16];
+		int i = 0;
+		for(byte bte : name.getBytes("UTF-8")){
+			vars[i] = (int) bte;
+			i++;
+		}
+		vars[i] = 0xFF;
+		i++;
+		for(byte bte : new String("" + dressID).getBytes("UTF-8")){
+			vars[i] = (int) bte;
+			i++;
+		}
+		Vector<Integer> vecToReturn = new Vector<Integer>();
+		vecToReturn.add(0xAA);
+		for(int ite : vars){
+			vecToReturn.add(ite);
+		}
+		vecToReturn.add(0xAA);
 	}
 	
 	
