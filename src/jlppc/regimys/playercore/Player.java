@@ -212,7 +212,7 @@ public final class Player implements Serializable {
 	}
 	
 	public static int[] save(){
-		int[] vars = new int[name.length() + 16];
+		int[] vars = new int[name.length() + 2];
 		int i = 0;
 		for(byte bte : name.getBytes("UTF-8")){
 			vars[i] = (int) bte;
@@ -220,10 +220,7 @@ public final class Player implements Serializable {
 		}
 		vars[i] = 0xFF;
 		i++;
-		for(byte bte : new String("" + dressID).getBytes("UTF-8")){
-			vars[i] = (int) bte;
-			i++;
-		}
+		vars[i] = dressID;
 		Vector<Integer> vecToReturn = new Vector<Integer>();
 		vecToReturn.add(0xAA);
 		for(int ite : vars){
