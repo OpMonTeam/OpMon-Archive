@@ -212,21 +212,24 @@ public final class Player implements Serializable {
 	}
 	
 	public static int[] save(){
-		int[] vars = new int[name.length() + 2];
+		Vector<Integer> vecToReturn = new Vector<Integer>();
 		int i = 0;
+		vecToReturn.add(0xAA);
 		for(byte bte : name.getBytes("UTF-8")){
-			vars[i] = (int) bte;
+			vecToReturn.add((int)bte);
 			i++;
 		}
-		vars[i] = 0xFF;
+		vecToReturn.add(0xFF);
 		i++;
-		vars[i] = dressID;
-		Vector<Integer> vecToReturn = new Vector<Integer>();
+		vecToReturn.add(dressID);
 		vecToReturn.add(0xAA);
-		for(int ite : vars){
-			vecToReturn.add(ite);
+		for(Pokemon pkmn : equipe.getEquipe()){
+			for(int ite : pkmn.toSave()){
+				vecToReturn.add(ite);
+			}
+			vecToReturn.add(0xAA);
 		}
-		vecToReturn.add(0xAA);
+		
 	}
 	
 	
