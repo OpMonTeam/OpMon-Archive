@@ -1978,5 +1978,76 @@ return true;
 				+ held + "]";
 	}
 	
+	public int[] toSave(){
+		Vector<Integer> toReturn = new Vector<Integer>();
+		for(byte bte : surnom.getBytes()){
+			toReturn.add((int)bte);
+		}
+		toReturn.add(0xFF);
+		toReturn.add(atkIV);
+		toReturn.add(0xFF);
+		toReturn.add(defIV);
+		toReturn.add(0xFF);
+		toReturn.add(atkSpeIV);
+		toReturn.add(0xFF);
+		toReturn.add(defSpeIV);
+		toReturn.add(0xFF);
+		toReturn.add(vitIV);
+		toReturn.add(0xFF);
+		toReturn.add(pvIV);
+		toReturn.add(0xFF);
+		toReturn.add(atkEV);
+		toReturn.add(0xFF);
+		toReturn.add(defEV);
+		toReturn.add(0xFF);
+		toReturn.add(atkSpeEV);
+		toReturn.add(0xFF);
+		toReturn.add(defSpeEV);
+		toReturn.add(0xFF);
+		toReturn.add(vitEV);
+		toReturn.add(0xFF);
+		toReturn.add(pvEV);
+		toReturn.add(0xFF);
+		toReturn.add(level);
+		toReturn.add(0xFF);
+		for(byte bte : caractere.name().getBytes()){
+			toReturn.add((int)bte);
+		}
+		toReturn.add(0xFF);
+		for(Attaque atk : attaques){
+			for(int ite : atk.toSave()){
+				toReturn.add((int)bte);
+			}
+			toReturn.add(0xFF);
+		}
+		toReturn.add(Espece.getNumeroPokedex());
+		toReturn.add(0xFF);
+		toReturn.add(PV);
+		toReturn.add(0xFF);
+		for(byte bte : status.name().getBytes()){
+			toReturn.add((int)bte);
+		}
+		toReturn.add(0xFF);
+		//Peut etre ajout du talent?
+		for(byte bte : type1.name().getBytes()){
+			toReturn.add((int)bte);
+		}
+		toReturn.add(0xFF);
+		for(byte bte : type2.name().getBytes()){
+			toReturn.add((int)bte);
+		}
+		toReturn.add(0xFF);
+		toReturn.add(toNextLevel);
+		toReturn.add(0xFF);
+		toReturn.add((int)(expBoost * 10));//x10 pour permettre de le stocker en int. Sera divisé par 10 lors du chargement.
+		toReturn.add(0xFF);
+		toReturn.add(held.getID());//TODO, methode n'existe pas.
+		toReturn.add(0xFF);
+		toReturn.add(tauxCapture);
+		return toReturn.toArray();
+		
+		
+	}
+	
 
 }
