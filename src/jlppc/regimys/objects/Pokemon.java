@@ -1980,7 +1980,7 @@ return true;
 	
 	public int[] toSave(){
 		Vector<Integer> toReturn = new Vector<Integer>();
-		for(byte bte : surnom.getBytes()){
+		for(byte bte : surnom.getBytes("UTF-8")){
 			toReturn.add((int)bte);
 		}
 		toReturn.add(0xFF);
@@ -2010,7 +2010,7 @@ return true;
 		toReturn.add(0xFF);
 		toReturn.add(level);
 		toReturn.add(0xFF);
-		for(byte bte : caractere.name().getBytes()){
+		for(byte bte : caractere.name().getBytes("UTF-8")){
 			toReturn.add((int)bte);
 		}
 		toReturn.add(0xFF);
@@ -2024,16 +2024,16 @@ return true;
 		toReturn.add(0xFF);
 		toReturn.add(PV);
 		toReturn.add(0xFF);
-		for(byte bte : status.name().getBytes()){
+		for(byte bte : status.name().getBytes("UTF-8")){
 			toReturn.add((int)bte);
 		}
 		toReturn.add(0xFF);
 		//Peut etre ajout du talent?
-		for(byte bte : type1.name().getBytes()){
+		for(byte bte : type1.name().getBytes("UTF-8")){
 			toReturn.add((int)bte);
 		}
 		toReturn.add(0xFF);
-		for(byte bte : type2.name().getBytes()){
+		for(byte bte : type2.name().getBytes("UTF-8")){
 			toReturn.add((int)bte);
 		}
 		toReturn.add(0xFF);
