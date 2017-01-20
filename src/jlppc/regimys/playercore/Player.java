@@ -229,6 +229,16 @@ public final class Player implements Serializable {
 			}
 			vecToReturn.add(0xAA);
 		}
+		vecToReturn.add(pc.size());
+		vecToReturn.add(0xAA);
+		if(pc.size() > 0){
+			for(Pokemon pkmn : pc){
+				//TODO
+				vecToReturn.add(0xAA);
+			}
+		}
+		
+		
 		
 	}
 	
