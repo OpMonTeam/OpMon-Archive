@@ -262,8 +262,8 @@ public class Initializer {
 		 listePoke[230] = new Espece(95, 95, 95, 95, 85, 75, "Hyporoi", Type.EAU, Type.DRAGON, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.ATK,Stats.ATKSPE,Stats.DEFSPE}, 2f, 152f, "Hyporoi vit au fin fond des profondeurs océaniques généralement inhabitées. On a longtemps cru que le bâillement de ce Pokémon créait les tourbillons dans les océans", 207, 1000000);
 		 listePoke[231] = new Espece(60, 60, 40, 40, 40, 40, "Phanpy", Type.SOL, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 25,new E_Level(231, 25), null, null, new Stats[]{Stats.PV}, 1f, 33f, "Il se cogne sur celui ou celle qu'il apprécie. Il est cependant si fort qu'il fait souvent mal.", 124, 1000000);
 		 listePoke[232] = new Espece(120, 120, 60, 60, 50, 90, "Donphan", Type.SOL, Type.AUCUN, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.ATK,Stats.DEF}, 1f, 120f, "Si Donphan décidait de charger, il pourrait détruire une maison. Grâce à sa force étonnante, ce Pokémon peut aider à déplacer les rochers et les coulées de boue qui bloquent les chemins de montagne.", 189, 1000000);
-		 //listePoke[233] = new Espece(, , , , , , "", Type., Type., Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats., Stats., Stats.}, f, f, "", 153, 1000000, 45);
-		 //listePoke[234] = new Espece(, , , , , , "", Type., Type., Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats., Stats., Stats.}, f, f, "", 153, 1000000, 45);
+		 listePoke[233] = new Espece(80, 90, 105, 95, 60, 85, "Porygon2", Type.NORMAL, Type.AUCUN, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.ATKSPE, Stats.ATKSPE}, 0.6f, 32.5f, "Version évoluée de Porygon, créée dans l'espoir de pouvoir un jour terraformer des planètes, un rêve loin d'être concrétisé pour l'instant.", 180, 1000000, 45);
+		 listePoke[234] = new Espece(95, 62, 85, 65, 85, 73, "Cerfrousse", Type.NORMAL, Type.AUCUN, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.ATK}, 1.4f, 71.2f, " Ce Pokémon fut chassé et l'espèce proche de l'extinction à cause des gens qui recherchaient leurs précieux bois.", 165, 1250000, 45);
 		 
 		 
 		 
