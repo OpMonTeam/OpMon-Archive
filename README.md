@@ -17,7 +17,7 @@ Ce fan-game est totalement open-source, ce qui permet aux plus grands fans de ve
 Vous pouvez ajouter des Pokémon, des attaques, des talents, et autres! 
 Vous n'avez qu'a nous proposer vos modifications et nous les ajouterons peut-être au jeu. 
 Et si vous nous proposez beaucoup de bonnes modifications, et qu'elles sont acceptées, vous deviendrez peut-être collaborateur!<br/>
-Nous sommes a deux sur ce projet : Navet56 et Jlppc.<br/>
+Nous sommes plusieurs sur le projet : Jlppc, le programmeur ; Navet56, le graphiste et correcteur ; et d'autres contributeurs, merci à eux !<br/>
 Contacts : jlppcprog@gmail.com pour la programmation | evandib@gmail.com pour les graphismes<br/>
 Si vous avez des questions à poser, n'hésitez pas à les demander dans la F.A.Q. du wiki ou a nous contacter par mail!<br/><br/><br/>
 
