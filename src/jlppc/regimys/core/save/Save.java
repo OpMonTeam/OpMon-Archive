@@ -7,10 +7,10 @@ import java.io.IOException;
 import jlppc.regimys.launch.Start;
 
 public class Save {
-	static byte[] magicNumber = new byte[]{0xFA,0xCE,0xAF,0xAC,0xE0};
-	static byte sep = 0x88;
-	static byte sepC = 0xAA;
-	static byte sepV = 0xFF;
+	static byte[] magicNumber = new byte[]{(byte) 0xFA,(byte) 0xCE,(byte) 0xAF,(byte) 0xAC,(byte) 0xE0};
+	static byte sep = (byte) 0x88;
+	static byte sepC = (byte) 0xAA;
+	static byte sepV = (byte) 0xFF;
 	public static void save() throws IOException{
 		Start.playerSave.delete();
 		Start.playerSave.createNewFile();
