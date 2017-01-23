@@ -308,16 +308,24 @@ public class Initializer {
 		 atkPokeLvl[9] = new HashArray[]{new HashArray(0, Luminocanon.class), new HashArray(0, Charge.class), new HashArray(0, MimiQueue.class), new HashArray(0, PistoletAO.class), new HashArray(0, Repli.class), new HashArray(13, Ecume.class), new HashArray(16, Morsure.class), new HashArray(20, TourRapide.class), new HashArray(24, Abri.class), new HashArray(28, Vibraqua.class), new HashArray(32, Hydroqueue.class), new HashArray(39, CoudKrane.class), new HashArray(46, MurDeFer.class), new HashArray(53, DansePluie.class), new HashArray(60, Hydrocanon.class)};					      
 		 atkPokeLvl[10] = new HashArray[]{new HashArray(0, Charge.class), new HashArray(0, Secretion.class) new HashArray(15, Piqure.class)};					      
 		 atkPokeLvl[11] = new HashArray[]{new HashArray(0, Armure.class)};					      
-		 atkPokeLvl[12] = new HashArray[]{new HashArray(0, ChocMental.class), new HashArray(0, Tornade.class) new HashArray(13, PoudreToxic.class) new HashArray(13, ParaSpore.class), new HashArray(13, PoudreDodo.class), new HashArray(17, RafalePsy.class), new HashArray(19, VentArgente.class), new HashArray(23, Ultrason.class), new HashArray(25, RuneProtect.class), new HashArray(29, Cyclone.class), new HashArray(31, Bourdon.class), new HashArray(35, PoudreFureur.class), new HashArray(37, Seduction.class), new HashArray(41, VentArriere.class), new HashArray(43, LameDAir.class), new HashArray(47, Papillodanse.class)};
-		 //atkPokeLvl[13] = new HashArray[]{new HashArray(0, 					      
-		 //atkPokeLvl[14] = new HashArray[]{new HashArray(0, 					      
-		 //atkPokeLvl[15] = new HashArray[]{new HashArray(0, 
-		 //atkPokeLvl[16] = new HashArray[]{new HashArray(0, 					      
-		 //atkPokeLvl[17] = new HashArray[]{new HashArray(0, 					      
-		 //atkPokeLvl[18] = new HashArray[]{new HashArray(0, 					      
-		 //atkPokeLvl[19] = new HashArray[]{new HashArray(0, 					 
-	 
-	 /**
+		 atkPokeLvl[12] = new HashArray[]{new HashArray(0, ChocMental.class), new HashArray(0, Tornade.class), new HashArray(13, PoudreToxic.class), new HashArray(13, ParaSpore.class), new HashArray(13, PoudreDodo.class), new HashArray(17, RafalePsy.class), new HashArray(19, VentArgente.class), new HashArray(23, Ultrason.class), new HashArray(25, RuneProtect.class), new HashArray(29, Cyclone.class), new HashArray(31, Bourdon.class), new HashArray(35, PoudreFureur.class), new HashArray(37, Seduction.class), new HashArray(41, VentArriere.class), new HashArray(43, LameDAir.class), new HashArray(47, Papillodanse.class)};
+		 atkPokeLvl[13] = new HashArray[]{new HashArray(0, DardVenin.class), new HashArray(0, Secretion.class), new HashArray(15, Piqure.class)};				      
+		 atkPokeLvl[14] = new HashArray[]{new HashArray(0, Armure.class)}; 					      
+		 atkPokeLvl[15] = new HashArray[]{new HashArray(0, Furie.class), new HashArray(13, Puissance.class), new HashArray(16, DoubleDard.class), new HashArray(19, Frenesie.class), new HashArray(22, Poursuite.class), new HashArray(25, PicsToxik.class), new HashArray(28, DardNuee.class), new HashArray(31, Hate.class), new HashArray(34, Assurance.class), new HashArray(37, DirectToxik.class), new HashArray(40, Effort.class), new HashArray(45, DardMortel.class)];
+		 atkPokeLvl[16] = new HashArray[]{new HashArray(0, Charge.class), new HashArray(5, JetDeSable.class), new HashArray(9, Tornade.class), new HashArray(13, ViveAttaque.class), new HashArray(17, Cyclone.class), new HashArray(21, Ouragan.class), new HashArray(25, DansePlume.class), new HashArray(29, Hate.class), new HashArray(33, CruAile.class), new HashArray(37, Atterissage.class), new HashArray(41, VentArriere.class), new HashArray(45, Mimique.class), new HashArray(49, LameDAir.class), new HashArray(53, VentViolent.class)}; 
+		 atkPokeLvl[17] = new HashArray[]{new HashArray(0, Charge.class), new HashArray(0, JetDeSable.class), new HashArray(0, Tornade.class), new HashArray(13, ViveAttaque.class), new HashArray(17, Cyclone.class), new HashArray(22, Ouragan.class), new HashArray(27, DansePlume.class), new HashArray(32, Hate.class), new HashArray(37, CruAile.class), new HashArray(42, Atterissage.class), new HashArray(47, VentArriere.class), new HashArray(52, Mimique.class), new HashArray(57, LameDAir.class), new HashArray(62, VentViolent.class)};  					      
+		 atkPokeLvl[18] = new HashArray[]{new HashArray(0, Charge.class), new HashArray(0, JetDeSable.class), new HashArray(0, Tornade.class), new HashArray(0, ViveAttaque.class), new HashArray(17, Cyclone.class), new HashArray(22, Ouragan.class), new HashArray(27, DansePlume.class), new HashArray(32, Hate.class), new HashArray(38, CruAile.class), new HashArray(44, Atterissage.class), new HashArray(50, VentArriere.class), new HashArray(56, Mimique.class), new HashArray(62, LameDAir.class), new HashArray(68, VentViolent.class)};					      
+		 atkPokeLvl[19] = new HashArray[]{new HashArray(0, Charge.class), Charge.class), new HashArray(0, MimiQueue.class), new HashArray(4, ViveAttaque.class), new HashArray(7, Puissance.class), new HashArray(10, Morsure.class), new HashArray(13, Poursuite.class), new HashArray(16, CrocDeMort.class), new HashArray(19, CoupBas.class), new HashArray(22, Machouille.class), new HashArray(25, Assurance.class), new HashArray(28, CrocFatal.class), new HashArray(31, Damocles.class), new HashArray(34, Effort.class)};					 
+	         //atkPokeLvl[19] = new HashArray[]{new HashArray(0,
+	         //atkPokeLvl[19] = new HashArray[]{new HashArray(0,
+	         //atkPokeLvl[19] = new HashArray[]{new HashArray(0,
+		 //atkPokeLvl[19] = new HashArray[]{new HashArray(0,
+		 //atkPokeLvl[19] = new HashArray[]{new HashArray(0,
+		 //atkPokeLvl[19] = new HashArray[]{new HashArray(0,
+								
+								
+								
+	/**
 	  * Initialise les sprites
 	  */
 	 public static void initSprites(){
