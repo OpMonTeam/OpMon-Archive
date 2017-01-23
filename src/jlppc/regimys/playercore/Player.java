@@ -268,6 +268,12 @@ public final class Player implements Serializable {
 	public static Player load(String[] classes){
 		String[] infos = classes[0].split(new String(new byte[]{(byte)0xFF}));
 		Player toReturn = new Player(infos[0], (int) infos[1].charAt(0));
+		String[][] equipe = new String[6][];
+		int i = 0;
+		for(String str : classes) {
+			equipe[i] = classes[i + 1].split(new String(new byte[] {(byte)0xAA}));
+			toReturn.addPokeToEquipe(Pokemon.create(equipe[i]));
+		}
 		return toReturn;
 		
 	}

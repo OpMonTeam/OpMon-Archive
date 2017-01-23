@@ -273,7 +273,7 @@ public class Pokemon extends RegimysObject implements Serializable{
 		this.level = level;
 		if(attaques != null){
 			this.attaques = Arrays.copyOf(attaques, attaques.length);
-		}else{
+		}else{//Choix des attaques si non spécifiées.
 			this.attaques = new Attaque[4];
 			Vector<Class<Attaque>> atkPssbles = new Vector<>();
 			for(HashArray atk : espece.getAtksByLevels()){
@@ -292,6 +292,8 @@ public class Pokemon extends RegimysObject implements Serializable{
 					}
 					i++;
 				}
+			}else {
+				//TODO!
 			}
 		}
 		
@@ -2045,6 +2047,9 @@ return true;
 		toReturn.add(held.getID());//TODO, methode n'existe pas.
 		toReturn.add(0xFF);
 		toReturn.add(tauxCapture);
+		toReturn.add(0xFF);
+		toReturn.add(exp);
+		
 		Integer[] tabToReturn = null;
 		tabToReturn = toReturn.toArray(tabToReturn);
 		int[] realToReturn = new int[tabToReturn.length];
@@ -2055,6 +2060,45 @@ return true;
 		return realToReturn;
 		
 		
+	}
+	
+	private Pokemon(String surnom, int[] statsIV, int[] statsEV, int level, Caractere caractere, Attaque[] attaques, Espece espece, int PV, Status status, Type[] types, int toNextLevel, int expBoost, Item held, int tauxCapture, int exp) {
+		this.surnom = surnom;
+		atkIV = statsIV[0];
+		defIV = statsIV[1];
+		atkSpeIV = statsIV[2];
+		defSpeIV = statsIV[3];
+		vitIV = statsIV[4];
+		pvIV = statsIV[5];
+		atkEV = statsEV[6];
+		defEV = statsEV[7];
+		atkSpeEV = statsEV[8];
+		defSpeEV = statsEV[9];
+		vitEV = statsEV[10];
+		pvEV = statsEV[11];
+		this.exp = exp;
+		this.level = level;
+		this.caractere = caractere;
+		this.attaques = attaques;
+		this.espece = espece;
+		this.PV = PV;
+		this.status = status;
+		this.type1 = types[0];
+		this.type2 = types[1];
+		this.toNextLevel = toNextLevel;
+		this.expBoost = expBoost;
+		this.held = held;
+		this.tauxCapture = tauxCapture;
+		calcStats(espece);
+		bonusCara = caractere.bonus;
+		malusCara = caractere.malus;
+		
+		
+	}
+	
+	public static Pokemon create(String[] strings) {
+		Pokemon pkmn = new Pokemon(strings[0], new int[] {(int)strings[1].charAt(0),(int)strings[2].charAt(0),(int)strings[3].charAt(0),(int)strings[4].charAt(0),(int)strings[5].charAt(0),(int)strings[6].charAt(0)}, new int[] {(int)strings[7].charAt(0),(int)strings[8].charAt(0),(int)strings[9].charAt(0),(int)strings[10].charAt(0),(int)strings[11].charAt(0),(int)strings[12].charAt(0),(int)strings[13].charAt(0)}, (int)strings[14].charAt(0), Caractere.valueOf(strings[15]), new Attaque[] {Attaque.read(strings[16]),Attaque.read(strings[17]),Attaque.read(strings[18]),Attaque.read(strings[19])}, Initializer.listePoke[(int) strings[20].charAt(0)], (int) strings[21].charAt(0), Status.valueOf(strings[22]), new Type[] {Type.valueOf(strings[23]), Type.valueOf(strings[24])}, (int) strings[25].charAt(0), (int) strings[26].charAt(0), Item.getItem((int) strings[27].charAt(0)), (int) strings[28].charAt(0), (int) strings[29].charAt(0));
+		return pkmn;
 	}
 	
 

@@ -356,6 +356,10 @@ public abstract class Attaque extends RegimysObject implements Serializable{
 		return realToReturn;
 		
 	}
+	public static Attaque read(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }
