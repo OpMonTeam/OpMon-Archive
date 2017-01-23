@@ -1,6 +1,7 @@
 package jlppc.regimys.objects;
 
 import java.io.Serializable;
+import java.util.Vector;
 
 import jlppc.regimys.enums.Type;
 import jlppc.regimys.fight.EndOfTurn;
@@ -334,6 +335,25 @@ public abstract class Attaque extends RegimysObject implements Serializable{
 	 * @param def - Le pokemon défenseur
 	 */
 	public void siEchoue(Pokemon atk, Pokemon def){
+		
+	}
+	public int[] toSave() {
+		Vector<Integer> vecToReturn = new Vector<Integer>();
+		int sep = 0xEE;
+		for(byte bte : nom.getBytes()) {
+			vecToReturn.add((int) bte);
+		}
+		vecToReturn.add(sep);
+		vecToReturn.add(pp);
+		vecToReturn.add(sep);
+		vecToReturn.add(ppMax);
+		Integer[] toReturn = null;
+		toReturn = vecToReturn.toArray(toReturn);
+		int[] realToReturn = new int[toReturn.length];
+		for(int j = 0 ; j < toReturn.length; j++) {
+			realToReturn[j] = toReturn[j].intValue();
+		}
+		return realToReturn;
 		
 	}
 	

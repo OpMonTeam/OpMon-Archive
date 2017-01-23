@@ -1,6 +1,7 @@
 package jlppc.regimys.objects;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.Vector;
 
@@ -1978,7 +1979,7 @@ return true;
 				+ held + "]";
 	}
 	
-	public int[] toSave(){
+	public int[] toSave() throws UnsupportedEncodingException{
 		Vector<Integer> toReturn = new Vector<Integer>();
 		for(byte bte : surnom.getBytes("UTF-8")){
 			toReturn.add((int)bte);
