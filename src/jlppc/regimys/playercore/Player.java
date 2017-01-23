@@ -245,6 +245,8 @@ public final class Player implements Serializable {
 			vecToReturn.add(0xFF);
 		}
 		
+		return vecToReturn.toArray();
+		
 		
 		
 	}
