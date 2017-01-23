@@ -233,9 +233,16 @@ public final class Player implements Serializable {
 		vecToReturn.add(0xAA);
 		if(pc.size() > 0){
 			for(Pokemon pkmn : pc){
-				//TODO
+				for(int ite : pkmn.toSave()){
+					vecToReturn.add(ite);
+				}
 				vecToReturn.add(0xAA);
 			}
+		}
+		
+		for(int ite : bag){
+			vecToReturn.add(ite);
+			vecToReturn.add(0xFF);
 		}
 		
 		
