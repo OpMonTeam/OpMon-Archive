@@ -12,6 +12,7 @@ import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.util.Vector;
 
 import jlppc.regimys.core.save.Parameters;
@@ -34,7 +35,7 @@ public final class Player implements Serializable {
 	 */
 	private String name;
 	/**
-	 * L'ID de dresseur (15 chiffres)
+	 * L'ID de dresseur (9 chiffres)
 	 */
 	@WIP
 	private int dressID;
@@ -116,7 +117,7 @@ public final class Player implements Serializable {
 	public Player(String name) {
 		this.name = name;
 		this.equipe = new Equipe(this.name);
-		this.dressID = Start.rand.nextInt(999999999999999);
+		this.dressID = Start.rand.nextInt(999999999);
 	}
 	
 	public String getName(){
@@ -212,7 +213,7 @@ public final class Player implements Serializable {
 		oos.close();
 	}
 	
-	public static int[] save(){
+	public int[] getSave() throws UnsupportedEncodingException{
 		Vector<Integer> vecToReturn = new Vector<Integer>();
 		int i = 0;
 		vecToReturn.add(0xAA);
@@ -245,8 +246,14 @@ public final class Player implements Serializable {
 			vecToReturn.add(ite);
 			vecToReturn.add(0xFF);
 		}
+		Integer[] toReturn = null;
+		toReturn = vecToReturn.toArray(toReturn);
+		int[] realToReturn = new int[toReturn.length];
+		for(int j = 0 ; i < toReturn.length; i++) {
+			realToReturn[j] = toReturn[j].intValue();
+		}
 		
-		return vecToReturn.toArray();
+		return realToReturn;
 		
 		
 		
@@ -261,6 +268,7 @@ public final class Player implements Serializable {
 	public static Player load(String[] classes){
 		String[] infos = classes[0].split(new String(new byte[]{(byte)0xFF}));
 		Player toReturn = new Player(infos[0], (int) infos[1].charAt(0));
+		return toReturn;
 		
 	}
 	

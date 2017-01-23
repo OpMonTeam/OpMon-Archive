@@ -2015,12 +2015,12 @@ return true;
 		}
 		toReturn.add(0xFF);
 		for(Attaque atk : attaques){
-			for(int ite : atk.toSave()){
-				toReturn.add((int)bte);
+			for(int ite : atk.toSave()){//TODO
+				toReturn.add((int)ite);
 			}
 			toReturn.add(0xFF);
 		}
-		toReturn.add(Espece.getNumeroPokedex());
+		toReturn.add(this.espece.getNumeroPokedex());
 		toReturn.add(0xFF);
 		toReturn.add(PV);
 		toReturn.add(0xFF);
@@ -2044,7 +2044,14 @@ return true;
 		toReturn.add(held.getID());//TODO, methode n'existe pas.
 		toReturn.add(0xFF);
 		toReturn.add(tauxCapture);
-		return toReturn.toArray();
+		Integer[] tabToReturn = null;
+		tabToReturn = toReturn.toArray(tabToReturn);
+		int[] realToReturn = new int[tabToReturn.length];
+		for(int j = 0 ; j < tabToReturn.length; j++) {
+			realToReturn[j] = tabToReturn[j].intValue();
+		}
+		
+		return realToReturn;
 		
 		
 	}
