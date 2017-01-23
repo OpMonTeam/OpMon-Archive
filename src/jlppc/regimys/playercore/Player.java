@@ -116,6 +116,7 @@ public final class Player implements Serializable {
 	public Player(String name) {
 		this.name = name;
 		this.equipe = new Equipe(this.name);
+		this.dressID = Start.rand.nextInt(999999999999999);
 	}
 	
 	public String getName(){
@@ -248,6 +249,18 @@ public final class Player implements Serializable {
 		return vecToReturn.toArray();
 		
 		
+		
+	}
+	
+	private Player(String name, int dressID){
+		this.name = name;
+		this.dressID = dressID;
+		this.equipe = new Equipe(this.name);
+	}
+	
+	public static Player load(String[] classes){
+		String[] infos = classes[0].split(new String(new byte[]{(byte)0xFF}));
+		Player toReturn = new Player(infos[0], (int) infos[1].charAt(0));
 		
 	}
 	
