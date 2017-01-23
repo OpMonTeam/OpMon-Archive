@@ -3,10 +3,12 @@ package jlppc.regimys.objects.items;
 import java.io.Serializable;
 import java.util.Vector;
 
+import jlppc.regimys.enums.Caractere.Stats;
 import jlppc.regimys.launch.Start;
 import jlppc.regimys.objects.Pokemon;
+import jlppc.regimys.objects.Pokemon.Status;
 /**
- * Classe décrivant un item.
+ * Classe dÃ©crivant un item.
  * @author Jlppc
  *
  */
@@ -20,7 +22,7 @@ public class Item implements Serializable{
 	 */
 	protected boolean usable;
 	/**
-	 * Si c'est un item donnable a un pokéon
+	 * Si c'est un item donnable a un pokï¿½on
 	 */
 	protected boolean givable;
 	/**
@@ -32,11 +34,12 @@ public class Item implements Serializable{
 	 */
 	protected boolean usableInFight;
 	
+	protected int id;
 	public String toString(){
 		return nom;
 	}
 	/**
-	 * Liste des catégories du sac
+	 * Liste des catï¿½gories du sac
 	 * @author Jlppc
 	 *
 	 */
@@ -61,6 +64,11 @@ public class Item implements Serializable{
 		this.usableInFight = usableInFight;
 		this.givable = giveable;
 		this.categorie = categorie;
+		id = itemList.size() - 1;
+	}
+	
+	public int getID() {
+		return id;
 	}
 	
 	
@@ -122,8 +130,8 @@ public class Item implements Serializable{
 
 
 	/**
-	 * Quand l'item est utilisé sur un pokémon.
-	 * @param given - Le pokemon sur lequel l'item est utilisé
+	 * Quand l'item est utilisï¿½ sur un pokï¿½mon.
+	 * @param given - Le pokemon sur lequel l'item est utilisï¿½
 	 */
 	public void used(Pokemon given){
 		if(given.itemUsed(this)){
@@ -138,13 +146,49 @@ public class Item implements Serializable{
 	 * Initialisation de tous les items (mettez vos items mods ici)
 	 */
 	public static void init() {
-		I_Heal.init();
-		CT.initCTs();
-		I_Pokeball.initPokeballs();
+		itemList.add(new I_Heal("Baie Oran", true, true, true, BagCat.BAIES, 10, Status.AUCUN, false));
+		itemList.add(new I_Heal("Potion", true, true, true, BagCat.SOIN, 20, Status.AUCUN, false));
+		itemList.add(new I_Heal("Super Potion", true, true, true, BagCat.SOIN, 50, Status.AUCUN, false));
+		itemList.add(new I_Heal("Hyper Potion", true, true, true, BagCat.SOIN, 200, Status.AUCUN, false));
+		itemList.add(new I_Heal("Potion Max", true, true, true, BagCat.SOIN, 999999, Status.AUCUN, false));
+		itemList.add(new I_Heal("Guerison", true, true, true, BagCat.SOIN, 999999, Status.AUCUN, true));
+		itemList.add(new I_Heal("Total Soin", true, true, true, BagCat.SOIN, 0, Status.AUCUN, true));
+		itemList.add(new I_Heal("Antidote",true, true, true, BagCat.SOIN, 0, Status.POISON, false));
+		itemList.add(new I_Heal("Anti-Para", true, true, true, BagCat.SOIN, 0, Status.PARALYSIE, false));
+		itemList.add(new I_Heal("Anti-Gel", true, true, true, BagCat.SOIN, 0, Status.GEL, false));
+		itemList.add(new I_Heal("Anti-Brulure", true, true, true, BagCat.SOIN, 0, Status.BRULURE, false));
+		itemList.add(new I_Heal("Rï¿½veil", true, true, true, BagCat.SOIN, 0, Status.SOMMEIL, false));
+		itemList.add(new I_Heal("Attaque+", Stats.ATK));
+		itemList.add(new I_Heal("Defense+", Stats.DEF));
+		itemList.add(new I_Heal("Attaque Spï¿½ciale+", Stats.ATKSPE));
+		itemList.add(new I_Heal("Dï¿½fense Spï¿½ciale+", Stats.DEFSPE));
+		itemList.add(new I_Heal("Vitesse+", Stats.VIT));
+		itemList.add(new I_Heal("Chococoeur", true, true, true, BagCat.SOIN, 20, Status.AUCUN, false));
+		itemList.add(new I_Heal("Eau fraiche", true, true, true, BagCat.SOIN, 50, Status.AUCUN, false));
+		itemList.add(new I_Heal("Elixir", true, true, true, BagCat.SOIN, 10, true));
+		itemList.add(new I_Heal("Galette Illumis", true, true, true, BagCat.SOIN, Status.AUCUN, true));
+		itemList.add(new I_Heal("Huile", true, true, true, BagCat.SOIN, 10, false));
+		itemList.add(new I_Heal("Huile max", true, true, true, BagCat.SOIN, 9999, false));
+		itemList.add(new I_Heal("Jus de baies", true, true, true, BagCat.SOIN, 20));
+		itemList.add(new I_Heal("Lait Meumeu", true, true, true, BagCat.SOIN, 100));
+		itemList.add(new I_Heal("Lava Cookie", true, true, true, BagCat.SOIN, Status.AUCUN, true));
+		itemList.add(new I_Heal("Limonade", true, true, true, BagCat.SOIN, 80));
+		itemList.add(new I_Heal("Max Elixir", true, true, true, BagCat.SOIN, 9999, true));
+		itemList.add(new I_Heal("Poudre Soin", true, true, true, BagCat.SOIN, Status.AUCUN, true));
+		itemList.add(new I_Heal("Pourdrï¿½nergie", true, true, true, BagCat.SOIN, 50));
+		itemList.add(new I_Heal("Racinï¿½nergie", true, true, true, BagCat.SOIN, 200));
+		itemList.add(new I_Heal("Soda Cool", true, true, true, BagCat.SOIN, 60));
+		itemList.add(new I_Heal("Vieux Gateau", true, true, true, BagCat.SOIN, Status.AUCUN, true));
+		itemList.add(new I_Pokeball("Pokeball", 1f));
+	    itemList.add(new I_Pokeball("Super Ball", 1.5f));
+	    itemList.add(new I_Pokeball("Hyper Ball", 2f));
+	    itemList.add(new I_Pokeball("Master Ball", 9999f));
 		itemList.add(new Item("Pierre Feu", true, false,false, BagCat.OBJETS));
 		itemList.add(new Item("Pierre Plante", true, false, false, BagCat.OBJETS));
 		itemList.add(new Item("Pierre Eau", true, false, false, BagCat.OBJETS));
 		itemList.add(new Item("Pierre Lune", true, false, false, BagCat.OBJETS));
+		//AJOUTER A LA SUITE MEME SI C'EST PAS DANS L'ORDRE!!!!!!!!!!!!!!!!!!!!!!!!:!!!!!!!:!!!!!!!!!!
+		CT.initCTs();
 		
 	}
 	/**
@@ -168,7 +212,7 @@ public class Item implements Serializable{
 	 * Retourne un item selon son nom
 	 * @param name - Le nom de l'item
 	 * @return L'item (si il existe)
-	 * @throws NullPointerException si l'item n'est pas trouvé
+	 * @throws NullPointerException si l'item n'est pas trouvï¿½
 	 */
 	public static Item getItem(String name){
 		try{
@@ -210,7 +254,6 @@ public class Item implements Serializable{
 		// TODO Auto-generated method stub
 		return usableInFight;
 	}
-	
 	
 	
 }

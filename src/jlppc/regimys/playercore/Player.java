@@ -249,7 +249,7 @@ public final class Player implements Serializable {
 		Integer[] toReturn = null;
 		toReturn = vecToReturn.toArray(toReturn);
 		int[] realToReturn = new int[toReturn.length];
-		for(int j = 0 ; i < toReturn.length; i++) {
+		for(int j = 0 ; j < toReturn.length; j++) {
 			realToReturn[j] = toReturn[j].intValue();
 		}
 		

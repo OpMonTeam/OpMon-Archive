@@ -1,6 +1,6 @@
 package jlppc.regimys.objects.items;
 /**
- * Classe permettant de creer des pokéballs
+ * Classe permettant de creer des pokï¿½balls
  * @author Jlppc
  *
  */
@@ -26,9 +26,6 @@ public class I_Pokeball extends Item{
      * Initialise les pokeballs.
      */
     public static void initPokeballs(){
-       itemList.add(new I_Pokeball("Pokeball", 1f));
-       itemList.add(new I_Pokeball("Super Ball", 1.5f));
-       itemList.add(new I_Pokeball("Hyper Ball", 2f));
-       itemList.add(new I_Pokeball("Master Ball", 9999f));
+      
     }
 }
