@@ -325,7 +325,9 @@ public abstract class Attaque extends RegimysObject implements Serializable{
 		this.rateJamais = rateJamais;
 		this.pp = this.ppMax = ppMax;
 		this.priorite = priorite;
+		this.classe = this.getClass();
 	}
+	Class<? extends Attaque> classe;
 	public int getPriorite(){
 		return priorite;
 	}
@@ -340,7 +342,7 @@ public abstract class Attaque extends RegimysObject implements Serializable{
 	public int[] toSave() {
 		Vector<Integer> vecToReturn = new Vector<Integer>();
 		int sep = 0xEE;
-		for(byte bte : nom.getBytes()) {
+		for(byte bte : classe.getName().getBytes()) {
 			vecToReturn.add((int) bte);
 		}
 		vecToReturn.add(sep);
@@ -356,9 +358,24 @@ public abstract class Attaque extends RegimysObject implements Serializable{
 		return realToReturn;
 		
 	}
-	public static Attaque read(String string) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	private void setPP(char pP) {
+		this.pp = pP;
+	}
+	
+	private void setPPMax(char pPMax) {
+		this.ppMax = pPMax;
+	}
+	
+	
+	public static Attaque read(String string) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+		String[] statsAtk = string.split(new String(new byte[] {(byte)0xEE}));
+		Attaque toReturn = (Attaque) Class.forName(statsAtk[0]).newInstance();
+		toReturn.setPP(statsAtk[1].charAt(0));
+		toReturn.setPPMax(statsAtk[2].charAt(0));
+		
+		
+		return toReturn;
 	}
 	
 	

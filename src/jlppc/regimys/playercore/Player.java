@@ -65,23 +65,7 @@ public final class Player implements Serializable {
 	@WIP
 	public void addItem(int itemID){
 		
-		switch(Item.getItem(itemID).getBagCat()){
-		case BAIES:
-			bag[itemID]++;
-			break;
-		case CTS:
-			bag[itemID]++;
-			break;
-		case OBJETS:
-			bag[itemID]++;
-			break;
-		case RARES:
-			bag[itemID]++;
-			break;
-		case SOIN:
-			bag[itemID]++;
-			break;
-		}
+		bag[itemID]++;
 	}
 	/**
 	 * Verifie si un item est présent dans le sac ou pas
@@ -265,14 +249,27 @@ public final class Player implements Serializable {
 		this.equipe = new Equipe(this.name);
 	}
 	
-	public static Player load(String[] classes){
+	public static Player load(String[] classes) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		String[] infos = classes[0].split(new String(new byte[]{(byte)0xFF}));
 		Player toReturn = new Player(infos[0], (int) infos[1].charAt(0));
 		String[][] equipe = new String[6][];
 		int i = 0;
-		for(String str : classes) {
+		for(i = 0 ; i < 7; i++) {
 			equipe[i] = classes[i + 1].split(new String(new byte[] {(byte)0xAA}));
 			toReturn.addPokeToEquipe(Pokemon.create(equipe[i]));
+		}
+		String[][] pc = new String[classes[8].charAt(0)][];
+		for(i = 9; i < classes[8].charAt(0);i++) {
+			pc[i - 9] = classes[i].split(new String(new byte[] {(byte)0xAA}));
+			toReturn.addPokemonToPC(Pokemon.create(pc[i]));
+		}
+		//La, i est censé etre a 9 + le nombre de poke dans le pc
+		String[] items = classes[i + 1].split(new String(new byte[] {(byte)0xFF}));
+		int[] rItems = new int[items.length];
+		for(i = 0; i < items.length;i++) {//Un tour par item
+			for(int j = 0; i < rItems[i];j++) {//Un tour par nombre de cet item
+				toReturn.addItem(i);
+			}
 		}
 		return toReturn;
 		
