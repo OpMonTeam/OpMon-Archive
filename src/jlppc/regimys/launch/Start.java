@@ -99,13 +99,9 @@ public class Start {
 	
 
 	/**
-<<<<<<< HEAD
 	 * Le prochain main du launcher (Ou pas)
 	 * @param saves - Les fichiers de sauvegarde (0 : Les paramètres, 1 : Le joueur)
-=======
 	 * Le prochain main du launcher
-	 * @param saves - Les fichiers de sauvegarde (0 : Les paramÃ¨tres, 1 : Le joueur)
->>>>>>> refs/remotes/origin/master
 	 */
 	public static void main(File[] saves) throws Throwable{//Cette methode c'est de la merde, allez plutot voir le main de base ;-)
 		String playername;
