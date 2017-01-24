@@ -1,5 +1,6 @@
-#![Regimys LOGO](https://raw.githubusercontent.com/jlppc/Projet-Pokemon-Regimys/master/Ressources/Autres/regimys_icon.png) Projet Pokemon Regimys
+#![Regimys LOGO](https://raw.githubusercontent.com/jlppc/Projet-Pokemon-Regimys/master/Ressources/Autres/regimys_icon.png)
 # Bienvenue sur le Projet "Pokémon Regimys"!
+
 Bienvenue sur le projet de fan-game pokemon Regimys! Plus d'infos sur le wiki ou sur la chaine YouTube !<br/>
 <a href="https://github.com/jlppc/Projet-Pokemon-Regimys/wiki/Journal-du-developpement">Journal de developpement</a><br/>
 <a href="https://www.youtube.com/channel/UC8qa9Z52pOHhZ1XjIoTa2kQ">Chaine YouTube du Projet Regimys</a><br/>
