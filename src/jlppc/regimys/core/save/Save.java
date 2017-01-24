@@ -43,7 +43,7 @@ public class Save {
 		
 	}
 	
-	public static Player load() throws IOException{
+	public static Player load() throws IOException, InstantiationException, IllegalAccessException, ClassNotFoundException{
 		
 		BufferedInputStream bis = new BufferedInputStream(new FileInputStream(Start.playerSave));
 		String totalSave = FileUtils.readFile(bis);

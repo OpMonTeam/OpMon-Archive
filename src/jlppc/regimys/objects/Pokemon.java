@@ -2096,7 +2096,7 @@ return true;
 		
 	}
 	
-	public static Pokemon create(String[] strings) {
+	public static Pokemon create(String[] strings) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		Pokemon pkmn = new Pokemon(strings[0], new int[] {(int)strings[1].charAt(0),(int)strings[2].charAt(0),(int)strings[3].charAt(0),(int)strings[4].charAt(0),(int)strings[5].charAt(0),(int)strings[6].charAt(0)}, new int[] {(int)strings[7].charAt(0),(int)strings[8].charAt(0),(int)strings[9].charAt(0),(int)strings[10].charAt(0),(int)strings[11].charAt(0),(int)strings[12].charAt(0),(int)strings[13].charAt(0)}, (int)strings[14].charAt(0), Caractere.valueOf(strings[15]), new Attaque[] {Attaque.read(strings[16]),Attaque.read(strings[17]),Attaque.read(strings[18]),Attaque.read(strings[19])}, Initializer.listePoke[(int) strings[20].charAt(0)], (int) strings[21].charAt(0), Status.valueOf(strings[22]), new Type[] {Type.valueOf(strings[23]), Type.valueOf(strings[24])}, (int) strings[25].charAt(0), (int) strings[26].charAt(0), Item.getItem((int) strings[27].charAt(0)), (int) strings[28].charAt(0), (int) strings[29].charAt(0));
 		return pkmn;
 	}
