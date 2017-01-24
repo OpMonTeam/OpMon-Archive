@@ -1,6 +1,7 @@
 package jlppc.regimys.objects;
 
 import java.io.Serializable;
+import java.util.Vector;
 
 import jlppc.regimys.enums.Type;
 import jlppc.regimys.fight.EndOfTurn;
@@ -324,7 +325,9 @@ public abstract class Attaque extends RegimysObject implements Serializable{
 		this.rateJamais = rateJamais;
 		this.pp = this.ppMax = ppMax;
 		this.priorite = priorite;
+		this.classe = this.getClass();
 	}
+	Class<? extends Attaque> classe;
 	public int getPriorite(){
 		return priorite;
 	}
@@ -335,6 +338,44 @@ public abstract class Attaque extends RegimysObject implements Serializable{
 	 */
 	public void siEchoue(Pokemon atk, Pokemon def){
 		
+	}
+	public int[] toSave() {
+		Vector<Integer> vecToReturn = new Vector<Integer>();
+		int sep = 0xEE;
+		for(byte bte : classe.getName().getBytes()) {
+			vecToReturn.add((int) bte);
+		}
+		vecToReturn.add(sep);
+		vecToReturn.add(pp);
+		vecToReturn.add(sep);
+		vecToReturn.add(ppMax);
+		Integer[] toReturn = null;
+		toReturn = vecToReturn.toArray(toReturn);
+		int[] realToReturn = new int[toReturn.length];
+		for(int j = 0 ; j < toReturn.length; j++) {
+			realToReturn[j] = toReturn[j].intValue();
+		}
+		return realToReturn;
+		
+	}
+	
+	private void setPP(char pP) {
+		this.pp = pP;
+	}
+	
+	private void setPPMax(char pPMax) {
+		this.ppMax = pPMax;
+	}
+	
+	
+	public static Attaque read(String string) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+		String[] statsAtk = string.split(new String(new byte[] {(byte)0xEE}));
+		Attaque toReturn = (Attaque) Class.forName(statsAtk[0]).newInstance();
+		toReturn.setPP(statsAtk[1].charAt(0));
+		toReturn.setPPMax(statsAtk[2].charAt(0));
+		
+		
+		return toReturn;
 	}
 	
 	

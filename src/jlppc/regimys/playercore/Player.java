@@ -12,6 +12,7 @@ import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.util.Vector;
 
 import jlppc.regimys.core.save.Parameters;
@@ -23,7 +24,7 @@ import jlppc.regimys.objects.items.Item;
 import jlppc.utils.HashArray;
 import jlppc.utils.WIP;
 /**
- * D�finit le joueur
+ * Définit le joueur
  * @author Jlppc
  *
  */
@@ -34,7 +35,7 @@ public final class Player implements Serializable {
 	 */
 	private String name;
 	/**
-	 * L'ID de dresseur
+	 * L'ID de dresseur (9 chiffres)
 	 */
 	@WIP
 	private int dressID;
@@ -64,26 +65,10 @@ public final class Player implements Serializable {
 	@WIP
 	public void addItem(int itemID){
 		
-		switch(Item.getItem(itemID).getBagCat()){
-		case BAIES:
-			bag[itemID]++;
-			break;
-		case CTS:
-			bag[itemID]++;
-			break;
-		case OBJETS:
-			bag[itemID]++;
-			break;
-		case RARES:
-			bag[itemID]++;
-			break;
-		case SOIN:
-			bag[itemID]++;
-			break;
-		}
+		bag[itemID]++;
 	}
 	/**
-	 * Verifie si un item est pr�sent dans le sac ou pas
+	 * Verifie si un item est présent dans le sac ou pas
 	 * @param itemID - L'ID de l'item a verifier
 	 * @return le nombre d'items disponibles dans le sac
 	 */
@@ -99,7 +84,7 @@ public final class Player implements Serializable {
 	/**
 	 * Supprime un exemplaire de l'item dans le sac
 	 * @param itemID - L'ID de l'item a supprimer
-	 * @return true si l'item a bien �t� supprim�
+	 * @return true si l'item a bien été supprimé
 	 */
 	public boolean deleteItem(int itemID){
 		if(bag[itemID] != 0){
@@ -116,6 +101,7 @@ public final class Player implements Serializable {
 	public Player(String name) {
 		this.name = name;
 		this.equipe = new Equipe(this.name);
+		this.dressID = Start.rand.nextInt(999999999);
 	}
 	
 	public String getName(){
@@ -160,9 +146,9 @@ public final class Player implements Serializable {
 		}
 	}
 	/**
-	 * Ajoute un pok�mon dans l'equipe
+	 * Ajoute un pokémon dans l'equipe
 	 * @param toAdd
-	 * @return true si le pokemon a été ajouté dans l'equipe, false si dans le PC
+	 * @return true si le pokemon a Ã©tÃ© ajoutÃ© dans l'equipe, false si dans le PC
 	 */
 	public boolean addPokeToEquipe(Pokemon toAdd){
 		if(equipe.addPokemon(toAdd)){
@@ -175,12 +161,12 @@ public final class Player implements Serializable {
 		
 	}
 	/**
-	 * Retourne les donn�es du joueur dans le fichier donn�
+	 * Retourne les données du joueur dans le fichier donné
 	 * @param fle - Le fichier ou se situe le joueur
 	 * @return Le joueur
-	 * @throws FileNotFoundException Si le fichier n'est pas trouv�
-	 * @throws IOException Heu... En cas de probl�me.
-	 * @throws ClassNotFoundException En cas d'incompatibilit� de sauvegarde
+	 * @throws FileNotFoundException Si le fichier n'est pas trouvé
+	 * @throws IOException Heu... En cas de problème.
+	 * @throws ClassNotFoundException En cas d'incompatibilité de sauvegarde
 	 */
 	public static Player getPlayer(File fle) throws FileNotFoundException, IOException, ClassNotFoundException{
 		ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(fle)));
@@ -200,8 +186,8 @@ public final class Player implements Serializable {
 	/**
 	 * Sauvegarde le joueur dans un fichier
 	 * @param file - Le fichier dans lequel sauvegarder.
-	 * @throws FileNotFoundException Dafuck.
-	 * @throws IOException Probl�me?
+	 * @throws FileNotFoundException Dafuck. <¨^¨> JE VIENS DE LE CREER DANS LA METHODE LE FICHIER COMMENT TU PEUX NE PAS LE TROUVER???§§§§§§!!!§§§§!!!!
+	 * @throws IOException Problème?
 	 */
 	public static void savePlayer(File file) throws FileNotFoundException, IOException{
 		file.delete();
@@ -209,6 +195,84 @@ public final class Player implements Serializable {
 		ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
 		oos.writeObject(Start.joueur);
 		oos.close();
+	}
+	
+	public int[] getSave() throws UnsupportedEncodingException{
+		Vector<Integer> vecToReturn = new Vector<Integer>();
+		int i = 0;
+		vecToReturn.add(0xAA);
+		for(byte bte : name.getBytes("UTF-8")){
+			vecToReturn.add((int)bte);
+			i++;
+		}
+		vecToReturn.add(0xFF);
+		i++;
+		vecToReturn.add(dressID);
+		vecToReturn.add(0xAA);
+		for(Pokemon pkmn : equipe.getEquipe()){
+			for(int ite : pkmn.toSave()){
+				vecToReturn.add(ite);
+			}
+			vecToReturn.add(0xAA);
+		}
+		vecToReturn.add(pc.size());
+		vecToReturn.add(0xAA);
+		if(pc.size() > 0){
+			for(Pokemon pkmn : pc){
+				for(int ite : pkmn.toSave()){
+					vecToReturn.add(ite);
+				}
+				vecToReturn.add(0xAA);
+			}
+		}
+		
+		for(int ite : bag){
+			vecToReturn.add(ite);
+			vecToReturn.add(0xFF);
+		}
+		Integer[] toReturn = null;
+		toReturn = vecToReturn.toArray(toReturn);
+		int[] realToReturn = new int[toReturn.length];
+		for(int j = 0 ; j < toReturn.length; j++) {
+			realToReturn[j] = toReturn[j].intValue();
+		}
+		
+		return realToReturn;
+		
+		
+		
+	}
+	
+	private Player(String name, int dressID){
+		this.name = name;
+		this.dressID = dressID;
+		this.equipe = new Equipe(this.name);
+	}
+	
+	public static Player load(String[] classes) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
+		String[] infos = classes[0].split(new String(new byte[]{(byte)0xFF}));
+		Player toReturn = new Player(infos[0], (int) infos[1].charAt(0));
+		String[][] equipe = new String[6][];
+		int i = 0;
+		for(i = 0 ; i < 7; i++) {
+			equipe[i] = classes[i + 1].split(new String(new byte[] {(byte)0xAA}));
+			toReturn.addPokeToEquipe(Pokemon.create(equipe[i]));
+		}
+		String[][] pc = new String[classes[8].charAt(0)][];
+		for(i = 9; i < classes[8].charAt(0);i++) {
+			pc[i - 9] = classes[i].split(new String(new byte[] {(byte)0xAA}));
+			toReturn.addPokemonToPC(Pokemon.create(pc[i]));
+		}
+		//La, i est censé etre a 9 + le nombre de poke dans le pc
+		String[] items = classes[i + 1].split(new String(new byte[] {(byte)0xFF}));
+		int[] rItems = new int[items.length];
+		for(i = 0; i < items.length;i++) {//Un tour par item
+			for(int j = 0; i < rItems[i];j++) {//Un tour par nombre de cet item
+				toReturn.addItem(i);
+			}
+		}
+		return toReturn;
+		
 	}
 	
 	
