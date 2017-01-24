@@ -70,4 +70,9 @@ public class Save {
 			bos.write(inte);
 		}
 	}
+
+	public static void corrompue() {
+		// TODO Auto-generated method stub
+		
+	}
 }
