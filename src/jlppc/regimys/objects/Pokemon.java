@@ -1,6 +1,7 @@
 package jlppc.regimys.objects;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.Vector;
 
@@ -272,7 +273,7 @@ public class Pokemon extends RegimysObject implements Serializable{
 		this.level = level;
 		if(attaques != null){
 			this.attaques = Arrays.copyOf(attaques, attaques.length);
-		}else{
+		}else{//Choix des attaques si non spécifiées.
 			this.attaques = new Attaque[4];
 			Vector<Class<Attaque>> atkPssbles = new Vector<>();
 			for(HashArray atk : espece.getAtksByLevels()){
@@ -291,6 +292,8 @@ public class Pokemon extends RegimysObject implements Serializable{
 					}
 					i++;
 				}
+			}else {
+				//TODO!
 			}
 		}
 		
@@ -1976,6 +1979,126 @@ return true;
 				+ ", toNextLevel=" + toNextLevel + ", expBoost=" + expBoost + ", confus=" + confus + ", peur=" + peur
 				+ ", amour=" + amour + ", vampigraine=" + vampigraine + ", malediction=" + malediction + ", held="
 				+ held + "]";
+	}
+	
+	public int[] toSave() throws UnsupportedEncodingException{
+		Vector<Integer> toReturn = new Vector<Integer>();
+		for(byte bte : surnom.getBytes("UTF-8")){
+			toReturn.add((int)bte);
+		}
+		toReturn.add(0xFF);
+		toReturn.add(atkIV);
+		toReturn.add(0xFF);
+		toReturn.add(defIV);
+		toReturn.add(0xFF);
+		toReturn.add(atkSpeIV);
+		toReturn.add(0xFF);
+		toReturn.add(defSpeIV);
+		toReturn.add(0xFF);
+		toReturn.add(vitIV);
+		toReturn.add(0xFF);
+		toReturn.add(pvIV);
+		toReturn.add(0xFF);
+		toReturn.add(atkEV);
+		toReturn.add(0xFF);
+		toReturn.add(defEV);
+		toReturn.add(0xFF);
+		toReturn.add(atkSpeEV);
+		toReturn.add(0xFF);
+		toReturn.add(defSpeEV);
+		toReturn.add(0xFF);
+		toReturn.add(vitEV);
+		toReturn.add(0xFF);
+		toReturn.add(pvEV);
+		toReturn.add(0xFF);
+		toReturn.add(level);
+		toReturn.add(0xFF);
+		for(byte bte : caractere.name().getBytes("UTF-8")){
+			toReturn.add((int)bte);
+		}
+		toReturn.add(0xFF);
+		for(Attaque atk : attaques){
+			for(int ite : atk.toSave()){//TODO
+				toReturn.add((int)ite);
+			}
+			toReturn.add(0xFF);
+		}
+		toReturn.add(this.espece.getNumeroPokedex());
+		toReturn.add(0xFF);
+		toReturn.add(PV);
+		toReturn.add(0xFF);
+		for(byte bte : status.name().getBytes("UTF-8")){
+			toReturn.add((int)bte);
+		}
+		toReturn.add(0xFF);
+		//Peut etre ajout du talent?
+		for(byte bte : type1.name().getBytes("UTF-8")){
+			toReturn.add((int)bte);
+		}
+		toReturn.add(0xFF);
+		for(byte bte : type2.name().getBytes("UTF-8")){
+			toReturn.add((int)bte);
+		}
+		toReturn.add(0xFF);
+		toReturn.add(toNextLevel);
+		toReturn.add(0xFF);
+		toReturn.add((int)(expBoost * 10));//x10 pour permettre de le stocker en int. Sera divisé par 10 lors du chargement.
+		toReturn.add(0xFF);
+		toReturn.add(held.getID());//TODO, methode n'existe pas.
+		toReturn.add(0xFF);
+		toReturn.add(tauxCapture);
+		toReturn.add(0xFF);
+		toReturn.add(exp);
+		
+		Integer[] tabToReturn = null;
+		tabToReturn = toReturn.toArray(tabToReturn);
+		int[] realToReturn = new int[tabToReturn.length];
+		for(int j = 0 ; j < tabToReturn.length; j++) {
+			realToReturn[j] = tabToReturn[j].intValue();
+		}
+		
+		return realToReturn;
+		
+		
+	}
+	
+	private Pokemon(String surnom, int[] statsIV, int[] statsEV, int level, Caractere caractere, Attaque[] attaques, Espece espece, int PV, Status status, Type[] types, int toNextLevel, int expBoost, Item held, int tauxCapture, int exp) {
+		this.surnom = surnom;
+		atkIV = statsIV[0];
+		defIV = statsIV[1];
+		atkSpeIV = statsIV[2];
+		defSpeIV = statsIV[3];
+		vitIV = statsIV[4];
+		pvIV = statsIV[5];
+		atkEV = statsEV[6];
+		defEV = statsEV[7];
+		atkSpeEV = statsEV[8];
+		defSpeEV = statsEV[9];
+		vitEV = statsEV[10];
+		pvEV = statsEV[11];
+		this.exp = exp;
+		this.level = level;
+		this.caractere = caractere;
+		this.attaques = attaques;
+		this.espece = espece;
+		this.PV = PV;
+		this.status = status;
+		this.type1 = types[0];
+		this.type2 = types[1];
+		this.toNextLevel = toNextLevel;
+		this.expBoost = expBoost;
+		this.held = held;
+		this.tauxCapture = tauxCapture;
+		calcStats(espece);
+		bonusCara = caractere.bonus;
+		malusCara = caractere.malus;
+		
+		
+	}
+	
+	public static Pokemon create(String[] strings) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+		Pokemon pkmn = new Pokemon(strings[0], new int[] {(int)strings[1].charAt(0),(int)strings[2].charAt(0),(int)strings[3].charAt(0),(int)strings[4].charAt(0),(int)strings[5].charAt(0),(int)strings[6].charAt(0)}, new int[] {(int)strings[7].charAt(0),(int)strings[8].charAt(0),(int)strings[9].charAt(0),(int)strings[10].charAt(0),(int)strings[11].charAt(0),(int)strings[12].charAt(0),(int)strings[13].charAt(0)}, (int)strings[14].charAt(0), Caractere.valueOf(strings[15]), new Attaque[] {Attaque.read(strings[16]),Attaque.read(strings[17]),Attaque.read(strings[18]),Attaque.read(strings[19])}, Initializer.listePoke[(int) strings[20].charAt(0)], (int) strings[21].charAt(0), Status.valueOf(strings[22]), new Type[] {Type.valueOf(strings[23]), Type.valueOf(strings[24])}, (int) strings[25].charAt(0), (int) strings[26].charAt(0), Item.getItem((int) strings[27].charAt(0)), (int) strings[28].charAt(0), (int) strings[29].charAt(0));
+		return pkmn;
 	}
 	
 

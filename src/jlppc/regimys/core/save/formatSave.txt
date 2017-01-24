@@ -1,0 +1,7 @@
+Voici le format de fichier de sauvegarde :
+Code hexadecimal: 0xFA 0xCA 0xAF 0xAC 0xE0
+Séparateurs: Données : 0x88 | Classes : 0xAA | Variables : 0xFF
+Définition classe joueur + Sép. Définitions classes entre 0xAA
+Définition equipe du joueur
+Définition sac du joueur
+Définition autres
