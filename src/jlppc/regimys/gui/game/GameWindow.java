@@ -11,7 +11,9 @@ public final class GameWindow extends JInternalFrame {
 	
 	public GameWindow() {
 		super();
-		Log.writeT(Entry.INFO, "Création de la fenetre de jeu.");
+		Log.writeT(Entry.INFO, "CrÃ©ation de la fenetre de jeu.");
+		BasicInternalFrameUI bi = this.getUI();
+		bi.setNorthPane(null);
 	}
 	
 	public void setPanel(JPanel panel){
