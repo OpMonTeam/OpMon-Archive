@@ -15,11 +15,15 @@ public final class Plan extends JPanel{
 			for(j = 0; j < 16; j++){
 				for(k = 0; k < 16; k++){
 					add(lbls[i][j][k]);
-					lbls[i][j][k].setBounds(k*16, j*16, 16, 16);
+					lbls[i][j][k].setBounds(j*16, k*16, 16, 16);
 					
 				}
 			}
 		}
+	}
+	
+	public JLabel getLabel(int couche, int x, int y){
+		return lbls[couche][x][y];
 	}
 	
 	
