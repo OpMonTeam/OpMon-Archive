@@ -4,7 +4,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public final class Plan extends JPanel{
-	
+	/**
+	* Liste des couches
+	* 1 : Premier plan
+	* 2 : Plan des evenements
+	* 3 : Plan des personnages
+	* 4 : Deuxieme plan (Impassable)
+	* 5 : Troisième plan (Passable en dessous)
+	*/
 	JLabel lbls[][][];
 	
 	public Plan(JLabel[][][] plan) {
