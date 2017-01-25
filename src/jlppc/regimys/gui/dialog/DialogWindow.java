@@ -9,6 +9,8 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
+
 import jlppc.regimys.core.GameState;
 import jlppc.utils.Fonts;
 import jlppc.utils.Log;
@@ -35,7 +37,7 @@ public final class DialogWindow extends JInternalFrame {
 		JLabel background = new JLabel("");
 		background.setBounds(0, 0, 496, 120);
 		defaultPanel.add(background);
-		BasicInternalFrameUI bi = this.getUI();
+		BasicInternalFrameUI bi = (BasicInternalFrameUI) this.getUI();
 		bi.setNorthPane(null);
 		
 		
