@@ -5,7 +5,7 @@ import javax.swing.JPanel;
 
 public final class Plan extends JPanel{
 	/**
-	* Liste des couches
+	* Liste des COUCHES
 	* 1 : Premier plan
 	* 2 : Plan des evenements
 	* 3 : Plan des personnages
