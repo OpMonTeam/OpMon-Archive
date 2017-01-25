@@ -21,7 +21,7 @@ public final class DialogWindow extends JInternalFrame {
 	static JPanel defaultPanel;
 	public DialogWindow() {
 		super();
-		Log.writeT(Entry.INFO, "Cr�ation de la fenetre de dialogue.");
+		Log.writeT(Entry.INFO, "Création de la fenetre de dialogue.");
 		defaultPanel = new JPanel();
 		defaultPanel.setLayout(null);
 		this.setContentPane(defaultPanel);
@@ -35,6 +35,8 @@ public final class DialogWindow extends JInternalFrame {
 		JLabel background = new JLabel("");
 		background.setBounds(0, 0, 496, 120);
 		defaultPanel.add(background);
+		BasicInternalFrameUI bi = this.getUI();
+		bi.setNorthPane(null);
 		
 		
 	}
