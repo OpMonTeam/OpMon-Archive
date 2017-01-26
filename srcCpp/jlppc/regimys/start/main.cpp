@@ -7,22 +7,8 @@
 
 using namespace std;
 
-namespace Main{
-    bool connected = false;
-    string trainers[] = {"Brice", "Evan", "Mael", "Jlppc", "Red", "Blue", "Nikolaϯ", "N", "Belladonis", "Aristote", "Giovanni", "Flora", "Silver", "Jules Cesar", "Gwendal", "Brahim"};
-    float version = 0.07;
-    int preNbre = 0;
-    bool pre = (preNbre != 0);
-    int sousVers = 0;
-    bool sousVersIs = (sousVers != 0);
-    string versionS = "Alpha " + version + (sousVersIs ? "." + sousVers : "") + (pre ? (" pre " + preNbre) : "") + commits;
-    Player joueur;
-    File playerSave;
-    File params;
-    ofstream log;
-    ofstream errLog;
 
-    int main(){
+    Main::main(){
         File errLogF = File("errLog.txt");
         File logF = File("log.txt");
         log = *logF.getOut();
@@ -36,7 +22,7 @@ namespace Main{
         return quit();
     }
 
-    void gererErreur(string errorName, bool fatal){
+    Main::gererErreur(string errorName, bool fatal){
         errLog << "Erreur : " << errorName << endl;
         if(fatal){
             errLog << "Erreur fatale." << endl;
@@ -46,13 +32,12 @@ namespace Main{
         }
     }
 
-    int quit(){
+    Main::quit(){
         log.close();
         errLog.close();
         exit(0);
         return 0;
     }
-}
 
 int main()
 {
