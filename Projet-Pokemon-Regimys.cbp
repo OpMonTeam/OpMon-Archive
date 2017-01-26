@@ -23,7 +23,14 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="main.cpp" />
+		<Unit filename="srcCpp/jlppc/regimys/objects/Espece.cpp" />
+		<Unit filename="srcCpp/jlppc/regimys/objects/Espece.hpp" />
+		<Unit filename="srcCpp/jlppc/regimys/start/main.cpp" />
+		<Unit filename="srcCpp/jlppc/regimys/start/main.hpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="srcCpp/jlppc/utils/File.cpp" />
+		<Unit filename="srcCpp/jlppc/utils/File.hpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
