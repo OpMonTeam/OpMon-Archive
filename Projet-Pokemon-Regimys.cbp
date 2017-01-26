@@ -13,6 +13,8 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="jlppc/regimys/objects/" />
+					<Add directory="srcCpp/jlppc/utils" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -25,12 +27,14 @@
 		</Compiler>
 		<Unit filename="srcCpp/jlppc/regimys/objects/Espece.cpp" />
 		<Unit filename="srcCpp/jlppc/regimys/objects/Espece.hpp" />
+		<Unit filename="srcCpp/jlppc/regimys/objects/Pokemon.cpp" />
+		<Unit filename="srcCpp/jlppc/regimys/objects/Pokemon.hpp" />
 		<Unit filename="srcCpp/jlppc/regimys/start/main.cpp" />
-		<Unit filename="srcCpp/jlppc/regimys/start/main.hpp">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
+		<Unit filename="srcCpp/jlppc/regimys/start/main.hpp" />
 		<Unit filename="srcCpp/jlppc/utils/File.cpp" />
 		<Unit filename="srcCpp/jlppc/utils/File.hpp" />
+		<Unit filename="srcCpp/jlppc/utils/Utils.cpp" />
+		<Unit filename="srcCpp/jlppc/utils/Utils.hpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
