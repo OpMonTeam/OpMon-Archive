@@ -325,10 +325,10 @@ public class Initializer {
 		 atkPokeLvl[26] = new HashArray[]{new HashArray(0, Eclair.class), new HashArray(0, MiniQueue.class), new HashArray(0, ViveAttaque.class), new HashArray(0, Tonnerre.class);
 	         atkPokeLvl[27] = new HashArray[]{new HashArray(0, Griffe.class), new HashArray(0, BoulArmure.class), new HashArray(3, JetDeSable.class), new HashArray(5, DardVenin.class), new HashArray(7, Roulade.class), new HashArray(9, TourRapide.class), new HashArray(11, Taillade.class), new HashArray(14, Ampleur.class), new HashArray(17, Meteores.class), new HashArray(20, ComboGriffe.class), new HashArray(23, TourbiSable.class), new HashArray(26, Tranche.class), new HashArray(30, Tunnel.class), new HashArray(34, Gyroballe.class), new HashArray(38, DanseLames.class), new HashArray(42, TempeteDeSable.class), new HashArray(46, Seisme.class);
 		 atkPokeLvl[28] = new HashArray[]{new HashArray(0, Griffe.class), new HashArray(0, BoulArmure.class), new HashArray(3, JetDeSable.class), new HashArray(5, DardVenin.class), new HashArray(7, Roulade.class), new HashArray(9, TourRapide.class), new HashArray(11, Taillade.class), new HashArray(14, Ampleur.class), new HashArray(17, Meteores.class), new HashArray(20, ComboGriffe.class), new HashArray(22,EclateGriffe), new HashArray(24, TourbiSable.class), new HashArray(28, Tranche.class), new HashArray(33, Tunnel.class), new HashArray(38, Gyroballe.class), new HashArray(43, DanseLames.class), new HashArray(48, TempeteDeSable.class), new HashArray(53, Seisme.class);
-		 atkPokeLvl[29] = new HashArray[]{new HashArray(0, Rugissement.class), new HashArray(0 Griffe.class), new HashArray(7, MiniQueue.class), new HashArray(9, DoublePied.class), new HashArray(13, DardVenin.class), new HashArray(19, ComboGriffe), new HashArray(21, Morsure.class), new HashArray(25, CoupDMain.class), new HashArray(31, PicsToxik.class), new HashArray(33, Flatterie.class), new HashArray(37, Machouille.class), new HashArray(43, seduction.class), new HashArray(45, CrochetVenin.class);
-		 //atkPokeLvl[30] = new HashArray[]{new HashArray(0,
-		 //atkPokeLvl[31] = new HashArray[]{new HashArray(0,
-	         //atkPokeLvl[32] = new HashArray[]{new HashArray(0,
+		 atkPokeLvl[29] = new HashArray[]{new HashArray(0, Rugissement.class), new HashArray(0, Griffe.class), new HashArray(7, MiniQueue.class), new HashArray(9, DoublePied.class), new HashArray(13, DardVenin.class), new HashArray(19, ComboGriffe.class), new HashArray(21, Morsure.class), new HashArray(25, CoupDMain.class), new HashArray(31, PicsToxik.class), new HashArray(33, Flatterie.class), new HashArray(37, Machouille.class), new HashArray(43, seduction.class), new HashArray(45, CrochetVenin.class);
+		 atkPokeLvl[30] = new HashArray[]{new HashArray(0, Rugissement.class), new HashArray(0, Griffe.class), new HashArray(7, MimiQueue.class), new HashArray(9, Doublepied.class), new HashArray(13, DardVenin.class), new HashArray(20, ComboGriffe.class), new HashArray(23, Morsure.class), new HashArray(28, CoupDMain.class), new HashArray(35, PicsToxik.class), new HashArray(38, Flatterie.class), new HashArray(43, Machouille.class), new HashArray(50, seduction.class), new HashArray(58, CrochetVenin.class);
+		 atkPokeLvl[31] = new HashArray[]{new HashArray(0, Griffe.class), new HashArray(0, MimiQueue.class), new HashArray(0, DoublePied.class), new HashArray(0, DardVenin.class), new HashArray(23, Attrition.class), new HashArray(35, Plaquage.class), new HashArray(43, Telluriforce.class), new HashArray(58, Surpuissance.class);
+	         atkPokeLvl[32] = new HashArray[]{new HashArray(0, GrozYeux.class), new HashArray(0, Picpic.class), new HashArray(7, Puissance.class), new HashArray(9, DoublePied.class), new HashArray(13, DardVenin.class), new HashArray(19, Furie.class), new HashArray(21, KoudKorne.class), new HashArray(25, CoupDMain.class), new HashArray(31, PicsToxik.class), new HashArray(33, Flatterie.class), new HashArray(37, DirectToxik.class), new HashArray(43, Seduction.class), new HashArray(45, EmpalKorne.class);
 		 //atkPokeLvl[33] = new HashArray[]{new HashArray(0,
 		 //atkPokeLvl[34] = new HashArray[]{new HashArray(0,
 		 //atkPokeLvl[35] = new HashArray[]{new HashArray(0,
@@ -341,7 +341,7 @@ public class Initializer {
 	         //atkPokeLvl[42] = new HashArray[]{new HashArray(0,
 		 //atkPokeLvl[43] = new HashArray[]{new HashArray(0,
 		 //atkPokeLvl[44] = new HashArray[]{new HashArray(0,
-		 //atkPokeLvl[45] = new HashArray[]{new HashArray(0,
+		 
 								
 								
 								
