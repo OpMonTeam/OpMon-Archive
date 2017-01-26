@@ -8,7 +8,7 @@
 using namespace std;
 
 
-    Main::main(){
+    int Main::main(){
         File errLogF = File("errLog.txt");
         File logF = File("log.txt");
         log = *logF.getOut();
@@ -22,7 +22,7 @@ using namespace std;
         return quit();
     }
 
-    Main::gererErreur(string errorName, bool fatal){
+    void Main::gererErreur(string errorName, bool fatal){
         errLog << "Erreur : " << errorName << endl;
         if(fatal){
             errLog << "Erreur fatale." << endl;
@@ -32,7 +32,7 @@ using namespace std;
         }
     }
 
-    Main::quit(){
+    int Main::quit(){
         log.close();
         errLog.close();
         exit(0);

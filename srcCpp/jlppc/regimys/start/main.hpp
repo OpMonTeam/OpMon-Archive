@@ -1,6 +1,10 @@
 #ifndef MAIN_HPP
 #define MAIN_HPP
 
+#include <iostream>
+
+using namespace std;
+int main();
 namespace Main{
     int main();
     bool connected = false;

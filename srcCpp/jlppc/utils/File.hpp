@@ -9,9 +9,9 @@ using namespace std;
 class File
 {
     public:
-        File();
+        File(string path);
         ifstream* getIn();
-        ifstream* getOut();
+        ofstream* getOut();
 
     protected:
 
