@@ -12,11 +12,10 @@ using namespace std;
 class Espece
 {
     public:
-        Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, string name, Type type1, Type type2,
-			int maniereEvolution, int niveauEvolution, Evolution evolType, HashArray attacksByLevels[],
-			CT ctCombatibles[], Stats EVGiven[], float taille, float poids, string entreePokedex, int expGiven,
-int expMax, int tauxDeCapture);
-
+        Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, string name, Type type1, Type type2,int maniereEvolution, int niveauEvolution, Evolution evolType, HashArray attacksByLevels[],CT ctCombatibles[], Stats EVGiven[], float taille, float poids, string entreePokedex, int expGiven,int expMax, int tauxDeCapture);
+        void checkEvol();
+        void checkAtkLvls();
+        static int pokedexNumberInit = 0;
     protected:
 
     private:
