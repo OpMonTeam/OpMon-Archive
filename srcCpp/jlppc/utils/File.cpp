@@ -4,10 +4,10 @@ File::File(string path){
     this->path = path;
 }
 
-File::getIn(){
+ifstream* File::getIn(){
     return &ifstream(path);
 }
 
-File::getOut(){
+ofstream* File::getOut(){
     return &ofstream(path);
 }

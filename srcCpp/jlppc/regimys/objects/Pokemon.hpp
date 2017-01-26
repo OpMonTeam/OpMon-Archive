@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "srcCpp/jlppc/utils/Utils.hpp"
+using namespace std;
 
 class Pokemon
 {
@@ -13,12 +14,12 @@ class Pokemon
 
     private:
         string surnom;
-        int atkIV = Utils::rand(32);
-        int defIV = Utils::rand(32);
-        int atkSpeIV = Utils::rand(32);
-        int defSpeIV = Utils::rand(32);
-        int vitIV = Utils::rand(32);
-        int pvIV = Utils::rand(32);
+        int atkIV = Utils::randU(32);
+        int defIV = Utils::randU(32);
+        int atkSpeIV = Utils::randU(32);
+        int defSpeIV = Utils::randU(32);
+        int vitIV = Utils::randU(32);
+        int pvIV = Utils::randU(32);
 };
 
 #endif // POKEMON_HPP

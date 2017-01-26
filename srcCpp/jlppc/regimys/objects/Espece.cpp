@@ -5,7 +5,7 @@ Espece::Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, string
 			Main::gererErreur("Stats < 0 Espece<Initializer>", true);
 		}
 		if(expGiven < 0){
-			Main::gererErreur("expGiven < 0 Espece<Initializer>");
+			Main::gererErreur("expGiven < 0 Espece<Initializer>", true);
 		}
 		this->tauxDeCapture = tauxDeCapture;
 		this->baseAtk = atk;
@@ -13,14 +13,13 @@ Espece::Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, string
 		this->baseAtkSpe = atkSpe;
 		this->baseDefSpe = defSpe;
 		this->baseVit = vit;
-		this->surnom = name;
+		this->nom = name;
 		this->basePV = pv;
 		this->type1 = type1;
 		this->type2 = type2;
-		this->maniereEvolution = maniereEvolution;
 		this->niveauEvolution = niveauEvolution;
 		this->evolType = evolType;
-		this->evolution = this.evolType.getEvolution();
+		this->evolution = this->evolType.getEvolution();
 		this->atksByLevels = attacksByLevels;
 		this->EVgiven = EVGiven;
 		this->poids = poids;
@@ -54,12 +53,12 @@ Espece::Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, string
         }
 }
 
-Espece::checkEvol(){
+void Espece::checkEvol(){
     evolType.checkEvo();
     this->evolution = evolType.getEvolution();
 }
 
-Espece::checkAtkLvls(){
+void Espece::checkAtkLvls(){
     this->atksByLevels = Initializer.atkPokeLvl[pokedexNumberInit];
     this->numeroPokedex = pokedexNumberInit;
     pokedexNumberInit++;
