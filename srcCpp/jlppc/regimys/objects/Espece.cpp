@@ -53,3 +53,14 @@ Espece::Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, string
 			courbe = CourbeExp.MOYENNE;
         }
 }
+
+Espece::checkEvol(){
+    evolType.checkEvo();
+    this->evolution = evolType.getEvolution();
+}
+
+Espece::checkAtkLvls(){
+    this->atksByLevels = Initializer.atkPokeLvl[pokedexNumberInit];
+    this->numeroPokedex = pokedexNumberInit;
+    pokedexNumberInit++;
+}
