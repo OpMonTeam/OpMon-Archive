@@ -31,6 +31,8 @@
 		<Unit filename="srcCpp/jlppc/regimys/objects/Pokemon.hpp" />
 		<Unit filename="srcCpp/jlppc/regimys/start/main.cpp" />
 		<Unit filename="srcCpp/jlppc/regimys/start/main.hpp" />
+		<Unit filename="srcCpp/jlppc/utils/Comparaisons.cpp" />
+		<Unit filename="srcCpp/jlppc/utils/Comparaisons.hpp" />
 		<Unit filename="srcCpp/jlppc/utils/File.cpp" />
 		<Unit filename="srcCpp/jlppc/utils/File.hpp" />
 		<Unit filename="srcCpp/jlppc/utils/Utils.cpp" />
