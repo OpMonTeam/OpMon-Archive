@@ -36,6 +36,7 @@ class Espece : public RegimysObject
         int getExp(){return expGiven;}
         Evolution getEvolType(){return evolType;}
         void getEv(Stats *toFill[]){*toFill = EVgiven;}
+        Espece getEvolution(){return evolution;}
     protected:
 
     private:

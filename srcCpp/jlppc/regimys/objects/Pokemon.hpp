@@ -30,6 +30,23 @@ class Pokemon : public RegimysObject
         bool isHoldingItem(){return (held == NULL);}
         int win(Pokemon vaincu);
         static Class<Pokemon> *classe = new Class("Pokemon", 13644895);
+        void calcStats();
+        bool itemUsed(Item used);
+        Item hold(Item item);
+        void traded();
+        void toolEvTrade();
+        void evolve();
+        void setStats(int stats[], Attaque attacks[], Espece espece, Type types[]);
+        void attacked(int pvPerdus);
+        bool changeATK(int power);
+        bool changePRE(int power);
+        bool changeESQ(int power);
+        bool changeDEF(int power);
+        bool changeATKSPE(int power);
+        bool changeDEFSPE(int power);
+        bool changeVIT(int power);
+        bool setStatus(Status status);
+        void heal(int PV);
 
     protected:
         void getEvs(Pokemon vaincu);
