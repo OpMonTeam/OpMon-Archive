@@ -39,6 +39,7 @@ using namespace std;
         delete(Espece::classe);
         delete(File::classe);
         delete(RegimysObject::classe);
+        delete(Evolution::classe);
         exit(returne);
         return returne;
     }

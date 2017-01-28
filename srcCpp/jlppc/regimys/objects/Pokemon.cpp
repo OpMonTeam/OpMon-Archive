@@ -218,8 +218,8 @@ void Pokemon::levelUp() {
 		break;
 	}
 	calcStats();
-	if (espece.getEvolType().checkEvolve(this)) {
-		if (*(espece.getEvolType().getClass()) == *(E_Trade::classe)) {
+	if (espece.getEvolType()->checkEvolve(*this)) {
+		if (*(espece.getEvolType()->getClass()) == *(E_Trade::classe)) {
 			evolve();
 		}
 	}
@@ -318,7 +318,7 @@ void Pokemon::calcStats(){
 }
 
 bool Pokemon::itemUsed(Item used){
-	if(espece.getEvolType().getClass() == E_Item::classe){
+	if(espece.getEvolType()->getClass() == E_Item::classe){
 		E_Item evol = espece.getEvolType();
 		if(evol.itemEvolve(used)){
 			evolve();
@@ -379,7 +379,7 @@ void Pokemon::traded(){
 }
 
 void Pokemon::toolEvTrade(){
-	if(espece.getEvolType().getClass() == E_Trade){
+	if(espece.getEvolType()->getClass() == E_Trade){
 		evolve();
 	}
 }

@@ -34,7 +34,7 @@ class Espece : public RegimysObject
         Type getType2(){return type2;}
         CourbeExp getCourbe(){return courbe;}
         int getExp(){return expGiven;}
-        Evolution getEvolType(){return evolType;}
+        Evolution* getEvolType(){return evolType;}
         void getEv(Stats *toFill[]){*toFill = EVgiven;}
         Espece getEvolution(){return evolution;}
     protected:
@@ -44,7 +44,7 @@ class Espece : public RegimysObject
         int numeroPokedex;
         Espece evolution;
         int niveauEvolution;
-        Evolution evolType;
+        Evolution *evolType;
         Type type1;
         Type type2;
         HashArray atksByLevels[];
