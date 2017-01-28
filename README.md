@@ -6,7 +6,7 @@ Bienvenue sur le projet de fan-game pokemon Regimys! Plus d'infos sur le wiki ou
 <a href="https://www.youtube.com/channel/UC8qa9Z52pOHhZ1XjIoTa2kQ">Chaine YouTube du Projet Regimys</a><br/>
 <a href="http://regimys.tk">Site web du jeu</a><br/>
 <a href="https://github.com/jlppc/Site-Pokemon-Regimys">Dépot du site web du jeu</a><br/><br/>
-<br/>Version du jeu : Alpha 0.07<br/><br/>
+<br/>Version du jeu : Alpha 0.07.1<br/><br/>
 Téléchargement : <a href="https://github.com/jlppc/Projet-Pokemon-Regimys/releases/download/alpha-v0.07/Regimys.zip" >Regimys.zip</a><br/>
 Prochaines versions :<ul>
 <li>Alpha 0.08 : Quand le jeu sera transposé en C++, les mécaniques mises au point seront mises en G.U.I et quand les pokémons pourront apprendre des attaques par niveau</li>
