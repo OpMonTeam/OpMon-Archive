@@ -447,6 +447,12 @@ namespace TableTypes{
 
 }
 
+enum Status{
+	BRULURE, PARALYSIE, SOMMEIL, GEL, POISON, AUCUN
+};
 
+enum Stats{
+	ATK, DEF, ATKSPE, DEFSPE, VIT, PV, RIEN
+};
 
 #endif /* ENUMS_HPP */

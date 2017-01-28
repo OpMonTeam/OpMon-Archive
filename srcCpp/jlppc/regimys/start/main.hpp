@@ -21,7 +21,7 @@ namespace Main{
     ofstream log;
     ofstream errLog;
     void gererErreur(string errorName, bool fatal);
-    int quit();
+    int quit(int retourne);
 }
 
 #endif // MAIN_HPP

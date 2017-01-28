@@ -4,15 +4,35 @@
 #include <iostream>
 #include "srcCpp/jlppc/utils/Utils.hpp"
 #include "Espece.hpp"
+#include "../enums/Enums.hpp"
+#include "../start/main.hpp"
+#include "RegimysObject.hpp"
 #include <cmath>
 using namespace std;
 
-class Pokemon
+namespace CalcCourbes{
+	float p(int x);
+	int erratique(int n);
+	int fluctuante(int n);
+	int lente(int n);
+	int moyenne(int n);
+	int parabolique(int n);
+	int rapide(int n);
+};
+
+class Pokemon : public RegimysObject
 {
     public:
-        Pokemon();
+        Pokemon(string surnom, Espece espece, int level, Attaque attaques[], Caractere caractere);
         bool captured(I_Pokeball pokeball);
+        void setStat(string stat, int newStat);
+        void levelUp();
+        bool isHoldingItem(){return (held == NULL);}
+        int win(Pokemon vaincu);
+        static Class<Pokemon> *classe = new Class("Pokemon", 13644895);
 
+    protected:
+        void getEvs(Pokemon vaincu);
 
     private:
     string surnom;
@@ -78,5 +98,7 @@ class Pokemon
 
     int tauxCapture;
 };
+
+
 
 #endif // POKEMON_HPP
