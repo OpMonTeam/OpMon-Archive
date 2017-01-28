@@ -47,6 +47,7 @@ class Pokemon : public RegimysObject
         bool changeVIT(int power);
         bool setStatus(Status status);
         void heal(int PV);
+        bool getLevel(){return level;}
 
     protected:
         void getEvs(Pokemon vaincu);
