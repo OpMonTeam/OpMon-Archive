@@ -1,19 +1,14 @@
-/*
- * RegimysObject.hpp
- *
- *  Created on: 28 janv. 2017
- *      Author: Jlppc (session)
- */
 
-#ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_REGIMYSOBJECT_HPP_
-#define SRCCPP_JLPPC_REGIMYS_OBJECTS_REGIMYSOBJECT_HPP_
+#ifndef REGIMYSOBJECT_HPP
+#define REGIMYSOBJECT_HPP
 
 class RegimysObject {
 public:
 	RegimysObject();
 	virtual ~RegimysObject();
 	virtual Class* getClass(){return classe;};
-	virtual static Class<RegimysObject> *classe = new Class<RegimysObject>("RegimysObject", 0000001);
+	Class<RegimysObject> *classe = new Class<RegimysObject>("RegimysObject", 0000001);
+	static Class* getClass(){return classe;};
 };
 
-#endif /* SRCCPP_JLPPC_REGIMYS_OBJECTS_REGIMYSOBJECT_HPP_ */
+#endif /* REGIMYSOBJECT_HPP */
