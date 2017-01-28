@@ -12,6 +12,7 @@ class File
         File(string path);
         ifstream* getIn();
         ofstream* getOut();
+        static Class<File> *classe = new Class<File>("File", 7624735);
 
     protected:
 

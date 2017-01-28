@@ -28,15 +28,19 @@ using namespace std;
             errLog << "Erreur fatale." << endl;
             log.close();
             errLog.close();
-            exit(1);
+            quit(1);
         }
     }
 
-    int Main::quit(){
+    int Main::quit(int returne){
         log.close();
         errLog.close();
-        exit(0);
-        return 0;
+        delete(Pokemon::classe);
+        delete(Espece::classe);
+        delete(File::classe);
+        delete(RegimysObject::classe);
+        exit(returne);
+        return returne;
     }
 
 int main()
