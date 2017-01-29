@@ -23,6 +23,7 @@ namespace CalcCourbes{
 class Pokemon : public RegimysObject
 {
     public:
+		virtual ~Pokemon();
         Pokemon(string surnom, Espece espece, int level, Attaque attaques[], Caractere caractere);
         bool captured(I_Pokeball pokeball);
         void setStat(string stat, int newStat);
@@ -46,8 +47,11 @@ class Pokemon : public RegimysObject
         bool changeDEFSPE(int power);
         bool changeVIT(int power);
         bool setStatus(Status status);
+        int getStatPV(){return statPV;}
+        int getPV(){return PV;}
         void heal(int PV);
         bool getLevel(){return level;}
+        virtual Class* getClass(){return classe;}
 
     protected:
         void getEvs(Pokemon vaincu);
@@ -112,7 +116,7 @@ class Pokemon : public RegimysObject
     bool vampigraine = false;
     bool malediction = false;
 
-    Item held;
+    Item *held;
 
     int tauxCapture;
 };
