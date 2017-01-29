@@ -13,7 +13,7 @@ public:
 	virtual bool checkEvolve(Pokemon toCheck) = 0;
 	Espece getEvolution();
 	void checkEvo();
-	static Class<Evolution> *classe = new Class<Evolution>("Evolution", 4698135);
+
 protected:
 	Espece toEvolve;
 	int evo;

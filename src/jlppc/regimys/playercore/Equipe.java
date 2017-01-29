@@ -6,17 +6,17 @@ import jlppc.regimys.objects.Pokemon;
 import jlppc.regimys.objects.Pokemon.Status;
 import jlppc.regimys.objects.RegimysObject;
 /**
- * Définit une équipe de pokémon
+ * Dï¿½finit une ï¿½quipe de pokï¿½mon
  * @author Jlppc
  *
  */
 public final class Equipe extends RegimysObject implements Serializable{
 	/**
-	 * L'équipe de pokémon
+	 * L'ï¿½quipe de pokï¿½mon
 	 */
 	private Pokemon[] equipe = new Pokemon[6];
 	/**
-	 * Le nom du propriétaire de l'equipe
+	 * Le nom du propriï¿½taire de l'equipe
 	 */
 	private String nom;
 	/**
@@ -57,8 +57,8 @@ public final class Equipe extends RegimysObject implements Serializable{
 		}
 	}
 	/**
-	 * Ajoute un pokémon a l'équipe
-	 * @param toAdd - Le pokémon a ajouter
+	 * Ajoute un pokÃ©mon a l'Ã©quipe
+	 * @param toAdd - Le pokï¿½mon a ajouter
 	 * @return false si l'equipe n'a plus de place
 	 */
 	public boolean addPokemon(Pokemon toAdd){
@@ -74,8 +74,8 @@ public final class Equipe extends RegimysObject implements Serializable{
 		
 	}
 	/**
-	 * Supprime un pokémon de l'équipe
-	 * @param number - le numéro du pokémon a supprimer
+	 * Supprime un pokï¿½mon de l'ï¿½quipe
+	 * @param number - le numï¿½ro du pokï¿½mon a supprimer
 	 */
 	public void removePokemon(int number){
 		int i = 0;

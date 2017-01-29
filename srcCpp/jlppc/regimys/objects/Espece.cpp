@@ -1,5 +1,9 @@
 #include "Espece.hpp"
 
+Espece::~Espece(){
+	delete(evolution);
+}
+
 Espece::Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, string name, Type type1, Type type2,int maniereEvolution, int niveauEvolution, Evolution *evolType, HashArray attacksByLevels[],CT ctCombatibles[], Stats EVGiven[], float taille, float poids, string entreePokedex, int expGiven,int expMax, int tauxDeCapture){
     if(atk < 0 || def < 0 || atkSpe < 0 || defSpe < 0 || vit < 0 || pv < 0){
 			Main::gererErreur("Stats < 0 Espece<Initializer>", true);

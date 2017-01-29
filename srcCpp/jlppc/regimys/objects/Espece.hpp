@@ -17,6 +17,7 @@ enum CourbeExp{
 class Espece : public RegimysObject
 {
     public:
+	virtual ~Espece();
         Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, string name, Type type1, Type type2,int maniereEvolution, int niveauEvolution, Evolution evolType, HashArray attacksByLevels[],CT ctCombatibles[], Stats EVGiven[], float taille, float poids, string entreePokedex, int expGiven,int expMax, int tauxDeCapture);
         void checkEvol();
         void checkAtkLvls();
@@ -37,6 +38,7 @@ class Espece : public RegimysObject
         Evolution* getEvolType(){return evolType;}
         void getEv(Stats *toFill[]){*toFill = EVgiven;}
         Espece getEvolution(){return evolution;}
+        virtual Class* getClass(){return classe;}
     protected:
 
     private:

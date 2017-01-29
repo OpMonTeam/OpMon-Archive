@@ -1,5 +1,9 @@
 #include "Pokemon.hpp"
 
+Pokemon::~Pokemon(){
+	delete(held);
+}
+
 float CalcCourbes::p(int x) {
 	switch (x) {
 	case 0:

@@ -13,7 +13,7 @@ class File
         ifstream* getIn();
         ofstream* getOut();
         static Class<File> *classe = new Class<File>("File", 7624735);
-
+        virtual Class* getClass(){return classe;}
     protected:
 
     private:
