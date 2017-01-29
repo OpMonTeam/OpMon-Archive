@@ -8,8 +8,9 @@
 #include "../enums/Enums.hpp"
 using namespace std;
 
-class Equipe {
+class Equipe : public RegimysObject {
 public:
+	static Class<Equipe> *classe = new Class<Equipe>("Equipe", 7324695);
 	Equipe(string nom, Pokemon pokemons[]);
 	string getNom(){return nom;}
 	Pokemon* getEquipe(){return &equipe;}

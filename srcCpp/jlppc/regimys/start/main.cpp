@@ -40,6 +40,8 @@ using namespace std;
         delete(File::classe);
         delete(E_Item::classe);
         delete(E_Level::classe);
+        delete(Equipe::classe);
+        delete(Player::classe);
         exit(returne);
         return returne;
     }

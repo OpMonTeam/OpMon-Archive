@@ -51,6 +51,7 @@ class Pokemon : public RegimysObject
         int getPV(){return PV;}
         void heal(int PV);
         bool getLevel(){return level;}
+        Attaque* getAttaques(){return &attaques;}
         virtual Class* getClass(){return classe;}
 
     protected:
