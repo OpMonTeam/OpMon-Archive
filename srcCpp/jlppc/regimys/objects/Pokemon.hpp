@@ -48,6 +48,7 @@ class Pokemon : public RegimysObject
         bool changeVIT(int power);
         bool setStatus(Status status);
         int getStatPV(){return statPV;}
+        int getStatLove(){return statLove;}
         int getPV(){return PV;}
         void heal(int PV);
         bool getLevel(){return level;}
