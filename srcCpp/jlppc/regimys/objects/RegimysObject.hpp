@@ -6,9 +6,10 @@ class RegimysObject {
 public:
 	RegimysObject();
 	virtual ~RegimysObject();
-	virtual Class* getClass() = 0;
+	virtual Class* getClass(){return classe;};
 
 private:
+	static Class<RegimysObject> classe;
 
 };
 

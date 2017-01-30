@@ -59,36 +59,36 @@ int CalcCourbes::rapide(int n) {
 	return round(0.8f * pow(n, 3));
 }
 Pokemon::Pokemon(string surnom, Espece espece, int level, Attaque attaques[],
-		Caractere caractere) {
+		CaractereClass caractere) {
 	statATK = round(
 			((((2 * espece.getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100)
 					+ 5)
-					* ((caractere.bonus == Stats.ATK) ?
-							1.1 : ((caractere.malus == Stats.ATK) ? 0.9 : 1)));
+					* ((caractere.bonus == Stats::ATK) ?
+							1.1 : ((caractere.malus == Stats::ATK) ? 0.9 : 1)));
 	statDEF = round(
 			((((2 * espece.getBaseDef() + defIV + (defEV / 4)) * level) / 100)
 					+ 5)
-					* ((caractere.bonus == Stats.DEF) ?
-							1.1 : ((caractere.malus == Stats.DEF) ? 0.9 : 1)));
+					* ((caractere.bonus == Stats::DEF) ?
+							1.1 : ((caractere.malus == Stats::DEF) ? 0.9 : 1)));
 	statATKSPE =
 			round(
 					((((2 * espece.getBaseAtkSpe() + atkSpeIV + (atkSpeEV / 4))
 							* level) / 100) + 5)
-							* ((caractere.bonus == Stats.ATKSPE) ?
+							* ((caractere.bonus == Stats::ATKSPE) ?
 									1.1 :
-									((caractere.malus == Stats.ATKSPE) ? 0.9 : 1)));
+									((caractere.malus == Stats::ATKSPE) ? 0.9 : 1)));
 	statDEFSPE =
 			round(
 					((((2 * espece.getBaseDefSpe() + defSpeIV + (defSpeEV / 4))
 							* level) / 100) + 5)
-							* ((caractere.bonus == Stats.DEFSPE) ?
+							* ((caractere.bonus == Stats::DEFSPE) ?
 									1.1 :
-									((caractere.malus == Stats.DEFSPE) ? 0.9 : 1)));
+									((caractere.malus == Stats::DEFSPE) ? 0.9 : 1)));
 	statVIT = round(
 			((((2 * espece.getBaseVit() + vitIV + (vitEV / 4)) * level) / 100)
 					+ 5)
-					* ((caractere.bonus == Stats.VIT) ?
-							1.1 : ((caractere.malus == Stats.VIT) ? 0.9 : 1)));
+					* ((caractere.bonus == Stats::VIT) ?
+							1.1 : ((caractere.malus == Stats::VIT) ? 0.9 : 1)));
 	statPV = round(((2 * espece.getBasePV() + pvIV + (pvEV / 4)) * level) / 100)
 							+ level + 10;
 	this->espece = espece;
@@ -131,16 +131,9 @@ Pokemon::Pokemon(string surnom, Espece espece, int level, Attaque attaques[],
 }
 
 bool Pokemon::captured(I_Pokeball pokeball) {
-	Status listeUnCinq[] = { Status.PARALYSIE, Status.POISON, Status.BRULURE };
-	Status listeDeux[] = { Status.SOMMEIL, Status.GEL };
-	int a =
-			round(
-					(((3 * statPV - 2 * PV) * tauxCapture
-							* pokeball.getTauxCapture()
-							* (Comparaisons.muliEgal(status, listeUnCinq, 3) ?
-									1.5 :
-									(Comparaisons.muliEgal(status, listeDeux,
-											2) ? 2 : 1))) / (3 * statPV)));
+	Status listeUnCinq[] = { Status::PARALYSIE, Status::POISON, Status::BRULURE };
+	Status listeDeux[] = { Status::SOMMEIL, Status::GEL };
+	int a = round((((3 * statPV - 2 * PV) * tauxCapture* pokeball.getTauxCapture()* (Comparaisons::multiEgal(status, listeUnCinq, 3) ? 1.5 : (Comparaisons::multiEgal(status, listeDeux,2) ? 2 : 1))) / (3 * statPV)));
 	int b = round((pow(2, 16) - 1) * pow(a / (pow(2, 8) - 1), 0.25));
 	int c[] = { Utils::randU(65535), Utils::randU(65535), Utils::randU(65535),
 			Utils::randU(65535) };
