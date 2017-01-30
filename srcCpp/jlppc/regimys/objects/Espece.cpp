@@ -35,25 +35,25 @@ Espece::Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, string
 		this->expMax = expMax;
 		switch (this->expMax) {
 		case 800000:
-			courbe = CourbeExp.RAPIDE;
+			courbe = CourbeExp::RAPIDE;
 			break;
 		case 1000000:
-			courbe = CourbeExp.MOYENNE;
+			courbe = CourbeExp::MOYENNE;
 			break;
 		case 1059860:
-			courbe = CourbeExp.PARABOLIQUE;
+			courbe = CourbeExp::PARABOLIQUE;
 			break;
 		case 1250000:
-			courbe = CourbeExp.LENTE;
+			courbe = CourbeExp::LENTE;
 			break;
 		case 600000:
-			courbe = CourbeExp.ERRATIQUE;
+			courbe = CourbeExp::ERRATIQUE;
 			break;
 		case 1640000:
-			courbe = CourbeExp.FLUCTUANTE;
+			courbe = CourbeExp::FLUCTUANTE;
 			break;
 		default:
-			courbe = CourbeExp.MOYENNE;
+			courbe = CourbeExp::MOYENNE;
         }
 }
 
@@ -63,7 +63,7 @@ void Espece::checkEvol(){
 }
 
 void Espece::checkAtkLvls(){
-    this->atksByLevels = Initializer.atkPokeLvl[pokedexNumberInit];
+    this->atksByLevels = Initializer::atkPokeLvl[pokedexNumberInit];
     this->numeroPokedex = pokedexNumberInit;
     pokedexNumberInit++;
 }
