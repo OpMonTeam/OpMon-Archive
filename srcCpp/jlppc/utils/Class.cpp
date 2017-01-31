@@ -6,11 +6,11 @@ template<typename T>Class<T>::Class(string name, int id) {
 
 }
 
-template<typename T> T Class<T>::newInstance(){
+template<typename T> T Class<T>::newInstance() const{
 	return T();
 }
 template<typename T>
-bool Class<T>::operator==(Class x, Class y){
+bool Class<T>::operator==(Class x, Class y) const{
 	if(x.id == y.id){
 		return true;
 	}

@@ -6,8 +6,7 @@
 
 namespace Utils
 {
-
-        int randU(int limit);
+        int randU(int limit) const;
 }
 
 #endif // UTILS_HPP

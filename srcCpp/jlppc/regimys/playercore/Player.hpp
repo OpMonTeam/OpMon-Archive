@@ -11,17 +11,17 @@ using namespace std;
 class Player : public RegimysObject{
 public:
 	Player(string name);
-	Equipe getEquipe();
+	Equipe getEquipe() const;
 	void addItem(int itemID);
 	int checkItem(int itemID);
 	bool deleteItem(int itemID);
-	string getName(){return name;}
-	int getDressID(){return dressID;}
+	string getName() const {return name;}
+	int getDressID() const {return dressID;}
 	void addPokemonToPC(Pokemon toAdd){pc.push_back(toAdd);}
-	Pokemon getPoke(int ID){return equipe[ID];}
+	Pokemon getPoke(int ID) const {return equipe[ID];}
 	void healPoke();
 	bool addPokeToEquipe(Pokemon toAdd);
-	static Class<Player> *classe = new Class<Player>("Player", 4698764);
+	static const Class<Player> *classe = new Class<Player>("Player", 4698764);
 private:
 	string name;
 	int dressID;//9 chiffres
