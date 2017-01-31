@@ -455,4 +455,8 @@ enum Stats{
 	ATK, DEF, ATKSPE, DEFSPE, VIT, PV, RIEN
 };
 
+enum BagCat{
+    SOIN, OBJETS, RARES, CTS, BAIES
+};
+
 #endif /* ENUMS_HPP */
