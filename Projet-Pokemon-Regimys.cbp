@@ -3,10 +3,12 @@
 	<FileVersion major="1" minor="6" />
 	<Project>
 		<Option title="Projet-Pokemon-Regimys" />
+		<Option platforms="Windows;" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Release">
+				<Option platforms="Windows;" />
 				<Option output="bin/Projet-Pokemon-Regimys" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/" />
 				<Option type="1" />
@@ -25,16 +27,48 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="srcCpp/jlppc/regimys/enums/Caractere.cpp" />
+		<Unit filename="srcCpp/jlppc/regimys/enums/Caractere.hpp" />
+		<Unit filename="srcCpp/jlppc/regimys/enums/Enums.cpp" />
+		<Unit filename="srcCpp/jlppc/regimys/enums/Enums.hpp" />
+		<Unit filename="srcCpp/jlppc/regimys/evolution/EItem.cpp" />
+		<Unit filename="srcCpp/jlppc/regimys/evolution/EItem.hpp" />
+		<Unit filename="srcCpp/jlppc/regimys/evolution/ELand.cpp" />
+		<Unit filename="srcCpp/jlppc/regimys/evolution/ELand.hpp" />
+		<Unit filename="srcCpp/jlppc/regimys/evolution/ELevel.cpp" />
+		<Unit filename="srcCpp/jlppc/regimys/evolution/ELevel.hpp" />
+		<Unit filename="srcCpp/jlppc/regimys/evolution/ELove.cpp" />
+		<Unit filename="srcCpp/jlppc/regimys/evolution/ELove.hpp" />
+		<Unit filename="srcCpp/jlppc/regimys/evolution/ENope.cpp" />
+		<Unit filename="srcCpp/jlppc/regimys/evolution/ENope.hpp" />
+		<Unit filename="srcCpp/jlppc/regimys/evolution/ETrade.cpp" />
+		<Unit filename="srcCpp/jlppc/regimys/evolution/ETrade.hpp" />
+		<Unit filename="srcCpp/jlppc/regimys/evolution/ETradeItem.cpp" />
+		<Unit filename="srcCpp/jlppc/regimys/evolution/ETradeItem.hpp" />
+		<Unit filename="srcCpp/jlppc/regimys/evolution/Evolution.cpp" />
+		<Unit filename="srcCpp/jlppc/regimys/evolution/Evolution.hpp" />
 		<Unit filename="srcCpp/jlppc/regimys/objects/Espece.cpp" />
 		<Unit filename="srcCpp/jlppc/regimys/objects/Espece.hpp" />
 		<Unit filename="srcCpp/jlppc/regimys/objects/Pokemon.cpp" />
 		<Unit filename="srcCpp/jlppc/regimys/objects/Pokemon.hpp" />
+		<Unit filename="srcCpp/jlppc/regimys/objects/RegimysObject.cpp" />
+		<Unit filename="srcCpp/jlppc/regimys/objects/RegimysObject.hpp" />
+		<Unit filename="srcCpp/jlppc/regimys/objects/item/Item.cpp" />
+		<Unit filename="srcCpp/jlppc/regimys/objects/item/Item.hpp" />
+		<Unit filename="srcCpp/jlppc/regimys/playercore/Equipe.cpp" />
+		<Unit filename="srcCpp/jlppc/regimys/playercore/Equipe.hpp" />
+		<Unit filename="srcCpp/jlppc/regimys/playercore/Player.cpp" />
+		<Unit filename="srcCpp/jlppc/regimys/playercore/Player.hpp" />
 		<Unit filename="srcCpp/jlppc/regimys/start/main.cpp" />
 		<Unit filename="srcCpp/jlppc/regimys/start/main.hpp" />
+		<Unit filename="srcCpp/jlppc/utils/Class.cpp" />
+		<Unit filename="srcCpp/jlppc/utils/Class.hpp" />
 		<Unit filename="srcCpp/jlppc/utils/Comparaisons.cpp" />
 		<Unit filename="srcCpp/jlppc/utils/Comparaisons.hpp" />
 		<Unit filename="srcCpp/jlppc/utils/File.cpp" />
 		<Unit filename="srcCpp/jlppc/utils/File.hpp" />
+		<Unit filename="srcCpp/jlppc/utils/NumberedArray.cpp" />
+		<Unit filename="srcCpp/jlppc/utils/NumberedArray.hpp" />
 		<Unit filename="srcCpp/jlppc/utils/Utils.cpp" />
 		<Unit filename="srcCpp/jlppc/utils/Utils.hpp" />
 		<Extensions>
