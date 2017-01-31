@@ -25,15 +25,15 @@ class Pokemon : public RegimysObject
     public:
 		virtual ~Pokemon();
         Pokemon(string surnom, Espece espece, int level, Attaque attaques[], Caractere caractere);
-        bool captured(I_Pokeball pokeball);
-        void setStat(string stat, int newStat);
+        bool captured(I_Pokeball const& pokeball);
+        void setStat(string const& stat, int newStat);
         void levelUp();
-        bool isHoldingItem(){return (held == NULL);}
-        int win(Pokemon vaincu);
+        bool isHoldingItem() const {return (held == NULL);}
+        int win(Pokemon const& vaincu);
         static Class<Pokemon> *classe = new Class("Pokemon", 13644895);
         void calcStats();
-        bool itemUsed(Item used);
-        Item hold(Item item);
+        bool itemUsed(Item const& *used);
+        Item* hold(Item const& *item);
         void traded();
         void toolEvTrade();
         void evolve();

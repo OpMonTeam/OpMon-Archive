@@ -11,7 +11,7 @@
 class E_Nope {
 public:
 	E_Nope();
-	bool checkEvolve(Pokemon toCheck);
+	bool checkEvolve(Pokemon const& toCheck) const;
 };
 
 #endif /* SRCCPP_JLPPC_REGIMYS_EVOLUTION_ENOPE_HPP_ */

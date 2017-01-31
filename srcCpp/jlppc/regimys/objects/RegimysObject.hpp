@@ -6,10 +6,10 @@ class RegimysObject {
 public:
 	RegimysObject();
 	virtual ~RegimysObject();
-	virtual Class* getClass(){return classe;};
+	virtual Class* getClass() const {return classe;};
 
 private:
-	static Class<RegimysObject> classe;
+	static const Class<RegimysObject> classe;
 
 };
 

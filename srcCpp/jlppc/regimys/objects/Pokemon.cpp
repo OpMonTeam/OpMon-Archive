@@ -222,7 +222,7 @@ void Pokemon::levelUp() {
 	}
 }
 
-int Pokemon::win(Pokemon vaincu) {
+int Pokemon::win(Pokemon const& vaincu) {
 	getEvs(vaincu);
 	exp += ((vaincu.espece.getExp() * vaincu.level) / this->level) * expBoost;
 	while (exp >= toNextLevel && level < 100) {
@@ -235,7 +235,7 @@ int Pokemon::win(Pokemon vaincu) {
 	return (((vaincu.espece.getExp() * vaincu.level) / this->level) * expBoost);
 }
 
-void Pokemon::getEvs(Pokemon vaincu) {
+void Pokemon::getEvs(Pokemon const& vaincu) {
 	if (!((atkEV + defEV + pvEV + atkSpeEV + defSpeEV + vitEV) > 510)) {
 		Stats *statsVaincu[];
 		vaincu.espece.getEv(statsVaincu);
@@ -314,7 +314,7 @@ void Pokemon::calcStats(){
 								+ level + 10;
 }
 
-bool Pokemon::itemUsed(Item used){
+bool Pokemon::itemUsed(Item const& *used){
 	if(espece.getEvolType()->getClass() == E_Item::classe){
 		E_Item evol = espece.getEvolType();
 		if(evol.itemEvolve(used)){
@@ -324,7 +324,7 @@ bool Pokemon::itemUsed(Item used){
 	}
 	if(used.getClass() == I_Heal::classe){
 
-		I_Heal usedI = used;
+		I_Heal usedI = *used;
 		if(usedI.getPvHeal() > 0){
 			heal(usedI.getPvHeal());
 
@@ -364,7 +364,7 @@ bool Pokemon::itemUsed(Item used){
 	return false;
 }
 
-Item Pokemon::hold(Item item){
+Item* Pokemon::hold(Item const& *item){
 	Item ancien = held;
 	held = item;
 	return ancien;

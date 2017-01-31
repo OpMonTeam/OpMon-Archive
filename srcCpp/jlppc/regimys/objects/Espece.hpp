@@ -20,26 +20,26 @@ class Espece : public RegimysObject
     public:
 	virtual ~Espece();
         Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, string name, Type type1, Type type2,int maniereEvolution, int niveauEvolution, Evolution *evolType, NumberedArray attacksByLevels[],CT ctCombatibles[], Stats EVGiven[], float taille, float poids, string entreePokedex, int expGiven,int expMax, int tauxDeCapture);
-        void checkEvol();
-        void checkAtkLvls();
+        void checkEvol() const;
+        void checkAtkLvls() const;
         static int pokedexNumberInit = 0;
         static Class<Espece> *classe = new Class<Espece>("Espece", 4987386);
-        int getBaseAtk(){return baseAtk;}
-        int getBaseDef(){return baseDef;}
-        int getBaseAtkSpe(){return baseAtkSpe;}
-        int getBaseDefSpe(){return baseDefSpe;}
-        int getBaseVit(){return baseVit;}
-        int getBasePV(){return basePV;}
-        int getNom(){return nom;}
-        int getTauxDeCapture(){return tauxDeCapture;}
-        Type getType1(){return type1;}
-        Type getType2(){return type2;}
-        CourbeExp getCourbe(){return courbe;}
-        int getExp(){return expGiven;}
-        Evolution* getEvolType(){return evolType;}
-        void getEv(Stats *toFill[]){*toFill = EVgiven;}
-        Espece getEvolution(){return evolution;}
-        virtual Class* getClass(){return classe;}
+        int getBaseAtk() const {return baseAtk;}
+        int getBaseDef() const {return baseDef;}
+        int getBaseAtkSpe() const {return baseAtkSpe;}
+        int getBaseDefSpe() const {return baseDefSpe;}
+        int getBaseVit() const {return baseVit;}
+        int getBasePV() const {return basePV;}
+        int getNom() const {return nom;}
+        int getTauxDeCapture() const {return tauxDeCapture;}
+        Type getType1() const {return type1;}
+        Type getType2() const {return type2;}
+        CourbeExp getCourbe() const {return courbe;}
+        int getExp() const {return expGiven;}
+        Evolution* getEvolType() const {return evolType;}
+        Stats* getEv() const {return &EVgiven;}
+        Espece getEvolution() const {return evolution;}
+        virtual Class<Espece>* getClass() const {return classe;}
     protected:
 
     private:

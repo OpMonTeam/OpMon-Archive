@@ -10,19 +10,19 @@ using namespace std;
 
 class Equipe : public RegimysObject {
 public:
-	static Class<Equipe> *classe = new Class<Equipe>("Equipe", 7324695);
+	static const Class<Equipe> *classe = new Class<Equipe>("Equipe", 7324695);
 	Equipe(string nom, Pokemon pokemons[]);
-	string getNom(){return nom;}
-	Pokemon* getEquipe(){return &equipe;}
+	string getNom() const {return nom;}
+	Pokemon* getEquipe() const {return &equipe;}
 	void heal();
 	bool addPokemon(Pokemon toAdd);
 	void removePoke(int number);
 	Pokemon operator[](int id);
-	bool isKo();
-	int getSize();
+	bool isKo() const ;
+	int getSize() const ;
 	//Opérateurs non pratique, mais je les met quand meme;
-	Equipe operator+=(Pokemon pkmn){addPokemon(pkmn);return *this;}
-	Equipe operator-=(int id){removePoke(id);return *this;}
+	void operator+=(Pokemon const& pkmn){addPokemon(pkmn);}
+	void operator-=(int id){removePoke(id);}
 
 private:
 	int nbreOfPoke;

@@ -7,7 +7,7 @@
 class E_Trade: public Evolution {
 public:
 	E_Trade(int evo) : Evolution(evo){};
-	bool checkEvolve(Pokemon toCheck){return true;}
+	bool checkEvolve(Pokemon const& toCheck) const {return true;}
 };
 
 #endif /* SRCCPP_JLPPC_REGIMYS_EVOLUTION_ETRADE_HPP_ */
