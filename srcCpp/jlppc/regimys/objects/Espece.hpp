@@ -7,6 +7,7 @@
 #include "srcCpp/jlppc/utils/HashArray.hpp"
 #include "srcCpp/jlppc/regimys/start/main.hpp"
 #include "RegimysObject.hpp"
+#include "../../jlppc/utils/NumberedArray.hpp"
 
 using namespace std;
 
@@ -18,7 +19,7 @@ class Espece : public RegimysObject
 {
     public:
 	virtual ~Espece();
-        Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, string name, Type type1, Type type2,int maniereEvolution, int niveauEvolution, Evolution *evolType, HashArray attacksByLevels[],CT ctCombatibles[], Stats EVGiven[], float taille, float poids, string entreePokedex, int expGiven,int expMax, int tauxDeCapture);
+        Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, string name, Type type1, Type type2,int maniereEvolution, int niveauEvolution, Evolution *evolType, NumberedArray attacksByLevels[],CT ctCombatibles[], Stats EVGiven[], float taille, float poids, string entreePokedex, int expGiven,int expMax, int tauxDeCapture);
         void checkEvol();
         void checkAtkLvls();
         static int pokedexNumberInit = 0;
@@ -49,7 +50,7 @@ class Espece : public RegimysObject
         Evolution *evolType;
         Type type1;
         Type type2;
-        HashArray atksByLevels[];
+        NumberedArray atksByLevels[];
         string entreePokedex;
         float taille;
         float poids;
