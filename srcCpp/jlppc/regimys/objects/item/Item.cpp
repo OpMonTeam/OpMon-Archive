@@ -10,12 +10,13 @@ Item::Item(string nom, bool usable, bool usableInFight, bool givable, BagCat cat
     this->categorie = categorie;
 }
 
-Item* Item::getItem(string const& name const ){
+Item* Item::getItem(string const& name) const {
     for(int i = 0; i < itemsList.size(); i++){
         if(itemsList[i]->getName() == name){
             return itemsList[i];
         }
     }
+    return NULL;
 }
 
 Item* Item::getItem(int id) const {

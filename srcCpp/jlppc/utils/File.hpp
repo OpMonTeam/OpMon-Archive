@@ -10,10 +10,10 @@ class File
 {
     public:
         File(string path);
-        ifstream* getIn();
-        ofstream* getOut();
+        ifstream* getIn() const;
+        ofstream* getOut() const;
         static Class<File> *classe = new Class<File>("File", 7624735);
-        virtual Class* getClass(){return classe;}
+        virtual Class* getClass() const {return classe;}
     protected:
 
     private:

@@ -11,8 +11,8 @@ class NumberedArray final
     public:
         NumberedArray<O>(int number, O *object);
         ~NumberedArray<O>();
-        O getObject(){return *object;}
-        int getNumber(){return number;}
+        O getObject() const {return *object;}
+        int getNumber() const {return number;}
     private:
         int number;
         O *object;
