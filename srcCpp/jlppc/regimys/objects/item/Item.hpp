@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "../enums/Enums.hpp"
+#include "IPokeball.hpp"
 #include <vector>
 using namespace std;
 
@@ -11,9 +12,9 @@ public:
 	Item(string nom, bool usable, bool usableInFight, bool givable, BagCat categorie, int id);
 	static Class<Item>* getStatClass() const {return classe;}
 	static void initItems();
-	static Item* getItem (string name) const ;
+	static Item* getItem (string const& name) const ;
 	static Item* getItem (int id) const;
-	static int searchItem (Item* const& toSearch) const;
+	static int searchItem (Item const* toSearch) const;
 	bool operator== (Item const& a, Item const& b) const;
 	string getNom() const {return nom;}
 	bool isUsable() const {return usable;}
