@@ -8,11 +8,11 @@
 #ifndef SRCCPP_JLPPC_REGIMYS_REGIMYSINCLUDE_HXX_
 #define SRCCPP_JLPPC_REGIMYS_REGIMYSINCLUDE_HXX_
 
-#include "enumsInclude.hxx"
-#include "evolutionInclude.hxx"
-#include "objectsInclude.hxx"
-#include "playercoreInclude.hxx"
-#include "startInclude.hxx"
+#include "enums/enumsInclude.hxx"
+#include "evolution/evolutionInclude.hxx"
+#include "objects/objectsInclude.hxx"
+#include "playercore/playercoreInclude.hxx"
+#include "start/startInclude.hxx"
 
 
 

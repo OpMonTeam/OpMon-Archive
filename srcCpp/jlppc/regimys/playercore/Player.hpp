@@ -2,7 +2,7 @@
 #define SRCCPP_JLPPC_REGIMYS_PLAYERCORE_PLAYER_HPP_
 
 #include <iostream>
-#include "includeAll.hxx"
+#include "../../includeAll.hxx"
 #include <vector>
 using namespace std;
 

@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <fstream>
-#include "includeAll.hxx"
+#include "../../includeAll.hxx"
 #define WINDOWS
 
 using namespace std;

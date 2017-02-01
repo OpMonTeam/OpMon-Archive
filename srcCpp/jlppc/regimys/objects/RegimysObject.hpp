@@ -2,7 +2,7 @@
 #ifndef REGIMYSOBJECT_HPP
 #define REGIMYSOBJECT_HPP
 
-#include "includeAll.hxx"
+#include "../../includeAll.hxx"
 
 class RegimysObject {
 public:

@@ -10,8 +10,8 @@ template<typename T> T Class<T>::newInstance() const{
 	return T();
 }
 template<typename T>
-bool Class<T>::operator==(Class x, Class y) const{
-	if(x.id == y.id){
+bool Class<T>::operator==(Class const& y){
+	if(id == y.id){
 		return true;
 	}
 }

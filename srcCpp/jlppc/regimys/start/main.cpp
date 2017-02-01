@@ -1,9 +1,9 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
-#include "srcCpp/jlppc/regimys/playercore/Player.hpp"
-#include "srcCpp/jlppc/utils/File.hpp"
-#include "srcCpp/jlppc/regimys/gui/MainFrame.hpp"
+#include "../playercore/Player.hpp"
+#include "../../utils/File.hpp"
+//#include "srcCpp/jlppc/regimys/gui/MainFrame.hpp"
 
 using namespace std;
 
@@ -49,7 +49,7 @@ using namespace std;
                exit(2);
            }
 
-           MainFrame.open();
+           //MainFrame.open();
 
            return quit(0);
        }
