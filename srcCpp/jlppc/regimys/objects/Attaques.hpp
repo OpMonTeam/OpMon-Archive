@@ -3,7 +3,7 @@
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUES_HPP_
 
 #include <iostream>
-#include "includeAll.hxx"
+#include "../../includeAll.hxx"
 
 using namespace std;
 
@@ -15,7 +15,7 @@ namespace Attaques {
 		Abime() : Attaque("Abime", 99999, Type::SOL, 30, false, false, -1, false, 5, 0){}
 		int effetAvant(Pokemon, Pokemon);
 		int effetApres(Pokemon, Pokemon){return 0;};
-		static const Class<Abime> *classe = new Class<Abime>("Abime", 0xFFFF)
+		static const Class<Abime> *classe = new Class<Abime>("Abime", 0xFFFF);
 	};
 
 	class Acidarmure : public Attaque{

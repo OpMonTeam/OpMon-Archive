@@ -60,7 +60,7 @@ int CalcCourbes::parabolique(int n) {
 int CalcCourbes::rapide(int n) {
 	return round(0.8f * pow(n, 3));
 }
-Pokemon::Pokemon(string surnom, Espece espece, int level, Attaque attaques[],
+Pokemon::Pokemon(string surnom, Espece espece, int level, Attaque *attaques[],
 		CaractereClass caractere) {
 	statATK = round(
 			((((2 * espece.getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100)
@@ -129,6 +129,10 @@ Pokemon::Pokemon(string surnom, Espece espece, int level, Attaque attaques[],
 		exp = rapide(this->level);
 		break;
 	}
+	held = NULL;
+	statLove = 100;
+	statPRE = 100;
+	statESQ = 100;
 
 }
 

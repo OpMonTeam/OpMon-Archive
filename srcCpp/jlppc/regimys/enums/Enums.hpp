@@ -1,6 +1,19 @@
 #ifndef ENUMS_HPP
 #define ENUMS_HPP
 
+
+enum Status{
+	BRULURE, PARALYSIE, SOMMEIL, GEL, POISON, AUCUN
+};
+
+enum Stats{
+	ATK, DEF, ATKSPE, DEFSPE, VIT, PV, RIEN
+};
+
+enum BagCat{
+    SOIN, OBJETS, RARES, CTS, BAIES
+};
+
 enum class Type : int{
 	EAU = 3,
 	FEU = 6,
@@ -31,7 +44,7 @@ namespace TableTypes{
 	const float TE = 2;
 	const float SE = 4;
 
-  const  float tabUnType[][] = {
+  const  float tabUnType[18][18] = {
 
 			{PE, TE, PE, NE, NE, PE, TE, PE, PE, PE, PE, IN, PE, PE, TE, NE, NE, PE},//Acier
 			{NE, NE, NE, NE, NE, TE, NE, NE, PE, NE, NE, NE, TE, PE, NE, NE, PE, TE},//Combat
@@ -55,7 +68,7 @@ namespace TableTypes{
 
 	//Je ne vais pas documenter tous les tableaux
 
-	  const  float tableAcier[][] = {
+	  const  float tableAcier[18][18] = {
 			{TP, SE, TP, NE, NE, TP, SE, TP, TP, TP, TP, IN, TP, TP, SE, NE, NE, TP},//Acier + Acier
 			{PE, TE, PE, NE, NE, NE, TE, PE, TP, PE, PE, IN, NE, TP, TE, NE, PE, NE},//Acier + Combat
 			{PE, TE, NE, PE, PE, NE, NE, NE, PE, PE, TP, IN, PE, PE, TE, NE, NE, PE},//Acier + Dragon
@@ -78,7 +91,7 @@ namespace TableTypes{
 
 	};
 
-	  const  float tableCombat[][] = {
+	  const  float tableCombat[18][18] = {
 
 			{PE, TE, PE, NE, NE, NE, TE, PE, TP, PE, PE, IN, NE, TP, TE, NE, PE, NE},//Combat + Acier
 			{NE, NE, NE, NE, NE, TE, NE, NE, PE, NE, NE, NE, TE, PE, NE, NE, PE, TE},//Combat
@@ -101,7 +114,7 @@ namespace TableTypes{
 
 	};
 
-	  const  float tableDragon[][] = {
+	  const  float tableDragon[18][18] = {
 
 			{PE, TE, NE, PE, PE, NE, NE, NE, PE, PE, TP, IN, PE, PE, TE, NE, NE, PE},
 			{NE, NE, TE, PE, PE, SE, PE, TE, PE, NE, PE, NE, TE, PE, NE, NE, PE, TE},
@@ -124,7 +137,7 @@ namespace TableTypes{
 
 	};
 
-	   const float tableEau[][] = {
+	   const float tableEau[18][18] = {
 
 			{TP, TE, PE, PE, TE, PE, NE, TP, PE, PE, NE, IN, PE, PE, TE, NE, NE, PE},
 			{PE, NE, NE, PE, TE, TE, PE, PE, PE, NE, TE, NE, TE, PE, NE, NE, PE, TE},
@@ -146,7 +159,7 @@ namespace TableTypes{
 			{PE, PE, NE, PE, SE, NE, PE, NE, PE, NE, NE, NE, NE, TE, IN, NE, NE, NE}
 	};
 
-	   const float tableauElectrique[][] = {
+	   const float tableauElectrique[18][18] = {
 			{TP, TE, PE, NE, PE, PE, TE, PE, PE, PE, PE, IN, PE, PE, SE, NE, NE, TP},
 			{PE, NE, NE, NE, PE, TE, NE, NE, PE, NE, NE, NE, TE, PE, TE, NE, PE, NE},
 			{PE, NE, TE, PE, TP, TE, PE, TE, NE, NE, PE, NE, NE, NE, TE, NE, NE, PE},
@@ -167,7 +180,7 @@ namespace TableTypes{
 			{PE, PE, NE, NE, NE, NE, NE, TE, PE, NE, PE, NE, NE, TE, IN, NE, NE, PE}
 	};
 
-	   const float tableauFee[][] = {
+	   const float tableauFee[18][18] = {
 			{NE, NE, IN, NE, NE, PE, TE, PE, TP, PE, PE, IN, PE, PE, TE, NE, PE, PE},
 			{TE, PE, IN, NE, NE, TE, NE, NE, TP, NE, NE, TE, TE, PE, NE, NE, TP, TE},
 			{TE, PE, IN, PE, PE, TE, PE, TE, PE, NE, PE, TE, NE, NE, NE, NE, PE, NE},
@@ -188,7 +201,7 @@ namespace TableTypes{
 			{TE, TP, IN, NE, TE, NE, NE, TE, TP, NE, PE, TE, NE, TE, IN, NE, PE, NE}
 	};
 
-	   const float tableauFeu[][] = {
+	   const float tableauFeu[18][18] = {
 			{TP, TE, PE, TE, NE, TP, NE, TP, TP, PE, TP, IN, PE, NE, SE, NE, NE, PE},
 			{PE, NE, NE, TE, NE, NE, PE, PE, TP, NE, PE, NE, TE, NE, TE, NE, PE, TE},
 			{PE, NE, TE, NE, PE, NE, TP, NE, PE, NE, TP, NE, NE, TE, TE, NE, NE, NE},
@@ -209,7 +222,7 @@ namespace TableTypes{
 			{PE, PE, NE, TE, TE, PE, PE, NE, TP, NE, TP, NE, NE, SE, IN, NE, NE, NE}
 	};
 
-	   const float tableauGlace[][] = {
+	   const float tableauGlace[18][18] = {
 			{NE, SE, PE, NE, NE, PE, SE, TP, PE, PE, PE, IN, PE, NE, TE, NE, NE, PE},
 			{TE, TE, NE, NE, NE, TE, TE, PE, PE, NE, NE, NE, TE, NE, NE, NE, PE, TE},
 			{TE, TE, TE, PE, PE, TE, NE, NE, NE, NE, PE, NE, NE, TE, NE, NE, NE, NE},
@@ -230,7 +243,7 @@ namespace TableTypes{
 			{TE, NE, NE, NE, TE, NE, TE, NE, PE, NE, PE, NE, NE, SE, IN, NE, NE, NE}
 	};
 
-	  const  float tableauInsecte[][] = {
+	  const  float tableauInsecte[18][18] = {
 			{PE, NE, PE, NE, NE, PE, SE, PE, PE, PE, TP, IN, PE, NE, NE, NE, NE, NE},
 			{NE, PE, NE, NE, NE, TE, TE, NE, PE, NE, PE, NE, TE, NE, PE, NE, PE, SE},
 			{NE, PE, TE, PE, PE, TE, NE, TE, NE, NE, TP, NE, NE, TE, PE, NE, NE, TE},
@@ -251,7 +264,7 @@ namespace TableTypes{
 			{NE, TP, NE, NE, TE, NE, TE, TE, PE, NE, TP, NE, NE, SE, IN, NE, NE, TE}
 	};
 
-	   const float tableauNormal[][] = {
+	   const float tableauNormal[18][18] = {
 			{PE, SE, PE, NE, NE, PE, TE, PE, PE, PE, PE, IN, NE, PE, TE, IN, PE, PE},
 			{NE, TE, NE, NE, NE, TE, NE, NE, PE, NE, NE, NE, TE, PE, NE, IN, PE, TE},
 			{NE, TE, TE, PE, PE, TE, PE, TE, NE, NE, PE, NE, NE, NE, NE, IN, NE, NE},
@@ -272,7 +285,7 @@ namespace TableTypes{
 			{NE, NE, NE, NE, TE, NE, NE, TE, PE, NE, PE, NE, NE, TE, IN, IN, NE, NE}
 	};
 
-	   const float tablePlante[][] = {
+	   const float tablePlante[18][18] = {
 			{PE, TE, PE, PE, PE, PE, SE, NE, NE, PE, TP, IN, PE, PE, NE, NE, NE, NE},
 			{NE, NE, NE, PE, PE, TE, TE, TE, NE, NE, PE, TE, TE, PE, PE, NE, PE, SE},
 			{NE, NE, TE, TP, TP, TE, NE, SE, TE, NE, TP, TE, NE, NE, PE, NE, NE, TE},
@@ -294,7 +307,7 @@ namespace TableTypes{
 
 	};
 
-	   const float tablePoison[][] = {
+	   const float tablePoison[18][18] = {
 			{PE, NE, PE, NE, NE, TP, TE, PE, TP, PE, TP, IN, NE, PE, SE, NE, NE, PE},
 			{NE, PE, NE, NE, NE, NE, NE, NE, TP, NE, PE, PE, SE, PE, TE, NE, PE, TE},
 			{NE, PE, TE, PE, PE, NE, PE, TE, PE, NE, TP, PE, TE, NE, TE, NE, NE, NE},
@@ -315,7 +328,7 @@ namespace TableTypes{
 			{NE, TP, NE, NE, TE, PE, NE, TE, TP, NE, TP, PE, TE, TE, IN, NE, NE, NE}
 	};
 
-	   const float tableauPsy[][] = {
+	   const float tableauPsy[18][18] = {
 			{PE, NE, PE, NE, NE, PE, TE, PE, NE, PE, PE, IN, TP, PE, TE, TE, TE, PE},
 			{NE, PE, NE, NE, NE, TE, NE, NE, NE, NE, NE, NE, NE, PE, NE, TE, NE, TE},
 			{NE, PE, TE, PE, PE, TE, PE, TE, TE, NE, PE, NE, PE, NE, NE, TE, TE, NE},
@@ -336,7 +349,7 @@ namespace TableTypes{
 			{NE, TP, NE, NE, TE, NE, NE, TE, NE, NE, PE, NE, PE, TE, IN, TE, TE, NE}
 	};
 
-	   const float tableauRoche[][] = {
+	   const float tableauRoche[18][18] = {
 			{NE, SE, PE, TE, NE, PE, NE, PE, PE, TP, NE, IN, PE, PE, SE, NE, NE, TP},
 			{TE, TE, NE, TE, NE, TE, PE, NE, PE, PE, TE, PE, TE, PE, TE, NE, PE, NE},
 			{TE, TE, TE, NE, PE, TE, TP, TE, NE, PE, NE, PE, NE, NE, TE, NE, NE, PE},
@@ -357,7 +370,7 @@ namespace TableTypes{
 			{TE, NE, NE, TE, TE, NE, PE, TE, PE, PE, NE, PE, NE, TE, IN, NE, NE, PE}
 	};
 
-	   const float tableauSol[][] = {
+	   const float tableauSol[18][18] = {
 			{PE, TE, PE, TE, IN, PE, TE, NE, PE, PE, NE, IN, PE, TP, TE, NE, NE, PE},
 			{NE, NE, NE, TE, IN, TE, NE, TE, PE, NE, TE, PE, TE, TP, NE, NE, PE, TE},
 			{NE, NE, TE, NE, IN, TE, PE, SE, NE, NE, NE, PE, NE, PE, NE, NE, NE, NE},
@@ -378,7 +391,7 @@ namespace TableTypes{
 			{NE, PE, NE, TE, IN, NE, NE, SE, PE, NE, NE, PE, NE, NE, IN, NE, NE, NE}
 	};
 
-	  const  float tableSpectre[][] = {
+	  const  float tableSpectre[18][18] = {
 			{PE, IN, PE, NE, NE, PE, TE, PE, TP, IN, PE, IN, PE, PE, TE, TE, TE, PE},
 			{NE, IN, NE, NE, NE, TE, NE, NE, TP, IN, NE, PE, TE, PE, NE, TE, NE, TE},
 			{NE, IN, TE, PE, PE, TE, PE, TE, PE, IN, PE, PE, NE, NE, NE, TE, TE, NE},
@@ -399,7 +412,7 @@ namespace TableTypes{
 			{NE, IN, NE, NE, TE, NE, NE, TE, TP, IN, PE, PE, NE, TE, IN, TE, TE, NE}
 	};
 
-	   const float tableauTenebres[][] = {
+	   const float tableauTenebres[18][18] = {
 			{PE, SE, PE, NE, NE, NE, TE, PE, NE, PE, PE, IN, IN, PE, TE, PE, PE, PE},
 			{NE, TE, NE, NE, NE, SE, NE, NE, NE, NE, NE, NE, IN, PE, NE, PE, TP, TE},
 			{NE, TE, TE, PE, PE, SE, PE, TE, TE, NE, PE, NE, IN, NE, NE, PE, PE, NE},
@@ -420,7 +433,7 @@ namespace TableTypes{
 			{NE, NE, NE, NE, TE, TE, NE, TE, NE, NE, PE, NE, IN, TE, IN, PE, PE, NE}
 	};
 
-	  const float tableauVol[][] = {
+	  const float tableauVol[18][18] = {
 			{PE, NE, PE, NE, TE, PE, TE, NE, TP, PE, TP, IN, PE, NE, IN, NE, NE, PE},
 			{NE, PE, NE, NE, TE, TE, NE, TE, TP, NE, PE, NE, TE, NE, IN, NE, PE, TE},
 			{NE, PE, TE, PE, NE, TE, PE, SE, PE, NE, TP, NE, NE, TE, IN, NE, NE, NE},
@@ -441,22 +454,12 @@ namespace TableTypes{
 			tabUnType[Type::VOL]
 	};
 	/**Un tableau qui réunit tous les tables a double type*/
-	  float tableDeuxTypes[][][] = {tableAcier, tableCombat, tableDragon, tableEau, tableauElectrique, tableauFee, tableauFeu, tableauGlace, tableauInsecte, tableauNormal, tablePlante, tablePoison, tableauPsy, tableauRoche, tableauSol, tableSpectre, tableauTenebres, tableauVol};
+	  float tableDeuxTypes[18][18][18] = {tableAcier, tableCombat, tableDragon, tableEau, tableauElectrique, tableauFee, tableauFeu, tableauGlace, tableauInsecte, tableauNormal, tablePlante, tablePoison, tableauPsy, tableauRoche, tableauSol, tableSpectre, tableauTenebres, tableauVol};
 
 	  float calcEfficacite(Type atk, Type def1, Type def2);
 
 }
 
-enum Status{
-	BRULURE, PARALYSIE, SOMMEIL, GEL, POISON, AUCUN
-};
 
-enum Stats{
-	ATK, DEF, ATKSPE, DEFSPE, VIT, PV, RIEN
-};
-
-enum BagCat{
-    SOIN, OBJETS, RARES, CTS, BAIES
-};
 
 #endif /* ENUMS_HPP */

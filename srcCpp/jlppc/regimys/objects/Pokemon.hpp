@@ -2,7 +2,7 @@
 #define POKEMON_HPP
 
 #include <iostream>
-#include "includeAll.hxx"
+#include "../../includeAll.hxx"
 #include <cmath>
 using namespace std;
 
@@ -20,7 +20,8 @@ class Pokemon : public RegimysObject
 {
     public:
 		virtual ~Pokemon();
-        Pokemon(string surnom, Espece espece, int level, Attaque attaques[], Caractere caractere);
+		Pokemon(){falsif = true;}
+        Pokemon(string surnom, Espece espece, int level, Attaque *attaques[], CaractereClass caractere);
         bool captured(I_Pokeball const& pokeball);
         void setStat(string const& stat, int newStat);
         void levelUp();
@@ -60,6 +61,8 @@ class Pokemon : public RegimysObject
         int getStatATKSPE() const{return statATKSPE;}
         int getStatDEF() const{return statDEF;}
         int getStatDEFSPE() const{return statDEFSPE;}
+        bool operator==(Pokemon const& a, int b){if(b == NULL){return falsif;}else{return false;}}
+        bool operator!=(Pokemon const& a, int b){return !(a == b);}
 
     private:
     string surnom;
@@ -75,6 +78,7 @@ class Pokemon : public RegimysObject
     int defSpeEV = 0;
     int vitEV = 0;
     int pvEV = 0;
+    bool falsif = false;
     //Les statistiques en general
     int statATK;
     int statDEF;
@@ -94,6 +98,8 @@ class Pokemon : public RegimysObject
     int esqChange = 0;
     int preChange = 0;
     int vitChange = 0;
+
+    static const Pokemon NULL = Pokemon();
 
     int level;
 

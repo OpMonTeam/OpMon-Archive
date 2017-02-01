@@ -10,7 +10,7 @@ public:
 	T newInstance() const;
 	string getName() const {return name;}
 	int getID() const {return id;}
-	bool operator==(Class const& x, Class const& y) const;
+	bool operator==(Class const& y);
 private:
 	string name;
 	int id;

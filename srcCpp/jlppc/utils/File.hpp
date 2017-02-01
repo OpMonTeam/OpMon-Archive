@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <fstream>
+#include "Class.hpp"
 
 using namespace std;
 

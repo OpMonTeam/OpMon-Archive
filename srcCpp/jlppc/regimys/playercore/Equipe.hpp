@@ -3,7 +3,7 @@
 #define SRCCPP_JLPPC_REGIMYS_PLAYERCORE_EQUIPE_HPP_
 
 #include <iostream>
-#include "includeAll.hxx"
+#include "../../includeAll.hxx"
 using namespace std;
 
 class Equipe : public RegimysObject {

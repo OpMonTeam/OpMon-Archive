@@ -1,10 +1,11 @@
 #include "Enums.hpp"
 
 float TableTypes::calcEfficacite(Type atk, Type def1, Type def2){
+	int atkI(atk), type1I(def1), type2I(def2);
 	if(def2 == Type::AUCUN){
-		return tabUnType[def1][atk];
+		return tabUnType[type1I][atkI];
 	}else{
-		return tableDeuxTypes[def1][def2][atk];
+		return tableDeuxTypes[type1I][type2I][atkI];
 	}
 }
 
