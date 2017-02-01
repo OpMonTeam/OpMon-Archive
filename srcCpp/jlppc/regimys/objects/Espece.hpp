@@ -2,12 +2,13 @@
 #define ESPECE_HPP
 
 #include <iostream>
-#include "srcCpp/jlppc/regimys/evolution/Evolution.hpp"
-#include "srcCpp/jlppc/regimys/enums/Type.hpp"
-#include "srcCpp/jlppc/utils/HashArray.hpp"
-#include "srcCpp/jlppc/regimys/start/main.hpp"
+#include "../evolution/Evolution.hpp"
+#include "../enums/Enums.hpp"
+#include "../start/main.hpp"
 #include "RegimysObject.hpp"
 #include "../../jlppc/utils/NumberedArray.hpp"
+#include "item/Item.hpp"
+#include "item/CT.hpp"
 
 using namespace std;
 
@@ -20,8 +21,8 @@ class Espece : public RegimysObject
     public:
 	virtual ~Espece();
         Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, string name, Type type1, Type type2,int maniereEvolution, int niveauEvolution, Evolution *evolType, NumberedArray attacksByLevels[],CT ctCombatibles[], Stats EVGiven[], float taille, float poids, string entreePokedex, int expGiven,int expMax, int tauxDeCapture);
-        void checkEvol() const;
-        void checkAtkLvls() const;
+        void checkEvol();
+        void checkAtkLvls();
         static int pokedexNumberInit = 0;
         static Class<Espece> *classe = new Class<Espece>("Espece", 4987386);
         int getBaseAtk() const {return baseAtk;}

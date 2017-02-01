@@ -16,7 +16,7 @@ namespace Main{
     bool pre = (preNbre != 0);
     int sousVers = 0;
     bool sousVersIs = (sousVers != 0);
-    string versionS = "Alpha " + version + (sousVersIs ? "." + sousVers : "") + (pre ? (" pre " + preNbre) : "") + commits;
+    string versionS = "Alpha " + version + (sousVersIs ? "." + sousVers : "") + (pre ? (" pre " + preNbre) : "");
     Player joueur;
     File playerSave;
     File params;

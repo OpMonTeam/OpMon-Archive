@@ -8,26 +8,7 @@
 using namespace std;
 
 
-    int Main::main(){
 
-#ifdef WINDOWS
-        File errLogF = File("logs\\errLog.txt");
-        File logF = File("logs\\log.txt");
-#else
-        File errLogF = File("logs/errLog.txt");
-        File logF = File("logs/log.txt");
-#endif
-
-        Main::log = *logF.getOut();
-        errLog = *errLogF.getOut();
-        if(!log || !errLog){
-            exit(2);
-        }
-
-        MainFrame.open();
-
-        return quit();
-    }
 
     void Main::gererErreur(string errorName, bool fatal){
         errLog << "Erreur : " << errorName << endl;
@@ -52,6 +33,26 @@ using namespace std;
         exit(returne);
         return returne;
     }
+    int Main::main(){
+
+   #ifdef WINDOWS
+           File errLogF = File("logs\\errLog.txt");
+           File logF = File("logs\\log.txt");
+   #else
+           File errLogF = File("logs/errLog.txt");
+           File logF = File("logs/log.txt");
+   #endif
+
+           Main::log = *logF.getOut();
+           errLog = *errLogF.getOut();
+           if(!log || !errLog){
+               exit(2);
+           }
+
+           MainFrame.open();
+
+           return quit(0);
+       }
 
 int main()
 {
