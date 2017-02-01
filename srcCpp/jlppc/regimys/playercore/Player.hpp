@@ -2,10 +2,8 @@
 #define SRCCPP_JLPPC_REGIMYS_PLAYERCORE_PLAYER_HPP_
 
 #include <iostream>
-#include "Equipe.hpp"
+#include "includeAll.hxx"
 #include <vector>
-#include "../../utils/Utils.hpp"
-#include "../objects/Pokemon.hpp"
 using namespace std;
 
 class Player : public RegimysObject{

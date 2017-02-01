@@ -2,13 +2,7 @@
 #define ESPECE_HPP
 
 #include <iostream>
-#include "../evolution/Evolution.hpp"
-#include "../enums/Enums.hpp"
-#include "../start/main.hpp"
-#include "RegimysObject.hpp"
-#include "../../jlppc/utils/NumberedArray.hpp"
-#include "item/Item.hpp"
-#include "item/CT.hpp"
+#include "includeAll.hxx"
 
 using namespace std;
 

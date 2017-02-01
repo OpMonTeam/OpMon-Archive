@@ -2,6 +2,8 @@
 #ifndef REGIMYSOBJECT_HPP
 #define REGIMYSOBJECT_HPP
 
+#include "includeAll.hxx"
+
 class RegimysObject {
 public:
 	RegimysObject();

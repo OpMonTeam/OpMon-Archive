@@ -3,7 +3,7 @@
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUE_HPP_
 
 #include <iostream>
-#include "RegimysObject.hpp"
+#include "includeAll.hxx"
 
 using namespace std;
 

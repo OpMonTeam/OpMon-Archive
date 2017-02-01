@@ -3,9 +3,7 @@
 #define SRCCPP_JLPPC_REGIMYS_PLAYERCORE_EQUIPE_HPP_
 
 #include <iostream>
-#include "../start/main.hpp";
-#include "../objects/Pokemon.hpp"
-#include "../enums/Enums.hpp"
+#include "includeAll.hxx"
 using namespace std;
 
 class Equipe : public RegimysObject {

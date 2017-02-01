@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <fstream>
+#include "includeAll.hxx"
 #define WINDOWS
 
 using namespace std;
@@ -22,6 +23,11 @@ namespace Main{
     File params;
     ofstream log;
     ofstream errLog;
+#ifdef WINDOWS
+    string sep = "\\";
+#else
+    string sep = "/";
+#endif
     void gererErreur(string errorName, bool fatal);
     int quit(int retourne);
 }
