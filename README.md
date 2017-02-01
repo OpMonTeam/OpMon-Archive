@@ -9,7 +9,7 @@ Bienvenue sur le projet de fan-game pokemon Regimys! Plus d'infos sur le wiki ou
 <a href="https://www.youtube.com/channel/UC8qa9Z52pOHhZ1XjIoTa2kQ">Chaine YouTube du Projet Regimys</a><br/>
 <a href="http://regimys.tk">Site web du jeu</a><br/>
 <a href="https://github.com/jlppc/Site-Pokemon-Regimys">Dépot du site web du jeu</a><br/><br/>
-<br/>Version du jeu : Alpha 0.07.1 ![Version LOGO](https://raw.githubusercontent.com/jlppc/Projet-Pokemon-Regimys/master/Ressources/Autres/version_logo.png)<br/><br/>
+<br/>Version du jeu : Alpha 0.07.1 ![Version LOGO](https://downloads.regimys.tk/Ressources/Autres/version_logo.png)<br/><br/>
 Téléchargement : <a href="https://github.com/jlppc/Projet-Pokemon-Regimys/releases/download/alpha-v0.07/Regimys.zip" >Regimys.zip</a><br/>
 Prochaines versions :<ul>
 <li>Alpha 0.08 : Quand le jeu sera transposé en C++, avec un début de graphique.</li>
@@ -33,7 +33,7 @@ Changelog avant la Alpha 0.05. Pour le reste du changelog, il est dans la sectio
 <li>Alpha 0.02 : Ajout des status, types, équations de base ect...</li>
 <li>Alpha 0.01 : Creation du systeme de combat de base</li>
 </ul>
-<h2>------in-english-------</h2>
+<h2>------In-English-------</h2>
 # Welcome to Project "Pokémon Regimys"!
 
 Welcome to the fan-game project "Pokemon Regimys" ! More info in the Regimys Wiki <br/>
@@ -41,7 +41,7 @@ Welcome to the fan-game project "Pokemon Regimys" ! More info in the Regimys Wik
 <a href="https://www.youtube.com/channel/UC8qa9Z52pOHhZ1XjIoTa2kQ">Regimys Youtube Channel</a><br/>
 <a href="http://regimys.tk">Regimys web site</a><br/>
 <a href="https://github.com/jlppc/Site-Pokemon-Regimys">Web site repository</a><br/><br/>
-<br/>Game version : Alpha 0.07.1 ![Version LOGO](https://raw.githubusercontent.com/jlppc/Projet-Pokemon-Regimys/master/Ressources/Autres/version_logo.png)<br/><br/>
+<br/>Game version : Alpha 0.07.1 ![Version LOGO](https://downloads.regimys.tk/Ressources/Autres/version_logo.png)<br/><br/>
 
 Download : <a href="https://github.com/jlppc/Projet-Pokemon-Regimys/releases/download/alpha-v0.07/Regimys.zip" >Regimys.zip</a><br/>
 
