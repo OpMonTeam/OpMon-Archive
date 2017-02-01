@@ -4,13 +4,14 @@
 
 #include "Item.hpp"
 
+typedef Class<Attaque*> ClassAtk;
 
 class CT : public Item {
 public:
-CT(Class<Attaque*> atk, int ctNumber, int ID);
-	Class<Attaque*> getAtk() const{return atk;}
+CT(ClassAtk atk, int ctNumber, int ID);
+	ClassAtk getAtk() const{return atk;}
 private:
-	Class<Attaque*> atk;
+	ClassAtk atk;
 };
 
 #endif /* SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_CT_HPP_ */
