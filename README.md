@@ -1,6 +1,6 @@
 #![Regimys LOGO](https://raw.githubusercontent.com/jlppc/Projet-Pokemon-Regimys/master/Ressources/Autres/regimys_icon.png)
-# French 
 <a href="#-------in-english-------">In English</a><br/>
+<h3>-------En Français-------</h3>
 # Bienvenue sur le Projet "Pokémon Regimys"!
 
 Bienvenue sur le projet de fan-game pokemon Regimys! Plus d'infos sur le wiki ou sur la chaine YouTube !<br/>
@@ -42,6 +42,5 @@ Welcome to the fan-game project "Pokemon Regimys" ! More info in the Regimys Wik
 <a href="http://regimys.tk">Regimys web site</a><br/>
 <a href="https://github.com/jlppc/Site-Pokemon-Regimys">Web site repository</a><br/><br/>
 <br/>Game version : Alpha 0.07.1<br/><br/>
-Download : <a href="https://github.com/jlppc/Projet-Pokemon-Regimys/releases/download/alpha-v0.07/Regimys.zip" 
->Regimys.zip</a><br/>
+Download : <a href="https://github.com/jlppc/Projet-Pokemon-Regimys/releases/download/alpha-v0.07/Regimys.zip" >Regimys.zip</a><br/>
 
