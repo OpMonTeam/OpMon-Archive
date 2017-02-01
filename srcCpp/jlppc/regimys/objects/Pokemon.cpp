@@ -1,6 +1,9 @@
 #include "Pokemon.hpp"
 
 Pokemon::~Pokemon(){
+	for(int i = 0; i < 4; i++){
+		delete(attaques[i]);
+	}
 }
 
 float CalcCourbes::p(int x) {
@@ -385,7 +388,7 @@ void Pokemon::evolve(){
 	espece = espece.getEvolution();
 }
 
-void Pokemon::setStats(int stats[], Attaque attacks[], Espece espece, Type types[]){
+void Pokemon::setStats(int const& stats[], Attaque const* attacks[], Espece const& espece, Type const& types[]){
 	statATK = stats[0];
 	statDEF = stats[1];
 	statATKSPE = stats[2];

@@ -2,7 +2,7 @@
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_CT_HPP_
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_CT_HPP_
 
-#include "Item.hpp"
+#include "includeAll.hxx"
 
 typedef Class<Attaque*> ClassAtk;
 

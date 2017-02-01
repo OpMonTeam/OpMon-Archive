@@ -2,7 +2,7 @@
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_IPOKEBALL_HPP_
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_IPOKEBALL_HPP_
 
-#include "Item.hpp"
+#include "includeAll.hxx"
 
 class I_Pokeball: public Item {
 public:

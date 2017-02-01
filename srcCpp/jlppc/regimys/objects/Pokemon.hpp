@@ -2,11 +2,7 @@
 #define POKEMON_HPP
 
 #include <iostream>
-#include "srcCpp/jlppc/utils/Utils.hpp"
-#include "Espece.hpp"
-#include "../enums/Enums.hpp"
-#include "../start/main.hpp"
-#include "RegimysObject.hpp"
+#include "includeAll.hxx"
 #include <cmath>
 using namespace std;
 
@@ -37,7 +33,7 @@ class Pokemon : public RegimysObject
         void traded();
         void toolEvTrade();
         void evolve();
-        void setStats(int const& stats[], Attaque const& attacks[], Espece const& espece, Type const& types[]);
+        void setStats(int const& stats[], Attaque const *attacks[], Espece const& espece, Type const& types[]);
         void attacked(int pvPerdus);
         bool changeATK(int power);
         bool changePRE(int power);
@@ -52,7 +48,7 @@ class Pokemon : public RegimysObject
         int getPV() const{return PV;}
         void heal(int PV);
         bool getLevel() const{return level;}
-        Attaque* getAttaques() const{return &attaques;}
+        Attaque** getAttaques() const{return &attaques;}
         virtual Class* getClass() const{return classe;}
         int getStatESQ() const{return statESQ;}
         int getStatPRE() const{return statPRE;}
@@ -103,7 +99,7 @@ class Pokemon : public RegimysObject
 
     CaractereClass caractere;
 
-    Attaque attaques[4];
+    Attaque *attaques[4];
 
     Espece espece;
 
