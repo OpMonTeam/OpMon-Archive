@@ -1,5 +1,5 @@
 
-#include "includeAll.hxx"
+#include "IHeal.hpp"
 
 I_Heal::I_Heal(string nom, bool usable, bool usableInFight, bool givable, BagCat categorie, int pvHeal, Status heal, bool healAllStatus, int ID) : Item(nom, usable, usableInFight, givable, categorie, ID){
 	this->pvHeal = pvHeal;
