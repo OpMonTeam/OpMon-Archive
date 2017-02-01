@@ -1,6 +1,6 @@
 #![Regimys LOGO](https://raw.githubusercontent.com/jlppc/Projet-Pokemon-Regimys/master/Ressources/Autres/regimys_icon.png)
 <a href="#-------in-english-------">In English</a><br/>
-<h3>-------En Français-------</h3>
+<h2>En Français</h2>
 # Bienvenue sur le Projet "Pokémon Regimys"!
 
 Bienvenue sur le projet de fan-game pokemon Regimys! Plus d'infos sur le wiki ou sur la chaine YouTube !<br/>
@@ -32,8 +32,7 @@ Changelog avant la Alpha 0.05. Pour le reste du changelog, il est dans la sectio
 <li>Alpha 0.02 : Ajout des status, types, équations de base ect...</li>
 <li>Alpha 0.01 : Creation du systeme de combat de base</li>
 </ul>
-<h3>-------In English-------</h3>
-# English
+<h2>------In English-------</h2>
 # Welcome to Project "Pokémon Regimys"!
 
 Welcome to the fan-game project "Pokemon Regimys" ! More info in the Regimys Wiki <br/>
