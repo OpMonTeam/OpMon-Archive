@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <fstream>
+#define WINDOWS
 
 using namespace std;
 int main();

@@ -6,9 +6,9 @@
 
 template<typename Attke>
 
-class CT: public Item {
+class CT : public Item {
 public:
-	CT(Class<Attke> atk, int ctNumber);
+	CT(Class<Attke> atk, int ctNumber, int ID);
 	Class<Attke> getAtk() const{return atk;}
 private:
 	Class<Attke> atk;
