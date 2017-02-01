@@ -1,12 +1,11 @@
 #include "NumberedArray.hpp"
 
-HashArray::HashArray(int number, O *object)
+NumberedArray::NumberedArray(int number, Attaque *attaque)
 {
     this->number = number;
-    this->object = object;
+    this->attaque = attaque;
 }
-
-HashArray::~HashArray()
+NumberedArray::~NumberedArray()
 {
     delete(object);
 }

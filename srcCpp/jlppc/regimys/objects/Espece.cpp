@@ -9,8 +9,9 @@ Espece::Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, string
 			Main::gererErreur("Stats < 0 Espece<Initializer>", true);
 		}
 		if(expGiven < 0){
-			Main::gererErreur("expGiven < 0 Espece<Initializer>", true);
+			Main::gererErreur("expGiven < 0 Espece<Initializer>",true);
 		}
+		numeroPokedex = 0;
 		this->tauxDeCapture = tauxDeCapture;
 		this->baseAtk = atk;
 		this->baseDef = def;
@@ -55,6 +56,7 @@ Espece::Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, string
 		default:
 			courbe = CourbeExp::MOYENNE;
         }
+
 }
 
 void Espece::checkEvol(){
