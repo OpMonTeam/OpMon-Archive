@@ -1,7 +1,7 @@
 #![Regimys LOGO](https://raw.githubusercontent.com/jlppc/Projet-Pokemon-Regimys/master/Ressources/Autres/regimys_icon.png)
 
 <h2>--------En Français-------</h2>
-<a href="#-------in-english-------">Look in English</a><br/>
+Look <a href="#-------in-english-------">In English</a><br/>
 # Bienvenue sur le Projet "Pokémon Regimys"!
 
 Bienvenue sur le projet de fan-game pokemon Regimys! Plus d'infos sur le wiki ou sur la chaine YouTube !<br/>
