@@ -6,20 +6,20 @@
 #include <vector>
 using namespace std;
 
-class Item: public RegimysObject {
+class Item : public RegimysObject {
 public:
 	Item(string nom, bool usable, bool usableInFight, bool givable, BagCat categorie, int id);
 	static Class<Item>* getStatClass() const {return classe;}
 	static void initItems();
-	static Item* getItem const (string name);
-	static Item* getItem const (int id);
-	static int searchItem const (Item* const& toSearch);
-	bool operator== const (Item const& a, Item const& b);
+	static Item* getItem (string name) const ;
+	static Item* getItem (int id) const;
+	static int searchItem (Item* const& toSearch) const;
+	bool operator== (Item const& a, Item const& b) const;
 	string getNom() const {return nom;}
 	bool isUsable() const {return usable;}
 	bool isGivable() const {return givable;}
-	BagCat getCategorie const (){return categorie;}
-	bool isUsableInFight const (){return usableInFight;}
+	BagCat getCategorie () const{return categorie;}
+	bool isUsableInFight() const{return usableInFight;}
 	int getID() const {return id;}
 private:
     string nom;

@@ -9,8 +9,15 @@ using namespace std;
 
 
     int Main::main(){
-        File errLogF = File("errLog.txt");
-        File logF = File("log.txt");
+
+#ifdef WINDOWS
+        File errLogF = File("logs\\errLog.txt");
+        File logF = File("logs\\log.txt");
+#else
+        File errLogF = File("logs/errLog.txt");
+        File logF = File("logs/log.txt");
+#endif
+
         Main::log = *logF.getOut();
         errLog = *errLogF.getOut();
         if(!log || !errLog){

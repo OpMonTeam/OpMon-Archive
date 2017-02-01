@@ -1,8 +1,3 @@
 
 #include "Caractere.hpp"
-
-Caractere::Caractere() {
-	// TODO Auto-generated constructor stub
-
-}
-
+//LOUL. Y'A ENCORE ET ENCORE RIEN.

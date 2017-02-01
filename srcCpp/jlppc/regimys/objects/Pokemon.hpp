@@ -32,12 +32,12 @@ class Pokemon : public RegimysObject
         int win(Pokemon const& vaincu);
         static Class<Pokemon> *classe = new Class("Pokemon", 13644895);
         void calcStats();
-        bool itemUsed(Item const& *used);
-        Item* hold(Item const& *item);
+        bool itemUsed(Item const *used);
+        Item* hold(Item const *item);
         void traded();
         void toolEvTrade();
         void evolve();
-        void setStats(int stats[], Attaque attacks[], Espece espece, Type types[]);
+        void setStats(int const& stats[], Attaque const& attacks[], Espece const& espece, Type const& types[]);
         void attacked(int pvPerdus);
         bool changeATK(int power);
         bool changePRE(int power);
@@ -47,16 +47,16 @@ class Pokemon : public RegimysObject
         bool changeDEFSPE(int power);
         bool changeVIT(int power);
         bool setStatus(Status status);
-        int getStatPV(){return statPV;}
-        int getStatLove(){return statLove;}
-        int getPV(){return PV;}
+        int getStatPV() const{return statPV;}
+        int getStatLove() const{return statLove;}
+        int getPV() const{return PV;}
         void heal(int PV);
-        bool getLevel(){return level;}
-        Attaque* getAttaques(){return &attaques;}
-        virtual Class* getClass(){return classe;}
+        bool getLevel() const{return level;}
+        Attaque* getAttaques() const{return &attaques;}
+        virtual Class* getClass() const{return classe;}
 
     protected:
-        void getEvs(Pokemon vaincu);
+        void getEvs(Pokemon const& vaincu);
 
     private:
     string surnom;
@@ -94,7 +94,7 @@ class Pokemon : public RegimysObject
 
     int level;
 
-    Caractere caractere;
+    CaractereClass caractere;
 
     Attaque attaques[4];
 

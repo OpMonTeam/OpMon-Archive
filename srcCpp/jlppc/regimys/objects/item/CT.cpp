@@ -1,7 +1,7 @@
 
 #include "CT.hpp"
-
-CT::CT(Class<Attke> atk, int ctNumber) : Item("CT" + ctnumber + atk.getName(), true, false,false, BagCat::CTS) {
+template<typename Attke>
+CT<Attke>::CT(Class<Attke> atk, int ctNumber, int ID) : Item("CT" + ctNumber + atk.getName(), true, false,false, BagCat::CTS, ID) {
 	this->atk = atk;
 }
 

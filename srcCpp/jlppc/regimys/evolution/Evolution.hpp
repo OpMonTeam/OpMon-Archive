@@ -10,7 +10,7 @@ using namespace std;
 class Evolution: public RegimysObject {
 public:
 	Evolution(int evo);
-	virtual bool checkEvolve(Pokemon const& toCheck) = 0;
+	virtual bool checkEvolve(Pokemon const& toCheck) const = 0;
 	Espece getEvolution();
 	void checkEvo();
 
