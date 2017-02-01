@@ -1,8 +1,9 @@
 #include "Comparaisons.hpp"
 
-template<typename T> bool multiEgal(T const& object, T const& toCompare[]) const{
+//ATTENTION ! : toCompare doit etre un TABLEAU!!!
+template<typename T, typename U> bool Comparaisons::multiEgal(T const& object, U const& toCompare) const{
     int i = 0;
-    for(i = 0; i < toCompare; i++){
+    for(i = 0; i < sizeof toCompare; i++){
         if(object == toCompare[i]){
             return true;
         }

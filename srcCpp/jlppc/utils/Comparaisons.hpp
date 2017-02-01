@@ -7,7 +7,7 @@
 using namespace std;
 
 namespace Comparaisons{
-    template<typename T> bool multiEgal(T const& object, T const& toCompare[]) const;
+    template<typename T, typename U> bool multiEgal(T const& object, U const& toCompare) const;
 }
 
 #endif // COMPARAISONS_HPP
