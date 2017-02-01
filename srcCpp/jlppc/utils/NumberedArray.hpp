@@ -5,17 +5,16 @@
 
 using namespace std;
 
-template<typename O>
-class NumberedArray final
+class NumberedArray
 {
     public:
-        NumberedArray<O>(int number, O *object);
-        ~NumberedArray<O>();
-        O getObject() const {return *object;}
+        NumberedArray(int number, Attaque *attaque);
+        ~NumberedArray();
+        Attaque getAttaque() const {return *attaque;}
         int getNumber() const {return number;}
     private:
         int number;
-        O *object;
+        Attaque *attaque;
 
 };
 
