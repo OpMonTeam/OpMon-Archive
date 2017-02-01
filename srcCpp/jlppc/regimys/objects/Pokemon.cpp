@@ -129,7 +129,7 @@ Pokemon::Pokemon(string surnom, Espece espece, int level, Attaque attaques[],
 
 }
 
-bool Pokemon::captured(I_Pokeball pokeball) {
+bool Pokemon::captured(I_Pokeball const& pokeball) {
 	Status listeUnCinq[] = { Status::PARALYSIE, Status::POISON, Status::BRULURE };
 	Status listeDeux[] = { Status::SOMMEIL, Status::GEL };
 	int a = round((((3 * statPV - 2 * PV) * tauxCapture* pokeball.getTauxCapture()* (Comparaisons::multiEgal(status, listeUnCinq) ? 1.5 : (Comparaisons::multiEgal(status, listeDeux) ? 2 : 1))) / (3 * statPV)));
@@ -166,7 +166,7 @@ bool Pokemon::captured(I_Pokeball pokeball) {
 	}
 }
 
-void Pokemon::setStat(string stat, int newStat) {
+void Pokemon::setStat(string const& stat, int newStat) {
 	if (stat == "atk") {
 		statATK = newStat;
 	} else if (stat == "def") {

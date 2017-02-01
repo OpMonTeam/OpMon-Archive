@@ -11,7 +11,9 @@ public:
 	I_Heal(string nom, bool usable, bool usableInFight, bool givable, BagCat categorie, int pvHeal, int ID);
 	I_Heal(string nom, bool usable, bool usableInFight, bool givable, BagCat categorie, Status heal, bool healAllStatus, int ID);
 	I_Heal(string nom, Stats statAdd, int ID);
-
+	bool isHealAll() const{return healAll;}
+	bool getPvHeal() const{return pvHeal;}
+	Status getStatusHeald() const{return healed;}
 private:
 	int pvHeal;
 	Status healed;

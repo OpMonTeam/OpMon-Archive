@@ -22,6 +22,7 @@ public:
 	BagCat getCategorie () const{return categorie;}
 	bool isUsableInFight() const{return usableInFight;}
 	int getID() const {return id;}
+	static int getItemNumber() const{return itemsList.size();}
 private:
     string nom;
     bool usable;
