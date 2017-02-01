@@ -31,3 +31,4 @@ exe/errLog.txt
 *.txt
 *.db
 pages/doc/DocSample.html
+/Debug/
