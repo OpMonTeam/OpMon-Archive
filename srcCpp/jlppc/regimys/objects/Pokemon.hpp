@@ -54,9 +54,16 @@ class Pokemon : public RegimysObject
         bool getLevel() const{return level;}
         Attaque* getAttaques() const{return &attaques;}
         virtual Class* getClass() const{return classe;}
-
+        int getStatESQ() const{return statESQ;}
+        int getStatPRE() const{return statPRE;}
     protected:
         void getEvs(Pokemon const& vaincu);
+        Type getType1() const{return type1;}
+        Type getType2() const{return type2;}
+        int getStatATK() const{return statATK;}
+        int getStatATKSPE() const{return statATKSPE;}
+        int getStatDEF() const{return statDEF;}
+        int getStatDEFSPE() const{return statDEFSPE;}
 
     private:
     string surnom;
