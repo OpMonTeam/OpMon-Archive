@@ -9,7 +9,7 @@ Bienvenue sur le projet de fan-game pokemon Regimys! Plus d'infos sur le wiki ou
 <a href="https://www.youtube.com/channel/UC8qa9Z52pOHhZ1XjIoTa2kQ">Chaine YouTube du Projet Regimys</a><br/>
 <a href="http://regimys.tk">Site web du jeu</a><br/>
 <a href="https://github.com/jlppc/Site-Pokemon-Regimys">Dépot du site web du jeu</a><br/><br/>
-<br/>Version du jeu : Alpha 0.07.1 !<a href="https://github.com/jlppc/Projet-Pokemon-Regimys/releases/download/alpha-v0.07/Regimys.zip"><img src="https://raw.githubusercontent.com/jlppc/Projet-Pokemon-Regimys/master/Ressources/Autres/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
+<br/>Version du jeu : Alpha 0.07.1 ! Téléchargement : <a href="https://github.com/jlppc/Projet-Pokemon-Regimys/releases/download/alpha-v0.07/Regimys.zip"><img src="https://raw.githubusercontent.com/jlppc/Projet-Pokemon-Regimys/master/Ressources/Autres/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 Regimys.zip</a><br/>
 Prochaines versions :<ul>
 <li>Alpha 0.08 : Quand le jeu sera transposé en C++, avec un début de graphique.</li>
@@ -41,5 +41,5 @@ Welcome to the fan-game project "Pokemon Regimys" ! More info in the Regimys Wik
 <a href="https://www.youtube.com/channel/UC8qa9Z52pOHhZ1XjIoTa2kQ">Regimys Youtube Channel</a><br/>
 <a href="http://regimys.tk">Regimys web site</a><br/>
 <a href="https://github.com/jlppc/Site-Pokemon-Regimys">Website repository</a><br/><br/>
-<br/>Game version : Alpha 0.07.1 !<a href="https://github.com/jlppc/Projet-Pokemon-Regimys/releases/download/alpha-v0.07/Regimys.zip"><img src="https://raw.githubusercontent.com/jlppc/Projet-Pokemon-Regimys/master/Ressources/Autres/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
+<br/>Game version : Alpha 0.07.1 ! Download : <a href="https://github.com/jlppc/Projet-Pokemon-Regimys/releases/download/alpha-v0.07/Regimys.zip"><img src="https://raw.githubusercontent.com/jlppc/Projet-Pokemon-Regimys/master/Ressources/Autres/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 
