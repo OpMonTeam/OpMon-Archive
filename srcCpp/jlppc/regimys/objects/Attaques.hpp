@@ -20,32 +20,47 @@ namespace Attaques {
 
 	class Acidarmure : public Attaque{
 		Acidarmure() : Attaque("Acidarmure", 0, Type::POISON, 100, false, true, -1, true, 20, 0){}
-		int effetAvant(Pokemon &atk, Pokemon &def){}
+		int effetAvant(Pokemon &atk, Pokemon &def){return 2;}
 		int effetApres(Pokemon &atk, Pokemon &def);
 		static const Class<Acidarmure> *classe = new Class<Acidarmure>("Acidarmure", 0xFFFE);
 	};
 	
 	class Acide : public Attaque{
-		Acidarmure() : Attaque("Acide", 40, Type::POISON, 100, true, false, 16, false, 30, 0){}
-		int effetAvant(Pokemon &atk, Pokemon &def){}
+		Acide() : Attaque("Acide", 40, Type::POISON, 100, true, false, 16, false, 30, 0){}
+		int effetAvant(Pokemon &atk, Pokemon &def){return 2;}
 		int effetApres(Pokemon &atk, Pokemon &def);
 		static const Class<Acide> *classe = new Class<Acide>("Acide", 0xFFFD);
-	}
+	};
 	
 	class Affutage : public Attaque{
-		Affutage() : Attaque("Affutage", 0, Type::NORMAL, 100, false, true, -1, true, 30, 0);
-		int effetAvant(Pokemon &atk, Pokemon &def){}
+		Affutage() : Attaque("Affutage", 0, Type::NORMAL, 100, false, true, -1, true, 30, 0){}
+		int effetAvant(Pokemon &atk, Pokemon &def){return 2;}
 		int effetApres(Pokemon &atk, Pokemon &def);
 		static const Class<Affutage> *classe = new Class<Affutage>("Affutage", 0xFFFC);
-	}
+	};
 	
 	class Aiguisage : public Attaque{
-		Aiguisage() : Attaque("Aiguisage", 0, Type::NORMAL, 100, false, true, -1, true, 15, 0);
-		int effetAvant(Pokemon &atk, Pokemon &def){}
+		Aiguisage() : Attaque("Aiguisage", 0, Type::NORMAL, 100, false, true, -1, true, 15, 0){}
+		int effetAvant(Pokemon &atk, Pokemon &def){return 2;}
 		int effetApres(Pokemon &atk, Pokemon &def);
 		static const Class<Aiguisage> *classe = new Class<Aiguisage>("Aiguisage", 0xFFFB);
-	}
+	};
+
+	class Amnesie : public Attaque{
+		Amnesie() : Attaque("Amnésie", 0, Type::PSY, 100, false, true, -1, true, 20){}
+		int effetAvant(Pokemon &atk, Pokemon &def){return 2;}
+		int effetApres(Pokemon &atk, Pokemon &def);
+		static const Class<Amnesie> *classe = new Class<Amnesie>("Amnesie", 0xFFFA);
+
+	};
 	
+	class Armure : public Attaque{
+		Armure() : Attaque("Armure", 0, Type::NORMAL, 100, false, true, -1, true, 30, 0){}
+		int effetAvant(Pokemon &atk, Pokemon &def){return 2;}
+		int effetApres(Pokemon &atk, Pokemon &def);
+		static const Class<Armure> *classe = new Class<Armure>("Armure", 0xFFF9);
+	};
+
 
 }
 

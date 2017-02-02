@@ -18,7 +18,7 @@ class Espece : public RegimysObject
         void checkEvol();
         void checkAtkLvls();
         static int pokedexNumberInit = 0;
-        static Class<Espece> *classe = new Class<Espece>("Espece", 4987386);
+        static const Class<Espece> *classe = new Class<Espece>("Espece", 0xFFFFF);
         int getBaseAtk() const {return baseAtk;}
         int getBaseDef() const {return baseDef;}
         int getBaseAtkSpe() const {return baseAtkSpe;}

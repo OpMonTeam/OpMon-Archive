@@ -11,7 +11,7 @@ public:
 	virtual Class* getClass() const {return classe;};
 
 private:
-	static const Class<RegimysObject> classe;
+	static const Class<RegimysObject> *classe;
 
 };
 

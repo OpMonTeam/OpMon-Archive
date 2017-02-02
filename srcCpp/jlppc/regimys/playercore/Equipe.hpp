@@ -21,10 +21,12 @@ public:
 	//Opérateurs non pratique, mais je les met quand meme;
 	void operator+=(Pokemon const& pkmn){addPokemon(pkmn);}
 	void operator-=(int id){removePoke(id);}
+	static Pokemon PNULL = Pokemon();
 
 private:
+
 	int nbreOfPoke;
-	Pokemon equipe[] = {NULL,NULL,NULL,NULL,NULL,NULL};
+	Pokemon equipe[] = {PNULL, PNULL, PNULL, PNULL, PNULL, PNULL};
 	string nom;
 };
 
