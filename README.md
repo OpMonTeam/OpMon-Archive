@@ -15,6 +15,7 @@ Prochaines versions :<ul>
 <li>Alpha 0.09 : Quand la scene d'intro du jeu et les combats seront O.K en C++</li>
 <li>Alpha 0.1 : Correction de tous les bugs possibles dans la partie graphique, ajout de sons, ajout du launcher, SUPPRESSION DE LA VERSION JAVA!!!</li></ul>
 <br/>
+
 Informations generales:<br/>
 Regimys est un projet de fan-game pokémon imaginé en 2012 et débuté en septembre 2016. 
 Ce fan-game est totalement open-source, ce qui permet aux plus grands fans de venir realiser leurs rêves les plus fous! 
