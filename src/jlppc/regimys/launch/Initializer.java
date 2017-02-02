@@ -336,16 +336,19 @@ public class Initializer {
 	         atkPokeLvl[37] = new HashArray[]{new HashArray(0, Flammeche.class), new HashArray(4, MimmiQueue.class), new HashArray(9, RegardTouchant.class), new HashArray(10, ViveAttaque.class), new HashArray(12, OndeFolie.class), new HashArray(15, DanseFlamme.class), new HashArray(18, Represailles.class), new HashArray(20, FeuFollet.class), new HashArray(23, Feinte.class), new HashArray(26, Chatiment.class), new HashArray(28, Rebondifeu.class), new HashArray(31, Extrasenseur.class), new HashArray(36, LanceFlammes.class), new HashArray(42, Deflagration.class), new HashArray(44, Rancune.class), new HashArray(47, Seduction.class), new HashArray(50, FeuDEnfer.class);
 		 atkPokeLvl[38] = new HashArray[]{new HashArray(0, Machination.class), new HashArray(0, LanceFlammes.class), new HashArray(0, ViveAttaque.class), new HashArray(0, OndeFolie.class);
 		 atkPokeLvl[39] = new HashArray[]{new HashArray(0, Berceuse.class), new HashArray(3, BoulArmure.class), new HashArray(5, EcrasFace.class), new HashArray(8, Camaraderie.class), new HashArray(11, VoixEnjoleuse.class), new HashArray(15, Entrave.class), new HashArray(18, Torgnoles.class), new HashArray(21, Roulade.class), new HashArray(24, ChantCanon.class), new HashArray(28, ReveilForce.class), new HashArray(32, Repos.class), new HashArray(35, Plaquage.class), new HashArray(37, Copie.class), new HashArray(40, Gyroballe.class), new HashArray(44, Megaphone.class), new HashArray(49, Damocles.class);
-		 //atkPokeLvl[40] = new HashArray[]{new HashArray(0,
-		 //atkPokeLvl[41] = new HashArray[]{new HashArray(0,
-	         //atkPokeLvl[42] = new HashArray[]{new HashArray(0,
-		 //atkPokeLvl[43] = new HashArray[]{new HashArray(0,
-		 //atkPokeLvl[44] = new HashArray[]{new HashArray(0,
-		 
-								
-								
-								
-	/**
+		 atkPokeLvl[40] = new HashArray[]{new HashArray(0, Damocles.class), new HashArray(0, Calinerie.class), new HashArray(0, Berceuse.class), new HashArray(0, Entrave.class), new HashArray(0, BoulArmure.class), new HashArray(0, Torgnoles.class); 
+		 atkPokeLvl[41] = new HashArray[]{new HashArray(0, Vampirisme.class), new HashArray(5, Ultrason.class), new HashArray(7, Etonnement.class), new HashArray(11, Morsure.class), new HashArray(13, CruAile.class), new HashArray(17, OndeFolle.class), new HashArray(19, TranchAir.class), new HashArray(23, Meteores.class), new HashArray(25, CrochetVenin.class), new HashArray(29, RegardNoir.class), new HashArray(31, Acrobatie.class), new HashArray(35, BueeNoire.class), new HashArray(37, ChocVenin.class), new HashArray(41, LameDAir.class), new HashArray(43, Prevention.class);
+	        //atkPokeLvl[42] = new HashArray[]{new HashArray(0,
+		//atkPokeLvl[43] = new HashArray[]{new HashArray(0,
+	        //atkPokeLvl[44] = new HashArray[]{new HashArray(0,
+		//atkPokeLvl[44] = new HashArray[]{new HashArray(0,
+		//atkPokeLvl[44] = new HashArray[]{new HashArray(0,						
+		//atkPokeLvl[44] = new HashArray[]{new HashArray(0,						
+		//atkPokeLvl[44] = new HashArray[]{new HashArray(0,						
+                //atkPokeLvl[44] = new HashArray[]{new HashArray(0,
+						  
+	
+	 /**
 	  * Initialise les sprites
 	  */
 	 public static void initSprites(){
