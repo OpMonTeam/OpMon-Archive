@@ -3,6 +3,7 @@
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUES_HPP_
 
 #include <iostream>
+#include <cmath>
 #include "../../includeAll.hxx"
 
 using namespace std;
@@ -59,6 +60,13 @@ namespace Attaques {
 		int effetAvant(Pokemon &atk, Pokemon &def){return 2;}
 		int effetApres(Pokemon &atk, Pokemon &def);
 		static const Class<Armure> *classe = new Class<Armure>("Armure", 0xFFF9);
+	};
+
+	class Belier : public Attaque{
+		Belier() : Attaque("Bélier", 90, Type::NORMAL, 85, false, false, 16, false, 20, 0){}
+		int effetAvant(Pokemon &atk, Pokemon &def){return 2;}
+		int effetApres(Pokemon &atk, Pokemon &def);
+		static const Class<Belier> *classe = new Class<Belier>("Belier", 0xFFF8);
 	};
 
 
