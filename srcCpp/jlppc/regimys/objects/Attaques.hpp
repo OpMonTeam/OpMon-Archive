@@ -68,6 +68,13 @@ namespace Attaques {
 		int effetApres(Pokemon &atk, Pokemon &def);
 		static const Class<Belier> *classe = new Class<Belier>("Belier", 0xFFF8);
 	};
+	
+	class Balayage : public Attaque{
+		Balayage() : Attaque("Balayage", 0, Type::COMBAT, 100, false, false, 16, false, 20, 0){}
+		int effetAvant(Pokemon &atk, Pokemon &def);
+		int effetApres(Pokemon &atk, Pokemon &def){}
+		static const Class<Balayage> *classe = new Class<Balayage>("Balayage", 0xFFF7);
+	};
 
 
 }
