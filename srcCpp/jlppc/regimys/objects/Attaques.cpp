@@ -2,7 +2,7 @@
 #include "Attaques.hpp"
 
 namespace Attaques {
-int Abime::effetAvant(Pokemon atk, Pokemon def){
+int Abime::effetAvant(Pokemon &atk, Pokemon &def){
 	precision = ((atk.getLevel() - def.getLevel()) + 30);
 	if(atk.getLevel() < def.getLevel()){
 		return 2;
@@ -15,7 +15,7 @@ int Abime::effetAvant(Pokemon atk, Pokemon def){
 	}
 }
 
-int Abime::effetApres(Pokemon atk, Pokemon def){
+int Acidarmure::effetApres(Pokemon &atk, Pokemon &def){
 	if(atk.changeDEF(2)){
 		//Texte
 	}else{
@@ -23,4 +23,31 @@ int Abime::effetApres(Pokemon atk, Pokemon def){
 	}
 	return 2;
 }
+	
+	int Acide::effetApres(Pokemon &atk, Pokemon &def){
+		if(Utils::randU(10) == 2){
+			if(def.changeDEFSPE(-1)){
+				//Texte
+			}else{
+				//Texte
+			}
+		}
+	}
+	
+	int Affutage::effetApres(Pokemon &atk, Pokemon &def){
+		if(atk.changeATK(1)){
+			//Texte
+		}else{
+			//Texte
+		}
+	}
+	
+	int Aiguisage::effetApres(Pokemon &atk, Pokemon &def){
+		if(atk.changeAtk(1)){
+		}else{
+		}
+		if(atk.changePRE(1)){
+		}else{
+		}
+	}
 }
