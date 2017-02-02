@@ -76,4 +76,20 @@ int Acidarmure::effetApres(Pokemon &atk, Pokemon &def){
 		atk.attacked(round(pvPerdus / 4));
 		return 0;
 	}
+	
+	int Balayage::effetApres(Pokemon &atk, Pokemon &def){
+		if(def.getEspece().getPoids() <= 10){
+			puissance = 20;
+		}else if(def.getEspece().getPoids() > 10 && def.getEspece().getPoids() <= 25){
+			puissance = 40;
+		}else if(def.getEspece().getPoids() > 25 && def.getEspece().getPoids() <=50){
+			puissance = 60;
+		}else if(def.getEspece().getPoids() > 50 && def.getEspece().getPoids() <= 100){
+			puissance = 80;
+		}else if(def.getEspece().getPoids() > 100 && def.getEspece().getPoids() <= 200){
+			puissance = 100;
+		}else{
+			puissance = 120;
+		}
+	}
 }
