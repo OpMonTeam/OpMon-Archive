@@ -69,5 +69,11 @@ int Acidarmure::effetApres(Pokemon &atk, Pokemon &def){
 		}else{
 
 		}
+		return 0;
+	}
+
+	int Belier::effetApres(Pokemon &atk, Pokemon &def){
+		atk.attacked(round(pvPerdus / 4));
+		return 0;
 	}
 }
