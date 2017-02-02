@@ -11,11 +11,11 @@ class Attaque : public RegimysObject{
 public:
 	virtual ~Attaque(){}
 	Attaque(string nom, int puissance, Type type, int precision, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite);
-	virtual void effetAvant(Pokemon atk, Pokemon def) = 0;
-	virtual void effetApres(Pokemon atk, Pokemon def) = 0;
+	virtual void effetAvant(Pokemon &atk, Pokemon &def) = 0;
+	virtual void effetApres(Pokemon &atk, Pokemon &def) = 0;
 	void healPP(){pp = ppMax;}
 	int attack(Pokemon &atk, Pokemon &def) final;
-	virtual void siEchoue(Pokemon atk, Pokemon def){}
+	virtual void siEchoue(Pokemon &atk, Pokemon &def){}
 protected:
 	string nom;
 	int puissance;
