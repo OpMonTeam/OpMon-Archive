@@ -32,6 +32,7 @@ int Acidarmure::effetApres(Pokemon &atk, Pokemon &def){
 				//Texte
 			}
 		}
+		return 0;
 	}
 	
 	int Affutage::effetApres(Pokemon &atk, Pokemon &def){
@@ -40,14 +41,33 @@ int Acidarmure::effetApres(Pokemon &atk, Pokemon &def){
 		}else{
 			//Texte
 		}
+		return 0;
 	}
 	
 	int Aiguisage::effetApres(Pokemon &atk, Pokemon &def){
-		if(atk.changeAtk(1)){
+		if(atk.changeATK(1)){
 		}else{
 		}
 		if(atk.changePRE(1)){
 		}else{
+		}
+		return 0;
+	}
+
+	int Amnesie::effetApres(Pokemon &atk, Pokemon &def){
+		if(atk.changeDEFSPE(2)){
+
+		}else{
+
+		}
+		return 0;
+	}
+
+	int Armure::effetApres(Pokemon &atk, Pokemon &def){
+		if(atk.changeDEF(1)){
+
+		}else{
+
 		}
 	}
 }

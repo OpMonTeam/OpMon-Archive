@@ -9,7 +9,7 @@ Equipe::Equipe(string nom, Pokemon equipe[]) {
 			if(i < size){
 				equipe2[i] = equipe[i];
 			}else{
-				equipe2[i] = NULL;
+				equipe2[i] = PNULL;
 			}
 		}
 		equipe = equipe2;
@@ -20,7 +20,7 @@ Equipe::Equipe(string nom, Pokemon equipe[]) {
 		}
 
 		this->equipe[i] = equipe[i];
-		if(equipe[i] != NULL){
+		if(equipe[i] != PNULL){
 			nbreOfPoke++;
 		}
 
@@ -32,7 +32,7 @@ Equipe::Equipe(string nom, Pokemon equipe[]) {
 
 void Equipe::heal(){
 	for(int i = 0; i < nbreOfPoke; i++){
-		if(equipe[i] != NULL){
+		if(equipe[i] != PNULL){
 			equipe[i].heal(equipe[i].getStatPV());
 			equipe[i].confus = false;
 			equipe[i].setStatus(Status::AUCUN);

@@ -27,7 +27,7 @@ class Pokemon : public RegimysObject
         void levelUp();
         bool isHoldingItem() const {return (held == NULL);}
         int win(Pokemon const& vaincu);
-        static Class<Pokemon> *classe = new Class("Pokemon", 13644895);
+        static Class<Pokemon> *classe = new Class("Pokemon", 0xFFFFE);
         void calcStats();
         bool itemUsed(Item const *used);
         Item* hold(Item const *item);
