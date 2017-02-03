@@ -76,12 +76,19 @@ namespace Attaques {
 		static const Class<Balayage> *classe = new Class<Balayage>("Balayage", 0xFFF7);
 	
 	class BecVrille : public Attaque{
-		BecVrille() : Attaque("Bec Vrille", 80, Type::VOL, 100, false, false, 16, false, 20);
+		BecVrille() : Attaque("Bec Vrille", 80, Type::VOL, 100, false, false, 16, false, 20){}
 		int effetAvant(Pokemon &atk, Pokemon &def){}
 		int effetApres(Pokemon &atk, Pokemon &def){}
-		static const Class<BecVrille> *classe = new Class<BecVrille>("Bec Vrille", 0xFFF6
+		static const Class<BecVrille> *classe = new Class<BecVrille>("Bec Vrille", 0xFFF6);
 	
 	};
+									     
+	class Berceuse : public Attaque{
+		Berceuse() : Attaque("Berceuse", 0, Type::NORMAL, 55, false, true, -1, false, 15){}
+		int effetAvant(Pokemon &atk, Pokemon &def){}
+		int effetApres(Pokemon &atk, Pokemon &def);
+		static const Class<Berceuse> *classe = new Class<Berceuse>("Berceuse", 0xFFF5);
+	}
 
 
 }
