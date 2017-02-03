@@ -92,4 +92,12 @@ int Acidarmure::effetApres(Pokemon &atk, Pokemon &def){
 			puissance = 120;
 		}
 	}
+	
+	int Berceuse::effetApres(Pokemon &atk, Pokemon &def){
+		if(def.setStatus(Status::SOMMEIL)){
+			
+		}else{
+			
+		}
+	}
 }
