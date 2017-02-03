@@ -74,6 +74,13 @@ namespace Attaques {
 		int effetAvant(Pokemon &atk, Pokemon &def);
 		int effetApres(Pokemon &atk, Pokemon &def){}
 		static const Class<Balayage> *classe = new Class<Balayage>("Balayage", 0xFFF7);
+	
+	class BecVrille : public Attaque{
+		BecVrille() : Attaque("Bec Vrille", 80, Type::VOL, 100, false, false, 16, false, 20);
+		int effetAvant(Pokemon &atk, Pokemon &def){}
+		int effetApres(Pokemon &atk, Pokemon &def){}
+		static const Class<BecVrille> *classe = new Class<BecVrille>("Bec Vrille", 0xFFF6
+	
 	};
 
 
