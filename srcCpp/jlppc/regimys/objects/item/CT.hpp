@@ -6,7 +6,7 @@
 #include "Item.hpp"
 #include "../Attaque.hpp"
 
-typedef Class<Attaque*> ClassAtk;
+typedef Class<Attaque> ClassAtk;
 
 class CT : public Item {
 public:

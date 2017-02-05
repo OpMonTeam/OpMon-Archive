@@ -27,7 +27,7 @@ private:
 	Evolution *evolType;
 	int type1;
 	int type2;
-	NumberedArray atksByLevels[];
+	NumberedArray<Class<Attaque> > atksByLevels[];
 	string entreePokedex;
 	float taille;
 	float poids;
@@ -47,7 +47,7 @@ private:
 
 public:
 	virtual ~Espece();
-	Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, string name, int type1, int type2,int maniereEvolution, int niveauEvolution, Evolution *evolType, NumberedArray attacksByLevels[],CT ctCombatibles[], int EVGiven[], float taille, float poids, string entreePokedex, int expGiven,int expMax, int tauxDeCapture);
+	Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, string name, int type1, int type2,int maniereEvolution, int niveauEvolution, Evolution *evolType, NumberedArray<Class<Attaque> > attacksByLevels[],CT ctCombatibles[], int EVGiven[], float taille, float poids, string entreePokedex, int expGiven,int expMax, int tauxDeCapture);
 	void checkEvol();
 	void checkAtkLvls();
 	static int pokedexNumberInit;

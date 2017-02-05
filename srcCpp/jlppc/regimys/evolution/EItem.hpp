@@ -9,7 +9,7 @@ public:
 	E_Item(int evo, Item forEvolve);
 	bool checkEvolve(Pokemon  const& toCheck) const;
 	bool itemEvolve(Item const& forEvolve) const;
-	static const Class<E_Item> *classe = new Class<E_Item>("E_Item", 3644954);
+	static Class<E_Item> *classe = new Class<E_Item>("E_Item", 3644954);
 
 private:
 	Item forEvolve;

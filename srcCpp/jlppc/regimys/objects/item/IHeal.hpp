@@ -12,11 +12,11 @@ public:
 	I_Heal(string nom, bool usable, bool usableInFight, bool givable, int categorie, int pvHeal, int heal, bool healAllStatus, int ID);
 	I_Heal(string nom, bool usable, bool usableInFight, bool givable, int categorie, int ppHeal, bool allAttacksHeal, int ID);
 	I_Heal(string nom, bool usable, bool usableInFight, bool givable, int categorie, int pvHeal, int ID);
-	I_Heal(string nom, bool usable, bool usableInFight, bool givable, int categorie, int heal, bool healAllStatus, int ID);
+	I_Heal(string nom, bool usable, bool usableInFight, bool givable, int categorie, int heal, bool healAllStatus, int ID, bool status);//De toutes facons meme si status est false ce sera quand meme du status lol
 	I_Heal(string nom, int statAdd, int ID);
 	bool isHealAll() const{return healAll;}
 	bool getPvHeal() const{return pvHeal;}
-	Status getStatusHeald() const{return healed;}
+	int getStatusHeald() const{return healed;}
 private:
 	int pvHeal;
 	int healed;

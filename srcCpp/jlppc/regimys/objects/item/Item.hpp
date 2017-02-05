@@ -21,7 +21,7 @@ public:
 	int getCategorie () const{return categorie;}
 	bool isUsableInFight() const{return usableInFight;}
 	int getID() const {return id;}
-	static int getItemNumber(){return itemsList.size();}
+	static int getItemNumber() {return itemsList.size();}
 private:
     string nom;
     bool usable;
