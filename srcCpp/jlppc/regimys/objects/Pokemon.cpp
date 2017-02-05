@@ -135,6 +135,7 @@ Pokemon::Pokemon(string surnom, Espece espece, int level, Attaque *attaques[],
 	statLove = 100;
 	statPRE = 100;
 	statESQ = 100;
+	falsif = false;
 
 }
 

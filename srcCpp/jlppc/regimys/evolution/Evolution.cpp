@@ -1,12 +1,11 @@
 
 #include "Evolution.hpp"
 
-Evolution::Evolution(int evo) {
-	this->evo = evo;
+Evolution::Evolution(int evo) : evo(evo){
 }
 
 void Evolution::checkEvo(){
-	toEvolve = Initializer::listePoke[evo];
+	//toEvolve = Initializer::listePoke[evo];
 }
 
 Espece Evolution::getEvolution(){

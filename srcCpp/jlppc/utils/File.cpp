@@ -5,9 +5,9 @@ File::File(string path){
 }
 
 ifstream* File::getIn() const{
-    return &(ifstream(path.c_str()));
+    return new ifstream(path.c_str());
 }
 
 ofstream* File::getOut() const{
-    return &(ofstream(path.c_str()));
+    return new ofstream(path.c_str());
 }
