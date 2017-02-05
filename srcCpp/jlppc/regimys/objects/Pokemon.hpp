@@ -1,9 +1,17 @@
 #ifndef POKEMON_HPP
 #define POKEMON_HPP
 
+#include "Espece.hpp"
 #include <iostream>
-#include "../../includeAll.hxx"
 #include <cmath>
+#include "Attaque.hpp"
+#include "../../utils/NumberedArray.hpp"
+#include "item/IPokeball.hpp"
+#include "item/Item.hpp"
+#include "../../utils/Class.hpp"
+#include "../enums/Enums.hpp"
+#include "../../utils/Utils.hpp"
+
 using namespace std;
 
 namespace CalcCourbes{
@@ -16,18 +24,17 @@ namespace CalcCourbes{
 	int rapide(int n);
 };
 
-class Pokemon : public RegimysObject
+class Pokemon
 {
     public:
 		virtual ~Pokemon();
-		Pokemon(){falsif = true;}
+		Pokemon(){};
         Pokemon(string surnom, Espece espece, int level, Attaque *attaques[], CaractereClass caractere);
         bool captured(I_Pokeball const& pokeball);
         void setStat(string const& stat, int newStat);
         void levelUp();
         bool isHoldingItem() const {return (held == NULL);}
         int win(Pokemon const& vaincu);
-        static Class<Pokemon> *classe = new Class("Pokemon", 0xFFFFE);
         void calcStats();
         bool itemUsed(Item const *used);
         Item* hold(Item const *item);
@@ -50,7 +57,6 @@ class Pokemon : public RegimysObject
         void heal(int PV);
         bool getLevel() const{return level;}
         Attaque** getAttaques() const{return &attaques;}
-        virtual Class* getClass() const{return classe;}
         int getStatESQ() const{return statESQ;}
         int getStatPRE() const{return statPRE;}
     protected:
@@ -78,7 +84,7 @@ class Pokemon : public RegimysObject
     int defSpeEV = 0;
     int vitEV = 0;
     int pvEV = 0;
-    bool falsif = false;
+    bool falsif = true;
     //Les statistiques en general
     int statATK;
     int statDEF;
@@ -111,11 +117,11 @@ class Pokemon : public RegimysObject
 
     int PV;
 
-    Status status = Status::AUCUN;
+    int status = Status::AUCUN;
 
-    Type type1;
+    int type1;
 
-    Type type2;
+    int type2;
 
     int exp;
 

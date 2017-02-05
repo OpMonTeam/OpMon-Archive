@@ -1,4 +1,5 @@
 #include "Player.hpp"
+#include "../../utils/Utils.hpp"
 
 Player::Player(string name) {
 	this->name = name;

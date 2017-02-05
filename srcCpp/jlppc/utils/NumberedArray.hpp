@@ -2,19 +2,22 @@
 #define HASHARRAY_HPP
 
 #include <iostream>
+#include "../regimys/objects/Attaque.hpp"
 
 using namespace std;
+
+typedef Class<Attaque*> ClassAttaque;
 
 class NumberedArray
 {
     public:
-        NumberedArray(int number, Attaque *attaque);
+        NumberedArray(int number, ClassAttaque *attaque);
         ~NumberedArray();
-        Attaque getAttaque() const {return *attaque;}
+        ClassAttaque getAttaque() const {return *attaque;}
         int getNumber() const {return number;}
     private:
         int number;
-        Attaque *attaque;
+        ClassAttaque *attaque;
 
 };
 

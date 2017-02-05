@@ -1,7 +1,7 @@
 
 #include "Item.hpp"
 
-Item::Item(string nom, bool usable, bool usableInFight, bool givable, BagCat categorie, int id) {
+Item::Item(string nom, bool usable, bool usableInFight, bool givable, int categorie, int id) {
     this->nom = nom;
     this->usable = usable;
     this->usableInFight = usableInFight;
@@ -36,29 +36,30 @@ int Item::searchItem(Item const *toSearch) const {
     return -1;
 }
 
-bool Item::operator==(Item const& a, Item const& b) const{
-    if (a.categorie != b.categorie) {
+bool Item::operator==(Item const& b) const{
+    if (categorie != b.categorie) {
 			return false;
 		}
-		if (a.givable != b.givable) {
+		if (givable != b.givable) {
 			return false;
 		}
-		if (!(a.nom == b.nom)) {
+		if (!(nom == b.nom)) {
 			return false;
 		}
-		if (a.usable != b.usable) {
+		if (usable != b.usable) {
 			return false;
 		}
-		if (a.usableInFight != b.usableInFight) {
+		if (usableInFight != b.usableInFight) {
 			return false;
 		}
-		if(a.id != b.id){
+		if(id != b.id){
             return false;
 		}
         return true;
 }
 
 void Item::initItems(){
+	itemsList = vector<Item*>()
 	itemsList.push_back(new const I_Heal("Baie Oran", true, true, true, BagCat::BAIES, 10, Status::AUCUN, false, 0));
 	itemsList.push_back(new const I_Heal("Baie Sitrus", true, true, true, BagCat::BAIES, 30, Status::AUCUN, false, 1));
 	itemsList.push_back(new const I_Heal("Baie Mepo", true, true, true, BagCat::BAIES, 10, false, 2));
@@ -92,6 +93,6 @@ void Item::initItems(){
 	//137 : Corde Sortie
 	//Jusqu'a 140 : Objets permettant de s'enfuir poké  sauvage
 	//Enfin, tout ce qui est Item a tenir.
-	itemsList.push_back(new const Item("Croc Rasoir", false, false, true, BagCat::OBJETS, ??));
+	itemsList.push_back(new const Item("Croc Rasoir", false, false, true, BagCat::OBJETS, 3));
 	//Jusqu'a
 }

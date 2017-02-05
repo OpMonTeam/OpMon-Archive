@@ -3,12 +3,12 @@
 #define SRCCPP_JLPPC_REGIMYS_PLAYERCORE_EQUIPE_HPP_
 
 #include <iostream>
-#include "../../includeAll.hxx"
+#include "../objects/Pokemon.hpp"
+
 using namespace std;
 
-class Equipe : public RegimysObject {
+class Equipe{
 public:
-	static const Class<Equipe> *classe = new Class<Equipe>("Equipe", 7324695);
 	Equipe(string nom, Pokemon pokemons[]);
 	string getNom() const {return nom;}
 	Pokemon* getEquipe() const {return &equipe;}
