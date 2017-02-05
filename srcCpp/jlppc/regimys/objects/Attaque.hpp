@@ -9,12 +9,12 @@
 
 using namespace std;
 
-class Attaque : public RegimysObject{
+class Attaque{
 public:
 	virtual ~Attaque(){}
 	Attaque(string nom, int puissance, int type, int precision, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite);
-	virtual void effetAvant(Pokemon &atk, Pokemon &def) = 0;
-	virtual void effetApres(Pokemon &atk, Pokemon &def) = 0;
+	virtual int effetAvant(Pokemon &atk, Pokemon &def) = 0;
+	virtual int effetApres(Pokemon &atk, Pokemon &def) = 0;
 	void healPP(){pp = ppMax;}
 	virtual int attack(Pokemon &atk, Pokemon &def) final;
 	virtual void siEchoue(Pokemon &atk, Pokemon &def){}

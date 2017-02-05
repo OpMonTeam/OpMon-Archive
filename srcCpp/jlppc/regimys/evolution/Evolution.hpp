@@ -8,15 +8,16 @@
 
 using namespace std;
 
-class Evolution: public RegimysObject {
+class Evolution{
 public:
+	virtual ~Evolution();
 	Evolution(int evo);
 	virtual bool checkEvolve(Pokemon const& toCheck) const = 0;
-	Espece getEvolution();
+	Espece* getEvolution();
 	void checkEvo();
 
 protected:
-	Espece toEvolve;
+	Espece *toEvolve;
 	int evo;
 };
 

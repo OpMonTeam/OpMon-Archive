@@ -6,7 +6,7 @@
 
 using namespace std;
 
-typedef Class<Attaque*> ClassAttaque;
+typedef Class<Attaque> ClassAttaque;
 
 class NumberedArray
 {

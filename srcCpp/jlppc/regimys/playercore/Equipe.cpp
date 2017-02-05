@@ -71,7 +71,7 @@ Pokemon Equipe::operator[](int id){
 	return equipe[id];
 }
 
-bool Equipe::isKo(){
+bool Equipe::isKo() const{
 	int ko = 0;
 	for(int i = 0; i < nbreOfPoke; i++){
 		if(equipe[i] == NULL){
@@ -83,7 +83,7 @@ bool Equipe::isKo(){
 	return (ko == 6);
 }
 
-int Equipe::getSize(){
+int Equipe::getSize() const{
 	return nbreOfPoke;
 }
 

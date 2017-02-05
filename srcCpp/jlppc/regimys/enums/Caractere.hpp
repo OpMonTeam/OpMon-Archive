@@ -6,9 +6,9 @@
 
 class CaractereClass {
 public:
-	CaractereClass(Stats bonus, Stats malus) : bonus(bonus), malus(malus){};
-	Stats bonus;
-	Stats malus;
+	CaractereClass(int bonus, int malus) : bonus(bonus), malus(malus){};
+	int bonus;
+	int malus;
 };
 
 namespace Caractere{
