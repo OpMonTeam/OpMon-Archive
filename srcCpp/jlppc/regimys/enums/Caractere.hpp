@@ -7,12 +7,12 @@
 class CaractereClass {
 public:
 	CaractereClass(Stats bonus, Stats malus) : bonus(bonus), malus(malus){};
-	const Stats bonus;
-	const Stats malus;
+	Stats bonus;
+	Stats malus;
 };
 
-enum class Caractere : CaractereClass{
-		ASSURE = CaractereClass(Stats::DEF, Stats::ATK),
+namespace Caractere{
+		const CaractereClass ASSURE = CaractereClass(Stats::DEF, Stats::ATK),
 		BIZARRE = CaractereClass(Stats::RIEN, Stats::RIEN),
 		BRAVE = CaractereClass(Stats::ATK, Stats::VIT),
 		CALME = CaractereClass(Stats::DEFSPE, Stats::ATK),
@@ -36,7 +36,7 @@ enum class Caractere : CaractereClass{
 		RIGIDE = CaractereClass(Stats::ATK, Stats::ATKSPE),
 		SERIEUX = CaractereClass(Stats::RIEN, Stats::RIEN),
 		SOLO = CaractereClass(Stats::ATK, Stats::DEF),
-		TIMIDE = CaractereClass(Stats::VIT, Stats::ATK)
+		TIMIDE = CaractereClass(Stats::VIT, Stats::ATK);
 };
 
 #endif /* SRCCPP_JLPPC_REGIMYS_ENUMS_CARACTERE_HPP_ */

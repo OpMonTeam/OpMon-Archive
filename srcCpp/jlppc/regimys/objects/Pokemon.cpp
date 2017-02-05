@@ -31,6 +31,7 @@ int CalcCourbes::erratique(int n) {
 	} else {
 		Main::gererErreur("Erreur dans le calcul d'experience : niveau <= 0",
 				true);
+		return 0;
 	}
 }
 
@@ -44,6 +45,7 @@ int CalcCourbes::fluctuante(int n) {
 	} else {
 		Main::gererErreur("Erreur dans le calcul d'experience : niveau <= 0",
 				true);
+		return 0;
 	}
 }
 

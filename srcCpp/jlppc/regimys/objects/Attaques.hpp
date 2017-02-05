@@ -4,7 +4,10 @@
 
 #include <iostream>
 #include <cmath>
-#include "../../includeAll.hxx"
+#include "Attaque.hpp"
+#include "Pokemon.hpp"
+#include "../../utils/Class.hpp"
+#include "../enums/Enums.hpp"
 
 using namespace std;
 
@@ -88,9 +91,9 @@ namespace Attaques {
 		int effetAvant(Pokemon &atk, Pokemon &def){}
 		int effetApres(Pokemon &atk, Pokemon &def);
 		static const Class<Berceuse> *classe = new Class<Berceuse>("Berceuse", 0xFFF5);
-	}
+	};
 
 
-}
+};
 
 #endif /* SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUES_HPP_ */

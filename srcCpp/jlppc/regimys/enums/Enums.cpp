@@ -8,4 +8,3 @@ float TableTypes::calcEfficacite(Type atk, Type def1, Type def2){
 		return tableDeuxTypes[type1I][type2I][atkI];
 	}
 }
-

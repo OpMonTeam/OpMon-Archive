@@ -1,11 +1,11 @@
 #include "NumberedArray.hpp"
 
-NumberedArray::NumberedArray(int number, Attaque *attaque)
+NumberedArray::NumberedArray(int number, ClassAttaque *attaque)
 {
     this->number = number;
     this->attaque = attaque;
 }
 NumberedArray::~NumberedArray()
 {
-    delete(object);
+    delete(attaque);
 }

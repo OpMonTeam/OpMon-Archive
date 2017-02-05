@@ -3,9 +3,10 @@
 #define EVOLUTION_HPP
 
 #include <iostream>
-using namespace std;
 #include "../objects/Espece.hpp"
 #include "../objects/Pokemon.hpp"
+
+using namespace std;
 
 class Evolution: public RegimysObject {
 public:

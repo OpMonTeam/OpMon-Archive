@@ -13,8 +13,6 @@ class File
         File(string path);
         ifstream* getIn() const;
         ofstream* getOut() const;
-        static Class<File> *classe = new Class<File>("File", 7624735);
-        virtual Class* getClass() const {return classe;}
     protected:
 
     private:
