@@ -11,22 +11,22 @@ class Equipe{
 public:
 	Equipe(string nom, Pokemon pokemons[]);
 	string getNom() const {return nom;}
-	Pokemon** getEquipe() const {return &equipe;}
+	Pokemon* getEquipe() const {return equipe;}
 	void heal();
 	bool addPokemon(Pokemon toAdd);
 	void removePoke(int number);
-	Pokemon operator[](int id);
+	Pokemon operator[](int id) const;
 	bool isKo() const ;
 	int getSize() const ;
 	//Opérateurs non pratique, mais je les met quand meme;
 	void operator+=(Pokemon const& pkmn){addPokemon(pkmn);}
 	void operator-=(int id){removePoke(id);}
-	static const Pokemon PNULL = Pokemon();
+	static Pokemon *PNULL = new Pokemon();
 
 private:
 
 	int nbreOfPoke;
-	Pokemon equipe[] = {PNULL, PNULL, PNULL, PNULL, PNULL, PNULL};
+	Pokemon equipe[6] = {PNULL, PNULL, PNULL, PNULL, PNULL, PNULL};
 	string nom;
 };
 

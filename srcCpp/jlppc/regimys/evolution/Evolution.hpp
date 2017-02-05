@@ -7,7 +7,6 @@
 #include "../objects/Pokemon.hpp"
 
 using namespace std;
-
 class Evolution{
 public:
 	virtual ~Evolution();

@@ -23,8 +23,9 @@ public:
 	bool addPokeToEquipe(Pokemon toAdd);
 private:
 	string name;
-	int dressID;//9 chiffres
-	int bag[Item::getItemNumber()];
+	unsigned int dressID;//9 chiffres
+	static const int bagSize = Item::getItemNumber();
+	int bag[bagSize];
 	vector<Pokemon> pc = vector<Pokemon>();
 	Equipe equipe;
 };

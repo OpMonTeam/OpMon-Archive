@@ -1,7 +1,7 @@
 
 #include "Attaque.hpp"
 
-Attaque::Attaque(string nom, int puissance, Type type, int precision, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite) {
+Attaque::Attaque(string nom, int puissance, int type, int precision, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite) {
 	this->nom = nom;
 	this->puissance = puissance;
 	this->type = type;
@@ -37,14 +37,12 @@ int Attaque::attack(Pokemon &atk, Pokemon &def){
 		return -1;
 	}
 	if(!status){
-		pvPerdus = (((atk.getLevel() * 0.4 + 2) * (special ? atk.getStatATKSPE() : atk.getStatATK()) * puissance) / ((special ? def.getStatDEFSPE() : def.getStatDEF) * 50) + 2);
+		pvPerdus = (((atk.getLevel() * 0.4 + 2) * (special ? atk.getStatATKSPE() : atk.getStatATK()) * puissance) / ((special ? def.getStatDEFSPE() : def.getStatDEF()) * 50) + 2);
 		if(type == atk.getType1() || type == atk.getType2()){
 			pvPerdus = round(pvPerdus * 1.5);
 		}
 		float efficacite = (TableTypes::calcEfficacite(type, def.getType1(), def.getType2()));
-		switch(efficacite){
-		//Switch a utiliser pour les dialogues.
-		}
+		//if(efficacite)//A utiliser pour les dialogues
 		pvPerdus = round(pvPerdus * efficacite);
 		if(Utils::randU(chanceDeCoups) == 1){
 			pvPerdus = round(pvPerdus * 1.5);

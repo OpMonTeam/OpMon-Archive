@@ -7,6 +7,7 @@
 namespace Utils
 {
         int randU(int limit);
+        unsigned int randUI(unsigned int limit);
 }
 
 #endif // UTILS_HPP

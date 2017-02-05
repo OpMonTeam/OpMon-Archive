@@ -6,6 +6,7 @@
 #include "RegimysObject.hpp"
 #include "../enums/Enums.hpp"
 #include "Pokemon.hpp"
+#include "Pokemon.hpp"
 
 using namespace std;
 

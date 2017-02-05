@@ -1,33 +1,8 @@
 
 #include "Equipe.hpp"
 
-Equipe::Equipe(string nom, Pokemon equipe[]) {
-	int size = sizeof equipe;
-	if(size < 6){
-		Pokemon equipe2[6];
-		for(int i = 0; i < 6; i++){
-			if(i < size){
-				equipe2[i] = equipe[i];
-			}else{
-				equipe2[i] = PNULL;
-			}
-		}
-		equipe = equipe2;
-	}
-	for(int i = 0; i < size; i++){
-		if(i > 5){
-			break;
-		}
-
-		this->equipe[i] = equipe[i];
-		if(equipe[i] != PNULL){
-			nbreOfPoke++;
-		}
-
-	}
-	if(nbreOfPoke == 0){
-		Main::gererErreur("Erreur : Equipe générée sans Pokémon.", true);
-	}
+Equipe::Equipe(string nom) {
+	this->nom = nom;
 }
 
 void Equipe::heal(){
@@ -43,7 +18,7 @@ void Equipe::heal(){
 
 bool Equipe::addPokemon(Pokemon toAdd){
 	for(int i = 0; i < nbreOfPoke; i++){
-		if(equipe[i] == NULL){
+		if(equipe[i] == PNULL){
 			equipe[i] = toAdd;
 			return true;
 		}
@@ -67,7 +42,7 @@ void Equipe::removePoke(int number){//Number en partant de 0
 	}
 }
 
-Pokemon Equipe::operator[](int id){
+Pokemon Equipe::operator[](int id) const{
 	return equipe[id];
 }
 

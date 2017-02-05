@@ -3,7 +3,7 @@
 
 Player::Player(string name) {
 	this->name = name;
-	dressID = Utils::randU(999999999);
+	dressID = Utils::randUI(0xFFFFFFFF);
 	equipe = Equipe(this->name);
 
 }

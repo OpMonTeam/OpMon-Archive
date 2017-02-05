@@ -6,18 +6,17 @@
 
 using namespace std;
 
-typedef Class<Attaque> ClassAttaque;
-
-class NumberedArray
+template<typename T>
+class NumberedArray//Bon en vrai c'est un truc d'attaques MAIS BON MERDE QUOI.
 {
     public:
-        NumberedArray(int number, ClassAttaque *attaque);
+        NumberedArray(int number, Class<T> *attaque);
         ~NumberedArray();
-        ClassAttaque getAttaque() const {return *attaque;}
+        Class<T> getAttaque() const {return *attaque;}
         int getNumber() const {return number;}
     private:
         int number;
-        ClassAttaque *attaque;
+        Class<T> *attaque;
 
 };
 

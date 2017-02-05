@@ -1,9 +1,10 @@
 #ifndef POKEMON_HPP
 #define POKEMON_HPP
 
-#include "Espece.hpp"
+
 #include <iostream>
 #include <cmath>
+#include "Espece.hpp"
 #include "Attaque.hpp"
 #include "../../utils/NumberedArray.hpp"
 #include "item/IPokeball.hpp"
@@ -96,7 +97,7 @@ private:
 	int tauxCapture;
 public:
 	virtual ~Pokemon();
-	Pokemon(){};
+	Pokemon();
 	Pokemon(string surnom, Espece espece, int level, Attaque *attaques[], CaractereClass caractere);
 	bool captured(I_Pokeball const& pokeball);
 	void setStat(string const& stat, int newStat);
@@ -124,7 +125,7 @@ public:
 	int getPV() const{return PV;}
 	void heal(int PV);
 	bool getLevel() const{return level;}
-	Attaque** getAttaques() const{return &attaques;}
+	Attaque* getAttaques() {return attaques;}
 	int getStatESQ() const{return statESQ;}
 	int getStatPRE() const{return statPRE;}
 	void getEvs(Pokemon const& vaincu);
@@ -134,6 +135,7 @@ public:
 	int getStatATKSPE() const{return statATKSPE;}
 	int getStatDEF() const{return statDEF;}
 	int getStatDEFSPE() const{return statDEFSPE;}
+	Espece* getEspece() const{return espece;}
 	bool operator==(Pokemon const& a){return (falsif == a.falsif);}
 	bool operator!=(Pokemon const& a){return !(falsif == a.falsif);}
 };
