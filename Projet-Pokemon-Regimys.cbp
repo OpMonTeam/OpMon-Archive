@@ -31,6 +31,7 @@
 		<Unit filename="srcCpp/jlppc/regimys/enums/Caractere.hpp" />
 		<Unit filename="srcCpp/jlppc/regimys/enums/Enums.cpp" />
 		<Unit filename="srcCpp/jlppc/regimys/enums/Enums.hpp" />
+		<Unit filename="srcCpp/jlppc/regimys/enums/enumsInclude.hxx" />
 		<Unit filename="srcCpp/jlppc/regimys/evolution/EItem.cpp" />
 		<Unit filename="srcCpp/jlppc/regimys/evolution/EItem.hpp" />
 		<Unit filename="srcCpp/jlppc/regimys/evolution/ELand.cpp" />
@@ -47,20 +48,36 @@
 		<Unit filename="srcCpp/jlppc/regimys/evolution/ETradeItem.hpp" />
 		<Unit filename="srcCpp/jlppc/regimys/evolution/Evolution.cpp" />
 		<Unit filename="srcCpp/jlppc/regimys/evolution/Evolution.hpp" />
+		<Unit filename="srcCpp/jlppc/regimys/evolution/evolutionInclude.hxx" />
+		<Unit filename="srcCpp/jlppc/regimys/objects/Attaque.cpp" />
+		<Unit filename="srcCpp/jlppc/regimys/objects/Attaque.hpp" />
+		<Unit filename="srcCpp/jlppc/regimys/objects/Attaques.cpp" />
+		<Unit filename="srcCpp/jlppc/regimys/objects/Attaques.hpp" />
 		<Unit filename="srcCpp/jlppc/regimys/objects/Espece.cpp" />
 		<Unit filename="srcCpp/jlppc/regimys/objects/Espece.hpp" />
 		<Unit filename="srcCpp/jlppc/regimys/objects/Pokemon.cpp" />
 		<Unit filename="srcCpp/jlppc/regimys/objects/Pokemon.hpp" />
 		<Unit filename="srcCpp/jlppc/regimys/objects/RegimysObject.cpp" />
 		<Unit filename="srcCpp/jlppc/regimys/objects/RegimysObject.hpp" />
+		<Unit filename="srcCpp/jlppc/regimys/objects/item/CT.cpp" />
+		<Unit filename="srcCpp/jlppc/regimys/objects/item/CT.hpp" />
+		<Unit filename="srcCpp/jlppc/regimys/objects/item/IHeal.cpp" />
+		<Unit filename="srcCpp/jlppc/regimys/objects/item/IHeal.hpp" />
+		<Unit filename="srcCpp/jlppc/regimys/objects/item/IPokeball.cpp" />
+		<Unit filename="srcCpp/jlppc/regimys/objects/item/IPokeball.hpp" />
 		<Unit filename="srcCpp/jlppc/regimys/objects/item/Item.cpp" />
 		<Unit filename="srcCpp/jlppc/regimys/objects/item/Item.hpp" />
+		<Unit filename="srcCpp/jlppc/regimys/objects/item/itemInclude.hxx" />
+		<Unit filename="srcCpp/jlppc/regimys/objects/objectsInclude.hxx" />
 		<Unit filename="srcCpp/jlppc/regimys/playercore/Equipe.cpp" />
 		<Unit filename="srcCpp/jlppc/regimys/playercore/Equipe.hpp" />
 		<Unit filename="srcCpp/jlppc/regimys/playercore/Player.cpp" />
 		<Unit filename="srcCpp/jlppc/regimys/playercore/Player.hpp" />
+		<Unit filename="srcCpp/jlppc/regimys/playercore/playercoreInclude.hxx" />
+		<Unit filename="srcCpp/jlppc/regimys/regimysInclude.hxx" />
 		<Unit filename="srcCpp/jlppc/regimys/start/main.cpp" />
 		<Unit filename="srcCpp/jlppc/regimys/start/main.hpp" />
+		<Unit filename="srcCpp/jlppc/regimys/start/startInclude.hxx" />
 		<Unit filename="srcCpp/jlppc/utils/Class.cpp" />
 		<Unit filename="srcCpp/jlppc/utils/Class.hpp" />
 		<Unit filename="srcCpp/jlppc/utils/Comparaisons.cpp" />
@@ -71,6 +88,7 @@
 		<Unit filename="srcCpp/jlppc/utils/NumberedArray.hpp" />
 		<Unit filename="srcCpp/jlppc/utils/Utils.cpp" />
 		<Unit filename="srcCpp/jlppc/utils/Utils.hpp" />
+		<Unit filename="srcCpp/jlppc/utils/utilsInclude.hxx" />
 		<Extensions>
 			<code_completion />
 			<envvars />
