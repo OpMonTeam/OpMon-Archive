@@ -22,14 +22,17 @@ public:
 	bool isUsableInFight() const{return usableInFight;}
 	int getID() const {return id;}
 	static int getItemNumber() {return itemsList.size();}
+	virtual Class<Item> getClass() const{return classe;}
+	static vector<Item*> itemsList;
 private:
+	static Class<Item> classe;
     string nom;
     bool usable;
     bool givable;
     int categorie;
     bool usableInFight;
     int id;
-    static vector<Item*> itemsList;
+
 };
 
 #endif /* SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_ITEM_HPP_ */

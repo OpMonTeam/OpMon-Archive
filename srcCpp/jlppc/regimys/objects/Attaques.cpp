@@ -78,19 +78,20 @@ int Belier::effetApres(Pokemon &atk, Pokemon &def){
 }
 
 int Balayage::effetAvant(Pokemon &atk, Pokemon &def){
-	if(def.getEspece().getPoids() <= 10){
+	if(def.getEspece()->getPoids() <= 10){
 		puissance = 20;
-	}else if(def.getEspece().getPoids() > 10 && def.getEspece().getPoids() <= 25){
+	}else if(def.getEspece()->getPoids() > 10 && def.getEspece()->getPoids() <= 25){
 		puissance = 40;
-	}else if(def.getEspece().getPoids() > 25 && def.getEspece().getPoids() <=50){
+	}else if(def.getEspece()->getPoids() > 25 && def.getEspece()->getPoids() <=50){
 		puissance = 60;
-	}else if(def.getEspece().getPoids() > 50 && def.getEspece().getPoids() <= 100){
+	}else if(def.getEspece()->getPoids() > 50 && def.getEspece()->getPoids() <= 100){
 		puissance = 80;
-	}else if(def.getEspece().getPoids() > 100 && def.getEspece().getPoids() <= 200){
+	}else if(def.getEspece()->getPoids() > 100 && def.getEspece()->getPoids() <= 200){
 		puissance = 100;
 	}else{
 		puissance = 120;
 	}
+	return 0;
 }
 
 int Berceuse::effetApres(Pokemon &atk, Pokemon &def){

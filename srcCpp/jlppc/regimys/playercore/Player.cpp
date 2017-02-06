@@ -1,14 +1,14 @@
 #include "Player.hpp"
-#include "../../utils/Utils.hpp"
+
 
 Player::Player(string name) {
 	this->name = name;
 	dressID = Utils::randUI(0xFFFFFFFF);
-	equipe = Equipe(this->name);
+	equipe = Equipe(name);
 
 }
 
-Equipe Player::getEquipe(){
+Equipe Player::getEquipe() const{
 	return equipe;
 }
 
@@ -17,7 +17,8 @@ void Player::addItem(int itemID){
 }
 
 int Player::checkItem(int itemID){
-	if(itemID > sizeof bag || itemID < 0){
+	unsigned int itemID2 = itemID;
+	if(itemID2 > sizeof bag || itemID2 < 0){
 		Main::gererErreur("Player : itemID invalide", true);
 	}
 	return bag[itemID];
@@ -45,8 +46,8 @@ void Player::healPoke(){
 		pkmn.malediction = false;
 		pkmn.vampigraine = false;
 		for(int j = 0; j < 4;j++){
-			Attaque atk = (*pkmn.getAttaques())[j];
-			atk.healPP();
+			Attaque *atk = (pkmn.getAttaques())[j];
+			atk->healPP();
 
 		}
 

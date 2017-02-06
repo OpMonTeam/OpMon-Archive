@@ -9,9 +9,9 @@ using namespace std;
 
 class Equipe{
 public:
-	Equipe(string nom, Pokemon pokemons[]);
+	Equipe(string nom);
 	string getNom() const {return nom;}
-	Pokemon* getEquipe() const {return equipe;}
+	Pokemon* getEquipe()  {return equipe;}
 	void heal();
 	bool addPokemon(Pokemon toAdd);
 	void removePoke(int number);
@@ -21,12 +21,12 @@ public:
 	//Opérateurs non pratique, mais je les met quand meme;
 	void operator+=(Pokemon const& pkmn){addPokemon(pkmn);}
 	void operator-=(int id){removePoke(id);}
-	static Pokemon *PNULL = new Pokemon();
+	static Pokemon *PNULL;
 
 private:
 
-	int nbreOfPoke;
-	Pokemon equipe[6] = {PNULL, PNULL, PNULL, PNULL, PNULL, PNULL};
+	int nbreOfPoke = 6;
+	Pokemon equipe[6] = {*PNULL, *PNULL, *PNULL, *PNULL, *PNULL, *PNULL};
 	string nom;
 };
 

@@ -4,15 +4,12 @@
 
 #include <iostream>
 #include <cmath>
-#include "Espece.hpp"
-#include "Attaque.hpp"
-#include "../../utils/NumberedArray.hpp"
-#include "item/IPokeball.hpp"
-#include "item/Item.hpp"
-#include "../../utils/Class.hpp"
-#include "../enums/Enums.hpp"
-#include "../../utils/Utils.hpp"
 #include "../enums/Caractere.hpp"
+#include "Attaque.hpp"
+#include "Espece.hpp"
+#include "../../utils/Utils.hpp"
+#include "item/Item.hpp"
+#include "item/IPokeball.hpp"
 
 using namespace std;
 
@@ -45,7 +42,7 @@ private:
 	int defSpeEV = 0;
 	int vitEV = 0;
 	int pvEV = 0;
-	bool falsif = true;
+
 	//Les statistiques en general
 	int statATK;
 	int statDEF;
@@ -86,16 +83,18 @@ private:
 
 	int toNextLevel;
 	float expBoost = 1;
-	bool confus = false;
-	bool peur = false;
-	bool amour = false;
-	bool vampigraine = false;
-	bool malediction = false;
+
 
 	Item *held;
 
 	int tauxCapture;
 public:
+	bool falsif = true;
+	bool confus = false;
+		bool peur = false;
+		bool amour = false;
+		bool vampigraine = false;
+		bool malediction = false;
 	virtual ~Pokemon();
 	Pokemon();
 	Pokemon(string surnom, Espece espece, int level, Attaque *attaques[], CaractereClass caractere);
@@ -125,7 +124,7 @@ public:
 	int getPV() const{return PV;}
 	void heal(int PV);
 	bool getLevel() const{return level;}
-	Attaque* getAttaques() {return attaques;}
+	Attaque** getAttaques() {return attaques;}
 	int getStatESQ() const{return statESQ;}
 	int getStatPRE() const{return statPRE;}
 	void getEvs(Pokemon const& vaincu);
@@ -138,6 +137,7 @@ public:
 	Espece* getEspece() const{return espece;}
 	bool operator==(Pokemon const& a){return (falsif == a.falsif);}
 	bool operator!=(Pokemon const& a){return !(falsif == a.falsif);}
+	Item* itemHeld() const{return held;}
 };
 
 

@@ -2,14 +2,11 @@
 #define ESPECE_HPP
 
 #include <iostream>
-#include "../../utils/Class.hpp"
-#include "RegimysObject.hpp"
-#include "../evolution/Evolution.hpp"
 #include "../../utils/NumberedArray.hpp"
 #include "item/CT.hpp"
-#include "../enums/Enums.hpp"
-
 using namespace std;
+
+class Evolution;
 
 namespace CourbeExp{
 	const int ERRATIQUE = 0,FLUCTUANTE = 1,LENTE = 2,MOYENNE = 3,PARABOLIQUE = 4,RAPIDE = 5;
@@ -65,6 +62,8 @@ public:
 	Evolution* getEvolType() const {return evolType;}
 	int getCourbe() const{return courbe;}
 	Espece* getEvolution() const {return evolution;}
+	float getPoids() const{return poids;}
+	int* getEv() {return EVgiven;}
 
 };
 

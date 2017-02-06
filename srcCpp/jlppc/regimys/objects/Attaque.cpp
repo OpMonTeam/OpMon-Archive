@@ -1,5 +1,6 @@
 
 #include "Attaque.hpp"
+#include "Pokemon.hpp"
 
 Attaque::Attaque(string nom, int puissance, int type, int precision, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite) {
 	this->nom = nom;
