@@ -1,8 +1,13 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+#include "../objects/item/Item.hpp"
 #include "../playercore/Player.hpp"
+#include "../playercore/Equipe.hpp"
+#include "../evolution/evolutionInclude.hxx"
+#include "../../utils/Class.hpp"
 #include "../../utils/File.hpp"
+
 #include "main.hpp"
 //#include "srcCpp/jlppc/regimys/gui/MainFrame.hpp"
 
@@ -25,13 +30,6 @@ void Main::gererErreur(string errorName, bool fatal){
 int Main::quit(int returne){
 	Main::log.close();
     errLog.close();
-    delete(Pokemon::classe);
-    delete(Espece::classe);
-    delete(File::classe);
-    delete(E_Item::classe);
-    delete(E_Level::classe);
-    delete(Equipe::classe);
-    delete(Player::classe);
     exit(returne);
     return returne;
 }
@@ -59,6 +57,15 @@ int Main::main(){
 }
 int main()
 {
-
+	initStatic();
     return Main::main();
+}
+
+void initStatic(void){
+	E_Level::classe = new Class<E_Level>("E_Level", 7964684);
+	E_Item::classe = new Class<E_Item>("E_Item", 3644954);
+	E_Land::classe = new Class<E_Land>("E_Land", 0xEEEEE);
+	Equipe::PNULL = new Pokemon();
+	Item::initItems();
+	Player::bagSize = Item::getItemNumber();
 }

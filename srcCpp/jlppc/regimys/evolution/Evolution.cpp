@@ -8,7 +8,7 @@ void Evolution::checkEvo(){
 	//toEvolve = Initializer::listePoke[evo];
 }
 
-Espece Evolution::getEvolution(){
+Espece* Evolution::getEvolution() const{
 	return toEvolve;
 }
 

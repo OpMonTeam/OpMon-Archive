@@ -105,7 +105,7 @@ Pokemon::Pokemon(string surnom, Espece espece, int level, Attaque *attaques[],
 	type1 = espece.getType1();
 	type2 = espece.getType2();
 	using namespace CalcCourbes;
-	switch (this->espece.getCourbe()) {
+	switch (this->espece->getCourbe()) {
 	case CourbeExp::ERRATIQUE:
 		toNextLevel = erratique(this->level + 1);
 		exp = erratique(this->level);
@@ -142,7 +142,7 @@ Pokemon::Pokemon(string surnom, Espece espece, int level, Attaque *attaques[],
 bool Pokemon::captured(I_Pokeball const& pokeball) {
 	Status listeUnCinq[] = { Status::PARALYSIE, Status::POISON, Status::BRULURE };
 	Status listeDeux[] = { Status::SOMMEIL, Status::GEL };
-	int a = round((((3 * statPV - 2 * PV) * tauxCapture* pokeball.getTauxCapture()* (Comparaisons::multiEgal(status, listeUnCinq) ? 1.5 : (Comparaisons::multiEgal(status, listeDeux) ? 2 : 1))) / (3 * statPV)));
+	int a = round((((3 * statPV - 2 * PV) * tauxCapture* pokeball.getTauxCapture()* (status == Status::PARALYSIE || status == Status::POISON || status == Status::BRULURE ? 1.5 : (status == Status::GEL || status == Status::SOMMEIL ? 2 : 1))) / (3 * statPV)));
 	int b = round((pow(2, 16) - 1) * pow(a / (pow(2, 8) - 1), 0.25));
 	int c[] = { Utils::randU(65535), Utils::randU(65535), Utils::randU(65535),
 			Utils::randU(65535) };
@@ -197,7 +197,7 @@ void Pokemon::setStat(string const& stat, int newStat) {
 void Pokemon::levelUp() {
 	using namespace CalcCourbes;
 	level++;
-	switch (this->espece.getCourbe()) {
+	switch (this->espece->getCourbe()) {
 	case CourbeExp::ERRATIQUE:
 		toNextLevel = erratique(this->level + 1);
 		exp = erratique(this->level);
@@ -224,8 +224,8 @@ void Pokemon::levelUp() {
 		break;
 	}
 	calcStats();
-	if (espece.getEvolType()->checkEvolve(*this)) {
-		if (*(espece.getEvolType()->getClass()) == *(E_Trade::classe)) {
+	if (espece->getEvolType()->checkEvolve(*this)) {
+		if (*(espece->getEvolType()->getClass()) == *(E_Trade::classe)) {
 			evolve();
 		}
 	}
@@ -233,7 +233,7 @@ void Pokemon::levelUp() {
 
 int Pokemon::win(Pokemon const& vaincu) {
 	getEvs(vaincu);
-	exp += ((vaincu.espece.getExp() * vaincu.level) / this->level) * expBoost;
+	exp += ((vaincu.espece->getExp() * vaincu.level) / this->level) * expBoost;
 	while (exp >= toNextLevel && level < 100) {
 		if (exp < toNextLevel) {
 			break;
@@ -241,12 +241,12 @@ int Pokemon::win(Pokemon const& vaincu) {
 		levelUp();
 	}
 	calcStats();
-	return (((vaincu.espece.getExp() * vaincu.level) / this->level) * expBoost);
+	return (((vaincu.espece->getExp() * vaincu.level) / this->level) * expBoost);
 }
 
 void Pokemon::getEvs(Pokemon const& vaincu){
 	if (!((atkEV + defEV + pvEV + atkSpeEV + defSpeEV + vitEV) > 510)) {
-		Stats statsVaincu[] = *vaincu.espece.getEv();
+		int  statsVaincu[] = *vaincu.espece->getEv();
 
 		for (int i = 0; i < sizeof statsVaincu; i++) {
 			switch (statsVaincu[i]) { //Creer enumération Stats
@@ -291,42 +291,42 @@ void Pokemon::getEvs(Pokemon const& vaincu){
 
 void Pokemon::calcStats(){
 	statATK = round(
-			((((2 * espece.getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100)
+			((((2 * espece->getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100)
 					+ 5)
 					* ((caractere.bonus == Stats::ATK) ?
 							1.1 : ((caractere.malus == Stats::ATK) ? 0.9 : 1)));
 	statDEF = round(
-			((((2 * espece.getBaseDef() + defIV + (defEV / 4)) * level) / 100)
+			((((2 * espece->getBaseDef() + defIV + (defEV / 4)) * level) / 100)
 					+ 5)
 					* ((caractere.bonus == Stats::DEF) ?
 							1.1 : ((caractere.malus == Stats::DEF) ? 0.9 : 1)));
 	statATKSPE =
 			round(
-					((((2 * espece.getBaseAtkSpe() + atkSpeIV + (atkSpeEV / 4))
+					((((2 * espece->getBaseAtkSpe() + atkSpeIV + (atkSpeEV / 4))
 							* level) / 100) + 5)
 							* ((caractere.bonus == Stats::ATKSPE) ?
 									1.1 :
 									((caractere.malus == Stats::ATKSPE) ? 0.9 : 1)));
 	statDEFSPE =
 			round(
-					((((2 * espece.getBaseDefSpe() + defSpeIV + (defSpeEV / 4))
+					((((2 * espece->getBaseDefSpe() + defSpeIV + (defSpeEV / 4))
 							* level) / 100) + 5)
 							* ((caractere.bonus == Stats::DEFSPE) ?
 									1.1 :
 									((caractere.malus == Stats::DEFSPE) ? 0.9 : 1)));
 	statVIT = round(
-			((((2 * espece.getBaseVit() + vitIV + (vitEV / 4)) * level) / 100)
+			((((2 * espece->getBaseVit() + vitIV + (vitEV / 4)) * level) / 100)
 					+ 5)
 					* ((caractere.bonus == Stats::VIT) ?
 							1.1 : ((caractere.malus == Stats::VIT) ? 0.9 : 1)));
-	statPV = round(((2 * espece.getBasePV() + pvIV + (pvEV / 4)) * level) / 100)
+	statPV = round(((2 * espece->getBasePV() + pvIV + (pvEV / 4)) * level) / 100)
 								+ level + 10;
 }
 
 bool Pokemon::itemUsed(Item const* used){
-	if(espece.getEvolType()->getClass() == E_Item::classe){
-		E_Item evol = espece.getEvolType();
-		if(evol.itemEvolve(*used)){
+	if(espece->getEvolType()->getClass() == E_Item::classe){
+		E_Item evol = espece->getEvolType();
+		if(evol.itemEvolve(used)){
 			evolve();
 			return true;
 		}
@@ -385,17 +385,17 @@ void Pokemon::traded(){
 }
 
 void Pokemon::toolEvTrade(){
-	if(espece.getEvolType()->getClass() == E_Trade){
+	if(espece->getEvolType()->getClass() == E_Trade){
 		evolve();
 	}
 }
 
 void Pokemon::evolve(){
-	bool changeName = (surnom == espece.getNom());
-	espece = espece.getEvolution();
+	bool changeName = (surnom == espece->getNom());
+	espece = espece->getEvolution();
 }
 
-void Pokemon::setStats(int const& stats[], Attaque const* attacks[], Espece const& espece, Type const& types[]){
+void Pokemon::setStats(int stats[], Attaque * attacks[], Espece const& espece, int types[]){
 	statATK = stats[0];
 	statDEF = stats[1];
 	statATKSPE = stats[2];
@@ -1441,7 +1441,7 @@ bool Pokemon::changeVIT(int power){
 	return true;
 }
 
-bool Pokemon::setStatus(Status status){
+bool Pokemon::setStatus(int status){
 	if(status == Status::BRULURE && this->status == Status::BRULURE){
 				//System.out.println(surnom + " est déjà  brulé!");
 				return false;

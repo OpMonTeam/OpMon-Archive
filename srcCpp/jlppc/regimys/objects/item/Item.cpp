@@ -10,8 +10,8 @@ Item::Item(string nom, bool usable, bool usableInFight, bool givable, int catego
     this->categorie = categorie;
 }
 
- Item* Item::getItem(string const& name) const {
-    for(int i = 0; i < itemsList.size(); i++){
+ Item* Item::getItem(string const& name)  {
+    for(unsigned int i = 0; i < itemsList.size(); i++){
         if(itemsList[i]->getNom() == name){
             return itemsList[i];
         }
@@ -19,7 +19,8 @@ Item::Item(string nom, bool usable, bool usableInFight, bool givable, int catego
     return NULL;
 }
 
- Item* Item::getItem(int id) const {
+ Item* Item::getItem(int id2)  {
+	 unsigned int id = id2;
     if(!(id < 0 || id > itemsList.size())){
         return itemsList[id];
     }else{
@@ -27,9 +28,9 @@ Item::Item(string nom, bool usable, bool usableInFight, bool givable, int catego
     }
 }
 
- int Item::searchItem(Item const *toSearch) const {
-    for(int i = 0; i < itemsList.size();i++){
-        if(toSearch == *itemsList.size()){
+ int Item::searchItem(Item const *toSearch)  {
+    for(unsigned int i = 0; i < itemsList.size();i++){
+        if(toSearch == itemsList[i]){
             return i;
         }
     }
@@ -59,7 +60,7 @@ bool Item::operator==(Item const& b) const{
 }
 
 void Item::initItems(){
-	itemsList = vector<Item*>()
+	itemsList = vector<Item*>();
 	itemsList.push_back(new const I_Heal("Baie Oran", true, true, true, BagCat::BAIES, 10, Status::AUCUN, false, 0));
 	itemsList.push_back(new const I_Heal("Baie Sitrus", true, true, true, BagCat::BAIES, 30, Status::AUCUN, false, 1));
 	itemsList.push_back(new const I_Heal("Baie Mepo", true, true, true, BagCat::BAIES, 10, false, 2));

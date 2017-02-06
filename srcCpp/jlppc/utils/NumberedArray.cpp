@@ -1,11 +1,12 @@
 #include "NumberedArray.hpp"
-
-NumberedArray::NumberedArray(int number, ClassAttaque *attaque)
+template<typename T>
+NumberedArray<T>::NumberedArray(int number, Class<T> *attaque)
 {
     this->number = number;
     this->attaque = attaque;
 }
-NumberedArray::~NumberedArray()
+template<typename T>
+NumberedArray<T>::~NumberedArray()
 {
     delete(attaque);
 }

@@ -2,9 +2,8 @@
 #define SRCCPP_JLPPC_REGIMYS_PLAYERCORE_PLAYER_HPP_
 
 #include <iostream>
-#include "Equipe.hpp"
-#include "../objects/Pokemon.hpp"
-#include "../objects/item/Item.hpp"
+p"
+#define nbreItems 64//J'ai mis au hasard. Inserer ici nombre d'items
 #include <vector>
 using namespace std;
 
@@ -24,8 +23,7 @@ public:
 private:
 	string name;
 	unsigned int dressID;//9 chiffres
-	static const int bagSize = Item::getItemNumber();
-	int bag[bagSize];
+	int bag[nbreItems];
 	vector<Pokemon> pc = vector<Pokemon>();
 	Equipe equipe;
 };

@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <fstream>
-#include "../../Utils/File.hpp"
+
 #define WINDOWS
 
 using namespace std;
@@ -31,5 +31,7 @@ namespace Main{
     void gererErreur(string errorName, bool fatal);
     int quit(int retourne);
 }
+
+void initStatic(void);
 
 #endif // MAIN_HPP

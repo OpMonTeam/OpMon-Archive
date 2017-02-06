@@ -65,7 +65,7 @@ void Espece::checkEvol(){
 }
 
 void Espece::checkAtkLvls(){
-    this->atksByLevels = Initializer::atkPokeLvl[pokedexNumberInit];
+    //this->atksByLevels = Initializer::atkPokeLvl[pokedexNumberInit];
     this->numeroPokedex = pokedexNumberInit;
     pokedexNumberInit++;
 }

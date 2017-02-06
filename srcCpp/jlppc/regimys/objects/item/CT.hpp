@@ -5,12 +5,11 @@
 #include "../../../utils/Class.hpp"
 #include "Item.hpp"
 #include "../Attaque.hpp"
-
-typedef Class<Attaque> ClassAtk;
+#define ClassAtk Class<Attaque>
 
 class CT : public Item {
 public:
-CT(ClassAtk atk, int ctNumber, int ID);
+	CT(ClassAtk atk, int ctNumber, int ID);
 	ClassAtk getAtk() const{return atk;}
 private:
 	ClassAtk atk;

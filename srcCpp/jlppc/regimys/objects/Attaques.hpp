@@ -4,10 +4,10 @@
 
 #include <iostream>
 #include <cmath>
-#include "Attaque.hpp"
 #include "Pokemon.hpp"
+#include "Attaque.hpp"
 #include "../../utils/Class.hpp"
-#include "../enums/Enums.hpp"
+
 
 using namespace std;
 
@@ -77,7 +77,7 @@ namespace Attaques {
 		int effetAvant(Pokemon &atk, Pokemon &def);
 		int effetApres(Pokemon &atk, Pokemon &def){return 0;}
 		static Class<Balayage> *classe = new Class<Balayage>("Balayage", 0xFFF7);
-	
+	};
 	class BecVrille : public Attaque{
 		BecVrille() : Attaque("Bec Vrille", 80, Type::VOL, 100, false, false, 16, false, 20, 0){}
 		int effetAvant(Pokemon &atk, Pokemon &def){return 0;}

@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "../regimys/objects/Attaque.hpp"
+#include "Class.hpp"
 
 using namespace std;
 
@@ -11,7 +12,7 @@ class NumberedArray//Bon en vrai c'est un truc d'attaques MAIS BON MERDE QUOI.
 {
     public:
         NumberedArray(int number, Class<T> *attaque);
-        ~NumberedArray();
+        virtual ~NumberedArray();
         Class<T> getAttaque() const {return *attaque;}
         int getNumber() const {return number;}
     private:

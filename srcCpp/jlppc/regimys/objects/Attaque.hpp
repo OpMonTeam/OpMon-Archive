@@ -3,10 +3,10 @@
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUE_HPP_
 
 #include <iostream>
-#include "RegimysObject.hpp"
+#include "../../utils/Utils.hpp"
 #include "../enums/Enums.hpp"
-#include "Pokemon.hpp"
-#include "Pokemon.hpp"
+
+class Pokemon;
 
 using namespace std;
 
