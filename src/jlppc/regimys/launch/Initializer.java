@@ -259,9 +259,9 @@ public class Initializer {
 		 listePoke[227] = new Espece(80, 140, 40, 70, 70, 65, "Airmur", Type.ACIER, Type.VOL, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.DEF}, 1f, 50f, "Comme il fait son nid dans les ronces, ses petits s'endurcissent à force d'être sans cesse éraflés", 168, 12500000, 35);
 		 listePoke[228] = new Espece(60, 30, 80, 50, 65, 45, "Malosse", Type.TENEBRES, Type.FEU, Espece.EVOLUTION_BY_LEVEL, 24,new E_Level(228, 24), null, null, new Stats[]{Stats.ATKSPE}, 1f, 11f, "Il hurle dès l'aube pour délimiter son territoire. On l'entend à des kilomètres à la ronde.", 114, 1250000,120);
                  listePoke[229] = new Espece(90, 50, 110, 80, 95, 75, "Démolosse", Type.TENEBRES, Type.FEU, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.ATKSPE, Stats.ATKSPE}, 1f, 35f, "Jadis, les gens prenaient son étrange hurlement pour l'appel de la Faucheuse.", 204, 1250000,45);
-		 listePoke[230] = new Espece(95, 95, 95, 95, 85, 75, "Hyporoi", Type.EAU, Type.DRAGON, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.ATK,Stats.ATKSPE,Stats.DEFSPE}, 2f, 152f, "Hyporoi vit au fin fond des profondeurs océaniques généralement inhabitées. On a longtemps cru que le bâillement de ce Pokémon créait les tourbillons dans les océans", 207, 1000000);
+		 listePoke[230] = new Espece(95, 95, 95, 95, 85, 75, "Hyporoi", Type.EAU, Type.DRAGON, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.ATK,Stats.ATKSPE,Stats.DEFSPE}, 2f, 152f, "Hyporoi vit au fin fond des profondeurs océaniques généralement inhabitées. On a longtemps cru que le bâillement de ce Pokémon créait les tourbillons dans les océans", 207, 1000000, 45);//TAG : TODO : A vérifier : Taux de capture
 		 listePoke[231] = new Espece(60, 60, 40, 40, 40, 40, "Phanpy", Type.SOL, Type.AUCUN, Espece.EVOLUTION_BY_LEVEL, 25,new E_Level(231, 25), null, null, new Stats[]{Stats.PV}, 1f, 33f, "Il se cogne sur celui ou celle qu'il apprécie. Il est cependant si fort qu'il fait souvent mal.", 124, 1000000, 45);
-		 listePoke[232] = new Espece(120, 120, 60, 60, 50, 90, "Donphan", Type.SOL, Type.AUCUN, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.ATK,Stats.DEF}, 1f, 120f, "Si Donphan décidait de charger, il pourrait détruire une maison. Grâce à sa force étonnante, ce Pokémon peut aider à déplacer les rochers et les coulées de boue qui bloquent les chemins de montagne.", 189, 1000000);
+		 listePoke[232] = new Espece(120, 120, 60, 60, 50, 90, "Donphan", Type.SOL, Type.AUCUN, Espece.NO_EVOLUTION, -1, new E_Nope(), null, null, new Stats[]{Stats.ATK,Stats.DEF}, 1f, 120f, "Si Donphan décidait de charger, il pourrait détruire une maison. Grâce à sa force étonnante, ce Pokémon peut aider à déplacer les rochers et les coulées de boue qui bloquent les chemins de montagne.", 189, 1000000, 45);//TAG : TODO : A vérifier : Taux de capture
 		 listePoke[233] = new Espece(80, 90, 105, 95, 60, 85, "Porygon2", Type.NORMAL, Type.AUCUN, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.ATKSPE, Stats.ATKSPE}, 0.6f, 32.5f, "Version évoluée de Porygon, créée dans l'espoir de pouvoir un jour terraformer des planètes, un rêve loin d'être concrétisé pour l'instant.", 180, 1000000, 45);
 		 listePoke[234] = new Espece(95, 62, 85, 65, 85, 73, "Cerfrousse", Type.NORMAL, Type.AUCUN, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.ATK}, 1.4f, 71.2f, " Ce Pokémon fut chassé et l'espèce proche de l'extinction à cause des gens qui recherchaient leurs précieux bois.", 165, 1250000, 45);
 		 listePoke[235] = new Espece(20, 35, 20, 45, 75, 55, "Quelorior", Type.NORMAL, Type.AUCUN, Espece.NO_EVOLUTION, -1, ne, null, null, new Stats[]{Stats.VIT}, 1.2f, 58f, "Ce Pokémon peint pour marquer son territoire. On reconnaît les villes peuplées de nombreux Queulorior à leurs murs recouverts de graffitis", 106, 800000, 45);
@@ -296,7 +296,7 @@ public class Initializer {
 	 }
 	 
 	 public static void initAtkLvls(){
-		 atkPokeLvl[0] = null;
+		/*atkPokeLvl[0] = null;
 		 atkPokeLvl[1] = new HashArray[]{new HashArray(0, Charge.class), new HashArray(3, Rugissement.class), new HashArray(7, Vampigraine.class), new HashArray(9, FouetLianes.class), new HashArray(13, PoudreToxik.class), new HashArray(13, PoudreDodo.class), new HashArray(15, Belier.class), new HashArray(19, TranchHerbe.class), new HashArray(21, DouxParfum.class), new HashArray(25, Croissance.class), new HashArray(27, Damocles.class), new HashArray(33, Synthese.class), new HashArray(37, CanonGraine.class)};
 		 atkPokeLvl[2] = new HashArray[]{new HashArray(0, Charge.class), new HashArray(0, Rugissement.class), new HashArray(0, Vampigraine.class), new HashArray(9, FouetLianes.class), new HashArray(13, PoudreToxik.class), new HashArray(13, PoudreDodo.class), new HashArray(15, Belier.class), new HashArray(20, TranchHerbe.class), new HashArray(23, DouxParfum.class), new HashArray(28, Croissance.class), new HashArray(31, Damocles.class), new HashArray(39, Synthese.class), new HashArray(44, LanceSoleil.class)};
 		 atkPokeLvl[3] = new HashArray[]{new HashArray(0, Charge.class), new HashArray(0, Rugissement.class), new HashArray(0, Vampigraine.class), new HashArray(9, FouetLianes.class), new HashArray(13, PoudreToxik.class), new HashArray(13, PoudreDodo.class), new HashArray(15, Belier.class), new HashArray(20, TranchHerbe.class), new HashArray(23, DouxParfum.class), new HashArray(28, Croissance.class), new HashArray(31, Damocles.class), new HashArray(32, DanseFleur.class), new HashArray(45, Synthese.class), new HashArray(50, TempeteFlorale.class), new HashArray(53, LanceSoleil.class)};
@@ -548,8 +548,8 @@ public class Initializer {
 		//atkPokeLvl[249] = new HashArray[]{new HashArray(0,				  
 		//atkPokeLvl[250] = new HashArray[]{new HashArray(0,				  
 		//atkPokeLvl[251] = new HashArray[]{new HashArray(0,				  
-		//atkPokeLvl[252] = new HashArray[]{new HashArray(0,				  
-						  				  
+		//atkPokeLvl[252] = new HashArray[]{new HashArray(0,	*/			  
+	 }	  				  
 						  
 		/**
 	  * Initialise les sprites
