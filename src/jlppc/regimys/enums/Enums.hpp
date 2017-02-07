@@ -1,5 +1,6 @@
 #ifndef ENUMS_HPP
 #define ENUMS_HPP
+
 #define PE 0.5
 #define NE 1
 #define IN 0

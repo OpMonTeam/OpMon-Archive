@@ -17,11 +17,12 @@ public:
 	virtual bool checkEvolve(Pokemon const& toCheck) const = 0;
 	Espece* getEvolution() const;
 	void checkEvo();
-	virtual Class<Evolution>* getClass(){return classe;}
+	virtual int getEvolID(){return evolID;}
 	virtual bool itemEvolve(Item *tem){return false;}
 
+
 protected:
-	static Class<Evolution> *classe;
+    static const int evolID = 0;
 	Espece *toEvolve;
 	int evo;
 };

@@ -8,6 +8,7 @@ class E_Love: public Evolution {
 public:
 	E_Love(int evo) : Evolution(evo){}
 	bool checkEvolve(Pokemon const& toCheck) const {return (toCheck.getStatLove() > 100);}
+	static const int evolID = 4;
 private:
 
 };

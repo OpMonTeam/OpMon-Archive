@@ -13,7 +13,7 @@ class E_Land: public Evolution {
 public:
 	E_Land(int evo, string lieu);
 	bool checkEvolve (Pokemon const& toCheck) const {return false;}//Il faudra tester si l'endroit ou se trouve le dresseur est le bon.
-	static Class<E_Land> *classe;
+	static const int evolID = 6;
 private:
 	//Plan carteDuLieu;
 };

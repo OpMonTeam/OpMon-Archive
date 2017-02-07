@@ -8,7 +8,7 @@ class E_Level: public Evolution {
 public:
 	E_Level(int evo, int level);
 	bool checkEvolve(Pokemon const& toCheck) const;
-	static Class<E_Level> *classe;
+	static const int evolID = 5;
 private:
 	int level;
 };
