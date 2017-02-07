@@ -7,7 +7,7 @@
 #include "../enums/Caractere.hpp"
 #include "Espece.hpp"
 #include "../../utils/Utils.hpp"
-#include "item/Item.hpp"
+
 #include "item/IPokeball.hpp"
 
 using namespace std;
@@ -97,7 +97,7 @@ public:
     bool vampigraine = false;
     bool malediction = false;
 	virtual ~Pokemon();
-	Pokemon();
+	Pokemon(){};
 	Pokemon(string surnom, Espece *espece, int level, Attaque *attaques[], CaractereClass caractere);
 	bool captured(I_Pokeball const& pokeball);
 	void setStat(string const& stat, int newStat);
