@@ -5,7 +5,6 @@
 #include <iostream>
 #include <cmath>
 #include "../enums/Caractere.hpp"
-#include "Attaque.hpp"
 #include "Espece.hpp"
 #include "../../utils/Utils.hpp"
 #include "item/Item.hpp"
@@ -22,6 +21,8 @@ int moyenne(int n);
 int parabolique(int n);
 int rapide(int n);
 };
+
+class Attaque;
 
 class Pokemon{
 
@@ -91,25 +92,25 @@ private:
 public:
 	bool falsif = true;
 	bool confus = false;
-		bool peur = false;
-		bool amour = false;
-		bool vampigraine = false;
-		bool malediction = false;
+    bool peur = false;
+    bool amour = false;
+    bool vampigraine = false;
+    bool malediction = false;
 	virtual ~Pokemon();
 	Pokemon();
-	Pokemon(string surnom, Espece espece, int level, Attaque *attaques[], CaractereClass caractere);
+	Pokemon(string surnom, Espece *espece, int level, Attaque *attaques[], CaractereClass caractere);
 	bool captured(I_Pokeball const& pokeball);
 	void setStat(string const& stat, int newStat);
 	void levelUp();
 	bool isHoldingItem() const {return (held == NULL);}
 	int win(Pokemon const& vaincu);
 	void calcStats();
-	bool itemUsed(Item const *used);
-	Item* hold(Item const *item);
+	bool itemUsed(Item *used);
+	Item* hold(Item *item);
 	void traded();
 	void toolEvTrade();
 	void evolve();
-	void setStats(int stats[], Attaque *attacks[], Espece const& espece, int types[]);
+	void setStats(int stats[], Attaque *attacks[], Espece *espece, int types[]);
 	void attacked(int pvPerdus);
 	bool changeATK(int power);
 	bool changePRE(int power);

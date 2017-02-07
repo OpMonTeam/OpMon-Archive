@@ -4,6 +4,7 @@
 #include <iostream>
 #include "../../utils/NumberedArray.hpp"
 #include "item/CT.hpp"
+
 using namespace std;
 
 class Evolution;
@@ -37,14 +38,14 @@ private:
 	int basePV;
 	int courbe;
 	int expMax;
-	int EVgiven[];
+	int EVgiven[3];
 	//Images
 	int expGiven;
 	int tauxDeCapture;
 
 public:
 	virtual ~Espece();
-	Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, string name, int type1, int type2,int maniereEvolution, int niveauEvolution, Evolution *evolType, NumberedArray<Class<Attaque> > attacksByLevels[],CT ctCombatibles[], int EVGiven[], float taille, float poids, string entreePokedex, int expGiven,int expMax, int tauxDeCapture);
+	Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, string name, int type1, int type2,int maniereEvolution, int niveauEvolution, Evolution *evolType, int EVGiven[], float taille, float poids, string entreePokedex, int expGiven,int expMax, int tauxDeCapture);
 	void checkEvol();
 	void checkAtkLvls();
 	static int pokedexNumberInit;

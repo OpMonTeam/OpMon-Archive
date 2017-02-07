@@ -13,7 +13,7 @@ const int BRULURE = 0, PARALYSIE = 1, SOMMEIL = 2, GEL = 3, POISON = 4, AUCUN = 
 };
 
 namespace Stats{
-const int ATK(0), DEF(1), ATKSPE(2), DEFSPE(3), VIT(4), PV(5), RIEN(6);
+const int ATK(6), DEF(1), ATKSPE(2), DEFSPE(3), VIT(4), PV(5), RIEN(0);
 };
 
 namespace BagCat{

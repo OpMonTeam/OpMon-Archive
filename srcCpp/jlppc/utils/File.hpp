@@ -7,17 +7,15 @@
 
 using namespace std;
 
-class File
+class RFile
 {
     public:
-        File(string path);
+        RFile(string path);
         ifstream* getIn() const;
         ofstream* getOut() const;
     protected:
 
     private:
-        ifstream in;
-        ifstream out;
         string path;
 };
 

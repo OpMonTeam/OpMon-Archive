@@ -18,6 +18,7 @@ public:
 	Espece* getEvolution() const;
 	void checkEvo();
 	virtual Class<Evolution>* getClass(){return classe;}
+	virtual bool itemEvolve(Item *tem){return false;}
 
 protected:
 	static Class<Evolution> *classe;

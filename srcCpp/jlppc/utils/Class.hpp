@@ -7,10 +7,11 @@ template <typename T>
 class Class {
 public:
 	Class(string name, int ID);
+	Class();
 	T* newInstance() const;
 	string getName() const {return name;}
 	int getID() const {return id;}
-	bool operator==(Class const& y);
+	template<typename U>bool operator==(Class<U> const& y);
 private:
 	string name;
 	int id;
