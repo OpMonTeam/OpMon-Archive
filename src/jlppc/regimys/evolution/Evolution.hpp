@@ -12,13 +12,13 @@ class Espece;
 
 class Evolution{
 public:
-	virtual ~Evolution();
+	virtual ~Evolution(){}
 	Evolution(int evo);
 	virtual bool checkEvolve(Pokemon const& toCheck) const = 0;
 	Espece* getEvolution() const;
 	void checkEvo();
-	virtual int getEvolID(){return evolID;}
-	virtual bool itemEvolve(Item *tem){return false;}
+	virtual int getEvolID() const{return evolID;}
+	virtual bool itemEvolve(Item *tem) const{return false;}
 
 
 protected:

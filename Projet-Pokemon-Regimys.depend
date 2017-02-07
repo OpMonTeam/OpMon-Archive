@@ -178,13 +178,15 @@
 1486466846 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\enums\enums.cpp
 	"Enums.hpp"
 
-1486466846 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\eitem.cpp
+1486470730 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\eitem.cpp
 	"EItem.hpp"
 
-1486469591 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\eitem.hpp
+1486470877 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\eitem.hpp
 	"Evolution.hpp"
+	"../objects/item/Item.hpp"
+	"../objects/Pokemon.hpp"
 
-1486469560 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\evolution.hpp
+1486470798 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\evolution.hpp
 	<iostream>
 	"../objects/Pokemon.hpp"
 	"../../utils/Class.hpp"
@@ -356,7 +358,7 @@
 	"Player.hpp"
 	"../start/main.hpp"
 
-1486468713 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\start\main.cpp
+1486469662 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\start\main.cpp
 	<iostream>
 	<fstream>
 	<cstdlib>
