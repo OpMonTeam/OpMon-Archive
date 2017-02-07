@@ -1,5 +1,5 @@
 #include "Player.hpp"
-
+#include "../start/main.hpp"
 
 Player::Player(string name) {
 	this->name = name;

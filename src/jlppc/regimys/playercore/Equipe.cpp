@@ -7,7 +7,7 @@ Equipe::Equipe(string nom) {
 
 void Equipe::heal(){
 	for(int i = 0; i < nbreOfPoke; i++){
-		if(equipe[i].falsif != PNULL->falsif){
+		if(equipe[i].falsif != PNULL.falsif){
 			equipe[i].heal(equipe[i].getStatPV());
 			equipe[i].confus = false;
 			equipe[i].setStatus(Status::AUCUN);
@@ -18,7 +18,7 @@ void Equipe::heal(){
 
 bool Equipe::addPokemon(Pokemon toAdd){
 	for(int i = 0; i < nbreOfPoke; i++){
-		if(equipe[i] == *PNULL){
+		if(equipe[i] == PNULL){
 			equipe[i] = toAdd;
 			return true;
 		}
@@ -35,7 +35,7 @@ void Equipe::removePoke(int number){//Number en partant de 0
 			if(i != 5){
 				equipe[i] = equipe[i + 1];
 			}else{
-				equipe[5] = *PNULL;
+				equipe[5] = PNULL;
 			}
 		}
 
@@ -49,7 +49,7 @@ Pokemon Equipe::operator[](int id) const{
 bool Equipe::isKo() const{
 	int ko = 0;
 	for(int i = 0; i < nbreOfPoke; i++){
-		if(equipe[i].falsif == PNULL->falsif){
+		if(equipe[i].falsif == PNULL.falsif){
 			ko++;
 		}else if(equipe[i].getPV() <= 0){
 			ko++;

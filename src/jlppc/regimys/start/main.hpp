@@ -10,7 +10,7 @@
 #define WINDOWS
 
 using namespace std;
-int main();
+int main(int argc, char *argv[]);
 namespace Main{
     ostringstream oss;
     int main();
@@ -25,8 +25,14 @@ namespace Main{
     Player joueur = Player("temp");
     RFile playerSave = RFile("temp");
     RFile params = RFile("temp");
-    ofstream log;
-    ofstream errLog;
+    #ifdef WINDOWS
+    ofstream log("logs\\log.txt");
+    ofstream errLog("logs\\errLog.txt");
+    #else
+    #define UNIX
+    ofstream log = ofstream("logs/log.txt");
+    ofstream errLog = ofstream("logs/errLog.txt")
+    #endif // WINDOWS
 #ifdef WINDOWS
     string sep = "\\";
 #else

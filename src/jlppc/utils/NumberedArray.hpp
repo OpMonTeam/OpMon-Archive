@@ -2,7 +2,6 @@
 #define HASHARRAY_HPP
 
 #include <iostream>
-#include "../regimys/objects/Attaque.hpp"
 #include "Class.hpp"
 
 using namespace std;

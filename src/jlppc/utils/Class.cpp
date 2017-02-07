@@ -9,8 +9,8 @@ template<typename T>Class<T>::Class(string name, int id) {
 template<typename T> T* Class<T>::newInstance() const{
 	return new T();
 }
-template<typename T, U>
-bool Class<T>::operator==(Class<U> const& y){
+
+template<typename T> template<typename U> bool Class<T>::operator==(Class<U> const& y){
 	if(id == y.id){
 		return true;
 	}

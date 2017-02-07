@@ -228,7 +228,7 @@ void Pokemon::levelUp() {
 	}
 	calcStats();
 	if (espece->getEvolType()->checkEvolve(*this)) {
-		if (*(espece->getEvolType()->getClass()) == *(E_Trade::classe)) {
+		if ((espece->getEvolType()->getEvolID()) == (E_Trade::evolID)) {
 			evolve();
 		}
 	}
@@ -330,13 +330,13 @@ void Pokemon::calcStats(){
 }
 
 bool Pokemon::itemUsed(Item *used){
-	if(*(espece->getEvolType()->getClass()) == *E_Item::classe){
+	if((espece->getEvolType()->getEvolID()) == E_Item::evolID){
 		if(espece->getEvolType()->itemEvolve(used)){
 			evolve();
 			return true;
 		}
 	}
-	if(used->getClass() == I_Heal::classe){
+	if(used->getClass() == *I_Heal::classe){
 
 		I_Heal *usedI = dynamic_cast<I_Heal*>(used);
 		if(usedI->getPvHeal() > 0){
@@ -390,7 +390,7 @@ void Pokemon::traded(){
 }
 
 void Pokemon::toolEvTrade(){
-	if(*(espece->getEvolType()->getClass()) == *E_Trade::classe){
+	if(espece->getEvolType()->getEvolID() == E_Trade::evolID){
 		evolve();
 	}
 }
@@ -492,7 +492,7 @@ bool Pokemon::changeATK(int power){
 				atkChange--;
 				break;
 			default:
-
+                break;
 			}
 		}
 	}else{
@@ -562,7 +562,7 @@ bool Pokemon::changeATK(int power){
 			case 6:
 				return false;
 			default:
-
+                break;
 			}
 		}
 
@@ -638,7 +638,7 @@ bool Pokemon::changePRE(int power){
 				preChange--;
 				break;
 			default:
-
+                break;
 			}
 		}
 	}else{
@@ -708,7 +708,7 @@ bool Pokemon::changePRE(int power){
 			case 6:
 				return false;
 			default:
-
+                break;
 			}
 		}
 
@@ -784,7 +784,7 @@ bool Pokemon::changeESQ(int power){
 				esqChange--;
 				break;
 			default:
-
+                break;
 			}
 		}
 	}else{
@@ -854,7 +854,7 @@ bool Pokemon::changeESQ(int power){
 			case 6:
 				return false;
 			default:
-
+                break;
 			}
 		}
 
@@ -930,7 +930,7 @@ bool Pokemon::changeDEF(int power){
 				defChange--;
 				break;
 			default:
-
+                break;
 			}
 		}
 	}else{
@@ -1001,7 +1001,7 @@ bool Pokemon::changeDEF(int power){
 				return false;
 
 			default:
-
+                break;
 			}
 		}
 
@@ -1077,7 +1077,7 @@ bool Pokemon::changeATKSPE(int power){
 				atkSpeChange--;
 				break;
 			default:
-
+                break;
 			}
 		}
 	}else{
@@ -1147,7 +1147,7 @@ bool Pokemon::changeATKSPE(int power){
 			case 6:
 				return false;
 			default:
-
+                break;
 			}
 		}
 
@@ -1222,7 +1222,7 @@ bool Pokemon::changeDEFSPE(int power){
 				defSpeChange--;
 				break;
 			default:
-
+                break;
 			}
 		}
 	}else{
@@ -1292,7 +1292,7 @@ bool Pokemon::changeDEFSPE(int power){
 			case 6:
 				return false;
 			default:
-
+                break;
 			}
 		}
 
@@ -1368,7 +1368,7 @@ bool Pokemon::changeVIT(int power){
 				vitChange--;
 				break;
 			default:
-
+                break;
 			}
 		}
 	}else{
@@ -1438,7 +1438,7 @@ bool Pokemon::changeVIT(int power){
 			case 6:
 				return false;
 			default:
-
+                break;
 			}
 		}
 
