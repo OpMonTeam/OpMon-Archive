@@ -4,10 +4,10 @@ RFile::RFile(string path){
     this->path = path;
 }
 
-ifstream* File::getIn() const{
+ifstream* RFile::getIn() const{
     return new ifstream(path.c_str());
 }
 
-ofstream* File::getOut() const{
+ofstream* RFile::getOut() const{
     return new ofstream(path.c_str());
 }

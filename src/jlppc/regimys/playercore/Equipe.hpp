@@ -9,6 +9,7 @@ using namespace std;
 class Equipe{
 public:
 	Equipe(string nom);
+	Equipe();
 	string getNom() const {return nom;}
 	Pokemon* getEquipe()  {return equipe;}
 	void heal();
