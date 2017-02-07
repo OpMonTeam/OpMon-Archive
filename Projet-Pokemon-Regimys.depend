@@ -1,0 +1,170 @@
+# depslib dependency file v1.0
+1486458857 source:c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\enums\caractere.cpp
+	"Caractere.hpp"
+
+1486462246 c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\enums\caractere.hpp
+	"Enums.hpp"
+
+1486461473 c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\enums\enums.hpp
+
+1486458857 source:c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\enums\enums.cpp
+	"Enums.hpp"
+
+1486458857 source:c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\evolution\eitem.cpp
+	"EItem.hpp"
+
+1486458857 c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\evolution\eitem.hpp
+	"Evolution.hpp"
+
+1486463133 c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\evolution\evolution.hpp
+	<iostream>
+	"../objects/Pokemon.hpp"
+	"../../utils/Class.hpp"
+
+1486463765 c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\objects\pokemon.hpp
+	<iostream>
+	<cmath>
+	"../enums/Caractere.hpp"
+	"Espece.hpp"
+	"../../utils/Utils.hpp"
+	"item/Item.hpp"
+	"item/IPokeball.hpp"
+
+1486460654 c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\objects\attaque.hpp
+	<iostream>
+	"../../utils/Utils.hpp"
+	"../enums/Enums.hpp"
+
+1486461420 c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\utils\utils.hpp
+	<ctime>
+	<cstdlib>
+
+1486461440 c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\objects\espece.hpp
+	<iostream>
+	"../../utils/NumberedArray.hpp"
+	"item/CT.hpp"
+
+1486458857 c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\utils\numberedarray.hpp
+	<iostream>
+	"../regimys/objects/Attaque.hpp"
+	"Class.hpp"
+
+1486462569 c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\utils\class.hpp
+	<iostream>
+
+1486458857 c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\objects\item\ct.hpp
+	"../../../utils/Class.hpp"
+	"Item.hpp"
+	"../Attaque.hpp"
+
+1486462016 c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\objects\item\item.hpp
+	<iostream>
+	"../../enums/Enums.hpp"
+	"../../../utils/Class.hpp"
+	<vector>
+
+1486458857 c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\objects\item\ipokeball.hpp
+	<iostream>
+	"Item.hpp"
+
+1486458857 source:c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\evolution\eland.cpp
+	"ELand.hpp"
+
+1486458857 c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\evolution\eland.hpp
+	<iostream>
+	"Evolution.hpp"
+	"../../utils/Class.hpp"
+
+1486458857 source:c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\evolution\elevel.cpp
+	"ELevel.hpp"
+
+1486458857 c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\evolution\elevel.hpp
+	"Evolution.hpp"
+
+1486458857 source:c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\evolution\elove.cpp
+	"ELove.hpp"
+
+1486458857 c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\evolution\elove.hpp
+	"Evolution.hpp"
+
+1486458857 source:c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\evolution\enope.cpp
+	"ENope.hpp"
+
+1486458857 c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\evolution\enope.hpp
+	"Evolution.hpp"
+
+1486458857 source:c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\evolution\etrade.cpp
+	"ETrade.hpp"
+
+1486462479 c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\evolution\etrade.hpp
+	"Evolution.hpp"
+
+1486458857 source:c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\evolution\etradeitem.cpp
+	"ETradeItem.hpp"
+
+1486458857 c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\evolution\etradeitem.hpp
+	"Evolution.hpp"
+	"EItem.hpp"
+
+1486458857 source:c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\evolution\evolution.cpp
+	"Evolution.hpp"
+
+1486458857 source:c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\objects\attaque.cpp
+	"Attaque.hpp"
+	"Pokemon.hpp"
+
+1486461500 c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\start\main.hpp
+	<iostream>
+	<fstream>
+	"../../utils/File.hpp"
+	"../playercore/Player.hpp"
+	<sstream>
+
+1486459242 source:c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\objects\attaques.cpp
+	"Attaques.hpp"
+
+1486459276 c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\objects\attaques.hpp
+	<iostream>
+	<cmath>
+	"Pokemon.hpp"
+	"Attaque.hpp"
+	"../../utils/Class.hpp"
+
+1486461606 c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\utils\file.hpp
+	<iostream>
+	<fstream>
+	"Class.hpp"
+
+1486459765 c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\playercore\player.hpp
+	<iostream>
+	<vector>
+	"Equipe.hpp"
+
+1486460535 c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\playercore\equipe.hpp
+	<iostream>
+	"../objects/Pokemon.hpp"
+
+1486461410 source:c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\objects\espece.cpp
+	"Espece.hpp"
+	"../evolution/Evolution.hpp"
+	"../start/main.hpp"
+
+1486458857 source:c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\objects\item\ct.cpp
+	"CT.hpp"
+
+1486458857 source:c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\objects\item\iheal.cpp
+	"IHeal.hpp"
+
+1486463217 c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\objects\item\iheal.hpp
+	"Item.hpp"
+	<iostream>
+
+1486458857 source:c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\objects\item\ipokeball.cpp
+	"IPokeball.hpp"
+
+1486462203 source:c:\users\_le_pichon\downloads\ppr\srccpp\jlppc\regimys\objects\item\item.cpp
+	"Item.hpp"
+	"IPokeball.hpp"
+	"IHeal.hpp"
+	"CT.hpp"
+

@@ -1,4 +1,9 @@
 #include "Pokemon.hpp"
+#include "../start/main.hpp"
+#include "../evolution/Evolution.hpp"
+#include "../evolution/ETrade.hpp"
+#include "../evolution/EItem.hpp"
+#include "item/IHeal.hpp"
 
 Pokemon::~Pokemon(){
 	for(int i = 0; i < 4; i++){
@@ -62,48 +67,48 @@ int CalcCourbes::parabolique(int n) {
 int CalcCourbes::rapide(int n) {
 	return round(0.8f * pow(n, 3));
 }
-Pokemon::Pokemon(string surnom, Espece espece, int level, Attaque *attaques[],
+Pokemon::Pokemon(string surnom, Espece *espece, int level, Attaque *attaques[],
 		CaractereClass caractere) {
 	statATK = round(
-			((((2 * espece.getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100)
+			((((2 * espece->getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100)
 					+ 5)
 					* ((caractere.bonus == Stats::ATK) ?
 							1.1 : ((caractere.malus == Stats::ATK) ? 0.9 : 1)));
 	statDEF = round(
-			((((2 * espece.getBaseDef() + defIV + (defEV / 4)) * level) / 100)
+			((((2 * espece->getBaseDef() + defIV + (defEV / 4)) * level) / 100)
 					+ 5)
 					* ((caractere.bonus == Stats::DEF) ?
 							1.1 : ((caractere.malus == Stats::DEF) ? 0.9 : 1)));
 	statATKSPE =
 			round(
-					((((2 * espece.getBaseAtkSpe() + atkSpeIV + (atkSpeEV / 4))
+					((((2 * espece->getBaseAtkSpe() + atkSpeIV + (atkSpeEV / 4))
 							* level) / 100) + 5)
 							* ((caractere.bonus == Stats::ATKSPE) ?
 									1.1 :
 									((caractere.malus == Stats::ATKSPE) ? 0.9 : 1)));
 	statDEFSPE =
 			round(
-					((((2 * espece.getBaseDefSpe() + defSpeIV + (defSpeEV / 4))
+					((((2 * espece->getBaseDefSpe() + defSpeIV + (defSpeEV / 4))
 							* level) / 100) + 5)
 							* ((caractere.bonus == Stats::DEFSPE) ?
 									1.1 :
 									((caractere.malus == Stats::DEFSPE) ? 0.9 : 1)));
 	statVIT = round(
-			((((2 * espece.getBaseVit() + vitIV + (vitEV / 4)) * level) / 100)
+			((((2 * espece->getBaseVit() + vitIV + (vitEV / 4)) * level) / 100)
 					+ 5)
 					* ((caractere.bonus == Stats::VIT) ?
 							1.1 : ((caractere.malus == Stats::VIT) ? 0.9 : 1)));
-	statPV = round(((2 * espece.getBasePV() + pvIV + (pvEV / 4)) * level) / 100)
+	statPV = round(((2 * espece->getBasePV() + pvIV + (pvEV / 4)) * level) / 100)
 							+ level + 10;
 	this->espece = espece;
 	this->level = level;
 	//TODO attaquesChoix Quand les attaques seront ok
 	this->caractere = caractere;
 	this->surnom = surnom;
-	tauxCapture = espece.getTauxDeCapture();
+	tauxCapture = espece->getTauxDeCapture();
 	PV = statPV;
-	type1 = espece.getType1();
-	type2 = espece.getType2();
+	type1 = espece->getType1();
+	type2 = espece->getType2();
 	using namespace CalcCourbes;
 	switch (this->espece->getCourbe()) {
 	case CourbeExp::ERRATIQUE:
@@ -140,8 +145,6 @@ Pokemon::Pokemon(string surnom, Espece espece, int level, Attaque *attaques[],
 }
 
 bool Pokemon::captured(I_Pokeball const& pokeball) {
-	Status listeUnCinq[] = { Status::PARALYSIE, Status::POISON, Status::BRULURE };
-	Status listeDeux[] = { Status::SOMMEIL, Status::GEL };
 	int a = round((((3 * statPV - 2 * PV) * tauxCapture* pokeball.getTauxCapture()* (status == Status::PARALYSIE || status == Status::POISON || status == Status::BRULURE ? 1.5 : (status == Status::GEL || status == Status::SOMMEIL ? 2 : 1))) / (3 * statPV)));
 	int b = round((pow(2, 16) - 1) * pow(a / (pow(2, 8) - 1), 0.25));
 	int c[] = { Utils::randU(65535), Utils::randU(65535), Utils::randU(65535),
@@ -246,7 +249,10 @@ int Pokemon::win(Pokemon const& vaincu) {
 
 void Pokemon::getEvs(Pokemon const& vaincu){
 	if (!((atkEV + defEV + pvEV + atkSpeEV + defSpeEV + vitEV) > 510)) {
-		int  statsVaincu[] = *vaincu.espece->getEv();
+            int statsVaincu[3];
+            for(unsigned int i = 0; i < sizeof vaincu.espece->getEv(); i++){
+                statsVaincu[i] = vaincu.espece->getEv()[i];
+            }
 
 		for (int i = 0; i < sizeof statsVaincu; i++) {
 			switch (statsVaincu[i]) { //Creer enumération Stats
@@ -323,27 +329,26 @@ void Pokemon::calcStats(){
 								+ level + 10;
 }
 
-bool Pokemon::itemUsed(Item const* used){
-	if(espece->getEvolType()->getClass() == E_Item::classe){
-		E_Item evol = espece->getEvolType();
-		if(evol.itemEvolve(used)){
+bool Pokemon::itemUsed(Item *used){
+	if(*(espece->getEvolType()->getClass()) == *E_Item::classe){
+		if(espece->getEvolType()->itemEvolve(used)){
 			evolve();
 			return true;
 		}
 	}
 	if(used->getClass() == I_Heal::classe){
 
-		I_Heal usedI = *used;
-		if(usedI.getPvHeal() > 0){
-			heal(usedI.getPvHeal());
+		I_Heal *usedI = dynamic_cast<I_Heal*>(used);
+		if(usedI->getPvHeal() > 0){
+			heal(usedI->getPvHeal());
 
 		}
-		if(usedI.isHealAll() && status == Status::AUCUN){
+		if(usedI->isHealAll() && status == Status::AUCUN){
 			setStatus(Status::AUCUN);
 
-		}else if(usedI.getStatusHeald() != Status::AUCUN && status == usedI.getStatusHeald()){
+		}else if(usedI->getStatusHeald() != Status::AUCUN && status == usedI->getStatusHeald()){
 			setStatus(Status::AUCUN);
-			switch(usedI.getStatusHeald()){
+			switch(usedI->getStatusHeald()){
 			case Status::AUCUN:
 				break;
 			case Status::BRULURE:
@@ -373,8 +378,8 @@ bool Pokemon::itemUsed(Item const* used){
 	return false;
 }
 
-Item* Pokemon::hold(Item const *item){
-	Item ancien = held;
+Item* Pokemon::hold(Item *item){
+	Item *ancien = held;
 	held = item;
 	return ancien;
 }
@@ -385,7 +390,7 @@ void Pokemon::traded(){
 }
 
 void Pokemon::toolEvTrade(){
-	if(espece->getEvolType()->getClass() == E_Trade){
+	if(*(espece->getEvolType()->getClass()) == *E_Trade::classe){
 		evolve();
 	}
 }
@@ -395,7 +400,7 @@ void Pokemon::evolve(){
 	espece = espece->getEvolution();
 }
 
-void Pokemon::setStats(int stats[], Attaque * attacks[], Espece const& espece, int types[]){
+void Pokemon::setStats(int stats[], Attaque * attacks[], Espece *espece, int types[]){
 	statATK = stats[0];
 	statDEF = stats[1];
 	statATKSPE = stats[2];

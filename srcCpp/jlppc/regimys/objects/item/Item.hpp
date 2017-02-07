@@ -11,9 +11,9 @@ class Item{
 public:
 	Item(string nom, bool usable, bool usableInFight, bool givable, int categorie, int id);
 	static void initItems();
-	static Item* getItem (string const& name);
-	static Item* getItem (int id);
-	static int searchItem (Item const* toSearch);
+	static  Item* getItem (string const& name);
+	static  Item* getItem (int id);
+	static int searchItem (Item *toSearch);
 	bool operator==(Item const& b) const;
 	string getNom() const {return nom;}
 	bool isUsable() const {return usable;}

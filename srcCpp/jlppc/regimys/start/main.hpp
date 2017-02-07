@@ -3,12 +3,16 @@
 
 #include <iostream>
 #include <fstream>
+#include "../../utils/File.hpp"
+#include "../playercore/Player.hpp"
+#include <sstream>
 
 #define WINDOWS
 
 using namespace std;
 int main();
 namespace Main{
+    ostringstream oss;
     int main();
     bool connected = false;
     string trainers[] = {"Brice", "Evan", "Mael", "Jlppc", "Red", "Blue", "Nikolaϯ", "N", "Belladonis", "Aristote", "Giovanni", "Flora", "Silver", "Jules Cesar", "Gwendal", "Brahim"};
@@ -17,10 +21,10 @@ namespace Main{
     bool pre = (preNbre != 0);
     int sousVers = 0;
     bool sousVersIs = (sousVers != 0);
-    string versionS = "Alpha " + version + (sousVersIs ? "." + sousVers : "") + (pre ? (" pre " + preNbre) : "");
-    Player joueur;
-    File playerSave;
-    File params;
+    string versionS;
+    Player joueur = Player("temp");
+    RFile playerSave = RFile("temp");
+    RFile params = RFile("temp");
     ofstream log;
     ofstream errLog;
 #ifdef WINDOWS

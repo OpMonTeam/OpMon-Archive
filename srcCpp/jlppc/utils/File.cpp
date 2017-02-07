@@ -1,6 +1,6 @@
 #include "File.hpp"
 
-File::File(string path){
+RFile::RFile(string path){
     this->path = path;
 }
 

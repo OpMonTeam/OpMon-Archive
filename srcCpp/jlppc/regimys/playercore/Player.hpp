@@ -2,9 +2,9 @@
 #define SRCCPP_JLPPC_REGIMYS_PLAYERCORE_PLAYER_HPP_
 
 #include <iostream>
-p"
 #define nbreItems 64//J'ai mis au hasard. Inserer ici nombre d'items
 #include <vector>
+#include "Equipe.hpp"
 using namespace std;
 
 class Player{

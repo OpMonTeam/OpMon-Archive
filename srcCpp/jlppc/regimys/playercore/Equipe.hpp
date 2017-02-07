@@ -4,7 +4,6 @@
 
 #include <iostream>
 #include "../objects/Pokemon.hpp"
-
 using namespace std;
 
 class Equipe{
@@ -18,15 +17,15 @@ public:
 	Pokemon operator[](int id) const;
 	bool isKo() const ;
 	int getSize() const ;
-	//Opérateurs non pratique, mais je les met quand meme;
+	//Opérateurs non pratique, mais je les met quand meme
 	void operator+=(Pokemon const& pkmn){addPokemon(pkmn);}
 	void operator-=(int id){removePoke(id);}
-	static Pokemon *PNULL;
+	static Pokemon PNULL;
 
 private:
 
 	int nbreOfPoke = 6;
-	Pokemon equipe[6] = {*PNULL, *PNULL, *PNULL, *PNULL, *PNULL, *PNULL};
+	Pokemon equipe[6] = {PNULL, PNULL, PNULL, PNULL, PNULL, PNULL};
 	string nom;
 };
 
