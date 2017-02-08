@@ -28,3 +28,4 @@ Book1.xlsx.gsheet
 *.txt
 *.db
 pages/doc/DocSample.html
+*.o
