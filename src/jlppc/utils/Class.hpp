@@ -7,7 +7,7 @@ template <typename T>
 class Class {
 public:
 	Class(string name, int ID);
-	Class(){};
+	Class();
 	T* newInstance() const;
 	string getName() const {return name;}
 	int getID() const {return id;}

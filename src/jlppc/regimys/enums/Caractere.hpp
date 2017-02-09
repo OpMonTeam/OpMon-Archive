@@ -9,7 +9,7 @@ public:
 	int bonus;
 	int malus;
 	CaractereClass(int bonus, int malus) : bonus(bonus), malus(malus){};
-	CaractereClass(){};
+	CaractereClass();
 
 };
 
