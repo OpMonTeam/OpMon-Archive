@@ -168,124 +168,125 @@
 	"IHeal.hpp"
 	"CT.hpp"
 
-1486468421 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\enums\caractere.cpp
+1486625243 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\enums\caractere.cpp
 
-1486468534 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\enums\caractere.hpp
+1486625243 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\enums\caractere.hpp
 	"Enums.hpp"
 
-1486468435 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\enums\enums.hpp
+1486625243 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\enums\enums.hpp
 
-1486466846 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\enums\enums.cpp
+1486625243 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\enums\enums.cpp
 	"Enums.hpp"
 
-1486470730 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\eitem.cpp
+1486625243 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\eitem.cpp
 	"EItem.hpp"
 
-1486470877 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\eitem.hpp
+1486625243 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\eitem.hpp
 	"Evolution.hpp"
 	"../objects/item/Item.hpp"
 	"../objects/Pokemon.hpp"
 
-1486470798 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\evolution.hpp
+1486625243 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\evolution.hpp
 	<iostream>
 	"../objects/Pokemon.hpp"
 	"../../utils/Class.hpp"
 
-1486466846 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\pokemon.hpp
+1486625811 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\pokemon.hpp
 	<iostream>
 	<cmath>
 	"../enums/Caractere.hpp"
 	"Espece.hpp"
 	"../../utils/Utils.hpp"
-	"item/Item.hpp"
 	"item/IPokeball.hpp"
 
-1486466846 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\espece.hpp
+1486625972 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\espece.hpp
 	<iostream>
 	"../../utils/NumberedArray.hpp"
 	"item/CT.hpp"
+	"../start/main.hpp"
 
-1486468522 c:\users\_le_pichon\downloads\ppr\src\jlppc\utils\numberedarray.hpp
+1486625243 c:\users\_le_pichon\downloads\ppr\src\jlppc\utils\numberedarray.hpp
 	<iostream>
 	"Class.hpp"
 
-1486466846 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\attaque.hpp
+1486626740 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\attaque.hpp
 	<iostream>
 	"../../utils/Utils.hpp"
 	"../enums/Enums.hpp"
+	"Pokemon.hpp"
 
-1486466846 c:\users\_le_pichon\downloads\ppr\src\jlppc\utils\utils.hpp
+1486625243 c:\users\_le_pichon\downloads\ppr\src\jlppc\utils\utils.hpp
 	<ctime>
 	<cstdlib>
 
-1486466846 c:\users\_le_pichon\downloads\ppr\src\jlppc\utils\class.hpp
+1486625243 c:\users\_le_pichon\downloads\ppr\src\jlppc\utils\class.hpp
 	<iostream>
 
-1486466846 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\item\ct.hpp
+1486625811 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\item\ct.hpp
 	"../../../utils/Class.hpp"
 	"Item.hpp"
 	"../Attaque.hpp"
 
-1486466846 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\item\item.hpp
+1486625243 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\item\item.hpp
 	<iostream>
 	"../../enums/Enums.hpp"
 	"../../../utils/Class.hpp"
 	<vector>
 
-1486466846 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\item\ipokeball.hpp
+1486625243 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\item\ipokeball.hpp
 	<iostream>
 	"Item.hpp"
 
-1486466846 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\eland.cpp
+1486625243 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\eland.cpp
 	"ELand.hpp"
 
-1486469592 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\eland.hpp
+1486625243 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\eland.hpp
 	<iostream>
 	"Evolution.hpp"
 	"../../utils/Class.hpp"
 
-1486466846 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\elevel.cpp
+1486625243 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\elevel.cpp
 	"ELevel.hpp"
 
-1486469592 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\elevel.hpp
+1486626294 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\elevel.hpp
 	"Evolution.hpp"
 
-1486466846 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\elove.cpp
+1486625243 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\elove.cpp
 	"ELove.hpp"
 
-1486469592 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\elove.hpp
+1486626293 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\elove.hpp
 	"Evolution.hpp"
 
-1486466846 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\enope.cpp
+1486625243 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\enope.cpp
 	"ENope.hpp"
 
-1486469592 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\enope.hpp
+1486626293 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\enope.hpp
 	"Evolution.hpp"
 
-1486466846 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\etrade.cpp
+1486625243 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\etrade.cpp
 	"ETrade.hpp"
 
-1486469571 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\etrade.hpp
+1486626292 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\etrade.hpp
 	"Evolution.hpp"
 
-1486466846 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\etradeitem.cpp
+1486625243 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\etradeitem.cpp
 	"ETradeItem.hpp"
 
-1486469573 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\etradeitem.hpp
+1486626290 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\etradeitem.hpp
 	"Evolution.hpp"
 	"EItem.hpp"
 
-1486466846 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\evolution.cpp
+1486625243 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\evolution.cpp
 	"Evolution.hpp"
 
-1486466846 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\attaque.cpp
+1486625811 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\attaque.cpp
 	"Attaque.hpp"
 	"Pokemon.hpp"
 
-1486466846 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\attaques.cpp
+1486625243 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\attaques.cpp
 	"Attaques.hpp"
 
-1486466846 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\attaques.hpp
+1486625243 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\attaques.hpp
 	<iostream>
 	<cmath>
 	"Pokemon.hpp"
@@ -297,47 +298,46 @@
 	"../evolution/Evolution.hpp"
 	"../start/main.hpp"
 
-1486468703 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\start\main.hpp
+1486625243 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\start\main.hpp
 	<iostream>
 	<fstream>
 	"../../utils/File.hpp"
 	"../playercore/Player.hpp"
 	<sstream>
 
-1486466846 c:\users\_le_pichon\downloads\ppr\src\jlppc\utils\file.hpp
+1486625243 c:\users\_le_pichon\downloads\ppr\src\jlppc\utils\file.hpp
 	<iostream>
 	<fstream>
 	"Class.hpp"
 
-1486466846 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\playercore\player.hpp
+1486625243 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\playercore\player.hpp
 	<iostream>
 	<vector>
 	"Equipe.hpp"
 
-1486467260 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\playercore\equipe.hpp
+1486626781 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\playercore\equipe.hpp
 	<iostream>
-	"../objects/Pokemon.hpp"
 
-1486466846 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\item\ct.cpp
+1486625243 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\item\ct.cpp
 	"CT.hpp"
 
-1486466846 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\item\iheal.cpp
+1486625243 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\item\iheal.cpp
 	"IHeal.hpp"
 
-1486468177 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\item\iheal.hpp
+1486625243 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\item\iheal.hpp
 	"Item.hpp"
 	<iostream>
 
-1486466846 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\item\ipokeball.cpp
+1486625243 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\item\ipokeball.cpp
 	"IPokeball.hpp"
 
-1486466846 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\item\item.cpp
+1486625243 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\item\item.cpp
 	"Item.hpp"
 	"IPokeball.hpp"
 	"IHeal.hpp"
 	"CT.hpp"
 
-1486469655 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\pokemon.cpp
+1486625811 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\pokemon.cpp
 	"Pokemon.hpp"
 	"../start/main.hpp"
 	"../evolution/Evolution.hpp"
@@ -345,20 +345,20 @@
 	"../evolution/EItem.hpp"
 	"item/IHeal.hpp"
 
-1486466846 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\regimysobject.cpp
+1486625243 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\regimysobject.cpp
 	"RegimysObject.hpp"
 
-1486466846 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\regimysobject.hpp
+1486625243 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\regimysobject.hpp
 	"../../utils/Class.hpp"
 
-1486467246 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\playercore\equipe.cpp
+1486625243 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\playercore\equipe.cpp
 	"Equipe.hpp"
 
-1486467273 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\playercore\player.cpp
+1486625243 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\playercore\player.cpp
 	"Player.hpp"
 	"../start/main.hpp"
 
-1486469662 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\start\main.cpp
+1486625243 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\start\main.cpp
 	<iostream>
 	<fstream>
 	<cstdlib>
@@ -372,7 +372,7 @@
 	<string>
 	"main.hpp"
 
-1486466846 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\evolutioninclude.hxx
+1486625243 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\evolution\evolutioninclude.hxx
 	"Evolution.hpp"
 	"EItem.hpp"
 	"ELand.hpp"
@@ -382,29 +382,29 @@
 	"ETrade.hpp"
 	"ETradeItem.hpp"
 
-1486466846 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\item\iteminclude.hxx
+1486625243 c:\users\_le_pichon\downloads\ppr\src\jlppc\regimys\objects\item\iteminclude.hxx
 	"CT.hpp"
 	"IHeal.hpp"
 	"IHeal.hpp"
 	"Item.hpp"
 
-1486468255 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\utils\class.cpp
+1486625243 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\utils\class.cpp
 	"Class.hpp"
 
-1486466846 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\utils\comparaisons.cpp
+1486625243 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\utils\comparaisons.cpp
 	"Comparaisons.hpp"
 
-1486466846 c:\users\_le_pichon\downloads\ppr\src\jlppc\utils\comparaisons.hpp
+1486625243 c:\users\_le_pichon\downloads\ppr\src\jlppc\utils\comparaisons.hpp
 	<cstdarg>
 	<iostream>
 
-1486468301 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\utils\file.cpp
+1486625243 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\utils\file.cpp
 	"File.hpp"
 
-1486466846 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\utils\numberedarray.cpp
+1486625243 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\utils\numberedarray.cpp
 	"NumberedArray.hpp"
 
-1486466846 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\utils\utils.cpp
+1486625243 source:c:\users\_le_pichon\downloads\ppr\src\jlppc\utils\utils.cpp
 	"Utils.hpp"
 
 1486478165 source:c:\users\_le_pichon\downloads\portablegit\cmd\ppr\src\jlppc\regimys\enums\caractere.cpp

@@ -5,10 +5,14 @@
  *      Author: _le_pichon
  */
 
-#include "ENope.hpp"
+#include "evolutions.hpp"
 
-E_Nope::E_Nope() {
+
+namespace Evolutions{
+    E_Nope::E_Nope() {
 	// TODO Auto-generated constructor stub
 
 }
+};
+
 
