@@ -1,13 +1,10 @@
 
-#include "evolutions.hpp"
+#include "ETradeItem.hpp"
 
-namespace Evolutions{
-    bool E_TradeItem::checkEvolve(Pokemon const& toCheck){
+bool E_TradeItem::checkEvolve(Pokemon const& toCheck){
 	if(forEvolve == NULL){
 		return false;
 	}
 	Item *held = toCheck.itemHeld();
 	return held == (forEvolve);
-}
-
 }

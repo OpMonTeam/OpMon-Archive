@@ -5,11 +5,10 @@
 #include <iostream>
 #include "../../utils/Utils.hpp"
 #include "../enums/Enums.hpp"
-#include "Pokemon.hpp"
-
-using namespace std;
 
 class Pokemon;
+
+using namespace std;
 
 class Attaque{
 public:

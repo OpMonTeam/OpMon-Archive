@@ -1,15 +1,11 @@
 
-#include "evolutions.hpp"
+#include "ELevel.hpp"
 
-namespace Evolutions{
-    E_Level::E_Level(int evo, int level) : Evolution(evo){
+E_Level::E_Level(int evo, int level) : Evolution(evo){
 	this->level = level;
 }
 
 bool E_Level::checkEvolve(Pokemon const& toCheck) const{
 	return (toCheck.getLevel() >= level);
 }
-};
-
-
 
