@@ -1,5 +1,6 @@
 #include "Espece.hpp"
 #include "../evolution/Evolution.hpp"
+#include "../start/main.hpp"
 
 Espece::~Espece(){
 	delete(evolution);

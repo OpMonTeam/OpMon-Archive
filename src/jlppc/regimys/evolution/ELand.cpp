@@ -1,11 +1,7 @@
 
-#include "evolutions.hpp"
+#include "ELand.hpp"
 
-
-namespace Evolutions{
-    E_Land::E_Land(int evo, string lieu) : Evolution(evo) {
+E_Land::E_Land(int evo, string lieu) : Evolution(evo) {
 
 }
-};
-
 

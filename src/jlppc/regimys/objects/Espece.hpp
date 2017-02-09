@@ -4,7 +4,6 @@
 #include <iostream>
 #include "../../utils/NumberedArray.hpp"
 #include "item/CT.hpp"
-#include "../start/main.hpp"
 
 using namespace std;
 

@@ -3,7 +3,7 @@
 #define SRCCPP_JLPPC_REGIMYS_PLAYERCORE_EQUIPE_HPP_
 
 #include <iostream>
-
+#include "../objects/Pokemon.hpp"
 using namespace std;
 
 class Equipe{
@@ -26,7 +26,7 @@ public:
 private:
 
 	int nbreOfPoke = 6;
-    Pokemon equipe[6] = {PNULL, PNULL, PNULL, PNULL, PNULL, PNULL};
+	Pokemon equipe[6] = {PNULL, PNULL, PNULL, PNULL, PNULL, PNULL};
 	string nom;
 };
 
