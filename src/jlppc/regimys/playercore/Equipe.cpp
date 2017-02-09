@@ -1,5 +1,7 @@
 
 #include "Equipe.hpp"
+#include "../objects/Pokemon.hpp"
+
 
 Equipe::Equipe(string nom) {
 	this->nom = nom;
