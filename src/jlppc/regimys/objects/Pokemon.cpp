@@ -1,8 +1,7 @@
 #include "Pokemon.hpp"
 #include "../start/main.hpp"
 #include "../evolution/Evolution.hpp"
-#include "../evolution/ETrade.hpp"
-#include "../evolution/EItem.hpp"
+#include "../evolution/evolutions.hpp"
 #include "item/IHeal.hpp"
 
 Pokemon::~Pokemon(){
@@ -228,7 +227,7 @@ void Pokemon::levelUp() {
 	}
 	calcStats();
 	if (espece->getEvolType()->checkEvolve(*this)) {
-		if ((espece->getEvolType()->getEvolID()) == (E_Trade::evolID)) {
+		if ((espece->getEvolType()->getEvolID()) == (Evolutions::Level)) {
 			evolve();
 		}
 	}
@@ -330,7 +329,7 @@ void Pokemon::calcStats(){
 }
 
 bool Pokemon::itemUsed(Item *used){
-	if((espece->getEvolType()->getEvolID()) == E_Item::evolID){
+	if((espece->getEvolType()->getEvolID()) == Evolutions::Item){
 		if(espece->getEvolType()->itemEvolve(used)){
 			evolve();
 			return true;
@@ -390,7 +389,7 @@ void Pokemon::traded(){
 }
 
 void Pokemon::toolEvTrade(){
-	if(espece->getEvolType()->getEvolID() == E_Trade::evolID){
+	if(espece->getEvolType()->getEvolID() == Evolutions::Trade){
 		evolve();
 	}
 }

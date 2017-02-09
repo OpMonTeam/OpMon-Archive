@@ -33,22 +33,18 @@
 		<Unit filename="src/jlppc/regimys/enums/Enums.hpp" />
 		<Unit filename="src/jlppc/regimys/enums/enumsInclude.hxx" />
 		<Unit filename="src/jlppc/regimys/evolution/EItem.cpp" />
-		<Unit filename="src/jlppc/regimys/evolution/EItem.hpp" />
 		<Unit filename="src/jlppc/regimys/evolution/ELand.cpp" />
-		<Unit filename="src/jlppc/regimys/evolution/ELand.hpp" />
 		<Unit filename="src/jlppc/regimys/evolution/ELevel.cpp" />
-		<Unit filename="src/jlppc/regimys/evolution/ELevel.hpp" />
 		<Unit filename="src/jlppc/regimys/evolution/ELove.cpp" />
-		<Unit filename="src/jlppc/regimys/evolution/ELove.hpp" />
 		<Unit filename="src/jlppc/regimys/evolution/ENope.cpp" />
-		<Unit filename="src/jlppc/regimys/evolution/ENope.hpp" />
 		<Unit filename="src/jlppc/regimys/evolution/ETrade.cpp" />
-		<Unit filename="src/jlppc/regimys/evolution/ETrade.hpp" />
 		<Unit filename="src/jlppc/regimys/evolution/ETradeItem.cpp" />
-		<Unit filename="src/jlppc/regimys/evolution/ETradeItem.hpp" />
 		<Unit filename="src/jlppc/regimys/evolution/Evolution.cpp" />
 		<Unit filename="src/jlppc/regimys/evolution/Evolution.hpp" />
 		<Unit filename="src/jlppc/regimys/evolution/evolutionInclude.hxx" />
+		<Unit filename="src/jlppc/regimys/evolution/evolutions.hpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="src/jlppc/regimys/objects/Attaque.cpp" />
 		<Unit filename="src/jlppc/regimys/objects/Attaque.hpp" />
 		<Unit filename="src/jlppc/regimys/objects/Attaques.cpp" />
