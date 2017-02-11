@@ -3,20 +3,24 @@
 
 void initAttaquesClass(void){
     using namespace Attaques;
-    Abime::classe = new Class<Abime>("Abime", 0xFFFF);
-    Acidarmure::classe = new Class<Acidarmure>("Acidarmure", 0xFFFE);
-    Acide::classe = new Class<Acide>("Acide", 0xFFFD);
-    Affutage::classe = new Class<Affutage>("Affutage", 0xFFFC);
-    Aiguisage::classe = new Class<Aiguisage>("Aiguisage", 0xFFFB);
-    Amnesie::classe = new Class<Amnesie>("Amnesie", 0xFFFA);
-    Armure::classe = new Class<Armure>("Armure", 0xFFF9);
-    Belier::classe = new Class<Belier>("Belier", 0xFFF8);
-    Balayage::classe = new Class<Balayage>("Balayage", 0xFFF7);
-    BecVrille::classe = new Class<BecVrille>("Bec Vrille", 0xFFF6);
-    Berceuse::classe = new Class<Berceuse>("Berceuse", 0xFFF5);
+
 }
 
 namespace Attaques {
+
+    Class<Abime>* Abime::classe = new Class<Abime>("Abime", 0xFFFF);
+    Class<Acidarmure>* Acidarmure::classe = new Class<Acidarmure>("Acidarmure", 0xFFFE);
+    Class<Acide>* Acide::classe = new Class<Acide>("Acide", 0xFFFD);
+    Class<Affutage>* Affutage::classe = new Class<Affutage>("Affutage", 0xFFFC);
+    Class<Aiguisage>* Aiguisage::classe = new Class<Aiguisage>("Aiguisage", 0xFFFB);
+    Class<Amnesie>* Amnesie::classe = new Class<Amnesie>("Amnesie", 0xFFFA);
+    Class<Armure>* Armure::classe = new Class<Armure>("Armure", 0xFFF9);
+    Class<Belier>* Belier::classe = new Class<Belier>("Belier", 0xFFF8);
+    Class<Balayage>* Balayage::classe = new Class<Balayage>("Balayage", 0xFFF7);
+    Class<BecVrille>* BecVrille::classe = new Class<BecVrille>("Bec Vrille", 0xFFF6);
+    Class<Berceuse>* Berceuse::classe = new Class<Berceuse>("Berceuse", 0xFFF5);
+
+
 int Abime::effetAvant(Pokemon &atk, Pokemon &def){
 	precision = ((atk.getLevel() - def.getLevel()) + 30);
 	if(atk.getLevel() < def.getLevel()){

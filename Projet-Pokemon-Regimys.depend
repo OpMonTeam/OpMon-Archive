@@ -422,7 +422,7 @@
 	"../objects/Pokemon.hpp"
 	"../../utils/Class.hpp"
 
-1486842106 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\pokemon.hpp
+1486847384 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\pokemon.hpp
 	<iostream>
 	<cmath>
 	"../enums/Caractere.hpp"
@@ -441,11 +441,11 @@
 	"../../utils/NumberedArray.hpp"
 	"item/CT.hpp"
 
-1486808086 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\utils\numberedarray.hpp
+1486847387 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\utils\numberedarray.hpp
 	<iostream>
 	"Class.hpp"
 
-1486818806 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\utils\class.hpp
+1486848333 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\utils\class.hpp
 	<iostream>
 
 1486819685 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\ct.hpp
@@ -517,10 +517,10 @@
 	"Attaque.hpp"
 	"Pokemon.hpp"
 
-1486808086 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\attaques.cpp
+1486847652 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\attaques.cpp
 	"Attaques.hpp"
 
-1486808085 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\attaques.hpp
+1486847722 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\attaques.hpp
 	<iostream>
 	<cmath>
 	"Pokemon.hpp"
@@ -592,7 +592,7 @@
 	"Player.hpp"
 	"../start/main.hpp"
 
-1486808085 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\utils\class.cpp
+1486845334 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\utils\class.cpp
 	"Class.hpp"
 
 1486808085 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\utils\comparaisons.cpp

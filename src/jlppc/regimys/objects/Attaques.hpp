@@ -91,7 +91,7 @@ namespace Attaques {
 		BecVrille() : Attaque("Bec Vrille", 80, Type::VOL, 100, false, false, 16, false, 20, 0){}
 		int effetAvant(Pokemon &atk, Pokemon &def){return 0;}
 		int effetApres(Pokemon &atk, Pokemon &def){return 0;}
-		static const Class<BecVrille> *classe;
+		static  Class<BecVrille> *classe;
 
 	};
 
@@ -100,7 +100,7 @@ namespace Attaques {
 		Berceuse() : Attaque("Berceuse", 0, Type::NORMAL, 55, false, true, -1, false, 15, 0){}
 		int effetAvant(Pokemon &atk, Pokemon &def){return 0;}
 		int effetApres(Pokemon &atk, Pokemon &def);
-		static const Class<Berceuse> *classe;
+		static  Class<Berceuse> *classe;
 	};
 
 
