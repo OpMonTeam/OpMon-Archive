@@ -453,7 +453,7 @@
 	"Item.hpp"
 	"../Attaque.hpp"
 
-1486821079 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\item.hpp
+1486822838 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\item.hpp
 	<iostream>
 	"../../enums/Enums.hpp"
 	"../../../utils/Class.hpp"
@@ -568,7 +568,7 @@
 1486808086 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\ipokeball.cpp
 	"IPokeball.hpp"
 
-1486808085 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\item.cpp
+1486822690 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\item.cpp
 	"Item.hpp"
 	"IPokeball.hpp"
 	"IHeal.hpp"

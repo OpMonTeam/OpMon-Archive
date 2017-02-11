@@ -24,12 +24,12 @@ public:
 	int getCategorie () const{return categorie;}
 	bool isUsableInFight() const{return usableInFight;}
 	int getID() const {return id;}
-	static int getItemNumber() {return itemsList.size();}
+	static int getItemNumber() {return sizeof(itemsList;}
 	virtual int getItemTypeID(){return itemTypeID;}
-    static vector<Item*> itemsList;
+    static Item* itemsList[200];
 
 private:
-int itemTypeID = 0;
+    int itemTypeID = 0;
     string nom;
     bool usable;
     bool givable;
