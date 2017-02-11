@@ -17,7 +17,7 @@ public:
 	bool isHealAll() const{return healAll;}
 	bool getPvHeal() const{return pvHeal;}
 	int getStatusHeald() const{return healed;}
-	static Class<I_Heal> *classe;
+	int itemTypeID = 1;
 private:
 	int pvHeal;
 	int healed;

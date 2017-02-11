@@ -1,8 +1,8 @@
 #include "Pokemon.hpp"
 #include "../start/main.hpp"
 #include "../evolution/Evolution.hpp"
-#include "../evolution/ETrade.hpp"
-#include "../evolution/EItem.hpp"
+#include "../evolution/evolutions.hpp"
+
 #include "item/IHeal.hpp"
 
 Pokemon::~Pokemon(){
@@ -34,7 +34,7 @@ int CalcCourbes::erratique(int n) {
 	} else if (n >= 99) {
 		return round(pow(n, 3) * ((160 - n) / 100));
 	} else {
-		Main::gererErreur("Erreur dans le calcul d'experience : niveau <= 0",
+		gererErreur("Erreur dans le calcul d'experience : niveau <= 0",
 				true);
 		return 0;
 	}
@@ -48,7 +48,7 @@ int CalcCourbes::fluctuante(int n) {
 	} else if (n >= 36) {
 		return round(pow(n, 3) * ((32 + (n / 2)) / 50));
 	} else {
-		Main::gererErreur("Erreur dans le calcul d'experience : niveau <= 0",
+		gererErreur("Erreur dans le calcul d'experience : niveau <= 0",
 				true);
 		return 0;
 	}
@@ -172,7 +172,7 @@ bool Pokemon::captured(I_Pokeball const& pokeball) {
 			return false;
 		}
 		if (nbreOk != 4) {
-			Main::gererErreur("InternalError : Pokemon.cpp : nbreOk != 4",
+			gererErreur("InternalError : Pokemon.cpp : nbreOk != 4",
 					true);
 		}
 		return true;
@@ -228,7 +228,7 @@ void Pokemon::levelUp() {
 	}
 	calcStats();
 	if (espece->getEvolType()->checkEvolve(*this)) {
-		if ((espece->getEvolType()->getEvolID()) == (E_Trade::evolID)) {
+		if ((espece->getEvolType()->getEvolID()) == (Evolutions::ETrade)) {
 			evolve();
 		}
 	}
@@ -330,13 +330,13 @@ void Pokemon::calcStats(){
 }
 
 bool Pokemon::itemUsed(Item *used){
-	if((espece->getEvolType()->getEvolID()) == E_Item::evolID){
+	if((espece->getEvolType()->getEvolID()) == Evolutions::EItem){
 		if(espece->getEvolType()->itemEvolve(used)){
 			evolve();
 			return true;
 		}
 	}
-	if(used->getClass() == *I_Heal::classe){
+	if(used->getItemTypeID() == ItemType::IHeal){
 
 		I_Heal *usedI = dynamic_cast<I_Heal*>(used);
 		if(usedI->getPvHeal() > 0){
@@ -390,7 +390,7 @@ void Pokemon::traded(){
 }
 
 void Pokemon::toolEvTrade(){
-	if(espece->getEvolType()->getEvolID() == E_Trade::evolID){
+	if(espece->getEvolType()->getEvolID() == Evolutions::ETrade){
 		evolve();
 	}
 }
