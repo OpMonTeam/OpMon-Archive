@@ -97,7 +97,7 @@ public:
     bool vampigraine = false;
     bool malediction = false;
 	virtual ~Pokemon();
-	Pokemon();
+	Pokemon(){};
 	Pokemon(string surnom, Espece *espece, int level, Attaque *attaques[], CaractereClass caractere);
 	bool captured(I_Pokeball const& pokeball);
 	void setStat(string const& stat, int newStat);
@@ -138,6 +138,7 @@ public:
 	Espece* getEspece() const{return espece;}
 	bool operator==(Pokemon const& a){return (falsif == a.falsif);}
 	bool operator!=(Pokemon const& a){return !(falsif == a.falsif);}
+    void operator()(Pokemon &vs);
 	Item* itemHeld() const{return held;}
 };
 
