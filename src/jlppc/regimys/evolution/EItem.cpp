@@ -1,7 +1,8 @@
-#include "EItem.hpp"
+#include "evolutions.hpp"
 
-E_Item::E_Item(int evo, Item *forEvolve) : Evolution(evo){
-	this->forEvolve = forEvolve;
+
+namespace Evolutions{
+    E_Item::E_Item(int evo, Item *forEvolve) : Evolution(evo), forEvolve(forEvolve){
 }
 /* NE PAS UTILISER, inutile.*/
 bool E_Item::checkEvolve(Pokemon const& toCheck) const{
@@ -11,4 +12,6 @@ bool E_Item::checkEvolve(Pokemon const& toCheck) const{
 bool E_Item::itemEvolve(Item *forEvolve) const{
 	return this->forEvolve == forEvolve;
 }
+}
+
 

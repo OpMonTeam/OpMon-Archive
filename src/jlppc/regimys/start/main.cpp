@@ -15,26 +15,32 @@
 
 using namespace std;
 
-
-
-
 namespace Main{
-void gererErreur(string errorName, bool fatal){
-    errLog << "Erreur : " << errorName << endl;
-    if(fatal){
-        errLog << "Erreur fatale." << endl;
-        Main::log.close();
-        errLog.close();
-        quit(1);
-    }
-}
 
-int quit(int returne){
-	Main::log.close();
-    errLog.close();
-    exit(returne);
-    return returne;
-}
+ostringstream oss;
+    int main();
+    bool connected = false;
+    string trainers[] = {"Brice", "Evan", "Mael", "Jlppc", "Red", "Blue", "Nikolai", "N", "Belladonis", "Aristote", "Giovanni", "Flora", "Silver", "Jules Cesar", "Gwendal", "Brahim"};
+    float version = 0.07;
+    int sousVers = 0;
+    string versionS;
+    Player joueur = Player("temp");
+    RFile playerSave = RFile("temp");
+    RFile params = RFile("temp");
+    #ifdef WINDOWS
+    ofstream log("logs\\log.txt");
+    ofstream errLog("logs\\errLog.txt");
+    #else
+    #define UNIX
+    ofstream log = ofstream("logs/log.txt");
+    ofstream errLog = ofstream("logs/errLog.txt")
+    #endif // WINDOWS
+#ifdef WINDOWS
+    string sep = "\\";
+#else
+    string sep = "/";
+#endif
+
 int main(){
 
 
@@ -49,9 +55,28 @@ int main(){
    }
 
 }
+
+void gererErreur(string errorName, bool fatal){
+    Main::errLog << "Erreur : " << errorName << endl;
+    if(fatal){
+        Main::errLog << "Erreur fatale." << endl;
+        Main::log.close();
+        Main::errLog.close();
+        quit(1);
+    }
+}
+
+int quit(int returne){
+	Main::log.close();
+    Main::errLog.close();
+    exit(returne);
+    return returne;
+}
+
+
 int main(int argc, char *argv[])
 {
-    Main::oss << "Alpha" << Main::version << "." << (Main::sousVersIs ? Main::sousVers : 0);
+    Main::oss << "Alpha" << Main::version << "." << Main::sousVers;
     Main::versionS = Main::oss.str();
 	initStatic();
     return Main::main();

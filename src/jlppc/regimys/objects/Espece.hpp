@@ -48,7 +48,6 @@ public:
 	Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, string name, int type1, int type2,int maniereEvolution, int niveauEvolution, Evolution *evolType, int EVGiven[], float taille, float poids, string entreePokedex, int expGiven,int expMax, int tauxDeCapture);
 	void checkEvol();
 	void checkAtkLvls();
-	static int pokedexNumberInit;
 	int getBaseAtk() const {return baseAtk;}
 	int getBaseDef() const {return baseDef;}
 	int getBaseAtkSpe() const {return baseAtkSpe;}
@@ -67,5 +66,4 @@ public:
 	int* getEv() {return EVgiven;}
 
 };
-
 #endif // ESPECE_HPP

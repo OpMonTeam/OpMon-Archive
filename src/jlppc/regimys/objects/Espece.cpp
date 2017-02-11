@@ -1,5 +1,6 @@
 #include "Espece.hpp"
 #include "../evolution/Evolution.hpp"
+#include "../evolution/evolutions.hpp"
 #include "../start/main.hpp"
 
 Espece::~Espece(){
@@ -8,10 +9,10 @@ Espece::~Espece(){
 
 Espece::Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, string name, int type1, int type2,int maniereEvolution, int niveauEvolution, Evolution *evolType, int EVGiven[], float taille, float poids, string entreePokedex, int expGiven,int expMax, int tauxDeCapture){
     if(atk < 0 || def < 0 || atkSpe < 0 || defSpe < 0 || vit < 0 || pv < 0){
-			Main::gererErreur("Stats < 0 Espece<Initializer>", true);
+			gererErreur("Stats < 0 Espece<Initializer>", true);
 		}
 		if(expGiven < 0){
-			Main::gererErreur("expGiven < 0 Espece<Initializer>",true);
+			gererErreur("expGiven < 0 Espece<Initializer>",true);
 		}
 		numeroPokedex = 0;
 		this->tauxDeCapture = tauxDeCapture;
@@ -69,6 +70,4 @@ void Espece::checkEvol(){
 
 void Espece::checkAtkLvls(){
     //this->atksByLevels = Initializer::atkPokeLvl[pokedexNumberInit];
-    this->numeroPokedex = pokedexNumberInit;
-    pokedexNumberInit++;
 }
