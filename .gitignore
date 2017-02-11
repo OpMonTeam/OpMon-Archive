@@ -1,4 +1,4 @@
-#*.class
+﻿
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
@@ -23,9 +23,14 @@ Book1.xlsx.gsheet
 .rsave
 *.rsave
 *.rej
+exe/log.txt
+exe/errLog.txt
+*.db
 *.class
 *.info
 *.txt
 *.db
 pages/doc/DocSample.html
+/Debug/
+# Pas de fichier de compilation C++
 *.o
