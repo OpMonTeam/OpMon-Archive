@@ -1,6 +1,8 @@
 
 #include "Equipe.hpp"
 
+Pokemon Equipe::PNULL = Pokemon();
+
 Equipe::Equipe(string nom) {
 	this->nom = nom;
 }
