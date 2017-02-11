@@ -1,4 +1,4 @@
-﻿#*.class
+﻿
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
@@ -31,3 +31,6 @@ exe/errLog.txt
 *.txt
 *.db
 pages/doc/DocSample.html
+/Debug/
+# Pas de fichier de compilation C++
+*.o
