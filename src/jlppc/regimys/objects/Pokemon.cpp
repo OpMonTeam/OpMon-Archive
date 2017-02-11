@@ -1490,3 +1490,7 @@ void Pokemon::heal(int PV){
 		this->PV+=PV;
 	}
 }
+
+void Pokemon::operator()(Pokemon &vs){//remplace la methode attack en Java
+//TODO
+}

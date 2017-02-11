@@ -422,7 +422,7 @@
 	"../objects/Pokemon.hpp"
 	"../../utils/Class.hpp"
 
-1486808085 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\pokemon.hpp
+1486842106 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\pokemon.hpp
 	<iostream>
 	<cmath>
 	"../enums/Caractere.hpp"
@@ -431,7 +431,7 @@
 	"item/Item.hpp"
 	"item/IPokeball.hpp"
 
-1486808085 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\enums\caractere.hpp
+1486844440 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\enums\caractere.hpp
 	"Enums.hpp"
 
 1486817871 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\enums\enums.hpp
@@ -453,11 +453,10 @@
 	"Item.hpp"
 	"../Attaque.hpp"
 
-1486822838 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\item.hpp
+1486844366 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\item.hpp
 	<iostream>
 	"../../enums/Enums.hpp"
 	"../../../utils/Class.hpp"
-	<vector>
 
 1486808085 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\attaque.hpp
 	<iostream>
@@ -551,7 +550,7 @@
 	<vector>
 	"Equipe.hpp"
 
-1486808086 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\playercore\equipe.hpp
+1486844514 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\playercore\equipe.hpp
 	<iostream>
 	"../objects/Pokemon.hpp"
 
@@ -568,13 +567,12 @@
 1486808086 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\ipokeball.cpp
 	"IPokeball.hpp"
 
-1486822690 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\item.cpp
-	"Item.hpp"
+1486844409 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\item.cpp
 	"IPokeball.hpp"
 	"IHeal.hpp"
 	"CT.hpp"
 
-1486820529 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\pokemon.cpp
+1486842537 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\pokemon.cpp
 	"Pokemon.hpp"
 	"../start/main.hpp"
 	"../evolution/Evolution.hpp"
@@ -587,7 +585,7 @@
 1486808086 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\regimysobject.hpp
 	"../../utils/Class.hpp"
 
-1486808086 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\playercore\equipe.cpp
+1486844502 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\playercore\equipe.cpp
 	"Equipe.hpp"
 
 1486814534 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\playercore\player.cpp
