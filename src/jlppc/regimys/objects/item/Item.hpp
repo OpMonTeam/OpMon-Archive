@@ -7,6 +7,9 @@
 #include <vector>
 using namespace std;
 
+namespace ItemType{
+    const int IHeal = 1, IPokeball = 2, ICT = 3;
+}
 class Item{
 public:
 	Item(string nom, bool usable, bool usableInFight, bool givable, int categorie, int id);
@@ -22,10 +25,11 @@ public:
 	bool isUsableInFight() const{return usableInFight;}
 	int getID() const {return id;}
 	static int getItemNumber() {return itemsList.size();}
-	virtual Class<Item> getClass() const{return classe;}
-	static vector<Item*> itemsList;
+	virtual int getItemTypeID(){return itemTypeID;}
+    static vector<Item*> itemsList;
+
 private:
-	static Class<Item> classe;
+int itemTypeID = 0;
     string nom;
     bool usable;
     bool givable;

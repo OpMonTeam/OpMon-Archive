@@ -11,6 +11,7 @@ class I_Pokeball: public Item {
 public:
 	I_Pokeball(string nom, float tauxCapture, int ID);
 	float getTauxCapture() const{return tauxCapture;}
+	int itemTypeID = 2;
 private:
 	float tauxCapture;
 };

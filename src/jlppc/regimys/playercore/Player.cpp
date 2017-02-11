@@ -19,7 +19,7 @@ void Player::addItem(int itemID){
 int Player::checkItem(int itemID){
 	unsigned int itemID2 = itemID;
 	if(itemID2 > sizeof bag || itemID2 < 0){
-		Main::gererErreur("Player : itemID invalide", true);
+		gererErreur("Player : itemID invalide", true);
 	}
 	return bag[itemID];
 }
@@ -27,7 +27,7 @@ int Player::checkItem(int itemID){
 bool Player::deleteItem(int itemID){
 
 	if(bag[itemID] != 0 || itemID < 0){
-		Main::gererErreur("Player : itemID invalide", true);
+		gererErreur("Player : itemID invalide", true);
 	}
 	if(bag[itemID] != 0){
 		bag[itemID]--;
