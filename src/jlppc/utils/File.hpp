@@ -1,22 +1,29 @@
+/*
+File.hpp
+Auteur : Jlppc
+Fichier sous licence GPL-3.0
+http://regimys.tk
+Définit la classe RFile
+*/
 #ifndef FILE_HPP
 #define FILE_HPP
 
 #include <iostream>
 #include <fstream>
 #include "Class.hpp"
-
-using namespace std;
-
+/**
+Permet de stocker une chaine de caractère dans le but de récuperer un flux d'entrée ou de sortie
+*/
 class RFile
 {
     public:
-        RFile(string path);
-        ifstream* getIn() const;
-        ofstream* getOut() const;
+        RFile(std::string path);
+        std::ifstream* getIn() const;
+        std::ofstream* getOut() const;
     protected:
 
     private:
-        string path;
+        std::string path;
 };
 
 #endif // FILE_HPP

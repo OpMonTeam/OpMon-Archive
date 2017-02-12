@@ -1,13 +1,25 @@
+/*
+Item.hpp
+Auteur : Jlppc
+Fichier sous licence GPL-3.0
+http://regimys.tk
+Contient la définition de l'énumération ItemType et de la classe Item
+*/
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_ITEM_HPP_
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_ITEM_HPP_
 
 #include <iostream>
 #include "../../enums/Enums.hpp"
 #include "../../../utils/Class.hpp"
-
+/**
+Namespace énumérant les types de classes d'item
+*/
 namespace ItemType{
     const int IHeal = 1, IPokeball = 2, ICT = 3;
 }
+/**
+Classe définissant un item du jeu
+*/
 class Item{
 public:
     static Item* itemsLst[200];
