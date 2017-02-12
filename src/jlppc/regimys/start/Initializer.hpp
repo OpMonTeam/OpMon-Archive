@@ -10,10 +10,10 @@
 
 namespace Initializer{
     Espece *listePoke[POKE_NUMBER];
-    vector<NumberedArray<Class<Attaque*> > > atkPokeLvl[POKE_NUMBER];//100 attaques max / poké
+    std::vector<NumberedArray<Class<Attaque*> > > atkPokeLvl[POKE_NUMBER];//100 attaques max / poké
     extern Evolutions::E_Nope ne;//ne = No Evolution
     //std::string backgrounds[];
-    int evs[POKE_NUMBER];
+    std::vector<int> evs[POKE_NUMBER];
     void initEvs();
     void initPokemons();
     void initAtkLvls();
