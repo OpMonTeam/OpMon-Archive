@@ -1,4 +1,10 @@
-
+/*
+Attaques.hpp
+Auteur : Jlppc
+Fichier sous licence GPL-3.0
+http://regimys.tk
+Contient les définitions des classes des attaques
+*/
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUES_HPP_
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUES_HPP_
 
@@ -7,12 +13,9 @@
 #include "Pokemon.hpp"
 #include "Attaque.hpp"
 #include "../../utils/Class.hpp"
-
-
-using namespace std;
-
-void initAttaquesClass(void);
-
+/**
+Namespace contenant les définitions des attaques
+*/
 namespace Attaques {
 
 	class Abime : public Attaque{
@@ -105,5 +108,8 @@ namespace Attaques {
 
 
 };
+//Permet de ne pas a devoir utiliser Attaques::
+using namespace Attaques;
+
 
 #endif /* SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUES_HPP_ */
