@@ -32,6 +32,54 @@ namespace Initializer{
         evs[6].ATKSPE;
         evs[6].ATKSPE;
 
+        evs[7].DEF;
+
+        evs[8].DEF;
+        evs[8].DEFSPE;
+
+        evs[9].DEFSPE;
+        evs[9].DEFSPE;
+        evs[9].DEFSPE;
+
+        evs[10].PV;
+
+        evs[11].DEF;
+        evs[11].DEF;
+
+        evs[12].ATKSPE;
+        evs[12].ATKSPE;
+        evs[12].DEFSPE;
+
+        evs[13].VIT;
+
+        evs[14].DEF;
+        evs[14].DEF;
+
+        evs[15].ATK;
+        evs[15].ATK;
+        evs[15].DEFSPE;
+
+        evs[16].VIT;
+
+        evs[17].VIT;
+        evs[17].VIT;
+
+        evs[18].VIT;
+        evs[18].VIT;
+        evs[18].VIT;
+
+        evs[19].VIT;
+
+        evs[20].VIT;
+        evs[20].VIT;
+
+        evs[21].VIT;
+
+        evs[22].VIT;
+        evs[22].VIT;
+
+
+
     }
 
     void initPokemons(){
