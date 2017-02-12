@@ -1,17 +1,28 @@
 #include "Initializer.hpp"
+#include "../enums/Enums.hpp"
+
+#define pbATK push_back(Stats::ATK)
+#define pbATKSPE push_back(Stats::ATKSPE)
+#define pbDEFSPE push_back(Stats::DEFSPE)
+#define pbDEF push_back(Stats::DEF)
+#define pbVIT push_back(Stats::VIT)
+#define pbPV push_back(Stats::PV)
 
 namespace Initializer{
 
 
     void initEvs(){
-
+        evs[0].pbATK;
+        evs[1].pbATKSPE;
+        evs[2].pbATKSPE;
+        evs[2].pbDEFSPE;
     }
 
     void initPokemons(){
         initEvs();
         using namespace Evolutions;
-         listePoke[0] = new Espece(136, 0, 1, 1, 29, 33, "MissingNo.", Type::NORMAL, Type::VOL, 0, 80, E_Level(0, 80), {Stats.ATK}, 0, 0, "ERROR : MISSINGNO.", 0, 1250000, 3);
-		 listePoke[1] = new Espece(49, 49, 65, 65, 45, 45, "Bulbizarre", Type::PLANTE, Type::POISON, 0, 16, E_Level(2, 16), {Stats.ATKSPE}, 0.7, 6.9, "Il a une Ã©trange graine plantÃ©e sur son dos. Elle grandit avec lui depuis sa naissance.", 64, 1059860, 45);
+         listePoke[0] = new Espece(136, 0, 1, 1, 29, 33, "MissingNo.", Type::NORMAL, Type::VOL, 0, 80, E_Level(0, 80), evs[0]., 0, 0, "ERROR : MISSINGNO.", 0, 1250000, 3, 0);
+		 listePoke[1] = new Espece(49, 49, 65, 65, 45, 45, "Bulbizarre", Type::PLANTE, Type::POISON, 0, 16, E_Level(2, 16), evs[1], 0.7, 6.9, "Il a une Ã©trange graine plantÃ©e sur son dos. Elle grandit avec lui depuis sa naissance.", 64, 1059860, 45, 1);
 		 listePoke[2] = new Espece(62, 63, 80, 80, 60, 60, "Herbizarre",Type::PLANTE, Type::POISON, 0, 32, E_Level(3, 32), {Stats.ATKSPE, Stats.DEFSPE}, 1, 13, "Lorsque le bourgeon sur son dos Ã©clot, il rÃ©pand un doux parfum pour cÃ©lÃ©brer sa floraison.", 141, 1059860, 45);
 		 listePoke[3] = new Espece(82, 83, 100, 100, 80, 80, "Florizarre", Type::PLANTE, Type::POISON, 0, -1, ne, {Stats.ATKSPE, Stats.ATKSPE, Stats.DEFSPE}, 2, 100, "Ses pÃ©tales lui servent ÃƒÂ  capter la lumiÃ¨re du soleil. Il peut ainsi en canaliser l'Ã©nergie.", 236, 1059860, 45);
 		 listePoke[4] = new Espece(52, 43, 60, 50, 65, 39, "Salamèche", Type::FEU, Type::AUCUN, 0, 16, E_Level(5, 16), {Stats.VIT}, 0.6, 8.5, "La flamme sur sa queue reprÃ©sente l'Ã©nergie vitale de SalamÃ¨che. Quand il est vigoureux, elle brÃƒÂ»le plus fort.", 65, 1059860, 45);
