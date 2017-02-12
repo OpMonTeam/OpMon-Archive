@@ -77,8 +77,66 @@ namespace Initializer{
 
         evs[22].VIT;
         evs[22].VIT;
-
-
+	    
+	evs[23].ATK;
+	
+	evs[24].ATK;
+	evs[24].ATK;
+	    
+	evs[25].VIT;
+	evs[25].VIT;
+	    
+	evs[26].VIT;
+	evs[26].VIT;
+	evs[26].VIT;
+	    
+	evs[27].DEF;
+	    
+	evs[28].DEF;
+	evs[28].DEF;
+	    
+	evs[29].PV;
+	    
+	evs[30].PV;
+	evs[30].PV;
+	    
+	evs[31].PV;
+	evs[31].PV;
+	evs[31].PV;
+	    
+	evs[32].ATK;
+	    
+	evs[33].ATK;
+	evs[33].ATK;
+	    
+	evs[34].ATK;
+	evs[34].ATK;
+	evs[34].ATK;
+	    
+	evs[35].PV;
+	evs[35].PV;
+	    
+	evs[36].PV;
+	evs[36].PV;
+	evs[36].PV;
+	    
+	evs[37].VIT;
+	    
+	evs[38].VIT;
+	evs[39].VIT;
+	    
+	evs[39].ATKSPE;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	
 
     }
 
