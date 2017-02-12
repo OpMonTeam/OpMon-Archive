@@ -453,7 +453,7 @@
 	"Item.hpp"
 	"../Attaque.hpp"
 
-1486849424 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\item.hpp
+1486885140 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\item.hpp
 	<iostream>
 	"../../enums/Enums.hpp"
 	"../../../utils/Class.hpp"
@@ -527,7 +527,7 @@
 	"Attaque.hpp"
 	"../../utils/Class.hpp"
 
-1486849424 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\espece.cpp
+1486885561 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\espece.cpp
 	"Espece.hpp"
 	"../evolution/Evolution.hpp"
 	"../evolution/evolutions.hpp"

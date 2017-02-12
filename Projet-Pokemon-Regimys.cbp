@@ -6,6 +6,7 @@
 		<Option platforms="Windows;" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
+		<Option virtualFolders="src\jlppc\regimys\objects\;" />
 		<Build>
 			<Target title="Release">
 				<Option platforms="Windows;" />
@@ -17,6 +18,8 @@
 					<Add option="-O" />
 					<Add directory="jlppc/regimys/objects/" />
 					<Add directory="srcCpp/jlppc/utils" />
+					<Add directory="jlppc/regimys/start" />
+					<Add directory="src/jlppc/regimys/start" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -42,9 +45,7 @@
 		<Unit filename="src/jlppc/regimys/evolution/Evolution.cpp" />
 		<Unit filename="src/jlppc/regimys/evolution/Evolution.hpp" />
 		<Unit filename="src/jlppc/regimys/evolution/evolutionInclude.hxx" />
-		<Unit filename="src/jlppc/regimys/evolution/evolutions.hpp">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
+		<Unit filename="src/jlppc/regimys/evolution/evolutions.hpp" />
 		<Unit filename="src/jlppc/regimys/objects/Attaque.cpp" />
 		<Unit filename="src/jlppc/regimys/objects/Attaque.hpp" />
 		<Unit filename="src/jlppc/regimys/objects/Attaques.cpp" />
@@ -74,6 +75,8 @@
 		<Unit filename="src/jlppc/regimys/playercore/Player.hpp" />
 		<Unit filename="src/jlppc/regimys/playercore/playercoreInclude.hxx" />
 		<Unit filename="src/jlppc/regimys/regimysInclude.hxx" />
+		<Unit filename="src/jlppc/regimys/start/Initializer.cpp" />
+		<Unit filename="src/jlppc/regimys/start/Initializer.hpp" />
 		<Unit filename="src/jlppc/regimys/start/main.cpp" />
 		<Unit filename="src/jlppc/regimys/start/main.hpp" />
 		<Unit filename="src/jlppc/regimys/start/startInclude.hxx" />
