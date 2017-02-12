@@ -1,27 +1,36 @@
 #include "Initializer.hpp"
 #include "../enums/Enums.hpp"
 
-#define pbATK push_back(Stats::ATK)
-#define pbATKSPE push_back(Stats::ATKSPE)
-#define pbDEFSPE push_back(Stats::DEFSPE)
-#define pbDEF push_back(Stats::DEF)
-#define pbVIT push_back(Stats::VIT)
-#define pbPV push_back(Stats::PV)
+#define ATK push_back(Stats::ATK)
+#define ATKSPE push_back(Stats::ATKSPE)
+#define DEFSPE push_back(Stats::DEFSPE)
+#define DEF push_back(Stats::DEF)
+#define VIT push_back(Stats::VIT)
+#define PV push_back(Stats::PV)
 
 namespace Initializer{
 
 
     void initEvs(){
-        evs[0].pbATK;
-        evs[1].pbATKSPE;
-        evs[2].pbATKSPE;
-        evs[2].pbDEFSPE;
-        evs[3].pbATKSPE;
-        evs[3].pbATKSPE;
-        evs[3].pbDEFSPE;
-        evs[4].pbVIT;
-        evs[5].pbVIT;
-        evs[5].pbATKSPE;
+        evs[0].ATK;
+
+        evs[1].ATKSPE;
+
+        evs[2].ATKSPE;
+        evs[2].DEFSPE;
+
+        evs[3].ATKSPE;
+        evs[3].ATKSPE;
+        evs[3].DEFSPE;
+
+        evs[4].VIT;
+
+        evs[5].VIT;
+        evs[5].ATKSPE;
+
+        evs[6].ATKSPE;
+        evs[6].ATKSPE;
+        evs[6].ATKSPE;
 
     }
 
