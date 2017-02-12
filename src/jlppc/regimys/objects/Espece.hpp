@@ -4,6 +4,7 @@
 #include <iostream>
 #include "../../utils/NumberedArray.hpp"
 #include "item/CT.hpp"
+#include <vector>
 
 using namespace std;
 
@@ -45,7 +46,7 @@ private:
 
 public:
 	virtual ~Espece();
-	Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, string name, int type1, int type2,int maniereEvolution, int niveauEvolution, Evolution *evolType, int EVGiven[], float taille, float poids, string entreePokedex, int expGiven,int expMax, int tauxDeCapture);
+	Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, string name, int type1, int type2,int maniereEvolution, int niveauEvolution, Evolution *evolType, vector<int> EVGiven, float taille, float poids, string entreePokedex, int expGiven,int expMax, int tauxDeCapture, int numeroPokedex);
 	void checkEvol();
 	void checkAtkLvls();
 	int getBaseAtk() const {return baseAtk;}
