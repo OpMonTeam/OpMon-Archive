@@ -1,6 +1,8 @@
 
 #include "IHeal.hpp"
 
+using namespace std;
+
 I_Heal::I_Heal(string nom, bool usable, bool usableInFight, bool givable, int categorie, int pvHeal, int heal, bool healAllStatus, int ID) : Item(nom, usable, usableInFight, givable, categorie, ID){
 	this->pvHeal = pvHeal;
 	this->healed = heal;

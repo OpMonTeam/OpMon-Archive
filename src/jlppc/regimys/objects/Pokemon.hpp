@@ -1,7 +1,7 @@
 /*
 Pokemon.hpp
 Auteur : Jlppc
-Fichier sous licence GPL-3.0
+Fichier sous licence GPL-3.0. Le nom Pokémon appartient a Nintendo(r).
 http://regimys.tk
 Contient la définition du namepsace CalcCourbes et de la classe Pokemon
 */
