@@ -53,7 +53,10 @@
 		<Unit filename="src/jlppc/regimys/objects/Espece.hpp" />
 		<Unit filename="src/jlppc/regimys/objects/Pokemon.cpp" />
 		<Unit filename="src/jlppc/regimys/objects/Pokemon.hpp" />
-		<Unit filename="src/jlppc/regimys/objects/RegimysObject.cpp" />
+		<Unit filename="src/jlppc/regimys/objects/RegimysObject.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="src/jlppc/regimys/objects/RegimysObject.hpp" />
 		<Unit filename="src/jlppc/regimys/objects/item/CT.cpp" />
 		<Unit filename="src/jlppc/regimys/objects/item/CT.hpp" />
