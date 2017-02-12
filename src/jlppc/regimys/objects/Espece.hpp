@@ -38,7 +38,7 @@ private:
 	int basePV;
 	int courbe;
 	int expMax;
-	int EVgiven[3];
+	int *EVgiven;
 	//Images
 	int expGiven;
 	int tauxDeCapture;
