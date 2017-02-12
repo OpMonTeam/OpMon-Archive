@@ -436,10 +436,11 @@
 
 1486849424 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\enums\enums.hpp
 
-1486849424 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\espece.hpp
+1486909430 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\espece.hpp
 	<iostream>
 	"../../utils/NumberedArray.hpp"
 	"item/CT.hpp"
+	<vector>
 
 1486849424 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\utils\numberedarray.hpp
 	<iostream>
@@ -527,7 +528,7 @@
 	"Attaque.hpp"
 	"../../utils/Class.hpp"
 
-1486885561 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\espece.cpp
+1486909613 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\espece.cpp
 	"Espece.hpp"
 	"../evolution/Evolution.hpp"
 	"../evolution/evolutions.hpp"
