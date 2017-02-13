@@ -1,7 +1,7 @@
 #include "Player.hpp"
 #include "../start/main.hpp"
 
-Player::Player(string name) {
+Player::Player(std::string name) {
 	this->name = name;
 	dressID = Utils::randUI(0xFFFFFFFF);
 	equipe = Equipe(name);
