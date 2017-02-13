@@ -9,9 +9,9 @@ Contient la définition de la classe Player
 #define SRCCPP_JLPPC_REGIMYS_PLAYERCORE_PLAYER_HPP_
 
 #include <iostream>
-#define nbreItems 64//J'ai mis au hasard. Inserer ici nombre d'items
 #include <vector>
 #include "Equipe.hpp"
+#include "../objects/item/Item.hpp"
 /**
 Classe représentant le joueur
 */
@@ -31,7 +31,7 @@ public:
 private:
 	std::string name;
 	unsigned int dressID;//jusqu'a 8 chiffres (Hexadecimal) (jusqu'a 16^8)
-	int bag[nbreItems];
+	int bag[ITEM_NUMBER];
 	std::vector<Pokemon> pc = std::vector<Pokemon>();
 	Equipe equipe;
 };
