@@ -34,6 +34,7 @@ Espece::Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, string
 		this->entreePokedex = entreePokedex;
 		this->expGiven = expGiven;
         EVgiven = (int*)malloc( EVGiven.size() * sizeof(int) );
+        evSize = EVGiven.size();
 		for(unsigned int i = 0; i < EVGiven.size(); i++){
             EVgiven[i] = EVGiven[i];
 		}

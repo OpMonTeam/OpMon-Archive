@@ -52,6 +52,7 @@ private:
 	//Images
 	int expGiven;
 	int tauxDeCapture;
+	int evSize;
 
 public:
 	virtual ~Espece();
@@ -75,7 +76,8 @@ public:
 	int getCourbe() const{return courbe;}
 	Espece* getEvolution() const {return evolution;}
 	float getPoids() const{return poids;}
-	int* getEv() {return EVgiven;}
+	int* getEv() const{return EVgiven;}
+	int getEvSize() const{return evSize;}
 
 };
 #endif // ESPECE_HPP
