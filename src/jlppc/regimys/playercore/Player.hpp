@@ -1,3 +1,10 @@
+/*
+Player.hpp
+Auteur : Jlppc
+Fichier sous licence GPL-3.0
+http://regimys.tk
+Contient la définition de la classe Player
+*/
 #ifndef SRCCPP_JLPPC_REGIMYS_PLAYERCORE_PLAYER_HPP_
 #define SRCCPP_JLPPC_REGIMYS_PLAYERCORE_PLAYER_HPP_
 
@@ -5,26 +12,27 @@
 #define nbreItems 64//J'ai mis au hasard. Inserer ici nombre d'items
 #include <vector>
 #include "Equipe.hpp"
-using namespace std;
-
+/**
+Classe représentant le joueur
+*/
 class Player{
 public:
-	Player(string name);
+	Player(std::string name);
 	Equipe getEquipe() const;
 	void addItem(int itemID);
 	int checkItem(int itemID);
 	bool deleteItem(int itemID);
-	string getName() const {return name;}
+    std::string getName() const {return name;}
 	int getDressID() const {return dressID;}
 	void addPokemonToPC(Pokemon toAdd){pc.push_back(toAdd);}
 	Pokemon getPoke(int ID) const {return equipe[ID];}
 	void healPoke();
 	bool addPokeToEquipe(Pokemon toAdd);
 private:
-	string name;
-	unsigned int dressID;//9 chiffres
+	std::string name;
+	unsigned int dressID;//jusqu'a 8 chiffres (Hexadecimal) (jusqu'a 16^8)
 	int bag[nbreItems];
-	vector<Pokemon> pc = vector<Pokemon>();
+	std::vector<Pokemon> pc = std::vector<Pokemon>();
 	Equipe equipe;
 };
 

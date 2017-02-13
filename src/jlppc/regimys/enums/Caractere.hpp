@@ -1,9 +1,17 @@
-
+/*
+Caractere.hpp
+Auteur : Jlppc
+Fichier sous licence GPL-3.0
+http://regimys.tk
+Définit l'énumération des caractères
+*/
 #ifndef SRCCPP_JLPPC_REGIMYS_ENUMS_CARACTERE_HPP_
 #define SRCCPP_JLPPC_REGIMYS_ENUMS_CARACTERE_HPP_
 
 #include "Enums.hpp"
-
+/**
+Définit la classe des caractères
+*/
 class CaractereClass {
 public:
 	int bonus;
@@ -12,7 +20,9 @@ public:
 	CaractereClass(){};
 
 };
-
+/**
+Enumère les caractères
+*/
 namespace Caractere{
 		const CaractereClass ASSURE = CaractereClass(Stats::DEF, Stats::ATK),
 		BIZARRE = CaractereClass(Stats::RIEN, Stats::RIEN),
