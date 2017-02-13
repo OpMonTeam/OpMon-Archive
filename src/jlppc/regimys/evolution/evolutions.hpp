@@ -1,12 +1,22 @@
+/*
+evolutions.hpp
+Auteur : Jlppc
+Fichier sous licence GPL-3.0
+http://regimys.tk
+Contient les définitions des évolutions
+*/
 #ifndef EVOLUTIONS_HPP_INCLUDED
 #define EVOLUTIONS_HPP_INCLUDED
+
 #include <iostream>
 #include "../objects/item/Item.hpp"
 #include "Evolution.hpp"
 
-
+/**
+Namespace contenant les définitions des évolutions et l'énumération des évolutions
+*/
 namespace Evolutions{
-
+    /**Enumération*/
     const int EItem = 7, ELand = 6, ELevel = 5, ELove = 4, ENope = 3, ETrade = 2, ETradeItem = 1;
 
     class E_Item: public Evolution {
@@ -68,5 +78,7 @@ public:
 	 const int evolID = 1;
 };
 }
+
+using namespace Evolutions;
 
 #endif // EVOLUTIONS_HPP_INCLUDED

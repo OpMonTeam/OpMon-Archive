@@ -12,7 +12,7 @@
 
 #include "main.hpp"
 //#include "srcCpp/jlppc/regimys/gui/MainFrame.hpp"
-
+#define WINDOWS
 using namespace std;
 
 namespace Main{
@@ -42,9 +42,6 @@ ostringstream oss;
 #endif
 
 int main(){
-
-
-
        if(!log || !errLog){
            exit(2);
        }
@@ -70,6 +67,9 @@ int quit(int returne){
 	Main::log.close();
     Main::errLog.close();
     exit(returne);
+    for(unsigned int i = 0; i < sizeof(Initializer::listePoke);i++){
+        delete(Initializer::listePoke[i]);
+    }
     return returne;
 }
 
@@ -78,10 +78,5 @@ int main(int argc, char *argv[])
 {
     Main::oss << "Alpha" << Main::version << "." << Main::sousVers;
     Main::versionS = Main::oss.str();
-	initStatic();
     return Main::main();
-}
-
-void initStatic(void){
-	Equipe::PNULL = Pokemon();
 }
