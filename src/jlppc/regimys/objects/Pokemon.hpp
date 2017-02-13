@@ -1,3 +1,10 @@
+/*
+Pokemon.hpp
+Auteur : Jlppc
+Fichier sous licence GPL-3.0. Le nom Pokémon appartient a Nintendo(r).
+http://regimys.tk
+Contient la définition du namepsace CalcCourbes et de la classe Pokemon
+*/
 #ifndef POKEMON_HPP
 #define POKEMON_HPP
 
@@ -10,8 +17,9 @@
 #include "item/Item.hpp"
 #include "item/IPokeball.hpp"
 
-using namespace std;
-
+/**
+Namespace permettant de faire des calculs sur les courbes d'experience. D'ou son nom, j'ai envie de dire...
+*/
 namespace CalcCourbes{
 float p(int x);
 int erratique(int n);
@@ -23,7 +31,9 @@ int rapide(int n);
 };
 
 class Attaque;
-
+/**
+Classe définissant un pokémon en particulier. Pour voir la classe qui définit une espece, voir Espece.hpp
+*/
 class Pokemon{
 
 protected:
@@ -90,6 +100,7 @@ private:
 
 	int tauxCapture;
 public:
+    /**Permet de savoir si un pokémon est un pokémon initialisé avec un initilialiseur par défaut*/
 	bool falsif = true;
 	bool confus = false;
     bool peur = false;
@@ -106,9 +117,9 @@ public:
 	int win(Pokemon const& vaincu);
 	void calcStats();
 	bool itemUsed(Item *used);
-	Item* hold(Item *item);
+	Item* hold(Item *item);//Cette est un setteur, en gros.
 	void traded();
-	void toolEvTrade();
+	void toolEvTrade();//SPOILERS!
 	void evolve();
 	void setStats(int stats[], Attaque *attacks[], Espece *espece, int types[]);
 	void attacked(int pvPerdus);
@@ -136,10 +147,10 @@ public:
 	int getStatDEF() const{return statDEF;}
 	int getStatDEFSPE() const{return statDEFSPE;}
 	Espece* getEspece() const{return espece;}
+	//Attention! Les opérateurs == et != ne comparent pas deux pokémons! Il comparent si les pokémons sont falsifs ou non (voir falsif)
 	bool operator==(Pokemon const& a){return (falsif == a.falsif);}
 	bool operator!=(Pokemon const& a){return !(falsif == a.falsif);}
-    void operator()(Pokemon &vs);
-	Item* itemHeld() const{return held;}
+	Item* itemHeld() const{return held;}//C'est un getteur. Y'a pas get mais je m'en fous. C'est un getteur.
 };
 
 

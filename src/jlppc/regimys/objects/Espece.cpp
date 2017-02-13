@@ -5,9 +5,10 @@
 
 Espece::~Espece(){
 	delete(evolution);
+	free(EVgiven);
 }
 
-Espece::Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, string name, int type1, int type2,int maniereEvolution/*En fait faut mettre 0, il est la pour un souci de compatibilité*/, int niveauEvolution, Evolution *evolType, int EVGiven[], float taille, float poids, string entreePokedex, int expGiven,int expMax, int tauxDeCapture){
+Espece::Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, string name, int type1, int type2,int maniereEvolution/*En fait faut mettre 0, il est la pour un souci de compatibilité*/, int niveauEvolution, Evolution *evolType, vector<int> EVGiven, float taille, float poids, string entreePokedex, int expGiven,int expMax, int tauxDeCapture, int numeroPokedex){
     if(atk < 0 || def < 0 || atkSpe < 0 || defSpe < 0 || vit < 0 || pv < 0){
 			gererErreur("Stats < 0 Espece<Initializer>", true);
 		}
@@ -32,8 +33,8 @@ Espece::Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, string
 		this->taille = taille;
 		this->entreePokedex = entreePokedex;
 		this->expGiven = expGiven;
-
-		for(unsigned int i = 0; i < sizeof EVGiven; i++){
+        EVgiven = (int*)malloc( EVGiven.size() * sizeof(int) );
+		for(unsigned int i = 0; i < EVGiven.size(); i++){
             EVgiven[i] = EVGiven[i];
 		}
 
@@ -60,6 +61,7 @@ Espece::Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, string
 		default:
 			courbe = CourbeExp::MOYENNE;
         }
+        this->numeroPokedex = numeroPokedex;
 
 }
 

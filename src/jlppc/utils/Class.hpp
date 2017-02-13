@@ -1,12 +1,22 @@
+/*
+Class.hpp
+Auteur : Jlppc
+Fichier sous licence GPL-3.0
+http://regimys.tk
+Définit le classe... Class.
+*/
 #ifndef CLASS_HPP
 #define CLASS_HPP
 
 #include <iostream>
-using namespace std;
+
+/**
+Définit une classe. Pratique pour le newInstance()
+*/
 template <typename T>
 class Class {
 public:
-	Class(string name, int ID) {
+	Class(std::string name, int ID) {//ID doit etre en hexadécimal, c'est mieux.
 	this->name = name;
 	this->id = id;
     }
@@ -14,7 +24,7 @@ public:
     T* newInstance() const{
         return new T();
     }
-	string getName() const {return name;}
+	std::string getName() const {return name;}
 	int getID() const {return id;}
 	template<typename U>bool operator==(Class<U> const& y){
 	    if(id == y.id){
@@ -22,7 +32,7 @@ public:
         }
 	}
 private:
-	string name;
+	std::string name;
 	int id;
 };
 
