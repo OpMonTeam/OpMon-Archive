@@ -1,9 +1,9 @@
 /*
 Pokemon.hpp
 Auteur : Jlppc
-Fichier sous licence GPL-3.0. Le nom Pokémon appartient a Nintendo(r).
+Fichier sous licence GPL-3.0. Le nom Pokï¿½mon appartient a Nintendo(r).
 http://regimys.tk
-Contient la définition du namepsace CalcCourbes et de la classe Pokemon
+Contient la dï¿½finition du namepsace CalcCourbes et de la classe Pokemon
 */
 #ifndef POKEMON_HPP
 #define POKEMON_HPP
@@ -32,7 +32,7 @@ int rapide(int n);
 
 class Attaque;
 /**
-Classe définissant un pokémon en particulier. Pour voir la classe qui définit une espece, voir Espece.hpp
+Classe dï¿½finissant un pokï¿½mon en particulier. Pour voir la classe qui dï¿½finit une espece, voir Espece.hpp
 */
 class Pokemon{
 
@@ -40,7 +40,7 @@ protected:
 
 
 private:
-	string surnom;
+	std::string surnom;
 	int atkIV = Utils::randU(32);
 	int defIV = Utils::randU(32);
 	int atkSpeIV = Utils::randU(32);
@@ -100,7 +100,7 @@ private:
 
 	int tauxCapture;
 public:
-    /**Permet de savoir si un pokémon est un pokémon initialisé avec un initilialiseur par défaut*/
+    /**Permet de savoir si un pokï¿½mon est un pokï¿½mon initialisï¿½ avec un initilialiseur par dï¿½faut*/
 	bool falsif = true;
 	bool confus = false;
     bool peur = false;
@@ -109,9 +109,9 @@ public:
     bool malediction = false;
 	virtual ~Pokemon();
 	Pokemon(){};
-	Pokemon(string surnom, Espece *espece, int level, Attaque *attaques[], CaractereClass caractere);
+	Pokemon(std::string surnom, Espece *espece, int level, Attaque *attaques[], CaractereClass caractere);
 	bool captured(I_Pokeball const& pokeball);
-	void setStat(string const& stat, int newStat);
+	void setStat(std::string const& stat, int newStat);
 	void levelUp();
 	bool isHoldingItem() const {return (held == NULL);}
 	int win(Pokemon const& vaincu);
@@ -147,7 +147,7 @@ public:
 	int getStatDEF() const{return statDEF;}
 	int getStatDEFSPE() const{return statDEFSPE;}
 	Espece* getEspece() const{return espece;}
-	//Attention! Les opérateurs == et != ne comparent pas deux pokémons! Il comparent si les pokémons sont falsifs ou non (voir falsif)
+	//Attention! Les opï¿½rateurs == et != ne comparent pas deux pokï¿½mons! Il comparent si les pokï¿½mons sont falsifs ou non (voir falsif)
 	bool operator==(Pokemon const& a){return (falsif == a.falsif);}
 	bool operator!=(Pokemon const& a){return !(falsif == a.falsif);}
 	Item* itemHeld() const{return held;}//C'est un getteur. Y'a pas get mais je m'en fous. C'est un getteur.

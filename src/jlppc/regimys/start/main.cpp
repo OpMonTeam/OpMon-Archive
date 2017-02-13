@@ -9,6 +9,7 @@
 #include "../../utils/File.hpp"
 #include "../objects/item/itemInclude.hxx"
 #include <string>
+#include "Initializer.hpp"
 
 #include "main.hpp"
 //#include "srcCpp/jlppc/regimys/gui/MainFrame.hpp"

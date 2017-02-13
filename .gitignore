@@ -34,3 +34,5 @@ pages/doc/DocSample.html
 /Debug/
 # Pas de fichier de compilation C++
 *.o
+/bin/
+/SDL2-2.0.5/
