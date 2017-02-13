@@ -249,12 +249,12 @@ int Pokemon::win(Pokemon const& vaincu) {
 
 void Pokemon::getEvs(Pokemon const& vaincu){
 	if (!((atkEV + defEV + pvEV + atkSpeEV + defSpeEV + vitEV) > 510)) {
-            int statsVaincu[3];
-            for(unsigned int i = 0; i < sizeof vaincu.espece->getEv(); i++){
-                statsVaincu[i] = vaincu.espece->getEv()[i];
+            vector<int> statsVaincu;
+            for(unsigned int i = 0; i < vaincu.espece.getEvSize(); i++){
+                statsVaincu.push_back(vaincu.espece->getEv()[i]);
             }
 
-		for (int i = 0; i < sizeof statsVaincu; i++) {
+		for (int i = 0; i < statsVaincu.size(); i++) {
 			switch (statsVaincu[i]) { //Creer enumération Stats
 			case Stats::ATK:
 				if (atkEV < 252) {
