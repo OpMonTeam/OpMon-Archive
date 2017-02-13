@@ -9,6 +9,7 @@
 #include "../evolution/evolutions.hpp"
 
 namespace Initializer{
+    template<typename T>void pb(&vector<T>, ...)
     Espece *listePoke[POKE_NUMBER];
     std::vector<NumberedArray<Class<Attaque*> > > atkPokeLvl[POKE_NUMBER];//100 attaques max / poké
     extern Evolutions::E_Nope ne;//ne = No Evolution

@@ -67,7 +67,7 @@ int quit(int returne){
 	Main::log.close();
     Main::errLog.close();
     exit(returne);
-    for(unsigned int i = 0; i < sizeof(Initializer::listePoke);i++){
+    for(unsigned int i = 0; i < POKE_NUMBER;i++){
         delete(Initializer::listePoke[i]);
     }
     return returne;

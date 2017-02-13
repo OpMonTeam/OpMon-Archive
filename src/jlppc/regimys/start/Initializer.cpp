@@ -1,5 +1,6 @@
 #include "Initializer.hpp"
 #include "../enums/Enums.hpp"
+#include <cstdarg>
 
 #define ATK push_back(Stats::ATK)
 #define ATKSPE push_back(Stats::ATKSPE)
@@ -8,8 +9,14 @@
 #define VIT push_back(Stats::VIT)
 #define PV push_back(Stats::PV)
 
-namespace Initializer{
+typedef NumberedArray<Class<Attaque*> > AtkArray
 
+namespace Initializer{
+    template<typename T>void pb(vector<T> &vecteur, T tab[], int longeurTab){
+        for(unsigned int i = 0; i < longeurTab, i++){
+            vecteur.push_back(tab[i]);
+        }
+    }
 
     void initEvs(){
         evs[0].ATK;
@@ -77,54 +84,54 @@ namespace Initializer{
 
         evs[22].VIT;
         evs[22].VIT;
-	    
+
 	evs[23].ATK;
-	
+
 	evs[24].ATK;
 	evs[24].ATK;
-	    
+
 	evs[25].VIT;
 	evs[25].VIT;
-	    
+
 	evs[26].VIT;
 	evs[26].VIT;
 	evs[26].VIT;
-	    
+
 	evs[27].DEF;
-	    
+
 	evs[28].DEF;
 	evs[28].DEF;
-	    
+
 	evs[29].PV;
-	    
+
 	evs[30].PV;
 	evs[30].PV;
-	    
+
 	evs[31].PV;
 	evs[31].PV;
 	evs[31].PV;
-	    
+
 	evs[32].ATK;
-	    
+
 	evs[33].ATK;
 	evs[33].ATK;
-	    
+
 	evs[34].ATK;
 	evs[34].ATK;
 	evs[34].ATK;
-	    
+
 	evs[35].PV;
 	evs[35].PV;
-	    
+
 	evs[36].PV;
 	evs[36].PV;
 	evs[36].PV;
-	    
+
 	evs[37].VIT;
-	    
+
 	evs[38].VIT;
 	evs[39].VIT;
-	    
+
 	evs[39].ATKSPE;
 	evs[].;
 	evs[].;
@@ -136,7 +143,7 @@ namespace Initializer{
 	evs[].;
 	evs[].;
 	evs[].;
-	
+
 
     }
 
@@ -149,11 +156,11 @@ namespace Initializer{
 		 listePoke[3] = new Espece(82, 83, 100, 100, 80, 80, "Florizarre", Type::PLANTE, Type::POISON, 0, -1, ne, evs[3], 2, 100, "Ses pétales lui servent à  capter la lumière du soleil. Il peut ainsi en canaliser l'énergie.", 236, 1059860, 45, 3);
 		 listePoke[4] = new Espece(52, 43, 60, 50, 65, 39, "Salamèche", Type::FEU, Type::AUCUN, 0, 16, new E_Level(5, 16), evs[4] , 0.6, 8.5, "La flamme sur sa queue représente l'énergie vitale de Salamèche. Quand il est vigoureux, elle brà»le plus fort.", 65, 1059860, 45, 4);
 		 listePoke[5] = new Espece(64, 58, 80, 65, 80, 58, "Reptincel", Type::FEU, Type::AUCUN, 0, 36, new E_Level(6, 36), evs[5], 1.1, 19, "En agitant sa gueue, il peut élever la température à  un niveau incroyable", 142, 1059860, 45, 5);
-		 listePoke[6] = new Espece(84, 78, 109, 85, 100, 78, "Dracaufeu", Type::FEU, Type::VOL, 0, -1, ne, {Stats.ATKSPE, Stats.ATKSPE, Stats.ATKSPE}, 1.7, 90.5, "Quand il crache son souffle brà»lant, la flamme au bout de sa queue s'embrase.", 209, 1059860, 45, 6);
-		 listePoke[7] = new Espece(48, 65, 50, 64, 43, 44, "Carapuce", Type::EAU, Type::AUCUN, 0, 16, new E_Level(8, 16), {Stats.DEF}, 0.5, 9, "Caché sous l'eau, il crache un jet d'eau sur sa proie et se cache à  l'intérieur de sa carapace.", 66, 1059860, 45, 7);
-		 listePoke[8] = new Espece(63, 80, 65, 80, 58, 59, "Carabaffe", Type::EAU, Type::AUCUN, 0, 36, new E_Level(9, 36), {Stats.DEF, Stats.DEFSPE}, 1, 22.5,"On prétend qu'il vit 10 000 ans. Sa queue duveteuse est un symbole de longévité populaire.", 143, 1059860, 45, 8);
-		 listePoke[9] = new Espece(83, 100, 85, 105, 78, 79, "Tortank", Type::EAU, Type::AUCUN, 0, -1,ne, {Stats.DEFSPE, Stats.DEFSPE, Stats.DEFSPE}, 1.6, 85.5, "Il écrase ses adversaires de tout son poids pour leur faire perdre connaissance. Il rentre dans sa carapace s'il se sent en danger.", 210, 1059860, 45, 9);
-		 listePoke[10] = new Espece(30, 35, 20, 20, 45, 45, "Chenipan", Type::INSECTE, Type::AUCUN, 0, 7, new E_Level(11, 7), {Stats.PV}, 0.3, 2.9, "Ses pattes ont des ventouses lui permettant de grimper sur toute surface, notamment les arbres.", 53, 1000000, 255, 10);
+		 listePoke[6] = new Espece(84, 78, 109, 85, 100, 78, "Dracaufeu", Type::FEU, Type::VOL, 0, -1, ne, evs[6], 1.7, 90.5, "Quand il crache son souffle brà»lant, la flamme au bout de sa queue s'embrase.", 209, 1059860, 45, 6);
+		 listePoke[7] = new Espece(48, 65, 50, 64, 43, 44, "Carapuce", Type::EAU, Type::AUCUN, 0, 16, new E_Level(8, 16), evs[7], 0.5, 9, "Caché sous l'eau, il crache un jet d'eau sur sa proie et se cache à  l'intérieur de sa carapace.", 66, 1059860, 45, 7);
+		 listePoke[8] = new Espece(63, 80, 65, 80, 58, 59, "Carabaffe", Type::EAU, Type::AUCUN, 0, 36, new E_Level(9, 36), evs[8], 1, 22.5,"On prétend qu'il vit 10 000 ans. Sa queue duveteuse est un symbole de longévité populaire.", 143, 1059860, 45, 8);
+		 listePoke[9] = new Espece(83, 100, 85, 105, 78, 79, "Tortank", Type::EAU, Type::AUCUN, 0, -1,ne, evs[9], 1.6, 85.5, "Il écrase ses adversaires de tout son poids pour leur faire perdre connaissance. Il rentre dans sa carapace s'il se sent en danger.", 210, 1059860, 45, 9);
+		 listePoke[10] = new Espece(30, 35, 20, 20, 45, 45, "Chenipan", Type::INSECTE, Type::AUCUN, 0, 7, new E_Level(11, 7), evs[10], 0.3, 2.9, "Ses pattes ont des ventouses lui permettant de grimper sur toute surface, notamment les arbres.", 53, 1000000, 255, 10);
 		 listePoke[11] = new Espece(20, 55, 25, 25, 30, 50, "Chrysacier", Type::INSECTE, Type::AUCUN, 0, 10, new E_Level(12, 10), {Stats.DEF, Stats.DEF}, 0.7, 9.9, "Son corps frÃªle est protégé par sa carapace d'acier. Il encaisse les coups durs en attendant d'évoluer.", 72, 1000000, 120, 11);
 		 listePoke[12] = new Espece(45, 50, 90, 80, 70, 60, "Papilusion", Type::INSECTE, Type::VOL, 0, -1, ne, {Stats.ATKSPE, Stats.ATKSPE, Stats.DEFSPE},1.1, 32, "Ses ailes sont recouvertes d'une poudre les protégeant de la pluie. Ce Pokémon peut donc voler pendant de grosses averses.", 160, 1000000, 45, 12);
 		 listePoke[13] = new Espece(35, 30, 20, 20, 50, 40, "Aspicot", Type::INSECTE, Type::POISON, 0, 7, new E_Level(14, 7), {Stats.VIT}, 0.3, 3.2, "Son aiguillon empoisonné est très dangereux. Son corps est coloré afin de repousser ses ennemis.", 52, 1000000, 255, 13);
@@ -398,7 +405,66 @@ namespace Initializer{
     }
 
     void initAtkLvls(){
-
+         //atkPokeLvl[0] = nullptr;
+         AtkArrray tab1[] = {NumberedArray(0, Charge.classe),  NumberedArray(3, Rugissement.classe),  NumberedArray(7, Vampigraine.classe),  NumberedArray(9, FouetLianes.classe),  NumberedArray(13, PoudreToxik.classe),  NumberedArray(13, PoudreDodo.classe),  NumberedArray(15, Belier.classe),  NumberedArray(19, TranchHerbe.classe),  NumberedArray(21, DouxParfum.classe),  NumberedArray(25, Croissance.classe),  NumberedArray(27, Damocles.classe),  NumberedArray(33, Synthese.classe),  NumberedArray(37, CanonGraine.classe)};
+		 pb(atkPokeLvl[1], tab1, 13);
+            AtkArray tab2[] = {NumberedArray(0, Charge.classe),  NumberedArray(0, Rugissement.classe),  NumberedArray(0, Vampigraine.classe),  NumberedArray(9, FouetLianes.classe),  NumberedArray(13, PoudreToxik.classe),  NumberedArray(13, PoudreDodo.classe),  NumberedArray(15, Belier.classe),  NumberedArray(20, TranchHerbe.classe),  NumberedArray(23, DouxParfum.classe),  NumberedArray(28, Croissance.classe),  NumberedArray(31, Damocles.classe),  NumberedArray(39, Synthese.classe),  NumberedArray(44, LanceSoleil.classe)};
+		 pb(atkPokeLvl[2], tab2, 13);
+		 AtkArray tab3[] = {NumberedArray(0, Charge.classe),  NumberedArray(0, Rugissement.classe),  NumberedArray(0, Vampigraine.classe),  NumberedArray(9, FouetLianes.classe),  NumberedArray(13, PoudreToxik.classe),  NumberedArray(13, PoudreDodo.classe),  NumberedArray(15, Belier.classe),  NumberedArray(20, TranchHerbe.classe),  NumberedArray(23, DouxParfum.classe),  NumberedArray(28, Croissance.classe),  NumberedArray(31, Damocles.classe),  NumberedArray(32, DanseFleur.classe),  NumberedArray(45, Synthese.classe),  NumberedArray(50, TempeteFlorale.classe),  NumberedArray(53, LanceSoleil.classe)};
+		 pb(atkPokeLvl[3], tab3, 15);
+		 AtkArray tab4[] = {NumberedArray(0, Griffe.classe),  NumberedArray(0, Rugissement.classe),  NumberedArray(7, Flammeche.classe),  NumberedArray(10, Brouillard.classe),  NumberedArray(16, DracoRage.classe),  NumberedArray(19, Grimace.classe),  NumberedArray(25, CrocsFeu.classe),  NumberedArray(28, Rebondifeu.classe),  NumberedArray(34, Tranche.classe),  NumberedArray(43, LanceFlammes.classe),  NumberedArray(46, Feudenfer.classe)};
+		 pb(atkPokeLvl[4], tab4, 11);
+		 AtkArray tab5[] = {NumberedArray(0, Griffe.classe),  NumberedArray(0, Rugissement.classe),  NumberedArray(0, Flammeche.classe),  NumberedArray(10, Brouillard.classe),  NumberedArray(16, DragoRage.classe),  NumberedArray(21, Grimace.classe),  NumberedArray(28, CrocsFeu.classe),  NumberedArray(32, Rebondifeu.classe),  NumberedArray(38, Tranche.classe),  NumberedArray(43, LanceFlammes.classe),  NumberedArray(50, DanseFlamme.classe),  NumberedArray(54, Feudenfer.classe)};
+		 pb(atkPokeLvl[5], tab5, 12);-
+		 pb(atkPokeLvl[6], NumberedArray(0, Boutefeu.classe),  NumberedArray(0, Canicule.classe),  NumberedArray(0, Dracogriffe.classe),  NumberedArray(0, GriffeOmbre.classe),  NumberedArray(0, LamedAir.classe),  NumberedArray(0, Griffe.classe),  NumberedArray(0, Rugissement.classe),  NumberedArray(7, Flammeche.classe),  NumberedArray(10, Brouillard.classe),  NumberedArray(17, DracoRage.classe),  NumberedArray(21, Grimace.classe),  NumberedArray(28, CrocsFeu.classe),  NumberedArray(32, Rebondifeu.classe),  NumberedArray(36, CruAile.classe),  NumberedArray(41, Tranche.classe),  NumberedArray(47, LanceFlammes.classe),  NumberedArray(56, DanseFlamme.classe),  NumberedArray(62,
+		 pb(atkPokeLvl[7], NumberedArray(0, Charge.classe),  NumberedArray(4, MimiQueue.classe),  NumberedArray(7, PistoletAO.classe),  NumberedArray(10, Repli.classe),  NumberedArray(13, Ecume.classe),  NumberedArray(16, Morsure.classe),  NumberedArray(19, TourRapide.classe),  NumberedArray(22, Abri.classe),  NumberedArray(25, Vibraqua.classe),  NumberedArray(28, Hydroqueue.classe),  NumberedArray(31, CoudKrane.classe),  NumberedArray(34, MurDeFer.classe),  NumberedArray(37, DansePluie.classe),  NumberedArray(40, Hydrocanon.classe));
+		 pb(atkPokeLvl[8], NumberedArray(0, Charge.classe),  NumberedArray(0, MimiQueue.classe),  NumberedArray(0, PistoletAO.classe),  NumberedArray(10, Repli.classe),  NumberedArray(13, Ecume.classe),  NumberedArray(16, Morsure.classe),  NumberedArray(20, TourRapide.classe),  NumberedArray(24, Abri.classe),  NumberedArray(28, Vibraqua.classe),  NumberedArray(32, Hydroqueue.classe),  NumberedArray(36, CoudKrane.classe),  NumberedArray(40, MurDeFer.classe),  NumberedArray(44, DansePluie.classe),  NumberedArray(48, Hydrocanon.classe));
+		 pb(atkPokeLvl[9],  NumberedArray(0, Luminocanon.classe),  NumberedArray(0, Charge.classe),  NumberedArray(0, MimiQueue.classe),  NumberedArray(0, PistoletAO.classe),  NumberedArray(0, Repli.classe),  NumberedArray(13, Ecume.classe),  NumberedArray(16, Morsure.classe),  NumberedArray(20, TourRapide.classe),  NumberedArray(24, Abri.classe),  NumberedArray(28, Vibraqua.classe),  NumberedArray(32, Hydroqueue.classe),  NumberedArray(39, CoudKrane.classe),  NumberedArray(46, MurDeFer.classe),  NumberedArray(53, DansePluie.classe),  NumberedArray(60, Hydrocanon.classe));
+		  pb(atkPokeLvl[10], NumberedArray(0, Charge.classe),  NumberedArray(0, Secretion.classe)  NumberedArray(15, Piqure.classe));
+		  pb(atkPokeLvl[11], NumberedArray(0, Armure.classe));
+		  pb(atkPokeLvl[12], NumberedArray(0, ChocMental.classe),  NumberedArray(0, Tornade.classe),  NumberedArray(13, PoudreToxic.classe),  NumberedArray(13, ParaSpore.classe),  NumberedArray(13, PoudreDodo.classe),  NumberedArray(17, RafalePsy.classe),  NumberedArray(19, VentArgente.classe),  NumberedArray(23, Ultrason.classe),  NumberedArray(25, RuneProtect.classe),  NumberedArray(29, Cyclone.classe),  NumberedArray(31, Bourdon.classe),  NumberedArray(35, PoudreFureur.classe),  NumberedArray(37, Seduction.classe),  NumberedArray(41, VentArriere.classe),  NumberedArray(43, LameDAir.classe),  NumberedArray(47, Papillodanse.classe));
+		  pb(atkPokeLvl[13], NumberedArray(0, DardVenin.classe),  NumberedArray(0, Secretion.classe),  NumberedArray(15, Piqure.classe));
+		  pb(atkPokeLvl[14], NumberedArray(0, Armure.classe));
+		  pb(atkPokeLvl[15], NumberedArray(0, Furie.classe),  NumberedArray(13, Puissance.classe),  NumberedArray(16, DoubleDard.classe),  NumberedArray(19, Frenesie.classe),  NumberedArray(22, Poursuite.classe),  NumberedArray(25, PicsToxik.classe),  NumberedArray(28, DardNuee.classe),  NumberedArray(31, Hate.classe),  NumberedArray(34, Assurance.classe),  NumberedArray(37, DirectToxik.classe),  NumberedArray(40, Effort.classe),  NumberedArray(45, DardMortel.classe)];
+		  pb(atkPokeLvl[16], NumberedArray(0, Charge.classe),  NumberedArray(5, JetDeSable.classe),  NumberedArray(9, Tornade.classe),  NumberedArray(13, ViveAttaque.classe),  NumberedArray(17, Cyclone.classe),  NumberedArray(21, Ouragan.classe),  NumberedArray(25, DansePlume.classe),  NumberedArray(29, Hate.classe),  NumberedArray(33, CruAile.classe),  NumberedArray(37, Atterissage.classe),  NumberedArray(41, VentArriere.classe),  NumberedArray(45, Mimique.classe),  NumberedArray(49, LameDAir.classe),  NumberedArray(53, VentViolent.classe));
+		 pb( atkPokeLvl[17], NumberedArray(0, Charge.classe),  NumberedArray(0, JetDeSable.classe),  NumberedArray(0, Tornade.classe),  NumberedArray(13, ViveAttaque.classe),  NumberedArray(17, Cyclone.classe),  NumberedArray(22, Ouragan.classe),  NumberedArray(27, DansePlume.classe),  NumberedArray(32, Hate.classe),  NumberedArray(37, CruAile.classe),  NumberedArray(42, Atterissage.classe),  NumberedArray(47, VentArriere.classe),  NumberedArray(52, Mimique.classe),  NumberedArray(57, LameDAir.classe),  NumberedArray(62, VentViolent.classe));
+		  pb(atkPokeLvl[18], NumberedArray(0, Charge.classe),  NumberedArray(0, JetDeSable.classe),  NumberedArray(0, Tornade.classe),  NumberedArray(0, ViveAttaque.classe),  NumberedArray(17, Cyclone.classe),  NumberedArray(22, Ouragan.classe),  NumberedArray(27, DansePlume.classe),  NumberedArray(32, Hate.classe),  NumberedArray(38, CruAile.classe),  NumberedArray(44, Atterissage.classe),  NumberedArray(50, VentArriere.classe),  NumberedArray(56, Mimique.classe),  NumberedArray(62, LameDAir.classe),  NumberedArray(68, VentViolent.classe));
+		  pb(atkPokeLvl[19], NumberedArray(0, Charge.classe),  NumberedArray(0, MimiQueue.classe),  NumberedArray(4, ViveAttaque.classe),  NumberedArray(7, Puissance.classe),  NumberedArray(10, Morsure.classe),  NumberedArray(13, Poursuite.classe),  NumberedArray(16, CrocDeMort.classe),  NumberedArray(19, CoupBas.classe),  NumberedArray(22, Machouille.classe),  NumberedArray(25, Assurance.classe),  NumberedArray(28, CrocFatal.classe),  NumberedArray(31, Damocles.classe),  NumberedArray(34, Effort.classe));
+          pb(atkPokeLvl[20], NumberedArray(0, DanseLames.classe),  NumberedArray(0, Charge.classe),   NumberedArray(0, MimiQueue.classe),  NumberedArray(0, ViveAttaque.classe),  NumberedArray(0, Puissance.classe),  NumberedArray(10, Morsure.classe),  NumberedArray(13, Morsure.classe),  NumberedArray(16, CrocDeMort.classe),  NumberedArray(19, CoupBas.classe),  NumberedArray(20, Grimace.classe),  NumberedArray(24, Machouille.classe),  NumberedArray(29, Assurance.classe),  NumberedArray(34, CrocFatal.classe),  NumberedArray(39, Damocles.classe),  NumberedArray(44, Effort.classe));
+          pb(atkPokeLvl[21], NumberedArray(0, Picpic.classe),  NumberedArray(0,Rugissement.classe),  NumberedArray(5, GrozYeux.classe),  NumberedArray(9, Furie.classe),  NumberedArray(13, Poursuite.classe),  NumberedArray(17, Aéropique.classe),  NumberedArray(21, Mimique.classe),  NumberedArray(25, Hâte.classe),  NumberedArray(29, Assurance.classe),  NumberedArray(33, Atterrissage.classe),  NumberedArray(37, BecVrille.classe);
+          pb(atkPokeLvl[22], NumberedArray(0, Tunnelier.classe),  NumberedArray(0, Picore.classe),  NumberedArray(0, Picpic.classe),  NumberedArray(0,Rugissement.classe),  NumberedArray(5, GrozYeux.classe),  NumberedArray(9, Furie.classe),  NumberedArray(13, Poursuite.classe),  NumberedArray(17, Aeropique.classe),  NumberedArray(23, Mimique.classe),  NumberedArray(29, Hate.classe),  NumberedArray(35, Assurance.classe),  NumberedArray(41, Atterrissage.classe),  NumberedArray(47, BecVrille.classe),  NumberedArray(53, Tunnelier.classe),
+		 pb(atkPokeLvl[23], NumberedArray(0, Ligotage.classe),  NumberedArray(0, GrozYeux.classe),  NumberedArray(4, DardVenin.classe),  NumberedArray(9, Mosure.classe),  NumberedArray(12, RegardMedusant.classe),  NumberedArray(17, Grincement.classe),  NumberedArray(20, Acide.classe),  NumberedArray(25, Stockage.classe),  NumberedArray(25, Avale.classe),  NumberedArray(25, Relache.classe),  NumberedArray(28, BombeAcide.classe),  NumberedArray(33, BoueBombe.classe),  NumberedArray(36, SucDigestif.classe),  NumberedArray(38, Eructation.classe),  NumberedArray(41, BuéeNoire.classe),  NumberedArray(44, Enroulement.classe),  NumberedArray(49, Detricanon.classe);
+		  pb( atkPokeLvl[24],NumberedArray(0, CrocsGivre.classe),  NumberedArray(0, CrocsEclair.classe),  NumberedArray(0, CrocsFeu.classe),  NumberedArray(0, Ligotage.classe),  NumberedArray(0, GrozYeux.classe),  NumberedArray(4, DardVenin.classe),  NumberedArray(9, Mosure.classe),  NumberedArray(12, RegardMedusant.classe),  NumberedArray(17, Grincement.classe),  NumberedArray(20, Acide.classe), NumberedArray(22, Machouille.classe),  NumberedArray(27, Stockage.classe),  NumberedArray(27, Avale.classe),  NumberedArray(27, Relache.classe),  NumberedArray(32, BombeAcide.classe),  NumberedArray(39, BoueBombe.classe),  NumberedArray(44, SucDigestif.classe),  NumberedArray(48, Eructation.classe),  NumberedArray(51, BuéeNoire.classe),  NumberedArray(56, Enroulement.classe),  NumberedArray(63, Detricanon.classe);
+		  pb(atkPokeLvl[25], NumberedArray(0, Eclair.classe),  NumberedArray(0, MiniQueue.classe),  NumberedArray(5, Rugissement.classe),  NumberedArray(7, Camaraderie.classe),  NumberedArray(10, ViveAttaque.classe),  NumberedArray(13, BouleElek),  NumberedArray(18, CageEclair.classe),  NumberedArray(21, Ruse.classe),  NumberedArray(23, Reflet.classe),  NumberedArray(26, Etincelle.classe),  NumberedArray(29, FrotteFrimousse.classe),  NumberedArray(34, CoupDJus.classe),  NumberedArray(37, Souplesse.classe),  NumberedArray(42, Tonnerre.classe),  NumberedArray(45, Hate.classe),  NumberedArray(50, EclairFou.classe),  NumberedArray(53, MurLumiere.classe),  NumberedArray(58, FatalFoudre.classe);
+		  pb(atkPokeLvl[26], NumberedArray(0, Eclair.classe),  NumberedArray(0, MiniQueue.classe),  NumberedArray(0, ViveAttaque.classe),  NumberedArray(0, Tonnerre.classe);
+          pb(atkPokeLvl[27], NumberedArray(0, Griffe.classe),  NumberedArray(0, BoulArmure.classe),  NumberedArray(3, JetDeSable.classe),  NumberedArray(5, DardVenin.classe),  NumberedArray(7, Roulade.classe),  NumberedArray(9, TourRapide.classe),  NumberedArray(11, Taillade.classe),  NumberedArray(14, Ampleur.classe),  NumberedArray(17, Meteores.classe),  NumberedArray(20, ComboGriffe.classe),  NumberedArray(23, TourbiSable.classe),  NumberedArray(26, Tranche.classe),  NumberedArray(30, Tunnel.classe),  NumberedArray(34, Gyroballe.classe),  NumberedArray(38, DanseLames.classe),  NumberedArray(42, TempeteDeSable.classe),  NumberedArray(46, Seisme.classe);
+		 pb( atkPokeLvl[28], NumberedArray(0, Griffe.classe),  NumberedArray(0, BoulArmure.classe),  NumberedArray(3, JetDeSable.classe),  NumberedArray(5, DardVenin.classe),  NumberedArray(7, Roulade.classe),  NumberedArray(9, TourRapide.classe),  NumberedArray(11, Taillade.classe),  NumberedArray(14, Ampleur.classe),  NumberedArray(17, Meteores.classe),  NumberedArray(20, ComboGriffe.classe),  NumberedArray(22,EclateGriffe),  NumberedArray(24, TourbiSable.classe),  NumberedArray(28, Tranche.classe),  NumberedArray(33, Tunnel.classe),  NumberedArray(38, Gyroballe.classe),  NumberedArray(43, DanseLames.classe),  NumberedArray(48, TempeteDeSable.classe),  NumberedArray(53, Seisme.classe);
+		  pb(atkPokeLvl[29], NumberedArray(0, Rugissement.classe),  NumberedArray(0, Griffe.classe),  NumberedArray(7, MiniQueue.classe),  NumberedArray(9, DoublePied.classe),  NumberedArray(13, DardVenin.classe),  NumberedArray(19, ComboGriffe.classe),  NumberedArray(21, Morsure.classe),  NumberedArray(25, CoupDMain.classe),  NumberedArray(31, PicsToxik.classe),  NumberedArray(33, Flatterie.classe),  NumberedArray(37, Machouille.classe),  NumberedArray(43, seduction.classe),  NumberedArray(45, CrochetVenin.classe);
+		  pb(atkPokeLvl[30], NumberedArray(0, Rugissement.classe),  NumberedArray(0, Griffe.classe),  NumberedArray(7, MimiQueue.classe),  NumberedArray(9, Doublepied.classe),  NumberedArray(13, DardVenin.classe),  NumberedArray(20, ComboGriffe.classe),  NumberedArray(23, Morsure.classe),  NumberedArray(28, CoupDMain.classe),  NumberedArray(35, PicsToxik.classe),  NumberedArray(38, Flatterie.classe),  NumberedArray(43, Machouille.classe),  NumberedArray(50, seduction.classe),  NumberedArray(58, CrochetVenin.classe);
+		  pb(atkPokeLvl[31], NumberedArray(0, Griffe.classe),  NumberedArray(0, MimiQueue.classe),  NumberedArray(0, DoublePied.classe),  NumberedArray(0, DardVenin.classe),  NumberedArray(23, Attrition.classe),  NumberedArray(35, Plaquage.classe),  NumberedArray(43, Telluriforce.classe),  NumberedArray(58, Surpuissance.classe);
+          pb(atkPokeLvl[32], NumberedArray(0, GrozYeux.classe),  NumberedArray(0, Picpic.classe),  NumberedArray(7, Puissance.classe),  NumberedArray(9, DoublePied.classe),  NumberedArray(13, DardVenin.classe),  NumberedArray(19, Furie.classe),  NumberedArray(21, KoudKorne.classe),  NumberedArray(25, CoupDMain.classe),  NumberedArray(31, PicsToxik.classe),  NumberedArray(33, Flatterie.classe),  NumberedArray(37, DirectToxik.classe),  NumberedArray(43, Seduction.classe),  NumberedArray(45, EmpalKorne.classe);
+		  pb(atkPokeLvl[33], NumberedArray(0, GrozYeux.classe),  NumberedArray(0, Picpic.classe),  NumberedArray(7, Puissance.classe),  NumberedArray(9, DoublePied.classe),  NumberedArray(13, DardVenin.classe),  NumberedArray(20, Furie.classe),  NumberedArray(23, KoudKorne.classe),  NumberedArray(28, CoupDMain.classe),  NumberedArray(35, PicsToxik.classe),  NumberedArray(38, Flatterie.classe),  NumberedArray(43, DirectToxik.classe),  NumberedArray(50, Seduction.classe),  NumberedArray(58, EmpalKorne.classe);
+		  pb(atkPokeLvl[34], NumberedArray(58, Megacorne.classe),  NumberedArray(0, Picpic.classe),  NumberedArray(0, Puissance.classe),  NumberedArray(0, DoublePied.classe),  NumberedArray(0, DardVenin.classe),  NumberedArray(23, Attrition.classe),  NumberedArray(35, Mania.classe),  NumberedArray(43, Telluriforce.classe);
+		  pb(atkPokeLvl[35], NumberedArray(0, VoixEnjoleuse.classe),  NumberedArray(0, EcrasFace.classe),  NumberedArray(0, Rugissement.classe),  NumberedArray(0, Encore.classe),  NumberedArray(7, Berceuse.classe),  NumberedArray(10, Torgnoles.classe),  NumberedArray(13, BoulArmure.classe),  NumberedArray(19, PasseCadeau.classe),  NumberedArray(22, ReveilForce.classe),  NumberedArray(25, Lilliput.classe),  NumberedArray(28, ForceAjoutee.classe),  NumberedArray(31, Metronome.classe),  NumberedArray(34, ForceCosmik.classe),  NumberedArray(37, AirVeinard.classe),  NumberedArray(40, Plaquage.classe),  NumberedArray(43, RayonLune.classe),  NumberedArray(46, PouvoirLunaire.classe),  NumberedArray(49, Gravite.classe),  NumberedArray(50, PoingMeteor.classe),  NumberedArray(55, VoeuSoin.classe);
+		  pb(atkPokeLvl[36], NumberedArray(0, Berceuse.classe),  NumberedArray(0, Torgnoles.classe),  NumberedArray(0, Lilliput.classe),  NumberedArray(0, Metronome.classe),  NumberedArray(0, VoixEnjoleuse.classe);
+          pb(atkPokeLvl[37], NumberedArray(0, Flammeche.classe),  NumberedArray(4, MimmiQueue.classe),  NumberedArray(9, RegardTouchant.classe),  NumberedArray(10, ViveAttaque.classe),  NumberedArray(12, OndeFolie.classe),  NumberedArray(15, DanseFlamme.classe),  NumberedArray(18, Represailles.classe),  NumberedArray(20, FeuFollet.classe),  NumberedArray(23, Feinte.classe),  NumberedArray(26, Chatiment.classe),  NumberedArray(28, Rebondifeu.classe),  NumberedArray(31, Extrasenseur.classe),  NumberedArray(36, LanceFlammes.classe),  NumberedArray(42, Deflagration.classe),  NumberedArray(44, Rancune.classe),  NumberedArray(47, Seduction.classe),  NumberedArray(50, FeuDEnfer.classe);
+		  pb(atkPokeLvl[38], NumberedArray(0, Machination.classe),  NumberedArray(0, LanceFlammes.classe),  NumberedArray(0, ViveAttaque.classe),  NumberedArray(0, OndeFolie.classe);
+		  pb(atkPokeLvl[39], NumberedArray(0, Berceuse.classe),  NumberedArray(3, BoulArmure.classe),  NumberedArray(5, EcrasFace.classe),  NumberedArray(8, Camaraderie.classe),  NumberedArray(11, VoixEnjoleuse.classe),  NumberedArray(15, Entrave.classe),  NumberedArray(18, Torgnoles.classe),  NumberedArray(21, Roulade.classe),  NumberedArray(24, ChantCanon.classe),  NumberedArray(28, ReveilForce.classe),  NumberedArray(32, Repos.classe),  NumberedArray(35, Plaquage.classe),  NumberedArray(37, Copie.classe),  NumberedArray(40, Gyroballe.classe),  NumberedArray(44, Megaphone.classe),  NumberedArray(49, Damocles.classe);
+		  pb(atkPokeLvl[40], NumberedArray(0, Damocles.classe),  NumberedArray(0, Calinerie.classe),  NumberedArray(0, Berceuse.classe),  NumberedArray(0, Entrave.classe),  NumberedArray(0, BoulArmure.classe),  NumberedArray(0, Torgnoles.classe);
+		  pb(atkPokeLvl[41], NumberedArray(0, Vampirisme.classe),  NumberedArray(5, Ultrason.classe),  NumberedArray(7, Etonnement.classe),  NumberedArray(11, Morsure.classe),  NumberedArray(13, CruAile.classe),  NumberedArray(17, OndeFolie.classe),  NumberedArray(19, TranchAir.classe),  NumberedArray(23, Meteores.classe),  NumberedArray(25, CrochetVenin.classe),  NumberedArray(29, RegardNoir.classe),  NumberedArray(31, Acrobatie.classe),  NumberedArray(35, BueeNoire.classe),  NumberedArray(37, ChocVenin.classe),  NumberedArray(41, LameDAir.classe),  NumberedArray(43, Prevention.classe);
+         pb(atkPokeLvl[42],  NumberedArray(0, Grincement.classe),  NumberedArray(0, Vampirisme.classe),  NumberedArray(0, Ultrason.classe),  NumberedArray(0, Etonnement.classe),  NumberedArray(0, Morsure.classe),  NumberedArray(13, CruAile.classe),  NumberedArray(17, OndeFolie.classe),  NumberedArray(19, TranchAir.classe),  NumberedArray(24, Meteores.classe),  NumberedArray(27, CrochetVenin.classe),  NumberedArray(32, RegardNoir.classe),  NumberedArray(35, Acrobatie.classe),  NumberedArray(40, BueeNoire.classe),  NumberedArray(43, ChocVenin.classe),  NumberedArray(48, LameDAir.classe),  NumberedArray(51, Prevention.classe);
+		  pb(atkPokeLvl[43], NumberedArray(0, VolVie.classe),  NumberedArray(5, DouxParfum.classe),  NumberedArray(9, Acide.classe),  NumberedArray(13, PoudreToxik.classe),  NumberedArray(14, ParaSpore.classe),  NumberedArray(15, PoudreDodo.classe),  NumberedArray(19, MegaSangsue.classe),  NumberedArray(23, AirVeinard.classe),  NumberedArray(27, RayonLune.classe),  NumberedArray(31, GigaSangsue.classe),  NumberedArray(36, Toxik.classe),  NumberedArray(39, DonNaturel.classe),  NumberedArray(43, PouvoirLunaire.classe),  NumberedArray(47, ChampHerbu.classe),  NumberedArray(51, DanseFleur.classe);
+          pb( atkPokeLvl[44],NumberedArray(0, VolVie.classe),  NumberedArray(0, DouxParfum.classe),  NumberedArray(0, Acide.classe),  NumberedArray(13, PoudreToxik.classe),  NumberedArray(14, ParaSpore.classe),  NumberedArray(15, PoudreDodo.classe),  NumberedArray(19, MegaSangsue.classe),  NumberedArray(24, AirVeinard.classe),  NumberedArray(29, RayonLune.classe),  NumberedArray(34, GigaSangsue.classe),  NumberedArray(39, Toxik.classe),  NumberedArray(44, DonNaturel.classe),  NumberedArray(49, TempeteFlorale.classe),  NumberedArray(54, ChampHerbu.classe),  NumberedArray(59, DanseFleur.classe);
+		  pb(atkPokeLvl[45], NumberedArray(0, MegaSangsue.classe),  NumberedArray(0, Aromatherapi.classe),  NumberedArray(0, ParaSpore.classe),  NumberedArray(0, PoudreToxik.classe),  NumberedArray(49, TempeteFlorale.classe),  NumberedArray(59, DanseFleur.classe),  NumberedArray(64, LanceSoleil.classe);
+		  pb(atkPokeLvl[46], NumberedArray(0, Griffe.classe),  NumberedArray(6, ParaSpore.classe),  NumberedArray(6, PoudreToxik.classe),  NumberedArray(11, Vampirisme.classe),  NumberedArray(17, Taillade.classe),  NumberedArray(22, Spore.classe),  NumberedArray(27, Tranche.classe),  NumberedArray(33, Croissance.classe),  NumberedArray(38, GigaSangsue.classe),  NumberedArray(38, Aromatherapie.classe),  NumberedArray(49, PoudreFureur.classe),  NumberedArray(54, PlaieCroix.classe);
+		  pb(atkPokeLvl[47], NumberedArray(0, PoisonCroix.classe),  NumberedArray(0, Griffe.classe),  NumberedArray(0, ParaSpore.classe),  NumberedArray(0, PoudreToxik.classe),  NumberedArray(0, Vampirisme.classe),  NumberedArray(17, Taillade.classe),  NumberedArray(22, Spore.classe),  NumberedArray(29, Tranche.classe),  NumberedArray(37, Croissance.classe),  NumberedArray(44, GigaSangsue.classe),  NumberedArray(51, Aromatherapie.classe),  NumberedArray(59, PoudreFureur.classe),  NumberedArray(54, PlaieCroix.classe);
+		  pb(atkPokeLvl[48], NumberedArray(0, Charge.classe),  NumberedArray(0, Entrave.classe),  NumberedArray(0, Clairvoyance.classe),  NumberedArray(5, Ultrason.classe),  NumberedArray(11, ChocMental.classe),  NumberedArray(13, PoudreToxik.classe),  NumberedArray(17, Vampirisme.classe),  NumberedArray(23, ParaSpore.classe),  NumberedArray(25, RafalePsy.classe),  NumberedArray(29, PoudreDodo.classe),  NumberedArray(35, RayonSignal.classe),  NumberedArray(37, PsykoudBoul.classe),  NumberedArray(41, CrochetVenin.classe),  NumberedArray(47, Psyko.classe);
+         pb( atkPokeLvl[49], NumberedArray(0, Papillodanse.classe),  NumberedArray(0, Bourdon.classe),  NumberedArray(0, VentArgente.classe),  NumberedArray(0, Charge.classe),  NumberedArray(0, Entrave.classe),  NumberedArray(0, Clairvoyance.classe),  NumberedArray(0, Ultrason .classe),  NumberedArray(11, ChocMental.classe),  NumberedArray(13, PoudreToxik.classe),  NumberedArray(17, Vampirisme.classe),  NumberedArray(23, ParaSpore.classe),  NumberedArray(25, RafalePsy.classe),  NumberedArray(29, PoudreDodo.classe),  NumberedArray(31, Tornade.classe),  NumberedArray(37, RayonSignal.classe),  NumberedArray(41, PsykoudBoul.classe),  NumberedArray(47, CrochetVenin.classe),  NumberedArray(55, Psyko.classe);
+        pb(atkPokeLvl[50], NumberedArray(0, Griffe.classe),  NumberedArray(0, JetDeSable.classe),  NumberedArray(4, Rugissement.classe),  NumberedArray(7, Etonnement.classe),  NumberedArray(12, CoudBoue.classe),  NumberedArray(15, Ampleur.classe),  NumberedArray(18, Pietisol.classe),  NumberedArray(23, CoupBas.classe),  NumberedArray(26, BoueBombe.classe),  NumberedArray(29, Telluriforce.classe),  NumberedArray(34, Tunnel.classe),  NumberedArray(37, Tranche.classe),  NumberedArray(40, Seisme.classe),  NumberedArray(45, Abime.classe);
+		  pb(atkPokeLvl[51], NumberedArray(0, Fertilisation.classe),  NumberedArray(0, TrancheNuit.classe),  NumberedArray(0, Triplattaque.classe),  NumberedArray(0, Griffe.classe),  NumberedArray(0, JetDeSable.classe),  NumberedArray(0, Rugissement.classe),  NumberedArray(7, Etonnement.classe),  NumberedArray(12, CoudBoue.classe),  NumberedArray(15, Ampleur.classe),  NumberedArray(18, Pietisol.classe),  NumberedArray(23, CoupBas.classe),  NumberedArray(28, BoueBombe.classe),  NumberedArray(33, Telluriforce.classe),  NumberedArray(40, Tunnel.classe),  NumberedArray(45, Tranche.classe),  NumberedArray(50, Seisme.classe),  NumberedArray(57, Abime.classe),  NumberedArray(26, TourbiSable.classe);
+ 		  pb(atkPokeLvl[52], NumberedArray(0, Griffe.classe),  NumberedArray(0, Rugissement.classe),  NumberedArray(6, Morsure.classe),  NumberedArray(9, Bluff.classe),  NumberedArray(14, ComboGriffe.classe),  NumberedArray(17, Grincement.classe),  NumberedArray(22, Feinte.classe),  NumberedArray(25, Provoc.classe),  NumberedArray(30, Jackpot.classe),  NumberedArray(33, Tranche.classe),  NumberedArray(38, Machination.classe),  NumberedArray(41, Assurance.classe),  NumberedArray(46, Séduction.classe),  NumberedArray(49, tranche-Nuit.classe),  NumberedArray(50, Ruse.classe);
+		  pb(atkPokeLvl[53], NumberedArray(0, Calinerie.classe),  NumberedArray(0, PassePasse.classe),  NumberedArray(0, Griffe.classe),  NumberedArray(0, Rugissement.classe),  NumberedArray(6, Morsure.classe),  NumberedArray(9, Bluff.classe),  NumberedArray(14, ComboGriffe.classe), NumberedArray(17, Grincement.classe),  NumberedArray(22, Feinte.classe),  NumberedArray(25, Provoc.classe),  NumberedArray(28, Météores.classe), NumberedArray(32, RayonGemme.classe),  NumberedArray(37, Tranche.classe),  NumberedArray(44, Machination.classe),  NumberedArray(49, Assurance.classe),  NumberedArray(56, Séduction.classe),  NumberedArray(61, tranche-Nuit.classe),  NumberedArray(68, Ruse.classe);
+		pb( atkPokeLvl[54], NumberedArray(0, Tourniquet.classe),  NumberedArray(0, Griffe.classe),  NumberedArray(4, MimiQueue.classe),  NumberedArray(8, PistoletAO.classe),  NumberedArray(11, ChocMental.classe),  NumberedArray(15, ComboGriffe.classe),  NumberedArray(18, Vibraqua.classe),  NumberedArray(22, Entrave.classe),  NumberedArray(25, Grincement.classe),  NumberedArray(29, HydroQueue.classe),  NumberedArray(32, PsykoudBoul.classe),  NumberedArray(36, Detrempage.classe),  NumberedArray(39, Boost.classe),  NumberedArray(43, Amnesie.classe),  NumberedArray(46, Hydrocanon.classe),  NumberedArray(50, ZoneEtrange.classe);
     }
 
     void initSprites(){
@@ -422,6 +488,7 @@ namespace Initializer{
         initSprites();
         initItems();
         initAtkLvls();
+        initEvs();
         initPokemons();
     }
 }

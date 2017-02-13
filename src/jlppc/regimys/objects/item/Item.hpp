@@ -11,6 +11,7 @@ Contient la définition de l'énumération ItemType et de la classe Item
 #include <iostream>
 #include "../../enums/Enums.hpp"
 #include "../../../utils/Class.hpp"
+#define ITEM_NUMBER 151
 /**
 Namespace énumérant les types de classes d'item
 */
@@ -34,7 +35,7 @@ public:
 	int getCategorie () const{return categorie;}
 	bool isUsableInFight() const{return usableInFight;}
 	int getID() const {return id;}
-	static int getItemNumber(){return sizeof(itemsLst);}
+	static int getItemNumber(){return ITEM_NUMBER;}
 	virtual int getItemTypeID() const{return itemTypeID;}
 
 
