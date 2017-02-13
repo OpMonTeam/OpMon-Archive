@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Item* Item::itemsLst[200] = {NULL};
+Item* Item::itemsLst[ITEM_NUMBER] = {NULL};
 
 void initItems(){
 	Item::itemsLst[0] = new I_Heal("Baie Oran", true, true, true, BagCat::BAIES, 10, Status::AUCUN, false, 0);
@@ -57,7 +57,7 @@ Item::Item(string nom, bool usable, bool usableInFight, bool givable, int catego
 }
 
  Item* Item::getItem(string const& name)  {
-    for(unsigned int i = 0; i < sizeof(itemsLst); i++){
+    for(unsigned int i = 0; i < ITEM_NUMBER; i++){
         if(itemsLst[i]->getNom() == name){
             return itemsLst[i];
         }
@@ -67,7 +67,7 @@ Item::Item(string nom, bool usable, bool usableInFight, bool givable, int catego
 
  Item* Item::getItem(int id2)  {
 	 unsigned int id = id2;
-    if(!(id < 0 || id > sizeof(itemsLst))){
+    if(!(id < 0 || id > ITEM_NUMBER)){
         return itemsLst[id];
     }else{
         return NULL;
@@ -75,7 +75,7 @@ Item::Item(string nom, bool usable, bool usableInFight, bool givable, int catego
 }
 
  int Item::searchItem(Item *toSearch)  {
-    for(unsigned int i = 0; i < sizeof(itemsLst);i++){
+    for(unsigned int i = 0; i < ITEM_NUMBER;i++){
         if(toSearch == itemsLst[i]){
             return i;
         }
