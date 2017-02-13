@@ -3,7 +3,7 @@ evolutions.hpp
 Auteur : Jlppc
 Fichier sous licence GPL-3.0
 http://regimys.tk
-Contient les définitions des évolutions
+Contient les dï¿½finitions des ï¿½volutions
 */
 #ifndef EVOLUTIONS_HPP_INCLUDED
 #define EVOLUTIONS_HPP_INCLUDED
@@ -13,10 +13,10 @@ Contient les définitions des évolutions
 #include "Evolution.hpp"
 
 /**
-Namespace contenant les définitions des évolutions et l'énumération des évolutions
+Namespace contenant les dï¿½finitions des ï¿½volutions et l'ï¿½numï¿½ration des ï¿½volutions
 */
 namespace Evolutions{
-    /**Enumération*/
+    /**Enumï¿½ration*/
     const int EItem = 7, ELand = 6, ELevel = 5, ELove = 4, ENope = 3, ETrade = 2, ETradeItem = 1;
 
     class E_Item: public Evolution {
@@ -32,7 +32,7 @@ protected:
 
 class E_Land: public Evolution {
 public:
-	E_Land(int evo, string lieu);
+	E_Land(int evo, std::string lieu);
 	bool checkEvolve (Pokemon const& toCheck) const {return false;}//Il faudra tester si l'endroit ou se trouve le dresseur est le bon.
 	 const int evolID = 6;
 private:
@@ -71,7 +71,7 @@ public:
 	 const int evolID = 2;
 };
 
-class E_TradeItem: public E_Item {
+class E_TradeItem: public E_Item, E_Trade {
 public:
 	E_TradeItem(int evo, Item *forEvolve, int ID) : E_Item(evo, forEvolve){};
 	bool checkEvolve(Pokemon const& toCheck);
