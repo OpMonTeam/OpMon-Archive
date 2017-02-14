@@ -617,7 +617,7 @@
 1486849424 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\enums\enums.cpp
 	"Enums.hpp"
 
-1487079399 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\main.cpp
+1487093193 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\main.cpp
 	<iostream>
 	<fstream>
 	<cstdlib>
@@ -631,6 +631,7 @@
 	<string>
 	"Initializer.hpp"
 	<SDL/SDL.h>
+	<SDL/SDL_image.h>
 	"main.hpp"
 	"../gui/MainFrame.hpp"
 	<ctime>
@@ -650,15 +651,16 @@
 	"../objects/item/Item.hpp"
 	"Evolution.hpp"
 
-1487081943 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\mainframe.cpp
+1487093321 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\mainframe.cpp
 	"MainFrame.hpp"
 	<iostream>
 	"../start/main.hpp"
 	<SDL/SDL.h>
 	<SDL/SDL_image.h>
+	<SDL/SDL_ttf.h>
 	"../start/main.hpp"
 
-1487084070 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\mainframe.hpp
+1487094443 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\mainframe.hpp
 	<SDL/SDL.h>
 	"Elements.hpp"
 
@@ -1321,6 +1323,11 @@
 1451800373 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_image.h
 	"SDL.h"
 	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454362933 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_ttf.h
+	"SDL.h"
 	"begin_code.h"
 	"close_code.h"
 
