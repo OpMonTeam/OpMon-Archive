@@ -4,6 +4,7 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 #include <SDL/SDL_ttf.h>
+#include <cstring>
 
 #include "../start/main.hpp"
 
@@ -16,6 +17,7 @@ namespace MainFrame {
 	SDL_Window *frame = NULL;
 	SDL_Renderer *renderer = NULL;
 	SDL_Event events;
+	TTF_Font *font = NULL;
 	bool init = false;
 	void open(){
 
@@ -37,6 +39,7 @@ namespace MainFrame {
            rlog << "Une erreur fatale s'est produite. Merci de consulter errLog.txt" << endl;
            gererErreur(TTF_GetError(), true);
         }
+        font = TTF_OpenFont("arial.ttf", 32);
 		init = true;
 		frame = SDL_CreateWindow("Pokémon Regimys", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 512, 512, SDL_WINDOW_SHOWN);
 		renderer = SDL_CreateRenderer(frame, -1, SDL_RENDERER_ACCELERATED);
@@ -46,6 +49,7 @@ namespace MainFrame {
         SDL_Texture *profT;
         SDL_Rect dialogP;
         SDL_Texture *dialogT;
+        SDL_Rect textPos;
 		rlog << "[T = " << time(NULL) - Main::startTime << "] - Initialisation des SDL_Rect" << endl;
         fondP.h = 512;
         fondP.w = 512;
@@ -59,6 +63,8 @@ namespace MainFrame {
         profP.w = 180;
         profP.x = (fondP.w / 2) - (profP.w / 2) + 10;
         profP.y = ((fondP.h - dialogP.h) / 2) - (profP.h / 2);
+        textPos.x = 10;
+        textPos.y = 372;
         rlog << "[T = " << time(NULL) - Main::startTime << "] - Initialisation des sprites..." << endl;
         #ifdef WINDOWS
         fondT = IMG_LoadTexture(renderer, "ressources\\backgrounds\\start\\startscene.png");
@@ -75,18 +81,54 @@ namespace MainFrame {
         SDL_RenderCopy(renderer, fondT, NULL, &fondP);
         SDL_RenderCopy(renderer, profT, NULL, &profP);
         SDL_RenderCopy(renderer, dialogT, NULL, &dialogP);
+        SDL_Texture *text[3] = {NULL, NULL, NULL};
+        SDL_Color noir = {0,0,0};
+        //TTF_RenderText
         SDL_RenderPresent(renderer);
         rlog << "[T = " << time(NULL) - Main::startTime << "] - Fin des initialisations" << endl;
+        rlog << "[T = " << time(NULL) - Main::startTime << "] - Creation des variables utilitaires" << endl;
         bool continuer = true;
-        while(continuer){
-            SDL_WaitEvent(&events);
-            switch(events.type){
-            case SDL_QUIT:
-                continuer = false;
-                break;
+        int dialogPhase = 0;
+        long lastTicks = 0;
+        int i = 0, speechCount = 0;
+        string speech[] = {"Hey, salut! Comment ça va? Moi, c'est Jlppc! C'est moi qui développe le jeu.", "Pour l'instant, y'a pas grand chose. J'essaye de faire de mon mieux!", "Reviens quand je serai prêt!"};
+        string enCours = string();
+        bool finished = false;
+        rlog << "[T = " << time(NULL) - Main::startTime << "] - Début de la boucle" << endl;
+        while(true){
+                rlog << "[T = " << time(NULL) - Main::startTime << "] - Boucle";
+            if(SDL_GetTicks() - lastTicks > 100){
+                rlog << "[T = " << time(NULL) - Main::startTime << "] - frame: " << i;
+                i++;
+                if(SDL_PollEvent(&events) == -1){
+                    gererErreur(SDL_GetError(), true);
+                }
+
+                switch(events.type){
+                case SDL_QUIT:
+                    exit(1);
+                    break;
+                }
+                if(!(speech[speechCount].c_str()[i] == '\0')){
+                    enCours+=speech[speechCount].c_str()[i];
+                    SDL_Surface *textSf = TTF_RenderText_Blended(font, enCours.c_str(), noir);
+                    text[speechCount] = SDL_CreateTextureFromSurface(renderer, textSf);
+                    SDL_FreeSurface(textSf);
+                    SDL_RenderCopy(renderer, text[speechCount], NULL, &textPos);
+                    SDL_RenderPresent(renderer);
+                }else{
+                    finished = true;
+                }
+
+            }else{
+                rlog << "[T = " << time(NULL) - Main::startTime << "] - Délai" << endl;
+                SDL_Delay(100 - (SDL_GetTicks() - lastTicks));
             }
+
         }
+        rlog << "[T = " << time(NULL) - Main::startTime << "] - Fin de la boucle." << endl,
         SDL_DestroyWindow(frame);
+        TTF_CloseFont(font);
 		TTF_Quit();
         atexit(IMG_Quit);
 		SDL_Quit();

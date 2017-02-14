@@ -651,17 +651,19 @@
 	"../objects/item/Item.hpp"
 	"Evolution.hpp"
 
-1487093321 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\mainframe.cpp
+1487099968 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\mainframe.cpp
 	"MainFrame.hpp"
 	<iostream>
 	"../start/main.hpp"
 	<SDL/SDL.h>
 	<SDL/SDL_image.h>
 	<SDL/SDL_ttf.h>
+	<cstring>
 	"../start/main.hpp"
 
-1487094443 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\mainframe.hpp
+1487097551 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\mainframe.hpp
 	<SDL/SDL.h>
+	<SDL/SDL_ttf.h>
 	"Elements.hpp"
 
 1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\sdl2-2.0.5\x86_64-w64-mingw32\include\sdl\sdl.h
