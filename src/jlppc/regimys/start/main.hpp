@@ -31,6 +31,8 @@ Namespace contenant des variables utiles au fonctionnement du jeu
 */
 namespace Main{
     void main();
+    extern std::ofstream log;
+    extern std::ofstream errLog;
 }
 /**
 Methode permettant de demmarer le jeu

@@ -71,7 +71,7 @@ public:
 	 const int evolID = 2;
 };
 
-class E_TradeItem: public E_Item, E_Trade {
+class E_TradeItem: public E_Item {
 public:
 	E_TradeItem(int evo, Item *forEvolve, int ID) : E_Item(evo, forEvolve){};
 	bool checkEvolve(Pokemon const& toCheck);
