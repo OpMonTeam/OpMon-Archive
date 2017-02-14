@@ -7,7 +7,8 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/Projet-Pokemon-Regimys" prefix_auto="1" extension_auto="1" />
+				<Option output="exe/Projet-Pokemon-Regimys-Debug" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="exe/" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -16,12 +17,14 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/Projet-Pokemon-Regimys" prefix_auto="1" extension_auto="1" />
+				<Option output="exe/Projet-Pokemon-Regimys" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="exe/" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="src/jlppc/regimys/gui" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -30,7 +33,75 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add directory="include" />
 		</Compiler>
+		<Linker>
+			<Add library="C:/Program Files (x86)/CodeBlocks/MinGW/lib/libmingw32.a" />
+			<Add library="lib/libSDL2main.a" />
+			<Add library="lib/libSDL2.dll.a" />
+			<Add library="lib/libSDL2_image.dll.a" />
+			<Add directory="lib" />
+		</Linker>
+		<Unit filename="src/jlppc/regimys/enums/Caractere.cpp" />
+		<Unit filename="src/jlppc/regimys/enums/Caractere.hpp" />
+		<Unit filename="src/jlppc/regimys/enums/Enums.cpp" />
+		<Unit filename="src/jlppc/regimys/enums/Enums.hpp" />
+		<Unit filename="src/jlppc/regimys/enums/enumsInclude.hxx" />
+		<Unit filename="src/jlppc/regimys/evolution/EItem.cpp" />
+		<Unit filename="src/jlppc/regimys/evolution/ELand.cpp" />
+		<Unit filename="src/jlppc/regimys/evolution/ELevel.cpp" />
+		<Unit filename="src/jlppc/regimys/evolution/ELove.cpp" />
+		<Unit filename="src/jlppc/regimys/evolution/ENope.cpp" />
+		<Unit filename="src/jlppc/regimys/evolution/ETrade.cpp" />
+		<Unit filename="src/jlppc/regimys/evolution/ETradeItem.cpp" />
+		<Unit filename="src/jlppc/regimys/evolution/Evolution.cpp" />
+		<Unit filename="src/jlppc/regimys/evolution/Evolution.hpp" />
+		<Unit filename="src/jlppc/regimys/evolution/evolutionInclude.hxx" />
+		<Unit filename="src/jlppc/regimys/evolution/evolutions.hpp" />
+		<Unit filename="src/jlppc/regimys/gui/Elements.cpp" />
+		<Unit filename="src/jlppc/regimys/gui/Elements.hpp" />
+		<Unit filename="src/jlppc/regimys/gui/MainFrame.cpp" />
+		<Unit filename="src/jlppc/regimys/gui/MainFrame.hpp" />
+		<Unit filename="src/jlppc/regimys/objects/Attaque.cpp" />
+		<Unit filename="src/jlppc/regimys/objects/Attaque.hpp" />
+		<Unit filename="src/jlppc/regimys/objects/Attaques.cpp" />
+		<Unit filename="src/jlppc/regimys/objects/Attaques.hpp" />
+		<Unit filename="src/jlppc/regimys/objects/Espece.cpp" />
+		<Unit filename="src/jlppc/regimys/objects/Espece.hpp" />
+		<Unit filename="src/jlppc/regimys/objects/Pokemon.cpp" />
+		<Unit filename="src/jlppc/regimys/objects/Pokemon.hpp" />
+		<Unit filename="src/jlppc/regimys/objects/item/CT.cpp" />
+		<Unit filename="src/jlppc/regimys/objects/item/CT.hpp" />
+		<Unit filename="src/jlppc/regimys/objects/item/IHeal.cpp" />
+		<Unit filename="src/jlppc/regimys/objects/item/IHeal.hpp" />
+		<Unit filename="src/jlppc/regimys/objects/item/IPokeball.cpp" />
+		<Unit filename="src/jlppc/regimys/objects/item/IPokeball.hpp" />
+		<Unit filename="src/jlppc/regimys/objects/item/Item.cpp" />
+		<Unit filename="src/jlppc/regimys/objects/item/Item.hpp" />
+		<Unit filename="src/jlppc/regimys/objects/item/itemInclude.hxx" />
+		<Unit filename="src/jlppc/regimys/objects/objectsInclude.hxx" />
+		<Unit filename="src/jlppc/regimys/playercore/Equipe.cpp" />
+		<Unit filename="src/jlppc/regimys/playercore/Equipe.hpp" />
+		<Unit filename="src/jlppc/regimys/playercore/Player.cpp" />
+		<Unit filename="src/jlppc/regimys/playercore/Player.hpp" />
+		<Unit filename="src/jlppc/regimys/playercore/playercoreInclude.hxx" />
+		<Unit filename="src/jlppc/regimys/regimysInclude.hxx" />
+		<Unit filename="src/jlppc/regimys/start/Initializer.cpp" />
+		<Unit filename="src/jlppc/regimys/start/Initializer.hpp" />
+		<Unit filename="src/jlppc/regimys/start/main.cpp" />
+		<Unit filename="src/jlppc/regimys/start/main.hpp" />
+		<Unit filename="src/jlppc/regimys/start/startInclude.hxx" />
+		<Unit filename="src/jlppc/utils/Class.cpp" />
+		<Unit filename="src/jlppc/utils/Class.hpp" />
+		<Unit filename="src/jlppc/utils/Comparaisons.cpp" />
+		<Unit filename="src/jlppc/utils/Comparaisons.hpp" />
+		<Unit filename="src/jlppc/utils/File.cpp" />
+		<Unit filename="src/jlppc/utils/File.hpp" />
+		<Unit filename="src/jlppc/utils/NumberedArray.cpp" />
+		<Unit filename="src/jlppc/utils/NumberedArray.hpp" />
+		<Unit filename="src/jlppc/utils/Utils.cpp" />
+		<Unit filename="src/jlppc/utils/Utils.hpp" />
+		<Unit filename="src/jlppc/utils/utilsInclude.hxx" />
 		<Extensions>
 			<code_completion />
 			<envvars />
