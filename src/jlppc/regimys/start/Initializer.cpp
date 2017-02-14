@@ -130,9 +130,134 @@ namespace Initializer{
 	evs[37].VIT;
 
 	evs[38].VIT;
-	evs[39].VIT;
+	evs[38].DEFSPE;
 
-	evs[39].ATKSPE;
+	evs[39].PV;
+	evs[39].PV;
+
+	evs[40].PV;
+	evs[40].PV;
+	evs[40].PV;
+
+	evs[41].VIT;
+
+	evs[42].VIT;
+	evs[42].VIT;
+
+	evs[43].ATKSPE;
+
+	evs[44].ATKSPE;
+	evs[44].ATKSPE;
+
+	evs[45].ATKSPE;
+	evs[45].ATKSPE;
+	evs[45].ATKSPE;
+
+	evs[46].ATK;
+
+	evs[47].ATK;
+	evs[47].ATK;
+	evs[47].DEF;
+
+	evs[48].DEFSPE;
+	evs[48].DEFSPE;
+
+	evs[49].ATKSPE;
+	evs[49].VIT;
+
+	evs[50].VIT;
+
+	evs[51].VIT;
+	evs[51].VIT;
+
+	evs[52].VIT;
+
+	evs[53].VIT;
+	evs[53].VIT;
+
+	evs[54].ATKSPE;
+
+	evs[55].ATKSPE;
+	evs[55].ATKSPE;
+
+	evs[56].ATK;
+
+	evs[57].ATK;
+	evs[57].ATK;
+
+	evs[58].ATK;
+
+	evs[59].ATK;
+	evs[59].ATK;
+
+	evs[60].VIT;
+
+	evs[61].VIT;
+	evs[61].VIT;
+
+	evs[62].DEF;
+	evs[62].DEF;
+	evs[62].DEF;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
+	evs[].;
 	evs[].;
 	evs[].;
 	evs[].;
