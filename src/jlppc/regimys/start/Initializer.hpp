@@ -9,12 +9,11 @@
 #include "../evolution/evolutions.hpp"
 
 namespace Initializer{
-    template<typename T>void pb(&vector<T>, ...)
-    Espece *listePoke[POKE_NUMBER];
-    std::vector<NumberedArray<Class<Attaque*> > > atkPokeLvl[POKE_NUMBER];//100 attaques max / poké
+    extern Espece *listePoke[POKE_NUMBER];
+    extern std::vector<NumberedArray<Class<Attaque*> > > atkPokeLvl[POKE_NUMBER];//100 attaques max / pokï¿½
     extern Evolutions::E_Nope ne;//ne = No Evolution
     //std::string backgrounds[];
-    std::vector<int> evs[POKE_NUMBER];
+    extern std::vector<int> evs[POKE_NUMBER];
     void initEvs();
     void initPokemons();
     void initAtkLvls();

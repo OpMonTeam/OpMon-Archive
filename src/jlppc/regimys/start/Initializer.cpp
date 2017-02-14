@@ -19,7 +19,7 @@ namespace Initializer{
     }
 
     void initEvs(){
-        evs[0].ATK;
+        /*evs[0].ATK;
 
         evs[1].ATKSPE;
 
@@ -142,13 +142,13 @@ namespace Initializer{
 	evs[].;
 	evs[].;
 	evs[].;
-	evs[].;
+	evs[].;*/
 
 
     }
 
     void initPokemons(){
-        initEvs();
+        /*initEvs();
         using namespace Evolutions;
          listePoke[0] = new Espece(136, 0, 1, 1, 29, 33, "MissingNo.", Type::NORMAL, Type::VOL, 0, 80, new E_Level(0, 80), evs[0], 0, 0, "ERROR : MISSINGNO.", 0, 1250000, 3, 0);
 		 listePoke[1] = new Espece(49, 49, 65, 65, 45, 45, "Bulbizarre", Type::PLANTE, Type::POISON, 0, 16, new E_Level(2, 16), evs[1], 0.7, 6.9, "Il a une étrange graine plantée sur son dos. Elle grandit avec lui depuis sa naissance.", 64, 1059860, 45, 1);
@@ -402,10 +402,11 @@ namespace Initializer{
 		 listePoke[249] = new Espece(90, 130, 90, 154, 110, 106, "Lugia", Type::PSY, Type::VOL, 0, -1, ne, {Stats.DEFSPE, Stats.DEFSPE, Stats.DEFSPE}, 5.2, 216, "Il dort dans une faille des grands fonds. Ses battements d'ailes génèrent une tempête de 40 jours.", 220, 1250000, 3, 249);
 		 listePoke[250] = new Espece(130, 90, 110, 154, 90, 106, "Ho-Oh", Type::FEU, Type::VOL, 0, -1, ne, {Stats.DEFSPE, Stats.DEFSPE, Stats.DEFSPE}, 3., 199, "Une légende raconte que son corps brille de sept couleurs. Un arc-en-ciel se forme derrière lui quand il vole.", 211, 1250000, 3, 250);
 		 listePoke[251] = new Espece(100, 100, 100, 100, 100, 100, "Celebi", Type::PSY, Type::PLANTE, 0, -1, ne, {Stats.PV, Stats.PV, Stats.PV}, 0.6, 5, "Ce Pokémon voyage dans le temps. Les forêts où il apparaît deviennent prodigieusement luxuriantes.", 64, 1059860, 45, 251);
+    	*/
     }
 
     void initAtkLvls(){
-         //atkPokeLvl[0] = nullptr;
+         /*//atkPokeLvl[0] = nullptr;
          AtkArray tab1[] = {NumberedArray(0, Charge::classe),  NumberedArray(3, Rugissement::classe),  NumberedArray(7, Vampigraine::classe),  NumberedArray(9, FouetLianes::classe),  NumberedArray(13, PoudreToxik::classe),  NumberedArray(13, PoudreDodo::classe),  NumberedArray(15, Belier::classe),  NumberedArray(19, TranchHerbe::classe),  NumberedArray(21, DouxParfum::classe),  NumberedArray(25, Croissance::classe),  NumberedArray(27, Damocles::classe),  NumberedArray(33, Synthese::classe),  NumberedArray(37, CanonGraine::classe)};
 		 pb(atkPokeLvl[1], tab1, 13);
          AtkArray tab2[] = {NumberedArray(0, Charge::classe),  NumberedArray(0, Rugissement::classe),  NumberedArray(0, Vampigraine::classe),  NumberedArray(9, FouetLianes::classe),  NumberedArray(13, PoudreToxik::classe),  NumberedArray(13, PoudreDodo::classe),  NumberedArray(15, Belier::classe),  NumberedArray(20, TranchHerbe::classe),  NumberedArray(23, DouxParfum::classe),  NumberedArray(28, Croissance::classe),  NumberedArray(31, Damocles::classe),  NumberedArray(39, Synthese::classe),  NumberedArray(44, LanceSoleil::classe)};
@@ -465,6 +466,7 @@ namespace Initializer{
  		  pb(atkPokeLvl[52], NumberedArray(0, Griffe::classe),  NumberedArray(0, Rugissement::classe),  NumberedArray(6, Morsure::classe),  NumberedArray(9, Bluff::classe),  NumberedArray(14, ComboGriffe::classe),  NumberedArray(17, Grincement::classe),  NumberedArray(22, Feinte::classe),  NumberedArray(25, Provoc::classe),  NumberedArray(30, Jackpot::classe),  NumberedArray(33, Tranche::classe),  NumberedArray(38, Machination::classe),  NumberedArray(41, Assurance::classe),  NumberedArray(46, Séduction::classe),  NumberedArray(49, tranche-Nuit::classe),  NumberedArray(50, Ruse::classe);
 		  pb(atkPokeLvl[53], NumberedArray(0, Calinerie::classe),  NumberedArray(0, PassePasse::classe),  NumberedArray(0, Griffe::classe),  NumberedArray(0, Rugissement::classe),  NumberedArray(6, Morsure::classe),  NumberedArray(9, Bluff::classe),  NumberedArray(14, ComboGriffe::classe), NumberedArray(17, Grincement::classe),  NumberedArray(22, Feinte::classe),  NumberedArray(25, Provoc::classe),  NumberedArray(28, Météores::classe), NumberedArray(32, RayonGemme::classe),  NumberedArray(37, Tranche::classe),  NumberedArray(44, Machination::classe),  NumberedArray(49, Assurance::classe),  NumberedArray(56, Séduction::classe),  NumberedArray(61, tranche-Nuit::classe),  NumberedArray(68, Ruse::classe);
 		pb( atkPokeLvl[54], NumberedArray(0, Tourniquet::classe),  NumberedArray(0, Griffe::classe),  NumberedArray(4, MimiQueue::classe),  NumberedArray(8, PistoletAO::classe),  NumberedArray(11, ChocMental::classe),  NumberedArray(15, ComboGriffe::classe),  NumberedArray(18, Vibraqua::classe),  NumberedArray(22, Entrave::classe),  NumberedArray(25, Grincement::classe),  NumberedArray(29, HydroQueue::classe),  NumberedArray(32, PsykoudBoul::classe),  NumberedArray(36, Detrempage::classe),  NumberedArray(39, Boost::classe),  NumberedArray(43, Amnesie::classe),  NumberedArray(46, Hydrocanon::classe),  NumberedArray(50, ZoneEtrange::classe);
+    	*/
     }
 
     void initSprites(){
