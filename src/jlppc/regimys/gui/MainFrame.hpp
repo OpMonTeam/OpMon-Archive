@@ -10,10 +10,13 @@ Permet d'ouvrir la fenetre du jeu.
 #define SRC_JLPPC_REGIMYS_GUI_MAINFRAME_HPP_
 
 #include <SDL/SDL.h>
+#include "Elements.hpp"
+
 
 namespace MainFrame {
 	extern SDL_Window *frame;
 	extern SDL_Renderer *renderer;
+	extern SDL_Rect fond;
 	extern bool init;
 	void open();
 	void loop();
