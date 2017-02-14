@@ -17,6 +17,7 @@ namespace MainFrame {
 	extern SDL_Window *frame;
 	extern SDL_Renderer *renderer;
 	extern SDL_Rect fond;
+	extern SDL_Event sevents;
 	extern bool init;
 	void open();
 	void loop();
