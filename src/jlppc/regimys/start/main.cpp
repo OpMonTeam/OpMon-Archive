@@ -11,6 +11,7 @@
 #include <string>
 #include "Initializer.hpp"
 #include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
 #include "main.hpp"
 #include "../gui/MainFrame.hpp"
 #include <ctime>
@@ -77,6 +78,7 @@ void gererErreur(string errorName, bool fatal){
 int quit(int returne){
 	if(MainFrame::init){
 		SDL_Quit();
+		atexit(IMG_Quit);
 	}
 	rlog << "[T = " << time(NULL) - Main::startTime << "] - Fermeture du jeu." << endl;
 	rlog.close();

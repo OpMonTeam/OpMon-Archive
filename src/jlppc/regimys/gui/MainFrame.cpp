@@ -3,8 +3,11 @@
 #include "../start/main.hpp"
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
+#include <SDL/SDL_ttf.h>
 
 #include "../start/main.hpp"
+
+#define WINDOWS
 
 using namespace std;
 
@@ -12,6 +15,7 @@ using namespace std;
 namespace MainFrame {
 	SDL_Window *frame = NULL;
 	SDL_Renderer *renderer = NULL;
+	SDL_Event events;
 	bool init = false;
 	void open(){
 
@@ -23,11 +27,16 @@ namespace MainFrame {
 
 		if (IMG_Init(IMG_INIT_PNG) < 0){
             rerrLog << "Erreur d'initialisation de SDL_Image" << endl;
-            rlog << "Une erreur fatale s'est produite. Merci de consulter errLog.txt1" << endl;
-            gererErreur(SDL_GetError(), true);
+            rlog << "Une erreur fatale s'est produite. Merci de consulter errLog.txt" << endl;
+            gererErreur(IMG_GetError(), true);
 
         }
 
+        if(TTF_Init() == -1){
+           rerrLog << "Erreur d'initialisation de SDL_ttf" << endl;
+           rlog << "Une erreur fatale s'est produite. Merci de consulter errLog.txt" << endl;
+           gererErreur(TTF_GetError(), true);
+        }
 		init = true;
 		frame = SDL_CreateWindow("Pokémon Regimys", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 512, 512, SDL_WINDOW_SHOWN);
 		renderer = SDL_CreateRenderer(frame, -1, SDL_RENDERER_ACCELERATED);
@@ -53,21 +62,32 @@ namespace MainFrame {
         rlog << "[T = " << time(NULL) - Main::startTime << "] - Initialisation des sprites..." << endl;
         #ifdef WINDOWS
         fondT = IMG_LoadTexture(renderer, "ressources\\backgrounds\\start\\startscene.png");
-
         profT = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\jlppc\\jlppc.png");
-
+        dialogT = IMG_LoadTexture(renderer, "ressources\\backgrounds\\dialog\\dialog.png");
         #else
-
         fondT = IMG_LoadTexture(renderer, "ressources/backgrounds/start/startscene.png");
         profT = IMG_LoadTexture(renderer, "ressources/sprites/chara/jlppc/jlppc.png");
+        dialogT = IMG_LoadTexture(renderer, "ressources/backgrounds/dialog/dialog.png");
         #endif
-
+        if(fondT == NULL || profT == NULL || dialogT == NULL){
+            gererErreur(string("Erreur lors de l'initialisation d'une image.") + string(SDL_GetError()), false);
+        }
         SDL_RenderCopy(renderer, fondT, NULL, &fondP);
         SDL_RenderCopy(renderer, profT, NULL, &profP);
+        SDL_RenderCopy(renderer, dialogT, NULL, &dialogP);
         SDL_RenderPresent(renderer);
         rlog << "[T = " << time(NULL) - Main::startTime << "] - Fin des initialisations" << endl;
-        SDL_Delay(5000);
-		SDL_DestroyWindow(frame);
+        bool continuer = true;
+        while(continuer){
+            SDL_WaitEvent(&events);
+            switch(events.type){
+            case SDL_QUIT:
+                continuer = false;
+                break;
+            }
+        }
+        SDL_DestroyWindow(frame);
+		TTF_Quit();
         atexit(IMG_Quit);
 		SDL_Quit();
 	}
