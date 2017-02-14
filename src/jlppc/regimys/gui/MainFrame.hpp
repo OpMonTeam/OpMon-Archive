@@ -10,6 +10,7 @@ Permet d'ouvrir la fenetre du jeu.
 #define SRC_JLPPC_REGIMYS_GUI_MAINFRAME_HPP_
 
 #include <SDL/SDL.h>
+#include <SDL/SDL_ttf.h>
 #include "Elements.hpp"
 
 
@@ -18,6 +19,7 @@ namespace MainFrame {
 	extern SDL_Renderer *renderer;
 	extern SDL_Rect fond;
 	extern SDL_Event sevents;
+	extern TTF_Font *font;
 	extern bool init;
 	void open();
 	void loop();
