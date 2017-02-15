@@ -36,10 +36,11 @@
 			<Add directory="include" />
 		</Compiler>
 		<Linker>
-			<Add library="C:/Program Files (x86)/CodeBlocks/MinGW/lib/libmingw32.a" />
+			<Add library="C:/Users/multimedia1/Downloads/Codeblocks/MinGW/lib/libmingw32.a" />
 			<Add library="lib/libSDL2main.a" />
 			<Add library="lib/libSDL2.dll.a" />
 			<Add library="lib/libSDL2_image.dll.a" />
+			<Add library="lib/libSDL2_ttf.dll.a" />
 			<Add directory="lib" />
 		</Linker>
 		<Unit filename="src/jlppc/regimys/enums/Caractere.cpp" />
