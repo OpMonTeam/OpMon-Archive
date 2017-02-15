@@ -16,6 +16,7 @@ namespace MainFrame {
 	SDL_Window *frame = NULL;
 	SDL_Renderer *renderer = NULL;
 	SDL_Event events;
+	TTF_Font *font = TTF_OpenFont("arial.ttf", 30);
 	bool init = false;
 	void open(){
 
@@ -46,6 +47,7 @@ namespace MainFrame {
         SDL_Texture *profT;
         SDL_Rect dialogP;
         SDL_Texture *dialogT;
+        SDL_Rect textPlace;
 		rlog << "[T = " << time(NULL) - Main::startTime << "] - Initialisation des SDL_Rect" << endl;
         fondP.h = 512;
         fondP.w = 512;
@@ -59,6 +61,7 @@ namespace MainFrame {
         profP.w = 180;
         profP.x = (fondP.w / 2) - (profP.w / 2) + 10;
         profP.y = ((fondP.h - dialogP.h) / 2) - (profP.h / 2);
+        SDL_Color noir = {0,0,0};
         rlog << "[T = " << time(NULL) - Main::startTime << "] - Initialisation des sprites..." << endl;
         #ifdef WINDOWS
         fondT = IMG_LoadTexture(renderer, "ressources\\backgrounds\\start\\startscene.png");
@@ -78,13 +81,27 @@ namespace MainFrame {
         SDL_RenderPresent(renderer);
         rlog << "[T = " << time(NULL) - Main::startTime << "] - Fin des initialisations" << endl;
         bool continuer = true;
+        long ancientTick = 0;
+        Text txt = {NULL, "Hey, salut! Ceci est actuellement un test."};
+        string txtEnCours = string();
+        int line = 0, i = 0;
         while(continuer){
-            SDL_WaitEvent(&events);
-            switch(events.type){
-            case SDL_QUIT:
-                continuer = false;
-                break;
+            if((SDL_GetTicks() - ancientTick) >= 100){
+                ancientTick = SDL_GetTicks();
+                SDL_PollEvent(&events);
+                switch(events.type){
+                case SDL_QUIT:
+                    continuer = false;
+                    break;
+                }
+                txtEnCours+=txt.text.c_str()[i];
+                SDL_Surface *sfce = TTF_RenderText_Blended(font, txtEnCours.c_str(), noir);
+                i++;
+            }else{
+                SDL_Delay(100 - (SDL_GetTicks() - ancientTick));
             }
+
+
         }
         SDL_DestroyWindow(frame);
 		TTF_Quit();
