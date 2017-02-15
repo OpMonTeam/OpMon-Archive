@@ -1,4 +1,4 @@
-#include "MainFrame.hpp"
+﻿#include "MainFrame.hpp"
 #include <iostream>
 #include "../start/main.hpp"
 #include <SDL/SDL.h>
@@ -49,8 +49,9 @@ namespace MainFrame {
         SDL_Texture *profT;
         SDL_Rect dialogP;
         SDL_Texture *dialogT;
-        SDL_Rect textPos;
-		rlog << "[T = " << time(NULL) - Main::startTime << "] - Initialisation des SDL_Rect" << endl;
+	font = TTF_OpenFont("arial.ttf", 30);
+        SDL_Rect textPlace;
+	rlog << "[T = " << time(NULL) - Main::startTime << "] - Initialisation des SDL_Rect" << endl;
         fondP.h = 512;
         fondP.w = 512;
         fondP.x = 0;
@@ -65,6 +66,7 @@ namespace MainFrame {
         profP.y = ((fondP.h - dialogP.h) / 2) - (profP.h / 2);
         textPos.x = 10;
         textPos.y = 372;
+        SDL_Color noir = {0,0,0};
         rlog << "[T = " << time(NULL) - Main::startTime << "] - Initialisation des sprites..." << endl;
         #ifdef WINDOWS
         fondT = IMG_LoadTexture(renderer, "ressources\\backgrounds\\start\\startscene.png");
@@ -88,41 +90,24 @@ namespace MainFrame {
         rlog << "[T = " << time(NULL) - Main::startTime << "] - Fin des initialisations" << endl;
         rlog << "[T = " << time(NULL) - Main::startTime << "] - Creation des variables utilitaires" << endl;
         bool continuer = true;
-        int dialogPhase = 0;
-        long lastTicks = 0;
-        int i = 0, speechCount = 0;
-        string speech[] = {"Hey, salut! Comment ça va? Moi, c'est Jlppc! C'est moi qui développe le jeu.", "Pour l'instant, y'a pas grand chose. J'essaye de faire de mon mieux!", "Reviens quand je serai prêt!"};
-        string enCours = string();
-        bool finished = false;
-        rlog << "[T = " << time(NULL) - Main::startTime << "] - Début de la boucle" << endl;
-        while(true){
-                rlog << "[T = " << time(NULL) - Main::startTime << "] - Boucle";
-            if(SDL_GetTicks() - lastTicks > 100){
-                rlog << "[T = " << time(NULL) - Main::startTime << "] - frame: " << i;
-                i++;
-                if(SDL_PollEvent(&events) == -1){
-                    gererErreur(SDL_GetError(), true);
-                }
-
+        long ancientTick = 0;
+        Text txt = {NULL, "Hey, salut! Ceci est actuellement un test."};
+        string txtEnCours = string();
+        int line = 0, i = 0;
+        while(continuer){
+            if((SDL_GetTicks() - ancientTick) >= 100){
+                ancientTick = SDL_GetTicks();
+                SDL_PollEvent(&events);
                 switch(events.type){
                 case SDL_QUIT:
-                    exit(1);
+                    continuer = false;
                     break;
                 }
-                if(!(speech[speechCount].c_str()[i] == '\0')){
-                    enCours+=speech[speechCount].c_str()[i];
-                    SDL_Surface *textSf = TTF_RenderText_Blended(font, enCours.c_str(), noir);
-                    text[speechCount] = SDL_CreateTextureFromSurface(renderer, textSf);
-                    SDL_FreeSurface(textSf);
-                    SDL_RenderCopy(renderer, text[speechCount], NULL, &textPos);
-                    SDL_RenderPresent(renderer);
-                }else{
-                    finished = true;
-                }
-
+                txtEnCours+=txt.text.c_str()[i];
+                SDL_Surface *sfce = TTF_RenderText_Blended(font, txtEnCours.c_str(), noir);
+                i++;
             }else{
-                rlog << "[T = " << time(NULL) - Main::startTime << "] - Délai" << endl;
-                SDL_Delay(100 - (SDL_GetTicks() - lastTicks));
+                SDL_Delay(100 - (SDL_GetTicks() - ancientTick));
             }
 
         }
