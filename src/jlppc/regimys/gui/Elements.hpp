@@ -13,8 +13,7 @@ Fichier contenant... je sais pas trop.
 
 
 struct Text{
-    SDL_Texture *toPrint;
-    std::string text;
+
 };
 
 struct Coordonnees{
