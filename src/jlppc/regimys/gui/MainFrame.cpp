@@ -10,6 +10,7 @@
 
 #define WINDOWS
 #define rLog rlog
+#define charLineDialog 33
 
 using namespace std;
 
@@ -19,7 +20,43 @@ namespace MainFrame {
 	SDL_Renderer *renderer = NULL;
 	SDL_Event events;
 	TTF_Font *font = NULL;
+	SDL_Rect dialogP = {0,0,0,0};
+    SDL_Texture *dialogT = NULL;
+    SDL_Rect textPlace = {0,0,0,0};
+    SDL_Color noir = {0,0,0};
 	bool init = false;
+
+	int printText(SDL_Renderer *renderer, string txt, string line2S){
+            SDL_Texture *textUre = NULL;
+            SDL_Surface *sfce = NULL;
+            SDL_Texture *line2 = NULL;
+            SDL_Surface *sfce2 = NULL;
+            SDL_Rect posLineTwo;
+
+            SDL_RenderCopy(renderer, dialogT, NULL, &dialogP);
+
+            sfce = TTF_RenderText_Blended(font, txt.c_str(), noir);
+            textPlace.h = sfce->h;
+            textPlace.w = sfce->w;
+            textUre = SDL_CreateTextureFromSurface(renderer, sfce);
+
+
+            sfce2 = TTF_RenderText_Blended(font, line2S.c_str(), noir);
+            posLineTwo.h = sfce2->h;
+            posLineTwo.w = sfce2->w;
+            posLineTwo.x = textPlace.x;
+            posLineTwo.y = textPlace.y + 42;
+            line2 = SDL_CreateTextureFromSurface(renderer, sfce2);
+
+            SDL_RenderCopy(renderer, line2, NULL, &posLineTwo);
+            SDL_RenderCopy(renderer, textUre, NULL, &textPlace);
+
+            SDL_RenderPresent(renderer);
+            SDL_DestroyTexture(textUre);
+            SDL_DestroyTexture(line2);
+            SDL_FreeSurface(sfce);
+	}
+
 	void open(){
 
 		if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_AUDIO) == -1){
@@ -64,10 +101,9 @@ namespace MainFrame {
         SDL_Rect profP;
         SDL_Texture *fondT;
         SDL_Texture *profT;
-        SDL_Rect dialogP;
-        SDL_Texture *dialogT;
 
-        SDL_Rect textPlace;
+
+
         rlog << "[T = " << time(NULL) - Main::startTime << "] - Initialisation des SDL_Rect" << endl;
         fondP.h = 512;
         fondP.w = 512;
@@ -83,7 +119,7 @@ namespace MainFrame {
         profP.y = ((fondP.h - dialogP.h) / 2) - (profP.h / 2);
         textPlace.x = 10;
         textPlace.y = 372;
-        SDL_Color noir;
+
         noir.r = 0;
         noir.g = 0;
         noir.b = 0;
@@ -117,12 +153,12 @@ namespace MainFrame {
         rlog << "[T = " << time(NULL) - Main::startTime << "] - Creation des variables utilitaires" << endl;
         bool continuer = true;
         long ancientTick = 0;
-        string txt = "Hey, salut! Ceci est actuellement un test.";
-        string txtEnCours = string();
+        string txt[] = {"Hey, salut! Ceci est actuellement", " un test.", "C'est cool hein?", " "};//Deux cases == Deux lignes. 3 cases == Deux lignes + un nouveau dialogue
+        string txtEnCours[] = {string(" "), string(" ")};
         SDL_Texture *textUre = NULL;
         SDL_Surface *sfce = NULL;
-        int line = 0, i = 0;
-
+        int line = 0, i = 0, dialog = 0;
+        bool changeDialog = false;
         rlog << "[T = " << time(NULL) - Main::startTime << "] - Début de la boucle principale." << endl;
         while(continuer){
             if((SDL_GetTicks() - ancientTick) >= 100){
@@ -132,21 +168,38 @@ namespace MainFrame {
                 case SDL_QUIT:
                     continuer = false;
                     break;
+                case SDL_KEYDOWN:
+                    switch(events.key.keysym.sym){
+                    case SDLK_SPACE:
+                        changeDialog = false;
+                        break;
+                    case SDLK_ESCAPE:
+                        continuer = false;
+                        break;
+                    }
                 }
-                if(!(i >= txt.size())){
-                    txtEnCours+= txt.c_str()[i];
-                    rlog << font << endl;
-                    sfce = TTF_RenderText_Blended(font, txtEnCours.c_str(), noir);
-                    textPlace.h = sfce->h;
-                    textPlace.w = sfce->w;
-                    textUre = SDL_CreateTextureFromSurface(renderer, sfce);
-                    SDL_RenderCopy(renderer, dialogT, NULL, &dialogP);
-                    SDL_RenderCopy(renderer, textUre, NULL, &textPlace);
-                    SDL_RenderPresent(renderer);
-                    SDL_DestroyTexture(textUre);
-                    SDL_FreeSurface(sfce);
-                    i++;
+                if(!changeDialog){
+                    if(!(i >= txt[line].size())){
+                        txtEnCours[line]+=txt[line + dialog].c_str()[i];
+                        rerrLog << txtEnCours[line] << endl;
+                        printText(renderer, txtEnCours[0], txtEnCours[1]);
+                        i++;
+                    }else{
+                        if(line == 1){
+                            txtEnCours[0] = string(" ");
+                            txtEnCours[1] = string(" ");
+                            line = 0;
+                            dialog++;
+                            dialog++;
+                            i = 0;
+                            changeDialog = true;
+                        }else{
+                            line++;
+                            i = 0;
+                        }
+                    }
                 }
+
 
             }else{
                 SDL_Delay(100 - (SDL_GetTicks() - ancientTick));

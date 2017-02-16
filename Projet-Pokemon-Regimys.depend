@@ -651,7 +651,7 @@
 	"../objects/item/Item.hpp"
 	"Evolution.hpp"
 
-1487231029 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\mainframe.cpp
+1487238053 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\mainframe.cpp
 	<iostream>
 	"../start/main.hpp"
 	<SDL/SDL.h>
@@ -660,7 +660,7 @@
 	<cstring>
 	"../start/main.hpp"
 
-1487184553 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\mainframe.hpp
+1487236221 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\mainframe.hpp
 	<SDL/SDL.h>
 	<SDL/SDL_ttf.h>
 	"Elements.hpp"
