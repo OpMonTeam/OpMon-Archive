@@ -5,12 +5,13 @@
 #include <SDL/SDL_image.h>
 #include <SDL/SDL_ttf.h>
 #include <cstring>
-
+#include "../start/StringKeys.hpp"
 #include "../start/main.hpp"
 
 #define WINDOWS
 #define rLog rlog
 #define charLineDialog 33
+#define kget StringKeys::get
 
 using namespace std;
 
@@ -153,7 +154,7 @@ namespace MainFrame {
         rlog << "[T = " << time(NULL) - Main::startTime << "] - Creation des variables utilitaires" << endl;
         bool continuer = true;
         long ancientTick = 0;
-        string txt[] = {"Hey, salut! Ceci est actuellement", " un test.", "C'est cool hein?", " "};//Deux cases == Deux lignes. 3 cases == Deux lignes + un nouveau dialogue
+        string txt[] = {kget("jlppc.dialog.start.1"), kget("jlppc.dialog.start.2"), kget("jlppc.dialog.start.3"), " "};//Deux cases == Deux lignes. 3 cases == Deux lignes + un nouveau dialogue
         int sizeOfTxt = 4;
         string txtEnCours[] = {string(" "), string(" ")};
         SDL_Texture *textUre = NULL;
