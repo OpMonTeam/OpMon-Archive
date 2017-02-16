@@ -184,7 +184,6 @@ namespace MainFrame {
                 if(!changeDialog){
                     if(!(i >= txt[line].size())){
                         txtEnCours[line]+=txt[line + dialog].c_str()[i];
-                        rerrLog << txtEnCours[line] << endl;
                         printText(renderer, txtEnCours[0], txtEnCours[1]);
                         i++;
                     }else{
