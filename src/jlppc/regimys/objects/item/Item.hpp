@@ -23,7 +23,7 @@ Classe définissant un item du jeu
 */
 class Item{
 public:
-    static Item* itemsLst[200];
+    static Item* itemsLst[ITEM_NUMBER];
 	Item(std::string nom, bool usable, bool usableInFight, bool givable, int categorie, int id);
 	static  Item* getItem (std::string const& name);
 	static  Item* getItem (int id);
