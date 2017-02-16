@@ -20,9 +20,18 @@ namespace MainFrame {
 	extern SDL_Rect fond;
 	extern SDL_Event sevents;
 	extern TTF_Font *font;
+	extern SDL_Rect dialogP;
+    extern SDL_Texture *dialogT;
+    extern SDL_Rect textPlace;
+    extern SDL_Color noir;
 	extern bool init;
 	void open();
 	void loop();
+	/**
+	Affiche un texte dans la boite de dialogue.
+	Renvoie... on verra.
+	*/
+	int printText(SDL_Renderer *renderer, std::string text, std::string line2);
 
 }
 
