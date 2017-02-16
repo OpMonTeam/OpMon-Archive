@@ -14,6 +14,7 @@
 #include <SDL/SDL_image.h>
 #include "main.hpp"
 #include "../gui/MainFrame.hpp"
+#include "StringKeys.hpp"
 #include <ctime>
 #define WINDOWS
 using namespace std;
@@ -57,7 +58,7 @@ int starts(){
        }
         startTime = time(NULL);
        rlog << "[T = " << time(NULL) - startTime << "] - Initialisation du log terminée." << endl;
-
+        StringKeys::initialize();
        MainFrame::open();
 
        return quit(0);
