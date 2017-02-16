@@ -3,23 +3,28 @@
 	<FileVersion major="1" minor="6" />
 	<Project>
 		<Option title="Projet-Pokemon-Regimys" />
-		<Option platforms="Windows;" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="src\jlppc\regimys\objects\;" />
 		<Build>
-			<Target title="Release">
-				<Option platforms="Windows;" />
-				<Option output="bin/Projet-Pokemon-Regimys" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/" />
+			<Target title="Debug">
+				<Option output="exe/Projet-Pokemon-Regimys-Debug" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="exe/" />
+				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
-					<Add option="-O" />
-					<Add directory="jlppc/regimys/objects/" />
-					<Add directory="srcCpp/jlppc/utils" />
-					<Add directory="jlppc/regimys/start" />
-					<Add directory="src/jlppc/regimys/start" />
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="exe/Projet-Pokemon-Regimys" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="exe/" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="src/jlppc/regimys/gui" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -28,8 +33,16 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
-			<Add option="-fexceptions" />
+			<Add directory="include" />
 		</Compiler>
+		<Linker>
+			<Add library="C:/Users/multimedia1/Downloads/Codeblocks/MinGW/lib/libmingw32.a" />
+			<Add library="lib/libSDL2main.a" />
+			<Add library="lib/libSDL2.dll.a" />
+			<Add library="lib/libSDL2_image.dll.a" />
+			<Add library="lib/libSDL2_ttf.dll.a" />
+			<Add directory="lib" />
+		</Linker>
 		<Unit filename="src/jlppc/regimys/enums/Caractere.cpp" />
 		<Unit filename="src/jlppc/regimys/enums/Caractere.hpp" />
 		<Unit filename="src/jlppc/regimys/enums/Enums.cpp" />
@@ -46,6 +59,10 @@
 		<Unit filename="src/jlppc/regimys/evolution/Evolution.hpp" />
 		<Unit filename="src/jlppc/regimys/evolution/evolutionInclude.hxx" />
 		<Unit filename="src/jlppc/regimys/evolution/evolutions.hpp" />
+		<Unit filename="src/jlppc/regimys/gui/Elements.cpp" />
+		<Unit filename="src/jlppc/regimys/gui/Elements.hpp" />
+		<Unit filename="src/jlppc/regimys/gui/MainFrame.cpp" />
+		<Unit filename="src/jlppc/regimys/gui/MainFrame.hpp" />
 		<Unit filename="src/jlppc/regimys/objects/Attaque.cpp" />
 		<Unit filename="src/jlppc/regimys/objects/Attaque.hpp" />
 		<Unit filename="src/jlppc/regimys/objects/Attaques.cpp" />
@@ -54,11 +71,6 @@
 		<Unit filename="src/jlppc/regimys/objects/Espece.hpp" />
 		<Unit filename="src/jlppc/regimys/objects/Pokemon.cpp" />
 		<Unit filename="src/jlppc/regimys/objects/Pokemon.hpp" />
-		<Unit filename="src/jlppc/regimys/objects/RegimysObject.cpp">
-			<Option compile="0" />
-			<Option link="0" />
-		</Unit>
-		<Unit filename="src/jlppc/regimys/objects/RegimysObject.hpp" />
 		<Unit filename="src/jlppc/regimys/objects/item/CT.cpp" />
 		<Unit filename="src/jlppc/regimys/objects/item/CT.hpp" />
 		<Unit filename="src/jlppc/regimys/objects/item/IHeal.cpp" />

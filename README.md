@@ -13,8 +13,10 @@ Bienvenue sur le projet de fan-game pokemon Regimys! Plus d'infos sur le wiki ou
 Prochaines versions :<ul>
 <li>Alpha 0.08 : Quand le jeu sera transposé en C++, avec un début de graphique.</li>
 <li>Alpha 0.09 : Quand la scene d'intro du jeu et les combats seront O.K en C++</li>
-<li>Alpha 0.1 : Correction de tous les bugs possibles dans la partie graphique, ajout de sons, ajout du launcher, SUPPRESSION DE LA VERSION JAVA!!!</li></ul>
+<li>Alpha 0.1 : Correction de tous les bugs possibles dans la partie graphique, ajout de sons, SUPPRESSION DE LA VERSION JAVA!!!</li><a href="https://github.com/jlppc/Projet-Pokemon-Regimys/wiki/ROADMAP">Voir la ROADMAP détaillé</a><br/>
+</ul>
 <br/>
+
 
 Informations generales:<br/>
 Regimys est un projet de fan-game pokémon imaginé en 2012 et débuté en septembre 2016. 
