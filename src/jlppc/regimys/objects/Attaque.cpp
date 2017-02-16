@@ -2,7 +2,7 @@
 #include "Attaque.hpp"
 #include "Pokemon.hpp"
 
-Attaque::Attaque(string nom, int puissance, int type, int precision, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite) {
+Attaque::Attaque(std::string nom, int puissance, int type, int precision, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite) {
 	this->nom = nom;
 	this->puissance = puissance;
 	this->type = type;

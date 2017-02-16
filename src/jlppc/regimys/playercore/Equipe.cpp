@@ -3,7 +3,7 @@
 
 Pokemon Equipe::PNULL = Pokemon();
 
-Equipe::Equipe(string nom) {
+Equipe::Equipe(std::string nom) {
 	this->nom = nom;
 }
 

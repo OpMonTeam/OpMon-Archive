@@ -1,0 +1,7 @@
+function SetBuildOptions(base)
+{
+	if ( "LibFinder" in getroottable() )
+	{
+		LibFinder.SetupTarget(base);
+	}
+}

@@ -1,5 +1,7 @@
 #include "File.hpp"
 
+using namespace std;
+
 RFile::RFile(string path){
     this->path = path;
 }
