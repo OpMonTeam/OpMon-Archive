@@ -2,10 +2,11 @@
 #include "IPokeball.hpp"
 #include "IHeal.hpp"
 #include "CT.hpp"
+#include "Item.hpp"
 
 using namespace std;
 
-Item* Item::itemsLst[ITEM_NUMBER] = {NULL};
+Item* Item::itemsLst[ITEM_NUMBER] = {0};
 
 void initItems(){
 	Item::itemsLst[0] = new I_Heal("Baie Oran", true, true, true, BagCat::BAIES, 10, Status::AUCUN, false, 0);

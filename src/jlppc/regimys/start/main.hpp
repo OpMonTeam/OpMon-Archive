@@ -14,7 +14,8 @@ Contient des fonctions necessaires au programme
 #include "../playercore/Player.hpp"
 #include <sstream>
 
-
+extern std::ofstream rlog;
+extern std::ofstream rerrLog;
 /**
 Methode a appeler lorsqu'une erreur peut intervenir dans le programme
 errorName : Le nom de l'erreur
@@ -31,6 +32,8 @@ Namespace contenant des variables utiles au fonctionnement du jeu
 */
 namespace Main{
     void main();
+    extern long startTime;
+
 }
 /**
 Methode permettant de demmarer le jeu
