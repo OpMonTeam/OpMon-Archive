@@ -154,6 +154,7 @@ namespace MainFrame {
         bool continuer = true;
         long ancientTick = 0;
         string txt[] = {"Hey, salut! Ceci est actuellement", " un test.", "C'est cool hein?", " "};//Deux cases == Deux lignes. 3 cases == Deux lignes + un nouveau dialogue
+        int sizeOfTxt = 4;
         string txtEnCours[] = {string(" "), string(" ")};
         SDL_Texture *textUre = NULL;
         SDL_Surface *sfce = NULL;
@@ -171,7 +172,9 @@ namespace MainFrame {
                 case SDL_KEYDOWN:
                     switch(events.key.keysym.sym){
                     case SDLK_SPACE:
-                        changeDialog = false;
+                        if(dialog != sizeOfTxt){
+                            changeDialog = false;
+                        }
                         break;
                     case SDLK_ESCAPE:
                         continuer = false;
