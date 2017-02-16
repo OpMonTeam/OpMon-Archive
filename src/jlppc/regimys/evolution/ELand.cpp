@@ -3,7 +3,7 @@
 
 
 namespace Evolutions{
-E_Land::E_Land(int evo, string lieu) : Evolution(evo) {
+E_Land::E_Land(int evo, std::string lieu) : Evolution(evo) {
 
 }
 }

@@ -5,6 +5,8 @@
 
 #include "item/IHeal.hpp"
 
+using namespace std;
+
 Pokemon::~Pokemon(){
 	for(int i = 0; i < 4; i++){
 		delete(attaques[i]);
@@ -250,7 +252,7 @@ int Pokemon::win(Pokemon const& vaincu) {
 void Pokemon::getEvs(Pokemon const& vaincu){
 	if (!((atkEV + defEV + pvEV + atkSpeEV + defSpeEV + vitEV) > 510)) {
             vector<int> statsVaincu;
-            for(unsigned int i = 0; i < vaincu.espece.getEvSize(); i++){
+            for(unsigned int i = 0; i < vaincu.espece->getEvSize(); i++){
                 statsVaincu.push_back(vaincu.espece->getEv()[i]);
             }
 
