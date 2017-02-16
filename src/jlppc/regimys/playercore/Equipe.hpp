@@ -16,7 +16,6 @@ Classe permettant de contenir l'equipe d'un joueur ou d'un dresseur.
 class Equipe{
 public:
 	Equipe(std::string nom);
-	Equipe(){};
 	std::string getNom() const {return nom;}
 	Pokemon* getEquipe()  {return equipe;}
 	void heal();
