@@ -10,7 +10,7 @@
 				<Option output="exe/Projet-Pokemon-Regimys-Debug" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="exe/" />
 				<Option object_output="obj/Debug/" />
-				<Option type="1" />
+				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
@@ -36,13 +36,16 @@
 			<Add directory="include" />
 		</Compiler>
 		<Linker>
-			<Add library="C:/Users/multimedia1/Downloads/Codeblocks/MinGW/lib/libmingw32.a" />
+			<Add library="C:/Program Files (x86)/CodeBlocks/MinGW/lib/libmingw32.a" />
 			<Add library="lib/libSDL2main.a" />
 			<Add library="lib/libSDL2.dll.a" />
 			<Add library="lib/libSDL2_image.dll.a" />
 			<Add library="lib/libSDL2_ttf.dll.a" />
 			<Add directory="lib" />
 		</Linker>
+		<Unit filename="resources.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
 		<Unit filename="src/jlppc/regimys/enums/Caractere.cpp" />
 		<Unit filename="src/jlppc/regimys/enums/Caractere.hpp" />
 		<Unit filename="src/jlppc/regimys/enums/Enums.cpp" />

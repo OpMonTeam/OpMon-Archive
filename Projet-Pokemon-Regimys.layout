@@ -2,14 +2,19 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
+	<File name="resources.rc" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="25" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\jlppc\regimys\gui\Elements.hpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="234" topLine="0" />
+		</Cursor>
+	</File>
 	<File name="src\jlppc\regimys\playercore\Equipe.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="592" topLine="26" />
-		</Cursor>
-	</File>
-	<File name="src\jlppc\regimys\playercore\Player.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="55" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="src\jlppc\regimys\playercore\Player.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -17,44 +22,44 @@
 			<Cursor1 position="1019" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src\jlppc\regimys\playercore\Equipe.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="397" topLine="6" />
-		</Cursor>
-	</File>
 	<File name="src\jlppc\regimys\start\Initializer.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="58193" topLine="447" />
 		</Cursor>
 	</File>
-	<File name="src\jlppc\regimys\start\main.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1061" topLine="18" />
-		</Cursor>
-	</File>
-	<File name="src\jlppc\regimys\start\main.hpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="832" topLine="3" />
-		</Cursor>
-	</File>
-	<File name="src\jlppc\regimys\gui\Elements.hpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="214" topLine="7" />
-		</Cursor>
-	</File>
 	<File name="src\jlppc\regimys\gui\MainFrame.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="4028" topLine="81" />
-		</Cursor>
-	</File>
-	<File name="src\jlppc\regimys\objects\item\Item.hpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1267" topLine="20" />
+			<Cursor1 position="7352" topLine="145" />
 		</Cursor>
 	</File>
 	<File name="src\jlppc\regimys\gui\MainFrame.hpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="266" topLine="7" />
+			<Cursor1 position="696" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\jlppc\regimys\playercore\Player.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="55" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\jlppc\regimys\playercore\Equipe.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="397" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="src\jlppc\regimys\start\main.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2823" topLine="64" />
+		</Cursor>
+	</File>
+	<File name="src\jlppc\regimys\objects\item\Item.hpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1267" topLine="2" />
+		</Cursor>
+	</File>
+	<File name="src\jlppc\regimys\start\main.hpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="832" topLine="0" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

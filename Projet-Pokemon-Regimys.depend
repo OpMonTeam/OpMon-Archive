@@ -422,7 +422,7 @@
 	"../objects/Pokemon.hpp"
 	"../../utils/Class.hpp"
 
-1486989921 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\pokemon.hpp
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\pokemon.hpp
 	<iostream>
 	<cmath>
 	"../enums/Caractere.hpp"
@@ -454,7 +454,7 @@
 	"Item.hpp"
 	"../Attaque.hpp"
 
-1486997133 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\item.hpp
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\item.hpp
 	<iostream>
 	"../../enums/Enums.hpp"
 	"../../../utils/Class.hpp"
@@ -472,7 +472,7 @@
 	<iostream>
 	"Item.hpp"
 
-1486989921 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\evolution\eland.cpp
+1487262331 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\evolution\eland.cpp
 	"evolutions.hpp"
 
 1486808086 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\evolution\eland.hpp
@@ -514,7 +514,7 @@
 1486849424 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\evolution\evolution.cpp
 	"Evolution.hpp"
 
-1486996058 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\attaque.cpp
+1487262331 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\attaque.cpp
 	"Attaque.hpp"
 	"Pokemon.hpp"
 
@@ -528,13 +528,13 @@
 	"Attaque.hpp"
 	"../../utils/Class.hpp"
 
-1486996087 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\espece.cpp
+1487262331 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\espece.cpp
 	"Espece.hpp"
 	"../evolution/Evolution.hpp"
 	"../evolution/evolutions.hpp"
 	"../start/main.hpp"
 
-1487082453 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\main.hpp
+1487264573 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\main.hpp
 	<iostream>
 	<fstream>
 	"../../utils/File.hpp"
@@ -546,13 +546,13 @@
 	<fstream>
 	"Class.hpp"
 
-1487073988 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\playercore\player.hpp
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\playercore\player.hpp
 	<iostream>
 	<vector>
 	"Equipe.hpp"
 	"../objects/item/Item.hpp"
 
-1487073843 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\playercore\equipe.hpp
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\playercore\equipe.hpp
 	<iostream>
 	"../objects/Pokemon.hpp"
 
@@ -566,16 +566,16 @@
 	"Item.hpp"
 	<iostream>
 
-1486996094 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\ipokeball.cpp
+1487262331 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\ipokeball.cpp
 	"IPokeball.hpp"
 
-1486996370 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\item.cpp
+1487262331 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\item.cpp
 	"IPokeball.hpp"
 	"IHeal.hpp"
 	"CT.hpp"
 	"Item.hpp"
 
-1486989921 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\pokemon.cpp
+1487262331 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\pokemon.cpp
 	"Pokemon.hpp"
 	"../start/main.hpp"
 	"../evolution/Evolution.hpp"
@@ -588,10 +588,10 @@
 1486808086 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\regimysobject.hpp
 	"../../utils/Class.hpp"
 
-1487074163 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\playercore\equipe.cpp
+1487262331 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\playercore\equipe.cpp
 	"Equipe.hpp"
 
-1486989921 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\playercore\player.cpp
+1487262331 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\playercore\player.cpp
 	"Player.hpp"
 	"../start/main.hpp"
 
@@ -601,11 +601,11 @@
 1486986111 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\utils\comparaisons.cpp
 	"Comparaisons.hpp"
 
-1486989922 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\utils\comparaisons.hpp
+1487262149 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\utils\comparaisons.hpp
 	<cstdarg>
 	<iostream>
 
-1486996143 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\utils\file.cpp
+1487262331 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\utils\file.cpp
 	"File.hpp"
 
 1486849424 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\utils\numberedarray.cpp
@@ -617,7 +617,7 @@
 1486849424 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\enums\enums.cpp
 	"Enums.hpp"
 
-1487243110 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\main.cpp
+1487267742 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\main.cpp
 	<iostream>
 	<fstream>
 	<cstdlib>
@@ -634,6 +634,7 @@
 	<SDL/SDL_image.h>
 	"main.hpp"
 	"../gui/MainFrame.hpp"
+	"StringKeys.hpp"
 	<ctime>
 
 1486986012 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\evolution\evolutioninclude.hxx
@@ -646,21 +647,22 @@
 	"IHeal.hpp"
 	"Item.hpp"
 
-1486996272 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\evolution\evolutions.hpp
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\evolution\evolutions.hpp
 	<iostream>
 	"../objects/item/Item.hpp"
 	"Evolution.hpp"
 
-1487259609 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\mainframe.cpp
+1487267483 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\mainframe.cpp
 	<iostream>
 	"../start/main.hpp"
 	<SDL/SDL.h>
 	<SDL/SDL_image.h>
 	<SDL/SDL_ttf.h>
 	<cstring>
+	"../start/StringKeys.hpp"
 	"../start/main.hpp"
 
-1487236221 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\mainframe.hpp
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\mainframe.hpp
 	<SDL/SDL.h>
 	<SDL/SDL_ttf.h>
 	"Elements.hpp"
@@ -984,19 +986,19 @@
 	"begin_code.h"
 	"close_code.h"
 
-1487074671 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\initializer.cpp
+1487262331 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\initializer.cpp
 	"Initializer.hpp"
 	"../enums/Enums.hpp"
 	"../objects/Attaques.hpp"
 
-1486998609 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\initializer.hpp
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\initializer.hpp
 	<iostream>
 	<vector>
 	"../../utils/NumberedArray.hpp"
 	"../objects/Espece.hpp"
 	"../evolution/evolutions.hpp"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl.h
 	"SDL_main.h"
 	"SDL_stdinc.h"
 	"SDL_assert.h"
@@ -1027,12 +1029,12 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_main.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_main.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_stdinc.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_stdinc.h
 	"SDL_config.h"
 	<sys/types.h>
 	<stdio.h>
@@ -1060,34 +1062,34 @@
 	<stdlib.h>
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_config.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_config.h
 	"SDL_platform.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_platform.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_platform.h
 	"AvailabilityMacros.h"
 	"TargetConditionals.h"
 	<winapifamily.h>
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\begin_code.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\begin_code.h
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\close_code.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\close_code.h
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_assert.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_assert.h
 	"SDL_config.h"
 	"begin_code.h"
 	<signal.h>
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_atomic.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_atomic.h
 	"SDL_stdinc.h"
 	"SDL_platform.h"
 	"begin_code.h"
 	<mbarrier.h>
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_audio.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_audio.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_endian.h"
@@ -1097,24 +1099,24 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_error.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_error.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_endian.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_endian.h
 	"SDL_stdinc.h"
 	<endian.h>
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_mutex.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_mutex.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_thread.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_thread.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_atomic.h"
@@ -1123,18 +1125,18 @@
 	<process.h>
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_rwops.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_rwops.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_clipboard.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_clipboard.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_cpuinfo.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_cpuinfo.h
 	"SDL_stdinc.h"
 	<intrin.h>
 	<intrin.h>
@@ -1146,7 +1148,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_events.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_events.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
@@ -1160,7 +1162,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_video.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_video.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -1168,13 +1170,13 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_pixels.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_pixels.h
 	"SDL_stdinc.h"
 	"SDL_endian.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_rect.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_rect.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_pixels.h"
@@ -1182,7 +1184,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_surface.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_surface.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -1191,11 +1193,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_blendmode.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_blendmode.h
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_keyboard.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_keyboard.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_keycode.h"
@@ -1203,27 +1205,27 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_keycode.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_keycode.h
 	"SDL_stdinc.h"
 	"SDL_scancode.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_scancode.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_scancode.h
 	"SDL_stdinc.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_mouse.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_mouse.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_joystick.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_joystick.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_gamecontroller.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_gamecontroller.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_rwops.h"
@@ -1231,11 +1233,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_quit.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_quit.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_gesture.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_gesture.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
@@ -1243,60 +1245,60 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_touch.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_touch.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_filesystem.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_filesystem.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_haptic.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_haptic.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_joystick.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_hints.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_hints.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_loadso.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_loadso.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_log.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_log.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_messagebox.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_messagebox.h
 	"SDL_stdinc.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_power.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_power.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_render.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_render.h
 	"SDL_stdinc.h"
 	"SDL_rect.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_system.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_system.h
 	"SDL_stdinc.h"
 	"SDL_keyboard.h"
 	"SDL_render.h"
@@ -1304,31 +1306,31 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_timer.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_timer.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476935975 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_version.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_version.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1487084194 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\elements.cpp
+1487262331 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\elements.cpp
 	"Elements.hpp"
 
-1487228895 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\elements.hpp
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\elements.hpp
 	<SDL/SDL.h>
 	<iostream>
 
-1451800373 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_image.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_image.h
 	"SDL.h"
 	"SDL_version.h"
 	"begin_code.h"
 	"close_code.h"
 
-1454362933 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_ttf.h
+1487262331 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_ttf.h
 	"SDL.h"
 	"begin_code.h"
 	"close_code.h"
@@ -1907,5 +1909,14 @@
 1487160498 source:c:\users\multimedia1\downloads\ppr\src\jlppc\utils\utils.cpp
 	"Utils.hpp"
 
-1487259288 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\resources.rc
+1487262331 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\resources.rc
+
+1487268393 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\stringkeys.hpp
+	<iostream>
+	<vector>
+	<fstream>
+
+1487269353 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\stringkeys.cpp
+	"StringKeys.hpp"
+	"main.hpp"
 
