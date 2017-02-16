@@ -101,6 +101,8 @@ int main(int argc, char *argv[])
         if(str == "--version"){
             cout << "Pokémon Regimys version " << Main::versionS << endl;
             exit(0);
+        }else{
+            cout << "Arguments ignorés, passage a la suite." << endl;
         }
     }
     return Main::starts();
