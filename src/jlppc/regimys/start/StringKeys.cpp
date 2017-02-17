@@ -25,7 +25,6 @@ namespace StringKeys {
 			if (!(read.substr(0, read.size() - (read.size() - 3)) == "key")) {
 				break;
 			}
-			rlog << read << endl;
 			keys.push_back(split(read, '=', 0));
 			strings.push_back(split(read, '=', 1));
 		}
