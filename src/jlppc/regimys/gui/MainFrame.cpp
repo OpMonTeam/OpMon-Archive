@@ -152,13 +152,17 @@ namespace MainFrame {
         rlog << "[T = " << time(NULL) - Main::startTime << "] - Creation des variables utilitaires" << endl;
         bool continuer = true;
         long ancientTick = 0;
-        string txt[] = {kget("jlppc.dialog.start.1"), kget("jlppc.dialog.start.2"), kget("jlppc.dialog.start.3"), kget("jlppc.dialog.start.4"), kget("jlppc.dialog.start.5"), kget("jlppc.dialog.start.6"), kget("jlppc.dialog.start.7"), kget("jlppc.dialog.start.8")};//Deux cases == Deux lignes. 3 cases == Deux lignes + un nouveau dialogue
+        //Phase 0
+        string txtP0[] = {kget("jlppc.dialog.start.1"), kget("jlppc.dialog.start.2"), kget("jlppc.dialog.start.3"), kget("jlppc.dialog.start.4"), kget("jlppc.dialog.start.5"), kget("jlppc.dialog.start.6"), kget("jlppc.dialog.start.7"), kget("jlppc.dialog.start.8")};//Deux cases == Deux lignes. 3 cases == Deux lignes + un nouveau dialogue
+        //Phase 1
+        //TODO
         int sizeOfTxt = 8;
         string txtEnCours[] = {string(" "), string(" ")};
         SDL_Texture *textUre = NULL;
         SDL_Surface *sfce = NULL;
         int line = 0, i = 0, dialog = 0;
         bool changeDialog = false;
+        int phase = 0;
         rlog << "[T = " << time(NULL) - Main::startTime << "] - Début de la boucle principale." << endl;
         while(continuer){
             if((SDL_GetTicks() - ancientTick) >= 100){
@@ -181,8 +185,7 @@ namespace MainFrame {
                             i = 0;
                             changeDialog = true;
                             SDL_Delay(50);
-                        }
-                        else if(dialog != sizeOfTxt){
+                        }else if(dialog != sizeOfTxt){
                             changeDialog = false;
                         }
 
@@ -199,9 +202,10 @@ namespace MainFrame {
                         }
                         break;
                 }
-                if(!changeDialog){
-                    if(!(i >= txt[line].size())){
-                        txtEnCours[line]+=txt[line + dialog].c_str()[i];
+                if(phase == 0){
+                    if(!changeDialog){
+                    if(!(i >= txtP0[line].size())){
+                        txtEnCours[line]+=txtP0[line + dialog].c_str()[i];
                         printText(renderer, txtEnCours[0], txtEnCours[1]);
                         i++;
                     }else{
@@ -219,6 +223,8 @@ namespace MainFrame {
                         }
                     }
                 }
+                }
+
                 SDL_RenderPresent(renderer);
 
 
