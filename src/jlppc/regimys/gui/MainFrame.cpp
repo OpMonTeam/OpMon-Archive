@@ -251,7 +251,7 @@ namespace MainFrame {
 
 				if (phase == 0) {
 					if (!changeDialog) {
-						if (!(i >= txtP0[line].size())) {
+						if (!(i >= txtP0[line + dialog].size())) {
 							txtEnCours[line] += txtP0[line + dialog].c_str()[i];
 							printText(renderer, txtEnCours[0], txtEnCours[1]);
 							i++;
