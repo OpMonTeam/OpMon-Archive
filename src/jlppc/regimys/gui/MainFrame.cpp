@@ -8,7 +8,6 @@
 #include "../start/StringKeys.hpp"
 #include "../start/main.hpp"
 
-#define WINDOWS
 #define rLog rlog
 #define charLineDialog 33
 #define kget StringKeys::get
@@ -51,8 +50,6 @@ namespace MainFrame {
 
             SDL_RenderCopy(renderer, line2, NULL, &posLineTwo);
             SDL_RenderCopy(renderer, textUre, NULL, &textPlace);
-
-            SDL_RenderPresent(renderer);
             SDL_DestroyTexture(textUre);
             SDL_DestroyTexture(line2);
             SDL_FreeSurface(sfce);
@@ -92,6 +89,7 @@ namespace MainFrame {
         }
 		init = true;
 		frame = SDL_CreateWindow("Pokémon Regimys", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 512, 512, SDL_WINDOW_SHOWN);
+
 		renderer = SDL_CreateRenderer(frame, -1, SDL_RENDERER_ACCELERATED);
 		if(frame == NULL || renderer == NULL){
             rerrLog << "Erreur d'ouverture de la fenetre ou du renderer." << endl;
@@ -154,8 +152,8 @@ namespace MainFrame {
         rlog << "[T = " << time(NULL) - Main::startTime << "] - Creation des variables utilitaires" << endl;
         bool continuer = true;
         long ancientTick = 0;
-        string txt[] = {kget("jlppc.dialog.start.1"), kget("jlppc.dialog.start.2"), kget("jlppc.dialog.start.3"), " "};//Deux cases == Deux lignes. 3 cases == Deux lignes + un nouveau dialogue
-        int sizeOfTxt = 4;
+        string txt[] = {kget("jlppc.dialog.start.1"), kget("jlppc.dialog.start.2"), kget("jlppc.dialog.start.3"), kget("jlppc.dialog.start.4"), kget("jlppc.dialog.start.5"), kget("jlppc.dialog.start.6"), kget("jlppc.dialog.start.7"), kget("jlppc.dialog.start.8")};//Deux cases == Deux lignes. 3 cases == Deux lignes + un nouveau dialogue
+        int sizeOfTxt = 8;
         string txtEnCours[] = {string(" "), string(" ")};
         SDL_Texture *textUre = NULL;
         SDL_Surface *sfce = NULL;
@@ -173,14 +171,33 @@ namespace MainFrame {
                 case SDL_KEYDOWN:
                     switch(events.key.keysym.sym){
                     case SDLK_SPACE:
-                        if(dialog != sizeOfTxt){
+                        if(changeDialog == false){
+                            printText(renderer, txt[dialog], txt[dialog + 1]);
+                            txtEnCours[0] = string(" ");
+                            txtEnCours[1] = string(" ");
+                            line = 0;
+                            dialog++;
+                            dialog++;
+                            i = 0;
+                            changeDialog = true;
+                            SDL_Delay(50);
+                        }
+                        else if(dialog != sizeOfTxt){
                             changeDialog = false;
                         }
+
                         break;
                     case SDLK_ESCAPE:
                         continuer = false;
                         break;
                     }
+                    break;
+                    case SDL_WINDOWEVENT:
+                        switch(events.window.event){
+                        case SDL_WINDOWEVENT_RESIZED:
+                            break;
+                        }
+                        break;
                 }
                 if(!changeDialog){
                     if(!(i >= txt[line].size())){
@@ -202,6 +219,7 @@ namespace MainFrame {
                         }
                     }
                 }
+                SDL_RenderPresent(renderer);
 
 
             }else{
