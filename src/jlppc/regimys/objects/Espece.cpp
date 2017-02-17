@@ -3,44 +3,44 @@
 #include "../evolution/evolutions.hpp"
 #include "../start/main.hpp"
 
-Espece::~Espece(){
+Espece::~Espece() {
 	delete(evolution);
 	free(EVgiven);
 }
 
-Espece::Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, std::string name, int type1, int type2,int maniereEvolution/*En fait faut mettre 0, il est la pour un souci de compatibilit�*/, int niveauEvolution, Evolution *evolType, std::vector<int> EVGiven, float taille, float poids, std::string entreePokedex, int expGiven,int expMax, int tauxDeCapture, int numeroPokedex){
-    if(atk < 0 || def < 0 || atkSpe < 0 || defSpe < 0 || vit < 0 || pv < 0){
-			gererErreur("Stats < 0 Espece<Initializer>", true);
-		}
-		if(expGiven < 0){
-			gererErreur("expGiven < 0 Espece<Initializer>",true);
-		}
-		numeroPokedex = 0;
-		this->tauxDeCapture = tauxDeCapture;
-		this->baseAtk = atk;
-		this->baseDef = def;
-		this->baseAtkSpe = atkSpe;
-		this->baseDefSpe = defSpe;
-		this->baseVit = vit;
-		this->nom = name;
-		this->basePV = pv;
-		this->type1 = type1;
-		this->type2 = type2;
-		this->niveauEvolution = niveauEvolution;
-		this->evolType = evolType;
-		this->evolution = this->evolType->getEvolution();
-		this->poids = poids;
-		this->taille = taille;
-		this->entreePokedex = entreePokedex;
-		this->expGiven = expGiven;
-        EVgiven = (int*)malloc( EVGiven.size() * sizeof(int) );
-        evSize = EVGiven.size();
-		for(unsigned int i = 0; i < EVGiven.size(); i++){
-            EVgiven[i] = EVGiven[i];
-		}
+Espece::Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, std::string name, int type1, int type2, int maniereEvolution/*En fait faut mettre 0, il est la pour un souci de compatibilit�*/, int niveauEvolution, Evolution *evolType, std::vector<int> EVGiven, float taille, float poids, std::string entreePokedex, int expGiven, int expMax, int tauxDeCapture, int numeroPokedex) {
+	if (atk < 0 || def < 0 || atkSpe < 0 || defSpe < 0 || vit < 0 || pv < 0) {
+		gererErreur("Stats < 0 Espece<Initializer>", true);
+	}
+	if (expGiven < 0) {
+		gererErreur("expGiven < 0 Espece<Initializer>", true);
+	}
+	numeroPokedex = 0;
+	this->tauxDeCapture = tauxDeCapture;
+	this->baseAtk = atk;
+	this->baseDef = def;
+	this->baseAtkSpe = atkSpe;
+	this->baseDefSpe = defSpe;
+	this->baseVit = vit;
+	this->nom = name;
+	this->basePV = pv;
+	this->type1 = type1;
+	this->type2 = type2;
+	this->niveauEvolution = niveauEvolution;
+	this->evolType = evolType;
+	this->evolution = this->evolType->getEvolution();
+	this->poids = poids;
+	this->taille = taille;
+	this->entreePokedex = entreePokedex;
+	this->expGiven = expGiven;
+	EVgiven = (int *)malloc( EVGiven.size() * sizeof(int) );
+	evSize = EVGiven.size();
+	for (unsigned int i = 0; i < EVGiven.size(); i++) {
+		EVgiven[i] = EVGiven[i];
+	}
 
-		this->expMax = expMax;
-		switch (this->expMax) {
+	this->expMax = expMax;
+	switch (this->expMax) {
 		case 800000:
 			courbe = CourbeExp::RAPIDE;
 			break;
@@ -61,16 +61,16 @@ Espece::Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, std::s
 			break;
 		default:
 			courbe = CourbeExp::MOYENNE;
-        }
-        this->numeroPokedex = numeroPokedex;
+	}
+	this->numeroPokedex = numeroPokedex;
 
 }
 
-void Espece::checkEvol(){
-    evolType->checkEvo();
-    this->evolution = evolType->getEvolution();
+void Espece::checkEvol() {
+	evolType->checkEvo();
+	this->evolution = evolType->getEvolution();
 }
 
-void Espece::checkAtkLvls(){
-    //this->atksByLevels = Initializer::atkPokeLvl[pokedexNumberInit];
+void Espece::checkAtkLvls() {
+	//this->atksByLevels = Initializer::atkPokeLvl[pokedexNumberInit];
 }

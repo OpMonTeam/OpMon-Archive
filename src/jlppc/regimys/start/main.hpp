@@ -30,9 +30,9 @@ int quit(int retourne);
 /**
 Namespace contenant des variables utiles au fonctionnement du jeu
 */
-namespace Main{
-    void main();
-    extern long startTime;
+namespace Main {
+	void main();
+	extern long startTime;
 
 }
 /**

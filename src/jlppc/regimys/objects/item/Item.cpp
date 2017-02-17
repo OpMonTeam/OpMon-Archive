@@ -6,14 +6,14 @@
 
 using namespace std;
 
-Item* Item::itemsLst[ITEM_NUMBER] = {0};
+Item *Item::itemsLst[ITEM_NUMBER] = {0};
 
-void initItems(){
+void initItems() {
 	Item::itemsLst[0] = new I_Heal("Baie Oran", true, true, true, BagCat::BAIES, 10, Status::AUCUN, false, 0);
 	Item::itemsLst[1] = new I_Heal("Baie Sitrus", true, true, true, BagCat::BAIES, 30, Status::AUCUN, false, 1);
 	Item::itemsLst[2] = new I_Heal("Baie Mepo", true, true, true, BagCat::BAIES, 10, false, 2);
 	Item::itemsLst[3] = new I_Heal("Baie Prine", true, true, true, BagCat::BAIES, 0, Status::POISON, true, 3);
-	Item::itemsLst[4] = new I_Heal("Baie Willia",true, true, true, BagCat::BAIES, 0, Status::GEL, false, 4);
+	Item::itemsLst[4] = new I_Heal("Baie Willia", true, true, true, BagCat::BAIES, 0, Status::GEL, false, 4);
 	Item::itemsLst[5] = new I_Heal("Baie Fraive", true, true, true, BagCat::BAIES, 0, Status::BRULURE, false, 5);
 	//Jusqu'a 24 : Baies (Pas de baies de soin conditionnel, pas de baies autres
 	Item::itemsLst[25] = new I_Heal("Défense +", Stats::DEF, 25);
@@ -49,61 +49,61 @@ void initItems(){
 
 
 Item::Item(string nom, bool usable, bool usableInFight, bool givable, int categorie, int id) {
-    this->nom = nom;
-    this->usable = usable;
-    this->usableInFight = usableInFight;
-    this->id = id;
-    this->givable = givable;
-    this->categorie = categorie;
+	this->nom = nom;
+	this->usable = usable;
+	this->usableInFight = usableInFight;
+	this->id = id;
+	this->givable = givable;
+	this->categorie = categorie;
 }
 
- Item* Item::getItem(string const& name)  {
-    for(unsigned int i = 0; i < ITEM_NUMBER; i++){
-        if(itemsLst[i]->getNom() == name){
-            return itemsLst[i];
-        }
-    }
-    return NULL;
+Item *Item::getItem(string const &name)  {
+	for (unsigned int i = 0; i < ITEM_NUMBER; i++) {
+		if (itemsLst[i]->getNom() == name) {
+			return itemsLst[i];
+		}
+	}
+	return NULL;
 }
 
- Item* Item::getItem(int id2)  {
-	 unsigned int id = id2;
-    if(!(id < 0 || id > ITEM_NUMBER)){
-        return itemsLst[id];
-    }else{
-        return NULL;
-    }
+Item *Item::getItem(int id2)  {
+	unsigned int id = id2;
+	if (!(id < 0 || id > ITEM_NUMBER)) {
+		return itemsLst[id];
+	} else {
+		return NULL;
+	}
 }
 
- int Item::searchItem(Item *toSearch)  {
-    for(unsigned int i = 0; i < ITEM_NUMBER;i++){
-        if(toSearch == itemsLst[i]){
-            return i;
-        }
-    }
-    return -1;
+int Item::searchItem(Item *toSearch)  {
+	for (unsigned int i = 0; i < ITEM_NUMBER; i++) {
+		if (toSearch == itemsLst[i]) {
+			return i;
+		}
+	}
+	return -1;
 }
 
-bool Item::operator==(Item const& b) const{
-    if (categorie != b.categorie) {
-			return false;
-		}
-		if (givable != b.givable) {
-			return false;
-		}
-		if (!(nom == b.nom)) {
-			return false;
-		}
-		if (usable != b.usable) {
-			return false;
-		}
-		if (usableInFight != b.usableInFight) {
-			return false;
-		}
-		if(id != b.id){
-            return false;
-		}
-        return true;
+bool Item::operator==(Item const &b) const {
+	if (categorie != b.categorie) {
+		return false;
+	}
+	if (givable != b.givable) {
+		return false;
+	}
+	if (!(nom == b.nom)) {
+		return false;
+	}
+	if (usable != b.usable) {
+		return false;
+	}
+	if (usableInFight != b.usableInFight) {
+		return false;
+	}
+	if (id != b.id) {
+		return false;
+	}
+	return true;
 }
 
 
