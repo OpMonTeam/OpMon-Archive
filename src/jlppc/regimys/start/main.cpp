@@ -1,22 +1,28 @@
+#include "main.hpp"
+
 #include <iostream>
 #include <fstream>
+#include <string>
+
 #include <cstdlib>
+#include <ctime>
+
+#include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
+
 #include "../objects/item/Item.hpp"
+#include "../objects/item/itemInclude.hxx"
 #include "../playercore/Player.hpp"
 #include "../playercore/Equipe.hpp"
 #include "../evolution/evolutionInclude.hxx"
 #include "../../utils/Class.hpp"
 #include "../../utils/File.hpp"
-#include "../objects/item/itemInclude.hxx"
-#include <string>
 #include "Initializer.hpp"
-#include <SDL/SDL.h>
-#include <SDL/SDL_image.h>
-#include "main.hpp"
-#include "../gui/MainFrame.hpp"
 #include "StringKeys.hpp"
-#include <ctime>
+#include "../gui/MainFrame.hpp"
+
 #define WINDOWS
+
 using namespace std;
 
 #ifdef WINDOWS
@@ -27,10 +33,10 @@ using namespace std;
 	ofstream rlog = ofstream("logs/log.txt");
 	ofstream rerrLog = ofstream("logs/errLog.txt")
 #endif // WINDOWS
+
 namespace Main {
 
 	ostringstream oss;
-	int starts();
 	bool connected = false;
 	string trainers[] = {"Brice", "Evan", "Mael", "Jlppc", "Red", "Blue", "Nikolai", "N", "Belladonis", "Aristote", "Giovanni", "Flora", "Silver", "Jules Cesar", "Gwendal", "Brahim"};
 	float version = 0.07;
@@ -39,13 +45,16 @@ namespace Main {
 	extern Player joueur;
 	extern RFile playerSave;
 	extern RFile params;
-	long startTime = time(NULL);
+    #ifdef WINDOWS
+        string sep = "\\";
+    #else
+        string sep = "/";
+    #endif
+    long startTime = time(NULL);
 
-#ifdef WINDOWS
-	string sep = "\\";
-#else
-	string sep = "/";
-#endif
+
+	int starts();
+
 
 	int starts() {
 		if (!rlog) {
