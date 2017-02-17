@@ -14,12 +14,12 @@ Contient la définition de la classe I_Pokeball
 Définit un item de type Pokeball
 */
 class I_Pokeball: public Item {
-public:
-	I_Pokeball(std::string nom, float tauxCapture, int ID);
-	float getTauxCapture() const{return tauxCapture;}
-	int itemTypeID = 2;
-private:
-	float tauxCapture;
+	public:
+		I_Pokeball(std::string nom, float tauxCapture, int ID);
+		float getTauxCapture() const {return tauxCapture;}
+		int itemTypeID = 2;
+	private:
+		float tauxCapture;
 };
 
 #endif /* SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_IPOKEBALL_HPP_ */
