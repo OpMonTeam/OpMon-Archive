@@ -96,6 +96,8 @@ namespace MainFrame {
 			rlog << "Une erreur fatale s'est produite. Merci de consulter errLog.txt" << endl;
 			gererErreur(SDL_GetError(), true);
 		}
+		SDL_Joystick *manette = SDL_JoystickOpen(0);
+
 		SDL_Rect fondP;
 		SDL_Rect profP;
 		SDL_Texture *fondT;
@@ -163,20 +165,27 @@ namespace MainFrame {
 		int line = 0, i = 0, dialog = 0;
 		bool changeDialog = false;
 		int phase = 0;
+		bool joypressed = false;
 		rlog << "[T = " << time(NULL) - Main::startTime << "] - Début de la boucle principale." << endl;
+
 		while (continuer) {
 			if ((SDL_GetTicks() - ancientTick) >= 100) {
+
 				ancientTick = SDL_GetTicks();
+
+
 				SDL_PollEvent(&events);
+
 				switch (events.type) {
 					case SDL_QUIT:
 						continuer = false;
 						break;
+
 					case SDL_KEYDOWN:
 						switch (events.key.keysym.sym) {
 							case SDLK_SPACE:
 								if (changeDialog == false) {
-									printText(renderer, txt[dialog], txt[dialog + 1]);
+									printText(renderer, txtP0[dialog], txtP0[dialog + 1]);
 									txtEnCours[0] = string(" ");
 									txtEnCours[1] = string(" ");
 									line = 0;
@@ -190,11 +199,47 @@ namespace MainFrame {
 								}
 
 								break;
+
 							case SDLK_ESCAPE:
 								continuer = false;
 								break;
 						}
 						break;
+
+					case SDL_JOYBUTTONDOWN:
+						if (!joypressed) {
+                                joypressed = true;
+							switch (events.jbutton.button) {
+
+								case 0:
+
+									if (changeDialog == false) {
+										printText(renderer, txtP0[dialog], txtP0[dialog + 1]);
+										txtEnCours[0] = string(" ");
+										txtEnCours[1] = string(" ");
+										line = 0;
+										dialog++;
+										dialog++;
+										i = 0;
+										changeDialog = true;
+										SDL_Delay(50);
+									} else if (dialog != sizeOfTxt) {
+										changeDialog = false;
+									}
+									break;
+								case 7:
+									continuer = false;
+									break;
+							}
+						}else{
+
+						}
+                        break;
+
+                 case SDL_JOYBUTTONUP:
+                            joypressed = false;
+                            break;
+
 					case SDL_WINDOWEVENT:
 						switch (events.window.event) {
 							case SDL_WINDOWEVENT_RESIZED:
@@ -202,6 +247,8 @@ namespace MainFrame {
 						}
 						break;
 				}
+
+
 				if (phase == 0) {
 					if (!changeDialog) {
 						if (!(i >= txtP0[line].size())) {
@@ -234,12 +281,15 @@ namespace MainFrame {
 
 		}
 		rlog << "[T = " << time(NULL) - Main::startTime << "] - Fin de la boucle." << endl;
+
 		SDL_DestroyTexture(textUre);
 		SDL_DestroyTexture(dialogT);
 		SDL_DestroyTexture(profT);
 		SDL_DestroyTexture(fondT);
 		SDL_DestroyWindow(frame);
+		SDL_JoystickClose(manette);
 		TTF_CloseFont(font);
+
 		TTF_Quit();
 		atexit(IMG_Quit);
 		SDL_Quit();
