@@ -92,6 +92,8 @@
 		<Unit filename="src/jlppc/regimys/regimysInclude.hxx" />
 		<Unit filename="src/jlppc/regimys/start/Initializer.cpp" />
 		<Unit filename="src/jlppc/regimys/start/Initializer.hpp" />
+		<Unit filename="src/jlppc/regimys/start/StringKeys.cpp" />
+		<Unit filename="src/jlppc/regimys/start/StringKeys.hpp" />
 		<Unit filename="src/jlppc/regimys/start/main.cpp" />
 		<Unit filename="src/jlppc/regimys/start/main.hpp" />
 		<Unit filename="src/jlppc/regimys/start/startInclude.hxx" />
