@@ -12,19 +12,19 @@ Fichier contenant... je sais pas trop.
 #include <iostream>
 
 
-struct Text{
+struct Text {
 
 };
 
-struct Coordonnees{
-    int x;
-    int y;
-    int h;
-    int w;
+struct Coordonnees {
+	int x;
+	int y;
+	int h;
+	int w;
 };
 
-namespace Elements{
-    Coordonnees initCoordonnees();
+namespace Elements {
+	Coordonnees initCoordonnees();
 
 }
 

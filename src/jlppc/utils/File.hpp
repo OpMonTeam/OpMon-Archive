@@ -14,16 +14,15 @@ Définit la classe RFile
 /**
 Permet de stocker une chaine de caractère dans le but de récuperer un flux d'entrée ou de sortie
 */
-class RFile
-{
-    public:
-        RFile(std::string path);
-        std::ifstream* getIn() const;
-        std::ofstream* getOut() const;
-    protected:
+class RFile {
+	public:
+		RFile(std::string path);
+		std::ifstream *getIn() const;
+		std::ofstream *getOut() const;
+	protected:
 
-    private:
-        std::string path;
+	private:
+		std::string path;
 };
 
 #endif // FILE_HPP
