@@ -51,5 +51,5 @@ If there are problems to understand the commits, because it's all in french, don
 <a href="https://www.youtube.com/channel/UC8qa9Z52pOHhZ1XjIoTa2kQ">Regimys Youtube Channel</a><br/>
 <a href="http://regimys.tk">Regimys web site</a><br/>
 <a href="https://github.com/jlppc/Site-Pokemon-Regimys">Website repository</a><br/><br/>
-<br/>Game version : Alpha 0.07.1 | Download : <a href="https://github.com/jlppc/Projet-Pokemon-Regimys/releases/download/alpha-v0.07.1/Regimys.zip"><img src="https://raw.githubusercontent.com/jlppc/Projet-Pokemon-Regimys/master/Ressources/Autres/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
+<br/>Game version : Alpha 0.08 | Download : <a href="https://github.com/jlppc/Projet-Pokemon-Regimys/releases/download/alpha-v0.07.1/Regimys.zip"><img src="https://raw.githubusercontent.com/jlppc/Projet-Pokemon-Regimys/master/Ressources/Autres/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 
