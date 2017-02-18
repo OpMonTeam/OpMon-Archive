@@ -22,6 +22,7 @@
 #include "../gui/MainFrame.hpp"
 
 #define WINDOWS
+#define DEBUG
 
 using namespace std;
 
@@ -97,6 +98,9 @@ int quit(int returne) {
 	for (unsigned int i = 0; i < POKE_NUMBER; i++) {
 		delete(Initializer::listePoke[i]);
 	}
+	#ifdef DEBUG
+	system("pause");
+	#endif // DEBUG
 	return returne;
 }
 
