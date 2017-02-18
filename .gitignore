@@ -39,3 +39,5 @@ pages/doc/DocSample.html
 /lib/
 /temp/
 
+Debug.cbp
+cbp2make/*
