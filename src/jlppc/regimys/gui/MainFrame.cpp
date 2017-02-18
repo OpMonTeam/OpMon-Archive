@@ -276,6 +276,9 @@ namespace MainFrame {
 						}
 					}
 				}
+				if(phase == 1){
+
+				}
 
 				SDL_RenderPresent(renderer);
 
