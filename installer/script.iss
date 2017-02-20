@@ -5,7 +5,7 @@
 #define MyAppVersion "Alpha 0.08.0"
 #define MyAppPublisher "Jlppc & Navet56"
 #define MyAppURL "http://regimys.tk"
-#define MyAppExeName "Projet-Pokemon-Regimys-Debug.exe"
+#define MyAppExeName "Projet-Pokemon-Regimys.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -38,8 +38,8 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 0,6.1
 
 [Files]
-Source: "C:\Users\Jlppc (session)\Documents\Projets\Projet-Pokemon-Regimys\exe\Projet-Pokemon-Regimys-Debug.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Jlppc (session)\Documents\Projets\Projet-Pokemon-Regimys\exe\*"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\Jlppc (session)\Documents\Projets\Projet-Pokemon-Regimys\exe\Projet-Pokemon-Regimys.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\Jlppc (session)\Documents\Projets\Projet-Pokemon-Regimys\exe\*"; DestDir: "{app}"; Flags: ignoreversion createallsubdirs recursesubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
@@ -49,6 +49,5 @@ Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
 Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: quicklaunchicon
 
-[Run]
-Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait skipifsilent
+
 
