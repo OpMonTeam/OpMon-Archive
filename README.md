@@ -38,12 +38,12 @@ Changelog avant la Alpha 0.05. Pour le reste du changelog, il est dans la sectio
 <li>Alpha 0.01 : Creation du systeme de combat de base</li>
 </ul>
 <h2>------In-English-------</h2>
-# Welcome to Project "Pokémon Regimys"!
+# Welcome to Project "Pokemon Regimys"!
 
 Welcome to the fan-game project "Pokemon Regimys" ! More info in the Regimys Wiki <br/>
 General Informations<br/>
-Regimys is a pokémon fan-game projet imaginated in 2012 and started in september 2016. This fan game is totally open source, allowing to the fans to come realize their dreams! You can add Pokémons, attacks, and many other things! You have just to propose your modifications and maybe we'll add them to the game! And if you do a lot of good modifications, you can become collaborator!<br/><br/>
-Join us : jlppcprog@gmail.com for the source code | evandib@gmail.com for sprites<br/><br/>
+Regimys is a pokemon fan-game projet imaginated in 2012 and started in september 2016. This fan game is totally open source, allowing to the fans to come realize their dreams! You can add Pokemons, attacks, and many other things! You have just to propose your modifications and maybe we'll add them to the game! And if you do a lot of good modifications, you can become collaborator!<br/><br/>
+Join us : jlppcprog@gmail.com for bugs, lags or about the code | evandib@gmail.com for sprites, the graphics, designs or graphics bugs<br/><br/>
 You can ask a question in the "F.A.Q" section of this wiki too!<br/>
 The game is actually in french, but if you talk french and english, you can help translate the game! And if the english translation of this presentation text contains errors, don't hesitate to notice us!<br/>
 If there are problems to understand the commits, because it's all in french, don't hesitate to ask too!<br/><br/>
