@@ -454,7 +454,7 @@
 	"Item.hpp"
 	"../Attaque.hpp"
 
-1487600302 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\item.hpp
+1487607803 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\item.hpp
 	<iostream>
 	"../../enums/Enums.hpp"
 	"../../../utils/Class.hpp"
@@ -652,7 +652,7 @@
 	"../objects/item/Item.hpp"
 	"Evolution.hpp"
 
-1487601382 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\mainframe.cpp
+1487607876 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\mainframe.cpp
 	"MainFrame.hpp"
 	<iostream>
 	"../start/main.hpp"
@@ -987,7 +987,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1487594568 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\initializer.cpp
+1487603389 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\initializer.cpp
 	"Initializer.hpp"
 	"../enums/Enums.hpp"
 	"../objects/Attaques.hpp"
