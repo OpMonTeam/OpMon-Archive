@@ -2,29 +2,9 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="src\jlppc\regimys\gui\MainFrame.hpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\jlppc\regimys\start\main.hpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="696" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\jlppc\regimys\enums\Enums.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="26974" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\jlppc\regimys\playercore\Equipe.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="397" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\jlppc\regimys\objects\Attaques.hpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3622" topLine="69" />
-		</Cursor>
-	</File>
-	<File name="src\jlppc\regimys\playercore\Equipe.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="590" topLine="0" />
+			<Cursor1 position="832" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="src\jlppc\regimys\objects\Attaque.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -32,19 +12,19 @@
 			<Cursor1 position="741" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src\jlppc\regimys\playercore\Player.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\jlppc\regimys\start\main.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="55" topLine="0" />
+			<Cursor1 position="2271" topLine="68" />
 		</Cursor>
 	</File>
-	<File name="src\jlppc\regimys\gui\MainFrame.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\jlppc\regimys\playercore\Equipe.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="5617" topLine="142" />
+			<Cursor1 position="397" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src\jlppc\regimys\objects\Espece.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\jlppc\regimys\objects\Attaques.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="0" topLine="34" />
+			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="src\jlppc\regimys\gui\Elements.hpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -52,34 +32,9 @@
 			<Cursor1 position="234" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="resources.rc" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="25" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\jlppc\regimys\start\StringKeys.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="724" topLine="0" />
-		</Cursor>
-	</File>
 	<File name="src\jlppc\regimys\start\Initializer.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="18379" topLine="525" />
-		</Cursor>
-	</File>
-	<File name="src\jlppc\regimys\playercore\Player.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1019" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\jlppc\regimys\start\main.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1274" topLine="31" />
-		</Cursor>
-	</File>
-	<File name="src\jlppc\regimys\start\main.hpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="832" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="src\jlppc\regimys\objects\Pokemon.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -87,14 +42,59 @@
 			<Cursor1 position="3447" topLine="116" />
 		</Cursor>
 	</File>
-	<File name="src\jlppc\regimys\objects\Attaques.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\jlppc\regimys\start\StringKeys.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="0" topLine="0" />
+			<Cursor1 position="724" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src\jlppc\regimys\objects\item\Item.hpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\jlppc\regimys\enums\Enums.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1317" topLine="15" />
+			<Cursor1 position="26974" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\jlppc\regimys\objects\item\Item.hpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="537" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="src\jlppc\regimys\objects\Attaques.hpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3208" topLine="75" />
+		</Cursor>
+	</File>
+	<File name="resources.rc" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="25" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\jlppc\regimys\objects\Espece.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="34" />
+		</Cursor>
+	</File>
+	<File name="src\jlppc\regimys\gui\MainFrame.hpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="696" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\jlppc\regimys\playercore\Player.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1019" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\jlppc\regimys\playercore\Equipe.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="590" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\jlppc\regimys\gui\MainFrame.cpp" open="1" top="1" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3514" topLine="99" />
+		</Cursor>
+	</File>
+	<File name="src\jlppc\regimys\playercore\Player.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="55" topLine="0" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

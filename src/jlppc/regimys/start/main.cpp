@@ -80,27 +80,27 @@ void gererErreur(string errorName, bool fatal) {
 	rerrLog << "Erreur : " << errorName << endl;
 	if (fatal) {
 		rerrLog << "Erreur fatale." << endl;
-		rlog.close();
-		rerrLog.close();
 		quit(1);
 	}
 }
 
 int quit(int returne) {
 	if (MainFrame::init) {
-		SDL_Quit();
+        TTF_Quit();
 		atexit(IMG_Quit);
+		SDL_Quit();
 	}
 	rlog << "[T = " << time(NULL) - Main::startTime << "] - Fermeture du jeu." << endl;
 	rlog.close();
 	rerrLog.close();
-	exit(returne);
-	for (unsigned int i = 0; i < POKE_NUMBER; i++) {
+
+	/*for (unsigned int i = 0; i < POKE_NUMBER; i++) {
 		delete(Initializer::listePoke[i]);
-	}
+	}*/
 	#ifdef DEBUG
 	system("pause");
 	#endif // DEBUG
+	exit(returne);
 	return returne;
 }
 
