@@ -25,6 +25,7 @@ namespace MainFrame {
 	extern SDL_Rect textPlace;
 	extern SDL_Color noir;
 	extern bool init;
+	extern SDL_Joystick *manette;
 	void open();
 	void loop();
 	/**
