@@ -22,7 +22,7 @@
 #include "../gui/MainFrame.hpp"
 
 #define WINDOWS
-#define DEBUG
+//#define DEBUG
 
 using namespace std;
 
