@@ -11,7 +11,6 @@
 #define rLog rlog
 #define charLineDialog 33
 #define kget StringKeys::get
-
 using namespace std;
 
 
@@ -88,7 +87,7 @@ namespace MainFrame {
 			gererErreur(TTF_GetError(), true);
 		}
 		init = true;
-		frame = SDL_CreateWindow("Pokémon Regimys", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 512, 512, SDL_WINDOW_SHOWN);
+		frame = SDL_CreateWindow("Pokemon Regimys", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 512, 512, SDL_WINDOW_SHOWN);
 
 		renderer = SDL_CreateRenderer(frame, -1, SDL_RENDERER_ACCELERATED);
 		if (frame == NULL || renderer == NULL) {
@@ -155,10 +154,10 @@ namespace MainFrame {
 		bool continuer = true;
 		long ancientTick = 0;
 		//Phase 0
-		string txtP0[] = {kget("jlppc.dialog.start.1"), kget("jlppc.dialog.start.2"), kget("jlppc.dialog.start.3"), kget("jlppc.dialog.start.4"), kget("jlppc.dialog.start.5"), kget("jlppc.dialog.start.6"), kget("jlppc.dialog.start.7"), kget("jlppc.dialog.start.8")};//Deux cases == Deux lignes. 3 cases == Deux lignes + un nouveau dialogue
+		string txtP0[] = {kget("jlppc.dialog.start.1"), kget("jlppc.dialog.start.2"), kget("jlppc.dialog.start.3"), kget("jlppc.dialog.start.4"), kget("jlppc.dialog.start.5"), kget("jlppc.dialog.start.6"), kget("jlppc.dialog.start.7"), kget("jlppc.dialog.start.8"), kget("jlppc.tempDialog.1"), kget("jlppc.tempDialog.2")};//Deux cases == Deux lignes. 3 cases == Deux lignes + un nouveau dialogue
 		//Phase 1
 		//TODO
-		int sizeOfTxt = 8;
+		int sizeOfTxt = 10;
 		string txtEnCours[] = {string(" "), string(" ")};
 		SDL_Texture *textUre = NULL;
 		SDL_Surface *sfce = NULL;
@@ -268,6 +267,9 @@ namespace MainFrame {
 								dialog++;
 								dialog++;
 								i = 0;
+								if(dialog == sizeOfTxt){
+                                    phase = 1;
+								}
 								changeDialog = true;
 							} else {
 								line++;
