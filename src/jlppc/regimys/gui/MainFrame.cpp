@@ -154,10 +154,10 @@ namespace MainFrame {
 		bool continuer = true;
 		long ancientTick = 0;
 		//Phase 0
-		string txtP0[] = {kget("jlppc.dialog.start.1"), kget("jlppc.dialog.start.2"), kget("jlppc.dialog.start.3"), kget("jlppc.dialog.start.4"), kget("jlppc.dialog.start.5"), kget("jlppc.dialog.start.6"), kget("jlppc.dialog.start.7"), kget("jlppc.dialog.start.8"), kget("jlppc.tempDialog.1"), kget("jlppc.tempDialog.2")};//Deux cases == Deux lignes. 3 cases == Deux lignes + un nouveau dialogue
+		string txtP0[] = {kget("jlppc.dialog.start.1"), kget("jlppc.dialog.start.2"), kget("jlppc.dialog.start.3"), kget("jlppc.dialog.start.4"), kget("jlppc.dialog.start.5"), kget("jlppc.dialog.start.6"), kget("jlppc.dialog.start.6.5"), " ", kget("jlppc.dialog.start.7"), kget("jlppc.dialog.start.8"), kget("jlppc.tempDialog.1"), kget("jlppc.tempDialog.2")};//Deux cases == Deux lignes. 3 cases == Deux lignes + un nouveau dialogue
 		//Phase 1
 		//TODO
-		int sizeOfTxt = 10;
+		int sizeOfTxt = 12;
 		string txtEnCours[] = {string(" "), string(" ")};
 		SDL_Texture *textUre = NULL;
 		SDL_Surface *sfce = NULL;
@@ -168,7 +168,7 @@ namespace MainFrame {
 		rlog << "[T = " << time(NULL) - Main::startTime << "] - Début de la boucle principale." << endl;
 
 		while (continuer) {
-			if ((SDL_GetTicks() - ancientTick) >= 100) {
+			if ((SDL_GetTicks() - ancientTick) >= 50) {
 
 				ancientTick = SDL_GetTicks();
 
@@ -286,7 +286,7 @@ namespace MainFrame {
 
 
 			} else {
-				SDL_Delay(100 - (SDL_GetTicks() - ancientTick));
+				SDL_Delay(50 - (SDL_GetTicks() - ancientTick));
 			}
 
 		}
