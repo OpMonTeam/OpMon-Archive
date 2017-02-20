@@ -198,31 +198,71 @@ namespace Initializer {
 		evs[62].DEF;
 		evs[62].DEF;
 		evs[62].DEF;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
+
+		evs[63].ATKSPE;
+
+		evs[64].ATKSPE;
+		evs[64].ATKSPE;
+
+		evs[65].ATKSPE;
+		evs[65].ATKSPE;
+		evs[65].ATKSPE;
+
+		evs[66].ATK;
+
+		evs[67].ATK;
+		evs[67].ATK;
+
+		evs[68].ATK;
+		evs[68].ATK;
+		evs[68].ATK;
+
+		evs[69].ATK;
+
+		evs[70].ATK;
+		evs[70].ATK;
+
+		evs[71].ATK;
+		evs[71].ATK;
+		evs[71].ATK;
+
+		evs[72].DEFSPE;
+
+		evs[73].DEFSPE;
+		evs[73].DEFSPE;
+
+		evs[74].DEF;
+
+		evs[75].DEF;
+		evs[75].DEF;
+
+		evs[76].DEF;
+		evs[76].DEF;
+		evs[76].DEF;
+
+		evs[77].VIT;
+
+		evs[78].VIT;
+		evs[78].VIT;
+
+		evs[79].PV;
+
+		evs[80].DEF;
+		evs[80].DEF;
+
+		evs[81].ATKSPE;
+
+		evs[82].ATKSPE;
+		evs[82].ATKSPE;
+
+		evs[83].ATK;
+
+		evs[84].ATK;
+
+		evs[85].ATK;
+		evs[85].ATK;
+
+		evs[86].;
 		evs[].;
 		evs[].;
 		evs[].;

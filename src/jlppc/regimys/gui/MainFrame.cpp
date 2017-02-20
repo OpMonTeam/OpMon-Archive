@@ -116,7 +116,7 @@ namespace MainFrame {
 		profP.h = (300 / 3) * 2;
 		profP.w = (180 / 3) * 2;
 		profP.x = (fondP.w / 2) - (profP.w / 2) + 10;
-		profP.y = ((fondP.h - dialogP.h) / 2) - (profP.h / 2);
+		profP.y = ((fondP.h - dialogP.h) / 2) - (profP.h / 2) + 50;
 		textPlace.x = 10;
 		textPlace.y = 372;
 
