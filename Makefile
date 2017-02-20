@@ -19,23 +19,23 @@ LIB = C:\\Program\ Files\ (x86)\\CodeBlocks\\MinGW\\lib\\libmingw32.a lib\\libSD
 LDFLAGS = 
 
 INC_DEBUG = $(INC)
-CFLAGS_DEBUG = $(CFLAGS) -g
+CFLAGS_DEBUG = $(CFLAGS) -m32 -g
 RESINC_DEBUG = $(RESINC)
 RCFLAGS_DEBUG = $(RCFLAGS)
 LIBDIR_DEBUG = $(LIBDIR)
 LIB_DEBUG = $(LIB)
-LDFLAGS_DEBUG = $(LDFLAGS)
+LDFLAGS_DEBUG = $(LDFLAGS) -m32
 OBJDIR_DEBUG = obj\\Debug
 DEP_DEBUG = 
 OUT_DEBUG = exe\\Projet-Pokemon-Regimys-Debug.exe
 
 INC_RELEASE = $(INC) -Isrc\jlppc\regimys\gui
-CFLAGS_RELEASE = $(CFLAGS) -O2
+CFLAGS_RELEASE = $(CFLAGS) -O2 -m32
 RESINC_RELEASE = $(RESINC)
 RCFLAGS_RELEASE = $(RCFLAGS)
 LIBDIR_RELEASE = $(LIBDIR)
 LIB_RELEASE = $(LIB)
-LDFLAGS_RELEASE = $(LDFLAGS) -s
+LDFLAGS_RELEASE = $(LDFLAGS) -s -m32
 OBJDIR_RELEASE = obj\\Release
 DEP_RELEASE = 
 OUT_RELEASE = exe\\Projet-Pokemon-Regimys.exe
@@ -299,4 +299,3 @@ clean_release:
 	cmd /c rd $(OBJDIR_RELEASE)\\src\\jlppc\\regimys\\objects
 
 .PHONY: before_debug after_debug clean_debug before_release after_release clean_release
-
