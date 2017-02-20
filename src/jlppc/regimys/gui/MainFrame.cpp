@@ -11,6 +11,9 @@
 #define rLog rlog
 #define charLineDialog 33
 #define kget StringKeys::get
+#define QUIT case SDL_QUIT:return;
+#define ECHAP case SDLK_ESCAPE:return;
+#define JOYQUIT case 7:return;
 using namespace std;
 
 
@@ -23,6 +26,7 @@ namespace MainFrame {
 	SDL_Texture *dialogT = NULL;
 	SDL_Rect textPlace = {0, 0, 0, 0};
 	SDL_Color noir = {0, 0, 0};
+	SDL_Joystick *manette = NULL;
 	bool init = false;
 
 	int printText(SDL_Renderer *renderer, string txt, string line2S, string line3S) {
@@ -35,7 +39,7 @@ namespace MainFrame {
 		SDL_Rect posLineTwo;
 		SDL_Rect posLineThree;
 
-		SDL_RenderCopy(renderer, dialogT, NULL, &dialogP);
+
 
 		sfce = TTF_RenderText_Blended(font, txt.c_str(), noir);
 		textPlace.h = sfce->h;
@@ -66,10 +70,11 @@ namespace MainFrame {
 		SDL_FreeSurface(sfce);
 		SDL_FreeSurface(sfce2);
 		SDL_FreeSurface(sfce3);
+		return 0;
 	}
 
 	void open() {
-
+        //Initialisations
 		if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_AUDIO) == -1) {
 			rerrLog << "Erreur d'initialisation de SDL." << endl;
 			rlog << "Une erreur fatale s'est produite. Merci de consulter errLog.txt" << endl;
@@ -88,7 +93,7 @@ namespace MainFrame {
 			rlog << "Une erreur fatale s'est produite. Merci de consulter errLog.txt" << endl;
 			gererErreur(TTF_GetError(), true);
 		}
-
+        //Ouverture de la police
 #ifdef WINDOWS
 		font = TTF_OpenFont("ressources\\fonts\\arial.ttf", 32);
 #else
@@ -100,24 +105,47 @@ namespace MainFrame {
 			rlog << "Une erreur fatale s'est produite. Merci de consulter errLog.txt" << endl;
 			gererErreur(TTF_GetError(), true);
 		}
-		init = true;
-		frame = SDL_CreateWindow("Pokemon Regimys", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 512, 512, SDL_WINDOW_SHOWN);
 
+
+		//Annonce que l'initialisation principale est terminée
+		init = true;
+		//Ouverture de la fenetre
+		frame = SDL_CreateWindow("Pokemon Regimys", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 512, 512, SDL_WINDOW_SHOWN);
+        //Création du renderer.
 		renderer = SDL_CreateRenderer(frame, -1, SDL_RENDERER_ACCELERATED);
 		if (frame == NULL || renderer == NULL) {
 			rerrLog << "Erreur d'ouverture de la fenetre ou du renderer." << endl;
 			rlog << "Une erreur fatale s'est produite. Merci de consulter errLog.txt" << endl;
 			gererErreur(SDL_GetError(), true);
 		}
-		SDL_Joystick *manette = SDL_JoystickOpen(0);
+		//Ouverture de la manette (Je sais pas si ca se dit "ouverture de la manette mais c'est pas grave)
+		manette = SDL_JoystickOpen(0);
+		if(manette == NULL){
+            gererErreur("Aucune manette détectée", false);
+		}
 
+		loop();
+
+        SDL_DestroyRenderer(renderer);
+		SDL_DestroyWindow(frame);
+		SDL_JoystickClose(manette);
+		TTF_CloseFont(font);
+
+		TTF_Quit();
+		atexit(IMG_Quit);
+		SDL_Quit();
+	}
+
+	void loop(){
+	    //Déclaration des SDL_Rect et des SDL_Texture secondaires, necessaires a cette scene
 		SDL_Rect fondP;
 		SDL_Rect profP;
 		SDL_Texture *fondT;
 		SDL_Texture *profT;
+        SDL_Texture *arrDial;
+        SDL_Rect arrDialP;
 
-
-
+        //Initialisation des tailles
 		rlog << "[T = " << time(NULL) - Main::startTime << "] - Initialisation des SDL_Rect" << endl;
 		fondP.h = 512;
 		fondP.w = 512;
@@ -133,20 +161,27 @@ namespace MainFrame {
 		profP.y = ((fondP.h - dialogP.h) / 2) - (profP.h / 2) + 50;
 		textPlace.x = 15;
 		textPlace.y = 372;
-
+        arrDialP.x = 512 - 75;
+        arrDialP.y = 512 - 30;
+        arrDialP.h = 10;
+        arrDialP.w = 10;
 		noir.r = 0;
 		noir.g = 0;
 		noir.b = 0;
+		//Initialisation des images
 		rlog << "[T = " << time(NULL) - Main::startTime << "] - Initialisation des sprites..." << endl;
 #ifdef WINDOWS
 		fondT = IMG_LoadTexture(renderer, "ressources\\backgrounds\\start\\startscene.png");
 		profT = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\jlppc\\jlppc.png");
 		dialogT = IMG_LoadTexture(renderer, "ressources\\backgrounds\\dialog\\dialog.png");
+		arrDial = IMG_LoadTexture(renderer, "ressources\\sprites\\misc\\arrDial.png");
 #else
 		fondT = IMG_LoadTexture(renderer, "ressources/backgrounds/start/startscene.png");
 		profT = IMG_LoadTexture(renderer, "ressources/sprites/chara/jlppc/jlppc.png");
 		dialogT = IMG_LoadTexture(renderer, "ressources/backgrounds/dialog/dialog.png");
+		arrDial = IMG_LoadTexture(renderer, "ressources/sprites/misc/arrDial.png");
 #endif
+        //Vesrification des problèmes possibles
 		if (fondT == NULL || profT == NULL || dialogT == NULL) {
 			gererErreur(string("Erreur lors de l'initialisation d'une image.") + string(SDL_GetError()), false);
 		}
@@ -161,7 +196,7 @@ namespace MainFrame {
 		if (SDL_RenderCopy(renderer, dialogT, NULL, &dialogP) == -1) {
 			rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
 		}
-		//TTF_RenderText
+		//Initialisation des variables utiles pour la boucle
 		SDL_RenderPresent(renderer);
 		rlog << "[T = " << time(NULL) - Main::startTime << "] - Fin des initialisations" << endl;
 		rlog << "[T = " << time(NULL) - Main::startTime << "] - Creation des variables utilitaires" << endl;
@@ -179,8 +214,9 @@ namespace MainFrame {
 		bool changeDialog = false;
 		int phase = 0;
 		bool joypressed = false;
-		rlog << "[T = " << time(NULL) - Main::startTime << "] - Début de la boucle principale." << endl;
 
+		rlog << "[T = " << time(NULL) - Main::startTime << "] - Début de la boucle principale." << endl;
+        //Boucle n°1
 		while (continuer) {
 			if ((SDL_GetTicks() - ancientTick) >= 50) {
 
@@ -192,20 +228,15 @@ namespace MainFrame {
                     SDL_WaitEvent(&events);
                 }
 
-
 				switch (events.type) {
-					case SDL_QUIT:
-						continuer = false;
-						break;
+
+                    QUIT
 
 					case SDL_KEYDOWN:
 						switch (events.key.keysym.sym) {
 							case SDLK_SPACE:
 								if (changeDialog == false) {
 									printText(renderer, txtP0[dialog], txtP0[dialog + 1], txtP0[dialog + 2]);
-									txtEnCours[0] = string(" ");
-									txtEnCours[1] = string(" ");
-									txtEnCours[2] = string(" ");
 									line = 0;
 									dialog++;
 									dialog++;
@@ -214,6 +245,9 @@ namespace MainFrame {
 									changeDialog = true;
 									SDL_Delay(50);
 								} else if (dialog != sizeOfTxt) {
+								    txtEnCours[0] = string(" ");
+                                    txtEnCours[1] = string(" ");
+                                    txtEnCours[2] = string(" ");
 									changeDialog = false;
 								}else{
 									    phase = 1;
@@ -221,24 +255,20 @@ namespace MainFrame {
 
 								break;
 
-							case SDLK_ESCAPE:
-								continuer = false;
-								break;
+								ECHAP
 						}
 						break;
 
 					case SDL_JOYBUTTONDOWN:
 						if (!joypressed) {
-                                joypressed = true;
+                            joypressed = true;
 							switch (events.jbutton.button) {
 
 								case 0:
 
 									if (changeDialog == false) {
 										printText(renderer, txtP0[dialog], txtP0[dialog + 1], txtP0[dialog + 2]);
-										txtEnCours[0] = string(" ");
-										txtEnCours[1] = string(" ");
-										txtEnCours[2] = string(" ");
+
 										line = 0;
 										dialog++;
 										dialog++;
@@ -247,49 +277,46 @@ namespace MainFrame {
 										changeDialog = true;
 										SDL_Delay(50);
 									} else if (dialog != sizeOfTxt) {
+									    txtEnCours[0] = string(" ");
+                                        txtEnCours[1] = string(" ");
+                                        txtEnCours[2] = string(" ");
 										changeDialog = false;
 									}else{
 									    phase = 1;
 									}
 									break;
-								case 7:
-									continuer = false;
-									break;
-							}
-						}else{
 
+                                JOYQUIT
+							}
 						}
                         break;
 
-                 case SDL_JOYBUTTONUP:
-                            joypressed = false;
-                            break;
-
-					case SDL_WINDOWEVENT:
+					/*case SDL_WINDOWEVENT:
 						switch (events.window.event) {
 							case SDL_WINDOWEVENT_RESIZED:
 								break;
 						}
-						break;
+						break;*/
 				}
 
 
 				if (phase == 0) {
+                    SDL_RenderCopy(renderer, dialogT, NULL, &dialogP);
 					if (!changeDialog) {
+
 						if (!(i >= txtP0[line + dialog].size())) {
+
                             if(txtEnCours[line] == " "){
                                 txtEnCours[line] = txtP0[line + dialog].c_str()[i];
                             }else{
                                 txtEnCours[line] += txtP0[line + dialog].c_str()[i];
                             }
 
-							printText(renderer, txtEnCours[0], txtEnCours[1], txtEnCours[2]);
+
 							i++;
 						} else {
 							if (line == 2) {
-								txtEnCours[0] = string(" ");
-								txtEnCours[1] = string(" ");
-								txtEnCours[2] = string(" ");
+
 								line = 0;
 								dialog++;
 								dialog++;
@@ -305,8 +332,15 @@ namespace MainFrame {
 							}
 						}
 
-					}
 
+
+					}
+					printText(renderer, txtEnCours[0], txtEnCours[1], txtEnCours[2]);
+                    arrDialP.y = arrDialP.y + 1;
+                    if(arrDialP.y - (512 - 30) > 5){
+                        arrDialP.y = arrDialP.y - 6;
+                    }
+                    SDL_RenderCopy(renderer, arrDial, NULL, &arrDialP);
 					SDL_RenderPresent(renderer);
 				}else{
 				    SDL_RenderPresent(renderer);
@@ -321,26 +355,16 @@ namespace MainFrame {
 			}
 
 		}
+
 		rlog << "[T = " << time(NULL) - Main::startTime << "] - Fin de la boucle n°0" << endl;
         //rlog << "[T = " << time(NULL) - Main::startTime << "] - Entrée dans la boucle n°1" << endl;
-        /*while(continuer){
 
-        }*/
 
 		SDL_DestroyTexture(textUre);
 		SDL_DestroyTexture(dialogT);
 		SDL_DestroyTexture(profT);
 		SDL_DestroyTexture(fondT);
-		SDL_DestroyWindow(frame);
-		SDL_JoystickClose(manette);
-		TTF_CloseFont(font);
-
-		TTF_Quit();
-		atexit(IMG_Quit);
-		SDL_Quit();
 	}
 
-	void loop() {
 
-	}
 }
