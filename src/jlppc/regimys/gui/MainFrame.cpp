@@ -25,12 +25,15 @@ namespace MainFrame {
 	SDL_Color noir = {0, 0, 0};
 	bool init = false;
 
-	int printText(SDL_Renderer *renderer, string txt, string line2S) {
+	int printText(SDL_Renderer *renderer, string txt, string line2S, string line3S) {
 		SDL_Texture *textUre = NULL;
 		SDL_Surface *sfce = NULL;
 		SDL_Texture *line2 = NULL;
 		SDL_Surface *sfce2 = NULL;
+		SDL_Texture *line3 = NULL;
+		SDL_Surface *sfce3 = NULL;
 		SDL_Rect posLineTwo;
+		SDL_Rect posLineThree;
 
 		SDL_RenderCopy(renderer, dialogT, NULL, &dialogP);
 
@@ -44,14 +47,25 @@ namespace MainFrame {
 		posLineTwo.h = sfce2->h;
 		posLineTwo.w = sfce2->w;
 		posLineTwo.x = textPlace.x;
-		posLineTwo.y = textPlace.y + 42;
+		posLineTwo.y = textPlace.y + 32;
 		line2 = SDL_CreateTextureFromSurface(renderer, sfce2);
 
+		sfce3 = TTF_RenderText_Blended(font, line3S.c_str(), noir);
+		posLineThree.h = sfce3->h;
+		posLineThree.w = sfce3->w;
+		posLineThree.x = textPlace.x;
+		posLineThree.y = textPlace.y + 32 + 32;
+		line3 = SDL_CreateTextureFromSurface(renderer, sfce3);
+
+        SDL_RenderCopy(renderer, line3, NULL, &posLineThree);
 		SDL_RenderCopy(renderer, line2, NULL, &posLineTwo);
 		SDL_RenderCopy(renderer, textUre, NULL, &textPlace);
+		SDL_DestroyTexture(line3);
 		SDL_DestroyTexture(textUre);
 		SDL_DestroyTexture(line2);
 		SDL_FreeSurface(sfce);
+		SDL_FreeSurface(sfce2);
+		SDL_FreeSurface(sfce3);
 	}
 
 	void open() {
@@ -78,7 +92,7 @@ namespace MainFrame {
 #ifdef WINDOWS
 		font = TTF_OpenFont("ressources\\fonts\\arial.ttf", 32);
 #else
-		font = TTF_OpenFont("ressources/fonts/arial.ttf", 32);
+		font = TTF_OpenFont("ressources/fonts/arial.ttf", 28);
 #endif
 
 		if (font == NULL) {
@@ -117,7 +131,7 @@ namespace MainFrame {
 		profP.w = (180 / 3) * 2;
 		profP.x = (fondP.w / 2) - (profP.w / 2) + 10;
 		profP.y = ((fondP.h - dialogP.h) / 2) - (profP.h / 2) + 50;
-		textPlace.x = 10;
+		textPlace.x = 15;
 		textPlace.y = 372;
 
 		noir.r = 0;
@@ -154,11 +168,11 @@ namespace MainFrame {
 		bool continuer = true;
 		long ancientTick = 0;
 		//Phase 0
-		string txtP0[] = {kget("jlppc.dialog.start.1"), kget("jlppc.dialog.start.2"), kget("jlppc.dialog.start.3"), kget("jlppc.dialog.start.4"), kget("jlppc.dialog.start.5"), kget("jlppc.dialog.start.6"), kget("jlppc.dialog.start.6.5"), " ", kget("jlppc.dialog.start.7"), kget("jlppc.dialog.start.8"), kget("jlppc.tempDialog.1"), kget("jlppc.tempDialog.2")};//Deux cases == Deux lignes. 3 cases == Deux lignes + un nouveau dialogue
+		string txtP0[] = {kget("jlppc.dialog.start.1"), kget("jlppc.dialog.start.2"), kget("jlppc.dialog.start.3"), kget("jlppc.dialog.start.4"), kget("jlppc.dialog.start.5"), kget("jlppc.dialog.start.6"), kget("jlppc.dialog.start.7"), kget("jlppc.dialog.start.8"), " "};//Deux cases == Deux lignes. 3 cases == Deux lignes + un nouveau dialogue
 		//Phase 1
 		//TODO
-		int sizeOfTxt = 12;
-		string txtEnCours[] = {string(" "), string(" ")};
+		int sizeOfTxt = 9;
+		string txtEnCours[] = {string(" "), string(" "), string(" ")};
 		SDL_Texture *textUre = NULL;
 		SDL_Surface *sfce = NULL;
 		int line = 0, i = 0, dialog = 0;
@@ -172,8 +186,12 @@ namespace MainFrame {
 
 				ancientTick = SDL_GetTicks();
 
+                if(phase == 0){
+                    SDL_PollEvent(&events);
+                }else{
+                    SDL_WaitEvent(&events);
+                }
 
-				SDL_PollEvent(&events);
 
 				switch (events.type) {
 					case SDL_QUIT:
@@ -184,10 +202,12 @@ namespace MainFrame {
 						switch (events.key.keysym.sym) {
 							case SDLK_SPACE:
 								if (changeDialog == false) {
-									printText(renderer, txtP0[dialog], txtP0[dialog + 1]);
+									printText(renderer, txtP0[dialog], txtP0[dialog + 1], txtP0[dialog + 2]);
 									txtEnCours[0] = string(" ");
 									txtEnCours[1] = string(" ");
+									txtEnCours[2] = string(" ");
 									line = 0;
+									dialog++;
 									dialog++;
 									dialog++;
 									i = 0;
@@ -195,7 +215,9 @@ namespace MainFrame {
 									SDL_Delay(50);
 								} else if (dialog != sizeOfTxt) {
 									changeDialog = false;
-								}
+								}else{
+									    phase = 1;
+                                }
 
 								break;
 
@@ -213,10 +235,12 @@ namespace MainFrame {
 								case 0:
 
 									if (changeDialog == false) {
-										printText(renderer, txtP0[dialog], txtP0[dialog + 1]);
+										printText(renderer, txtP0[dialog], txtP0[dialog + 1], txtP0[dialog + 2]);
 										txtEnCours[0] = string(" ");
 										txtEnCours[1] = string(" ");
+										txtEnCours[2] = string(" ");
 										line = 0;
+										dialog++;
 										dialog++;
 										dialog++;
 										i = 0;
@@ -224,6 +248,8 @@ namespace MainFrame {
 										SDL_Delay(50);
 									} else if (dialog != sizeOfTxt) {
 										changeDialog = false;
+									}else{
+									    phase = 1;
 									}
 									break;
 								case 7:
@@ -257,13 +283,15 @@ namespace MainFrame {
                                 txtEnCours[line] += txtP0[line + dialog].c_str()[i];
                             }
 
-							printText(renderer, txtEnCours[0], txtEnCours[1]);
+							printText(renderer, txtEnCours[0], txtEnCours[1], txtEnCours[2]);
 							i++;
 						} else {
-							if (line == 1) {
+							if (line == 2) {
 								txtEnCours[0] = string(" ");
 								txtEnCours[1] = string(" ");
+								txtEnCours[2] = string(" ");
 								line = 0;
+								dialog++;
 								dialog++;
 								dialog++;
 								i = 0;
@@ -276,13 +304,16 @@ namespace MainFrame {
 								i = 0;
 							}
 						}
+
 					}
-				}
-				if(phase == 1){
 
+					SDL_RenderPresent(renderer);
+				}else{
+				    SDL_RenderPresent(renderer);
+				    break;
 				}
 
-				SDL_RenderPresent(renderer);
+
 
 
 			} else {
@@ -290,7 +321,11 @@ namespace MainFrame {
 			}
 
 		}
-		rlog << "[T = " << time(NULL) - Main::startTime << "] - Fin de la boucle." << endl;
+		rlog << "[T = " << time(NULL) - Main::startTime << "] - Fin de la boucle n°0" << endl;
+        //rlog << "[T = " << time(NULL) - Main::startTime << "] - Entrée dans la boucle n°1" << endl;
+        /*while(continuer){
+
+        }*/
 
 		SDL_DestroyTexture(textUre);
 		SDL_DestroyTexture(dialogT);
