@@ -262,7 +262,63 @@ namespace Initializer {
 		evs[85].ATK;
 		evs[85].ATK;
 
-		evs[86].;
+		evs[86].DEFSPE;
+		
+		evs[87].DEFSPE;
+		evs[87].DEFSPE;
+		
+		evs[88].PV;
+		
+		evs[89].PV;
+		evs[89].ATK;
+		
+		evs[90].DEF;
+		
+		evs[91].DEF;
+		evs[91].DEF;
+		
+		evs[92].ATKSPE;
+		
+		evs[93].ATKSPE;
+		evs[93].ATKSPE;
+		
+		evs[94].ATKSPE;
+		evs[94].ATKSPE;
+		evs[94].ATKSPE;
+		
+		evs[95].DEF;
+		
+		evs[96].DEFSPE;
+		
+		evs[97].DEFSPE;
+		evs[97].DEFSPE;
+		
+		evs[98].ATK;
+		
+		evs[99].ATK;
+		evs[99].ATK;
+		
+		evs[100].VIT;
+		
+		evs[101].VIT;
+		evs[101].VIT;
+		
+		evs[].;
+		evs[].;
+		evs[].;
+		evs[].;
+		evs[].;
+		evs[].;
+		evs[].;
+		evs[].;
+		evs[].;
+		evs[].;
+		evs[].;
+		evs[].;
+		evs[].;
+		evs[].;
+		evs[].;
+		evs[].;
 		evs[].;
 		evs[].;
 		evs[].;
@@ -423,7 +479,7 @@ namespace Initializer {
 		 listePoke[105] = new Espece(80, 110, 50, 80, 45, 60, "Ossatueur", Type::SOL, Type::AUCUN, 0, -1, ne, {Stats.DEF, Stats.DEF}, 1, 45, "Il porte constamment le crâne de sa mère. Personne ne sait à  quoi il ressemble sans ce crâne.", 124, 1000000, 75, 105);
 		 listePoke[106] = new Espece(120, 53, 35, 110, 87, 50, "Kicklee", Type::COMBAT, Type::AUCUN, 0, -1, ne, {Stats.ATK, Stats.ATK}, 1.4, 49., "Ses pattes élastiques s'allongent, ce qui ne manque jamais de surprendre au premier combat.", 139, 1000000, 45, 106);
 		 listePoke[107] = new Espece(105, 79, 35, 110, 76, 50, "Tygnon", Type::COMBAT, Type::AUCUN, 0, -1, ne, {Stats.DEFSPE, Stats.DEFSPE}, 1.4, 50.2, "MÃªme le béton cède sous ses poings dévastateurs. Au combat, il s'essouffle au bout de 3 minutes.", 140, 1000000, 45, 107);
-			 listePoke[108] = new Espece(55, 75, 60, 75, 30, 90, "Excelangue", Type::NORMAL, Type::AUCUN, 0, -1, ne, {Stats.PV, Stats.PV}, 1.2, 65.5, "Chaque fois qu'Excelangue découvre quelque chose de nouveau, il le lèche. Sa mémoire est basée sur le goà»t et la texture des objets. Il n'aime pas les choses acides.", 127, 1000000, 45, 108);
+		 listePoke[108] = new Espece(55, 75, 60, 75, 30, 90, "Excelangue", Type::NORMAL, Type::AUCUN, 0, -1, ne, {Stats.PV, Stats.PV}, 1.2, 65.5, "Chaque fois qu'Excelangue découvre quelque chose de nouveau, il le lèche. Sa mémoire est basée sur le goà»t et la texture des objets. Il n'aime pas les choses acides.", 127, 1000000, 45, 108);
 		 listePoke[109] = new Espece(65, 95, 60, 45, 35, 40, "Smogo", Type::POISON, Type::AUCUN, 0, 35,new E_Level(110, 35), {Stats.DEF}, 0.6, 1, "Son corps très fin en forme de ballon est rempli d'un horrible gaz toxique. L'air est nauséabond à  proximité de ce Pokémon.", 114, 1000000, 190, 109);
 		 listePoke[110] = new Espece(90, 120, 85, 70, 60, 65, "Smogogo", Type::POISON, Type::AUCUN, 0, -1, ne, {Stats.DEF}, 1.2, 9.5, "Il peut arriver que deux Smogo mutent et s'associent pour former un Smogogo, mais c'est très rare.", 173, 1000000, 60, 110);
 		 listePoke[111] = new Espece(85, 95,  30, 30, 25, 30, "Rhinocorne", Type::SOL, Type::ROCHE,0, 42, new E_Level(112, 42), {Stats.DEF}, 1, 115, "Ses petites jambes ne lui permettent pas de tourner facilement. Il ne peut charger que tout droit.", 135, 1250000, 120, 111);
@@ -432,7 +488,7 @@ namespace Initializer {
 		 listePoke[114] = new Espece(55, 115, 100, 40, 60, 65, "Saquedeneu", Type::PLANTE, Type::AUCUN, 0, -1, ne, {Stats.DEF}, 1, 35, "Il paralyse tout ce qui bouge avec ses lianes. Elles vous chatouillent si vous Ãªtes capturé.", 166, 1000000, 45, 114);
 		 listePoke[115] = new Espece(95, 80, 40, 80, 90, 105, "Kangourex", Type::NORMAL, Type::AUCUN, 0, -1, ne, {Stats.PV, Stats.PV}, 2.2, 80, "Il élève ses petits dans sa poche ventrale. Il attend d'Ãªtre en lieu sà»r pour les laisser jouer dehors.", 175, 1000000, 45, 115);
 		 listePoke[116] = new Espece(40, 70, 70, 25, 60, 30, "Hypotrempe", Type::EAU, Type::AUCUN, 0, 32, new E_Level(117, 32), {Stats.ATKSPE}, 0.4, 8, "Il abat les insectes volants en leur tirant un jet d'encre depuis la surface de l'eau. Ses tirs sont toujours précis.", 83, 1059860, 255, 116);
-		 	 listePoke[117] = new Espece(65, 95, 95, 45, 85, 55, "Hypocéan", Type::EAU, Type::AUCUN, 0, -1, ne, {Stats.DEF, Stats.ATKSPE}, 1.2, 25, "Il peut nager à  l'envers en agitant ses petites nageoires pectorales.", 155, 1000000, 75, 117);
+		 listePoke[117] = new Espece(65, 95, 95, 45, 85, 55, "Hypocéan", Type::EAU, Type::AUCUN, 0, -1, ne, {Stats.DEF, Stats.ATKSPE}, 1.2, 25, "Il peut nager à  l'envers en agitant ses petites nageoires pectorales.", 155, 1000000, 75, 117);
 		 listePoke[118] = new Espece(67, 60, 35, 50, 63, 45, "Poissirène", Type::EAU, Type::AUCUN, 0, 33, new E_Level(119, 33), {Stats.ATK}, 0.6, 15, "Ses nageoires dorsales et pectorales bougent avec élégance. Il est surnommé le danseur des flots", 111, 1000000, 225, 118);
 		 listePoke[119] = new Espece(92, 65, 65, 80, 68, 80, "Poissoroy", Type::EAU, Type::AUCUN, 0, -1, ne, {Stats.ATK, Stats.ATK}, 1.3, 39, "Il niche dans les rochers du ruisseau qu'il évide avec sa corne. Il donnerait sa vie pour ses Ã…Â’ufs.", 170, 1000000, 60, 119);
 		 listePoke[120] = new Espece(45, 55, 70, 55, 85, 30, "Stari", Type::EAU, Type::AUCUN, 0, -1, new E_Item(121, Item::getItem("Pierre Eau")), {Stats.VIT}, 0., 34.5, "MÃªme si son corps est détruit, il peut se régénérer aussi longtemps que son cÃ…Â“ur est en bon état.", 106, 1250000, 225, 120);
@@ -448,10 +504,10 @@ namespace Initializer {
 		 listePoke[130] = new Espece(95, 125, 79, 60, 100, 81, "Léviator", Type::EAU, Type::VOL, 0, -1, ne, {Stats.VIT, Stats.VIT}, 6.5, 235, "La littérature ancienne fait état d'un Léviator qui aurait rasé un village sous le coup de la colère.", 214, 1250000, 40, 130);
 		 listePoke[131] = new Espece(85, 80, 85, 95, 60, 130, "Lokhlass", Type::EAU, Type::GLACE, 0, -1, ne, {Stats.PV, Stats.PV}, 2.5, 220, "Ils sont d'une nature gentille. Comme ils se défendent rarement, ils sont en voie d'extinction.", 219, 1250000, 45, 131);
 		 listePoke[132] = new Espece(48, 48, 48, 48, 48, 48, "Métamorph", Type::NORMAL, Type::AUCUN, 0, -1, ne, {Stats.PV}, 0.3, 4, "Métamorph peut modifier sa structure moléculaire pour prendre d'autres formes. Lorsqu'il essaie de se transformer de mémoire, il lui arrive de se tromper sur certains détails.", 61, 1000000, 35, 132);
-		         listePoke[133] = new Espece(55, 50, 45, 65, 55, 55, "Evoli", Type::NORMAL, Type::AUCUN, 0, -1, new E_Item(134, Item::getItem("Pierre Eau")), {Stats.DEFSPE}, 0.3, 6.5, "L'ADN de ce Pokémon très particulier recèle de nombreuses possibilités d'évolution.", 92, 1000000, 45, 133);
-		 	 listePoke[134] = new Espece(65, 60, 110, 95, 65, 130, "Aquali", Type::EAU, Type::AUCUN, 0, -1, ne, {Stats.PV, Stats.PV}, 1, 29, "Il a évolué pour s'adapter au milieu aquatique. Il peut se fondre et disparaà®tre dans l'élément liquide.",  196, 1000000, 45, 134);
-		     listePoke[135] = new Espece(65, 60, 110, 95, 130, 65, "Voltali", Type::ELECTRIQUE, Type::AUCUN, 0, -1, ne, {Stats.VIT, Stats.VIT}, 0., 24.5, "Chaque poil sur son corps se dresse quand il se charge en électricité.", 197, 1000000, 45, 135);
-		     listePoke[136] = new Espece(130, 60, 95, 110, 65, 65, "Pyroli", Type::FEU, Type::AUCUN, 0, -1, ne, {Stats.ATK, Stats.ATK}, 0.9, 25.9, "Son corps contient une glande enflammée. Sa température monte à  900Ã‚Â°C avant le combat.", 198, 1000000, 45, 136);
+		 listePoke[133] = new Espece(55, 50, 45, 65, 55, 55, "Evoli", Type::NORMAL, Type::AUCUN, 0, -1, new E_Item(134, Item::getItem("Pierre Eau")), {Stats.DEFSPE}, 0.3, 6.5, "L'ADN de ce Pokémon très particulier recèle de nombreuses possibilités d'évolution.", 92, 1000000, 45, 133);
+	         listePoke[134] = new Espece(65, 60, 110, 95, 65, 130, "Aquali", Type::EAU, Type::AUCUN, 0, -1, ne, {Stats.PV, Stats.PV}, 1, 29, "Il a évolué pour s'adapter au milieu aquatique. Il peut se fondre et disparaà®tre dans l'élément liquide.",  196, 1000000, 45, 134);
+		 listePoke[135] = new Espece(65, 60, 110, 95, 130, 65, "Voltali", Type::ELECTRIQUE, Type::AUCUN, 0, -1, ne, {Stats.VIT, Stats.VIT}, 0., 24.5, "Chaque poil sur son corps se dresse quand il se charge en électricité.", 197, 1000000, 45, 135);
+                 listePoke[136] = new Espece(130, 60, 95, 110, 65, 65, "Pyroli", Type::FEU, Type::AUCUN, 0, -1, ne, {Stats.ATK, Stats.ATK}, 0.9, 25.9, "Son corps contient une glande enflammée. Sa température monte à  900Ã‚Â°C avant le combat.", 198, 1000000, 45, 136);
 		 listePoke[137] = new Espece(60, 70, 85, 75, 40, 65, "Porygon", Type::NORMAL, Type::AUCUN, 0, -1, new E_TradeItem(0, Item::getItem("Ameliorator")), {Stats.ATK}, 0., 36.5, "Ce Pokémon a été développé en Java, il adore se fofiler dans les programmes pour tout modifier.", 133, 1000000, 45, 137);
 		 listePoke[138] = new Espece(40, 100, 90, 55, 35, 35, "Amonita", Type::ROCHE, Type::EAU, 0, 40,new E_Level(138, 40), {Stats.DEF}, 0.4, 7.5, "Recréé à  partir d'un fossile, il utilise l'air dans sa coquille pour s'enfoncer dans l'eau ou faire surface.", 99, 1000000, 45, 138);
 		 listePoke[139] = new Espece(60, 125, 115, 70, 55, 70, "Amonistar", Type::ROCHE, Type::EAU, 0, -1, ne, {Stats.DEF, Stats.DEF}, 1, 35, "Une fois enroulé autour de sa proie, il ne la laisse pas repartir et la dévore avec ses crocs.", 199, 1000000, 45, 139);
