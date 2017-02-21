@@ -5,7 +5,7 @@
 
 #include "item/IHeal.hpp"
 
-using namespace std;
+UNS
 
 Pokemon::~Pokemon() {
 	for (int i = 0; i < 4; i++) {

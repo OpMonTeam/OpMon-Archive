@@ -1,6 +1,6 @@
 #include "File.hpp"
 
-using namespace std;
+UNS
 
 RFile::RFile(string path) {
 	this->path = path;
