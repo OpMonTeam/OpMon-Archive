@@ -454,7 +454,7 @@
 	"Item.hpp"
 	"../Attaque.hpp"
 
-1487619630 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\item.hpp
+1487684509 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\item.hpp
 	<iostream>
 	"../../enums/Enums.hpp"
 	"../../../utils/Class.hpp"
@@ -534,7 +534,7 @@
 	"../evolution/evolutions.hpp"
 	"../start/main.hpp"
 
-1487594568 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\main.hpp
+1487684008 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\main.hpp
 	<iostream>
 	<fstream>
 	"../../utils/File.hpp"
@@ -559,8 +559,9 @@
 1487594568 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\ct.cpp
 	"CT.hpp"
 
-1487594568 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\iheal.cpp
+1487681104 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\iheal.cpp
 	"IHeal.hpp"
+	"../../start/main.hpp"
 
 1487594568 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\iheal.hpp
 	"Item.hpp"
@@ -569,13 +570,14 @@
 1487594568 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\ipokeball.cpp
 	"IPokeball.hpp"
 
-1487594568 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\item.cpp
+1487681121 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\item.cpp
 	"IPokeball.hpp"
 	"IHeal.hpp"
 	"CT.hpp"
 	"Item.hpp"
+	"../../start/main.hpp"
 
-1487594568 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\pokemon.cpp
+1487680908 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\pokemon.cpp
 	"Pokemon.hpp"
 	"../start/main.hpp"
 	"../evolution/Evolution.hpp"
@@ -605,8 +607,9 @@
 	<cstdarg>
 	<iostream>
 
-1487594568 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\utils\file.cpp
+1487681144 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\utils\file.cpp
 	"File.hpp"
+	"../regimys/start/main.hpp"
 
 1487594568 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\utils\numberedarray.cpp
 	"NumberedArray.hpp"
@@ -617,7 +620,7 @@
 1487594568 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\enums\enums.cpp
 	"Enums.hpp"
 
-1487601345 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\main.cpp
+1487683704 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\main.cpp
 	"main.hpp"
 	<iostream>
 	<fstream>
@@ -652,7 +655,7 @@
 	"../objects/item/Item.hpp"
 	"Evolution.hpp"
 
-1487680616 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\mainframe.cpp
+1487684947 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\mainframe.cpp
 	"MainFrame.hpp"
 	<iostream>
 	"../start/main.hpp"
@@ -663,7 +666,7 @@
 	"../start/StringKeys.hpp"
 	"../start/main.hpp"
 
-1487619510 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\mainframe.hpp
+1487680908 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\mainframe.hpp
 	<SDL/SDL.h>
 	<SDL/SDL_ttf.h>
 	"Elements.hpp"
@@ -987,7 +990,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1487603389 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\initializer.cpp
+1487680897 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\initializer.cpp
 	"Initializer.hpp"
 	"../enums/Enums.hpp"
 	"../objects/Attaques.hpp"
@@ -1917,7 +1920,7 @@
 	<vector>
 	<fstream>
 
-1487594568 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\stringkeys.cpp
+1487682759 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\stringkeys.cpp
 	"StringKeys.hpp"
 	"main.hpp"
 

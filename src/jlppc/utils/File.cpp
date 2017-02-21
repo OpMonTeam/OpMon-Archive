@@ -1,5 +1,5 @@
 #include "File.hpp"
-
+#include "../regimys/start/main.hpp"
 UNS
 
 RFile::RFile(string path) {
