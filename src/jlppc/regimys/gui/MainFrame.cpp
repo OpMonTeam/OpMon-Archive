@@ -193,8 +193,8 @@ namespace MainFrame {
 		profP.w = (180 / 3) * 2;
 		profP.x = (fondP.w / 2) - (profP.w / 2) + 10;
 		profP.y = ((fondP.h - dialogP.h) / 2) - (profP.h / 2) + 50;
-		textPlace.x = 15;
-		textPlace.y = 372;
+		textPlace.x = 20;
+		textPlace.y = 382;
 		arrDialP.x = 512 - 75;
 		arrDialP.y = 512 - 30;
 		arrDialP.h = 10;
