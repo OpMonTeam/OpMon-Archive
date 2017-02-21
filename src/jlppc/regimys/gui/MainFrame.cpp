@@ -256,7 +256,7 @@ namespace MainFrame {
 
 				ancientTick = SDL_GetTicks();
 
-				if (phase == 0) {
+				if (!changeDialog) {
 					SDL_PollEvent(&events);
 				} else {
 					SDL_WaitEvent(&events);
@@ -299,16 +299,18 @@ namespace MainFrame {
 
 
 				if (phase == 0) {
-					if (SDL_RenderCopy(renderer, fondT, NULL, &fondP) == -1) {
-			rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
-			gererErreur(SDL_GetError(), false);
-		}
-		if (SDL_RenderCopy(renderer, profT, NULL, &profP) == -1) {
-			rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
-		}
-		if (SDL_RenderCopy(renderer, dialogT, NULL, &dialogP) == -1) {
-			rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
-		}
+                     if (SDL_RenderCopy(renderer, fondT, NULL, &fondP) == -1) {
+                        rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
+                        gererErreur(SDL_GetError(), false);
+                    }
+                    if (SDL_RenderCopy(renderer, profT, NULL, &profP) == -1) {
+                        rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
+                        gererErreur(SDL_GetError(), false);
+                    }
+                    if (SDL_RenderCopy(renderer, dialogT, NULL, &dialogP) == -1) {
+                        rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
+                        gererErreur(SDL_GetError(), false);
+                    }
 					if (!changeDialog) {
 
 						if (!(i >= txtP0[line + dialog].size())) {
@@ -343,7 +345,7 @@ namespace MainFrame {
 
 
 			} else {
-
+                SDL_Delay(41 - (SDL_GetTicks() - ancientTick));
 			}
 
 		}
