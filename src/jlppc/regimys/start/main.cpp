@@ -1,5 +1,9 @@
 #include "main.hpp"
 
+#if !defined(__cplusplus)
+#error Mais quel crétin! Il est en C++ ce programme!
+#endif
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -25,7 +29,7 @@
 //#define DEBUG
 UNS
 
-#ifdef WINDOWS
+#ifdef _WIN32
 	ofstream rlog("logs\\log.txt");
 	ofstream rerrLog("logs\\errLog.txt");
 #else
@@ -45,7 +49,7 @@ namespace Main {
 	extern Player joueur;
 	extern RFile playerSave;
 	extern RFile params;
-    #ifdef WINDOWS
+    #ifdef _WIN32
         string sep = "\\";
     #else
         string sep = "/";
