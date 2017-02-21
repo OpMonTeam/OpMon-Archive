@@ -13,6 +13,7 @@ Contient des fonctions necessaires au programme
 #include "../../utils/File.hpp"
 #include "../playercore/Player.hpp"
 #include <sstream>
+#define UNS using namespace std;
 
 extern std::ofstream rlog;
 extern std::ofstream rerrLog;

@@ -4,7 +4,7 @@
 #include "CT.hpp"
 #include "Item.hpp"
 
-using namespace std;
+UNS
 
 Item *Item::itemsLst[ITEM_NUMBER] = {0};
 
