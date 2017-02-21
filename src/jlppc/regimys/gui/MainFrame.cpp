@@ -7,6 +7,7 @@
 #include <cstring>
 #include "../start/StringKeys.hpp"
 #include "../start/main.hpp"
+#include <string>
 
 #define rLog rlog
 #define charLineDialog 33
@@ -179,7 +180,7 @@ namespace MainFrame {
 		SDL_Rect arrDialP;
 
 		//Initialisation des tailles
-		rlog << "[T = " << time(NULL) - Main::startTime << "] - Initialisation des SDL_Rect" << endl;
+		rlog << "[T = " << SDL_GetTicks() << "] - Initialisation des SDL_Rect" << endl;
 		fondP.h = 512;
 		fondP.w = 512;
 		fondP.x = 0;
@@ -202,7 +203,7 @@ namespace MainFrame {
 		noir.g = 0;
 		noir.b = 0;
 		//Initialisation des images
-		rlog << "[T = " << time(NULL) - Main::startTime << "] - Initialisation des sprites..." << endl;
+		rlog << "[T = " << SDL_GetTicks() << "] - Initialisation des sprites..." << endl;
 #ifdef _WIN32
 		fondT = IMG_LoadTexture(renderer, "ressources\\backgrounds\\start\\startscene.png");
 		profT = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\jlppc\\jlppc.png");
@@ -231,8 +232,8 @@ namespace MainFrame {
 		}
 		//Initialisation des variables utiles pour la boucle
 		SDL_RenderPresent(renderer);
-		rlog << "[T = " << time(NULL) - Main::startTime << "] - Fin des initialisations" << endl;
-		rlog << "[T = " << time(NULL) - Main::startTime << "] - Creation des variables utilitaires" << endl;
+		rlog << "[T = " << SDL_GetTicks() << "] - Fin des initialisations" << endl;
+		rlog << "[T = " << SDL_GetTicks() << "] - Creation des variables utilitaires" << endl;
 		bool continuer = true;
 		long ancientTick = 0;
 		//Phase 0
@@ -248,7 +249,7 @@ namespace MainFrame {
 		int phase = 0;
 		bool joypressed = false;
 
-		rlog << "[T = " << time(NULL) - Main::startTime << "] - Début de la boucle principale." << endl;
+		rlog << "[T = " << SDL_GetTicks() << "] - Début de la boucle principale." << endl;
 		//Boucle n°1
 		while (continuer) {
 			if ((SDL_GetTicks() - ancientTick) >= 41) {
@@ -298,7 +299,16 @@ namespace MainFrame {
 
 
 				if (phase == 0) {
-					SDL_RenderCopy(renderer, dialogT, NULL, &dialogP);
+					if (SDL_RenderCopy(renderer, fondT, NULL, &fondP) == -1) {
+			rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
+			gererErreur(SDL_GetError(), false);
+		}
+		if (SDL_RenderCopy(renderer, profT, NULL, &profP) == -1) {
+			rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
+		}
+		if (SDL_RenderCopy(renderer, dialogT, NULL, &dialogP) == -1) {
+			rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
+		}
 					if (!changeDialog) {
 
 						if (!(i >= txtP0[line + dialog].size())) {
@@ -333,17 +343,74 @@ namespace MainFrame {
 
 
 			} else {
-				SDL_Delay(41 - (SDL_GetTicks() - ancientTick));
+
 			}
 
 		}
+        SDL_Texture *anim[6];
+        SDL_Rect animP;
+        animP.h = 512;
+        animP.w = 512;
+        animP.x = 0;
+        animP.y = 0;
+
+        rlog << "[T = " << SDL_GetTicks() << "] - Début de la seconde boucle" << endl;
+        for(int i = 0; i < 6;i++){
+            if((SDL_GetTicks() - ancientTick) >= 200) {
+                SDL_PollEvent(&events);
+
+                switch(events.type){
+                    QUIT
+
+                case SDL_KEYDOWN:
+                    switch (events.key.keysym.sym) {
+                        ECHAP
+                    }
+
+                     break;
+
+                case SDL_JOYBUTTONDOWN:
+                    if(!joypressed){
+                        joypressed = true;
+                        switch (events.jbutton.button) {
+                            JOYQUIT
+                        }
+                    }
+
+
+
+                    break;
+                case SDL_JOYBUTTONUP:
+                    joypressed = false;
+                    break;
+                }
+
+                ostringstream oss;
+
+                #ifdef _WIN32
+                oss << "ressources\\animations\\winChange\\animWindowFrame" << i + 1 << ".png";
+                #else
+                oss << "ressources/animations/winChange/animWindowFrame" << i + 1 << ".png";
+                #endif // _WIN32
+
+                anim[i] = IMG_LoadTexture(renderer, oss.str().c_str());
+                SDL_RenderCopy(renderer, anim[i], NULL, &animP);
+                SDL_RenderPresent(renderer);
+                SDL_DestroyTexture(anim[i]);
+            }else{
+                SDL_Delay(200 - (SDL_GetTicks() - ancientTick));
+                i--;
+            }
+        }
+
+        //SDL_Delay(2000);
 
 		/*while(continuer){
 
 		}*/
 
-		rlog << "[T = " << time(NULL) - Main::startTime << "] - Fin de la boucle n°0" << endl;
-		//rlog << "[T = " << time(NULL) - Main::startTime << "] - Entrée dans la boucle n°1" << endl;
+
+		//rlog << "[T = " << SDL_GetTicks << "] - Entrée dans la boucle n°1" << endl;
 
 
 		SDL_DestroyTexture(textUre);
