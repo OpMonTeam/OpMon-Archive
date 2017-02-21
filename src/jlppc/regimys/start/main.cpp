@@ -23,8 +23,7 @@
 
 #define WINDOWS
 //#define DEBUG
-
-using namespace std;
+UNS
 
 #ifdef WINDOWS
 	ofstream rlog("logs\\log.txt");

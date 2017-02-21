@@ -11,11 +11,19 @@
 #define rLog rlog
 #define charLineDialog 33
 #define kget StringKeys::get
-#define QUIT case SDL_QUIT:return;
-#define ECHAP case SDLK_ESCAPE:return;
-#define JOYQUIT case 7:return;
-using namespace std;
+#define QUITF continuer=false;\
+                        return;
+#define QUIT case SDL_QUIT:\
+                        QUITF//Un macro composé de macro. :D
 
+#define ECHAP case SDLK_ESCAPE:\
+                        QUITF
+#define JOYQUIT case 7:\
+                        QUITF
+
+
+
+UNS
 
 namespace MainFrame {
 	SDL_Window *frame = NULL;
@@ -353,6 +361,10 @@ namespace MainFrame {
 			} else {
 				SDL_Delay(50 - (SDL_GetTicks() - ancientTick));
 			}
+
+		}
+
+		while(continuer){
 
 		}
 

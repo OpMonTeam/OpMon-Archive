@@ -2,7 +2,7 @@
 #include "main.hpp"
 #define WINDOWS
 
-using namespace std;
+UNS
 
 namespace StringKeys {
 #ifdef WINDOWS
