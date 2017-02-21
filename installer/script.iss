@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Pokémon Regimys"
-#define MyAppVersion "Alpha 0.08.0"
+#define MyAppVersion "Alpha 0.09.0 dev 2102a"
 #define MyAppPublisher "Jlppc & Navet56"
 #define MyAppURL "http://regimys.tk"
 #define MyAppExeName "Projet-Pokemon-Regimys.exe"
