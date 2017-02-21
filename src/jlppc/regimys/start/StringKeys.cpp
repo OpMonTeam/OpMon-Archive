@@ -5,7 +5,7 @@
 UNS
 
 namespace StringKeys {
-#ifdef WINDOWS
+#ifdef _WIN32
 	ifstream keysFile("ressources\\keys\\keys.rkeys");
 #else
 	std::ifstream keysFile("ressources/keys/keys.rkeys");
