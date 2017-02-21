@@ -1,7 +1,6 @@
 #include "StringKeys.hpp"
 #include "main.hpp"
-#define WINDOWS
-
+#include <SDL/SDL.h>
 UNS
 
 namespace StringKeys {
@@ -14,7 +13,7 @@ namespace StringKeys {
 	vector<string> strings = vector<string>();
 
 	void initialize() {
-		rlog << "[T = " << time(NULL) - Main::startTime << "] - Initialisation des clées" << endl;
+		rlog << "[T = " << SDL_GetTicks() << "] - Initialisation des clées" << endl;
 		if (!keysFile) {
 			gererErreur("Initialisation des clées impossible.", true);
 		}

@@ -14,6 +14,7 @@ Contient des fonctions necessaires au programme
 #include "../playercore/Player.hpp"
 #include <sstream>
 #define UNS using namespace std;
+#define toStr(toStrP) #toStrP
 
 extern std::ofstream rlog;
 extern std::ofstream rerrLog;

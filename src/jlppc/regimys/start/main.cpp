@@ -93,7 +93,7 @@ int quit(int returne) {
 		atexit(IMG_Quit);
 		SDL_Quit();
 	}
-	rlog << "[T = " << time(NULL) - Main::startTime << "] - Fermeture du jeu." << endl;
+	rlog << "[T = " << SDL_GetTicks() << "] - Fermeture du jeu." << endl;
 	rlog.close();
 	rerrLog.close();
 
