@@ -27,7 +27,7 @@ namespace MainFrame {
 	extern bool init;
 	extern SDL_Joystick *manette;
 	void open();
-	void loop();
+	void startScene();
 	/**
 	Affiche un texte dans la boite de dialogue.
 	Renvoie... on verra.
