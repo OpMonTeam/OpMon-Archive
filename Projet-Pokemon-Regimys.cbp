@@ -47,6 +47,7 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-D_WIN32" />
 			<Add directory="include" />
 		</Compiler>
 		<Linker>
