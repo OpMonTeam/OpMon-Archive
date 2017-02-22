@@ -1,6 +1,7 @@
 #include "StringKeys.hpp"
 #include "main.hpp"
 #include <SDL/SDL.h>
+#include <cstdio>
 UNS
 
 namespace StringKeys {
@@ -26,6 +27,7 @@ namespace StringKeys {
 			}
 			keys.push_back(split(read, '=', 0));
 			strings.push_back(split(read, '=', 1));
+
 		}
 	}
 
@@ -37,6 +39,17 @@ namespace StringKeys {
 			}
 		}
 		return string("");
+	}
+
+	int getIndex(string key) {
+		key = string("key.") + key;
+		unsigned int i = 0;
+		for (i = 0; i < keys.size(); i++) {
+			if (keys[i] == key) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	string split(string str, char splitter, int part) {
@@ -57,4 +70,5 @@ namespace StringKeys {
 		}
 		return toReturn[part];
 	}
+
 }
