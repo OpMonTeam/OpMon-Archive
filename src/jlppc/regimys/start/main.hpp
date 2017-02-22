@@ -16,6 +16,8 @@ Contient des fonctions necessaires au programme
 #define UNS using namespace std;
 #define toStr(toStrP) #toStrP
 
+#define PRINT_TICKS "[T = " << SDL_GetTicks() << "] - "
+
 extern std::ofstream rlog;
 extern std::ofstream rerrLog;
 /**
