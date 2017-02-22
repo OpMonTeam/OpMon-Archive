@@ -12,15 +12,23 @@
 #define rLog rlog
 #define charLineDialog 33
 #define kget StringKeys::get
+
 #define QUITF continuer=false;\
-	return;
+		SDL_DestroyTexture(textUre);\
+		SDL_DestroyTexture(dialogT);\
+		SDL_DestroyTexture(profT);\
+		SDL_DestroyTexture(fondT);\
+        return;
+
 #define QUIT case SDL_QUIT:\
 	QUITF//Un macro composé de macro. :D
 
 #define ECHAP case SDLK_ESCAPE:\
 	QUITF
+
 #define JOYQUIT case 7:\
 	QUITF
+
 #define DIALOG_PASS(varname) if (changeDialog == false) {\
 		txtEnCours[0] = txtP##varname[dialog];\
 		txtEnCours[1] = txtP##varname[dialog + 1];\
@@ -60,6 +68,7 @@ namespace MainFrame {
 	SDL_Texture *dialogT = NULL;
 	SDL_Rect textPlace = {0, 0, 0, 0};
 	SDL_Color noir = {0, 0, 0};
+	SDL_Color blanc = {255, 255, 255};
 	SDL_Joystick *manette = NULL;
 	bool init = false;
 
@@ -128,6 +137,7 @@ namespace MainFrame {
 			gererErreur(TTF_GetError(), true);
 		}
 		//Ouverture de la police
+		rlog << PRINT_TICKS << "Initialisation des SDL terminée" << endl;
 #ifdef _WIN32
 		font = TTF_OpenFont("ressources\\fonts\\arial.ttf", 28);
 #else
@@ -139,6 +149,7 @@ namespace MainFrame {
 			rlog << "Une erreur fatale s'est produite. Merci de consulter errLog.txt" << endl;
 			gererErreur(TTF_GetError(), true);
 		}
+		rlog << PRINT_TICKS << "Initialisation de la police terminée" << endl;
 
 
 		//Annonce que l'initialisation principale est terminée
@@ -152,13 +163,20 @@ namespace MainFrame {
 			rlog << "Une erreur fatale s'est produite. Merci de consulter errLog.txt" << endl;
 			gererErreur(SDL_GetError(), true);
 		}
+		rlog << PRINT_TICKS << "Initialisation de la fenetre et du renderer terminée" << endl;
 		//Ouverture de la manette (Je sais pas si ca se dit "ouverture de la manette mais c'est pas grave)
 		manette = SDL_JoystickOpen(0);
 		if (manette == NULL) {
 			gererErreur("Aucune manette détectée", false);
+		}else{
+		    rlog << PRINT_TICKS << "Initialisation du joystick terminée" << endl;
 		}
 
+
+
 		loop();
+
+		rlog << PRINT_TICKS << "Fermeture de la fenetre" << endl;
 
 		SDL_DestroyRenderer(renderer);
 		SDL_DestroyWindow(frame);
@@ -249,18 +267,14 @@ namespace MainFrame {
 		int phase = 0;
 		bool joypressed = false;
 
-		rlog << "[T = " << SDL_GetTicks() << "] - Début de la boucle principale." << endl;
+		rlog << "[T = " << SDL_GetTicks() << "] - Début de la boucle n°0" << endl;
 		//Boucle n°1
 		while (continuer) {
 			if ((SDL_GetTicks() - ancientTick) >= 41) {
 
 				ancientTick = SDL_GetTicks();
 
-				if (!changeDialog) {
-					SDL_PollEvent(&events);
-				} else {
-					SDL_WaitEvent(&events);
-				}
+				SDL_PollEvent(&events);
 
 				switch (events.type) {
 
@@ -356,7 +370,7 @@ namespace MainFrame {
         animP.x = 0;
         animP.y = 0;
 
-        rlog << "[T = " << SDL_GetTicks() << "] - Début de la seconde boucle" << endl;
+        rlog << "[T = " << SDL_GetTicks() << "] - Début de la boucle n°1" << endl;
         for(int i = 0; i < 6;i++){
             if((SDL_GetTicks() - ancientTick) >= 200) {
                 SDL_PollEvent(&events);
@@ -404,21 +418,304 @@ namespace MainFrame {
                 i--;
             }
         }
+        phase = 2;
+        rlog << "[T = " << SDL_GetTicks() << "] - Début de la boucle n°2" << endl;
+        char pName[16] = "               ";
+        int k = 0;
+        #ifdef _WIN32
+        SDL_Texture *fondNE = IMG_LoadTexture(renderer, "ressources\\backgrounds\\start\\nameEntry.png");
+        #else
+        SDL_Texture *fondNE = IMG_LoadTexture(renderer, "ressources/backgrounds/start/nameEntry.png");
+        #endif
+        if(fondNE == NULL){
+            rerrLog << "Erreur lors de l'affichage du fond d'entrée de nom" << endl;
+            gererErreur(IMG_GetError(), false);
+        }
 
-        //SDL_Delay(2000);
+        SDL_Rect texteDesc1R, texteDesc2R, texteDesc3R, texteDesc4R;
+        SDL_Rect textPos;
+        texteDesc1R.x = 85;
+        texteDesc1R.y = 25;
+        texteDesc2R.x = 155;
+        texteDesc2R.y = 200;
+        texteDesc3R.x = 95;
+        texteDesc3R.y = 375;
+        texteDesc4R.x = texteDesc3R.x;
+        texteDesc4R.y = texteDesc3R.y + 30;
 
-		/*while(continuer){
+        textPos.x = 120;
+        textPos.y = 300;
 
-		}*/
+        SDL_Texture *texteDescs[4] = {renderText(renderer,"Entre un nom", font, blanc, &texteDesc2R),
+            renderText(renderer, "Quel est son nom", font, blanc, &texteDesc1R),
+            renderText(renderer, "Appuie sur Entrée lorsque", font, blanc, &texteDesc3R),
+            renderText(renderer, "tu as terminé", font, blanc, &texteDesc4R)};
+
+        SDL_RenderCopy(renderer, fondNE, NULL, &fondP);
+        SDL_RenderCopy(renderer, texteDescs[0], NULL, &texteDesc2R);
+        SDL_RenderCopy(renderer, texteDescs[1], NULL, &texteDesc1R);
+        SDL_RenderCopy(renderer, texteDescs[2], NULL, &texteDesc3R);
+        SDL_RenderCopy(renderer, texteDescs[3], NULL, &texteDesc4R);
+        SDL_RenderPresent(renderer);
+
+        SDL_Texture *nameT;
+
+        bool shift = false;
+        bool caps = false;
+
+        while(continuer){
+                SDL_WaitEvent(&events);
+
+                switch(events.type){
+                    QUIT
+
+            case SDL_KEYUP:
+                switch(events.key.keysym.sym){
+                case SDLK_RSHIFT:
+                    shift = false;
+                    break;
+                case SDLK_LSHIFT:
+                    shift = false;
+                    break;
+                }
+                break;
+
+            case SDL_KEYDOWN:
+                    switch(events.key.keysym.sym){
+                        ECHAP
+
+                    case SDLK_LSHIFT:
+                        shift = true;
+                        break;
+
+                    case SDLK_RSHIFT:
+                        shift = true;
+                        break;
+
+                    case SDLK_CAPSLOCK:
+                        if(!caps){
+                            shift = true;
+                            caps = true;
+                        }else{
+                            shift = false;
+                            caps = false;
+                        }
+
+
+                        break;
+
+                    case SDLK_BACKSPACE:
+                        pName[k] = ' ';
+                        if(k != 0){
+                            k--;
+                        }
+
+
+                        break;
+
+                    case SDLK_a:
+                        if(k != 14){
+                            k++;
+                        }
+                        if(shift){
+                            pName[k] = 'A';
+                        }else{
+                            pName[k] = 'a';
+                        }
+
+                        break;
+
+                    case SDLK_b:
+                        if(k != 14){
+                            k++;
+                        }
+                        if(shift){
+                            pName[k] = 'B';
+                        }else{
+                            pName[k] = 'b';
+                        }
+
+                        break;
+
+                    case SDLK_c:
+                        if(k != 14){
+                            k++;
+                        }
+                        if(shift){
+                            pName[k] = 'C';
+                        }else{
+                            pName[k] = 'c';
+                        }
+
+                        break;
+
+                    case SDLK_d:
+                        if(k != 14){
+                            k++;
+                        }
+                        if(shift){
+                            pName[k] = 'D';
+                        }else{
+                            pName[k] = 'd';
+                        }
+
+                        break;
+
+                    case SDLK_e:
+                        if(k != 14){
+                            k++;
+                        }
+                        if(shift){
+                            pName[k] = 'E';
+                        }else{
+                            pName[k] = 'e';
+                        }
+
+                        break;
+
+                    case SDLK_f:
+                        if(k != 14){
+                            k++;
+                        }
+                        if(shift){
+                            pName[k] = 'F';
+                        }else{
+                            pName[k] = 'f';
+                        }
+
+                        break;
+
+                    case SDLK_g:
+                        if(k != 14){
+                            k++;
+                        }
+                        if(shift){
+                            pName[k] = 'G';
+                        }else{
+                            pName[k] = 'g';
+                        }
+
+                        break;
+
+                    case SDLK_h:
+                        if(k != 14){
+                            k++;
+                        }
+                        if(shift){
+                            pName[k] = 'H';
+                        }else{
+                            pName[k] = 'h';
+                        }
+
+                        break;
+
+                    case SDLK_i:
+                        if(k != 14){
+                            k++;
+                        }
+                        if(shift){
+                            pName[k] = 'i';
+                        }else{
+                            pName[k] = 'i';
+                        }
+
+                        break;
+
+                    case SDLK_j:
+                        if(k != 14){
+                            k++;
+                        }
+                        if(shift){
+                            pName[k] = 'J';
+                        }else{
+                            pName[k] = 'j';
+                        }
+
+                        break;
+
+                    case SDLK_k:
+                        if(k != 14){
+                            k++;
+                        }
+                        if(shift){
+                            pName[k] = 'K';
+                        }else{
+                            pName[k] = 'k';
+                        }
+
+                        break;
+
+                    case SDLK_l:
+                        if(k != 14){
+                            k++;
+                        }
+                        if(shift){
+                            pName[k] = 'L';
+                        }else{
+                            pName[k] = 'l';
+                        }
+
+                        break;
+
+                    case SDLK_m:
+                        if(k != 14){
+                            k++;
+                        }
+                        if(shift){
+                            pName[k] = 'M';
+                        }else{
+                            pName[k] = 'm';
+                        }
+
+                        break;
+
+                    case SDLK_n:
+                        if(k != 14){
+                            k++;
+                        }
+                        if(shift){
+                            pName[k] = 'N';
+                        }else{
+                            pName[k] = 'n';
+                        }
+
+                        break;
+
+                    }
+                    break;
+                }
+
+                SDL_RenderCopy(renderer, fondNE, NULL, &fondP);
+                SDL_RenderCopy(renderer, texteDescs[0], NULL, &texteDesc2R);
+                SDL_RenderCopy(renderer, texteDescs[1], NULL, &texteDesc1R);
+                SDL_RenderCopy(renderer, texteDescs[2], NULL, &texteDesc3R);
+                SDL_RenderCopy(renderer, texteDescs[3], NULL, &texteDesc4R);
+                SDL_DestroyTexture(nameT);
+                nameT = renderText(renderer, pName, font, blanc, &textPos);
+                SDL_RenderCopy(renderer, nameT, NULL, &textPos);
+                SDL_RenderPresent(renderer);
+
+
+        }
 
 
 		//rlog << "[T = " << SDL_GetTicks << "] - Entrée dans la boucle n°1" << endl;
 
 
-		SDL_DestroyTexture(textUre);
-		SDL_DestroyTexture(dialogT);
-		SDL_DestroyTexture(profT);
-		SDL_DestroyTexture(fondT);
+
+	}
+
+	SDL_Texture* renderText(SDL_Renderer *renderer, char text[], TTF_Font *police, SDL_Color color, SDL_Rect *pos){
+        SDL_Surface *sfce = TTF_RenderText_Blended(police, text, color);
+        pos->h = sfce->h;
+        pos->w = sfce->w;
+        SDL_Texture *toReturn = SDL_CreateTextureFromSurface(renderer, sfce);
+        SDL_FreeSurface(sfce);
+        return toReturn;
+	}
+
+	SDL_Texture* renderText(SDL_Renderer *renderer, string text, TTF_Font *police, SDL_Color color, SDL_Rect *pos){
+	    return renderText(renderer, text.c_str(), police, color, pos);
 	}
 
 

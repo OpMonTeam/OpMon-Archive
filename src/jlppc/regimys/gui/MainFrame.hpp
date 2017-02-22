@@ -32,7 +32,10 @@ namespace MainFrame {
 	Affiche un texte dans la boite de dialogue.
 	Renvoie... on verra.
 	*/
-	int printText(SDL_Renderer *renderer, std::string text, std::string line2);
+	int printText(SDL_Renderer *renderer, std::string text, std::string line2, std::string line3);
+
+	SDL_Texture* renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color, SDL_Rect *pos);
+	SDL_Texture* renderText(SDL_Renderer *renderer, char text[]     , TTF_Font *police, SDL_Color color, SDL_Rect *pos);
 
 }
 
