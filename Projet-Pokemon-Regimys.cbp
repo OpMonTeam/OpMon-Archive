@@ -56,6 +56,7 @@
 			<Add library="lib/libSDL2.dll.a" />
 			<Add library="lib/libSDL2_image.dll.a" />
 			<Add library="lib/libSDL2_ttf.dll.a" />
+			<Add library="lib/libSDL2_mixer.dll.a" />
 			<Add directory="lib" />
 		</Linker>
 		<Unit filename="resources.rc">
