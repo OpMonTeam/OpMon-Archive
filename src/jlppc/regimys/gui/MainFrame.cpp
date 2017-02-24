@@ -15,11 +15,12 @@
 #define kget StringKeys::get
 
 #define QUITF continuer=false;\
+    Mix_PauseMusic();\
 	SDL_DestroyTexture(textUre);\
 	SDL_DestroyTexture(dialogT);\
 	SDL_DestroyTexture(profT);\
 	SDL_DestroyTexture(fondT);\
-	Mix_FreeMusic(fond);\
+	Mix_FreeMusic(fondMus);\
 	return;
 
 #define QUIT case SDL_QUIT:\
@@ -39,6 +40,7 @@
 		changeDialog = true;\
 		SDL_Delay(50);\
 	} else if (!(dialog + 3 >= sizeOfTxt)) {\
+        Mix_PlayChannel(1, dialogPass, 0);\
 		line = 0;\
 		dialog++;\
 		dialog++;\
@@ -72,6 +74,7 @@ namespace MainFrame {
 	SDL_Color noir = {0, 0, 0};
 	SDL_Color blanc = {255, 255, 255};
 	SDL_Joystick *manette = NULL;
+	Mix_Chunk *dialogPass = NULL;
 	bool init = false;
 
 	int printText(SDL_Renderer *renderer, string txt, string line2S, string line3S) {
@@ -180,9 +183,16 @@ namespace MainFrame {
 		} else {
 			rlog << PRINT_TICKS << "Initialisation du joystick terminée" << endl;
 		}
-
-
-
+		Mix_AllocateChannels(3);
+		#ifdef _WIN32
+		dialogPass = Mix_LoadWAV("ressources\\audio\\sounds\\dialogChange.ogg");
+        #else
+        dialogPass = Mix_LoadWAV("ressources/audio/sounds/dialogChange.ogg");
+        #endif
+        if(dialogPass == NULL){
+            gererErreur(Mix_GetError(), false);
+        }
+        Mix_Volume(1, MIX_MAX_VOLUME - 1);
 		startScene();
 
 		rlog << PRINT_TICKS << "Fermeture de la fenetre" << endl;
@@ -191,6 +201,7 @@ namespace MainFrame {
 		SDL_DestroyWindow(frame);
 		SDL_JoystickClose(manette);
 		TTF_CloseFont(font);
+		Mix_FreeChunk(dialogPass);
 
         Mix_CloseAudio();
 		TTF_Quit();
@@ -207,14 +218,14 @@ namespace MainFrame {
 		SDL_Texture *arrDial;
 		SDL_Rect arrDialP;
 		#ifdef _WIN32
-		Mix_Music *fond = Mix_LoadMUS("ressources\\audio\\music\\intro.ogg");
+		Mix_Music *fondMus = Mix_LoadMUS("ressources\\audio\\music\\intro.ogg");
 		#else
         Mix_Music *fond = Mix_LoadMUS("ressources/audio/music/intro.ogg");
 		#endif
-		if(fond == NULL){
+		if(fondMus == NULL){
             gererErreur(Mix_GetError(), false);
 		}
-		Mix_PlayMusic(fond, -1);
+		Mix_PlayMusic(fondMus, -1);
 
 		//Initialisation des tailles
 		rlog << PRINT_TICKS << "Initialisation des SDL_Rect" << endl;
