@@ -226,6 +226,7 @@ namespace MainFrame {
             gererErreur(Mix_GetError(), false);
 		}
 		Mix_PlayMusic(fondMus, -1);
+		Mix_VolumeMusic(MIX_MAX_VOLUME / 32);
 
 		//Initialisation des tailles
 		rlog << PRINT_TICKS << "Initialisation des SDL_Rect" << endl;
