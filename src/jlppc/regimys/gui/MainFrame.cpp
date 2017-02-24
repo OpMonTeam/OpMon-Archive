@@ -8,6 +8,7 @@
 #include "../start/StringKeys.hpp"
 #include "../start/main.hpp"
 #include <string>
+#include <SDL/SDL_mixer.h>
 
 #define rLog rlog
 #define charLineDialog 33
@@ -18,6 +19,7 @@
 	SDL_DestroyTexture(dialogT);\
 	SDL_DestroyTexture(profT);\
 	SDL_DestroyTexture(fondT);\
+	Mix_FreeMusic(fond);\
 	return;
 
 #define QUIT case SDL_QUIT:\
@@ -139,6 +141,10 @@ namespace MainFrame {
 			rlog << "Une erreur fatale s'est produite. Merci de consulter errLog.txt" << endl;
 			gererErreur(TTF_GetError(), true);
 		}
+        if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024) == -1){
+            rerrLog << "Erreur d'initilisation de SDL_Mixer" << endl;
+            gererErreur(Mix_GetError(), true);
+        }
 		//Ouverture de la police
 		rlog << PRINT_TICKS << "Initialisation des SDL terminée" << endl;
 #ifdef _WIN32
@@ -186,6 +192,7 @@ namespace MainFrame {
 		SDL_JoystickClose(manette);
 		TTF_CloseFont(font);
 
+        Mix_CloseAudio();
 		TTF_Quit();
 		atexit(IMG_Quit);
 		SDL_Quit();
@@ -199,6 +206,15 @@ namespace MainFrame {
 		SDL_Texture *profT;
 		SDL_Texture *arrDial;
 		SDL_Rect arrDialP;
+		#ifdef _WIN32
+		Mix_Music *fond = Mix_LoadMUS("ressources\\audio\\music\\intro.ogg");
+		#else
+        Mix_Music *fond = Mix_LoadMUS("ressources/audio/music/intro.ogg");
+		#endif
+		if(fond == NULL){
+            gererErreur(Mix_GetError(), false);
+		}
+		Mix_PlayMusic(fond, -1);
 
 		//Initialisation des tailles
 		rlog << PRINT_TICKS << "Initialisation des SDL_Rect" << endl;
