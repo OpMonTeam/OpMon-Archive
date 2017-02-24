@@ -40,7 +40,7 @@ class Item {
 
 
 	private:
-        int itemTypeID = 0;
+          int itemTypeID = 0;
 		std::string nom;
 		bool usable;
 		bool givable;
