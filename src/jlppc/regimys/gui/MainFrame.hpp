@@ -11,6 +11,7 @@ Permet d'ouvrir la fenetre du jeu.
 
 #include <SDL/SDL.h>
 #include <SDL/SDL_ttf.h>
+#include <SDL/SDL_mixer.h>
 #include "Elements.hpp"
 
 
@@ -26,6 +27,7 @@ namespace MainFrame {
 	extern SDL_Color noir;
 	extern bool init;
 	extern SDL_Joystick *manette;
+	extern Mix_Chunk *dialogPass;
 	void open();
 	void startScene();
 	/**
