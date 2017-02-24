@@ -655,7 +655,7 @@
 	"../objects/item/Item.hpp"
 	"Evolution.hpp"
 
-1487788582 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\mainframe.cpp
+1487931489 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\mainframe.cpp
 	"MainFrame.hpp"
 	<iostream>
 	"../start/main.hpp"
@@ -666,6 +666,7 @@
 	"../start/StringKeys.hpp"
 	"../start/main.hpp"
 	<string>
+	<SDL/SDL_mixer.h>
 
 1487783352 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\mainframe.hpp
 	<SDL/SDL.h>
@@ -1926,4 +1927,13 @@
 	"main.hpp"
 	<SDL/SDL.h>
 	<cstdio>
+
+1451801791 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\include\sdl\sdl_mixer.h
+	"SDL_stdinc.h"
+	"SDL_rwops.h"
+	"SDL_audio.h"
+	"SDL_endian.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
 
