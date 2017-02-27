@@ -991,7 +991,12 @@ namespace MainFrame {
 							}
 							pName[k] = '9';
 							break;
-
+                        case SDLK_DELETE:
+                            if(k != 14){
+                                k++;
+                            }
+                            pName[k] = ' ';
+                            break;
 						case SDLK_RETURN:
 							bool voided = true;
 							int voidNumber = 0;
@@ -1095,8 +1100,8 @@ namespace MainFrame {
 		}
 
 		phase = 2;
-		string txtP1[] = {kget("jlppc.dialog.start.10") + string(pName) + "...", kget("jlppc.dialog.start.11"), kget("jlppc.dialog.start.12"), kget("jlppc.dialog.start.13"), kget("jlppc.dialog.start.14"), kget("jlppc.dialog.start.15")};
-		sizeOfTxt = 6;
+		string txtP1[] = {kget("jlppc.dialog.start.10") + string(pName) + "...", kget("jlppc.dialog.start.11"), kget("jlppc.dialog.start.12"), kget("jlppc.dialog.start.13"), kget("jlppc.dialog.start.14"), kget("jlppc.dialog.start.15"), kget("jlppc.dialog.start.16"), kget("jlppc.dialog.start.17"), kget("jlppc.dialog.start.18"), kget("jlppc.dialog.start.19"), kget("jlppc.dialog.start.20"), kget("jlppc.dialog.start.21"), kget("jlppc.dialog.start.22"), kget("jlppc.dialog.start.23"), kget("jlppc.dialog.start.24")};
+		sizeOfTxt = 15;
 		i = 0;
 		line = 0;
 		dialog = 0;
