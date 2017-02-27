@@ -303,58 +303,146 @@ namespace Initializer {
 		evs[101].VIT;
 		evs[101].VIT;
 		
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
-		evs[].;
+		evs[102].ATKSPE;
+		
+		evs[103].DEF;
+		evs[103].DEF;
+		
+		evs[104].ATKSPE;
+		
+		evs[105].ATKSPE;
+		evs[105].ATKSPE;
+		
+		evs[106].ATK;
+		evs[106].ATK;
+		
+		evs[107].DEFSPE;
+		evs[107].DEFSPE;
+		
+		evs[108].PV;
+		evs[108].PV;
+		
+		evs[109].ATKSPE;
+		
+		evs[110].ATKSPE;
+		evs[110].ATKSPE;
+		
+		evs[111].ATKSPE;
+		
+		evs[112].ATK;
+		evs[112].ATK;
+		
+		evs[113].PV;
+		evs[113].PV;
+		
+		evs[114].ATKSPE;
+		
+		evs[115].PV;
+		evs[115].PV;
+		
+		evs[116].DEF;
+		
+		evs[117].ATKSPE;
+		evs[117].DEF;
+		
+		evs[118].ATK;
+		
+		evs[119].ATK;
+		evs[119].ATK;
+		
+		evs[120].VIT;
+		
+		evs[121].VIT;
+		evs[121].VIT;
+		
+		evs[122].DEFSPE;
+		evs[122].DEFSPE;
+		
+		evs[123].ATK;
+		
+		evs[124].DEF;
+		evs[124].DEF;
+		
+		evs[125].VIT;
+		evs[125].VIT;
+		
+		evs[126].DEF;
+		evs[126].DEF;
+		
+		evs[127].ATK;
+		evs[127].ATK;
+		
+		evs[128].ATK;
+		evs[128].VIT;
+		
+		evs[129].VIT;
+	
+		evs[130].ATK;
+		evs[130].ATK;
+		
+		evs[131].PV;
+		evs[131].PV;
+		
+		evs[132].PV;
+		
+		evs[133].DEFSPE;
+		
+		evs[134].PV;
+		evs[134].PV;
+		
+		evs[135].VIT;
+		evs[135].VIT;
+		
+		evs[136].ATK;
+		evs[136].ATK;
+		
+		evs[137].DEF;
+		
+		evs[138].ATKSPE;
+		
+		evs[139].ATKSPE;
+		evs[139].ATKSPE;
+		
+		evs[140].ATKSPE;
+		
+		evs[141].ATK;
+		evs[141].ATK;
+		
+		evs[142].VIT;
+		evs[142].VIT;
+		
+		evs[143].PV;
+		evs[143].PV;
+		
+		evs[144].DEFSPE;
+		evs[144].DEFSPE;
+		evs[144].DEFSPE;
+		
+		evs[145].DEF;
+		evs[145].DEF;
+		evs[145].DEF;
+		
+		evs[146].DEF;
+		evs[146].DEF;
+		evs[146].DEF;
+		
+		evs[147].ATK;
+		
+		evs[148].ATK;
+		evs[148].ATK;
+		
+		evs[149].ATK;
+		evs[149].ATK;
+		evs[149].ATK;
+		
+		evs[150].DEF;
+		evs[150].DEF;
+		evs[150].DEF;
+		
+		evs[151].PV;
+		evs[151].PV;
+		evs[151].PV;
+		
 		evs[].;
 		evs[].;
 		evs[].;
