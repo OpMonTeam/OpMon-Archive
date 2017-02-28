@@ -3,7 +3,7 @@ Attaques.hpp
 Auteur : Jlppc
 Fichier sous licence GPL-3.0
 http://regimys.tk
-Contient les dÃ©finitions des classes des attaques
+Contient les définitions des classes des attaques
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUES_HPP_
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUES_HPP_
@@ -13,14 +13,16 @@ Contient les dÃ©finitions des classes des attaques
 #include "Pokemon.hpp"
 #include "Attaque.hpp"
 #include "../../utils/Class.hpp"
-#define ATK_CLASS(name) class (name) : public Attaque {\
+/**Macros permettant de facilité l'écriture des classes*/
+#define ATK_CLASS(name) class name : public Attaque {\
 public:
 
 #define EAv int effetAvant(Pokemon &atk, Pokemon &def)
 #define EAp int effetApres(Pokemon &atk, Pokemon &def)
 /**
-Namespace contenant les dÃ©finitions des attaques
+Namespace contenant les définitions des attaques
 */
+//->NoDoc
 namespace Attaques {
 
 	ATK_CLASS(Abime)
@@ -33,7 +35,7 @@ namespace Attaques {
 	ATK_CLASS(Acidarmure)
 			Acidarmure() : Attaque("Acidarmure", 0, Type::POISON, 100, false, true, -1, true, 20, 0) {}
 			EAv {return 0;}
-			Eap;
+			EAp;
 			static Class<Acidarmure> *classe;
 	};
 
@@ -58,7 +60,7 @@ namespace Attaques {
 			static Class<Aiguisage> *classe;
 	};
 	ATK_CLASS(Amnesie)
-			Amnesie() : Attaque("AmnÃ©sie", 0, Type::PSY, 100, false, true, -1, true, 20, 0) {}
+			Amnesie() : Attaque("Amnésie", 0, Type::PSY, 100, false, true, -1, true, 20, 0) {}
 			EAv {return 0;}
 			EAp;
 			static Class<Amnesie> *classe;
@@ -73,7 +75,7 @@ namespace Attaques {
 	};
 
 	ATK_CLASS(Belier)
-			Belier() : Attaque("BÃ©lier", 90, Type::NORMAL, 85, false, false, 16, false, 20, 0) {}
+			Belier() : Attaque("Bélier", 90, Type::NORMAL, 85, false, false, 16, false, 20, 0) {}
 			EAv {return 0;}
 			EAp;
 			static Class<Belier> *classe;
@@ -101,13 +103,13 @@ namespace Attaques {
 	};
 
     ATK_CLASS(Blizzard)
-            Blizzard : Attaque("Blizzard", 110, Type::GLACE, 70, true, false, 16, false, 5, 0) {}
+            Blizzard() : Attaque("Blizzard", 110, Type::GLACE, 70, true, false, 16, false, 5, 0) {}
             EAv {return 0;}
             EAp;
             static Class<Blizzard> *classe;
     };
 };
-//Permet de ne pas a devoir utiliser Attaques::
+//Permet de ne pas a devoir utiliser Attaques:: partout
 using namespace Attaques;
 
 

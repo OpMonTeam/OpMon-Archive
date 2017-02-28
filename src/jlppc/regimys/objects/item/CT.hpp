@@ -20,6 +20,7 @@ class CT : public Item {
 		Class<Attaque *> getAtk() const {return atk;}
 		int itemTypeID = 3;
 	private:
+	    /**Contient la classe de l'attaque de la CT*/
 		Class<Attaque *> atk;
 };
 

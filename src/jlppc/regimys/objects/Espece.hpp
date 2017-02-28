@@ -17,12 +17,14 @@ class Evolution;
 /**
 Namespace contenant une enumération des courbes d'exp possibles
 */
+//->Enum
 namespace CourbeExp {
 	const int ERRATIQUE = 0, FLUCTUANTE = 1, LENTE = 2, MOYENNE = 3, PARABOLIQUE = 4, RAPIDE = 5;
 };
 /**
 Classe permettant de définir une espèce de Pokémon.
 */
+//->Final
 class Espece {
 
 	protected:
@@ -46,12 +48,17 @@ class Espece {
 		int baseDefSpe;
 		int baseVit;
 		int basePV;
+		/**La courbe d'experience*/
+		//->WaitEnum->CourbeExp
 		int courbe;
+		/**L'exp au niveau 100*/
 		int expMax;
+		/**C'est le tableau des EV donnés*/
 		int *EVgiven;
-		//Images
+		//Variables de sprites a inserer ICI
 		int expGiven;
 		int tauxDeCapture;
+		/**La taille du tableau d'ev*/
 		int evSize;
 
 	public:
