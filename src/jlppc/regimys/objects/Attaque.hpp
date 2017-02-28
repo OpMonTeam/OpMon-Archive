@@ -16,14 +16,19 @@ class Pokemon;
 /**
 Représente une attaque Pokémon
 */
+//->PureVirtual
 class Attaque {
 	public:
 		virtual ~Attaque() {}
 		Attaque(std::string nom, int puissance, int type, int precision, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite);
+		//->PureVirtual
 		virtual int effetAvant(Pokemon &atk, Pokemon &def) = 0;
+		//->PureVirtual
 		virtual int effetApres(Pokemon &atk, Pokemon &def) = 0;
 		void healPP() {pp = ppMax;}
-		virtual int attack(Pokemon &atk, Pokemon &def) final;
+		/**atk attaque le pokémon def*/
+		//->Final
+		virtual int attack(Pokemon &atk, Pokemon &def);
 		virtual void siEchoue(Pokemon &atk, Pokemon &def) {}
 	protected:
 		std::string nom;
@@ -36,8 +41,10 @@ class Attaque {
 		int part = 0;
 		int pp;
 		int ppMax;
+		/**La chance de coups critiques, en 1/nombre (Par défaut, 16)*/
 		int chanceDeCoups;
 		bool rateJamais;
+		/**Variable utilisée dans effetAvant et effetAprès*/
 		int pvPerdus = 0;
 };
 

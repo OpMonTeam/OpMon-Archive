@@ -17,12 +17,12 @@ Contient des fonctions necessaires au programme
 #define toStr(toStrP) #toStrP
 
 #define PRINT_TICKS "[T = " << SDL_GetTicks() << "] - "
-
+/**Le log principal*/
 extern std::ofstream rlog;
+/**Le log d'erreur*/
 extern std::ofstream rerrLog;
 /**
 Methode a appeler lorsqu'une erreur peut intervenir dans le programme
-errorName : Le nom de l'erreur
 fatal : si true, éteint le programme
 */
 void gererErreur(std::string errorName, bool fatal);
@@ -36,6 +36,7 @@ Namespace contenant des variables utiles au fonctionnement du jeu
 */
 namespace Main {
 	void main();
+	//->Useless
 	extern long startTime;
 
 }

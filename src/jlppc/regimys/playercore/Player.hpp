@@ -19,14 +19,19 @@ class Player {
 	public:
 		Player(std::string name);
 		Equipe getEquipe() const;
+		/**Ajoute un item au sac*/
 		void addItem(int itemID);
+		/**Renvoie le nombre d'exemplaires dans le sac de l'item donné en paramètres*/
 		int checkItem(int itemID);
+		/**Enlève un exemplaire de l'item dans le sac donné en paramètres*/
 		bool deleteItem(int itemID);
 		std::string getName() const {return name;}
 		int getDressID() const {return dressID;}
 		void addPokemonToPC(Pokemon toAdd) {pc.push_back(toAdd);}
 		Pokemon getPoke(int ID) const {return equipe[ID];}
+		/**Soigne tous les Poké*/
 		void healPoke();
+		/**Essaie d'ajouter un pokémon a l'equipe. Renvoie false si ce n'est pas possible*/
 		bool addPokeToEquipe(Pokemon toAdd);
 	private:
 		std::string name;

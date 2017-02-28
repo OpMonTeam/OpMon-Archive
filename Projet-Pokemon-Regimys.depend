@@ -417,12 +417,12 @@
 	"../objects/item/Item.hpp"
 	"../objects/Pokemon.hpp"
 
-1487594568 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\evolution\evolution.hpp
+1488304874 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\evolution\evolution.hpp
 	<iostream>
 	"../objects/Pokemon.hpp"
 	"../../utils/Class.hpp"
 
-1487594568 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\pokemon.hpp
+1488307069 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\pokemon.hpp
 	<iostream>
 	<cmath>
 	"../enums/Caractere.hpp"
@@ -431,12 +431,12 @@
 	"item/Item.hpp"
 	"item/IPokeball.hpp"
 
-1487594568 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\enums\caractere.hpp
+1488304535 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\enums\caractere.hpp
 	"Enums.hpp"
 
-1487594568 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\enums\enums.hpp
+1488304641 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\enums\enums.hpp
 
-1487594568 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\espece.hpp
+1488306522 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\espece.hpp
 	<iostream>
 	"../../utils/NumberedArray.hpp"
 	"item/CT.hpp"
@@ -449,17 +449,17 @@
 1487594568 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\utils\class.hpp
 	<iostream>
 
-1487594568 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\ct.hpp
+1488305439 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\ct.hpp
 	"../../../utils/Class.hpp"
 	"Item.hpp"
 	"../Attaque.hpp"
 
-1487933244 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\item.hpp
+1488305904 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\item.hpp
 	<iostream>
 	"../../enums/Enums.hpp"
 	"../../../utils/Class.hpp"
 
-1487594568 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\attaque.hpp
+1488306314 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\attaque.hpp
 	<iostream>
 	"../../utils/Utils.hpp"
 	"../enums/Enums.hpp"
@@ -518,10 +518,10 @@
 	"Attaque.hpp"
 	"Pokemon.hpp"
 
-1487594568 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\attaques.cpp
+1488302638 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\attaques.cpp
 	"Attaques.hpp"
 
-1487594568 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\attaques.hpp
+1488306195 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\attaques.hpp
 	<iostream>
 	<cmath>
 	"Pokemon.hpp"
@@ -534,7 +534,7 @@
 	"../evolution/evolutions.hpp"
 	"../start/main.hpp"
 
-1487757718 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\main.hpp
+1488307616 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\main.hpp
 	<iostream>
 	<fstream>
 	"../../utils/File.hpp"
@@ -546,13 +546,13 @@
 	<fstream>
 	"Class.hpp"
 
-1487594568 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\playercore\player.hpp
+1488307323 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\playercore\player.hpp
 	<iostream>
 	<vector>
 	"Equipe.hpp"
 	"../objects/item/Item.hpp"
 
-1487594568 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\playercore\equipe.hpp
+1488307188 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\playercore\equipe.hpp
 	<iostream>
 	"../objects/Pokemon.hpp"
 
@@ -563,7 +563,7 @@
 	"IHeal.hpp"
 	"../../start/main.hpp"
 
-1487594568 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\iheal.hpp
+1488305832 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\objects\item\iheal.hpp
 	"Item.hpp"
 	<iostream>
 
@@ -620,7 +620,7 @@
 1487594568 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\enums\enums.cpp
 	"Enums.hpp"
 
-1487690360 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\main.cpp
+1488302638 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\main.cpp
 	"main.hpp"
 	<iostream>
 	<fstream>
@@ -650,12 +650,12 @@
 	"IHeal.hpp"
 	"Item.hpp"
 
-1487594568 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\evolution\evolutions.hpp
+1488305389 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\evolution\evolutions.hpp
 	<iostream>
 	"../objects/item/Item.hpp"
 	"Evolution.hpp"
 
-1487938428 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\mainframe.cpp
+1488230286 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\mainframe.cpp
 	"MainFrame.hpp"
 	<iostream>
 	"../start/main.hpp"
@@ -668,7 +668,7 @@
 	<string>
 	<SDL/SDL_mixer.h>
 
-1487932016 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\mainframe.hpp
+1488305362 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\mainframe.hpp
 	<SDL/SDL.h>
 	<SDL/SDL_ttf.h>
 	<SDL/SDL_mixer.h>
@@ -993,12 +993,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1487680897 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\initializer.cpp
-	"Initializer.hpp"
+1488302638 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\initializer.cpp
 	"../enums/Enums.hpp"
 	"../objects/Attaques.hpp"
 
-1487594568 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\initializer.hpp
+1488307478 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\initializer.hpp
 	<iostream>
 	<vector>
 	"../../utils/NumberedArray.hpp"
@@ -1327,7 +1326,7 @@
 1487594568 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\elements.cpp
 	"Elements.hpp"
 
-1487594568 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\elements.hpp
+1488305046 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\gui\elements.hpp
 	<SDL/SDL.h>
 	<iostream>
 
@@ -1918,7 +1917,7 @@
 
 1487262331 source:c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\resources.rc
 
-1487787915 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\stringkeys.hpp
+1488307674 c:\users\jlppc (session)\documents\projets\projet-pokemon-regimys\src\jlppc\regimys\start\stringkeys.hpp
 	<iostream>
 	<vector>
 	<fstream>

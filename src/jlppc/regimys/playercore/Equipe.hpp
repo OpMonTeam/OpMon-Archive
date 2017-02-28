@@ -18,16 +18,19 @@ class Equipe {
 		Equipe(std::string nom);
 		std::string getNom() const {return nom;}
 		Pokemon *getEquipe()  {return equipe;}
+		/**Soigne toute l'equipe*/
 		void heal();
 		/**
 		Ajoute un pokémon a l'equipe. Renvoie false si l'equipe est pleine
 		*/
 		bool addPokemon(Pokemon toAdd);
+		/**Suprime de numberième pokémon dans l'équipe*/
 		void removePoke(int number);
 		/**
 		Operateur permettant de recuperer le Pokémon a la place donnée en parametre
 		*/
 		Pokemon operator[](int id) const;
+		/**Renvoie true si l'équipe est K.O*/
 		bool isKo() const ;
 		int getSize() const ;
 		//Opérateurs non pratiques, mais je les met quand meme.Ils permettent de raccourcir l'utilisation de quelques methodes, mais ne sont surement pas conformes a leur utilisation de base.
@@ -37,7 +40,7 @@ class Equipe {
 		static Pokemon PNULL;
 
 	private:
-		//T->Useless
+		//->Useless
 		int nbreOfPoke = 6;
 		Pokemon equipe[6] = {PNULL, PNULL, PNULL, PNULL, PNULL, PNULL};
 		std::string nom;
