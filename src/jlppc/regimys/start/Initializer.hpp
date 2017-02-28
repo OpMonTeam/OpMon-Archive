@@ -8,6 +8,9 @@
 #include "../objects/Espece.hpp"
 #include "../evolution/evolutions.hpp"
 
+#define ATK_LIST(pokeId) AtkArray tab##pokeId[]
+#define ATK_ADD_LIST(pokeID, atkLength) pb(atkPokeLvl[(pokeID)], tab##pokeID, (atkLength) )
+
 namespace Initializer {
 	extern Espece *listePoke[POKE_NUMBER];
 	extern std::vector<NumberedArray<Class<Attaque *> > > atkPokeLvl[POKE_NUMBER]; //100 attaques max / pok�

@@ -121,5 +121,12 @@ namespace Attaques {
 		}
 		return 0;
 	}
+
+	int Blizzard::effetApres(Pokemon &atk, Pokemon &def){
+	    if(Utils::randU(10) == 2){
+            //Texte
+            def.setStatus(Status::GEL);
+	    }
+	}
 };
 
