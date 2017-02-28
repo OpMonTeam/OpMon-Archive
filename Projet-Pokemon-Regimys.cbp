@@ -45,11 +45,12 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-w" />
 			<Add option="-D_WIN32" />
 			<Add directory="include" />
 		</Compiler>
 		<Linker>
-			<Add library="C:/Program Files (x86)/CodeBlocks/MinGW/lib/libmingw32.a" />
+			<Add library="lib/libmingw32.a" />
 			<Add library="lib/libSDL2main.a" />
 			<Add library="lib/libSDL2.dll.a" />
 			<Add library="lib/libSDL2_image.dll.a" />
