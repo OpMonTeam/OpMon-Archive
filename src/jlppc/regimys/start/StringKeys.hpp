@@ -1,3 +1,10 @@
+/*
+StringKeys.hpp
+Auteur : Jlppc
+Fichier sous licence GPL-3.0
+http://regimys.tk
+Contient la défnition du namespace StringKeys
+*/
 #ifndef STRINGKEYS_HPP
 #define STRINGKEYS_HPP
 

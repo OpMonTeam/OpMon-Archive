@@ -12,17 +12,24 @@ Définit l'énumération des caractères
 /**
 Définit la classe des caractères
 */
+//->EnumClass->Caractere
 class CaractereClass {
 	public:
+	    /**La stat que boost le caractère*/
+	    //->WaitEnum->Stats
 		int bonus;
+		/**La stat que réduit le caractère*/
+		//->WaitEnum->Stats
 		int malus;
 		CaractereClass(int bonus, int malus) : bonus(bonus), malus(malus) {};
+		//->DontUse
 		CaractereClass() {};
 
 };
 /**
 Enumère les caractères
 */
+//->Enum
 namespace Caractere {
 	const CaractereClass ASSURE = CaractereClass(Stats::DEF, Stats::ATK),
 						 BIZARRE = CaractereClass(Stats::RIEN, Stats::RIEN),

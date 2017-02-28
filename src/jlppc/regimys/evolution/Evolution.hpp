@@ -16,16 +16,18 @@ class Espece;
 /**
 Permet de définir un type d'évolution
 */
+//->PureVirtual
 class Evolution {
 	public:
 		virtual ~Evolution() {}
 		Evolution(int evo);
+		/**Permet de vérifier si le pokémon évolue. Renvoie true si il peut evoluer*/
 		virtual bool checkEvolve(Pokemon const &toCheck) const = 0;
 		Espece *getEvolution() const;
-		/**Check evo permet de récuperer l'espece d'évolution.*/
+		/**Check evo permet de récuperer l'espece d'évolution. Ne pas confondre avec checkEvolve*/
 		void checkEvo();
 		virtual int getEvolID() const {return evolID;}
-		/**Sert juste a E_Item*/
+		//->JustUse->E_Item
 		virtual bool itemEvolve(Item *tem) const {return false;}
 
 
