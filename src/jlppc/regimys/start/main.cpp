@@ -25,7 +25,6 @@
 #include "StringKeys.hpp"
 #include "../gui/MainFrame.hpp"
 
-#define WINDOWS
 //#define DEBUG
 UNS
 
@@ -37,6 +36,7 @@ UNS
 	ofstream rlog = ofstream("logs/log.txt");
 	ofstream rerrLog = ofstream("logs/errLog.txt")
 #endif // WINDOWS
+
 
 namespace Main {
 
@@ -61,13 +61,22 @@ namespace Main {
 
 
 	int starts() {
+
 		if (!rlog) {
 			cout << "Erreur d'initialisation du log" << endl;
-			exit(-1);
+
 		}
 		if (!rerrLog) {
 			cout << "Erreur d'ouverture du log d'erreur" << endl;
-			exit(-2);
+
+		}
+		if(!rerrLog && !rlog){
+            #ifdef _WIN32
+            system("mkdir logs");
+            #else
+            system("md logs");
+            #endif // _WIN32
+            exit(-1);
 		}
 		startTime = time(NULL);
 		rlog << "[T = " << time(NULL) - startTime << "] - Initialisation du log terminée." << endl;

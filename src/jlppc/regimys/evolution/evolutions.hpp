@@ -16,7 +16,7 @@ Contient les d�finitions des �volutions
 Namespace contenant les d�finitions des �volutions et l'�num�ration des �volutions
 */
 namespace Evolutions {
-	/**Enum�ration*/
+	/**Enumération*/
 	const int EItem = 7, ELand = 6, ELevel = 5, ELove = 4, ENope = 3, ETrade = 2, ETradeItem = 1;
 
 	class E_Item: public Evolution {

@@ -263,242 +263,192 @@ namespace Initializer {
 		evs[85].ATK;
 
 		evs[86].DEFSPE;
-		
+
 		evs[87].DEFSPE;
 		evs[87].DEFSPE;
-		
+
 		evs[88].PV;
-		
+
 		evs[89].PV;
 		evs[89].ATK;
-		
+
 		evs[90].DEF;
-		
+
 		evs[91].DEF;
 		evs[91].DEF;
-		
+
 		evs[92].ATKSPE;
-		
+
 		evs[93].ATKSPE;
 		evs[93].ATKSPE;
-		
+
 		evs[94].ATKSPE;
 		evs[94].ATKSPE;
 		evs[94].ATKSPE;
-		
+
 		evs[95].DEF;
-		
+
 		evs[96].DEFSPE;
-		
+
 		evs[97].DEFSPE;
 		evs[97].DEFSPE;
-		
+
 		evs[98].ATK;
-		
+
 		evs[99].ATK;
 		evs[99].ATK;
-		
+
 		evs[100].VIT;
-		
+
 		evs[101].VIT;
 		evs[101].VIT;
-		
+
 		evs[102].ATKSPE;
-		
+
 		evs[103].DEF;
 		evs[103].DEF;
-		
+
 		evs[104].ATKSPE;
-		
+
 		evs[105].ATKSPE;
 		evs[105].ATKSPE;
-		
+
 		evs[106].ATK;
 		evs[106].ATK;
-		
+
 		evs[107].DEFSPE;
 		evs[107].DEFSPE;
-		
+
 		evs[108].PV;
 		evs[108].PV;
-		
+
 		evs[109].ATKSPE;
-		
+
 		evs[110].ATKSPE;
 		evs[110].ATKSPE;
-		
+
 		evs[111].ATKSPE;
-		
+
 		evs[112].ATK;
 		evs[112].ATK;
-		
+
 		evs[113].PV;
 		evs[113].PV;
-		
+
 		evs[114].ATKSPE;
-		
+
 		evs[115].PV;
 		evs[115].PV;
-		
+
 		evs[116].DEF;
-		
+
 		evs[117].ATKSPE;
 		evs[117].DEF;
-		
+
 		evs[118].ATK;
-		
+
 		evs[119].ATK;
 		evs[119].ATK;
-		
+
 		evs[120].VIT;
-		
+
 		evs[121].VIT;
 		evs[121].VIT;
-		
+
 		evs[122].DEFSPE;
 		evs[122].DEFSPE;
-		
+
 		evs[123].ATK;
-		
+
 		evs[124].DEF;
 		evs[124].DEF;
-		
+
 		evs[125].VIT;
 		evs[125].VIT;
-		
+
 		evs[126].DEF;
 		evs[126].DEF;
-		
+
 		evs[127].ATK;
 		evs[127].ATK;
-		
+
 		evs[128].ATK;
 		evs[128].VIT;
-		
+
 		evs[129].VIT;
-	
+
 		evs[130].ATK;
 		evs[130].ATK;
-		
+
 		evs[131].PV;
 		evs[131].PV;
-		
+
 		evs[132].PV;
-		
+
 		evs[133].DEFSPE;
-		
+
 		evs[134].PV;
 		evs[134].PV;
-		
+
 		evs[135].VIT;
 		evs[135].VIT;
-		
+
 		evs[136].ATK;
 		evs[136].ATK;
-		
+
 		evs[137].DEF;
-		
+
 		evs[138].ATKSPE;
-		
+
 		evs[139].ATKSPE;
 		evs[139].ATKSPE;
-		
+
 		evs[140].ATKSPE;
-		
+
 		evs[141].ATK;
 		evs[141].ATK;
-		
+
 		evs[142].VIT;
 		evs[142].VIT;
-		
+
 		evs[143].PV;
 		evs[143].PV;
-		
+
 		evs[144].DEFSPE;
 		evs[144].DEFSPE;
 		evs[144].DEFSPE;
-		
+
 		evs[145].DEF;
 		evs[145].DEF;
 		evs[145].DEF;
-		
+
 		evs[146].DEF;
 		evs[146].DEF;
 		evs[146].DEF;
-		
+
 		evs[147].ATK;
-		
+
 		evs[148].ATK;
 		evs[148].ATK;
-		
+
 		evs[149].ATK;
 		evs[149].ATK;
 		evs[149].ATK;
-		
+
 		evs[150].DEF;
 		evs[150].DEF;
 		evs[150].DEF;
-		
+
 		evs[151].PV;
 		evs[151].PV;
 		evs[151].PV;
-		
-		evs[152].DEFSPE;
-		
-		evs[153].ATKSPE;
-		evs[153].DEFSPE;
-		
-		evs[154].ATKSPE;
-		evs[154].DEFSPE;
-		evs[154].DEFSPE;
-		
-		evs[155].VIT;
-		
-		evs[156].DEF;
-		evs[156].VIT;
-		
-		evs[157].DEF;
-		evs[157].DEF;
-		evs[157].DEF;
-		
-		evs[158].ATK;
-		
-		evs[159].ATK;
-		evs[159].ATKSPE;
-		
-		evs[160].ATK;
-		evs[160].ATK;
-		evs[160].ATKSPE;
-		
-		evs[161].ATK;
-		
-		evs[162].VIT;
-		evs[162].VIT;
-		
-		evs[163].PV;
-		
-		evs[164].PV;
-		evs[164].PV;
-		
-		evs[165].DEFSPE;
-		
-		evs[166].DEFSPE;
-		evs[166].DEFSPE;
-		
-		evs[167].ATK;
-		
-		evs[168].ATK;
-		evs[168].ATK;
-		
-		evs[169].VIT;
-		evs[169].VIT;
-		evs[169].VIT;
-		
-		evs[170].PV;
-		
-		evs[171].PV;
-		evs[171].PV;
-		
+
+		evs[].;
+		evs[].;
+		evs[].;
+		evs[].;
+		evs[].;
+		evs[].;
 		evs[].;
 		evs[].;
 		evs[].;*/
@@ -766,16 +716,16 @@ namespace Initializer {
 
 	void initAtkLvls() {
 		/*//atkPokeLvl[0] = nullptr;
-		AtkArray tab1[] = {NumberedArray(0, Charge::classe),  NumberedArray(3, Rugissement::classe),  NumberedArray(7, Vampigraine::classe),  NumberedArray(9, FouetLianes::classe),  NumberedArray(13, PoudreToxik::classe),  NumberedArray(13, PoudreDodo::classe),  NumberedArray(15, Belier::classe),  NumberedArray(19, TranchHerbe::classe),  NumberedArray(21, DouxParfum::classe),  NumberedArray(25, Croissance::classe),  NumberedArray(27, Damocles::classe),  NumberedArray(33, Synthese::classe),  NumberedArray(37, CanonGraine::classe)};
-		pb(atkPokeLvl[1], tab1, 13);
-		AtkArray tab2[] = {NumberedArray(0, Charge::classe),  NumberedArray(0, Rugissement::classe),  NumberedArray(0, Vampigraine::classe),  NumberedArray(9, FouetLianes::classe),  NumberedArray(13, PoudreToxik::classe),  NumberedArray(13, PoudreDodo::classe),  NumberedArray(15, Belier::classe),  NumberedArray(20, TranchHerbe::classe),  NumberedArray(23, DouxParfum::classe),  NumberedArray(28, Croissance::classe),  NumberedArray(31, Damocles::classe),  NumberedArray(39, Synthese::classe),  NumberedArray(44, LanceSoleil::classe)};
-		pb(atkPokeLvl[2], tab2, 13);
-		AtkArray tab3[] = {NumberedArray(0, Charge::classe),  NumberedArray(0, Rugissement::classe),  NumberedArray(0, Vampigraine::classe),  NumberedArray(9, FouetLianes::classe),  NumberedArray(13, PoudreToxik::classe),  NumberedArray(13, PoudreDodo::classe),  NumberedArray(15, Belier::classe),  NumberedArray(20, TranchHerbe::classe),  NumberedArray(23, DouxParfum::classe),  NumberedArray(28, Croissance::classe),  NumberedArray(31, Damocles::classe),  NumberedArray(32, DanseFleur::classe),  NumberedArray(45, Synthese::classe),  NumberedArray(50, TempeteFlorale::classe),  NumberedArray(53, LanceSoleil::classe)};
-		pb(atkPokeLvl[3], tab3, 15);
-		AtkArray tab4[] = {NumberedArray(0, Griffe::classe),  NumberedArray(0, Rugissement::classe),  NumberedArray(7, Flammeche::classe),  NumberedArray(10, Brouillard::classe),  NumberedArray(16, DracoRage::classe),  NumberedArray(19, Grimace::classe),  NumberedArray(25, CrocsFeu::classe),  NumberedArray(28, Rebondifeu::classe),  NumberedArray(34, Tranche::classe),  NumberedArray(43, LanceFlammes::classe),  NumberedArray(46, Feudenfer::classe)};
-		pb(atkPokeLvl[4], tab4, 11);
-		AtkArray tab5[] = {NumberedArray(0, Griffe::classe),  NumberedArray(0, Rugissement::classe),  NumberedArray(0, Flammeche::classe),  NumberedArray(10, Brouillard::classe),  NumberedArray(16, DragoRage::classe),  NumberedArray(21, Grimace::classe),  NumberedArray(28, CrocsFeu::classe),  NumberedArray(32, Rebondifeu::classe),  NumberedArray(38, Tranche::classe),  NumberedArray(43, LanceFlammes::classe),  NumberedArray(50, DanseFlamme::classe),  NumberedArray(54, Feudenfer::classe)};
-		pb(atkPokeLvl[5], tab5, 12);
+		ATK_LIST(1) = {NumberedArray(0, Charge::classe),  NumberedArray(3, Rugissement::classe),  NumberedArray(7, Vampigraine::classe),  NumberedArray(9, FouetLianes::classe),  NumberedArray(13, PoudreToxik::classe),  NumberedArray(13, PoudreDodo::classe),  NumberedArray(15, Belier::classe),  NumberedArray(19, TranchHerbe::classe),  NumberedArray(21, DouxParfum::classe),  NumberedArray(25, Croissance::classe),  NumberedArray(27, Damocles::classe),  NumberedArray(33, Synthese::classe),  NumberedArray(37, CanonGraine::classe)};
+		ATK_ADD_LIST(1, 13);
+		ATK_LIST(2) = {NumberedArray(0, Charge::classe),  NumberedArray(0, Rugissement::classe),  NumberedArray(0, Vampigraine::classe),  NumberedArray(9, FouetLianes::classe),  NumberedArray(13, PoudreToxik::classe),  NumberedArray(13, PoudreDodo::classe),  NumberedArray(15, Belier::classe),  NumberedArray(20, TranchHerbe::classe),  NumberedArray(23, DouxParfum::classe),  NumberedArray(28, Croissance::classe),  NumberedArray(31, Damocles::classe),  NumberedArray(39, Synthese::classe),  NumberedArray(44, LanceSoleil::classe)};
+		ATK_ADD_LIST(2, 13);
+		ATK_LIST(3) = {NumberedArray(0, Charge::classe),  NumberedArray(0, Rugissement::classe),  NumberedArray(0, Vampigraine::classe),  NumberedArray(9, FouetLianes::classe),  NumberedArray(13, PoudreToxik::classe),  NumberedArray(13, PoudreDodo::classe),  NumberedArray(15, Belier::classe),  NumberedArray(20, TranchHerbe::classe),  NumberedArray(23, DouxParfum::classe),  NumberedArray(28, Croissance::classe),  NumberedArray(31, Damocles::classe),  NumberedArray(32, DanseFleur::classe),  NumberedArray(45, Synthese::classe),  NumberedArray(50, TempeteFlorale::classe),  NumberedArray(53, LanceSoleil::classe)};
+		ATK_ADD_LIST(3, 15);
+		ATK_LIST(4) = {NumberedArray(0, Griffe::classe),  NumberedArray(0, Rugissement::classe),  NumberedArray(7, Flammeche::classe),  NumberedArray(10, Brouillard::classe),  NumberedArray(16, DracoRage::classe),  NumberedArray(19, Grimace::classe),  NumberedArray(25, CrocsFeu::classe),  NumberedArray(28, Rebondifeu::classe),  NumberedArray(34, Tranche::classe),  NumberedArray(43, LanceFlammes::classe),  NumberedArray(46, Feudenfer::classe)};
+		ATK_ADD_LIST(4, 11)
+		ATK_LIST(5) = {NumberedArray(0, Griffe::classe),  NumberedArray(0, Rugissement::classe),  NumberedArray(0, Flammeche::classe),  NumberedArray(10, Brouillard::classe),  NumberedArray(16, DragoRage::classe),  NumberedArray(21, Grimace::classe),  NumberedArray(28, CrocsFeu::classe),  NumberedArray(32, Rebondifeu::classe),  NumberedArray(38, Tranche::classe),  NumberedArray(43, LanceFlammes::classe),  NumberedArray(50, DanseFlamme::classe),  NumberedArray(54, Feudenfer::classe)};
+		ATK_ADD_LIST(5, 12)
 		pb(atkPokeLvl[6], NumberedArray(0, Boutefeu::classe),  NumberedArray(0, Canicule::classe),  NumberedArray(0, Dracogriffe::classe),  NumberedArray(0, GriffeOmbre::classe),  NumberedArray(0, LamedAir::classe),  NumberedArray(0, Griffe::classe),  NumberedArray(0, Rugissement::classe),  NumberedArray(7, Flammeche::classe),  NumberedArray(10, Brouillard::classe),  NumberedArray(17, DracoRage::classe),  NumberedArray(21, Grimace::classe),  NumberedArray(28, CrocsFeu::classe),  NumberedArray(32, Rebondifeu::classe),  NumberedArray(36, CruAile::classe),  NumberedArray(41, Tranche::classe),  NumberedArray(47, LanceFlammes::classe),  NumberedArray(56, DanseFlamme::classe),  NumberedArray(62,
 		pb(atkPokeLvl[7], NumberedArray(0, Charge::classe),  NumberedArray(4, MimiQueue::classe),  NumberedArray(7, PistoletAO::classe),  NumberedArray(10, Repli::classe),  NumberedArray(13, Ecume::classe),  NumberedArray(16, Morsure::classe),  NumberedArray(19, TourRapide::classe),  NumberedArray(22, Abri::classe),  NumberedArray(25, Vibraqua::classe),  NumberedArray(28, Hydroqueue::classe),  NumberedArray(31, CoudKrane::classe),  NumberedArray(34, MurDeFer::classe),  NumberedArray(37, DansePluie::classe),  NumberedArray(40, Hydrocanon::classe));
 		pb(atkPokeLvl[8], NumberedArray(0, Charge::classe),  NumberedArray(0, MimiQueue::classe),  NumberedArray(0, PistoletAO::classe),  NumberedArray(10, Repli::classe),  NumberedArray(13, Ecume::classe),  NumberedArray(16, Morsure::classe),  NumberedArray(20, TourRapide::classe),  NumberedArray(24, Abri::classe),  NumberedArray(28, Vibraqua::classe),  NumberedArray(32, Hydroqueue::classe),  NumberedArray(36, CoudKrane::classe),  NumberedArray(40, MurDeFer::classe),  NumberedArray(44, DansePluie::classe),  NumberedArray(48, Hydrocanon::classe));
