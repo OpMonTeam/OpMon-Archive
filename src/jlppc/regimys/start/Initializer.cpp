@@ -1,4 +1,4 @@
-#include "Initializer.hpp"
+﻿#include "Initializer.hpp"
 #include "../enums/Enums.hpp"
 #include "../objects/Attaques.hpp"
 
@@ -442,6 +442,62 @@ namespace Initializer {
 		evs[151].PV;
 		evs[151].PV;
 		evs[151].PV;
+
+		evs[152].DEFSPE;
+		
+		evs[153].ATKSPE;
+		evs[153].DEFSPE;
+		
+		evs[154].ATKSPE;
+		evs[154].DEFSPE;
+		evs[154].DEFSPE;
+		
+		evs[155].VIT;
+		
+		evs[156].DEF;
+		evs[156].VIT;
+		
+		evs[157].DEF;
+		evs[157].DEF;
+		evs[157].DEF;
+		
+		evs[158].ATK;
+		
+		evs[159].ATK;
+		evs[159].ATKSPE;
+		
+		evs[160].ATK;
+		evs[160].ATK;
+		evs[160].ATKSPE;
+		
+		evs[161].ATK;
+		
+		evs[162].VIT;
+		evs[162].VIT;
+		
+		evs[163].PV;
+		
+		evs[164].PV;
+		evs[164].PV;
+		
+		evs[165].DEFSPE;
+		
+		evs[166].DEFSPE;
+		evs[166].DEFSPE;
+		
+		evs[167].ATK;
+		
+		evs[168].ATK;
+		evs[168].ATK;
+		
+		evs[169].VIT;
+		evs[169].VIT;
+		evs[169].VIT;
+		
+		evs[170].PV;
+		
+		evs[171].PV;
+		evs[171].PV;
 
 		evs[].;
 		evs[].;
