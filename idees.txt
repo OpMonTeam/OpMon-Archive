@@ -1,1 +1,0 @@
-Creer un thread pour l'execution du jeu pour ne pas gener l'affichage
