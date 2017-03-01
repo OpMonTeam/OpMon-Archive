@@ -34,12 +34,13 @@ pages/doc/DocSample.html
 /Debug/
 # Pas de fichier de compilation C++
 *.o
+*.res
 /bin/
 /include/
 /lib/
 /temp/
+/.objs/
 
-Debug.cbp
 cbp2make/*
 Projet-Pokemon-Regimys_build_log.html
 doxygen/doxyfile
