@@ -8,14 +8,17 @@ Espece::~Espece() {
 	free(EVgiven);
 }
 
-Espece::Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, std::string name, int type1, int type2, int maniereEvolution/*En fait faut mettre 0, il est la pour un souci de compatibilit�*/, int niveauEvolution, Evolution *evolType, std::vector<int> EVGiven, float taille, float poids, std::string entreePokedex, int expGiven, int expMax, int tauxDeCapture, int numeroPokedex) {
+Espece::Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, std::string name, int type1, int type2, int maniereEvolution/*En fait faut mettre 0, il est la pour un souci de compatibilit�*/, int niveauEvolution, Evolution *evolType, std::vector<int> EVGiven, float taille, float poids, std::string entreeOpdex, int expGiven, int expMax, int tauxDeCapture, int numeroOpdex) {
 	if (atk < 0 || def < 0 || atkSpe < 0 || defSpe < 0 || vit < 0 || pv < 0) {
 		gererErreur("Stats < 0 Espece<Initializer>", true);
 	}
 	if (expGiven < 0) {
 		gererErreur("expGiven < 0 Espece<Initializer>", true);
 	}
-	numeroPokedex = 0;
+	if(evolType == NULL){
+        evolType = (Evolution*)new E_Nope();
+	}
+	numeroOpdex = 0;
 	this->tauxDeCapture = tauxDeCapture;
 	this->baseAtk = atk;
 	this->baseDef = def;
@@ -31,7 +34,7 @@ Espece::Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, std::s
 	this->evolution = this->evolType->getEvolution();
 	this->poids = poids;
 	this->taille = taille;
-	this->entreePokedex = entreePokedex;
+	this->entreeOpdex = entreeOpdex;
 	this->expGiven = expGiven;
 	EVgiven = (int *)malloc( EVGiven.size() * sizeof(int) );
 	evSize = EVGiven.size();
@@ -62,7 +65,7 @@ Espece::Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, std::s
 		default:
 			courbe = CourbeExp::MOYENNE;
 	}
-	this->numeroPokedex = numeroPokedex;
+	this->numeroOpdex = numeroOpdex;
 
 }
 
@@ -72,5 +75,5 @@ void Espece::checkEvol() {
 }
 
 void Espece::checkAtkLvls() {
-	//this->atksByLevels = Initializer::atkPokeLvl[pokedexNumberInit];
+	//this->atksByLevels = Initializer::atkOpLvl[OpdexNumberInit];
 }

@@ -167,7 +167,7 @@ namespace MainFrame {
 		//Annonce que l'initialisation principale est terminée
 		init = true;
 		//Ouverture de la fenetre
-		frame = SDL_CreateWindow("Pokemon Regimys", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 512, 512, SDL_WINDOW_SHOWN);
+		frame = SDL_CreateWindow("OpenMon Lazulli", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 512, 512, SDL_WINDOW_SHOWN);
 		//Création du renderer.
 		renderer = SDL_CreateRenderer(frame, -1, SDL_RENDERER_ACCELERATED);
 		if (frame == NULL || renderer == NULL) {

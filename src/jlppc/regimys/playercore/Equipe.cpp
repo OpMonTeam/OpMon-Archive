@@ -1,14 +1,14 @@
 
 #include "Equipe.hpp"
 
-Pokemon Equipe::PNULL = Pokemon();
+OpMon Equipe::PNULL = OpMon();
 
 Equipe::Equipe(std::string nom) {
 	this->nom = nom;
 }
 
 void Equipe::heal() {
-	for (int i = 0; i < nbreOfPoke; i++) {
+	for (int i = 0; i < nbreOfOp; i++) {
 		if (equipe[i].falsif != PNULL.falsif) {
 			equipe[i].heal(equipe[i].getStatPV());
 			equipe[i].confus = false;
@@ -18,8 +18,8 @@ void Equipe::heal() {
 	}
 }
 
-bool Equipe::addPokemon(Pokemon toAdd) {
-	for (int i = 0; i < nbreOfPoke; i++) {
+bool Equipe::addOpMon(OpMon toAdd) {
+	for (int i = 0; i < nbreOfOp; i++) {
 		if (equipe[i] == PNULL) {
 			equipe[i] = toAdd;
 			return true;
@@ -28,11 +28,11 @@ bool Equipe::addPokemon(Pokemon toAdd) {
 	return false;
 }
 
-void Equipe::removePoke(int number) { //Number en partant de 0
-	if (nbreOfPoke == 1) {
+void Equipe::removeOp(int number) { //Number en partant de 0
+	if (nbreOfOp == 1) {
 		return;
 	}
-	for (int i = 0; i < nbreOfPoke; i++) {
+	for (int i = 0; i < nbreOfOp; i++) {
 		if (i >= number) {
 			if (i != 5) {
 				equipe[i] = equipe[i + 1];
@@ -44,13 +44,13 @@ void Equipe::removePoke(int number) { //Number en partant de 0
 	}
 }
 
-Pokemon Equipe::operator[](int id) const {
+OpMon Equipe::operator[](int id) const {
 	return equipe[id];
 }
 
 bool Equipe::isKo() const {
 	int ko = 0;
-	for (int i = 0; i < nbreOfPoke; i++) {
+	for (int i = 0; i < nbreOfOp; i++) {
 		if (equipe[i].falsif == PNULL.falsif) {
 			ko++;
 		} else if (equipe[i].getPV() <= 0) {
@@ -61,6 +61,6 @@ bool Equipe::isKo() const {
 }
 
 int Equipe::getSize() const {
-	return nbreOfPoke;
+	return nbreOfOp;
 }
 

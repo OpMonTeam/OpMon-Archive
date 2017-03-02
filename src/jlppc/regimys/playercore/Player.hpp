@@ -27,17 +27,17 @@ class Player {
 		bool deleteItem(int itemID);
 		std::string getName() const {return name;}
 		int getDressID() const {return dressID;}
-		void addPokemonToPC(Pokemon toAdd) {pc.push_back(toAdd);}
-		Pokemon getPoke(int ID) const {return equipe[ID];}
+		void addOpMonToPC(OpMon toAdd) {pc.push_back(toAdd);}
+		OpMon getOp(int ID) const {return equipe[ID];}
 		/**Soigne tous les Poké*/
-		void healPoke();
+		void healOp();
 		/**Essaie d'ajouter un pokémon a l'equipe. Renvoie false si ce n'est pas possible*/
-		bool addPokeToEquipe(Pokemon toAdd);
+		bool addOpToEquipe(OpMon toAdd);
 	private:
 		std::string name;
 		unsigned int dressID;//jusqu'a 8 chiffres (Hexadecimal) (jusqu'a 16^8)
 		int bag[ITEM_NUMBER];
-		std::vector<Pokemon> pc = std::vector<Pokemon>();
+		std::vector<OpMon> pc = std::vector<OpMon>();
 		Equipe equipe = Equipe("temp");
 };
 

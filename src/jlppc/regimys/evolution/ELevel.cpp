@@ -6,7 +6,7 @@ namespace Evolutions {
 		this->level = level;
 	}
 
-	bool E_Level::checkEvolve(Pokemon const &toCheck) const {
+	bool E_Level::checkEvolve(OpMon const &toCheck) const {
 		return (toCheck.getLevel() >= level);
 	}
 }

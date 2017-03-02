@@ -9,7 +9,7 @@ Contient la définition de la classe Equipe
 #define SRCCPP_JLPPC_REGIMYS_PLAYERCORE_EQUIPE_HPP_
 
 #include <iostream>
-#include "../objects/Pokemon.hpp"
+#include "../objects/OpMon.hpp"
 /**
 Classe permettant de contenir l'equipe d'un joueur ou d'un dresseur.
 */
@@ -17,32 +17,32 @@ class Equipe {
 	public:
 		Equipe(std::string nom);
 		std::string getNom() const {return nom;}
-		Pokemon *getEquipe()  {return equipe;}
+		OpMon *getEquipe()  {return equipe;}
 		/**Soigne toute l'equipe*/
 		void heal();
 		/**
 		Ajoute un pokémon a l'equipe. Renvoie false si l'equipe est pleine
 		*/
-		bool addPokemon(Pokemon toAdd);
+		bool addOpMon(OpMon toAdd);
 		/**Suprime de numberième pokémon dans l'équipe*/
-		void removePoke(int number);
+		void removeOp(int number);
 		/**
 		Operateur permettant de recuperer le Pokémon a la place donnée en parametre
 		*/
-		Pokemon operator[](int id) const;
+		OpMon operator[](int id) const;
 		/**Renvoie true si l'équipe est K.O*/
 		bool isKo() const ;
 		int getSize() const ;
 		//Opérateurs non pratiques, mais je les met quand meme.Ils permettent de raccourcir l'utilisation de quelques methodes, mais ne sont surement pas conformes a leur utilisation de base.
-		void operator+=(Pokemon const &pkmn) {addPokemon(pkmn);}
-		void operator-=(int id) {removePoke(id);}
-		/**Pokemon vide*/
-		static Pokemon PNULL;
+		void operator+=(OpMon const &pkmn) {addOpMon(pkmn);}
+		void operator-=(int id) {removeOp(id);}
+		/**Opmon vide*/
+		static OpMon PNULL;
 
 	private:
 		//->Useless
-		int nbreOfPoke = 6;
-		Pokemon equipe[6] = {PNULL, PNULL, PNULL, PNULL, PNULL, PNULL};
+		int nbreOfOp = 6;
+		OpMon equipe[6] = {PNULL, PNULL, PNULL, PNULL, PNULL, PNULL};
 		std::string nom;
 };
 

@@ -21,7 +21,7 @@ namespace Attaques {
 	Class<Berceuse> *Berceuse::classe = new Class<Berceuse>("Berceuse", 0xFFF5);
 
 
-	int Abime::effetAvant(Pokemon &atk, Pokemon &def) {
+	int Abime::effetAvant(OpMon &atk, OpMon &def) {
 		precision = ((atk.getLevel() - def.getLevel()) + 30);
 		if (atk.getLevel() < def.getLevel()) {
 			return 2;
@@ -34,7 +34,7 @@ namespace Attaques {
 		}
 	}
 
-	int Acidarmure::effetApres(Pokemon &atk, Pokemon &def) {
+	int Acidarmure::effetApres(OpMon &atk, OpMon &def) {
 		if (atk.changeDEF(2)) {
 			//Texte
 		} else {
@@ -43,7 +43,7 @@ namespace Attaques {
 		return 2;
 	}
 
-	int Acide::effetApres(Pokemon &atk, Pokemon &def) {
+	int Acide::effetApres(OpMon &atk, OpMon &def) {
 		if (Utils::randU(10) == 2) {
 			if (def.changeDEFSPE(-1)) {
 				//Texte
@@ -54,7 +54,7 @@ namespace Attaques {
 		return 0;
 	}
 
-	int Affutage::effetApres(Pokemon &atk, Pokemon &def) {
+	int Affutage::effetApres(OpMon &atk, OpMon &def) {
 		if (atk.changeATK(1)) {
 			//Texte
 		} else {
@@ -63,7 +63,7 @@ namespace Attaques {
 		return 0;
 	}
 
-	int Aiguisage::effetApres(Pokemon &atk, Pokemon &def) {
+	int Aiguisage::effetApres(OpMon &atk, OpMon &def) {
 		if (atk.changeATK(1)) {
 		} else {
 		}
@@ -73,7 +73,7 @@ namespace Attaques {
 		return 0;
 	}
 
-	int Amnesie::effetApres(Pokemon &atk, Pokemon &def) {
+	int Amnesie::effetApres(OpMon &atk, OpMon &def) {
 		if (atk.changeDEFSPE(2)) {
 
 		} else {
@@ -82,7 +82,7 @@ namespace Attaques {
 		return 0;
 	}
 
-	int Armure::effetApres(Pokemon &atk, Pokemon &def) {
+	int Armure::effetApres(OpMon &atk, OpMon &def) {
 		if (atk.changeDEF(1)) {
 
 		} else {
@@ -91,12 +91,12 @@ namespace Attaques {
 		return 0;
 	}
 
-	int Belier::effetApres(Pokemon &atk, Pokemon &def) {
+	int Belier::effetApres(OpMon &atk, OpMon &def) {
 		atk.attacked(round(pvPerdus / 4));
 		return 0;
 	}
 
-	int Balayage::effetAvant(Pokemon &atk, Pokemon &def) {
+	int Balayage::effetAvant(OpMon &atk, OpMon &def) {
 		if (def.getEspece()->getPoids() <= 10) {
 			puissance = 20;
 		} else if (def.getEspece()->getPoids() > 10 && def.getEspece()->getPoids() <= 25) {
@@ -113,7 +113,7 @@ namespace Attaques {
 		return 0;
 	}
 
-	int Berceuse::effetApres(Pokemon &atk, Pokemon &def) {
+	int Berceuse::effetApres(OpMon &atk, OpMon &def) {
 		if (def.setStatus(Status::SOMMEIL)) {
 
 		} else {
@@ -122,7 +122,7 @@ namespace Attaques {
 		return 0;
 	}
 
-	int Blizzard::effetApres(Pokemon &atk, Pokemon &def){
+	int Blizzard::effetApres(OpMon &atk, OpMon &def){
 	    if(Utils::randU(10) == 2){
             //Texte
             def.setStatus(Status::GEL);

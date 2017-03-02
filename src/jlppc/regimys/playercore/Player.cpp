@@ -37,10 +37,10 @@ bool Player::deleteItem(int itemID) {
 	}
 }
 
-void Player::healPoke() {
+void Player::healOp() {
 	equipe.heal();
 	for (int i = 0; i < equipe.getSize(); i++) {
-		Pokemon pkmn = equipe[i];
+		OpMon pkmn = equipe[i];
 
 		pkmn.amour = false;
 		pkmn.malediction = false;
@@ -55,11 +55,11 @@ void Player::healPoke() {
 	}
 }
 
-bool Player::addPokeToEquipe(Pokemon toAdd) {
-	if (equipe.addPokemon(toAdd)) {
+bool Player::addOpToEquipe(OpMon toAdd) {
+	if (equipe.addOpMon(toAdd)) {
 		return true;
 	} else {
-		addPokemonToPC(toAdd);
+		addOpMonToPC(toAdd);
 		return false;
 	}
 }

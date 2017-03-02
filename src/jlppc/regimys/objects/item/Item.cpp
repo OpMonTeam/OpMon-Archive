@@ -1,5 +1,5 @@
 
-#include "IPokeball.hpp"
+#include "IOpball.hpp"
 #include "IHeal.hpp"
 #include "CT.hpp"
 #include "Item.hpp"
@@ -35,9 +35,9 @@ void initItems() {
 	//Jusqu'a 103 : Items de Rappel
 	Item::itemsLst[104] = new I_Heal("Galette Illumis", true, true, true, BagCat::SOIN, 0, Status::POISON, true, 104);
 	//Jusqu'a 114 : Items de Soin de Status
-	Item::itemsLst[115] = new I_Pokeball("Poké Ball", 1, 115);
+	Item::itemsLst[115] = new I_Opball("Poké Ball", 1, 115);
 	//Jusqu'a 124 : Balls classiques (+ Memoire Ball + HonorC:\Users\_le_pichon\Downloads\PPR\srcCpp\jlppc\regimys\objects\item\Item.cpp|66|error: expected type-specifier before 'I_Heal'| ball + Reve ball)
-	//itemsLst[] = new const...) TODO pokeballs spécialesC:\Users\_le_pichon\Downloads\PPR\srcCpp\jlppc\regimys\objects\item\Item.cpp|66|error: expected type-specifier before 'I_Heal'|
+	//itemsLst[] = new const...) TODO Opballs spécialesC:\Users\_le_pichon\Downloads\PPR\srcCpp\jlppc\regimys\objects\item\Item.cpp|66|error: expected type-specifier before 'I_Heal'|
 	//Jusqu'a 133 : Balls spéciales
 	//Ensuite items TODO : Jusqu'a 136 : Repousses
 	//137 : Corde Sortie

@@ -106,8 +106,8 @@ int quit(int returne) {
 	rlog.close();
 	rerrLog.close();
 
-	/*for (unsigned int i = 0; i < POKE_NUMBER; i++) {
-		delete(Initializer::listePoke[i]);
+	/*for (unsigned int i = 0; i < OP_NUMBER; i++) {
+		delete(Initializer::listeOp[i]);
 	}*/
 	#ifdef DEBUG
 	system("pause");
@@ -125,7 +125,7 @@ int main(int argc, char *argv[])
 	if (argc >= 2) {
 		string str = argv[1];
 		if (str == "--version") {
-			cout << "Pokémon Regimys version " << Main::versionS << endl;
+			cout << "OpMon Regimys version " << Main::versionS << endl;
 			exit(0);
 		} else {
 			cout << "Arguments ignorés, passage a la suite." << endl;

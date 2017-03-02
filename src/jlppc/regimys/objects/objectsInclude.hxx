@@ -12,7 +12,7 @@ Permet d'inclure tous les fichiers du dossier objects et de ses sous-dossiers
 #include "Attaque.hpp"
 #include "Espece.hpp"
 #include "Attaques.hpp"
-#include "Pokemon.hpp"
+#include "OpMon.hpp"
 #include "RegimysObject.hpp"
 
 #endif /* SRCCPP_JLPPC_REGIMYS_OBJECTS_OBJECTSINCLUDE_HXX_ */

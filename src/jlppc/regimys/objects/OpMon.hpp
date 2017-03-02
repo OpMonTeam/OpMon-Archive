@@ -1,12 +1,12 @@
 /*
-Pokemon.hpp
+OpMon.hpp
 Auteur : Jlppc
 Fichier sous licence GPL-3.0. Le nom Pok�mon appartient a Nintendo(r).
 http://regimys.tk
-Contient la d�finition du namepsace CalcCourbes et de la classe Pokemon
+Contient la d�finition du namepsace CalcCourbes et de la classe OpMon
 */
-#ifndef POKEMON_HPP
-#define POKEMON_HPP
+#ifndef OPMON_HPP
+#define OPMON_HPP
 
 
 #include <iostream>
@@ -15,7 +15,7 @@ Contient la d�finition du namepsace CalcCourbes et de la classe Pokemon
 #include "Espece.hpp"
 #include "../../utils/Utils.hpp"
 #include "item/Item.hpp"
-#include "item/IPokeball.hpp"
+#include "item/IOpball.hpp"
 
 /**
 Namespace permettant de faire des calculs sur les courbes d'experience. D'ou son nom, j'ai envie de dire...
@@ -34,7 +34,7 @@ class Attaque;
 /**
 Classe définissant un pokémon en particulier. Pour voir la classe qui définit une espece, voir Espece.hpp
 */
-class Pokemon {
+class OpMon {
 
 	protected:
 
@@ -109,19 +109,19 @@ class Pokemon {
 		bool vampigraine = false;
 		bool malediction = false;
 
-		virtual ~Pokemon();
+		virtual ~OpMon();
 		//->DontUse
-		Pokemon() {};
-		Pokemon(std::string surnom, Espece *espece, int level, Attaque *attaques[], CaractereClass caractere);
+		OpMon() {};
+		OpMon(std::string surnom, Espece *espece, int level, Attaque *attaques[], CaractereClass caractere);
         /**Renvoie true si le pokémon est bien capturé.*/
-		bool captured(I_Pokeball const &pokeball);
+		bool captured(I_Opball const &Opball);
 		/**Permet de changer une stat, les possibilités d'entrées dans le paramètre stat sont "ATK" "DEF" "ATKSPE" "DEFSPE" "VIT" "PV"*/
 		void setStat(std::string const &stat, int newStat);
 		/**Methode appellée lors d'une montée de niveau*/
 		void levelUp();
 		bool isHoldingItem() const {return (held == NULL);}
 		/**Methode appelée lors d'une victoire*/
-		int win(Pokemon const &vaincu);
+		int win(OpMon const &vaincu);
 		/**Recalcule les stats*/
 		void calcStats();
 		/**Methode appelée lors de l'utilisation d'un item. Renvoie true si l'item est a supprimer*/
@@ -156,7 +156,7 @@ class Pokemon {
 		Attaque **getAttaques() {return attaques;}
 		int getStatESQ() const {return statESQ;}
 		int getStatPRE() const {return statPRE;}
-		void getEvs(Pokemon const &vaincu);
+		void getEvs(OpMon const &vaincu);
 		int getType1() const {return type1;}
 		int getType2() const {return type2;}
 		int getStatATK() const {return statATK;}
@@ -165,11 +165,11 @@ class Pokemon {
 		int getStatDEFSPE() const {return statDEFSPE;}
 		Espece *getEspece() const {return espece;}
 		//Attention! Les opérateurs == et != ne comparent pas deux pok�mons! Ils comparent si les pok�mons sont falsifs ou non (voir falsif)
-		bool operator==(Pokemon const &a) {return (falsif == a.falsif);}
-		bool operator!=(Pokemon const &a) {return !(falsif == a.falsif);}
+		bool operator==(OpMon const &a) {return (falsif == a.falsif);}
+		bool operator!=(OpMon const &a) {return !(falsif == a.falsif);}
 		Item *itemHeld() const {return held;} //C'est un getteur. Y'a pas get mais je m'en fous. C'est un getteur.
 };
 
 
 
-#endif // POKEMON_HPP
+#endif // OpMon_HPP
