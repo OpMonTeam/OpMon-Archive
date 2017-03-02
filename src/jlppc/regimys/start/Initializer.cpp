@@ -765,8 +765,8 @@ namespace Initializer {
 		 listePoke[247] = new Espece(84, 70, 65, 70, 51, 70, "Ymphect", Type::ROCHE, Type::SOL, 0, 55, new E_Level (248,55), {Stats.ATK, Stats.ATK}, 1.2, 152, "Sa carapace est aussi dure que la pierre et il est très fort. Ses coups peuvent raser une montagne.", 144, 1250000, 45, 247);
 		 listePoke[248] = new Espece(134, 110, 95, 100, 61, 100, "Tyranocif", Type::ROCHE, Type::TENEBRES, 0, -1, ne, {Stats.ATK, Stats.ATK, Stats.ATK}, 2, 202, "Lorsqu'il est en colère, il abat des montagnes et enterre des fleuves. On doit alors modifier les cartes.", 218, 1250000, 45, 248);
 		 listePoke[249] = new Espece(90, 130, 90, 154, 110, 106, "Lugia", Type::PSY, Type::VOL, 0, -1, ne, {Stats.DEFSPE, Stats.DEFSPE, Stats.DEFSPE}, 5.2, 216, "Il dort dans une faille des grands fonds. Ses battements d'ailes génèrent une tempête de 40 jours.", 220, 1250000, 3, 249);
-		 listePoke[250] = new Espece(130, 90, 110, 154, 90, 106, "Ho-Oh", Type::FEU, Type::VOL, 0, -1, ne, {Stats.DEFSPE, Stats.DEFSPE, Stats.DEFSPE}, 3., 199, "Une légende raconte que son corps brille de sept couleurs. Un arc-en-ciel se forme derrière lui quand il vole.", 211, 1250000, 3, 250);
-		 listePoke[251] = new Espece(100, 100, 100, 100, 100, 100, "Clair de Lune", Type::LUMIERE, Type::TENEBRES, 0, -1, ne, {Stats.PV, Stats.PV, Stats.PV}, 0.6, 5, "Ce Pokémon voyage dans le temps. Les forêts où il apparaît deviennent prodigieusement luxuriantes.", 64, 1059860, 45, 251);
+		 listePoke[250] = new Espece(130, 90, 110, 154, 90, 106, "Ho-Oh", Type::FEU, Type::VOL, 0, -1, ne, {Stats.DEFSPE, Stats.DEFSPE, Stats.DEFSPE}, 3, 199, "Une légende raconte que son corps brille de sept couleurs. Un arc-en-ciel se forme derrière lui quand il vole.", 211, 1250000, 3, 250);
+		 listePoke[251] = new Espece(100, 100, 100, 100, 100, 100, "Clair de Lune", Type::LUMIERE, Type::TENEBRES, 0, -1, ne, {Stats.ATKSPE, Stats.DEFSPE, Stats.PV}, 0.6, 5, "A l'origine il n'était qu'un chat qui adorait contempler le lune pendant des heures, mais celle ci eu raison de lui.", 64, 1059860, 45, 251);
 		*/
 	}
 
