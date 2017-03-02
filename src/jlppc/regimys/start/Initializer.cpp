@@ -518,6 +518,7 @@ namespace Initializer {
 	void initOpMons() {
 		initEvs();
 		using namespace Evolutions;
+<<<<<<< HEAD
 		 listeOp[0] = new Espece(136, 0, 1, 1, 29, 33, "MissingNo.", Type::NORMAL, Type::VOL, 0, 80, new E_Level(0, 80), evs[0], 0, 0, "ERROR : MISSINGNO.", 0, 1250000, 3, 0);
 		 listeOp[1] = new Espece(49, 49, 65, 65, 45, 45, "Rosarin", Type::PLANTE, Type::POISON, 0, 16, new E_Level(2, 16), evs[1], 0.7, 6.9, "L'amour de cet OpenMonster est incroyable, il ne demande que d'affection.", 64, 1059860, 45, 1);
 		 listeOp[2] = new Espece(62, 63, 80, 80, 60, 60, "Poisiplante",Type::PLANTE, Type::POISON, 0, 32, new E_Level(3, 32), evs[2], 1, 13, "Cet OpenMonster est extrememnt puissant, il empoisonne de façon violente tout ce qui passe sur son chemin.", 141, 1059860, 45, 2);
