@@ -11,15 +11,15 @@ Contient la définition de la classe I_Opball
 #include <iostream>
 #include "Item.hpp"
 /**
-Définit un item de type Opball
+Définit un item de type Pokeball
 */
-class I_Opball: public Item {
+class I_Pokeball: public Item {
 	public:
-		I_Opball(std::string nom, float tauxCapture, int ID);
+		I_Pokeball(std::string nom, float tauxCapture, int ID);
 		float getTauxCapture() const {return tauxCapture;}
 		int itemTypeID = 2;
 	private:
 		float tauxCapture;
 };
 
-#endif /* SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_IOPBALL_HPP_ */
+#endif /* SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_IPOKEBALL_HPP_ */

@@ -1,6 +1,6 @@
 
 #include "Attaque.hpp"
-#include "Pokemon.hpp"
+#include "OpMon.hpp"
 
 Attaque::Attaque(std::string nom, int puissance, int type, int precision, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite) {
 	this->nom = nom;
@@ -21,7 +21,7 @@ Attaque::Attaque(std::string nom, int puissance, int type, int precision, bool s
  * Tout les nombres sont possible. Si deux est revoyé, par contre,
  * ce sera le meme effet que 2 dans effetAvant.
  */
-int Attaque::attack(Pokemon &atk, Pokemon &def) {
+int Attaque::attack(OpMon &atk, OpMon &def) {
 	pp--;
 	//Fail d'attaque
 	if ((Utils::randU(100)) > (precision * (atk.getStatPRE() / def.getStatESQ())) && rateJamais == false) {

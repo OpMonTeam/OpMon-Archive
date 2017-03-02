@@ -1,4 +1,4 @@
-#include "Pokemon.hpp"
+#include "OpMon.hpp"
 #include "../start/main.hpp"
 #include "../evolution/Evolution.hpp"
 #include "../evolution/evolutions.hpp"
@@ -7,7 +7,7 @@
 
 UNS
 
-Pokemon::~Pokemon() {
+OpMon::~OpMon() {
 	for (int i = 0; i < 4; i++) {
 		delete(attaques[i]);
 	}
@@ -69,7 +69,7 @@ int CalcCourbes::parabolique(int n) {
 int CalcCourbes::rapide(int n) {
 	return round(0.8f * pow(n, 3));
 }
-Pokemon::Pokemon(string surnom, Espece *espece, int level, Attaque *attaques[],
+OpMon::OpMon(string surnom, Espece *espece, int level, Attaque *attaques[],
 				 CaractereClass caractere) {
 	statATK = round(
 				  ((((2 * espece->getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100)
@@ -146,8 +146,8 @@ Pokemon::Pokemon(string surnom, Espece *espece, int level, Attaque *attaques[],
 
 }
 
-bool Pokemon::captured(I_Pokeball const &pokeball) {
-	int a = round((((3 * statPV - 2 * PV) * tauxCapture * pokeball.getTauxCapture() * (status == Status::PARALYSIE || status == Status::POISON || status == Status::BRULURE ? 1.5 : (status == Status::GEL || status == Status::SOMMEIL ? 2 : 1))) / (3 * statPV)));
+bool OpMon::captured(I_Opball const &Opball) {
+	int a = round((((3 * statPV - 2 * PV) * tauxCapture * Opball.getTauxCapture() * (status == Status::PARALYSIE || status == Status::POISON || status == Status::BRULURE ? 1.5 : (status == Status::GEL || status == Status::SOMMEIL ? 2 : 1))) / (3 * statPV)));
 	int b = round((pow(2, 16) - 1) * pow(a / (pow(2, 8) - 1), 0.25));
 	int c[] = { Utils::randU(65535), Utils::randU(65535), Utils::randU(65535),
 				Utils::randU(65535)
@@ -175,14 +175,14 @@ bool Pokemon::captured(I_Pokeball const &pokeball) {
 			return false;
 		}
 		if (nbreOk != 4) {
-			gererErreur("InternalError : Pokemon.cpp : nbreOk != 4",
+			gererErreur("InternalError : OpMon.cpp : nbreOk != 4",
 						true);
 		}
 		return true;
 	}
 }
 
-void Pokemon::setStat(string const &stat, int newStat) {
+void OpMon::setStat(string const &stat, int newStat) {
 	if (stat == "atk") {
 		statATK = newStat;
 	} else if (stat == "def") {
@@ -200,7 +200,7 @@ void Pokemon::setStat(string const &stat, int newStat) {
 	}
 }
 
-void Pokemon::levelUp() {
+void OpMon::levelUp() {
 	using namespace CalcCourbes;
 	level++;
 	switch (this->espece->getCourbe()) {
@@ -237,7 +237,7 @@ void Pokemon::levelUp() {
 	}
 }
 
-int Pokemon::win(Pokemon const &vaincu) {
+int OpMon::win(OpMon const &vaincu) {
 	getEvs(vaincu);
 	exp += ((vaincu.espece->getExp() * vaincu.level) / this->level) * expBoost;
 	while (exp >= toNextLevel && level < 100) {
@@ -250,7 +250,7 @@ int Pokemon::win(Pokemon const &vaincu) {
 	return (((vaincu.espece->getExp() * vaincu.level) / this->level) * expBoost);
 }
 
-void Pokemon::getEvs(Pokemon const &vaincu) {
+void OpMon::getEvs(OpMon const &vaincu) {
 	if (!((atkEV + defEV + pvEV + atkSpeEV + defSpeEV + vitEV) > 510)) {
 		vector<int> statsVaincu;
 		for (unsigned int i = 0; i < vaincu.espece->getEvSize(); i++) {
@@ -298,7 +298,7 @@ void Pokemon::getEvs(Pokemon const &vaincu) {
 	}
 }
 
-void Pokemon::calcStats() {
+void OpMon::calcStats() {
 	statATK = round(
 				  ((((2 * espece->getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100)
 				   + 5)
@@ -332,7 +332,7 @@ void Pokemon::calcStats() {
 			 + level + 10;
 }
 
-bool Pokemon::itemUsed(Item *used) {
+bool OpMon::itemUsed(Item *used) {
 	if ((espece->getEvolType()->getEvolID()) == Evolutions::EItem) {
 		if (espece->getEvolType()->itemEvolve(used)) {
 			evolve();
@@ -381,29 +381,29 @@ bool Pokemon::itemUsed(Item *used) {
 	return false;
 }
 
-Item *Pokemon::hold(Item *item) {
+Item *OpMon::hold(Item *item) {
 	Item *ancien = held;
 	held = item;
 	return ancien;
 }
 
-void Pokemon::traded() {
+void OpMon::traded() {
 	expBoost = 1.5;
 	toolEvTrade();
 }
 
-void Pokemon::toolEvTrade() {
+void OpMon::toolEvTrade() {
 	if (espece->getEvolType()->getEvolID() == Evolutions::ETrade) {
 		evolve();
 	}
 }
 
-void Pokemon::evolve() {
+void OpMon::evolve() {
 	bool changeName = (surnom == espece->getNom());
 	espece = espece->getEvolution();
 }
 
-void Pokemon::setStats(int stats[], Attaque *attacks[], Espece *espece, int types[]) {
+void OpMon::setStats(int stats[], Attaque *attacks[], Espece *espece, int types[]) {
 	statATK = stats[0];
 	statDEF = stats[1];
 	statATKSPE = stats[2];
@@ -423,12 +423,12 @@ void Pokemon::setStats(int stats[], Attaque *attacks[], Espece *espece, int type
 
 }
 
-void Pokemon::attacked(int pvPerdus) {
+void OpMon::attacked(int pvPerdus) {
 	PV -= pvPerdus;
 	PV = (PV < 0) ? 0 : PV;
 }
 
-bool Pokemon::changeATK(int power) {
+bool OpMon::changeATK(int power) {
 	if (power < 0) {
 		for (int i = 0; i > power; i--) {
 			switch (atkChange) {
@@ -574,7 +574,7 @@ bool Pokemon::changeATK(int power) {
 	return true;
 }
 
-bool Pokemon::changePRE(int power) {
+bool OpMon::changePRE(int power) {
 	if (power < 0) {
 		for (int i = 0; i > power; i--) {
 			switch (preChange) {
@@ -720,7 +720,7 @@ bool Pokemon::changePRE(int power) {
 	return true;
 }
 
-bool Pokemon::changeESQ(int power) {
+bool OpMon::changeESQ(int power) {
 	if (power < 0) {
 		for (int i = 0; i > power; i--) {
 			switch (esqChange) {
@@ -866,7 +866,7 @@ bool Pokemon::changeESQ(int power) {
 	return true;
 }
 
-bool Pokemon::changeDEF(int power) {
+bool OpMon::changeDEF(int power) {
 	if (power < 0) {
 		for (int i = 0; i > power; i--) {
 			switch (defChange) {
@@ -1013,7 +1013,7 @@ bool Pokemon::changeDEF(int power) {
 
 }
 
-bool Pokemon::changeATKSPE(int power) {
+bool OpMon::changeATKSPE(int power) {
 	if (power < 0) {
 		for (int i = 0; i > power; i--) {
 			switch (atkSpeChange) {
@@ -1158,7 +1158,7 @@ bool Pokemon::changeATKSPE(int power) {
 	return true;
 }
 
-bool Pokemon::changeDEFSPE(int power) {
+bool OpMon::changeDEFSPE(int power) {
 	if (power < 0) {
 		for (int i = 0; i > power; i--) {
 			switch (defSpeChange) {
@@ -1303,7 +1303,7 @@ bool Pokemon::changeDEFSPE(int power) {
 	return true;
 }
 
-bool Pokemon::changeVIT(int power) {
+bool OpMon::changeVIT(int power) {
 	if (power < 0) {
 		for (int i = 0; i > power; i--) {
 			switch (vitChange) {
@@ -1449,7 +1449,7 @@ bool Pokemon::changeVIT(int power) {
 	return true;
 }
 
-bool Pokemon::setStatus(int status) {
+bool OpMon::setStatus(int status) {
 	if (status == Status::BRULURE && this->status == Status::BRULURE) {
 		//System.out.println(surnom + " est déjà  brulé!");
 		return false;
@@ -1486,7 +1486,7 @@ bool Pokemon::setStatus(int status) {
 	return true;
 }
 
-void Pokemon::heal(int PV) {
+void OpMon::heal(int PV) {
 	if ((PV + this->PV) > statPV) {
 		this->PV = statPV;
 	} else {

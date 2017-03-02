@@ -10,15 +10,15 @@ Contient les définitions des classes des attaques
 
 #include <iostream>
 #include <cmath>
-#include "Pokemon.hpp"
+#include "OpMon.hpp"
 #include "Attaque.hpp"
 #include "../../utils/Class.hpp"
 /**Macros permettant de facilité l'écriture des classes*/
 #define ATK_CLASS(name) class name : public Attaque {\
 public:
 
-#define EAv int effetAvant(Pokemon &atk, Pokemon &def)
-#define EAp int effetApres(Pokemon &atk, Pokemon &def)
+#define EAv int effetAvant(OpMon &atk, OpMon &def)
+#define EAp int effetApres(OpMon &atk, OpMon &def)
 /**
 Namespace contenant les définitions des attaques
 */

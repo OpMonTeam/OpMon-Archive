@@ -3,7 +3,7 @@
 
 
 namespace Evolutions {
-	bool E_TradeItem::checkEvolve(Pokemon const &toCheck) {
+	bool E_TradeItem::checkEvolve(OpMon const &toCheck) {
 		if (forEvolve == NULL) {
 			return false;
 		}

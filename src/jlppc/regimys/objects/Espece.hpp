@@ -31,14 +31,14 @@ class Espece {
 
 	private:
 		std::string nom;
-		int numeroPokedex;
+		int numeroOpdex;
 		Espece *evolution;
 		int niveauEvolution;
 		Evolution *evolType;
 		int type1;
 		int type2;
 		NumberedArray<Class<Attaque> > atksByLevels[];
-		std::string entreePokedex;
+		std::string entreeOpdex;
 		float taille;
 		float poids;
 		CT ctCompatibles[];
@@ -63,7 +63,7 @@ class Espece {
 
 	public:
 		virtual ~Espece();
-		Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, std::string name, int type1, int type2, int maniereEvolution, int niveauEvolution, Evolution *evolType, std::vector<int> EVGiven, float taille, float poids, std::string entreePokedex, int expGiven, int expMax, int tauxDeCapture, int numeroPokedex);
+		Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, std::string name, int type1, int type2, int maniereEvolution, int niveauEvolution, Evolution *evolType, std::vector<int> EVGiven, float taille, float poids, std::string entreeOpdex, int expGiven, int expMax, int tauxDeCapture, int numeroOpdex);
 		/**Methode permettant de récuperer l'espèce d'évolution, car le mode d'initialisation des espèces ne permet pas de le faire dans le constructeur*/
 		void checkEvol();
 		/**Methode ayant la même fonction que checkEvol mais pour les attaques par niveau*/
