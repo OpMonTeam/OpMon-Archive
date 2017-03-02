@@ -2,9 +2,9 @@
 
 <h2>--------En Français-------</h2>
 Look <a href="#------in-english-------"> In English</a><br/>
-# Bienvenue sur le Projet "OpMon Lazulli"!
+# Bienvenue sur le Projet "OPMon Lazulli"!
 
-Bienvenue sur le projet de OpMon Lazulli!<br/>
+Bienvenue sur le projet de OPMon Lazulli!<br/>
 <a href="https://github.com/jlppc/Projet-Pokemon-Regimys/wiki/Journal-du-developpement">Journal de developpement</a><br/>
 <!--<a href="https://www.youtube.com/channel/UC8qa9Z52pOHhZ1XjIoTa2kQ">Chaine YouTube</a><br/>-->
 <a href="http://opmon-game.ga">Site web du jeu</a><br/>
@@ -21,7 +21,7 @@ Prochaines versions :<ul>
 
 
 Informations generales:<br/>
-OpMon est un projet de je dérivé de la license imaginé en 2012 et débuté en septembre 2016. 
+OPMon vient d'un jeu imaginé en 2012 et débuté en septembre 2016. 
 Ce jeu est totalement open-source, ce qui permet aux plus grands fans de venir realiser leurs rêves les plus fous! 
 Vous pouvez ajouter des OpMons, des attaques, des items, et autres! 
 Vous n'avez qu'a nous proposer vos modifications et nous les ajouterons peut-être au jeu. 
@@ -38,11 +38,11 @@ Changelog avant la Alpha 0.05. Pour le reste du changelog, il est dans la sectio
 <li>Alpha 0.01 : Creation du systeme de combat de base</li>
 </ul>
 <h2>------In-English-------</h2>
-# Welcome to Project "Pokemon Regimys"!
+# Welcome to Project "OPMon"!
 
-Welcome to the fan-game project "OpMon Lazulli" !<br/>
+Welcome to the fan-game project "OPMon Lazulli" !<br/>
 General Informations<br/>
-OpMon is a pokemon inspirated game project imaginated in 2012 and started in september 2016. This game is totally open source, allowing to the fans to come realize their dreams! You can add OpMons, attacks, items, and many other things! You just have to submit your modifications and maybe we'll add them to the game! And if you do a lot of good modifications, you can become collaborator!<br/><br/>
+OPMon is a pokemon inspirated game project imaginated in 2012 and started in september 2016. This game is totally open source, allowing to the fans to come realize their dreams! You can add OpMons, attacks, items, and many other things! You just have to submit your modifications and maybe we'll add them to the game! And if you do a lot of good modifications, you can become collaborator!<br/><br/>
 Join us : jlppcprog@gmail.com for bugs, lags or about the code | evandib@gmail.com for sprites, the graphics, designs or graphics bugs<br/><br/>
 You can ask a question in the "F.A.Q" section of this wiki too!<br/>
 The game is actually in french, but if you talk french and english, you can help translate the game! And if the english translation of this presentation text contains errors, don't hesitate to notice us!<br/>
