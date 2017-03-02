@@ -23,7 +23,7 @@ namespace Evolutions {
 	class E_Item: public Evolution {
 		public:
 			E_Item(int evo, Item *forEvolve);
-			bool checkEvolve(Pokemon  const &toCheck) const;
+			bool checkEvolve(OpMon  const &toCheck) const;
 			bool itemEvolve(Item *forEvolve) const;
 			const int evolID = 7;
 
@@ -34,7 +34,7 @@ namespace Evolutions {
 	class E_Land: public Evolution {
 		public:
 			E_Land(int evo, std::string lieu);
-			bool checkEvolve (Pokemon const &toCheck) const {return false;}//Il faudra tester si l'endroit ou se trouve le dresseur est le bon.
+			bool checkEvolve (OpMon const &toCheck) const {return false;}//Il faudra tester si l'endroit ou se trouve le dresseur est le bon.
 			const int evolID = 6;
 		private:
 			//Plan carteDuLieu;
@@ -43,7 +43,7 @@ namespace Evolutions {
 	class E_Level: public Evolution {
 		public:
 			E_Level(int evo, int level);
-			bool checkEvolve(Pokemon const &toCheck) const;
+			bool checkEvolve(OpMon const &toCheck) const;
 			const int evolID = 5;
 		private:
 			int level;
@@ -52,7 +52,7 @@ namespace Evolutions {
 	class E_Love: public Evolution {
 		public:
 			E_Love(int evo) : Evolution(evo) {}
-			bool checkEvolve(Pokemon const &toCheck) const {return (toCheck.getStatLove() > 100);}
+			bool checkEvolve(OpMon const &toCheck) const {return (toCheck.getStatLove() > 100);}
 			const int evolID = 4;
 		private:
 
@@ -61,21 +61,21 @@ namespace Evolutions {
 	class E_Nope {
 		public:
 			E_Nope();
-			bool checkEvolve(Pokemon const &toCheck) const;
+			bool checkEvolve(OpMon const &toCheck) const;
 			const int evolID = 3;
 	};
 
 	class E_Trade: public Evolution {
 		public:
 			E_Trade(int evo) : Evolution(evo) {};
-			bool checkEvolve(Pokemon const &toCheck) const {return true;}
+			bool checkEvolve(OpMon const &toCheck) const {return true;}
 			const int evolID = 2;
 	};
 
 	class E_TradeItem: public E_Item {
 		public:
 			E_TradeItem(int evo, Item *forEvolve, int ID) : E_Item(evo, forEvolve) {};
-			bool checkEvolve(Pokemon const &toCheck);
+			bool checkEvolve(OpMon const &toCheck);
 			const int evolID = 1;
 	};
 }

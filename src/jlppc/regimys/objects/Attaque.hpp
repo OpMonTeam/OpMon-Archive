@@ -12,7 +12,7 @@ Contient la définition de la classe Attaque
 #include "../../utils/Utils.hpp"
 #include "../enums/Enums.hpp"
 
-class Pokemon;
+class OpMon;
 /**
 Représente une attaque Pokémon
 */
@@ -22,14 +22,14 @@ class Attaque {
 		virtual ~Attaque() {}
 		Attaque(std::string nom, int puissance, int type, int precision, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite);
 		//->PureVirtual
-		virtual int effetAvant(Pokemon &atk, Pokemon &def) = 0;
+		virtual int effetAvant(OpMon &atk, OpMon &def) = 0;
 		//->PureVirtual
-		virtual int effetApres(Pokemon &atk, Pokemon &def) = 0;
+		virtual int effetApres(OpMon &atk, OpMon &def) = 0;
 		void healPP() {pp = ppMax;}
 		/**atk attaque le pokémon def*/
 		//->Final
-		virtual int attack(Pokemon &atk, Pokemon &def);
-		virtual void siEchoue(Pokemon &atk, Pokemon &def) {}
+		virtual int attack(OpMon &atk, OpMon &def);
+		virtual void siEchoue(OpMon &atk, OpMon &def) {}
 	protected:
 		std::string nom;
 		int puissance;

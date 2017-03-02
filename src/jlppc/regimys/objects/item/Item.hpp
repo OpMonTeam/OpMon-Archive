@@ -16,7 +16,7 @@ Contient la définition de l'énumération ItemType et de la classe Item
 Namespace énumérant les types de classes d'item
 */
 namespace ItemType {
-	const int IHeal = 1, IPokeball = 2, ICT = 3;
+	const int IHeal = 1, IOpball = 2, ICT = 3;
 }
 /**
 Classe définissant un item du jeu

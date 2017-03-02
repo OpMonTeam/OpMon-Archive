@@ -9,7 +9,7 @@ Contient la définition da la classe Evolution
 #define EVOLUTION_HPP
 
 #include <iostream>
-#include "../objects/Pokemon.hpp"
+#include "../objects/OpMon.hpp"
 #include "../../utils/Class.hpp"
 
 class Espece;
@@ -22,7 +22,7 @@ class Evolution {
 		virtual ~Evolution() {}
 		Evolution(int evo);
 		/**Permet de vérifier si le pokémon évolue. Renvoie true si il peut evoluer*/
-		virtual bool checkEvolve(Pokemon const &toCheck) const = 0;
+		virtual bool checkEvolve(OpMon const &toCheck) const = 0;
 		Espece *getEvolution() const;
 		/**Check evo permet de récuperer l'espece d'évolution. Ne pas confondre avec checkEvolve*/
 		void checkEvo();

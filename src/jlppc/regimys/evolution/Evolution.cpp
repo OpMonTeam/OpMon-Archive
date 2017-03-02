@@ -5,7 +5,7 @@ Evolution::Evolution(int evo) : evo(evo) {
 }
 
 void Evolution::checkEvo() {
-	//toEvolve = Initializer::listePoke[evo];
+	//toEvolve = Initializer::listeOp[evo];
 }
 
 Espece *Evolution::getEvolution() const {
