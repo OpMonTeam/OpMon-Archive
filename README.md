@@ -5,16 +5,16 @@ Look <a href="#------in-english-------"> In English</a><br/>
 # Bienvenue sur le Projet "OPMon Lazulli"!
 
 Bienvenue sur le projet de OPMon Lazulli!<br/>
-<a href="https://github.com/jlppc/Projet-Pokemon-Regimys/wiki/Journal-du-developpement">Journal de developpement</a><br/>
-<!--<a href="https://www.youtube.com/channel/UC8qa9Z52pOHhZ1XjIoTa2kQ">Chaine YouTube</a><br/>-->
+<a href="https://github.com/jlppc/OpMon/wiki/Journal-du-developpement">Journal de developpement</a><br/>
+<!--<a href="">Chaine YouTube</a><br/>-->
 <a href="http://opmon-game.ga">Site web du jeu</a><br/>
 <a href="https://github.com/jlppc/Site-OpMon">Dépot du site web du jeu</a><br/><br/>
 <br/>Version du jeu : Alpha 0.08 | Téléchargement : <a href="https://github.com/jlppc/OpMon/releases/download/alpha-v0.08/setup.exe"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 Prochaines versions :<ul>
 
-<li>Alpha 0.09 : Quand la scene d'intro du jeu et les combats seront O.K en C++</li>
-<li>Alpha 0.1 : Correction de tous les bugs possibles dans la partie graphique, ajout de sons, SUPPRESSION DE LA VERSION JAVA!!!</li>
-<li>Alpha 0.11 : </li>
+<li>Alpha 0.09 : Quand la scene d'intro du jeu et les combats seront O.K en C++ et ajout de sons</li>
+<li>Alpha 0.1 : Améliorations et correction de tous les bugs possibles dans la partie graphique, SUPPRESSION DE LA VERSION JAVA!!!</li>
+<li>Alpha 0.11 : Quand 50 OpMons seront jouables en combats et équlibrés, et amélioration des sons, bruitages et combats</li>
 <a href="https://github.com/jlppc/OpMon/wiki/ROADMAP">Voir la ROADMAP détaillé</a><br/>
 </ul>
 <br/>
@@ -47,8 +47,8 @@ Join us : jlppcprog@gmail.com for bugs, lags or about the code | evandib@gmail.c
 You can ask a question in the "F.A.Q" section of this wiki too!<br/>
 The game is actually in french, but if you talk french and english, you can help translate the game! And if the english translation of this presentation text contains errors, don't hesitate to notice us!<br/>
 If there are problems to understand the commits, because it's all in french, don't hesitate to ask too!<br/><br/>
-<a href="https://github.com/jlppc/OpMo,/wiki/Journal-du-developpement">Development Journal (in French) </a><br/>
-<!--<a href="https://www.youtube.com/channel/UC8qa9Z52pOHhZ1XjIoTa2kQ">Regimys Youtube Channel</a><br/>-->
+<a href="https://github.com/jlppc/OpMon/wiki/Journal-du-developpement">Development Journal (in French) </a><br/>
+<!--<a href="">Regimys Youtube Channel</a><br/>-->
 <a href="http://opmon-game.ga">Regimys web site</a><br/>
 <a href="https://github.com/jlppc/Site-OpMon">Website repository</a><br/><br/>
 <br/>Game version : Alpha 0.08 | Download : <a href="https://github.com/jlppc/OpMon/releases/download/alpha-v0.08/setup.exe"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
