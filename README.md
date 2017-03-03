@@ -2,9 +2,9 @@
 
 <h2>--------En Français-------</h2>
 Look <a href="#------in-english-------"> In English</a><br/>
-# Bienvenue sur le Projet "OPMon Lazulli"!
+# Bienvenue sur le Projet "OPMon Lazuli"!
 
-Bienvenue sur le projet de OPMon Lazulli!<br/>
+Bienvenue sur le projet de OPMon Lazuli!<br/>
 <a href="https://github.com/jlppc/OpMon/wiki/Journal-du-developpement">Journal de developpement</a><br/>
 <!--<a href="">Chaine YouTube</a><br/>-->
 <a href="http://opmon-game.ga">Site web du jeu</a><br/>
@@ -40,7 +40,7 @@ Changelog avant la Alpha 0.05. Pour le reste du changelog, il est dans la sectio
 <h2>------In-English-------</h2>
 # Welcome to Project "OPMon"!
 
-Welcome to the fan-game project "OPMon Lazulli" !<br/>
+Welcome to the fan-game project "OPMon Lazuli" !<br/>
 General Informations<br/>
 OPMon is a pokemon inspirated game project imaginated in 2012 and started in september 2016. This game is totally open source, allowing to the fans to come realize their dreams! You can add OpMons, attacks, items, and many other things! You just have to submit your modifications and maybe we'll add them to the game! And if you do a lot of good modifications, you can become collaborator!<br/><br/>
 Join us : jlppcprog@gmail.com for bugs, lags or about the code | evandib@gmail.com for sprites, the graphics, designs or graphics bugs<br/><br/>
