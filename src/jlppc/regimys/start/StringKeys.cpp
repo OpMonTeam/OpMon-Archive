@@ -19,6 +19,7 @@ namespace StringKeys {
 			gererErreur("Initialisation des clées impossible.", true);
 		}
 		bool fini = false;
+
 		while (!fini) {
 			string read;
 			getline(keysFile, read);
