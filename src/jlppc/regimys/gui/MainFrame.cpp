@@ -9,19 +9,14 @@
 #include "../start/main.hpp"
 #include <string>
 #include <SDL/SDL_mixer.h>
+#include "../start/bigDefines.hxx"
 
 #define rLog rlog
 #define charLineDialog 33
 #define kget StringKeys::get
 
 #define QUITF continuer=false;\
-    Mix_PauseMusic();\
-	SDL_DestroyTexture(textUre);\
-	SDL_DestroyTexture(dialogT);\
-	SDL_DestroyTexture(profT);\
-	SDL_DestroyTexture(fondT);\
-	Mix_FreeMusic(fondMus);\
-	return;
+	return -1;
 
 #define QUIT case SDL_QUIT:\
 	QUITF//Un macro composé de macro. :D
@@ -40,7 +35,7 @@
 		changeDialog = true;\
 		SDL_Delay(50);\
 	} else if (!(dialog + 3 >= sizeOfTxt)) {\
-        Mix_PlayChannel(1, dialogPass, 0);\
+		Mix_PlayChannel(1, dialogPass, 0);\
 		line = 0;\
 		dialog++;\
 		dialog++;\
@@ -51,7 +46,7 @@
 		txtEnCours[2] = string(" ");\
 		changeDialog = false;\
 	}else{\
-		phase = 1;\
+		phase = (varname) + 1;\
 	}\
 	break;
 
@@ -77,6 +72,22 @@ namespace MainFrame {
 	Mix_Chunk *dialogPass = NULL;
 	bool init = false;
 
+	int printChoice(string text, string choice1, string choice2, string choix3) {
+		//Non fini
+		/*bool triple = true;
+		if(choix3 == ""){
+		    triple = false;
+		}
+		if(text == "" || choice1 == "" || choice2 == ""){
+		    gererErreur("MainFrame::printChoice : Chaine de caractère vide.", true);
+		}
+		SDL_Rect placeChoix[3];
+		SDL_Texture *choix[3];
+		SDL_Texture *texte;
+		SDL_Texture *fondDialogue;
+		texte = renderText(renderer, text, font, noir, textPlace);*/
+	}
+
 	int printText(SDL_Renderer *renderer, string txt, string line2S, string line3S) {
 		SDL_Texture *textUre = NULL;
 		SDL_Surface *sfce = NULL;
@@ -87,9 +98,9 @@ namespace MainFrame {
 		SDL_Rect posLineTwo;
 		SDL_Rect posLineThree;
 
-        if(txt == "" || line2S == "" || line3S == ""){
-            gererErreur("Chaine de caractère vide (fonction MainFrame::printText)", true);
-        }
+		if (txt == "" || line2S == "" || line3S == "") {
+			gererErreur("Chaine de caractère vide (fonction MainFrame::printText)", true);
+		}
 
 
 		sfce = TTF_RenderText_Blended(font, txt.c_str(), noir);
@@ -144,10 +155,10 @@ namespace MainFrame {
 			rlog << "Une erreur fatale s'est produite. Merci de consulter errLog.txt" << endl;
 			gererErreur(TTF_GetError(), true);
 		}
-        if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024) == -1){
-            rerrLog << "Erreur d'initilisation de SDL_Mixer" << endl;
-            gererErreur(Mix_GetError(), true);
-        }
+		if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024) == -1) {
+			rerrLog << "Erreur d'initilisation de SDL_Mixer" << endl;
+			gererErreur(Mix_GetError(), true);
+		}
 		//Ouverture de la police
 		rlog << PRINT_TICKS << "Initialisation des SDL terminée" << endl;
 #ifdef _WIN32
@@ -184,16 +195,16 @@ namespace MainFrame {
 			rlog << PRINT_TICKS << "Initialisation du joystick terminée" << endl;
 		}
 		Mix_AllocateChannels(3);
-		#ifdef _WIN32
+#ifdef _WIN32
 		dialogPass = Mix_LoadWAV("ressources\\audio\\sounds\\dialogChange.ogg");
-        #else
-        dialogPass = Mix_LoadWAV("ressources/audio/sounds/dialogChange.ogg");
-        #endif
-        if(dialogPass == NULL){
-            gererErreur(Mix_GetError(), false);
-        }
-        Mix_Volume(1, MIX_MAX_VOLUME - 1);
-		startScene();
+#else
+		dialogPass = Mix_LoadWAV("ressources/audio/sounds/dialogChange.ogg");
+#endif
+		if (dialogPass == NULL) {
+			gererErreur(Mix_GetError(), false);
+		}
+		Mix_Volume(1, MIX_MAX_VOLUME - 1);
+		StartScene::startScene();
 
 		rlog << PRINT_TICKS << "Fermeture de la fenetre" << endl;
 
@@ -203,1017 +214,577 @@ namespace MainFrame {
 		TTF_CloseFont(font);
 		Mix_FreeChunk(dialogPass);
 
-        Mix_CloseAudio();
+		Mix_CloseAudio();
 		TTF_Quit();
 		atexit(IMG_Quit);
 		SDL_Quit();
 	}
 
-	void startScene() {
-		//Déclaration des SDL_Rect et des SDL_Texture secondaires, necessaires a cette scene
+	namespace StartScene {
+		//Déclaration des SDL_Rect et des SDL_Texture secondaires, necessaires a cette scene (a détruire)
 		SDL_Rect fondP;
 		SDL_Rect profP;
 		SDL_Texture *fondT;
 		SDL_Texture *profT;
 		SDL_Texture *arrDial;
 		SDL_Rect arrDialP;
-		#ifdef _WIN32
-		Mix_Music *fondMus = Mix_LoadMUS("ressources\\audio\\music\\intro.ogg");
-		#else
-        Mix_Music *fond = Mix_LoadMUS("ressources/audio/music/intro.ogg");
-		#endif
-		if(fondMus == NULL){
-            gererErreur(Mix_GetError(), false);
-		}
-		Mix_PlayMusic(fondMus, -1);
-		Mix_VolumeMusic(MIX_MAX_VOLUME / 32);
-
-		//Initialisation des tailles
-		rlog << PRINT_TICKS << "Initialisation des SDL_Rect" << endl;
-		fondP.h = 512;
-		fondP.w = 512;
-		fondP.x = 0;
-		fondP.y = 0;
-		dialogP.h = 150;
-		dialogP.w = 512;
-		dialogP.x = 0;
-		dialogP.y = 362;
-		profP.h = (300 / 3) * 2;
-		profP.w = (180 / 3) * 2;
-		profP.x = (fondP.w / 2) - (profP.w / 2) + 10;
-		profP.y = ((fondP.h - dialogP.h) / 2) - (profP.h / 2) + 50;
-		textPlace.x = 20;
-		textPlace.y = 382;
-		arrDialP.x = 512 - 75;
-		arrDialP.y = 512 - 30;
-		arrDialP.h = 10;
-		arrDialP.w = 10;
-		noir.r = 0;
-		noir.g = 0;
-		noir.b = 0;
-		//Initialisation des images
-		rlog << "[T = " << SDL_GetTicks() << "] - Initialisation des sprites..." << endl;
+        SDL_Texture *textUre = NULL;
 #ifdef _WIN32
-		fondT = IMG_LoadTexture(renderer, "ressources\\backgrounds\\start\\startscene.png");
-		profT = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\jlppc\\jlppc.png");
-		dialogT = IMG_LoadTexture(renderer, "ressources\\backgrounds\\dialog\\dialog.png");
-		arrDial = IMG_LoadTexture(renderer, "ressources\\sprites\\misc\\arrDial.png");
+	Mix_Music *fondMus = Mix_LoadMUS("ressources\\audio\\music\\intro.ogg");
 #else
-		fondT = IMG_LoadTexture(renderer, "ressources/backgrounds/start/startscene.png");
-		profT = IMG_LoadTexture(renderer, "ressources/sprites/chara/jlppc/jlppc.png");
-		dialogT = IMG_LoadTexture(renderer, "ressources/backgrounds/dialog/dialog.png");
-		arrDial = IMG_LoadTexture(renderer, "ressources/sprites/misc/arrDial.png");
+	Mix_Music *fond = Mix_LoadMUS("ressources/audio/music/intro.ogg");
 #endif
-		//Vesrification des problèmes possibles
-		if (fondT == NULL || profT == NULL || dialogT == NULL) {
-			gererErreur(string("Erreur lors de l'initialisation d'une image.") + string(SDL_GetError()), false);
-		}
-
-		if (SDL_RenderCopy(renderer, fondT, NULL, &fondP) == -1) {
-			rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
-			gererErreur(SDL_GetError(), false);
-		}
-		if (SDL_RenderCopy(renderer, profT, NULL, &profP) == -1) {
-			rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
-		}
-		if (SDL_RenderCopy(renderer, dialogT, NULL, &dialogP) == -1) {
-			rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
-		}
-		//Initialisation des variables utiles pour la boucle
-		SDL_RenderPresent(renderer);
-		rlog << "[T = " << SDL_GetTicks() << "] - Fin des initialisations" << endl;
-		rlog << "[T = " << SDL_GetTicks() << "] - Creation des variables utilitaires" << endl;
+        //Déclaration des variables utilitaires (sera supprimé en cours de travail)
+        //Part 0
 		bool continuer = true;
 		long ancientTick = 0;
-		//Phase 0
 		string txtP0[] = {kget("jlppc.dialog.start.1"), kget("jlppc.dialog.start.2"), kget("jlppc.dialog.start.3"), kget("jlppc.dialog.start.4"), kget("jlppc.dialog.start.5"), kget("jlppc.dialog.start.6"), kget("jlppc.dialog.start.7"), kget("jlppc.dialog.start.8"), kget("jlppc.dialog.start.9")};//Deux cases == Deux lignes. 3 cases == Deux lignes + un nouveau dialogue
-		//Phase 1
-		//TODO
 		int sizeOfTxt = 9;
 		string txtEnCours[] = {string(" "), string(" "), string(" ")};
-		SDL_Texture *textUre = NULL;
 		SDL_Surface *sfce = NULL;
 		int line = 0, i = 0, dialog = 0;
 		bool changeDialog = false;
 		int phase = 0;
 		bool joypressed = false;
+		SDL_Texture *anim[6];
+        SDL_Rect animP;
+        //Part 1
+        char pName[16] = "               ";
+        int k = 0;
+        #ifdef _WIN32
+            SDL_Texture *fondNE = IMG_LoadTexture(renderer, "ressources\\backgrounds\\start\\nameEntry.png");//To destroy in part 1
+        #else
+            SDL_Texture *fondNE = IMG_LoadTexture(renderer, "ressources/backgrounds/start/nameEntry.png");
+        #endif
+        SDL_Rect texteDesc1R, texteDesc2R, texteDesc3R, texteDesc4R;
+        SDL_Rect textPos;
+        SDL_Texture *texteDescs[4];//To destroy in part 1
+        SDL_Texture *nameT;//To destroy in part 1
+        bool shift = false;
+        bool caps = false;
+        //Part 2
+        string txtP1[] = {"", kget("jlppc.dialog.start.11"), kget("jlppc.dialog.start.12"), kget("jlppc.dialog.start.13"), kget("jlppc.dialog.start.14"), kget("jlppc.dialog.start.15"), kget("jlppc.dialog.start.16"), kget("jlppc.dialog.start.17"), kget("jlppc.dialog.start.18"), kget("jlppc.dialog.start.19"), kget("jlppc.dialog.start.20"), kget("jlppc.dialog.start.21"), kget("jlppc.dialog.start.22"), kget("jlppc.dialog.start.23"), kget("jlppc.dialog.start.24")};
 
-		rlog << "[T = " << SDL_GetTicks() << "] - Début de la boucle n°0" << endl;
-		//Boucle n°1
-		while (continuer) {
-			if ((SDL_GetTicks() - ancientTick) >= 41) {
 
-				ancientTick = SDL_GetTicks();
 
-				SDL_PollEvent(&events);
+		void destroyVars(){
+		    SDL_DestroyTexture(fondT);
+		    SDL_DestroyTexture(profT);
+		    SDL_DestroyTexture(arrDial);
+		    Mix_FreeMusic(fondMus);
+		    SDL_DestroyTexture(textUre);
+        }
 
-				switch (events.type) {
+		/**Initialise les variables*/
+		void initVars() {
+			rlog << PRINT_TICKS << "Initialisation des variables de la scene d'intro" << endl;
+			fondP.h = 512;
+			fondP.w = 512;
+			fondP.x = 0;
+			fondP.y = 0;
+			dialogP.h = 150;
+			dialogP.w = 512;
+			dialogP.x = 0;
+			dialogP.y = 362;
+			profP.h = (300 / 3) * 2;
+			profP.w = (180 / 3) * 2;
+			profP.x = (fondP.w / 2) - (profP.w / 2) + 10;
+			profP.y = ((fondP.h - dialogP.h) / 2) - (profP.h / 2) + 50;
+			textPlace.x = 20;
+			textPlace.y = 382;
+			arrDialP.x = 512 - 75;
+			arrDialP.y = 512 - 30;
+			arrDialP.h = 10;
+			arrDialP.w = 10;
+			noir.r = 0;
+			noir.g = 0;
+			noir.b = 0;
+			texteDesc1R.x = 85;
+			texteDesc1R.y = 25;
+			texteDesc2R.x = 155;
+			texteDesc2R.y = 200;
+			texteDesc3R.x = 95;
+			texteDesc3R.y = 375;
+			texteDesc4R.x = texteDesc3R.x;
+			texteDesc4R.y = texteDesc3R.y + 30;
+            textPos.x = 120;
+			textPos.y = 300;
+			//Initialisation des images
+			rlog << "[T = " << SDL_GetTicks() << "] - Initialisation des sprites..." << endl;
+#ifdef _WIN32
+			fondT = IMG_LoadTexture(renderer, "ressources\\backgrounds\\start\\startscene.png");
+			profT = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\jlppc\\jlppc.png");
+			dialogT = IMG_LoadTexture(renderer, "ressources\\backgrounds\\dialog\\dialog.png");
+			arrDial = IMG_LoadTexture(renderer, "ressources\\sprites\\misc\\arrDial.png");
+#else
+			fondT = IMG_LoadTexture(renderer, "ressources/backgrounds/start/startscene.png");
+			profT = IMG_LoadTexture(renderer, "ressources/sprites/chara/jlppc/jlppc.png");
+			dialogT = IMG_LoadTexture(renderer, "ressources/backgrounds/dialog/dialog.png");
+			arrDial = IMG_LoadTexture(renderer, "ressources/sprites/misc/arrDial.png");
+#endif
+			rlog << "[T = " << SDL_GetTicks() << "] - Fin des initialisations" << endl;
+			SDL_Texture *texteDescs[4] = {renderText(renderer, kget("nameEntry.med"), font, blanc, &texteDesc2R),
+										  renderText(renderer, kget("nameEntry.top"), font, blanc, &texteDesc1R),
+										  renderText(renderer, kget("nameEntry.indic.1"), font, blanc, &texteDesc3R),
+										  renderText(renderer, kget("nameEntry.indic.2"), font, blanc, &texteDesc4R)
+										 };
+		}
 
-						QUIT
+		/**Verifie les erreurs de variables*/
+		int verifVars() {
+			rlog << PRINT_TICKS << "Verification des variables" << endl;
+			if (fondMus == NULL) {
+				gererErreur(Mix_GetError(), false);
+			}
+			if (fondT == NULL || profT == NULL || dialogT == NULL) {
+				gererErreur(string("Erreur lors de l'initialisation d'une image.") + string(SDL_GetError()), false);
+			}
 
-					case SDL_KEYDOWN:
-						switch (events.key.keysym.sym) {
-							case SDLK_SPACE:
-								DIALOG_PASS(0)
+			if (SDL_RenderCopy(renderer, fondT, NULL, &fondP) == -1) {
+				rerrLog << "Erreur lors de l'initialisation d'un élément" << endl;
+				gererErreur(SDL_GetError(), false);
+			}
+			if (SDL_RenderCopy(renderer, profT, NULL, &profP) == -1) {
+				rerrLog << "Erreur lors de l'initialisation d'un élément" << endl;
+			}
+			if (SDL_RenderCopy(renderer, dialogT, NULL, &dialogP) == -1) {
+				rerrLog << "Erreur lors de l'initialisation d'un élément" << endl;
+			}
+			if (fondNE == NULL) {
+				rerrLog << "Erreur lors de l'initialisation du fond d'entrée de nom" << endl;
+				gererErreur(IMG_GetError(), false);
+			}
+			rlog << PRINT_TICKS << "Verifications OK." << endl;
+		}
 
-								ECHAP
-						}
-						break;
+		int boucle0() {
+			rlog << "[T = " << SDL_GetTicks() << "] - Début de la boucle n°0" << endl;
+			//Boucle n°1
+			while (continuer) {
+				if ((SDL_GetTicks() - ancientTick) >= 41) {
 
-					case SDL_JOYBUTTONDOWN:
-						if (!joypressed) {
-							joypressed = true;
-							switch (events.jbutton.button) {
+					ancientTick = SDL_GetTicks();
 
-								case 0:
+					SDL_PollEvent(&events);
+
+					switch (events.type) {
+
+							QUIT
+
+						case SDL_KEYDOWN:
+							switch (events.key.keysym.sym) {
+								case SDLK_SPACE:
 									DIALOG_PASS(0)
 
-
-									JOYQUIT
+									ECHAP
 							}
+							break;
+
+						case SDL_JOYBUTTONDOWN:
+							if (!joypressed) {
+								joypressed = true;
+								switch (events.jbutton.button) {
+
+									case 0:
+										DIALOG_PASS(0)
+
+
+										JOYQUIT
+								}
+							}
+							break;
+
+							/*case SDL_WINDOWEVENT:
+								switch (events.window.event) {
+									case SDL_WINDOWEVENT_RESIZED:
+										break;
+								}
+								break;*/
+					}
+
+
+					if (phase == 0) {
+						if (SDL_RenderCopy(renderer, fondT, NULL, &fondP) == -1) {
+							rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
+							gererErreur(SDL_GetError(), false);
 						}
+						if (SDL_RenderCopy(renderer, profT, NULL, &profP) == -1) {
+							rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
+							gererErreur(SDL_GetError(), false);
+						}
+						if (SDL_RenderCopy(renderer, dialogT, NULL, &dialogP) == -1) {
+							rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
+							gererErreur(SDL_GetError(), false);
+						}
+						if (!changeDialog) {
+
+							if (!(i >= txtP0[line + dialog].size())) {
+
+								if (txtEnCours[line] == " ") {
+									txtEnCours[line] = txtP0[line + dialog].c_str()[i];
+								} else {
+									txtEnCours[line] += txtP0[line + dialog].c_str()[i];
+								}
+
+								i++;
+							} else {
+								if (line == 2) {
+									changeDialog = true;
+								} else {
+									line++;
+									i = 0;
+								}
+							}
+
+
+
+
+
+						}
+						printText(renderer, txtEnCours[0], txtEnCours[1], txtEnCours[2]);
+						ANIM_ARROW
+						SDL_RenderPresent(renderer);
+					} else {
 						break;
-
-						/*case SDL_WINDOWEVENT:
-							switch (events.window.event) {
-								case SDL_WINDOWEVENT_RESIZED:
-									break;
-							}
-							break;*/
-				}
-
-
-				if (phase == 0) {
-					if (SDL_RenderCopy(renderer, fondT, NULL, &fondP) == -1) {
-						rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
-						gererErreur(SDL_GetError(), false);
 					}
-					if (SDL_RenderCopy(renderer, profT, NULL, &profP) == -1) {
-						rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
-						gererErreur(SDL_GetError(), false);
-					}
-					if (SDL_RenderCopy(renderer, dialogT, NULL, &dialogP) == -1) {
-						rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
-						gererErreur(SDL_GetError(), false);
-					}
-					if (!changeDialog) {
-
-						if (!(i >= txtP0[line + dialog].size())) {
-
-							if (txtEnCours[line] == " ") {
-								txtEnCours[line] = txtP0[line + dialog].c_str()[i];
-							} else {
-								txtEnCours[line] += txtP0[line + dialog].c_str()[i];
-							}
-
-							i++;
-						} else {
-							if (line == 2) {
-								changeDialog = true;
-							} else {
-								line++;
-								i = 0;
-							}
-						}
 
 
-
-
-
-					}
-					printText(renderer, txtEnCours[0], txtEnCours[1], txtEnCours[2]);
-					ANIM_ARROW
-					SDL_RenderPresent(renderer);
 				} else {
-					break;
+					SDL_Delay(41 - (SDL_GetTicks() - ancientTick));
 				}
 
-
-			} else {
-				SDL_Delay(41 - (SDL_GetTicks() - ancientTick));
 			}
-
+			return 0;
 		}
-		continuer = true;
-		SDL_Texture *anim[6];
-		SDL_Rect animP;
-		animP.h = 512;
-		animP.w = 512;
-		animP.x = 0;
-		animP.y = 0;
 
-		for (int i = 0; i < 6; i++) {
-			if ((SDL_GetTicks() - ancientTick) >= 200) {
-				SDL_PollEvent(&events);
+        int anim0(){
+            animP.h = 512;
+			animP.w = 512;
+			animP.x = 0;
+			animP.y = 0;
+            for (int i = 0; i < 6; i++) {
+				if ((SDL_GetTicks() - ancientTick) >= 200) {
+					SDL_PollEvent(&events);
+
+					switch (events.type) {
+							QUIT
+
+						case SDL_KEYDOWN:
+							switch (events.key.keysym.sym) {
+									ECHAP
+							}
+
+							break;
+
+						case SDL_JOYBUTTONDOWN:
+							if (!joypressed) {
+								joypressed = true;
+								switch (events.jbutton.button) {
+										JOYQUIT
+								}
+							}
+
+
+
+							break;
+						case SDL_JOYBUTTONUP:
+							joypressed = false;
+							break;
+					}
+
+					ostringstream oss;
+
+#ifdef _WIN32
+					oss << "ressources\\animations\\winChange\\animWindowFrame" << i + 1 << ".png";
+#else
+					oss << "ressources/animations/winChange/animWindowFrame" << i + 1 << ".png";
+#endif // _WIN32
+
+					anim[i] = IMG_LoadTexture(renderer, oss.str().c_str());
+					SDL_RenderCopy(renderer, anim[i], NULL, &animP);
+					SDL_RenderPresent(renderer);
+					SDL_DestroyTexture(anim[i]);
+				} else {
+					SDL_Delay(200 - (SDL_GetTicks() - ancientTick));
+					i--;
+				}
+			}
+        }
+
+		int boucle1(){
+		    SDL_RenderCopy(renderer, fondNE, NULL, &fondP);
+				SDL_RenderCopy(renderer, texteDescs[0], NULL, &texteDesc2R);
+				SDL_RenderCopy(renderer, texteDescs[1], NULL, &texteDesc1R);
+				SDL_RenderCopy(renderer, texteDescs[2], NULL, &texteDesc3R);
+				SDL_RenderCopy(renderer, texteDescs[3], NULL, &texteDesc4R);
+				SDL_RenderPresent(renderer);
+		    while (continuer) {
+				SDL_WaitEvent(&events);
 
 				switch (events.type) {
 						QUIT
 
-					case SDL_KEYDOWN:
-						switch (events.key.keysym.sym) {
-								ECHAP
-						}
+                        NAME_ENTRY
 
-						break;
-
-					case SDL_JOYBUTTONDOWN:
-						if (!joypressed) {
-							joypressed = true;
-							switch (events.jbutton.button) {
-									JOYQUIT
-							}
-						}
-
-
-
-						break;
-					case SDL_JOYBUTTONUP:
-						joypressed = false;
-						break;
 				}
 
-				ostringstream oss;
+				SDL_RenderCopy(renderer, fondNE, NULL, &fondP);
+				SDL_RenderCopy(renderer, texteDescs[0], NULL, &texteDesc2R);
+				SDL_RenderCopy(renderer, texteDescs[1], NULL, &texteDesc1R);
+				SDL_RenderCopy(renderer, texteDescs[2], NULL, &texteDesc3R);
+				SDL_RenderCopy(renderer, texteDescs[3], NULL, &texteDesc4R);
+				SDL_DestroyTexture(nameT);
+				nameT = renderText(renderer, pName, font, blanc, &textPos);
+				SDL_RenderCopy(renderer, nameT, NULL, &textPos);
+				SDL_RenderPresent(renderer);
+
+
+			}
+			return 0;
+		}
+
+		int anim1(){
+            for (int i = 5; i >= 0; i--) {
+				if ((SDL_GetTicks() - ancientTick) >= 200) {
+					SDL_PollEvent(&events);
+
+					switch (events.type) {
+							QUIT
+
+						case SDL_KEYDOWN:
+							switch (events.key.keysym.sym) {
+									ECHAP
+							}
+
+							break;
+
+						case SDL_JOYBUTTONDOWN:
+							if (!joypressed) {
+								joypressed = true;
+								switch (events.jbutton.button) {
+										JOYQUIT
+								}
+							}
+
+
+
+							break;
+						case SDL_JOYBUTTONUP:
+							joypressed = false;
+							break;
+					}
+					ostringstream oss;
 
 #ifdef _WIN32
-				oss << "ressources\\animations\\winChange\\animWindowFrame" << i + 1 << ".png";
+					oss << "ressources\\animations\\winChange\\animWindowFrame" << i + 1 << ".png";
 #else
-				oss << "ressources/animations/winChange/animWindowFrame" << i + 1 << ".png";
+					oss << "ressources/animations/winChange/animWindowFrame" << i + 1 << ".png";
 #endif // _WIN32
 
-				anim[i] = IMG_LoadTexture(renderer, oss.str().c_str());
-				SDL_RenderCopy(renderer, anim[i], NULL, &animP);
-				SDL_RenderPresent(renderer);
-				SDL_DestroyTexture(anim[i]);
-			} else {
-				SDL_Delay(200 - (SDL_GetTicks() - ancientTick));
-				i--;
+					anim[i] = IMG_LoadTexture(renderer, oss.str().c_str());
+					SDL_RenderCopy(renderer, anim[i], NULL, &animP);
+					SDL_RenderPresent(renderer);
+					SDL_DestroyTexture(anim[i]);
+				} else {
+					SDL_Delay(200 - (SDL_GetTicks() - ancientTick));
+					i++;
+				}
 			}
 		}
-		phase = 1;
-		rlog << "[T = " << SDL_GetTicks() << "] - Chargement de la boucle n°1" << endl;
-		char pName[16] = "               ";
-		int k = 0;
-#ifdef _WIN32
-		SDL_Texture *fondNE = IMG_LoadTexture(renderer, "ressources\\backgrounds\\start\\nameEntry.png");
-#else
-		SDL_Texture *fondNE = IMG_LoadTexture(renderer, "ressources/backgrounds/start/nameEntry.png");
-#endif
-		if (fondNE == NULL) {
-			rerrLog << "Erreur lors de l'affichage du fond d'entrée de nom" << endl;
-			gererErreur(IMG_GetError(), false);
-		}
-		SDL_Rect texteDesc1R, texteDesc2R, texteDesc3R, texteDesc4R;
-		SDL_Rect textPos;
-		texteDesc1R.x = 85;
-		texteDesc1R.y = 25;
-		texteDesc2R.x = 155;
-		texteDesc2R.y = 200;
-		texteDesc3R.x = 95;
-		texteDesc3R.y = 375;
-		texteDesc4R.x = texteDesc3R.x;
-		texteDesc4R.y = texteDesc3R.y + 30;
 
-		textPos.x = 120;
-		textPos.y = 300;
-		SDL_Texture *texteDescs[4] = {renderText(renderer, kget("nameEntry.med"), font, blanc, &texteDesc2R),
-									  renderText(renderer, kget("nameEntry.top"), font, blanc, &texteDesc1R),
-									  renderText(renderer, kget("nameEntry.indic.1"), font, blanc, &texteDesc3R),
-									  renderText(renderer, kget("nameEntry.indic.2"), font, blanc, &texteDesc4R)
-									 };
-		SDL_RenderCopy(renderer, fondNE, NULL, &fondP);
-		SDL_RenderCopy(renderer, texteDescs[0], NULL, &texteDesc2R);
-		SDL_RenderCopy(renderer, texteDescs[1], NULL, &texteDesc1R);
-		SDL_RenderCopy(renderer, texteDescs[2], NULL, &texteDesc3R);
-		SDL_RenderCopy(renderer, texteDescs[3], NULL, &texteDesc4R);
-		SDL_RenderPresent(renderer);
-		SDL_Texture *nameT;
+		int boucle2(){
+		    while (continuer) {
+				if ((SDL_GetTicks() - ancientTick) >= 41) {
 
-		bool shift = false;
-		bool caps = false;
-		rlog << PRINT_TICKS << "Début de la boucle n°1" << endl;
-		while (continuer) {
-			SDL_WaitEvent(&events);
+					ancientTick = SDL_GetTicks();
 
-			switch (events.type) {
-					QUIT
+					SDL_PollEvent(&events);
 
-				case SDL_KEYUP:
-					switch (events.key.keysym.sym) {
-						case SDLK_RSHIFT:
-							shift = false;
-							break;
-						case SDLK_LSHIFT:
-							shift = false;
-							break;
-					}
-					break;
+					switch (events.type) {
 
-				case SDL_KEYDOWN:
-					switch (events.key.keysym.sym) {
-							ECHAP
+							QUIT
 
-						case SDLK_LSHIFT:
-							shift = true;
-							break;
+						case SDL_KEYDOWN:
+							switch (events.key.keysym.sym) {
+								case SDLK_SPACE:
+									DIALOG_PASS(1)
 
-						case SDLK_RSHIFT:
-							shift = true;
-							break;
-
-						case SDLK_CAPSLOCK:
-							if (!caps) {
-								shift = true;
-								caps = true;
-							} else {
-								shift = false;
-								caps = false;
-							}
-
-
-							break;
-
-						case SDLK_BACKSPACE:
-							pName[k] = ' ';
-							if (k != 0) {
-								k--;
-							}
-
-
-							break;
-
-						case SDLK_a:
-							if (k != 14) {
-								k++;
-							}
-							if (shift) {
-								pName[k] = 'A';
-							} else {
-								pName[k] = 'a';
-							}
-
-							break;
-
-						case SDLK_b:
-							if (k != 14) {
-								k++;
-							}
-							if (shift) {
-								pName[k] = 'B';
-							} else {
-								pName[k] = 'b';
-							}
-
-							break;
-
-						case SDLK_c:
-							if (k != 14) {
-								k++;
-							}
-							if (shift) {
-								pName[k] = 'C';
-							} else {
-								pName[k] = 'c';
-							}
-
-							break;
-
-						case SDLK_d:
-							if (k != 14) {
-								k++;
-							}
-							if (shift) {
-								pName[k] = 'D';
-							} else {
-								pName[k] = 'd';
-							}
-
-							break;
-
-						case SDLK_e:
-							if (k != 14) {
-								k++;
-							}
-							if (shift) {
-								pName[k] = 'E';
-							} else {
-								pName[k] = 'e';
-							}
-
-							break;
-
-						case SDLK_f:
-							if (k != 14) {
-								k++;
-							}
-							if (shift) {
-								pName[k] = 'F';
-							} else {
-								pName[k] = 'f';
-							}
-
-							break;
-
-						case SDLK_g:
-							if (k != 14) {
-								k++;
-							}
-							if (shift) {
-								pName[k] = 'G';
-							} else {
-								pName[k] = 'g';
-							}
-
-							break;
-
-						case SDLK_h:
-							if (k != 14) {
-								k++;
-							}
-							if (shift) {
-								pName[k] = 'H';
-							} else {
-								pName[k] = 'h';
-							}
-
-							break;
-
-						case SDLK_i:
-							if (k != 14) {
-								k++;
-							}
-							if (shift) {
-								pName[k] = 'i';
-							} else {
-								pName[k] = 'i';
-							}
-
-							break;
-
-						case SDLK_j:
-							if (k != 14) {
-								k++;
-							}
-							if (shift) {
-								pName[k] = 'J';
-							} else {
-								pName[k] = 'j';
-							}
-
-							break;
-
-						case SDLK_k:
-							if (k != 14) {
-								k++;
-							}
-							if (shift) {
-								pName[k] = 'K';
-							} else {
-								pName[k] = 'k';
-							}
-
-							break;
-
-						case SDLK_l:
-							if (k != 14) {
-								k++;
-							}
-							if (shift) {
-								pName[k] = 'L';
-							} else {
-								pName[k] = 'l';
-							}
-
-							break;
-
-						case SDLK_m:
-							if (k != 14) {
-								k++;
-							}
-							if (shift) {
-								pName[k] = 'M';
-							} else {
-								pName[k] = 'm';
-							}
-
-							break;
-
-						case SDLK_n:
-							if (k != 14) {
-								k++;
-							}
-							if (shift) {
-								pName[k] = 'N';
-							} else {
-								pName[k] = 'n';
-							}
-
-							break;
-
-						case SDLK_o:
-							if (k != 14) {
-								k++;
-							}
-							if (shift) {
-								pName[k] = 'O';
-							} else {
-								pName[k] = 'o';
-							}
-
-							break;
-
-						case SDLK_p:
-							if (k != 14) {
-								k++;
-							}
-							if (shift) {
-								pName[k] = 'P';
-							} else {
-								pName[k] = 'p';
-							}
-
-							break;
-
-						case SDLK_q:
-							if (k != 14) {
-								k++;
-							}
-							if (shift) {
-								pName[k] = 'Q';
-							} else {
-								pName[k] = 'q';
-							}
-
-							break;
-
-						case SDLK_r:
-							if (k != 14) {
-								k++;
-							}
-							if (shift) {
-								pName[k] = 'R';
-							} else {
-								pName[k] = 'r';
-							}
-
-							break;
-
-						case SDLK_s:
-							if (k != 14) {
-								k++;
-							}
-							if (shift) {
-								pName[k] = 'S';
-							} else {
-								pName[k] = 's';
-							}
-
-							break;
-
-						case SDLK_t:
-							if (k != 14) {
-								k++;
-							}
-							if (shift) {
-								pName[k] = 'T';
-							} else {
-								pName[k] = 't';
-							}
-
-							break;
-
-						case SDLK_u:
-							if (k != 14) {
-								k++;
-							}
-							if (shift) {
-								pName[k] = 'U';
-							} else {
-								pName[k] = 'u';
-							}
-
-							break;
-
-						case SDLK_v:
-							if (k != 14) {
-								k++;
-							}
-							if (shift) {
-								pName[k] = 'V';
-							} else {
-								pName[k] = 'v';
-							}
-
-							break;
-
-
-
-						case SDLK_w:
-							if (k != 14) {
-								k++;
-							}
-							if (shift) {
-								pName[k] = 'W';
-							} else {
-								pName[k] = 'w';
-							}
-
-							break;
-
-						case SDLK_x:
-							if (k != 14) {
-								k++;
-							}
-							if (shift) {
-								pName[k] = 'X';
-							} else {
-								pName[k] = 'x';
+									ECHAP
 							}
 							break;
 
-						case SDLK_y:
-							if (k != 14) {
-								k++;
-							}
-							if (shift) {
-								pName[k] = 'Y';
-							} else {
-								pName[k] = 'y';
-							}
-							break;
+						case SDL_JOYBUTTONDOWN:
+							if (!joypressed) {
+								joypressed = true;
+								switch (events.jbutton.button) {
 
-						case SDLK_z:
-							if (k != 14) {
-								k++;
-							}
-							if (shift) {
-								pName[k] = 'Z';
-							} else {
-								pName[k] = 'z';
-							}
-							break;
+									case 0:
+										DIALOG_PASS(1)
 
-						case SDLK_0:
-							if (k != 14) {
-								k++;
-							}
-							pName[k] = '0';
-							break;
 
-						case SDLK_1:
-							if (k != 14) {
-								k++;
-							}
-							pName[k] = '1';
-							break;
-
-						case SDLK_2:
-							if (k != 14) {
-								k++;
-							}
-							pName[k] = '2';
-							break;
-
-						case SDLK_3:
-							if (k != 14) {
-								k++;
-							}
-							pName[k] = '3';
-							break;
-
-						case SDLK_4:
-							if (k != 14) {
-								k++;
-							}
-							pName[k] = '4';
-							break;
-
-						case SDLK_5:
-							if (k != 14) {
-								k++;
-							}
-							pName[k] = '5';
-							break;
-
-						case SDLK_6:
-							if (k != 14) {
-								k++;
-							}
-							pName[k] = '6';
-							break;
-
-						case SDLK_7:
-							if (k != 14) {
-								k++;
-							}
-							pName[k] = '7';
-							break;
-
-						case SDLK_8:
-							if (k != 14) {
-								k++;
-							}
-							pName[k] = '8';
-							break;
-
-						case SDLK_9:
-							if (k != 14) {
-								k++;
-							}
-							pName[k] = '9';
-							break;
-
-						case SDLK_KP_0:
-							if (k != 14) {
-								k++;
-							}
-							pName[k] = '0';
-							break;
-
-						case SDLK_KP_1:
-							if (k != 14) {
-								k++;
-							}
-							pName[k] = '1';
-							break;
-
-						case SDLK_KP_2:
-							if (k != 14) {
-								k++;
-							}
-							pName[k] = '2';
-							break;
-
-						case SDLK_KP_3:
-							if (k != 14) {
-								k++;
-							}
-							pName[k] = '3';
-							break;
-
-						case SDLK_KP_4:
-							if (k != 14) {
-								k++;
-							}
-							pName[k] = '4';
-							break;
-
-						case SDLK_KP_5:
-							if (k != 14) {
-								k++;
-							}
-							pName[k] = '5';
-							break;
-
-						case SDLK_KP_6:
-							if (k != 14) {
-								k++;
-							}
-							pName[k] = '6';
-							break;
-
-						case SDLK_KP_7:
-							if (k != 14) {
-								k++;
-							}
-							pName[k] = '7';
-							break;
-
-						case SDLK_KP_8:
-							if (k != 14) {
-								k++;
-							}
-							pName[k] = '8';
-							break;
-
-						case SDLK_KP_9:
-							if (k != 14) {
-								k++;
-							}
-							pName[k] = '9';
-							break;
-                        case SDLK_DELETE:
-                            if(k != 14){
-                                k++;
-                            }
-                            pName[k] = ' ';
-                            break;
-						case SDLK_RETURN:
-							bool voided = true;
-							int voidNumber = 0;
-							int indexEnd;
-							for (unsigned int l = 0; l < 15; l++) {
-								if (pName[l] != ' ') {
-									voided = false;
-									voidNumber = 0;
-								}else{
-								    voidNumber++;
-								}
-								if(voidNumber == 2){
-                                    indexEnd = l - 1;
+										JOYQUIT
 								}
 							}
-							if (voided) {
-							    pName[0] = ' ';
-								pName[0 + 1] = 'R';
-								pName[1 + 1] = 'o';
-								pName[2 + 1] = 'b';
-								pName[3 + 1] = 'e';
-								pName[4 + 1] = 'r';
-								pName[5 + 1] = 't';
-								pName[6 + 1] = '\0';
-							}else{
-							    pName[indexEnd] = '\0';
-							}
-							continuer = false;
 							break;
 
-
+							/*case SDL_WINDOWEVENT:
+								switch (events.window.event) {
+									case SDL_WINDOWEVENT_RESIZED:
+										break;
+								}
+								break;*/
 					}
-					break;
+
+
+					if (phase == 2) {
+						if (SDL_RenderCopy(renderer, fondT, NULL, &fondP) == -1) {
+							rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
+							gererErreur(SDL_GetError(), false);
+						}
+						if (SDL_RenderCopy(renderer, profT, NULL, &profP) == -1) {
+							rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
+							gererErreur(SDL_GetError(), false);
+						}
+						if (SDL_RenderCopy(renderer, dialogT, NULL, &dialogP) == -1) {
+							rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
+							gererErreur(SDL_GetError(), false);
+						}
+						if (!changeDialog) {
+
+							if (!(i >= txtP1[line + dialog].size())) {
+
+								if (txtEnCours[line] == " ") {
+									txtEnCours[line] = txtP1[line + dialog].c_str()[i];
+								} else {
+									txtEnCours[line] += txtP1[line + dialog].c_str()[i];
+								}
+
+								i++;
+							} else {
+								if (line == 2) {
+									changeDialog = true;
+								} else {
+									line++;
+									i = 0;
+								}
+							}
+
+
+
+
+
+						}
+						printText(renderer, txtEnCours[0], txtEnCours[1], txtEnCours[2]);
+						ANIM_ARROW
+						SDL_RenderPresent(renderer);
+					} else {
+						//printChoice(kget("jlppc.dialog.start.25"), kget("opmon.choice.1"), kget("opmon.choice.2"), kget("opmon.choice.3")); //Non fini
+						break;
+					}
+
+
+				} else {
+					SDL_Delay(41 - (SDL_GetTicks() - ancientTick));
+				}
 			}
+			return 0;
+		}
+
+		void startScene() {
+			initVars();
+			verifVars();
+			//Départ de la musique
+			Mix_PlayMusic(fondMus, -1);
+			Mix_VolumeMusic(MIX_MAX_VOLUME / 16);
+
+			//Initialisation des tailles
+
+			//Vesrification des problèmes possibles
+
+			//Initialisation des variables utiles pour la boucle
+			SDL_RenderPresent(renderer);
+
+			if(boucle0() == -1){
+                destroyVars();
+                return;
+			}
+
+			continuer = true;
+
+
+
+			phase = 1;
+			rlog << "[T = " << SDL_GetTicks() << "] - Chargement de la boucle n°1" << endl;
+
+
+            anim0();
+
+
 
 			SDL_RenderCopy(renderer, fondNE, NULL, &fondP);
 			SDL_RenderCopy(renderer, texteDescs[0], NULL, &texteDesc2R);
 			SDL_RenderCopy(renderer, texteDescs[1], NULL, &texteDesc1R);
 			SDL_RenderCopy(renderer, texteDescs[2], NULL, &texteDesc3R);
 			SDL_RenderCopy(renderer, texteDescs[3], NULL, &texteDesc4R);
-			SDL_DestroyTexture(nameT);
-			nameT = renderText(renderer, pName, font, blanc, &textPos);
-			SDL_RenderCopy(renderer, nameT, NULL, &textPos);
 			SDL_RenderPresent(renderer);
 
 
+
+			rlog << PRINT_TICKS << "Début de la boucle n°1" << endl;
+
+			if(boucle1() == -1){
+                destroyVars();
+                SDL_DestroyTexture(nameT);
+                SDL_DestroyTexture(texteDescs[0]);
+                SDL_DestroyTexture(texteDescs[1]);
+                SDL_DestroyTexture(texteDescs[2]);
+                SDL_DestroyTexture(texteDescs[3]);
+                SDL_DestroyTexture(fondNE);
+                return;
+            }
+            SDL_DestroyTexture(nameT);
+			SDL_DestroyTexture(texteDescs[0]);
+			SDL_DestroyTexture(texteDescs[1]);
+			SDL_DestroyTexture(texteDescs[2]);
+			SDL_DestroyTexture(texteDescs[3]);
+			SDL_DestroyTexture(fondNE);
+
+			continuer = true;
+
+            anim1();
+
+            txtP1[0] = kget("jlppc.dialog.start.10") + string(pName) + "...";
+
+			phase = 2;
+
+			sizeOfTxt = 15;
+			i = 0;
+			line = 0;
+			dialog = 0;
+			txtEnCours[0] = string(" ");
+			txtEnCours[1] = string(" ");
+			txtEnCours[2] = string(" ");
+			changeDialog = false;
+			rlog << PRINT_TICKS << "Début de la boucle n°2" << endl;
+            if(boucle2() == -1){
+                destroyVars();
+                return;
+            }
+			phase++;
+
+
+			//rlog << "[T = " << SDL_GetTicks << "] - Entrée dans la boucle n°1" << endl;
+
+
+
 		}
-		SDL_DestroyTexture(nameT);
-		SDL_DestroyTexture(texteDescs[0]);
-		SDL_DestroyTexture(texteDescs[1]);
-		SDL_DestroyTexture(texteDescs[2]);
-		SDL_DestroyTexture(texteDescs[3]);
-		SDL_DestroyTexture(fondNE);
-		continuer = true;
-		for (int i = 5; i >= 0; i--) {
-			if ((SDL_GetTicks() - ancientTick) >= 200) {
-				SDL_PollEvent(&events);
-
-				switch (events.type) {
-						QUIT
-
-					case SDL_KEYDOWN:
-						switch (events.key.keysym.sym) {
-								ECHAP
-						}
-
-						break;
-
-					case SDL_JOYBUTTONDOWN:
-						if (!joypressed) {
-							joypressed = true;
-							switch (events.jbutton.button) {
-									JOYQUIT
-							}
-						}
-
-
-
-						break;
-					case SDL_JOYBUTTONUP:
-						joypressed = false;
-						break;
-				}
-
-				ostringstream oss;
-
-#ifdef _WIN32
-				oss << "ressources\\animations\\winChange\\animWindowFrame" << i + 1 << ".png";
-#else
-				oss << "ressources/animations/winChange/animWindowFrame" << i + 1 << ".png";
-#endif // _WIN32
-
-				anim[i] = IMG_LoadTexture(renderer, oss.str().c_str());
-				SDL_RenderCopy(renderer, anim[i], NULL, &animP);
-				SDL_RenderPresent(renderer);
-				SDL_DestroyTexture(anim[i]);
-			} else {
-				SDL_Delay(200 - (SDL_GetTicks() - ancientTick));
-				i++;
-			}
-		}
-
-		phase = 2;
-		string txtP1[] = {kget("jlppc.dialog.start.10") + string(pName) + "...", kget("jlppc.dialog.start.11"), kget("jlppc.dialog.start.12"), kget("jlppc.dialog.start.13"), kget("jlppc.dialog.start.14"), kget("jlppc.dialog.start.15"), kget("jlppc.dialog.start.16"), kget("jlppc.dialog.start.17"), kget("jlppc.dialog.start.18"), kget("jlppc.dialog.start.19"), kget("jlppc.dialog.start.20"), kget("jlppc.dialog.start.21"), kget("jlppc.dialog.start.22"), kget("jlppc.dialog.start.23"), kget("jlppc.dialog.start.24")};
-		sizeOfTxt = 15;
-		i = 0;
-		line = 0;
-		dialog = 0;
-        txtEnCours[0] = string(" ");
-		txtEnCours[1] = string(" ");
-		txtEnCours[2] = string(" ");
-		changeDialog = false;
-        rlog << PRINT_TICKS << "Début de la boucle n°2" << endl;
-		while (continuer) {
-			if ((SDL_GetTicks() - ancientTick) >= 41) {
-
-				ancientTick = SDL_GetTicks();
-
-				SDL_PollEvent(&events);
-
-				switch (events.type) {
-
-						QUIT
-
-					case SDL_KEYDOWN:
-						switch (events.key.keysym.sym) {
-							case SDLK_SPACE:
-								DIALOG_PASS(1)
-
-								ECHAP
-						}
-						break;
-
-					case SDL_JOYBUTTONDOWN:
-						if (!joypressed) {
-							joypressed = true;
-							switch (events.jbutton.button) {
-
-								case 0:
-									DIALOG_PASS(1)
-
-
-									JOYQUIT
-							}
-						}
-						break;
-
-						/*case SDL_WINDOWEVENT:
-							switch (events.window.event) {
-								case SDL_WINDOWEVENT_RESIZED:
-									break;
-							}
-							break;*/
-				}
-
-
-				if (phase == 2) {
-					if (SDL_RenderCopy(renderer, fondT, NULL, &fondP) == -1) {
-						rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
-						gererErreur(SDL_GetError(), false);
-					}
-					if (SDL_RenderCopy(renderer, profT, NULL, &profP) == -1) {
-						rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
-						gererErreur(SDL_GetError(), false);
-					}
-					if (SDL_RenderCopy(renderer, dialogT, NULL, &dialogP) == -1) {
-						rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
-						gererErreur(SDL_GetError(), false);
-					}
-					if (!changeDialog) {
-
-						if (!(i >= txtP1[line + dialog].size())) {
-
-							if (txtEnCours[line] == " ") {
-								txtEnCours[line] = txtP1[line + dialog].c_str()[i];
-							} else {
-								txtEnCours[line] += txtP1[line + dialog].c_str()[i];
-							}
-
-							i++;
-						} else {
-							if (line == 2) {
-								changeDialog = true;
-							} else {
-								line++;
-								i = 0;
-							}
-						}
-
-
-
-
-
-					}
-					printText(renderer, txtEnCours[0], txtEnCours[1], txtEnCours[2]);
-					ANIM_ARROW
-					SDL_RenderPresent(renderer);
-				} else {
-					break;
-				}
-
-
-			} else {
-				SDL_Delay(41 - (SDL_GetTicks() - ancientTick));
-			}
-		}
-
-		//rlog << "[T = " << SDL_GetTicks << "] - Entrée dans la boucle n°1" << endl;
-
-
-
 	}
+
 
 	SDL_Texture *renderText(SDL_Renderer *renderer, char text[], TTF_Font *police, SDL_Color color, SDL_Rect *pos) {
 		SDL_Surface *sfce = TTF_RenderText_Blended(police, text, color);
-		if(sfce == NULL){
-            gererErreur(TTF_GetError(), true);
+		if (sfce == NULL) {
+			gererErreur(TTF_GetError(), true);
 		}
 		pos->h = sfce->h;
 		pos->w = sfce->w;
@@ -1224,8 +795,8 @@ namespace MainFrame {
 
 	SDL_Texture *renderText(SDL_Renderer *renderer, string text, TTF_Font *police, SDL_Color color, SDL_Rect *pos) {
 		SDL_Surface *sfce = TTF_RenderText_Blended(police, text.c_str(), color);
-		if(sfce == NULL){
-            gererErreur(TTF_GetError(), true);
+		if (sfce == NULL) {
+			gererErreur(TTF_GetError(), true);
 		}
 		pos->h = sfce->h;
 		pos->w = sfce->w;

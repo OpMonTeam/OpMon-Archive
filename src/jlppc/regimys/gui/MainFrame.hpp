@@ -44,8 +44,20 @@ namespace MainFrame {
 	extern Mix_Chunk *dialogPass;
 	/**Ouvre la fenetre, charge les composants de base de la SDL et du jeu*/
 	void open();
-	/**Fait se dérouler la scène de début*/
-	void startScene();
+	/**Définit le namespace contenant les variables et les methodes utiles a la scene de départ.*/
+	namespace StartScene{
+	    /**Fait se dérouler la scène de début*/
+        void startScene();
+
+        extern SDL_Rect fondP;
+		extern SDL_Rect profP;
+		extern SDL_Texture *fondT;
+		extern SDL_Texture *profT;
+		extern SDL_Texture *arrDial;
+		extern SDL_Rect arrDialP;
+		extern Mix_Music *fondMus;
+	}
+
 	/**
 	Affiche un texte dans la boite de dialogue.
 	Renvoie...un int.
