@@ -44,3 +44,4 @@ pages/doc/DocSample.html
 cbp2make/*
 Projet-Pokemon-Regimys_build_log.html
 doxygen/doxyfile
+*.opmod
