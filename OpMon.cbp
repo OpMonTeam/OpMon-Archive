@@ -2,13 +2,13 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="Projet-Pokemon-Regimys" />
+		<Option title="OpMon" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
 				<Option platforms="Windows;" />
-				<Option output="exe/Projet-Pokemon-Regimys-Debug" prefix_auto="1" extension_auto="1" />
+				<Option output="exe/OpMon-Debug" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="exe/" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
@@ -23,7 +23,7 @@
 			</Target>
 			<Target title="Release">
 				<Option platforms="Windows;" />
-				<Option output="exe/Projet-Pokemon-Regimys" prefix_auto="1" extension_auto="1" />
+				<Option output="exe/OpMon" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="exe/" />
 				<Option object_output="obj/Release/" />
 				<Option type="0" />
@@ -35,12 +35,6 @@
 				<Linker>
 					<Add option="-m32" />
 				</Linker>
-			</Target>
-			<Target title="Launcher">
-				<Option output="Projet-Pokemon-Regimys" imp_lib="$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).a" def_file="$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).def" prefix_auto="1" extension_auto="1" />
-				<Option type="3" />
-				<Option compiler="gcc" />
-				<Option createStaticLib="1" />
 			</Target>
 		</Build>
 		<Compiler>
@@ -60,8 +54,6 @@
 		</Linker>
 		<Unit filename="resources.rc">
 			<Option compilerVar="WINDRES" />
-			<Option target="Debug" />
-			<Option target="Release" />
 		</Unit>
 		<Unit filename="src/jlppc/regimys/enums/Caractere.cpp" />
 		<Unit filename="src/jlppc/regimys/enums/Caractere.hpp" />
