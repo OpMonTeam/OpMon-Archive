@@ -49,7 +49,7 @@ The game is actually in french, but if you talk french and english, you can help
 If there are problems to understand the commits, because it's all in french, don't hesitate to ask too!<br/><br/>
 <a href="https://github.com/jlppc/OpMon/wiki/Journal-du-developpement">Development Journal (in French) </a><br/>
 <!--<a href="">Regimys Youtube Channel</a><br/>-->
-<a href="http://opmon-game.ga">Regimys web site</a><br/>
+<a href="http://opmon-game.ga">OPMon web site</a><br/>
 <a href="https://github.com/jlppc/Site-OpMon">Website repository</a><br/><br/>
 <br/>Game version : Alpha 0.08 | Download : <a href="https://github.com/jlppc/OpMon/releases/download/alpha-v0.08/setup.exe"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 
