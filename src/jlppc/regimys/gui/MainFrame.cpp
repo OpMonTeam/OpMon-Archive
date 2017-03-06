@@ -238,7 +238,7 @@ namespace MainFrame {
         //Part 0
 		bool continuer = true;
 		long ancientTick = 0;
-		string txtP0[] = {kget("jlppc.dialog.start.1"), kget("jlppc.dialog.start.2"), kget("jlppc.dialog.start.3"), kget("jlppc.dialog.start.4"), kget("jlppc.dialog.start.5"), kget("jlppc.dialog.start.6"), kget("jlppc.dialog.start.7"), kget("jlppc.dialog.start.8"), kget("jlppc.dialog.start.9")};//Deux cases == Deux lignes. 3 cases == Deux lignes + un nouveau dialogue
+		string txtP0[9];//Deux cases == Deux lignes. 3 cases == Deux lignes + un nouveau dialogue
 		int sizeOfTxt = 9;
 		string txtEnCours[] = {string(" "), string(" "), string(" ")};
 		SDL_Surface *sfce = NULL;
@@ -252,9 +252,9 @@ namespace MainFrame {
         char pName[16] = "               ";
         int k = 0;
         #ifdef _WIN32
-            SDL_Texture *fondNE = IMG_LoadTexture(renderer, "ressources\\backgrounds\\start\\nameEntry.png");//To destroy in part 1
+            SDL_Texture *fondNE;//To destroy in part 1
         #else
-            SDL_Texture *fondNE = IMG_LoadTexture(renderer, "ressources/backgrounds/start/nameEntry.png");
+            SDL_Texture *fondNE;
         #endif
         SDL_Rect texteDesc1R, texteDesc2R, texteDesc3R, texteDesc4R;
         SDL_Rect textPos;
@@ -263,7 +263,7 @@ namespace MainFrame {
         bool shift = false;
         bool caps = false;
         //Part 2
-        string txtP1[] = {"", kget("jlppc.dialog.start.11"), kget("jlppc.dialog.start.12"), kget("jlppc.dialog.start.13"), kget("jlppc.dialog.start.14"), kget("jlppc.dialog.start.15"), kget("jlppc.dialog.start.16"), kget("jlppc.dialog.start.17"), kget("jlppc.dialog.start.18"), kget("jlppc.dialog.start.19"), kget("jlppc.dialog.start.20"), kget("jlppc.dialog.start.21"), kget("jlppc.dialog.start.22"), kget("jlppc.dialog.start.23"), kget("jlppc.dialog.start.24")};
+        string txtP1[15];
 
 
 
@@ -277,6 +277,21 @@ namespace MainFrame {
 
 		/**Initialise les variables*/
 		void initVars() {
+		    unsigned int it = 0;
+		    for(it = 0; it < 9; it++){
+                ostringstream oss;
+                oss << "jlppc.dialog.start." << it + 1;
+                txtP0[it] = kget(oss.str());
+		    }
+		    int ite = 1;
+		    it++;
+		    txtP1[0] = "";
+            for(it = it; it < 15; it++){
+                ostringstream oss;
+                oss << "jlppc.dialog.start." << it + 1;
+                txtP1[ite] = kget(oss.str());
+                ite++;
+            }
 			rlog << PRINT_TICKS << "Initialisation des variables de la scene d'intro" << endl;
 			fondP.h = 512;
 			fondP.w = 512;
@@ -316,11 +331,13 @@ namespace MainFrame {
 			profT = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\jlppc\\jlppc.png");
 			dialogT = IMG_LoadTexture(renderer, "ressources\\backgrounds\\dialog\\dialog.png");
 			arrDial = IMG_LoadTexture(renderer, "ressources\\sprites\\misc\\arrDial.png");
+			fondNE = IMG_LoadTexture(renderer, "ressources\\backgrounds\\start\\nameEntry.png");
 #else
 			fondT = IMG_LoadTexture(renderer, "ressources/backgrounds/start/startscene.png");
 			profT = IMG_LoadTexture(renderer, "ressources/sprites/chara/jlppc/jlppc.png");
 			dialogT = IMG_LoadTexture(renderer, "ressources/backgrounds/dialog/dialog.png");
 			arrDial = IMG_LoadTexture(renderer, "ressources/sprites/misc/arrDial.png");
+			fondNE = IMG_LoadTexture(renderer, "ressources/backgrounds/start/nameEntry.png");
 #endif
 			rlog << "[T = " << SDL_GetTicks() << "] - Fin des initialisations" << endl;
 			SDL_Texture *texteDescs[4] = {renderText(renderer, kget("nameEntry.med"), font, blanc, &texteDesc2R),
@@ -337,21 +354,21 @@ namespace MainFrame {
 				gererErreur(Mix_GetError(), false);
 			}
 			if (fondT == NULL || profT == NULL || dialogT == NULL) {
-				gererErreur(string("Erreur lors de l'initialisation d'une image.") + string(SDL_GetError()), false);
+				gererErreur(string("MainFrame : Erreur lors de l'initialisation d'une image.") + string(SDL_GetError()), false);
 			}
 
 			if (SDL_RenderCopy(renderer, fondT, NULL, &fondP) == -1) {
-				rerrLog << "Erreur lors de l'initialisation d'un élément" << endl;
+				rerrLog << "MainFrame (verifVars) : Erreur lors de l'initialisation d'un élément" << endl;
 				gererErreur(SDL_GetError(), false);
 			}
 			if (SDL_RenderCopy(renderer, profT, NULL, &profP) == -1) {
-				rerrLog << "Erreur lors de l'initialisation d'un élément" << endl;
+				rerrLog << "MainFrame (verifVars) : Erreur lors de l'initialisation d'un élément" << endl;
 			}
 			if (SDL_RenderCopy(renderer, dialogT, NULL, &dialogP) == -1) {
-				rerrLog << "Erreur lors de l'initialisation d'un élément" << endl;
+				rerrLog << "MainFrame (verifVars) : Erreur lors de l'initialisation d'un élément" << endl;
 			}
 			if (fondNE == NULL) {
-				rerrLog << "Erreur lors de l'initialisation du fond d'entrée de nom" << endl;
+				rerrLog << "MainFrame (verifVars) : Erreur lors de l'initialisation du fond d'entrée de nom" << endl;
 				gererErreur(IMG_GetError(), false);
 			}
 			rlog << PRINT_TICKS << "Verifications OK." << endl;
@@ -513,11 +530,11 @@ namespace MainFrame {
 
 		int boucle1(){
 		    SDL_RenderCopy(renderer, fondNE, NULL, &fondP);
-				SDL_RenderCopy(renderer, texteDescs[0], NULL, &texteDesc2R);
-				SDL_RenderCopy(renderer, texteDescs[1], NULL, &texteDesc1R);
-				SDL_RenderCopy(renderer, texteDescs[2], NULL, &texteDesc3R);
-				SDL_RenderCopy(renderer, texteDescs[3], NULL, &texteDesc4R);
-				SDL_RenderPresent(renderer);
+            SDL_RenderCopy(renderer, texteDescs[0], NULL, &texteDesc2R);
+            SDL_RenderCopy(renderer, texteDescs[1], NULL, &texteDesc1R);
+            SDL_RenderCopy(renderer, texteDescs[2], NULL, &texteDesc3R);
+            SDL_RenderCopy(renderer, texteDescs[3], NULL, &texteDesc4R);
+            SDL_RenderPresent(renderer);
 		    while (continuer) {
 				SDL_WaitEvent(&events);
 
