@@ -286,7 +286,7 @@ namespace MainFrame {
 		    int ite = 1;
 		    it++;
 		    txtP1[0] = "";
-            for(it = it; it < 15; it++){
+            for(it = it; it < 15 + 9; it++){
                 ostringstream oss;
                 oss << "jlppc.dialog.start." << it + 1;
                 txtP1[ite] = kget(oss.str());
@@ -340,11 +340,10 @@ namespace MainFrame {
 			fondNE = IMG_LoadTexture(renderer, "ressources/backgrounds/start/nameEntry.png");
 #endif
 			rlog << "[T = " << SDL_GetTicks() << "] - Fin des initialisations" << endl;
-			SDL_Texture *texteDescs[4] = {renderText(renderer, kget("nameEntry.med"), font, blanc, &texteDesc2R),
-										  renderText(renderer, kget("nameEntry.top"), font, blanc, &texteDesc1R),
-										  renderText(renderer, kget("nameEntry.indic.1"), font, blanc, &texteDesc3R),
-										  renderText(renderer, kget("nameEntry.indic.2"), font, blanc, &texteDesc4R)
-										 };
+			texteDescs[0] = renderText(renderer, kget("nameEntry.med"), font, blanc, &texteDesc2R);
+			texteDescs[1] = renderText(renderer, kget("nameEntry.top"), font, blanc, &texteDesc1R);
+			texteDescs[2] = renderText(renderer, kget("nameEntry.indic.1"), font, blanc, &texteDesc3R);
+			texteDescs[3] = renderText(renderer, kget("nameEntry.indic.2"), font, blanc, &texteDesc4R);
 		}
 
 		/**Verifie les erreurs de variables*/
@@ -438,7 +437,7 @@ namespace MainFrame {
 							if (!(i >= txtP0[line + dialog].size())) {
 
 								if (txtEnCours[line] == " ") {
-									txtEnCours[line] = txtP0[line + dialog].c_str()[i];
+									txtEnCours[line] += txtP0[line + dialog].c_str()[i];
 								} else {
 									txtEnCours[line] += txtP0[line + dialog].c_str()[i];
 								}
