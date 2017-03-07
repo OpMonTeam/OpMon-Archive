@@ -6,9 +6,10 @@
 
 # CrashLog.txt ou lien vers le fichier :
 
-//Pour creer une issue d'update, merci de suivre la forme suivante.
+//Pour creer une issue d'amélioration
 # Fonctionnalité a améliorer :
 
+//Pour creer une issue d'ajout
 # Description de l'ajout :
 
 //Pour creer tout autre forme d'Issue, faites comme vous voulez, mais soyez clair, compréhesible et précis.
