@@ -4,7 +4,7 @@
 Look <a href="#------in-english-------"> In English</a><br/>
 # Bienvenue sur le Projet "OPMon Lazuli"!
 
-Bienvenue sur le projet de OPMon Lazuli! Le clone <a href="https://github.com/jlppc/OpMon/wiki/FAQ">libre</a>de la celebre license de Nintendo !<br/>
+Bienvenue sur le projet de OPMon Lazuli! Le clone <a href="https://github.com/jlppc/OpMon/wiki/FAQ">libre</a> de la celebre license de Nintendo !<br/>
 <a href="https://github.com/jlppc/OpMon/wiki/Journal-du-developpement">Journal de developpement</a><br/>
 <a href="http://opmon-game.ga">Site web du jeu</a><br/>
 <a href="https://github.com/jlppc/Site-OpMon">Dépot du site web du jeu</a><br/><br/>
