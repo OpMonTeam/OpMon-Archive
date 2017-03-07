@@ -20,9 +20,8 @@ Prochaines versions :<ul>
 
 
 Informations generales:<br/>
-OPMon est le clone libre de Pokemon, il s'inscrit dans la lignée de Super Tux (Clone de Mario) et SuperTuxKart (Clone de Mario kart)
-Il vient d'un jeu imaginé en 2012 et débuté en septembre 2016. 
-Ce jeu est totalement open-source, ce qui permet aux plus grands fans de venir realiser leurs rêves les plus fous! 
+OpMon vient d'un jeu imaginé en 2012 et débuté en septembre 2016, c'est un clone de la célèbre licence Pokémon, appartenant à Nintendo. 
+Ce jeu est totalement open-source, ce qui permet aux gens de venir realiser leurs rêves les plus fous! 
 Vous pouvez ajouter des OpMons, des attaques, des items, et autres! 
 Vous n'avez qu'a nous proposer vos modifications et nous les ajouterons peut-être au jeu. 
 Et si vous nous proposez beaucoup de bonnes modifications, et qu'elles sont acceptées, vous deviendrez peut-être collaborateur!<br/>
