@@ -13,6 +13,51 @@ Permet d'ouvrir la fenetre du jeu.
 #include <SDL/SDL_ttf.h>
 #include <SDL/SDL_mixer.h>
 #include "Elements.hpp"
+#include "../start/StringKeys.hpp"
+#define rLog rlog
+#define charLineDialog 33
+#define kget StringKeys::get
+
+#define QUITF continuer=false;\
+	return -1;
+
+#define QUIT case SDL_QUIT:\
+	QUITF//Un macro composé de macro. :D
+
+#define ECHAP case SDLK_ESCAPE:\
+	QUITF
+
+#define JOYQUIT case 7:\
+	QUITF
+
+#define DIALOG_PASS(varname) if (changeDialog == false) {\
+		txtEnCours[0] = txtP##varname[dialog];\
+		txtEnCours[1] = txtP##varname[dialog + 1];\
+		txtEnCours[2] = txtP##varname[dialog + 2];\
+		printText(renderer, txtEnCours[0], txtEnCours[1], txtEnCours[2]);\
+		changeDialog = true;\
+		SDL_Delay(50);\
+	} else if (!(dialog + 3 >= sizeOfTxt)) {\
+		Mix_PlayChannel(1, dialogPass, 0);\
+		line = 0;\
+		dialog++;\
+		dialog++;\
+		dialog++;\
+		i = 0;\
+		txtEnCours[0] = string(" ");\
+		txtEnCours[1] = string(" ");\
+		txtEnCours[2] = string(" ");\
+		changeDialog = false;\
+	}else{\
+		phase = (varname) + 1;\
+	}\
+	break;
+
+#define ANIM_ARROW 		arrDialP.y = arrDialP.y + 1;\
+	if (arrDialP.y - (512 - 30) > 5) {\
+		arrDialP.y = arrDialP.y - 6;\
+	}\
+	SDL_RenderCopy(renderer, arrDial, NULL, &arrDialP);
 
 /**Contient toutes les methodes permettant de gérer et de faire fonctionner l'interface graphique
  * Contient aussi le déroulement des évenements
@@ -36,6 +81,8 @@ namespace MainFrame {
 	extern SDL_Rect textPlace;
 	/**Contient la couleur noire*/
 	extern SDL_Color noir;
+	/**Contient la couleur blanche*/
+	extern SDL_Color blanc;
 	/**Indique si la SDL s'est initialisée*/
 	extern bool init;
 	/**Contient la manette, si il y en a une*/
@@ -45,18 +92,7 @@ namespace MainFrame {
 	/**Ouvre la fenetre, charge les composants de base de la SDL et du jeu*/
 	void open();
 	/**Définit le namespace contenant les variables et les methodes utiles a la scene de départ.*/
-	namespace StartScene{
-	    /**Fait se dérouler la scène de début*/
-        void startScene();
 
-        extern SDL_Rect fondP;
-		extern SDL_Rect profP;
-		extern SDL_Texture *fondT;
-		extern SDL_Texture *profT;
-		extern SDL_Texture *arrDial;
-		extern SDL_Rect arrDialP;
-		extern Mix_Music *fondMus;
-	}
 
 	/**
 	Affiche un texte dans la boite de dialogue.
