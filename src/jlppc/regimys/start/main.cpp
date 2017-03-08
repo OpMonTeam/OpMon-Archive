@@ -33,8 +33,8 @@ UNS
 	ofstream rerrLog("logs\\errLog.txt");
 #else
 	#define UNIX
-	ofstream rlog = ofstream("logs/log.txt");
-	ofstream rerrLog = ofstream("logs/errLog.txt")
+	ofstream rlog("logs/log.txt");
+	ofstream rerrLog("logs/errLog.txt");
 #endif // WINDOWS
 
 

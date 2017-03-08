@@ -17,7 +17,7 @@ namespace MainFrame{
 #ifdef _WIN32
 	Mix_Music *fondMus = Mix_LoadMUS("ressources\\audio\\music\\intro.ogg");
 #else
-	Mix_Music *fond = Mix_LoadMUS("ressources/audio/music/intro.ogg");
+	Mix_Music *fondMus = Mix_LoadMUS("ressources/audio/music/intro.ogg");
 #endif
         //Déclaration des variables utilitaires (sera supprimé en cours de travail)
         //Part 0
