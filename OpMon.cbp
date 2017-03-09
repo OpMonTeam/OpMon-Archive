@@ -75,6 +75,8 @@
 		<Unit filename="src/jlppc/regimys/gui/Elements.hpp" />
 		<Unit filename="src/jlppc/regimys/gui/MainFrame.cpp" />
 		<Unit filename="src/jlppc/regimys/gui/MainFrame.hpp" />
+		<Unit filename="src/jlppc/regimys/gui/StartScene.cpp" />
+		<Unit filename="src/jlppc/regimys/gui/StartScene.hpp" />
 		<Unit filename="src/jlppc/regimys/objects/Attaque.cpp" />
 		<Unit filename="src/jlppc/regimys/objects/Attaque.hpp" />
 		<Unit filename="src/jlppc/regimys/objects/Attaques.cpp" />
