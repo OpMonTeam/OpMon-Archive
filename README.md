@@ -12,7 +12,7 @@ Bienvenue sur le projet de OPMon Lazuli! Le clone <a href="https://github.com/jl
 Prochaines versions :<ul>
 
 <li>Alpha 0.09 : Quand la scene d'intro du jeu et les combats seront O.K en C++ et ajout de sons</li>
-<li>Alpha 0.1 : Améliorations et correction de tous les bugs possibles dans la partie graphique, SUPPRESSION DE LA VERSION JAVA!!!</li>
+<li>Alpha 0.1 : Améliorations et correction de tous les bugs possibles dans la partie graphique</li>
 <li>Alpha 0.11 : Quand 50 OpMons seront jouables en combats et équlibrés, et amélioration des sons, bruitages et combats</li>
 <a href="https://github.com/jlppc/OpMon/wiki/ROADMAP">Voir la ROADMAP détaillé</a><br/>
 </ul>
@@ -29,7 +29,7 @@ Nous sommes plusieurs sur le projet : Jlppc, le programmeur et créateur de l'hi
 Contacts : jlppcprog@gmail.com pour la programmation | evandib@gmail.com pour les graphismes<br/>
 Si vous avez des questions à poser, n'hésitez pas à les demander dans la section F.A.Q. du wiki ou a nous contacter par mail!<br/><br/><br/>
 
-Changelog avant la Alpha 0.05. Pour le reste du changelog, il est dans la section Releases
+Changelog avant la Alpha 0.05. Pour le reste du changelog après la 0.7, il est dans la section Releases, sinon il est sur <a href="https://github.com/jlppc/Projet-Pokemon-Regimys">l'ancien dépot</a>
 <ul>
 <li>Alpha 0.04 : Ajout de la gestion des double types</li>
 <li>Alpha 0.03 : Modification du systeme de combat</li>
