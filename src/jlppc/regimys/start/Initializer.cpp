@@ -22,7 +22,7 @@ namespace Initializer {
 	}
 
 	void initEvs() {
-		/*evs[0].ATK;
+		evs[0].ATK;
 
 		evs[1].ATKSPE;
 
@@ -107,7 +107,7 @@ namespace Initializer {
 
 		evs[29].PV;
 
-		evs[30].PV;
+		/*evs[30].PV;
 		evs[30].PV;
 
 		evs[31].PV;
@@ -530,14 +530,14 @@ namespace Initializer {
 		 listeOp[9] = new Espece(120, 80, 75, 105, 30, 109, "Roileine", Type::EAU, Type::AUCUN, 0, -1,NULL, evs[9], 1.6, 85.5, "Il écrase ses adversaires de tout son poids pour leur faire perdre connaissance. Il rentre dans sa carapace s'il se sent en danger.", 210, 1059860, 45, 9);
 		 listeOp[10] = new Espece(30, 35, 20, 20, 45, 45, "Verpomme", Type::INSECTE, Type::AUCUN, 0, 7, new E_Level(11, 7), evs[10], 0.3, 2.9, "Ses pattes ont des ventouses lui permettant de grimper sur toute surface, notamment les arbres.", 53, 1000000, 255, 10);
 		 listeOp[11] = new Espece(20, 55, 25, 25, 30, 50, "Terrapatte", Type::INSECTE, Type::AUCUN, 0, 10, new E_Level(12, 10), evs[11], 0.7, 9.9, "Son corps frÃªle est protégé par sa carapace d'acier. Il encaisse les coups durs en attendant d'évoluer.", 72, 1000000, 120, 11);
-		 listeOp[12] = new Espece(105, 40, 70, 80, 75, 55, "Milleparterre", Type::INSECTE, Type::COMBAT, 0, -1, NULL, evs[12],1.1, 32, "Ses ailes sont recouvertes d'une poudre les protégeant de la pluie. Ce Pokémon peut donc voler pendant de grosses averses.", 160, 1000000, 45, 12);
+		 listeOp[12] = new Espece(105, 40, 70, 80, 75, 55, "Millepaterre", Type::INSECTE, Type::COMBAT, 0, -1, NULL, evs[12], 1.1, 32, "Cet OPMon contient plus d'un millier de petits pattes collantes, ce qui lui permet de se déplacer partout", 160, 1000000, 45, 12);
 		 listeOp[13] = new Espece(35, 30, 20, 20, 50, 40, "Sautinelle", Type::INSECTE, Type::AUCUN, 0, 7, new E_Level(14, 7),evs[13], 0.3, 3.2, "Son aiguillon empoisonné est très dangereux. Son corps est coloré afin de repousser ses ennemis.", 52, 1000000, 255, 13);
-		 listeOp[14] = new Espece(25, 50, 25, 25, 35, 45, "Invavore", Type::INSECTE, Type::COMBAT, 0, 10, new E_Level(15, 10), evs[14], 0.6, 10, "Incapable de se déplacer de lui-mÃªme, il se défend en durcissant sa carapace.", 71, 1000000, 120, 14);
+		 listeOp[14] = new Espece(25, 50, 25, 25, 35, 45, "Invavore", Type::INSECTE, Type::COMBAT, 0, 10, new E_Level(15, 10), evs[14], 0.6, 10, "Incapable de se déplacer de lui-même, il se défend en durcissant sa carapace.", 71, 1000000, 120, 14);
 		 listeOp[15] = new Espece(80, 40, 45, 80, 75, 65, "Assautrèle", Type::INSECTE, Type::COMBAT, 0, -1, NULL, evs[15], 1, 29.5, "Il se sert de ses trois aiguillons empoisonnés pour attaquer sans relâche ses adversaires.", 159, 1000000, 45, 15);
 		 listeOp[16] = new Espece(45, 40, 35, 35, 56, 40, "Pelicamp", Type::NORMAL, Type::VOL, 0, 18, new E_Level(17, 18), evs[16], 0.3, 1., "Cet OpMon adore voler seul, le problème, c'est qu'il n'est pas le seul dans le ciel...", 55, 1059860, 255, 16);
 		 listeOp[17] = new Espece(60, 55, 50, 50, 71, 63, "Grand-Bec", Type::NORMAL, Type::VOL, 0, 36, new E_Level(18, 36), evs[17], 1.1, 30, "Il protège son territoire avec ardeur et repousse à  coup de bec tout intrus.", 113, 1059860, 120, 17);
 		 listeOp[18] = new Espece(80, 75, 50, 40, 190, 85, "Majelanion", Type::NORMAL, Type::VOL, 0, -1, NULL, evs[18], 1.5, 39.5, "Il adore attrapper des Ornitaupes en vol, sa vitesse et tellement forte que son corp siffle pednant son vol", 172, 1059860, 45, 18);
-		 listeOp[19] = new Espece(56, 35, 25, 35, 72, 30, "Ornitaupe", Type::NORMAL, Type::EAU, 0, 20, new E_Level(20, 27), evs[19], 1.2, 7.5, "Cet OpMon creuse des tunels à l'aide de sa queue plate, grâce à cela, son espece a developper une forte puissance dans cette queue", 57, 1000000, 255, 19);
+		 listeOp[19] = new Espece(56, 35, 25, 35, 72, 30, "Ornitaupe", Type::NORMAL, Type::EAU, 0, 20, new E_Level(20, 27), evs[19], 1.2, 7.5, "Cet OpMon creuse des tunnels à l'aide de sa queue plate, grâce à cela, son espece a developper une forte puissance dans cette queue", 57, 1000000, 255, 19);
 		 listeOp[20] = new Espece(81, 60, 50, 70, 97, 55, "Ornitank", Type::NORMAL, Type::EAU, 0, -1, NULL, evs[20], 1.5, 38.5, "Il tire des balles grâce à son ventre, cela peut transpercer une montagne.", 127, 1000000, 127, 20);
 		 listeOp[21] = new Espece(60, 30, 31, 31, 70, 40, "Cridaile", Type::NORMAL, Type::VOL, 0, 20, new E_Level(22, 20), evs[21], 0.4, 4, "Il chasse les Sautinelles dans les hautes herbes. Ses petites ailes lui permettent de voler très vite.", 58, 1000000, 255, 21);
 		 listeOp[22] = new Espece(160, 65, 31, 31, 10, 95, "Himondelle", Type::POISON, Type::VOL, 0, -1, NULL, evs[22], 1.9, 190, "Cet OPMon plutôt imposant, ne peut plus voler depuis qu'il a évoluer, cela resulte d'un manque de migrations du à l'abondance d'insectes dans cette région", 162, 1000000, 90, 22);
