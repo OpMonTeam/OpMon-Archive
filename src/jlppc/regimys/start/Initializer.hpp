@@ -8,7 +8,7 @@ Contient la définition des methodes qui permettent d'initialiser les éléments du
 */
 #ifndef INITIALIZER_HPP
 #define INITIALIZER_HPP
-#define OP_NUMBER 12
+#define OP_NUMBER 50
 
 #include <iostream>
 #include <vector>
@@ -17,7 +17,7 @@ Contient la définition des methodes qui permettent d'initialiser les éléments du
 #include "../evolution/evolutions.hpp"
 
 #define ATK_LIST(OpId) AtkArray tab##OpId[]
-#define ATK_ADD_LIST(OpID, atkLength) pb(atkOpLvl[(OpId)], tab##OpId, (atkLength) )
+#define ATK_ADD_LIST(OpID, atkLength) pb(atkOpLvl[(OpId)], tab##OpId , (atkLength) )
 //->NoDoc
 namespace Initializer {
 	extern Espece *listeOp[OP_NUMBER];
