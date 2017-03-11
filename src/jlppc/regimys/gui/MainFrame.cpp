@@ -127,7 +127,7 @@ namespace MainFrame {
 #endif
 
 		if (font == NULL) {
-			rerrLog << "Erreur d'initialisation de la police d'écriture." << endl;;
+			rerrLog << "Erreur d'initialisation de la police d'écriture." << endl;
 			gererErreur(TTF_GetError(), true);
 		}
 		rlog << PRINT_TICKS << "Initialisation de la police terminée" << endl;
@@ -175,7 +175,7 @@ namespace MainFrame {
 		Mix_CloseAudio();
 		Mix_Quit();
 		TTF_Quit();
-		atexit(IMG_Quit);
+		IMG_Quit();
 		SDL_Quit();
 	}
 
@@ -184,6 +184,7 @@ namespace MainFrame {
 	SDL_Texture *renderText(SDL_Renderer *renderer, char text[], TTF_Font *police, SDL_Color color, SDL_Rect *pos) {
 		SDL_Surface *sfce = TTF_RenderUTF8_Blended(police, text, color);
 		if (sfce == NULL) {
+            rerrLog << "MainFrame::renderText() : ";
 			gererErreur(TTF_GetError(), true);
 		}
 		pos->h = sfce->h;
@@ -196,6 +197,7 @@ namespace MainFrame {
 	SDL_Texture *renderText(SDL_Renderer *renderer, string text, TTF_Font *police, SDL_Color color, SDL_Rect *pos) {
 		SDL_Surface *sfce = TTF_RenderUTF8_Blended(police, text.c_str(), color);
 		if (sfce == NULL) {
+            rerrLog << "MainFrame::renderText() : ";
 			gererErreur(TTF_GetError(), true);
 		}
 		pos->h = sfce->h;
