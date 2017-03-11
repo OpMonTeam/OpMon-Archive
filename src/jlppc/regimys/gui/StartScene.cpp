@@ -136,14 +136,14 @@ namespace MainFrame{
 		int verifVars() {
 			rlog << PRINT_TICKS << "Verification des variables" << endl;
 			if (fondMus == NULL) {
-                rerrLog << "MainFrame(verifVars) : Erreurs lors de l'initialisation de fondMus" << endl;
+                rerrLog << "StartScene(verifVars) : Erreurs lors de l'initialisation de fondMus" << endl;
 				gererErreur(Mix_GetError(), false);
 			}
 			if (fondT == NULL || profT == NULL || dialogT == NULL) {
-				gererErreur(string("MainFrame : Erreur lors de l'initialisation d'une image : ") + string(SDL_GetError()), false);
+				gererErreur(string("StartScene : Erreur lors de l'initialisation d'une image : ") + string(SDL_GetError()), false);
 			}
 			if (fondNE == NULL) {
-				rerrLog << "MainFrame (verifVars) : Erreur lors de l'initialisation du fond d'entrée de nom" << endl;
+				rerrLog << "StartScene (verifVars) : Erreur lors de l'initialisation du fond d'entrée de nom" << endl;
 				gererErreur(IMG_GetError(), false);
 			}
 			rerrLog << "Verification d'erreurs non détectées : " << endl;
