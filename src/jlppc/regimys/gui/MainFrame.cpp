@@ -102,15 +102,17 @@ namespace MainFrame {
 
 		if (IMG_Init(IMG_INIT_PNG) < 0) {
 			rerrLog << "Erreur d'initialisation de SDL_Image" << endl;
-			rlog << "Une erreur fatale s'est produite. Merci de consulter errLog.txt" << endl;
 			gererErreur(IMG_GetError(), true);
 
 		}
 
 		if (TTF_Init() == -1) {
 			rerrLog << "Erreur d'initialisation de SDL_ttf" << endl;
-			rlog << "Une erreur fatale s'est produite. Merci de consulter errLog.txt" << endl;
 			gererErreur(TTF_GetError(), true);
+		}
+		if(Mix_Init(MIX_INIT_OGG) == -1){
+            rerrLog << "Erreur d'initialisation de SDL_mixer ogg" << endl;
+            gererErreur(Mix_GetError(), true);
 		}
 		if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024) == -1) {
 			rerrLog << "Erreur d'initilisation de SDL_Mixer" << endl;
@@ -125,8 +127,7 @@ namespace MainFrame {
 #endif
 
 		if (font == NULL) {
-			rerrLog << "Erreur d'initialisation de la police d'écriture." << endl;
-			rlog << "Une erreur fatale s'est produite. Merci de consulter errLog.txt" << endl;
+			rerrLog << "Erreur d'initialisation de la police d'écriture." << endl;;
 			gererErreur(TTF_GetError(), true);
 		}
 		rlog << PRINT_TICKS << "Initialisation de la police terminée" << endl;
@@ -140,11 +141,10 @@ namespace MainFrame {
 		renderer = SDL_CreateRenderer(frame, -1, SDL_RENDERER_ACCELERATED);
 		if (frame == NULL || renderer == NULL) {
 			rerrLog << "Erreur d'ouverture de la fenetre ou du renderer." << endl;
-			rlog << "Une erreur fatale s'est produite. Merci de consulter errLog.txt" << endl;
 			gererErreur(SDL_GetError(), true);
 		}
 		rlog << PRINT_TICKS << "Initialisation de la fenetre et du renderer terminée" << endl;
-		//Ouverture de la manette (Je sais pas si ca se dit "ouverture de la manette mais c'est pas grave)
+		//Ouverture de la manette (Je sais pas si ca se dit "ouverture de la manette" mais c'est pas grave)
 		manette = SDL_JoystickOpen(0);
 		if (manette == NULL) {
 			gererErreur("Aucune manette détectée", false);
@@ -158,6 +158,7 @@ namespace MainFrame {
 		dialogPass = Mix_LoadWAV("ressources/audio/sounds/dialogChange.ogg");
 #endif
 		if (dialogPass == NULL) {
+            rerrLog << "Ouverture du son de changement de dialogue échouée." << endl;
 			gererErreur(Mix_GetError(), false);
 		}
 		Mix_Volume(1, MIX_MAX_VOLUME - 1);
@@ -172,6 +173,7 @@ namespace MainFrame {
 		Mix_FreeChunk(dialogPass);
 
 		Mix_CloseAudio();
+		Mix_Quit();
 		TTF_Quit();
 		atexit(IMG_Quit);
 		SDL_Quit();

@@ -71,15 +71,12 @@ namespace Main {
 
 		}
 		if(!rerrLog && !rlog){
-            #ifdef _WIN32
             system("mkdir logs");
-            #else
-            system("md logs");
-            #endif // _WIN32
             exit(-1);
 		}
 		startTime = time(NULL);
 		rlog << "[T = " << time(NULL) - startTime << "] - Initialisation du log terminée." << endl;
+		//Initializer::init();
 		StringKeys::initialize();
 		MainFrame::open();
 
@@ -92,6 +89,7 @@ void gererErreur(string errorName, bool fatal) {
 	rerrLog << "Erreur : " << errorName << endl;
 	if (fatal) {
 		rerrLog << "Erreur fatale." << endl;
+		rlog << PRINT_TICKS << "Crash." << endl;
 		quit(1);
 	}
 }
@@ -102,13 +100,16 @@ int quit(int returne) {
 		atexit(IMG_Quit);
 		SDL_Quit();
 	}
-	rlog << "[T = " << SDL_GetTicks() << "] - Fermeture du jeu." << endl;
+	rlog << PRINT_TICKS << "Fermeture du jeu. Return " << returne << endl;
 	rlog.close();
 	rerrLog.close();
 
-	/*for (unsigned int i = 0; i < OP_NUMBER; i++) {
-		delete(Initializer::listeOp[i]);
-	}*/
+	for (unsigned int i = 0; i < OP_NUMBER; i++) {
+        if(Initializer::listeOp[i] != NULL){
+            delete(Initializer::listeOp[i]);
+        }
+
+	}
 	#ifdef DEBUG
 	system("pause");
 	#endif // DEBUG

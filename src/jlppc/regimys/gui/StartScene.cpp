@@ -14,11 +14,7 @@ namespace MainFrame{
 		SDL_Texture *arrDial;
 		SDL_Rect arrDialP;
         SDL_Texture *textUre = NULL;
-#ifdef _WIN32
-	Mix_Music *fondMus = Mix_LoadMUS("ressources\\audio\\music\\intro.ogg");
-#else
-	Mix_Music *fondMus = Mix_LoadMUS("ressources/audio/music/intro.ogg");
-#endif
+        Mix_Music *fondMus;
         //Déclaration des variables utilitaires (sera supprimé en cours de travail)
         //Part 0
 		bool continuer = true;
@@ -129,32 +125,29 @@ namespace MainFrame{
 			texteDescs[1] = renderText(renderer, kget("nameEntry.top"), font, blanc, &texteDesc1R);
 			texteDescs[2] = renderText(renderer, kget("nameEntry.indic.1"), font, blanc, &texteDesc3R);
 			texteDescs[3] = renderText(renderer, kget("nameEntry.indic.2"), font, blanc, &texteDesc4R);
+			#ifdef _WIN32
+			fondMus = Mix_LoadMUS("ressources\\audio\\music\\intro.ogg");
+			#else
+			fondMus = Mix_LoadMUS("ressources/audio/music/intro.ogg");
+			#endif
 		}
 
 		/**Verifie les erreurs de variables*/
 		int verifVars() {
 			rlog << PRINT_TICKS << "Verification des variables" << endl;
 			if (fondMus == NULL) {
+                rerrLog << "MainFrame(verifVars) : Erreurs lors de l'initialisation de fondMus" << endl;
 				gererErreur(Mix_GetError(), false);
 			}
 			if (fondT == NULL || profT == NULL || dialogT == NULL) {
-				gererErreur(string("MainFrame : Erreur lors de l'initialisation d'une image.") + string(SDL_GetError()), false);
-			}
-
-			if (SDL_RenderCopy(renderer, fondT, NULL, &fondP) == -1) {
-				rerrLog << "MainFrame (verifVars) : Erreur lors de l'initialisation d'un élément" << endl;
-				gererErreur(SDL_GetError(), false);
-			}
-			if (SDL_RenderCopy(renderer, profT, NULL, &profP) == -1) {
-				rerrLog << "MainFrame (verifVars) : Erreur lors de l'initialisation d'un élément" << endl;
-			}
-			if (SDL_RenderCopy(renderer, dialogT, NULL, &dialogP) == -1) {
-				rerrLog << "MainFrame (verifVars) : Erreur lors de l'initialisation d'un élément" << endl;
+				gererErreur(string("MainFrame : Erreur lors de l'initialisation d'une image : ") + string(SDL_GetError()), false);
 			}
 			if (fondNE == NULL) {
 				rerrLog << "MainFrame (verifVars) : Erreur lors de l'initialisation du fond d'entrée de nom" << endl;
 				gererErreur(IMG_GetError(), false);
 			}
+			rerrLog << "Verification d'erreurs non détectées : " << endl;
+			rerrLog << SDL_GetError() << endl;
 			rlog << PRINT_TICKS << "Verifications OK." << endl;
 		}
 
