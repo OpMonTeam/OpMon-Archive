@@ -76,8 +76,7 @@ namespace Main {
 		}
 		startTime = time(NULL);
 		rlog << "[T = " << time(NULL) - startTime << "] - Initialisation du log terminée." << endl;
-		//Initializer::init();
-		StringKeys::initialize();
+		Initializer::init();
 		MainFrame::open();
 
 		return quit(0);

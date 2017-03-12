@@ -31,7 +31,6 @@ namespace Initializer {
 	void initSprites();
 	void initBackgrounds();
 	void initKeys();
-	void initItems();
 	void init();
 
 
