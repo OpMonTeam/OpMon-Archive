@@ -58,10 +58,10 @@ namespace Evolutions {
 
 	};
 
-	class E_Nope {
+	class E_Nope: public Evolution {
 		public:
-			E_Nope();
-			bool checkEvolve(OpMon const &toCheck) const;
+			E_Nope(){};
+			bool checkEvolve(OpMon const &toCheck) const {return false;};
 			const int evolID = 3;
 	};
 

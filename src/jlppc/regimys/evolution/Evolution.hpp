@@ -20,6 +20,7 @@ Permet de définir un type d'évolution
 class Evolution {
 	public:
 		virtual ~Evolution() {}
+		Evolution(){evo = -1;}
 		Evolution(int evo);
 		/**Permet de vérifier si le pokémon évolue. Renvoie true si il peut evoluer*/
 		virtual bool checkEvolve(OpMon const &toCheck) const = 0;

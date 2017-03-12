@@ -4,8 +4,16 @@
 #include "../start/main.hpp"
 
 Espece::~Espece() {
-	delete(evolution);
-	free(EVgiven);
+    if(evolType != NULL){
+
+        delete(evolType);
+    }
+    if(EVgiven != NULL){
+
+        free(EVgiven);
+    }
+
+
 }
 
 Espece::Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, std::string name, int type1, int type2, int maniereEvolution/*En fait faut mettre 0, il est la pour un souci de compatibilit�*/, int niveauEvolution, Evolution *evolType, std::vector<int> EVGiven, float taille, float poids, std::string entreeOpdex, int expGiven, int expMax, int tauxDeCapture, int numeroOpdex) {
@@ -16,7 +24,7 @@ Espece::Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, std::s
 		gererErreur("expGiven < 0 Espece<Initializer>", true);
 	}
 	if(evolType == NULL){
-        evolType = (Evolution*)new E_Nope();
+        evolType = new E_Nope();
 	}
 	numeroOpdex = 0;
 	this->tauxDeCapture = tauxDeCapture;

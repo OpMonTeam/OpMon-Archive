@@ -99,16 +99,17 @@ int quit(int returne) {
 		atexit(IMG_Quit);
 		SDL_Quit();
 	}
-	rlog << PRINT_TICKS << "Fermeture du jeu. Return " << returne << endl;
-	rlog.close();
-	rerrLog.close();
-
 	for (unsigned int i = 0; i < OP_NUMBER; i++) {
         if(Initializer::listeOp[i] != NULL){
             delete(Initializer::listeOp[i]);
         }
 
 	}
+	rlog << PRINT_TICKS << "Fermeture du jeu. Return " << returne << endl;
+	rlog.close();
+	rerrLog.close();
+
+
 	#ifdef DEBUG
 	system("pause");
 	#endif // DEBUG
