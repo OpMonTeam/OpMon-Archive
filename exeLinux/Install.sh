@@ -17,6 +17,6 @@ sudo apt install libpng16-16
 sudo apt install libstdc++6
 sudo apt install libtiff5
 sudo apt install libsmpeg0
+rm ressources
+cp -r ../exe/ressources ../exeLinux
 echo Installation terminée.
-
-
