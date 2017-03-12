@@ -1,6 +1,9 @@
 #include "Initializer.hpp"
 #include "../enums/Enums.hpp"
 #include "../objects/Attaques.hpp"
+#include "StringKeys.hpp"
+#include "main.hpp"
+#include <SDL/SDL.h>
 
 #define ATK push_back(Stats::ATK)
 #define ATKSPE push_back(Stats::ATKSPE)
@@ -846,19 +849,22 @@ namespace Initializer {
 	}
 
 	void initKeys() {
-
-	}
-
-	void initItems() {
-
+        StringKeys::initialize();
 	}
 
 	void init() {
+        rlog << PRINT_TICKS << "Initialisation des clées" << std::endl;
 		initKeys();
+		rlog << PRINT_TICKS << "Initialisation des sprites" << std::endl;
 		initSprites();
+		rlog << PRINT_TICKS << "Initialisation des items" << std::endl;
 		initItems();
+		rlog << PRINT_TICKS << "Initialisation des attaques par niveau" << std::endl;
 		initAtkLvls();
+		rlog << PRINT_TICKS << "Initialisation des evs" << std::endl;
 		initEvs();
+		rlog << PRINT_TICKS << "Initialisation des OpMon" << std::endl;
 		initOpMons();
+		rlog << PRINT_TICKS << "Fin des initialisations d'objets." << std::endl;
 	}
 }
