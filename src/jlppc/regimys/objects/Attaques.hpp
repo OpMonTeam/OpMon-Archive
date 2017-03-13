@@ -109,46 +109,47 @@ namespace Attaques {
             static Class<Blizzard> *classe;
     	};
 
-ATK_CLASS(BombOeuf)
-	BombOeuf() : Attaque("Bomb'\u0152uf", 100, Type::NORMAL, 75, false, false, 16, false, 10, 0) {}
-	EAv {return 0;}
-	EAp {return 0;}
-	static Class<BombOeuf> *classe;
-};
-ATK_CLASS(Bouclier)  
-	Bouclier() : Attaque("Bouclier", 0, Type::PSY, 100, false, true, -1, true, 20, 0 );
-	EAv {return 0;}
-	EAp;
-	static Class<Bouclier> *classe; 
+    ATK_CLASS(BombOeuf)
+        BombOeuf() : Attaque("Bomb'\u0152uf", 100, Type::NORMAL, 75, false, false, 16, false, 10, 0) {}
+        EAv {return 0;}
+        EAp {return 0;}
+        static Class<BombOeuf> *classe;
+    };
+    ATK_CLASS(Bouclier)
+        Bouclier() : Attaque("Bouclier", 0, Type::PSY, 100, false, true, -1, true, 20, 0 ) {}
+        EAv {return 0;}
+        EAp;
+        static Class<Bouclier> *classe;
 
-};
-ATK_CLASS(Brouillard)
-	Brouillard() : Attaque("Brouillard", 0, Type::NORMAL, 100, false, true, -1, false, 20, 0);
-	EAv {return 0;}
-	EAp;
-	static Class<Brouillard> *classe;
+    };
+    ATK_CLASS(Brouillard)
+        Brouillard() : Attaque("Brouillard", 0, Type::NORMAL, 100, false, true, -1, false, 20, 0) {}
+        EAv {return 0;}
+        EAp;
+        static Class<Brouillard> *classe;
 
-);
-ATK_CLASS(BueeNoire)
-	BueeNoire() : Attaque("Buée Noire", 0, Type::GLACE, 100, false, true, -1, true, 35, 0);
-	EAv {return 0;}
-	EAp;
-	static Class<BueeNoire> *classe;
+    };
+    ATK_CLASS(BueeNoire)
+        BueeNoire() : Attaque("Buée Noire", 0, Type::GLACE, 100, false, true, -1, true, 35, 0) {}
+        EAv {return 0;}
+        EAp;
+        static Class<BueeNoire> *classe;
 
-);
-ATK_CLASS(BullesDo)
-	BullesDo() : Attaque ("Bulles d'O", 65, Type::EAU, 100, true, false, 16, false, 20, 0);
-	EAv {return 0;}
-	EAp;
-	static Class<BullesDo> *classe;
+    };
+    ATK_CLASS(BullesDo)
+        BullesDo() : Attaque ("Bulles d'O", 65, Type::EAU, 100, true, false, 16, false, 20, 0) {}
+        EAv {return 0;}
+        EAp;
+        static Class<BullesDo> *classe;
 
-);
-ATK_CLASS(CageEclair)
-	CageEclair() : Attaque ("Cage Eclair", 0, Type::ELECTRIQUE, 100, false, true, -1, false, 20, 0);
-	EAv {return 0;}
-	EAp;
-	static Class<CageEclair> *classe;
-);
+    };
+    ATK_CLASS(CageEclair)
+        CageEclair() : Attaque ("Cage Eclair", 0, Type::ELECTRIQUE, 100, false, true, -1, false, 20, 0) {}
+        EAv {return 0;}
+        EAp;
+        static Class<CageEclair> *classe;
+    };
+}
 
 //Permet de ne pas a devoir utiliser Attaques:: partout
 using namespace Attaques;

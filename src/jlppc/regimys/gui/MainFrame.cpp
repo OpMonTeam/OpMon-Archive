@@ -9,6 +9,7 @@
 #include "../start/main.hpp"
 #include <string>
 #include <SDL/SDL_mixer.h>
+#include "MainMenu.hpp"
 
 #include "StartScene.hpp"
 
@@ -19,6 +20,7 @@ namespace MainFrame {
 	SDL_Window *frame = NULL;
 	SDL_Renderer *renderer = NULL;
 	SDL_Event events;
+	SDL_Rect fond = {0, 0, 512, 512};
 	TTF_Font *font = NULL;
 	SDL_Rect dialogP = {0, 0, 0, 0};
 	SDL_Texture *dialogT = NULL;
@@ -27,7 +29,7 @@ namespace MainFrame {
 	SDL_Color blanc = {255, 255, 255};
 	SDL_Joystick *manette = NULL;
 	Mix_Chunk *dialogPass = NULL;
-	TTF_Font *fonts[4];
+	TTF_Font *fonts[72] = {};
 	bool init = false;
 
 	int printChoice(string text, string choice1, string choice2, string choix3) {
@@ -132,7 +134,11 @@ namespace MainFrame {
 			gererErreur(TTF_GetError(), true);
 		}
 		for(unsigned int f = 0; f < 72; f++){
+		#ifdef _WIN32
             fonts[f] = TTF_OpenFont("ressources\\fonts\\arial.ttf", f + 1);
+        #else
+            fonts[f] = TTF_OpenFont("ressources/fonts/arial.ttf", f + 1);
+        #endif // _WIN32
             if(fonts[f] == NULL){
                 rerrLog << "Initialisation d'une police échouée : ID : " << f << endl;
                 gererErreur(TTF_GetError(), true);
@@ -170,7 +176,10 @@ namespace MainFrame {
 			gererErreur(Mix_GetError(), false);
 		}
 		Mix_Volume(1, MIX_MAX_VOLUME - 1);
-		StartScene::startScene();
+		if(MainMenu::mainMenu() != -1){
+            StartScene::startScene();
+		}
+
 
 		rlog << PRINT_TICKS << "Fermeture de la fenetre" << endl;
 
