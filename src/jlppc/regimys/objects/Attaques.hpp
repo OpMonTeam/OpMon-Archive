@@ -3,7 +3,7 @@ Attaques.hpp
 Auteur : Jlppc
 Fichier sous licence GPL-3.0
 http://regimys.tk
-Contient les dÈfinitions des classes des attaques
+Contient les d√©finitions des classes des attaques
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUES_HPP_
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUES_HPP_
@@ -13,14 +13,14 @@ Contient les dÈfinitions des classes des attaques
 #include "OpMon.hpp"
 #include "Attaque.hpp"
 #include "../../utils/Class.hpp"
-/**Macros permettant de facilitÈ l'Ècriture des classes*/
+/**Macros permettant de facilit√© l'√©criture des classes*/
 #define ATK_CLASS(name) class name : public Attaque {\
 public:
 
 #define EAv int effetAvant(OpMon &atk, OpMon &def)
 #define EAp int effetApres(OpMon &atk, OpMon &def)
 /**
-Namespace contenant les dÈfinitions des attaques
+Namespace contenant les d√©finitions des attaques
 */
 //->NoDoc
 namespace Attaques {
@@ -60,7 +60,7 @@ namespace Attaques {
 			static Class<Aiguisage> *classe;
 	};
 	ATK_CLASS(Amnesie)
-			Amnesie() : Attaque("AmnÈsie", 0, Type::PSY, 100, false, true, -1, true, 20, 0) {}
+			Amnesie() : Attaque("Amn√©sie", 0, Type::PSY, 100, false, true, -1, true, 20, 0) {}
 			EAv {return 0;}
 			EAp;
 			static Class<Amnesie> *classe;
@@ -75,7 +75,7 @@ namespace Attaques {
 	};
 
 	ATK_CLASS(Belier)
-			Belier() : Attaque("BÈlier", 90, Type::NORMAL, 85, false, false, 16, false, 20, 0) {}
+			Belier() : Attaque("B√©lier", 90, Type::NORMAL, 85, false, false, 16, false, 20, 0) {}
 			EAv {return 0;}
 			EAp;
 			static Class<Belier> *classe;
@@ -107,8 +107,49 @@ namespace Attaques {
             EAv {return 0;}
             EAp;
             static Class<Blizzard> *classe;
-    };
+    	};
+
+ATK_CLASS(BombOeuf)
+	BombOeuf() : Attaque("Bomb'\u0152uf", 100, Type::NORMAL, 75, false, false, 16, false, 10, 0) {}
+	EAv {return 0;}
+	EAp {return 0;}
+	static Class<BombOeuf> *classe;
 };
+ATK_CLASS(Bouclier)  
+	Bouclier() : Attaque("Bouclier", 0, Type::PSY, 100, false, true, -1, true, 20, 0 );
+	EAv {return 0;}
+	EAp;
+	static Class<Bouclier> *classe; 
+
+};
+ATK_CLASS(Brouillard)
+	Brouillard() : Attaque("Brouillard", 0, Type::NORMAL, 100, false, true, -1, false, 20, 0);
+	EAv {return 0;}
+	EAp;
+	static Class<Brouillard> *classe;
+
+);
+ATK_CLASS(BueeNoire)
+	BueeNoire() : Attaque("Bu√©e Noire", 0, Type::GLACE, 100, false, true, -1, true, 35, 0);
+	EAv {return 0;}
+	EAp;
+	static Class<BueeNoire> *classe;
+
+);
+ATK_CLASS(BullesDo)
+	BullesDo() : Attaque ("Bulles d'O", 65, Type::EAU, 100, true, false, 16, false, 20, 0);
+	EAv {return 0;}
+	EAp;
+	static Class<BullesDo> *classe;
+
+);
+ATK_CLASS(CageEclair)
+	CageEclair() : Attaque ("Cage Eclair", 0, Type::ELECTRIQUE, 100, false, true, -1, false, 20, 0);
+	EAv {return 0;}
+	EAp;
+	static Class<CageEclair> *classe;
+);
+
 //Permet de ne pas a devoir utiliser Attaques:: partout
 using namespace Attaques;
 
