@@ -89,6 +89,8 @@ namespace MainFrame {
 	extern SDL_Joystick *manette;
 	/**Contient le son du changement de dialogue*/
 	extern Mix_Chunk *dialogPass;
+
+	extern TTF_Font *fonts[72];
 	/**Ouvre la fenetre, charge les composants de base de la SDL et du jeu*/
 	void open();
 	/**Définit le namespace contenant les variables et les methodes utiles a la scene de départ.*/
