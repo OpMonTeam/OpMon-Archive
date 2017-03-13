@@ -17,10 +17,17 @@ namespace Attaques {
 	Class<Armure> *Armure::classe = new Class<Armure>("Armure", 0xFFF9);
 	Class<Belier> *Belier::classe = new Class<Belier>("Belier", 0xFFF8);
 	Class<Balayage> *Balayage::classe = new Class<Balayage>("Balayage", 0xFFF7);
-	Class<BecVrille> *BecVrille::classe = new Class<BecVrille>("Bec Vrille", 0xFFF6);
+	Class<BecVrille> *BecVrille::classe = new Class<BecVrille>("BecVrille", 0xFFF6);
 	Class<Berceuse> *Berceuse::classe = new Class<Berceuse>("Berceuse", 0xFFF5);
-
-
+	Class<BombOeuf> *BombOeuf::classe = new Class<BombOeuf>("BombOeuf", 0xFFF4);
+	Class<Bouclier> *Bouclier::classe = new Class<Bouclier>("Bouclier", 0xFFF3);
+	Class<Brouillard> *Brouillard::classe = new Class<Brouillard>("Brouillard", 0xFFF2);
+	Class<BueeNoire> *BueeNoire::classe = new Class<BueeNoire>("BueeNoire", 0xFFF1);
+	Class<BullesDo> *BullesDo::classe = new Class<BullesDo>("BullesDo", 0xFFF0);
+	Class<CageEclair> *CageEclair::classe = new Class<CageEclair>("CageEclair", 0xFFEF);
+	
+	
+	
 	int Abime::effetAvant(OpMon &atk, OpMon &def) {
 		precision = ((atk.getLevel() - def.getLevel()) + 30);
 		if (atk.getLevel() < def.getLevel()) {
@@ -128,5 +135,55 @@ namespace Attaques {
             def.setStatus(Status::GEL);
 	    }
 	}
-};
+
+	int Bouclier::effetApres(OpMon &atk, OpMon &def){
+	    if(atk.changeDEF(2)){
+	    }else{
+	    }
+		return 0;
+		
+	}
+
+	int Brouillard::effetApres(OpMon &atk, OpMon &def){
+	    if(def.changePRE(-1)){
+	    }else{
+	    }
+		return 0;
+		
+	}	
+
+	int BueeNoire::effetApres(OpMon &atk, OpMon &def){
+	   // atk.setStats(Fight.oldStats[0], atk.getAttaques(), atk.getEspece(), new Type[]{atk.getType1(), atk.getType2()});
+		//def.setStats(Fight.oldStats[1], def.getAttaques(), def.getEspece(), new Type[]{def.getType1(), def.getType2()});
+		//TODO
+	}
+
+
+	int BullesDo::effetApres(OpMon &atk, OpMon &def){
+	    if (Utils::randU(10) ==2){
+		   if(def.changeVIT(-1)){
+		   }else{
+		   }
+	     }
+		return 0;
+	}
+	
+	int CageEclair::effetApres(OpMon &atk, OpMon &def){
+		if (def.getType1()==Type::ELECTRIQUE || def.getType2()==Type::ELECTRIQUE){
+		}else{
+		if(def.setStatus(Status::PARALYSIE)){
+		}else{
+		}	
+		}
+	} 
+	return 0;
+
+		
+
+
+
+
+
+
+}; 
 
