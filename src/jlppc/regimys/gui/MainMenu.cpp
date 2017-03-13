@@ -11,6 +11,9 @@ namespace MainFrame{
      SDL_Texture *cursor = NULL;
      SDL_Rect curPos[4] = {};
      SDL_Rect textPos[4] = {};
+     int curPosI = 0;
+
+     bool continuer = true;
 
      void initVars(){
         for(int i = 0, j = 175; i < 4, i++){
@@ -49,10 +52,34 @@ namespace MainFrame{
         SDL_DestroyTexture(cursor);
      }
 
-    void mainMenu(){
+     void boucle0(){
+        while(continuer){
+            SDL_WaitEvent(&events);
+            switch(events){
+                QUIT
+
+            case SDL_KEYDOWN:
+                switch (events.key.keysym.sym) {
+                case SDLK_RETURN:
+                    break;
+
+                    ECHAP
+                }
+                break;
+            }
+            SDL_RenderCopy()
+        }
+     }
+
+    int mainMenu(){
 
         initVars();
         verifVars();
+
+        if(boucle0() == -1){
+            deleteVars();
+            return -1;
+        }
     }
 }
 

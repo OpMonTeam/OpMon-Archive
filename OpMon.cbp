@@ -95,6 +95,8 @@
 		<Unit filename="src/jlppc/regimys/gui/Elements.hpp" />
 		<Unit filename="src/jlppc/regimys/gui/MainFrame.cpp" />
 		<Unit filename="src/jlppc/regimys/gui/MainFrame.hpp" />
+		<Unit filename="src/jlppc/regimys/gui/MainMenu.cpp" />
+		<Unit filename="src/jlppc/regimys/gui/MainMenu.hpp" />
 		<Unit filename="src/jlppc/regimys/gui/StartScene.cpp" />
 		<Unit filename="src/jlppc/regimys/gui/StartScene.hpp" />
 		<Unit filename="src/jlppc/regimys/objects/Attaque.cpp" />
@@ -111,6 +113,8 @@
 		<Unit filename="src/jlppc/regimys/objects/item/IHeal.hpp" />
 		<Unit filename="src/jlppc/regimys/objects/item/IOpball.cpp" />
 		<Unit filename="src/jlppc/regimys/objects/item/IOpball.hpp" />
+		<Unit filename="src/jlppc/regimys/objects/item/IPokeball.cpp" />
+		<Unit filename="src/jlppc/regimys/objects/item/IPokeball.hpp" />
 		<Unit filename="src/jlppc/regimys/objects/item/Item.cpp" />
 		<Unit filename="src/jlppc/regimys/objects/item/Item.hpp" />
 		<Unit filename="src/jlppc/regimys/objects/item/itemInclude.hxx" />
