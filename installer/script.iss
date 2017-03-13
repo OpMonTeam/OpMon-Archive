@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "OpMon Lazuli"
-#define MyAppVersion "Alpha 0.08.1"
+#define MyAppVersion "Alpha 0.09 1303a"
 #define MyAppPublisher "Jlppc & Navet56"
 #define MyAppURL "http://opmon-game.ga"
 #define MyAppExeName "OpMon.exe"
@@ -22,9 +22,9 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
-OutputDir=C:\Users\Jlppc (session)\Documents\Projets\OpMon\installer
+OutputDir=../installer
 OutputBaseFilename=setup
-SetupIconFile=C:\Users\Jlppc (session)\Documents\Projets\OpMon\opmon_icon.ico
+SetupIconFile=..\opmon_icon.ico
 Compression=lzma
 SolidCompression=yes
 
@@ -37,8 +37,8 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 0,6.1
 
 [Files]
-Source: "C:\Users\Jlppc (session)\Documents\Projets\OpMon\exe\OpMon.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Jlppc (session)\Documents\Projets\OpMon\exe\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\exe\OpMon.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\exe\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
