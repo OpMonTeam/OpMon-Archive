@@ -1,4 +1,9 @@
 #include "MainMenu.hpp"
+#include <SDL/SDL_image.h>
+#include "../start/main.hpp"
+#include <iostream>
+
+UNS
 
 namespace MainFrame{
     namespace MainMenu{
@@ -12,13 +17,16 @@ namespace MainFrame{
      SDL_Rect curPos[4] = {};
      SDL_Rect textPos[4] = {};
      int curPosI = 0;
+     Mix_Music *fondMusTitle = NULL;
 
      bool continuer = true;
 
      void initVars(){
-        for(int i = 0, j = 175; i < 4, i++){
-            curPos[i].x = 50;
+        for(int i = 0, j = 175; i < 4; i++){
+            curPos[i].x = 10;
             curPos[i].y = j;
+            curPos[i].w = 30;
+            curPos[i].h = 30;
             textPos[i].x = 60;
             textPos[i].y = j;
             j+=85;
@@ -26,9 +34,11 @@ namespace MainFrame{
         #ifdef _WIN32
         fond = IMG_LoadTexture(renderer, "ressources\\backgrounds\\titlescreen.png");
         cursor = IMG_LoadTexture(renderer, "ressources\\sprites\\misc\\arrChoice.png");
+        fondMusTitle = Mix_LoadMUS("ressources\\audio\\music\\title.ogg");
         #else
         fond = IMG_LoadTexture(renderer, "ressources/backgrounds/titlescreen.png");
         cursor = IMG_LoadTexture(renderer, "ressources/sprites/misc/arrChoice.png");
+        fondMusTitle = Mix_LoadMUS("ressources/audio/music/title.ogg");
         #endif // _WIN32
         play = renderText(renderer, kget("title.1"), font, blanc, &(textPos[0]));
         charge = renderText(renderer, kget("title.2"), font, blanc, &(textPos[1]));
@@ -41,6 +51,10 @@ namespace MainFrame{
             rerrLog << "Erreur dans l'initialisation de textures (MainMenu)" << endl;
             gererErreur(SDL_GetError(), false);
         }
+        if(fondMusTitle == NULL){
+            rerrLog << "Erreur dans l'ouverture d'une musique (MainMenu) (fondMusTitle)" << endl;
+            gererErreur(Mix_GetError(), false);
+        }
      }
 
      void deleteVars(){
@@ -50,24 +64,59 @@ namespace MainFrame{
         SDL_DestroyTexture(options);
         SDL_DestroyTexture(exit);
         SDL_DestroyTexture(cursor);
+        Mix_FreeMusic(fondMusTitle);
      }
 
-     void boucle0(){
+     int boucle0(){
         while(continuer){
             SDL_WaitEvent(&events);
-            switch(events){
+            switch(events.type){
                 QUIT
 
             case SDL_KEYDOWN:
                 switch (events.key.keysym.sym) {
                 case SDLK_RETURN:
+                    switch(curPosI){
+                        case 0:
+                        return 0;
+                        case 3:
+                        return -1;
+                        case 2:
+                        break;
+                        case 1:
+                        break;
+                    }
+                    break;
+
+                case SDLK_DOWN:
+                    curPosI++;
+                    if(curPosI >= 4){
+                        curPosI = 0;
+                    }else if(curPosI < 0){
+                        curPosI = 3;
+                    }
+                    break;
+
+                case SDLK_UP:
+                    curPosI--;
+                    if(curPosI >= 4){
+                        curPosI = 0;
+                    }else if(curPosI < 0){
+                        curPosI = 3;
+                    }
                     break;
 
                     ECHAP
                 }
                 break;
             }
-            SDL_RenderCopy()
+            SDL_RenderCopy(renderer, fond, NULL, &MainFrame::fond);
+            SDL_RenderCopy(renderer, play, NULL, &textPos[0]);
+            SDL_RenderCopy(renderer, charge, NULL, &textPos[1]);
+            SDL_RenderCopy(renderer, options, NULL, &textPos[2]);
+            SDL_RenderCopy(renderer, exit, NULL, &textPos[3]);
+            SDL_RenderCopy(renderer, cursor, NULL, &curPos[curPosI]);
+            SDL_RenderPresent(renderer);
         }
      }
 
@@ -75,10 +124,16 @@ namespace MainFrame{
 
         initVars();
         verifVars();
+        Mix_PlayMusic(fondMusTitle, -1);
+        Mix_VolumeMusic(MIX_MAX_VOLUME / 16);
+        int returned = boucle0();
 
-        if(boucle0() == -1){
+        if(returned == -1){
             deleteVars();
             return -1;
+        }else if(returned == 0){
+            deleteVars();
+            return 0;
         }
     }
 }
