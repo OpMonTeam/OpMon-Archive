@@ -25,9 +25,9 @@ namespace Attaques {
 	Class<BueeNoire> *BueeNoire::classe = new Class<BueeNoire>("BueeNoire", 0xFFF1);
 	Class<BullesDo> *BullesDo::classe = new Class<BullesDo>("BullesDo", 0xFFF0);
 	Class<CageEclair> *CageEclair::classe = new Class<CageEclair>("CageEclair", 0xFFEF);
-	
-	
-	
+
+
+
 	int Abime::effetAvant(OpMon &atk, OpMon &def) {
 		precision = ((atk.getLevel() - def.getLevel()) + 30);
 		if (atk.getLevel() < def.getLevel()) {
@@ -141,7 +141,7 @@ namespace Attaques {
 	    }else{
 	    }
 		return 0;
-		
+
 	}
 
 	int Brouillard::effetApres(OpMon &atk, OpMon &def){
@@ -149,8 +149,8 @@ namespace Attaques {
 	    }else{
 	    }
 		return 0;
-		
-	}	
+
+	}
 
 	int BueeNoire::effetApres(OpMon &atk, OpMon &def){
 	   // atk.setStats(Fight.oldStats[0], atk.getAttaques(), atk.getEspece(), new Type[]{atk.getType1(), atk.getType2()});
@@ -167,23 +167,24 @@ namespace Attaques {
 	     }
 		return 0;
 	}
-	
+
 	int CageEclair::effetApres(OpMon &atk, OpMon &def){
 		if (def.getType1()==Type::ELECTRIQUE || def.getType2()==Type::ELECTRIQUE){
 		}else{
 		if(def.setStatus(Status::PARALYSIE)){
 		}else{
-		}	
 		}
-	} 
-	return 0;
-
-		
-
+		}
+		return 0;
+	}
 
 
 
 
 
-}; 
+
+
+
+
+};
 

@@ -2,6 +2,7 @@
 #define MAINMENU_HPP
 
 #include <SDL/SDL.h>
+#include <SDL/SDL_mixer.h>
 #include "MainFrame.hpp"
 
 namespace MainFrame{
@@ -15,14 +16,15 @@ namespace MainFrame{
         extern SDL_Texture *cursor;
         extern SDL_Rect curPos[4];
         extern SDL_Rect textPos[4];
+        extern Mix_Music *fondMusTitle;
 
         extern bool continuer;
 
         void initVars();
         void verifVars();
         void deleteVars();
-        void mainMenu();
-        void boucle0();
+        int mainMenu();
+        int boucle0();
     }
 }
 
