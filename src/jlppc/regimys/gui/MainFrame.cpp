@@ -27,6 +27,7 @@ namespace MainFrame {
 	SDL_Color blanc = {255, 255, 255};
 	SDL_Joystick *manette = NULL;
 	Mix_Chunk *dialogPass = NULL;
+	TTF_Font *fonts[4];
 	bool init = false;
 
 	int printChoice(string text, string choice1, string choice2, string choix3) {
@@ -129,6 +130,13 @@ namespace MainFrame {
 		if (font == NULL) {
 			rerrLog << "Erreur d'initialisation de la police d'écriture." << endl;
 			gererErreur(TTF_GetError(), true);
+		}
+		for(unsigned int f = 0; f < 72; f++){
+            fonts[f] = TTF_OpenFont("ressources\\fonts\\arial.ttf", f + 1);
+            if(fonts[f] == NULL){
+                rerrLog << "Initialisation d'une police échouée : ID : " << f << endl;
+                gererErreur(TTF_GetError(), true);
+            }
 		}
 		rlog << PRINT_TICKS << "Initialisation de la police terminée" << endl;
 
