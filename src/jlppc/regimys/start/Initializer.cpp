@@ -30,19 +30,19 @@ namespace Initializer {
 		evs[1].ATKSPE;
 
 		evs[2].ATKSPE;
-		evs[2].DEFSPE;
+		evs[2].ATKSPE;
 
 		evs[3].ATKSPE;
 		evs[3].ATKSPE;
 		evs[3].DEFSPE;
 
-		evs[4].VIT;
+		evs[4].ATK;
 
 		evs[5].VIT;
-		evs[5].ATKSPE;
+		evs[5].ATK;
 
-		evs[6].ATKSPE;
-		evs[6].ATKSPE;
+		evs[6].ATK;
+		evs[6].VIT;
 		evs[6].ATKSPE;
 
 		evs[7].DEF;
@@ -50,66 +50,68 @@ namespace Initializer {
 		evs[8].DEF;
 		evs[8].DEFSPE;
 
-		evs[9].DEFSPE;
+		evs[9].DEF;
 		evs[9].DEFSPE;
 		evs[9].DEFSPE;
 
 		evs[10].PV;
 
-		evs[11].DEF;
+		evs[11].PV;
 		evs[11].DEF;
 
-		evs[12].ATKSPE;
-		evs[12].ATKSPE;
+		evs[12].DEF;
+		evs[12].DEF;
 		evs[12].DEFSPE;
 
 		evs[13].VIT;
 
-		evs[14].DEF;
+		evs[14].VIT;
 		evs[14].DEF;
 
-		evs[15].ATK;
-		evs[15].ATK;
+		evs[15].VIT;
+		evs[15].VIT;
 		evs[15].DEFSPE;
 
-		evs[16].VIT;
+		evs[16].ATK;
 
+		evs[17].ATK;
 		evs[17].VIT;
-		evs[17].VIT;
 
+		evs[18].ATK;
 		evs[18].VIT;
 		evs[18].VIT;
-		evs[18].VIT;
 
-		evs[19].VIT;
+		evs[19].ATKSPE;
 
-		evs[20].VIT;
-		evs[20].VIT;
+		evs[20].ATKSPE;
+		evs[20].PV;
 
 		evs[21].VIT;
 
 		evs[22].VIT;
 		evs[22].VIT;
 
-		evs[23].ATK;
+		evs[23].VIT;
 
+		evs[24].VIT;
 		evs[24].ATK;
-		evs[24].ATK;
 
-		evs[25].VIT;
-		evs[25].VIT;
+		evs[25].ATK;
+		evs[25].ATKSPE;
 
-		evs[26].VIT;
-		evs[26].VIT;
-		evs[26].VIT;
+		evs[26].ATK;
+		evs[26].ATKSPE;
+		evs[26].ATKSPE;
 
-		evs[27].DEF;
+		evs[27].ATK;
 
-		evs[28].DEF;
-		evs[28].DEF;
+		evs[28].ATK;
+		evs[28].ATK;
 
+		evs[29].ATK;
+		evs[29].ATK;
 		evs[29].PV;
-
+		
 		/*evs[30].PV;
 		evs[30].PV;
 
