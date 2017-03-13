@@ -113,8 +113,6 @@
 		<Unit filename="src/jlppc/regimys/objects/item/IHeal.hpp" />
 		<Unit filename="src/jlppc/regimys/objects/item/IOpball.cpp" />
 		<Unit filename="src/jlppc/regimys/objects/item/IOpball.hpp" />
-		<Unit filename="src/jlppc/regimys/objects/item/IPokeball.cpp" />
-		<Unit filename="src/jlppc/regimys/objects/item/IPokeball.hpp" />
 		<Unit filename="src/jlppc/regimys/objects/item/Item.cpp" />
 		<Unit filename="src/jlppc/regimys/objects/item/Item.hpp" />
 		<Unit filename="src/jlppc/regimys/objects/item/itemInclude.hxx" />
