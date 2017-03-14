@@ -19,4 +19,6 @@ sudo apt install libtiff5
 sudo apt install libsmpeg0
 rm ressources
 cp -r ../exe/ressources ../exeLinux
+cp ../exeLinux /opt
+cp ../exeLinux/OPMon.desktop $PWD
 echo Installation terminée.
