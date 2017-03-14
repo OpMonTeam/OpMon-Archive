@@ -26,12 +26,12 @@ namespace Attaques {
 	Class<BullesDo> *BullesDo::classe = new Class<BullesDo>("BullesDo", 0xFFF0);
 	Class<CageEclair> *CageEclair::classe = new Class<CageEclair>("CageEclair", 0xFFEF);
 	Class<CanonGraine> *CanonGraine::classe = new Class<CanonGraine>("Canongraine", 0xFFEE);
-        Class<Cascade> *Cascade::classe = new Cascade<Cascade>("Cascade", 0xFFED);
-	Class<Charge> *Charge::classe = new Charge<Charge>("Charge", 0xFFEC);
-	Class<ChocMental> *ChocMental::classe = new ChocMental<ChocMental>("ChocMental", 0xFFEB);
-	Class<ChocPsy> *ChocPsy::classe = new ChocPsy<ChocPsy>("ChocPsy", 0xFFEA);
-	Class<ComboGriffe> *ComboGriffe::classe = new ComboGriffe<ComboGriffe>("ComboGriffe", 0xFFE9);
-	
+    Class<Cascade> *Cascade::classe = new Class<Cascade>("Cascade", 0xFFED);
+	Class<Charge> *Charge::classe = new Class<Charge>("Charge", 0xFFEC);
+	Class<ChocMental> *ChocMental::classe = new Class<ChocMental>("ChocMental", 0xFFEB);
+	Class<ChocPsy> *ChocPsy::classe = new Class<ChocPsy>("ChocPsy", 0xFFEA);
+	Class<ComboGriffe> *ComboGriffe::classe = new Class<ComboGriffe>("ComboGriffe", 0xFFE9);
+
 
 
 	int Abime::effetAvant(OpMon &atk, OpMon &def) {
@@ -186,33 +186,28 @@ namespace Attaques {
 
 	int Cascade::effetApres(OpMon &atk, OpMon &def){
 		if (Utils::randU(5) ==2){
-		def.peur = true
+		def.peur = true;
 		}
 		return 0;
 	}
 
 	int ChocMental::effetApres(OpMon &atk, OpMon &def){
 		if (Utils::randU(10) ==2){
-		def.confus = true
+		def.confus = true;
 		}
 		return 0;
 	}
-	
-	int ChocPsy::effetAvant(OpMon &atk, OpMon &def){ 
+
+	int ChocPsy::effetAvant(OpMon &atk, OpMon &def){
 		this->def = def.getStatDEF();
 		this->defspe = def.getStatDEFSPE();
 		def.setStat("DEFSPE", this->def);
-	}
 		return 0;
-	
-	
 	}
-	
+
 	int ChocPsy::effetApres(OpMon &atk, OpMon &def){
 		def.setStat("DEFSPE", this->defspe);
-	}
 		return 0;
-	
 	}
 
 	int ComboGriffe::effetApres(OpMon &atk, OpMon &def){
@@ -221,7 +216,7 @@ namespace Attaques {
 		}
 		int it = 0;
 		int coups = Utils::randU(4);
-		for(it = 0; it != cours + 1; it++){
+		for(it = 0; it != coups + 1; it++){
 			def.attacked(pvPerdus);
 			if(def.getPV() <= 0){
 				return 0;
