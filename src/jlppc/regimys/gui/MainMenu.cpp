@@ -18,6 +18,8 @@ namespace MainFrame{
      SDL_Rect textPos[4] = {};
      int curPosI = 0;
      Mix_Music *fondMusTitle = NULL;
+     Mix_Chunk *bruitArr = NULL;
+     Mix_Chunk *bruitPush = NULL;
 
      bool continuer = true;
 
@@ -35,10 +37,14 @@ namespace MainFrame{
         fond = IMG_LoadTexture(renderer, "ressources\\backgrounds\\titlescreen.png");
         cursor = IMG_LoadTexture(renderer, "ressources\\sprites\\misc\\arrChoice.png");
         fondMusTitle = Mix_LoadMUS("ressources\\audio\\music\\title.ogg");
+        bruitArr = Mix_LoadWAV("ressources\\audio\\sounds\\select.ogg");
+        bruitPush = Mix_LoadWAV("ressources\\audio\\sounds\\selectbuttons.ogg");
         #else
         fond = IMG_LoadTexture(renderer, "ressources/backgrounds/titlescreen.png");
         cursor = IMG_LoadTexture(renderer, "ressources/sprites/misc/arrChoice.png");
         fondMusTitle = Mix_LoadMUS("ressources/audio/music/title.ogg");
+        bruitArr = Mix_LoadWAV("ressources/audio/sounds/select.ogg");
+        bruitPush = Mix_LoadWAV("ressources/audio/sounds/selectbuttons.ogg");
         #endif // _WIN32
         play = renderText(renderer, kget("title.1"), font, blanc, &(textPos[0]));
         charge = renderText(renderer, kget("title.2"), font, blanc, &(textPos[1]));
@@ -78,17 +84,20 @@ namespace MainFrame{
                 case SDLK_RETURN:
                     switch(curPosI){
                         case 0:
-                        return 0;
+                            Mix_PlayChannel(1, bruitPush, 0);
+                            return 0;
                         case 3:
-                        return -1;
+                            Mix_PlayChannel(1, bruitPush, 0);
+                            return -1;
                         case 2:
-                        break;
+                            break;
                         case 1:
-                        break;
+                            break;
                     }
                     break;
 
                 case SDLK_DOWN:
+                    Mix_PlayChannel(2, bruitArr, 0);
                     curPosI++;
                     if(curPosI >= 4){
                         curPosI = 0;
@@ -98,6 +107,7 @@ namespace MainFrame{
                     break;
 
                 case SDLK_UP:
+                    Mix_PlayChannel(2, bruitArr, 0);
                     curPosI--;
                     if(curPosI >= 4){
                         curPosI = 0;
