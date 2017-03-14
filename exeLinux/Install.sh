@@ -1,4 +1,4 @@
-echo Entrez votre mot de passe pour installer les dépendences
+﻿echo Entrez votre mot de passe pour installer les dépendences
 sudo apt install libsdl2-2.0-0
 sudo apt install libsdl2-mixer-2.0-0
 sudo apt install libsdl2-ttf-2.0-0
@@ -19,6 +19,6 @@ sudo apt install libtiff5
 sudo apt install libsmpeg0
 rm ressources
 cp -r ../exe/ressources ../exeLinux
-cp ../exeLinux /opt
+cp -r ../exeLinux /opt
 cp ../exeLinux/OPMon.desktop $PWD
 echo Installation terminée.
