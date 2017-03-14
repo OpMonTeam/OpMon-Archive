@@ -155,50 +155,46 @@ namespace Attaques {
 	    EAv {return 0;}
 	    EAp {return 0;}
             static Class<CanonGraine> *classe;
-};
+    };
 
    ATK_CLASS(Cascade)
 	   Cascade(): Attaque ("Cascade", 80, Type::EAU, 100, false, false, 16, false, 15, 0) {}
 	   EAv {return 0;}
-	   EAp
+	   EAp;
 	   static Class<Cascade> *classe;
-};
+    };
 
    ATK_CLASS(Charge)
 	   Charge(): Attaque ("Charge", 50, Type::NORMAL, 100, false, false, 16, false, 35, 0) {}
 	   EAv {return 0;}
 	   EAp;
 	   static Class<Charge> *classe;
-   
-};
-   
+
+    };
+
    ATK_CLASS(ChocMental)
 	   ChocMental(): Attaque ("Choc Mental", 50, Type::PSY, 100, true, false, 16, false, 25, 0) {}
-	   EAv {return 0;)}
+	   EAv {return 0;}
 	   EAp;
            static Class<ChocMental> *classe;
 
-};
+    };
 
   ATK_CLASS(ChocPsy)
 	  int def, defspe;
-	  ChocPsy(): Attaque ("Choc Psy", 80, Type::PSY, 100, true, false, 16, false, 10, 0) {} 
+	  ChocPsy(): Attaque ("Choc Psy", 80, Type::PSY, 100, true, false, 16, false, 10, 0) {}
 	  EAv;
 	  EAp;
 	  static Class<ChocPsy> *classe;
-};
+    };
 
   ATK_CLASS(ComboGriffe)
 	  ComboGriffe(): Attaque ("Combo-Griffe", 18, Type::NORMAL, 80, false, false, 16, false, 15, 0) {}
 	  EAv;
 	  EAp;
 	  static Class<ComboGriffe> *classe;
-
-
-
-
+    };
 }
-
 //Permet de ne pas a devoir utiliser Attaques:: partout
 using namespace Attaques;
 
