@@ -71,6 +71,8 @@ namespace MainFrame{
         SDL_DestroyTexture(exit);
         SDL_DestroyTexture(cursor);
         Mix_FreeMusic(fondMusTitle);
+        Mix_FreeChunk(bruitArr);
+        Mix_FreeChunk(bruitPush);
      }
 
      int boucle0(){
