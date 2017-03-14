@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=OPMon
+GenericName=Le clone libre de Pokemon
+Comment=Le jeu RPG libre de la célébre license de Nintendo !
+Icon=/opt/exeLinux/opmon.png
+Exec=/opt/exeLinux/OpMon
+Terminal=false
+StartupNotify=true
+Categories=Categories=Application;Game;
