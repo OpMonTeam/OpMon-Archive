@@ -387,6 +387,7 @@ namespace MainFrame{
 		}
 
 		int boucle2(){
+
 		    while (continuer) {
 				if ((SDL_GetTicks() - ancientTick) >= 41) {
 
