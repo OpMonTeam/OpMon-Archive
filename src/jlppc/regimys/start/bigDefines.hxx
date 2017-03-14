@@ -504,7 +504,7 @@
 							case SDLK_RETURN:\
 								bool voided = true;\
 								int voidNumber = 0;\
-								int indexEnd;\
+								int indexEnd = 0;\
 								for (unsigned int l = 0; l < 15; l++) {\
 									if (pName[l] != ' ') {\
 										voided = false;\
@@ -512,10 +512,12 @@
 									} else {\
 										voidNumber++;\
 									}\
-									if (voidNumber == 2) {\
+									if (voidNumber >= 2) {\
 										indexEnd = l - 1;\
+										break;\
 									}\
 								}\
+								rerrLog << "OK2" << endl;\
 								if (voided) {\
 									pName[0] = ' ';\
 									pName[0 + 1] = 'R';\
@@ -526,9 +528,12 @@
 									pName[5 + 1] = 't';\
 									pName[6 + 1] = '\0';\
 								} else {\
-									pName[indexEnd] = '\0';\
+                                    if(indexEnd != 0){\
+                                        pName[indexEnd] = '\0';\
+                                    }\
 								}\
 								continuer = false;\
+								rerrLog << "OK" << endl;\
 								break;\
 \
 \
