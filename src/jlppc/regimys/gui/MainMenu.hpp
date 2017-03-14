@@ -17,6 +17,8 @@ namespace MainFrame{
         extern SDL_Rect curPos[4];
         extern SDL_Rect textPos[4];
         extern Mix_Music *fondMusTitle;
+        extern Mix_Chunk *bruitArr;
+        extern Mix_Chunk *bruitPush;
 
         extern bool continuer;
 
