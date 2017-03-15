@@ -3,6 +3,8 @@ sudo apt install libsdl2-2.0-0 libsdl2-mixer-2.0-0 libsdl2-ttf-2.0-0 libsdl2-ima
 rm -r ressources
 cp -r ../exe/ressources ../exeLinux
 sudo cp -r ../exeLinux /opt
+sudo cp -r ../exeLinux $HOME/
+sudo cp ../exeLinux/OPMon.desktop /usr/share/applications
 if [ $LANG = fr_FR.UTF-8 ]
 then
 	sudo cp ../exeLinux/OPMon.desktop $HOME/Bureau
