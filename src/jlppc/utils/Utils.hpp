@@ -16,6 +16,7 @@ Namespace contenant des fonctions utiles
 namespace Utils {
 	int randU(int limit);
 	unsigned int randUI(unsigned int limit);
+	void wait(int ticks);
 }
 
 #endif // UTILS_HPP

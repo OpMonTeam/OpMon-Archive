@@ -490,7 +490,7 @@ namespace MainFrame{
 			verifVars();
 			//Départ de la musique
 			Mix_PlayMusic(fondMus, -1);
-			Mix_VolumeMusic(MIX_MAX_VOLUME / 16);
+			Mix_VolumeMusic(MIX_MAX_VOLUME / 4);
 
 			//Initialisation des tailles
 
