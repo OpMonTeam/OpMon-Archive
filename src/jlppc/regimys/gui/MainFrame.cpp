@@ -177,7 +177,12 @@ namespace MainFrame {
 		}
 		Mix_Volume(1, MIX_MAX_VOLUME - 1);
 		if(MainMenu::mainMenu() != -1){
+            Mix_PlayChannel(1, MainMenu::bruitPush, 0);
+            Utils::wait(WAIT_DEFAULT);
             StartScene::startScene();
+		}else{
+            Mix_PlayChannel(1, MainMenu::bruitPush, 0);
+            Utils::wait(WAIT_DEFAULT);
 		}
 
 
