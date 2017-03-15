@@ -86,10 +86,10 @@ namespace MainFrame{
                 case SDLK_RETURN:
                     switch(curPosI){
                         case 0:
-                            Mix_PlayChannel(1, bruitPush, 0);
+                            Mix_PlayChannel(2, bruitPush, 0);
                             return 0;
                         case 3:
-                            Mix_PlayChannel(1, bruitPush, 0);
+                            Mix_PlayChannel(2, bruitPush, 0);
                             return -1;
                         case 2:
                             break;
@@ -137,7 +137,7 @@ namespace MainFrame{
         initVars();
         verifVars();
         Mix_PlayMusic(fondMusTitle, -1);
-        Mix_VolumeMusic(MIX_MAX_VOLUME / 16);
+        Mix_VolumeMusic(MIX_MAX_VOLUME / 2);
         int returned = boucle0();
 
         if(returned == -1){
