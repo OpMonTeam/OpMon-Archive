@@ -10,3 +10,7 @@ unsigned int Utils::randUI(unsigned int limit) {
 	unsigned int toReturn = rand() % limit;
 	return toReturn;
 }
+
+void Utils::wait(int ticks){
+    for(int i = 0; i < ticks; i++){}
+}

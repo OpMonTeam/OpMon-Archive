@@ -59,6 +59,8 @@ Permet d'ouvrir la fenetre du jeu.
 	}\
 	SDL_RenderCopy(renderer, arrDial, NULL, &arrDialP);
 
+#define WAIT_DEFAULT 100000000 / 2
+
 /**Contient toutes les methodes permettant de gérer et de faire fonctionner l'interface graphique
  * Contient aussi le déroulement des évenements
  */
