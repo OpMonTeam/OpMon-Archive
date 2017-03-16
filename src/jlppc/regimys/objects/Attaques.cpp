@@ -26,12 +26,13 @@ namespace Attaques {
 	Class<BullesDo> *BullesDo::classe = new Class<BullesDo>("BullesDo", 0xFFF0);
 	Class<CageEclair> *CageEclair::classe = new Class<CageEclair>("CageEclair", 0xFFEF);
 	Class<CanonGraine> *CanonGraine::classe = new Class<CanonGraine>("Canongraine", 0xFFEE);
-    Class<Cascade> *Cascade::classe = new Class<Cascade>("Cascade", 0xFFED);
+        Class<Cascade> *Cascade::classe = new Class<Cascade>("Cascade", 0xFFED);
 	Class<Charge> *Charge::classe = new Class<Charge>("Charge", 0xFFEC);
 	Class<ChocMental> *ChocMental::classe = new Class<ChocMental>("ChocMental", 0xFFEB);
 	Class<ChocPsy> *ChocPsy::classe = new Class<ChocPsy>("ChocPsy", 0xFFEA);
 	Class<ComboGriffe> *ComboGriffe::classe = new Class<ComboGriffe>("ComboGriffe", 0xFFE9);
-
+	Class<Conversion> *Conversion::classe = new Class<Conversion>("Conversion", 0xFFE8);
+	
 
 
 	int Abime::effetAvant(OpMon &atk, OpMon &def) {
@@ -224,6 +225,16 @@ namespace Attaques {
 		}
 		return 0;
 	}
+	
+	int Conversion::effetApres(OpMon &atk, OpMon &def){
+		Attaque **tab = atk.getAttaques();
+		atk.setType1(tab[0]->getType());
+		atk.setType2(Type::AUCUN);
+		return 0;
+	}
+
+
+
 
 
 };
