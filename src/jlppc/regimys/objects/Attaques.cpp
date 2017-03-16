@@ -32,9 +32,14 @@ namespace Attaques {
 	Class<ChocPsy> *ChocPsy::classe = new Class<ChocPsy>("ChocPsy", 0xFFEA);
 	Class<ComboGriffe> *ComboGriffe::classe = new Class<ComboGriffe>("ComboGriffe", 0xFFE9);
 	Class<Conversion> *Conversion::classe = new Class<Conversion>("Conversion", 0xFFE8);
+	Class<CoupdBoule> *CoudBoule::classe = new Class<CoupdBoule>("CoupdBoule", 0xFFE7);
+	Class<CoudKrane> *CoudKrane::classe = new Class<CoudKrane>("CoudKrane", 0xFFE6);
+	Class<CoupeVent> *CoupeVent::classe = new Class<CoupeVent>("CoupeVent", 0xFFE5);
+	Class<CrocDeMort> *CrocDeMort::classe = new Class<CrocDeMort>("CrocDeMort", 0xFFE4);
+	Class<CrocFatal> *CrocFatal::classe = new Class<CrocFatal>("CrocFatal", 0xFFE3);
 	
-
-
+	
+	
 	int Abime::effetAvant(OpMon &atk, OpMon &def) {
 		precision = ((atk.getLevel() - def.getLevel()) + 30);
 		if (atk.getLevel() < def.getLevel()) {
@@ -233,9 +238,52 @@ namespace Attaques {
 		return 0;
 	}
 
-
-
-
-
+	int CoupdBoule::effetApres(OpMon &atk, OpMon &def){
+		if (Utils::randU(100) <= 30){
+		}
+		return 0;
+	}
+	int CoudKrane::effetAvant(OpMon &atk, OpMon &def){
+		if (part==0){
+			def.changeDEF(1);
+			part = 1;
+			return 1;
+		}else{
+			part = 0;
+			def.changeDEF(-1);
+			return 0;
+		}
+	int CoupeVent::effetAvant(OpMon &atk, OpMon &def){
+		if(part == 0){
+			part = 1;
+			return 1;
+		}else{
+			part = 0;
+		}
+	
+			return 0;
+	
+		}	
+	
+	int CrocDeMort::effetApres(OpMon &atk, OpMon &def){
+		if (Utils::randU(10) ==2){
+		}
+		return 0;
+	}
+	int CrocFatal::effetAvant(OpMon &atk, OpMon &def){
+		if(def.getPV() != 1){
+			def.attacked(def.getPV() / 2);
+		}else{
+			def.attacked(1);
+		}
+		return 2;
+	}
+		
 };
 
+	
+		
+		
+		
+		
+		
