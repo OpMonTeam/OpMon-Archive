@@ -194,6 +194,21 @@ namespace Attaques {
 	  EAp;
 	  static Class<ComboGriffe> *classe;
     };
+  ATK_CLASS(Conversion)
+	  Conversion(): Attaque ("Conversion", 0, Type::NORMAL, 100, false, true, -1, true, 30, 0) {}
+	  EAv {return 0;}
+	  EAp;
+	  static Class<Conversion> *classe; 
+
+    };
+
+ATK_CLASS(CoupdBoule)
+	CoupdBoule(): Attaque ("Coup d'Boule", 70, Type::NORMAL, 100, false, false, 16, false, 15, 0) {}
+	EAv {return 0;}
+	EAp;
+	static Class<CoupdBoule> *classe;
+    };
+
 }
 //Permet de ne pas a devoir utiliser Attaques:: partout
 using namespace Attaques;
