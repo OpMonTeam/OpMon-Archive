@@ -11,9 +11,9 @@ Bienvenue sur le projet de OPMon Lazuli! Le clone <a href="https://github.com/jl
 <br/>Version du jeu : Alpha 0.08 | Téléchargement : <a href="https://github.com/jlppc/OpMon/releases/download/alpha-v0.08/setup.exe"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 Prochaines versions :<ul>
 
-<li>Alpha 0.09 : Quand la scene d'intro du jeu et les combats seront O.K en C++ et ajout de sons</li>
+<li>Alpha 0.09 : Quand la scene d'intro du jeu sera finie et un début de la première ville</li>
 <li>Alpha 0.1 : Améliorations et correction de tous les bugs possibles dans la partie graphique</li>
-<li>Alpha 0.11 : Quand 50 OpMons seront jouables en combats et équlibrés, et amélioration des sons, bruitages et combats</li>
+<li>Alpha 0.11 : Ajout de l'interieur des maisons, avec possibilité de les visiter en appuyant sur des touches du clavier (pas d'evenements)</li>
 <a href="https://github.com/jlppc/OpMon/wiki/ROADMAP">Voir la ROADMAP détaillé</a><br/>
 </ul>
 <br/>
