@@ -85,6 +85,7 @@ class Espece {
 		float getPoids() const {return poids;}
 		int *getEv() const {return EVgiven;}
 		int getEvSize() const {return evSize;}
+		int getOpdexNumber() const {return this->numeroOpdex;}
 
 };
 #endif // ESPECE_HPP

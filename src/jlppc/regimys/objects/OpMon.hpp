@@ -159,6 +159,8 @@ class OpMon {
 		void getEvs(OpMon const &vaincu);
 		int getType1() const {return type1;}
 		int getType2() const {return type2;}
+		void setType1(int type);
+		void setType2(int type);
 		int getStatATK() const {return statATK;}
 		int getStatATKSPE() const {return statATKSPE;}
 		int getStatDEF() const {return statDEF;}
