@@ -3,7 +3,7 @@
 #include "../evolution/Evolution.hpp"
 #include "../evolution/evolutions.hpp"
 #include "../save/Save.hpp"
-
+#include <sstream>
 #include "item/IHeal.hpp"
 
 UNS
@@ -1505,37 +1505,37 @@ void OpMon::setType2(int type){
 string OpMon::save(){
     if(!falsif){
         ostringstream oss;
-    oss << surnom << endl;
-    oss << Save::intToChar(atkIV) << endl;
-    oss << Save::intToChar(defIV) << endl;
-    oss << Save::intToChar(atkSpeIV) << endl;
-    oss << Save::intToChar(defSpeIV) << endl;
-    oss << Save::intToChar(vitIV) << endl;
-    oss << Save::intToChar(pvIV) << endl;
-    oss << Save::intToChar(atkEV) << endl;
-    oss << Save::intToChar(defEV) << endl;
-    oss << Save::intToChar(atkSpeEV) << endl;
-    oss << Save::intToChar(defSpeEV) << endl;
-    oss << Save::intToChar(vitEV) << endl;
-    oss << Save::intToChar(pvEV) << endl;
-    oss << Save::intToChar(statLove) << endl;
-    oss << Save::intToChar(level) << endl;
-    oss << Save::intToChar(caractere.id) << endl;
-    for(unsigned int i = 0; i < 4; i++){
-        if(attaques[i] != NULL){
-            oss << attaques[i]->save();
-        }else{
-            oss << "NULL" << endl;
+        oss << surnom << endl;
+        oss << Save::intToChar(atkIV) << endl;
+        oss << Save::intToChar(defIV) << endl;
+        oss << Save::intToChar(atkSpeIV) << endl;
+        oss << Save::intToChar(defSpeIV) << endl;
+        oss << Save::intToChar(vitIV) << endl;
+        oss << Save::intToChar(pvIV) << endl;
+        oss << Save::intToChar(atkEV) << endl;
+        oss << Save::intToChar(defEV) << endl;
+        oss << Save::intToChar(atkSpeEV) << endl;
+        oss << Save::intToChar(defSpeEV) << endl;
+        oss << Save::intToChar(vitEV) << endl;
+        oss << Save::intToChar(pvEV) << endl;
+        oss << Save::intToChar(statLove) << endl;
+        oss << Save::intToChar(level) << endl;
+        oss << Save::intToChar(caractere.id) << endl;
+        for(unsigned int i = 0; i < 4; i++){
+            if(attaques[i] != NULL){
+//                oss << attaques[i]->save();
+            }else{
+                oss << "NULL" << endl;
+            }
         }
-    }
-    oss << Save::intToChar(espece->getOpdexNumber()) << endl;
-    oss << Save::intToChar(PV) << endl;
-    oss << Save::intToChar(exp) << endl;
-    oss << Save::intToChar(toNextLevel) << endl;
-    oss << Save::intToChar(expBoost) << endl;
-    oss << Save::intToChar(held->getID()) << endl;
-    oss << Save::intToChar(tauxCapture) << endl;
-    return oss.str();
+        oss << Save::intToChar(espece->getOpdexNumber()) << endl;
+        oss << Save::intToChar(PV) << endl;
+        oss << Save::intToChar(exp) << endl;
+        oss << Save::intToChar(toNextLevel) << endl;
+        oss << Save::intToChar(expBoost) << endl;
+        oss << Save::intToChar(held->getID()) << endl;
+        oss << Save::intToChar(tauxCapture) << endl;
+        return oss.str();
     }else{
         return "NULL";
     }
