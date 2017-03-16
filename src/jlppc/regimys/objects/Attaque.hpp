@@ -26,6 +26,7 @@ class Attaque {
 		//->PureVirtual
 		virtual int effetApres(OpMon &atk, OpMon &def) = 0;
 		void healPP() {pp = ppMax;}
+		int getType() {return type;}
 		/**atk attaque le pokémon def*/
 		//->Final
 		virtual int attack(OpMon &atk, OpMon &def);

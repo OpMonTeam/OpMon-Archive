@@ -58,8 +58,7 @@ namespace Caractere {
 						 SERIEUX = CaractereClass(Stats::RIEN, Stats::RIEN, 22),
 						 SOLO = CaractereClass(Stats::ATK, Stats::DEF, 23),
 						 TIMIDE = CaractereClass(Stats::VIT, Stats::ATK, 24);
-    const CaractereClass *enumsList[25] = {&ASSURE, &BIZARRE, &BRAVE, &CALME, &DISCRET, &DOCILE, &DOUX, &FOUFOU, &GENTIL, &HARDI, &JOVIAL, &LACHE, &MALIN, &MALPOLI, &MAUVAIS, &MODESTE,
-                                        &NAIF, &PRESSE, &PRUDENT, &PUDIQUE, &RELAX, &RIGIDE, &SERIEUX/*Why so serious?*/,&SOLO, &TIMIDE};
+    extern const CaractereClass *enumsList[25];
 };
 
 #endif /* SRCCPP_JLPPC_REGIMYS_ENUMS_CARACTERE_HPP_ */

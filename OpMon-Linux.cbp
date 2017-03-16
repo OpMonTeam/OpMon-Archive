@@ -51,7 +51,7 @@
 			<Add option="-m64" />
 			<Add option="`sdl2-config --libs` -lSDL2_image -lSDL2_ttf -lSDL2_mixer" />
 			<Add library="/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libgcc.a" />
-			<Add directory="/usr/local/lib" />
+			<Add directory="/usr/lib/x86_64-linux-gnu" />
 		</Linker>
 		<Unit filename="resources.rc">
 			<Option compilerVar="WINDRES" />
@@ -105,6 +105,8 @@
 		<Unit filename="src/jlppc/regimys/playercore/Player.hpp" />
 		<Unit filename="src/jlppc/regimys/playercore/playercoreInclude.hxx" />
 		<Unit filename="src/jlppc/regimys/regimysInclude.hxx" />
+		<Unit filename="src/jlppc/regimys/save/Save.cpp" />
+		<Unit filename="src/jlppc/regimys/save/Save.hpp" />
 		<Unit filename="src/jlppc/regimys/start/Initializer.cpp" />
 		<Unit filename="src/jlppc/regimys/start/Initializer.hpp" />
 		<Unit filename="src/jlppc/regimys/start/StringKeys.cpp" />
