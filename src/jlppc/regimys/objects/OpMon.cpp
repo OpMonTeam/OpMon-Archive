@@ -2,6 +2,7 @@
 #include "../start/main.hpp"
 #include "../evolution/Evolution.hpp"
 #include "../evolution/evolutions.hpp"
+#include "../save/Save.hpp"
 
 #include "item/IHeal.hpp"
 
@@ -1494,8 +1495,24 @@ void OpMon::heal(int PV) {
 	}
 }
 
-void OpMon::save(){
-
+string OpMon::save(){
+    ostringstream oss();
+    oss << surnom << endl;
+    oss << Save::intToChar(atkIV) << endl;
+    oss << Save::intToChar(defIV) << endl;
+    oss << Save::intToChar(atkSpeIV) << endl;
+    oss << Save::intToChar(defSpeIV) << endl;
+    oss << Save::intToChar(vitIV) << endl;
+    oss << Save::intToChar(pvIV) << endl;
+    oss << Save::intToChar(atkEV) << endl;
+    oss << Save::intToChar(defEV) << endl;
+    oss << Save::intToChar(atkSpeEV) << endl;
+    oss << Save::intToChar(defSpeEV) << endl;
+    oss << Save::intToChar(vitEV) << endl;
+    oss << Save::intToChar(pvEV) << endl;
+    oss << Save::intToChar(statLove) << endl;
+    oss << Save::intToChar(level) << endl;
+    oss << Save::intToChar(caractere.id) << endl;//caractere.id : TODO
 }
 
 
