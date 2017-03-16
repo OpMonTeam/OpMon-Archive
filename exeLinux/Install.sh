@@ -4,6 +4,8 @@ rm -r ressources
 cp -r ../exe/ressources ../exeLinux
 sudo cp -r ../exeLinux /opt
 sudo cp -r ../exeLinux $HOME/
+cd $HOME
+mv exeLinux .opmon
 sudo cp ../exeLinux/OPMon.desktop /usr/share/applications
 if [ $LANG = fr_FR.UTF-8 ]
 then
