@@ -33,6 +33,8 @@ class Player {
 		void healOp();
 		/**Essaie d'ajouter un pokémon a l'equipe. Renvoie false si ce n'est pas possible*/
 		bool addOpToEquipe(OpMon toAdd);
+
+		void save();
 	private:
 		std::string name;
 		unsigned int dressID;//jusqu'a 8 chiffres (Hexadecimal) (jusqu'a 16^8)
