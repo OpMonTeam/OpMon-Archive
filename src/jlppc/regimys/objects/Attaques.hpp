@@ -208,7 +208,7 @@ ATK_CLASS(CoupdBoule)
 	EAp;
 	static Class<CoupdBoule> *classe;
     };
-
+	
 }
 //Permet de ne pas a devoir utiliser Attaques:: partout
 using namespace Attaques;
