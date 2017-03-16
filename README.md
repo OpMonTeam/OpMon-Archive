@@ -1,8 +1,8 @@
-#![Regimys LOGO](https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/opmon_title.png)
+![Regimys LOGO](https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/opmon_title.png)
 
 <h2>--------En Français-------</h2>
 Look <a href="#------in-english-------"> In English</a><br/>
-# Bienvenue sur le Projet "OPMon Lazuli"!
+<h3>Bienvenue sur le Projet "OPMon Lazuli"!</h3>
 
 Bienvenue sur le projet de OPMon Lazuli! Le clone <a href="https://github.com/jlppc/OpMon/wiki/FAQ">libre</a> de la celebre license de Nintendo !<br/>
 <a href="https://github.com/jlppc/OpMon/wiki/Journal-du-developpement">Journal de developpement</a><br/>
