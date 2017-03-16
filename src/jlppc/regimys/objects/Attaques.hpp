@@ -194,6 +194,47 @@ namespace Attaques {
 	  EAp;
 	  static Class<ComboGriffe> *classe;
     };
+  ATK_CLASS(Conversion)
+	  Conversion(): Attaque ("Conversion", 0, Type::NORMAL, 100, false, true, -1, true, 30, 0) {}
+	  EAv {return 0;}
+	  EAp;
+	  static Class<Conversion> *classe; 
+
+    };
+
+ATK_CLASS(CoupdBoule)
+	CoupdBoule(): Attaque ("Coup d'Boule", 70, Type::NORMAL, 100, false, false, 16, false, 15, 0) {}
+	EAv {return 0;}
+	EAp;
+	static Class<CoupdBoule> *classe;
+    };
+	
+ATK_CLASS(CoudKrane)
+	CoudKrane(): Attaque ("Coud'Krâne", 130, Type::NORMAL, 100, false, false, 16, false, 10, 0) {}
+	EAv;
+	EAp {return 0}
+    	static Class<CoudKrane> *classe;
+    };
+ATK_CLASS(CoupeVent)
+	CoupeVent(): Attaque ("Coupe-Vent", 80, Type::NORMAL, 100, true, false, 8, false, 10, 0) {}
+	EAv;
+	EAp {return 0}
+        static Class<CoupeVent> *classe;
+   };
+ATK_CLASS(CrocDeMort)
+	CrocDeMort(): Attaque ("Croc de Mort", 80, Type::NORMAL, 90, false, false, 16, false, 15, 0) {}
+	EAv {return 0}
+	EAp;
+	static Class<CrocdeMort> *classe;
+   };
+ATK_CLASSE(CrocFatal)
+	CrocFatal(): Attaque ("Croc Fatal", 0, Type::NORMAL, 90, false, true, -1, false, 10, 0) {}
+	EAv;
+	EAp {return 0}
+	static Class<CrocFatal> *classe;
+  };
+
+
 }
 //Permet de ne pas a devoir utiliser Attaques:: partout
 using namespace Attaques;
