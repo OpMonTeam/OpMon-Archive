@@ -63,3 +63,11 @@ bool Player::addOpToEquipe(OpMon toAdd) {
 		return false;
 	}
 }
+
+void Player::save(){
+    Save::saveOutput << "pname=" << this->name << endl;
+    Save::saveOutput << "pid=" << Save::intToChar(dressID) << endl;
+    for(unsigned int it = 0; it < ITEM_NUMBER; it++){
+        Save::saveOutput << "bagItem" << it << "=" <<
+    }
+}
