@@ -1494,4 +1494,8 @@ void OpMon::heal(int PV) {
 	}
 }
 
+void OpMon::save(){
+
+}
+
 
