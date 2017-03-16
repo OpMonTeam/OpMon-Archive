@@ -26,14 +26,20 @@ namespace Attaques {
 	Class<BullesDo> *BullesDo::classe = new Class<BullesDo>("BullesDo", 0xFFF0);
 	Class<CageEclair> *CageEclair::classe = new Class<CageEclair>("CageEclair", 0xFFEF);
 	Class<CanonGraine> *CanonGraine::classe = new Class<CanonGraine>("Canongraine", 0xFFEE);
-    Class<Cascade> *Cascade::classe = new Class<Cascade>("Cascade", 0xFFED);
+        Class<Cascade> *Cascade::classe = new Class<Cascade>("Cascade", 0xFFED);
 	Class<Charge> *Charge::classe = new Class<Charge>("Charge", 0xFFEC);
 	Class<ChocMental> *ChocMental::classe = new Class<ChocMental>("ChocMental", 0xFFEB);
 	Class<ChocPsy> *ChocPsy::classe = new Class<ChocPsy>("ChocPsy", 0xFFEA);
 	Class<ComboGriffe> *ComboGriffe::classe = new Class<ComboGriffe>("ComboGriffe", 0xFFE9);
-
-
-
+	Class<Conversion> *Conversion::classe = new Class<Conversion>("Conversion", 0xFFE8);
+	Class<CoupdBoule> *CoudBoule::classe = new Class<CoupdBoule>("CoupdBoule", 0xFFE7);
+	Class<CoudKrane> *CoudKrane::classe = new Class<CoudKrane>("CoudKrane", 0xFFE6);
+	Class<CoupeVent> *CoupeVent::classe = new Class<CoupeVent>("CoupeVent", 0xFFE5);
+	Class<CrocDeMort> *CrocDeMort::classe = new Class<CrocDeMort>("CrocDeMort", 0xFFE4);
+	Class<CrocFatal> *CrocFatal::classe = new Class<CrocFatal>("CrocFatal", 0xFFE3);
+	
+	
+	
 	int Abime::effetAvant(OpMon &atk, OpMon &def) {
 		precision = ((atk.getLevel() - def.getLevel()) + 30);
 		if (atk.getLevel() < def.getLevel()) {
@@ -224,7 +230,60 @@ namespace Attaques {
 		}
 		return 0;
 	}
+	
+	int Conversion::effetApres(OpMon &atk, OpMon &def){
+		Attaque **tab = atk.getAttaques();
+		atk.setType1(tab[0]->getType());
+		atk.setType2(Type::AUCUN);
+		return 0;
+	}
 
-
+	int CoupdBoule::effetApres(OpMon &atk, OpMon &def){
+		if (Utils::randU(100) <= 30){
+		}
+		return 0;
+	}
+	int CoudKrane::effetAvant(OpMon &atk, OpMon &def){
+		if (part==0){
+			def.changeDEF(1);
+			part = 1;
+			return 1;
+		}else{
+			part = 0;
+			def.changeDEF(-1);
+			return 0;
+		}
+	int CoupeVent::effetAvant(OpMon &atk, OpMon &def){
+		if(part == 0){
+			part = 1;
+			return 1;
+		}else{
+			part = 0;
+		}
+	
+			return 0;
+	
+		}	
+	
+	int CrocDeMort::effetApres(OpMon &atk, OpMon &def){
+		if (Utils::randU(10) ==2){
+		}
+		return 0;
+	}
+	int CrocFatal::effetAvant(OpMon &atk, OpMon &def){
+		if(def.getPV() != 1){
+			def.attacked(def.getPV() / 2);
+		}else{
+			def.attacked(1);
+		}
+		return 2;
+	}
+		
 };
 
+	
+		
+		
+		
+		
+		
