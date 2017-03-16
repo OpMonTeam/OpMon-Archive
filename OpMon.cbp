@@ -17,6 +17,7 @@
 				<Compiler>
 					<Add option="-m32" />
 					<Add option="-g" />
+					<Add directory="src/jlppc/regimys/save" />
 				</Compiler>
 				<Linker>
 					<Add option="-m32" />
@@ -32,6 +33,7 @@
 				<Compiler>
 					<Add option="-m32" />
 					<Add directory="src/jlppc/regimys/gui" />
+					<Add directory="src/jlppc/regimys/save" />
 				</Compiler>
 				<Linker>
 					<Add option="-m32" />
@@ -48,6 +50,7 @@
 					<Add option="-m64" />
 					<Add option="--enable-multilib" />
 					<Add directory="src/jlppc/regimys/gui" />
+					<Add directory="src/jlppc/regimys/save" />
 				</Compiler>
 				<ResourceCompiler>
 					<Add option="--enable-multilib" />
@@ -124,6 +127,8 @@
 		<Unit filename="src/jlppc/regimys/playercore/Player.hpp" />
 		<Unit filename="src/jlppc/regimys/playercore/playercoreInclude.hxx" />
 		<Unit filename="src/jlppc/regimys/regimysInclude.hxx" />
+		<Unit filename="src/jlppc/regimys/save/Save.cpp" />
+		<Unit filename="src/jlppc/regimys/save/Save.hpp" />
 		<Unit filename="src/jlppc/regimys/start/Initializer.cpp" />
 		<Unit filename="src/jlppc/regimys/start/Initializer.hpp" />
 		<Unit filename="src/jlppc/regimys/start/StringKeys.cpp" />
