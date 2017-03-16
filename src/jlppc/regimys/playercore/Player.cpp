@@ -75,7 +75,7 @@ void Player::save(){
     }
     SOUT << Save::intToChar(pc.size());
     for(unsigned int it = 0; it < pc.size(); it++){
-        pc[it].save();
+        SOUT << pc[it].save();
     }
 
 }
