@@ -11,4 +11,10 @@ then
 else
 	sudo cp ../exeLinux/OPMon.desktop $HOME/Desktop
 fi
+if [ $LANG = es_ES.UTF-8 ]
+then
+	sudo cp ../exeLinux/OPMon.desktop $HOME/Descargas
+else
+	sudo cp ../exeLinux/OPMon.desktop $HOME/Desktop
+fi
 echo Installation completed.
