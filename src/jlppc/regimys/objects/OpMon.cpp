@@ -1495,8 +1495,16 @@ void OpMon::heal(int PV) {
 	}
 }
 
+void OpMon::setType1(int type){
+    this->type1 = type;
+}
+void OpMon::setType2(int type){
+    this->type2 = type;
+}
+
 string OpMon::save(){
-    ostringstream oss();
+    if(!falsif){
+        ostringstream oss;
     oss << surnom << endl;
     oss << Save::intToChar(atkIV) << endl;
     oss << Save::intToChar(defIV) << endl;
@@ -1512,7 +1520,26 @@ string OpMon::save(){
     oss << Save::intToChar(pvEV) << endl;
     oss << Save::intToChar(statLove) << endl;
     oss << Save::intToChar(level) << endl;
-    oss << Save::intToChar(caractere.id) << endl;//caractere.id : TODO
+    oss << Save::intToChar(caractere.id) << endl;
+    for(unsigned int i = 0; i < 4; i++){
+        if(attaques[i] != NULL){
+            oss << attaques[i]->save();
+        }else{
+            oss << "NULL" << endl;
+        }
+    }
+    oss << Save::intToChar(espece->getOpdexNumber()) << endl;
+    oss << Save::intToChar(PV) << endl;
+    oss << Save::intToChar(exp) << endl;
+    oss << Save::intToChar(toNextLevel) << endl;
+    oss << Save::intToChar(expBoost) << endl;
+    oss << Save::intToChar(held->getID()) << endl;
+    oss << Save::intToChar(tauxCapture) << endl;
+    return oss.str();
+    }else{
+        return "NULL";
+    }
+
 }
 
 
