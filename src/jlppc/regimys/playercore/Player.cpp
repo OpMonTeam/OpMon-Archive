@@ -1,5 +1,6 @@
 #include "Player.hpp"
 #include "../start/main.hpp"
+#include "../save/Save.hpp"
 
 Player::Player(std::string name) {
 	this->name = name;
@@ -65,9 +66,16 @@ bool Player::addOpToEquipe(OpMon toAdd) {
 }
 
 void Player::save(){
-    Save::saveOutput << "pname=" << this->name << endl;
-    Save::saveOutput << "pid=" << Save::intToChar(dressID) << endl;
+    UNS
+    SOUT << "pname=" << this->name << endl;
+    SOUT << "pid=" << Save::intToChar(dressID) << endl;
+    SOUT << Save::intToChar(ITEM_NUMBER) << endl;
     for(unsigned int it = 0; it < ITEM_NUMBER; it++){
-        Save::saveOutput << "bagItem" << it << "=" <<
+        SOUT << Save::intToChar(bag[it]) << endl;
     }
+    SOUT << Save::intToChar(pc.size());
+    for(unsigned int it = 0; it < pc.size(); it++){
+        pc[it].save();
+    }
+
 }

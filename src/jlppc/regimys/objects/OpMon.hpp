@@ -168,6 +168,7 @@ class OpMon {
 		bool operator==(OpMon const &a) {return (falsif == a.falsif);}
 		bool operator!=(OpMon const &a) {return !(falsif == a.falsif);}
 		Item *itemHeld() const {return held;} //C'est un getteur. Y'a pas get mais je m'en fous. C'est un getteur.
+		void save();
 };
 
 

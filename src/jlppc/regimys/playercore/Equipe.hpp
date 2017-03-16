@@ -39,6 +39,8 @@ class Equipe {
 		/**Opmon vide*/
 		static OpMon PNULL;
 
+		void save();
+
 	private:
 		//->Useless
 		int nbreOfOp = 6;
