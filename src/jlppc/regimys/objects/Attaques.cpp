@@ -41,6 +41,9 @@ namespace Attaques {
         IF_ATK(CrocFeu)
         IF_ATK(CruAiles)
         IF_ATK(Damocles)
+        IF_ATK(DanseFleur)
+    
+    
     }
 
 Class<Abime> *Abime::classe = new Class<Abime>("Abime", 0xFFFF);
@@ -75,7 +78,7 @@ Class<CrocFatal> *CrocFatal::classe = new Class<CrocFatal>("CrocFatal", 0xFFE3);
 Class<CrocFeu> *CrocFeu::classe = new Class<CrocFeu>("CrocFeu", 0xFFE2);
 Class<CruAiles> *CruAiles::classe = new Class<CruAiles>("CruAiles", 0xFFE1);
 Class<Damocles> *Damocles::classe = new Class<Damocles>("Damocles", 0xFFE0);
-
+Class<Dansefleur> *DanseFleur::classe = new Class<DanseFleur>("DanseFleur", 0xFFDF);
 
 
 int Abime::effetAvant(OpMon &atk, OpMon &def) {
@@ -330,9 +333,32 @@ int CrocFeu::effetApres(OpMon &atk, OpMon &def) {
 
 }
 
-int Damocles::effetApres(OpMon &atk, OpMon & def) {
+int Damocles::effetApres(OpMon &atk, OpMon &def) {
     atk.attacked(pvPerdus / 3);
 }
+
+
+int DanseFleur::effetApres(OpMon &atk, OpMon &def) {
+    if(part == 0){
+            part = 1;
+    }else if(part == 1){
+			pp++;
+			if(Start.rand.nextBoolean()){
+                    part = 2
+            }else{
+                    part = 0;
+                    atk.confus = true;    
+            }
+    }else{
+              pp++;
+              part = 0
+              atk.confus = true
+                  
+    }
+}
+}
+                 
+        
 
 };
 
