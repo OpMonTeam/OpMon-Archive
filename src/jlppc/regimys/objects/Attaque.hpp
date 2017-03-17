@@ -33,7 +33,7 @@ class Attaque {
 		virtual int attack(OpMon &atk, OpMon &def);
 		virtual void siEchoue(OpMon &atk, OpMon &def) {}
 		virtual Class<Attaque>* getClass() {return classe;}
-		std::string save();
+		virtual std::string save();
 	protected:
 		std::string nom;
 		int puissance;
