@@ -12,7 +12,7 @@
 #define VIT push_back(Stats::VIT)
 #define PV push_back(Stats::PV)
 
-typedef NumberedArray<Class<Attaque *> > AtkArray;
+typedef NumberedArray AtkArray;
 
 namespace Initializer {
     Evolutions::E_Nope *ne = new E_Nope();

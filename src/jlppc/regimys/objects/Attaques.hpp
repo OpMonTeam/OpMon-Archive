@@ -172,7 +172,7 @@ namespace Attaques {
    ATK_CLASS(Charge)
 	   Charge(): Attaque ("Charge", 50, Type::NORMAL, 100, false, false, 16, false, 35, 0) {}
 	   EAv {return 0;}
-	   EAp;
+	   EAp {return 0;};
 	   static Class<Charge> *classe;
 
     };
@@ -195,7 +195,7 @@ namespace Attaques {
 
   ATK_CLASS(ComboGriffe)
 	  ComboGriffe(): Attaque ("Combo-Griffe", 18, Type::NORMAL, 80, false, false, 16, false, 15, 0) {}
-	  EAv;
+	  EAv {return 0;}
 	  EAp;
 	  static Class<ComboGriffe> *classe;
     };
