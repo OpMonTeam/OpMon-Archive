@@ -77,5 +77,8 @@ void Player::save(){
     for(unsigned int it = 0; it < pc.size(); it++){
         SOUT << pc[it].save();
     }
+    for(unsigned int it = 0; it < 6; it++){
+        SOUT << equipe[it].save();
+    }
 
 }

@@ -1,6 +1,7 @@
 
 #include "Attaque.hpp"
 #include "OpMon.hpp"
+#include <sstream>
 
 Class <Attaque> *Attaque::classe = new Class<Attaque>("Attaque", NULL);
 
@@ -58,7 +59,10 @@ int Attaque::attack(OpMon &atk, OpMon &def) {
 #include "../start/main.hpp"
 std::string Attaque::save(){
     UNS
-
-
+    ostringstream oss;
+    oss << this->getClass()->getName(); << endl;
+    oss << this->pp << endl;
+    oss << this->ppMax << endl;
+    return oss.str();
 }
 
