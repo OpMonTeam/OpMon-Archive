@@ -42,7 +42,7 @@ namespace Attaques {
         IF_ATK(CruAiles)
         IF_ATK(Damocles)
     }
-/*
+
 Class<Abime> *Abime::classe = new Class<Abime>("Abime", 0xFFFF);
 Class<Acidarmure> *Acidarmure::classe = new Class<Acidarmure>("Acidarmure", 0xFFFE);
 Class<Acide> *Acide::classe = new Class<Acide>("Acide", 0xFFFD);
@@ -75,7 +75,6 @@ Class<CrocFatal> *CrocFatal::classe = new Class<CrocFatal>("CrocFatal", 0xFFE3);
 Class<CrocFeu> *CrocFeu::classe = new Class<CrocFeu>("CrocFeu", 0xFFE2);
 Class<CruAiles> *CruAiles::classe = new Class<CruAiles>("CruAiles", 0xFFE1);
 Class<Damocles> *Damocles::classe = new Class<Damocles>("Damocles", 0xFFE0);
-*/
 
 
 
