@@ -111,7 +111,7 @@ namespace Initializer {
 		evs[29].ATK;
 		evs[29].ATK;
 		evs[29].PV;
-		
+
 		/*evs[30].PV;
 		evs[30].PV;
 
@@ -780,8 +780,9 @@ namespace Initializer {
 
 	void initAtkLvls() {
 		/*//atkPokeLvl[0] = nullptr;
-		ATK_LIST(1) = {NumberedArray(0, Charge::classe),  NumberedArray(3, Rugissement::classe),  NumberedArray(7, Vampigraine::classe),  NumberedArray(9, FouetLianes::classe),  NumberedArray(13, PoudreToxik::classe),  NumberedArray(13, PoudreDodo::classe),  NumberedArray(15, Belier::classe),  NumberedArray(19, TranchHerbe::classe),  NumberedArray(21, DouxParfum::classe),  NumberedArray(25, Croissance::classe),  NumberedArray(27, Damocles::classe),  NumberedArray(33, Synthese::classe),  NumberedArray(37, CanonGraine::classe)};
+		ATK_LIST(1) = {NumberedArray(0, "Charge"),  NumberedArray(3, "Rugissement"),  NumberedArray(7, "Vampigraine"), ect... ||| NumberedArray(9, FouetLianes::classe),  NumberedArray(13, PoudreToxik::classe),  NumberedArray(13, PoudreDodo::classe),  NumberedArray(15, Belier::classe),  NumberedArray(19, TranchHerbe::classe),  NumberedArray(21, DouxParfum::classe),  NumberedArray(25, Croissance::classe),  NumberedArray(27, Damocles::classe),  NumberedArray(33, Synthese::classe),  NumberedArray(37, CanonGraine::classe)};
 		ATK_ADD_LIST(1, 13);
+		TOUT LE RESTE APRES C'EST DE LA MERDE
 		ATK_LIST(2) = {NumberedArray(0, Charge::classe),  NumberedArray(0, Rugissement::classe),  NumberedArray(0, Vampigraine::classe),  NumberedArray(9, FouetLianes::classe),  NumberedArray(13, PoudreToxik::classe),  NumberedArray(13, PoudreDodo::classe),  NumberedArray(15, Belier::classe),  NumberedArray(20, TranchHerbe::classe),  NumberedArray(23, DouxParfum::classe),  NumberedArray(28, Croissance::classe),  NumberedArray(31, Damocles::classe),  NumberedArray(39, Synthese::classe),  NumberedArray(44, LanceSoleil::classe)};
 		ATK_ADD_LIST(2, 13);
 		ATK_LIST(3) = {NumberedArray(0, Charge::classe),  NumberedArray(0, Rugissement::classe),  NumberedArray(0, Vampigraine::classe),  NumberedArray(9, FouetLianes::classe),  NumberedArray(13, PoudreToxik::classe),  NumberedArray(13, PoudreDodo::classe),  NumberedArray(15, Belier::classe),  NumberedArray(20, TranchHerbe::classe),  NumberedArray(23, DouxParfum::classe),  NumberedArray(28, Croissance::classe),  NumberedArray(31, Damocles::classe),  NumberedArray(32, DanseFleur::classe),  NumberedArray(45, Synthese::classe),  NumberedArray(50, TempeteFlorale::classe),  NumberedArray(53, LanceSoleil::classe)};

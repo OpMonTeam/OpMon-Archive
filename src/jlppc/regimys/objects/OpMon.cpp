@@ -259,7 +259,7 @@ void OpMon::getEvs(OpMon const &vaincu) {
 		}
 
 		for (int i = 0; i < statsVaincu.size(); i++) {
-			switch (statsVaincu[i]) { //Creer enumÃ©ration Stats
+			switch (statsVaincu[i]) { //Creer enumération Stats
 				case Stats::ATK:
 					if (atkEV < 252) {
 						atkEV++;
@@ -1452,22 +1452,22 @@ bool OpMon::changeVIT(int power) {
 
 bool OpMon::setStatus(int status) {
 	if (status == Status::BRULURE && this->status == Status::BRULURE) {
-		//System.out.println(surnom + " est dÃ©jÃ Â  brulÃ©!");
+		//System.out.println(surnom + " est déjà  brulé!");
 		return false;
 	} else if (status == Status::SOMMEIL && this->status == Status::SOMMEIL) {
-		//System.out.println("Mais " + surnom + " dort dÃ©jÃ Â !");
+		//System.out.println("Mais " + surnom + " dort déjà !");
 		return false;
 	} else if (status == Status::PARALYSIE && this->status == Status::PARALYSIE) {
-		//System.out.println(surnom + " est dÃ©jÃ Â  paralysÃ©!");
+		//System.out.println(surnom + " est déjà  paralysé!");
 		return false;
 	} else if (status == Status::GEL && this->status == Status::GEL) {
-		//System.out.println(surnom + " est dÃ©jÃ Â  gelÃ©!");
+		//System.out.println(surnom + " est déjà  gelé!");
 		return false;
 	} else if (status == Status::POISON && this->status == Status::POISON) {
-		//System.out.println(surnom + " est dÃ©jÃ Â  empoisonnÃ©!");
+		//System.out.println(surnom + " est déjà  empoisonné!");
 		return false;
 	} else if (this->status != Status::AUCUN && status != Status::AUCUN) {
-		//System.out.println("Mais " + surnom + " a dÃ©jÃ Â  un status!");
+		//System.out.println("Mais " + surnom + " a déjà  un status!");
 		return false;
 	} else if (status == Status::BRULURE) {
 		changeATK(-1);
@@ -1523,7 +1523,7 @@ string OpMon::save(){
         oss << Save::intToChar(caractere.id) << endl;
         for(unsigned int i = 0; i < 4; i++){
             if(attaques[i] != NULL){
-//                oss << attaques[i]->save();
+                oss << attaques[i]->save();
             }else{
                 oss << "NULL" << endl;
             }
