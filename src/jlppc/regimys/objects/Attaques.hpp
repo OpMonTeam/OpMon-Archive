@@ -247,7 +247,7 @@ ATK_CLASS(CruAiles)
 
 };
 ATK_CLASS(Damocles)
-	Damocles(): Attaque ("Damoclès", 120, Type.NORMAL, 100, false, false, 16, false, 15, 0) {}
+	Damocles(): Attaque ("Damoclès", 120, Type::NORMAL, 100, false, false, 16, false, 15, 0) {}
 	EAv {return 0;}
 	EAp;
 	static Class<Damocles> *classe;

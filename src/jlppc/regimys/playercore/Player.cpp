@@ -67,8 +67,8 @@ bool Player::addOpToEquipe(OpMon toAdd) {
 
 void Player::save(){
     UNS
-    SOUT << "pname=" << this->name << endl;
-    SOUT << "pid=" << Save::intToChar(dressID) << endl;
+    SOUT << this->name << endl;
+    SOUT << Save::intToChar(dressID) << endl;
     SOUT << Save::intToChar(ITEM_NUMBER) << endl;
     for(unsigned int it = 0; it < ITEM_NUMBER; it++){
         SOUT << Save::intToChar(bag[it]) << endl;
