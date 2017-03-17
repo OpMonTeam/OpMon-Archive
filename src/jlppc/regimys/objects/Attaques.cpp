@@ -37,9 +37,13 @@ namespace Attaques {
 	Class<CoupeVent> *CoupeVent::classe = new Class<CoupeVent>("CoupeVent", 0xFFE5);
 	Class<CrocDeMort> *CrocDeMort::classe = new Class<CrocDeMort>("CrocDeMort", 0xFFE4);
 	Class<CrocFatal> *CrocFatal::classe = new Class<CrocFatal>("CrocFatal", 0xFFE3);
-
-
-
+	Class<CrocFeu> *CrocFeu::classe = new Class<CrocFeu>("CrocFeu", 0xFFE2);
+	Class<CruAiles> *CruAiles::classe = new Class<CruAiles>("CruAiles", 0xFFE1);
+	Class<Damocles> *Damocles::classe = new Class<Damocles>("Damocles", 0xFFE0);
+	
+	
+	
+	
 	int Abime::effetAvant(OpMon &atk, OpMon &def) {
 		precision = ((atk.getLevel() - def.getLevel()) + 30);
 		if (atk.getLevel() < def.getLevel()) {
@@ -278,6 +282,23 @@ namespace Attaques {
 			def.attacked(1);
 		}
 		return 2;
+	}
+
+	int CrocFeu::effetApres(OpMon &atk, OpMon &def){
+		if(Utils::randU(10) ==5){
+			if(def.setStatus(Status.BRULURE)){
+			
+			}
+		}
+	if(Utils::randU(10) ==7){
+		def.peur = true
+	}
+
+	}
+
+	int Damocles::effetApres(OpMon &atk, OpMon & def){
+		atk.getSurnom(), atk.getPV() - (pvPerdus / 3));
+		atk.attacked(pvPerdus / 3);
 	}
 
 };
