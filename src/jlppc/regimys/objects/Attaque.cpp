@@ -2,6 +2,8 @@
 #include "Attaque.hpp"
 #include "OpMon.hpp"
 
+Class <Attaque> *Attaque::classe = new Class<Attaque>("Attaque", NULL);
+
 Attaque::Attaque(std::string nom, int puissance, int type, int precision, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite) {
 	this->nom = nom;
 	this->puissance = puissance;
@@ -52,5 +54,11 @@ int Attaque::attack(OpMon &atk, OpMon &def) {
 		def.attacked(pvPerdus);
 	}
 	return effetApres(atk, def);
+}
+#include "../start/main.hpp"
+std::string Attaque::save(){
+    UNS
+
+
 }
 

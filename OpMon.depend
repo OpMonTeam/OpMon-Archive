@@ -4241,10 +4241,11 @@
 	"Item.hpp"
 	"../Attaque.hpp"
 
-1489745886 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\attaque.hpp
+1489746871 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\attaque.hpp
 	<iostream>
 	"../../utils/Utils.hpp"
 	"../enums/Enums.hpp"
+	"../../utils/Class.hpp"
 
 1489745886 c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\utils.hpp
 	<ctime>
@@ -4608,14 +4609,14 @@
 1489672599 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\attaques.cpp
 	"Attaques.hpp"
 
-1489672599 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\attaques.hpp
+1489746807 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\attaques.hpp
 	<iostream>
 	<cmath>
 	"OpMon.hpp"
 	"Attaque.hpp"
 	"../../utils/Class.hpp"
 
-1489672599 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\espece.cpp
+1489745886 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\espece.cpp
 	"Espece.hpp"
 	"../evolution/Evolution.hpp"
 	"../evolution/evolutions.hpp"
@@ -4643,21 +4644,21 @@
 	<iostream>
 	"../objects/OpMon.hpp"
 
-1489672599 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\ct.cpp
+1489745886 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\ct.cpp
 	"CT.hpp"
 
-1489672599 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\iheal.cpp
+1489745886 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\iheal.cpp
 	"IHeal.hpp"
 	"../../start/main.hpp"
 
-1489672599 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\iheal.hpp
+1489745886 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\iheal.hpp
 	"Item.hpp"
 	<iostream>
 
-1489672599 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\iopball.cpp
+1489745886 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\iopball.cpp
 	"IOpball.hpp"
 
-1489672599 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\item.cpp
+1489745886 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\item.cpp
 	"IOpball.hpp"
 	"IHeal.hpp"
 	"CT.hpp"
@@ -4671,15 +4672,15 @@
 	"../evolution/evolutions.hpp"
 	"item/IHeal.hpp"
 
-1489672599 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\playercore\equipe.cpp
+1489745886 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\playercore\equipe.cpp
 	"Equipe.hpp"
 
-1489672599 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\playercore\player.cpp
+1489746115 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\playercore\player.cpp
 	"Player.hpp"
 	"../start/main.hpp"
 	"../save/Save.hpp"
 
-1489672599 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\main.cpp
+1489745886 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\main.cpp
 	"main.hpp"
 	<iostream>
 	<fstream>
@@ -4705,17 +4706,17 @@
 	"begin_code.h"
 	"close_code.h"
 
-1489672599 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\iteminclude.hxx
+1489745886 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\iteminclude.hxx
 	"CT.hpp"
 	"IHeal.hpp"
 	"IHeal.hpp"
 	"Item.hpp"
 
-1489672599 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\evolution\evolutioninclude.hxx
+1489745886 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\evolution\evolutioninclude.hxx
 	"Evolution.hpp"
 	"evolutions.hpp"
 
-1489672599 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\initializer.hpp
+1489745886 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\initializer.hpp
 	<iostream>
 	<vector>
 	"../../utils/NumberedArray.hpp"
@@ -4748,30 +4749,30 @@
 	"begin_code.h"
 	"close_code.h"
 
-1489672599 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\stringkeys.cpp
+1489745886 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\stringkeys.cpp
 	"StringKeys.hpp"
 	"main.hpp"
 	<SDL/SDL.h>
 	<cstdio>
 
-1489672599 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\class.cpp
+1489745886 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\class.cpp
 	"Class.hpp"
 
-1489672599 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\comparaisons.cpp
+1489745886 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\comparaisons.cpp
 	"Comparaisons.hpp"
 
-1489672599 c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\comparaisons.hpp
+1489745886 c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\comparaisons.hpp
 	<cstdarg>
 	<iostream>
 
-1489672599 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\file.cpp
+1489745886 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\file.cpp
 	"File.hpp"
 	"../regimys/start/main.hpp"
 
-1489672599 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\numberedarray.cpp
+1489745886 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\numberedarray.cpp
 	"NumberedArray.hpp"
 
-1489672599 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\utils.cpp
+1489745886 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\utils.cpp
 	"Utils.hpp"
 
 1489745886 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\mainframe.cpp
@@ -4803,7 +4804,7 @@
 	"../start/main.hpp"
 	"MainFrame.hpp"
 
-1489672599 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\initializer.cpp
+1489745886 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\initializer.cpp
 	"Initializer.hpp"
 	"../enums/Enums.hpp"
 	"../objects/Attaques.hpp"
@@ -5474,10 +5475,10 @@
 	"../start/main.hpp"
 	<iostream>
 
-1489672599 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\save\save.hpp
+1489745886 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\save\save.hpp
 	"../playercore/Player.hpp"
 
-1489672599 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\save\save.cpp
+1489745886 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\save\save.cpp
 	"Save.hpp"
 	<iostream>
 	<fstream>
