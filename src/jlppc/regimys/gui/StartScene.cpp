@@ -6,7 +6,7 @@ UNS
 
 namespace MainFrame{
     namespace StartScene {
-		//Déclaration des SDL_Rect et des SDL_Texture secondaires, necessaires a cette scene (a détruire)
+		//DÃ©claration des SDL_Rect et des SDL_Texture secondaires, necessaires a cette scene (a dÃ©truire)
 		SDL_Rect fondP;
 		SDL_Rect profP;
 		SDL_Texture *fondT;
@@ -15,7 +15,7 @@ namespace MainFrame{
 		SDL_Rect arrDialP;
         SDL_Texture *textUre = NULL;
         Mix_Music *fondMus;
-        //Déclaration des variables utilitaires (sera supprimé en cours de travail)
+        //DÃ©claration des variables utilitaires (sera supprimÃ© en cours de travail)
         //Part 0
 		bool continuer = true;
 		long ancientTick = 0;
@@ -109,13 +109,13 @@ namespace MainFrame{
 			rlog << "[T = " << SDL_GetTicks() << "] - Initialisation des sprites..." << endl;
 #ifdef _WIN32
 			fondT = IMG_LoadTexture(renderer, "ressources\\backgrounds\\start\\startscene.png");
-			profT = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\jlppc\\jlppc.png");
+			profT = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\jlppc\\profkiwai.png");
 			dialogT = IMG_LoadTexture(renderer, "ressources\\backgrounds\\dialog\\dialog.png");
 			arrDial = IMG_LoadTexture(renderer, "ressources\\sprites\\misc\\arrDial.png");
 			fondNE = IMG_LoadTexture(renderer, "ressources\\backgrounds\\start\\nameEntry.png");
 #else
 			fondT = IMG_LoadTexture(renderer, "ressources/backgrounds/start/startscene.png");
-			profT = IMG_LoadTexture(renderer, "ressources/sprites/chara/jlppc/jlppc.png");
+			profT = IMG_LoadTexture(renderer, "ressources/sprites/chara/jlppc/profkiwai.png");
 			dialogT = IMG_LoadTexture(renderer, "ressources/backgrounds/dialog/dialog.png");
 			arrDial = IMG_LoadTexture(renderer, "ressources/sprites/misc/arrDial.png");
 			fondNE = IMG_LoadTexture(renderer, "ressources/backgrounds/start/nameEntry.png");
@@ -143,17 +143,17 @@ namespace MainFrame{
 				gererErreur(string("StartScene : Erreur lors de l'initialisation d'une image : ") + string(SDL_GetError()), false);
 			}
 			if (fondNE == NULL) {
-				rerrLog << "StartScene (verifVars) : Erreur lors de l'initialisation du fond d'entrée de nom" << endl;
+				rerrLog << "StartScene (verifVars) : Erreur lors de l'initialisation du fond d'entrÃ©e de nom" << endl;
 				gererErreur(IMG_GetError(), false);
 			}
-			rerrLog << "Verification d'erreurs non détectées : " << endl;
+			rerrLog << "Verification d'erreurs non dÃ©tectÃ©es : " << endl;
 			rerrLog << SDL_GetError() << endl;
 			rlog << PRINT_TICKS << "Verifications OK." << endl;
 		}
 
 		int boucle0() {
-			rlog << "[T = " << SDL_GetTicks() << "] - Début de la boucle n°0" << endl;
-			//Boucle n°1
+			rlog << "[T = " << SDL_GetTicks() << "] - DÃ©but de la boucle nÂ°0" << endl;
+			//Boucle nÂ°1
 			while (continuer) {
 				if ((SDL_GetTicks() - ancientTick) >= 41) {
 
@@ -199,15 +199,15 @@ namespace MainFrame{
 
 					if (phase == 0) {
 						if (SDL_RenderCopy(renderer, fondT, NULL, &fondP) == -1) {
-							rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
+							rerrLog << "Erreur lors de l'affichage d'un Ã©lÃ©ment" << endl;
 							gererErreur(SDL_GetError(), false);
 						}
 						if (SDL_RenderCopy(renderer, profT, NULL, &profP) == -1) {
-							rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
+							rerrLog << "Erreur lors de l'affichage d'un Ã©lÃ©ment" << endl;
 							gererErreur(SDL_GetError(), false);
 						}
 						if (SDL_RenderCopy(renderer, dialogT, NULL, &dialogP) == -1) {
-							rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
+							rerrLog << "Erreur lors de l'affichage d'un Ã©lÃ©ment" << endl;
 							gererErreur(SDL_GetError(), false);
 						}
 						if (!changeDialog) {
@@ -433,15 +433,15 @@ namespace MainFrame{
 
 					if (phase == 2) {
 						if (SDL_RenderCopy(renderer, fondT, NULL, &fondP) == -1) {
-							rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
+							rerrLog << "Erreur lors de l'affichage d'un Ã©lÃ©ment" << endl;
 							gererErreur(SDL_GetError(), false);
 						}
 						if (SDL_RenderCopy(renderer, profT, NULL, &profP) == -1) {
-							rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
+							rerrLog << "Erreur lors de l'affichage d'un Ã©lÃ©ment" << endl;
 							gererErreur(SDL_GetError(), false);
 						}
 						if (SDL_RenderCopy(renderer, dialogT, NULL, &dialogP) == -1) {
-							rerrLog << "Erreur lors de l'affichage d'un élément" << endl;
+							rerrLog << "Erreur lors de l'affichage d'un Ã©lÃ©ment" << endl;
 							gererErreur(SDL_GetError(), false);
 						}
 						if (!changeDialog) {
@@ -488,13 +488,13 @@ namespace MainFrame{
 		void startScene() {
 			initVars();
 			verifVars();
-			//Départ de la musique
+			//DÃ©part de la musique
 			Mix_PlayMusic(fondMus, -1);
 			Mix_VolumeMusic(MIX_MAX_VOLUME / 4);
 
 			//Initialisation des tailles
 
-			//Vesrification des problèmes possibles
+			//Vesrification des problÃ¨mes possibles
 
 			//Initialisation des variables utiles pour la boucle
 			SDL_RenderPresent(renderer);
@@ -509,7 +509,7 @@ namespace MainFrame{
 
 
 			phase = 1;
-			rlog << "[T = " << SDL_GetTicks() << "] - Chargement de la boucle n°1" << endl;
+			rlog << "[T = " << SDL_GetTicks() << "] - Chargement de la boucle nÂ°1" << endl;
 
 
             anim0();
@@ -525,7 +525,7 @@ namespace MainFrame{
 
 
 
-			rlog << PRINT_TICKS << "Début de la boucle n°1" << endl;
+			rlog << PRINT_TICKS << "DÃ©but de la boucle nÂ°1" << endl;
 
 			if(boucle1() == -1){
                 destroyVars();
@@ -560,7 +560,7 @@ namespace MainFrame{
 			txtEnCours[1] = string(" ");
 			txtEnCours[2] = string(" ");
 			changeDialog = false;
-			rlog << PRINT_TICKS << "Début de la boucle n°2" << endl;
+			rlog << PRINT_TICKS << "DÃ©but de la boucle nÂ°2" << endl;
             if(boucle2() == -1){
                 destroyVars();
                 return;
@@ -568,7 +568,7 @@ namespace MainFrame{
 			phase++;
 
 
-			//rlog << "[T = " << SDL_GetTicks << "] - Entrée dans la boucle n°1" << endl;
+			//rlog << "[T = " << SDL_GetTicks << "] - EntrÃ©e dans la boucle nÂ°1" << endl;
 
 
 
