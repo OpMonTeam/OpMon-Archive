@@ -11,6 +11,7 @@ Contient la définition de la classe Attaque
 #include <iostream>
 #include "../../utils/Utils.hpp"
 #include "../enums/Enums.hpp"
+#include "../../utils/Class.hpp"
 
 class OpMon;
 /**
@@ -31,6 +32,8 @@ class Attaque {
 		//->Final
 		virtual int attack(OpMon &atk, OpMon &def);
 		virtual void siEchoue(OpMon &atk, OpMon &def) {}
+		virtual Class<Attaque>* getClass() {return classe;}
+		std::string save();
 	protected:
 		std::string nom;
 		int puissance;
@@ -47,6 +50,8 @@ class Attaque {
 		bool rateJamais;
 		/**Variable utilisée dans effetAvant et effetAprès*/
 		int pvPerdus = 0;
+    private:
+        static Class<Attaque> *classe;
 };
 
 #endif /* SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUE_HPP_ */
