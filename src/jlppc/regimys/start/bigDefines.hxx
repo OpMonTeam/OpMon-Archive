@@ -146,7 +146,7 @@
 									k++;\
 								}\
 								if (shift) {\
-									pName[k] = 'i';\
+									pName[k] = 'I';\
 								} else {\
 									pName[k] = 'i';\
 								}\
