@@ -21,7 +21,7 @@ Contient la définition des methodes qui permettent d'initialiser les éléments du
 //->NoDoc
 namespace Initializer {
 	extern Espece *listeOp[OP_NUMBER];
-	extern std::vector<NumberedArray<Class<Attaque *> > > opOpLvl[OP_NUMBER]; //100 attaques max / poké
+	extern std::vector<NumberedArray> opOpLvl[OP_NUMBER]; //100 attaques max / poké
 	extern Evolutions::E_Nope *ne;//ne = No Evolution
 	//std::string backgrounds[];
 	extern std::vector<int> evs[OP_NUMBER];

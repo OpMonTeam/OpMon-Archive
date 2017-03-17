@@ -60,7 +60,7 @@ int Attaque::attack(OpMon &atk, OpMon &def) {
 std::string Attaque::save(){
     UNS
     ostringstream oss;
-    oss << this->getClass()->getName(); << endl;
+    oss << this->getClass()->getName() << endl;
     oss << this->pp << endl;
     oss << this->ppMax << endl;
     return oss.str();

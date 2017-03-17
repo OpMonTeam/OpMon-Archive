@@ -37,7 +37,7 @@ class Espece {
 		Evolution *evolType;
 		int type1;
 		int type2;
-		NumberedArray<Class<Attaque> > atksByLevels[];
+		NumberedArray atksByLevels[];
 		std::string entreeOpdex;
 		float taille;
 		float poids;
