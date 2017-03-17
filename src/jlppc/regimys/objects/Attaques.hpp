@@ -3,7 +3,7 @@ Attaques.hpp
 Auteur : Jlppc
 Fichier sous licence GPL-3.0
 http://regimys.tk
-Contient les dÈfinitions des classes des attaques
+Contient les d√©finitions des classes des attaques
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUES_HPP_
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUES_HPP_
@@ -13,7 +13,7 @@ Contient les dÈfinitions des classes des attaques
 #include "OpMon.hpp"
 #include "Attaque.hpp"
 #include "../../utils/Class.hpp"
-/**Macros permettant de facilitÈ l'Ècriture des classes*/
+/**Macros permettant de facilit√© l'√©criture des classes*/
 #define ATK_CLASS(name) class name : public Attaque {\
 public:
 
@@ -23,7 +23,7 @@ public:
                         return new NAME();\
                     }
 /**
-Namespace contenant les dÈfinitions des attaques
+Namespace contenant les d√©finitions des attaques
 */
 //->NoDoc
 namespace Attaques {
@@ -65,7 +65,7 @@ namespace Attaques {
 			static Class<Aiguisage> *classe;
 	};
 	ATK_CLASS(Amnesie)
-			Amnesie() : Attaque("AmnÈsie", 0, Type::PSY, 100, false, true, -1, true, 20, 0) {}
+			Amnesie() : Attaque("Amn√©sie", 0, Type::PSY, 100, false, true, -1, true, 20, 0) {}
 			EAv {return 0;}
 			EAp;
 			static Class<Amnesie> *classe;
@@ -80,7 +80,7 @@ namespace Attaques {
 	};
 
 	ATK_CLASS(Belier)
-			Belier() : Attaque("BÈlier", 90, Type::NORMAL, 85, false, false, 16, false, 20, 0) {}
+			Belier() : Attaque("B√©lier", 90, Type::NORMAL, 85, false, false, 16, false, 20, 0) {}
 			EAv {return 0;}
 			EAp;
 			static Class<Belier> *classe;
@@ -135,7 +135,7 @@ namespace Attaques {
 
     };
     ATK_CLASS(BueeNoire)
-        BueeNoire() : Attaque("BuÈe Noire", 0, Type::GLACE, 100, false, true, -1, true, 35, 0) {}
+        BueeNoire() : Attaque("Bu√©e Noire", 0, Type::GLACE, 100, false, true, -1, true, 35, 0) {}
         EAv {return 0;}
         EAp;
         static Class<BueeNoire> *classe;
@@ -215,7 +215,7 @@ ATK_CLASS(CoupdBoule)
     };
 
 ATK_CLASS(CoudKrane)
-	CoudKrane(): Attaque ("Coud'Kr‚ne", 130, Type::NORMAL, 100, false, false, 16, false, 10, 0) {}
+	CoudKrane(): Attaque ("Coud'Kr√¢ne", 130, Type::NORMAL, 100, false, false, 16, false, 10, 0) {}
 	EAv;
 	EAp {return 0;}
     	static Class<CoudKrane> *classe;
@@ -252,11 +252,19 @@ ATK_CLASS(CruAiles)
 
 };
 ATK_CLASS(Damocles)
-	Damocles(): Attaque ("DamoclËs", 120, Type::NORMAL, 100, false, false, 16, false, 15, 0) {}
+	Damocles(): Attaque ("Damocl√®s", 120, Type::NORMAL, 100, false, false, 16, false, 15, 0) {}
 	EAv {return 0;}
 	EAp;
 	static Class<Damocles> *classe;
 };
+ATK_CLASS(DanseFleur)
+	DanseFleur(): Attaque ("Danse-Fleur", 120, Type::PLANTE, 100, true, false, 16, false, 10, 0) {}
+	EAv {return 0;}
+	EAp;
+	static Class<DanseFleur> *classe;
+};
+
+
 
 
 }
