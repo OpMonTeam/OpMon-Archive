@@ -233,6 +233,25 @@ ATK_CLASS(CrocFatal)
 	EAp {return 0;}
 	static Class<CrocFatal> *classe;
   };
+ATK_CLASS(CrocFeu)
+	CrocFeu(): Attaque ("Crocs Feu", 65, Type::FEU, 95, false, false, 16, false, 15, 0) {}
+	EAv {return 0;}
+	EAp;
+	static Class<CrocFeu> *classe;
+  };
+ATK_CLASS(CruAiles)
+	CruAiles(): Attaque ("Cru-Ailes", 60, Type::VOL, 100, false, false, 16, false, 35, 0) {}
+	EAv {return 0;}
+	EAp {return 0;}
+        static Class<CruAiles> *classe;
+
+};
+ATK_CLASS(Damocles)
+	Damocles(): Attaque ("Damoclès", 120, Type.NORMAL, 100, false, false, 16, false, 15, 0) {}
+	EAv {return 0;}
+	EAp;
+	static Class<Damocles> *classe;
+};
 
 
 }
