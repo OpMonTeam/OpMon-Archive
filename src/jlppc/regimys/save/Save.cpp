@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include "../start/main.hpp"
+#include "../../utils/Utils.hpp"
 
 UNS
 
@@ -12,6 +13,9 @@ namespace Save{
         string outStr;
         saveOutput << "OP_SAVE" << endl;
         toSave->save();
+        outStr = SOUT.str();
+        long hash = Utils::hash(outStr);
+        outStream << outStr << hash;
     }
 
     int charToInt(char toInt) {return toInt;}
