@@ -32,7 +32,7 @@ class Player {
 		/**Soigne tous les Poké*/
 		void healOp();
 		/**Essaie d'ajouter un pokémon a l'equipe. Renvoie false si ce n'est pas possible*/
-		bool addOpToEquipe(OpMon toAdd);
+		bool addOpToEquipe(OpMon &toAdd);
 
 		void save();
 	private:

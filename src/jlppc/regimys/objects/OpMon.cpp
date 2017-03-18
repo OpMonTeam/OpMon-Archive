@@ -10,7 +10,10 @@ UNS
 
 OpMon::~OpMon() {
 	for (int i = 0; i < 4; i++) {
-		delete(attaques[i]);
+        if(attaques[i] != NULL){
+            delete(attaques[i]);
+        }
+
 	}
 }
 
@@ -70,7 +73,7 @@ int CalcCourbes::parabolique(int n) {
 int CalcCourbes::rapide(int n) {
 	return round(0.8f * pow(n, 3));
 }
-OpMon::OpMon(string surnom, Espece *espece, int level, Attaque *attaques[],
+OpMon::OpMon(string surnom, Espece *espece, int level, Attaque *attaque1, Attaque *attaque2, Attaque *attaque3, Attaque *attaque4,
 				 CaractereClass caractere) {
 	statATK = round(
 				  ((((2 * espece->getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100)
@@ -105,6 +108,10 @@ OpMon::OpMon(string surnom, Espece *espece, int level, Attaque *attaques[],
 			 + level + 10;
 	this->espece = espece;
 	this->level = level;
+	this->attaques[0] = attaque1;
+	this->attaques[1] = attaque2;
+	this->attaques[2] = attaque3;
+	this->attaques[3] = attaque4;
 	//TODO attaquesChoix Quand les attaques seront ok
 	this->caractere = caractere;
 	this->surnom = surnom;
@@ -1504,6 +1511,7 @@ void OpMon::setType2(int type){
 
 string OpMon::save(){
     if(!falsif){
+
         ostringstream oss;
         oss << surnom << endl;
         oss << Save::intToChar(atkIV) << endl;
@@ -1521,7 +1529,9 @@ string OpMon::save(){
         oss << Save::intToChar(statLove) << endl;
         oss << Save::intToChar(level) << endl;
         oss << Save::intToChar(caractere.id) << endl;
+        cout << "Break1" << endl;
         for(unsigned int i = 0; i < 4; i++){
+            cout << "Attaque : " << i << " Pointer : " << attaques[i] << endl;
             if(attaques[i] != NULL){
                 oss << attaques[i]->save();
             }else{
