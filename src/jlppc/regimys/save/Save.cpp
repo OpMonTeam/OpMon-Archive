@@ -15,7 +15,14 @@ namespace Save{
         toSave->save();
         outStr = SOUT.str();
         long hash = Utils::hash(outStr);
-        outStream << outStr << hash;
+        outStream << outStr << intToChar(hash);
+        outStream.close();
+    }
+
+    Player *loadPlayer(std::string fileIn){
+        ifstream inStream(fileIn.c_str());
+        string inStr;
+
     }
 
     int charToInt(char toInt) {return toInt;}

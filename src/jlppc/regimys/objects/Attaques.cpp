@@ -41,6 +41,7 @@ Attaque* newAtk(std::string name) {
     IF_ATK(CruAiles)
     IF_ATK(Damocles)
     IF_ATK(DanseFleur)
+    return NULL;
 
 
 }
