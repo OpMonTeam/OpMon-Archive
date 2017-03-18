@@ -20,6 +20,7 @@ namespace MainFrame{
      Mix_Music *fondMusTitle = NULL;
      Mix_Chunk *bruitArr = NULL;
      Mix_Chunk *bruitPush = NULL;
+     Mix_Chunk *bruitNope = NULL;
 
      bool continuer = true;
 
@@ -39,12 +40,14 @@ namespace MainFrame{
         fondMusTitle = Mix_LoadMUS("ressources\\audio\\music\\title.ogg");
         bruitArr = Mix_LoadWAV("ressources\\audio\\sounds\\select.ogg");
         bruitPush = Mix_LoadWAV("ressources\\audio\\sounds\\selectbuttons.ogg");
+        bruitNope = Mix_LoadWAV("ressources\\audio\\sounds\\nope.ogg");
         #else
         fond = IMG_LoadTexture(renderer, "ressources/backgrounds/titlescreen.png");
         cursor = IMG_LoadTexture(renderer, "ressources/sprites/misc/arrChoice.png");
         fondMusTitle = Mix_LoadMUS("ressources/audio/music/title.ogg");
         bruitArr = Mix_LoadWAV("ressources/audio/sounds/select.ogg");
         bruitPush = Mix_LoadWAV("ressources/audio/sounds/selectbuttons.ogg");
+        bruitNope = Mix_LoadWAV("ressources/audio/sounds/nope.ogg");
         #endif // _WIN32
         play = renderText(renderer, kget("title.1"), font, blanc, &(textPos[0]));
         charge = renderText(renderer, kget("title.2"), font, blanc, &(textPos[1]));
@@ -52,6 +55,7 @@ namespace MainFrame{
         exit = renderText(renderer, kget("title.4"), font, blanc, &(textPos[3]));
         Mix_Volume(2, MIX_MAX_VOLUME / 4);
         Mix_Volume(1, MIX_MAX_VOLUME);
+        Mix_Volume(0, MIX_MAX_VOLUME / 2);
      }
 
      void verifVars(){
@@ -97,8 +101,12 @@ namespace MainFrame{
                         case 3:
                             return -1;
                         case 2:
+                            Mix_PlayChannel(0, bruitNope, 0);
+                            Utils::wait(10000000);
                             break;
                         case 1:
+                            Mix_PlayChannel(0, bruitNope, 0);
+                            Utils::wait(10000000);
                             break;
                     }
                     break;
