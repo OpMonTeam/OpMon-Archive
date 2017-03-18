@@ -59,6 +59,7 @@ int Attaque::attack(OpMon &atk, OpMon &def) {
 #include "../start/main.hpp"
 std::string Attaque::save(){
     UNS
+    cout << "No Error!" << endl;
     ostringstream oss;
     oss << this->getClass()->getName() << endl;
     oss << this->pp << endl;

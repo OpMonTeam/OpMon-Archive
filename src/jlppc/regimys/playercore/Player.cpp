@@ -56,7 +56,7 @@ void Player::healOp() {
 	}
 }
 
-bool Player::addOpToEquipe(OpMon toAdd) {
+bool Player::addOpToEquipe(OpMon &toAdd) {
 	if (equipe.addOpMon(toAdd)) {
 		return true;
 	} else {
@@ -75,9 +75,11 @@ void Player::save(){
     }
     SOUT << Save::intToChar(pc.size());
     for(unsigned int it = 0; it < pc.size(); it++){
+        cout << "PC = " << it << endl;
         SOUT << pc[it].save();
     }
     for(unsigned int it = 0; it < 6; it++){
+        cout << "Equipe = " << it << endl;
         SOUT << equipe[it].save();
     }
 

@@ -112,7 +112,7 @@ class OpMon {
 		virtual ~OpMon();
 		//->DontUse
 		OpMon() {};
-		OpMon(std::string surnom, Espece *espece, int level, Attaque *attaques[], CaractereClass caractere);
+		OpMon(std::string surnom, Espece *espece, int level, Attaque *attaque1, Attaque *attaque2, Attaque *attaque3, Attaque *attaque4, CaractereClass caractere);
         /**Renvoie true si le pokémon est bien capturé.*/
 		bool captured(I_Opball const &Opball);
 		/**Permet de changer une stat, les possibilités d'entrées dans le paramètre stat sont "ATK" "DEF" "ATKSPE" "DEFSPE" "VIT" "PV"*/

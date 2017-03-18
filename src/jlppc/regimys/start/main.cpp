@@ -117,7 +117,8 @@ int quit(int returne) {
 	return returne;
 }
 
-
+#include "../objects/Attaques.hpp"
+#include "../save/Save.hpp"
 int main(int argc, char *argv[])
 {
 
@@ -128,7 +129,23 @@ int main(int argc, char *argv[])
 		if (str == "--version") {
 			cout << "OpMon Regimys version " << Main::versionS << endl;
 			exit(0);
-		} else {
+		} else if(str == "--test"){
+            Player py = Player("Nom");
+            Initializer::init();
+            OpMon op1 = OpMon("Herbefolle", Initializer::listeOp[3], 10, Attaques::newAtk("Charge"), Attaques::newAtk("Acide"), Attaques::newAtk("Damocles"), NULL, Caractere::BIZARRE);
+            OpMon op2 = OpMon(Initializer::listeOp[8]->getNom(), Initializer::listeOp[8], 10, Attaques::newAtk("Charge"), Attaques::newAtk("Acide"), Attaques::newAtk("Damocles"), NULL, Caractere::DOCILE);
+            OpMon op3 = OpMon("Joker", Initializer::listeOp[10], 10, Attaques::newAtk("Charge"), Attaques::newAtk("Acide"), Attaques::newAtk("Damocles"), NULL, Caractere::SERIEUX);
+            py.addOpMonToPC(op1);
+            py.addOpToEquipe(op2);
+            py.addOpToEquipe(op3);
+            py.addItem(6);
+            py.addItem(6);
+            py.addItem(10);
+            py.addItem(10);
+            py.addItem(10);
+            Save::save(&py, "save.osave");
+		}
+		else {
 			cout << "Arguments ignorés, passage a la suite." << endl;
 		}
 	}
