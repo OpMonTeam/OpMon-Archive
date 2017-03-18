@@ -19,6 +19,7 @@ namespace MainFrame{
         extern Mix_Music *fondMusTitle;
         extern Mix_Chunk *bruitArr;
         extern Mix_Chunk *bruitPush;
+        extern Mix_Chunk *bruitNope;
 
         extern bool continuer;
 
