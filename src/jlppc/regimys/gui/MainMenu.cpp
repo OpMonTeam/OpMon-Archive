@@ -102,11 +102,9 @@ namespace MainFrame{
                             return -1;
                         case 2:
                             Mix_PlayChannel(0, bruitNope, 0);
-                            Utils::wait(10000000);
                             break;
                         case 1:
                             Mix_PlayChannel(0, bruitNope, 0);
-                            Utils::wait(10000000);
                             break;
                     }
                     break;
