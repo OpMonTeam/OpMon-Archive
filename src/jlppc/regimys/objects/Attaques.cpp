@@ -1,4 +1,3 @@
-
 #include "Attaques.hpp"
 
 void initAttaquesClass(void) {
@@ -8,43 +7,43 @@ void initAttaquesClass(void) {
 
 namespace Attaques {
 
-    Attaque* newAtk(std::string name){
-        IF_ATK(Abime)
-        IF_ATK(Acidarmure)
-        IF_ATK(Acide)
-        IF_ATK(Affutage)
-        IF_ATK(Aiguisage)
-        IF_ATK(Amnesie)
-        IF_ATK(Armure)
-        IF_ATK(Belier)
-        IF_ATK(Balayage)
-        IF_ATK(BecVrille)
-        IF_ATK(Berceuse)
-        IF_ATK(BombOeuf)
-        IF_ATK(Bouclier)
-        IF_ATK(Brouillard)
-        IF_ATK(BueeNoire)
-        IF_ATK(BullesDo)
-        IF_ATK(CageEclair)
-        IF_ATK(CanonGraine)
-        IF_ATK(Cascade)
-        IF_ATK(Charge)
-        IF_ATK(ChocMental)
-        IF_ATK(ChocPsy)
-        IF_ATK(ComboGriffe)
-        IF_ATK(Conversion)
-        IF_ATK(CoupdBoule)
-        IF_ATK(CoudKrane)
-        IF_ATK(CoupeVent)
-        IF_ATK(CrocDeMort)
-        IF_ATK(CrocFatal)
-        IF_ATK(CrocFeu)
-        IF_ATK(CruAiles)
-        IF_ATK(Damocles)
-        IF_ATK(DanseFleur)
-    
-    
-    }
+Attaque* newAtk(std::string name) {
+    IF_ATK(Abime)
+    IF_ATK(Acidarmure)
+    IF_ATK(Acide)
+    IF_ATK(Affutage)
+    IF_ATK(Aiguisage)
+    IF_ATK(Amnesie)
+    IF_ATK(Armure)
+    IF_ATK(Belier)
+    IF_ATK(Balayage)
+    IF_ATK(BecVrille)
+    IF_ATK(Berceuse)
+    IF_ATK(BombOeuf)
+    IF_ATK(Bouclier)
+    IF_ATK(Brouillard)
+    IF_ATK(BueeNoire)
+    IF_ATK(BullesDo)
+    IF_ATK(CageEclair)
+    IF_ATK(CanonGraine)
+    IF_ATK(Cascade)
+    IF_ATK(Charge)
+    IF_ATK(ChocMental)
+    IF_ATK(ChocPsy)
+    IF_ATK(ComboGriffe)
+    IF_ATK(Conversion)
+    IF_ATK(CoupdBoule)
+    IF_ATK(CoudKrane)
+    IF_ATK(CoupeVent)
+    IF_ATK(CrocDeMort)
+    IF_ATK(CrocFatal)
+    IF_ATK(CrocFeu)
+    IF_ATK(CruAiles)
+    IF_ATK(Damocles)
+    IF_ATK(DanseFleur)
+
+
+}
 
 Class<Abime> *Abime::classe = new Class<Abime>("Abime", 0xFFFF);
 Class<Acidarmure> *Acidarmure::classe = new Class<Acidarmure>("Acidarmure", 0xFFFE);
@@ -78,7 +77,7 @@ Class<CrocFatal> *CrocFatal::classe = new Class<CrocFatal>("CrocFatal", 0xFFE3);
 Class<CrocFeu> *CrocFeu::classe = new Class<CrocFeu>("CrocFeu", 0xFFE2);
 Class<CruAiles> *CruAiles::classe = new Class<CruAiles>("CruAiles", 0xFFE1);
 Class<Damocles> *Damocles::classe = new Class<Damocles>("Damocles", 0xFFE0);
-Class<Dansefleur> *DanseFleur::classe = new Class<DanseFleur>("DanseFleur", 0xFFDF);
+Class<DanseFleur> *DanseFleur::classe = new Class<DanseFleur>("DanseFleur", 0xFFDF);
 
 
 int Abime::effetAvant(OpMon &atk, OpMon &def) {
@@ -339,26 +338,25 @@ int Damocles::effetApres(OpMon &atk, OpMon &def) {
 
 
 int DanseFleur::effetApres(OpMon &atk, OpMon &def) {
-    if(part == 0){
-            part = 1;
-    }else if(part == 1){
-			pp++;
-			if(Start.rand.nextBoolean()){
-                    part = 2
-            }else{
-                    part = 0;
-                    atk.confus = true;    
-            }
-    }else{
-              pp++;
-              part = 0
-              atk.confus = true
-                  
+    if(part == 0) {
+        part = 1;
+    } else if(part == 1) {
+        pp++;
+        if(Utils::randU(1) == 0) {
+            part = 2;
+        } else {
+            part = 0;
+            atk.confus = true;
+        }
+    } else {
+        pp++;
+        part = 0;
+        atk.confus = true;
+
     }
 }
-}
-                 
-        
+
+
 
 };
 

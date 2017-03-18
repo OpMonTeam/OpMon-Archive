@@ -40,13 +40,13 @@
 1489691654 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/enums/Caractere.hpp
 	"Enums.hpp"
 
-1489689674 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/objects/Espece.hpp
+1489848743 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/objects/Espece.hpp
 	<iostream>
 	"../../utils/NumberedArray.hpp"
 	"item/CT.hpp"
 	<vector>
 
-1488910133 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/utils/NumberedArray.hpp
+1489848743 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/utils/NumberedArray.hpp
 	<iostream>
 	"Class.hpp"
 
@@ -55,10 +55,11 @@
 	"Item.hpp"
 	"../Attaque.hpp"
 
-1489691488 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/objects/Attaque.hpp
+1489848743 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/objects/Attaque.hpp
 	<iostream>
 	"../../utils/Utils.hpp"
 	"../enums/Enums.hpp"
+	"../../utils/Class.hpp"
 
 1489600997 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/utils/Utils.hpp
 	<ctime>
@@ -415,7 +416,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1489600997 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/MainFrame.cpp
+1489849871 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/MainFrame.cpp
 	"MainFrame.hpp"
 	<iostream>
 	"../start/main.hpp"
@@ -491,16 +492,18 @@
 	<SDL/SDL_mixer.h>
 	"../start/bigDefines.hxx"
 
-1489513614 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/bigDefines.hxx
+1489848743 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/bigDefines.hxx
 
-1488910133 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/objects/Attaque.cpp
+1489848743 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/objects/Attaque.cpp
 	"Attaque.hpp"
 	"OpMon.hpp"
+	<sstream>
+	"../start/main.hpp"
 
-1489691508 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/objects/Attaques.cpp
+1489849276 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/objects/Attaques.cpp
 	"Attaques.hpp"
 
-1489691441 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/objects/Attaques.hpp
+1489848743 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/objects/Attaques.hpp
 	<iostream>
 	<cmath>
 	"OpMon.hpp"
@@ -534,7 +537,7 @@
 	"Item.hpp"
 	"../../start/main.hpp"
 
-1489691522 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/objects/OpMon.cpp
+1489848743 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/objects/OpMon.cpp
 	"OpMon.hpp"
 	"../start/main.hpp"
 	"../evolution/Evolution.hpp"
@@ -546,12 +549,12 @@
 1488910133 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/playercore/Equipe.cpp
 	"Equipe.hpp"
 
-1489689674 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/playercore/Player.cpp
+1489848743 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/playercore/Player.cpp
 	"Player.hpp"
 	"../start/main.hpp"
 	"../save/Save.hpp"
 
-1489513614 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/Initializer.cpp
+1489848743 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/Initializer.cpp
 	"Initializer.hpp"
 	"../enums/Enums.hpp"
 	"../objects/Attaques.hpp"
@@ -559,7 +562,7 @@
 	"main.hpp"
 	<SDL/SDL.h>
 
-1489340924 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/Initializer.hpp
+1489848743 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/Initializer.hpp
 	<iostream>
 	<vector>
 	"../../utils/NumberedArray.hpp"
@@ -955,13 +958,13 @@
 	"File.hpp"
 	"../regimys/start/main.hpp"
 
-1488910133 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/utils/NumberedArray.cpp
+1489848743 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/utils/NumberedArray.cpp
 	"NumberedArray.hpp"
 
 1489600997 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/utils/Utils.cpp
 	"Utils.hpp"
 
-1489600997 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/StartScene.cpp
+1489848743 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/StartScene.cpp
 	"StartScene.hpp"
 	"../start/main.hpp"
 	"MainFrame.hpp"
