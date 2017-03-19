@@ -7,6 +7,7 @@ Look <a href="#------in-english-------"> In English</a><br/>
 Bienvenue sur le projet de OPMon Lazuli! Le clone <a href="https://github.com/jlppc/OpMon/wiki/FAQ">libre</a> de la celebre license de Nintendo !<br/>
 <a href="https://github.com/jlppc/OpMon/wiki/Journal-du-developpement">Journal de developpement</a><br/>
 <a href="http://opmon-game.ga">Site web du jeu</a><br/>
+<a href="https://github.com/jlppc/OpMon/blob/master/Credits.md">Crédits</a><br/>
 <a href="https://github.com/jlppc/Site-OpMon">Dépot du site web du jeu</a><br/><br/>
 <br/>Version du jeu : Alpha 0.08 | Téléchargement : <a href="https://github.com/jlppc/OpMon/releases/download/alpha-v0.08/setup.exe"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 Prochaines versions :<ul>
