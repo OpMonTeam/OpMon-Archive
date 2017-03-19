@@ -108,10 +108,12 @@ OpMon::OpMon(string surnom, Espece *espece, int level, Attaque *attaque1, Attaqu
 			 + level + 10;
 	this->espece = espece;
 	this->level = level;
+
 	this->attaques[0] = attaque1;
 	this->attaques[1] = attaque2;
 	this->attaques[2] = attaque3;
 	this->attaques[3] = attaque4;
+
 	//TODO attaquesChoix Quand les attaques seront ok
 	this->caractere = caractere;
 	this->surnom = surnom;
