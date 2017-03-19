@@ -16,5 +16,7 @@
 ## Remerciments spéciaux (Encouragements) : <ul>
 <li><h3>GlueBie</h3></li>
 <li><h3>Sythos</h3></li>
+<li><h3><a href="http://osaris.net/">Osaris</a></h3></li>
+<li><h3>Nos familles!</h3></li>
 <li><h4>Et autres...</h4></li>
 </ul>
