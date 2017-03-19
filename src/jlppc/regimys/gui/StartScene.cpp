@@ -19,8 +19,8 @@ namespace MainFrame{
         //Part 0
 		bool continuer = true;
 		long ancientTick = 0;
-		string txtP0[9];//Deux cases == Deux lignes. 3 cases == Deux lignes + un nouveau dialogue
-		int sizeOfTxt = 9;
+		string txtP0[18];//Deux cases == Deux lignes. 3 cases == Deux lignes + un nouveau dialogue
+		int sizeOfTxt = 18;
 		string txtEnCours[] = {string(" "), string(" "), string(" ")};
 		SDL_Surface *sfce = NULL;
 		int line = 0, i = 0, dialog = 0;
@@ -59,17 +59,17 @@ namespace MainFrame{
 		/**Initialise les variables*/
 		void initVars() {
 		    unsigned int it = 0;
-		    for(it = 0; it < 9; it++){
+		    for(it = 0; it < 18; it++){
                 ostringstream oss;
-                oss << "jlppc.dialog.start." << it + 1;
+                oss << "prof.dialog.start." << it + 1;
                 txtP0[it] = kget(oss.str());
 		    }
 		    int ite = 1;
 		    it++;
-		    txtP1[0] = "";
-            for(it = it; it < 15 + 9; it++){
+		    txtP1[0] = kget("prof.dialog.start.19");
+            for(it = it; it < 27; it++){
                 ostringstream oss;
-                oss << "jlppc.dialog.start." << it + 1;
+                oss << "prof.dialog.start." << it + 1;
                 txtP1[ite] = kget(oss.str());
                 ite++;
             }
@@ -548,11 +548,11 @@ namespace MainFrame{
 
             anim1();
 
-            txtP1[0] = kget("jlppc.dialog.start.10") + string(pName) + "...";
+            txtP1[0]+=(string(pName) + kget("prof.dialog.start.19.5"));
 
 			phase = 2;
 
-			sizeOfTxt = 15;
+			sizeOfTxt = 27 - 18;
 			i = 0;
 			line = 0;
 			dialog = 0;
