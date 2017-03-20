@@ -42,6 +42,7 @@ Attaque* newAtk(std::string name) {
     IF_ATK(Damocles)
     IF_ATK(DanseFleur)
     IF_ATK(DanseLames)
+    IF_ATK(Deflagration)
     return NULL;
 
 
@@ -81,7 +82,8 @@ Class<CruAiles> *CruAiles::classe = new Class<CruAiles>("CruAiles", 0xFFE1);
 Class<Damocles> *Damocles::classe = new Class<Damocles>("Damocles", 0xFFE0);
 Class<DanseFleur> *DanseFleur::classe = new Class<DanseFleur>("DanseFleur", 0xFFDF);
 Class<DanseLames> *DanseLames::classe = new Class<DanseLames>("DanseLames", 0xFFDE);
-
+Class<Deflagration> *Deflagration::classe = new Class<Deflagration>("Deflagration", 0xFFDD);
+    
 
     
     
@@ -365,9 +367,13 @@ int DanseLames::effetApres(OpMon &atk, OpMon &def) {
     }
 }
 
-
+int Deflagration::effetApres(OpMon &atk, OpMon &def) {
+    if(Utils::randU(10) == 5){
+    if(def.setStatus(Status::BRULURE)){
        
-
+    }
+    }
+}
 
     
     
