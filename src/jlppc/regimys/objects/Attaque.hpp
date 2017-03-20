@@ -21,7 +21,7 @@ Représente une attaque Pokémon
 class Attaque {
 	public:
 		virtual ~Attaque() {}
-		Attaque(std::string nom, int puissance, int type, int precision, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite);
+		Attaque(std::string nom, int puissance, int type, int precision, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite, std::string className);
 		//->PureVirtual
 		virtual int effetAvant(OpMon &atk, OpMon &def) = 0;
 		//->PureVirtual
@@ -35,6 +35,7 @@ class Attaque {
 		virtual Class<Attaque>* getClass() {return classe;}
 		virtual std::string save();
 	protected:
+	    std::string className;
 		std::string nom;
 		int puissance;
 		int priorite;

@@ -113,6 +113,7 @@ OpMon::OpMon(string surnom, Espece *espece, int level, Attaque *attaque1, Attaqu
 	this->attaques[1] = attaque2;
 	this->attaques[2] = attaque3;
 	this->attaques[3] = attaque4;
+	cout << this->attaques[0]->save() << endl;
 
 	//TODO attaquesChoix Quand les attaques seront ok
 	this->caractere = caractere;
@@ -1510,7 +1511,6 @@ void OpMon::setType1(int type){
 void OpMon::setType2(int type){
     this->type2 = type;
 }
-
 string OpMon::save(){
     if(!falsif){
 
@@ -1531,21 +1531,58 @@ string OpMon::save(){
         oss << Save::intToChar(statLove) << endl;
         oss << Save::intToChar(level) << endl;
         oss << Save::intToChar(caractere.id) << endl;
+        cout << attaques[0]->getType() << endl;
         cout << "Break1" << endl;
-        for(unsigned int i = 0; i < 4; i++){
-            cout << "Attaque : " << i << " Pointer : " << attaques[i] << endl;
-            if(attaques[i] != NULL){
-                oss << attaques[i]->save();
+        /*for(unsigned int it = 0; it < 4; it++){
+            cout << "Attaque : " << it << " Pointer : " << attaques[it] << endl;
+            Attaque *atk = attaques[it];
+            cout << "Pointer : " << atk << endl;
+            if(atk != NULL){
+                cout << "Attaque no NULL" << endl;
+                oss << atk->save();
             }else{
+                cout << "Attaque NULL" << endl;
                 oss << "NULL" << endl;
             }
+        }*/
+        cout << "Attaque : " << 0 << " Pointer : " << attaques[0] << endl;
+        cout << "Attaque : " << 1 << " Pointer : " << attaques[1] << endl;
+        cout << "Attaque : " << 2 << " Pointer : " << attaques[2] << endl;
+        cout << "Attaque : " << 3 << " Pointer : " << attaques[3] << endl;
+        if(attaques[0] != NULL){
+            oss << attaques[0]->save();
+        }else{
+            oss << "NULL" << endl;
         }
+        if(attaques[1] != NULL){
+            oss << attaques[1]->save();
+        }else{
+            oss << "NULL" << endl;
+        }
+        if(attaques[2] != NULL){
+            oss << attaques[2]->save();
+        }else{
+            oss << "NULL" << endl;
+        }
+        if(attaques[3] != NULL){
+            oss << attaques[3]->save();
+        }else{
+            oss << "NULL" << endl;
+        }
+        cout << "Break2" << endl;
         oss << Save::intToChar(espece->getOpdexNumber()) << endl;
+        cout << "Break3" << endl;
         oss << Save::intToChar(PV) << endl;
         oss << Save::intToChar(exp) << endl;
         oss << Save::intToChar(toNextLevel) << endl;
         oss << Save::intToChar(expBoost) << endl;
-        oss << Save::intToChar(held->getID()) << endl;
+        if(held != NULL){
+            oss << "Y" << endl;
+            oss << Save::intToChar(held->getID()) << endl;
+        }else{
+            oss << "N" << endl;
+            oss << endl;
+        }
         oss << Save::intToChar(tauxCapture) << endl;
         return oss.str();
     }else{

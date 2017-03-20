@@ -31,41 +31,41 @@ namespace Attaques {
     Attaque* newAtk(std::string name);
 
 	ATK_CLASS(Abime)
-			Abime() : Attaque("Abime", 99999, Type::SOL, 30, false, false, -1, false, 5, 0) {}
+			Abime() : Attaque("Abime", 99999, Type::SOL, 30, false, false, -1, false, 5, 0, "Abime") {}
 			EAv;
 			EAp {return 0;}
 			static Class<Abime> *classe;
 	};
 
 	ATK_CLASS(Acidarmure)
-			Acidarmure() : Attaque("Acidarmure", 0, Type::POISON, 100, false, true, -1, true, 20, 0) {}
+			Acidarmure() : Attaque("Acidarmure", 0, Type::POISON, 100, false, true, -1, true, 20, 0, "Acidarmure") {}
 			EAv {return 0;}
 			EAp;
 			static Class<Acidarmure> *classe;
 	};
 
 	ATK_CLASS(Acide)
-			Acide() : Attaque("Acide", 40, Type::POISON, 100, true, false, 16, false, 30, 0) {}
+			Acide() : Attaque("Acide", 40, Type::POISON, 100, true, false, 16, false, 30, 0, "Acide") {}
 			EAv {return 0;}
 			EAp;
 			static Class<Acide> *classe;
 	};
 
 	ATK_CLASS(Affutage)
-			Affutage() : Attaque("Affutage", 0, Type::NORMAL, 100, false, true, -1, true, 30, 0) {}
+			Affutage() : Attaque("Affutage", 0, Type::NORMAL, 100, false, true, -1, true, 30, 0, "Affutage") {}
 			EAv {return 0;}
 			EAp;
 			static Class<Affutage> *classe;
 	};
 
 	ATK_CLASS(Aiguisage)
-			Aiguisage() : Attaque("Aiguisage", 0, Type::NORMAL, 100, false, true, -1, true, 15, 0) {}
+			Aiguisage() : Attaque("Aiguisage", 0, Type::NORMAL, 100, false, true, -1, true, 15, 0, "Aiguisage") {}
 			EAv {return 0;}
 			EAp;
 			static Class<Aiguisage> *classe;
 	};
 	ATK_CLASS(Amnesie)
-			Amnesie() : Attaque("Amnésie", 0, Type::PSY, 100, false, true, -1, true, 20, 0) {}
+			Amnesie() : Attaque("Amnésie", 0, Type::PSY, 100, false, true, -1, true, 20, 0, "Amnesie") {}
 			EAv {return 0;}
 			EAp;
 			static Class<Amnesie> *classe;
@@ -73,27 +73,27 @@ namespace Attaques {
 	};
 
 	ATK_CLASS(Armure)
-			Armure() : Attaque("Armure", 0, Type::NORMAL, 100, false, true, -1, true, 30, 0) {}
+			Armure() : Attaque("Armure", 0, Type::NORMAL, 100, false, true, -1, true, 30, 0, "Armure") {}
 			EAv {return 0;}
 			EAp;
 			static Class<Armure> *classe;
 	};
 
 	ATK_CLASS(Belier)
-			Belier() : Attaque("Bélier", 90, Type::NORMAL, 85, false, false, 16, false, 20, 0) {}
+			Belier() : Attaque("Bélier", 90, Type::NORMAL, 85, false, false, 16, false, 20, 0, "Belier") {}
 			EAv {return 0;}
 			EAp;
 			static Class<Belier> *classe;
 	};
 
 	ATK_CLASS(Balayage)
-			Balayage() : Attaque("Balayage", 0, Type::COMBAT, 100, false, false, 16, false, 20, 0) {}
+			Balayage() : Attaque("Balayage", 0, Type::COMBAT, 100, false, false, 16, false, 20, 0, "Balayage") {}
 			EAv;
 			EAp {return 0;}
 			static Class<Balayage> *classe;
 	};
 	ATK_CLASS(BecVrille)
-			BecVrille() : Attaque("Bec Vrille", 80, Type::VOL, 100, false, false, 16, false, 20, 0) {}
+			BecVrille() : Attaque("Bec Vrille", 80, Type::VOL, 100, false, false, 16, false, 20, 0, "BecVrille") {}
 			EAv {return 0;}
 			EAp {return 0;}
 			static  Class<BecVrille> *classe;
@@ -101,7 +101,7 @@ namespace Attaques {
 	};
 
 	ATK_CLASS(Berceuse)
-			Berceuse() : Attaque("Berceuse", 0, Type::NORMAL, 55, false, true, -1, false, 15, 0) {}
+			Berceuse() : Attaque("Berceuse", 0, Type::NORMAL, 55, false, true, -1, false, 15, 0, "Berceuse") {}
 			EAv {return 0;}
 			EAp;
 			static  Class<Berceuse> *classe;
@@ -252,19 +252,19 @@ ATK_CLASS(CruAiles)
 
 };
 ATK_CLASS(Damocles)
-	Damocles(): Attaque ("Damoclès", 120, Type::NORMAL, 100, false, false, 16, false, 15, 0) {}
+	Damocles(): Attaque("Damoclès", 120, Type::NORMAL, 100, false, false, 16, false, 15, 0) {}
 	EAv {return 0;}
 	EAp;
 	static Class<Damocles> *classe;
 };
 ATK_CLASS(DanseFleur)
-	DanseFleur(): Attaque ("Danse-Fleur", 120, Type::PLANTE, 100, true, false, 16, false, 10, 0) {}
+	DanseFleur(): Attaque("Danse-Fleur", 120, Type::PLANTE, 100, true, false, 16, false, 10, 0) {}
 	EAv {return 0;}
 	EAp;
 	static Class<DanseFleur> *classe;
 };
 ATK_CLASS(DanseLames)
-	DanseFlames(): Attaque ("Danse-Lames", 0, Type::NORMAL, 100, false, true, -1, true, 20, 0) {}
+	DanseLames(): Attaque("Danse-Lames", 0, Type::NORMAL, 100, false, true, -1, true, 20, 0) {}
 	EAv {return 0;}
 	EAp;
 	static Class<DanseLames> *classe;

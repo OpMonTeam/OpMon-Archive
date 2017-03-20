@@ -132,7 +132,7 @@ int main(int argc, char *argv[])
 		} else if(str == "--test"){
             Player py = Player("Nom");
             Initializer::init();
-            OpMon op1 = OpMon("Herbefolle", Initializer::listeOp[3], 10, Attaques::newAtk("Charge"), Attaques::newAtk("Acide"), Attaques::newAtk("Damocles"), NULL, Caractere::BIZARRE);
+            OpMon op1 = OpMon("Herbefolle", Initializer::listeOp[3], 10, new Charge(), new Acide(), Attaques::newAtk("Damocles"), NULL, Caractere::BIZARRE);
             OpMon op2 = OpMon(Initializer::listeOp[8]->getNom(), Initializer::listeOp[8], 10, Attaques::newAtk("Charge"), Attaques::newAtk("Acide"), Attaques::newAtk("Damocles"), NULL, Caractere::DOCILE);
             OpMon op3 = OpMon("Joker", Initializer::listeOp[10], 10, Attaques::newAtk("Charge"), Attaques::newAtk("Acide"), Attaques::newAtk("Damocles"), NULL, Caractere::SERIEUX);
             py.addOpMonToPC(op1);
