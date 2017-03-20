@@ -6,6 +6,9 @@ Player::Player(std::string name) {
 	this->name = name;
 	dressID = Utils::randUI(0xFFFFFFFF);
 	equipe = Equipe(name);
+	for(unsigned int i = 0; i < ITEM_NUMBER; i++){
+        bag[i] = 0;
+	}
 
 }
 
@@ -73,13 +76,11 @@ void Player::save(){
     for(unsigned int it = 0; it < ITEM_NUMBER; it++){
         SOUT << Save::intToChar(bag[it]) << endl;
     }
-    SOUT << Save::intToChar(pc.size());
+    SOUT << Save::intToChar(pc.size()) << endl;
     for(unsigned int it = 0; it < pc.size(); it++){
-        cout << "PC = " << it << endl;
         SOUT << pc[it]->save();
     }
     for(unsigned int it = 0; it < 6; it++){
-        cout << "Equipe = " << it << endl;
         SOUT << equipe[it]->save();
     }
 
