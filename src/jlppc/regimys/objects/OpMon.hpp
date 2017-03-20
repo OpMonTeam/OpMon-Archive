@@ -207,6 +207,7 @@ public:
         return held;   //C'est un getteur. Y'a pas get mais je m'en fous. C'est un getteur.
     }
     std::string save();
+    static OpMon* load(std::ifstream &in);
 };
 
 
