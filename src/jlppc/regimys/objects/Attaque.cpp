@@ -5,7 +5,7 @@
 
 Class <Attaque> *Attaque::classe = new Class<Attaque>("Attaque", NULL);
 
-Attaque::Attaque(std::string nom, int puissance, int type, int precision, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite) {
+Attaque::Attaque(std::string nom, int puissance, int type, int precision, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite, std::string className) {
 	this->nom = nom;
 	this->puissance = puissance;
 	this->type = type;
@@ -16,6 +16,7 @@ Attaque::Attaque(std::string nom, int puissance, int type, int precision, bool s
 	this->rateJamais = rateJamais;
 	this->pp = this->ppMax = ppMax;
 	this->priorite = priorite;
+	this->className = className;
 }
 
 /*Pour les returns, equivalent exceptions java : Soit SameAtkPartTwo, qui ordonne de lancer la meme attaque au prochain tour (1)
@@ -59,7 +60,7 @@ int Attaque::attack(OpMon &atk, OpMon &def) {
 #include "../start/main.hpp"
 std::string Attaque::save(){
     UNS
-    cout << "No Error!" << endl;
+    cout << "OK" << endl;
     ostringstream oss;
     oss << this->getClass()->getName() << endl;
     oss << this->pp << endl;
