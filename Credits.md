@@ -1,7 +1,8 @@
 # Crédits du projet
 ## Programmeur, inventeur du projet : Jlppc
-## Graphiste, co-inventeur du projet : Navet56
-## Collaborateur important : Aerzia
+## Game-Designer, graphiste, co-inventeur du projet : Navet56
+## Collaborateurs importants : Aerzia
+## et Silvermoon qui a été l'inventrice de pas mal d'OpMons
 ## Contributeurs occasionels : <ul>
 <li><h3>linkyFR</h3></li>
 <li><h3>dogmotion</h3></li>
@@ -15,6 +16,7 @@
 
 ## Remerciments spéciaux (Encouragements) : <ul>
 <li><h3>GlueBie</h3></li>
+<li><h3>Lebordelic</h3></li>
 <li><h3>Sythos</h3></li>
 <li><h3><a href="http://osaris.net/">Osaris</a></h3></li>
 <li><h3>Nos familles!</h3></li>
