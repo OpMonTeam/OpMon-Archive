@@ -113,7 +113,6 @@ OpMon::OpMon(string surnom, Espece *espece, int level, Attaque *attaque1, Attaqu
 	this->attaques[1] = attaque2;
 	this->attaques[2] = attaque3;
 	this->attaques[3] = attaque4;
-	cout << this->attaques[0]->save() << endl;
 
 	//TODO attaquesChoix Quand les attaques seront ok
 	this->caractere = caractere;

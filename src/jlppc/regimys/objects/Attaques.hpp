@@ -108,69 +108,69 @@ namespace Attaques {
 	};
 
     ATK_CLASS(Blizzard)
-            Blizzard() : Attaque("Blizzard", 110, Type::GLACE, 70, true, false, 16, false, 5, 0) {}
+            Blizzard() : Attaque("Blizzard", 110, Type::GLACE, 70, true, false, 16, false, 5, 0, "Blizzard") {}
             EAv {return 0;}
             EAp;
             static Class<Blizzard> *classe;
     	};
 
     ATK_CLASS(BombOeuf)
-        BombOeuf() : Attaque("Bomb'\u0152uf", 100, Type::NORMAL, 75, false, false, 16, false, 10, 0) {}
+        BombOeuf() : Attaque("Bomb'\u0152uf", 100, Type::NORMAL, 75, false, false, 16, false, 10, 0, "BombOeuf") {}
         EAv {return 0;}
         EAp {return 0;}
         static Class<BombOeuf> *classe;
     };
     ATK_CLASS(Bouclier)
-        Bouclier() : Attaque("Bouclier", 0, Type::PSY, 100, false, true, -1, true, 20, 0 ) {}
+        Bouclier() : Attaque("Bouclier", 0, Type::PSY, 100, false, true, -1, true, 20, 0, "Bouclier") {}
         EAv {return 0;}
         EAp;
         static Class<Bouclier> *classe;
 
     };
     ATK_CLASS(Brouillard)
-        Brouillard() : Attaque("Brouillard", 0, Type::NORMAL, 100, false, true, -1, false, 20, 0) {}
+        Brouillard() : Attaque("Brouillard", 0, Type::NORMAL, 100, false, true, -1, false, 20, 0, "Brouillard") {}
         EAv {return 0;}
         EAp;
         static Class<Brouillard> *classe;
 
     };
     ATK_CLASS(BueeNoire)
-        BueeNoire() : Attaque("Buée Noire", 0, Type::GLACE, 100, false, true, -1, true, 35, 0) {}
+        BueeNoire() : Attaque("Buée Noire", 0, Type::GLACE, 100, false, true, -1, true, 35, 0, "BueeNoire") {}
         EAv {return 0;}
         EAp;
         static Class<BueeNoire> *classe;
 
     };
     ATK_CLASS(BullesDo)
-        BullesDo() : Attaque ("Bulles d'O", 65, Type::EAU, 100, true, false, 16, false, 20, 0) {}
+        BullesDo() : Attaque ("Bulles d'O", 65, Type::EAU, 100, true, false, 16, false, 20, 0, "BullesDo") {}
         EAv {return 0;}
         EAp;
         static Class<BullesDo> *classe;
 
     };
     ATK_CLASS(CageEclair)
-        CageEclair() : Attaque ("Cage Eclair", 0, Type::ELECTRIQUE, 100, false, true, -1, false, 20, 0) {}
+        CageEclair() : Attaque ("Cage Eclair", 0, Type::ELECTRIQUE, 100, false, true, -1, false, 20, 0, "CageEclair") {}
         EAv {return 0;}
         EAp;
         static Class<CageEclair> *classe;
     };
 
     ATK_CLASS(CanonGraine)
-	    CanonGraine(): Attaque ("Canon Graine", 80, Type::PLANTE, 100, false, false, 16, false, 15, 0) {}
+	    CanonGraine(): Attaque ("Canon Graine", 80, Type::PLANTE, 100, false, false, 16, false, 15, 0, "CanonGraine") {}
 	    EAv {return 0;}
 	    EAp {return 0;}
             static Class<CanonGraine> *classe;
     };
 
    ATK_CLASS(Cascade)
-	   Cascade(): Attaque ("Cascade", 80, Type::EAU, 100, false, false, 16, false, 15, 0) {}
+	   Cascade(): Attaque ("Cascade", 80, Type::EAU, 100, false, false, 16, false, 15, 0, "Cascade") {}
 	   EAv {return 0;}
 	   EAp;
 	   static Class<Cascade> *classe;
     };
 
    ATK_CLASS(Charge)
-	   Charge(): Attaque ("Charge", 50, Type::NORMAL, 100, false, false, 16, false, 35, 0) {}
+	   Charge(): Attaque ("Charge", 50, Type::NORMAL, 100, false, false, 16, false, 35, 0, "Charge") {}
 	   EAv {return 0;}
 	   EAp {return 0;};
 	   static Class<Charge> *classe;
@@ -178,7 +178,7 @@ namespace Attaques {
     };
 
    ATK_CLASS(ChocMental)
-	   ChocMental(): Attaque ("Choc Mental", 50, Type::PSY, 100, true, false, 16, false, 25, 0) {}
+	   ChocMental(): Attaque ("Choc Mental", 50, Type::PSY, 100, true, false, 16, false, 25, 0, "ChocMental") {}
 	   EAv {return 0;}
 	   EAp;
            static Class<ChocMental> *classe;
@@ -187,20 +187,20 @@ namespace Attaques {
 
   ATK_CLASS(ChocPsy)
 	  int def, defspe;
-	  ChocPsy(): Attaque ("Choc Psy", 80, Type::PSY, 100, true, false, 16, false, 10, 0) {}
+	  ChocPsy(): Attaque ("Choc Psy", 80, Type::PSY, 100, true, false, 16, false, 10, 0, "ChocPsy") {}
 	  EAv;
 	  EAp;
 	  static Class<ChocPsy> *classe;
     };
 
   ATK_CLASS(ComboGriffe)
-	  ComboGriffe(): Attaque ("Combo-Griffe", 18, Type::NORMAL, 80, false, false, 16, false, 15, 0) {}
+	  ComboGriffe(): Attaque ("Combo-Griffe", 18, Type::NORMAL, 80, false, false, 16, false, 15, 0, "ComboGriffe") {}
 	  EAv {return 0;}
 	  EAp;
 	  static Class<ComboGriffe> *classe;
     };
   ATK_CLASS(Conversion)
-	  Conversion(): Attaque ("Conversion", 0, Type::NORMAL, 100, false, true, -1, true, 30, 0) {}
+	  Conversion(): Attaque ("Conversion", 0, Type::NORMAL, 100, false, true, -1, true, 30, 0, "ComboGriffe") {}
 	  EAv {return 0;}
 	  EAp;
 	  static Class<Conversion> *classe;
@@ -208,63 +208,63 @@ namespace Attaques {
     };
 
 ATK_CLASS(CoupdBoule)
-	CoupdBoule(): Attaque ("Coup d'Boule", 70, Type::NORMAL, 100, false, false, 16, false, 15, 0) {}
+	CoupdBoule(): Attaque ("Coup d'Boule", 70, Type::NORMAL, 100, false, false, 16, false, 15, 0, "CoupdBoule") {}
 	EAv {return 0;}
 	EAp;
 	static Class<CoupdBoule> *classe;
     };
 
 ATK_CLASS(CoudKrane)
-	CoudKrane(): Attaque ("Coud'Krâne", 130, Type::NORMAL, 100, false, false, 16, false, 10, 0) {}
+	CoudKrane(): Attaque ("Coud'Krâne", 130, Type::NORMAL, 100, false, false, 16, false, 10, 0, "CoudKrane") {}
 	EAv;
 	EAp {return 0;}
     	static Class<CoudKrane> *classe;
     };
 ATK_CLASS(CoupeVent)
-	CoupeVent(): Attaque ("Coupe-Vent", 80, Type::NORMAL, 100, true, false, 8, false, 10, 0) {}
+	CoupeVent(): Attaque ("Coupe-Vent", 80, Type::NORMAL, 100, true, false, 8, false, 10, 0, "CoupeVent") {}
 	EAv;
 	EAp {return 0;}
         static Class<CoupeVent> *classe;
    };
 ATK_CLASS(CrocDeMort)
-	CrocDeMort(): Attaque ("Croc de Mort", 80, Type::NORMAL, 90, false, false, 16, false, 15, 0) {}
+	CrocDeMort(): Attaque ("Croc de Mort", 80, Type::NORMAL, 90, false, false, 16, false, 15, 0, "CrocDeMort") {}
 	EAv {return 0;}
 	EAp;
 	static Class<CrocDeMort> *classe;
    };
 ATK_CLASS(CrocFatal)
-	CrocFatal(): Attaque ("Croc Fatal", 0, Type::NORMAL, 90, false, true, -1, false, 10, 0) {}
+	CrocFatal(): Attaque ("Croc Fatal", 0, Type::NORMAL, 90, false, true, -1, false, 10, 0, "CrocFatal") {}
 	EAv;
 	EAp {return 0;}
 	static Class<CrocFatal> *classe;
   };
 ATK_CLASS(CrocFeu)
-	CrocFeu(): Attaque ("Crocs Feu", 65, Type::FEU, 95, false, false, 16, false, 15, 0) {}
+	CrocFeu(): Attaque ("Crocs Feu", 65, Type::FEU, 95, false, false, 16, false, 15, 0, "CrocFeu") {}
 	EAv {return 0;}
 	EAp;
 	static Class<CrocFeu> *classe;
   };
 ATK_CLASS(CruAiles)
-	CruAiles(): Attaque ("Cru-Ailes", 60, Type::VOL, 100, false, false, 16, false, 35, 0) {}
+	CruAiles(): Attaque ("Cru-Ailes", 60, Type::VOL, 100, false, false, 16, false, 35, 0, "CruAiles") {}
 	EAv {return 0;}
 	EAp {return 0;}
        static Class<CruAiles> *classe;
 
 };
 ATK_CLASS(Damocles)
-	Damocles(): Attaque("Damoclès", 120, Type::NORMAL, 100, false, false, 16, false, 15, 0) {}
+	Damocles(): Attaque("Damoclès", 120, Type::NORMAL, 100, false, false, 16, false, 15, 0, "Damocles") {}
 	EAv {return 0;}
 	EAp;
 	static Class<Damocles> *classe;
 };
 ATK_CLASS(DanseFleur)
-	DanseFleur(): Attaque("Danse-Fleur", 120, Type::PLANTE, 100, true, false, 16, false, 10, 0) {}
+	DanseFleur(): Attaque("Danse-Fleur", 120, Type::PLANTE, 100, true, false, 16, false, 10, 0, "DanseFleur") {}
 	EAv {return 0;}
 	EAp;
 	static Class<DanseFleur> *classe;
 };
 ATK_CLASS(DanseLames)
-	DanseLames(): Attaque("Danse-Lames", 0, Type::NORMAL, 100, false, true, -1, true, 20, 0) {}
+	DanseLames(): Attaque("Danse-Lames", 0, Type::NORMAL, 100, false, true, -1, true, 20, 0, "DanseLames") {}
 	EAv {return 0;}
 	EAp;
 	static Class<DanseLames> *classe;
