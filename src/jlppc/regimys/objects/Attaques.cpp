@@ -41,6 +41,7 @@ Attaque* newAtk(std::string name) {
     IF_ATK(CruAiles)
     IF_ATK(Damocles)
     IF_ATK(DanseFleur)
+    IF_ATK(DanseLames)
     return NULL;
 
 
@@ -79,8 +80,11 @@ Class<CrocFeu> *CrocFeu::classe = new Class<CrocFeu>("CrocFeu", 0xFFE2);
 Class<CruAiles> *CruAiles::classe = new Class<CruAiles>("CruAiles", 0xFFE1);
 Class<Damocles> *Damocles::classe = new Class<Damocles>("Damocles", 0xFFE0);
 Class<DanseFleur> *DanseFleur::classe = new Class<DanseFleur>("DanseFleur", 0xFFDF);
+Class<DanseLames> *DanseLames::classe = new Class<DanseLames>("DanseLames", 0xFFDE);
 
 
+    
+    
 int Abime::effetAvant(OpMon &atk, OpMon &def) {
     precision = ((atk.getLevel() - def.getLevel()) + 30);
     if (atk.getLevel() < def.getLevel()) {
@@ -356,9 +360,17 @@ int DanseFleur::effetApres(OpMon &atk, OpMon &def) {
 
     }
 }
+int DanseLames::effetApres(OpMon &atk, OpMon &def) {
+    if(atk.changeATK(2)){
+    }
+}
 
 
+       
 
+
+    
+    
 };
 
 
