@@ -113,6 +113,7 @@ OpMon::OpMon(string surnom, Espece *espece, int level, Attaque *attaque1, Attaqu
 	this->attaques[1] = attaque2;
 	this->attaques[2] = attaque3;
 	this->attaques[3] = attaque4;
+	cout << attaques[1]->save() << endl;
 
 	//TODO attaquesChoix Quand les attaques seront ok
 	this->caractere = caractere;
@@ -1585,7 +1586,7 @@ string OpMon::save(){
         oss << Save::intToChar(tauxCapture) << endl;
         return oss.str();
     }else{
-        return "NULL";
+        return "NULL\n";
     }
 
 }

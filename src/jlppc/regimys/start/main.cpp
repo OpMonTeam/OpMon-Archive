@@ -121,7 +121,6 @@ int quit(int returne) {
 #include "../save/Save.hpp"
 int main(int argc, char *argv[])
 {
-
 	Main::oss << "Alpha " << Main::version << "." << Main::sousVers;
 	Main::versionS = Main::oss.str();
 	if (argc >= 2) {
@@ -130,11 +129,11 @@ int main(int argc, char *argv[])
 			cout << "OpMon Regimys version " << Main::versionS << endl;
 			exit(0);
 		} else if(str == "--test"){
-            Player py = Player("Nom");
+            Player py = Player("NomPlayer");
             Initializer::init();
-            OpMon op1 = OpMon("Herbefolle", Initializer::listeOp[3], 10, new Charge(), new Acide(), Attaques::newAtk("Damocles"), NULL, Caractere::BIZARRE);
-            OpMon op2 = OpMon(Initializer::listeOp[8]->getNom(), Initializer::listeOp[8], 10, Attaques::newAtk("Charge"), Attaques::newAtk("Acide"), Attaques::newAtk("Damocles"), NULL, Caractere::DOCILE);
-            OpMon op3 = OpMon("Joker", Initializer::listeOp[10], 10, Attaques::newAtk("Charge"), Attaques::newAtk("Acide"), Attaques::newAtk("Damocles"), NULL, Caractere::SERIEUX);
+            OpMon *op1 = new OpMon("Herbefolle", Initializer::listeOp[3], 10, new Charge(), new Acide(), Attaques::newAtk("Damocles"), NULL, Caractere::BIZARRE);
+            OpMon *op2 = new OpMon(Initializer::listeOp[8]->getNom(), Initializer::listeOp[8], 10, Attaques::newAtk("Charge"), Attaques::newAtk("Acide"), Attaques::newAtk("Damocles"), NULL, Caractere::DOCILE);
+            OpMon *op3 = new OpMon("Joker", Initializer::listeOp[10], 10, Attaques::newAtk("Charge"), Attaques::newAtk("Acide"), Attaques::newAtk("Damocles"), NULL, Caractere::SERIEUX);
             py.addOpMonToPC(op1);
             py.addOpToEquipe(op2);
             py.addOpToEquipe(op3);
