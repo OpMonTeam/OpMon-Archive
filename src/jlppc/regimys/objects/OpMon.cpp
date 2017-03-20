@@ -75,6 +75,12 @@ int CalcCourbes::rapide(int n) {
 }
 OpMon::OpMon(string surnom, Espece *espece, int level, Attaque *attaque1, Attaque *attaque2, Attaque *attaque3, Attaque *attaque4,
 				 CaractereClass caractere) {
+          atkIV = Utils::randU(32);
+          defIV = Utils::randU(32);
+          atkSpeIV = Utils::randU(32);
+          defSpeIV = Utils::randU(32);
+          vitIV = Utils::randU(32);
+          pvIV = Utils::randU(32);
 	statATK = round(
 				  ((((2 * espece->getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100)
 				   + 5)
@@ -113,7 +119,6 @@ OpMon::OpMon(string surnom, Espece *espece, int level, Attaque *attaque1, Attaqu
 	this->attaques[1] = attaque2;
 	this->attaques[2] = attaque3;
 	this->attaques[3] = attaque4;
-	cout << attaques[1]->save() << endl;
 
 	//TODO attaquesChoix Quand les attaques seront ok
 	this->caractere = caractere;
@@ -1531,8 +1536,6 @@ string OpMon::save(){
         oss << Save::intToChar(statLove) << endl;
         oss << Save::intToChar(level) << endl;
         oss << Save::intToChar(caractere.id) << endl;
-        cout << attaques[0]->getType() << endl;
-        cout << "Break1" << endl;
         /*for(unsigned int it = 0; it < 4; it++){
             cout << "Attaque : " << it << " Pointer : " << attaques[it] << endl;
             Attaque *atk = attaques[it];
@@ -1545,10 +1548,6 @@ string OpMon::save(){
                 oss << "NULL" << endl;
             }
         }*/
-        cout << "Attaque : " << 0 << " Pointer : " << attaques[0] << endl;
-        cout << "Attaque : " << 1 << " Pointer : " << attaques[1] << endl;
-        cout << "Attaque : " << 2 << " Pointer : " << attaques[2] << endl;
-        cout << "Attaque : " << 3 << " Pointer : " << attaques[3] << endl;
         if(attaques[0] != NULL){
             oss << attaques[0]->save();
         }else{
@@ -1569,13 +1568,11 @@ string OpMon::save(){
         }else{
             oss << "NULL" << endl;
         }
-        cout << "Break2" << endl;
         oss << Save::intToChar(espece->getOpdexNumber()) << endl;
-        cout << "Break3" << endl;
         oss << Save::intToChar(PV) << endl;
         oss << Save::intToChar(exp) << endl;
         oss << Save::intToChar(toNextLevel) << endl;
-        oss << Save::intToChar(expBoost) << endl;
+        oss << Save::intToChar(expBoost * 10) << endl;
         if(held != NULL){
             oss << "Y" << endl;
             oss << Save::intToChar(held->getID()) << endl;
