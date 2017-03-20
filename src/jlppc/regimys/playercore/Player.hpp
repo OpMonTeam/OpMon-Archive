@@ -43,6 +43,7 @@ public:
     bool addOpToEquipe(OpMon *toAdd);
 
     void save();
+    void load(std::ifstream &in);
 private:
     std::string name;
     unsigned int dressID;//jusqu'a 8 chiffres (Hexadecimal) (jusqu'a 16^8)

@@ -23,7 +23,9 @@ int save(Player* toSave, string fileOut) {
 Player *loadPlayer(std::string fileIn) {
     ifstream inStream(fileIn.c_str());
     string inStr;
-
+    string pname = readLine(inStream);
+    Player toReturn = Player(pname);
+    toReturn.load(inStream);
 
 }
 
@@ -33,4 +35,17 @@ int charToInt(char toInt) {
 char intToChar(int toChar) {
     return toChar;
 }
+
+std::string readLine(std::ifstream &in){
+    string toReturn("");
+    char actu = '\0';
+    while(true){
+        actu = in.get();
+        if(actu == '\n'){break;}
+        toReturn+=actu;
+
+    }
+    return toReturn;
+}
+
 }

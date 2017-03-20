@@ -53,9 +53,9 @@ void initVars() {
     charge = renderText(renderer, kget("title.2"), font, blanc, &(textPos[1]));
     options = renderText(renderer, kget("title.3"), font, blanc, &(textPos[2]));
     exit = renderText(renderer, kget("title.4"), font, blanc, &(textPos[3]));
-    Mix_Volume(2, MIX_MAX_VOLUME / 4);
-    Mix_Volume(1, MIX_MAX_VOLUME);
-    Mix_Volume(0, MIX_MAX_VOLUME / 2);
+    //Mix_Volume(2, MIX_MAX_VOLUME / 4);
+    //Mix_Volume(1, MIX_MAX_VOLUME);
+    //Mix_Volume(0, MIX_MAX_VOLUME / 2);
 }
 
 void verifVars() {
@@ -67,7 +67,7 @@ void verifVars() {
         rerrLog << "Erreur dans l'ouverture d'une musique (MainMenu) (fondMusTitle)" << endl;
         gererErreur(Mix_GetError(), false);
     }
-    if(bruitArr == NULL || bruitPush == NULL) {
+    if(bruitArr == NULL || bruitPush == NULL || bruitNope == NULL) {
         rerrLog << "Erreur dans l'ouverture d'un son (MainMenu) (bruits)" << endl;
         gererErreur(Mix_GetError(), false);
     }
@@ -83,6 +83,7 @@ void deleteVars() {
     Mix_FreeMusic(fondMusTitle);
     Mix_FreeChunk(bruitArr);
     Mix_FreeChunk(bruitPush);
+    Mix_FreeChunk(bruitNope);
 }
 
 int boucle0() {

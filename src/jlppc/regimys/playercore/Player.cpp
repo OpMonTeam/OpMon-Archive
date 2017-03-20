@@ -85,3 +85,23 @@ void Player::save() {
     }
 
 }
+#include "../objects/OpMon.hpp"
+void Player::load(std::ifstream &in){
+    this->dressID = in.get();
+    in.get();
+    int iNber = in.get();in.get();
+    if(iNber > ITEM_NUMBER){iNber = ITEM_NUMBER;}
+    for(unsigned int i = 0; i < iNber; i++){
+        this->bag[i] = in.get();
+        in.get();
+    }
+    if(iNber < ITEM_NUMBER){
+        for(unsigned int i = iNber - 1; i < ITEM_NUMBER; i++){
+            bag[i] = 0;
+        }
+    }
+    int pcNbre = in.get();in.get();
+    for(unsigned int i = 0; i < pcNbre; i++){
+        this->pc.push_back(OpMon::load(in));
+    }
+}
