@@ -41,13 +41,13 @@ bool Player::deleteItem(int itemID) {
 void Player::healOp() {
 	equipe.heal();
 	for (int i = 0; i < equipe.getSize(); i++) {
-		OpMon pkmn = equipe[i];
+		OpMon *pkmn = equipe[i];
 
-		pkmn.amour = false;
-		pkmn.malediction = false;
-		pkmn.vampigraine = false;
+		pkmn->amour = false;
+		pkmn->malediction = false;
+		pkmn->vampigraine = false;
 		for (int j = 0; j < 4; j++) {
-			Attaque *atk = (pkmn.getAttaques())[j];
+			Attaque *atk = (pkmn->getAttaques())[j];
 			atk->healPP();
 
 		}
@@ -56,7 +56,7 @@ void Player::healOp() {
 	}
 }
 
-bool Player::addOpToEquipe(OpMon &toAdd) {
+bool Player::addOpToEquipe(OpMon *toAdd) {
 	if (equipe.addOpMon(toAdd)) {
 		return true;
 	} else {
@@ -76,11 +76,11 @@ void Player::save(){
     SOUT << Save::intToChar(pc.size());
     for(unsigned int it = 0; it < pc.size(); it++){
         cout << "PC = " << it << endl;
-        SOUT << pc[it].save();
+        SOUT << pc[it]->save();
     }
     for(unsigned int it = 0; it < 6; it++){
         cout << "Equipe = " << it << endl;
-        SOUT << equipe[it].save();
+        SOUT << equipe[it]->save();
     }
 
 }
