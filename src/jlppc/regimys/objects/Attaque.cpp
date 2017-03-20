@@ -62,7 +62,7 @@ std::string Attaque::save(){
     UNS
     cout << "OK" << endl;
     ostringstream oss;
-    oss << this->getClass()->getName() << endl;
+    oss << this->className << endl;
     oss << this->pp << endl;
     oss << this->ppMax << endl;
     return oss.str();
