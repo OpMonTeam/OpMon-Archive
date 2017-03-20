@@ -15,7 +15,8 @@ namespace Save{
         toSave->save();
         outStr = SOUT.str();
         long hash = Utils::hash(outStr);
-        outStream << outStr << intToChar(hash);
+        outStream << outStr << intToChar(hash) << endl;
+        outStream << hash;
         outStream.close();
     }
 
