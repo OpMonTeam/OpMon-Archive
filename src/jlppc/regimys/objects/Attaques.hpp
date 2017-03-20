@@ -269,6 +269,12 @@ ATK_CLASS(DanseLames)
 	EAp;
 	static Class<DanseLames> *classe;
 };
+ATK_CLASS(Deflagration)
+	Deflagration(): Attaque("Déflagration", 110, Type::FEU, 85 ,true, false, 16, false, 5, 0, "Deflagration) {}
+	EAv {return 0;}
+	EAp;
+	static Class<Deflagration> *classe;		
+
 
 
 }
