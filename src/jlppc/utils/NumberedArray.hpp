@@ -15,13 +15,17 @@ Définit la classe NumberedArray
 A l'origine prévue pour tout, cette classe permet une association d'un objet string a un nombre
 */
 class NumberedArray {
-	public:
-		NumberedArray(int number, std::string str);
-		std::string getAttaque() const {return attaque;}
-		int getNumber() const {return number;}
-	private:
-		int number;
-		std::string attaque;
+public:
+    NumberedArray(int number, std::string str);
+    std::string getAttaque() const {
+        return attaque;
+    }
+    int getNumber() const {
+        return number;
+    }
+private:
+    int number;
+    std::string attaque;
 
 };
 

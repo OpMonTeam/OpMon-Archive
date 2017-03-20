@@ -35,9 +35,9 @@ int quit(int retourne);
 Namespace contenant des variables utiles au fonctionnement du jeu
 */
 namespace Main {
-	void main();
-	//->Useless
-	extern long startTime;
+void main();
+//->Useless
+extern long startTime;
 
 }
 /**
