@@ -24,6 +24,7 @@ namespace Save{
         ifstream inStream(fileIn.c_str());
         string inStr;
 
+
     }
 
     int charToInt(char toInt) {return toInt;}
