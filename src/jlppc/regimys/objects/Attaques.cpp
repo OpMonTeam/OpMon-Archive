@@ -83,10 +83,10 @@ Class<Damocles> *Damocles::classe = new Class<Damocles>("Damocles", 0xFFE0);
 Class<DanseFleur> *DanseFleur::classe = new Class<DanseFleur>("DanseFleur", 0xFFDF);
 Class<DanseLames> *DanseLames::classe = new Class<DanseLames>("DanseLames", 0xFFDE);
 Class<Deflagration> *Deflagration::classe = new Class<Deflagration>("Deflagration", 0xFFDD);
-    
 
-    
-    
+
+
+
 int Abime::effetAvant(OpMon &atk, OpMon &def) {
     precision = ((atk.getLevel() - def.getLevel()) + 30);
     if (atk.getLevel() < def.getLevel()) {
@@ -363,20 +363,20 @@ int DanseFleur::effetApres(OpMon &atk, OpMon &def) {
     }
 }
 int DanseLames::effetApres(OpMon &atk, OpMon &def) {
-    if(atk.changeATK(2)){
+    if(atk.changeATK(2)) {
     }
 }
 
 int Deflagration::effetApres(OpMon &atk, OpMon &def) {
-    if(Utils::randU(10) == 5){
-    if(def.setStatus(Status::BRULURE)){
-       
-    }
+    if(Utils::randU(10) == 5) {
+        if(def.setStatus(Status::BRULURE)) {
+
+        }
     }
 }
 
-    
-    
+
+
 };
 
 
