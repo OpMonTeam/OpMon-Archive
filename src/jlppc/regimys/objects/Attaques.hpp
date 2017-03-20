@@ -263,8 +263,12 @@ ATK_CLASS(DanseFleur)
 	EAp;
 	static Class<DanseFleur> *classe;
 };
-
-
+ATK_CLASS(DanseLames)
+	DanseFlames(): Attaque ("Danse-Lames", 0, Type::NORMAL, 100, false, true, -1, true, 20, 0) {}
+	EAv {return 0;}
+	EAp;
+	static Class<DanseLames> *classe;
+};
 
 
 }
