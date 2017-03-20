@@ -155,7 +155,7 @@ namespace MainFrame{
 			rlog << "[T = " << SDL_GetTicks() << "] - Début de la boucle n°0" << endl;
 			//Boucle n°1
 			while (continuer) {
-				if ((SDL_GetTicks() - ancientTick) >= 41) {
+				if ((SDL_GetTicks() - ancientTick) >= FPS_TICKS) {
 
 					ancientTick = SDL_GetTicks();
 
@@ -244,7 +244,7 @@ namespace MainFrame{
 
 
 				} else {
-					SDL_Delay(41 - (SDL_GetTicks() - ancientTick));
+					SDL_Delay(FPS_TICKS - (SDL_GetTicks() - ancientTick));
 				}
 
 			}
@@ -389,7 +389,7 @@ namespace MainFrame{
 		int boucle2(){
 
 		    while (continuer) {
-				if ((SDL_GetTicks() - ancientTick) >= 41) {
+				if ((SDL_GetTicks() - ancientTick) >= FPS_TICKS) {
 
 					ancientTick = SDL_GetTicks();
 
@@ -479,7 +479,7 @@ namespace MainFrame{
 
 
 				} else {
-					SDL_Delay(41 - (SDL_GetTicks() - ancientTick));
+					SDL_Delay(FPS_TICKS - (SDL_GetTicks() - ancientTick));
 				}
 			}
 			return 0;
