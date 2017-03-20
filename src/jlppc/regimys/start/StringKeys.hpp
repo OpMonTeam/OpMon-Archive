@@ -13,12 +13,12 @@ Contient la défnition du namespace StringKeys
 #include <fstream>
 
 namespace StringKeys {
-	extern std::ifstream keysFile;
-	extern std::vector<std::string> keys;
-	extern std::vector<std::string> strings;
-	std::string get(std::string key);
-	void initialize();
-	std::string split(std::string str, char splitter, int part);
+extern std::ifstream keysFile;
+extern std::vector<std::string> keys;
+extern std::vector<std::string> strings;
+std::string get(std::string key);
+void initialize();
+std::string split(std::string str, char splitter, int part);
 }
 
 #endif // STRINGKEYS_HPP

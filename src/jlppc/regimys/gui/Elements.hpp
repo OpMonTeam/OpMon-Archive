@@ -17,14 +17,14 @@ struct Text {
 };
 //->Useless
 struct Coordonnees {
-	int x;
-	int y;
-	int h;
-	int w;
+    int x;
+    int y;
+    int h;
+    int w;
 };
 //->Useless
 namespace Elements {
-	Coordonnees initCoordonnees();
+Coordonnees initCoordonnees();
 
 }
 
