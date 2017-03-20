@@ -1587,4 +1587,8 @@ string OpMon::save() {
 
 }
 
+OpMon* OpMon::load(std::ifstream &in){
+    string surnom = Save::readLine(in);
+}
+
 
