@@ -23,9 +23,24 @@ int save(Player* toSave, string fileOut) {
 Player *loadPlayer(std::string fileIn) {
     ifstream inStream(fileIn.c_str());
     string inStr;
+    char actu = '\0';
+    string verif = readLine(inStream);
+    if(verif != "OP_SAVE"){
+        return NULL;
+    }
     string pname = readLine(inStream);
     Player toReturn = Player(pname);
     toReturn.load(inStream);
+    int hash = inStream.get();
+    while(true){
+        actu = inStream.get();
+        if(charToInt(actu) == hash){break;}
+        inStr+=actu;
+    }
+    if(Utils::hash(inStr) != hash){//Sauvegarde modifiée
+        return NULL;
+    }
+    return &toReturn;
 
 }
 

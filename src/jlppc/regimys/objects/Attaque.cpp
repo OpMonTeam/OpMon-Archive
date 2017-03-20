@@ -57,12 +57,13 @@ int Attaque::attack(OpMon &atk, OpMon &def) {
     return effetApres(atk, def);
 }
 #include "../start/main.hpp"
+#include "../save/Save.hpp"
 std::string Attaque::save() {
     UNS
     ostringstream oss;
     oss << this->className << endl;
-    oss << this->pp << endl;
-    oss << this->ppMax << endl;
+    oss << Save::intToChar(pp) << endl;
+    oss << Save::intToChar(ppMax) << endl;
     return oss.str();
 }
 

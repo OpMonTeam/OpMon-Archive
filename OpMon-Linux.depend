@@ -28,7 +28,7 @@
 	"../objects/OpMon.hpp"
 	"../../utils/Class.hpp"
 
-1490040160 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/objects/OpMon.hpp
+1490042256 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/objects/OpMon.hpp
 	<iostream>
 	<cmath>
 	"../enums/Caractere.hpp"
@@ -55,7 +55,7 @@
 	"Item.hpp"
 	"../Attaque.hpp"
 
-1490034699 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/objects/Attaque.hpp
+1490043110 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/objects/Attaque.hpp
 	<iostream>
 	"../../utils/Utils.hpp"
 	"../enums/Enums.hpp"
@@ -495,11 +495,12 @@
 
 1489848743 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/bigDefines.hxx
 
-1490034699 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/objects/Attaque.cpp
+1490043124 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/objects/Attaque.cpp
 	"Attaque.hpp"
 	"OpMon.hpp"
 	<sstream>
 	"../start/main.hpp"
+	"../save/Save.hpp"
 
 1490034699 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/objects/Attaques.cpp
 	"Attaques.hpp"
@@ -538,7 +539,7 @@
 	"Item.hpp"
 	"../../start/main.hpp"
 
-1490040305 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/objects/OpMon.cpp
+1490043192 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/objects/OpMon.cpp
 	"OpMon.hpp"
 	"../start/main.hpp"
 	"../evolution/Evolution.hpp"
@@ -546,11 +547,14 @@
 	"../save/Save.hpp"
 	<sstream>
 	"item/IHeal.hpp"
+	<fstream>
+	"Attaques.hpp"
+	"../start/Initializer.hpp"
 
 1490034700 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/playercore/Equipe.cpp
 	"Equipe.hpp"
 
-1490040299 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/playercore/Player.cpp
+1490042857 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/playercore/Player.cpp
 	"Player.hpp"
 	"../start/main.hpp"
 	"../save/Save.hpp"
