@@ -102,6 +102,10 @@ void Player::load(std::ifstream &in){
     }
     int pcNbre = in.get();in.get();
     for(unsigned int i = 0; i < pcNbre; i++){
-        this->pc.push_back(OpMon::load(in));
+        this->pc.push_back(new OpMon(in));
     }
+    for(unsigned int i = 0; i < 6; i++){
+        equipe.addOpMon(new OpMon(in));
+    }
+
 }
