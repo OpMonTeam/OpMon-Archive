@@ -15,13 +15,14 @@ int save(Player* toSave, string fileOut) {
     toSave->save();
     outStr = SOUT.str();
     long hash = Utils::hash(outStr);
+    cout << outStr << endl;
+    cout << hash << endl;
     outStream << outStr << intToChar(hash) << endl;
     outStream << hash;
     outStream.close();
 }
 
 Player *loadPlayer(std::string fileIn) {
-    cout << "load" << endl;
     ifstream inStream(fileIn.c_str());
     string inStr;
     char actu = '\0';
@@ -30,21 +31,26 @@ Player *loadPlayer(std::string fileIn) {
         return NULL;
     }
     string pname = readLine(inStream);
-    cout << "load2" << endl;
-    Player toReturn = Player(pname);
-    cout << "load" << endl;
-    toReturn.load(inStream);
-    cout << "load" << endl;
+    Player *toReturn = new Player(pname);
+    toReturn->load(inStream);
     int hash = inStream.get();
+    inStream.close();
+    /*inStream.open(fileIn.c_str());
+    int i = 0;
     while(true){
+        i++;
         actu = inStream.get();
         if(charToInt(actu) == hash){break;}
+        //cout << actu;
         inStr+=actu;
+        if(i >= 1000000){break;}
     }
     if(Utils::hash(inStr) != hash){//Sauvegarde modifiée
+        cout << "NOPE!" << endl;
+        cout << Utils::hash(inStr) << " != " << hash << endl;
         return NULL;
-    }
-    return &toReturn;
+    }*///Protection par hash a revoir.
+    return toReturn;
 
 }
 

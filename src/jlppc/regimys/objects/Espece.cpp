@@ -26,7 +26,7 @@ Espece::Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, std::s
     if(evolType == NULL) {
         evolType = new E_Nope();
     }
-    numeroOpdex = 0;
+    this->numeroOpdex = numeroOpdex;
     this->tauxDeCapture = tauxDeCapture;
     this->baseAtk = atk;
     this->baseDef = def;
