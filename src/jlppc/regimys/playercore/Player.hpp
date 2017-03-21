@@ -18,7 +18,7 @@ Classe représentant le joueur
 class Player {
 public:
     Player(std::string name);
-    Equipe getEquipe() const;
+    Equipe* getEquipe();
     /**Ajoute un item au sac*/
     void addItem(int itemID);
     /**Renvoie le nombre d'exemplaires dans le sac de l'item donné en paramètres*/

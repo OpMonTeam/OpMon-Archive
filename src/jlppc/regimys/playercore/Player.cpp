@@ -12,8 +12,8 @@ Player::Player(std::string name) {
 
 }
 
-Equipe Player::getEquipe() const {
-    return equipe;
+Equipe* Player::getEquipe() {
+    return &equipe;
 }
 
 void Player::addItem(int itemID) {
@@ -88,33 +88,27 @@ void Player::save() {
 #include "../objects/OpMon.hpp"
 void Player::load(std::ifstream &in){
     UNS
-    cout << "loadP" << endl;
     this->dressID = in.get();
     in.get();
     int iNber = in.get();in.get();
-    cout << "loadP" << endl;
-    if(iNber > ITEM_NUMBER){cout << "iNber>ItemNumber" << endl;iNber = ITEM_NUMBER;}
+    if(iNber > ITEM_NUMBER){iNber = ITEM_NUMBER;}
     for(unsigned int i = 0; i < iNber; i++){
-        cout << "loadPBoucle1" << endl;
         this->bag[i] = in.get();
         in.get();
     }
-    cout << "loadPFinBoucle1" << endl;
     if(iNber < ITEM_NUMBER){
-            cout << "loadPSiB" << endl;
         for(unsigned int i = iNber - 1; i < ITEM_NUMBER; i++){
             bag[i] = 0;
         }
     }
     int pcNbre = in.get();in.get();
-    cout << "loadPBouclePC" << endl;
     for(unsigned int i = 0; i < pcNbre; i++){
-        cout << "boucle" << endl;
-        this->pc.push_back(new OpMon(in));
+                    OpMon *op = new OpMon(in);
+        this->pc.push_back(op);
     }
-    cout << "YAY!" << endl;
     for(unsigned int i = 0; i < 6; i++){
-        equipe.addOpMon(new OpMon(in));
+        OpMon *op = new OpMon(in);
+        equipe.addOpMon(op);
     }
 
 }

@@ -1603,10 +1603,13 @@ OpMon::OpMon(ifstream &in){
         atkSpeEV = in.get();in.get();
         defSpeEV = in.get();in.get();
         vitEV = in.get();in.get();
+
         pvEV = in.get();in.get();
         statLove = in.get();in.get();
+
         level = in.get();in.get();
-        caractere = *Caractere::enumsList[in.get()];in.get();
+        int toSearch = in.get();
+        caractere = *Caractere::enumsList[toSearch];in.get();
         attaques[0] = Attaques::newAtk(Save::readLine(in));
         if(attaques[0] != NULL){
             attaques[0]->setPP(in.get());in.get();
@@ -1624,13 +1627,13 @@ OpMon::OpMon(ifstream &in){
             attaques[2]->setPP(in.get());in.get();
             attaques[2]->setPPMax(in.get());in.get();
         }
-
         attaques[3] = Attaques::newAtk(Save::readLine(in));
         if(attaques[3] != NULL){
             attaques[3]->setPP(in.get());in.get();
             attaques[3]->setPPMax(in.get());in.get();
         }
-        espece = Initializer::listeOp[in.get()];in.get();
+        int especeID = in.get();
+        espece = Initializer::listeOp[especeID];in.get();
         PV = in.get();in.get();
         exp = in.get();in.get();
         toNextLevel = in.get();in.get();
