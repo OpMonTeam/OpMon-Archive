@@ -37,6 +37,9 @@ public:
     OpMon* getOp(int ID) const {
         return equipe[ID];
     }
+    OpMon* getPcOp(int ID) const {
+        return pc[ID];
+    }
     /**Soigne tous les Poké*/
     void healOp();
     /**Essaie d'ajouter un pokémon a l'equipe. Renvoie false si ce n'est pas possible*/
