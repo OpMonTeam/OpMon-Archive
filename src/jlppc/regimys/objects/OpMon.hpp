@@ -164,6 +164,7 @@ public:
     int getPV() const {
         return PV;
     }
+    std::string getSurnom(){return surnom;}
     /**Soigne le pokémon*/
     void heal(int PV);
     bool getLevel() const {

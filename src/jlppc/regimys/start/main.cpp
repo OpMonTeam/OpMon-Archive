@@ -142,7 +142,17 @@ int main(int argc, char *argv[]) {
             py.addItem(10);
             py.addItem(10);
             Save::save(&py, "save.osave");
-        } else {
+        } else if(str == "--ltest"){
+            Player *py = Save::loadPlayer("save.osave");
+            cout << py << endl;
+            cout << py->getName() << endl;
+            OpMon *op1 = py->getPcOp(0);
+            OpMon *op2 = py->getOp(0);
+            OpMon *op3 = py->getOp(1);
+            cout << op1->getSurnom() << endl;
+            cout << op2->getSurnom() << endl;
+            cout << op3->getSurnom() << endl;
+        }else {
             cout << "Arguments ignorés, passage a la suite." << endl;
         }
     }

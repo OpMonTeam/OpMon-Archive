@@ -21,6 +21,7 @@ int save(Player* toSave, string fileOut) {
 }
 
 Player *loadPlayer(std::string fileIn) {
+    cout << "load" << endl;
     ifstream inStream(fileIn.c_str());
     string inStr;
     char actu = '\0';
@@ -29,8 +30,11 @@ Player *loadPlayer(std::string fileIn) {
         return NULL;
     }
     string pname = readLine(inStream);
+    cout << "load2" << endl;
     Player toReturn = Player(pname);
+    cout << "load" << endl;
     toReturn.load(inStream);
+    cout << "load" << endl;
     int hash = inStream.get();
     while(true){
         actu = inStream.get();
