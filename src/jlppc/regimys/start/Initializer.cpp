@@ -14,6 +14,11 @@
 #define VIT push_back(Stats::VIT)
 #define PV push_back(Stats::PV)
 
+#define T_W world
+#define T_G grass
+#define T_O objects
+#define
+
 typedef NumberedArray AtkArray;
 
 namespace Initializer {
@@ -23,6 +28,7 @@ Espece *listeOp[OP_NUMBER] = {};
  SDL_Texture *world[285] = {};
  SDL_Texture *grass[104] = {};
  SDL_Texture *objects[500] = {};
+ Plan *fauxBourgEuvi = NULL;
 template<typename T>void pb(std::vector<T> &vecteur, T tab[], int longeurTab) {
     for (unsigned int i = 0; i < longeurTab; i++) {
         vecteur.push_back(tab[i]);
@@ -884,6 +890,16 @@ void initSprites() {
     if(errors > 50){
         gererErreur("Nombre de textures non chargées supérieures a 50. Erreur fatale.", true);
     }
+
+    //Init Sprites
+
+}
+
+void initPlans(){
+UNS
+    Couche couche1;
+    Case c1L1[] = {};
+
 }
 
 void initBackgrounds() {
