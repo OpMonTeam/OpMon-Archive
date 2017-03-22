@@ -10,6 +10,7 @@
 #include <string>
 #include <SDL/SDL_mixer.h>
 #include "MainMenu.hpp"
+#include "../start/Initializer.hpp"
 
 #include "StartScene.hpp"
 
@@ -175,6 +176,8 @@ void open() {
         rerrLog << "Ouverture du son de changement de dialogue échouée." << endl;
         gererErreur(Mix_GetError(), false);
     }
+    rlog << PRINT_TICKS << "Chargement des sprites globaux (Initializer)" << endl;
+    Initializer::initSprites();
     Mix_Volume(1, MIX_MAX_VOLUME - 1);
     if(MainMenu::mainMenu() != -1) {
         Mix_PlayChannel(1, MainMenu::bruitPush, 0);

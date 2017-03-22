@@ -4,6 +4,8 @@
 #include "StringKeys.hpp"
 #include "main.hpp"
 #include <SDL/SDL.h>
+#include <sstream>
+#include "../gui/MainFrame.hpp"
 
 #define ATK push_back(Stats::ATK)
 #define ATKSPE push_back(Stats::ATKSPE)
@@ -18,6 +20,9 @@ namespace Initializer {
 Evolutions::E_Nope *ne = new E_Nope();
 std::vector<int> evs[OP_NUMBER] = {};
 Espece *listeOp[OP_NUMBER] = {};
+ SDL_Texture *world[285] = {};
+ SDL_Texture *grass[104] = {};
+ SDL_Texture *objects[500] = {};
 template<typename T>void pb(std::vector<T> &vecteur, T tab[], int longeurTab) {
     for (unsigned int i = 0; i < longeurTab; i++) {
         vecteur.push_back(tab[i]);
@@ -845,6 +850,40 @@ void initAtkLvls() {
 
 void initSprites() {
     initBackgrounds();
+    int errors = 0;
+    for(unsigned int i = 0; i < 285; i++){
+        std::ostringstream strStream;
+        strStream << "ressources" << Main::sep << "textures" << Main::sep << "world" << Main::sep << "world (" << i + 1 << ").png";
+        world[i] = IMG_LoadTexture(MainFrame::renderer, strStream.str().c_str());
+        if(world[i] == NULL){
+            rerrLog << "Erreur initialisation : Texture world n°" << i << std::endl;
+            gererErreur(IMG_GetError(), false);
+            errors++;
+        }
+    }
+    for(unsigned int i = 0; i < 104; i++){
+        std::ostringstream strStream;
+        strStream << "ressources" << Main::sep << "textures" << Main::sep << "grass" << Main::sep << "grass (" << i + 1 << ").png";
+        grass[i] = IMG_LoadTexture(MainFrame::renderer, strStream.str().c_str());
+        if(grass[i] == NULL){
+            rerrLog << "Erreur initialisation : Texture grass n°" << i << std::endl;
+            gererErreur(IMG_GetError(), false);
+            errors++;
+        }
+    }
+    for(unsigned int i = 0; i < 500; i++){
+        std::ostringstream strStream;
+        strStream << "ressources" << Main::sep << "textures" << Main::sep << "objects" << Main::sep << "objects (" << i + 1 << ").png";
+        objects[i] = IMG_LoadTexture(MainFrame::renderer, strStream.str().c_str());
+        if(objects[i] == NULL){
+            rerrLog << "Erreur initialisation : Texture objects n°" << i << std::endl;
+            gererErreur(IMG_GetError(), false);
+            errors++;
+        }
+    }
+    if(errors > 50){
+        gererErreur("Nombre de textures non chargées supérieures a 50. Erreur fatale.", true);
+    }
 }
 
 void initBackgrounds() {
@@ -858,8 +897,6 @@ void initKeys() {
 void init() {
     rlog << PRINT_TICKS << "Initialisation des clées" << std::endl;
     initKeys();
-    rlog << PRINT_TICKS << "Initialisation des sprites" << std::endl;
-    initSprites();
     rlog << PRINT_TICKS << "Initialisation des items" << std::endl;
     initItems();
     rlog << PRINT_TICKS << "Initialisation des attaques par niveau" << std::endl;

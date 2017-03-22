@@ -18,11 +18,16 @@ Contient la définition des methodes qui permettent d'initialiser les éléments du
 
 #define ATK_LIST(OpId) AtkArray tab##OpId[]
 #define ATK_ADD_LIST(OpID, atkLength) pb(atkOpLvl[(OpId)], tab##OpId , (atkLength) )
+#include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
 //->NoDoc
 namespace Initializer {
 extern Espece *listeOp[OP_NUMBER];
 extern std::vector<NumberedArray> opOpLvl[OP_NUMBER]; //100 attaques max / poké
 extern Evolutions::E_Nope *ne;//ne = No Evolution
+extern SDL_Texture *world[285];
+extern SDL_Texture *grass[104];
+extern SDL_Texture *objects[500];
 //std::string backgrounds[];
 extern std::vector<int> evs[OP_NUMBER];
 void initEvs();
