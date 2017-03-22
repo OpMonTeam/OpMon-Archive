@@ -45,6 +45,13 @@ namespace Type {
 const int EAU = 3, FEU = 6, PLANTE = 10, ELECTRIQUE = 4, PSY = 12, TENEBRES = 16, DRAGON = 2, COMBAT = 1, ROCHE = 13, SOL = 14, NORMAL = 9, FEE = 5, SPECTRE = 15, POISON = 11, ACIER = 0, INSECTE = 8, VOL = 17, GLACE = 7, AUCUN = -1;
 };
 /**
+Enumère les types de contacts entre un evènement et le joueur.
+*/
+//->Enum
+namespace ActionType{
+const int ENTER = 0, TOUCH = 1, IN = 2, VIEW = 3;
+}
+/**
 Gère la table des types
 */
 namespace TableTypes {
