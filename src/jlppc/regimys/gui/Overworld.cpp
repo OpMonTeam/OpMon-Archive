@@ -1,4 +1,5 @@
 #include "Overworld.hpp"
+#include "../start/Initializer.hpp"
 
 namespace MainFrame {
     namespace Overworld {
@@ -14,7 +15,7 @@ namespace MainFrame {
         void overworld() {
             initVars();
             verifVars();
-
+            actuel = Initializer::fauxBourgEuvi;
             boucle();
         }
 

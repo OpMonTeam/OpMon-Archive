@@ -105,15 +105,6 @@ int quit(int returne) {
         }
 
     }
-    for(unsigned int i = 0; i < 285; i++){
-        delete(Initializer::world[i]);
-    }
-    for(unsigned int i = 0; i < 104; i++){
-        delete(Initializer::grass[i]);
-    }
-    for(unsigned int i = 0; i < 500; i++){
-        delete(Initializer::objects[i]);
-    }
     rlog << PRINT_TICKS << "Fermeture du jeu. Return " << returne << endl;
     rlog.close();
     rerrLog.close();
