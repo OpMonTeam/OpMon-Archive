@@ -15,47 +15,33 @@ Fichier contenant des éléments utiles
 #include <iostream>
 #include <vector>
 
-
-
-class Case{
-private:
-    SDL_Texture *texture;
-    public:
-    Case(SDL_Texture *texture);
-    SDL_Texture* getTexture(){return texture;}
-};
-
-class Event : public Case{
+/*class Event{
 private:
     //->WaitEnum->ActionType
     int actionType;
     bool passable;
+    SDL_Texture *apparence;
 public:
     virtual void action() = 0;
     virtual void update() = 0;
-    Event(SDL_Texture *texture, bool passable, int actionType) : Case(texture) {this->passable = passable;this->actionType = actionType;}
+    Event(SDL_Texture *texture, bool passable, int actionType) : apparence(texture) {this->passable = passable;this->actionType = actionType;}
     bool isPassable(){return passable;}
     int getActionType(){return actionType;}
-};
-
-typedef std::vector<std::vector<Case> > Couche;
-typedef std::vector<std::vector<Event*> > EventMap;
+    SDL_Texture* getApparence() {return apparence;}
+};*/
 
 class Plan{
 private:
-    Couche couche1;
-    Couche couche2;
-    EventMap events;
+    SDL_Texture *couche1;
+    SDL_Texture *couche2;
+    //Event events;
     int playerX;
     int playerY;
-    Couche couche3;
+    SDL_Texture *couche3;
 public:
-    Plan(Couche couche1, Couche couche2, EventMap events, Couche couche3);
-    ~Plan();
-    Case getCouche1(int x, int y){return couche1[y][x];}
-    Case getCouche2(int x, int y){return couche2[y][x];}
-    Event* getEvent(int x, int y){return events[y][x];}
-    Case getCouche3(int x, int y){return couche3[y][x];}
+    Plan(SDL_Texture *couche1, SDL_Texture *couche2, SDL_Texture *couche3);
+    //~Plan();
+    //Event* getEvent(int x, int y){return events[y][x];}
 };
 
 namespace Elements {
