@@ -38,6 +38,7 @@ namespace Main {
 void main();
 //->Useless
 extern long startTime;
+extern std::string sep;
 
 }
 /**
