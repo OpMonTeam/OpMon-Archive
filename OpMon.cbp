@@ -18,6 +18,7 @@
 					<Add option="-m32" />
 					<Add option="-g" />
 					<Add directory="src/jlppc/regimys/save" />
+					<Add directory="src/jlppc/regimys/gui" />
 				</Compiler>
 				<Linker>
 					<Add option="-m32" />
@@ -96,6 +97,8 @@
 		<Unit filename="src/jlppc/regimys/evolution/evolutions.hpp" />
 		<Unit filename="src/jlppc/regimys/gui/Elements.cpp" />
 		<Unit filename="src/jlppc/regimys/gui/Elements.hpp" />
+		<Unit filename="src/jlppc/regimys/gui/Events.cpp" />
+		<Unit filename="src/jlppc/regimys/gui/Events.hpp" />
 		<Unit filename="src/jlppc/regimys/gui/MainFrame.cpp" />
 		<Unit filename="src/jlppc/regimys/gui/MainFrame.hpp" />
 		<Unit filename="src/jlppc/regimys/gui/MainMenu.cpp" />
