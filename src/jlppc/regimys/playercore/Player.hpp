@@ -53,6 +53,8 @@ private:
     int bag[ITEM_NUMBER];
     std::vector<OpMon*> pc = std::vector<OpMon*>();
     Equipe equipe = Equipe("temp");
+    int posX = 0;
+    int posY = 0;
 };
 
 #endif /* SRCCPP_JLPPC_REGIMYS_PLAYERCORE_PLAYER_HPP_ */

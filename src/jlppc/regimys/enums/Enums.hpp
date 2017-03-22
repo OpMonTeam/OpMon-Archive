@@ -49,7 +49,7 @@ Enumère les types de contacts entre un evènement et le joueur.
 */
 //->Enum
 namespace ActionType{
-const int ENTER = 0, TOUCH = 1, IN = 2, VIEW = 3;
+const int ENTER = 0, TOUCH = 1, INE = 2, VIEW = 3;
 }
 /**
 Gère la table des types
