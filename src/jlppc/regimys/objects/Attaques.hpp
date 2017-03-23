@@ -276,7 +276,32 @@ EAp;
 static Class<Deflagration> *classe;
 
 };
+ATK_CLASS(Destruction)
+Destruction(): Attaque ("Destruction", 200, Type::NORMAL, 100, false, false, 16, false, 5, 0, "Destruction") {}
+EAv {return 0;}
+EAp;
+static Class<Destruction> *classe;
 
+};
+ATK_CLASS(Detritus)
+Detritus(): Attaque ("Détritus", 65, Type::POISON, 100, true, false, 16, false, 20, 0, "Detritus") {}
+EAv {return 0;}
+EAp;
+static Class<Detritus> *classe;
+
+};
+ATK_CLASS(Devoreve)
+Devoreve(): Attaque ("Dévorêve", 100, Type::PSY, 100, true, false, 16, false, 15, 0, "Devoreve") {}
+EAv;
+EAp;
+static Class<Devoreve> *classe;
+
+};
+ATK_CLASS(DoubleDard)
+DoubleDard(): Attaque ("Double-Dard", 25, Type.INSECTE, 100, false, false, 16, false, 20, 0, "DoubleDard) {}
+EAv {return 0;}
+EAp;
+static Class<DoubleDard> *classe;
 }
 //Permet de ne pas a devoir utiliser Attaques:: partout
 using namespace Attaques;
