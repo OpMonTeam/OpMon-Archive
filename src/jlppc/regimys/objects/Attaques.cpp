@@ -43,6 +43,10 @@ Attaque* newAtk(std::string name) {
     IF_ATK(DanseFleur)
     IF_ATK(DanseLames)
     IF_ATK(Deflagration)
+    IF_ATK(Destruction)
+    IF_ATK(Detritus)   
+    IF_ATK(Devoreve)   
+    IF_ATK(DoubleDard)    
     return NULL;
 
 
@@ -83,7 +87,10 @@ Class<Damocles> *Damocles::classe = new Class<Damocles>("Damocles", 0xFFE0);
 Class<DanseFleur> *DanseFleur::classe = new Class<DanseFleur>("DanseFleur", 0xFFDF);
 Class<DanseLames> *DanseLames::classe = new Class<DanseLames>("DanseLames", 0xFFDE);
 Class<Deflagration> *Deflagration::classe = new Class<Deflagration>("Deflagration", 0xFFDD);
-
+Class<Destruction> *Destruction::classe = new Class<Destruction>("Destruction", 0xFFEC);
+Class<Detritus> *Detritus::classe = new Class<Detritus>("Detritus", 0xFFDB);
+Class<Devoreve> *Devoreve::classe = new Class<Devoreve>("Devoreve", 0xFFDA);
+Class<DoubleDard> *DoubleDard::classe = new Class<DoubleDard>("DoubleDard", 0xFFD0);
 
 
 
@@ -375,8 +382,40 @@ int Deflagration::effetApres(OpMon &atk, OpMon &def) {
     }
 }
 
+int Destruction::effetApres(OpMon &atk, OpMon &def) {
+    atk.attacked(atk.getPV());
+}
 
+int Detritus::effetApres(OpMon &atk, OpMon &def) {
+    if(rand(10) < 3){
+        if(def.setStatus(Status.POISON)){
+        }
+    }
+}
 
+int Devoreve::effetAvant(OpMon &atk, OpMon &def) {
+    if(!(def.getStatus() == Status.SOMMEIL)){
+        keyout(key("attack.fail"));
+    }
+}
+
+int Devoreve::effetApres(OpMon &atk, OpMon &def) {
+    atk.heal(pvPerdus / 2);
+}
+
+int DoubleDard::effetApres(OpMon &atk, OpMon &def) {
+    if(Start.rand.nextInt(10) < 2){
+        def.setStatus(Status.POISON);
+    }
+    if(def.getPV() <= 0){
+        def.attacked(pvPerdus);
+            if(Utils::randU(10) < 2){
+                def.setStatus(Status.POISON);
+            }
+    }
+}
+    
+    
 };
 
 
