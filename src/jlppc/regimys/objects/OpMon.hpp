@@ -153,6 +153,7 @@ public:
     bool changeATKSPE(int power);
     bool changeDEFSPE(int power);
     bool changeVIT(int power);
+    int getStatus(){return status;}
     /**Change le status*/
     bool setStatus(int status);
     int getStatPV() const {
