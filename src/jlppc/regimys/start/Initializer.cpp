@@ -14,6 +14,11 @@
 #define VIT push_back(Stats::VIT)
 #define PV push_back(Stats::PV)
 
+#define B0 false
+#define B1 true
+
+#define COL_ADD(line, tof) feTab[(line)].push_back((tof))
+
 typedef NumberedArray AtkArray;
 
 namespace Initializer {
@@ -854,7 +859,16 @@ void initSprites() {
 }
 
 void initPlans(){
-
+    bool feTab[(1024 / 32)] = {vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>()};
+    for(unsigned int i = 0; i < 11; i++){
+        feTab[0].push_back(false);
+    }
+    COL_ADD(1, B0);
+    #ifdef _WIN32
+    fauxBourgEuvi = Plan(IMG_LoadTexture("ressources\\plans\\fe\\fe1.png"), IMG_LoadTexture("ressources\\plans\\fe\\fe2.png"), IMG_LoadTexture("ressources\\plans\\fe\\fe3.png"), 1024, 1024, feTab);
+    #else
+    fauxBourgEuvi = Plan(IMG_LoadTexture("ressources/plans/fe/fe1.png"), IMG_LoadTexture("ressources/plans/fe/fe2.png"), IMG_LoadTexture("ressources/plans/fe/fe3.png"), 1024, 1024, feTab);
+    #endif
 }
 
 void initBackgrounds() {

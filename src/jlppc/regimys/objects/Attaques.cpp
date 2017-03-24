@@ -44,9 +44,9 @@ Attaque* newAtk(std::string name) {
     IF_ATK(DanseLames)
     IF_ATK(Deflagration)
     IF_ATK(Destruction)
-    IF_ATK(Detritus)   
-    IF_ATK(Devoreve)   
-    IF_ATK(DoubleDard)    
+    IF_ATK(Detritus)
+    IF_ATK(Devoreve)
+    IF_ATK(DoubleDard)
     return NULL;
 
 
@@ -387,15 +387,15 @@ int Destruction::effetApres(OpMon &atk, OpMon &def) {
 }
 
 int Detritus::effetApres(OpMon &atk, OpMon &def) {
-    if(rand(10) < 3){
-        if(def.setStatus(Status.POISON)){
+    if(Utils::randU(10) < 3){
+        if(def.setStatus(Status::POISON)){
         }
     }
 }
 
 int Devoreve::effetAvant(OpMon &atk, OpMon &def) {
-    if(!(def.getStatus() == Status.SOMMEIL)){
-        keyout(key("attack.fail"));
+    if(!(def.getStatus() == Status::SOMMEIL)){
+
     }
 }
 
@@ -404,18 +404,18 @@ int Devoreve::effetApres(OpMon &atk, OpMon &def) {
 }
 
 int DoubleDard::effetApres(OpMon &atk, OpMon &def) {
-    if(Start.rand.nextInt(10) < 2){
-        def.setStatus(Status.POISON);
+    if(Utils::randU(10) < 2){
+        def.setStatus(Status::POISON);
     }
     if(def.getPV() <= 0){
         def.attacked(pvPerdus);
             if(Utils::randU(10) < 2){
-                def.setStatus(Status.POISON);
+                def.setStatus(Status::POISON);
             }
     }
 }
-    
-    
+
+
 };
 
 
