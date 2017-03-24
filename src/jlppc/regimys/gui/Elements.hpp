@@ -35,11 +35,12 @@ private:
     SDL_Texture *couche1;
     SDL_Texture *couche2;
     //Event events;
-    int playerX;
-    int playerY;
+    int w;
+    int h;
     SDL_Texture *couche3;
+    std::vector<bool> colTab;
 public:
-    Plan(SDL_Texture *couche1, SDL_Texture *couche2, SDL_Texture *couche3);
+    Plan(SDL_Texture *couche1, SDL_Texture *couche2, SDL_Texture *couche3, );
     //~Plan();
     //Event* getEvent(int x, int y){return events[y][x];}
 };
