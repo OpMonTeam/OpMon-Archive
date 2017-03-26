@@ -20,7 +20,7 @@ namespace Initializer {
 Evolutions::E_Nope *ne = new E_Nope();
 std::vector<int> evs[OP_NUMBER] = {};
 Espece *listeOp[OP_NUMBER] = {};
-Plan *fauxBourgEuvi = NULL;
+Plan *faubourgEuvi = NULL;
 std::vector<std::vector<int> > tabs[1]= {};
 template<typename T>void pb(std::vector<T> &vecteur, T tab[], int longeurTab) {
     for (unsigned int i = 0; i < longeurTab; i++) {
@@ -901,9 +901,9 @@ void initPlans(){
         }
     }
     #ifdef _WIN32
-    fauxBourgEuvi = new Plan(IMG_LoadTexture(MainFrame::renderer, "ressources\\plans\\fe\\fe1.png"), IMG_LoadTexture(MainFrame::renderer, "ressources\\plans\\fe\\fe2.png"), IMG_LoadTexture(MainFrame::renderer, "ressources\\plans\\fe\\fe3.png"), 32, 32, "feTemp.tmp");
+    faubourgEuvi = new Plan(IMG_LoadTexture(MainFrame::renderer, "ressources\\plans\\fe\\fe1.png"), IMG_LoadTexture(MainFrame::renderer, "ressources\\plans\\fe\\fe2.png"), IMG_LoadTexture(MainFrame::renderer, "ressources\\plans\\fe\\fe3.png"), 32, 32, "feTemp.tmp");
     #else
-    fauxBourgEuvi = new Plan(IMG_LoadTexture(MainFrame::renderer, "ressources/plans/fe/fe1.png"), IMG_LoadTexture(MainFrame::renderer, "ressources/plans/fe/fe2.png"), IMG_LoadTexture(MainFrame::renderer, "ressources/plans/fe/fe3.png"), 32, 32, "feTemp.tmp");
+    faubourgEuvi = new Plan(IMG_LoadTexture(MainFrame::renderer, "ressources/plans/fe/fe1.png"), IMG_LoadTexture(MainFrame::renderer, "ressources/plans/fe/fe2.png"), IMG_LoadTexture(MainFrame::renderer, "ressources/plans/fe/fe3.png"), 32, 32, "feTemp.tmp");
     #endif
     rerrLog << "Check5" << endl;
 }

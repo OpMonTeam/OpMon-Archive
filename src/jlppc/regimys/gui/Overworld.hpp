@@ -9,7 +9,15 @@ namespace Overworld{
     void overworld();
     void deleteVars();
     int boucle();
+    void up();
+    void down();
+    void left();
+    void right();
     extern Plan *actuel;
+    extern SDL_Texture *spritePP[4];
+    extern SDL_Texture *marchePP[4];
+    extern SDL_Rect ppPos;
+    extern SDL_Rect mapPos;
 }
 }
 

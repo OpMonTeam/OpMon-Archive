@@ -91,7 +91,7 @@
 1490432657 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/evolution/Evolution.cpp
 	"Evolution.hpp"
 
-1490537451 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/Elements.cpp
+1490537793 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/Elements.cpp
 	"Elements.hpp"
 	<cstdlib>
 	"../start/main.hpp"
@@ -569,7 +569,7 @@
 	"../save/Save.hpp"
 	"../objects/OpMon.hpp"
 
-1490537220 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/Initializer.cpp
+1490538125 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/Initializer.cpp
 	"Initializer.hpp"
 	"../enums/Enums.hpp"
 	"../objects/Attaques.hpp"
@@ -580,7 +580,7 @@
 	"../gui/MainFrame.hpp"
 	<fstream>
 
-1490529170 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/Initializer.hpp
+1490538126 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/Initializer.hpp
 	<iostream>
 	<vector>
 	"../../utils/NumberedArray.hpp"
@@ -1023,4 +1023,16 @@
 
 1490207377 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/Overworld.hpp
 	"MainFrame.hpp"
+
+1490432657 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/Events.cpp
+	"Events.hpp"
+
+1490432657 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/Events.hpp
+	"Elements.hpp"
+	"MainFrame.hpp"
+
+1490432657 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/PersistentVars.cpp
+	"PersistentVars.hpp"
+
+1490432657 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/PersistentVars.hpp
 
