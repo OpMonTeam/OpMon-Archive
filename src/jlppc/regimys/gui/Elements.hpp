@@ -42,6 +42,9 @@ private:
 public:
     Plan(SDL_Texture *couche1, SDL_Texture *couche2, SDL_Texture *couche3, int w, int h, std::string filename);
     ~Plan();
+    int getH(){return h;}
+    int getW(){return w;}
+    int** getPassTab(){return passTab;}
     //Event* getEvent(int x, int y){return events[y][x];}
 };
 

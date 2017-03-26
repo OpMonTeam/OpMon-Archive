@@ -259,6 +259,7 @@ int anim0() {
     for (int i = 0; i < 6; i++) {
         if ((SDL_GetTicks() - ancientTick) >= 200) {
             SDL_PollEvent(&events);
+            rerrLog << events.type << endl;
 
             switch (events.type) {
                 QUIT
@@ -485,7 +486,7 @@ int boucle2() {
     return 0;
 }
 
-void startScene() {
+int startScene() {
     initVars();
     verifVars();
     //Départ de la musique
@@ -501,7 +502,7 @@ void startScene() {
 
     if(boucle0() == -1) {
         destroyVars();
-        return;
+        return -1;
     }
 
     continuer = true;
@@ -535,7 +536,7 @@ void startScene() {
         SDL_DestroyTexture(texteDescs[2]);
         SDL_DestroyTexture(texteDescs[3]);
         SDL_DestroyTexture(fondNE);
-        return;
+        return -1;
     }
     SDL_DestroyTexture(nameT);
     SDL_DestroyTexture(texteDescs[0]);
@@ -563,7 +564,7 @@ void startScene() {
     rlog << PRINT_TICKS << "Début de la boucle n°2" << endl;
     if(boucle2() == -1) {
         destroyVars();
-        return;
+        return -1;
     }
     phase++;
 

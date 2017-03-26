@@ -905,7 +905,6 @@ void initPlans(){
     #else
     faubourgEuvi = new Plan(IMG_LoadTexture(MainFrame::renderer, "ressources/plans/fe/fe1.png"), IMG_LoadTexture(MainFrame::renderer, "ressources/plans/fe/fe2.png"), IMG_LoadTexture(MainFrame::renderer, "ressources/plans/fe/fe3.png"), 32, 32, "feTemp.tmp");
     #endif
-    rerrLog << "Check5" << endl;
 }
 
 void initBackgrounds() {
