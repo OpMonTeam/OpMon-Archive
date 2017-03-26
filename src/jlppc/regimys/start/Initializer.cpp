@@ -13,21 +13,23 @@
 #define DEF push_back(Stats::DEF)
 #define VIT push_back(Stats::VIT)
 #define PV push_back(Stats::PV)
-
-#define B0 false
-#define B1 true
-
-#define COL_ADD(line, tof) feTab[(line)].push_back((tof))
-
 typedef NumberedArray AtkArray;
 
 namespace Initializer {
 Evolutions::E_Nope *ne = new E_Nope();
 std::vector<int> evs[OP_NUMBER] = {};
 Espece *listeOp[OP_NUMBER] = {};
+Plan *fauxBourgEuvi = NULL;
+std::vector<std::vector<int> > tabs[1]= {};
 template<typename T>void pb(std::vector<T> &vecteur, T tab[], int longeurTab) {
     for (unsigned int i = 0; i < longeurTab; i++) {
         vecteur.push_back(tab[i]);
+    }
+}
+
+void setCollision(std::vector<int> *toFill, int line, int colNbre){
+    for(int i = 0; i < line; i++){
+        toFill->push_back(colNbre);
     }
 }
 
@@ -856,19 +858,52 @@ void initSprites() {
     //Init Sprites
 
 }
-
+//Indication : Dans les plans, pour les collisions, 0 est pour "Ca passe", 1 est pour "Ca passe pas", 2 est pour "Ca passe en nageant", 3 est pour "Hautes herbes", 4 pour "Grotte"
 void initPlans(){
     UNS
-    bool feTab[(1024 / 32)] = {vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>()};
-    for(unsigned int i = 0; i < 11; i++){
-        feTab[0].push_back(false);
+    vector<int> feTab[(1024 / 32)] = {vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>()};
+    int feTempTab[32][32] = {{1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
+    for(int i = 0; i < 32; i++){
+        tabs[0].push_back(vector<int>());
+        for(int j = 0; j < 32; j++){
+            tabs[0][i].push_back(feTab[i][j]);
+        }
     }
-    COL_ADD(1, B0);
     #ifdef _WIN32
-    fauxBourgEuvi = Plan(IMG_LoadTexture("ressources\\plans\\fe\\fe1.png"), IMG_LoadTexture("ressources\\plans\\fe\\fe2.png"), IMG_LoadTexture("ressources\\plans\\fe\\fe3.png"), 1024, 1024, feTab);
+    fauxBourgEuvi = new Plan(IMG_LoadTexture(MainFrame::renderer, "ressources\\plans\\fe\\fe1.png"), IMG_LoadTexture(MainFrame::renderer, "ressources\\plans\\fe\\fe2.png"), IMG_LoadTexture(MainFrame::renderer, "ressources\\plans\\fe\\fe3.png"), 1024, 1024, feTab);
     #else
-    fauxBourgEuvi = Plan(IMG_LoadTexture("ressources/plans/fe/fe1.png"), IMG_LoadTexture("ressources/plans/fe/fe2.png"), IMG_LoadTexture("ressources/plans/fe/fe3.png"), 1024, 1024, feTab);
+    fauxBourgEuvi = new Plan(IMG_LoadTexture(MainFrame::renderer, "ressources/plans/fe/fe1.png"), IMG_LoadTexture(MainFrame::renderer, "ressources/plans/fe/fe2.png"), IMG_LoadTexture(MainFrame::renderer, "ressources/plans/fe/fe3.png"), 32, 32, 0);
     #endif
+    rerrLog << "Check5" << endl;
 }
 
 void initBackgrounds() {
