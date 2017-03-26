@@ -4,7 +4,7 @@
 #include "../start/Initializer.hpp"
 #include <cstdlib>
 UNS
-//Idée : Enregistrer les collisions dans un fichier temporaire qui sera supprimé juste après
+
 Plan::Plan(SDL_Texture *couche1, SDL_Texture *couche2, SDL_Texture *couche3, int w, int h, string filename){
     this->couche1 = couche1;
     this->couche2 = couche2;
@@ -20,7 +20,6 @@ Plan::Plan(SDL_Texture *couche1, SDL_Texture *couche2, SDL_Texture *couche3, int
     for(int i = 0; i < h; i++){
         for(int j = 0; j < w; j++){
             inTemp >> passTab[i][j];
-            rerrLog << "Plan i=" << i << " et j=" << j << " est égal a " << passTab[i][j] << endl;
         }
     }
     #ifdef _WIN32
