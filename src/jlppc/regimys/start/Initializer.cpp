@@ -6,6 +6,7 @@
 #include <SDL/SDL.h>
 #include <sstream>
 #include "../gui/MainFrame.hpp"
+#include <fstream>
 
 #define ATK push_back(Stats::ATK)
 #define ATKSPE push_back(Stats::ATKSPE)
@@ -861,13 +862,13 @@ void initSprites() {
 //Indication : Dans les plans, pour les collisions, 0 est pour "Ca passe", 1 est pour "Ca passe pas", 2 est pour "Ca passe en nageant", 3 est pour "Hautes herbes", 4 pour "Grotte"
 void initPlans(){
     UNS
-    vector<int> feTab[(1024 / 32)] = {vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>(), vector<int>()};
-    int feTempTab[32][32] = {{1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+    int feTab[32][32] = {    {1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                              {2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
                              {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
                              {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
                              {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
                              {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1},
                              {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1},
                              {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1},
                              {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -880,6 +881,7 @@ void initPlans(){
                              {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
                              {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
                              {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1},
+                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1},
                              {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1},
                              {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
                              {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
@@ -891,17 +893,17 @@ void initPlans(){
                              {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1},
                              {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1},
                              {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1},
-                             {2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
+                             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
+    ofstream tempFile("feTemp.tmp");
     for(int i = 0; i < 32; i++){
-        tabs[0].push_back(vector<int>());
         for(int j = 0; j < 32; j++){
-            tabs[0][i].push_back(feTab[i][j]);
+            tempFile << feTab[i][j] << endl;
         }
     }
     #ifdef _WIN32
-    fauxBourgEuvi = new Plan(IMG_LoadTexture(MainFrame::renderer, "ressources\\plans\\fe\\fe1.png"), IMG_LoadTexture(MainFrame::renderer, "ressources\\plans\\fe\\fe2.png"), IMG_LoadTexture(MainFrame::renderer, "ressources\\plans\\fe\\fe3.png"), 1024, 1024, feTab);
+    fauxBourgEuvi = new Plan(IMG_LoadTexture(MainFrame::renderer, "ressources\\plans\\fe\\fe1.png"), IMG_LoadTexture(MainFrame::renderer, "ressources\\plans\\fe\\fe2.png"), IMG_LoadTexture(MainFrame::renderer, "ressources\\plans\\fe\\fe3.png"), 32, 32, "feTemp.tmp");
     #else
-    fauxBourgEuvi = new Plan(IMG_LoadTexture(MainFrame::renderer, "ressources/plans/fe/fe1.png"), IMG_LoadTexture(MainFrame::renderer, "ressources/plans/fe/fe2.png"), IMG_LoadTexture(MainFrame::renderer, "ressources/plans/fe/fe3.png"), 32, 32, 0);
+    fauxBourgEuvi = new Plan(IMG_LoadTexture(MainFrame::renderer, "ressources/plans/fe/fe1.png"), IMG_LoadTexture(MainFrame::renderer, "ressources/plans/fe/fe2.png"), IMG_LoadTexture(MainFrame::renderer, "ressources/plans/fe/fe3.png"), 32, 32, "feTemp.tmp");
     #endif
     rerrLog << "Check5" << endl;
 }
