@@ -1,8 +1,8 @@
 #include "Overworld.hpp"
 #include "../start/Initializer.hpp"
 #include "../start/main.hpp"
-#include SQUARE 32
-
+#define SQUARE 32
+UNS
 namespace MainFrame {
     namespace Overworld {
         using namespace Side;
@@ -19,25 +19,22 @@ namespace MainFrame {
         int anim = -1;//Signale l'animation a la boucle
         int frames = 0;
         int startFrames = 0;
-        bool movePlan = true;//Indique si le plan doit etre déplacé ou si le plan doit être déplacé
-
+        SDL_Rect camera = {0, 0, 512, 512};
+        int ancienPosX = 0;
+        int ancienPosY = 0;
 
         void down(){
-            startFrames = frames;
-            anim = DOWN;
-            if((ppPos.y/SQUARE + 1) < (actuel->h/SQUARE)){
-                if(actuel->passTab[(ppPos.y / SQUARE) + 1][ppPos.x / SQUARE] == 0){
-                    //Ensuite faudra faire la verif du passages des events
-                    moving = DOWN;
-                    if(ppPos.y/SQUARE + 9 >= actuel->h/SQUARE){
-                        movePlan = false;
-                    }else if(ppPos.y/SQUARE - 9 < 0){
-                        movePlan = false;
-                    }else{
-                        movePlan = true;
+            if(anim == -1){
+                startFrames = frames;
+                anim = DOS;
+                if((ppPos.y/SQUARE + 1) < (actuel->getH()/SQUARE)){
+                    if(actuel->getPassTab()[(ppPos.y / SQUARE) + 1][ppPos.x / SQUARE] == 0){
+                        //Ensuite faudra faire la verif du passages des events
+                        moving = DOS;
                     }
                 }
             }
+
 
         }
 
@@ -55,14 +52,45 @@ namespace MainFrame {
             marchePP[GAUCHE] = IMG_LoadTexture(renderer, "ressources/sprites/chara/mpp2.png");
             marchePP[DOS] = IMG_LoadTexture(renderer, "ressources/sprites/chara/mpp3.png");
             #endif // _WIN32
+            mapPos.x = -8*32;
+            mapPos.y = -8*32;
+            ppPos.x = mapPos.x + (16*32);
+            ppPos.y = mapPos.y + (16*32);
+            ppPos.w = 32;
+            ppPos.h = 32;
 
         }
         void verifVars() {
             if(actuel == NULL){
                 gererErreur("Map du fauxbourg euvi manquante. Erreur.", true);
             }
+            for(int i = 0; i < 8; i++){
+                if(i < 4){
+                    if(spritePP[i] == NULL){
+                        rerrLog << "Sprite du personage principal manquant" << endl;
+                        gererErreur(IMG_GetError(), false);
+                    }
+                }else{
+                    if(marchePP[i - 4] == NULL){
+                        rerrLog << "Sprite du personage principal manquant" << endl;
+                        gererErreur(IMG_GetError(), false);
+                    }
+                }
+            }
         }
-        void deleteVars() {}
+        void deleteVars() {
+            for(int i = 0; i < 8; i++){
+                if(i < 4){
+                    if(spritePP[i] != NULL){
+                        SDL_DestroyTexture(spritePP[i]);
+                    }
+                }else{
+                    if(marchePP[i - 4] != NULL){
+                        SDL_DestroyTexture(marchePP[i - 4]);
+                    }
+                }
+            }
+        }
         void overworld() {
             initVars();
             verifVars();
@@ -71,6 +99,7 @@ namespace MainFrame {
         }
 
         int boucle() {
+
             while(continuer) {
                 while (continuer) {
                     if ((SDL_GetTicks() - ancientTick) >= FPS_TICKS) {
@@ -87,6 +116,7 @@ namespace MainFrame {
                                 ECHAP
 
                                 case SDLK_DOWN:
+                                    down();
                                 break;
 
                             }
@@ -95,11 +125,10 @@ namespace MainFrame {
                         case SDL_JOYBUTTONDOWN:
                             if (!joypressed) {
                                 joypressed = true;
-                                switch (events.jbutton.button)
+                                switch (events.jbutton.button){
                                     JOYQUIT
                                 }
                             }
-                            break;
 
                             /*case SDL_WINDOWEVENT:
                                 switch (events.window.event) {
@@ -107,6 +136,17 @@ namespace MainFrame {
                                         break;
                                 }
                                 break;*/
+                        }
+
+                        if(anim == DOS){
+                            if(frames - startFrames == 30){
+                                anim = -1;
+                                ppPos.y = ppPos.y + 2;
+                                mapPos.y = mapPos.y - 1;
+                            }
+                            ppPos.y = ppPos.y + 1;
+                            mapPos.y = mapPos.y - 1;
+                        }
 
                     } else {
                         SDL_Delay(FPS_TICKS - (SDL_GetTicks() - ancientTick));

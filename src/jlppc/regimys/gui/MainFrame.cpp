@@ -11,6 +11,7 @@
 #include <SDL/SDL_mixer.h>
 #include "MainMenu.hpp"
 #include "../start/Initializer.hpp"
+#include "Overworld.hpp"
 
 #include "StartScene.hpp"
 
@@ -182,10 +183,11 @@ void open() {
     if(MainMenu::mainMenu() != -1) {
         Mix_PlayChannel(1, MainMenu::bruitPush, 0);
         Utils::wait(WAIT_DEFAULT);
-        StartScene::startScene();
+        if(StartScene::startScene() != -1){
+            Overworld::overworld();
+        }
     } else {
-        Mix_PlayChannel(1, MainMenu::bruitPush, 0);
-        Utils::wait(WAIT_DEFAULT);
+
     }
 
 
