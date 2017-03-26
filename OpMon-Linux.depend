@@ -91,13 +91,14 @@
 1490432657 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/evolution/Evolution.cpp
 	"Evolution.hpp"
 
-1490529198 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/Elements.cpp
+1490537451 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/Elements.cpp
 	"Elements.hpp"
 	<cstdlib>
 	"../start/main.hpp"
 	"../start/Initializer.hpp"
+	<cstdlib>
 
-1490528754 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/Elements.hpp
+1490536280 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/Elements.hpp
 	<SDL/SDL.h>
 	<SDL/SDL_image.h>
 	<SDL/SDL_ttf.h>
@@ -568,7 +569,7 @@
 	"../save/Save.hpp"
 	"../objects/OpMon.hpp"
 
-1490529177 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/Initializer.cpp
+1490537220 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/Initializer.cpp
 	"Initializer.hpp"
 	"../enums/Enums.hpp"
 	"../objects/Attaques.hpp"
@@ -577,6 +578,7 @@
 	<SDL/SDL.h>
 	<sstream>
 	"../gui/MainFrame.hpp"
+	<fstream>
 
 1490529170 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/Initializer.hpp
 	<iostream>
