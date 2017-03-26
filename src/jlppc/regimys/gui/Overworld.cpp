@@ -43,21 +43,21 @@ namespace MainFrame {
             #ifdef _WIN32
 
             #else
-            spritePP[FACE] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp0.png");
-            spritePP[DROITE] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp1.png");
-            spritePP[GAUCHE] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp2.png");
-            spritePP[DOS] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp3.png");
-            marchePP[FACE] = IMG_LoadTexture(renderer, "ressources/sprites/chara/mpp0.png");
-            marchePP[DROITE] = IMG_LoadTexture(renderer, "ressources/sprites/chara/mpp1.png");
-            marchePP[GAUCHE] = IMG_LoadTexture(renderer, "ressources/sprites/chara/mpp2.png");
-            marchePP[DOS] = IMG_LoadTexture(renderer, "ressources/sprites/chara/mpp3.png");
+            spritePP[FACE] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp/pp0.png");
+            spritePP[DROITE] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp/pp1.png");
+            spritePP[GAUCHE] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp/pp2.png");
+            spritePP[DOS] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp/pp3.png");
+            marchePP[FACE] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp/mpp0.png");
+            marchePP[DROITE] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp/mpp1.png");
+            marchePP[GAUCHE] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp/mpp2.png");
+            marchePP[DOS] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp/mpp3.png");
             #endif // _WIN32
             mapPos.x = -8*32;
             mapPos.y = -8*32;
             ppPos.x = mapPos.x + (16*32);
             ppPos.y = mapPos.y + (16*32);
-            ppPos.w = 32;
-            ppPos.h = 32;
+            ppPos.w = 64;
+            ppPos.h = 64;
 
         }
         void verifVars() {
@@ -139,14 +139,19 @@ namespace MainFrame {
                         }
 
                         if(anim == DOS){
-                            if(frames - startFrames == 30){
+                            if(frames - startFrames == 32){
                                 anim = -1;
-                                ppPos.y = ppPos.y + 2;
-                                mapPos.y = mapPos.y - 1;
                             }
                             ppPos.y = ppPos.y + 1;
                             mapPos.y = mapPos.y - 1;
                         }
+                        SDL_RenderClear(renderer);
+                        SDL_RenderCopy(renderer, actuel->getCouche1(), NULL, &mapPos);
+                        SDL_RenderCopy(renderer, actuel->getCouche2(), NULL, &mapPos);
+                        SDL_RenderCopy(renderer, spritePP[0], NULL, &ppPos);
+                        SDL_RenderCopy(renderer, actuel->getCouche3(), NULL, &mapPos);
+                        SDL_RenderPresent(renderer);
+
 
                     } else {
                         SDL_Delay(FPS_TICKS - (SDL_GetTicks() - ancientTick));

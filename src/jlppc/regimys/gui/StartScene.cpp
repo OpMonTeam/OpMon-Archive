@@ -474,8 +474,7 @@ int boucle2() {
                 ANIM_ARROW
                 SDL_RenderPresent(renderer);
             } else {
-                //printChoice(kget("jlppc.dialog.start.25"), kget("opmon.choice.1"), kget("opmon.choice.2"), kget("opmon.choice.3")); //Non fini
-                break;
+                return 0;
             }
 
 
@@ -567,6 +566,8 @@ int startScene() {
         return -1;
     }
     phase++;
+    destroyVars();
+        return 0;
 
 
     //rlog << "[T = " << SDL_GetTicks << "] - Entrée dans la boucle n°1" << endl;

@@ -50,7 +50,7 @@ Permet d'ouvrir la fenetre du jeu.
 		txtEnCours[2] = string(" ");\
 		changeDialog = false;\
 	}else{\
-		phase = (varname) + 1;\
+		phase++;\
 	}\
 	break;
 
