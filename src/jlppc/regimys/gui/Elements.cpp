@@ -1,6 +1,7 @@
 #include "Elements.hpp"
 #include <cstdlib>
-
+#include "../start/main.hpp"
+UNS
 Plan::Plan(SDL_Texture *couche1, SDL_Texture *couche2, SDL_Texture *couche3, int w, int h, vector<bool> passTab[]){
     this->couche1 = couche1;
     this->couche2 = couche2;
