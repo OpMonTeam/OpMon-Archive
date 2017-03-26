@@ -38,9 +38,9 @@ private:
     int w;
     int h;
     SDL_Texture *couche3;
-    std::vector<bool> *passTab;
+    int **passTab;
 public:
-    Plan(SDL_Texture *couche1, SDL_Texture *couche2, SDL_Texture *couche3, int w, int h, std::vector<bool> passTab[]);
+    Plan(SDL_Texture *couche1, SDL_Texture *couche2, SDL_Texture *couche3, int w, int h, int tabNbre);
     ~Plan();
     //Event* getEvent(int x, int y){return events[y][x];}
 };
