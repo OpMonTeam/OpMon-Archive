@@ -25,7 +25,6 @@ namespace Initializer {
 Evolutions::E_Nope *ne = new E_Nope();
 std::vector<int> evs[OP_NUMBER] = {};
 Espece *listeOp[OP_NUMBER] = {};
- Plan *fauxBourgEuvi = NULL;
 template<typename T>void pb(std::vector<T> &vecteur, T tab[], int longeurTab) {
     for (unsigned int i = 0; i < longeurTab; i++) {
         vecteur.push_back(tab[i]);
@@ -859,6 +858,7 @@ void initSprites() {
 }
 
 void initPlans(){
+    UNS
     bool feTab[(1024 / 32)] = {vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>(), vector<bool>()};
     for(unsigned int i = 0; i < 11; i++){
         feTab[0].push_back(false);
