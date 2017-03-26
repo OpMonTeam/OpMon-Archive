@@ -45,6 +45,9 @@ public:
     int getH(){return h;}
     int getW(){return w;}
     int** getPassTab(){return passTab;}
+    SDL_Texture* getCouche1(){return couche1;}
+    SDL_Texture* getCouche2(){return couche2;}
+    SDL_Texture* getCouche3(){return couche3;}
     //Event* getEvent(int x, int y){return events[y][x];}
 };
 
