@@ -41,7 +41,14 @@ namespace MainFrame {
         void initVars() {
             actuel = Initializer::faubourgEuvi;
             #ifdef _WIN32
-
+            spritePP[FACE] = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\pp\\pp0.png");
+            spritePP[DROITE] = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\pp\\pp1.png");
+            spritePP[GAUCHE] = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\pp\\pp2.png");
+            spritePP[DOS] = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\pp\\pp3.png");
+            marchePP[FACE] = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\pp\\mpp0.png");
+            marchePP[DROITE] = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\pp\\mpp1.png");
+            marchePP[GAUCHE] = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\pp\\mpp2.png");
+            marchePP[DOS] = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\pp\\mpp3.png");
             #else
             spritePP[FACE] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp/pp0.png");
             spritePP[DROITE] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp/pp1.png");
@@ -64,19 +71,7 @@ namespace MainFrame {
             if(actuel == NULL){
                 gererErreur("Map du fauxbourg euvi manquante. Erreur.", true);
             }
-            for(int i = 0; i < 8; i++){
-                if(i < 4){
-                    if(spritePP[i] == NULL){
-                        rerrLog << "Sprite du personage principal manquant" << endl;
-                        gererErreur(IMG_GetError(), false);
-                    }
-                }else{
-                    if(marchePP[i - 4] == NULL){
-                        rerrLog << "Sprite du personage principal manquant" << endl;
-                        gererErreur(IMG_GetError(), false);
-                    }
-                }
-            }
+
         }
         void deleteVars() {
             for(int i = 0; i < 8; i++){
@@ -139,10 +134,10 @@ namespace MainFrame {
                         }
 
                         if(anim == DOS){
-                            if(frames - startFrames == 32){
+                            if(frames - startFrames == 16){
                                 anim = -1;
                             }
-                            ppPos.y = ppPos.y + 1;
+                            ppPos.y = ppPos.y + 2;
                             mapPos.y = mapPos.y - 1;
                         }
                         SDL_RenderClear(renderer);
