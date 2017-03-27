@@ -901,7 +901,10 @@ void initPlans(){
         }
     }
     #ifdef _WIN32
-    faubourgEuvi = new Plan(IMG_LoadTexture(MainFrame::renderer, "ressources\\plans\\fe\\fe1.png"), IMG_LoadTexture(MainFrame::renderer, "ressources\\plans\\fe\\fe2.png"), IMG_LoadTexture(MainFrame::renderer, "ressources\\plans\\fe\\fe3.png"), 32, 32, "feTemp.tmp");
+    SDL_Texture *couche1 = IMG_LoadTexture(MainFrame::renderer, "ressources\\plans\\fe\\fe1.png");
+    SDL_Texture *couche2 = IMG_LoadTexture(MainFrame::renderer, "ressources\\plans\\fe\\fe2.png");
+    SDL_Texture *couche3 = IMG_LoadTexture(MainFrame::renderer, "ressources\\plans\\fe\\fe3.png");
+    faubourgEuvi = new Plan(,, , 32, 32, "feTemp.tmp");
     #else
     faubourgEuvi = new Plan(IMG_LoadTexture(MainFrame::renderer, "ressources/maps/fe/fe1.png"), IMG_LoadTexture(MainFrame::renderer, "ressources/maps/fe/fe2.png"), IMG_LoadTexture(MainFrame::renderer, "ressources/maps/fe/fe3.png"), 32, 32, "feTemp.tmp");
     #endif
