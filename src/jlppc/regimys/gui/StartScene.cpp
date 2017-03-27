@@ -105,6 +105,16 @@ void initVars() {
     texteDesc4R.y = texteDesc3R.y + 30;
     textPos.x = 120;
     textPos.y = 300;
+    txtEnCours[0] = string(" ");
+    txtEnCours[1] = string(" ");
+    txtEnCours[2] = string(" ");
+    sizeOfTxt = 18;
+    changeDialog = false;
+    phase = 0;
+    joypressed = false;
+    line = 0;
+    i = 0;
+    dialog = 0;
     //Initialisation des images
     rlog << "[T = " << SDL_GetTicks() << "] - Initialisation des sprites..." << endl;
 #ifdef _WIN32
