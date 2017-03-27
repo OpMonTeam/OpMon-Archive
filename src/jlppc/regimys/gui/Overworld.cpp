@@ -28,7 +28,14 @@ namespace MainFrame {
             if(anim == -1){
                 startFrames = frames;
                 anim = DOS;
-                if((ppPos.y/SQUARE + mapPos.y/SQUARE + 1) > (actuel->getH()*SQUARE)){
+                //moving = DOS;
+                //return;
+                rerrLog << actuel->getH()*SQUARE << endl;
+                rerrLog << (ppPos.y/SQUARE + mapPos.y/SQUARE + 1) << endl;
+                rerrLog << ppPos.y/SQUARE << endl;
+                rerrLog << mapPos.y/SQUARE << endl;
+                rerrLog << ppPos.y/SQUARE + mapPos.y/SQUARE << endl;
+                if((ppPos.y/SQUARE + mapPos.y/SQUARE + 1) < (actuel->getH()*SQUARE)){
                     if(actuel->getPassTab()[(ppPos.y / SQUARE) + 1][ppPos.x / SQUARE] == 0){
 
                         //Ensuite faudra faire la verif du passages des events
@@ -45,7 +52,9 @@ namespace MainFrame {
             if(anim == -1){
                 startFrames = frames;
                 anim = FACE;
-                if((ppPos.y/SQUARE + mapPos.y/SQUARE - 1) < 0){
+                //moving = FACE;
+                //return;
+                if((ppPos.y/SQUARE + mapPos.y/SQUARE - 1) > 0){
                     if(actuel->getPassTab()[(ppPos.y / SQUARE) - ((ppPos.y/SQUARE <= 0) ? 0 : 1)][ppPos.x / SQUARE] == 0){
                         //Ensuite faudra faire la verif du passages des events
                         moving = FACE;
@@ -58,6 +67,8 @@ namespace MainFrame {
             if(anim == -1){
                 startFrames = frames;
                 anim = DROITE;
+                //moving = DROITE;
+                //return;
                 if((ppPos.x/SQUARE + mapPos.x/SQUARE + 1) < (actuel->getW()*SQUARE)){
                     if(actuel->getPassTab()[(ppPos.y / SQUARE)][(ppPos.x / SQUARE) + 1] == 0){
                         //Ensuite faudra faire la verif du passages des events
@@ -73,7 +84,9 @@ namespace MainFrame {
             if(anim == -1){
                 startFrames = frames;
                 anim = GAUCHE;
-                if((ppPos.x/SQUARE + mapPos.x/SQUARE - 1) < 0){
+                //moving = GAUCHE;
+                //return;
+                if((ppPos.x/SQUARE + mapPos.x/SQUARE - 1) > 0){
                     if(actuel->getPassTab()[(ppPos.y / SQUARE)][(ppPos.x / SQUARE) - ((ppPos.x/SQUARE <= 0) ? 0 : 1)] == 0){
                         //Ensuite faudra faire la verif du passages des events
                         moving = GAUCHE;
@@ -104,12 +117,12 @@ namespace MainFrame {
             marchePP[GAUCHE] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp/mpp2.png");
             marchePP[DOS] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp/mpp3.png");
             #endif // _WIN32
-            mapPos.x = -(8*32);
-            mapPos.y = -(8*32);
-            mapPos.h = actuel->getH() * SQUARE;
-            mapPos.w = actuel->getW() * SQUARE;
+            mapPos.x = -(8*SQUARE);
+            mapPos.y = -(8*SQUARE);
+            mapPos.h = 1024;
+            mapPos.w = 1024;
             ppPos.x = mapPos.x + (16*SQUARE) + 16;
-            ppPos.y = mapPos.y + (14*SQUARE);
+            ppPos.y = mapPos.y + (14*SQUARE) + 16;
             ppPos.w = 64;
             ppPos.h = 64;
 
@@ -197,8 +210,8 @@ namespace MainFrame {
                                 anim = -1;
                             }else{
                                 if(moving == DOS){
-                                    ppPos.y = ppPos.y + 1;
-                                    mapPos.y = mapPos.y - 1;
+                                    //ppPos.y = ppPos.y + 1;
+                                    mapPos.y = mapPos.y - 2;
                                 }
                             }
                             ppDir = FACE;
@@ -207,8 +220,8 @@ namespace MainFrame {
                                 anim = -1;
                             }else{
                                 if(moving == FACE){
-                                    ppPos.y = ppPos.y - 1;
-                                    mapPos.y = mapPos.y + 1;
+                                    //ppPos.y = ppPos.y - 1;
+                                    mapPos.y = mapPos.y + 2;
                                 }
 
                             }
@@ -219,8 +232,8 @@ namespace MainFrame {
                                 anim = -1;
                             }else{
                                 if(moving == DROITE){
-                                    ppPos.x = ppPos.x + 1;
-                                    mapPos.x = mapPos.x - 1;
+                                    //ppPos.x = ppPos.x + 1;
+                                    mapPos.x = mapPos.x - 2;
                                 }
 
                             }
@@ -231,8 +244,8 @@ namespace MainFrame {
                                 anim = -1;
                             }else{
                                 if(moving == GAUCHE){
-                                    ppPos.x = ppPos.x - 1;
-                                    mapPos.x = mapPos.x + 1;
+                                    //ppPos.x = ppPos.x - 1;
+                                    mapPos.x = mapPos.x + 2;
                                 }
 
                             }
