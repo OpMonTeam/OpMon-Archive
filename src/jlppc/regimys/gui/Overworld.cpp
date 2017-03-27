@@ -17,6 +17,7 @@ namespace MainFrame {
         SDL_Rect mapPos = {};
         int moving = -1;//Signale le mouvement a la boucle
         int anim = -1;//Signale l'animation a la boucle
+        int ppDir = 0;
         int frames = 0;
         int startFrames = 0;
         SDL_Rect camera = {0, 0, 512, 512};
@@ -31,11 +32,54 @@ namespace MainFrame {
                     if(actuel->getPassTab()[(ppPos.y / SQUARE) + 1][ppPos.x / SQUARE] == 0){
                         //Ensuite faudra faire la verif du passages des events
                         moving = DOS;
+                        //Faudra ici gerer le déplacement de la map
                     }
                 }
             }
 
 
+        }
+
+        void up(){
+            if(anim == -1){
+                startFrames = frames;
+                anim = FACE;
+                if((ppPos.y/SQUARE - 1) < (actuel->getH()/SQUARE)){
+                    if(actuel->getPassTab()[(ppPos.y / SQUARE) - 1][ppPos.x / SQUARE] == 0){
+                        //Ensuite faudra faire la verif du passages des events
+                        moving = FACE;
+                        //Faudra ici gerer le déplacement de la map
+                    }
+                }
+            }
+        }
+        void right(){
+            if(anim == -1){
+                startFrames = frames;
+                anim = DROITE;
+                if((ppPos.x/SQUARE + 1) < (actuel->getW()/SQUARE)){
+                    if(actuel->getPassTab()[(ppPos.y / SQUARE)][ppPos.x / SQUARE + 1] == 0){
+                        //Ensuite faudra faire la verif du passages des events
+                        moving = DROITE;
+                        //Faudra ici gerer le déplacement de la map
+                    }
+                }
+            }
+
+        }
+
+        void left(){
+            if(anim == -1){
+                startFrames = frames;
+                anim = GAUCHE;
+                if((ppPos.x/SQUARE - 1) < (actuel->getW()/SQUARE)){
+                    if(actuel->getPassTab()[(ppPos.y / SQUARE)][ppPos.x / SQUARE - 1] == 0){
+                        //Ensuite faudra faire la verif du passages des events
+                        moving = GAUCHE;
+                        //Faudra ici gerer le déplacement de la map
+                    }
+                }
+            }
         }
 
         void initVars() {
@@ -113,6 +157,15 @@ namespace MainFrame {
                                 case SDLK_DOWN:
                                     down();
                                 break;
+                                case SDLK_UP:
+                                    up();
+                                    break;
+                                case SDLK_RIGHT:
+                                    right();
+                                    break;
+                                case SDLK_LEFT:
+                                    left();
+                                    break;
 
                             }
                             break;
@@ -138,12 +191,46 @@ namespace MainFrame {
                                 anim = -1;
                             }
                             ppPos.y = ppPos.y + 2;
-                            mapPos.y = mapPos.y - 1;
+                            mapPos.y = mapPos.y - 2;
+                            ppDir = FACE;
+                        }else if(anim == FACE){
+                            if(frames - startFrames == 16){
+                                anim = -1;
+                            }
+                            ppPos.y = ppPos.y - 2;
+                            mapPos.y = mapPos.y + 2;
+                            ppDir = DOS;
+                        }else if(anim == DROITE){
+                            if(frames - startFrames == 16){
+                                anim = -1;
+                            }
+                            ppPos.x = ppPos.x + 2;
+                            mapPos.x = mapPos.x - 2;
+                            ppDir = DROITE;
+                        }else if(anim == GAUCHE){
+                            if(frames - startFrames == 16){
+                                anim = -1;
+                            }
+                            ppPos.x = ppPos.x - 2;
+                            mapPos.x = mapPos.x + 2;
+                            ppDir = GAUCHE;
                         }
                         SDL_RenderClear(renderer);
                         SDL_RenderCopy(renderer, actuel->getCouche1(), NULL, &mapPos);
                         SDL_RenderCopy(renderer, actuel->getCouche2(), NULL, &mapPos);
-                        SDL_RenderCopy(renderer, spritePP[0], NULL, &ppPos);
+                        if(anim != -1 && frames - startFrames <= 8){
+                            if(anim == DOS){
+                                SDL_RenderCopy(renderer, marchePP[FACE], NULL, &ppPos);
+                            }else if(anim == FACE){
+                                SDL_RenderCopy(renderer, marchePP[DOS], NULL, &ppPos);
+                            }else{
+                                SDL_RenderCopy(renderer, marchePP[anim], NULL, &ppPos);
+                            }
+
+                        }else{
+                            SDL_RenderCopy(renderer, spritePP[ppDir], NULL, &ppPos);
+                        }
+
                         SDL_RenderCopy(renderer, actuel->getCouche3(), NULL, &mapPos);
                         SDL_RenderPresent(renderer);
 
