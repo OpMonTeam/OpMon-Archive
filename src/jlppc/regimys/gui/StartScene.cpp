@@ -171,6 +171,10 @@ int boucle0() {
                     DIALOG_PASS(0)
 
                     ECHAP
+
+                case SDLK_p:
+                    return 2;
+                    break;
                 }
                 break;
 
@@ -498,10 +502,13 @@ int startScene() {
 
     //Initialisation des variables utiles pour la boucle
     SDL_RenderPresent(renderer);
-
-    if(boucle0() == -1) {
+    int result = boucle0();
+    if(result == -1) {
         destroyVars();
         return -1;
+    }else if(result == 2){
+        destroyVars();
+        return 2;
     }
 
     continuer = true;

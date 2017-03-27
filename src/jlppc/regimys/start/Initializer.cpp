@@ -894,20 +894,34 @@ void initPlans(){
                              {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1},
                              {2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1},
                              {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
+
+    #ifdef _WIN32
+    SDL_Texture *couche1 = IMG_LoadTexture(MainFrame::renderer, "ressources\\maps\\fe\\fe1.png");
+    SDL_Texture *couche2 = IMG_LoadTexture(MainFrame::renderer, "ressources\\maps\\fe\\fe2.png");
+    SDL_Texture *couche3 = IMG_LoadTexture(MainFrame::renderer, "ressources\\maps\\fe\\fe3.png");
+    #else
+    SDL_Texture *couche1 = IMG_LoadTexture(MainFrame::renderer, "ressources/maps/fe/fe1.png");
+    SDL_Texture *couche2 = IMG_LoadTexture(MainFrame::renderer, "ressources/maps/fe/fe2.png");
+    SDL_Texture *couche3 = IMG_LoadTexture(MainFrame::renderer, "ressources/maps/fe/fe3.png");
+    #endif
+    if(couche1 == NULL || couche2 == NULL || couche3 == NULL){
+        rerrLog << "Erreur. Un des plans de Faubourg euvi est NULL" << endl;
+        if(couche1 == NULL){
+            gererErreur(IMG_GetError(), true);
+        }else{
+            gererErreur(IMG_GetError(), false);
+        }
+    }
     ofstream tempFile("feTemp.tmp");
+    if(!tempFile){
+        gererErreur("Impossible d'ouvrir feTemp.tmp. Les boites de collisions ne peuvent fonctionner.", true);
+    }
     for(int i = 0; i < 32; i++){
         for(int j = 0; j < 32; j++){
             tempFile << feTab[i][j] << endl;
         }
     }
-    #ifdef _WIN32
-    SDL_Texture *couche1 = IMG_LoadTexture(MainFrame::renderer, "ressources\\plans\\fe\\fe1.png");
-    SDL_Texture *couche2 = IMG_LoadTexture(MainFrame::renderer, "ressources\\plans\\fe\\fe2.png");
-    SDL_Texture *couche3 = IMG_LoadTexture(MainFrame::renderer, "ressources\\plans\\fe\\fe3.png");
-    faubourgEuvi = new Plan(,, , 32, 32, "feTemp.tmp");
-    #else
-    faubourgEuvi = new Plan(IMG_LoadTexture(MainFrame::renderer, "ressources/maps/fe/fe1.png"), IMG_LoadTexture(MainFrame::renderer, "ressources/maps/fe/fe2.png"), IMG_LoadTexture(MainFrame::renderer, "ressources/maps/fe/fe3.png"), 32, 32, "feTemp.tmp");
-    #endif
+    faubourgEuvi = new Plan(couche1, couche2, couche3, 32, 32, "feTemp.tmp");
     rerrLog << IMG_GetError() << endl;
 }
 
