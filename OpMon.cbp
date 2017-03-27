@@ -103,6 +103,8 @@
 		<Unit filename="src/jlppc/regimys/gui/MainFrame.hpp" />
 		<Unit filename="src/jlppc/regimys/gui/MainMenu.cpp" />
 		<Unit filename="src/jlppc/regimys/gui/MainMenu.hpp" />
+		<Unit filename="src/jlppc/regimys/gui/Overworld.cpp" />
+		<Unit filename="src/jlppc/regimys/gui/Overworld.hpp" />
 		<Unit filename="src/jlppc/regimys/gui/StartScene.cpp" />
 		<Unit filename="src/jlppc/regimys/gui/StartScene.hpp" />
 		<Unit filename="src/jlppc/regimys/objects/Attaque.cpp" />
@@ -134,6 +136,8 @@
 		<Unit filename="src/jlppc/regimys/save/Save.hpp" />
 		<Unit filename="src/jlppc/regimys/start/Initializer.cpp" />
 		<Unit filename="src/jlppc/regimys/start/Initializer.hpp" />
+		<Unit filename="src/jlppc/regimys/start/PersistentVars.cpp" />
+		<Unit filename="src/jlppc/regimys/start/PersistentVars.hpp" />
 		<Unit filename="src/jlppc/regimys/start/StringKeys.cpp" />
 		<Unit filename="src/jlppc/regimys/start/StringKeys.hpp" />
 		<Unit filename="src/jlppc/regimys/start/bigDefines.hxx" />
