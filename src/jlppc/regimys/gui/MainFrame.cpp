@@ -184,10 +184,21 @@ void open() {
         Mix_PlayChannel(1, MainMenu::bruitPush, 0);
         Utils::wait(WAIT_DEFAULT);
         if(StartScene::startScene() != -1){
-            Overworld::overworld();
+            while(Overworld::overworld() != -1){
+                if(MainMenu::mainMenu() != -1){
+                    if(StartScene::startScene() != -1){
+
+                    }else{
+                        break;
+                    }
+                }else{
+                    break;
+                }
+            }
         }
     } else {
-
+        Mix_PlayChannel(1, MainMenu::bruitPush, 0);
+        Utils::wait(WAIT_DEFAULT);
     }
 
 

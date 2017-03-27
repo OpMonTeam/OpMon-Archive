@@ -6,7 +6,7 @@ namespace MainFrame{
 namespace Overworld{
     void initVars();
     void verifVars();
-    void overworld();
+    int overworld();
     void deleteVars();
     int boucle();
     void up();
