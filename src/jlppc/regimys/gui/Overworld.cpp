@@ -36,7 +36,7 @@ namespace MainFrame {
 
                         //Ensuite faudra faire la verif du passages des events
                         moving = DOS;
-                        //Faudra ici gerer le d�placement de la map
+                        //Faudra ici gerer le déplacement de la map
                     }
                 }
             }
@@ -54,7 +54,7 @@ namespace MainFrame {
                     if(actuel->getPassTab()[(ppPos.y / SQUARE) - ((ppPos.y/SQUARE <= 0) ? 0 : 1)][ppPos.x / SQUARE] == 0){
                         //Ensuite faudra faire la verif du passages des events
                         moving = FACE;
-                        //Faudra ici gerer le d�placement de la map
+                        //Faudra ici gerer le déplacement de la map
                     }
                 }
             }
@@ -69,7 +69,7 @@ namespace MainFrame {
                     if(actuel->getPassTab()[(ppPos.y / SQUARE)][(ppPos.x / SQUARE) + 1] == 0){
                         //Ensuite faudra faire la verif du passages des events
                         moving = DROITE;
-                        //Faudra ici gerer le d�placement de la map
+                        //Faudra ici gerer le déplacement de la map
                     }
                 }
             }
@@ -86,13 +86,14 @@ namespace MainFrame {
                     if(actuel->getPassTab()[(ppPos.y / SQUARE)][(ppPos.x / SQUARE) - ((ppPos.x/SQUARE <= 0) ? 0 : 1)] == 0){
                         //Ensuite faudra faire la verif du passages des events
                         moving = GAUCHE;
-                        //Faudra ici gerer le d�placement de la map
+                        //Faudra ici gerer le déplacement de la map
                     }
                 }
             }
         }
 
         void initVars() {
+            rlog << PRINT_TICKS << "Initialisation des variables et des sprites" << endl;
             actuel = Initializer::faubourgEuvi;
             #ifdef _WIN32
             spritePP[FACE] = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\pp\\pp0.png");
@@ -132,12 +133,32 @@ namespace MainFrame {
 
         }
         void verifVars() {
+            rlog << PRINT_TICKS << "Vérification des variables" << endl;
             if(actuel == NULL){
                 gererErreur("Map du fauxbourg euvi manquante. Erreur.", true);
+            }
+            for(int i = 0; i < 4; i++){
+                if(spritePP[i] == NULL){
+                    rerrLog << "Sprite du PP n°"<< i << " manquant." << endl;
+                    gererErreur(IMG_GetError(), false);
+                }
+            }
+            for(int i = 0; i < 4; i++){
+                if(marchePP[i] == NULL){
+                    rerrLog << "Sprite de marche du PP n°"<< i << " manquant." << endl;
+                    gererErreur(IMG_GetError(), false);
+                }
+            }
+           for(int i = 0; i < 4; i++){
+                if(marche2PP[i] == NULL){
+                    rerrLog << "Sprite de marche 2 du PP n°"<< i << " manquant." << endl;
+                    gererErreur(IMG_GetError(), false);
+                }
             }
 
         }
         void deleteVars() {
+            rlog << PRINT_TICKS << "Suppression des variables de l'overworld..." << endl;
             for(int i = 0; i < 8; i++){
                 if(i < 4){
                     if(spritePP[i] != NULL){
@@ -151,13 +172,16 @@ namespace MainFrame {
             }
         }
         int overworld() {
+            rlog << PRINT_TICKS << "Entrée dans l'overworld..." << endl;
             initVars();
             verifVars();
-
-            return boucle();
+            int returne = boucle();
+            deleteVars();
+            return returne;
         }
 
         int boucle() {
+            rlog << PRINT_TICKS << "Entrée dans la boucle de l'overworld..." << endl;
             bool anims = false;
             int animsCounter = 0;
             while(continuer) {
