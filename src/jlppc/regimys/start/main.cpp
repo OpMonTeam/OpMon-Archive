@@ -43,8 +43,8 @@ namespace Main {
 ostringstream oss;
 bool connected = false;
 string trainers[] = {"Brice", "Evan", "Mael", "Jlppc", "Red", "Blue", "Nikolai", "N", "Belladonis", "Aristote", "Giovanni", "Flora", "Silver", "Jules Cesar", "Gwendal", "Brahim"};
-float version = 0.07;
-int sousVers = 1;
+float version = 0.09;
+int sousVers = 0;
 string versionS;
 extern Player joueur;
 extern RFile playerSave;
