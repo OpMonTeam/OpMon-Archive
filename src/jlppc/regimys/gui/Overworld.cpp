@@ -22,23 +22,20 @@ namespace MainFrame {
         int frames = 0;
         int startFrames = 0;
         SDL_Rect camera = {0, 0, 512, 512};
-        int ancienPosX = 0;
-        int ancienPosY = 0;
+        int ppPosX = 16;
+        int ppPosY = 14;
 
         void down(){
             if(anim == -1){
                 startFrames = frames;
                 anim = DOS;
-                moving = DOS;
-                return;
-                if((ppPos.y/SQUARE + mapPos.y/SQUARE + 1) < (actuel->getH()*SQUARE)){
-                    if(actuel->getPassTab()[(ppPos.y / SQUARE) + 1][ppPos.x / SQUARE] == 0){
+                if(actuel->getPassTab()[(ppPos.y / SQUARE) + 1][ppPos.x / SQUARE] == 0){
 
                         //Ensuite faudra faire la verif du passages des events
                         moving = DOS;
+
                         //Faudra ici gerer le déplacement de la map
                     }
-                }
             }
 
 
@@ -126,8 +123,8 @@ namespace MainFrame {
             mapPos.y = -(8*SQUARE);
             mapPos.h = 1024;
             mapPos.w = 1024;
-            ppPos.x = mapPos.x + (16*SQUARE) + 16;
-            ppPos.y = mapPos.y + (14*SQUARE);
+            ppPos.x = mapPos.x + (ppPosX*SQUARE) + 16;
+            ppPos.y = mapPos.y + (ppPosY*SQUARE);
             ppPos.w = 64;
             ppPos.h = 64;
 
