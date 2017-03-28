@@ -20,7 +20,7 @@ namespace MainFrame {
         int anim = -1;//Signale l'animation a la boucle
         int ppDir = 0;
         int frames = 0;
-        bool mapMove = true;
+        bool mapMove[] = {true, true, true, true};
         int startFrames = 0;
         SDL_Rect camera = {0, 0, 512, 512};
         int ppPosX = 17;
@@ -37,10 +37,11 @@ namespace MainFrame {
                         //Faudra ici gerer le déplacement de la map
                         rerrLog << "ppPosY = " << ppPosY + 8 << " et actuel->getH() = " << actuel->getH() << endl;
                         if(ppPosY + 8 >= actuel->getH()){
-                            rerrLog << "BLOCK" << endl;
-                            mapMove = false;
-                        }else if(ppPosY >= actuel ->getH() - 8){
-                            mapMove = true;
+                            mapMove[DOS] = false;
+                            mapMove[FACE] = false;
+                        }else if(ppPosY >= 8){
+                            mapMove[FACE] = true;
+                             mapMove[DOS] = true;
                         }
                 }
             }
@@ -57,11 +58,12 @@ namespace MainFrame {
                         moving = FACE;
                         ppPosY--;
                         //Faudra ici gerer le déplacement de la map
-                        if(ppPosY - 8 <= 0){
-                            rerrLog << "BLOCK" << endl;
-                            mapMove = false;
-                        }else if(ppPosY >= 8){
-                            mapMove = true;
+                        if(ppPosY - 6 <= 0){
+                            mapMove[FACE] = false;
+                            mapMove[DOS] = false;
+                        }else if(ppPosY <= actuel->getH() - 10){
+                            mapMove[DOS] = true;
+                            mapMove[FACE] = true;
                         }
                     }
             }
@@ -75,11 +77,12 @@ namespace MainFrame {
                         moving = DROITE;
                         ppPosX++;
                         //Faudra ici gerer le déplacement de la map
-                        if(ppPosX + 8 >= actuel->getW()){
-                            rerrLog << "BLOCK" << endl;
-                            mapMove = false;
-                        }else if(ppPosX >= actuel ->getW() - 8){
-                            mapMove = true;
+                        if(ppPosX + 6 >= actuel->getW()){
+                            mapMove[DROITE] = false;
+                            mapMove[GAUCHE] = false;
+                        }else if(ppPosX >= 8){
+                            mapMove[DROITE] = true;
+                            mapMove[GAUCHE] = true;
                         }
                     }
             }
@@ -95,15 +98,12 @@ namespace MainFrame {
                         moving = GAUCHE;
                         ppPosX--;
                         //Faudra ici gerer le déplacement de la map
-                        if(mapMove){
-                            if(ppPosX - 8 <= 0){
-                                rerrLog << "BLOCK" << endl;
-                                mapMove = false;
-                            }
-                        }else{
-                            if(ppPosX >= 8){
-                                mapMove = true;
-                            }
+                        if(ppPosX - 8 <= 0){
+                                mapMove[GAUCHE] = false;
+                                mapMove[DROITE] = false;
+                        }else if(ppPosX <= actuel->getW() - 10){
+                                mapMove[GAUCHE] = true;
+                                mapMove[DROITE] = true;
                         }
                     }
             }
@@ -293,7 +293,7 @@ namespace MainFrame {
                             }else{
                                 if(moving == DOS){
                                     //ppPos.y = ppPos.y + 1;
-                                    if(mapMove){
+                                    if(mapMove[DOS]){
                                         mapPos.y = mapPos.y - 4;
                                     }else{
                                         ppPos.y = ppPos.y + 4;
@@ -310,7 +310,7 @@ namespace MainFrame {
                             }else{
                                 if(moving == FACE){
                                     //ppPos.y = ppPos.y - 1;
-                                    if(mapMove){
+                                    if(mapMove[FACE]){
                                         mapPos.y = mapPos.y + 4;
                                     }else{
                                         ppPos.y = ppPos.y - 4;
@@ -328,10 +328,10 @@ namespace MainFrame {
                             }else{
                                 if(moving == DROITE){
                                     //ppPos.x = ppPos.x + 1;
-                                    if(mapMove){
-                                        mapPos.y = mapPos.y + 4;
+                                    if(mapMove[DROITE]){
+                                        mapPos.x = mapPos.x - 4;
                                     }else{
-                                        ppPos.y = ppPos.y - 4;
+                                        ppPos.x = ppPos.x + 4;
                                     }
                                 }
 
@@ -346,10 +346,10 @@ namespace MainFrame {
                             }else{
                                 if(moving == GAUCHE){
                                     //ppPos.x = ppPos.x - 1;
-                                    if(mapMove){
-                                        mapPos.x = mapPos.x - 4;
+                                    if(mapMove[GAUCHE]){
+                                        mapPos.x = mapPos.x + 4;
                                     }else{
-                                        ppPos.x = ppPos.x + 4;
+                                        ppPos.x = ppPos.x - 4;
                                     }
                                 }
 
