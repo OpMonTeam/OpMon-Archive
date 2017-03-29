@@ -10,6 +10,8 @@ namespace MainFrame {
         bool continuer = true;
         long ancientTick = 0;
         bool joypressed = false;
+        bool mapChanged = true;
+        Mix_Music *fond;
         Plan *actuel = NULL;
         SDL_Texture *spritePP[4] = {};
         SDL_Texture *marchePP[4] = {};
@@ -101,7 +103,7 @@ namespace MainFrame {
                         if(ppPosX - 8 <= 0){
                                 mapMove[GAUCHE] = false;
                                 mapMove[DROITE] = false;
-                        }else if(ppPosX <= actuel->getW() - 10){
+                        }else if(ppPosX <= actuel->getW() - 8){
                                 mapMove[GAUCHE] = true;
                                 mapMove[DROITE] = true;
                         }
@@ -124,7 +126,7 @@ namespace MainFrame {
             marche2PP[FACE] = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\pp\\mpp20.png");
             marche2PP[DROITE] = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\pp\\mpp21.png");
             marche2PP[GAUCHE] = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\pp\\mpp22.png");
-            marche2PP[DOS] = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\pp\\mpp23.png");
+            marche2PP[DOS] = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\pp\\mpp23.png");;
             #else
             spritePP[FACE] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp/pp0.png");
             spritePP[DROITE] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp/pp1.png");
@@ -138,7 +140,9 @@ namespace MainFrame {
             marche2PP[DROITE] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp/mpp21.png");
             marche2PP[GAUCHE] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp/mpp22.png");
             marche2PP[DOS] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp/mpp23.png");
+
             #endif // _WIN32
+            fond = actuel->getFond();
             mapPos.x = -(8*SQUARE);
             mapPos.y = -(8*SQUARE);
             mapPos.h = 1024;
@@ -192,6 +196,8 @@ namespace MainFrame {
             rlog << PRINT_TICKS << "Entrée dans l'overworld..." << endl;
             initVars();
             verifVars();
+            Mix_PlayMusic(fond, -1);
+            Mix_VolumeMusic(MIX_MAX_VOLUME / 4);
             int returne = boucle();
             deleteVars();
             return returne;
@@ -249,6 +255,10 @@ namespace MainFrame {
                                         break;
                                 }
                                 break;*/
+                        }
+                        if(actuel->getFond() != fond){
+                                Mix_PlayMusic(fond, -1);
+                                Mix_VolumeMusic(MIX_MAX_VOLUME / 4);
                         }
                         SDL_RenderClear(renderer);
                         SDL_RenderCopy(renderer, actuel->getCouche1(), NULL, &mapPos);

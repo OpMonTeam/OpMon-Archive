@@ -18,6 +18,7 @@ namespace Overworld{
     extern SDL_Texture *marchePP[4];
     extern SDL_Rect ppPos;
     extern SDL_Rect mapPos;
+    extern Mix_Music *fond;
 }
 }
 
