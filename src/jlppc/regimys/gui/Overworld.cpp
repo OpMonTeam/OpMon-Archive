@@ -197,7 +197,7 @@ namespace MainFrame {
             initVars();
             verifVars();
             Mix_PlayMusic(fond, -1);
-            Mix_VolumeMusic(MIX_MAX_VOLUME / 4);
+            Mix_VolumeMusic(MIX_MAX_VOLUME / 2);
             int returne = boucle();
             deleteVars();
             return returne;
@@ -258,7 +258,7 @@ namespace MainFrame {
                         }
                         if(actuel->getFond() != fond){
                                 Mix_PlayMusic(fond, -1);
-                                Mix_VolumeMusic(MIX_MAX_VOLUME / 4);
+                                Mix_VolumeMusic(MIX_MAX_VOLUME / 2);
                         }
                         SDL_RenderClear(renderer);
                         SDL_RenderCopy(renderer, actuel->getCouche1(), NULL, &mapPos);
