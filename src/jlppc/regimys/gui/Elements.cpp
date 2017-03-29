@@ -5,11 +5,16 @@
 #include <cstdlib>
 UNS
 
-Plan::Plan(SDL_Texture *couche1, SDL_Texture *couche2, SDL_Texture *couche3, int w, int h, string filename){
+Plan::Plan(SDL_Texture *couche1, SDL_Texture *couche2, SDL_Texture *couche3, int w, int h, string filename, string fondPath){
     this->couche1 = couche1;
     this->couche2 = couche2;
     //this->events = events;
     this->couche3 = couche3;
+    this->fond = Mix_LoadMUS(fondPath.c_str());
+    if(this->fond == NULL){
+        rerrLog << "Chagement de la musique échouée dans une map. Path : " << fondPath << endl;
+        gererErreur(Mix_GetError(), false);
+    }
     this->w = w;
     this->h = h;
     this->passTab = (int**)malloc(h * sizeof(int*));

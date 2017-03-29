@@ -899,10 +899,12 @@ void initPlans(){
     SDL_Texture *couche1 = IMG_LoadTexture(MainFrame::renderer, "ressources\\maps\\fe\\fe1.png");
     SDL_Texture *couche2 = IMG_LoadTexture(MainFrame::renderer, "ressources\\maps\\fe\\fe2.png");
     SDL_Texture *couche3 = IMG_LoadTexture(MainFrame::renderer, "ressources\\maps\\fe\\fe3.png");
+    string path = "ressources\\audio\\music\\faubourgeuvi.ogg";
     #else
     SDL_Texture *couche1 = IMG_LoadTexture(MainFrame::renderer, "ressources/maps/fe/fe1.png");
     SDL_Texture *couche2 = IMG_LoadTexture(MainFrame::renderer, "ressources/maps/fe/fe2.png");
     SDL_Texture *couche3 = IMG_LoadTexture(MainFrame::renderer, "ressources/maps/fe/fe3.png");
+    string path = "ressources/audio/music/faubourgeuvi.ogg";
     #endif
     if(couche1 == NULL || couche2 == NULL || couche3 == NULL){
         rerrLog << "Erreur. Un des plans de Faubourg euvi est NULL" << endl;
@@ -921,7 +923,7 @@ void initPlans(){
             tempFile << feTab[i][j] << endl;
         }
     }
-    faubourgEuvi = new Plan(couche1, couche2, couche3, 32, 32, "feTemp.tmp");
+    faubourgEuvi = new Plan(couche1, couche2, couche3, 32, 32, "feTemp.tmp", path);
     rerrLog << IMG_GetError() << endl;
 }
 
