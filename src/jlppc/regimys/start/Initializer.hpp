@@ -4,7 +4,7 @@ Auteur : Jlppc
 Contributeurs au fichier .cpp: Navet56, Aerzia
 Fichier sous licence GPL-3.0
 http://regimys.tk
-Contient la définition des methodes qui permettent d'initialiser les éléments du jeu
+Contient la dÃ©finition des methodes qui permettent d'initialiser les Ã©lÃ©ments du jeu
 */
 #ifndef INITIALIZER_HPP
 #define INITIALIZER_HPP
@@ -24,13 +24,9 @@ Contient la définition des methodes qui permettent d'initialiser les éléments du
 //->NoDoc
 namespace Initializer {
 extern Espece *listeOp[OP_NUMBER];
-extern std::vector<NumberedArray> opOpLvl[OP_NUMBER]; //100 attaques max / poké
+extern std::vector<NumberedArray> opOpLvl[OP_NUMBER]; //100 attaques max / pokÃ©
 extern Evolutions::E_Nope *ne;//ne = No Evolution
-extern SDL_Texture *world[285];
-extern SDL_Texture *grass[104];
-extern SDL_Texture *objects[500];
 extern Plan *faubourgEuvi;
-extern std::vector<std::vector<int> > tabs[1];
 //std::string backgrounds[];
 extern std::vector<int> evs[OP_NUMBER];
 void initEvs();
