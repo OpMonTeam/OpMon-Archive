@@ -10,7 +10,7 @@ Bienvenue sur le projet de OPMon Lazuli! Le clone <a href="https://github.com/jl
 <a href="http://opmon-game.ga">Site web du jeu</a><br/>
 <a href="https://github.com/jlppc/OpMon/blob/master/Credits.md">Crédits</a><br/>
 <a href="https://github.com/jlppc/Site-OpMon">Dépot du site web du jeu</a><br/><br/>
-<br/>Version du jeu : Alpha 0.08 | Téléchargement : <a href="https://github.com/jlppc/OpMon/releases/download/alpha-v0.08/setup.exe"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
+<br/>Version du jeu : Alpha 0.09 | Téléchargement Windows (Pour le reste voir sur le site): <a href="https://github.com/jlppc/OpMon/releases/download/alpha-v0.09/OpMon-setup.exe"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 Prochaines versions :<ul>
 
 <li>Alpha 0.09 : Quand la scene d'intro du jeu sera finie et un début de la première ville</li>
@@ -31,7 +31,7 @@ Nous sommes plusieurs sur le projet : Jlppc, le programmeur et créateur de l'hi
 Contacts : jlppcprog@gmail.com pour la programmation | evandib@gmail.com pour les graphismes<br/>
 Si vous avez des questions à poser, n'hésitez pas à les demander dans la section F.A.Q. du wiki ou a nous contacter par mail!<br/><br/><br/>
 
-Changelog avant la Alpha 0.05. Pour le reste du changelog après la 0.7, il est dans la section Releases, sinon il est sur <a href="https://github.com/jlppc/Projet-Pokemon-Regimys">l'ancien dépot</a>
+Changelog avant la Alpha 0.05. Pour le reste du changelog après la 0.7, il est dans la section Releases, sinon il est sur <a href="https://github.com/jlppc/Projet-Pokemon-Regimys/releases">l'ancien dépot</a>
 <ul>
 <li>Alpha 0.04 : Ajout de la gestion des double types</li>
 <li>Alpha 0.03 : Modification du systeme de combat</li>
@@ -52,5 +52,5 @@ If there are problems to understand the commits, because it's all in french, don
 <!--<a href="">Regimys Youtube Channel</a><br/>-->
 <a href="http://opmon-game.ga">OPMon web site</a><br/>
 <a href="https://github.com/jlppc/Site-OpMon">Website repository</a><br/><br/>
-<br/>Game version : Alpha 0.08 | Download : <a href="https://github.com/jlppc/OpMon/releases/download/alpha-v0.08/setup.exe"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
+<br/>Game version : Alpha 0.09 | Download : <a href="https://github.com/jlppc/OpMon/releases/download/alpha-v0.09/OpMon-setup.exe"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 
