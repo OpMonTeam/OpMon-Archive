@@ -229,9 +229,9 @@ int boucle0() {
                     if (!(i >= txtP0[line + dialog].size())) {
 
                         if (txtEnCours[line] == " ") {
-                            txtEnCours[line] = txtP0[line + dialog].c_str()[i];
+                            txtEnCours[line] = txtP0[line + dialog][i];
                         } else {
-                            txtEnCours[line] += txtP0[line + dialog].c_str()[i];
+                            txtEnCours[line] += txtP0[line + dialog][i];
                         }
 
                         i++;
