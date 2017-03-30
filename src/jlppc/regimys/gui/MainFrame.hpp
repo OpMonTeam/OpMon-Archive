@@ -17,7 +17,7 @@ Permet d'ouvrir la fenetre du jeu.
 #define rLog rlog
 #define charLineDialog 33
 #define kget StringKeys::get
-#define FPS_TICKS 90
+#define FPS_TICKS 33
 
 #define QUITF continuer=false;\
 	return -1;
