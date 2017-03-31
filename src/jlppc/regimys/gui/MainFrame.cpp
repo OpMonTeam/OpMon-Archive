@@ -65,20 +65,20 @@ int printText(SDL_Renderer *renderer, string txt, string line2S, string line3S) 
     }
 
 
-    sfce = TTF_RenderUTF8_Blended(font, txt.c_str(), noir);
+    sfce = TTF_RenderText_Blended(font, txt.c_str(), noir);
     textPlace.h = sfce->h;
     textPlace.w = sfce->w;
     textUre = SDL_CreateTextureFromSurface(renderer, sfce);
 
 
-    sfce2 = TTF_RenderUTF8_Blended(font, line2S.c_str(), noir);
+    sfce2 = TTF_RenderText_Blended(font, line2S.c_str(), noir);
     posLineTwo.h = sfce2->h;
     posLineTwo.w = sfce2->w;
     posLineTwo.x = textPlace.x;
     posLineTwo.y = textPlace.y + 32;
     line2 = SDL_CreateTextureFromSurface(renderer, sfce2);
 
-    sfce3 = TTF_RenderUTF8_Blended(font, line3S.c_str(), noir);
+    sfce3 = TTF_RenderText_Blended(font, line3S.c_str(), noir);
     posLineThree.h = sfce3->h;
     posLineThree.w = sfce3->w;
     posLineThree.x = textPlace.x;
@@ -220,7 +220,7 @@ void open() {
 
 
 SDL_Texture *renderText(SDL_Renderer *renderer, char text[], TTF_Font *police, SDL_Color color, SDL_Rect *pos) {
-    SDL_Surface *sfce = TTF_RenderUTF8_Blended(police, text, color);
+    SDL_Surface *sfce = TTF_RenderText_Blended(police, text, color);
     if (sfce == NULL) {
         rerrLog << "MainFrame::renderText() : ";
         gererErreur(TTF_GetError(), true);
@@ -233,7 +233,7 @@ SDL_Texture *renderText(SDL_Renderer *renderer, char text[], TTF_Font *police, S
 }
 
 SDL_Texture *renderText(SDL_Renderer *renderer, string text, TTF_Font *police, SDL_Color color, SDL_Rect *pos) {
-    SDL_Surface *sfce = TTF_RenderUTF8_Blended(police, text.c_str(), color);
+    SDL_Surface *sfce = TTF_RenderText_Blended(police, text.c_str(), color);
     if (sfce == NULL) {
         rerrLog << "MainFrame::renderText() : ";
         gererErreur(TTF_GetError(), true);
