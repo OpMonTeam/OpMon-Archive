@@ -103,6 +103,8 @@
 		<Unit filename="src/jlppc/regimys/gui/MainFrame.hpp" />
 		<Unit filename="src/jlppc/regimys/gui/MainMenu.cpp" />
 		<Unit filename="src/jlppc/regimys/gui/MainMenu.hpp" />
+		<Unit filename="src/jlppc/regimys/gui/OptionsMenu.cpp" />
+		<Unit filename="src/jlppc/regimys/gui/OptionsMenu.hpp" />
 		<Unit filename="src/jlppc/regimys/gui/Overworld.cpp" />
 		<Unit filename="src/jlppc/regimys/gui/Overworld.hpp" />
 		<Unit filename="src/jlppc/regimys/gui/StartScene.cpp" />
