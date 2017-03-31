@@ -39,7 +39,7 @@ Changelog avant la Alpha 0.05. Pour le reste du changelog après la 0.7, il est 
 <li>Alpha 0.01 : Creation du systeme de combat de base</li>
 </ul>
 <h2>------In-English-------</h2>
-# Welcome to Project "OPMon"!
+<h3> Welcome to Project "OPMon"!</h3>
 
 Welcome to the project "OPMon Lazuli" !<br/>
 General Informations<br/>
