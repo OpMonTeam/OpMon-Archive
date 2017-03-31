@@ -31,7 +31,7 @@ Nous sommes plusieurs sur le projet : Jlppc, le programmeur et créateur de l'hi
 Contacts : jlppcprog@gmail.com pour la programmation | evandib@gmail.com pour les graphismes<br/>
 Si vous avez des questions à poser, n'hésitez pas à les demander dans la section F.A.Q. du wiki ou a nous contacter par mail!<br/><br/><br/>
 
-Changelog avant la Alpha 0.05. Pour le reste du changelog après la 0.7, il est dans la section Releases, sinon il est sur <a href="https://github.com/jlppc/Projet-Pokemon-Regimys/releases">l'ancien dépot</a>
+Changelog avant la Alpha 0.05. Pour le reste du changelog après la Alpha 0.07, il est dans la section Releases, sinon il est sur <a href="https://github.com/jlppc/Projet-Pokemon-Regimys/releases">l'ancien dépot</a>
 <ul>
 <li>Alpha 0.04 : Ajout de la gestion des double types</li>
 <li>Alpha 0.03 : Modification du systeme de combat</li>
