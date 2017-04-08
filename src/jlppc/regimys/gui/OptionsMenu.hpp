@@ -3,16 +3,22 @@
 
 #include <iostream>
 #include "MainFrame.hpp"
+#include "MainMenu.hpp"
+#include <SDL/SDL_all.h>
 
 namespace MainFrame{
+namespace MainMenu{
 namespace OptionsMenu{
 
-int OptionsMenu();
-void initVars();
-void verifVars();
-void deleteVars();
-int boucle();
 
+
+    int optionsMenu();
+    void initVars();
+    void verifVars();
+    void deleteVars();
+    int boucle();
+
+}
 }
 }
 

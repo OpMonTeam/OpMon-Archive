@@ -39,6 +39,8 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-fexpensive-optimizations" />
+			<Add option="-O1" />
 			<Add option="-w" />
 			<Add option="-Wall" />
 			<Add option="-m64" />
@@ -48,6 +50,7 @@
 			<Add option="`sdl2-config --cflags`" />
 		</ResourceCompiler>
 		<Linker>
+			<Add option="-s" />
 			<Add option="-m64" />
 			<Add option="`sdl2-config --libs` -lSDL2_image -lSDL2_ttf -lSDL2_mixer" />
 			<Add library="/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libgcc.a" />
@@ -80,6 +83,8 @@
 		<Unit filename="src/jlppc/regimys/gui/MainFrame.hpp" />
 		<Unit filename="src/jlppc/regimys/gui/MainMenu.cpp" />
 		<Unit filename="src/jlppc/regimys/gui/MainMenu.hpp" />
+		<Unit filename="src/jlppc/regimys/gui/OptionsMenu.cpp" />
+		<Unit filename="src/jlppc/regimys/gui/OptionsMenu.hpp" />
 		<Unit filename="src/jlppc/regimys/gui/Overworld.cpp" />
 		<Unit filename="src/jlppc/regimys/gui/Overworld.hpp" />
 		<Unit filename="src/jlppc/regimys/gui/StartScene.cpp" />
