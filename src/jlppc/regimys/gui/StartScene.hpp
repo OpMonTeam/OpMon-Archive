@@ -11,6 +11,8 @@ namespace MainFrame {
 namespace StartScene {
 /**Fait se dérouler la scène de début*/
 int startScene();
+void initVars();
+void destroyVars();
 
 extern SDL_Rect fondP;
 extern SDL_Rect profP;

@@ -54,6 +54,12 @@ void destroyVars() {
     SDL_DestroyTexture(arrDial);
     Mix_FreeMusic(fondMus);
     SDL_DestroyTexture(textUre);
+    SDL_DestroyTexture(nameT);
+    SDL_DestroyTexture(texteDescs[0]);
+    SDL_DestroyTexture(texteDescs[1]);
+    SDL_DestroyTexture(texteDescs[2]);
+    SDL_DestroyTexture(texteDescs[3]);
+    SDL_DestroyTexture(fondNE);
 }
 
 /**Initialise les variables*/
@@ -500,7 +506,6 @@ int boucle2() {
 }
 
 int startScene() {
-    initVars();
     verifVars();
     //Départ de la musique
     Mix_PlayMusic(fondMus, -1);
@@ -514,10 +519,8 @@ int startScene() {
     SDL_RenderPresent(renderer);
     int result = boucle0();
     if(result == -1) {
-        destroyVars();
         return -1;
-    }else if(result == 2){
-        destroyVars();
+    }else if(result == 2){;
         return 2;
     }
 
@@ -545,21 +548,9 @@ int startScene() {
     rlog << PRINT_TICKS << "Début de la boucle n°1" << endl;
 
     if(boucle1() == -1) {
-        destroyVars();
-        SDL_DestroyTexture(nameT);
-        SDL_DestroyTexture(texteDescs[0]);
-        SDL_DestroyTexture(texteDescs[1]);
-        SDL_DestroyTexture(texteDescs[2]);
-        SDL_DestroyTexture(texteDescs[3]);
-        SDL_DestroyTexture(fondNE);
+
         return -1;
     }
-    SDL_DestroyTexture(nameT);
-    SDL_DestroyTexture(texteDescs[0]);
-    SDL_DestroyTexture(texteDescs[1]);
-    SDL_DestroyTexture(texteDescs[2]);
-    SDL_DestroyTexture(texteDescs[3]);
-    SDL_DestroyTexture(fondNE);
 
     continuer = true;
 
@@ -579,11 +570,9 @@ int startScene() {
     changeDialog = false;
     rlog << PRINT_TICKS << "Début de la boucle n°2" << endl;
     if(boucle2() == -1) {
-        destroyVars();
         return -1;
     }
     phase++;
-    destroyVars();
         return 0;
 
 

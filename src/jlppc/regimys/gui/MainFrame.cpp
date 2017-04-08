@@ -34,6 +34,18 @@ Mix_Chunk *dialogPass = NULL;
 TTF_Font *fonts[72] = {};
 bool init = false;
 
+void allInit(){
+    MainFrame::MainMenu::initVars();
+    MainFrame::Overworld::initVars();
+    MainFrame::StartScene::initVars();
+}
+
+void allDestroy(){
+    MainMenu::deleteVars();
+    Overworld::deleteVars();
+    StartScene::destroyVars();
+}
+
 int printChoice(string text, string choice1, string choice2, string choix3) {
     //Non fini
     /*bool triple = true;
@@ -179,7 +191,10 @@ void open() {
     }
     rlog << PRINT_TICKS << "Chargement des sprites globaux (Initializer)" << endl;
     Initializer::initSprites();
+    rlog << PRINT_TICKS << "Chargement des variables de chaque partie" << endl;
+    allInit();
     Mix_Volume(1, MIX_MAX_VOLUME - 1);
+    rlog << PRINT_TICKS << "Lancement du menu." << endl;
     if(MainMenu::mainMenu() != -1) {
         Mix_PlayChannel(1, MainMenu::bruitPush, 0);
         Utils::wait(WAIT_DEFAULT);
@@ -201,7 +216,8 @@ void open() {
         Utils::wait(WAIT_DEFAULT);
     }
 
-
+    rlog << PRINT_TICKS << "Suppression des variables de chaque partie" << endl;
+    allDestroy();
     rlog << PRINT_TICKS << "Fermeture de la fenetre" << endl;
 
     SDL_DestroyRenderer(renderer);
