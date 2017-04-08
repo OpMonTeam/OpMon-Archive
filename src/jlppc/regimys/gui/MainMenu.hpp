@@ -27,6 +27,7 @@ void initVars();
 void verifVars();
 void deleteVars();
 int mainMenu();
+int menuOptions();
 int boucle0();
 }
 }

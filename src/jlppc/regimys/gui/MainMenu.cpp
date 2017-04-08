@@ -145,21 +145,17 @@ int boucle0() {
 }
 
 int mainMenu() {
-
-    initVars();
     verifVars();
     Mix_PlayMusic(fondMusTitle, -1);
     Mix_VolumeMusic(MIX_MAX_VOLUME / 4);
     int returned = boucle0();
 
     if(returned == -1) {
-        deleteVars();
         return -1;
     } else if(returned == 0) {
-        deleteVars();
         return 0;
     }
 }
-}
 
+}
 }
