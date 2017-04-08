@@ -194,12 +194,10 @@ namespace MainFrame {
         }
         int overworld() {
             rlog << PRINT_TICKS << "Entrée dans l'overworld..." << endl;
-            initVars();
             verifVars();
             Mix_PlayMusic(fond, -1);
             Mix_VolumeMusic(MIX_MAX_VOLUME / 2);
             int returne = boucle();
-            deleteVars();
             return returne;
         }
 
