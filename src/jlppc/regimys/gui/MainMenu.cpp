@@ -56,6 +56,7 @@ void initVars() {
     //Mix_Volume(2, MIX_MAX_VOLUME / 4);
     //Mix_Volume(1, MIX_MAX_VOLUME);
     //Mix_Volume(0, MIX_MAX_VOLUME / 2);
+    OptionsMenu::initVars();
 }
 
 void verifVars() {
@@ -74,6 +75,7 @@ void verifVars() {
 }
 
 void deleteVars() {
+    OptionsMenu::deleteVars();
     SDL_DestroyTexture(fond);
     SDL_DestroyTexture(play);
     SDL_DestroyTexture(charge);
