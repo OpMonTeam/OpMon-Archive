@@ -1,5 +1,6 @@
 #include "StartScene.hpp"
 #include "../start/main.hpp"
+#include "Animations.hpp"
 #include "MainFrame.hpp"
 
 UNS
@@ -265,61 +266,6 @@ int boucle0() {
     return 0;
 }
 
-int anim0() {
-    animP.h = 512;
-    animP.w = 512;
-    animP.x = 0;
-    animP.y = 0;
-    for (int i = 0; i < 6; i++) {
-        if ((SDL_GetTicks() - ancientTick) >= 200) {
-            SDL_PollEvent(&events);
-            rerrLog << events.type << endl;
-
-            switch (events.type) {
-                QUIT
-
-            case SDL_KEYDOWN:
-                switch (events.key.keysym.sym) {
-                    ECHAP
-                }
-
-                break;
-
-            case SDL_JOYBUTTONDOWN:
-                if (!joypressed) {
-                    joypressed = true;
-                    switch (events.jbutton.button) {
-                        JOYQUIT
-                    }
-                }
-
-
-
-                break;
-            case SDL_JOYBUTTONUP:
-                joypressed = false;
-                break;
-            }
-
-            ostringstream oss;
-
-#ifdef _WIN32
-            oss << "ressources\\animations\\winChange\\animWindowFrame" << i + 1 << ".png";
-#else
-            oss << "ressources/animations/winChange/animWindowFrame" << i + 1 << ".png";
-#endif // _WIN32
-
-            anim[i] = IMG_LoadTexture(renderer, oss.str().c_str());
-            SDL_RenderCopy(renderer, anim[i], NULL, &animP);
-            SDL_RenderPresent(renderer);
-            SDL_DestroyTexture(anim[i]);
-        } else {
-            SDL_Delay(200 - (SDL_GetTicks() - ancientTick));
-            i--;
-        }
-    }
-}
-
 int boucle1() {
     SDL_RenderCopy(renderer, fondNE, NULL, &fondP);
     SDL_RenderCopy(renderer, texteDescs[0], NULL, &texteDesc2R);
@@ -350,55 +296,6 @@ int boucle1() {
 
     }
     return 0;
-}
-
-int anim1() {
-    for (int i = 5; i >= 0; i--) {
-        if ((SDL_GetTicks() - ancientTick) >= 200) {
-            SDL_PollEvent(&events);
-
-            switch (events.type) {
-                QUIT
-
-            case SDL_KEYDOWN:
-                switch (events.key.keysym.sym) {
-                    ECHAP
-                }
-
-                break;
-
-            case SDL_JOYBUTTONDOWN:
-                if (!joypressed) {
-                    joypressed = true;
-                    switch (events.jbutton.button) {
-                        JOYQUIT
-                    }
-                }
-
-
-
-                break;
-            case SDL_JOYBUTTONUP:
-                joypressed = false;
-                break;
-            }
-            ostringstream oss;
-
-#ifdef _WIN32
-            oss << "ressources\\animations\\winChange\\animWindowFrame" << i + 1 << ".png";
-#else
-            oss << "ressources/animations/winChange/animWindowFrame" << i + 1 << ".png";
-#endif // _WIN32
-
-            anim[i] = IMG_LoadTexture(renderer, oss.str().c_str());
-            SDL_RenderCopy(renderer, anim[i], NULL, &animP);
-            SDL_RenderPresent(renderer);
-            SDL_DestroyTexture(anim[i]);
-        } else {
-            SDL_Delay(200 - (SDL_GetTicks() - ancientTick));
-            i++;
-        }
-    }
 }
 
 int boucle2() {
@@ -516,7 +413,7 @@ int startScene() {
     if(result == -1) {
         destroyVars();
         return -1;
-    }else if(result == 2){
+    } else if(result == 2) {
         destroyVars();
         return 2;
     }
@@ -529,7 +426,7 @@ int startScene() {
     rlog << "[T = " << SDL_GetTicks() << "] - Chargement de la boucle n°1" << endl;
 
 
-    anim0();
+    Animations::animFenOpen(renderer, fondT);
 
 
 
@@ -563,7 +460,7 @@ int startScene() {
 
     continuer = true;
 
-    anim1();
+    Animations::animFenClose(renderer, fondT);
 
     txtP1[0]+=(string(pName) + kget("prof.dialog.start.19.5"));
 
@@ -584,7 +481,7 @@ int startScene() {
     }
     phase++;
     destroyVars();
-        return 0;
+    return 0;
 
 
     //rlog << "[T = " << SDL_GetTicks << "] - Entrée dans la boucle n°1" << endl;

@@ -56,8 +56,8 @@ public:
 struct J_Texture{
     SDL_Texture *texture;
     SDL_Rect rect;
-}
+};
 
-typedef struct J_Texture J_Texture
+typedef struct J_Texture J_Texture;
 
 #endif // ELEMENTS_HPP

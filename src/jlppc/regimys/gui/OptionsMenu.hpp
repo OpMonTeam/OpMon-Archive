@@ -14,18 +14,18 @@ namespace OptionsMenu{
     extern SDL_Texture *fond;
     extern SDL_Rect curseurOpt;
     extern SDL_Rect curseurSnd;
-    extern J_Texture *ouinon;
-    extern J_Texture *langFr;
-    extern J_Texture *langEng;
-    extern J_Texture *langEsp;
-    extern J_Texture *txtRetour;
-    extern J_Texture *txtOptions;
-    extern J_Texture *txtOpt1;
-    extern J_Texture *txtOpt2;
-    extern J_Texture *txtOpt3;
-    extern J_Texture *txtOpt4;
-    extern J_Texture *txtOpt5;
-    extern SDL_Color *red:
+    extern J_Texture ouinon;
+    extern J_Texture langFr;
+    extern J_Texture langEng;
+    extern J_Texture langEsp;
+    extern J_Texture txtRetour;
+    extern J_Texture txtOptions;
+    extern J_Texture txtOpt1;
+    extern J_Texture txtOpt2;
+    extern J_Texture txtOpt3;
+    extern J_Texture txtOpt4;
+    extern J_Texture txtOpt5;
+    extern SDL_Color red;
 
     int optionsMenu();
     void initVars();
