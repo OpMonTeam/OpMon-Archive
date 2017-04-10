@@ -23,7 +23,7 @@ Permet d'ouvrir la fenetre du jeu.
 	return -1;
 
 #define QUIT case SDL_QUIT:\
-	QUITF//Un macro composé de macro. :D
+	QUITF
 
 #define ECHAP case SDLK_ESCAPE:\
 	QUITF
@@ -61,6 +61,7 @@ Permet d'ouvrir la fenetre du jeu.
 	SDL_RenderCopy(renderer, arrDial, NULL, &arrDialP);
 
 #define WAIT_DEFAULT 100000000 / 2
+#define FONT_SIZE_DEFAULT 28
 
 /**Contient toutes les methodes permettant de gérer et de faire fonctionner l'interface graphique
  * Contient aussi le déroulement des évenements
@@ -113,6 +114,12 @@ int printText(SDL_Renderer *renderer, std::string text, std::string line2, std::
 SDL_Texture* renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color, SDL_Rect *pos);
 /**Permet d'affiche le texte passé en paramètres dans un *SDL_Texture*/
 SDL_Texture* renderText(SDL_Renderer *renderer, char text[], TTF_Font *police, SDL_Color color, SDL_Rect *pos);
+
+SDL_Texture *renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color, SDL_Rect *pos, int encodage);
+
+J_Texture renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color);
+
+J_Texture renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color, int encodage);
 
 }
 
