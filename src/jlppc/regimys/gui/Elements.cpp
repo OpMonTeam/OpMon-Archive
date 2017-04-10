@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include "../start/main.hpp"
 #include "../start/Initializer.hpp"
-#include <cstdlib>
+
 UNS
 
 Plan::Plan(SDL_Texture *couche1, SDL_Texture *couche2, SDL_Texture *couche3, int w, int h, string filename, string fondPath){
@@ -18,7 +18,7 @@ Plan::Plan(SDL_Texture *couche1, SDL_Texture *couche2, SDL_Texture *couche3, int
     this->w = w;
     this->h = h;
     this->passTab = (int**)malloc(h * sizeof(int*));
-    for(unsigned int i = 0; i < h; i++){
+    for(int i = 0; i < h; i++){
         this->passTab[i] = (int*)malloc(w * sizeof(int));
     }
     ifstream inTemp(filename.c_str());
