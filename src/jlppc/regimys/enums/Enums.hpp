@@ -58,6 +58,14 @@ Enumère les directions des sprites.
 namespace Side{
 const int FACE = 0, DROITE = 1, GAUCHE = 2, DOS = 3;
 }
+
+/**
+Enumère les differents encodages
+*/
+//->Enum
+namespace Encoding{
+const int LATIN = 0, UNICODE = 1, UTF8 = 2;
+}
 /**
 Gère la table des types
 */

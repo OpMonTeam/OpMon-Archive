@@ -2,6 +2,7 @@
 #include <SDL/SDL_image.h>
 #include "../start/main.hpp"
 #include <iostream>
+#include "OptionsMenu.hpp"
 
 UNS
 

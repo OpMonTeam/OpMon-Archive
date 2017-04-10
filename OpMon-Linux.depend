@@ -425,7 +425,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1490636680 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/MainFrame.cpp
+1491655259 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/MainFrame.cpp
 	"MainFrame.hpp"
 	<iostream>
 	"../start/main.hpp"
@@ -496,7 +496,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1490545366 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/StartScene.hpp
+1491655259 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/StartScene.hpp
 	<SDL/SDL.h>
 	<SDL/SDL_image.h>
 	<SDL/SDL_ttf.h>
@@ -962,7 +962,7 @@
 	"Evolution.hpp"
 	"evolutions.hpp"
 
-1490432657 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/StringKeys.cpp
+1490904033 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/StringKeys.cpp
 	"StringKeys.hpp"
 	"main.hpp"
 	<SDL/SDL.h>
@@ -989,20 +989,21 @@
 	"Utils.hpp"
 	<iostream>
 
-1490636680 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/StartScene.cpp
+1491655259 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/StartScene.cpp
 	"StartScene.hpp"
 	"../start/main.hpp"
 	"MainFrame.hpp"
 
 1490432657 source:/home/jlppc/Bureau/Projets/OpMon/resources.rc
 
-1490432657 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/MainMenu.cpp
+1491831546 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/MainMenu.cpp
 	"MainMenu.hpp"
 	<SDL/SDL_image.h>
 	"../start/main.hpp"
 	<iostream>
+	"OptionsMenu.hpp"
 
-1490432657 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/MainMenu.hpp
+1491655259 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/MainMenu.hpp
 	<SDL/SDL.h>
 	<SDL/SDL_mixer.h>
 	"MainFrame.hpp"
@@ -1018,7 +1019,7 @@
 	"../start/main.hpp"
 	"../../utils/Utils.hpp"
 
-1490808528 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/Overworld.cpp
+1491655259 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/Overworld.cpp
 	"Overworld.hpp"
 	"../start/Initializer.hpp"
 	"../start/main.hpp"
@@ -1037,4 +1038,10 @@
 	"PersistentVars.hpp"
 
 1490432657 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/PersistentVars.hpp
+
+1491831673 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/OptionsMenu.hpp
+	<iostream>
+	"MainFrame.hpp"
+	"MainMenu.hpp"
+	<SDL/SDL.h>
 
