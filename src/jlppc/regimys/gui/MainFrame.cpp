@@ -126,9 +126,9 @@ void open() {
     //Ouverture de la police
     rlog << PRINT_TICKS << "Initialisation des SDL terminée" << endl;
 #ifdef _WIN32
-    font = TTF_OpenFont("ressources\\fonts\\arial.ttf", 28);
+    font = TTF_OpenFont("ressources\\fonts\\arial.ttf", FONT_SIZE_DEFAULT);
 #else
-    font = TTF_OpenFont("ressources/fonts/arial.ttf", 28);
+    font = TTF_OpenFont("ressources/fonts/arial.ttf", FONT_SIZE_DEFAULT);
 #endif
 
     if (font == NULL) {
@@ -232,8 +232,36 @@ SDL_Texture *renderText(SDL_Renderer *renderer, char text[], TTF_Font *police, S
     return toReturn;
 }
 
-SDL_Texture *renderText(SDL_Renderer *renderer, string text, TTF_Font *police, SDL_Color color, SDL_Rect *pos) {
-    SDL_Surface *sfce = TTF_RenderText_Blended(police, text.c_str(), color);
+SDL_Texture *renderText(SDL_Renderer *renderer, string text, TTF_Font *police, SDL_Color color, SDL_Rect *pos) {;
+    return renderText(renderer, text, police, color, pos, Encoding::LATIN);
+}
+
+J_Texture renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color){
+    J_Texture toReturn;
+    toReturn->texture = renderText(renderer, text, police, color, &(toReturn->rect));
+    return toReturn;
+}
+
+SDL_Texture *renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color, SDL_Rect *pos, int encodage){
+    if(text == ""){
+        gererErreur("Erreur. Texte vide dans renderText encodage", true);
+    }
+    SDL_Surface *sfce = NULL;
+    switch(encodage){
+        case Encoding::LATIN:
+               sfce = TTF_RenderText_Blended(police, text.c_str(), color);
+               break;
+        case Encoding::UNICODE:
+           sfce = TTF_RenderUNICODE_Blended(police, text.c_str(), color);
+           break;
+        case Encoding::UTF8:
+            sfce = TTF_RenderUTF8_Blended(police, text.c_str(), color);
+            break;
+        default:
+            sfce = TTF_RenderText_Blended(police, text.c_str(), color);
+            break;
+    }
+
     if (sfce == NULL) {
         rerrLog << "MainFrame::renderText() : ";
         gererErreur(TTF_GetError(), true);
@@ -242,6 +270,12 @@ SDL_Texture *renderText(SDL_Renderer *renderer, string text, TTF_Font *police, S
     pos->w = sfce->w;
     SDL_Texture *toReturn = SDL_CreateTextureFromSurface(renderer, sfce);
     SDL_FreeSurface(sfce);
+    return toReturn;
+}
+
+J_Texture renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color, int encodage){
+    J_Texture toReturn;
+    toReturn->texture = renderText(renderer, text, police, color, &(toReturn->rect), encodage);
     return toReturn;
 }
 

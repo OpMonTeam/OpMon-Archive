@@ -53,10 +53,11 @@ public:
     //Event* getEvent(int x, int y){return events[y][x];}
 };
 
-namespace Elements {
-
-
+struct J_Texture{
+    SDL_Texture *texture;
+    SDL_Rect rect;
 }
 
+typedef struct J_Texture J_Texture
 
 #endif // ELEMENTS_HPP
