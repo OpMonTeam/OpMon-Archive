@@ -48,6 +48,7 @@ int printChoice(string text, string choice1, string choice2, string choix3) {
     SDL_Texture *texte;
     SDL_Texture *fondDialogue;
     texte = renderText(renderer, text, font, noir, textPlace);*/
+    return 0;
 }
 
 int printText(SDL_Renderer *renderer, string txt, string line2S, string line3S) {
@@ -238,7 +239,7 @@ SDL_Texture *renderText(SDL_Renderer *renderer, string text, TTF_Font *police, S
 
 J_Texture renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color){
     J_Texture toReturn;
-    toReturn->texture = renderText(renderer, text, police, color, &(toReturn->rect));
+    toReturn.texture = renderText(renderer, text, police, color, &(toReturn.rect));
     return toReturn;
 }
 
@@ -247,12 +248,18 @@ SDL_Texture *renderText(SDL_Renderer *renderer, std::string text, TTF_Font *poli
         gererErreur("Erreur. Texte vide dans renderText encodage", true);
     }
     SDL_Surface *sfce = NULL;
+    Uint16 *tab;
     switch(encodage){
         case Encoding::LATIN:
                sfce = TTF_RenderText_Blended(police, text.c_str(), color);
                break;
         case Encoding::UNICODE:
-           sfce = TTF_RenderUNICODE_Blended(police, text.c_str(), color);
+            tab = (Uint16*)malloc(sizeof(Uint16) * text.size());
+            for(unsigned int i = 0; i < text.size(); i++){
+                tab[i] = text[i];
+            }
+           sfce = TTF_RenderUNICODE_Blended(police, tab, color);
+           free(tab);
            break;
         case Encoding::UTF8:
             sfce = TTF_RenderUTF8_Blended(police, text.c_str(), color);
@@ -275,7 +282,7 @@ SDL_Texture *renderText(SDL_Renderer *renderer, std::string text, TTF_Font *poli
 
 J_Texture renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color, int encodage){
     J_Texture toReturn;
-    toReturn->texture = renderText(renderer, text, police, color, &(toReturn->rect), encodage);
+    toReturn.texture = renderText(renderer, text, police, color, &(toReturn.rect), encodage);
     return toReturn;
 }
 

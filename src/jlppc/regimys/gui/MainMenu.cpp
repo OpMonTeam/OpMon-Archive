@@ -145,6 +145,7 @@ int boucle0() {
         SDL_RenderCopy(renderer, cursor, NULL, &curPos[curPosI]);
         SDL_RenderPresent(renderer);
     }
+    return 0;
 }
 
 int mainMenu() {
@@ -162,6 +163,7 @@ int mainMenu() {
         deleteVars();
         return 0;
     }
+    return 0;
 }
 }
 
