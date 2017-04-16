@@ -50,3 +50,7 @@ Plan::~Plan(){
 namespace Elements {
 
 }
+
+J_RenderCopy(SDL_Renderer *renderer, J_Texture *texture){
+    return SDL_RenderCopy(renderer, texture->texture, NULL, &(texture->rect))
+}

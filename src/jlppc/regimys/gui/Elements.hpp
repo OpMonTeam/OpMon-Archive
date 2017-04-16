@@ -58,6 +58,8 @@ struct J_Texture{
     SDL_Rect rect;
 };
 
+J_RenderCopy(SDL_Renderer *renderer, J_Texture *texture);
+
 typedef struct J_Texture J_Texture;
 
 #endif // ELEMENTS_HPP
