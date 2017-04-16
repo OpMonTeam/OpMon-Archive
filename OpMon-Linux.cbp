@@ -75,6 +75,8 @@
 		<Unit filename="src/jlppc/regimys/evolution/Evolution.hpp" />
 		<Unit filename="src/jlppc/regimys/evolution/evolutionInclude.hxx" />
 		<Unit filename="src/jlppc/regimys/evolution/evolutions.hpp" />
+		<Unit filename="src/jlppc/regimys/gui/Animations.cpp" />
+		<Unit filename="src/jlppc/regimys/gui/Animations.hpp" />
 		<Unit filename="src/jlppc/regimys/gui/Elements.cpp" />
 		<Unit filename="src/jlppc/regimys/gui/Elements.hpp" />
 		<Unit filename="src/jlppc/regimys/gui/Events.cpp" />
@@ -107,13 +109,11 @@
 		<Unit filename="src/jlppc/regimys/objects/item/Item.hpp" />
 		<Unit filename="src/jlppc/regimys/objects/item/itemInclude.hxx" />
 		<Unit filename="src/jlppc/regimys/objects/objectsInclude.hxx" />
-		<Unit filename="src/jlppc/regimys/opmonInclude.hxx" />
 		<Unit filename="src/jlppc/regimys/playercore/Equipe.cpp" />
 		<Unit filename="src/jlppc/regimys/playercore/Equipe.hpp" />
 		<Unit filename="src/jlppc/regimys/playercore/Player.cpp" />
 		<Unit filename="src/jlppc/regimys/playercore/Player.hpp" />
 		<Unit filename="src/jlppc/regimys/playercore/playercoreInclude.hxx" />
-		<Unit filename="src/jlppc/regimys/regimysInclude.hxx" />
 		<Unit filename="src/jlppc/regimys/save/Save.cpp" />
 		<Unit filename="src/jlppc/regimys/save/Save.hpp" />
 		<Unit filename="src/jlppc/regimys/start/Initializer.cpp" />
