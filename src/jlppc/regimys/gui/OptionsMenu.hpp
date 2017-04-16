@@ -32,8 +32,6 @@ namespace OptionsMenu{
     void verifVars();
     void deleteVars();
     int boucle();
-    void animIn();
-    void animOut();
 
 }
 }
