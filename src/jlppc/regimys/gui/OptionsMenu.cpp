@@ -26,41 +26,40 @@ namespace OptionsMenu{
     void initVars(){
 
         #ifdef _WIN32
-
+        OptionsMenu::fond = IMG_LoadTexture(renderer, "ressources\\background\\options.png");
 
         #else
         OptionsMenu::fond = IMG_LoadTexture(renderer, "ressources/background/options.png");
 
 
         #endif // _WIN32
-        string str = kget("options.ouinon");
-
-        rerrLog << "Check1" << endl;
-        rerrLog << str << endl;
-        ouinon = renderText(renderer, str, fonts[FONT_SIZE_DEFAULT], red);
+        ouinon = renderText(renderer, kget("options.ouinon"), fonts[FONT_SIZE_DEFAULT], red);
         langFr = renderText(renderer, "Français", fonts[FONT_SIZE_DEFAULT], blanc, Encoding::UNICODE);
         langEng = renderText(renderer, "English", fonts[FONT_SIZE_DEFAULT], blanc, Encoding::UNICODE);
         langEsp = renderText(renderer, "Espa\u00F1ol", fonts[FONT_SIZE_DEFAULT], blanc, Encoding::UNICODE);
-        rerrLog << "Check2" << endl;
         txtRetour = renderText(renderer, kget("options.retour"), fonts[FONT_SIZE_DEFAULT], blanc);
-        rerrLog << "Check3" << endl;
         txtOptions = renderText(renderer, kget("options.title"), fonts[FONT_SIZE_DEFAULT], blanc);
-        rerrLog << "Check4" << endl;
         txtOpt1 = renderText(renderer, kget("options.ecran"), fonts[FONT_SIZE_DEFAULT], red);
-        rerrLog << "Check5" << endl;
         txtOpt2 = renderText(renderer, kget("options.lang"), fonts[FONT_SIZE_DEFAULT], blanc);
-        rerrLog << "Check6" << endl;
         txtOpt3 = renderText(renderer, kget("options.vol"), fonts[FONT_SIZE_DEFAULT], red);
-        rerrLog << "Check7" << endl;
         txtOpt4 = renderText(renderer, kget("options.control"), fonts[FONT_SIZE_DEFAULT], red);
-        rerrLog << "Check8" << endl;
         txtOpt5 = renderText(renderer, kget("options.credit"), fonts[FONT_SIZE_DEFAULT], red);
-        rerrLog << "Check9" << endl;
 
     }
 
     void deleteVars(){
-
+        SDL_DestroyTexture(OptionsMenu::fond);
+        SDL_DestroyTexture(ouinon);
+        SDL_DestroyTexture(langFr);
+        SDL_DestroyTexture(langEng);
+        SDL_DestroyTexture(langEsp);
+        SDL_DestroyTexture(txtRetour);
+        SDL_DestroyTexture(txtOptions);
+        SDL_DestroyTexture(txtOpt1);
+        SDL_DestroyTexture(txtOpt2);
+        SDL_DestroyTexture(txtOpt3);
+        SDL_DestroyTexture(txtOpt4);
+        SDL_DestroyTexture(txtOpt5);
     }
 
     int optionsMenu(){
