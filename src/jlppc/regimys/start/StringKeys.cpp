@@ -23,7 +23,6 @@ void initialize() {
     while (!fini) {
         string read;
         getline(keysFile, read);
-        rerrLog << read << endl;
         if (!(read.substr(0, read.size() - (read.size() - 3)) == "key")) {
             break;
         }

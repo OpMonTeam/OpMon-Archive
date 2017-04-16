@@ -11,7 +11,7 @@ namespace MainFrame{
 namespace MainMenu{
 namespace OptionsMenu{
 
-    extern SDL_Texture *fond;
+    extern SDL_Texture *fondOpt;
     extern SDL_Rect curseurOpt;
     extern SDL_Rect curseurSnd;
     extern J_Texture ouinon;
