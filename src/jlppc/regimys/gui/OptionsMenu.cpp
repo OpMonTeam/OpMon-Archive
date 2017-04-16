@@ -9,7 +9,7 @@ namespace MainMenu {
 namespace OptionsMenu {
 //Variables fonctionnelles
 SDL_Color red = {255, 0, 0};
-SDL_Texture *fond = NULL;
+SDL_Texture *fondOpt = NULL;
 SDL_Rect curseurOpt;
 SDL_Rect curseurSnd;
 J_Texture ouinon;
@@ -23,16 +23,16 @@ J_Texture txtOpt2;
 J_Texture txtOpt3;
 J_Texture txtOpt4;
 J_Texture txtOpt5;
-SDL_Rect curPos[5] = {};
-int curPosOpt = 0;
+SDL_Rect curPosOpt[5] = {};
+int curPosOptI = 0;
 
 void initVars() {
 
 #ifdef _WIN32
-    OptionsMenu::fond = IMG_LoadTexture(renderer, "ressources\\background\\options.png");
+    OptionsMenu::fondOpt = IMG_LoadTexture(renderer, "ressources\\backgrounds\\options.png");
 
 #else
-    OptionsMenu::fond = IMG_LoadTexture(renderer, "ressources/background/options.png");
+    OptionsMenu::fondOpt = IMG_LoadTexture(renderer, "ressources/backgrounds/options.png");
 
 
 #endif // _WIN32
@@ -57,44 +57,50 @@ void initVars() {
     txtOpt5.rect.y = 370;
 
     txtRetour.rect.x = 55;
-    txtRetour.rect.y = 30;
+    txtRetour.rect.y = 25;
 
-    txtRetour.rect.x = 230;
-    txtRetour.rect.y = 30;
+    txtOptions.rect.x = 230;
+    txtOptions.rect.y = 25;
 
-    /*for(int i = 0, j = 86; i < 5; i++) {
-        curPos[i].x = 23;
-        curPos[i].y = j;
-        curPos[i].w = 30;
-        curPos[i].h = 30;
-        textPos[i].x = 60;
-        textPos[i].y = j;
+    for(int i = 0, j = 86; i < 5; i++) {
+        curPosOpt[i].x = 23;
+        curPosOpt[i].y = j;
+        curPosOpt[i].w = 30;
+        curPosOpt[i].h = 30;
         j+=69;
-    }*/
+    }
 
 
 
 
 
 
+}
+
+void verifVars() {
+    if(OptionsMenu::fondOpt == NULL) {
+        rerrLog << "Erreur dans l'initialisation de l'image de fond des options" << endl;
+        gererErreur(IMG_GetError(), false);
+    }
 }
 
 void deleteVars() {
-    SDL_DestroyTexture(OptionsMenu::fond);
-    SDL_DestroyTexture(ouinon);
-    SDL_DestroyTexture(langFr);
-    SDL_DestroyTexture(langEng);
-    SDL_DestroyTexture(langEsp);
-    SDL_DestroyTexture(txtRetour);
-    SDL_DestroyTexture(txtOptions);
-    SDL_DestroyTexture(txtOpt1);
-    SDL_DestroyTexture(txtOpt2);
-    SDL_DestroyTexture(txtOpt3);
-    SDL_DestroyTexture(txtOpt4);
-    SDL_DestroyTexture(txtOpt5);
+    SDL_DestroyTexture(OptionsMenu::fondOpt);
+    SDL_DestroyTexture(ouinon.texture);
+    SDL_DestroyTexture(langFr.texture);
+    SDL_DestroyTexture(langEng.texture);
+    SDL_DestroyTexture(langEsp.texture);
+    SDL_DestroyTexture(txtRetour.texture);
+    SDL_DestroyTexture(txtOptions.texture);
+    SDL_DestroyTexture(txtOpt1.texture);
+    SDL_DestroyTexture(txtOpt2.texture);
+    SDL_DestroyTexture(txtOpt3.texture);
+    SDL_DestroyTexture(txtOpt4.texture);
+    SDL_DestroyTexture(txtOpt5.texture);
 }
 
 int optionsMenu() {
+    verifVars();
     int returned = boucle();
     return returned;
 }
@@ -107,9 +113,9 @@ int boucle() {
 
         case SDL_KEYDOWN:
             switch (events.key.keysym.sym) {
-            case SDLK_RETURN:
+            /*case SDLK_RETURN:
 
-                switch(curPosOpt) {
+            switch(curPosOptI) {
                 case 0:
                     return 0;
                 case 3:
@@ -121,45 +127,56 @@ int boucle() {
                     Mix_PlayChannel(0, bruitNope, 0);
                     break;
                 }
-                break;
+                break;*/
 
             case SDLK_DOWN:
                 Mix_PlayChannel(2, bruitArr, 0);
-                curPosOpt++;
-                if(curPosOpt >= 5) {
-                    curPosOpt = 0;
-                } else if(curPosOpt < 0) {
-                    curPosOpt = 4;
+                curPosOptI++;
+                if(curPosOptI >= 5) {
+                    curPosOptI = 0;
+                } else if(curPosOptI < 0) {
+                    curPosOptI = 4;
                 }
                 break;
 
             case SDLK_UP:
                 Mix_PlayChannel(2, bruitArr, 0);
-                curPosOpt--;
-                if(curPosOpt >= 5) {
-                    curPosOpt = 0;
-                } else if(curPosOpt < 0) {
-                    curPosOpt = 4;
+                curPosOptI--;
+                if(curPosOptI >= 5) {
+                    curPosOptI = 0;
+                } else if(curPosOptI < 0) {
+                    curPosOptI = 4;
                 }
                 break;
+
+            case SDLK_BACKSPACE:
+                return 0;
+
 
                 ECHAP
             }
             break;
         }
-        SDL_RenderCopy(renderer, OptionsMenu::fond, NULL, MainFrame::fond);
-        J_RenderCopy(renderer, txtOpt1);
-        J_RenderCopy(renderer, txtOpt2);
-        J_RenderCopy(renderer, txtOpt3);
-        J_RenderCopy(renderer, txtOpt4);
-        J_RenderCopy(renderer, txtOpt5);
-        J_RenderCopy(renderer, txtRetour);
-        J_RenderCopy(renderer, txtOptions);
-        SDL_RenderCopy(renderer, cursor, NULL, &curPos[curPosOpt]);
+
+        if(SDL_RenderCopy(renderer, OptionsMenu::fondOpt, NULL, &MainFrame::fond) == -1) {
+            gererErreur(SDL_GetError(), false);
+        }
+        J_RenderCopy(renderer, &txtOpt1);
+        J_RenderCopy(renderer, &txtOpt2);
+        J_RenderCopy(renderer, &txtOpt3);
+        J_RenderCopy(renderer, &txtOpt4);
+        J_RenderCopy(renderer, &txtOpt5);
+        J_RenderCopy(renderer, &txtRetour);
+        J_RenderCopy(renderer, &txtOptions);
+        //SDL_RenderCopy(renderer, cursor, NULL, &curPos[curPosOptI]);
         SDL_RenderPresent(renderer);
+
     }
+
     return 0;
+
 }
+
 }
 }
 }
