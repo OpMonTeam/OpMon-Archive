@@ -28,11 +28,16 @@ namespace OptionsMenu{
     extern SDL_Texture *rectSurb;
     extern SDL_Color red;
 
+    extern SDL_Texture *fondLangues;
+    extern J_Texture listeLangues[3];
+    extern SDL_Rect curPosLang[4];
+
     int optionsMenu();
     void initVars();
     void verifVars();
     void deleteVars();
     int boucle();
+    int boucleLang();
 
 }
 }

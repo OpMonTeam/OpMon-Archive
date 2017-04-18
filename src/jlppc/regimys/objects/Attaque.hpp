@@ -43,8 +43,12 @@ public:
         return className;
     }
     virtual std::string save();
-    void setPP(int PP) {this->pp = PP;}
-    void setPPMax(int PPMax) {this->ppMax = PPMax;}
+    void setPP(int PP) {
+        this->pp = PP;
+    }
+    void setPPMax(int PPMax) {
+        this->ppMax = PPMax;
+    }
 protected:
     std::string className;
     std::string nom;

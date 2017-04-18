@@ -2,6 +2,6 @@
 #define PERSISTENTVARS_HPP
 
 //TODO
-namespace PersistentVars{
+namespace PersistentVars {
 }
 #endif // PERSISTENTVARS_HPP
