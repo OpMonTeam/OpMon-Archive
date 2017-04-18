@@ -23,16 +23,19 @@ J_Texture txtOpt2;
 J_Texture txtOpt3;
 J_Texture txtOpt4;
 J_Texture txtOpt5;
-SDL_Rect curPosOpt[5] = {};
+SDL_Texture *rectSurb = NULL;
+SDL_Rect curPosOpt[6] = {};
 int curPosOptI = 0;
 
 void initVars() {
 
 #ifdef _WIN32
     OptionsMenu::fondOpt = IMG_LoadTexture(renderer, "ressources\\backgrounds\\options.png");
+    rectSurb = IMG_LoadTexture(renderer, "ressources\\sprites\\misc\\selectBar.png");
 
 #else
     OptionsMenu::fondOpt = IMG_LoadTexture(renderer, "ressources/backgrounds/options.png");
+    rectSurb = IMG_LoadTexture(renderer, "ressources/sprites/misc/selectBar.png");
 
 
 #endif // _WIN32
@@ -50,11 +53,11 @@ void initVars() {
 
 
     txtOpt2.rect.x = txtOpt3.rect.x = txtOpt4.rect.x = txtOpt5.rect.x = txtOpt1.rect.x = 120;
-    txtOpt1.rect.y = 90;
-    txtOpt2.rect.y = 160;
-    txtOpt3.rect.y = 230;
-    txtOpt4.rect.y = 300;
-    txtOpt5.rect.y = 370;
+    txtOpt1.rect.y = 100;
+    txtOpt2.rect.y = 170;
+    txtOpt3.rect.y = 240;
+    txtOpt4.rect.y = 310;
+    txtOpt5.rect.y = 380;
 
     txtRetour.rect.x = 55;
     txtRetour.rect.y = 25;
@@ -62,11 +65,16 @@ void initVars() {
     txtOptions.rect.x = 230;
     txtOptions.rect.y = 25;
 
-    for(int i = 0, j = 86; i < 5; i++) {
+    curPosOpt[0].x = 23;
+    curPosOpt[0].y = 17;
+    curPosOpt[0].w = 134;
+    curPosOpt[0].h = 49;
+
+    for(int i = 1, j = 86; i < 6; i++) {
         curPosOpt[i].x = 23;
         curPosOpt[i].y = j;
-        curPosOpt[i].w = 30;
-        curPosOpt[i].h = 30;
+        curPosOpt[i].w = 464;
+        curPosOpt[i].h = 57;
         j+=69;
     }
 
@@ -97,6 +105,7 @@ void deleteVars() {
     SDL_DestroyTexture(txtOpt3.texture);
     SDL_DestroyTexture(txtOpt4.texture);
     SDL_DestroyTexture(txtOpt5.texture);
+    SDL_DestroyTexture(rectSurb);
 }
 
 int optionsMenu() {
@@ -113,39 +122,46 @@ int boucle() {
 
         case SDL_KEYDOWN:
             switch (events.key.keysym.sym) {
-            /*case SDLK_RETURN:
+            case SDLK_RETURN:
 
             switch(curPosOptI) {
                 case 0:
                     return 0;
-                case 3:
-                    return -1;
-                case 2:
-                    Mix_PlayChannel(0, bruitNope, 0);
-                    break;
                 case 1:
                     Mix_PlayChannel(0, bruitNope, 0);
                     break;
+                case 2:
+                    Mix_PlayChannel(0, bruitNope, 0);
+                    break;
+                case 3:
+                    Mix_PlayChannel(0, bruitNope, 0);
+                    break;
+                case 4:
+                    Mix_PlayChannel(0, bruitNope, 0);
+                    break;
+                case 5:
+                    Mix_PlayChannel(0, bruitNope, 0);
+                    break;
                 }
-                break;*/
+                break;
 
             case SDLK_DOWN:
                 Mix_PlayChannel(2, bruitArr, 0);
                 curPosOptI++;
-                if(curPosOptI >= 5) {
+                if(curPosOptI >= 6) {
                     curPosOptI = 0;
                 } else if(curPosOptI < 0) {
-                    curPosOptI = 4;
+                    curPosOptI = 5;
                 }
                 break;
 
             case SDLK_UP:
                 Mix_PlayChannel(2, bruitArr, 0);
                 curPosOptI--;
-                if(curPosOptI >= 5) {
+                if(curPosOptI >= 6) {
                     curPosOptI = 0;
                 } else if(curPosOptI < 0) {
-                    curPosOptI = 4;
+                    curPosOptI = 5;
                 }
                 break;
 
@@ -168,7 +184,7 @@ int boucle() {
         J_RenderCopy(renderer, &txtOpt5);
         J_RenderCopy(renderer, &txtRetour);
         J_RenderCopy(renderer, &txtOptions);
-        //SDL_RenderCopy(renderer, cursor, NULL, &curPos[curPosOptI]);
+        SDL_RenderCopy(renderer, rectSurb, NULL, &curPosOpt[curPosOptI]);
         SDL_RenderPresent(renderer);
 
     }
