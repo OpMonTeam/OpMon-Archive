@@ -28,15 +28,21 @@ SDL_Rect curPosOpt[6] = {};
 int optionSelect = -1;
 int curPosOptI = 0;
 
+SDL_Texture *fondLangues = NULL;
+J_Texture listeLangues[3] = {};
+SDL_Rect curPosLang[4] = {};
+
 void initVars() {
 
 #ifdef _WIN32
     OptionsMenu::fondOpt = IMG_LoadTexture(renderer, "ressources\\backgrounds\\options.png");
     rectSurb = IMG_LoadTexture(renderer, "ressources\\sprites\\misc\\selectBar.png");
+    fondLangues = IMG_LoadTexture(renderer, "ressources\\backgrounds\\lang.png");
 
 #else
     OptionsMenu::fondOpt = IMG_LoadTexture(renderer, "ressources/backgrounds/options.png");
     rectSurb = IMG_LoadTexture(renderer, "ressources/sprites/misc/selectBar.png");
+    fondLangues = IMG_LoadTexture(renderer, "ressources/backgrounds/lang.png");
 
 
 #endif // _WIN32
@@ -125,7 +131,7 @@ int boucle() {
             switch (events.key.keysym.sym) {
             case SDLK_RETURN:
 
-            switch(curPosOptI) {
+                switch(curPosOptI) {
                 case 0:
                     return 0;
                 case 1:

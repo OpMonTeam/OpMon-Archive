@@ -184,15 +184,15 @@ void open() {
     if(MainMenu::mainMenu() != -1) {
         Mix_PlayChannel(1, MainMenu::bruitPush, 0);
         Utils::wait(WAIT_DEFAULT);
-        if(StartScene::startScene() != -1){
-            while(Overworld::overworld() != -1){
-                if(MainMenu::mainMenu() != -1){
-                    if(StartScene::startScene() != -1){
+        if(StartScene::startScene() != -1) {
+            while(Overworld::overworld() != -1) {
+                if(MainMenu::mainMenu() != -1) {
+                    if(StartScene::startScene() != -1) {
 
-                    }else{
+                    } else {
                         break;
                     }
-                }else{
+                } else {
                     break;
                 }
             }
@@ -233,40 +233,41 @@ SDL_Texture *renderText(SDL_Renderer *renderer, char text[], TTF_Font *police, S
     return toReturn;
 }
 
-SDL_Texture *renderText(SDL_Renderer *renderer, string text, TTF_Font *police, SDL_Color color, SDL_Rect *pos) {;
+SDL_Texture *renderText(SDL_Renderer *renderer, string text, TTF_Font *police, SDL_Color color, SDL_Rect *pos) {
+    ;
     return renderText(renderer, text, police, color, pos, Encoding::LATIN);
 }
 
-J_Texture renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color){
+J_Texture renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color) {
     J_Texture toReturn;
     toReturn.texture = renderText(renderer, text, police, color, &(toReturn.rect));
     return toReturn;
 }
 
-SDL_Texture *renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color, SDL_Rect *pos, int encodage){
-    if(text == ""){
+SDL_Texture *renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color, SDL_Rect *pos, int encodage) {
+    if(text == "") {
         gererErreur("Erreur. Texte vide dans renderText encodage", true);
     }
     SDL_Surface *sfce = NULL;
     Uint16 *tab;
-    switch(encodage){
-        case Encoding::LATIN:
-               sfce = TTF_RenderText_Blended(police, text.c_str(), color);
-               break;
-        case Encoding::UNICODE:
-            tab = (Uint16*)malloc(sizeof(Uint16) * text.size());
-            for(unsigned int i = 0; i < text.size(); i++){
-                tab[i] = text[i];
-            }
-           sfce = TTF_RenderUNICODE_Blended(police, tab, color);
-           free(tab);
-           break;
-        case Encoding::UTF8:
-            sfce = TTF_RenderUTF8_Blended(police, text.c_str(), color);
-            break;
-        default:
-            sfce = TTF_RenderText_Blended(police, text.c_str(), color);
-            break;
+    switch(encodage) {
+    case Encoding::LATIN:
+        sfce = TTF_RenderText_Blended(police, text.c_str(), color);
+        break;
+    case Encoding::UNICODE:
+        tab = (Uint16*)malloc(sizeof(Uint16) * text.size());
+        for(unsigned int i = 0; i < text.size(); i++) {
+            tab[i] = text[i];
+        }
+        sfce = TTF_RenderUNICODE_Blended(police, tab, color);
+        free(tab);
+        break;
+    case Encoding::UTF8:
+        sfce = TTF_RenderUTF8_Blended(police, text.c_str(), color);
+        break;
+    default:
+        sfce = TTF_RenderText_Blended(police, text.c_str(), color);
+        break;
     }
 
     if (sfce == NULL) {
@@ -280,7 +281,7 @@ SDL_Texture *renderText(SDL_Renderer *renderer, std::string text, TTF_Font *poli
     return toReturn;
 }
 
-J_Texture renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color, int encodage){
+J_Texture renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color, int encodage) {
     J_Texture toReturn;
     toReturn.texture = renderText(renderer, text, police, color, &(toReturn.rect), encodage);
     return toReturn;
