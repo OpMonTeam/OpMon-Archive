@@ -25,6 +25,7 @@ namespace OptionsMenu{
     extern J_Texture txtOpt3;
     extern J_Texture txtOpt4;
     extern J_Texture txtOpt5;
+    extern SDL_Texture *rectSurb;
     extern SDL_Color red;
 
     int optionsMenu();
