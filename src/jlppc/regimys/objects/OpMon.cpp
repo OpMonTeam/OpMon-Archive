@@ -1589,72 +1589,101 @@ string OpMon::save() {
 }
 #include "Attaques.hpp"
 #include "../start/Initializer.hpp"
-OpMon::OpMon(ifstream &in){
+OpMon::OpMon(ifstream &in) {
     this->surnom = Save::readLine(in);
-    if(surnom != "NULL"){
-        atkIV = in.get();in.get();
-        defIV = in.get();in.get();
-        atkSpeIV = in.get();in.get();
-        defSpeIV = in.get();in.get();
-        vitIV = in.get();in.get();
-        pvIV = in.get();in.get();
-        atkEV = in.get();in.get();
-        defEV = in.get();in.get();
-        atkSpeEV = in.get();in.get();
-        defSpeEV = in.get();in.get();
-        vitEV = in.get();in.get();
+    if(surnom != "NULL") {
+        atkIV = in.get();
+        in.get();
+        defIV = in.get();
+        in.get();
+        atkSpeIV = in.get();
+        in.get();
+        defSpeIV = in.get();
+        in.get();
+        vitIV = in.get();
+        in.get();
+        pvIV = in.get();
+        in.get();
+        atkEV = in.get();
+        in.get();
+        defEV = in.get();
+        in.get();
+        atkSpeEV = in.get();
+        in.get();
+        defSpeEV = in.get();
+        in.get();
+        vitEV = in.get();
+        in.get();
 
-        pvEV = in.get();in.get();
-        statLove = in.get();in.get();
+        pvEV = in.get();
+        in.get();
+        statLove = in.get();
+        in.get();
 
-        level = in.get();in.get();
+        level = in.get();
+        in.get();
         int toSearch = in.get();
-        caractere = *Caractere::enumsList[toSearch];in.get();
+        caractere = *Caractere::enumsList[toSearch];
+        in.get();
         attaques[0] = Attaques::newAtk(Save::readLine(in));
-        if(attaques[0] != NULL){
-            attaques[0]->setPP(in.get());in.get();
-            attaques[0]->setPPMax(in.get());in.get();
+        if(attaques[0] != NULL) {
+            attaques[0]->setPP(in.get());
+            in.get();
+            attaques[0]->setPPMax(in.get());
+            in.get();
         }
 
         attaques[1] = Attaques::newAtk(Save::readLine(in));
-        if(attaques[1] != NULL){
-            attaques[1]->setPP(in.get());in.get();
-            attaques[1]->setPPMax(in.get());in.get();
+        if(attaques[1] != NULL) {
+            attaques[1]->setPP(in.get());
+            in.get();
+            attaques[1]->setPPMax(in.get());
+            in.get();
         }
 
         attaques[2] = Attaques::newAtk(Save::readLine(in));
-        if(attaques[2] != NULL){
-            attaques[2]->setPP(in.get());in.get();
-            attaques[2]->setPPMax(in.get());in.get();
+        if(attaques[2] != NULL) {
+            attaques[2]->setPP(in.get());
+            in.get();
+            attaques[2]->setPPMax(in.get());
+            in.get();
         }
         attaques[3] = Attaques::newAtk(Save::readLine(in));
-        if(attaques[3] != NULL){
-            attaques[3]->setPP(in.get());in.get();
-            attaques[3]->setPPMax(in.get());in.get();
+        if(attaques[3] != NULL) {
+            attaques[3]->setPP(in.get());
+            in.get();
+            attaques[3]->setPPMax(in.get());
+            in.get();
         }
         int especeID = in.get();
-        espece = Initializer::listeOp[especeID];in.get();
-        PV = in.get();in.get();
-        exp = in.get();in.get();
-        toNextLevel = in.get();in.get();
-        expBoost = in.get() / 10.0;in.get();
-        if(Save::intToChar(in.get()) == 'Y'){
+        espece = Initializer::listeOp[especeID];
+        in.get();
+        PV = in.get();
+        in.get();
+        exp = in.get();
+        in.get();
+        toNextLevel = in.get();
+        in.get();
+        expBoost = in.get() / 10.0;
+        in.get();
+        if(Save::intToChar(in.get()) == 'Y') {
             in.get();
             held = Item::itemsLst[in.get()];
             in.get();
-        }else{
+        } else {
             in.get();
             held = NULL;
             in.get();
         }
-        tauxCapture = in.get();in.get();
+        tauxCapture = in.get();
+        in.get();
         calcStats();
         type1 = espece->getType1();
         type2 = espece->getType2();
         statPRE = 100;
         statESQ = 100;
         falsif = false;
-    }else{
+    } else {
         falsif = true;
     }
 

@@ -3,7 +3,7 @@
 #include "Elements.hpp"
 #include "MainFrame.hpp"
 
-namespace Events{
+namespace Events {
 
 }
 

@@ -10,7 +10,7 @@
         gererErreur("Erreur : Animations non initialisées", true);\
     }
 
-namespace Animations{
+namespace Animations {
 
 extern bool init;
 
