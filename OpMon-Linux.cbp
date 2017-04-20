@@ -17,6 +17,7 @@
 					<Add option="-m64" />
 					<Add option="-g" />
 					<Add directory="src/jlppc/regimys/gui" />
+					<Add directory="src/jlppc/regimys/save/" />
 				</Compiler>
 				<Linker>
 					<Add option="-m64" />
@@ -32,6 +33,7 @@
 				<Compiler>
 					<Add option="-m64" />
 					<Add directory="src/jlppc/regimys/gui" />
+					<Add directory="src/jlppc/regimys/save/" />
 				</Compiler>
 				<Linker>
 					<Add option="-m64" />
@@ -114,6 +116,8 @@
 		<Unit filename="src/jlppc/regimys/playercore/Player.cpp" />
 		<Unit filename="src/jlppc/regimys/playercore/Player.hpp" />
 		<Unit filename="src/jlppc/regimys/playercore/playercoreInclude.hxx" />
+		<Unit filename="src/jlppc/regimys/save/OptionsSave.cpp" />
+		<Unit filename="src/jlppc/regimys/save/OptionsSave.hpp" />
 		<Unit filename="src/jlppc/regimys/save/Save.cpp" />
 		<Unit filename="src/jlppc/regimys/save/Save.hpp" />
 		<Unit filename="src/jlppc/regimys/start/Initializer.cpp" />
