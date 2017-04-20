@@ -16,6 +16,11 @@ Contient des fonctions necessaires au programme
 #define UNS using namespace std;
 #define toStr(toStrP) #toStrP
 
+#define FOR_EACH(tabType, tabName, sizeTab, acolade) for(unsigned int itor = 0; itor < (sizeTab); itor++) acolade \
+tabType* objActuel = NULL;\
+objActuel = &(tabName[itor]);\
+
+
 #define PRINT_TICKS "[T = " << SDL_GetTicks() << "] - "
 /**Le log principal*/
 extern std::ofstream rlog;
