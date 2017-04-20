@@ -1,5 +1,6 @@
 #include "OptionsSave.hpp"
 #include "../start/main.hpp"
+#include <SDL/SDL.h>
 
 UNS
 
@@ -17,6 +18,8 @@ string Param::getName() const {return this->paramName;}
 string Param::getValue() const {return this->valeur;}
 
 void Param::setValue(string value){this->valeur = value;}
+
+std::vector<Param> paramList;
 
 Param getParam(string const& nom){
     if(searchParam(nom) != -1){
@@ -52,6 +55,46 @@ int searchParam(string nom){
         }
     }
     return -1;
+}
+
+void initParams(string file){
+    rlog << PRINT_TICKS << "Chargement des paramètres" << endl;
+    ifstream stream(file.c_str());
+    if(!stream){
+        ofstream strm(file.c_str());
+        strm.close();
+        ifstream cpy(file.c_str());
+        gererErreur("Impossible d'ouvrir le fichier des paramètres. Si le fichier était seulement inexistant, il a été crée. Il sera ouvert donc correctement au redemmarage.", false);
+
+    }
+    string read;
+    int i = 0;
+    for(i = 0; i < 100000; i++){//Empecher une boucle infinie
+        getline(stream, read);
+        if(!(read.substr(0, read.size() - (read.size() - 3)) == "pm|")){
+            break;
+        }
+        string noPm = StringKeys::split(read, '|', 1);
+        Param newParam = Param(StringKeys::split(noPm, '=', 0), StringKeys::split(noPm, '=', 1));
+        paramList.push_back(newParam);
+    }
+    if(i == 100000){
+        gererErreur("initParams : Boucle infinie stoppée", true);
+    }
+
+    stream.close();
+
+
+}
+
+void saveParams(string file){
+    ofstream stream(file.c_str());
+    string toGo;
+    FOR_EACH(Param, paramList, paramList.size(), {)
+        toGo+=("pm|" + objActuel->getName() + "=" + objActuel->getValue());
+        stream << toGo << endl;
+    }
+    stream.close();
 }
 
 }

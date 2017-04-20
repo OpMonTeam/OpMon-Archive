@@ -26,6 +26,8 @@ objActuel = &(tabName[itor]);\
 extern std::ofstream rlog;
 /**Le log d'erreur*/
 extern std::ofstream rerrLog;
+/**Chemin vers la save des params*/
+extern std::string optSave;
 /**
 Methode a appeler lorsqu'une erreur peut intervenir dans le programme
 fatal : si true, éteint le programme
