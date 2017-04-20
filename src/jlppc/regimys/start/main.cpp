@@ -24,6 +24,7 @@
 #include "Initializer.hpp"
 #include "StringKeys.hpp"
 #include "../gui/MainFrame.hpp"
+#include "../save/OptionsSave.hpp"
 
 //#define DEBUG
 UNS
@@ -37,12 +38,14 @@ ofstream rlog("logs/log.txt");
 ofstream rerrLog("logs/errLog.txt");
 #endif // WINDOWS
 
+string optSave("optSave.oparams");
+
 
 namespace Main {
 
 ostringstream oss;
 bool connected = false;
-string trainers[] = {"Brice", "Evan", "Mael", "Jlppc", "Red", "Blue", "Nikolai", "N", "Belladonis", "Aristote", "Giovanni", "Flora", "Silver", "Jules Cesar", "Gwendal", "Brahim"};
+string trainers[] = {"Brice", "Evan", "Mael", "Jlppc", "Red", "Blue", "Nikolai", "N", "Belladonis", "Aristote", "Giovanni", "Flora", "Silver", "Jules Cesar", "Brahim"};
 float version = 0.09;
 int sousVers = 0;
 string versionS;
@@ -77,6 +80,7 @@ int starts() {
     startTime = time(NULL);
     rlog << "[T = " << time(NULL) - startTime << "] - Initialisation du log terminée." << endl;
     Initializer::init();
+    OptionsSave::initParams(optSave);
     MainFrame::open();
 
     return quit(0);
@@ -105,6 +109,7 @@ int quit(int returne) {
         }
 
     }
+    OptionsSave::saveParams(optSave);
     rlog << PRINT_TICKS << "Fermeture du jeu. Return " << returne << endl;
     rlog.close();
     rerrLog.close();
