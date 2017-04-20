@@ -26,7 +26,7 @@ namespace OptionsSave{
 
     };
 
-    std::vector<Param> paramList;
+    extern std::vector<Param> paramList;
 
     Param getParam(std::string const& nom);
 
@@ -37,9 +37,9 @@ namespace OptionsSave{
     //CPP ONLY :
     //int searchParam(string nom);
 
-    void saveParams();
+    void saveParams(std::string file);
 
-    void initParams();
+    void initParams(std::string file);
 
 }
 
