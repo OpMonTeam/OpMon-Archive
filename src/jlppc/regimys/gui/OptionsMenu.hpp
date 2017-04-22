@@ -14,7 +14,6 @@ namespace OptionsMenu{
     extern SDL_Texture *fondOpt;
     extern SDL_Rect curseurOpt;
     extern SDL_Rect curseurSnd;
-    extern J_Texture ouinon;
     extern J_Texture langFr;
     extern J_Texture langEng;
     extern J_Texture langEsp;
@@ -28,6 +27,7 @@ namespace OptionsMenu{
     extern SDL_Texture *rectSurb;
     extern SDL_Color red;
 
+    extern J_Texture txtLang;
     extern SDL_Texture *fondLangues;
     extern J_Texture listeLangues[3];
     extern SDL_Rect curPosLang[4];

@@ -98,6 +98,18 @@ int printText(SDL_Renderer *renderer, string txt, string line2S, string line3S) 
     return 0;
 }
 
+void initAll(){
+    MainMenu::initVars();
+    StartScene::initVars();
+    Overworld::initVars();
+}
+
+void destroyAll(){
+    MainMenu::deleteVars();
+    StartScene::destroyVars();
+    Overworld::deleteVars();
+}
+
 void open() {
     //Initialisations
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_AUDIO) == -1) {
@@ -180,6 +192,7 @@ void open() {
     }
     rlog << PRINT_TICKS << "Chargement des sprites globaux (Initializer)" << endl;
     Initializer::initSprites();
+    initAll();
     Mix_Volume(1, MIX_MAX_VOLUME - 1);
     if(MainMenu::mainMenu() != -1) {
         Mix_PlayChannel(1, MainMenu::bruitPush, 0);
@@ -202,6 +215,7 @@ void open() {
         Utils::wait(WAIT_DEFAULT);
     }
 
+    destroyAll();
 
     rlog << PRINT_TICKS << "Fermeture de la fenetre" << endl;
 

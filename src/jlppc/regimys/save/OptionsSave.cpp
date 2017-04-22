@@ -97,4 +97,8 @@ void saveParams(string file){
     stream.close();
 }
 
+bool checkParam(string name){
+    return searchParam(name) != -1;
+}
+
 }
