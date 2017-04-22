@@ -138,9 +138,9 @@ void open() {
     //Ouverture de la police
     rlog << PRINT_TICKS << "Initialisation des SDL terminée" << endl;
 #ifdef _WIN32
-    font = TTF_OpenFont("ressources\\fonts\\arial.ttf", 28);
+    font = TTF_OpenFont("ressources\\fonts\\Default.ttf", 28);
 #else
-    font = TTF_OpenFont("ressources/fonts/arial.ttf", 28);
+    font = TTF_OpenFont("ressources/fonts/Default.ttf", 28);
 #endif
 
     if (font == NULL) {
@@ -149,9 +149,9 @@ void open() {
     }
     for(unsigned int f = 0; f < 72; f++) {
 #ifdef _WIN32
-        fonts[f] = TTF_OpenFont("ressources\\fonts\\arial.ttf", f + 1);
+        fonts[f] = TTF_OpenFont("ressources\\fonts\\Default.ttf", f + 1);
 #else
-        fonts[f] = TTF_OpenFont("ressources/fonts/arial.ttf", f + 1);
+        fonts[f] = TTF_OpenFont("ressources/fonts/Default.ttf", f + 1);
 #endif // _WIN32
         if(fonts[f] == NULL) {
             rerrLog << "Initialisation d'une police échouée : ID : " << f << endl;
