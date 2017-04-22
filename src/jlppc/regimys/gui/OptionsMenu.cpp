@@ -48,13 +48,13 @@ void initVars() {
 
 
 #endif // _WIN32
-    langFr = renderText(renderer, "Français", fonts[FONT_SIZE_DEFAULT], blanc, Encoding::UNICODE);
-    langEng = renderText(renderer, "English", fonts[FONT_SIZE_DEFAULT], blanc, Encoding::UNICODE);
-    langEsp = renderText(renderer, "Espa\u00F1ol", fonts[FONT_SIZE_DEFAULT], red, Encoding::UNICODE);
+    langFr = renderText(renderer, "Français", fonts[FONT_SIZE_DEFAULT], blanc, Encoding::UTF8);
+    langEng = renderText(renderer, "English", fonts[FONT_SIZE_DEFAULT], blanc);
+    langEsp = renderText(renderer, "Espa\u00F1ol", fonts[FONT_SIZE_DEFAULT], red, Encoding::UTF8);
     txtRetour = renderText(renderer, kget("options.retour"), fonts[FONT_SIZE_DEFAULT], blanc);
     txtOptions = renderText(renderer, kget("options.title"), fonts[FONT_SIZE_DEFAULT], blanc);
     txtOpt1 = renderText(renderer, kget("options.ecran"), fonts[FONT_SIZE_DEFAULT], red);
-    txtOpt2 = renderText(renderer, kget("options.lang"), fonts[FONT_SIZE_DEFAULT], red);
+    txtOpt2 = renderText(renderer, kget("options.lang"), fonts[FONT_SIZE_DEFAULT], blanc);
     txtOpt3 = renderText(renderer, kget("options.vol"), fonts[FONT_SIZE_DEFAULT], red);
     txtOpt4 = renderText(renderer, kget("options.control"), fonts[FONT_SIZE_DEFAULT], red);
     txtOpt5 = renderText(renderer, kget("options.credit"), fonts[FONT_SIZE_DEFAULT], red);
@@ -77,8 +77,8 @@ void initVars() {
     txtRetour.rect.x = 55;
     txtRetour.rect.y = 25;
 
-    txtOptions.rect.x = 230;
-    txtOptions.rect.y = 25;
+    txtLang.rect.x = (txtOptions.rect.x = 230) + 20;
+    txtLang.rect.y = txtOptions.rect.y = 25;
 
     curPosOpt[0].x = 23;
     curPosOpt[0].y = 17;
@@ -158,7 +158,7 @@ int boucle() {
                     Mix_PlayChannel(0, bruitNope, 0);
                     break;
                 case 2:
-                    Mix_PlayChannel(0, bruitNope, 0);
+                    boucleLang();
                     break;
                 case 3:
                     Mix_PlayChannel(0, bruitNope, 0);
@@ -240,6 +240,8 @@ int boucleLang(){
                 #else
                     StringKeys::initialize("ressources/keys/english.rkeys");
                 #endif
+                    initAll();
+                    return 0;
                     break;
                 case 2:
                     Mix_PlayChannel(0, bruitNope, 0);
@@ -251,6 +253,8 @@ int boucleLang(){
                     #else
                         StringKeys::initialize("ressources/keys/francais.rkeys");
                     #endif
+                    initAll();
+                    return 0;
                     break;
                 }
                 break;
@@ -283,10 +287,7 @@ int boucleLang(){
             }
             break;
         }
-
-        if(SDL_RenderCopy(renderer, OptionsMenu::fondOpt, NULL, &MainFrame::fond) == -1) {
-            gererErreur(SDL_GetError(), false);
-        }
+        SDL_RenderCopy(renderer, OptionsMenu::fondLangues, NULL, &MainFrame::fond);
         J_RenderCopy(renderer, &langEng);
         J_RenderCopy(renderer, &langEsp);
         J_RenderCopy(renderer, &langFr);
