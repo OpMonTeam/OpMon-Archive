@@ -78,9 +78,14 @@ int starts() {
         exit(-1);
     }
     startTime = time(NULL);
+
+    OptionsSave::initParams(optSave);
+    if(!OptionsSave::checkParam("lang")){
+        OptionsSave::addParam("lang", "eng");
+    }
     rlog << "[T = " << time(NULL) - startTime << "] - Initialisation du log terminée." << endl;
     Initializer::init();
-    OptionsSave::initParams(optSave);
+
     MainFrame::open();
 
     return quit(0);

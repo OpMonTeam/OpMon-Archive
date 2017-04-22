@@ -121,6 +121,10 @@ J_Texture renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police,
 
 J_Texture renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color, int encodage);
 
+void initAll();
+
+void destroyAll();
+
 }
 
 #endif /* SRC_JLPPC_REGIMYS_GUI_MAINFRAME_HPP_ */
