@@ -46,3 +46,5 @@ Projet-Pokemon-Regimys_build_log.html
 doxygen/doxyfile
 *.opmod
 OpMon_build_log.html
+# Pas de fichier sauvegardes d'options
+*.oparams
