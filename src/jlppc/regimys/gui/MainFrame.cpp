@@ -62,7 +62,14 @@ int printText(SDL_Renderer *renderer, string txt, string line2S, string line3S) 
     SDL_Rect posLineThree;
 
     if (txt == "" || line2S == "" || line3S == "") {
-        gererErreur("Chaine de caractère vide (fonction MainFrame::printText)", true);
+        gererErreur("Chaine de caractère vide (fonction MainFrame::printText)", false);
+        if(txt == ""){
+            txt+=" ";
+        }if(line2S == ""){
+            line2S+=" ";
+        }if(line3S == ""){
+            line3S+=" ";
+        }
     }
 
 
@@ -253,7 +260,8 @@ J_Texture renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police,
 
 SDL_Texture *renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color, SDL_Rect *pos, int encodage) {
     if(text == "") {
-        gererErreur("Erreur. Texte vide dans renderText encodage", true);
+        gererErreur("Texte vide dans renderText encodage.", false);
+        text+=" ";
     }
     SDL_Surface *sfce = NULL;
     Uint16 *tab;
