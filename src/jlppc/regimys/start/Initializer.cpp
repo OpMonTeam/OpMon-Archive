@@ -8,6 +8,7 @@
 #include "../gui/MainFrame.hpp"
 #include <fstream>
 #include "../save/OptionsSave.hpp"
+#include "../gui/Animations.hpp"
 
 #define ATK push_back(Stats::ATK)
 #define ATKSPE push_back(Stats::ATKSPE)
@@ -855,8 +856,13 @@ void initAtkLvls() {
 }
 
 void initSprites() {
+    using namespace std;
+    rlog << PRINT_TICKS << "Initialisation des fonds" << endl;
     initBackgrounds();
+    rlog << PRINT_TICKS << "Initialisation des maps" << endl;
     initPlans();
+    rlog << PRINT_TICKS << "Initialisation des animations" << endl;
+    Animations::initAnims();
     //Init Sprites
 
 }
