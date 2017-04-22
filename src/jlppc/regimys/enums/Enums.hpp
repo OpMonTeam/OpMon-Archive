@@ -48,15 +48,23 @@ const int EAU = 3, FEU = 6, PLANTE = 10, ELECTRIQUE = 4, PSY = 12, TENEBRES = 16
 Enumère les types de contacts entre un evènement et le joueur.
 */
 //->Enum
-namespace ActionType{
+namespace ActionType {
 const int ENTER = 0, TOUCH = 1, IN_ = 2, VIEW = 3;
 }
 /**
 Enumère les directions des sprites.
 */
 //->Enum
-namespace Side{
+namespace Side {
 const int FACE = 0, DROITE = 1, GAUCHE = 2, DOS = 3;
+}
+
+/**
+Enumère les differents encodages
+*/
+//->Enum
+namespace Encoding {
+const int LATIN = 0, UNICODE = 1, UTF8 = 2;
 }
 /**
 Gère la table des types

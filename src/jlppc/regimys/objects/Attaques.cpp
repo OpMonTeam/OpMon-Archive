@@ -387,14 +387,14 @@ int Destruction::effetApres(OpMon &atk, OpMon &def) {
 }
 
 int Detritus::effetApres(OpMon &atk, OpMon &def) {
-    if(Utils::randU(10) < 3){
-        if(def.setStatus(Status::POISON)){
+    if(Utils::randU(10) < 3) {
+        if(def.setStatus(Status::POISON)) {
         }
     }
 }
 
 int Devoreve::effetAvant(OpMon &atk, OpMon &def) {
-    if(!(def.getStatus() == Status::SOMMEIL)){
+    if(!(def.getStatus() == Status::SOMMEIL)) {
 
     }
 }
@@ -404,14 +404,14 @@ int Devoreve::effetApres(OpMon &atk, OpMon &def) {
 }
 
 int DoubleDard::effetApres(OpMon &atk, OpMon &def) {
-    if(Utils::randU(10) < 2){
+    if(Utils::randU(10) < 2) {
         def.setStatus(Status::POISON);
     }
-    if(def.getPV() <= 0){
+    if(def.getPV() <= 0) {
         def.attacked(pvPerdus);
-            if(Utils::randU(10) < 2){
-                def.setStatus(Status::POISON);
-            }
+        if(Utils::randU(10) < 2) {
+            def.setStatus(Status::POISON);
+        }
     }
 }
 

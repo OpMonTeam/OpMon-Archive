@@ -2,6 +2,7 @@
 #include <SDL/SDL_image.h>
 #include "../start/main.hpp"
 #include <iostream>
+#include "OptionsMenu.hpp"
 
 UNS
 
@@ -56,6 +57,7 @@ void initVars() {
     //Mix_Volume(2, MIX_MAX_VOLUME / 4);
     //Mix_Volume(1, MIX_MAX_VOLUME);
     //Mix_Volume(0, MIX_MAX_VOLUME / 2);
+    OptionsMenu::initVars();
 }
 
 void verifVars() {
@@ -74,6 +76,7 @@ void verifVars() {
 }
 
 void deleteVars() {
+    OptionsMenu::deleteVars();
     SDL_DestroyTexture(fond);
     SDL_DestroyTexture(play);
     SDL_DestroyTexture(charge);
@@ -102,7 +105,7 @@ int boucle0() {
                 case 3:
                     return -1;
                 case 2:
-                    Mix_PlayChannel(0, bruitNope, 0);
+                    OptionsMenu::optionsMenu();
                     break;
                 case 1:
                     Mix_PlayChannel(0, bruitNope, 0);
@@ -142,9 +145,11 @@ int boucle0() {
         SDL_RenderCopy(renderer, cursor, NULL, &curPos[curPosI]);
         SDL_RenderPresent(renderer);
     }
+    return 0;
 }
 
 int mainMenu() {
+
     verifVars();
     Mix_PlayMusic(fondMusTitle, -1);
     Mix_VolumeMusic(MIX_MAX_VOLUME / 4);
@@ -155,6 +160,7 @@ int mainMenu() {
     } else if(returned == 0) {
         return 0;
     }
+    return 0;
 }
 
 }

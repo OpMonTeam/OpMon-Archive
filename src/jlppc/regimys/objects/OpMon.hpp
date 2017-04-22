@@ -153,7 +153,9 @@ public:
     bool changeATKSPE(int power);
     bool changeDEFSPE(int power);
     bool changeVIT(int power);
-    int getStatus(){return status;}
+    int getStatus() {
+        return status;
+    }
     /**Change le status*/
     bool setStatus(int status);
     int getStatPV() const {
@@ -165,7 +167,9 @@ public:
     int getPV() const {
         return PV;
     }
-    std::string getSurnom(){return surnom;}
+    std::string getSurnom() {
+        return surnom;
+    }
     /**Soigne le pokémon*/
     void heal(int PV);
     bool getLevel() const {

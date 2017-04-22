@@ -24,6 +24,7 @@
 #include "Initializer.hpp"
 #include "StringKeys.hpp"
 #include "../gui/MainFrame.hpp"
+#include "../save/OptionsSave.hpp"
 
 //#define DEBUG
 UNS
@@ -37,12 +38,14 @@ ofstream rlog("logs/log.txt");
 ofstream rerrLog("logs/errLog.txt");
 #endif // WINDOWS
 
+string optSave("optSave.oparams");
+
 
 namespace Main {
 
 ostringstream oss;
 bool connected = false;
-string trainers[] = {"Brice", "Evan", "Mael", "Jlppc", "Red", "Blue", "Nikolai", "N", "Belladonis", "Aristote", "Giovanni", "Flora", "Silver", "Jules Cesar", "Gwendal", "Brahim"};
+string trainers[] = {"Brice", "Evan", "Mael", "Jlppc", "Red", "Blue", "Nikolai", "N", "Belladonis", "Aristote", "Giovanni", "Flora", "Silver", "Jules Cesar", "Brahim"};
 float version = 0.09;
 int sousVers = 0;
 string versionS;
@@ -55,6 +58,7 @@ string sep = "\\";
 string sep = "/";
 #endif
 long startTime = time(NULL);
+bool reboot = false;
 
 
 int starts();
@@ -75,8 +79,14 @@ int starts() {
         exit(-1);
     }
     startTime = time(NULL);
+
+    OptionsSave::initParams(optSave);
+    if(!OptionsSave::checkParam("lang")){
+        OptionsSave::addParam("lang", "eng");
+    }
     rlog << "[T = " << time(NULL) - startTime << "] - Initialisation du log terminée." << endl;
     Initializer::init();
+
     MainFrame::open();
 
     return quit(0);
@@ -105,6 +115,7 @@ int quit(int returne) {
         }
 
     }
+    OptionsSave::saveParams(optSave);
     rlog << PRINT_TICKS << "Fermeture du jeu. Return " << returne << endl;
     rlog.close();
     rerrLog.close();
@@ -113,6 +124,13 @@ int quit(int returne) {
 #ifdef DEBUG
     system("pause");
 #endif // DEBUG
+    if(Main::reboot){
+        #ifdef _WIN32
+            system("./OpMon.exe");
+        #else
+            system("./OpMon");
+        #endif
+    }
     exit(returne);
     return returne;
 }

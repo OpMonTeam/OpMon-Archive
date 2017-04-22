@@ -5,15 +5,13 @@
 UNS
 
 namespace StringKeys {
-#ifdef _WIN32
-ifstream keysFile("ressources\\keys\\keys.rkeys");
-#else
-std::ifstream keysFile("ressources/keys/keys.rkeys");
-#endif
 vector<string> keys = vector<string>();
 vector<string> strings = vector<string>();
 
-void initialize() {
+void initialize(string keysFileS) {
+    ifstream keysFile(keysFileS.c_str());
+    keys = vector<string>();
+    strings = vector<string>();
     rlog << "[T = " << SDL_GetTicks() << "] - Initialisation des clées" << endl;
     if (!keysFile) {
         gererErreur("Initialisation des clées impossible.", true);
