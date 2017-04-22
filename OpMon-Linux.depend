@@ -424,7 +424,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1492879283 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/MainFrame.cpp
+1492881241 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/MainFrame.cpp
 	"MainFrame.hpp"
 	<iostream>
 	"../start/main.hpp"
@@ -569,7 +569,7 @@
 	"../save/Save.hpp"
 	"../objects/OpMon.hpp"
 
-1492876018 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/Initializer.cpp
+1492881462 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/Initializer.cpp
 	"Initializer.hpp"
 	"../enums/Enums.hpp"
 	"../objects/Attaques.hpp"
@@ -580,6 +580,7 @@
 	"../gui/MainFrame.hpp"
 	<fstream>
 	"../save/OptionsSave.hpp"
+	"../gui/Animations.hpp"
 
 1490806752 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/Initializer.hpp
 	<iostream>
@@ -1052,7 +1053,7 @@
 	"Animations.hpp"
 	"MainFrame.hpp"
 
-1492872499 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/Animations.hpp
+1492881430 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/Animations.hpp
 	<iostream>
 	"../start/main.hpp"
 	<SDL/SDL.h>

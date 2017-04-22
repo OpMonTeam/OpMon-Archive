@@ -12,8 +12,6 @@
 
 namespace Animations {
 
-extern bool init;
-
 void initAnims();
 void deleteAnims();
 
