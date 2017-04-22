@@ -58,6 +58,7 @@ string sep = "\\";
 string sep = "/";
 #endif
 long startTime = time(NULL);
+bool reboot = false;
 
 
 int starts();
@@ -123,6 +124,13 @@ int quit(int returne) {
 #ifdef DEBUG
     system("pause");
 #endif // DEBUG
+    if(Main::reboot){
+        #ifdef _WIN32
+            system("./OpMon.exe");
+        #else
+            system("./OpMon");
+        #endif
+    }
     exit(returne);
     return returne;
 }

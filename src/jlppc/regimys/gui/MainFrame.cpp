@@ -198,15 +198,10 @@ void open() {
         Mix_PlayChannel(1, MainMenu::bruitPush, 0);
         Utils::wait(WAIT_DEFAULT);
         if(StartScene::startScene() != -1) {
-            while(Overworld::overworld() != -1) {
-                if(MainMenu::mainMenu() != -1) {
-                    if(StartScene::startScene() != -1) {
+            if(Overworld::overworld() != -1){
+                if(Overworld::overworld() == 2){
+                    Main::reboot = true;
 
-                    } else {
-                        break;
-                    }
-                } else {
-                    break;
                 }
             }
         }
@@ -214,8 +209,6 @@ void open() {
         Mix_PlayChannel(1, MainMenu::bruitPush, 0);
         Utils::wait(WAIT_DEFAULT);
     }
-
-    destroyAll();
 
     rlog << PRINT_TICKS << "Fermeture de la fenetre" << endl;
 
