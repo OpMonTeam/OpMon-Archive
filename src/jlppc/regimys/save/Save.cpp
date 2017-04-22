@@ -27,7 +27,7 @@ Player *loadPlayer(std::string fileIn) {
     string inStr;
     char actu = '\0';
     string verif = readLine(inStream);
-    if(verif != "OP_SAVE"){
+    if(verif != "OP_SAVE") {
         return NULL;
     }
     string pname = readLine(inStream);
@@ -61,12 +61,14 @@ char intToChar(int toChar) {
     return toChar;
 }
 
-std::string readLine(std::ifstream &in){
+std::string readLine(std::ifstream &in) {
     string toReturn("");
     char actu = '\0';
-    while(true){
+    while(true) {
         actu = in.get();
-        if(actu == '\n'){break;}
+        if(actu == '\n') {
+            break;
+        }
         toReturn+=actu;
 
     }

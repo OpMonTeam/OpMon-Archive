@@ -34,17 +34,6 @@ Mix_Chunk *dialogPass = NULL;
 TTF_Font *fonts[72] = {};
 bool init = false;
 
-void allInit(){
-    MainFrame::MainMenu::initVars();
-    MainFrame::Overworld::initVars();
-    MainFrame::StartScene::initVars();
-}
-
-void allDestroy(){
-    MainMenu::deleteVars();
-    Overworld::deleteVars();
-    StartScene::destroyVars();
-}
 
 int printChoice(string text, string choice1, string choice2, string choix3) {
     //Non fini
@@ -60,6 +49,7 @@ int printChoice(string text, string choice1, string choice2, string choix3) {
     SDL_Texture *texte;
     SDL_Texture *fondDialogue;
     texte = renderText(renderer, text, font, noir, textPlace);*/
+    return 0;
 }
 
 int printText(SDL_Renderer *renderer, string txt, string line2S, string line3S) {
@@ -73,7 +63,14 @@ int printText(SDL_Renderer *renderer, string txt, string line2S, string line3S) 
     SDL_Rect posLineThree;
 
     if (txt == "" || line2S == "" || line3S == "") {
-        gererErreur("Chaine de caractère vide (fonction MainFrame::printText)", true);
+        gererErreur("Chaine de caractère vide (fonction MainFrame::printText)", false);
+        if(txt == ""){
+            txt+=" ";
+        }if(line2S == ""){
+            line2S+=" ";
+        }if(line3S == ""){
+            line3S+=" ";
+        }
     }
 
 
@@ -107,6 +104,18 @@ int printText(SDL_Renderer *renderer, string txt, string line2S, string line3S) 
     SDL_FreeSurface(sfce2);
     SDL_FreeSurface(sfce3);
     return 0;
+}
+
+void initAll(){
+    MainMenu::initVars();
+    StartScene::initVars();
+    Overworld::initVars();
+}
+
+void destroyAll(){
+    MainMenu::deleteVars();
+    StartScene::destroyVars();
+    Overworld::deleteVars();
 }
 
 void open() {
@@ -192,22 +201,17 @@ void open() {
     rlog << PRINT_TICKS << "Chargement des sprites globaux (Initializer)" << endl;
     Initializer::initSprites();
     rlog << PRINT_TICKS << "Chargement des variables de chaque partie" << endl;
-    allInit();
+    initAll();
     Mix_Volume(1, MIX_MAX_VOLUME - 1);
     rlog << PRINT_TICKS << "Lancement du menu." << endl;
     if(MainMenu::mainMenu() != -1) {
         Mix_PlayChannel(1, MainMenu::bruitPush, 0);
         Utils::wait(WAIT_DEFAULT);
-        if(StartScene::startScene() != -1){
-            while(Overworld::overworld() != -1){
-                if(MainMenu::mainMenu() != -1){
-                    if(StartScene::startScene() != -1){
+        if(StartScene::startScene() != -1) {
+            if(Overworld::overworld() != -1){
+                if(Overworld::overworld() == 2){
+                    Main::reboot = true;
 
-                    }else{
-                        break;
-                    }
-                }else{
-                    break;
                 }
             }
         }
@@ -217,7 +221,7 @@ void open() {
     }
 
     rlog << PRINT_TICKS << "Suppression des variables de chaque partie" << endl;
-    allDestroy();
+    destroyAll();
     rlog << PRINT_TICKS << "Fermeture de la fenetre" << endl;
 
     SDL_DestroyRenderer(renderer);
@@ -249,7 +253,43 @@ SDL_Texture *renderText(SDL_Renderer *renderer, char text[], TTF_Font *police, S
 }
 
 SDL_Texture *renderText(SDL_Renderer *renderer, string text, TTF_Font *police, SDL_Color color, SDL_Rect *pos) {
-    SDL_Surface *sfce = TTF_RenderText_Blended(police, text.c_str(), color);
+    ;
+    return renderText(renderer, text, police, color, pos, Encoding::LATIN);
+}
+
+J_Texture renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color) {
+    J_Texture toReturn;
+    toReturn.texture = renderText(renderer, text, police, color, &(toReturn.rect));
+    return toReturn;
+}
+
+SDL_Texture *renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color, SDL_Rect *pos, int encodage) {
+    if(text == "") {
+        gererErreur("Texte vide dans renderText encodage.", false);
+        text+=" ";
+    }
+    SDL_Surface *sfce = NULL;
+    Uint16 *tab;
+    switch(encodage) {
+    case Encoding::LATIN:
+        sfce = TTF_RenderText_Blended(police, text.c_str(), color);
+        break;
+    case Encoding::UNICODE:
+        tab = (Uint16*)malloc(sizeof(Uint16) * text.size());
+        for(unsigned int i = 0; i < text.size(); i++) {
+            tab[i] = text[i];
+        }
+        sfce = TTF_RenderUNICODE_Blended(police, tab, color);
+        free(tab);
+        break;
+    case Encoding::UTF8:
+        sfce = TTF_RenderUTF8_Blended(police, text.c_str(), color);
+        break;
+    default:
+        sfce = TTF_RenderText_Blended(police, text.c_str(), color);
+        break;
+    }
+
     if (sfce == NULL) {
         rerrLog << "MainFrame::renderText() : ";
         gererErreur(TTF_GetError(), true);
@@ -258,6 +298,12 @@ SDL_Texture *renderText(SDL_Renderer *renderer, string text, TTF_Font *police, S
     pos->w = sfce->w;
     SDL_Texture *toReturn = SDL_CreateTextureFromSurface(renderer, sfce);
     SDL_FreeSurface(sfce);
+    return toReturn;
+}
+
+J_Texture renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color, int encodage) {
+    J_Texture toReturn;
+    toReturn.texture = renderText(renderer, text, police, color, &(toReturn.rect), encodage);
     return toReturn;
 }
 
