@@ -7,6 +7,7 @@
 #include <sstream>
 #include "../gui/MainFrame.hpp"
 #include <fstream>
+#include "../save/OptionsSave.hpp"
 
 #define ATK push_back(Stats::ATK)
 #define ATKSPE push_back(Stats::ATKSPE)
@@ -933,7 +934,20 @@ void initBackgrounds() {
 }
 
 void initKeys() {
-    StringKeys::initialize();
+    #ifdef _WIN32
+    if(OptionsSave::getParam("lang").getValue() == "fr"){
+        StringKeys::initialize("ressources\\keys\\francais.rkeys");
+    }else{
+        StringKeys::initialize("ressources\\keys\\english.rkeys");
+    }
+
+    #else
+    if(OptionsSave::getParam("lang").getValue() == "fr"){
+        StringKeys::initialize("ressources/keys/francais.rkeys");
+    }else{
+        StringKeys::initialize("ressources/keys/english.rkeys");
+    }
+    #endif
 }
 
 void init() {

@@ -41,6 +41,8 @@ namespace OptionsSave{
 
     void initParams(std::string file);
 
+    bool checkParam(std::string name);
+
 }
 
 #endif // OPTIONSSAVE_HPP

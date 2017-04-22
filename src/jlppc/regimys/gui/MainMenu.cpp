@@ -150,7 +150,6 @@ int boucle0() {
 
 int mainMenu() {
 
-    initVars();
     verifVars();
     Mix_PlayMusic(fondMusTitle, -1);
     Mix_VolumeMusic(MIX_MAX_VOLUME / 4);
