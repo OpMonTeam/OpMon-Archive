@@ -13,7 +13,7 @@ Bienvenue sur le projet de OPMon Lazuli! Le clone <a href="https://github.com/jl
 <br/>Version du jeu : Alpha 0.09 | Téléchargement : <a href="http://opmon-game.ga/downloads.html"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 Prochaines versions :<ul>
 
-<li>Alpha 0.1 : Améliorations et correction de tous les bugs possibles dans la partie graphique</li>
+<li>Alpha 0.1 : Ajout d'un menu d'options et correction de tous les bugs possibles dans la partie graphique</li>
 <li>Alpha 0.11 : Ajout de l'interieur des maisons, avec possibilité de les visiter en appuyant sur des touches du clavier (pas d'evenements)</li>
 <li>Alpha 0.12 : Amelioration de l'interieur des maisons et premiers petits evenements (les pancartes de Faubourg Euvi)</li>
 <a href="https://github.com/jlppc/OpMon/wiki/ROADMAP">Voir la ROADMAP détaillé</a><br/>
