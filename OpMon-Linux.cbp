@@ -58,9 +58,6 @@
 			<Add library="/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libgcc.a" />
 			<Add directory="/usr/lib/x86_64-linux-gnu" />
 		</Linker>
-		<Unit filename="resources.rc">
-			<Option compilerVar="WINDRES" />
-		</Unit>
 		<Unit filename="src/jlppc/regimys/enums/Caractere.cpp" />
 		<Unit filename="src/jlppc/regimys/enums/Caractere.hpp" />
 		<Unit filename="src/jlppc/regimys/enums/Enums.cpp" />
