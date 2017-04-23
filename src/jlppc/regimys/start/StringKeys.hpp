@@ -2,7 +2,7 @@
 StringKeys.hpp
 Auteur : Jlppc
 Fichier sous licence GPL-3.0
-http://regimys.tk
+http://opmon-game.ga
 Contient la défnition du namespace StringKeys
 */
 #ifndef STRINGKEYS_HPP

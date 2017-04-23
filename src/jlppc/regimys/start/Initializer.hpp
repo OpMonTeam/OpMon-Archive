@@ -3,7 +3,7 @@ Initializer.hpp
 Auteur : Jlppc
 Contributeurs au fichier .cpp: Navet56, Aerzia
 Fichier sous licence GPL-3.0
-http://regimys.tk
+http://opmon-game.ga
 Contient la définition des methodes qui permettent d'initialiser les éléments du jeu
 */
 #ifndef INITIALIZER_HPP

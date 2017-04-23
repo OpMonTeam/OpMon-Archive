@@ -2,7 +2,7 @@
 Enums.hpp
 Auteur : Jlppc
 Fichier sous licence GPL-3.0
-http://regimys.tk
+http://opmon-game.ga
 Définit plusieurs énumérations
 */
 #ifndef ENUMS_HPP
