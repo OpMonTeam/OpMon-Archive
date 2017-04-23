@@ -2,7 +2,7 @@
 OpMon.hpp
 Auteur : Jlppc
 Fichier sous licence GPL-3.0. Le nom Pok�mon appartient a Nintendo(r).
-http://regimys.tk
+http://opmon-game.ga
 Contient la d�finition du namepsace CalcCourbes et de la classe OpMon
 */
 #ifndef OPMON_HPP

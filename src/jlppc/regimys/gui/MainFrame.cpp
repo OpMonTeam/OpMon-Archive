@@ -16,6 +16,7 @@
 #include "StartScene.hpp"
 
 
+
 UNS
 
 namespace MainFrame {
@@ -74,20 +75,20 @@ int printText(SDL_Renderer *renderer, string txt, string line2S, string line3S) 
     }
 
 
-    sfce = TTF_RenderText_Blended(font, txt.c_str(), noir);
+    sfce = TTF_RenderText_Blended(fonts[FONT_SIZE_DEFAULT], txt.c_str(), noir);
     textPlace.h = sfce->h;
     textPlace.w = sfce->w;
     textUre = SDL_CreateTextureFromSurface(renderer, sfce);
 
 
-    sfce2 = TTF_RenderText_Blended(font, line2S.c_str(), noir);
+    sfce2 = TTF_RenderText_Blended(fonts[FONT_SIZE_DEFAULT], line2S.c_str(), noir);
     posLineTwo.h = sfce2->h;
     posLineTwo.w = sfce2->w;
     posLineTwo.x = textPlace.x;
     posLineTwo.y = textPlace.y + 32;
     line2 = SDL_CreateTextureFromSurface(renderer, sfce2);
 
-    sfce3 = TTF_RenderText_Blended(font, line3S.c_str(), noir);
+    sfce3 = TTF_RenderText_Blended(fonts[FONT_SIZE_DEFAULT], line3S.c_str(), noir);
     posLineThree.h = sfce3->h;
     posLineThree.w = sfce3->w;
     posLineThree.x = textPlace.x;
@@ -120,7 +121,7 @@ void destroyAll(){
 
 void open() {
     //Initialisations
-    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_AUDIO) == -1) {
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) == -1) {
         rerrLog << "Erreur d'initialisation de SDL." << endl;
         rlog << "Une erreur fatale s'est produite. Merci de consulter errLog.txt" << endl;
         gererErreur(SDL_GetError(), true);

@@ -2,7 +2,7 @@
 itemInclude.hxx
 Auteur : Jlppc
 Fichier sous licence GPL-3.0
-http://regimys.tk
+http://opmon-game.ga
 Permet d'inclure tous les fichiers du dossier item
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_ITEMINCLUDE_HXX_

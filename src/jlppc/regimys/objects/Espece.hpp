@@ -2,7 +2,7 @@
 Espece.hpp
 Auteur : Jlppc
 Fichier sous licence GPL-3.0
-http://regimys.tk
+http://opmon-game.ga
 Définit l'énumération CourbeExp et la classe Espece
 */
 #ifndef ESPECE_HPP

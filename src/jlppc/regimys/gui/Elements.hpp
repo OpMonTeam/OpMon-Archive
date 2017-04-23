@@ -2,7 +2,7 @@
 Elements.hpp
 Auteur : Jlppc
 Fichier sous licence GPL-3.0
-http://regimys.tk
+http://opmon-game.ga
 Fichier contenant des éléments utiles
 */
 #ifndef ELEMENTS_HPP
@@ -30,6 +30,9 @@ public:
     SDL_Texture* getApparence() {return apparence;}
 };*/
 
+/**
+Classe définissant une carte d'un lieu en particulier
+*/
 class Plan {
 private:
     SDL_Texture *couche1;
@@ -66,12 +69,16 @@ public:
     }
     //Event* getEvent(int x, int y){return events[y][x];}
 };
-
+/**
+Structure permettant de regrouper les SDL_Texture avec un SDL_Rect correspondant
+*/
 struct J_Texture {
     SDL_Texture *texture;
     SDL_Rect rect;
 };
-
+/**
+Permet d'afficher une J_Texture
+*/
 int J_RenderCopy(SDL_Renderer *renderer, J_Texture *texture);
 
 typedef struct J_Texture J_Texture;

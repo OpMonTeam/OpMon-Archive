@@ -2,7 +2,7 @@
 IOpball.hpp
 Auteur : Jlppc
 Fichier sous licence GPL-3.0.
-http://regimys.tk
+http://opmon-game.ga
 Contient la définition de la classe I_Opball
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_IOPBALL_HPP_

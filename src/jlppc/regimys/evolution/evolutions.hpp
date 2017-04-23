@@ -2,8 +2,8 @@
 evolutions.hpp
 Auteur : Jlppc
 Fichier sous licence GPL-3.0
-http://regimys.tk
-Contient les d�finitions des �volutions
+http://opmon-game.ga
+Contient les définitions des évolutions
 */
 #ifndef EVOLUTIONS_HPP_INCLUDED
 #define EVOLUTIONS_HPP_INCLUDED

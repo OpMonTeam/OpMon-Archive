@@ -2,7 +2,7 @@
 File.hpp
 Auteur : Jlppc
 Fichier sous licence GPL-3.0
-http://regimys.tk
+http://opmon-game.ga
 Définit la classe RFile
 */
 #ifndef FILE_HPP

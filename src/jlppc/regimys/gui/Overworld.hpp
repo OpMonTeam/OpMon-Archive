@@ -1,8 +1,18 @@
+/*
+Overworld.hpp
+Auteur : Jlppc
+Fichier sous license GPL-3.0
+http://opmon-game.ga
+Contient le namespace Overworld
+*/
 #ifndef OVERWORLD_HPP
 #define OVERWORLD_HPP
 #include "MainFrame.hpp"
 
 namespace MainFrame {
+/**
+Contient les éléments fonctionnels de l'overworld
+*/
 namespace Overworld {
 void initVars();
 void verifVars();
