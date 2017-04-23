@@ -2,7 +2,7 @@
 Class.hpp
 Auteur : Jlppc
 Fichier sous licence GPL-3.0
-http://regimys.tk
+http://opmon-game.ga
 Définit le classe... Class.
 */
 #ifndef CLASS_HPP

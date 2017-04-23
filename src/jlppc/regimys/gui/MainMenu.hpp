@@ -1,3 +1,10 @@
+/*
+MainMenu.hpp
+Auteur : Jlppc
+Fichier sous license GPL-3.0
+http://opmon-game.ga
+Contient le namespace MainMenu
+*/
 #ifndef MAINMENU_HPP
 #define MAINMENU_HPP
 
@@ -6,6 +13,9 @@
 #include "MainFrame.hpp"
 
 namespace MainFrame {
+/**
+Namespace contenant les éléments du menu principal
+*/
 namespace MainMenu {
 
 extern SDL_Texture *fond;
@@ -27,7 +37,6 @@ void initVars();
 void verifVars();
 void deleteVars();
 int mainMenu();
-int menuOptions();
 int boucle0();
 }
 }

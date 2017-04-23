@@ -1,3 +1,10 @@
+/*
+OptionsMenu.hpp
+Auteur : Jlppc
+Fichier sous license GPL-3.0
+http://opmon-game.ga
+Contient le namespace OptionsMenu
+*/
 #ifndef OPTIONSMENU_HPP
 #define OPTIONSMENU_HPP
 
@@ -9,6 +16,9 @@
 
 namespace MainFrame{
 namespace MainMenu{
+/**
+Namespace contenant les éléments du menu des options
+*/
 namespace OptionsMenu{
 
     extern SDL_Texture *fondOpt;

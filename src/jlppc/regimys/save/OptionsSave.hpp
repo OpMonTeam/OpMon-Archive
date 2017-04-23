@@ -1,3 +1,10 @@
+/*
+OptionsSave.hpp
+Auteur : Jlppc
+Fichier sous license GPL-3.0
+http://opmon-game.ga
+Contient le namespace OptionsSave
+*/
 #ifndef OPTIONSSAVE_HPP
 #define OPTIONSSAVE_HPP
 
@@ -7,13 +14,17 @@
 #include <vector>
 #include "../start/StringKeys.hpp"
 
-//Ces deux lignes sont la pour faire apparaitre le contexte de l'utilisation de la methode dans le code.
+//Ces deux macros sont la pour faire apparaitre le contexte de l'utilisation de la methode addOrModifyParam dans le code (et pour faire plus court aussi ;-)  )
 #define addParam addOrModifParam
 #define modifyParam addOrModifParam
 
-
+/**
+Namespace permettant de sauvegarder les paramètres
+*/
 namespace OptionsSave{
-
+    /**
+    Classe définissant un paramètre
+    */
     class Param{
         private:
         std::string paramName;

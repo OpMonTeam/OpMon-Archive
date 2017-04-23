@@ -2,7 +2,7 @@
 NumberedArray.hpp
 Auteur : Jlppc
 Fichier sous licence GPL-3.0
-http://regimys.tk
+http://opmon-game.ga
 Définit la classe NumberedArray
 */
 #ifndef HASHARRAY_HPP

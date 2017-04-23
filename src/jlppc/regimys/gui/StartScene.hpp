@@ -1,3 +1,10 @@
+/*
+StartScene.hpp
+Auteur : Jlppc
+Fichier sous license GPL-3.0
+http://opmon-game.ga
+Contient le namespace StartScene
+*/
 #ifndef STARTSCENE_H
 #define STARTSCENE_H
 
@@ -8,8 +15,8 @@
 #include "../start/bigDefines.hxx"
 
 namespace MainFrame {
-namespace StartScene {
 /**Fait se dérouler la scène de début*/
+namespace StartScene {
 int startScene();
 void initVars();
 void destroyVars();

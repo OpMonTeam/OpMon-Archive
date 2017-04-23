@@ -2,7 +2,7 @@
 Comparaisons.hpp
 Auteur : Jlppc
 Fichier sous licence GPL-3.0
-http://regimys.tk
+http://opmon-game.ga
 Définit le namespace Comparaions
 */
 #ifndef COMPARAISONS_HPP

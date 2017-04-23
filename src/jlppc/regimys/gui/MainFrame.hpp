@@ -2,8 +2,8 @@
 Mainframe.hpp
 Auteur : Jlppc
 Fichier sous licence GPL-3.0
-http://regimys.tk
-Permet d'ouvrir la fenetre du jeu.
+http://opmon-game.ga
+Permet d'ouvrir la fenetre du jeu et de charger les ressources essensielles. Contient aussi des methodes et macros utiles dans l'interface graphique.
  */
 
 #ifndef SRC_JLPPC_REGIMYS_GUI_MAINFRAME_HPP_
@@ -114,8 +114,8 @@ int printText(SDL_Renderer *renderer, std::string text, std::string line2, std::
 SDL_Texture* renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color, SDL_Rect *pos);
 /**Permet d'affiche le texte passé en paramètres dans un *SDL_Texture*/
 SDL_Texture* renderText(SDL_Renderer *renderer, char text[], TTF_Font *police, SDL_Color color, SDL_Rect *pos);
-
-SDL_Texture *renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color, SDL_Rect *pos, int encodage);
+/**Permet d'affiché le texte passé en paramètres dans un *SDL_Texture avec l'encodage donné en paramètres*/
+SDL_Texture *renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color, SDL_Rect *pos, int encodage/*//->WaitEnum->Encoding*/);
 
 J_Texture renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color);
 
