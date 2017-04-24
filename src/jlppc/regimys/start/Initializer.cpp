@@ -943,6 +943,8 @@ void initKeys() {
     #ifdef _WIN32
     if(OptionsSave::getParam("lang").getValue() == "fr"){
         StringKeys::initialize("ressources\\keys\\francais.rkeys");
+    }else if(OptionsSave::getParam("lang").getValue() == "esp"){
+        StringKeys::initialize("ressources\\keys\\espanol.rkeys");
     }else{
         StringKeys::initialize("ressources\\keys\\english.rkeys");
     }
