@@ -9,7 +9,6 @@
 #include <string>
 
 #include <cstdlib>
-#include <ctime>
 
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
@@ -50,19 +49,12 @@ float version = 0.09;
 int sousVers = 0;
 string versionS;
 extern Player joueur;
-extern RFile playerSave;
-extern RFile params;
 #ifdef _WIN32
 string sep = "\\";
 #else
 string sep = "/";
 #endif
-long startTime = time(NULL);
 bool reboot = false;
-
-
-int starts();
-
 
 int starts() {
 
@@ -78,13 +70,12 @@ int starts() {
         system("mkdir logs");
         exit(-1);
     }
-    startTime = time(NULL);
 
     OptionsSave::initParams(optSave);
     if(!OptionsSave::checkParam("lang")){
         OptionsSave::addParam("lang", "eng");
     }
-    rlog << "[T = " << time(NULL) - startTime << "] - Initialisation du log terminée." << endl;
+    rlog << PRINT_TICKS << "Initialisation du log terminée." << endl;
     Initializer::init();
 
     MainFrame::open();
@@ -141,13 +132,19 @@ int main(int argc, char *argv[]) {
 
     Main::oss << "Alpha " << Main::version << "." << Main::sousVers;
     Main::versionS = Main::oss.str();
-    if (argc >= 2) {
-        string str = argv[1];
-        if (str == "--version") {
-            cout << "OpMon Regimys version " << Main::versionS << endl;
-            exit(0);
-        } else {
-            cout << "Arguments ignorés, passage a la suite." << endl;
+    if(argc >= 2){
+        FOR_EACH(char*, argv, argc, {)
+            string str = string(*objActuel);
+            if(str == "--version"){
+                cout << "OpMon Regimys version " << Main::versionS << endl;
+                exit(0);
+            }else if(str == "--opt"){
+                if(itor + 1 == argc){
+                    exit(2);
+                }else{
+                    optSave = string(argv[itor + 1]);
+                }
+            }
         }
     }
     return Main::starts();
