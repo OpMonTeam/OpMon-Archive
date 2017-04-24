@@ -126,7 +126,7 @@ int quit(int returne) {
 #endif // DEBUG
     if(Main::reboot){
         #ifdef _WIN32
-            system("./OpMon.exe");
+            system(".\\OpMon.exe");
         #else
             system("./OpMon");
         #endif
