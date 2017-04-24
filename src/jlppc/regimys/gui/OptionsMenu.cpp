@@ -50,7 +50,7 @@ void initVars() {
 #endif // _WIN32
     langFr = renderText(renderer, "Français", fonts[FONT_SIZE_DEFAULT], blanc, Encoding::UTF8);
     langEng = renderText(renderer, "English", fonts[FONT_SIZE_DEFAULT], blanc);
-    langEsp = renderText(renderer, "Espa\u00F1ol", fonts[FONT_SIZE_DEFAULT], red, Encoding::UTF8);
+    langEsp = renderText(renderer, "Espa\u00F1ol", fonts[FONT_SIZE_DEFAULT], blanc, Encoding::UTF8);
     txtRetour = renderText(renderer, kget("options.retour"), fonts[FONT_SIZE_DEFAULT], blanc);
     txtOptions = renderText(renderer, kget("options.title"), fonts[FONT_SIZE_DEFAULT], blanc);
     txtOpt1 = renderText(renderer, kget("options.ecran"), fonts[FONT_SIZE_DEFAULT], red);
@@ -235,7 +235,7 @@ int boucleLang(){
                     return 0;
                 case 1:
                     OptionsSave::modifyParam("lang", "eng");
-                    OptionsSave::saveParams("optSave.oparams");
+                    OptionsSave::saveParams(optSave);
                 #ifdef _WIN32
                     StringKeys::initialize("ressources\\keys\\english.rkeys");
                 #else
@@ -245,11 +245,19 @@ int boucleLang(){
                     return 0;
                     break;
                 case 2:
-                    Mix_PlayChannel(0, bruitNope, 0);
+                    OptionsSave::modifyParam("lang", "esp");
+                    OptionsSave::saveParams(optSave);
+                    #ifdef _WIN32
+                        StringKeys::initialize("ressources\\keys\\espanol.rkeys");
+                    #else
+                        StringKeys::initialize("ressources/keys/espanol.rkeys");
+                    #endif // _WIN32
+                    initAll();
+                    return 0;
                     break;
                 case 3:
                     OptionsSave::modifyParam("lang", "fr");
-                    OptionsSave::saveParams("optSave.oparams");
+                    OptionsSave::saveParams(optSave);
                     #ifdef _WIN32
                         StringKeys::initialize("ressources\\keys\\francais.rkeys");
                     #else
