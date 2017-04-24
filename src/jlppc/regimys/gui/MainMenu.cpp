@@ -105,7 +105,9 @@ int boucle0() {
                 case 3:
                     return -1;
                 case 2:
-                    OptionsMenu::optionsMenu();
+                    if(OptionsMenu::optionsMenu() == -1){
+                        return -1;
+                    }
                     break;
                 case 1:
                     Mix_PlayChannel(0, bruitNope, 0);
