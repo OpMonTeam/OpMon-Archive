@@ -4191,30 +4191,30 @@
 1490609224 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\enums\enums.cpp
 	"Enums.hpp"
 
-1490609224 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\enums\enums.hpp
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\enums\enums.hpp
 
 1490609224 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\evolution\eitem.cpp
 	"evolutions.hpp"
 
-1490609224 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\evolution\evolutions.hpp
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\evolution\evolutions.hpp
 	<iostream>
 	"../objects/item/Item.hpp"
 	"Evolution.hpp"
 
-1490609224 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\item.hpp
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\item.hpp
 	<iostream>
 	"../../enums/Enums.hpp"
 	"../../../utils/Class.hpp"
 
-1490609224 c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\class.hpp
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\class.hpp
 	<iostream>
 
-1490609224 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\evolution\evolution.hpp
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\evolution\evolution.hpp
 	<iostream>
 	"../objects/OpMon.hpp"
 	"../../utils/Class.hpp"
 
-1490609224 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\opmon.hpp
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\opmon.hpp
 	<iostream>
 	<cmath>
 	"../enums/Caractere.hpp"
@@ -4223,36 +4223,36 @@
 	"item/Item.hpp"
 	"item/IOpball.hpp"
 
-1490609224 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\enums\caractere.hpp
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\enums\caractere.hpp
 	"Enums.hpp"
 
-1490609224 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\espece.hpp
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\espece.hpp
 	<iostream>
 	"../../utils/NumberedArray.hpp"
 	"item/CT.hpp"
 	<vector>
 
-1490609224 c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\numberedarray.hpp
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\numberedarray.hpp
 	<iostream>
 	"Class.hpp"
 
-1490609224 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\ct.hpp
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\ct.hpp
 	"../../../utils/Class.hpp"
 	"Item.hpp"
 	"../Attaque.hpp"
 
-1490609224 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\attaque.hpp
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\attaque.hpp
 	<iostream>
 	"../../utils/Utils.hpp"
 	"../enums/Enums.hpp"
 	"../../utils/Class.hpp"
 
-1490609224 c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\utils.hpp
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\utils.hpp
 	<ctime>
 	<cstdlib>
 	<iostream>
 
-1490609224 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\iopball.hpp
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\iopball.hpp
 	<iostream>
 	"Item.hpp"
 
@@ -4277,14 +4277,13 @@
 1490609224 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\evolution\evolution.cpp
 	"Evolution.hpp"
 
-1490945839 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\elements.cpp
+1493025915 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\elements.cpp
 	"Elements.hpp"
 	<cstdlib>
 	"../start/main.hpp"
 	"../start/Initializer.hpp"
-	<cstdlib>
 
-1490945839 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\elements.hpp
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\elements.hpp
 	<SDL/SDL.h>
 	<SDL/SDL_image.h>
 	<SDL/SDL_ttf.h>
@@ -4618,10 +4617,10 @@
 	"../start/main.hpp"
 	"../save/Save.hpp"
 
-1490609224 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\attaques.cpp
+1493025915 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\attaques.cpp
 	"Attaques.hpp"
 
-1490609224 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\attaques.hpp
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\attaques.hpp
 	<iostream>
 	<cmath>
 	"OpMon.hpp"
@@ -4634,25 +4633,25 @@
 	"../evolution/evolutions.hpp"
 	"../start/main.hpp"
 
-1490609224 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\main.hpp
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\main.hpp
 	<iostream>
 	<fstream>
 	"../../utils/File.hpp"
 	"../playercore/Player.hpp"
 	<sstream>
 
-1490609224 c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\file.hpp
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\file.hpp
 	<iostream>
 	<fstream>
 	"Class.hpp"
 
-1490609224 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\playercore\player.hpp
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\playercore\player.hpp
 	<iostream>
 	<vector>
 	"Equipe.hpp"
 	"../objects/item/Item.hpp"
 
-1490609224 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\playercore\equipe.hpp
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\playercore\equipe.hpp
 	<iostream>
 	"../objects/OpMon.hpp"
 
@@ -4663,7 +4662,7 @@
 	"IHeal.hpp"
 	"../../start/main.hpp"
 
-1490609224 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\iheal.hpp
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\iheal.hpp
 	"Item.hpp"
 	<iostream>
 
@@ -4677,7 +4676,7 @@
 	"Item.hpp"
 	"../../start/main.hpp"
 
-1490609224 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\opmon.cpp
+1493025915 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\opmon.cpp
 	"OpMon.hpp"
 	"../start/main.hpp"
 	"../evolution/Evolution.hpp"
@@ -4692,7 +4691,7 @@
 1490609224 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\playercore\equipe.cpp
 	"Equipe.hpp"
 
-1490609224 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\playercore\player.cpp
+1493025915 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\playercore\player.cpp
 	"Player.hpp"
 	"../start/main.hpp"
 	"../save/Save.hpp"
@@ -4736,7 +4735,7 @@
 	"Evolution.hpp"
 	"evolutions.hpp"
 
-1490945839 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\initializer.hpp
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\initializer.hpp
 	<iostream>
 	<vector>
 	"../../utils/NumberedArray.hpp"
@@ -4746,12 +4745,12 @@
 	<SDL/SDL_image.h>
 	"../gui/Elements.hpp"
 
-1490959646 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\stringkeys.hpp
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\stringkeys.hpp
 	<iostream>
 	<vector>
 	<fstream>
 
-1490959646 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\mainframe.hpp
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\mainframe.hpp
 	<SDL/SDL.h>
 	<SDL/SDL_ttf.h>
 	<SDL/SDL_mixer.h>
@@ -4772,7 +4771,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1490959646 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\stringkeys.cpp
+1493025915 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\stringkeys.cpp
 	"StringKeys.hpp"
 	"main.hpp"
 	<SDL/SDL.h>
@@ -4784,7 +4783,7 @@
 1490609224 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\comparaisons.cpp
 	"Comparaisons.hpp"
 
-1490609224 c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\comparaisons.hpp
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\comparaisons.hpp
 	<cstdarg>
 	<iostream>
 
@@ -4799,7 +4798,7 @@
 	"Utils.hpp"
 	<iostream>
 
-1490960543 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\mainframe.cpp
+1493025915 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\mainframe.cpp
 	"MainFrame.hpp"
 	<iostream>
 	"../start/main.hpp"
@@ -4818,19 +4817,20 @@
 
 1490609224 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\bigdefines.hxx
 
-1490609224 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\startscene.hpp
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\startscene.hpp
 	<SDL/SDL.h>
 	<SDL/SDL_image.h>
 	<SDL/SDL_ttf.h>
 	<SDL/SDL_mixer.h>
 	"../start/bigDefines.hxx"
 
-1490959646 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\startscene.cpp
+1493025915 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\startscene.cpp
 	"StartScene.hpp"
 	"../start/main.hpp"
+	"Animations.hpp"
 	"MainFrame.hpp"
 
-1490945839 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\initializer.cpp
+1493025915 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\initializer.cpp
 	"Initializer.hpp"
 	"../enums/Enums.hpp"
 	"../objects/Attaques.hpp"
@@ -4840,6 +4840,8 @@
 	<sstream>
 	"../gui/MainFrame.hpp"
 	<fstream>
+	"../save/OptionsSave.hpp"
+	"../gui/Animations.hpp"
 
 1490432657 source:c:\users\jlppc\bureau\projets\opmon\resources.rc
 
@@ -5525,22 +5527,23 @@
 	"../start/main.hpp"
 	<iostream>
 
-1490609224 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\mainmenu.hpp
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\mainmenu.hpp
 	<SDL/SDL.h>
 	<SDL/SDL_mixer.h>
 	"MainFrame.hpp"
 
-1490959646 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\mainmenu.cpp
+1493025915 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\mainmenu.cpp
 	"MainMenu.hpp"
 	<SDL/SDL_image.h>
 	"../start/main.hpp"
 	<iostream>
+	"OptionsMenu.hpp"
 
-1490609224 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\save\save.hpp
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\save\save.hpp
 	"../playercore/Player.hpp"
 	<fstream>
 
-1490609224 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\save\save.cpp
+1493025915 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\save\save.cpp
 	"Save.hpp"
 	<iostream>
 	<fstream>
@@ -5550,7 +5553,7 @@
 1490609224 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\events.cpp
 	"Events.hpp"
 
-1490609224 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\events.hpp
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\events.hpp
 	"Elements.hpp"
 	"MainFrame.hpp"
 
@@ -5585,10 +5588,10 @@
 
 1490432657 c:\users\jlppc\bureau\projets\opmon\src\jlppc\regimys\start\persistentvars.hpp
 
-1490945839 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\overworld.hpp
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\overworld.hpp
 	"MainFrame.hpp"
 
-1490945839 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\overworld.cpp
+1493025915 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\overworld.cpp
 	"Overworld.hpp"
 	"../start/Initializer.hpp"
 	"../start/main.hpp"
@@ -5596,7 +5599,7 @@
 1490609224 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\persistentvars.cpp
 	"PersistentVars.hpp"
 
-1490609224 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\persistentvars.hpp
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\persistentvars.hpp
 
 1492941619 source:c:\users\jlppc (session)\documents\projets\opmon project\resources.rc
 
@@ -5691,4 +5694,38 @@
 
 1492941619 source:c:\users\jlppc (session)\documents\projets\opmon project\src\jlppc\regimys\evolution\evolution.cpp
 	"Evolution.hpp"
+
+1493025915 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\animations.cpp
+	"Animations.hpp"
+	"MainFrame.hpp"
+
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\animations.hpp
+	<iostream>
+	"../start/main.hpp"
+	<SDL/SDL.h>
+
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\optionsmenu.hpp
+	<iostream>
+	"MainFrame.hpp"
+	"MainMenu.hpp"
+	<SDL/SDL.h>
+	"Elements.hpp"
+
+1493025915 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\optionsmenu.cpp
+	"OptionsMenu.hpp"
+	"../enums/Enums.hpp"
+	"../start/main.hpp"
+	"../save/OptionsSave.hpp"
+
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\save\optionssave.hpp
+	<iostream>
+	<sstream>
+	<fstream>
+	<vector>
+	"../start/StringKeys.hpp"
+
+1493025915 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\save\optionssave.cpp
+	"OptionsSave.hpp"
+	"../start/main.hpp"
+	<SDL/SDL.h>
 
