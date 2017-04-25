@@ -5,6 +5,7 @@
 ## et Silvermoon qui a été l'inventrice de pas mal d'OpMons
 ## Contributeurs occasionels : <ul>
 <li><h3>linkyFR</h3></li>
+<li><h3>Jo</h3></li>
 <li><h3>dogmotion</h3></li>
 <li><h3>imZeRRkA</h3></li></ul>
 
