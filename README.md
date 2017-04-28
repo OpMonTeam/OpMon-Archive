@@ -1,5 +1,5 @@
-![Regimys LOGO](https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/opmon_title.png)
-<!--![Regimys screen](https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/screenshot_1.png.PNG)-->
+![Regimys LOGO](https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/opmon_title.png)<br>
+[Regimys screen](https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/screenshot_1.png.PNG)
 
 <h2>--------En Français-------</h2>
 Look <a href="#------in-english-------"> In English</a><br/>
