@@ -21,6 +21,7 @@ SDL_Rect mapPos = {};
 int moving = -1;//Signale le mouvement a la boucle
 int anim = -1;//Signale l'animation a la boucle
 int ppDir = 0;
+int pressed = -1;
 int frames = 0;
 bool mapMove[] = {true, true, true, true};
 int startFrames = 0;
@@ -36,7 +37,6 @@ void down() {
             //Ensuite faudra faire la verif du passages des events
             moving = DOS;
             ppPosY++;
-            //Faudra ici gerer le déplacement de la map
             rerrLog << "ppPosY = " << ppPosY + 8 << " et actuel->getH() = " << actuel->getH() << endl;
             if(ppPosY + 8 >= actuel->getH()) {
                 mapMove[DOS] = false;
@@ -59,7 +59,6 @@ void up() {
             //Ensuite faudra faire la verif du passages des events
             moving = FACE;
             ppPosY--;
-            //Faudra ici gerer le déplacement de la map
             if(ppPosY - 6 <= 0) {
                 mapMove[FACE] = false;
                 mapMove[DOS] = false;
@@ -78,7 +77,6 @@ void right() {
             //Ensuite faudra faire la verif du passages des events
             moving = DROITE;
             ppPosX++;
-            //Faudra ici gerer le déplacement de la map
             if(ppPosX + 6 >= actuel->getW()) {
                 mapMove[DROITE] = false;
                 mapMove[GAUCHE] = false;
@@ -99,7 +97,6 @@ void left() {
             //Ensuite faudra faire la verif du passages des events
             moving = GAUCHE;
             ppPosX--;
-            //Faudra ici gerer le déplacement de la map
             if(ppPosX - 8 <= 0) {
                 mapMove[GAUCHE] = false;
                 mapMove[DROITE] = false;
@@ -210,7 +207,7 @@ int boucle() {
     int animsCounter = 0;
     while(continuer) {
         while (continuer) {
-            if ((SDL_GetTicks() - ancientTick) >= (FPS_TICKS)) {
+            if ((SDL_GetTicks() - ancientTick) >= (FPS_TICKS - 5)) {
                 frames++;
 
                 ancientTick = SDL_GetTicks();
@@ -224,16 +221,28 @@ int boucle() {
                         ECHAP
 
                     case SDLK_DOWN:
-                        down();
+                        if(pressed == -1 || pressed == DOS){
+                            pressed = DOS;
+                            down();
+                        }
                         break;
                     case SDLK_UP:
-                        up();
+                        if(pressed == -1 || pressed == FACE){
+                            pressed = FACE;
+                            up();
+                        }
                         break;
                     case SDLK_RIGHT:
-                        right();
+                        if(pressed == -1 || pressed == DROITE){
+                            pressed = DROITE;
+                            right();
+                        }
                         break;
                     case SDLK_LEFT:
-                        left();
+                        if(pressed == -1 || pressed == GAUCHE){
+                            pressed = GAUCHE;
+                            left();
+                        }
                         break;
                     case SDLK_m:
                         return 2;
@@ -241,6 +250,11 @@ int boucle() {
 
                     }
                     break;
+
+                case SDL_KEYUP:
+                    if(events.key.keysym.sym == SDLK_DOWN || events.key.keysym.sym == SDLK_UP || events.key.keysym.sym == SDLK_LEFT || events.key.keysym.sym == SDLK_RIGHT){
+                        pressed = -1;
+                    }
 
                 case SDL_JOYBUTTONDOWN:
                     if (!joypressed) {
@@ -370,7 +384,7 @@ int boucle() {
                 SDL_RenderPresent(renderer);
 
             } else {
-                SDL_Delay((FPS_TICKS) - (SDL_GetTicks() - ancientTick));
+                SDL_Delay((FPS_TICKS - 5) - (SDL_GetTicks() - ancientTick));
             }
         }
     }
