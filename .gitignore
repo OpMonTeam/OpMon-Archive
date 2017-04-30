@@ -27,7 +27,7 @@ pages/doc/DocSample.html
 /lib/
 /temp/
 /.objs/
-
+/exeLinux/ressources
 cbp2make/*
 doxygen/doxyfile
 *.opmod
