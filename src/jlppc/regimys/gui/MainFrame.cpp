@@ -128,7 +128,7 @@ void open() {
     }
 
     if (IMG_Init(IMG_INIT_PNG) < 0) {
-        rerrLog << "Erreur d'initialisation de SDL_Image" << endl;
+        rerrLog << "Erreur d'initialisation de SD²L_Image" << endl;
         gererErreur(IMG_GetError(), true);
 
     }
