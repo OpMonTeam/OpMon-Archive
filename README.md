@@ -1,5 +1,4 @@
 ![Regimys LOGO](https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/opmon_title.png)<br>
-![Regimys screen](https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/screenshot_1.png.PNG)
 
 <h2>--------En Français-------</h2>
 Look <a href="#------in-english-------"> In English</a><br/>
@@ -39,6 +38,8 @@ Changelog avant la Alpha 0.05. Pour le reste du changelog après la Alpha 0.07, 
 <li>Alpha 0.02 : Ajout des status, types, équations de base ect...</li>
 <li>Alpha 0.01 : Creation du systeme de combat de base</li>
 </ul>
+<h2>Screenshot :</h2> 
+<img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/screenshot_1.png.PNG" alt="Désolé."/> 
 <h2>------In-English-------</h2>
 <h3> Welcome to Project "OPMon"!</h3>
 
