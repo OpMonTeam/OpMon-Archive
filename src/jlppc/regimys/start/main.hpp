@@ -20,8 +20,11 @@ Contient des fonctions necessaires au programme
 tabType* objActuel = NULL;\
 objActuel = &(tabName[itor]);\
 
-
+#define VERS_DEV
 #define PRINT_TICKS "[T = " << SDL_GetTicks() << "] - "
+
+
+
 /**Le log principal*/
 extern std::ofstream rlog;
 /**Le log d'erreur*/
@@ -42,6 +45,10 @@ int quit(int retourne);
 Namespace contenant des variables utiles au fonctionnement du jeu
 */
 namespace Main {
+extern bool update;
+#ifdef VERS_DEV
+extern bool devUpdate;
+#endif // VERS_DEV
 void main();
 //->Useless
 extern long startTime;
