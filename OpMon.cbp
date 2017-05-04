@@ -150,6 +150,8 @@
 		<Unit filename="src/jlppc/regimys/start/main.cpp" />
 		<Unit filename="src/jlppc/regimys/start/main.hpp" />
 		<Unit filename="src/jlppc/regimys/start/startInclude.hxx" />
+		<Unit filename="src/jlppc/regimys/update/Update.cpp" />
+		<Unit filename="src/jlppc/regimys/update/Update.hpp" />
 		<Unit filename="src/jlppc/utils/Class.cpp" />
 		<Unit filename="src/jlppc/utils/Class.hpp" />
 		<Unit filename="src/jlppc/utils/Comparaisons.cpp" />

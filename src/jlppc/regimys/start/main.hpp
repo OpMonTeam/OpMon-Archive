@@ -22,6 +22,7 @@ objActuel = &(tabName[itor]);\
 
 #define VERS_DEV
 #define PRINT_TICKS "[T = " << SDL_GetTicks() << "] - "
+#define DEBUG_CHECK(toWrite) rerrLog << #toWrite << std::endl
 
 
 

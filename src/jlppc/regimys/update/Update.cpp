@@ -24,21 +24,22 @@ namespace Update{
         selectSurbr = IMG_LoadTexture(dialogRenderer, "ressources/sprites/misc/selectBar.png");
         btnFond = IMG_LoadTexture(dialogRenderer, "ressources/backgrounds/dialog/dialog.png");
         #endif // _WIN32
-        J_Texture *textInfo;
+        J_Texture *textInfo = NULL;
+        textInfo->texture = NULL;
         #ifdef VERS_DEV
         if(Main::devUpdate){
-            *textInfo = MainFrame::renderText(dialogRenderer, kget("update.dev.info"), MainFrame::fonts[FONT_SIZE_DEFAULT], MainFrame::noir);
+            textInfo = MainFrame::renderText(dialogRenderer, kget("update.dev.info"), MainFrame::fonts[FONT_SIZE_DEFAULT], MainFrame::noir);
         }else{
-        #else
-        textInfo = &MainFrame::renderText(dialogRenderer, kget("update.info"), MainFrame::fonts[FONT_SIZE_DEFAULT], MainFrame::noir);
-        #endif // VERS_DEV
+        #endif
+        textInfo = MainFrame::renderText(dialogRenderer, kget("update.info"), MainFrame::fonts[FONT_SIZE_DEFAULT], MainFrame::noir);
         #ifdef VERS_DEV
         }
         #endif // VERS_DEV
+
         J_Texture *yup;
-        *yup = MainFrame::renderText(dialogRenderer, kget("yup"), MainFrame::fonts[FONT_SIZE_DEFAULT], MainFrame::noir);
+        yup = MainFrame::renderText(dialogRenderer, kget("yup"), MainFrame::fonts[FONT_SIZE_DEFAULT], MainFrame::noir);
         J_Texture *nope;
-        *nope = MainFrame::renderText(dialogRenderer, kget("nope"), MainFrame::fonts[FONT_SIZE_DEFAULT], MainFrame::noir);
+        nope = MainFrame::renderText(dialogRenderer, kget("nope"), MainFrame::fonts[FONT_SIZE_DEFAULT], MainFrame::noir);
         SDL_Rect btnPos[2];
         btnPos[0].x = 150;
         btnPos[0].y = 150;
@@ -62,9 +63,11 @@ namespace Update{
         SDL_RenderCopy(dialogRenderer, btnFond, NULL, &(btnPos[1]));
         J_RenderCopy(dialogRenderer, yup);
         J_RenderCopy(dialogRenderer, nope);
-        SDL_RenderCopy(dialogRenderer, selectSurbr, NULL, &(btnPos[*((int*)(&choix))]));
+        SDL_RenderCopy(dialogRenderer, selectSurbr, NULL, &(btnPos[choix]));
+        DEBUG_CHECK(Pause problème?);
+        DEBUG_CHECK(SDL?) << textInfo->texture << endl;
         J_RenderCopy(dialogRenderer, textInfo);
-
+        DEBUG_CHECK(Ou pas.);
         SDL_RenderPresent(dialogRenderer);
         rlog << PRINT_TICKS << "Fenetre ouverte" << endl;
         while(continuer){
