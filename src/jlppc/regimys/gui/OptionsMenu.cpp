@@ -13,25 +13,25 @@ SDL_Color red = {255, 0, 0};
 SDL_Texture *fondOpt = NULL;
 SDL_Rect curseurOpt;
 SDL_Rect curseurSnd;
-J_Texture langFr;
-J_Texture langEng;
-J_Texture langEsp;
-J_Texture txtRetour;
-J_Texture txtOptions;
-J_Texture txtOpt1;
-J_Texture txtOpt2;
-J_Texture txtOpt3;
-J_Texture txtOpt4;
-J_Texture txtOpt5;
+J_Texture *langFr;
+J_Texture *langEng;
+J_Texture *langEsp;
+J_Texture *txtRetour;
+J_Texture *txtOptions;
+J_Texture *txtOpt1;
+J_Texture *txtOpt2;
+J_Texture *txtOpt3;
+J_Texture *txtOpt4;
+J_Texture *txtOpt5;
 SDL_Texture *rectSurb = NULL;
 SDL_Rect curPosOpt[6] = {};
 int optionSelect = -1;
 int curPosOptI = 0;
 int curPosLangI = 0;
 
-J_Texture txtLang;
+J_Texture *txtLang;
 SDL_Texture *fondLangues = NULL;
-J_Texture listeLangues[3] = {};
+J_Texture *listeLangues[3] = {};
 SDL_Rect curPosLang[4] = {};
 
 void initVars() {
@@ -62,23 +62,23 @@ void initVars() {
     txtLang = renderText(renderer, kget("options.lang.title"), fonts[FONT_SIZE_DEFAULT], blanc);
 
 
-    txtOpt2.rect.x = txtOpt3.rect.x = txtOpt4.rect.x = txtOpt5.rect.x = txtOpt1.rect.x = 120;
-    txtOpt1.rect.y = 100;
-    txtOpt2.rect.y = 170;
-    txtOpt3.rect.y = 240;
-    txtOpt4.rect.y = 310;
-    txtOpt5.rect.y = 380;
+    txtOpt2->rect.x = txtOpt3->rect.x = txtOpt4->rect.x = txtOpt5->rect.x = txtOpt1->rect.x = 120;
+    txtOpt1->rect.y = 100;
+    txtOpt2->rect.y = 170;
+    txtOpt3->rect.y = 240;
+    txtOpt4->rect.y = 310;
+    txtOpt5->rect.y = 380;
 
-    langEsp.rect.x = langFr.rect.x = langEng.rect.x = 45;
-    langEng.rect.y = 100;
-    langEsp.rect.y = 170;
-    langFr.rect.y = 240;
+    langEsp->rect.x = langFr->rect.x = langEng->rect.x = 45;
+    langEng->rect.y = 100;
+    langEsp->rect.y = 170;
+    langFr->rect.y = 240;
 
-    txtRetour.rect.x = 55;
-    txtRetour.rect.y = 25;
+    txtRetour->rect.x = 55;
+    txtRetour->rect.y = 25;
 
-    txtLang.rect.x = (txtOptions.rect.x = 230) + 20;
-    txtLang.rect.y = txtOptions.rect.y = 25;
+    txtLang->rect.x = (txtOptions->rect.x = 230) + 20;
+    txtLang->rect.y = txtOptions->rect.y = 25;
 
     curPosOpt[0].x = 23;
     curPosOpt[0].y = 17;
@@ -122,16 +122,16 @@ void verifVars() {
 
 void deleteVars() {
     SDL_DestroyTexture(OptionsMenu::fondOpt);
-    SDL_DestroyTexture(langFr.texture);
-    SDL_DestroyTexture(langEng.texture);
-    SDL_DestroyTexture(langEsp.texture);
-    SDL_DestroyTexture(txtRetour.texture);
-    SDL_DestroyTexture(txtOptions.texture);
-    SDL_DestroyTexture(txtOpt1.texture);
-    SDL_DestroyTexture(txtOpt2.texture);
-    SDL_DestroyTexture(txtOpt3.texture);
-    SDL_DestroyTexture(txtOpt4.texture);
-    SDL_DestroyTexture(txtOpt5.texture);
+    SDL_DestroyTexture(langFr->texture);
+    SDL_DestroyTexture(langEng->texture);
+    SDL_DestroyTexture(langEsp->texture);
+    SDL_DestroyTexture(txtRetour->texture);
+    SDL_DestroyTexture(txtOptions->texture);
+    SDL_DestroyTexture(txtOpt1->texture);
+    SDL_DestroyTexture(txtOpt2->texture);
+    SDL_DestroyTexture(txtOpt3->texture);
+    SDL_DestroyTexture(txtOpt4->texture);
+    SDL_DestroyTexture(txtOpt5->texture);
     SDL_DestroyTexture(rectSurb);
 }
 
@@ -204,13 +204,13 @@ int boucle() {
         if(SDL_RenderCopy(renderer, OptionsMenu::fondOpt, NULL, &MainFrame::fond) == -1) {
             gererErreur(SDL_GetError(), false);
         }
-        J_RenderCopy(renderer, &txtOpt1);
-        J_RenderCopy(renderer, &txtOpt2);
-        J_RenderCopy(renderer, &txtOpt3);
-        J_RenderCopy(renderer, &txtOpt4);
-        J_RenderCopy(renderer, &txtOpt5);
-        J_RenderCopy(renderer, &txtRetour);
-        J_RenderCopy(renderer, &txtOptions);
+        J_RenderCopy(renderer, txtOpt1);
+        J_RenderCopy(renderer, txtOpt2);
+        J_RenderCopy(renderer, txtOpt3);
+        J_RenderCopy(renderer, txtOpt4);
+        J_RenderCopy(renderer, txtOpt5);
+        J_RenderCopy(renderer, txtRetour);
+        J_RenderCopy(renderer, txtOptions);
         SDL_RenderCopy(renderer, rectSurb, NULL, &curPosOpt[curPosOptI]);
         SDL_RenderPresent(renderer);
 
@@ -298,11 +298,11 @@ int boucleLang(){
             break;
         }
         SDL_RenderCopy(renderer, OptionsMenu::fondLangues, NULL, &MainFrame::fond);
-        J_RenderCopy(renderer, &langEng);
-        J_RenderCopy(renderer, &langEsp);
-        J_RenderCopy(renderer, &langFr);
-        J_RenderCopy(renderer, &txtRetour);
-        J_RenderCopy(renderer, &txtLang);
+        J_RenderCopy(renderer, langEng);
+        J_RenderCopy(renderer, langEsp);
+        J_RenderCopy(renderer, langFr);
+        J_RenderCopy(renderer, txtRetour);
+        J_RenderCopy(renderer, txtLang);
         SDL_RenderCopy(renderer, rectSurb, NULL, &curPosOpt[curPosOptI]);
         SDL_RenderPresent(renderer);
 
