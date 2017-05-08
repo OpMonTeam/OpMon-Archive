@@ -4183,38 +4183,38 @@
 1489047384 source:c:\users\_le_pichon\downloads\portablegit\opmon\src\jlppc\utils\utils.cpp
 	"Utils.hpp"
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\resources.rc
+1493796419 source:c:\users\_le_pichon\downloads\opmon\resources.rc
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\enums\caractere.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\enums\caractere.cpp
 	"Caractere.hpp"
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\enums\enums.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\enums\enums.cpp
 	"Enums.hpp"
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\enums\enums.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\enums\enums.hpp
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\evolution\eitem.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\evolution\eitem.cpp
 	"evolutions.hpp"
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\evolution\evolutions.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\evolution\evolutions.hpp
 	<iostream>
 	"../objects/item/Item.hpp"
 	"Evolution.hpp"
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\item.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\item.hpp
 	<iostream>
 	"../../enums/Enums.hpp"
 	"../../../utils/Class.hpp"
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\class.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\class.hpp
 	<iostream>
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\evolution\evolution.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\evolution\evolution.hpp
 	<iostream>
 	"../objects/OpMon.hpp"
 	"../../utils/Class.hpp"
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\opmon.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\opmon.hpp
 	<iostream>
 	<cmath>
 	"../enums/Caractere.hpp"
@@ -4223,67 +4223,67 @@
 	"item/Item.hpp"
 	"item/IOpball.hpp"
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\enums\caractere.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\enums\caractere.hpp
 	"Enums.hpp"
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\espece.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\espece.hpp
 	<iostream>
 	"../../utils/NumberedArray.hpp"
 	"item/CT.hpp"
 	<vector>
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\numberedarray.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\numberedarray.hpp
 	<iostream>
 	"Class.hpp"
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\ct.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\ct.hpp
 	"../../../utils/Class.hpp"
 	"Item.hpp"
 	"../Attaque.hpp"
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\attaque.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\attaque.hpp
 	<iostream>
 	"../../utils/Utils.hpp"
 	"../enums/Enums.hpp"
 	"../../utils/Class.hpp"
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\utils.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\utils.hpp
 	<ctime>
 	<cstdlib>
 	<iostream>
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\iopball.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\iopball.hpp
 	<iostream>
 	"Item.hpp"
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\evolution\eland.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\evolution\eland.cpp
 	"evolutions.hpp"
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\evolution\elevel.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\evolution\elevel.cpp
 	"evolutions.hpp"
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\evolution\elove.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\evolution\elove.cpp
 	"evolutions.hpp"
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\evolution\enope.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\evolution\enope.cpp
 	"evolutions.hpp"
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\evolution\etrade.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\evolution\etrade.cpp
 	"evolutions.hpp"
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\evolution\etradeitem.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\evolution\etradeitem.cpp
 	"evolutions.hpp"
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\evolution\evolution.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\evolution\evolution.cpp
 	"Evolution.hpp"
 
-1493890709 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\elements.cpp
+1493796926 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\elements.cpp
 	"Elements.hpp"
 	<cstdlib>
 	"../start/main.hpp"
 	"../start/Initializer.hpp"
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\elements.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\elements.hpp
 	<SDL/SDL.h>
 	<SDL/SDL_image.h>
 	<SDL/SDL_ttf.h>
@@ -4291,7 +4291,7 @@
 	<iostream>
 	<vector>
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl.h
 	"SDL_main.h"
 	"SDL_stdinc.h"
 	"SDL_assert.h"
@@ -4322,12 +4322,12 @@
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_main.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_main.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_stdinc.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_stdinc.h
 	"SDL_config.h"
 	<sys/types.h>
 	<stdio.h>
@@ -4355,34 +4355,34 @@
 	<stdlib.h>
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_config.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_config.h
 	"SDL_platform.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_platform.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_platform.h
 	"AvailabilityMacros.h"
 	"TargetConditionals.h"
 	<winapifamily.h>
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\begin_code.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\begin_code.h
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\close_code.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\close_code.h
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_assert.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_assert.h
 	"SDL_config.h"
 	"begin_code.h"
 	<signal.h>
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_atomic.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_atomic.h
 	"SDL_stdinc.h"
 	"SDL_platform.h"
 	"begin_code.h"
 	<mbarrier.h>
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_audio.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_audio.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_endian.h"
@@ -4392,24 +4392,24 @@
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_error.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_error.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_endian.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_endian.h
 	"SDL_stdinc.h"
 	<endian.h>
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_mutex.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_mutex.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_thread.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_thread.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_atomic.h"
@@ -4418,18 +4418,18 @@
 	<process.h>
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_rwops.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_rwops.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_clipboard.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_clipboard.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_cpuinfo.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_cpuinfo.h
 	"SDL_stdinc.h"
 	<intrin.h>
 	<intrin.h>
@@ -4441,7 +4441,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_events.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_events.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
@@ -4455,7 +4455,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_video.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_video.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -4463,13 +4463,13 @@
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_pixels.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_pixels.h
 	"SDL_stdinc.h"
 	"SDL_endian.h"
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_rect.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_rect.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_pixels.h"
@@ -4477,7 +4477,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_surface.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_surface.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -4486,11 +4486,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_blendmode.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_blendmode.h
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_keyboard.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_keyboard.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_keycode.h"
@@ -4498,27 +4498,27 @@
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_keycode.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_keycode.h
 	"SDL_stdinc.h"
 	"SDL_scancode.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_scancode.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_scancode.h
 	"SDL_stdinc.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_mouse.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_mouse.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_joystick.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_joystick.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_gamecontroller.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_gamecontroller.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_rwops.h"
@@ -4526,11 +4526,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_quit.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_quit.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_gesture.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_gesture.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
@@ -4538,60 +4538,60 @@
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_touch.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_touch.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_filesystem.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_filesystem.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_haptic.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_haptic.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_joystick.h"
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_hints.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_hints.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_loadso.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_loadso.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_log.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_log.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_messagebox.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_messagebox.h
 	"SDL_stdinc.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_power.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_power.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_render.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_render.h
 	"SDL_stdinc.h"
 	"SDL_rect.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_system.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_system.h
 	"SDL_stdinc.h"
 	"SDL_keyboard.h"
 	"SDL_render.h"
@@ -4599,84 +4599,84 @@
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_timer.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_timer.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_version.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_version.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\attaque.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\attaque.cpp
 	"Attaque.hpp"
 	"OpMon.hpp"
 	<sstream>
 	"../start/main.hpp"
 	"../save/Save.hpp"
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\attaques.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\attaques.cpp
 	"Attaques.hpp"
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\attaques.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\attaques.hpp
 	<iostream>
 	<cmath>
 	"OpMon.hpp"
 	"Attaque.hpp"
 	"../../utils/Class.hpp"
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\espece.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\espece.cpp
 	"Espece.hpp"
 	"../evolution/Evolution.hpp"
 	"../evolution/evolutions.hpp"
 	"../start/main.hpp"
 
-1493890387 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\main.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\main.hpp
 	<iostream>
 	<fstream>
 	"../../utils/File.hpp"
 	"../playercore/Player.hpp"
 	<sstream>
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\file.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\file.hpp
 	<iostream>
 	<fstream>
 	"Class.hpp"
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\playercore\player.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\playercore\player.hpp
 	<iostream>
 	<vector>
 	"Equipe.hpp"
 	"../objects/item/Item.hpp"
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\playercore\equipe.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\playercore\equipe.hpp
 	<iostream>
 	"../objects/OpMon.hpp"
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\ct.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\ct.cpp
 	"CT.hpp"
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\iheal.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\iheal.cpp
 	"IHeal.hpp"
 	"../../start/main.hpp"
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\iheal.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\iheal.hpp
 	"Item.hpp"
 	<iostream>
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\iopball.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\iopball.cpp
 	"IOpball.hpp"
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\item.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\item.cpp
 	"IOpball.hpp"
 	"IHeal.hpp"
 	"CT.hpp"
 	"Item.hpp"
 	"../../start/main.hpp"
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\opmon.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\opmon.cpp
 	"OpMon.hpp"
 	"../start/main.hpp"
 	"../evolution/Evolution.hpp"
@@ -4688,16 +4688,16 @@
 	"Attaques.hpp"
 	"../start/Initializer.hpp"
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\playercore\equipe.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\playercore\equipe.cpp
 	"Equipe.hpp"
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\playercore\player.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\playercore\player.cpp
 	"Player.hpp"
 	"../start/main.hpp"
 	"../save/Save.hpp"
 	"../objects/OpMon.hpp"
 
-1493889392 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\main.cpp
+1493028870 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\main.cpp
 	"main.hpp"
 	<iostream>
 	<fstream>
@@ -4719,23 +4719,23 @@
 	"../objects/Attaques.hpp"
 	"../save/Save.hpp"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_image.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_image.h
 	"SDL.h"
 	"SDL_version.h"
 	"begin_code.h"
 	"close_code.h"
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\iteminclude.hxx
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\objects\item\iteminclude.hxx
 	"CT.hpp"
 	"IHeal.hpp"
 	"IHeal.hpp"
 	"Item.hpp"
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\evolution\evolutioninclude.hxx
+1493025915 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\evolution\evolutioninclude.hxx
 	"Evolution.hpp"
 	"evolutions.hpp"
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\initializer.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\initializer.hpp
 	<iostream>
 	<vector>
 	"../../utils/NumberedArray.hpp"
@@ -4745,24 +4745,24 @@
 	<SDL/SDL_image.h>
 	"../gui/Elements.hpp"
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\stringkeys.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\stringkeys.hpp
 	<iostream>
 	<vector>
 	<fstream>
 
-1493890068 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\mainframe.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\mainframe.hpp
 	<SDL/SDL.h>
 	<SDL/SDL_ttf.h>
 	<SDL/SDL_mixer.h>
 	"Elements.hpp"
 	"../start/StringKeys.hpp"
 
-1487265931 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_ttf.h
+1487262332 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_ttf.h
 	"SDL.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451805391 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_mixer.h
+1451801792 c:\users\_le_pichon\downloads\opmon\include\sdl\sdl_mixer.h
 	"SDL_stdinc.h"
 	"SDL_rwops.h"
 	"SDL_audio.h"
@@ -4771,34 +4771,34 @@
 	"begin_code.h"
 	"close_code.h"
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\stringkeys.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\stringkeys.cpp
 	"StringKeys.hpp"
 	"main.hpp"
 	<SDL/SDL.h>
 	<cstdio>
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\class.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\class.cpp
 	"Class.hpp"
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\comparaisons.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\comparaisons.cpp
 	"Comparaisons.hpp"
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\comparaisons.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\comparaisons.hpp
 	<cstdarg>
 	<iostream>
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\file.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\file.cpp
 	"File.hpp"
 	"../regimys/start/main.hpp"
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\numberedarray.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\numberedarray.cpp
 	"NumberedArray.hpp"
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\utils.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\utils\utils.cpp
 	"Utils.hpp"
 	<iostream>
 
-1493890084 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\mainframe.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\mainframe.cpp
 	"MainFrame.hpp"
 	<iostream>
 	"../start/main.hpp"
@@ -4814,24 +4814,23 @@
 	"../start/Initializer.hpp"
 	"Overworld.hpp"
 	"StartScene.hpp"
-	"../update/Update.hpp"
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\bigdefines.hxx
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\bigdefines.hxx
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\startscene.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\startscene.hpp
 	<SDL/SDL.h>
 	<SDL/SDL_image.h>
 	<SDL/SDL_ttf.h>
 	<SDL/SDL_mixer.h>
 	"../start/bigDefines.hxx"
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\startscene.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\startscene.cpp
 	"StartScene.hpp"
 	"../start/main.hpp"
 	"Animations.hpp"
 	"MainFrame.hpp"
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\initializer.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\initializer.cpp
 	"Initializer.hpp"
 	"../enums/Enums.hpp"
 	"../objects/Attaques.hpp"
@@ -5528,33 +5527,33 @@
 	"../start/main.hpp"
 	<iostream>
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\mainmenu.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\mainmenu.hpp
 	<SDL/SDL.h>
 	<SDL/SDL_mixer.h>
 	"MainFrame.hpp"
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\mainmenu.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\mainmenu.cpp
 	"MainMenu.hpp"
 	<SDL/SDL_image.h>
 	"../start/main.hpp"
 	<iostream>
 	"OptionsMenu.hpp"
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\save\save.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\save\save.hpp
 	"../playercore/Player.hpp"
 	<fstream>
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\save\save.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\save\save.cpp
 	"Save.hpp"
 	<iostream>
 	<fstream>
 	"../start/main.hpp"
 	"../../utils/Utils.hpp"
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\events.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\events.cpp
 	"Events.hpp"
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\events.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\events.hpp
 	"Elements.hpp"
 	"MainFrame.hpp"
 
@@ -5589,18 +5588,18 @@
 
 1490432657 c:\users\jlppc\bureau\projets\opmon\src\jlppc\regimys\start\persistentvars.hpp
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\overworld.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\overworld.hpp
 	"MainFrame.hpp"
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\overworld.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\overworld.cpp
 	"Overworld.hpp"
 	"../start/Initializer.hpp"
 	"../start/main.hpp"
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\persistentvars.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\persistentvars.cpp
 	"PersistentVars.hpp"
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\persistentvars.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\start\persistentvars.hpp
 
 1492941619 source:c:\users\jlppc (session)\documents\projets\opmon project\resources.rc
 
@@ -5696,49 +5695,37 @@
 1492941619 source:c:\users\jlppc (session)\documents\projets\opmon project\src\jlppc\regimys\evolution\evolution.cpp
 	"Evolution.hpp"
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\animations.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\animations.cpp
 	"Animations.hpp"
 	"MainFrame.hpp"
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\animations.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\animations.hpp
 	<iostream>
 	"../start/main.hpp"
 	<SDL/SDL.h>
 
-1493890114 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\optionsmenu.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\optionsmenu.hpp
 	<iostream>
 	"MainFrame.hpp"
 	"MainMenu.hpp"
 	<SDL/SDL.h>
 	"Elements.hpp"
 
-1493890212 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\optionsmenu.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\gui\optionsmenu.cpp
 	"OptionsMenu.hpp"
 	"../enums/Enums.hpp"
 	"../start/main.hpp"
 	"../save/OptionsSave.hpp"
 
-1493889383 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\save\optionssave.hpp
+1493796419 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\save\optionssave.hpp
 	<iostream>
 	<sstream>
 	<fstream>
 	<vector>
 	"../start/StringKeys.hpp"
 
-1493889383 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\save\optionssave.cpp
+1493796419 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\save\optionssave.cpp
 	"OptionsSave.hpp"
 	"../start/main.hpp"
 	<SDL/SDL.h>
-
-1493889392 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\update\update.hpp
-	"../gui/MainFrame.hpp"
-
-1493890767 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\update\update.cpp
-	"Update.hpp"
-	<iostream>
-	"../start/main.hpp"
-	<SDL/SDL.h>
-	<SDL/SDL_ttf.h>
-	<SDL/SDL_image.h>
-	"../gui/Elements.hpp"
 
