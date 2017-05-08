@@ -9,31 +9,39 @@ UNS
 namespace Save {
 ostringstream saveOutput;
 int save(Player* toSave, string fileOut) {
+    //Ouverture du flux de sauvegarde
     ofstream outStream(fileOut.c_str());
     string outStr;
+    //Indique que c'est bien une sauvegarde de OpMon
     saveOutput << "OP_SAVE" << endl;
     toSave->save();
     outStr = SOUT.str();
+    /*
     long hash = Utils::hash(outStr);
     cout << outStr << endl;
     cout << hash << endl;
     outStream << outStr << intToChar(hash) << endl;
-    outStream << hash;
+    outStream << hash;*/
+    //J'ai pas encore mis d'algorithme de hash dans le programme
+    //Fermeture du flux
     outStream.close();
 }
 
 Player *loadPlayer(std::string fileIn) {
+    //Ouverture des flux de chargement
     ifstream inStream(fileIn.c_str());
     string inStr;
     char actu = '\0';
     string verif = readLine(inStream);
-    if(verif != "OP_SAVE") {
+    if(verif != "OP_SAVE") {//Vérification de la validité du fichier de sauvegarde
         return NULL;
     }
+    //Lecture des objets
     string pname = readLine(inStream);
     Player *toReturn = new Player(pname);
     toReturn->load(inStream);
     int hash = inStream.get();
+    //Fermeture du flux
     inStream.close();
     /*inStream.open(fileIn.c_str());
     int i = 0;
@@ -49,7 +57,7 @@ Player *loadPlayer(std::string fileIn) {
         cout << "NOPE!" << endl;
         cout << Utils::hash(inStr) << " != " << hash << endl;
         return NULL;
-    }*///Protection par hash a revoir.
+    }*///J'ai pas encore mis d'algorithme de hash dans le programme
     return toReturn;
 
 }
@@ -64,7 +72,7 @@ char intToChar(int toChar) {
 std::string readLine(std::ifstream &in) {
     string toReturn("");
     char actu = '\0';
-    while(true) {
+    while(true) {//Lit la chaine caractère par caractère
         actu = in.get();
         if(actu == '\n') {
             break;
