@@ -49,7 +49,7 @@ Param deleteParam(string const& nom){
 }
 
 int searchParam(string nom){
-    FOR_EACH(Param, paramList, paramList.size(), {)//{
+    FOR_EACH(Param, paramList, paramList.size(), {)
         if(objActuel->getName() == nom){
             return itor;
         }
@@ -60,7 +60,7 @@ int searchParam(string nom){
 void initParams(string file){
     rlog << PRINT_TICKS << "Chargement des paramètres" << endl;
     ifstream stream(file.c_str());
-    if(!stream){
+    if(!stream){//Si le fichier ne peut etre ouvert, il est crée et sera ouvert lors de la sauvegarde.
         ofstream strm(file.c_str());
         strm.close();
         ifstream cpy(file.c_str());
@@ -69,13 +69,13 @@ void initParams(string file){
     }
     string read;
     int i = 0;
-    for(i = 0; i < 100000; i++){//Empecher une boucle infinie
+    for(i = 0; i < 100000; i++){//Empecher une boucle infinie (Donne du coup un maximum de 100000 paramètres, y'a de quoi faire.)
         getline(stream, read);
-        if(!(read.substr(0, read.size() - (read.size() - 3)) == "pm|")){
+        if(!(read.substr(0, read.size() - (read.size() - 3)) == "pm|")){//Vérifie si le préfixe pm| est bien présent, sinon arrête la boucle.
             break;
         }
-        string noPm = StringKeys::split(read, '|', 1);
-        Param newParam = Param(StringKeys::split(noPm, '=', 0), StringKeys::split(noPm, '=', 1));
+        string noPm = StringKeys::split(read, '|', 1);//Ne prend que la partie après le pm|
+        Param newParam = Param(StringKeys::split(noPm, '=', 0), StringKeys::split(noPm, '=', 1));//Splitte ensuite en deux parties, le nom et la valeur du paramètre.
         paramList.push_back(newParam);
     }
     if(i == 100000){
@@ -91,7 +91,7 @@ void saveParams(string file){
     ofstream stream(file.c_str());
     string toGo;
     FOR_EACH(Param, paramList, paramList.size(), {)
-        toGo+=("pm|" + objActuel->getName() + "=" + objActuel->getValue());
+        toGo+=("pm|" + objActuel->getName() + "=" + objActuel->getValue());//Ajoute le pm| puis écrit le paramètre dans le fichier.
         stream << toGo << endl;
     }
     stream.close();

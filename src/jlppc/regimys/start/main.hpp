@@ -54,5 +54,7 @@ Methode permettant de demmarer le jeu
 */
 int main(int argc, char *argv[]);
 
+typedef unsigned int p_int;
+
 
 #endif // MAIN_HPP
