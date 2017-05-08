@@ -25,8 +25,7 @@
 #include "../gui/MainFrame.hpp"
 #include "../save/OptionsSave.hpp"
 
-#define VERS_DEV
-
+//#define DEBUG
 UNS
 
 #ifdef _WIN32
@@ -40,10 +39,6 @@ ofstream rerrLog("logs/errLog.txt");
 
 string optSave("optSave.oparams");
 
-bool update = false;
-#ifdef VERS_DEV
-bool devUpdate = false;
-#endif // VERS_DEV
 
 namespace Main {
 
@@ -51,12 +46,7 @@ ostringstream oss;
 bool connected = false;
 string trainers[] = {"Brice", "Evan", "Mael", "Jlppc", "Red", "Blue", "Nikolai", "N", "Belladonis", "Aristote", "Giovanni", "Flora", "Silver", "Jules Cesar", "Brahim"};
 float version = 0.09;
-
-int versionCheck = 9;
 int sousVers = 0;
-int versDevNbre = 1;
-int versDevVers = 10;
-
 string versionS;
 extern Player joueur;
 #ifdef _WIN32
@@ -80,64 +70,12 @@ int starts() {
         system("mkdir logs");
         exit(-1);
     }
-    rlog << PRINT_TICKS << "Initialisation du log terminée." << endl;
-    rlog << "OpMon version " << Main::versionS << endl;
-    rlog << PRINT_TICKS << "Vérification de mises a jour..." << endl;
-    if(system("curl -o version.txt http://downloads.opmon-game.ga/onlinedata/version.txt") != 0){
-        rerrLog << "Connexion internet probablement défaillante." << endl;
-        rlog << PRINT_TICKS << "Impossible de verifier les mises a jour." << endl;
-    }else{
-        ifstream versFile("version.txt");
-        string versType;
-        int versNbreLast;
-        int versSNbreLast;
-        #ifdef VERS_DEV
-        int devVersLast;
-        int devNbreLast;
-        #endif
-        versFile >> versType;
-        versFile >> versNbreLast;
-        versFile >> versSNbreLast;
-        #ifdef VERS_DEV
-        versFile >> devVersLast;
-        versFile >> devNbreLast;
-
-        if(devNbreLast == versionCheck){
-            rlog << PRINT_TICKS << "La version stable de cette version de developpement est sortie!" << endl;
-            devUpdate = true;
-        }
-        if(devVersLast > versDevVers){
-            rlog << PRINT_TICKS << "Une version de developpement pour une version plus récente est sortie!" << endl;
-            devUpdate = true;
-        }
-        if(devNbreLast > versDevVers && devVersLast == versDevVers){
-            rlog << PRINT_TICKS << "Une nouvelle version de developpement est sortie!" << endl;
-            devUpdate = true;
-        }
-        #endif // VERS_DEV
-        if(versType != "Alpha"){
-            rlog << PRINT_TICKS << "WAW! Elle est vieille cette version!" << endl;
-            update = true;
-        }
-        if(versNbreLast > versionCheck){
-            rlog << PRINT_TICKS << "Une nouvelle version est disponible" << endl;
-            update = true;
-        }
-        if(versSNbreLast > sousVers && versNbreLast == versionCheck){
-            rlog << PRINT_TICKS << "Une nouvelle version est disponible" << endl;
-            update = true;
-        }
-        rlog << PRINT_TICKS << "Fin de la vérification des MAJ" << endl;
-
-
-
-    }
 
     OptionsSave::initParams(optSave);
     if(!OptionsSave::checkParam("lang")){
         OptionsSave::addParam("lang", "eng");
     }
-
+    rlog << PRINT_TICKS << "Initialisation du log terminée." << endl;
     Initializer::init();
 
     MainFrame::open();
@@ -198,7 +136,7 @@ int main(int argc, char *argv[]) {
         FOR_EACH(char*, argv, argc, {)
             string str = string(*objActuel);
             if(str == "--version"){
-                cout << "OpMon version " << Main::versionS << endl;
+                cout << "OpMon Regimys version " << Main::versionS << endl;
                 exit(0);
             }else if(str == "--opt"){
                 if(itor + 1 == argc){
