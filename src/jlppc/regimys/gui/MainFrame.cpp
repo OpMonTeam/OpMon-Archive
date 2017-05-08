@@ -14,7 +14,6 @@
 #include "Overworld.hpp"
 
 #include "StartScene.hpp"
-#include "../update/Update.hpp"
 
 
 
@@ -170,13 +169,6 @@ void open() {
         }
     }
     rlog << PRINT_TICKS << "Initialisation de la police terminée" << endl;
-    if(Main::update
-    #ifdef VERS_DEV
-    || Main::devUpdate
-    #endif
-    ){
-        Update::openDialog();
-    }
 
 
     //Annonce que l'initialisation principale est terminée
