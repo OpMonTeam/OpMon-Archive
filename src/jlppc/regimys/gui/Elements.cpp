@@ -27,7 +27,6 @@ Plan::Plan(SDL_Texture *couche1, SDL_Texture *couche2, SDL_Texture *couche3, int
             inTemp >> passTab[i][j];
         }
     }
-    inTemp.close();
 #ifdef _WIN32
     system((string("DEL ") + filename).c_str());
 #else
