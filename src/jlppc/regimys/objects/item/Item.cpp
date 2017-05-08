@@ -9,7 +9,7 @@ UNS
 Item *Item::itemsLst[ITEM_NUMBER] = {0};
 
 void initItems() {
-    Item::itemsLst[0] = new I_Heal("Baie Oran", true, true, true, BagCat::BAIES, 10, Status::AUCUN, false, 0);
+    /*Item::itemsLst[0] = new I_Heal("Baie Oran", true, true, true, BagCat::BAIES, 10, Status::AUCUN, false, 0);
     Item::itemsLst[1] = new I_Heal("Baie Sitrus", true, true, true, BagCat::BAIES, 30, Status::AUCUN, false, 1);
     Item::itemsLst[2] = new I_Heal("Baie Mepo", true, true, true, BagCat::BAIES, 10, false, 2);
     Item::itemsLst[3] = new I_Heal("Baie Prine", true, true, true, BagCat::BAIES, 0, Status::POISON, true, 3);
@@ -44,7 +44,7 @@ void initItems() {
     //Enfin, tout ce qui est Item a tenir.
     Item::itemsLst[150] = new Item("Croc Rasoir", false, false, true, BagCat::OBJETS, 3);//En fait 3 c'est ???
     //Jusqu'aux ct : Item a tenir
-    //Après: CT
+    //Après: CT*///NINTENDO(c)
 }
 
 

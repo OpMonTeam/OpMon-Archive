@@ -57,7 +57,7 @@ string sep = "/";
 bool reboot = false;
 
 int starts() {
-
+    //Chargement des fichiers du log
     if (!rlog) {
         cout << "Erreur d'initialisation du log" << endl;
 
@@ -66,18 +66,19 @@ int starts() {
         cout << "Erreur d'ouverture du log d'erreur" << endl;
 
     }
-    if(!rerrLog && !rlog) {
+    if(!rerrLog && !rlog) {//Verification de leur ouverture
         system("mkdir logs");
         exit(-1);
     }
-
+    //Chargement des paramètres
     OptionsSave::initParams(optSave);
-    if(!OptionsSave::checkParam("lang")){
+    if(!OptionsSave::checkParam("lang")){//Si le paramètre "lang" n'existe pas
         OptionsSave::addParam("lang", "eng");
     }
     rlog << PRINT_TICKS << "Initialisation du log terminée." << endl;
+    //Initialisation des objets
     Initializer::init();
-
+    //Ouverture de la fenetre
     MainFrame::open();
 
     return quit(0);
@@ -87,7 +88,7 @@ int starts() {
 
 void gererErreur(string errorName, bool fatal) {
     rerrLog << "Erreur : " << errorName << endl;
-    if (fatal) {
+    if (fatal) {//Si besoin d'un crash
         rerrLog << "Erreur fatale." << endl;
         rlog << PRINT_TICKS << "Crash." << endl;
         quit(1);
@@ -95,27 +96,30 @@ void gererErreur(string errorName, bool fatal) {
 }
 
 int quit(int returne) {
-    if (MainFrame::init) {
+    if (MainFrame::init) {//Fermeture de SDL
+        Mix_CloseAudio();
+        Mix_Quit();
         TTF_Quit();
         atexit(IMG_Quit);
         SDL_Quit();
     }
-    for (unsigned int i = 0; i < OP_NUMBER; i++) {
+    for (unsigned int i = 0; i < OP_NUMBER; i++) {//Suppression des OpMon
         if(Initializer::listeOp[i] != NULL) {
             delete(Initializer::listeOp[i]);
         }
 
     }
-    OptionsSave::saveParams(optSave);
+    OptionsSave::saveParams(optSave);//Sauvegarde des paramètres
     rlog << PRINT_TICKS << "Fermeture du jeu. Return " << returne << endl;
+    //Fermeture des log
     rlog.close();
     rerrLog.close();
 
 
-#ifdef DEBUG
+#ifdef DEBUG//Outdated : Unused
     system("pause");
 #endif // DEBUG
-    if(Main::reboot){
+    if(Main::reboot){//reboot si indiqué
         #ifdef _WIN32
             system(".\\OpMon.exe");
         #else
@@ -129,17 +133,18 @@ int quit(int returne) {
 #include "../objects/Attaques.hpp"
 #include "../save/Save.hpp"
 int main(int argc, char *argv[]) {
-
+    //Création de la chaine de caractère de version
     Main::oss << "Alpha " << Main::version << "." << Main::sousVers;
     Main::versionS = Main::oss.str();
+    //Traitement des arguments
     if(argc >= 2){
         FOR_EACH(char*, argv, argc, {)
             string str = string(*objActuel);
-            if(str == "--version"){
+            if(str == "--version"){//Affichage de la version
                 cout << "OpMon Regimys version " << Main::versionS << endl;
                 exit(0);
-            }else if(str == "--opt"){
-                if(itor + 1 == argc){
+            }else if(str == "--opt"){//Changement de l'emplacement du fichier de sauvegarde des paramètres
+                if(itor + 1 == argc){//Si pas d'arguments a l'option --opt
                     exit(2);
                 }else{
                     optSave = string(argv[itor + 1]);
@@ -147,5 +152,5 @@ int main(int argc, char *argv[]) {
             }
         }
     }
-    return Main::starts();
+    return Main::starts();//Lancement du jeu
 }

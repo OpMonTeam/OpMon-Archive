@@ -29,13 +29,6 @@ template<typename T>void pb(std::vector<T> &vecteur, T tab[], int longeurTab) {
         vecteur.push_back(tab[i]);
     }
 }
-
-void setCollision(std::vector<int> *toFill, int line, int colNbre) {
-    for(int i = 0; i < line; i++) {
-        toFill->push_back(colNbre);
-    }
-}
-
 void initEvs() {
     evs[0].ATK;
 
@@ -869,6 +862,7 @@ void initSprites() {
 //Indication : Dans les plans, pour les collisions, 0 est pour "Ca passe", 1 est pour "Ca passe pas", 2 est pour "Ca passe en nageant", 3 est pour "Hautes herbes", 4 pour "Grotte"
 void initPlans() {
     UNS
+    //Chargement de fauxbourg euvi
     int feTab[32][32] = {   {1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                             {2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
                             {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
@@ -902,7 +896,7 @@ void initPlans() {
                             {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1},
                             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
     };
-
+    //Chargement des couches
 #ifdef _WIN32
     SDL_Texture *couche1 = IMG_LoadTexture(MainFrame::renderer, "ressources\\maps\\fe\\fe1.png");
     SDL_Texture *couche2 = IMG_LoadTexture(MainFrame::renderer, "ressources\\maps\\fe\\fe2.png");
@@ -914,6 +908,7 @@ void initPlans() {
     SDL_Texture *couche3 = IMG_LoadTexture(MainFrame::renderer, "ressources/maps/fe/fe3.png");
     string path = "ressources/audio/music/faubourgeuvi.ogg";
 #endif
+    //Vérification des couches
     if(couche1 == NULL || couche2 == NULL || couche3 == NULL) {
         rerrLog << "Erreur. Un des plans de Faubourg euvi est NULL" << endl;
         if(couche1 == NULL) {
@@ -922,17 +917,28 @@ void initPlans() {
             gererErreur(IMG_GetError(), false);
         }
     }
+    //Ouverture du fichier temporaire pour
     ofstream tempFile("feTemp.tmp");
     if(!tempFile) {
         gererErreur("Impossible d'ouvrir feTemp.tmp. Les boites de collisions ne peuvent fonctionner.", true);
     }
+    //Enregistrement de la boite de collision dans le fichier temporaire
     for(int i = 0; i < 32; i++) {
         for(int j = 0; j < 32; j++) {
             tempFile << feTab[i][j] << endl;
         }
     }
+    /* Info :
+        L'enregistrement de la boite de collision dans un fichier est pour l'envoyer en paramètres
+        dans le constructeur en Plan. En effet, du au bordel de la transmission des tableaux par
+        paramètre, encore plus avec les tableaux a deux dimentions, j'ai décidé d'utiliser un fichier.
+    */
     faubourgEuvi = new Plan(couche1, couche2, couche3, 32, 32, "feTemp.tmp", path);
-    rerrLog << IMG_GetError() << endl;
+    //Suppression du fichier sous Window (Parce comme windows c'est de la merde, on ne peut pas toucher aux fichiers si ils sont utilisés pas un autre flux.)
+    tempFile.close();
+    #ifdef _WIN32
+    system("del feTemp.tmp");
+    #endif
 }
 
 void initBackgrounds() {
@@ -940,6 +946,7 @@ void initBackgrounds() {
 }
 
 void initKeys() {
+    //Définit la langue a initialiser dans les clées
     #ifdef _WIN32
     if(OptionsSave::getParam("lang").getValue() == "fr"){
         StringKeys::initialize("ressources\\keys\\francais.rkeys");
@@ -952,6 +959,8 @@ void initKeys() {
     #else
     if(OptionsSave::getParam("lang").getValue() == "fr"){
         StringKeys::initialize("ressources/keys/francais.rkeys");
+    }else if(OptionsSave::getParam("lang").getValue() == "esp"){
+        StringKeys::initialize("ressources/keys/espanol.rkeys");
     }else{
         StringKeys::initialize("ressources/keys/english.rkeys");
     }

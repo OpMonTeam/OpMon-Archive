@@ -17,6 +17,7 @@ Espece::~Espece() {
 }
 
 Espece::Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, std::string name, int type1, int type2, int maniereEvolution/*En fait faut mettre 0, il est la pour un souci de compatibilit�*/, int niveauEvolution, Evolution *evolType, std::vector<int> EVGiven, float taille, float poids, std::string entreeOpdex, int expGiven, int expMax, int tauxDeCapture, int numeroOpdex) {
+    //Vérification des variables
     if (atk < 0 || def < 0 || atkSpe < 0 || defSpe < 0 || vit < 0 || pv < 0) {
         gererErreur("Stats < 0 Espece<Initializer>", true);
     }
@@ -49,7 +50,7 @@ Espece::Espece(int atk, int def, int atkSpe, int defSpe, int vit, int pv, std::s
     for (unsigned int i = 0; i < EVGiven.size(); i++) {
         EVgiven[i] = EVGiven[i];
     }
-
+    //Mise en place des courbes d'exp
     this->expMax = expMax;
     switch (this->expMax) {
     case 800000:

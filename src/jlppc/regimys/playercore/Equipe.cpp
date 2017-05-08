@@ -28,7 +28,7 @@ bool Equipe::addOpMon(OpMon *toAdd) {
 }
 
 void Equipe::removeOp(int number) { //Number en partant de 0
-    if (nbreOfOp == 1) {
+    if (nbreOfOp == 1) {//Si un seul OpMon, ne supprime rien.
         return;
     }
     for (int i = 0; i < nbreOfOp; i++) {

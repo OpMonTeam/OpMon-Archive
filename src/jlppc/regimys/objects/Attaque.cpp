@@ -20,9 +20,9 @@ Attaque::Attaque(std::string nom, int puissance, int type, int precision, bool s
 
 /*Pour les returns, equivalent exceptions java : Soit SameAtkPartTwo, qui ordonne de lancer la meme attaque au prochain tour (1)
  * soit EndOfTurn, qui met fin a l'attaque tout simplement (2).
- * Dans effetAprès, il n'est pas obligé de retourner 1 pour finir l'attaque :
- * Tout les nombres sont possible. Si deux est revoyé, par contre,
- * ce sera le meme effet que 2 dans effetAvant.
+ * Dans effetAprès, il n'est pas obligé de retourner 2 pour finir l'attaque :
+ * Tout les nombres sont possible (Il est tout de même conseillé de mettre 0). Si 1 est revoyé, par contre,
+ * ce sera le meme effet que 1 dans effetAvant.
  */
 int Attaque::attack(OpMon &atk, OpMon &def) {
     pp--;
@@ -32,7 +32,7 @@ int Attaque::attack(OpMon &atk, OpMon &def) {
         return -2;
     }
     int effetAv = effetAvant(atk, def);
-    if (effetAv == 1 || effetAv == 2) {
+    if (effetAv == 1 || effetAv == 2) {//Si renvoi spécial, arrêt de l'attaque.
         return effetAv;
     }
     //Fail de types
@@ -40,7 +40,7 @@ int Attaque::attack(OpMon &atk, OpMon &def) {
         siEchoue(atk, def);
         return -1;
     }
-    if (!status) {
+    if (!status) {//Attaque de PV si ce n'est pas une attaque de status
         pvPerdus = (((atk.getLevel() * 0.4 + 2) * (special ? atk.getStatATKSPE() : atk.getStatATK()) * puissance) / ((special ? def.getStatDEFSPE() : def.getStatDEF()) * 50) + 2);
         if (type == atk.getType1() || type == atk.getType2()) {
             pvPerdus = round(pvPerdus * 1.5);
