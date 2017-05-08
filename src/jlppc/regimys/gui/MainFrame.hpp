@@ -117,9 +117,9 @@ SDL_Texture* renderText(SDL_Renderer *renderer, char text[], TTF_Font *police, S
 /**Permet d'affiché le texte passé en paramètres dans un *SDL_Texture avec l'encodage donné en paramètres*/
 SDL_Texture *renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color, SDL_Rect *pos, int encodage/*//->WaitEnum->Encoding*/);
 
-J_Texture* renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color);
+J_Texture renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color);
 
-J_Texture* renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color, int encodage);
+J_Texture renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color, int encodage);
 
 void initAll();
 

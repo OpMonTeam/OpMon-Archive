@@ -266,10 +266,10 @@ SDL_Texture *renderText(SDL_Renderer *renderer, string text, TTF_Font *police, S
     return renderText(renderer, text, police, color, pos, Encoding::LATIN);
 }
 
-J_Texture* renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color) {
+J_Texture renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color) {
     J_Texture toReturn;
     toReturn.texture = renderText(renderer, text, police, color, &(toReturn.rect));
-    return &toReturn;
+    return toReturn;
 }
 
 SDL_Texture *renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color, SDL_Rect *pos, int encodage) {
@@ -310,10 +310,10 @@ SDL_Texture *renderText(SDL_Renderer *renderer, std::string text, TTF_Font *poli
     return toReturn;
 }
 
-J_Texture *renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color, int encodage) {
+J_Texture renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color, int encodage) {
     J_Texture toReturn;
     toReturn.texture = renderText(renderer, text, police, color, &(toReturn.rect), encodage);
-    return &toReturn;
+    return toReturn;
 }
 
 
