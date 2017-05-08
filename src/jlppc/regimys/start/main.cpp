@@ -25,7 +25,7 @@
 #include "../gui/MainFrame.hpp"
 #include "../save/OptionsSave.hpp"
 
-
+#define VERS_DEV
 
 UNS
 
@@ -40,7 +40,10 @@ ofstream rerrLog("logs/errLog.txt");
 
 string optSave("optSave.oparams");
 
-
+bool update = false;
+#ifdef VERS_DEV
+bool devUpdate = false;
+#endif // VERS_DEV
 
 namespace Main {
 
@@ -51,14 +54,8 @@ float version = 0.09;
 
 int versionCheck = 9;
 int sousVers = 0;
-int versDevNbre = 0;
+int versDevNbre = 1;
 int versDevVers = 10;
-
-bool update = false;
-#ifdef VERS_DEV
-bool devUpdate = false;
-#endif
-
 
 string versionS;
 extern Player joueur;
@@ -107,13 +104,13 @@ int starts() {
 
         if(devNbreLast == versionCheck){
             rlog << PRINT_TICKS << "La version stable de cette version de developpement est sortie!" << endl;
-            update = true;
+            devUpdate = true;
         }
         if(devVersLast > versDevVers){
             rlog << PRINT_TICKS << "Une version de developpement pour une version plus récente est sortie!" << endl;
             devUpdate = true;
         }
-        if(devNbreLast > versDevNbre && devVersLast == versDevVers){
+        if(devNbreLast > versDevVers && devVersLast == versDevVers){
             rlog << PRINT_TICKS << "Une nouvelle version de developpement est sortie!" << endl;
             devUpdate = true;
         }
