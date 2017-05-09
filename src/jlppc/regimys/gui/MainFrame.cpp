@@ -54,6 +54,7 @@ int printChoice(string text, string choice1, string choice2, string choix3) {
 }
 
 int printText(SDL_Renderer *renderer, string txt, string line2S, string line3S) {
+    //Déclaration des variables
     SDL_Texture *textUre = NULL;
     SDL_Surface *sfce = NULL;
     SDL_Texture *line2 = NULL;
@@ -62,7 +63,7 @@ int printText(SDL_Renderer *renderer, string txt, string line2S, string line3S) 
     SDL_Surface *sfce3 = NULL;
     SDL_Rect posLineTwo;
     SDL_Rect posLineThree;
-
+    //Vérification des erreurs
     if (txt == "" || line2S == "" || line3S == "") {
         gererErreur("Chaine de caractère vide (fonction MainFrame::printText)", false);
         if(txt == ""){
@@ -74,7 +75,7 @@ int printText(SDL_Renderer *renderer, string txt, string line2S, string line3S) 
         }
     }
 
-
+    //Ecriture des lignes de dialogue
     sfce = TTF_RenderText_Blended(fonts[FONT_SIZE_DEFAULT], txt.c_str(), noir);
     textPlace.h = sfce->h;
     textPlace.w = sfce->w;
@@ -94,10 +95,11 @@ int printText(SDL_Renderer *renderer, string txt, string line2S, string line3S) 
     posLineThree.x = textPlace.x;
     posLineThree.y = textPlace.y + 32 + 32;
     line3 = SDL_CreateTextureFromSurface(renderer, sfce3);
-
+    //Affichage du texte
     SDL_RenderCopy(renderer, line3, NULL, &posLineThree);
     SDL_RenderCopy(renderer, line2, NULL, &posLineTwo);
     SDL_RenderCopy(renderer, textUre, NULL, &textPlace);
+    //Destruction des variables utilisées
     SDL_DestroyTexture(line3);
     SDL_DestroyTexture(textUre);
     SDL_DestroyTexture(line2);
@@ -120,7 +122,7 @@ void destroyAll(){
 }
 
 void open() {
-    //Initialisations
+    //Initialisations des SDL
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) == -1) {
         rerrLog << "Erreur d'initialisation de SDL." << endl;
         rlog << "Une erreur fatale s'est produite. Merci de consulter errLog.txt" << endl;
@@ -170,8 +172,6 @@ void open() {
     }
     rlog << PRINT_TICKS << "Initialisation de la police terminée" << endl;
 
-
-    //Annonce que l'initialisation principale est terminée
     init = true;
     //Ouverture de la fenetre
     frame = SDL_CreateWindow("OpMon Lazuli", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 512, 512, SDL_WINDOW_SHOWN);
@@ -189,7 +189,9 @@ void open() {
     } else {
         rlog << PRINT_TICKS << "Initialisation du joystick terminée" << endl;
     }
+    //Allocation des canaux de sons
     Mix_AllocateChannels(3);
+    //Ouverture d'un son
 #ifdef _WIN32
     dialogPass = Mix_LoadWAV("ressources\\audio\\sounds\\dialogChange.ogg");
 #else
@@ -205,6 +207,7 @@ void open() {
     initAll();
     Mix_Volume(1, MIX_MAX_VOLUME - 1);
     rlog << PRINT_TICKS << "Lancement du menu." << endl;
+    //Lancement du jeu
     if(MainMenu::mainMenu() != -1) {
         Mix_PlayChannel(1, MainMenu::bruitPush, 0);
         Utils::wait(WAIT_DEFAULT);
@@ -218,13 +221,14 @@ void open() {
         }
     } else {
         Mix_PlayChannel(1, MainMenu::bruitPush, 0);
+        //Attente de la fin du son
         Utils::wait(WAIT_DEFAULT);
     }
 
     rlog << PRINT_TICKS << "Suppression des variables de chaque partie" << endl;
     destroyAll();
     rlog << PRINT_TICKS << "Fermeture de la fenetre" << endl;
-
+    //Destruction des textures, des polices et des sons.
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(frame);
     SDL_JoystickClose(manette);
@@ -236,6 +240,7 @@ void open() {
     TTF_Quit();
     IMG_Quit();
     SDL_Quit();
+    init = false;
 }
 
 

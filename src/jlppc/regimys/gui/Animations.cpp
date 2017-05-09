@@ -11,6 +11,7 @@ bool continuer = false;
 bool joypressed = false;
 
 void initAnims() {
+
     init = true;
 }
 
@@ -19,13 +20,15 @@ void deleteAnims() {
 }
 
 int animFenOpen(SDL_Renderer *renderer, SDL_Texture *fond) {
-    ANIM_CHECK_INIT
+    ANIM_CHECK_INIT//Vérification de l'initialisation des animations
+    //Déclaration des variables
     SDL_Texture *anim[6] = {NULL};
     SDL_Rect animP;
     animP.h = 512;
     animP.w = 512;
     animP.x = 0;
     animP.y = 0;
+    //Frame par frame
     for (int i = 0; i < 6; i++) {
         if ((SDL_GetTicks() - ancientTick) >= 200) {
             SDL_PollEvent(&events);
@@ -58,7 +61,7 @@ int animFenOpen(SDL_Renderer *renderer, SDL_Texture *fond) {
             }
 
             ostringstream oss;
-
+            //Oui je sais c'est pas opti de les init ici mais MERDE. Je fais ce que je veux.
 #ifdef _WIN32
             oss << "ressources\\animations\\winChange\\animWindowFrame" << i + 1 << ".png";
 #else
@@ -79,6 +82,7 @@ int animFenOpen(SDL_Renderer *renderer, SDL_Texture *fond) {
 }
 
 int animFenClose(SDL_Renderer *renderer, SDL_Texture *fond) {
+    //Se réferer aux commentaires de la fonction précédente
     ANIM_CHECK_INIT
     SDL_Rect animP;
     SDL_Texture *anim[6] = {NULL};
