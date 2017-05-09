@@ -32,4 +32,8 @@ cbp2make/*
 doxygen/doxyfile
 *.opmod
 OpMon_build_log.html
+OpMon.layout
+OpMon.depend
+OpMon-Linux.layout
+OpMon-Linux.depend
 

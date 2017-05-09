@@ -3,7 +3,7 @@ Class.hpp
 Auteur : Jlppc
 Fichier sous licence GPL-3.0
 http://opmon-game.ga
-Définit le classe... Class.
+Définit la classe... Class.
 */
 #ifndef CLASS_HPP
 #define CLASS_HPP

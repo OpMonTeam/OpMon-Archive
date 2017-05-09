@@ -1,6 +1,16 @@
+/*
+bigDefines.hpp
+Auteur : Jlppc
+Fichier sous licence GPL-3.0
+http://opmon-game.ga
+Contient des gros macros, morceaux de code faisant tache dans certains fichiers, ils sont donc placés ici
+*/
 #ifndef BIGDEFINES_HXX_INCLUDED
 #define BIGDEFINES_HXX_INCLUDED
 
+/**
+Utilisé dans StartScene
+*/
 #define NAME_ENTRY case SDL_KEYUP:\
 						switch (events.key.keysym.sym) {\
 							case SDLK_RSHIFT:\
