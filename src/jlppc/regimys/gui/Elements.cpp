@@ -17,6 +17,7 @@ Plan::Plan(SDL_Texture *couche1, SDL_Texture *couche2, SDL_Texture *couche3, int
     }
     this->w = w;
     this->h = h;
+    //Définition de la table de la collision
     this->passTab = (int**)malloc(h * sizeof(int*));
     for(int i = 0; i < h; i++) {
         this->passTab[i] = (int*)malloc(w * sizeof(int));
@@ -27,6 +28,8 @@ Plan::Plan(SDL_Texture *couche1, SDL_Texture *couche2, SDL_Texture *couche3, int
             inTemp >> passTab[i][j];
         }
     }
+    //Suppression du fichier temporaire
+    inTemp.close();
 #ifdef _WIN32
     system((string("DEL ") + filename).c_str());
 #else

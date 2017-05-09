@@ -137,8 +137,8 @@ void deleteVars() {
 
 int optionsMenu() {
     verifVars();
-    int returned = boucle();
-    return returned;
+    //Lancement du menu
+    return boucle();
 }
 
 int boucle() {
@@ -155,19 +155,19 @@ int boucle() {
                 case 0:
                     return 0;
                 case 1:
-                    Mix_PlayChannel(0, bruitNope, 0);
+                    Mix_PlayChannel(0, bruitNope, 0);//Non disponible
                     break;
                 case 2:
                     boucleLang();
                     break;
                 case 3:
-                    Mix_PlayChannel(0, bruitNope, 0);
+                    Mix_PlayChannel(0, bruitNope, 0);//Non disponible
                     break;
                 case 4:
-                    Mix_PlayChannel(0, bruitNope, 0);
+                    Mix_PlayChannel(0, bruitNope, 0);//Non disponible
                     break;
                 case 5:
-                    Mix_PlayChannel(0, bruitNope, 0);
+                    Mix_PlayChannel(0, bruitNope, 0);//Non disponible
                     break;
                 }
                 break;
@@ -192,7 +192,7 @@ int boucle() {
                 }
                 break;
 
-            case SDLK_BACKSPACE:
+            case SDLK_BACKSPACE://Retour au menu
                 return 0;
 
 
@@ -200,10 +200,7 @@ int boucle() {
             }
             break;
         }
-
-        if(SDL_RenderCopy(renderer, OptionsMenu::fondOpt, NULL, &MainFrame::fond) == -1) {
-            gererErreur(SDL_GetError(), false);
-        }
+        SDL_RenderCopy(renderer, OptionsMenu::fondOpt, NULL, &MainFrame::fond);
         J_RenderCopy(renderer, &txtOpt1);
         J_RenderCopy(renderer, &txtOpt2);
         J_RenderCopy(renderer, &txtOpt3);
@@ -230,8 +227,8 @@ int boucleLang(){
             switch (events.key.keysym.sym) {
             case SDLK_RETURN:
 
-                switch(curPosOptI) {
-                case 0:
+                switch(curPosOptI) {//Choix de la langue
+                case 0://Bouton Retour
                     return 0;
                 case 1:
                     OptionsSave::modifyParam("lang", "eng");
@@ -289,7 +286,7 @@ int boucleLang(){
                 }
                 break;
 
-            case SDLK_BACKSPACE:
+            case SDLK_BACKSPACE://Retour au menu Options
                 return 0;
 
 

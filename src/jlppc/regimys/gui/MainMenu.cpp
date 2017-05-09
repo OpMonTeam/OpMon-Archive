@@ -100,6 +100,7 @@ int boucle0() {
             case SDLK_RETURN:
 
                 switch(curPosI) {
+                    //Traitement de l'action en fonction de la position du curseur
                 case 0:
                     return 0;
                 case 3:
@@ -118,6 +119,7 @@ int boucle0() {
             case SDLK_DOWN:
                 Mix_PlayChannel(2, bruitArr, 0);
                 curPosI++;
+                //Si en bas, retourne en haut
                 if(curPosI >= 4) {
                     curPosI = 0;
                 } else if(curPosI < 0) {
@@ -128,6 +130,7 @@ int boucle0() {
             case SDLK_UP:
                 Mix_PlayChannel(2, bruitArr, 0);
                 curPosI--;
+                //Si en haut, retourne en bas
                 if(curPosI >= 4) {
                     curPosI = 0;
                 } else if(curPosI < 0) {
@@ -139,6 +142,8 @@ int boucle0() {
             }
             break;
         }
+
+        //Actualisation des éléments
         SDL_RenderCopy(renderer, fond, NULL, &MainFrame::fond);
         SDL_RenderCopy(renderer, play, NULL, &textPos[0]);
         SDL_RenderCopy(renderer, charge, NULL, &textPos[1]);
@@ -153,16 +158,11 @@ int boucle0() {
 int mainMenu() {
 
     verifVars();
+    //Début de la musique
     Mix_PlayMusic(fondMusTitle, -1);
     Mix_VolumeMusic(MIX_MAX_VOLUME / 4);
-    int returned = boucle0();
-
-    if(returned == -1) {
-        return -1;
-    } else if(returned == 0) {
-        return 0;
-    }
-    return 0;
+    //Lancement de la boucle
+    return boucle0();
 }
 
 }
