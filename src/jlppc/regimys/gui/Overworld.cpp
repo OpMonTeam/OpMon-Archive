@@ -30,15 +30,14 @@ int ppPosX = 17;
 int ppPosY = 15;
 
 void down() {
-    if(anim == -1) {
+    if(anim == -1) {//Si une animation n'est pas déjà en cours
         startFrames = frames;
         anim = DOS;
-        if(actuel->getPassTab()[(ppPosY + 1) + 1][ppPosX + 1] == 0) {
-            //Ensuite faudra faire la verif du passages des events
+        if(actuel->getPassTab()[(ppPosY + 1) + 1][ppPosX + 1] == 0) {//Vérification des boites de collisions
+            //TODO : Ensuite faudra faire la verif du passages des events
             moving = DOS;
             ppPosY++;
-            rerrLog << "ppPosY = " << ppPosY + 8 << " et actuel->getH() = " << actuel->getH() << endl;
-            if(ppPosY + 8 >= actuel->getH()) {
+            if(ppPosY + 8 >= actuel->getH()) {//Vérification du scrolling
                 mapMove[DOS] = false;
                 mapMove[FACE] = false;
             } else if(ppPosY >= 8) {
@@ -50,7 +49,7 @@ void down() {
 
 
 }
-
+//Pour avoir la documentation des methodes up(), right() et left(), se référer a la doc de down()
 void up() {
     if(anim == -1) {
         startFrames = frames;
@@ -180,10 +179,10 @@ void verifVars() {
 int overworld() {
     rlog << PRINT_TICKS << "Entrée dans l'overworld..." << endl;
     verifVars();
+    //Début de la musique
     Mix_PlayMusic(fond, -1);
     Mix_VolumeMusic(MIX_MAX_VOLUME / 2);
-    int returne = boucle();
-    return returne;
+    return boucle();
 }
 
 void deleteVars() {
@@ -207,7 +206,7 @@ int boucle() {
     int animsCounter = 0;
     while(continuer) {
         while (continuer) {
-            if ((SDL_GetTicks() - ancientTick) >= (FPS_TICKS - 5)) {
+            if ((SDL_GetTicks() - ancientTick) >= (FPS_TICKS - 5)) {//Limitation de FPS un peu plus rapide
                 frames++;
 
                 ancientTick = SDL_GetTicks();
@@ -278,7 +277,7 @@ int boucle() {
                 SDL_RenderClear(renderer);
                 SDL_RenderCopy(renderer, actuel->getCouche1(), NULL, &mapPos);
                 SDL_RenderCopy(renderer, actuel->getCouche2(), NULL, &mapPos);
-
+                //Animations
                 if(anim != -1 && !anims) {
                     if(anim == DOS) {
                         SDL_RenderCopy(renderer, marchePP[FACE], NULL, &ppPos);
@@ -308,7 +307,7 @@ int boucle() {
                 }
 
                 SDL_RenderCopy(renderer, actuel->getCouche3(), NULL, &mapPos);
-
+                //Mouvements
                 if(anim == DOS) {
                     if(frames - startFrames == 8) {
                         anim = -1;

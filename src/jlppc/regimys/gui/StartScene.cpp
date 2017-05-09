@@ -232,7 +232,7 @@ int boucle0() {
                     gererErreur(SDL_GetError(), false);
                 }
                 if (!changeDialog) {
-
+                    //Affichage caractère par caractère
                     if (!(i >= txtP0[line + dialog].size())) {
 
                         if (txtEnCours[line] == " ") {
@@ -428,7 +428,7 @@ int startScene() {
     phase = 1;
     rlog << "[T = " << SDL_GetTicks() << "] - Chargement de la boucle n°1" << endl;
 
-
+    //Animation 1
     Animations::animFenOpen(renderer, fondT);
 
 
@@ -450,7 +450,7 @@ int startScene() {
     }
 
     continuer = true;
-
+    //Animation 2
     Animations::animFenClose(renderer, fondT);
 
     txtP1[0]+=(string(pName) + kget("prof.dialog.start.19.5"));
