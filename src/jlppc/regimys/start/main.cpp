@@ -1,6 +1,6 @@
 #include "main.hpp"
 
-#if !defined(__cplusplus)
+#ifndef __cplusplus
 #error Mais quel crétin! Il est en C++ ce programme!
 #endif
 
