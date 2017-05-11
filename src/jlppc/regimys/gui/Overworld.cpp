@@ -229,8 +229,7 @@ int boucle() {
                 switch (events.type) {
                     QUIT
 
-                /*case SDL_KEYUP:
-                    rerrLog << "Keyup" << endl;*/
+
                 case SDL_KEYDOWN:
                     switch (events.key.keysym.sym) {
                         ECHAP
@@ -264,7 +263,16 @@ int boucle() {
                     case SDLK_m:
                         return 2;
                         break;
+                    default:
+                        pressed = -1;
 
+                    }
+                    break;
+
+                    case SDL_KEYUP:
+                    rerrLog << "Keyup" << endl;
+                    if(pressed != -1 && anim == -1){
+                        pressed = -1;
                     }
                     break;
 
