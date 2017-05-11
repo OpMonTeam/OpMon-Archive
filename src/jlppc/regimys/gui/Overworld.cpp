@@ -208,40 +208,58 @@ int boucle() {
         while (continuer) {
             if ((SDL_GetTicks() - ancientTick) >= (FPS_TICKS - 5)) {//Limitation de FPS un peu plus rapide
                 frames++;
+                rerrLog << "Liste vars : (tick n°" << SDL_GetTicks() << ")" << endl;
+                rerrLog << "Frames : " << frames << endl;
+                rerrLog << "ancientTick : " << ancientTick << endl;
+                rerrLog << "anim : " << anim << endl;
+                rerrLog << "moving : " << moving << endl;
+                rerrLog << "anims : " << anims << endl;
+                rerrLog << "pressed : " << pressed << endl;
+                rerrLog << "startFrames : " << startFrames << endl;
+                rerrLog << "Event : ";
 
                 ancientTick = SDL_GetTicks();
 
+                events.type = SDL_FIRSTEVENT;
+
                 SDL_PollEvent(&events);
+
+
 
                 switch (events.type) {
                     QUIT
+
+                /*case SDL_KEYUP:
+                    rerrLog << "Keyup" << endl;*/
                 case SDL_KEYDOWN:
                     switch (events.key.keysym.sym) {
                         ECHAP
 
                     case SDLK_DOWN:
-                        if(pressed == -1 || pressed == DOS){
+                        //if(pressed == -1 || pressed == DOS){
                             pressed = DOS;
-                            down();
-                        }
+
+                        //}
+                        rerrLog << "DOWN" << endl;
                         break;
                     case SDLK_UP:
-                        if(pressed == -1 || pressed == FACE){
+                        //if(pressed == -1 || pressed == FACE){
                             pressed = FACE;
-                            up();
-                        }
+                        //}
+                        rerrLog << "UP" << endl;
                         break;
                     case SDLK_RIGHT:
-                        if(pressed == -1 || pressed == DROITE){
+                        //if(pressed == -1 || pressed == DROITE){
                             pressed = DROITE;
-                            right();
-                        }
+                        //}
+                        rerrLog << "RIGHT" << endl;
                         break;
                     case SDLK_LEFT:
-                        if(pressed == -1 || pressed == GAUCHE){
+                        //if(pressed == -1 || pressed == GAUCHE){
                             pressed = GAUCHE;
-                            left();
-                        }
+
+                        //}
+                        rerrLog << "LEFT" << endl;
                         break;
                     case SDLK_m:
                         return 2;
@@ -250,10 +268,7 @@ int boucle() {
                     }
                     break;
 
-                case SDL_KEYUP:
-                    if(events.key.keysym.sym == SDLK_DOWN || events.key.keysym.sym == SDLK_UP || events.key.keysym.sym == SDLK_LEFT || events.key.keysym.sym == SDLK_RIGHT){
-                        pressed = -1;
-                    }
+
 
                 case SDL_JOYBUTTONDOWN:
                     if (!joypressed) {
@@ -269,10 +284,27 @@ int boucle() {
                                 break;
                         }
                         break;*/
+                            default:
+                                rerrLog << "WTE?" << endl;
                 }
+                rerrLog << endl;
                 if(actuel->getFond() != fond) {
                     Mix_PlayMusic(fond, -1);
                     Mix_VolumeMusic(MIX_MAX_VOLUME / 2);
+                }
+                switch(pressed){
+                case DOS:
+                    down();
+                    break;
+                case FACE:
+                    up();
+                    break;
+                case DROITE:
+                    right();
+                    break;
+                case GAUCHE:
+                    left();
+                    break;
                 }
                 SDL_RenderClear(renderer);
                 SDL_RenderCopy(renderer, actuel->getCouche1(), NULL, &mapPos);
