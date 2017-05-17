@@ -19,6 +19,7 @@ Permet d'ouvrir la fenetre du jeu et de charger les ressources essensielles. Con
 #define charLineDialog 33
 #define kget StringKeys::get
 
+#define POURCENT(nbre, de) (nbre * de) / 100
 #define FONT_SIZE_DEFAULT 28
 
 /**Contient toutes les methodes permettant de gérer et de faire fonctionner l'interface graphique
