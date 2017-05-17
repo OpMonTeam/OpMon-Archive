@@ -48,8 +48,12 @@ int printChoice(string text, string choice1, string choice2, string choix3) {
 }
 
 int printText(sf::RenderWindow &framee, std::string text[]) {
+    int minusPos = 15;
     FOR_EACH(string, text, 3, {)
         dialogText[i].setString(objActuel);
+        dialogText[i].setFont(font);
+        dialogText[i].setPosition(sf::Vector2f(POURCENT(10, dialog.getPosition().x), POURCENT(minusPos, dialog.getPosition().y)));
+        minusPos+=30;
         framee.draw(objActuel);
     }
 
