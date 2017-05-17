@@ -35,8 +35,16 @@
 					<Add directory="src/jlppc/regimys/gui" />
 					<Add directory="src/jlppc/regimys/save/" />
 				</Compiler>
+				<ResourceCompiler>
+					<Add option="sfml-app" />
+				</ResourceCompiler>
 				<Linker>
 					<Add option="-m64" />
+					<Add library="sfml-graphics" />
+					<Add library="sfml-network" />
+					<Add library="sfml-audio" />
+					<Add library="sfml-window" />
+					<Add library="sfml-system" />
 				</Linker>
 			</Target>
 		</Build>
@@ -46,7 +54,6 @@
 			<Add option="-w" />
 			<Add option="-Wall" />
 			<Add option="-m64" />
-			<Add directory="/usr/local/include" />
 		</Compiler>
 		<ResourceCompiler>
 			<Add option="`sdl2-config --cflags`" />
@@ -54,9 +61,6 @@
 		<Linker>
 			<Add option="-s" />
 			<Add option="-m64" />
-			<Add option="`sdl2-config --libs` -lSDL2_image -lSDL2_ttf -lSDL2_mixer" />
-			<Add library="/usr/lib/gcc/x86_64-linux-gnu/5.4.0/libgcc.a" />
-			<Add directory="/usr/lib/x86_64-linux-gnu" />
 		</Linker>
 		<Unit filename="src/jlppc/regimys/enums/Caractere.cpp" />
 		<Unit filename="src/jlppc/regimys/enums/Caractere.hpp" />
