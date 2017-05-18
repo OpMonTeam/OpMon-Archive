@@ -13,6 +13,7 @@ Contient des fonctions necessaires au programme
 #include "../../utils/File.hpp"
 #include "../playercore/Player.hpp"
 #include <sstream>
+#include <SFML/System.hpp>
 #define UNS using namespace std;
 #define toStr(toStrP) #toStrP
 
@@ -21,13 +22,16 @@ tabType* objActuel = NULL;\
 objActuel = &(tabName[itor]);\
 
 
-#define PRINT_TICKS "[T = " << SDL_GetTicks() << "] - "
+#define PRINT_TICKS "[T = " << ticks.getElapsedTime().asMilliseconds() << "] - "
 /**Le log principal*/
 extern std::ofstream rlog;
 /**Le log d'erreur*/
 extern std::ofstream rerrLog;
 /**Chemin vers la save des params*/
 extern std::string optSave;
+
+extern sf::Clock ticks;
+
 /**
 Methode a appeler lorsqu'une erreur peut intervenir dans le programme
 fatal : si true, éteint le programme

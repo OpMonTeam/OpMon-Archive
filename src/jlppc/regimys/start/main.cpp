@@ -39,6 +39,7 @@ ofstream rerrLog("logs/errLog.txt");
 
 string optSave("optSave.oparams");
 
+sf::Clock ticks;
 
 namespace Main {
 
@@ -133,6 +134,7 @@ int quit(int returne) {
 #include "../objects/Attaques.hpp"
 #include "../save/Save.hpp"
 int main(int argc, char *argv[]) {
+    ticks.restart();
     //Création de la chaine de caractère de version
     Main::oss << "Alpha " << Main::version << "." << Main::sousVers;
     Main::versionS = Main::oss.str();
