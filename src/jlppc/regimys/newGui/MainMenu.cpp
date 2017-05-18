@@ -68,7 +68,7 @@ void deleteVars() {
 
 int boucle0() {
     while(continuer) {
-        frame.pollEvent(events);
+        frame.waitEvent(events);
         switch(events.type) {
             QUIT
         }
@@ -118,6 +118,7 @@ int boucle0() {
         frame.draw(charge);
         frame.draw(options);
         frame.draw(exit);
+        cursor.setPosition(curPos[curPosI]);
         frame.draw(cursor);
 
         frame.display();
