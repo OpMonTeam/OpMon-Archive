@@ -8,8 +8,6 @@ Contient le namespace MainMenu
 #ifndef MAINMENU_HPP
 #define MAINMENU_HPP
 
-#include <SDL/SDL.h>
-#include <SDL/SDL_mixer.h>
 #include "MainFrame.hpp"
 
 namespace MainFrame {
@@ -18,18 +16,17 @@ Namespace contenant les éléments du menu principal
 */
 namespace MainMenu {
 
-extern SDL_Texture *fond;
-extern SDL_Texture *play;
-extern SDL_Texture *charge;
-extern SDL_Texture *options;
-extern SDL_Texture *exit;
-extern SDL_Texture *cursor;
-extern SDL_Rect curPos[4];
-extern SDL_Rect textPos[4];
-extern Mix_Music *fondMusTitle;
-extern Mix_Chunk *bruitArr;
-extern Mix_Chunk *bruitPush;
-extern Mix_Chunk *bruitNope;
+extern sf::Sprite fond;
+extern sf::Text play;
+extern sf::Text *charge;
+extern sf::Text *options;
+extern sf::Text *exit;
+extern sf::Sprite *cursor;
+extern sf::Vector2f curPos[4];
+extern sf::Music *fondMusTitle;
+extern sf::Sound *bruitArr;
+extern sf::Sound *bruitPush;
+extern sf::Sound *bruitNope;
 
 extern bool continuer;
 
