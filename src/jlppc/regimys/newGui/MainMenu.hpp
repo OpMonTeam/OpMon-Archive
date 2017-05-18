@@ -9,6 +9,8 @@ Contient le namespace MainMenu
 #define MAINMENU_HPP
 
 #include "MainFrame.hpp"
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 namespace MainFrame {
 /**
