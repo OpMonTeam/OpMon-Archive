@@ -35,16 +35,17 @@ Classe définissant une carte d'un lieu en particulier
 */
 class Plan {
 private:
-    SDL_Texture *couche1;
-    SDL_Texture *couche2;
-    Mix_Music *fond;
+    sf::Sprite couche1;
+    sf::Sprite couche2;
+    sf::Music fond;
     //Event events;
     int w;
     int h;
-    SDL_Texture *couche3;
+    sf::Sprite couche3;
+    std::string musicPath;
     int **passTab;
 public:
-    Plan(SDL_Texture *couche1, SDL_Texture *couche2, SDL_Texture *couche3, int w, int h, std::string filename, std::string fondPath);
+    Plan(sf::Texture couche1, sf::Texture couche2, sf::Texture couche3, int w, int h, std::string filename, std::string fondPath);
     ~Plan();
     int getH() const {
         return h;
@@ -55,32 +56,32 @@ public:
     int** getPassTab() const {
         return passTab;
     }
-    SDL_Texture* getCouche1() const {
+    sf::Sprite getCouche1() const {
         return couche1;
     }
-    SDL_Texture* getCouche2() const {
+    sf::Sprite getCouche2() const {
         return couche2;
     }
-    SDL_Texture* getCouche3() const {
+    sf::Sprite getCouche3() const {
         return couche3;
     }
-    Mix_Music* getFond() const {
+    sf::Music getFond() const {
         return fond;
     }
     //Event* getEvent(int x, int y){return events[y][x];}
 };
-/**
+/*/**
 Structure permettant de regrouper les SDL_Texture avec un SDL_Rect correspondant
-*/
+*//*
 struct J_Texture {
     SDL_Texture *texture;
     SDL_Rect rect;
 };
 /**
 Permet d'afficher une J_Texture
-*/
+*//*
 int J_RenderCopy(SDL_Renderer *renderer, J_Texture *texture);
 
-typedef struct J_Texture J_Texture;
+typedef struct J_Texture J_Texture;*/
 
 #endif // ELEMENTS_HPP
