@@ -101,6 +101,7 @@ void open() {
     {
         gererErreur("Impossible d'ouvrir le son de changement de dialogue.", false);
     }
+    dialogPass.setBuffer(buf);
     rlog << PRINT_TICKS << "Chargement des sprites globaux (Initializer)" << endl;
     Initializer::initSprites();
     rlog << PRINT_TICKS << "Chargement des variables de chaque partie" << endl;
