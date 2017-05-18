@@ -153,6 +153,7 @@ void open() {
     font = TTF_OpenFont("ressources\\fonts\\Default.ttf", 28);
 #else
     font = TTF_OpenFont("ressources/fonts/Default.ttf", 28);
+
 #endif
 
     if (font == NULL) {

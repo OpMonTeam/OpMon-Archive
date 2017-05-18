@@ -11,7 +11,8 @@ Contient le namespace OptionsMenu
 #include <iostream>
 #include "MainFrame.hpp"
 #include "MainMenu.hpp"
-#include <SDL/SDL.h>
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "Elements.hpp"
 
 namespace MainFrame{
@@ -21,26 +22,25 @@ Namespace contenant les éléments du menu des options
 */
 namespace OptionsMenu{
 
-    extern SDL_Texture *fondOpt;
-    extern SDL_Rect curseurOpt;
-    extern SDL_Rect curseurSnd;
-    extern J_Texture langFr;
-    extern J_Texture langEng;
-    extern J_Texture langEsp;
-    extern J_Texture txtRetour;
-    extern J_Texture txtOptions;
-    extern J_Texture txtOpt1;
-    extern J_Texture txtOpt2;
-    extern J_Texture txtOpt3;
-    extern J_Texture txtOpt4;
-    extern J_Texture txtOpt5;
-    extern SDL_Texture *rectSurb;
-    extern SDL_Color red;
+    extern sf::Sprite fondOpt;
+    //extern SDL_Rect curseurOpt;
+    //extern SDL_Rect curseurSnd;
+    extern sf::Text langFr;
+    extern sf::Text langEng;
+    extern sf::Text langEsp;
+    extern sf::Text txtRetour;
+    extern sf::Text txtOptions;
+    extern sf::Text txtOpt1;
+    extern sf::Text txtOpt2;
+    extern sf::Text txtOpt3;
+    extern sf::Text txtOpt4;
+    extern sf::Text txtOpt5;
+    extern sf::Sprite rectSurb;
 
-    extern J_Texture txtLang;
-    extern SDL_Texture *fondLangues;
-    extern J_Texture listeLangues[3];
-    extern SDL_Rect curPosLang[4];
+    extern sf::Text txtLang;
+    extern sf::Sprite fondLangues;
+    //extern sf::Text listeLangues[3];
+    extern sf::Vector2f curPosLang[4];
 
     int optionsMenu();
     void initVars();
