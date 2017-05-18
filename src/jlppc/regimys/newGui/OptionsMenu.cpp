@@ -8,131 +8,103 @@ UNS
 namespace MainFrame {
 namespace MainMenu {
 namespace OptionsMenu {
-//Variables fonctionnelles
-SDL_Color red = {255, 0, 0};
-SDL_Texture *fondOpt = NULL;
-SDL_Rect curseurOpt;
-SDL_Rect curseurSnd;
-J_Texture langFr;
-J_Texture langEng;
-J_Texture langEsp;
-J_Texture txtRetour;
-J_Texture txtOptions;
-J_Texture txtOpt1;
-J_Texture txtOpt2;
-J_Texture txtOpt3;
-J_Texture txtOpt4;
-J_Texture txtOpt5;
-SDL_Texture *rectSurb = NULL;
-SDL_Rect curPosOpt[6] = {};
+
+sf::Sprite fondOpt;
+sf::Text langFr;
+sf::Text langEng;
+sf::Text langEsp;
+sf::Text txtRetour;
+sf::Text txtOptions;
+sf::Text txtOpt1;
+sf::Text txtOpt2;
+sf::Text txtOpt3;
+sf::Text txtOpt4;
+sf::Text txtOpt5;
+sf::Sprite rectSurb = NULL;
+sf::Vector2f curPosOpt[6] = {};
 int optionSelect = -1;
 int curPosOptI = 0;
 int curPosLangI = 0;
 
-J_Texture txtLang;
-SDL_Texture *fondLangues = NULL;
-J_Texture listeLangues[3] = {};
-SDL_Rect curPosLang[4] = {};
+sf::Text txtLang;
+sf::Surface fondLangues;
+//J_Texture listeLangues[3] = {};
+sf::Vector2f curPosLang[4] = {};
 
 void initVars() {
 
 #ifdef _WIN32
-    OptionsMenu::fondOpt = IMG_LoadTexture(renderer, "ressources\\backgrounds\\options.png");
-    rectSurb = IMG_LoadTexture(renderer, "ressources\\sprites\\misc\\selectBar.png");
-    fondLangues = IMG_LoadTexture(renderer, "ressources\\backgrounds\\lang.png");
+    fondOpt.loadTextureFromFile("ressources\\backgrounds\\options.png");
+    rectSurb.loadTextureFromFile("ressources\\sprites\\misc\\selectBar.png");
+    fondLangues.loadTextureFromFile("ressources\\backgrounds\\lang.png");
 
 #else
-    OptionsMenu::fondOpt = IMG_LoadTexture(renderer, "ressources/backgrounds/options.png");
-    rectSurb = IMG_LoadTexture(renderer, "ressources/sprites/misc/selectBar.png");
-    fondLangues = IMG_LoadTexture(renderer, "ressources/backgrounds/lang.png");
+    fondOpt.loadTextureFromFile("ressources/backgrounds/options.png");
+    rectSurb.loadTextureFromFile("ressources/sprites/misc/selectBar.png");
+    fondLangues.loadTextureFromFile("ressources/backgrounds/lang.png");
 
 
 #endif // _WIN32
-    langFr = renderText(renderer, "Français", fonts[FONT_SIZE_DEFAULT], blanc, Encoding::UTF8);
-    langEng = renderText(renderer, "English", fonts[FONT_SIZE_DEFAULT], blanc);
-    langEsp = renderText(renderer, "Espa\u00F1ol", fonts[FONT_SIZE_DEFAULT], blanc, Encoding::UTF8);
-    txtRetour = renderText(renderer, kget("options.retour"), fonts[FONT_SIZE_DEFAULT], blanc);
-    txtOptions = renderText(renderer, kget("options.title"), fonts[FONT_SIZE_DEFAULT], blanc);
-    txtOpt1 = renderText(renderer, kget("options.ecran"), fonts[FONT_SIZE_DEFAULT], red);
-    txtOpt2 = renderText(renderer, kget("options.lang"), fonts[FONT_SIZE_DEFAULT], blanc);
-    txtOpt3 = renderText(renderer, kget("options.vol"), fonts[FONT_SIZE_DEFAULT], red);
-    txtOpt4 = renderText(renderer, kget("options.control"), fonts[FONT_SIZE_DEFAULT], red);
-    txtOpt5 = renderText(renderer, kget("options.credit"), fonts[FONT_SIZE_DEFAULT], red);
+    langFr.setString(L"Français");
+    langEng.setString("English");
+    langEsp.setString(L"Espa\u00F1ol");
+    txtRetour.setString(kget("options.retour"));
+    txtOptions.setString(kget("options.title"));
+    txtOpt1.setString(kget("options.ecran"));
+    txtOpt1.setColor(sf::Color::Red);
+    txtOpt2.setString(kget("options.lang"));
+    txtOpt3.setString(kget("options.vol"));
+    txtOpt3.setColor(sf::Color::Red);
+    txtOpt4.setString( kget("options.control"));
+    txtOpt4.setColor(sf::Color::Red);
+    txtOpt5.setString(kget("options.credit"));
+    txtOpt5.setColor(sf::Color::Red);
 
-    txtLang = renderText(renderer, kget("options.lang.title"), fonts[FONT_SIZE_DEFAULT], blanc);
+    txtLang.setString(kget("options.lang.title"));
 
 
-    txtOpt2.rect.x = txtOpt3.rect.x = txtOpt4.rect.x = txtOpt5.rect.x = txtOpt1.rect.x = 120;
-    txtOpt1.rect.y = 100;
-    txtOpt2.rect.y = 170;
-    txtOpt3.rect.y = 240;
-    txtOpt4.rect.y = 310;
-    txtOpt5.rect.y = 380;
+    txtOpt1.setPosition(120, 100);
+    txtOpt2.setPosition(120, 170);
+    txtOpt3.setPosition(120, 240);
+    txtOpt4.setPosition(120, 310);
+    txtOpt5.setPosition(120, 380);
 
-    langEsp.rect.x = langFr.rect.x = langEng.rect.x = 45;
-    langEng.rect.y = 100;
-    langEsp.rect.y = 170;
-    langFr.rect.y = 240;
+    langEsp.setPosition(45, 170);
+    langEng.setPosition(45, 100);
+    langFr.setPosition(45, 240);
 
-    txtRetour.rect.x = 55;
-    txtRetour.rect.y = 25;
+    txtRetour.setPosition(55, 25);
 
-    txtLang.rect.x = (txtOptions.rect.x = 230) + 20;
-    txtLang.rect.y = txtOptions.rect.y = 25;
+    txtLang.setPosition(250, 25);
+    txtOptions.setPosition(230, 25);
 
     curPosOpt[0].x = 23;
     curPosOpt[0].y = 17;
-    curPosOpt[0].w = 134;
-    curPosOpt[0].h = 49;
 
     curPosLang[0].x = 23;
     curPosLang[0].y = 17;
-    curPosLang[0].w = 134;
-    curPosLang[0].h = 49;
 
     for(int i = 1, j = 86; i < 6; i++) {
         curPosOpt[i].x = 23;
         curPosOpt[i].y = j;
-        curPosOpt[i].w = 464;
-        curPosOpt[i].h = 57;
         j+=69;
     }
 
     for(int i = 1, j = 86; i < 4; i++){
         curPosLang[i].x = 23;
         curPosLang[i].y = j;
-        curPosLang[i].w = 464;
-        curPosLang[i].h = 57;
         j+=69;
     }
-
-
-
-
 
 
 }
 
 void verifVars() {
-    if(OptionsMenu::fondOpt == NULL) {
-        rerrLog << "Erreur dans l'initialisation de l'image de fond des options" << endl;
-        gererErreur(IMG_GetError(), false);
-    }
+
 }
 
 void deleteVars() {
-    SDL_DestroyTexture(OptionsMenu::fondOpt);
-    SDL_DestroyTexture(langFr.texture);
-    SDL_DestroyTexture(langEng.texture);
-    SDL_DestroyTexture(langEsp.texture);
-    SDL_DestroyTexture(txtRetour.texture);
-    SDL_DestroyTexture(txtOptions.texture);
-    SDL_DestroyTexture(txtOpt1.texture);
-    SDL_DestroyTexture(txtOpt2.texture);
-    SDL_DestroyTexture(txtOpt3.texture);
-    SDL_DestroyTexture(txtOpt4.texture);
-    SDL_DestroyTexture(txtOpt5.texture);
-    SDL_DestroyTexture(rectSurb);
+
 }
 
 int optionsMenu() {
@@ -143,73 +115,67 @@ int optionsMenu() {
 
 int boucle() {
     while(continuer) {
-        SDL_WaitEvent(&events);
+        frame.waitEvent(events);
         switch(events.type) {
             QUIT
+        }
 
-        case SDL_KEYDOWN:
-            switch (events.key.keysym.sym) {
-            case SDLK_RETURN:
-
-                switch(curPosOptI) {
+        ESCAPE
+        else if(isKeyPressed(sf::Keyboard::Return)){
+            switch(curPosOptI) {
                 case 0:
                     return 0;
                 case 1:
-                    Mix_PlayChannel(0, bruitNope, 0);//Non disponible
+                    bruitNope.play();
                     break;
                 case 2:
                     boucleLang();
                     break;
                 case 3:
-                    Mix_PlayChannel(0, bruitNope, 0);//Non disponible
+                    bruitNope.play();//Non disponible
                     break;
                 case 4:
-                    Mix_PlayChannel(0, bruitNope, 0);//Non disponible
+                    bruitNope.play();//Non disponible
                     break;
                 case 5:
-                    Mix_PlayChannel(0, bruitNope, 0);//Non disponible
+                    bruitNope.play();//Non disponible
                     break;
-                }
-                break;
-
-            case SDLK_DOWN:
-                Mix_PlayChannel(2, bruitArr, 0);
-                curPosOptI++;
-                if(curPosOptI >= 6) {
-                    curPosOptI = 0;
-                } else if(curPosOptI < 0) {
-                    curPosOptI = 5;
-                }
-                break;
-
-            case SDLK_UP:
-                Mix_PlayChannel(2, bruitArr, 0);
+            }
+        }else if(isKeyPressed(sf::Keyboard::Up)){
+                bruitArr.play();
                 curPosOptI--;
                 if(curPosOptI >= 6) {
                     curPosOptI = 0;
                 } else if(curPosOptI < 0) {
                     curPosOptI = 5;
                 }
-                break;
-
-            case SDLK_BACKSPACE://Retour au menu
-                return 0;
-
-
-                ECHAP
-            }
-            break;
+        }else if(isKeyPressed(sf::Keyboard::Down)){
+                bruitArr.play();
+                curPosOptI++;
+                if(curPosOptI >= 6) {
+                    curPosOptI = 0;
+                } else if(curPosOptI < 0) {
+                    curPosOptI = 5;
+                }
+        }else if(isKeyPressed(sf::Keyboard::BackSpace)){
+            return 0;
         }
-        SDL_RenderCopy(renderer, OptionsMenu::fondOpt, NULL, &MainFrame::fond);
-        J_RenderCopy(renderer, &txtOpt1);
-        J_RenderCopy(renderer, &txtOpt2);
-        J_RenderCopy(renderer, &txtOpt3);
-        J_RenderCopy(renderer, &txtOpt4);
-        J_RenderCopy(renderer, &txtOpt5);
-        J_RenderCopy(renderer, &txtRetour);
-        J_RenderCopy(renderer, &txtOptions);
-        SDL_RenderCopy(renderer, rectSurb, NULL, &curPosOpt[curPosOptI]);
-        SDL_RenderPresent(renderer);
+
+
+        frame.clear(sf::Color::White);
+
+        frame.draw(fondOpt);
+        frame.draw(txtOpt1);
+        frame.draw(txtOpt2);
+        frame.draw(txtOpt3);
+        frame.draw(txtOpt4);
+        frame.draw(txtOpt5);
+        frame.draw(txtRetour);
+        frame.draw(txtOptions);
+        rectSurb.setPosition(curPosOpt[curPosOptI]);
+        frame.draw(rectSurb);
+
+        frame.display();
 
     }
 
@@ -219,15 +185,14 @@ int boucle() {
 
 int boucleLang(){
     while(continuer) {
-        SDL_WaitEvent(&events);
+        frame.waitEvent(events);
         switch(events.type) {
             QUIT
+        }
 
-        case SDL_KEYDOWN:
-            switch (events.key.keysym.sym) {
-            case SDLK_RETURN:
-
-                switch(curPosOptI) {//Choix de la langue
+        ESCAPE
+        else if(isKeyPressed(sf::Keyboard::Return)){
+            switch(curPosOptI) {//Choix de la langue
                 case 0://Bouton Retour
                     return 0;
                 case 1:
@@ -264,44 +229,38 @@ int boucleLang(){
                     return 0;
                     break;
                 }
-                break;
-
-            case SDLK_DOWN:
-                Mix_PlayChannel(2, bruitArr, 0);
-                curPosOptI++;
-                if(curPosOptI >= 4) {
-                    curPosOptI = 0;
-                } else if(curPosOptI < 0) {
-                    curPosOptI = 3;
-                }
-                break;
-
-            case SDLK_UP:
-                Mix_PlayChannel(2, bruitArr, 0);
+        }else if(isKeyPressed(sf::Keyboard::Up)){
+                bruitArr.play();
                 curPosOptI--;
                 if(curPosOptI >= 4) {
                     curPosOptI = 0;
                 } else if(curPosOptI < 0) {
                     curPosOptI = 3;
                 }
-                break;
-
-            case SDLK_BACKSPACE://Retour au menu Options
-                return 0;
-
-
-                ECHAP
-            }
-            break;
+        }else if(isKeyPressed(sf::Keyboard::Down)){
+                bruitArr.play();
+                curPosOptI++;
+                if(curPosOptI >= 4) {
+                    curPosOptI = 0;
+                } else if(curPosOptI < 0) {
+                    curPosOptI = 3;
+                }
+        }else if(isKeyPressed(sf::Keyboard::BackSpace)){
+            return 0;
         }
-        SDL_RenderCopy(renderer, OptionsMenu::fondLangues, NULL, &MainFrame::fond);
-        J_RenderCopy(renderer, &langEng);
-        J_RenderCopy(renderer, &langEsp);
-        J_RenderCopy(renderer, &langFr);
-        J_RenderCopy(renderer, &txtRetour);
-        J_RenderCopy(renderer, &txtLang);
-        SDL_RenderCopy(renderer, rectSurb, NULL, &curPosOpt[curPosOptI]);
-        SDL_RenderPresent(renderer);
+
+        frame.clear(sf::Color::White);
+
+        frame.draw(fondLangues);
+        frame.draw(langEng);
+        frame.draw(langEsp);
+        frame.draw(langFr);
+        frame.draw(txtRetour);
+        frame.draw(txtLang);
+        rectSurb.setPosition(curPosOpt[curPosOptI]);
+        frame.draw(rectSurb);
+
+        frame.display();
 
     }
 
