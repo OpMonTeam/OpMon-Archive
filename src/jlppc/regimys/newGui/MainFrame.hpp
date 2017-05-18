@@ -19,8 +19,16 @@ Permet d'ouvrir la fenetre du jeu et de charger les ressources essensielles. Con
 #define charLineDialog 33
 #define kget StringKeys::get
 
+#define QUIT case sf::Event::Closed:\
+                return -1;
+#define ECHAP if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){return -1;}
+
+#define isKeyPressed sf::Keyboard::isKeyPressed
+
 #define POURCENT(nbre, de) (nbre * de) / 100
 #define FONT_SIZE_DEFAULT 28
+#define loadTextureFromFile(path) setTexture(sf::Texture().loadFromFile(path))
+#define loadSoundFromFile(path) setBuffer(sf::SoundBuffer().loadFromFile(path))
 
 /**Contient toutes les methodes permettant de gérer et de faire fonctionner l'interface graphique
  * Contient aussi le déroulement des évenements
