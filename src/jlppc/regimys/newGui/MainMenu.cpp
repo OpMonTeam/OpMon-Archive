@@ -9,30 +9,29 @@ UNS
 namespace MainFrame {
 namespace MainMenu {
 
-SDL_Texture *fond = NULL;
-SDL_Texture *play = NULL;
-SDL_Texture *charge = NULL;
-SDL_Texture *options = NULL;
-SDL_Texture *exit = NULL;
-SDL_Texture *cursor = NULL;
-SDL_Rect curPos[4] = {};
-SDL_Rect textPos[4] = {};
+ sf::Sprite fond;
+ sf::Text play;
+ sf::Text charge;
+ sf::Text options;
+ sf::Text exit;
+ sf::Sprite cursor;
+ sf::Vector2f curPos[4];
+ sf::Music fondMusTitle;
+ sf::Sound bruitArr;
+ sf::Sound bruitPush;
+ sf::Sound bruitNope;
 int curPosI = 0;
-Mix_Music *fondMusTitle = NULL;
-Mix_Chunk *bruitArr = NULL;
-Mix_Chunk *bruitPush = NULL;
-Mix_Chunk *bruitNope = NULL;
 
 bool continuer = true;
 
 void initVars() {
+    sf::Text *textPos[4] = {&play, &charge, &options, &exit};
     for(int i = 0, j = 175; i < 4; i++) {
         curPos[i].x = 10;
         curPos[i].y = j;
         curPos[i].w = 30;
         curPos[i].h = 30;
-        textPos[i].x = 60;
-        textPos[i].y = j;
+        textPos[i]->setPosition(sf::Vector2f(60, j));
         j+=85;
     }
 #ifdef _WIN32
