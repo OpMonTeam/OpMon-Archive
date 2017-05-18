@@ -10,7 +10,7 @@ Contient la définition du namespace Animations.
 
 #include <iostream>
 #include "../start/main.hpp"
-#include <SDL/SDL.h>
+#include <SFML/Graphics.hpp>
 
 /*Define permettant de vérifier si les animations ont été initialisées*/
 #define ANIM_CHECK_INIT \
@@ -32,8 +32,8 @@ Libère les ressources associées aux animations
 */
 void deleteAnims();
 
-int animFenOpen(SDL_Renderer *renderer, SDL_Texture *fond);
-int animFenClose(SDL_Renderer *renderer, SDL_Texture *fond);
+int animFenOpen(sf::RenderWindow const& window, sf::Sprite const& fond);
+int animFenClose(sf::RenderWindow const& window, sf::Sprite const& fond);
 
 }
 
