@@ -847,6 +847,39 @@ void initAtkLvls() {
     pb( atkPokeLvl[54], NumberedArray(0, Tourniquet::classe),  NumberedArray(0, Griffe::classe),  NumberedArray(4, MimiQueue::classe),  NumberedArray(8, PistoletAO::classe),  NumberedArray(11, ChocMental::classe),  NumberedArray(15, ComboGriffe::classe),  NumberedArray(18, Vibraqua::classe),  NumberedArray(22, Entrave::classe),  NumberedArray(25, Grincement::classe),  NumberedArray(29, HydroQueue::classe),  NumberedArray(32, PsykoudBoul::classe),  NumberedArray(36, Detrempage::classe),  NumberedArray(39, Boost::classe),  NumberedArray(43, Amnesie::classe),  NumberedArray(46, Hydrocanon::classe),  NumberedArray(50, ZoneEtrange::classe);
       	*/
 }
+    sf::Texture texturePP[4];
+    sf::Texture marchePP[4];
+    sf::Texture marchePP2[4];
+void initTextures(){
+    using namespace Side;
+    #ifdef _WIN32
+    texturePP[FACE].loadFromFile("ressources\\sprites\\chara\\pp\\pp0.png");
+    texturePP[DROITE].loadFromFile("ressources\\sprites\\chara\\pp\\pp1.png");
+    texturePP[GAUCHE].loadFromFile("ressources\\sprites\\chara\\pp\\pp2.png");
+    texturePP[DOS].loadFromFile("ressources\\sprites\\chara\\pp\\pp3.png");
+    marchePP[FACE].loadFromFile("ressources\\sprites\\chara\\pp\\mpp0.png");
+    marchePP[DROITE].loadFromFile("ressources\\sprites\\chara\\pp\\mpp1.png");
+    marchePP[GAUCHE].loadFromFile("ressources\\sprites\\chara\\pp\\mpp2.png");
+    marchePP[DOS].loadFromFile("ressources\\sprites\\chara\\pp\\mpp3.png");
+    marchePP2[FACE].loadFromFile("ressources\\sprites\\chara\\pp\\mpp20.png");
+    marchePP2[DROITE].loadFromFile("ressources\\sprites\\chara\\pp\\mpp21.png");
+    marchePP2[GAUCHE].loadFromFile("ressources\\sprites\\chara\\pp\\mpp22.png");
+    marchePP2[DOS].loadFromFile("ressources\\sprites\\chara\\pp\\mpp23.png");;
+#else
+    texturePP[FACE].loadFromFile("ressources/sprites/chara/pp/pp0.png");
+    texturePP[DROITE].loadFromFile("ressources/sprites/chara/pp/pp1.png");
+    texturePP[GAUCHE].loadFromFile("ressources/sprites/chara/pp/pp2.png");
+    texturePP[DOS].loadFromFile("ressources/sprites/chara/pp/pp3.png");
+    marchePP[FACE].loadFromFile("ressources/sprites/chara/pp/mpp0.png");
+    marchePP[DROITE].loadFromFile("ressources/sprites/chara/pp/mpp1.png");
+    marchePP[GAUCHE].loadFromFile("ressources/sprites/chara/pp/mpp2.png");
+    marchePP[DOS].loadFromFile("ressources/sprites/chara/pp/mpp3.png");
+    marchePP2[FACE].loadFromFile("ressources/sprites/chara/pp/mpp20.png");
+    marchePP2[DROITE].loadFromFile("ressources/sprites/chara/pp/mpp21.png");
+    marchePP2[GAUCHE].loadFromFile("ressources/sprites/chara/pp/mpp22.png");
+    marchePP2[DOS].loadFromFile("ressources/sprites/chara/pp/mpp23.png");
+    #endif // _WIN32
+}
 
 void initSprites() {
     using namespace std;
@@ -856,6 +889,8 @@ void initSprites() {
     initPlans();
     rlog << PRINT_TICKS << "Initialisation des animations" << endl;
     Animations::initAnims();
+    rlog << PRINT_TICKS << "Initialisation des textures" << endl;
+    initTextures();
     //Init Sprites
 
 }
@@ -897,26 +932,21 @@ void initPlans() {
                             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
     };
     //Chargement des couches
+    sf::Texture couche1;
+    sf::Texture couche2;
+    sf::Texture couche3;
 #ifdef _WIN32
-    SDL_Texture *couche1 = IMG_LoadTexture(MainFrame::renderer, "ressources\\maps\\fe\\fe1.png");
-    SDL_Texture *couche2 = IMG_LoadTexture(MainFrame::renderer, "ressources\\maps\\fe\\fe2.png");
-    SDL_Texture *couche3 = IMG_LoadTexture(MainFrame::renderer, "ressources\\maps\\fe\\fe3.png");
+    couche1.loadFromFile("ressources\\maps\\fe\\fe1.png");
+    couche2.loadFileFromFile("ressources\\maps\\fe\\fe2.png");
+    couche3.loadFileFromFile("ressources\\maps\\fe\\fe3.png");
     string path = "ressources\\audio\\music\\faubourgeuvi.ogg";
 #else
-    SDL_Texture *couche1 = IMG_LoadTexture(MainFrame::renderer, "ressources/maps/fe/fe1.png");
-    SDL_Texture *couche2 = IMG_LoadTexture(MainFrame::renderer, "ressources/maps/fe/fe2.png");
-    SDL_Texture *couche3 = IMG_LoadTexture(MainFrame::renderer, "ressources/maps/fe/fe3.png");
+    couche1.loadFromFile("ressources/maps/fe/fe1.png");
+    couche2.loadFileFromFile("ressources/maps/fe/fe2.png");
+    couche3.loadFileFromFile("ressources/maps/fe/fe3.png");
     string path = "ressources/audio/music/faubourgeuvi.ogg";
 #endif
     //Vérification des couches
-    if(couche1 == NULL || couche2 == NULL || couche3 == NULL) {
-        rerrLog << "Erreur. Un des plans de Faubourg euvi est NULL" << endl;
-        if(couche1 == NULL) {
-            gererErreur(IMG_GetError(), true);
-        } else {
-            gererErreur(IMG_GetError(), false);
-        }
-    }
     //Ouverture du fichier temporaire pour
     ofstream tempFile("feTemp.tmp");
     if(!tempFile) {
