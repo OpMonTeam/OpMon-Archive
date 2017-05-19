@@ -22,7 +22,7 @@
 #include "../../utils/File.hpp"
 #include "Initializer.hpp"
 #include "StringKeys.hpp"
-#include "../gui/MainFrame.hpp"
+#include "../newGui/MainFrame.hpp"
 #include "../save/OptionsSave.hpp"
 
 //#define DEBUG

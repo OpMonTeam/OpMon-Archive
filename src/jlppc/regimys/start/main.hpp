@@ -21,6 +21,7 @@ Contient des fonctions necessaires au programme
 tabType* objActuel = NULL;\
 objActuel = &(tabName[itor]);\
 
+#define GET_TICKS ticks.getElapsedTime().asMilliseconds()
 
 #define PRINT_TICKS "[T = " << ticks.getElapsedTime().asMilliseconds() << "] - "
 /**Le log principal*/

@@ -1076,3 +1076,233 @@
 	<vector>
 	"../start/StringKeys.hpp"
 
+1494681161 source:/home/jlppc/Bureau/OpMon/src/jlppc/regimys/enums/Caractere.cpp
+	"Caractere.hpp"
+
+1494681161 /home/jlppc/Bureau/OpMon/src/jlppc/regimys/enums/Caractere.hpp
+	"Enums.hpp"
+
+1494681161 /home/jlppc/Bureau/OpMon/src/jlppc/regimys/enums/Enums.hpp
+
+1494681161 source:/home/jlppc/Bureau/OpMon/src/jlppc/regimys/enums/Enums.cpp
+	"Enums.hpp"
+
+1494681161 source:/home/jlppc/Bureau/OpMon/src/jlppc/regimys/evolution/EItem.cpp
+	"evolutions.hpp"
+
+1494681161 /home/jlppc/Bureau/OpMon/src/jlppc/regimys/evolution/evolutions.hpp
+	<iostream>
+	"../objects/item/Item.hpp"
+	"Evolution.hpp"
+
+1494681161 /home/jlppc/Bureau/OpMon/src/jlppc/regimys/objects/item/Item.hpp
+	<iostream>
+	"../../enums/Enums.hpp"
+	"../../../utils/Class.hpp"
+
+1494681161 /home/jlppc/Bureau/OpMon/src/jlppc/utils/Class.hpp
+	<iostream>
+
+1494681161 /home/jlppc/Bureau/OpMon/src/jlppc/regimys/evolution/Evolution.hpp
+	<iostream>
+	"../objects/OpMon.hpp"
+	"../../utils/Class.hpp"
+
+1494681161 /home/jlppc/Bureau/OpMon/src/jlppc/regimys/objects/OpMon.hpp
+	<iostream>
+	<cmath>
+	"../enums/Caractere.hpp"
+	"Espece.hpp"
+	"../../utils/Utils.hpp"
+	"item/Item.hpp"
+	"item/IOpball.hpp"
+
+1494681161 /home/jlppc/Bureau/OpMon/src/jlppc/regimys/objects/Espece.hpp
+	<iostream>
+	"../../utils/NumberedArray.hpp"
+	"item/CT.hpp"
+	<vector>
+
+1494681161 /home/jlppc/Bureau/OpMon/src/jlppc/utils/NumberedArray.hpp
+	<iostream>
+	"Class.hpp"
+
+1494681161 /home/jlppc/Bureau/OpMon/src/jlppc/regimys/objects/item/CT.hpp
+	"../../../utils/Class.hpp"
+	"Item.hpp"
+	"../Attaque.hpp"
+
+1494681161 /home/jlppc/Bureau/OpMon/src/jlppc/regimys/objects/Attaque.hpp
+	<iostream>
+	"../../utils/Utils.hpp"
+	"../enums/Enums.hpp"
+	"../../utils/Class.hpp"
+
+1494681161 /home/jlppc/Bureau/OpMon/src/jlppc/utils/Utils.hpp
+	<ctime>
+	<cstdlib>
+	<iostream>
+
+1494681161 /home/jlppc/Bureau/OpMon/src/jlppc/regimys/objects/item/IOpball.hpp
+	<iostream>
+	"Item.hpp"
+
+1494681161 source:/home/jlppc/Bureau/OpMon/src/jlppc/regimys/evolution/ELand.cpp
+	"evolutions.hpp"
+
+1494681161 source:/home/jlppc/Bureau/OpMon/src/jlppc/regimys/evolution/ELevel.cpp
+	"evolutions.hpp"
+
+1494681161 source:/home/jlppc/Bureau/OpMon/src/jlppc/regimys/evolution/ELove.cpp
+	"evolutions.hpp"
+
+1494681161 source:/home/jlppc/Bureau/OpMon/src/jlppc/regimys/evolution/ENope.cpp
+	"evolutions.hpp"
+
+1494681161 source:/home/jlppc/Bureau/OpMon/src/jlppc/regimys/evolution/ETrade.cpp
+	"evolutions.hpp"
+
+1494681161 source:/home/jlppc/Bureau/OpMon/src/jlppc/regimys/evolution/ETradeItem.cpp
+	"evolutions.hpp"
+
+1494681161 source:/home/jlppc/Bureau/OpMon/src/jlppc/regimys/evolution/Evolution.cpp
+	"Evolution.hpp"
+
+1495200237 source:/home/jlppc/Bureau/OpMon/src/jlppc/regimys/newGui/Animations.cpp
+	"Animations.hpp"
+	"MainFrame.hpp"
+
+1495200256 /home/jlppc/Bureau/OpMon/src/jlppc/regimys/newGui/Animations.hpp
+	<iostream>
+	"../start/main.hpp"
+	<SFML/Graphics.hpp>
+
+1495196925 /home/jlppc/Bureau/OpMon/src/jlppc/regimys/start/main.hpp
+	<iostream>
+	<fstream>
+	"../../utils/File.hpp"
+	"../playercore/Player.hpp"
+	<sstream>
+	<SFML/System.hpp>
+
+1494681161 /home/jlppc/Bureau/OpMon/src/jlppc/utils/File.hpp
+	<iostream>
+	<fstream>
+	"Class.hpp"
+
+1494681161 /home/jlppc/Bureau/OpMon/src/jlppc/regimys/playercore/Player.hpp
+	<iostream>
+	<vector>
+	"Equipe.hpp"
+	"../objects/item/Item.hpp"
+
+1494681161 /home/jlppc/Bureau/OpMon/src/jlppc/regimys/playercore/Equipe.hpp
+	<iostream>
+	"../objects/OpMon.hpp"
+
+1495200121 /home/jlppc/Bureau/OpMon/src/jlppc/regimys/newGui/MainFrame.hpp
+	"Elements.hpp"
+	"../start/StringKeys.hpp"
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+
+1495201425 /home/jlppc/Bureau/OpMon/src/jlppc/regimys/newGui/Elements.hpp
+	<iostream>
+	<vector>
+	<SFML/Audio.hpp>
+	<SFML/Graphics.hpp>
+
+1494681161 /home/jlppc/Bureau/OpMon/src/jlppc/regimys/start/StringKeys.hpp
+	<iostream>
+	<vector>
+	<fstream>
+
+1495200522 source:/home/jlppc/Bureau/OpMon/src/jlppc/regimys/newGui/Elements.cpp
+	"Elements.hpp"
+	<cstdlib>
+	"../start/main.hpp"
+	"../start/Initializer.hpp"
+	"MainFrame.hpp"
+
+1495200419 /home/jlppc/Bureau/OpMon/src/jlppc/regimys/start/Initializer.hpp
+	<iostream>
+	<vector>
+	"../../utils/NumberedArray.hpp"
+	"../objects/Espece.hpp"
+	"../evolution/evolutions.hpp"
+	<SFML/Audio.hpp>
+	<SFML/Graphics.hpp>
+	"../newGui/Elements.hpp"
+
+1495052908 source:/home/jlppc/Bureau/OpMon/src/jlppc/regimys/newGui/Events.cpp
+	"Events.hpp"
+
+1495052908 /home/jlppc/Bureau/OpMon/src/jlppc/regimys/newGui/Events.hpp
+	"Elements.hpp"
+	"MainFrame.hpp"
+
+1495200875 source:/home/jlppc/Bureau/OpMon/src/jlppc/regimys/newGui/MainFrame.cpp
+	"MainFrame.hpp"
+	<iostream>
+	"../start/main.hpp"
+	<SFML/Graphics.hpp>
+	<cstring>
+	"../start/StringKeys.hpp"
+	"../start/main.hpp"
+	<string>
+	<SFML/Audio.hpp>
+	"MainMenu.hpp"
+	"../start/Initializer.hpp"
+	"Overworld.hpp"
+	"StartScene.hpp"
+
+1495200855 /home/jlppc/Bureau/OpMon/src/jlppc/regimys/newGui/MainMenu.hpp
+	"MainFrame.hpp"
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+
+1495201200 /home/jlppc/Bureau/OpMon/src/jlppc/regimys/newGui/Overworld.hpp
+	"MainFrame.hpp"
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+
+1495201840 /home/jlppc/Bureau/OpMon/src/jlppc/regimys/newGui/StartScene.hpp
+	"../start/bigDefines.hxx"
+	<SFML/Audio.hpp>
+	<SFML/Graphics.hpp>
+
+1494681161 /home/jlppc/Bureau/OpMon/src/jlppc/regimys/start/bigDefines.hxx
+
+1495200925 source:/home/jlppc/Bureau/OpMon/src/jlppc/regimys/newGui/MainMenu.cpp
+	"MainMenu.hpp"
+	"../start/main.hpp"
+	<iostream>
+	"OptionsMenu.hpp"
+
+1495170638 /home/jlppc/Bureau/OpMon/src/jlppc/regimys/newGui/OptionsMenu.hpp
+	<iostream>
+	"MainFrame.hpp"
+	"MainMenu.hpp"
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"Elements.hpp"
+
+1495201037 source:/home/jlppc/Bureau/OpMon/src/jlppc/regimys/newGui/OptionsMenu.cpp
+	"OptionsMenu.hpp"
+	"../enums/Enums.hpp"
+	"../start/main.hpp"
+	"../save/OptionsSave.hpp"
+	"MainFrame.hpp"
+
+1494681161 /home/jlppc/Bureau/OpMon/src/jlppc/regimys/save/OptionsSave.hpp
+	<iostream>
+	<sstream>
+	<fstream>
+	<vector>
+	"../start/StringKeys.hpp"
+
+1495201650 source:/home/jlppc/Bureau/OpMon/src/jlppc/regimys/newGui/Overworld.cpp
+	"Overworld.hpp"
+	"../start/Initializer.hpp"
+	"../start/main.hpp"
+

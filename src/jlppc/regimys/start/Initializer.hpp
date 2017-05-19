@@ -20,7 +20,7 @@ Contient la définition des methodes qui permettent d'initialiser les éléments
 #define ATK_ADD_LIST(OpID, atkLength) pb(atkOpLvl[(OpId)], tab##OpId , (atkLength) )
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-#include "../gui/Elements.hpp"
+#include "../newGui/Elements.hpp"
 //->NoDoc
 namespace Initializer {
 extern Espece *listeOp[OP_NUMBER];
