@@ -25,6 +25,7 @@ bool mapMove[] = {true, true, true, true};
 int startFrames = 0;
 int ppPosX = 17;
 int ppPosY = 15;
+std::string musicPath;
 
 void down() {
     if(anim == -1) {//Si une animation n'est pas déjà en cours
@@ -111,38 +112,11 @@ void initVars() {
     fond = actuel->getFond();
     mapPos.x = -(8*SQUARE);
     mapPos.y = -(8*SQUARE);
-    mapPos.h = 1024;
-    mapPos.w = 1024;
     ppPos.x = mapPos.x + (ppPosX*SQUARE) + 16;
     ppPos.y = mapPos.y + (ppPosY*SQUARE);
-    ppPos.w = 64;
-    ppPos.h = 64;
 
 }
 void verifVars() {
-    rlog << PRINT_TICKS << "Vérification des variables" << endl;
-    if(actuel == NULL) {
-        gererErreur("Map du fauxbourg euvi manquante. Erreur.", true);
-    }
-    for(int i = 0; i < 4; i++) {
-        if(spritePP[i] == NULL) {
-            rerrLog << "Sprite du PP n°"<< i << " manquant." << endl;
-            gererErreur(IMG_GetError(), false);
-        }
-    }
-    for(int i = 0; i < 4; i++) {
-        if(marchePP[i] == NULL) {
-            rerrLog << "Sprite de marche du PP n°"<< i << " manquant." << endl;
-            gererErreur(IMG_GetError(), false);
-        }
-    }
-    for(int i = 0; i < 4; i++) {
-        if(marche2PP[i] == NULL) {
-            rerrLog << "Sprite de marche 2 du PP n°"<< i << " manquant." << endl;
-            gererErreur(IMG_GetError(), false);
-
-        }
-    }
 
 }
 
@@ -150,24 +124,12 @@ int overworld() {
     rlog << PRINT_TICKS << "Entrée dans l'overworld..." << endl;
     verifVars();
     //Début de la musique
-    Mix_PlayMusic(fond, -1);
-    Mix_VolumeMusic(MIX_MAX_VOLUME / 2);
+    actuel->getFond().play();
     return boucle();
 }
 
 void deleteVars() {
-    rlog << PRINT_TICKS << "Suppression des variables de l'overworld..." << endl;
-    for(int i = 0; i < 8; i++) {
-        if(i < 4) {
-            if(spritePP[i] != NULL) {
-                SDL_DestroyTexture(spritePP[i]);
-            }
-        } else {
-            if(marchePP[i - 4] != NULL) {
-                SDL_DestroyTexture(marchePP[i - 4]);
-            }
-        }
-    }
+
 }
 
 int boucle() {
@@ -176,9 +138,9 @@ int boucle() {
     int animsCounter = 0;
     while(continuer) {
         while (continuer) {
-            if ((SDL_GetTicks() - ancientTick) >= (FPS_TICKS - 5)) {//Limitation de FPS un peu plus rapide
+            if ((ticks.getElapsedTime().asMilliseconds() - ancientTick) >= (FPS_TICKS - 5)) {//Limitation de FPS un peu plus rapide
                 frames++;
-                rerrLog << "Liste vars : (tick n°" << SDL_GetTicks() << ")" << endl;
+                /*rerrLog << "Liste vars : (tick n°" << SDL_GetTicks() << ")" << endl;
                 rerrLog << "Frames : " << frames << endl;
                 rerrLog << "ancientTick : " << ancientTick << endl;
                 rerrLog << "anim : " << anim << endl;
@@ -186,13 +148,11 @@ int boucle() {
                 rerrLog << "anims : " << anims << endl;
                 rerrLog << "pressed : " << pressed << endl;
                 rerrLog << "startFrames : " << startFrames << endl;
-                rerrLog << "Event : ";
+                rerrLog << "Event : ";*/
 
-                ancientTick = SDL_GetTicks();
+                ancientTick = ticks.getElapsedTime().asMilliseconds();
 
-                events.type = SDL_FIRSTEVENT;
-
-                SDL_PollEvent(&events);
+                frame.pollEvent(events);
 
 
 
@@ -266,13 +226,22 @@ int boucle() {
                                 rerrLog << "WTE?" << endl;
                 }
                 rerrLog << endl;
-                if(actuel->getFond() != fond) {
-                    Mix_PlayMusic(fond, -1);
-                    Mix_VolumeMusic(MIX_MAX_VOLUME / 2);
+                if(actuel->getMusicPath() != musicPath) {
+                    actuel->getFond().play();
+                }
+                ESCAPE
+                else if(isKeyPressed(sf::Keyboard::Up)){
+                    down();
+                }else if(isKeyPressed(sf::Keyboard::Down)){
+                    up();
+                }else if(isKeyPressed(sf::Keyboard::Right)){
+                    right();
+                }else if(isKeyPressed(sf::Keyboard::Left)){
+                    left();
                 }
                 switch(pressed){
                 case DOS:
-                    down();
+
                     break;
                 case FACE:
                     up();
