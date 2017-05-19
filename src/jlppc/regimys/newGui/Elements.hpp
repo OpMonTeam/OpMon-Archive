@@ -68,6 +68,10 @@ public:
     sf::Music getFond() const {
         return fond;
     }
+
+    std::string getMusicPath() const {
+        return musicPath;
+    }
     //Event* getEvent(int x, int y){return events[y][x];}
 };
 /*/**
