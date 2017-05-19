@@ -2,6 +2,7 @@
 #include "../start/Initializer.hpp"
 #include "../start/main.hpp"
 #define SQUARE 32
+#define FPS_TICKS 33
 UNS
 namespace MainFrame {
 namespace Overworld {
@@ -11,7 +12,7 @@ bool continuer = true;
 long ancientTick = 0;
 bool joypressed = false;
 bool mapChanged = true;
-sf::Music fond;
+sf::Music *fond;
 Plan *actuel = NULL;
 sf::Sprite personnage;
 sf::Vector2f ppPos;
@@ -124,7 +125,7 @@ int overworld() {
     rlog << PRINT_TICKS << "Entrée dans l'overworld..." << endl;
     verifVars();
     //Début de la musique
-    actuel->getFond().play();
+    actuel->getFond()->play();
     return boucle();
 }
 
@@ -154,127 +155,52 @@ int boucle() {
 
                 frame.pollEvent(events);
 
-
-
                 switch (events.type) {
                     QUIT
-
-
-                case SDL_KEYDOWN:
-                    switch (events.key.keysym.sym) {
-                        ECHAP
-
-                    case SDLK_DOWN:
-                        //if(pressed == -1 || pressed == DOS){
-                            pressed = DOS;
-
-                        //}
-                        rerrLog << "DOWN" << endl;
-                        break;
-                    case SDLK_UP:
-                        //if(pressed == -1 || pressed == FACE){
-                            pressed = FACE;
-                        //}
-                        rerrLog << "UP" << endl;
-                        break;
-                    case SDLK_RIGHT:
-                        //if(pressed == -1 || pressed == DROITE){
-                            pressed = DROITE;
-                        //}
-                        rerrLog << "RIGHT" << endl;
-                        break;
-                    case SDLK_LEFT:
-                        //if(pressed == -1 || pressed == GAUCHE){
-                            pressed = GAUCHE;
-
-                        //}
-                        rerrLog << "LEFT" << endl;
-                        break;
-                    case SDLK_m:
-                        return 2;
-                        break;
-                    default:
-                        pressed = -1;
-
-                    }
-                    break;
-
-                    case SDL_KEYUP:
-                    rerrLog << "Keyup" << endl;
-                    if(pressed != -1 && anim == -1){
-                        pressed = -1;
-                    }
-                    break;
-
-
-
-                case SDL_JOYBUTTONDOWN:
-                    if (!joypressed) {
-                        joypressed = true;
-                        switch (events.jbutton.button) {
-                            JOYQUIT
-                        }
-                    }
-
-                    /*case SDL_WINDOWEVENT:
-                        switch (events.window.event) {
-                            case SDL_WINDOWEVENT_RESIZED:
-                                break;
-                        }
-                        break;*/
-                            default:
-                                rerrLog << "WTE?" << endl;
                 }
                 rerrLog << endl;
                 if(actuel->getMusicPath() != musicPath) {
-                    actuel->getFond().play();
+                    actuel->getFond()->play();
                 }
-                ESCAPE
-                else if(isKeyPressed(sf::Keyboard::Up)){
+                ECHAP
+                if(isKeyPressed(sf::Keyboard::Up)){
+                    pressed = DOS;
                     down();
                 }else if(isKeyPressed(sf::Keyboard::Down)){
+                    pressed = FACE;
                     up();
                 }else if(isKeyPressed(sf::Keyboard::Right)){
+                    pressed = DROITE;
                     right();
                 }else if(isKeyPressed(sf::Keyboard::Left)){
+                    pressed = GAUCHE;
                     left();
+                }else if(isKeyPressed(sf::Keyboard::M)){
+                    return 2;
                 }
-                switch(pressed){
-                case DOS:
-
-                    break;
-                case FACE:
-                    up();
-                    break;
-                case DROITE:
-                    right();
-                    break;
-                case GAUCHE:
-                    left();
-                    break;
-                }
-                SDL_RenderClear(renderer);
-                SDL_RenderCopy(renderer, actuel->getCouche1(), NULL, &mapPos);
-                SDL_RenderCopy(renderer, actuel->getCouche2(), NULL, &mapPos);
+                frame.clear(sf::Color::White);
+                actuel->setPos(mapPos);
+                frame.draw(actuel->getCouche1());
+                frame.draw(actuel->getCouche2());
                 //Animations
                 if(anim != -1 && !anims) {
                     if(anim == DOS) {
-                        SDL_RenderCopy(renderer, marchePP[FACE], NULL, &ppPos);
+                        personnage.setTexture(Initializer::marchePP[FACE]);
                     } else if(anim == FACE) {
-                        SDL_RenderCopy(renderer, marchePP[DOS], NULL, &ppPos);
+                        personnage.setTexture(Initializer::marchePP[DOS]);
                     } else {
-                        SDL_RenderCopy(renderer, marchePP[anim], NULL, &ppPos);
+                        personnage.setTexture(Initializer::marchePP[anim]);
                     }
                     animsCounter++;
                     anims = animsCounter > 8;
 
                 } else if(anim != -1 && anims) {
                     if(anim == DOS) {
-                        SDL_RenderCopy(renderer, marche2PP[FACE], NULL, &ppPos);
+                        personnage.setTexture(Initializer::marchePP2[FACE]);
                     } else if(anim == FACE) {
-                        SDL_RenderCopy(renderer, marche2PP[DOS], NULL, &ppPos);
+                        personnage.setTexture(Initializer::marchePP2[DOS]);
                     } else {
-                        SDL_RenderCopy(renderer, marche2PP[anim], NULL, &ppPos);
+                        personnage.setTexture(Initializer::marchePP2[anim]);
                     }
                     animsCounter++;
                     if(animsCounter > 16) {
@@ -282,10 +208,12 @@ int boucle() {
                         animsCounter = 0;
                     }
                 } else {
-                    SDL_RenderCopy(renderer, spritePP[ppDir], NULL, &ppPos);
+                    personnage.setTexture(Initializer::texturePP[ppDir]);
                 }
+                personnage.setPosition(ppPos);
+                frame.draw(personnage);
 
-                SDL_RenderCopy(renderer, actuel->getCouche3(), NULL, &mapPos);
+                frame.draw(actuel->getCouche3());
                 //Mouvements
                 if(anim == DOS) {
                     if(frames - startFrames == 8) {
@@ -359,10 +287,10 @@ int boucle() {
                     ppDir = GAUCHE;
                 }
 
-                SDL_RenderPresent(renderer);
+                frame.display();
 
             } else {
-                SDL_Delay((FPS_TICKS - 5) - (SDL_GetTicks() - ancientTick));
+                Utils::wait((FPS_TICKS - 5) - (ticks.getElapsedTime().asMilliseconds() - ancientTick));
             }
         }
     }

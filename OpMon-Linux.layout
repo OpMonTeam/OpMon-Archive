@@ -1,70 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<FileVersion major="1" minor="0" />
-	<ActiveTarget name="Release" />
-	<File name="src/jlppc/regimys/evolution/evolutions.hpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1540" topLine="19" />
-		</Cursor>
-	</File>
-	<File name="src/jlppc/regimys/gui/MainFrame.hpp" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="6" />
-		</Cursor>
-	</File>
-	<File name="src/jlppc/regimys/start/main.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2246" topLine="76" />
-		</Cursor>
-	</File>
-	<File name="src/jlppc/regimys/start/StringKeys.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="246" topLine="22" />
-		</Cursor>
-	</File>
-	<File name="src/jlppc/regimys/gui/Overworld.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1508" topLine="13" />
-		</Cursor>
-	</File>
-	<File name="src/jlppc/regimys/gui/Elements.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="970" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src/jlppc/regimys/newGui/OptionsMenu.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3405" topLine="113" />
-		</Cursor>
-	</File>
-	<File name="src/jlppc/regimys/objects/Espece.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="148" topLine="21" />
-		</Cursor>
-	</File>
-	<File name="src/jlppc/regimys/newGui/OptionsMenu.hpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="990" topLine="12" />
-		</Cursor>
-	</File>
-	<File name="src/jlppc/regimys/gui/MainFrame.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4958" topLine="125" />
-		</Cursor>
-	</File>
-	<File name="src/jlppc/regimys/gui/Elements.hpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1161" topLine="4" />
-		</Cursor>
-	</File>
+	<ActiveTarget name="x86" />
 	<File name="src/jlppc/regimys/evolution/Evolution.hpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="412" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src/jlppc/regimys/enums/Enums.hpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/jlppc/regimys/evolution/evolutions.hpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1230" topLine="11" />
+			<Cursor1 position="1540" topLine="19" />
+		</Cursor>
+	</File>
+	<File name="src/jlppc/regimys/gui/MainFrame.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="673" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="src/jlppc/regimys/gui/MainMenu.hpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -72,54 +21,14 @@
 			<Cursor1 position="590" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src/jlppc/regimys/objects/Attaques.hpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/jlppc/regimys/objects/Espece.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="7242" topLine="231" />
+			<Cursor1 position="148" topLine="21" />
 		</Cursor>
 	</File>
-	<File name="src/jlppc/regimys/objects/item/Item.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/jlppc/regimys/start/main.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1341" topLine="9" />
-		</Cursor>
-	</File>
-	<File name="src/jlppc/regimys/objects/item/Item.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3585" topLine="48" />
-		</Cursor>
-	</File>
-	<File name="src/jlppc/regimys/start/Initializer.hpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="972" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src/jlppc/regimys/start/Initializer.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="108126" topLine="881" />
-		</Cursor>
-	</File>
-	<File name="src/jlppc/regimys/newGui/MainFrame.hpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="795" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src/jlppc/regimys/newGui/MainFrame.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src/jlppc/regimys/gui/MainMenu.cpp" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2551" topLine="30" />
-		</Cursor>
-	</File>
-	<File name="src/jlppc/regimys/gui/Overworld.hpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="384" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src/jlppc/regimys/gui/StartScene.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4286" topLine="120" />
+			<Cursor1 position="388" topLine="2" />
 		</Cursor>
 	</File>
 	<File name="src/jlppc/regimys/evolution/ENope.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -127,9 +36,154 @@
 			<Cursor1 position="26" topLine="0" />
 		</Cursor>
 	</File>
+	<File name="src/jlppc/regimys/newGui/Overworld.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="10009" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src/jlppc/regimys/gui/Overworld.hpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="384" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src/jlppc/regimys/newGui/OptionsMenu.hpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="990" topLine="12" />
+		</Cursor>
+	</File>
+	<File name="src/jlppc/regimys/newGui/MainFrame.hpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1716" topLine="46" />
+		</Cursor>
+	</File>
+	<File name="src/jlppc/regimys/start/bigDefines.hxx" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1081" topLine="51" />
+		</Cursor>
+	</File>
+	<File name="src/jlppc/utils/Utils.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="336" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src/jlppc/regimys/start/Initializer.hpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="972" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src/jlppc/regimys/start/main.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2246" topLine="76" />
+		</Cursor>
+	</File>
+	<File name="src/jlppc/regimys/newGui/OptionsMenu.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3405" topLine="113" />
+		</Cursor>
+	</File>
+	<File name="src/jlppc/regimys/gui/Elements.hpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="167" topLine="4" />
+		</Cursor>
+	</File>
+	<File name="src/jlppc/regimys/start/StringKeys.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="246" topLine="22" />
+		</Cursor>
+	</File>
+	<File name="src/jlppc/regimys/gui/MainMenu.cpp" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2551" topLine="30" />
+		</Cursor>
+	</File>
+	<File name="src/jlppc/regimys/objects/Espece.hpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="402" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src/jlppc/regimys/start/Initializer.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="108126" topLine="881" />
+		</Cursor>
+	</File>
+	<File name="src/jlppc/regimys/objects/item/Item.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1341" topLine="9" />
+		</Cursor>
+	</File>
 	<File name="src/jlppc/regimys/objects/OpMon.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="0" topLine="90" />
+		</Cursor>
+	</File>
+	<File name="src/jlppc/regimys/gui/Overworld.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1508" topLine="13" />
+		</Cursor>
+	</File>
+	<File name="src/jlppc/regimys/newGui/StartScene.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="9525" topLine="333" />
+		</Cursor>
+	</File>
+	<File name="src/jlppc/regimys/gui/Animations.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="99" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src/jlppc/regimys/newGui/Elements.hpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="167" topLine="3" />
+		</Cursor>
+	</File>
+	<File name="src/jlppc/regimys/gui/MainFrame.hpp" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="328" topLine="4" />
+		</Cursor>
+	</File>
+	<File name="src/jlppc/regimys/enums/Enums.hpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1230" topLine="11" />
+		</Cursor>
+	</File>
+	<File name="src/jlppc/regimys/objects/Attaques.hpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="7242" topLine="231" />
+		</Cursor>
+	</File>
+	<File name="src/jlppc/regimys/objects/item/Item.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3585" topLine="48" />
+		</Cursor>
+	</File>
+	<File name="src/jlppc/regimys/gui/Elements.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="970" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src/jlppc/regimys/newGui/Elements.cpp" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1055" topLine="29" />
+		</Cursor>
+	</File>
+	<File name="src/jlppc/regimys/newGui/StartScene.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="260" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="src/jlppc/regimys/gui/Animations.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="231" topLine="26" />
+		</Cursor>
+	</File>
+	<File name="src/jlppc/utils/Utils.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="373" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src/jlppc/regimys/gui/StartScene.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2595" topLine="90" />
 		</Cursor>
 	</File>
 	<File name="src/jlppc/regimys/objects/Attaques.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -137,14 +191,9 @@
 			<Cursor1 position="8935" topLine="294" />
 		</Cursor>
 	</File>
-	<File name="src/jlppc/regimys/start/main.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/jlppc/regimys/newGui/MainFrame.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="475" topLine="5" />
-		</Cursor>
-	</File>
-	<File name="src/jlppc/regimys/objects/Espece.hpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="402" topLine="0" />
+			<Cursor1 position="432" topLine="11" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

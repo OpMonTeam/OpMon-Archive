@@ -27,9 +27,9 @@ void left();
 void right();
 extern Plan *actuel;
 extern sf::Sprite personnage;
-extern Vector2f ppPos;
-extern Vector2f mapPos;
-extern sf::Music fond;
+extern sf::Vector2f ppPos;
+extern sf::Vector2f mapPos;
+extern sf::Music *fond;
 }
 }
 

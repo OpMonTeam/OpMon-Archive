@@ -65,7 +65,7 @@ public:
         return couche3;
     }
     Mix_Music* getFond() const {
-        return fond;
+        return &fond;
     }
     //Event* getEvent(int x, int y){return events[y][x];}
 };

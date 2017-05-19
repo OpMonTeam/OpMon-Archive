@@ -7,13 +7,10 @@ Fichier contenant des éléments utiles
 */
 #ifndef ELEMENTS_HPP
 #define ELEMENTS_HPP
-
-#include <SDL/SDL.h>
-#include <SDL/SDL_image.h>
-#include <SDL/SDL_ttf.h>
-#include <SDL/SDL_mixer.h>
 #include <iostream>
 #include <vector>
+#include <SFML/Audio.hpp>
+#include <SFML/Graphics.hpp>
 
 /*class Event{
 private:
@@ -65,13 +62,15 @@ public:
     sf::Sprite getCouche3() const {
         return couche3;
     }
-    sf::Music getFond() const {
-        return fond;
+    sf::Music* getFond() {
+        return &fond;
     }
 
     std::string getMusicPath() const {
         return musicPath;
     }
+
+    void setPos(sf::Vector2f const& vect);
     //Event* getEvent(int x, int y){return events[y][x];}
 };
 /*/**

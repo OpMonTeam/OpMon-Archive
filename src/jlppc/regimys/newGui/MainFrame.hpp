@@ -21,20 +21,51 @@ Permet d'ouvrir la fenetre du jeu et de charger les ressources essensielles. Con
 
 #define QUIT case sf::Event::Closed:\
                 return -1;
-#define ECHAP if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){return -1;}
+#define ECHAP if(isKeyPressed(sf::Keyboard::Escape)){return -1;}
+
+#define ESPACE ECHAP
 
 #define isKeyPressed sf::Keyboard::isKeyPressed
 
 #define POURCENT(nbre, de) (nbre * de) / 100
 #define FONT_SIZE_DEFAULT 28
-#define loadTextureFromFile(path) setTexture(sf::Texture().loadFromFile(path))
-#define loadSoundFromFile(path) setBuffer(sf::SoundBuffer().loadFromFile(path))
+#define loadTextureFromFile(path) setTexture(sf::Texture(path))
+#define loadSoundFromFile(path) setBuffer(sf::SoundBuffer(path))
+
+#define DIALOG_PASS(varname) if (changeDialog == false) {\
+		txtEnCours[0] = varname[dialog];\
+		txtEnCours[1] = varname[dialog + 1];\
+		txtEnCours[2] = varname[dialog + 2];\
+		printText(renderer, txtEnCours[0], txtEnCours[1], txtEnCours[2]);\
+		changeDialog = true;\
+		Utils::wait(50);\
+	} else if (!(dialog + 3 >= sizeOfTxt)) {\
+		dialogPass.play()\
+		line = 0;\
+		dialog++;\
+		dialog++;\
+		dialog++;\
+		i = 0;\
+		txtEnCours[0] = string(" ");\
+		txtEnCours[1] = string(" ");\
+		txtEnCours[2] = string(" ");\
+		changeDialog = false;\
+	}else{\
+		phase++;\
+	}\
+
+#define ANIM_ARROW 	arrDialP.y = arrDialP.y + 1;\
+	if (arrDialP.getPosition().y - (512 - 30) > 5) {\
+        arrDialP.setPosition(arrDialP.getPosition().x, arrDial.getPosition().y - 6);\
+	}\
+	frame.draw(arrDialP);
+
 
 /**Contient toutes les methodes permettant de gérer et de faire fonctionner l'interface graphique
  * Contient aussi le déroulement des évenements
  */
 namespace MainFrame {
-    extern sf::RenderWindow frame:
+    extern sf::RenderWindow frame;
     extern sf::Sprite fond;
     extern sf::Event events;
     extern sf::Font font;

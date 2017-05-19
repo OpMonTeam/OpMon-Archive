@@ -2,6 +2,7 @@
 #include "../enums/Enums.hpp"
 #include "../start/main.hpp"
 #include "../save/OptionsSave.hpp"
+#include "MainFrame.hpp"
 
 UNS
 
@@ -20,14 +21,14 @@ sf::Text txtOpt2;
 sf::Text txtOpt3;
 sf::Text txtOpt4;
 sf::Text txtOpt5;
-sf::Sprite rectSurb = NULL;
+sf::Sprite rectSurb;
 sf::Vector2f curPosOpt[6] = {};
 int optionSelect = -1;
 int curPosOptI = 0;
 int curPosLangI = 0;
 
 sf::Text txtLang;
-sf::Surface fondLangues;
+sf::Sprite fondLangues;
 //J_Texture listeLangues[3] = {};
 sf::Vector2f curPosLang[4] = {};
 
@@ -120,8 +121,8 @@ int boucle() {
             QUIT
         }
 
-        ESCAPE
-        else if(isKeyPressed(sf::Keyboard::Return)){
+        ECHAP
+        if(isKeyPressed(sf::Keyboard::Return)){
             switch(curPosOptI) {
                 case 0:
                     return 0;
@@ -190,8 +191,8 @@ int boucleLang(){
             QUIT
         }
 
-        ESCAPE
-        else if(isKeyPressed(sf::Keyboard::Return)){
+        ECHAP
+        if(isKeyPressed(sf::Keyboard::Return)){
             switch(curPosOptI) {//Choix de la langue
                 case 0://Bouton Retour
                     return 0;
