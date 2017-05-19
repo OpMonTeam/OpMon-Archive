@@ -11,13 +11,11 @@ bool continuer = true;
 long ancientTick = 0;
 bool joypressed = false;
 bool mapChanged = true;
-Mix_Music *fond;
+sf::Music fond;
 Plan *actuel = NULL;
-SDL_Texture *spritePP[4] = {};
-SDL_Texture *marchePP[4] = {};
-SDL_Texture *marche2PP[4] = {};
-SDL_Rect ppPos = {};
-SDL_Rect mapPos = {};
+sf::Sprite personnage;
+sf::Vector2f ppPos;
+sf::Vector2f mapPos;
 int moving = -1;//Signale le mouvement a la boucle
 int anim = -1;//Signale l'animation a la boucle
 int ppDir = 0;
@@ -25,7 +23,6 @@ int pressed = -1;
 int frames = 0;
 bool mapMove[] = {true, true, true, true};
 int startFrames = 0;
-SDL_Rect camera = {0, 0, 512, 512};
 int ppPosX = 17;
 int ppPosY = 15;
 
@@ -110,34 +107,7 @@ void left() {
 void initVars() {
     rlog << PRINT_TICKS << "Initialisation des variables et des sprites" << endl;
     actuel = Initializer::faubourgEuvi;
-#ifdef _WIN32
-    spritePP[FACE] = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\pp\\pp0.png");
-    spritePP[DROITE] = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\pp\\pp1.png");
-    spritePP[GAUCHE] = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\pp\\pp2.png");
-    spritePP[DOS] = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\pp\\pp3.png");
-    marchePP[FACE] = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\pp\\mpp0.png");
-    marchePP[DROITE] = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\pp\\mpp1.png");
-    marchePP[GAUCHE] = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\pp\\mpp2.png");
-    marchePP[DOS] = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\pp\\mpp3.png");
-    marche2PP[FACE] = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\pp\\mpp20.png");
-    marche2PP[DROITE] = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\pp\\mpp21.png");
-    marche2PP[GAUCHE] = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\pp\\mpp22.png");
-    marche2PP[DOS] = IMG_LoadTexture(renderer, "ressources\\sprites\\chara\\pp\\mpp23.png");;
-#else
-    spritePP[FACE] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp/pp0.png");
-    spritePP[DROITE] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp/pp1.png");
-    spritePP[GAUCHE] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp/pp2.png");
-    spritePP[DOS] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp/pp3.png");
-    marchePP[FACE] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp/mpp0.png");
-    marchePP[DROITE] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp/mpp1.png");
-    marchePP[GAUCHE] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp/mpp2.png");
-    marchePP[DOS] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp/mpp3.png");
-    marche2PP[FACE] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp/mpp20.png");
-    marche2PP[DROITE] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp/mpp21.png");
-    marche2PP[GAUCHE] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp/mpp22.png");
-    marche2PP[DOS] = IMG_LoadTexture(renderer, "ressources/sprites/chara/pp/mpp23.png");
-
-#endif // _WIN32
+    personnage.setTexture(Initializer::texturePP[FACE]);
     fond = actuel->getFond();
     mapPos.x = -(8*SQUARE);
     mapPos.y = -(8*SQUARE);
