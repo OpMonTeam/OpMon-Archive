@@ -1,5 +1,7 @@
 #include "Utils.hpp"
 #include <iostream>
+#include <cstdlib>
+#include <unistd.h>
 
 int Utils::randU(int limit) {
     srand(time(NULL));
@@ -13,7 +15,7 @@ unsigned int Utils::randUI(unsigned int limit) {
 }
 
 void Utils::wait(int ticks) {
-    for(int i = 0; i < ticks; i++) {}
+    sf::sleep(sf::milliseconds(ticks));
 }
 
 long Utils::hash(std::string str) {

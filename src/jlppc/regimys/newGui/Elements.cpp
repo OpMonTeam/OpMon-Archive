@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include "../start/main.hpp"
 #include "../start/Initializer.hpp"
+#include "MainFrame.hpp"
 
 UNS
 
@@ -10,7 +11,7 @@ Plan::Plan(sf::Texture couche1, sf::Texture couche2, sf::Texture couche3, int w,
     this->couche2.setTexture(couche2);
     //this->events = events;
     this->couche3.setTexture(couche3);
-    this->fond.loadFromFile(fondPath);
+    this->fond.openFromFile(fondPath);
     this->musicPath = fondPath;
 
     this->w = w;
@@ -40,6 +41,11 @@ Plan::~Plan() {
     free(passTab);
 }
 
+void Plan::setPos(sf::Vector2f const& vect){
+    couche1.setPosition(vect);
+    couche2.setPosition(vect);
+    couche3.setPosition(vect);
+}
 /*Plan::~Plan(){
     for(unsigned int i = 0; i < 32; i++){
         for(unsigned int j = 0; j < 32; j++){

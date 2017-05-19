@@ -28,8 +28,6 @@ void initVars() {
     for(int i = 0, j = 175; i < 4; i++) {
         curPos[i].x = 10;
         curPos[i].y = j;
-        curPos[i].w = 30;
-        curPos[i].h = 30;
         textPos[i]->setPosition(sf::Vector2f(60, j));
         j+=85;
     }

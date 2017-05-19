@@ -5,10 +5,10 @@
 #include "main.hpp"
 #include <SDL/SDL.h>
 #include <sstream>
-#include "../gui/MainFrame.hpp"
+#include "../newGui/MainFrame.hpp"
 #include <fstream>
 #include "../save/OptionsSave.hpp"
-#include "../gui/Animations.hpp"
+#include "../newGui/Animations.hpp"
 
 #define ATK push_back(Stats::ATK)
 #define ATKSPE push_back(Stats::ATKSPE)

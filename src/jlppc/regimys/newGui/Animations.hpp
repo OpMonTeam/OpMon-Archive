@@ -32,8 +32,8 @@ Libère les ressources associées aux animations
 */
 void deleteAnims();
 
-int animFenOpen(sf::RenderWindow const& window, sf::Sprite const& fond);
-int animFenClose(sf::RenderWindow const& window, sf::Sprite const& fond);
+int animFenOpen(sf::RenderWindow & window, sf::Sprite const& fond);
+int animFenClose(sf::RenderWindow & window, sf::Sprite const& fond);
 
 }
 

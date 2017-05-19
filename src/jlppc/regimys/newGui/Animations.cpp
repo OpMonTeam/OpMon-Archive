@@ -22,7 +22,7 @@ void deleteAnims() {
 int animFenOpen(sf::RenderWindow & window, sf::Sprite const& fond) {
     ANIM_CHECK_INIT//Vérification de l'initialisation des animations
     //Déclaration des variables
-    sf::Sprite *anim[6] = {NULL};
+    sf::Sprite anim[6];
     int ancientChrono = 0;
 
     //Frame par frame
@@ -59,15 +59,11 @@ int animFenOpen(sf::RenderWindow & window, sf::Sprite const& fond) {
     return 0;
 }
 
-int animFenClose(sf::RenderWindow const& window, sf::Sprite const& fond) {
+int animFenClose(sf::RenderWindow &window, sf::Sprite const& fond) {
     //Se réferer aux commentaires de la fonction précédente
     ANIM_CHECK_INIT
-    SDL_Rect animP;
-    SDL_Texture *anim[6] = {NULL};
-    animP.h = 512;
-    animP.w = 512;
-    animP.x = 0;
-    animP.y = 0;
+   sf::Sprite anim[6];
+    int ancientChrono = 0;
     for (int i = 5; i >= 0; i--) {
         if ((ticks.getElapsedTime().asMilliseconds() - ancientChrono) >= 200) {
             window.pollEvent(events);

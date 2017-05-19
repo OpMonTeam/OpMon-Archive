@@ -18,7 +18,7 @@
 UNS
 
 namespace MainFrame {
-    sf::RenderWindow frame:
+    sf::RenderWindow frame;
     sf::Sprite fond;
     sf::Event events;
     sf::Font font;
@@ -47,17 +47,16 @@ int printChoice(string text, string choice1, string choice2, string choix3) {
     return 0;
 }
 
-int printText(sf::RenderWindow &framee, std::string text[]) {
+void printText(sf::RenderWindow &framee, std::string text[]) {
     int minusPos = 15;
     FOR_EACH(string, text, 3, {)
-        dialogText[i].setString(objActuel);
-        dialogText[i].setFont(font);
-        dialogText[i].setPosition(sf::Vector2f(POURCENT(10, dialog.getPosition().x), POURCENT(minusPos, dialog.getPosition().y)));
+        dialogText[itor].setString(text[itor]);
+        dialogText[itor].setFont(font);
+        dialogText[itor].setPosition(sf::Vector2f(POURCENT(10, dialog.getPosition().x), POURCENT(minusPos, dialog.getPosition().y)));
         minusPos+=30;
-        framee.draw(objActuel);
+        framee.draw(dialogText[itor]);
     }
 
-    return 0;
 }
 
 void initAll(){
@@ -88,7 +87,7 @@ void open() {
     sf::ContextSettings settings;
     settings.antialiasingLevel = 4;
 
-    frame.create(VideoMode(512, 512), "OpMon Lazuli", sf::Style::Titlebar | sf::Style::Close, settings);
+    frame.create(sf::VideoMode(512, 512), "OpMon Lazuli", sf::Style::Titlebar | sf::Style::Close, settings);
     //Création du renderer.
     rlog << PRINT_TICKS << "Initialisation de la fenetre et du renderer terminée" << endl;
     //Ouverture d'un son
@@ -112,7 +111,7 @@ void open() {
     rlog << PRINT_TICKS << "Lancement du menu." << endl;
     //Lancement du jeu
     if(MainMenu::mainMenu() != -1) {
-        Mix_PlayChannel(1, MainMenu::bruitPush, 0);
+        MainMenu::bruitPush.play();
         if(StartScene::startScene() != -1) {
             if(Overworld::overworld() != -1){
                 if(Overworld::overworld() == 2){
@@ -122,9 +121,7 @@ void open() {
             }
         }
     } else {
-        Mix_PlayChannel(1, MainMenu::bruitPush, 0);
-        //Attente de la fin du son
-        Utils::wait(WAIT_DEFAULT);
+        MainMenu::bruitPush.play();
     }
 
     rlog << PRINT_TICKS << "Suppression des variables de chaque partie" << endl;
@@ -135,7 +132,7 @@ void open() {
 }
 
 
-
+/*
 SDL_Texture *renderText(SDL_Renderer *renderer, char text[], TTF_Font *police, SDL_Color color, SDL_Rect *pos) {
     SDL_Surface *sfce = TTF_RenderText_Blended(police, text, color);
     if (sfce == NULL) {
@@ -202,7 +199,7 @@ J_Texture renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police,
     J_Texture toReturn;
     toReturn.texture = renderText(renderer, text, police, color, &(toReturn.rect), encodage);
     return toReturn;
-}
+}*/
 
 
 }

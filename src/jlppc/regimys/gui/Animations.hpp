@@ -10,7 +10,6 @@ Contient la définition du namespace Animations.
 
 #include <iostream>
 #include "../start/main.hpp"
-#include <SDL/SDL.h>
 
 /*Define permettant de vérifier si les animations ont été initialisées*/
 #define ANIM_CHECK_INIT \
