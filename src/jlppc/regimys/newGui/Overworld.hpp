@@ -8,6 +8,8 @@ Contient le namespace Overworld
 #ifndef OVERWORLD_HPP
 #define OVERWORLD_HPP
 #include "MainFrame.hpp"
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 namespace MainFrame {
 /**
@@ -24,11 +26,10 @@ void down();
 void left();
 void right();
 extern Plan *actuel;
-extern SDL_Texture *spritePP[4];
-extern SDL_Texture *marchePP[4];
-extern SDL_Rect ppPos;
-extern SDL_Rect mapPos;
-extern Mix_Music *fond;
+extern sf::Sprite personnage;
+extern Vector2f ppPos;
+extern Vector2f mapPos;
+extern sf::Music fond;
 }
 }
 
