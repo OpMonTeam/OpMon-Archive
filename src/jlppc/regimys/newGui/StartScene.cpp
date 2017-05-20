@@ -164,6 +164,7 @@ int boucle0() {
                             txtEnCours[line] = txtP0[line + dialog].toUtf32()[i];
                         } else {
                             txtEnCours[line] += txtP0[line + dialog].toUtf32()[i];
+
                         }
 
                         i++;
