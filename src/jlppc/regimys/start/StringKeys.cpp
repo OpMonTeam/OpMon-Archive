@@ -1,6 +1,5 @@
 #include "StringKeys.hpp"
 #include "main.hpp"
-#include <SDL/SDL.h>
 #include <cstdio>
 UNS
 
@@ -13,7 +12,7 @@ void initialize(string keysFileS) {
     ifstream keysFile(keysFileS.c_str());
     keys = vector<string>();
     strings = vector<string>();
-    rlog << "[T = " << SDL_GetTicks() << "] - Initialisation des clées" << endl;
+    rlog << PRINT_TICKS << "Initialisation des clées" << endl;
     if (!keysFile) {//Si ouverture du fichier échouée.
         gererErreur("Initialisation des clées impossible.", true);
     }

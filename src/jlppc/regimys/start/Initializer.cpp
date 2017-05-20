@@ -3,12 +3,13 @@
 #include "../objects/Attaques.hpp"
 #include "StringKeys.hpp"
 #include "main.hpp"
-#include <SDL/SDL.h>
 #include <sstream>
 #include "../newGui/MainFrame.hpp"
 #include <fstream>
 #include "../save/OptionsSave.hpp"
 #include "../newGui/Animations.hpp"
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 #define ATK push_back(Stats::ATK)
 #define ATKSPE push_back(Stats::ATKSPE)
@@ -933,17 +934,18 @@ void initPlans() {
     };
     //Chargement des couches
     sf::Texture couche1;
+
     sf::Texture couche2;
-    sf::Texture couche3;
+    sf::Texture couche3;
 #ifdef _WIN32
     couche1.loadFromFile("ressources\\maps\\fe\\fe1.png");
-    couche2.loadFileFromFile("ressources\\maps\\fe\\fe2.png");
-    couche3.loadFileFromFile("ressources\\maps\\fe\\fe3.png");
+    couche2.loadFromFile("ressources\\maps\\fe\\fe2.png");
+    couche3.loadFromFile("ressources\\maps\\fe\\fe3.png");
     string path = "ressources\\audio\\music\\faubourgeuvi.ogg";
 #else
     couche1.loadFromFile("ressources/maps/fe/fe1.png");
-    couche2.loadFileFromFile("ressources/maps/fe/fe2.png");
-    couche3.loadFileFromFile("ressources/maps/fe/fe3.png");
+    couche2.loadFromFile("ressources/maps/fe/fe2.png");
+    couche3.loadFromFile("ressources/maps/fe/fe3.png");
     string path = "ressources/audio/music/faubourgeuvi.ogg";
 #endif
     //Vérification des couches

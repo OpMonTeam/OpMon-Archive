@@ -60,8 +60,8 @@ void initVars() {
         ite++;
     }
     rlog << PRINT_TICKS << "Initialisation des variables de la scene d'intro" << endl;
-    dialogT.setPosition(0, 362);t
-    profT.setPosition((fondT.getGlobalBounds().height / 2) - (profT.getGlobalBounds().width / 2) + 10, ((fondT.getGlobalBounds().height - dialogT.getGlobalBounds().heigh / 2) - (profT.getGlobalBounds().height / 2) + 50);
+    MainFrame::dialog.setPosition(0, 362);
+    profT.setPosition((fondT.getGlobalBounds().height / 2) - (profT.getGlobalBounds().width / 2) + 10, ((fondT.getGlobalBounds().height - MainFrame::dialog.getGlobalBounds().height / 2) - (profT.getGlobalBounds().height / 2) + 50));
     texteDescs[1].setPosition(85, 25);
     texteDescs[0].setPosition(155, 200);
     texteDescs[2].setPosition(95, 375);
@@ -78,7 +78,7 @@ void initVars() {
     i = 0;
     dialog = 0;
     //Initialisation des images
-    rlog << "[T = " << SDL_GetTicks() << "] - Initialisation des sprites..." << endl;
+    rlog << PRINT_TICKS << "Initialisation des sprites..." << endl;
 #ifdef _WIN32
     fondT.loadTextureFromFile("ressources\\backgrounds\\start\\startscene.png");
     profT.loadTextureFromFile("ressources\\sprites\\chara\\jlppc\\profkiwai.png");
@@ -88,11 +88,11 @@ void initVars() {
 #else
     fondT.loadTextureFromFile("ressources/backgrounds/start/startscene.png");
     profT.loadTextureFromFile("ressources/sprites/chara/jlppc/profkiwai.png");
-    dialogT.loadTextureFromFile("ressources/backgrounds/dialog/dialog.png");
+    MainFrame::dialog.loadTextureFromFile("ressources/backgrounds/dialog/dialog.png");
     arrDial.loadTextureFromFile("ressources/sprites/misc/arrDial.png");
     fondNE.loadTextureFromFile("ressources/backgrounds/start/nameEntry.png");
 #endif
-    rlog << "[T = " << SDL_GetTicks() << "] - Fin des initialisations" << endl;
+    rlog << PRINT_TICKS << "Fin des initialisations" << endl;
     for(unsigned int iterator; iterator < 4; iterator++){
         texteDescs[iterator].setCharacterSize(FONT_SIZE_DEFAULT);
         texteDescs[iterator].setColor(sf::Color::White);
@@ -106,9 +106,9 @@ void initVars() {
 
     texteDescs[3].setString(kget("nameEntry.indic.2"));
 #ifdef _WIN32
-    fondMus.loadFromFile("ressources\\audio\\music\\intro.ogg");
+    fondMus.openFromFile("ressources\\audio\\music\\intro.ogg");
 #else
-    fondMus.loadFromFile("ressources/audio/music/intro.ogg");
+    fondMus.openFromFile("ressources/audio/music/intro.ogg");
 #endif
     arrDial.setPosition(512-75, 512-30);
 }
@@ -118,7 +118,7 @@ int verifVars() {
 }
 
 int boucle0() {
-    rlog << "[T = " << SDL_GetTicks() << "] - Début de la boucle n°0" << endl;
+    rlog << PRINT_TICKS << "Début de la boucle n°0" << endl;
     //Boucle n°1
     while (continuer) {
         if ((ticks.getElapsedTime().asMilliseconds() - ancientTick) >= FPS_TICKS) {
@@ -133,7 +133,7 @@ int boucle0() {
 
             }
 
-            ESCAPE
+            ECHAP
             else if(isKeyPressed(sf::Keyboard::P)){
                 return 2;
             }else if(isKeyPressed(sf::Keyboard::Space)){
@@ -144,7 +144,7 @@ int boucle0() {
                 frame.clear(sf::Color::White);
                 frame.draw(fondT);
                 frame.draw(profT);
-                frame.draw(dialogT);
+                frame.draw(MainFrame::dialog);
                 if (!changeDialog) {
                     //Affichage caractère par caractère
                     if (!(i >= txtP0[line + dialog].size())) {
@@ -170,7 +170,8 @@ int boucle0() {
 
 
                 }
-                printText(renderer, txtEnCours[0], txtEnCours[1], txtEnCours[2]);
+                std::string tab[3] = {txtEnCours[0], txtEnCours[1], txtEnCours[2]};
+                printText(frame, tab);
                 ANIM_ARROW
                 frame.display();
             } else {
@@ -179,7 +180,7 @@ int boucle0() {
 
 
         } else {
-            SDL_Delay(FPS_TICKS - (GET_TICKS - ancientTick));
+            Utils::wait(FPS_TICKS - (GET_TICKS - ancientTick));
         }
 
     }
@@ -189,8 +190,8 @@ int boucle0() {
 int boucle1() {
     frame.clear(sf::Color::White);
     frame.draw(fondNE);
-    FOR_EACH(sf::Sprite, texteDescs, 4,{)
-        frame.draw(objActuel);
+    FOR_EACH(sf::Text, texteDescs, 4,{)
+        frame.draw(*objActuel);
     }
     frame.display();
     while (continuer) {
@@ -216,8 +217,8 @@ int boucle1() {
 
             frame.clear(sf::Color::White);
         frame.draw(fondNE);
-        FOR_EACH(sf::Sprite, texteDescs, 4,{)
-            frame.draw(objActuel);
+        FOR_EACH(sf::Text, texteDescs, 4,{)
+            frame.draw(*objActuel);
         }
         nameT.setString(string(pName));
         frame.display();
@@ -248,7 +249,7 @@ int boucle2() {
                 frame.clear(sf::Color::White);
                 frame.draw(fondT);
                 frame.draw(profT);
-                frame.draw(dialogT);
+                frame.draw(MainFrame::dialog);
                 if (!changeDialog) {
 
                     if (!(i >= txtP1[line + dialog].size())) {
@@ -274,7 +275,8 @@ int boucle2() {
 
 
                 }
-                printText(renderer, txtEnCours[0], txtEnCours[1], txtEnCours[2]);
+                string tab[3] = {txtEnCours[0], txtEnCours[1], txtEnCours[2]};
+                printText(frame, tab);
                 ANIM_ARROW
                 frame.display();
             } else {
@@ -283,7 +285,7 @@ int boucle2() {
 
 
         } else {
-            SDL_Delay(FPS_TICKS - (GET_TICKS - ancientTick));
+            Utils::wait(FPS_TICKS - (GET_TICKS - ancientTick));
         }
     }
     return 0;
@@ -315,7 +317,7 @@ int startScene() {
     rlog << PRINT_TICKS << "Chargement de la boucle n°1" << endl;
 
     //Animation 1
-    Animations::animFenOpen(renderer, fondT);
+    Animations::animFenOpen(frame, fondT);
 
     rlog << PRINT_TICKS << "Début de la boucle n°1" << endl;
 
@@ -326,7 +328,7 @@ int startScene() {
 
     continuer = true;
     //Animation 2
-    Animations::animFenClose(renderer, fondT);
+    Animations::animFenClose(frame, fondT);
 
     txtP1[0]+=(string(pName) + kget("prof.dialog.start.19.5"));
 

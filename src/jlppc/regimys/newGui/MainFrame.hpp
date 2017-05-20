@@ -32,15 +32,18 @@ Permet d'ouvrir la fenetre du jeu et de charger les ressources essensielles. Con
 #define loadTextureFromFile(path) setTexture(sf::Texture(path))
 #define loadSoundFromFile(path) setBuffer(sf::SoundBuffer(path))
 
+#define FPS_TICKS 33
+
 #define DIALOG_PASS(varname) if (changeDialog == false) {\
 		txtEnCours[0] = varname[dialog];\
 		txtEnCours[1] = varname[dialog + 1];\
 		txtEnCours[2] = varname[dialog + 2];\
-		printText(renderer, txtEnCours[0], txtEnCours[1], txtEnCours[2]);\
+		std::string tab[3] = {txtEnCours[0], txtEnCours[1], txtEnCours[2]};\
+		printText(frame, tab);\
 		changeDialog = true;\
 		Utils::wait(50);\
 	} else if (!(dialog + 3 >= sizeOfTxt)) {\
-		dialogPass.play()\
+		dialogPass.play();\
 		line = 0;\
 		dialog++;\
 		dialog++;\
@@ -54,11 +57,11 @@ Permet d'ouvrir la fenetre du jeu et de charger les ressources essensielles. Con
 		phase++;\
 	}\
 
-#define ANIM_ARROW 	arrDialP.y = arrDialP.y + 1;\
-	if (arrDialP.getPosition().y - (512 - 30) > 5) {\
-        arrDialP.setPosition(arrDialP.getPosition().x, arrDial.getPosition().y - 6);\
+#define ANIM_ARROW 	arrDial.setPosition(arrDial.getPosition().x, arrDial.getPosition().y + 1);\
+	if (arrDial.getPosition().y - (512 - 30) > 5) {\
+        arrDial.setPosition(arrDial.getPosition().x, arrDial.getPosition().y - 6);\
 	}\
-	frame.draw(arrDialP);
+	frame.draw(arrDial);
 
 
 /**Contient toutes les methodes permettant de gérer et de faire fonctionner l'interface graphique
