@@ -17,9 +17,9 @@ sf::Music fondMus;
 //Part 0
 bool continuer = true;
 long ancientTick = 0;
-string txtP0[18];//Deux cases == Deux lignes. 3 cases == Deux lignes + un nouveau dialogue
+sf::String txtP0[18];//Deux cases == Deux lignes. 3 cases == Deux lignes + un nouveau dialogue
 int sizeOfTxt = 18;
-string txtEnCours[] = {string(" "), string(" "), string(" ")};
+sf::String txtEnCours[] = {sf::String(" "), sf::String(" "), sf::String(" ")};
 //SDL_Surface *sfce = NULL;
 int line = 0, i = 0, dialog = 0;
 bool changeDialog = false;
@@ -34,7 +34,9 @@ sf::Text nameT;//To destroy in part 1
 bool shift = false;
 bool caps = false;
 //Part 2
-string txtP1[15];
+sf::String txtP1[15];
+
+sf::Texture textures[5];
 
 
 
@@ -67,9 +69,9 @@ void initVars() {
     texteDescs[2].setPosition(95, 375);
     texteDescs[4].setPosition(95, 375+30);
 
-    txtEnCours[0] = string(" ");
-    txtEnCours[1] = string(" ");
-    txtEnCours[2] = string(" ");
+    txtEnCours[0] = sf::String(" ");
+    txtEnCours[1] = sf::String(" ");
+    txtEnCours[2] = sf::String(" ");
     sizeOfTxt = 18;
     changeDialog = false;
     phase = 0;
@@ -80,22 +82,31 @@ void initVars() {
     //Initialisation des images
     rlog << PRINT_TICKS << "Initialisation des sprites..." << endl;
 #ifdef _WIN32
-    fondT.loadTextureFromFile("ressources\\backgrounds\\start\\startscene.png");
-    profT.loadTextureFromFile("ressources\\sprites\\chara\\jlppc\\profkiwai.png");
-    dialogT.loadTextureFromFile("ressources\\backgrounds\\dialog\\dialog.png");
-    arrDial.loadTextureFromFile("ressources\\sprites\\misc\\arrDial.png");
-    fondNE.loadTextureFromFile("ressources\\backgrounds\\start\\nameEntry.png");
+    textures[0].loadFromFile("ressources\\backgrounds\\start\\startscene.png");
+    textures[1].loadFromFile("ressources\\sprites\\chara\\jlppc\\profkiwai.png");
+    textures[2].loadFromFile("ressources\\backgrounds\\dialog\\dialog.png");
+    textures[3].loadFromFile("ressources\\sprites\\misc\\arrDial.png");
+    textures[4].loadFromFile("ressources\\backgrounds\\start\\nameEntry.png");
 #else
-    fondT.loadTextureFromFile("ressources/backgrounds/start/startscene.png");
-    profT.loadTextureFromFile("ressources/sprites/chara/jlppc/profkiwai.png");
-    MainFrame::dialog.loadTextureFromFile("ressources/backgrounds/dialog/dialog.png");
-    arrDial.loadTextureFromFile("ressources/sprites/misc/arrDial.png");
-    fondNE.loadTextureFromFile("ressources/backgrounds/start/nameEntry.png");
+    textures[0].loadFromFile("ressources/backgrounds/start/startscene.png");
+    textures[1].loadFromFile("ressources/sprites/chara/jlppc/profkiwai.png");
+    textures[2].loadFromFile("ressources/backgrounds/dialog/dialog.png");
+    textures[3].loadFromFile("ressources/sprites/misc/arrDial.png");
+    textures[4].loadFromFile("ressources/backgrounds/start/nameEntry.png");
 #endif
+
+    fondT.setTexture(textures[0]);
+    profT.setTexture(textures[1]);
+    MainFrame::dialog.setTexture(textures[2]);
+    arrDial.setTexture(textures[3]);
+    fondNE.setTexture(textures[4]);
+
+
+
     rlog << PRINT_TICKS << "Fin des initialisations" << endl;
     for(unsigned int iterator; iterator < 4; iterator++){
         texteDescs[iterator].setCharacterSize(FONT_SIZE_DEFAULT);
-        texteDescs[iterator].setColor(sf::Color::White);
+        texteDescs[iterator].setColor(sf::Color::Black);
         texteDescs[iterator].setFont(font);
     }
     texteDescs[0].setString(kget("nameEntry.med"));
@@ -147,12 +158,12 @@ int boucle0() {
                 frame.draw(MainFrame::dialog);
                 if (!changeDialog) {
                     //Affichage caractère par caractère
-                    if (!(i >= txtP0[line + dialog].size())) {
+                    if (!(i >= txtP0[line + dialog].toUtf32().size())) {
 
-                        if (txtEnCours[line] == " ") {
-                            txtEnCours[line] = txtP0[line + dialog].c_str()[i];
+                        if (txtEnCours[line] == sf::String(" ")) {
+                            txtEnCours[line] = txtP0[line + dialog].toUtf32()[i];
                         } else {
-                            txtEnCours[line] += txtP0[line + dialog].c_str()[i];
+                            txtEnCours[line] += txtP0[line + dialog].toUtf32()[i];
                         }
 
                         i++;
@@ -170,7 +181,7 @@ int boucle0() {
 
 
                 }
-                std::string tab[3] = {txtEnCours[0], txtEnCours[1], txtEnCours[2]};
+                sf::String tab[3] = {txtEnCours[0], txtEnCours[1], txtEnCours[2]};
                 printText(frame, tab);
                 ANIM_ARROW
                 frame.display();
@@ -252,12 +263,12 @@ int boucle2() {
                 frame.draw(MainFrame::dialog);
                 if (!changeDialog) {
 
-                    if (!(i >= txtP1[line + dialog].size())) {
+                    if (!(i >= txtP1[line + dialog].toUtf32().size())) {
 
                         if (txtEnCours[line] == " ") {
-                            txtEnCours[line] = txtP1[line + dialog].c_str()[i];
+                            txtEnCours[line] = txtP1[line + dialog].toUtf32()[i];
                         } else {
-                            txtEnCours[line] += txtP1[line + dialog].c_str()[i];
+                            txtEnCours[line] += txtP1[line + dialog].toUtf32()[i];
                         }
 
                         i++;
@@ -275,7 +286,7 @@ int boucle2() {
 
 
                 }
-                string tab[3] = {txtEnCours[0], txtEnCours[1], txtEnCours[2]};
+                sf::String tab[3] = {txtEnCours[0], txtEnCours[1], txtEnCours[2]};
                 printText(frame, tab);
                 ANIM_ARROW
                 frame.display();
@@ -338,9 +349,9 @@ int startScene() {
     i = 0;
     line = 0;
     dialog = 0;
-    txtEnCours[0] = string(" ");
-    txtEnCours[1] = string(" ");
-    txtEnCours[2] = string(" ");
+    txtEnCours[0] = sf::String(" ");
+    txtEnCours[1] = sf::String(" ");
+    txtEnCours[2] = sf::String(" ");
     changeDialog = false;
     rlog << PRINT_TICKS << "Début de la boucle n°2" << endl;
     if(boucle2() == -1) {

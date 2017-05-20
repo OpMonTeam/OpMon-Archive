@@ -5,13 +5,38 @@ UNS
 
 namespace StringKeys {
 vector<string> keys = vector<string>();
-vector<string> strings = vector<string>();
+vector<sf::String> strings = vector<sf::String>();
+
+sf::String readLine(ifstream &input){
+    sf::String toReturn;
+    for(unsigned int i = 0; i < 1024; i++){
+        int got = input.get();
+        char traded = got;
+        cout << traded << endl;
+        if(got == '\n' || got < 31){
+            break;
+        }else{
+            char truc = got;
+            toReturn+=truc;
+        }
+    }
+    return toReturn;
+}
+
+std::string sfStringtoStdString(sf::String &str){
+    string toReelReturn;
+    basic_string<unsigned int> bs = str.toUtf32();
+    for(int i = 0; i < bs.size(); i++){
+        toReelReturn+=bs.at(i);
+    }
+    return toReelReturn;
+}
 
 void initialize(string keysFileS) {
     //Ouverture du fichier de clées, initialisation des vectors
     ifstream keysFile(keysFileS.c_str());
     keys = vector<string>();
-    strings = vector<string>();
+    strings = vector<sf::String>();
     rlog << PRINT_TICKS << "Initialisation des clées" << endl;
     if (!keysFile) {//Si ouverture du fichier échouée.
         gererErreur("Initialisation des clées impossible.", true);
@@ -19,9 +44,9 @@ void initialize(string keysFileS) {
     bool fini = false;
     //Récupération des clées
     while (!fini) {
-        string read;
-        getline(keysFile, read);
-        if (!(read.substr(0, read.size() - (read.size() - 3)) == "key")) {//Vérifie si la ligne lue est correcte
+        sf::String read = readLine(keysFile);
+        cout << sfStringtoStdString(read) << endl;
+        if (!(read.toUtf32().substr(0, read.toUtf32().size() - (read.toUtf32().size() - 3)) == sf::String("key"))) {//Vérifie si la ligne lue est correcte
             break;//Sinon arrête de lire
         }
         //Splittage de la ligne en deux parties
@@ -31,14 +56,14 @@ void initialize(string keysFileS) {
     }
 }
 
-string get(string key) {
+sf::String get(string key) {
     key = string("key.") + key;//Ajout du préfixe key.
     for (unsigned int i = 0; i < keys.size(); i++) {//Scanne les clées
         if (keys[i] == key) {
             return strings[i];
         }
     }
-    return string("");//Si rien trouvé, retourne une chaine vide.
+    return sf::String("");//Si rien trouvé, retourne une chaine vide.
 }
 
 int getIndex(string key) {
@@ -52,20 +77,20 @@ int getIndex(string key) {
     return -1;//Si rien trouvé, retourne -1
 }
 
-string split(string str, char splitter, int part) {
+sf::String split(sf::String str, char splitter, int part) {
     int instances = 0;//Compte le nombre d'instances du splitter
-    for (unsigned int i = 0; i < str.size(); i++) {//Scanne la chaine pour récuperer le nombre d'instances du splitter
-        if (str.c_str()[i] == splitter) {
+    for (unsigned int i = 0; i < str.toUtf32().size(); i++) {//Scanne la chaine pour récuperer le nombre d'instances du splitter
+        if (str.toUtf32()[i] == splitter) {
             instances++;
         }
     }
-    string toReturn[instances + 1];//Crée un tableau contenant tous les splits
+    sf::String toReturn[instances + 1];//Crée un tableau contenant tous les splits
     int enCours = 0;
-    for (unsigned int i = 0; i < str.size(); i++) {//Parcours la chaine pour la séparer
-        if (str.c_str()[i] == splitter) {
+    for (unsigned int i = 0; i < str.toUtf32().size(); i++) {//Parcours la chaine pour la séparer
+        if (str.toUtf32()[i] == splitter) {
             enCours++;
         } else {
-            toReturn[enCours] += str.c_str()[i];
+            toReturn[enCours] += str.toUtf32()[i];
         }
     }
     return toReturn[part];

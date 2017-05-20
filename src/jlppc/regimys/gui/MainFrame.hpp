@@ -26,7 +26,7 @@ Permet d'ouvrir la fenetre du jeu et de charger les ressources essensielles. Con
 	QUITF
 
 #define ECHAP case SDLK_ESCAPE:\
-	QUITF
+        QUITF
 
 #define JOYQUIT case 7:\
 	QUITF

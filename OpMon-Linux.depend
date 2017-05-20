@@ -462,12 +462,13 @@
 	"begin_code.h"
 	"close_code.h"
 
-1492950596 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/StringKeys.hpp
+1495306077 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/StringKeys.hpp
 	<iostream>
 	<vector>
 	<fstream>
+	<SFML/System.hpp>
 
-1495285163 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/main.hpp
+1495298234 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/main.hpp
 	<iostream>
 	<fstream>
 	"../../utils/File.hpp"
@@ -963,7 +964,7 @@
 	"Evolution.hpp"
 	"evolutions.hpp"
 
-1495290117 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/StringKeys.cpp
+1495306050 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/StringKeys.cpp
 	"StringKeys.hpp"
 	"main.hpp"
 	<cstdio>
@@ -1313,7 +1314,7 @@
 	<SFML/Audio.hpp>
 	<SFML/Graphics.hpp>
 
-1495285163 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/Animations.cpp
+1495298394 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/Animations.cpp
 	"Animations.hpp"
 	"MainFrame.hpp"
 
@@ -1322,7 +1323,7 @@
 	"../start/main.hpp"
 	<SFML/Graphics.hpp>
 
-1495288942 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/MainFrame.hpp
+1495306855 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/MainFrame.hpp
 	"Elements.hpp"
 	"../start/StringKeys.hpp"
 	<SFML/Graphics.hpp>
@@ -1342,7 +1343,7 @@
 	"Elements.hpp"
 	"MainFrame.hpp"
 
-1495285163 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/MainFrame.cpp
+1495306759 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/MainFrame.cpp
 	"MainFrame.hpp"
 	<iostream>
 	"../start/main.hpp"
@@ -1372,7 +1373,7 @@
 	<SFML/Audio.hpp>
 	<SFML/Graphics.hpp>
 
-1495285163 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/MainMenu.cpp
+1495299024 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/MainMenu.cpp
 	"MainMenu.hpp"
 	"../start/main.hpp"
 	<iostream>
@@ -1386,7 +1387,7 @@
 	<SFML/Audio.hpp>
 	"Elements.hpp"
 
-1495285163 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/OptionsMenu.cpp
+1495298688 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/OptionsMenu.cpp
 	"OptionsMenu.hpp"
 	"../enums/Enums.hpp"
 	"../start/main.hpp"
@@ -1398,7 +1399,7 @@
 	"../start/Initializer.hpp"
 	"../start/main.hpp"
 
-1495289063 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/StartScene.cpp
+1495299855 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/StartScene.cpp
 	"StartScene.hpp"
 	"../start/main.hpp"
 	"Animations.hpp"

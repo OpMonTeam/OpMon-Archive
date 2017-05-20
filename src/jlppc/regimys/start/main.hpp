@@ -33,6 +33,9 @@ extern std::string optSave;
 
 extern sf::Clock ticks;
 
+//#define TEST
+
+
 /**
 Methode a appeler lorsqu'une erreur peut intervenir dans le programme
 fatal : si true, éteint le programme
