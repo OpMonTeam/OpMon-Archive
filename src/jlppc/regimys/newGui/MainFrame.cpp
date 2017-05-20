@@ -47,13 +47,16 @@ int printChoice(string text, string choice1, string choice2, string choix3) {
     return 0;
 }
 
-void printText(sf::RenderWindow &framee, std::string text[]) {
-    int minusPos = 15;
-    FOR_EACH(string, text, 3, {)
+void printText(sf::RenderWindow &framee, sf::String text[]) {
+    int minusPos = 32;
+    FOR_EACH(sf::String, text, 3, {)
         dialogText[itor].setString(text[itor]);
         dialogText[itor].setFont(font);
-        dialogText[itor].setPosition(sf::Vector2f(POURCENT(10, dialog.getPosition().x), POURCENT(minusPos, dialog.getPosition().y)));
-        minusPos+=30;
+        dialogText[itor].setCharacterSize(FONT_SIZE_DEFAULT);
+        dialogText[itor].setColor(sf::Color::Black);
+        dialogText[itor].setPosition(25, dialog.getPosition().y + minusPos);
+        minusPos+=32;
+
         framee.draw(dialogText[itor]);
     }
 
@@ -92,6 +95,7 @@ void open() {
     rlog << PRINT_TICKS << "Initialisation de la fenetre et du renderer terminée" << endl;
     //Ouverture d'un son
     sf::SoundBuffer buf;
+    frame.setFramerateLimit(60);
 #ifdef _WIN32
     if(!buf.loadFromFile("ressources\\audio\\sounds\\dialogChange.ogg"))
 #else
@@ -105,9 +109,20 @@ void open() {
     Initializer::initSprites();
     rlog << PRINT_TICKS << "Chargement des variables de chaque partie" << endl;
     initAll();
+    #ifdef TEST
+    sf::Sprite spriteTest;
+    sf::Texture bg;
+    bg.loadFromFile("ressources/backgrounds/titlescreen.png");
+    spriteTest.setTexture(bg);
+    frame.draw(spriteTest);
+    frame.display();
+    Utils::wait(1000 * 5);
+    #endif
+    frame.clear(sf::Color::White);
+    frame.display();
 
     dialogPass.setVolume(50);
-
+    frame.clear(sf::Color::Black);
     rlog << PRINT_TICKS << "Lancement du menu." << endl;
     //Lancement du jeu
     if(MainMenu::mainMenu() != -1) {

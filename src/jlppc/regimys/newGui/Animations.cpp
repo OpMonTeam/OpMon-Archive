@@ -9,9 +9,18 @@ sf::Event events;
 int ancientTick = 0;
 bool continuer = false;
 bool joypressed = false;
+sf::Texture fen[6];
 
 void initAnims() {
-
+    for(int i = 0; i < 6; i++){
+        ostringstream oss;
+        #ifdef _WIN32
+                    oss << "ressources\\animations\\winChange\\animWindowFrame" << i + 1 << ".png";
+        #else
+                    oss << "ressources/animations/winChange/animWindowFrame" << i + 1 << ".png";
+        #endif // _WIN32
+        fen[i].loadFromFile(oss.str());
+    }
     init = true;
 }
 
@@ -35,17 +44,7 @@ int animFenOpen(sf::RenderWindow & window, sf::Sprite const& fond) {
             }
 
             ECHAP
-
-
-            ostringstream oss;
-            //Oui je sais c'est pas opti de les init ici mais MERDE. Je fais ce que je veux.
-#ifdef _WIN32
-            oss << "ressources\\animations\\winChange\\animWindowFrame" << i + 1 << ".png";
-#else
-            oss << "ressources/animations/winChange/animWindowFrame" << i + 1 << ".png";
-#endif // _WIN32
-
-            anim[i].loadTextureFromFile(oss.str());
+            anim[i].setTexture(fen[i]);
             window.clear(sf::Color::White);
             window.draw(fond);
             window.draw(anim[i]);
@@ -74,16 +73,7 @@ int animFenClose(sf::RenderWindow &window, sf::Sprite const& fond) {
 
             ECHAP
 
-
-            ostringstream oss;
-            //Oui je sais c'est pas opti de les init ici mais MERDE. Je fais ce que je veux.
-#ifdef _WIN32
-            oss << "ressources\\animations\\winChange\\animWindowFrame" << i + 1 << ".png";
-#else
-            oss << "ressources/animations/winChange/animWindowFrame" << i + 1 << ".png";
-#endif // _WIN32
-
-            anim[i].loadTextureFromFile(oss.str());
+            anim[i].setTexture(fen[i]);
 
             window.clear(sf::Color::White);
 
