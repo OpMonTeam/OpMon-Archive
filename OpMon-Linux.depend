@@ -467,7 +467,7 @@
 	<vector>
 	<fstream>
 
-1495108638 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/main.hpp
+1495285163 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/main.hpp
 	<iostream>
 	<fstream>
 	"../../utils/File.hpp"
@@ -570,28 +570,29 @@
 	"../save/Save.hpp"
 	"../objects/OpMon.hpp"
 
-1494253123 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/Initializer.cpp
+1495290085 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/Initializer.cpp
 	"Initializer.hpp"
 	"../enums/Enums.hpp"
 	"../objects/Attaques.hpp"
 	"StringKeys.hpp"
 	"main.hpp"
-	<SDL/SDL.h>
 	<sstream>
-	"../gui/MainFrame.hpp"
+	"../newGui/MainFrame.hpp"
 	<fstream>
 	"../save/OptionsSave.hpp"
-	"../gui/Animations.hpp"
+	"../newGui/Animations.hpp"
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
 
-1492950596 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/Initializer.hpp
+1495285163 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/Initializer.hpp
 	<iostream>
 	<vector>
 	"../../utils/NumberedArray.hpp"
 	"../objects/Espece.hpp"
 	"../evolution/evolutions.hpp"
-	<SDL/SDL.h>
-	<SDL/SDL_image.h>
-	"../gui/Elements.hpp"
+	<SFML/Audio.hpp>
+	<SFML/Graphics.hpp>
+	"../newGui/Elements.hpp"
 
 1488910617 /usr/local/include/SDL/SDL.h
 	"SDL_main.h"
@@ -932,14 +933,12 @@
 	"begin_code.h"
 	"close_code.h"
 
-1494516887 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/main.cpp
+1495290104 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/main.cpp
 	"main.hpp"
 	<iostream>
 	<fstream>
 	<string>
 	<cstdlib>
-	<SDL/SDL.h>
-	<SDL/SDL_image.h>
 	"../objects/item/Item.hpp"
 	"../objects/item/itemInclude.hxx"
 	"../playercore/Player.hpp"
@@ -949,7 +948,7 @@
 	"../../utils/File.hpp"
 	"Initializer.hpp"
 	"StringKeys.hpp"
-	"../gui/MainFrame.hpp"
+	"../newGui/MainFrame.hpp"
 	"../save/OptionsSave.hpp"
 	"../objects/Attaques.hpp"
 	"../save/Save.hpp"
@@ -964,10 +963,9 @@
 	"Evolution.hpp"
 	"evolutions.hpp"
 
-1494253123 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/StringKeys.cpp
+1495290117 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/start/StringKeys.cpp
 	"StringKeys.hpp"
 	"main.hpp"
-	<SDL/SDL.h>
 	<cstdio>
 
 1492882789 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/utils/Class.cpp
@@ -987,9 +985,12 @@
 1492882789 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/utils/NumberedArray.cpp
 	"NumberedArray.hpp"
 
-1492882789 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/utils/Utils.cpp
+1495289966 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/utils/Utils.cpp
 	"Utils.hpp"
 	<iostream>
+	<cstdlib>
+	<unistd.h>
+	<SFML/System.hpp>
 
 1494516887 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/gui/StartScene.cpp
 	"StartScene.hpp"
@@ -1305,4 +1306,101 @@
 	"Overworld.hpp"
 	"../start/Initializer.hpp"
 	"../start/main.hpp"
+
+1495285163 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/Elements.hpp
+	<iostream>
+	<vector>
+	<SFML/Audio.hpp>
+	<SFML/Graphics.hpp>
+
+1495285163 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/Animations.cpp
+	"Animations.hpp"
+	"MainFrame.hpp"
+
+1495285163 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/Animations.hpp
+	<iostream>
+	"../start/main.hpp"
+	<SFML/Graphics.hpp>
+
+1495288942 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/MainFrame.hpp
+	"Elements.hpp"
+	"../start/StringKeys.hpp"
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+
+1495285163 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/Elements.cpp
+	"Elements.hpp"
+	<cstdlib>
+	"../start/main.hpp"
+	"../start/Initializer.hpp"
+	"MainFrame.hpp"
+
+1492882789 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/Events.cpp
+	"Events.hpp"
+
+1492951473 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/Events.hpp
+	"Elements.hpp"
+	"MainFrame.hpp"
+
+1495285163 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/MainFrame.cpp
+	"MainFrame.hpp"
+	<iostream>
+	"../start/main.hpp"
+	<SFML/Graphics.hpp>
+	<cstring>
+	"../start/StringKeys.hpp"
+	"../start/main.hpp"
+	<string>
+	<SFML/Audio.hpp>
+	"MainMenu.hpp"
+	"../start/Initializer.hpp"
+	"Overworld.hpp"
+	"StartScene.hpp"
+
+1495285163 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/MainMenu.hpp
+	"MainFrame.hpp"
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+
+1495285163 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/Overworld.hpp
+	"MainFrame.hpp"
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+
+1495285163 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/StartScene.hpp
+	"../start/bigDefines.hxx"
+	<SFML/Audio.hpp>
+	<SFML/Graphics.hpp>
+
+1495285163 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/MainMenu.cpp
+	"MainMenu.hpp"
+	"../start/main.hpp"
+	<iostream>
+	"OptionsMenu.hpp"
+
+1495128796 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/OptionsMenu.hpp
+	<iostream>
+	"MainFrame.hpp"
+	"MainMenu.hpp"
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"Elements.hpp"
+
+1495285163 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/OptionsMenu.cpp
+	"OptionsMenu.hpp"
+	"../enums/Enums.hpp"
+	"../start/main.hpp"
+	"../save/OptionsSave.hpp"
+	"MainFrame.hpp"
+
+1495285163 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/Overworld.cpp
+	"Overworld.hpp"
+	"../start/Initializer.hpp"
+	"../start/main.hpp"
+
+1495289063 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/StartScene.cpp
+	"StartScene.hpp"
+	"../start/main.hpp"
+	"Animations.hpp"
+	"MainFrame.hpp"
 

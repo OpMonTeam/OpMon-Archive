@@ -10,9 +10,6 @@
 
 #include <cstdlib>
 
-#include <SDL/SDL.h>
-#include <SDL/SDL_image.h>
-
 #include "../objects/item/Item.hpp"
 #include "../objects/item/itemInclude.hxx"
 #include "../playercore/Player.hpp"
@@ -97,12 +94,8 @@ void gererErreur(string errorName, bool fatal) {
 }
 
 int quit(int returne) {
-    if (MainFrame::init) {//Fermeture de SDL
-        Mix_CloseAudio();
-        Mix_Quit();
-        TTF_Quit();
-        atexit(IMG_Quit);
-        SDL_Quit();
+    if (MainFrame::init) {
+
     }
     for (unsigned int i = 0; i < OP_NUMBER; i++) {//Suppression des OpMon
         if(Initializer::listeOp[i] != NULL) {

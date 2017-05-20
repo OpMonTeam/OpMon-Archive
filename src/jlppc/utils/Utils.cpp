@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <unistd.h>
+#include <SFML/System.hpp>
 
 int Utils::randU(int limit) {
     srand(time(NULL));
