@@ -31,21 +31,26 @@ sf::Text txtLang;
 sf::Sprite fondLangues;
 //J_Texture listeLangues[3] = {};
 sf::Vector2f curPosLang[4] = {};
+sf::Texture textures2[3];
 
 void initVars() {
 
 #ifdef _WIN32
-    fondOpt.loadTextureFromFile("ressources\\backgrounds\\options.png");
-    rectSurb.loadTextureFromFile("ressources\\sprites\\misc\\selectBar.png");
-    fondLangues.loadTextureFromFile("ressources\\backgrounds\\lang.png");
+    textures2[0].loadFromFile("ressources\\backgrounds\\options.png");
+    textures2[1].loadFromFile("ressources\\sprites\\misc\\selectBar.png");
+    textures2[2].loadFromFile("ressources\\backgrounds\\lang.png");
 
 #else
-    fondOpt.loadTextureFromFile("ressources/backgrounds/options.png");
-    rectSurb.loadTextureFromFile("ressources/sprites/misc/selectBar.png");
-    fondLangues.loadTextureFromFile("ressources/backgrounds/lang.png");
+    textures2[0].loadFromFile("ressources/backgrounds/options.png");
+    textures2[1].loadFromFile("ressources/sprites/misc/selectBar.png");
+    textures2[2].loadFromFile("ressources/backgrounds/lang.png");
 
 
 #endif // _WIN32
+    fondOpt.setTexture(textures2[0]);
+    rectSurb.setTexture(textures2[1]);
+    fondLangues.setTexture(textures2[2]);
+
     langFr.setString(L"Français");
     langEng.setString("English");
     langEsp.setString(L"Espa\u00F1ol");

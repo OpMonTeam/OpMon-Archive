@@ -18,17 +18,14 @@ Permet d'ouvrir la fenetre du jeu et de charger les ressources essensielles. Con
 #define rLog rlog
 #define charLineDialog 33
 #define kget StringKeys::get
-
 #define QUIT case sf::Event::Closed:\
                 return -1;
 #define ECHAP if(isKeyPressed(sf::Keyboard::Escape)){return -1;}
 
-#define ESPACE ECHAP
-
 #define isKeyPressed sf::Keyboard::isKeyPressed
 
 #define POURCENT(nbre, de) (nbre * de) / 100
-#define FONT_SIZE_DEFAULT 28
+#define FONT_SIZE_DEFAULT 25
 #define loadTextureFromFile(path) setTexture(sf::Texture(path))
 #define loadSoundFromFile(path) setBuffer(sf::SoundBuffer(path))
 
@@ -38,7 +35,7 @@ Permet d'ouvrir la fenetre du jeu et de charger les ressources essensielles. Con
 		txtEnCours[0] = varname[dialog];\
 		txtEnCours[1] = varname[dialog + 1];\
 		txtEnCours[2] = varname[dialog + 2];\
-		std::string tab[3] = {txtEnCours[0], txtEnCours[1], txtEnCours[2]};\
+		sf::String tab[3] = {txtEnCours[0], txtEnCours[1], txtEnCours[2]};\
 		printText(frame, tab);\
 		changeDialog = true;\
 		Utils::wait(50);\
@@ -81,7 +78,7 @@ namespace MainFrame {
 
     void open();
 
-    void printText(sf::RenderWindow &frame, std::string text[]);
+    void printText(sf::RenderWindow &frame, sf::String text[]);
 
     void initAll();
 

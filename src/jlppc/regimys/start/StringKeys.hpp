@@ -11,13 +11,14 @@ Contient la défnition du namespace StringKeys
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <SFML/System.hpp>
 
 namespace StringKeys {
 extern std::vector<std::string> keys;
-extern std::vector<std::string> strings;
-std::string get(std::string key);
+extern std::vector<sf::String> strings;
+sf::String get(std::string key);
 void initialize(std::string file);
-std::string split(std::string str, char splitter, int part);
+sf::String split(sf::String str, char splitter, int part);
 }
 
 #endif // STRINGKEYS_HPP
