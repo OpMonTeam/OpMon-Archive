@@ -21,6 +21,11 @@
 				</Compiler>
 				<Linker>
 					<Add option="-m64" />
+					<Add library="sfml-graphics" />
+					<Add library="sfml-network" />
+					<Add library="sfml-audio" />
+					<Add library="sfml-window" />
+					<Add library="sfml-system" />
 				</Linker>
 			</Target>
 			<Target title="Release">
