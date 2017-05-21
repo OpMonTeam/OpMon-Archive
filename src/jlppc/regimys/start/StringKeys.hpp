@@ -16,7 +16,7 @@ Contient la défnition du namespace StringKeys
 namespace StringKeys {
 extern std::vector<std::string> keys;
 extern std::vector<sf::String> strings;
-sf::String get(std::string key);
+sf::String& get(std::string key);
 void initialize(std::string file);
 sf::String split(sf::String str, char splitter, int part);
 }

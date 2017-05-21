@@ -12,7 +12,6 @@ sf::String readLine(ifstream &input){
     for(unsigned int i = 0; i < 1024; i++){
         int got = input.get();
         char traded = got;
-        cout << traded << endl;
         if(got == '\n' || got < 31){
             break;
         }else{
@@ -47,7 +46,6 @@ void initialize(string keysFileS) {
     //Récupération des clées
     while (!fini) {
         sf::String read = readLine(keysFile);
-        cout << sfStringtoStdString(read) << endl;
         if (!(read.toUtf32().substr(0, read.toUtf32().size() - (read.toUtf32().size() - 3)) == sf::String("key"))) {//Vérifie si la ligne lue est correcte
             break;//Sinon arrête de lire
         }
@@ -58,14 +56,15 @@ void initialize(string keysFileS) {
     }
 }
 
-sf::String get(string key) {
+sf::String& get(string key) {
     key = string("key.") + key;//Ajout du préfixe key.
     for (unsigned int i = 0; i < keys.size(); i++) {//Scanne les clées
         if (keys[i] == key) {
             return strings[i];
         }
     }
-    return sf::String("");//Si rien trouvé, retourne une chaine vide.
+    sf::String voi = sf::String("");
+    return voi;//Si rien trouvé, retourne une chaine vide.
 }
 
 int getIndex(string key) {

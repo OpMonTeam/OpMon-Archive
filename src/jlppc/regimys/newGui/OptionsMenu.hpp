@@ -48,6 +48,7 @@ namespace OptionsMenu{
     void deleteVars();
     int boucle();
     int boucleLang();
+    void initStrings();
 
 }
 }

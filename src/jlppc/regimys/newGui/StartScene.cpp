@@ -38,15 +38,8 @@ sf::String txtP1[15];
 
 sf::Texture textures[5];
 
-
-
-void destroyVars() {
-
-}
-
-/**Initialise les variables*/
-void initVars() {
-    unsigned int it = 0;
+void initStrings(){
+        unsigned int it = 0;
     for(it = 0; it < 18; it++) {
         ostringstream oss;
         oss << "prof.dialog.start." << it + 1;
@@ -61,6 +54,22 @@ void initVars() {
         txtP1[ite] = kget(oss.str());
         ite++;
     }
+    texteDescs[0].setString(kget("nameEntry.med"));
+
+    texteDescs[1].setString(kget("nameEntry.top"));
+
+    texteDescs[2].setString(kget("nameEntry.indic.1"));
+
+    texteDescs[3].setString(kget("nameEntry.indic.2"));
+}
+
+void destroyVars() {
+
+}
+
+/**Initialise les variables*/
+void initVars() {
+    initStrings();
     rlog << PRINT_TICKS << "Initialisation des variables de la scene d'intro" << endl;
     MainFrame::dialog.setPosition(0, 362);
     profT.setPosition((fondT.getGlobalBounds().height / 2) - (profT.getGlobalBounds().width / 2) + 10, ((fondT.getGlobalBounds().height - MainFrame::dialog.getGlobalBounds().height / 2) - (profT.getGlobalBounds().height / 2) + 50));
@@ -109,13 +118,7 @@ void initVars() {
         texteDescs[iterator].setColor(sf::Color::Black);
         texteDescs[iterator].setFont(font);
     }
-    texteDescs[0].setString(kget("nameEntry.med"));
 
-    texteDescs[1].setString(kget("nameEntry.top"));
-
-    texteDescs[2].setString(kget("nameEntry.indic.1"));
-
-    texteDescs[3].setString(kget("nameEntry.indic.2"));
 #ifdef _WIN32
     fondMus.openFromFile("ressources\\audio\\music\\intro.ogg");
 #else

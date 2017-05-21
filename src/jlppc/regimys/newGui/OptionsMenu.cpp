@@ -23,6 +23,7 @@ sf::Text txtOpt4;
 sf::Text txtOpt5;
 sf::Sprite rectSurb;
 sf::Vector2f curPosOpt[6] = {};
+sf::Vector2f curSizeOpt[6];
 int optionSelect = -1;
 int curPosOptI = 0;
 int curPosLangI = 0;
@@ -31,7 +32,49 @@ sf::Text txtLang;
 sf::Sprite fondLangues;
 //J_Texture listeLangues[3] = {};
 sf::Vector2f curPosLang[4] = {};
+sf::Vector2f curSizeLang[4];
 sf::Texture textures2[3];
+
+void initStrings(){
+    langFr.setString(L"Français");
+    langFr.setFont(font);
+    langFr.setCharacterSize(FONT_SIZE_DEFAULT);
+    langEng.setString("English");
+    langEng.setFont(font);
+    langEng.setCharacterSize(FONT_SIZE_DEFAULT);
+    langEsp.setString(L"Espa\u00F1ol");
+    langEsp.setFont(font);
+    langEsp.setCharacterSize(FONT_SIZE_DEFAULT);
+    txtRetour.setString(kget("options.retour"));
+    txtRetour.setFont(font);
+    txtRetour.setCharacterSize(FONT_SIZE_DEFAULT);
+    txtOptions.setString(kget("options.title"));
+    txtOptions.setFont(font);
+    txtOptions.setCharacterSize(FONT_SIZE_DEFAULT);
+    txtOpt1.setString(kget("options.ecran"));
+    txtOpt1.setColor(sf::Color::Red);
+    txtOpt1.setFont(font);
+    txtOpt1.setCharacterSize(FONT_SIZE_DEFAULT);
+    txtOpt2.setString(kget("options.lang"));
+        txtOpt2.setFont(font);
+    txtOpt2.setCharacterSize(FONT_SIZE_DEFAULT);
+    txtOpt3.setString(kget("options.vol"));
+        txtOpt3.setFont(font);
+    txtOpt3.setCharacterSize(FONT_SIZE_DEFAULT);
+    txtOpt3.setColor(sf::Color::Red);
+    txtOpt4.setString( kget("options.control"));
+        txtOpt4.setFont(font);
+    txtOpt4.setCharacterSize(FONT_SIZE_DEFAULT);
+    txtOpt4.setColor(sf::Color::Red);
+    txtOpt5.setString(kget("options.credit"));
+        txtOpt5.setFont(font);
+    txtOpt5.setCharacterSize(FONT_SIZE_DEFAULT);
+    txtOpt5.setColor(sf::Color::Red);
+
+    txtLang.setString(kget("options.lang.title"));
+        txtLang.setFont(font);
+    txtLang.setCharacterSize(FONT_SIZE_DEFAULT);
+}
 
 void initVars() {
 
@@ -51,23 +94,8 @@ void initVars() {
     rectSurb.setTexture(textures2[1]);
     fondLangues.setTexture(textures2[2]);
 
-    langFr.setString(L"Français");
-    langEng.setString("English");
-    langEsp.setString(L"Espa\u00F1ol");
-    txtRetour.setString(kget("options.retour"));
-    txtOptions.setString(kget("options.title"));
-    txtOpt1.setString(kget("options.ecran"));
-    txtOpt1.setColor(sf::Color::Red);
-    txtOpt2.setString(kget("options.lang"));
-    txtOpt3.setString(kget("options.vol"));
-    txtOpt3.setColor(sf::Color::Red);
-    txtOpt4.setString( kget("options.control"));
-    txtOpt4.setColor(sf::Color::Red);
-    txtOpt5.setString(kget("options.credit"));
-    txtOpt5.setColor(sf::Color::Red);
 
-    txtLang.setString(kget("options.lang.title"));
-
+    initStrings();
 
     txtOpt1.setPosition(120, 100);
     txtOpt2.setPosition(120, 170);
@@ -86,19 +114,27 @@ void initVars() {
 
     curPosOpt[0].x = 23;
     curPosOpt[0].y = 17;
+    curSizeOpt[0].x = 134 / rectSurb.getGlobalBounds().width;
+    curSizeOpt[0].y = 49 / rectSurb.getGlobalBounds().height;
 
     curPosLang[0].x = 23;
     curPosLang[0].y = 17;
+    curSizeLang[0].x = 134 / rectSurb.getGlobalBounds().width;
+    curSizeLang[0].y = 49 / rectSurb.getGlobalBounds().height;
 
     for(int i = 1, j = 86; i < 6; i++) {
         curPosOpt[i].x = 23;
         curPosOpt[i].y = j;
+        curSizeOpt[i].x = 464 / rectSurb.getGlobalBounds().width;
+        curSizeOpt[i].y = 57 / rectSurb.getGlobalBounds().height;
         j+=69;
     }
 
     for(int i = 1, j = 86; i < 4; i++){
         curPosLang[i].x = 23;
         curPosLang[i].y = j;
+        curSizeLang[i].x = 464 / rectSurb.getGlobalBounds().width;
+        curSizeLang[i].y = 57 / rectSurb.getGlobalBounds().height;
         j+=69;
     }
 
@@ -112,8 +148,8 @@ void verifVars() {
 void deleteVars() {
 
 }
-
 int optionsMenu() {
+
     verifVars();
     //Lancement du menu
     return boucle();
@@ -124,11 +160,9 @@ int boucle() {
         frame.waitEvent(events);
         switch(events.type) {
             QUIT
-        }
-
-        ECHAP
-        if(isKeyPressed(sf::Keyboard::Return)){
-            switch(curPosOptI) {
+            case sf::Event::KeyPressed:
+                if(events.key.code == sf::Keyboard::Return){
+                    switch(curPosOptI) {
                 case 0:
                     return 0;
                 case 1:
@@ -147,6 +181,13 @@ int boucle() {
                     bruitNope.play();//Non disponible
                     break;
             }
+                }
+                break;
+        }
+
+        ECHAP
+        if(isKeyPressed(sf::Keyboard::Return)){
+
         }else if(isKeyPressed(sf::Keyboard::Up)){
                 bruitArr.play();
                 curPosOptI--;
@@ -179,6 +220,7 @@ int boucle() {
         frame.draw(txtRetour);
         frame.draw(txtOptions);
         rectSurb.setPosition(curPosOpt[curPosOptI]);
+        rectSurb.setScale(curSizeOpt[curPosOptI]);
         frame.draw(rectSurb);
 
         frame.display();
@@ -194,11 +236,10 @@ int boucleLang(){
         frame.waitEvent(events);
         switch(events.type) {
             QUIT
-        }
 
-        ECHAP
-        if(isKeyPressed(sf::Keyboard::Return)){
-            switch(curPosOptI) {//Choix de la langue
+            case sf::Event::KeyPressed:
+                if(events.key.code == sf::Keyboard::Return){
+                    switch(curPosOptI) {//Choix de la langue
                 case 0://Bouton Retour
                     return 0;
                 case 1:
@@ -209,7 +250,7 @@ int boucleLang(){
                 #else
                     StringKeys::initialize("ressources/keys/english.rkeys");
                 #endif
-                    initAll();
+                    initAllStrings();
                     return 0;
                     break;
                 case 2:
@@ -220,7 +261,7 @@ int boucleLang(){
                     #else
                         StringKeys::initialize("ressources/keys/espanol.rkeys");
                     #endif // _WIN32
-                    initAll();
+                    initAllStrings();
                     return 0;
                     break;
                 case 3:
@@ -231,11 +272,17 @@ int boucleLang(){
                     #else
                         StringKeys::initialize("ressources/keys/francais.rkeys");
                     #endif
-                    initAll();
+                    initAllStrings();
                     return 0;
                     break;
                 }
-        }else if(isKeyPressed(sf::Keyboard::Up)){
+                }
+                break;
+
+        }
+
+        ECHAP
+        if(isKeyPressed(sf::Keyboard::Up)){
                 bruitArr.play();
                 curPosOptI--;
                 if(curPosOptI >= 4) {
@@ -264,6 +311,7 @@ int boucleLang(){
         frame.draw(txtRetour);
         frame.draw(txtLang);
         rectSurb.setPosition(curPosOpt[curPosOptI]);
+        rectSurb.setScale(curSizeLang[curPosOptI]);
         frame.draw(rectSurb);
 
         frame.display();
