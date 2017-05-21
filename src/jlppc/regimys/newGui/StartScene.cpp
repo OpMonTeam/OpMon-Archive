@@ -122,6 +122,9 @@ void initVars() {
         texteDescs[iterator].setFont(font);
     }
 
+    nameT.setFont(font);
+    nameT.setPosition(120, 300);
+
 #ifdef _WIN32
     fondMus.openFromFile("ressources\\audio\\music\\intro.ogg");
 #else
@@ -209,6 +212,7 @@ int boucle0() {
 }
 
 int boucle1() {
+    frame.setKeyRepeatEnabled(true);
     frame.clear(sf::Color::White);
     frame.draw(fondNE);
     FOR_EACH(sf::Text, texteDescs, 4,{)
@@ -233,6 +237,41 @@ int boucle1() {
                 }
                pName[k] = events.text.unicode;
             }
+            break;
+
+        case sf::Event::KeyPressed:
+            if(events.key.code == sf::Keyboard::Return){
+                                bool voided = true;
+								int voidNumber = 0;
+								int indexEnd = 0;
+								for (unsigned int l = 0; l < 15; l++) {
+									if (pName[l] != ' ') {
+										voided = false;
+										voidNumber = 0;
+									} else {
+										voidNumber++;
+									}
+									if (voidNumber >= 2) {
+										indexEnd = l - 1;
+										break;
+									}
+								}
+								if (voided) {
+									pName[0] = ' ';
+									pName[0 + 1] = 'R';
+									pName[1 + 1] = 'o';
+									pName[2 + 1] = 'b';
+									pName[3 + 1] = 'e';
+									pName[4 + 1] = 'r';
+									pName[5 + 1] = 't';
+									pName[6 + 1] = '\0';
+								} else {
+                                    if(indexEnd != 0){
+                                        pName[indexEnd] = '\0';
+                                    }
+								}
+								continuer = false;
+                    }
 
         }
 
@@ -249,6 +288,7 @@ int boucle1() {
 
 
     }
+    frame.setKeyRepeatEnabled(false);
     return 0;
 }
 
