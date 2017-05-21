@@ -37,6 +37,7 @@ void verifVars();
 void deleteVars();
 int mainMenu();
 int boucle0();
+void initStrings();
 }
 }
 

@@ -10,10 +10,11 @@
 #include "MainMenu.hpp"
 #include "../start/Initializer.hpp"
 #include "Overworld.hpp"
+#include "OptionsMenu.hpp"
 
 #include "StartScene.hpp"
 
-
+bool keyPressed = false;
 
 UNS
 
@@ -29,6 +30,12 @@ namespace MainFrame {
     sf::Sprite ppAnim;
     sf::Sound dialogPass;
 
+
+void initAllStrings(){
+    MainMenu::OptionsMenu::initStrings();
+    MainMenu::initStrings();
+    StartScene::initStrings();
+}
 
 int printChoice(string text, string choice1, string choice2, string choix3) {
     //Non fini
