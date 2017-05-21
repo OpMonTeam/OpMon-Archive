@@ -4,7 +4,6 @@
 #include "../save/OptionsSave.hpp"
 
 UNS
-
 namespace MainFrame {
 namespace MainMenu {
 namespace OptionsMenu {

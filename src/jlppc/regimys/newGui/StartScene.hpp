@@ -18,6 +18,7 @@ namespace StartScene {
 int startScene();
 void initVars();
 void destroyVars();
+void initStrings();
 
 extern sf::Sprite fondT;
 extern sf::Sprite profT;

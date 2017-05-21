@@ -31,6 +31,8 @@ Permet d'ouvrir la fenetre du jeu et de charger les ressources essensielles. Con
 
 #define FPS_TICKS 33
 
+
+
 #define DIALOG_PASS(varname) if (changeDialog == false) {\
 		txtEnCours[0] = varname[dialog];\
 		txtEnCours[1] = varname[dialog + 1];\
@@ -81,6 +83,8 @@ namespace MainFrame {
     void printText(sf::RenderWindow &frame, sf::String text[]);
 
     void initAll();
+
+    void initAllStrings();
 
     void destroyAll();
 }
