@@ -109,12 +109,29 @@ void open() {
     Initializer::initSprites();
     rlog << PRINT_TICKS << "Chargement des variables de chaque partie" << endl;
     initAll();
+    frame.clear(sf::Color::White);
+    #define TEST
     #ifdef TEST
-    sf::Sprite spriteTest;
-    sf::Texture bg;
-    bg.loadFromFile("ressources/backgrounds/titlescreen.png");
-    spriteTest.setTexture(bg);
-    frame.draw(spriteTest);
+    ifstream strm("ressources/keys/francais.rkeys");
+    string read;
+    getline(strm, read);
+    getline(strm, read);
+    getline(strm, read);
+    getline(strm, read);
+    getline(strm, read);
+    getline(strm, read);
+    getline(strm, read);
+    getline(strm, read);
+    getline(strm, read);
+    getline(strm, read);
+    getline(strm, read);
+    sf::String sfstr = sf::String::fromUtf8(read.begin(), read.end());
+    sf::Text txt;
+    txt.setString(sfstr);
+    txt.setColor(sf::Color::Blue);
+    frame.clear(sf::Color::White);
+    cout << read << endl;
+    frame.draw(txt);
     frame.display();
     Utils::wait(1000 * 5);
     #endif
