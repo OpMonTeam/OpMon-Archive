@@ -8,7 +8,7 @@ vector<string> keys = vector<string>();
 vector<sf::String> strings = vector<sf::String>();
 
 sf::String readLine(ifstream &input){
-    sf::String toReturn;
+    string toReturn;
     for(unsigned int i = 0; i < 1024; i++){
         int got = input.get();
         char traded = got;
@@ -20,7 +20,9 @@ sf::String readLine(ifstream &input){
             toReturn+=truc;
         }
     }
-    return toReturn;
+    sf::String toReelReturn;
+    toReelReturn = sf::String::fromUtf8(toReturn.begin(), toReturn.end());
+    return toReelReturn;
 }
 
 std::string sfStringtoStdString(sf::String &str){
