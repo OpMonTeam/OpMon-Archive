@@ -36,7 +36,7 @@ int animFenOpen(sf::RenderWindow & window, sf::Sprite const& fond) {
 
     //Frame par frame
     for (int i = 0; i < 6; i++) {
-        if ((ticks.getElapsedTime().asMilliseconds() - ancientChrono) >= 200) {
+        if ((ticks.getElapsedTime().asMilliseconds() - ancientChrono) >= 33) {
             window.pollEvent(events);
             ancientChrono = ticks.getElapsedTime().asMilliseconds();
             switch (events.type) {
@@ -64,7 +64,7 @@ int animFenClose(sf::RenderWindow &window, sf::Sprite const& fond) {
    sf::Sprite anim[6];
     int ancientChrono = 0;
     for (int i = 5; i >= 0; i--) {
-        if ((ticks.getElapsedTime().asMilliseconds() - ancientChrono) >= 200) {
+        if ((ticks.getElapsedTime().asMilliseconds() - ancientChrono) >= 33) {
             window.pollEvent(events);
             ancientChrono = ticks.getElapsedTime().asMilliseconds();
             switch (events.type) {

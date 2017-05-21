@@ -109,7 +109,10 @@ void initVars() {
     MainFrame::dialog.setTexture(textures[2]);
     arrDial.setTexture(textures[3]);
     fondNE.setTexture(textures[4]);
+    fondNE.setPosition(0, 0);
 
+    profT.setPosition(205, 120);
+    profT.setScale(1.5, 1.5);
 
 
     rlog << PRINT_TICKS << "Fin des initialisations" << endl;
@@ -145,15 +148,18 @@ int boucle0() {
 
                 QUIT
 
+                case sf::Event::KeyPressed:
+                    if(events.key.code == sf::Keyboard::Space){
+                        DIALOG_PASS(txtP0)
+                    }
+                    break;
+
             }
 
             ECHAP
             else if(isKeyPressed(sf::Keyboard::P)){
                 return 2;
-            }else if(isKeyPressed(sf::Keyboard::Space)){
-                DIALOG_PASS(txtP0)
             }
-
             if (phase == 0) {
                 frame.clear(sf::Color::White);
                 frame.draw(fondT);
@@ -230,12 +236,15 @@ int boucle1() {
 
         }
 
+        ECHAP
+
             frame.clear(sf::Color::White);
         frame.draw(fondNE);
         FOR_EACH(sf::Text, texteDescs, 4,{)
             frame.draw(*objActuel);
         }
         nameT.setString(string(pName));
+        frame.draw(nameT);
         frame.display();
 
 
