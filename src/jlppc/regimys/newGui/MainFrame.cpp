@@ -110,7 +110,7 @@ void open() {
     rlog << PRINT_TICKS << "Chargement des variables de chaque partie" << endl;
     initAll();
     frame.clear(sf::Color::White);
-    #define TEST
+    //#define TEST
     #ifdef TEST
     ifstream strm("ressources/keys/francais.rkeys");
     string read;
