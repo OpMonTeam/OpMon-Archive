@@ -62,7 +62,7 @@
 					<Add directory="src/jlppc/regimys/save/" />
 				</Compiler>
 				<Linker>
-					<Add option="-m64" />
+					<Add option="-m32" />
 					<Add library="sfml-graphics" />
 					<Add library="sfml-network" />
 					<Add library="sfml-audio" />
