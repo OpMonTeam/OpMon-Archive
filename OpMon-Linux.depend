@@ -1308,7 +1308,7 @@
 	"../start/Initializer.hpp"
 	"../start/main.hpp"
 
-1495395802 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/Elements.hpp
+1495479864 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/Elements.hpp
 	<iostream>
 	<vector>
 	<SFML/Audio.hpp>
@@ -1329,7 +1329,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1495395802 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/Elements.cpp
+1495485938 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/Elements.cpp
 	"Elements.hpp"
 	<cstdlib>
 	"../start/main.hpp"
@@ -1343,7 +1343,7 @@
 	"Elements.hpp"
 	"MainFrame.hpp"
 
-1495398764 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/MainFrame.cpp
+1495484939 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/MainFrame.cpp
 	"MainFrame.hpp"
 	<iostream>
 	"../start/main.hpp"
@@ -1364,7 +1364,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1495395802 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/Overworld.hpp
+1495482330 /home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/Overworld.hpp
 	"MainFrame.hpp"
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -1395,12 +1395,13 @@
 	"../save/OptionsSave.hpp"
 	"MainFrame.hpp"
 
-1495395802 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/Overworld.cpp
+1495485964 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/Overworld.cpp
 	"Overworld.hpp"
 	"../start/Initializer.hpp"
 	"../start/main.hpp"
+	<cmath>
 
-1495475450 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/StartScene.cpp
+1495476032 source:/home/jlppc/Bureau/Projets/OpMon/src/jlppc/regimys/newGui/StartScene.cpp
 	"StartScene.hpp"
 	"../start/main.hpp"
 	"Animations.hpp"

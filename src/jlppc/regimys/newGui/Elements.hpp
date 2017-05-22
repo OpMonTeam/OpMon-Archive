@@ -31,14 +31,14 @@ public:
 Classe définissant une carte d'un lieu en particulier
 */
 class Plan {
-private:
-    sf::Sprite couche1;
-    sf::Sprite couche2;
-    sf::Music fond;
+public:
+    sf::Sprite* couche1;
+    sf::Sprite* couche2;
+    sf::Music *fond;
     //Event events;
     int w;
     int h;
-    sf::Sprite couche3;
+    sf::Sprite* couche3;
     std::string musicPath;
     int **passTab;
 public:
@@ -53,17 +53,17 @@ public:
     int** getPassTab() const {
         return passTab;
     }
-    sf::Sprite getCouche1() const {
+    sf::Sprite* getCouche1()  {
         return couche1;
     }
-    sf::Sprite getCouche2() const {
+    sf::Sprite* getCouche2()  {
         return couche2;
     }
-    sf::Sprite getCouche3() const {
+    sf::Sprite* getCouche3()  {
         return couche3;
     }
     sf::Music* getFond() {
-        return &fond;
+        return fond;
     }
 
     std::string getMusicPath() const {

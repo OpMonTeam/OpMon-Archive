@@ -117,7 +117,7 @@ void initVars() {
 
 
     rlog << PRINT_TICKS << "Fin des initialisations" << endl;
-    for(unsigned int iterator; iterator < 4; iterator++){
+    for(unsigned int iterator = 0; iterator < 4; iterator++){
         texteDescs[iterator].setCharacterSize(FONT_SIZE_DEFAULT);
         texteDescs[iterator].setColor(sf::Color::Black);
         texteDescs[iterator].setFont(font);
@@ -413,6 +413,7 @@ int startScene() {
     if(boucle2() == -1) {
         return -1;
     }
+    fondMus.stop();
     phase++;
     return 0;
 

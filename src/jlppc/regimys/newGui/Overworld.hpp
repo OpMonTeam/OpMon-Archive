@@ -17,19 +17,22 @@ Contient les éléments fonctionnels de l'overworld
 */
 namespace Overworld {
 void initVars();
-void verifVars();
 int overworld();
-void deleteVars();
 int boucle();
+
 void up();
 void down();
-void left();
 void right();
+void left();
+
+
 extern Plan *actuel;
 extern sf::Sprite personnage;
-extern sf::Vector2f ppPos;
-extern sf::Vector2f mapPos;
-extern sf::Music *fond;
+extern sf::View camera;
+extern sf::Sprite* plans[3];
+extern sf::Music* music;
+
+
 }
 }
 
