@@ -78,7 +78,6 @@ void initAll(){
 void destroyAll(){
     MainMenu::deleteVars();
     StartScene::destroyVars();
-    Overworld::deleteVars();
 }
 
 void open() {
