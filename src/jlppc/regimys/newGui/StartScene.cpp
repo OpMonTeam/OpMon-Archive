@@ -76,7 +76,8 @@ void initVars() {
     texteDescs[1].setPosition(85, 25);
     texteDescs[0].setPosition(155, 200);
     texteDescs[2].setPosition(95, 375);
-    texteDescs[4].setPosition(95, 375+30);
+    texteDescs[3].setPosition(95, 405);
+
 
     txtEnCours[0] = sf::String(" ");
     txtEnCours[1] = sf::String(" ");
@@ -216,6 +217,7 @@ int boucle1() {
     frame.clear(sf::Color::White);
     frame.draw(fondNE);
     FOR_EACH(sf::Text, texteDescs, 4,{)
+    objActuel->setColor(sf::Color::White);
         frame.draw(*objActuel);
     }
     frame.display();
@@ -280,6 +282,7 @@ int boucle1() {
             frame.clear(sf::Color::White);
         frame.draw(fondNE);
         FOR_EACH(sf::Text, texteDescs, 4,{)
+            objActuel->setColor(sf::Color::White);
             frame.draw(*objActuel);
         }
         nameT.setString(string(pName));
@@ -305,7 +308,7 @@ int boucle2() {
 
                 QUIT
             }
-
+            ECHAP
             if(isKeyPressed(sf::Keyboard::Space)){
                 DIALOG_PASS(txtP1);
             }
