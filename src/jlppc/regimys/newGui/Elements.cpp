@@ -7,14 +7,10 @@
 UNS
 
 Plan::Plan(sf::Texture couche1, sf::Texture couche2, sf::Texture couche3, int w, int h, std::string filename, std::string fondPath) {
-    this->couche1 = new sf::Sprite();
-    this->couche2 = new sf::Sprite();
-    this->couche3 = new sf::Sprite();
+    this->couche1 = new sf::Texture(couche1);
+    this->couche2 = new sf::Texture(couche2);
+    this->couche3 = new sf::Texture(couche3);
     this->fond = new sf::Music();
-    this->couche1->setTexture(couche1);
-    this->couche2->setTexture(couche2);
-    //this->events = events;
-    this->couche3->setTexture(couche3);
     this->fond->openFromFile(fondPath);
     this->musicPath = fondPath;
 
@@ -49,11 +45,7 @@ Plan::~Plan() {
     delete(fond);
 }
 
-void Plan::setPos(sf::Vector2f const& vect){
-    couche1->setPosition(vect);
-    couche2->setPosition(vect);
-    couche3->setPosition(vect);
-}
+
 /*Plan::~Plan(){
     for(unsigned int i = 0; i < 32; i++){
         for(unsigned int j = 0; j < 32; j++){
