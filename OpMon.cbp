@@ -22,6 +22,11 @@
 				</Compiler>
 				<Linker>
 					<Add option="-m32" />
+					<Add library="sfml-graphics-d" />
+					<Add library="sfml-network-d" />
+					<Add library="sfml-audio-d" />
+					<Add library="sfml-window-d" />
+					<Add library="sfml-system-d" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -32,12 +37,20 @@
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-fexpensive-optimizations" />
+					<Add option="-O3" />
 					<Add option="-m32" />
 					<Add directory="src/jlppc/regimys/gui" />
 					<Add directory="src/jlppc/regimys/save" />
 				</Compiler>
 				<Linker>
+					<Add option="-s" />
 					<Add option="-m32" />
+					<Add library="sfml-graphics" />
+					<Add library="sfml-network" />
+					<Add library="sfml-audio" />
+					<Add library="sfml-window" />
+					<Add library="sfml-system" />
 				</Linker>
 			</Target>
 			<Target title="x64">
@@ -48,32 +61,30 @@
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-fexpensive-optimizations" />
+					<Add option="-O3" />
 					<Add option="-m64" />
-					<Add option="--enable-multilib" />
 					<Add directory="src/jlppc/regimys/gui" />
 					<Add directory="src/jlppc/regimys/save" />
 				</Compiler>
-				<ResourceCompiler>
-					<Add option="--enable-multilib" />
-				</ResourceCompiler>
 				<Linker>
+					<Add option="-s" />
 					<Add option="-m64" />
+					<Add library="sfml-graphics" />
+					<Add library="sfml-network" />
+					<Add library="sfml-audio" />
+					<Add library="sfml-window" />
+					<Add library="sfml-system" />
 				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-Wall" />
 			<Add option="-w" />
+			<Add option="-Wall" />
 			<Add option="-D_WIN32" />
 			<Add directory="include" />
 		</Compiler>
 		<Linker>
-			<Add library="lib/libmingw32.a" />
-			<Add library="lib/libSDL2main.a" />
-			<Add library="lib/libSDL2.dll.a" />
-			<Add library="lib/libSDL2_image.dll.a" />
-			<Add library="lib/libSDL2_ttf.dll.a" />
-			<Add library="lib/libSDL2_mixer.dll.a" />
 			<Add directory="lib" />
 		</Linker>
 		<Unit filename="resources.rc">
@@ -95,22 +106,62 @@
 		<Unit filename="src/jlppc/regimys/evolution/Evolution.hpp" />
 		<Unit filename="src/jlppc/regimys/evolution/evolutionInclude.hxx" />
 		<Unit filename="src/jlppc/regimys/evolution/evolutions.hpp" />
-		<Unit filename="src/jlppc/regimys/gui/Animations.cpp" />
+		<Unit filename="src/jlppc/regimys/gui/Animations.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="src/jlppc/regimys/gui/Animations.hpp" />
-		<Unit filename="src/jlppc/regimys/gui/Elements.cpp" />
+		<Unit filename="src/jlppc/regimys/gui/Elements.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="src/jlppc/regimys/gui/Elements.hpp" />
-		<Unit filename="src/jlppc/regimys/gui/Events.cpp" />
+		<Unit filename="src/jlppc/regimys/gui/Events.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="src/jlppc/regimys/gui/Events.hpp" />
-		<Unit filename="src/jlppc/regimys/gui/MainFrame.cpp" />
+		<Unit filename="src/jlppc/regimys/gui/MainFrame.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="src/jlppc/regimys/gui/MainFrame.hpp" />
-		<Unit filename="src/jlppc/regimys/gui/MainMenu.cpp" />
+		<Unit filename="src/jlppc/regimys/gui/MainMenu.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="src/jlppc/regimys/gui/MainMenu.hpp" />
-		<Unit filename="src/jlppc/regimys/gui/OptionsMenu.cpp" />
+		<Unit filename="src/jlppc/regimys/gui/OptionsMenu.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="src/jlppc/regimys/gui/OptionsMenu.hpp" />
-		<Unit filename="src/jlppc/regimys/gui/Overworld.cpp" />
+		<Unit filename="src/jlppc/regimys/gui/Overworld.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="src/jlppc/regimys/gui/Overworld.hpp" />
-		<Unit filename="src/jlppc/regimys/gui/StartScene.cpp" />
+		<Unit filename="src/jlppc/regimys/gui/StartScene.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="src/jlppc/regimys/gui/StartScene.hpp" />
+		<Unit filename="src/jlppc/regimys/newGui/Animations.cpp" />
+		<Unit filename="src/jlppc/regimys/newGui/Animations.hpp" />
+		<Unit filename="src/jlppc/regimys/newGui/Elements.cpp" />
+		<Unit filename="src/jlppc/regimys/newGui/Elements.hpp" />
+		<Unit filename="src/jlppc/regimys/newGui/Events.cpp" />
+		<Unit filename="src/jlppc/regimys/newGui/Events.hpp" />
+		<Unit filename="src/jlppc/regimys/newGui/MainFrame.cpp" />
+		<Unit filename="src/jlppc/regimys/newGui/MainFrame.hpp" />
+		<Unit filename="src/jlppc/regimys/newGui/MainMenu.cpp" />
+		<Unit filename="src/jlppc/regimys/newGui/MainMenu.hpp" />
+		<Unit filename="src/jlppc/regimys/newGui/OptionsMenu.cpp" />
+		<Unit filename="src/jlppc/regimys/newGui/OptionsMenu.hpp" />
+		<Unit filename="src/jlppc/regimys/newGui/Overworld.cpp" />
+		<Unit filename="src/jlppc/regimys/newGui/Overworld.hpp" />
+		<Unit filename="src/jlppc/regimys/newGui/StartScene.cpp" />
+		<Unit filename="src/jlppc/regimys/newGui/StartScene.hpp" />
 		<Unit filename="src/jlppc/regimys/objects/Attaque.cpp" />
 		<Unit filename="src/jlppc/regimys/objects/Attaque.hpp" />
 		<Unit filename="src/jlppc/regimys/objects/Attaques.cpp" />

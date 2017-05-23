@@ -138,26 +138,23 @@ int boucle() {
             if(isKeyPressed(sf::Keyboard::Right)) {
                 right();
             }
-            if(isKeyPressed(sf::Keyboard::M)) {
-                return 2;
-            }
             frame.clear(sf::Color::Black);
             frame.draw(*couche1);
             frame.draw(*couche2);
             if(anim != -1 && !anims) {
                 personnage.setTexture(Initializer::marchePP[anim]);
                 animsCounter++;
-                anims = animsCounter > 8;
+                anims = animsCounter > 16;
 
             } else if(anim != -1 && anims) {
                 personnage.setTexture(Initializer::marchePP2[anim]);
                 animsCounter++;
-                if(animsCounter > 16) {
+                if(animsCounter > 32) {
                     anims = false;
                     animsCounter = 0;
                 }
-            } else {
-                personnage.setTexture(Initializer::texturePP[ppDir]);
+            } else if(anim == -1){
+               personnage.setTexture(Initializer::texturePP[ppDir]);
             }
             frame.draw(personnage);
             frame.draw(*couche3);
@@ -165,51 +162,51 @@ int boucle() {
             frame.display();
 
             if(anim == DOS) {
-                if(frames - startFrames >= 8) {
+                if(frames - startFrames >= 32) {
                     anim = -1;
                     moving = -1;
                 } else {
                     if(moving == DOS) {
-                        personnage.move(0, -4);
-                         camera.move(0, -4);
+                        camera.move(0, -1);
+                        personnage.move(0, -1);
+
 
                     }
                 }
             }
             if(anim == FACE) {
-                if(frames - startFrames >= 8) {
+                if(frames - startFrames >= 32) {
                     anim = -1;
                     moving = -1;
                 } else {
                     if(moving == FACE) {
-                        personnage.move(0, 4);
-                        camera.move(0, 4);
-
+                        camera.move(0, 1);
+                        personnage.move(0, 1);
                     }
                 }
             }
 
             if(anim == GAUCHE) {
-                if(frames - startFrames >= 8) {
+                if(frames - startFrames >= 32) {
                     anim = -1;
                     moving = -1;
                 } else {
                     if(moving == GAUCHE) {
-                        personnage.move(-4, 0);
-                        camera.move(-4, 0);
-
+                        camera.move(-1, 0);
+                        personnage.move(-1, 0);
                     }
                 }
             }
 
             if(anim == DROITE) {
-                if(frames - startFrames >= 8) {
+                if(frames - startFrames >= 32) {
                     anim = -1;
                     moving = -1;
                 } else {
                     if(moving == DROITE) {
-                        personnage.move(4, 0);
-                        camera.move(4, 0);
+                        camera.move(1, 0);
+                        personnage.move(1, 0);
+
 
                     }
                 }
