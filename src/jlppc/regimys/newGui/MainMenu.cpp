@@ -75,8 +75,6 @@ void initVars() {
     charge.setCharacterSize(FONT_SIZE_DEFAULT);
     options.setCharacterSize(FONT_SIZE_DEFAULT);
     exit.setCharacterSize(FONT_SIZE_DEFAULT);
-    string toTell =  exit.getString();
-    cout << toTell << endl;
     //Mix_Volume(2, MIX_MAX_VOLUME / 4);
     //Mix_Volume(1, MIX_MAX_VOLUME);
     //Mix_Volume(0, MIX_MAX_VOLUME / 2);
