@@ -307,11 +307,13 @@ int boucle2() {
             switch (events.type) {
 
                 QUIT
+
+            case sf::Event::KeyPressed:
+                if(events.key.code == sf::Keyboard::Space){
+                    DIALOG_PASS(txtP1);
+                }
             }
             ECHAP
-            if(isKeyPressed(sf::Keyboard::Space)){
-                DIALOG_PASS(txtP1);
-            }
             if (phase == 2) {
                 frame.clear(sf::Color::White);
                 frame.draw(fondT);
