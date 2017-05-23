@@ -144,12 +144,12 @@ int boucle() {
             if(anim != -1 && !anims) {
                 personnage.setTexture(Initializer::marchePP[anim]);
                 animsCounter++;
-                anims = animsCounter > 16;
+                anims = animsCounter > 8;
 
             } else if(anim != -1 && anims) {
                 personnage.setTexture(Initializer::marchePP2[anim]);
                 animsCounter++;
-                if(animsCounter > 32) {
+                if(animsCounter > 16) {
                     anims = false;
                     animsCounter = 0;
                 }
@@ -158,54 +158,51 @@ int boucle() {
             }
             frame.draw(personnage);
             frame.draw(*couche3);
+            camera.setCenter(personnage.getPosition().x + 16, personnage.getPosition().y + 16);
             frame.setView(camera);
             frame.display();
 
             if(anim == DOS) {
-                if(frames - startFrames >= 32) {
+                if(frames - startFrames >= 8) {
                     anim = -1;
                     moving = -1;
                 } else {
                     if(moving == DOS) {
-                        camera.move(0, -1);
-                        personnage.move(0, -1);
+                        personnage.move(0, -4);
 
 
                     }
                 }
             }
             if(anim == FACE) {
-                if(frames - startFrames >= 32) {
+                if(frames - startFrames >= 8) {
                     anim = -1;
                     moving = -1;
                 } else {
                     if(moving == FACE) {
-                        camera.move(0, 1);
-                        personnage.move(0, 1);
+                        personnage.move(0, 4);
                     }
                 }
             }
 
             if(anim == GAUCHE) {
-                if(frames - startFrames >= 32) {
+                if(frames - startFrames >= 8) {
                     anim = -1;
                     moving = -1;
                 } else {
                     if(moving == GAUCHE) {
-                        camera.move(-1, 0);
-                        personnage.move(-1, 0);
+                        personnage.move(-4, 0);
                     }
                 }
             }
 
             if(anim == DROITE) {
-                if(frames - startFrames >= 32) {
+                if(frames - startFrames >= 8) {
                     anim = -1;
                     moving = -1;
                 } else {
                     if(moving == DROITE) {
-                        camera.move(1, 0);
-                        personnage.move(1, 0);
+                        personnage.move(4, 0);
 
 
                     }
