@@ -87,17 +87,23 @@ void left() {
 void initVars() {
     actuel =  Initializer::faubourgEuvi;
     personnage.setTexture(Initializer::texturePP[FACE]);
-    personnage.setPosition(21 CASES - 8, 14 CASES + 8);
+    personnage.setPosition(21 CASES - 16, 14 CASES);
     camera.setCenter(21 CASES, 14 CASES);
     camera.setSize(sf::Vector2f(16 CASES, 16 CASES));
 
-    plans[0] = actuel->getCouche1();
+/*    plans[0] = actuel->getCouche1();
     plans[1] = actuel->getCouche2();
-    plans[2] = actuel->getCouche3();
+    plans[2] = actuel->getCouche3();*/
     music = actuel->getFond();
-    couche1 = actuel->getCouche1();
-    couche2 = actuel->getCouche2();
-    couche3 = actuel->getCouche3();
+    couche1 = new sf::Sprite();
+    couche2 = new sf::Sprite();
+    couche3 = new sf::Sprite();
+    couche1->setTexture(*actuel->getCouche1());
+    couche2->setTexture(*actuel->getCouche2());
+    couche3->setTexture(*actuel->getCouche3());
+    personnage.setScale(2, 2);
+
+
 }
 
 int overworld() {
@@ -165,15 +171,7 @@ int boucle() {
                 } else {
                     if(moving == DOS) {
                         personnage.move(0, -4);
-                        if(!scrollock[0] && camera.getCenter().y - 256 <= 0) {
-                            scrollock[0] = true;
-                        } else if(scrollock[0] && camera.getCenter().y + 256 <= actuel->getH() CASES) {
-                            scrollock[0] = false;
-                        }
-
-                        if(!scrollock[0]) {
-                            camera.move(0, -4);
-                        }
+                         camera.move(0, -4);
 
                     }
                 }
@@ -185,15 +183,7 @@ int boucle() {
                 } else {
                     if(moving == FACE) {
                         personnage.move(0, 4);
-                        if(scrollock[0] && camera.getCenter().y - 256 >= 0) {
-                            scrollock[0] = false;
-                        } else if(!scrollock[0] && camera.getCenter().y + 256 >= actuel->getH() CASES) {
-                            scrollock[0] = true;
-                        }
-
-                        if(!scrollock[0]) {
-                            camera.move(0, 4);
-                        }
+                        camera.move(0, 4);
 
                     }
                 }
@@ -206,15 +196,7 @@ int boucle() {
                 } else {
                     if(moving == GAUCHE) {
                         personnage.move(-4, 0);
-                        if(!scrollock[1] && camera.getCenter().x - 256 <= 0) {
-                            scrollock[1] = true;
-                        } else if(scrollock[0] && camera.getCenter().x + 256 <= actuel->getW() CASES) {
-                            scrollock[1] = false;
-                        }
-
-                        if(!scrollock[1]) {
-                            camera.move(-4, 0);
-                        }
+                        camera.move(-4, 0);
 
                     }
                 }
@@ -227,15 +209,7 @@ int boucle() {
                 } else {
                     if(moving == DROITE) {
                         personnage.move(4, 0);
-                        if(scrollock[1] && camera.getCenter().x - 256 >= 0) {
-                            scrollock[1] = false;
-                        } else if(!scrollock[0] && camera.getCenter().x + 256 >= actuel->getW() CASES) {
-                            scrollock[1] = true;
-                        }
-
-                        if(!scrollock[1]) {
-                            camera.move(4, 0);
-                        }
+                        camera.move(4, 0);
 
                     }
                 }

@@ -32,13 +32,13 @@ Classe définissant une carte d'un lieu en particulier
 */
 class Plan {
 public:
-    sf::Sprite* couche1;
-    sf::Sprite* couche2;
+    sf::Texture* couche1;
+    sf::Texture* couche2;
     sf::Music *fond;
     //Event events;
     int w;
     int h;
-    sf::Sprite* couche3;
+    sf::Texture* couche3;
     std::string musicPath;
     int **passTab;
 public:
@@ -53,13 +53,13 @@ public:
     int** getPassTab() const {
         return passTab;
     }
-    sf::Sprite* getCouche1()  {
+    sf::Texture* getCouche1()  {
         return couche1;
     }
-    sf::Sprite* getCouche2()  {
+    sf::Texture* getCouche2()  {
         return couche2;
     }
-    sf::Sprite* getCouche3()  {
+    sf::Texture* getCouche3()  {
         return couche3;
     }
     sf::Music* getFond() {
@@ -70,7 +70,6 @@ public:
         return musicPath;
     }
 
-    void setPos(sf::Vector2f const& vect);
     //Event* getEvent(int x, int y){return events[y][x];}
 };
 /*/**

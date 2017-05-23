@@ -30,6 +30,7 @@ extern Plan *faubourgEuvi;
 extern sf::Texture texturePP[4];
 extern sf::Texture marchePP[4];
 extern sf::Texture marchePP2[4];
+extern sf::Texture plansFe[3];
 //std::string backgrounds[];
 extern std::vector<int> evs[OP_NUMBER];
 void initEvs();
