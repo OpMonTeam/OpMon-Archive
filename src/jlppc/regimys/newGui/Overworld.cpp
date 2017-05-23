@@ -164,7 +164,8 @@ int boucle() {
             rerrLog << "Position joueur frame n°" << frames << ": P(" << personnage.getPosition().x << ";" << personnage.getPosition().y << ")" << endl;
 
             if(anim == DOS) {
-                if(frames - startFrames >= 8) {
+                if(frames - startFrames >= 7) {
+                    personnage.move(0, -4);
                     anim = -1;
                     moving = -1;
                 } else {
@@ -176,7 +177,8 @@ int boucle() {
                 }
             }
             if(anim == FACE) {
-                if(frames - startFrames >= 8) {
+                if(frames - startFrames >= 7) {
+                        personnage.move(0, 4);
                     anim = -1;
                     moving = -1;
                 } else {
@@ -187,7 +189,8 @@ int boucle() {
             }
 
             if(anim == GAUCHE) {
-                if(frames - startFrames >= 8) {
+                if(frames - startFrames >= 7) {
+                        personnage.move(-4, 0);
                     anim = -1;
                     moving = -1;
                 } else {
@@ -198,7 +201,8 @@ int boucle() {
             }
 
             if(anim == DROITE) {
-                if(frames - startFrames >= 8) {
+                if(frames - startFrames >= 7) {
+                        personnage.move(4, 0);
                     anim = -1;
                     moving = -1;
                 } else {
