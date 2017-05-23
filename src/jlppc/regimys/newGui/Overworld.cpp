@@ -161,6 +161,7 @@ int boucle() {
             camera.setCenter(personnage.getPosition().x + 16, personnage.getPosition().y + 16);
             frame.setView(camera);
             frame.display();
+            rerrLog << "Position joueur frame n°" << frames << ": P(" << personnage.getPosition().x << ";" << personnage.getPosition().y << ")" << endl;
 
             if(anim == DOS) {
                 if(frames - startFrames >= 8) {
