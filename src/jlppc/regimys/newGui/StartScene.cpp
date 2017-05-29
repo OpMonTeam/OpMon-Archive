@@ -111,6 +111,7 @@ void initVars() {
     arrDial.setTexture(textures[3]);
     fondNE.setTexture(textures[4]);
     fondNE.setPosition(0, 0);
+    fondMus.setLoop(true);
 
     profT.setPosition(205, 120);
     profT.setScale(1.5, 1.5);

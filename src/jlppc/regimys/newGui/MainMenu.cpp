@@ -92,6 +92,7 @@ void initVars() {
 
         frame.display();
         winRefresh();
+        fondMusTitle.setLoop(true);
 }
 
 void verifVars() {

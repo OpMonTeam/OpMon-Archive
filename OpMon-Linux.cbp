@@ -14,6 +14,7 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-std=c++14" />
 					<Add option="-m64" />
 					<Add option="-g" />
 					<Add directory="src/jlppc/regimys/gui" />
