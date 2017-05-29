@@ -95,6 +95,7 @@ void initVars() {
     plans[1] = actuel->getCouche2();
     plans[2] = actuel->getCouche3();*/
     music = actuel->getFond();
+    music->setLoop(true);
     couche1 = new sf::Sprite();
     couche2 = new sf::Sprite();
     couche3 = new sf::Sprite();
