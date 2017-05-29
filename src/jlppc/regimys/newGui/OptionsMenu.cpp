@@ -157,7 +157,7 @@ int optionsMenu() {
 
 int boucle() {
     while(continuer) {
-        frame.waitEvent(events);
+        window.waitEvent(events);
         switch(events.type) {
             QUIT
             case sf::Event::KeyPressed:
@@ -224,6 +224,7 @@ int boucle() {
         frame.draw(rectSurb);
 
         frame.display();
+        winRefresh();
 
     }
 
@@ -233,7 +234,7 @@ int boucle() {
 
 int boucleLang(){
     while(continuer) {
-        frame.waitEvent(events);
+        window.waitEvent(events);
         switch(events.type) {
             QUIT
 
@@ -315,6 +316,7 @@ int boucleLang(){
         frame.draw(rectSurb);
 
         frame.display();
+        winRefresh();
 
     }
 
