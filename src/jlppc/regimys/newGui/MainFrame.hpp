@@ -21,13 +21,13 @@ Permet d'ouvrir la fenetre du jeu et de charger les ressources essensielles. Con
 #define QUIT case sf::Event::Closed:\
                 return -1;
 
-#define FULLSCREEN if(event.key.code == sf::Keyboard::F){\
+#define FULLSCREEN if(events.key.code == sf::Keyboard::F){\
                     if(MainFrame::fullScreen){\
-                        MainFrame::window.create(sf::VideoMode::getDesktopMode(), "OpMon Lazuli", sf::Style::Fullscreen, settings);\
+                        MainFrame::window.create(sf::VideoMode::getDesktopMode(), "OpMon Lazuli", sf::Style::Fullscreen);\
                         MainFrame::fullScreen = true;\
                     }else{\
                         MainFrame::fullScreen = false;\
-                        window.create(sf::VideoMode(512, 512), "OpMon Lazuli", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize, settings);\
+                        window.create(sf::VideoMode(512, 512), "OpMon Lazuli", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize);\
                     }\
                     }
 
