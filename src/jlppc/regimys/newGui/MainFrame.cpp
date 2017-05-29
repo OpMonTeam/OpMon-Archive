@@ -11,6 +11,7 @@
 #include "../start/Initializer.hpp"
 #include "Overworld.hpp"
 #include "OptionsMenu.hpp"
+#include <thread>
 
 #include "StartScene.hpp"
 
@@ -19,7 +20,8 @@ bool keyPressed = false;
 UNS
 
 namespace MainFrame {
-    sf::RenderWindow frame;
+    sf::RenderTexture frame;
+    sf::RenderWindow window;
     sf::Sprite fond;
     sf::Event events;
     sf::Font font;
@@ -29,6 +31,8 @@ namespace MainFrame {
     sf::Sprite ppSprite;
     sf::Sprite ppAnim;
     sf::Sound dialogPass;
+    sf::Thread* windowRefresh = NULL;
+    bool fullScreen = false;
 
 
 void initAllStrings(){
@@ -54,7 +58,7 @@ int printChoice(string text, string choice1, string choice2, string choix3) {
     return 0;
 }
 
-void printText(sf::RenderWindow &framee, sf::String text[]) {
+void printText(sf::RenderTexture &framee, sf::String text[]) {
     int minusPos = 32;
     FOR_EACH(sf::String, text, 3, {)
         dialogText[itor].setString(text[itor]);
@@ -96,12 +100,13 @@ void open() {
     sf::ContextSettings settings;
     settings.antialiasingLevel = 4;
 
-    frame.create(sf::VideoMode(512, 512), "OpMon Lazuli", sf::Style::Titlebar | sf::Style::Close, settings);
+    window.create(sf::VideoMode(512, 512), "OpMon Lazuli", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize, settings);
+    frame.create(512, 512);
     //Création du renderer.
     rlog << PRINT_TICKS << "Initialisation de la fenetre et du renderer terminée" << endl;
     //Ouverture d'un son
     sf::SoundBuffer buf;
-    frame.setFramerateLimit(60);
+    window.setVerticalSyncEnabled(true);
 #ifdef _WIN32
     if(!buf.loadFromFile("ressources\\audio\\sounds\\dialogChange.ogg"))
 #else
@@ -110,7 +115,7 @@ void open() {
     {
         gererErreur("Impossible d'ouvrir le son de changement de dialogue.", false);
     }
-    frame.setKeyRepeatEnabled(false);
+    window.setKeyRepeatEnabled(false);
     dialogPass.setBuffer(buf);
     rlog << PRINT_TICKS << "Chargement des sprites globaux (Initializer)" << endl;
     Initializer::initSprites();
@@ -140,10 +145,12 @@ void open() {
     cout << read << endl;
     frame.draw(txt);
     frame.display();
+    winRefresh();
     Utils::wait(1000 * 5);
     #endif
     frame.clear(sf::Color::White);
     frame.display();
+    winRefresh();
 
     dialogPass.setVolume(50);
     frame.clear(sf::Color::Black);
@@ -168,79 +175,31 @@ void open() {
     rlog << PRINT_TICKS << "Suppression des variables de chaque partie" << endl;
     destroyAll();
     rlog << PRINT_TICKS << "Fermeture de la fenetre" << endl;
-    frame.close();
+    window.close();
     init = false;
+    delete(windowRefresh);
 }
 
 
-/*
-SDL_Texture *renderText(SDL_Renderer *renderer, char text[], TTF_Font *police, SDL_Color color, SDL_Rect *pos) {
-    SDL_Surface *sfce = TTF_RenderText_Blended(police, text, color);
-    if (sfce == NULL) {
-        rerrLog << "MainFrame::renderText() : ";
-        gererErreur(TTF_GetError(), true);
-    }
-    pos->h = sfce->h;
-    pos->w = sfce->w;
-    SDL_Texture *toReturn = SDL_CreateTextureFromSurface(renderer, sfce);
-    SDL_FreeSurface(sfce);
-    return toReturn;
-}
+void winRefresh(){
+    sf::Texture txture = frame.getTexture();
+    sf::Sprite sprite;
+    sprite.setTexture(txture);
+    cout << sprite.getGlobalBounds().height * sprite.getScale().y << "VS" << window.getSize().y << endl;
+    cout << sprite.getGlobalBounds().width * sprite.getScale().x << "VS" << window.getSize().x << endl;
+    cout << "______________________________" << endl;
 
-SDL_Texture *renderText(SDL_Renderer *renderer, string text, TTF_Font *police, SDL_Color color, SDL_Rect *pos) {
-    ;
-    return renderText(renderer, text, police, color, pos, Encoding::LATIN);
-}
+    window.draw(sprite);
+    window.display();
+    /*int ancientTick = 0;
+    while(window.isOpen()){
+        if(GET_TICKS - ancientTick < FPS_TICKS){
 
-J_Texture renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color) {
-    J_Texture toReturn;
-    toReturn.texture = renderText(renderer, text, police, color, &(toReturn.rect));
-    return toReturn;
-}
-
-SDL_Texture *renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color, SDL_Rect *pos, int encodage) {
-    if(text == "") {
-        gererErreur("Texte vide dans renderText encodage.", false);
-        text+=" ";
-    }
-    SDL_Surface *sfce = NULL;
-    Uint16 *tab;
-    switch(encodage) {
-    case Encoding::LATIN:
-        sfce = TTF_RenderText_Blended(police, text.c_str(), color);
-        break;
-    case Encoding::UNICODE:
-        tab = (Uint16*)malloc(sizeof(Uint16) * text.size());
-        for(unsigned int i = 0; i < text.size(); i++) {
-            tab[i] = text[i];
+        }else{
+            Utils::wait(GET_TICKS - ancientTick);
         }
-        sfce = TTF_RenderUNICODE_Blended(police, tab, color);
-        free(tab);
-        break;
-    case Encoding::UTF8:
-        sfce = TTF_RenderUTF8_Blended(police, text.c_str(), color);
-        break;
-    default:
-        sfce = TTF_RenderText_Blended(police, text.c_str(), color);
-        break;
-    }
-
-    if (sfce == NULL) {
-        rerrLog << "MainFrame::renderText() : ";
-        gererErreur(TTF_GetError(), true);
-    }
-    pos->h = sfce->h;
-    pos->w = sfce->w;
-    SDL_Texture *toReturn = SDL_CreateTextureFromSurface(renderer, sfce);
-    SDL_FreeSurface(sfce);
-    return toReturn;
+    }*/
 }
-
-J_Texture renderText(SDL_Renderer *renderer, std::string text, TTF_Font *police, SDL_Color color, int encodage) {
-    J_Texture toReturn;
-    toReturn.texture = renderText(renderer, text, police, color, &(toReturn.rect), encodage);
-    return toReturn;
-}*/
 
 
 }

@@ -91,6 +91,7 @@ void initVars() {
         frame.draw(cursor);
 
         frame.display();
+        winRefresh();
 }
 
 void verifVars() {
@@ -109,7 +110,7 @@ int boucle0() {
 
     rlog << PRINT_TICKS << "Entrée dans le menu" << endl;
     while(continuer) {
-        frame.waitEvent(events);
+        window.waitEvent(events);
         switch(events.type) {
             QUIT
 
@@ -170,6 +171,7 @@ int boucle0() {
         frame.draw(cursor);
 
         frame.display();
+        winRefresh();
     }
     fondMusTitle.stop();
     return 0;

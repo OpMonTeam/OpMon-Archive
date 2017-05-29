@@ -120,10 +120,12 @@ int boucle() {
         if((GET_TICKS - ancientTick >= FPS_TICKS)) {
             frames++;
             ancientTick = GET_TICKS;
-            frame.pollEvent(events);
+            window.pollEvent(events);
 
             switch(events.type) {
                 QUIT
+
+                FULLSCREEN_FULL
             }
             ECHAP
             if(isKeyPressed(sf::Keyboard::Up)) {
@@ -161,6 +163,7 @@ int boucle() {
             camera.setCenter(personnage.getPosition().x + 16, personnage.getPosition().y + 16);
             frame.setView(camera);
             frame.display();
+            winRefresh();
             rerrLog << "Position joueur frame n°" << frames << ": P(" << personnage.getPosition().x << ";" << personnage.getPosition().y << ")" << endl;
 
             if(anim == DOS) {

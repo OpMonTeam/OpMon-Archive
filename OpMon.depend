@@ -5731,11 +5731,11 @@
 	"OptionsSave.hpp"
 	"../start/main.hpp"
 
-1496055611 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\newgui\animations.cpp
+1496060034 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\newgui\animations.cpp
 	"Animations.hpp"
 	"MainFrame.hpp"
 
-1496055611 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\newgui\animations.hpp
+1496060051 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\newgui\animations.hpp
 	<iostream>
 	"../start/main.hpp"
 	<SFML/Graphics.hpp>
@@ -6128,7 +6128,7 @@
 	<string>
 	<vector>
 
-1496055611 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\newgui\mainframe.hpp
+1496061637 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\newgui\mainframe.hpp
 	"Elements.hpp"
 	"../start/StringKeys.hpp"
 	<SFML/Graphics.hpp>
@@ -6257,7 +6257,7 @@
 	"Elements.hpp"
 	"MainFrame.hpp"
 
-1496055611 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\newgui\mainframe.cpp
+1496061006 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\newgui\mainframe.cpp
 	"MainFrame.hpp"
 	<iostream>
 	"../start/main.hpp"
@@ -6271,6 +6271,7 @@
 	"../start/Initializer.hpp"
 	"Overworld.hpp"
 	"OptionsMenu.hpp"
+	<thread>
 	"StartScene.hpp"
 
 1496055611 c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\newgui\mainmenu.hpp
@@ -6296,26 +6297,26 @@
 	<SFML/Audio.hpp>
 	<SFML/Graphics.hpp>
 
-1496055611 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\newgui\mainmenu.cpp
+1496060322 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\newgui\mainmenu.cpp
 	"MainMenu.hpp"
 	"../start/main.hpp"
 	<iostream>
 	"OptionsMenu.hpp"
 
-1496055611 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\newgui\optionsmenu.cpp
+1496060336 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\newgui\optionsmenu.cpp
 	"OptionsMenu.hpp"
 	"../enums/Enums.hpp"
 	"../start/main.hpp"
 	"../save/OptionsSave.hpp"
 	"MainFrame.hpp"
 
-1496057313 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\newgui\overworld.cpp
+1496060341 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\newgui\overworld.cpp
 	"Overworld.hpp"
 	"../start/Initializer.hpp"
 	"../start/main.hpp"
 	<cmath>
 
-1496055611 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\newgui\startscene.cpp
+1496060376 source:c:\users\_le_pichon\downloads\opmon\src\jlppc\regimys\newgui\startscene.cpp
 	"StartScene.hpp"
 	"../start/main.hpp"
 	"Animations.hpp"
