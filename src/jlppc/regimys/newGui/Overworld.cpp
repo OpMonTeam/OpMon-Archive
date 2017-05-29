@@ -165,7 +165,9 @@ int boucle() {
 
             if(anim == DOS) {
                 if(frames - startFrames >= 7) {
+                        if(moving == DOS){
                     personnage.move(0, -4);
+                        }
                     anim = -1;
                     moving = -1;
                 } else {
@@ -178,7 +180,9 @@ int boucle() {
             }
             if(anim == FACE) {
                 if(frames - startFrames >= 7) {
+                        if(moving == FACE){
                         personnage.move(0, 4);
+                }
                     anim = -1;
                     moving = -1;
                 } else {
@@ -190,7 +194,10 @@ int boucle() {
 
             if(anim == GAUCHE) {
                 if(frames - startFrames >= 7) {
+                    if(moving == GAUCHE){
                         personnage.move(-4, 0);
+                    }
+
                     anim = -1;
                     moving = -1;
                 } else {
@@ -202,7 +209,9 @@ int boucle() {
 
             if(anim == DROITE) {
                 if(frames - startFrames >= 7) {
+                        if(moving == DROITE){
                         personnage.move(4, 0);
+                        }
                     anim = -1;
                     moving = -1;
                 } else {
