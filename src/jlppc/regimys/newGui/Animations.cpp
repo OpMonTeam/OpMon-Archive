@@ -28,7 +28,7 @@ void deleteAnims() {
     init = false;
 }
 
-int animFenOpen(sf::RenderWindow & window, sf::Sprite const& fond) {
+int animFenOpen(sf::RenderTexture & window, sf::Sprite const& fond) {
     ANIM_CHECK_INIT//Vérification de l'initialisation des animations
     //Déclaration des variables
     sf::Sprite anim[6];
@@ -37,7 +37,7 @@ int animFenOpen(sf::RenderWindow & window, sf::Sprite const& fond) {
     //Frame par frame
     for (int i = 0; i < 6; i++) {
         if ((ticks.getElapsedTime().asMilliseconds() - ancientChrono) >= 33) {
-            window.pollEvent(events);
+            MainFrame::window.pollEvent(events);
             ancientChrono = ticks.getElapsedTime().asMilliseconds();
             switch (events.type) {
                 QUIT
@@ -58,14 +58,14 @@ int animFenOpen(sf::RenderWindow & window, sf::Sprite const& fond) {
     return 0;
 }
 
-int animFenClose(sf::RenderWindow &window, sf::Sprite const& fond) {
+int animFenClose(sf::RenderTexture &window, sf::Sprite const& fond) {
     //Se réferer aux commentaires de la fonction précédente
     ANIM_CHECK_INIT
    sf::Sprite anim[6];
     int ancientChrono = 0;
     for (int i = 5; i >= 0; i--) {
         if ((ticks.getElapsedTime().asMilliseconds() - ancientChrono) >= 33) {
-            window.pollEvent(events);
+            MainFrame::window.pollEvent(events);
             ancientChrono = ticks.getElapsedTime().asMilliseconds();
             switch (events.type) {
                 QUIT

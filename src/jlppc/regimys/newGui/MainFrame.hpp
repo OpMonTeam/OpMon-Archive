@@ -20,6 +20,21 @@ Permet d'ouvrir la fenetre du jeu et de charger les ressources essensielles. Con
 #define kget StringKeys::get
 #define QUIT case sf::Event::Closed:\
                 return -1;
+
+#define FULLSCREEN if(events.key.code == sf::Keyboard::F){\
+                    if(MainFrame::fullScreen){\
+                        MainFrame::window.create(sf::VideoMode::getDesktopMode(), "OpMon Lazuli", sf::Style::Fullscreen);\
+                        MainFrame::fullScreen = true;\
+                    }else{\
+                        MainFrame::fullScreen = false;\
+                        window.create(sf::VideoMode(512, 512), "OpMon Lazuli", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize);\
+                    }\
+                    }
+
+
+#define FULLSCREEN_FULL case sf::Event::KeyPressed:\
+                            FULLSCREEN\
+                            break;
 #define ECHAP if(isKeyPressed(sf::Keyboard::Escape)){return -1;}
 
 #define isKeyPressed sf::Keyboard::isKeyPressed
@@ -67,7 +82,8 @@ Permet d'ouvrir la fenetre du jeu et de charger les ressources essensielles. Con
  * Contient aussi le déroulement des évenements
  */
 namespace MainFrame {
-    extern sf::RenderWindow frame;
+    extern sf::RenderTexture frame;
+    extern sf::RenderWindow window;
     extern sf::Sprite fond;
     extern sf::Event events;
     extern sf::Font font;
@@ -77,16 +93,20 @@ namespace MainFrame {
     extern sf::Sprite ppSprite;
     extern sf::Sprite ppAnim;
     extern sf::Sound dialogPass;
+    extern bool fullScreen;
+
 
     void open();
 
-    void printText(sf::RenderWindow &frame, sf::String text[]);
+    void printText(sf::RenderTexture &frame, sf::String text[]);
 
     void initAll();
 
     void initAllStrings();
 
     void destroyAll();
+
+    void winRefresh();
 }
 
 #endif /* SRC_JLPPC_REGIMYS_GUI_MAINFRAME_HPP_ */

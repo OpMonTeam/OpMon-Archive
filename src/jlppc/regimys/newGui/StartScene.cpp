@@ -146,7 +146,7 @@ int boucle0() {
 
             ancientTick = ticks.getElapsedTime().asMilliseconds();
 
-            frame.pollEvent(events);
+            window.pollEvent(events);
 
             switch (events.type) {
 
@@ -199,6 +199,7 @@ int boucle0() {
                 printText(frame, tab);
                 ANIM_ARROW
                 frame.display();
+                winRefresh();
             } else {
                 break;
             }
@@ -213,7 +214,7 @@ int boucle0() {
 }
 
 int boucle1() {
-    frame.setKeyRepeatEnabled(true);
+    window.setKeyRepeatEnabled(true);
     frame.clear(sf::Color::White);
     frame.draw(fondNE);
     FOR_EACH(sf::Text, texteDescs, 4,{)
@@ -221,8 +222,9 @@ int boucle1() {
         frame.draw(*objActuel);
     }
     frame.display();
+    winRefresh();
     while (continuer) {
-        frame.waitEvent(events);
+        window.waitEvent(events);
         switch (events.type) {
             QUIT
 
@@ -288,10 +290,11 @@ int boucle1() {
         nameT.setString(string(pName));
         frame.draw(nameT);
         frame.display();
+        winRefresh();
 
 
     }
-    frame.setKeyRepeatEnabled(false);
+    window.setKeyRepeatEnabled(false);
     return 0;
 }
 
@@ -302,7 +305,7 @@ int boucle2() {
 
             ancientTick = GET_TICKS;
 
-            frame.pollEvent(events);
+            window.pollEvent(events);
 
             switch (events.type) {
 
@@ -348,6 +351,7 @@ int boucle2() {
                 printText(frame, tab);
                 ANIM_ARROW
                 frame.display();
+                winRefresh();
             } else {
                 return 0;
             }
@@ -371,6 +375,7 @@ int startScene() {
 
     //Initialisation des variables utiles pour la boucle
     frame.display();
+    winRefresh();
     int result = boucle0();
     if(result == -1) {
         return -1;
