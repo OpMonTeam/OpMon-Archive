@@ -5,8 +5,8 @@
 #define CASE_SIZE 32
 #define FPS_TICKS 33
 #include <cmath>
-#define ppPosY (personnage.getPosition().y / CASE_SIZE)
-#define ppPosX (personnage.getPosition().x / CASE_SIZE)
+#define ppPosY ((personnage.getPosition().y / CASE_SIZE) - 8)
+#define ppPosX ((personnage.getPosition().x / CASE_SIZE) - 8)
 UNS
 namespace MainFrame {
 namespace Overworld {
@@ -39,7 +39,7 @@ void up() {
         startFrames = frames;
         anim = DOS;
         ppDir = DOS;
-        if(actuel->getPassTab()[(int)((personnage.getPosition().y / CASE_SIZE) + 1) - (((personnage.getPosition().y / CASE_SIZE) + 1 <= 0) ? 0 : 1)][(int)(personnage.getPosition().x / CASE_SIZE) + 1] == 0) {
+        if(actuel->getPassTab()[(int)(ppPosY + 1) - ((ppPosY + 1 <= 0) ? 0 : 1)][(int)ppPosX + 1] == 0) {
             //Ensuite faudra faire la verif du passages des events
             moving = DOS;
         }
@@ -87,7 +87,7 @@ void left() {
 void initVars() {
     actuel =  Initializer::faubourgEuvi;
     personnage.setTexture(Initializer::texturePP[FACE]);
-    personnage.setPosition(21 CASES - 16, 14 CASES);
+    personnage.setPosition(8 CASES + 21 CASES - 16, 8 CASES + 14 CASES);
     camera.setCenter(21 CASES, 14 CASES);
     camera.setSize(sf::Vector2f(16 CASES, 16 CASES));
 
