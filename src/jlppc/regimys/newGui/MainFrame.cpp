@@ -151,7 +151,9 @@ void open() {
     //Lancement du jeu
     if(MainMenu::mainMenu() != -1) {
         MainMenu::bruitPush.play();
+        MainMenu::fondMusTitle.stop();
         if(StartScene::startScene() != -1) {
+                StartScene::fondMus.stop();
             if(Overworld::overworld() != -1){
                 if(Overworld::overworld() == 2){
                     Main::reboot = true;
