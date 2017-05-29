@@ -11,54 +11,67 @@ AR = ar
 LD = g++
 WINDRES = windres
 
-INC = -I/usr/local/include
-CFLAGS = -fexpensive-optimizations -O1 -w -Wall -m64
+INC = 
+CFLAGS = -w -Wall
 RESINC = 
-LIBDIR = -L/usr/lib/x86_64-linux-gnu
-LIB = /usr/lib/gcc/x86_64-linux-gnu/5.4.0/libgcc.a
-LDFLAGS = -s -m64 `sdl2-config --libs` -lSDL2_image -lSDL2_ttf -lSDL2_mixer
+LIBDIR = 
+LIB = 
+LDFLAGS = 
 
 INC_DEBUG = $(INC) -Isrc/jlppc/regimys/gui -Isrc/jlppc/regimys/save/
 CFLAGS_DEBUG = $(CFLAGS) -m64 -g
 RESINC_DEBUG = $(RESINC)
 RCFLAGS_DEBUG = $(RCFLAGS)
 LIBDIR_DEBUG = $(LIBDIR)
-LIB_DEBUG = $(LIB)
+LIB_DEBUG = $(LIB)-lsfml-graphics -lsfml-network -lsfml-audio -lsfml-window -lsfml-system
 LDFLAGS_DEBUG = $(LDFLAGS) -m64
 OBJDIR_DEBUG = obj/Debug
 DEP_DEBUG = 
 OUT_DEBUG = exeLinux/OpMon-Debug
 
 INC_RELEASE = $(INC) -Isrc/jlppc/regimys/gui -Isrc/jlppc/regimys/save/
-CFLAGS_RELEASE = $(CFLAGS) -m64
+CFLAGS_RELEASE = $(CFLAGS) -fexpensive-optimizations -O3 -m64
 RESINC_RELEASE = $(RESINC)
 RCFLAGS_RELEASE = $(RCFLAGS)
 LIBDIR_RELEASE = $(LIBDIR)
-LIB_RELEASE = $(LIB)
-LDFLAGS_RELEASE = $(LDFLAGS) -m64
+LIB_RELEASE = $(LIB)-lsfml-graphics -lsfml-network -lsfml-audio -lsfml-window -lsfml-system
+LDFLAGS_RELEASE = $(LDFLAGS) -s -m64
 OBJDIR_RELEASE = obj/Release
 DEP_RELEASE = 
 OUT_RELEASE = exeLinux/OpMon
 
-OBJ_DEBUG = $(OBJDIR_DEBUG)/src/jlppc/regimys/playercore/Equipe.o $(OBJDIR_DEBUG)/src/jlppc/regimys/start/Initializer.o $(OBJDIR_DEBUG)/src/jlppc/regimys/save/Save.o $(OBJDIR_DEBUG)/src/jlppc/regimys/save/OptionsSave.o $(OBJDIR_DEBUG)/src/jlppc/regimys/playercore/Player.o $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/item/Item.o $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/item/IOpball.o $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/item/IHeal.o $(OBJDIR_DEBUG)/src/jlppc/utils/Utils.o $(OBJDIR_DEBUG)/src/jlppc/utils/NumberedArray.o $(OBJDIR_DEBUG)/src/jlppc/utils/File.o $(OBJDIR_DEBUG)/src/jlppc/utils/Comparaisons.o $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/item/CT.o $(OBJDIR_DEBUG)/src/jlppc/utils/Class.o $(OBJDIR_DEBUG)/src/jlppc/regimys/start/main.o $(OBJDIR_DEBUG)/src/jlppc/regimys/start/StringKeys.o $(OBJDIR_DEBUG)/src/jlppc/regimys/start/PersistentVars.o $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution/ETrade.o $(OBJDIR_DEBUG)/src/jlppc/regimys/gui/Elements.o $(OBJDIR_DEBUG)/src/jlppc/regimys/gui/Animations.o $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution/Evolution.o $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution/ETradeItem.o $(OBJDIR_DEBUG)/src/jlppc/regimys/gui/Events.o $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution/ENope.o $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution/ELove.o $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution/ELevel.o $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution/ELand.o $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution/EItem.o $(OBJDIR_DEBUG)/src/jlppc/regimys/enums/Enums.o $(OBJDIR_DEBUG)/src/jlppc/regimys/gui/StartScene.o $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/OpMon.o $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/Espece.o $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/Attaques.o $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/Attaque.o $(OBJDIR_DEBUG)/src/jlppc/regimys/enums/Caractere.o $(OBJDIR_DEBUG)/src/jlppc/regimys/gui/Overworld.o $(OBJDIR_DEBUG)/src/jlppc/regimys/gui/OptionsMenu.o $(OBJDIR_DEBUG)/src/jlppc/regimys/gui/MainMenu.o $(OBJDIR_DEBUG)/src/jlppc/regimys/gui/MainFrame.o
+INC_X86 = $(INC) -Isrc/jlppc/regimys/gui -Isrc/jlppc/regimys/save/
+CFLAGS_X86 = $(CFLAGS) -g -m32
+RESINC_X86 = $(RESINC)
+RCFLAGS_X86 = $(RCFLAGS)
+LIBDIR_X86 = $(LIBDIR)
+LIB_X86 = $(LIB)-lsfml-graphics -lsfml-network -lsfml-audio -lsfml-window -lsfml-system
+LDFLAGS_X86 = $(LDFLAGS) -m32
+OBJDIR_X86 = obj/x86
+DEP_X86 = 
+OUT_X86 = exeLinux/OpMonx86
 
-OBJ_RELEASE = $(OBJDIR_RELEASE)/src/jlppc/regimys/playercore/Equipe.o $(OBJDIR_RELEASE)/src/jlppc/regimys/start/Initializer.o $(OBJDIR_RELEASE)/src/jlppc/regimys/save/Save.o $(OBJDIR_RELEASE)/src/jlppc/regimys/save/OptionsSave.o $(OBJDIR_RELEASE)/src/jlppc/regimys/playercore/Player.o $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/item/Item.o $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/item/IOpball.o $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/item/IHeal.o $(OBJDIR_RELEASE)/src/jlppc/utils/Utils.o $(OBJDIR_RELEASE)/src/jlppc/utils/NumberedArray.o $(OBJDIR_RELEASE)/src/jlppc/utils/File.o $(OBJDIR_RELEASE)/src/jlppc/utils/Comparaisons.o $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/item/CT.o $(OBJDIR_RELEASE)/src/jlppc/utils/Class.o $(OBJDIR_RELEASE)/src/jlppc/regimys/start/main.o $(OBJDIR_RELEASE)/src/jlppc/regimys/start/StringKeys.o $(OBJDIR_RELEASE)/src/jlppc/regimys/start/PersistentVars.o $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution/ETrade.o $(OBJDIR_RELEASE)/src/jlppc/regimys/gui/Elements.o $(OBJDIR_RELEASE)/src/jlppc/regimys/gui/Animations.o $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution/Evolution.o $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution/ETradeItem.o $(OBJDIR_RELEASE)/src/jlppc/regimys/gui/Events.o $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution/ENope.o $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution/ELove.o $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution/ELevel.o $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution/ELand.o $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution/EItem.o $(OBJDIR_RELEASE)/src/jlppc/regimys/enums/Enums.o $(OBJDIR_RELEASE)/src/jlppc/regimys/gui/StartScene.o $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/OpMon.o $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/Espece.o $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/Attaques.o $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/Attaque.o $(OBJDIR_RELEASE)/src/jlppc/regimys/enums/Caractere.o $(OBJDIR_RELEASE)/src/jlppc/regimys/gui/Overworld.o $(OBJDIR_RELEASE)/src/jlppc/regimys/gui/OptionsMenu.o $(OBJDIR_RELEASE)/src/jlppc/regimys/gui/MainMenu.o $(OBJDIR_RELEASE)/src/jlppc/regimys/gui/MainFrame.o
+OBJ_DEBUG = $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/item/IOpball.o $(OBJDIR_DEBUG)/src/jlppc/regimys/save/OptionsSave.o $(OBJDIR_DEBUG)/src/jlppc/regimys/playercore/Player.o $(OBJDIR_DEBUG)/src/jlppc/regimys/playercore/Equipe.o $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/item/Item.o $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/item/IHeal.o $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/item/CT.o $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/OpMon.o $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/Espece.o $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/Attaques.o $(OBJDIR_DEBUG)/src/jlppc/utils/Utils.o $(OBJDIR_DEBUG)/src/jlppc/utils/NumberedArray.o $(OBJDIR_DEBUG)/src/jlppc/utils/File.o $(OBJDIR_DEBUG)/src/jlppc/utils/Comparaisons.o $(OBJDIR_DEBUG)/src/jlppc/utils/Class.o $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/Attaque.o $(OBJDIR_DEBUG)/src/jlppc/regimys/start/main.o $(OBJDIR_DEBUG)/src/jlppc/regimys/start/StringKeys.o $(OBJDIR_DEBUG)/src/jlppc/regimys/start/PersistentVars.o $(OBJDIR_DEBUG)/src/jlppc/regimys/start/Initializer.o $(OBJDIR_DEBUG)/src/jlppc/regimys/save/Save.o $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution/Evolution.o $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution/ETradeItem.o $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution/ETrade.o $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution/ENope.o $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution/ELove.o $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution/ELevel.o $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution/ELand.o $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution/EItem.o $(OBJDIR_DEBUG)/src/jlppc/regimys/enums/Enums.o $(OBJDIR_DEBUG)/src/jlppc/regimys/newGui/Events.o $(OBJDIR_DEBUG)/src/jlppc/regimys/newGui/StartScene.o $(OBJDIR_DEBUG)/src/jlppc/regimys/newGui/Overworld.o $(OBJDIR_DEBUG)/src/jlppc/regimys/newGui/OptionsMenu.o $(OBJDIR_DEBUG)/src/jlppc/regimys/newGui/MainMenu.o $(OBJDIR_DEBUG)/src/jlppc/regimys/newGui/MainFrame.o $(OBJDIR_DEBUG)/src/jlppc/regimys/enums/Caractere.o $(OBJDIR_DEBUG)/src/jlppc/regimys/newGui/Elements.o $(OBJDIR_DEBUG)/src/jlppc/regimys/newGui/Animations.o
 
-all: debug release
+OBJ_RELEASE = $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/item/IOpball.o $(OBJDIR_RELEASE)/src/jlppc/regimys/save/OptionsSave.o $(OBJDIR_RELEASE)/src/jlppc/regimys/playercore/Player.o $(OBJDIR_RELEASE)/src/jlppc/regimys/playercore/Equipe.o $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/item/Item.o $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/item/IHeal.o $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/item/CT.o $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/OpMon.o $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/Espece.o $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/Attaques.o $(OBJDIR_RELEASE)/src/jlppc/utils/Utils.o $(OBJDIR_RELEASE)/src/jlppc/utils/NumberedArray.o $(OBJDIR_RELEASE)/src/jlppc/utils/File.o $(OBJDIR_RELEASE)/src/jlppc/utils/Comparaisons.o $(OBJDIR_RELEASE)/src/jlppc/utils/Class.o $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/Attaque.o $(OBJDIR_RELEASE)/src/jlppc/regimys/start/main.o $(OBJDIR_RELEASE)/src/jlppc/regimys/start/StringKeys.o $(OBJDIR_RELEASE)/src/jlppc/regimys/start/PersistentVars.o $(OBJDIR_RELEASE)/src/jlppc/regimys/start/Initializer.o $(OBJDIR_RELEASE)/src/jlppc/regimys/save/Save.o $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution/Evolution.o $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution/ETradeItem.o $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution/ETrade.o $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution/ENope.o $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution/ELove.o $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution/ELevel.o $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution/ELand.o $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution/EItem.o $(OBJDIR_RELEASE)/src/jlppc/regimys/enums/Enums.o $(OBJDIR_RELEASE)/src/jlppc/regimys/newGui/Events.o $(OBJDIR_RELEASE)/src/jlppc/regimys/newGui/StartScene.o $(OBJDIR_RELEASE)/src/jlppc/regimys/newGui/Overworld.o $(OBJDIR_RELEASE)/src/jlppc/regimys/newGui/OptionsMenu.o $(OBJDIR_RELEASE)/src/jlppc/regimys/newGui/MainMenu.o $(OBJDIR_RELEASE)/src/jlppc/regimys/newGui/MainFrame.o $(OBJDIR_RELEASE)/src/jlppc/regimys/enums/Caractere.o $(OBJDIR_RELEASE)/src/jlppc/regimys/newGui/Elements.o $(OBJDIR_RELEASE)/src/jlppc/regimys/newGui/Animations.o
 
-clean: clean_debug clean_release
+OBJ_X86 = $(OBJDIR_X86)/src/jlppc/regimys/objects/item/IOpball.o $(OBJDIR_X86)/src/jlppc/regimys/save/OptionsSave.o $(OBJDIR_X86)/src/jlppc/regimys/playercore/Player.o $(OBJDIR_X86)/src/jlppc/regimys/playercore/Equipe.o $(OBJDIR_X86)/src/jlppc/regimys/objects/item/Item.o $(OBJDIR_X86)/src/jlppc/regimys/objects/item/IHeal.o $(OBJDIR_X86)/src/jlppc/regimys/objects/item/CT.o $(OBJDIR_X86)/src/jlppc/regimys/objects/OpMon.o $(OBJDIR_X86)/src/jlppc/regimys/objects/Espece.o $(OBJDIR_X86)/src/jlppc/regimys/objects/Attaques.o $(OBJDIR_X86)/src/jlppc/utils/Utils.o $(OBJDIR_X86)/src/jlppc/utils/NumberedArray.o $(OBJDIR_X86)/src/jlppc/utils/File.o $(OBJDIR_X86)/src/jlppc/utils/Comparaisons.o $(OBJDIR_X86)/src/jlppc/utils/Class.o $(OBJDIR_X86)/src/jlppc/regimys/objects/Attaque.o $(OBJDIR_X86)/src/jlppc/regimys/start/main.o $(OBJDIR_X86)/src/jlppc/regimys/start/StringKeys.o $(OBJDIR_X86)/src/jlppc/regimys/start/PersistentVars.o $(OBJDIR_X86)/src/jlppc/regimys/start/Initializer.o $(OBJDIR_X86)/src/jlppc/regimys/save/Save.o $(OBJDIR_X86)/src/jlppc/regimys/evolution/Evolution.o $(OBJDIR_X86)/src/jlppc/regimys/evolution/ETradeItem.o $(OBJDIR_X86)/src/jlppc/regimys/evolution/ETrade.o $(OBJDIR_X86)/src/jlppc/regimys/evolution/ENope.o $(OBJDIR_X86)/src/jlppc/regimys/evolution/ELove.o $(OBJDIR_X86)/src/jlppc/regimys/evolution/ELevel.o $(OBJDIR_X86)/src/jlppc/regimys/evolution/ELand.o $(OBJDIR_X86)/src/jlppc/regimys/evolution/EItem.o $(OBJDIR_X86)/src/jlppc/regimys/enums/Enums.o $(OBJDIR_X86)/src/jlppc/regimys/newGui/Events.o $(OBJDIR_X86)/src/jlppc/regimys/newGui/StartScene.o $(OBJDIR_X86)/src/jlppc/regimys/newGui/Overworld.o $(OBJDIR_X86)/src/jlppc/regimys/newGui/OptionsMenu.o $(OBJDIR_X86)/src/jlppc/regimys/newGui/MainMenu.o $(OBJDIR_X86)/src/jlppc/regimys/newGui/MainFrame.o $(OBJDIR_X86)/src/jlppc/regimys/enums/Caractere.o $(OBJDIR_X86)/src/jlppc/regimys/newGui/Elements.o $(OBJDIR_X86)/src/jlppc/regimys/newGui/Animations.o
+
+all: debug release x86
+
+clean: clean_debug clean_release clean_x86
 
 before_debug: 
 	test -d exeLinux || mkdir -p exeLinux
-	test -d $(OBJDIR_DEBUG)/src/jlppc/regimys/playercore || mkdir -p $(OBJDIR_DEBUG)/src/jlppc/regimys/playercore
-	test -d $(OBJDIR_DEBUG)/src/jlppc/regimys/start || mkdir -p $(OBJDIR_DEBUG)/src/jlppc/regimys/start
-	test -d $(OBJDIR_DEBUG)/src/jlppc/regimys/save || mkdir -p $(OBJDIR_DEBUG)/src/jlppc/regimys/save
 	test -d $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/item || mkdir -p $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/item
-	test -d $(OBJDIR_DEBUG)/src/jlppc/utils || mkdir -p $(OBJDIR_DEBUG)/src/jlppc/utils
-	test -d $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution || mkdir -p $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution
-	test -d $(OBJDIR_DEBUG)/src/jlppc/regimys/gui || mkdir -p $(OBJDIR_DEBUG)/src/jlppc/regimys/gui
-	test -d $(OBJDIR_DEBUG)/src/jlppc/regimys/enums || mkdir -p $(OBJDIR_DEBUG)/src/jlppc/regimys/enums
+	test -d $(OBJDIR_DEBUG)/src/jlppc/regimys/save || mkdir -p $(OBJDIR_DEBUG)/src/jlppc/regimys/save
+	test -d $(OBJDIR_DEBUG)/src/jlppc/regimys/playercore || mkdir -p $(OBJDIR_DEBUG)/src/jlppc/regimys/playercore
 	test -d $(OBJDIR_DEBUG)/src/jlppc/regimys/objects || mkdir -p $(OBJDIR_DEBUG)/src/jlppc/regimys/objects
+	test -d $(OBJDIR_DEBUG)/src/jlppc/utils || mkdir -p $(OBJDIR_DEBUG)/src/jlppc/utils
+	test -d $(OBJDIR_DEBUG)/src/jlppc/regimys/start || mkdir -p $(OBJDIR_DEBUG)/src/jlppc/regimys/start
+	test -d $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution || mkdir -p $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution
+	test -d $(OBJDIR_DEBUG)/src/jlppc/regimys/enums || mkdir -p $(OBJDIR_DEBUG)/src/jlppc/regimys/enums
+	test -d $(OBJDIR_DEBUG)/src/jlppc/regimys/newGui || mkdir -p $(OBJDIR_DEBUG)/src/jlppc/regimys/newGui
 
 after_debug: 
 
@@ -67,14 +80,8 @@ debug: before_debug out_debug after_debug
 out_debug: before_debug $(OBJ_DEBUG) $(DEP_DEBUG)
 	$(LD) $(LIBDIR_DEBUG) -o $(OUT_DEBUG) $(OBJ_DEBUG)  $(LDFLAGS_DEBUG) $(LIB_DEBUG)
 
-$(OBJDIR_DEBUG)/src/jlppc/regimys/playercore/Equipe.o: src/jlppc/regimys/playercore/Equipe.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/playercore/Equipe.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/playercore/Equipe.o
-
-$(OBJDIR_DEBUG)/src/jlppc/regimys/start/Initializer.o: src/jlppc/regimys/start/Initializer.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/start/Initializer.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/start/Initializer.o
-
-$(OBJDIR_DEBUG)/src/jlppc/regimys/save/Save.o: src/jlppc/regimys/save/Save.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/save/Save.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/save/Save.o
+$(OBJDIR_DEBUG)/src/jlppc/regimys/objects/item/IOpball.o: src/jlppc/regimys/objects/item/IOpball.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/objects/item/IOpball.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/item/IOpball.o
 
 $(OBJDIR_DEBUG)/src/jlppc/regimys/save/OptionsSave.o: src/jlppc/regimys/save/OptionsSave.cpp
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/save/OptionsSave.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/save/OptionsSave.o
@@ -82,14 +89,26 @@ $(OBJDIR_DEBUG)/src/jlppc/regimys/save/OptionsSave.o: src/jlppc/regimys/save/Opt
 $(OBJDIR_DEBUG)/src/jlppc/regimys/playercore/Player.o: src/jlppc/regimys/playercore/Player.cpp
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/playercore/Player.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/playercore/Player.o
 
+$(OBJDIR_DEBUG)/src/jlppc/regimys/playercore/Equipe.o: src/jlppc/regimys/playercore/Equipe.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/playercore/Equipe.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/playercore/Equipe.o
+
 $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/item/Item.o: src/jlppc/regimys/objects/item/Item.cpp
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/objects/item/Item.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/item/Item.o
 
-$(OBJDIR_DEBUG)/src/jlppc/regimys/objects/item/IOpball.o: src/jlppc/regimys/objects/item/IOpball.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/objects/item/IOpball.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/item/IOpball.o
-
 $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/item/IHeal.o: src/jlppc/regimys/objects/item/IHeal.cpp
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/objects/item/IHeal.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/item/IHeal.o
+
+$(OBJDIR_DEBUG)/src/jlppc/regimys/objects/item/CT.o: src/jlppc/regimys/objects/item/CT.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/objects/item/CT.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/item/CT.o
+
+$(OBJDIR_DEBUG)/src/jlppc/regimys/objects/OpMon.o: src/jlppc/regimys/objects/OpMon.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/objects/OpMon.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/OpMon.o
+
+$(OBJDIR_DEBUG)/src/jlppc/regimys/objects/Espece.o: src/jlppc/regimys/objects/Espece.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/objects/Espece.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/Espece.o
+
+$(OBJDIR_DEBUG)/src/jlppc/regimys/objects/Attaques.o: src/jlppc/regimys/objects/Attaques.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/objects/Attaques.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/Attaques.o
 
 $(OBJDIR_DEBUG)/src/jlppc/utils/Utils.o: src/jlppc/utils/Utils.cpp
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/utils/Utils.cpp -o $(OBJDIR_DEBUG)/src/jlppc/utils/Utils.o
@@ -103,11 +122,11 @@ $(OBJDIR_DEBUG)/src/jlppc/utils/File.o: src/jlppc/utils/File.cpp
 $(OBJDIR_DEBUG)/src/jlppc/utils/Comparaisons.o: src/jlppc/utils/Comparaisons.cpp
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/utils/Comparaisons.cpp -o $(OBJDIR_DEBUG)/src/jlppc/utils/Comparaisons.o
 
-$(OBJDIR_DEBUG)/src/jlppc/regimys/objects/item/CT.o: src/jlppc/regimys/objects/item/CT.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/objects/item/CT.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/item/CT.o
-
 $(OBJDIR_DEBUG)/src/jlppc/utils/Class.o: src/jlppc/utils/Class.cpp
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/utils/Class.cpp -o $(OBJDIR_DEBUG)/src/jlppc/utils/Class.o
+
+$(OBJDIR_DEBUG)/src/jlppc/regimys/objects/Attaque.o: src/jlppc/regimys/objects/Attaque.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/objects/Attaque.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/Attaque.o
 
 $(OBJDIR_DEBUG)/src/jlppc/regimys/start/main.o: src/jlppc/regimys/start/main.cpp
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/start/main.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/start/main.o
@@ -118,14 +137,11 @@ $(OBJDIR_DEBUG)/src/jlppc/regimys/start/StringKeys.o: src/jlppc/regimys/start/St
 $(OBJDIR_DEBUG)/src/jlppc/regimys/start/PersistentVars.o: src/jlppc/regimys/start/PersistentVars.cpp
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/start/PersistentVars.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/start/PersistentVars.o
 
-$(OBJDIR_DEBUG)/src/jlppc/regimys/evolution/ETrade.o: src/jlppc/regimys/evolution/ETrade.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/evolution/ETrade.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution/ETrade.o
+$(OBJDIR_DEBUG)/src/jlppc/regimys/start/Initializer.o: src/jlppc/regimys/start/Initializer.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/start/Initializer.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/start/Initializer.o
 
-$(OBJDIR_DEBUG)/src/jlppc/regimys/gui/Elements.o: src/jlppc/regimys/gui/Elements.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/gui/Elements.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/gui/Elements.o
-
-$(OBJDIR_DEBUG)/src/jlppc/regimys/gui/Animations.o: src/jlppc/regimys/gui/Animations.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/gui/Animations.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/gui/Animations.o
+$(OBJDIR_DEBUG)/src/jlppc/regimys/save/Save.o: src/jlppc/regimys/save/Save.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/save/Save.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/save/Save.o
 
 $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution/Evolution.o: src/jlppc/regimys/evolution/Evolution.cpp
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/evolution/Evolution.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution/Evolution.o
@@ -133,8 +149,8 @@ $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution/Evolution.o: src/jlppc/regimys/evolu
 $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution/ETradeItem.o: src/jlppc/regimys/evolution/ETradeItem.cpp
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/evolution/ETradeItem.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution/ETradeItem.o
 
-$(OBJDIR_DEBUG)/src/jlppc/regimys/gui/Events.o: src/jlppc/regimys/gui/Events.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/gui/Events.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/gui/Events.o
+$(OBJDIR_DEBUG)/src/jlppc/regimys/evolution/ETrade.o: src/jlppc/regimys/evolution/ETrade.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/evolution/ETrade.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution/ETrade.o
 
 $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution/ENope.o: src/jlppc/regimys/evolution/ENope.cpp
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/evolution/ENope.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution/ENope.o
@@ -154,60 +170,57 @@ $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution/EItem.o: src/jlppc/regimys/evolution
 $(OBJDIR_DEBUG)/src/jlppc/regimys/enums/Enums.o: src/jlppc/regimys/enums/Enums.cpp
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/enums/Enums.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/enums/Enums.o
 
-$(OBJDIR_DEBUG)/src/jlppc/regimys/gui/StartScene.o: src/jlppc/regimys/gui/StartScene.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/gui/StartScene.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/gui/StartScene.o
+$(OBJDIR_DEBUG)/src/jlppc/regimys/newGui/Events.o: src/jlppc/regimys/newGui/Events.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/newGui/Events.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/newGui/Events.o
 
-$(OBJDIR_DEBUG)/src/jlppc/regimys/objects/OpMon.o: src/jlppc/regimys/objects/OpMon.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/objects/OpMon.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/OpMon.o
+$(OBJDIR_DEBUG)/src/jlppc/regimys/newGui/StartScene.o: src/jlppc/regimys/newGui/StartScene.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/newGui/StartScene.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/newGui/StartScene.o
 
-$(OBJDIR_DEBUG)/src/jlppc/regimys/objects/Espece.o: src/jlppc/regimys/objects/Espece.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/objects/Espece.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/Espece.o
+$(OBJDIR_DEBUG)/src/jlppc/regimys/newGui/Overworld.o: src/jlppc/regimys/newGui/Overworld.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/newGui/Overworld.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/newGui/Overworld.o
 
-$(OBJDIR_DEBUG)/src/jlppc/regimys/objects/Attaques.o: src/jlppc/regimys/objects/Attaques.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/objects/Attaques.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/Attaques.o
+$(OBJDIR_DEBUG)/src/jlppc/regimys/newGui/OptionsMenu.o: src/jlppc/regimys/newGui/OptionsMenu.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/newGui/OptionsMenu.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/newGui/OptionsMenu.o
 
-$(OBJDIR_DEBUG)/src/jlppc/regimys/objects/Attaque.o: src/jlppc/regimys/objects/Attaque.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/objects/Attaque.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/Attaque.o
+$(OBJDIR_DEBUG)/src/jlppc/regimys/newGui/MainMenu.o: src/jlppc/regimys/newGui/MainMenu.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/newGui/MainMenu.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/newGui/MainMenu.o
+
+$(OBJDIR_DEBUG)/src/jlppc/regimys/newGui/MainFrame.o: src/jlppc/regimys/newGui/MainFrame.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/newGui/MainFrame.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/newGui/MainFrame.o
 
 $(OBJDIR_DEBUG)/src/jlppc/regimys/enums/Caractere.o: src/jlppc/regimys/enums/Caractere.cpp
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/enums/Caractere.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/enums/Caractere.o
 
-$(OBJDIR_DEBUG)/src/jlppc/regimys/gui/Overworld.o: src/jlppc/regimys/gui/Overworld.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/gui/Overworld.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/gui/Overworld.o
+$(OBJDIR_DEBUG)/src/jlppc/regimys/newGui/Elements.o: src/jlppc/regimys/newGui/Elements.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/newGui/Elements.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/newGui/Elements.o
 
-$(OBJDIR_DEBUG)/src/jlppc/regimys/gui/OptionsMenu.o: src/jlppc/regimys/gui/OptionsMenu.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/gui/OptionsMenu.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/gui/OptionsMenu.o
-
-$(OBJDIR_DEBUG)/src/jlppc/regimys/gui/MainMenu.o: src/jlppc/regimys/gui/MainMenu.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/gui/MainMenu.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/gui/MainMenu.o
-
-$(OBJDIR_DEBUG)/src/jlppc/regimys/gui/MainFrame.o: src/jlppc/regimys/gui/MainFrame.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/gui/MainFrame.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/gui/MainFrame.o
+$(OBJDIR_DEBUG)/src/jlppc/regimys/newGui/Animations.o: src/jlppc/regimys/newGui/Animations.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/jlppc/regimys/newGui/Animations.cpp -o $(OBJDIR_DEBUG)/src/jlppc/regimys/newGui/Animations.o
 
 clean_debug: 
 	rm -f $(OBJ_DEBUG) $(OUT_DEBUG)
 	rm -rf exeLinux
-	rm -rf $(OBJDIR_DEBUG)/src/jlppc/regimys/playercore
-	rm -rf $(OBJDIR_DEBUG)/src/jlppc/regimys/start
-	rm -rf $(OBJDIR_DEBUG)/src/jlppc/regimys/save
 	rm -rf $(OBJDIR_DEBUG)/src/jlppc/regimys/objects/item
-	rm -rf $(OBJDIR_DEBUG)/src/jlppc/utils
-	rm -rf $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution
-	rm -rf $(OBJDIR_DEBUG)/src/jlppc/regimys/gui
-	rm -rf $(OBJDIR_DEBUG)/src/jlppc/regimys/enums
+	rm -rf $(OBJDIR_DEBUG)/src/jlppc/regimys/save
+	rm -rf $(OBJDIR_DEBUG)/src/jlppc/regimys/playercore
 	rm -rf $(OBJDIR_DEBUG)/src/jlppc/regimys/objects
+	rm -rf $(OBJDIR_DEBUG)/src/jlppc/utils
+	rm -rf $(OBJDIR_DEBUG)/src/jlppc/regimys/start
+	rm -rf $(OBJDIR_DEBUG)/src/jlppc/regimys/evolution
+	rm -rf $(OBJDIR_DEBUG)/src/jlppc/regimys/enums
+	rm -rf $(OBJDIR_DEBUG)/src/jlppc/regimys/newGui
 
 before_release: 
 	test -d exeLinux || mkdir -p exeLinux
-	test -d $(OBJDIR_RELEASE)/src/jlppc/regimys/playercore || mkdir -p $(OBJDIR_RELEASE)/src/jlppc/regimys/playercore
-	test -d $(OBJDIR_RELEASE)/src/jlppc/regimys/start || mkdir -p $(OBJDIR_RELEASE)/src/jlppc/regimys/start
-	test -d $(OBJDIR_RELEASE)/src/jlppc/regimys/save || mkdir -p $(OBJDIR_RELEASE)/src/jlppc/regimys/save
 	test -d $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/item || mkdir -p $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/item
-	test -d $(OBJDIR_RELEASE)/src/jlppc/utils || mkdir -p $(OBJDIR_RELEASE)/src/jlppc/utils
-	test -d $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution || mkdir -p $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution
-	test -d $(OBJDIR_RELEASE)/src/jlppc/regimys/gui || mkdir -p $(OBJDIR_RELEASE)/src/jlppc/regimys/gui
-	test -d $(OBJDIR_RELEASE)/src/jlppc/regimys/enums || mkdir -p $(OBJDIR_RELEASE)/src/jlppc/regimys/enums
+	test -d $(OBJDIR_RELEASE)/src/jlppc/regimys/save || mkdir -p $(OBJDIR_RELEASE)/src/jlppc/regimys/save
+	test -d $(OBJDIR_RELEASE)/src/jlppc/regimys/playercore || mkdir -p $(OBJDIR_RELEASE)/src/jlppc/regimys/playercore
 	test -d $(OBJDIR_RELEASE)/src/jlppc/regimys/objects || mkdir -p $(OBJDIR_RELEASE)/src/jlppc/regimys/objects
+	test -d $(OBJDIR_RELEASE)/src/jlppc/utils || mkdir -p $(OBJDIR_RELEASE)/src/jlppc/utils
+	test -d $(OBJDIR_RELEASE)/src/jlppc/regimys/start || mkdir -p $(OBJDIR_RELEASE)/src/jlppc/regimys/start
+	test -d $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution || mkdir -p $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution
+	test -d $(OBJDIR_RELEASE)/src/jlppc/regimys/enums || mkdir -p $(OBJDIR_RELEASE)/src/jlppc/regimys/enums
+	test -d $(OBJDIR_RELEASE)/src/jlppc/regimys/newGui || mkdir -p $(OBJDIR_RELEASE)/src/jlppc/regimys/newGui
 
 after_release: 
 
@@ -216,14 +229,8 @@ release: before_release out_release after_release
 out_release: before_release $(OBJ_RELEASE) $(DEP_RELEASE)
 	$(LD) $(LIBDIR_RELEASE) -o $(OUT_RELEASE) $(OBJ_RELEASE)  $(LDFLAGS_RELEASE) $(LIB_RELEASE)
 
-$(OBJDIR_RELEASE)/src/jlppc/regimys/playercore/Equipe.o: src/jlppc/regimys/playercore/Equipe.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/playercore/Equipe.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/playercore/Equipe.o
-
-$(OBJDIR_RELEASE)/src/jlppc/regimys/start/Initializer.o: src/jlppc/regimys/start/Initializer.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/start/Initializer.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/start/Initializer.o
-
-$(OBJDIR_RELEASE)/src/jlppc/regimys/save/Save.o: src/jlppc/regimys/save/Save.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/save/Save.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/save/Save.o
+$(OBJDIR_RELEASE)/src/jlppc/regimys/objects/item/IOpball.o: src/jlppc/regimys/objects/item/IOpball.cpp
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/objects/item/IOpball.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/item/IOpball.o
 
 $(OBJDIR_RELEASE)/src/jlppc/regimys/save/OptionsSave.o: src/jlppc/regimys/save/OptionsSave.cpp
 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/save/OptionsSave.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/save/OptionsSave.o
@@ -231,14 +238,26 @@ $(OBJDIR_RELEASE)/src/jlppc/regimys/save/OptionsSave.o: src/jlppc/regimys/save/O
 $(OBJDIR_RELEASE)/src/jlppc/regimys/playercore/Player.o: src/jlppc/regimys/playercore/Player.cpp
 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/playercore/Player.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/playercore/Player.o
 
+$(OBJDIR_RELEASE)/src/jlppc/regimys/playercore/Equipe.o: src/jlppc/regimys/playercore/Equipe.cpp
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/playercore/Equipe.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/playercore/Equipe.o
+
 $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/item/Item.o: src/jlppc/regimys/objects/item/Item.cpp
 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/objects/item/Item.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/item/Item.o
 
-$(OBJDIR_RELEASE)/src/jlppc/regimys/objects/item/IOpball.o: src/jlppc/regimys/objects/item/IOpball.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/objects/item/IOpball.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/item/IOpball.o
-
 $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/item/IHeal.o: src/jlppc/regimys/objects/item/IHeal.cpp
 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/objects/item/IHeal.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/item/IHeal.o
+
+$(OBJDIR_RELEASE)/src/jlppc/regimys/objects/item/CT.o: src/jlppc/regimys/objects/item/CT.cpp
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/objects/item/CT.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/item/CT.o
+
+$(OBJDIR_RELEASE)/src/jlppc/regimys/objects/OpMon.o: src/jlppc/regimys/objects/OpMon.cpp
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/objects/OpMon.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/OpMon.o
+
+$(OBJDIR_RELEASE)/src/jlppc/regimys/objects/Espece.o: src/jlppc/regimys/objects/Espece.cpp
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/objects/Espece.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/Espece.o
+
+$(OBJDIR_RELEASE)/src/jlppc/regimys/objects/Attaques.o: src/jlppc/regimys/objects/Attaques.cpp
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/objects/Attaques.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/Attaques.o
 
 $(OBJDIR_RELEASE)/src/jlppc/utils/Utils.o: src/jlppc/utils/Utils.cpp
 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/utils/Utils.cpp -o $(OBJDIR_RELEASE)/src/jlppc/utils/Utils.o
@@ -252,11 +271,11 @@ $(OBJDIR_RELEASE)/src/jlppc/utils/File.o: src/jlppc/utils/File.cpp
 $(OBJDIR_RELEASE)/src/jlppc/utils/Comparaisons.o: src/jlppc/utils/Comparaisons.cpp
 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/utils/Comparaisons.cpp -o $(OBJDIR_RELEASE)/src/jlppc/utils/Comparaisons.o
 
-$(OBJDIR_RELEASE)/src/jlppc/regimys/objects/item/CT.o: src/jlppc/regimys/objects/item/CT.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/objects/item/CT.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/item/CT.o
-
 $(OBJDIR_RELEASE)/src/jlppc/utils/Class.o: src/jlppc/utils/Class.cpp
 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/utils/Class.cpp -o $(OBJDIR_RELEASE)/src/jlppc/utils/Class.o
+
+$(OBJDIR_RELEASE)/src/jlppc/regimys/objects/Attaque.o: src/jlppc/regimys/objects/Attaque.cpp
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/objects/Attaque.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/Attaque.o
 
 $(OBJDIR_RELEASE)/src/jlppc/regimys/start/main.o: src/jlppc/regimys/start/main.cpp
 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/start/main.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/start/main.o
@@ -267,14 +286,11 @@ $(OBJDIR_RELEASE)/src/jlppc/regimys/start/StringKeys.o: src/jlppc/regimys/start/
 $(OBJDIR_RELEASE)/src/jlppc/regimys/start/PersistentVars.o: src/jlppc/regimys/start/PersistentVars.cpp
 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/start/PersistentVars.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/start/PersistentVars.o
 
-$(OBJDIR_RELEASE)/src/jlppc/regimys/evolution/ETrade.o: src/jlppc/regimys/evolution/ETrade.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/evolution/ETrade.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution/ETrade.o
+$(OBJDIR_RELEASE)/src/jlppc/regimys/start/Initializer.o: src/jlppc/regimys/start/Initializer.cpp
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/start/Initializer.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/start/Initializer.o
 
-$(OBJDIR_RELEASE)/src/jlppc/regimys/gui/Elements.o: src/jlppc/regimys/gui/Elements.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/gui/Elements.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/gui/Elements.o
-
-$(OBJDIR_RELEASE)/src/jlppc/regimys/gui/Animations.o: src/jlppc/regimys/gui/Animations.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/gui/Animations.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/gui/Animations.o
+$(OBJDIR_RELEASE)/src/jlppc/regimys/save/Save.o: src/jlppc/regimys/save/Save.cpp
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/save/Save.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/save/Save.o
 
 $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution/Evolution.o: src/jlppc/regimys/evolution/Evolution.cpp
 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/evolution/Evolution.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution/Evolution.o
@@ -282,8 +298,8 @@ $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution/Evolution.o: src/jlppc/regimys/evo
 $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution/ETradeItem.o: src/jlppc/regimys/evolution/ETradeItem.cpp
 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/evolution/ETradeItem.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution/ETradeItem.o
 
-$(OBJDIR_RELEASE)/src/jlppc/regimys/gui/Events.o: src/jlppc/regimys/gui/Events.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/gui/Events.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/gui/Events.o
+$(OBJDIR_RELEASE)/src/jlppc/regimys/evolution/ETrade.o: src/jlppc/regimys/evolution/ETrade.cpp
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/evolution/ETrade.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution/ETrade.o
 
 $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution/ENope.o: src/jlppc/regimys/evolution/ENope.cpp
 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/evolution/ENope.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution/ENope.o
@@ -303,48 +319,194 @@ $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution/EItem.o: src/jlppc/regimys/evoluti
 $(OBJDIR_RELEASE)/src/jlppc/regimys/enums/Enums.o: src/jlppc/regimys/enums/Enums.cpp
 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/enums/Enums.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/enums/Enums.o
 
-$(OBJDIR_RELEASE)/src/jlppc/regimys/gui/StartScene.o: src/jlppc/regimys/gui/StartScene.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/gui/StartScene.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/gui/StartScene.o
+$(OBJDIR_RELEASE)/src/jlppc/regimys/newGui/Events.o: src/jlppc/regimys/newGui/Events.cpp
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/newGui/Events.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/newGui/Events.o
 
-$(OBJDIR_RELEASE)/src/jlppc/regimys/objects/OpMon.o: src/jlppc/regimys/objects/OpMon.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/objects/OpMon.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/OpMon.o
+$(OBJDIR_RELEASE)/src/jlppc/regimys/newGui/StartScene.o: src/jlppc/regimys/newGui/StartScene.cpp
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/newGui/StartScene.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/newGui/StartScene.o
 
-$(OBJDIR_RELEASE)/src/jlppc/regimys/objects/Espece.o: src/jlppc/regimys/objects/Espece.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/objects/Espece.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/Espece.o
+$(OBJDIR_RELEASE)/src/jlppc/regimys/newGui/Overworld.o: src/jlppc/regimys/newGui/Overworld.cpp
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/newGui/Overworld.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/newGui/Overworld.o
 
-$(OBJDIR_RELEASE)/src/jlppc/regimys/objects/Attaques.o: src/jlppc/regimys/objects/Attaques.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/objects/Attaques.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/Attaques.o
+$(OBJDIR_RELEASE)/src/jlppc/regimys/newGui/OptionsMenu.o: src/jlppc/regimys/newGui/OptionsMenu.cpp
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/newGui/OptionsMenu.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/newGui/OptionsMenu.o
 
-$(OBJDIR_RELEASE)/src/jlppc/regimys/objects/Attaque.o: src/jlppc/regimys/objects/Attaque.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/objects/Attaque.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/Attaque.o
+$(OBJDIR_RELEASE)/src/jlppc/regimys/newGui/MainMenu.o: src/jlppc/regimys/newGui/MainMenu.cpp
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/newGui/MainMenu.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/newGui/MainMenu.o
+
+$(OBJDIR_RELEASE)/src/jlppc/regimys/newGui/MainFrame.o: src/jlppc/regimys/newGui/MainFrame.cpp
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/newGui/MainFrame.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/newGui/MainFrame.o
 
 $(OBJDIR_RELEASE)/src/jlppc/regimys/enums/Caractere.o: src/jlppc/regimys/enums/Caractere.cpp
 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/enums/Caractere.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/enums/Caractere.o
 
-$(OBJDIR_RELEASE)/src/jlppc/regimys/gui/Overworld.o: src/jlppc/regimys/gui/Overworld.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/gui/Overworld.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/gui/Overworld.o
+$(OBJDIR_RELEASE)/src/jlppc/regimys/newGui/Elements.o: src/jlppc/regimys/newGui/Elements.cpp
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/newGui/Elements.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/newGui/Elements.o
 
-$(OBJDIR_RELEASE)/src/jlppc/regimys/gui/OptionsMenu.o: src/jlppc/regimys/gui/OptionsMenu.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/gui/OptionsMenu.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/gui/OptionsMenu.o
-
-$(OBJDIR_RELEASE)/src/jlppc/regimys/gui/MainMenu.o: src/jlppc/regimys/gui/MainMenu.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/gui/MainMenu.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/gui/MainMenu.o
-
-$(OBJDIR_RELEASE)/src/jlppc/regimys/gui/MainFrame.o: src/jlppc/regimys/gui/MainFrame.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/gui/MainFrame.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/gui/MainFrame.o
+$(OBJDIR_RELEASE)/src/jlppc/regimys/newGui/Animations.o: src/jlppc/regimys/newGui/Animations.cpp
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/jlppc/regimys/newGui/Animations.cpp -o $(OBJDIR_RELEASE)/src/jlppc/regimys/newGui/Animations.o
 
 clean_release: 
 	rm -f $(OBJ_RELEASE) $(OUT_RELEASE)
 	rm -rf exeLinux
-	rm -rf $(OBJDIR_RELEASE)/src/jlppc/regimys/playercore
-	rm -rf $(OBJDIR_RELEASE)/src/jlppc/regimys/start
-	rm -rf $(OBJDIR_RELEASE)/src/jlppc/regimys/save
 	rm -rf $(OBJDIR_RELEASE)/src/jlppc/regimys/objects/item
-	rm -rf $(OBJDIR_RELEASE)/src/jlppc/utils
-	rm -rf $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution
-	rm -rf $(OBJDIR_RELEASE)/src/jlppc/regimys/gui
-	rm -rf $(OBJDIR_RELEASE)/src/jlppc/regimys/enums
+	rm -rf $(OBJDIR_RELEASE)/src/jlppc/regimys/save
+	rm -rf $(OBJDIR_RELEASE)/src/jlppc/regimys/playercore
 	rm -rf $(OBJDIR_RELEASE)/src/jlppc/regimys/objects
+	rm -rf $(OBJDIR_RELEASE)/src/jlppc/utils
+	rm -rf $(OBJDIR_RELEASE)/src/jlppc/regimys/start
+	rm -rf $(OBJDIR_RELEASE)/src/jlppc/regimys/evolution
+	rm -rf $(OBJDIR_RELEASE)/src/jlppc/regimys/enums
+	rm -rf $(OBJDIR_RELEASE)/src/jlppc/regimys/newGui
 
-.PHONY: before_debug after_debug clean_debug before_release after_release clean_release
+before_x86: 
+	test -d exeLinux || mkdir -p exeLinux
+	test -d $(OBJDIR_X86)/src/jlppc/regimys/objects/item || mkdir -p $(OBJDIR_X86)/src/jlppc/regimys/objects/item
+	test -d $(OBJDIR_X86)/src/jlppc/regimys/save || mkdir -p $(OBJDIR_X86)/src/jlppc/regimys/save
+	test -d $(OBJDIR_X86)/src/jlppc/regimys/playercore || mkdir -p $(OBJDIR_X86)/src/jlppc/regimys/playercore
+	test -d $(OBJDIR_X86)/src/jlppc/regimys/objects || mkdir -p $(OBJDIR_X86)/src/jlppc/regimys/objects
+	test -d $(OBJDIR_X86)/src/jlppc/utils || mkdir -p $(OBJDIR_X86)/src/jlppc/utils
+	test -d $(OBJDIR_X86)/src/jlppc/regimys/start || mkdir -p $(OBJDIR_X86)/src/jlppc/regimys/start
+	test -d $(OBJDIR_X86)/src/jlppc/regimys/evolution || mkdir -p $(OBJDIR_X86)/src/jlppc/regimys/evolution
+	test -d $(OBJDIR_X86)/src/jlppc/regimys/enums || mkdir -p $(OBJDIR_X86)/src/jlppc/regimys/enums
+	test -d $(OBJDIR_X86)/src/jlppc/regimys/newGui || mkdir -p $(OBJDIR_X86)/src/jlppc/regimys/newGui
+
+after_x86: 
+
+x86: before_x86 out_x86 after_x86
+
+out_x86: before_x86 $(OBJ_X86) $(DEP_X86)
+	$(LD) $(LIBDIR_X86) -o $(OUT_X86) $(OBJ_X86)  $(LDFLAGS_X86) $(LIB_X86)
+
+$(OBJDIR_X86)/src/jlppc/regimys/objects/item/IOpball.o: src/jlppc/regimys/objects/item/IOpball.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/objects/item/IOpball.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/objects/item/IOpball.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/save/OptionsSave.o: src/jlppc/regimys/save/OptionsSave.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/save/OptionsSave.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/save/OptionsSave.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/playercore/Player.o: src/jlppc/regimys/playercore/Player.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/playercore/Player.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/playercore/Player.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/playercore/Equipe.o: src/jlppc/regimys/playercore/Equipe.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/playercore/Equipe.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/playercore/Equipe.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/objects/item/Item.o: src/jlppc/regimys/objects/item/Item.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/objects/item/Item.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/objects/item/Item.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/objects/item/IHeal.o: src/jlppc/regimys/objects/item/IHeal.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/objects/item/IHeal.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/objects/item/IHeal.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/objects/item/CT.o: src/jlppc/regimys/objects/item/CT.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/objects/item/CT.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/objects/item/CT.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/objects/OpMon.o: src/jlppc/regimys/objects/OpMon.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/objects/OpMon.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/objects/OpMon.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/objects/Espece.o: src/jlppc/regimys/objects/Espece.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/objects/Espece.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/objects/Espece.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/objects/Attaques.o: src/jlppc/regimys/objects/Attaques.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/objects/Attaques.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/objects/Attaques.o
+
+$(OBJDIR_X86)/src/jlppc/utils/Utils.o: src/jlppc/utils/Utils.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/utils/Utils.cpp -o $(OBJDIR_X86)/src/jlppc/utils/Utils.o
+
+$(OBJDIR_X86)/src/jlppc/utils/NumberedArray.o: src/jlppc/utils/NumberedArray.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/utils/NumberedArray.cpp -o $(OBJDIR_X86)/src/jlppc/utils/NumberedArray.o
+
+$(OBJDIR_X86)/src/jlppc/utils/File.o: src/jlppc/utils/File.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/utils/File.cpp -o $(OBJDIR_X86)/src/jlppc/utils/File.o
+
+$(OBJDIR_X86)/src/jlppc/utils/Comparaisons.o: src/jlppc/utils/Comparaisons.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/utils/Comparaisons.cpp -o $(OBJDIR_X86)/src/jlppc/utils/Comparaisons.o
+
+$(OBJDIR_X86)/src/jlppc/utils/Class.o: src/jlppc/utils/Class.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/utils/Class.cpp -o $(OBJDIR_X86)/src/jlppc/utils/Class.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/objects/Attaque.o: src/jlppc/regimys/objects/Attaque.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/objects/Attaque.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/objects/Attaque.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/start/main.o: src/jlppc/regimys/start/main.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/start/main.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/start/main.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/start/StringKeys.o: src/jlppc/regimys/start/StringKeys.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/start/StringKeys.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/start/StringKeys.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/start/PersistentVars.o: src/jlppc/regimys/start/PersistentVars.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/start/PersistentVars.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/start/PersistentVars.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/start/Initializer.o: src/jlppc/regimys/start/Initializer.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/start/Initializer.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/start/Initializer.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/save/Save.o: src/jlppc/regimys/save/Save.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/save/Save.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/save/Save.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/evolution/Evolution.o: src/jlppc/regimys/evolution/Evolution.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/evolution/Evolution.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/evolution/Evolution.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/evolution/ETradeItem.o: src/jlppc/regimys/evolution/ETradeItem.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/evolution/ETradeItem.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/evolution/ETradeItem.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/evolution/ETrade.o: src/jlppc/regimys/evolution/ETrade.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/evolution/ETrade.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/evolution/ETrade.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/evolution/ENope.o: src/jlppc/regimys/evolution/ENope.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/evolution/ENope.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/evolution/ENope.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/evolution/ELove.o: src/jlppc/regimys/evolution/ELove.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/evolution/ELove.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/evolution/ELove.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/evolution/ELevel.o: src/jlppc/regimys/evolution/ELevel.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/evolution/ELevel.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/evolution/ELevel.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/evolution/ELand.o: src/jlppc/regimys/evolution/ELand.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/evolution/ELand.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/evolution/ELand.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/evolution/EItem.o: src/jlppc/regimys/evolution/EItem.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/evolution/EItem.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/evolution/EItem.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/enums/Enums.o: src/jlppc/regimys/enums/Enums.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/enums/Enums.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/enums/Enums.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/newGui/Events.o: src/jlppc/regimys/newGui/Events.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/newGui/Events.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/newGui/Events.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/newGui/StartScene.o: src/jlppc/regimys/newGui/StartScene.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/newGui/StartScene.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/newGui/StartScene.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/newGui/Overworld.o: src/jlppc/regimys/newGui/Overworld.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/newGui/Overworld.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/newGui/Overworld.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/newGui/OptionsMenu.o: src/jlppc/regimys/newGui/OptionsMenu.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/newGui/OptionsMenu.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/newGui/OptionsMenu.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/newGui/MainMenu.o: src/jlppc/regimys/newGui/MainMenu.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/newGui/MainMenu.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/newGui/MainMenu.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/newGui/MainFrame.o: src/jlppc/regimys/newGui/MainFrame.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/newGui/MainFrame.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/newGui/MainFrame.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/enums/Caractere.o: src/jlppc/regimys/enums/Caractere.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/enums/Caractere.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/enums/Caractere.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/newGui/Elements.o: src/jlppc/regimys/newGui/Elements.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/newGui/Elements.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/newGui/Elements.o
+
+$(OBJDIR_X86)/src/jlppc/regimys/newGui/Animations.o: src/jlppc/regimys/newGui/Animations.cpp
+	$(CXX) $(CFLAGS_X86) $(INC_X86) -c src/jlppc/regimys/newGui/Animations.cpp -o $(OBJDIR_X86)/src/jlppc/regimys/newGui/Animations.o
+
+clean_x86: 
+	rm -f $(OBJ_X86) $(OUT_X86)
+	rm -rf exeLinux
+	rm -rf $(OBJDIR_X86)/src/jlppc/regimys/objects/item
+	rm -rf $(OBJDIR_X86)/src/jlppc/regimys/save
+	rm -rf $(OBJDIR_X86)/src/jlppc/regimys/playercore
+	rm -rf $(OBJDIR_X86)/src/jlppc/regimys/objects
+	rm -rf $(OBJDIR_X86)/src/jlppc/utils
+	rm -rf $(OBJDIR_X86)/src/jlppc/regimys/start
+	rm -rf $(OBJDIR_X86)/src/jlppc/regimys/evolution
+	rm -rf $(OBJDIR_X86)/src/jlppc/regimys/enums
+	rm -rf $(OBJDIR_X86)/src/jlppc/regimys/newGui
+
+.PHONY: before_debug after_debug clean_debug before_release after_release clean_release before_x86 after_x86 clean_x86
 
