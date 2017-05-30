@@ -81,6 +81,7 @@
 		<Compiler>
 			<Add option="-w" />
 			<Add option="-Wall" />
+			<Add option="-std=c++14" />
 			<Add option="-D_WIN32" />
 			<Add directory="include" />
 		</Compiler>
