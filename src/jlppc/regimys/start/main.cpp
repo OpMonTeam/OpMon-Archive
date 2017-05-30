@@ -58,7 +58,6 @@ int starts() {
 
     }
     if(!rerrLog && !rlog) {//Verification de leur ouverture
-        system("mkdir logs");
         exit(-1);
     }
     //Chargement des paramètres

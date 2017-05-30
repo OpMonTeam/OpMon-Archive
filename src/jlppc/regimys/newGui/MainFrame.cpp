@@ -185,9 +185,6 @@ void winRefresh(){
     sf::Texture txture = frame.getTexture();
     sf::Sprite sprite;
     sprite.setTexture(txture);
-    cout << sprite.getGlobalBounds().height * sprite.getScale().y << "VS" << window.getSize().y << endl;
-    cout << sprite.getGlobalBounds().width * sprite.getScale().x << "VS" << window.getSize().x << endl;
-    cout << "______________________________" << endl;
 
     window.draw(sprite);
     window.display();
