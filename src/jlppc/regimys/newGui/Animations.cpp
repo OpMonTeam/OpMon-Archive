@@ -17,7 +17,7 @@ void initAnims() {
         #ifdef _WIN32
                     oss << "ressources\\animations\\winChange\\animWindowFrame" << i + 1 << ".png";
         #else
-                    oss << "ressources/animations/winChange/animWindowFrame" << i + 1 << ".png";
+                    oss << RESSOURCES_PATH + "animations/winChange/animWindowFrame" << i + 1 << ".png";
         #endif // _WIN32
         fen[i].loadFromFile(oss.str());
     }

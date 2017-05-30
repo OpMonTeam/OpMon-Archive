@@ -98,11 +98,11 @@ void initVars() {
     textures[3].loadFromFile("ressources\\sprites\\misc\\arrDial.png");
     textures[4].loadFromFile("ressources\\backgrounds\\start\\nameEntry.png");
 #else
-    textures[0].loadFromFile("ressources/backgrounds/start/startscene.png");
-    textures[1].loadFromFile("ressources/sprites/chara/jlppc/profkiwai.png");
-    textures[2].loadFromFile("ressources/backgrounds/dialog/dialog.png");
-    textures[3].loadFromFile("ressources/sprites/misc/arrDial.png");
-    textures[4].loadFromFile("ressources/backgrounds/start/nameEntry.png");
+    textures[0].loadFromFile(RESSOURCES_PATH + "backgrounds/start/startscene.png");
+    textures[1].loadFromFile(RESSOURCES_PATH + "sprites/chara/jlppc/profkiwai.png");
+    textures[2].loadFromFile(RESSOURCES_PATH + "backgrounds/dialog/dialog.png");
+    textures[3].loadFromFile(RESSOURCES_PATH + "sprites/misc/arrDial.png");
+    textures[4].loadFromFile(RESSOURCES_PATH + "backgrounds/start/nameEntry.png");
 #endif
 
     fondT.setTexture(textures[0]);
@@ -130,7 +130,7 @@ void initVars() {
 #ifdef _WIN32
     fondMus.openFromFile("ressources\\audio\\music\\intro.ogg");
 #else
-    fondMus.openFromFile("ressources/audio/music/intro.ogg");
+    fondMus.openFromFile(RESSOURCES_PATH + "audio/music/intro.ogg");
 #endif
     arrDial.setPosition(512-75, 512-30);
 }
