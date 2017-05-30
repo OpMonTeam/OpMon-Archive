@@ -53,28 +53,6 @@
 					<Add library="sfml-system" />
 				</Linker>
 			</Target>
-			<Target title="x86">
-				<Option platforms="Unix;" />
-				<Option output="exeLinux/OpMonx86" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="exeLinux/" />
-				<Option object_output="obj/x86" />
-				<Option type="0" />
-				<Option compiler="gcc" />
-				<Compiler>
-					<Add option="-g" />
-					<Add option="-m32" />
-					<Add directory="src/jlppc/regimys/gui" />
-					<Add directory="src/jlppc/regimys/save/" />
-				</Compiler>
-				<Linker>
-					<Add option="-m32" />
-					<Add library="sfml-graphics" />
-					<Add library="sfml-network" />
-					<Add library="sfml-audio" />
-					<Add library="sfml-window" />
-					<Add library="sfml-system" />
-				</Linker>
-			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-std=c++11" />

@@ -12,14 +12,14 @@ LD = g++
 WINDRES = windres
 
 INC = 
-CFLAGS = -w -Wall -std=c++11
+CFLAGS = -std=c++11 -w -Wall
 RESINC = 
 LIBDIR = 
 LIB = 
 LDFLAGS = 
 
 INC_DEBUG = $(INC) -Isrc/jlppc/regimys/gui -Isrc/jlppc/regimys/save/
-CFLAGS_DEBUG = $(CFLAGS) -m64 -g
+CFLAGS_DEBUG = $(CFLAGS) -std=c++14 -m64 -g
 RESINC_DEBUG = $(RESINC)
 RCFLAGS_DEBUG = $(RCFLAGS)
 LIBDIR_DEBUG = $(LIBDIR)
@@ -346,5 +346,5 @@ clean_release:
 	rm -rf $(OBJDIR_RELEASE)/src/jlppc/regimys/enums
 	rm -rf $(OBJDIR_RELEASE)/src/jlppc/regimys/newGui
 
-.PHONY: before_debug after_debug clean_debug before_release after_release clean_release before_x86 after_x86 clean_x86
+.PHONY: before_debug after_debug clean_debug before_release after_release clean_release
 
