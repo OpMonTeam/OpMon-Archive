@@ -50,6 +50,7 @@ int animFenOpen(sf::RenderTexture & window, sf::Sprite const& fond) {
             window.draw(anim[i]);
 
             window.display();
+            MainFrame::winRefresh();
         } else {
             Utils::wait(200 - (ticks.getElapsedTime().asMilliseconds() - ancientTick));
             i--;
@@ -81,6 +82,7 @@ int animFenClose(sf::RenderTexture &window, sf::Sprite const& fond) {
             window.draw(anim[i]);
 
             window.display();
+            MainFrame::winRefresh();
         } else {
             Utils::wait(200 - (ticks.getElapsedTime().asMilliseconds() - ancientTick));
             i++;
