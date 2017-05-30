@@ -88,7 +88,7 @@ void open() {
 #ifdef _WIN32
         if(!font.loadFromFile("ressources\\fonts\\Default.ttf"))
 #else
-        if(!font.loadFromFile("ressources/fonts/Default.ttf"))
+        if(!font.loadFromFile(RESSOURCES_PATH + "fonts/Default.ttf"))
 #endif // _WIN32
     {
         gererErreur("Erreur d'initialisation de la police d'écriture.", true);
@@ -110,7 +110,7 @@ void open() {
 #ifdef _WIN32
     if(!buf.loadFromFile("ressources\\audio\\sounds\\dialogChange.ogg"))
 #else
-    if(!buf.loadFromFile("ressources/audio/sounds/dialogChange.ogg"))
+    if(!buf.loadFromFile(RESSOURCES_PATH + "audio/sounds/dialogChange.ogg"))
 #endif
     {
         gererErreur("Impossible d'ouvrir le son de changement de dialogue.", false);
@@ -124,7 +124,7 @@ void open() {
     frame.clear(sf::Color::White);
     //#define TEST
     #ifdef TEST
-    ifstream strm("ressources/keys/francais.rkeys");
+    ifstream strm(RESSOURCES_PATH + "keys/francais.rkeys");
     string read;
     getline(strm, read);
     getline(strm, read);

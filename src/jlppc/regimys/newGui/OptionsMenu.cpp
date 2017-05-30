@@ -84,9 +84,9 @@ void initVars() {
     textures2[2].loadFromFile("ressources\\backgrounds\\lang.png");
 
 #else
-    textures2[0].loadFromFile("ressources/backgrounds/options.png");
-    textures2[1].loadFromFile("ressources/sprites/misc/selectBar.png");
-    textures2[2].loadFromFile("ressources/backgrounds/lang.png");
+    textures2[0].loadFromFile(RESSOURCES_PATH + "backgrounds/options.png");
+    textures2[1].loadFromFile(RESSOURCES_PATH + "sprites/misc/selectBar.png");
+    textures2[2].loadFromFile(RESSOURCES_PATH + "backgrounds/lang.png");
 
 
 #endif // _WIN32
@@ -249,7 +249,7 @@ int boucleLang(){
                 #ifdef _WIN32
                     StringKeys::initialize("ressources\\keys\\english.rkeys");
                 #else
-                    StringKeys::initialize("ressources/keys/english.rkeys");
+                    StringKeys::initialize(RESSOURCES_PATH + "keys/english.rkeys");
                 #endif
                     initAllStrings();
                     return 0;
@@ -260,7 +260,7 @@ int boucleLang(){
                     #ifdef _WIN32
                         StringKeys::initialize("ressources\\keys\\espanol.rkeys");
                     #else
-                        StringKeys::initialize("ressources/keys/espanol.rkeys");
+                        StringKeys::initialize(RESSOURCES_PATH + "keys/espanol.rkeys");
                     #endif // _WIN32
                     initAllStrings();
                     return 0;
@@ -271,7 +271,7 @@ int boucleLang(){
                     #ifdef _WIN32
                         StringKeys::initialize("ressources\\keys\\francais.rkeys");
                     #else
-                        StringKeys::initialize("ressources/keys/francais.rkeys");
+                        StringKeys::initialize(RESSOURCES_PATH + "keys/francais.rkeys");
                     #endif
                     initAllStrings();
                     return 0;

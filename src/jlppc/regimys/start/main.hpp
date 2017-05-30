@@ -21,8 +21,24 @@ Contient des fonctions necessaires au programme
 tabType* objActuel = NULL;\
 objActuel = &(tabName[itor]);\
 
-#define GET_TICKS ticks.getElapsedTime().asMilliseconds()
+//#define LOCAL_TEST
 
+#define GET_TICKS ticks.getElapsedTime().asMilliseconds()
+#ifndef _WIN32
+#ifdef LOCAL_TEST
+#define RESSOURCES_PATH std::string("ressources/")
+#define LOG_PATH std::string("logs/")
+#define SAVE_PATH std::string("saves/")
+#else
+#define RESSOURCES_PATH std::string("/usr/share/OpMon/ressources/")
+#define LOG_PATH std::string("/usr/share/OpMon/logs/")
+#define SAVE_PATH std::string("/usr/share/OpMon/saves/")
+#endif
+#else
+#define RESSOURCES_PATH std::string("ressources\\")
+#define LOG_PATH std::string("logs\\")
+#define SAVE_PATH std::string("saves\\")
+#endif // _WIN32
 #define PRINT_TICKS "[T = " << ticks.getElapsedTime().asMilliseconds() << "] - "
 /**Le log principal*/
 extern std::ofstream rlog;

@@ -49,12 +49,12 @@ void initVars() {
     sounds[1].loadFromFile("ressources\\audio\\sounds\\selectbuttons.ogg");
     sounds[2].loadFromFile("ressources\\audio\\sounds\\nope.ogg");
 #else
-    textures[0].loadFromFile("ressources/backgrounds/titlescreen.png");
-    textures[1].loadFromFile("ressources/sprites/misc/arrChoice.png");
-    fondMusTitle.openFromFile("ressources/audio/music/title.ogg");
-    sounds[0].loadFromFile("ressources/audio/sounds/select.ogg");
-    sounds[1].loadFromFile("ressources/audio/sounds/selectbuttons.ogg");
-    sounds[2].loadFromFile("ressources/audio/sounds/nope.ogg");
+    textures[0].loadFromFile(RESSOURCES_PATH + "backgrounds/titlescreen.png");
+    textures[1].loadFromFile(RESSOURCES_PATH + "sprites/misc/arrChoice.png");
+    fondMusTitle.openFromFile(RESSOURCES_PATH + "audio/music/title.ogg");
+    sounds[0].loadFromFile(RESSOURCES_PATH + "audio/sounds/select.ogg");
+    sounds[1].loadFromFile(RESSOURCES_PATH + "audio/sounds/selectbuttons.ogg");
+    sounds[2].loadFromFile(RESSOURCES_PATH + "audio/sounds/nope.ogg");
 #endif // _WIN32
     fond.setTexture(textures[0]);
     cursor.setTexture(textures[1]);
