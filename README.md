@@ -10,13 +10,13 @@ Bienvenue sur le projet de OPMon Lazuli! Le clone <a href="https://github.com/jl
 <a href="http://opmon-game.ga">Site web du jeu</a><br/>
 <a href="https://github.com/jlppc/OpMon/blob/master/Credits.md">Crédits</a><br/>
 <a href="https://github.com/jlppc/Site-OpMon">Dépot du site web du jeu</a><br/><br/>
-<br/>Version du jeu : Alpha 0.09 | Téléchargement : <a href="http://opmon-game.ga/downloads.html"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
+<br/>Version du jeu : Alpha 0.1 | Téléchargement : <a href="http://opmon-game.ga/downloads.html"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 Prochaines versions :<ul>
 
-<li>Alpha 0.1 : Ajout d'un menu d'options et correction de tous les bugs possibles dans la partie graphique</li>
 <li>Alpha 0.11 : Ajout de l'interieur des maisons, avec possibilité de les visiter en appuyant sur des touches du clavier (pas d'evenements)</li>
 <li>Alpha 0.12 : Amelioration de l'interieur des maisons et premiers petits evenements (les pancartes de Faubourg Euvi)</li>
-<a href="https://github.com/jlppc/OpMon/wiki/ROADMAP">Voir la ROADMAP détaillé</a><br/>
+<a href="https://github.com/jlppc/OpMon/wiki/ROADMAP">Voir la ROADMAP détaillé</a>
+<li>Alpha 0.13 : Amelioration des evenements<br>
 </ul>
 <br/>
 
@@ -54,5 +54,5 @@ If there are problems to understand the commits, because it's all in french, don
 <!--<a href="">Regimys Youtube Channel</a><br/>-->
 <a href="http://opmon-game.ga">OPMon web site</a><br/>
 <a href="https://github.com/jlppc/Site-OpMon">Website repository</a><br/><br/>
-<br/>Game version : Alpha 0.09 | Download : <a href="https://github.com/jlppc/OpMon/releases/download/alpha-v0.09/OpMon-setup.exe"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
+<br/>Game version : Alpha 0.1 | Download : <a href="https://github.com/jlppc/OpMon/releases/download/alpha-v0.09/OpMon-setup.exe"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 
