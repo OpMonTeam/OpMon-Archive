@@ -854,31 +854,31 @@ void initAtkLvls() {
 void initTextures(){
     using namespace Side;
     #ifdef _WIN32
-    texturePP[FACE].loadFromFile("ressources\\sprites\\chara\\pp\\pp0.png");
-    texturePP[DROITE].loadFromFile("ressources\\sprites\\chara\\pp\\pp1.png");
-    texturePP[GAUCHE].loadFromFile("ressources\\sprites\\chara\\pp\\pp2.png");
-    texturePP[DOS].loadFromFile("ressources\\sprites\\chara\\pp\\pp3.png");
-    marchePP[FACE].loadFromFile("ressources\\sprites\\chara\\pp\\mpp0.png");
-    marchePP[DROITE].loadFromFile("ressources\\sprites\\chara\\pp\\mpp1.png");
-    marchePP[GAUCHE].loadFromFile("ressources\\sprites\\chara\\pp\\mpp2.png");
-    marchePP[DOS].loadFromFile("ressources\\sprites\\chara\\pp\\mpp3.png");
-    marchePP2[FACE].loadFromFile("ressources\\sprites\\chara\\pp\\mpp20.png");
-    marchePP2[DROITE].loadFromFile("ressources\\sprites\\chara\\pp\\mpp21.png");
-    marchePP2[GAUCHE].loadFromFile("ressources\\sprites\\chara\\pp\\mpp22.png");
-    marchePP2[DOS].loadFromFile("ressources\\sprites\\chara\\pp\\mpp23.png");;
+    texturePP[FACE].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\pp0.png");
+    texturePP[DROITE].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\pp1.png");
+    texturePP[GAUCHE].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\pp2.png");
+    texturePP[DOS].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\pp3.png");
+    marchePP[FACE].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp0.png");
+    marchePP[DROITE].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp1.png");
+    marchePP[GAUCHE].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp2.png");
+    marchePP[DOS].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp3.png");
+    marchePP2[FACE].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp20.png");
+    marchePP2[DROITE].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp21.png");
+    marchePP2[GAUCHE].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp22.png");
+    marchePP2[DOS].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp23.png");;
 #else
-    texturePP[FACE].loadFromFile("ressources/sprites/chara/pp/pp0.png");
-    texturePP[DROITE].loadFromFile("ressources/sprites/chara/pp/pp1.png");
-    texturePP[GAUCHE].loadFromFile("ressources/sprites/chara/pp/pp2.png");
-    texturePP[DOS].loadFromFile("ressources/sprites/chara/pp/pp3.png");
-    marchePP[FACE].loadFromFile("ressources/sprites/chara/pp/mpp0.png");
-    marchePP[DROITE].loadFromFile("ressources/sprites/chara/pp/mpp1.png");
-    marchePP[GAUCHE].loadFromFile("ressources/sprites/chara/pp/mpp2.png");
-    marchePP[DOS].loadFromFile("ressources/sprites/chara/pp/mpp3.png");
-    marchePP2[FACE].loadFromFile("ressources/sprites/chara/pp/mpp20.png");
-    marchePP2[DROITE].loadFromFile("ressources/sprites/chara/pp/mpp21.png");
-    marchePP2[GAUCHE].loadFromFile("ressources/sprites/chara/pp/mpp22.png");
-    marchePP2[DOS].loadFromFile("ressources/sprites/chara/pp/mpp23.png");
+    texturePP[FACE].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp0.png");
+    texturePP[DROITE].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp1.png");
+    texturePP[GAUCHE].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp2.png");
+    texturePP[DOS].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp3.png");
+    marchePP[FACE].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp0.png");
+    marchePP[DROITE].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp1.png");
+    marchePP[GAUCHE].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp2.png");
+    marchePP[DOS].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp3.png");
+    marchePP2[FACE].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp20.png");
+    marchePP2[DROITE].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp21.png");
+    marchePP2[GAUCHE].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp22.png");
+    marchePP2[DOS].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp23.png");
     #endif // _WIN32
 }
 
@@ -938,19 +938,19 @@ void initPlans() {
     sf::Texture couche2;
     sf::Texture couche3;
 #ifdef _WIN32
-    couche1.loadFromFile("ressources\\maps\\fe\\fe1.png");
-    couche2.loadFromFile("ressources\\maps\\fe\\fe2.png");
-    couche3.loadFromFile("ressources\\maps\\fe\\fe3.png");
-    string path = "ressources\\audio\\music\\faubourgeuvi.ogg";
+    couche1.loadFromFile(RESSOURCES_PATH + "maps\\fe\\fe1.png");
+    couche2.loadFromFile(RESSOURCES_PATH +"maps\\fe\\fe2.png");
+    couche3.loadFromFile(RESSOURCES_PATH +"\maps\\fe\\fe3.png");
+    string path = RESSOURCES_PATH +"audio\\music\\faubourgeuvi.ogg";
 #else
-    couche1.loadFromFile("ressources/maps/fe/fe1.png");
-    couche2.loadFromFile("ressources/maps/fe/fe2.png");
-    couche3.loadFromFile("ressources/maps/fe/fe3.png");
-    string path = "ressources/audio/music/faubourgeuvi.ogg";
+    couche1.loadFromFile(RESSOURCES_PATH +"maps/fe/fe1.png");
+    couche2.loadFromFile(RESSOURCES_PATH +"maps/fe/fe2.png");
+    couche3.loadFromFile(RESSOURCES_PATH +"maps/fe/fe3.png");
+    string path = RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg";
 #endif
     //Vérification des couches
     //Ouverture du fichier temporaire pour
-    ofstream tempFile("feTemp.tmp");
+    ofstream tempFile(SAVE_PATH + "feTemp.tmp");
     if(!tempFile) {
         gererErreur("Impossible d'ouvrir feTemp.tmp. Les boites de collisions ne peuvent fonctionner.", true);
     }
@@ -965,7 +965,7 @@ void initPlans() {
         dans le constructeur en Plan. En effet, du au bordel de la transmission des tableaux par
         paramètre, encore plus avec les tableaux a deux dimentions, j'ai décidé d'utiliser un fichier.
     */
-    faubourgEuvi = new Plan(couche1, couche2, couche3, 32, 32, "feTemp.tmp", path);
+    faubourgEuvi = new Plan(couche1, couche2, couche3, 32, 32, SAVE_PATH + "feTemp.tmp", path);
     //Suppression du fichier sous Window (Parce comme windows c'est de la merde, on ne peut pas toucher aux fichiers si ils sont utilisés pas un autre flux.)
     tempFile.close();
     #ifdef _WIN32
@@ -981,20 +981,20 @@ void initKeys() {
     //Définit la langue a initialiser dans les clées
     #ifdef _WIN32
     if(OptionsSave::getParam("lang").getValue() == "fr"){
-        StringKeys::initialize("ressources\\keys\\francais.rkeys");
+        StringKeys::initialize(RESSOURCES_PATH + "keys\\francais.rkeys");
     }else if(OptionsSave::getParam("lang").getValue() == "esp"){
-        StringKeys::initialize("ressources\\keys\\espanol.rkeys");
+        StringKeys::initialize(RESSOURCES_PATH + "keys\\espanol.rkeys");
     }else{
-        StringKeys::initialize("ressources\\keys\\english.rkeys");
+        StringKeys::initialize(RESSOURCES_PATH + "keys\\english.rkeys");
     }
 
     #else
     if(OptionsSave::getParam("lang").getValue() == "fr"){
-        StringKeys::initialize("ressources/keys/francais.rkeys");
+        StringKeys::initialize(RESSOURCES_PATH + "keys/francais.rkeys");
     }else if(OptionsSave::getParam("lang").getValue() == "esp"){
-        StringKeys::initialize("ressources/keys/espanol.rkeys");
+        StringKeys::initialize(RESSOURCES_PATH + "keys/espanol.rkeys");
     }else{
-        StringKeys::initialize("ressources/keys/english.rkeys");
+        StringKeys::initialize(RESSOURCES_PATH + "keys/english.rkeys");
     }
     #endif
 }

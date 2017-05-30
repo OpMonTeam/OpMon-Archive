@@ -25,16 +25,9 @@
 //#define DEBUG
 UNS
 
-#ifdef _WIN32
-ofstream rlog("logs\\log.txt");
-ofstream rerrLog("logs\\errLog.txt");
-#else
-#define UNIX
-ofstream rlog("logs/log.txt");
-ofstream rerrLog("logs/errLog.txt");
-#endif // WINDOWS
-
-string optSave("optSave.oparams");
+ofstream rlog(LOG_PATH + "log.txt");
+ofstream rerrLog(LOG_PATH + "errLog.txt");
+string optSave(SAVE_PATH + "optSave.oparams");
 
 sf::Clock ticks;
 
@@ -132,6 +125,12 @@ int main(int argc, char *argv[]) {
     Main::oss << "Alpha " << Main::version << "." << Main::sousVers;
     Main::versionS = Main::oss.str();
     //Traitement des arguments
+    #ifndef _WIN32
+    string str("mkdir -p ");
+    system((str + RESSOURCES_PATH).c_str());
+    system((str + SAVE_PATH).c_str());
+    system((str + LOG_PATH).c_str());
+    #endif
     if(argc >= 2){
         FOR_EACH(char*, argv, argc, {)
             string str = string(*objActuel);
