@@ -148,6 +148,8 @@
 		<Unit filename="src/jlppc/regimys/playercore/Player.hpp" />
 		<Unit filename="src/jlppc/regimys/playercore/playercoreInclude.hxx" />
 		<Unit filename="src/jlppc/regimys/regimysInclude.hxx" />
+		<Unit filename="src/jlppc/regimys/save/InternalFiles.cpp" />
+		<Unit filename="src/jlppc/regimys/save/InternalFiles.hpp" />
 		<Unit filename="src/jlppc/regimys/save/OptionsSave.cpp" />
 		<Unit filename="src/jlppc/regimys/save/OptionsSave.hpp" />
 		<Unit filename="src/jlppc/regimys/save/Save.cpp" />
