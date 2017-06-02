@@ -12,6 +12,7 @@
 #include "Overworld.hpp"
 #include "OptionsMenu.hpp"
 #include <thread>
+#include "../save/OptionsSave.hpp"
 
 #include "StartScene.hpp"
 
@@ -99,8 +100,14 @@ void open() {
     //Ouverture de la fenetre
     sf::ContextSettings settings;
     settings.antialiasingLevel = 4;
-
-    window.create(sf::VideoMode(512, 512), "OpMon Lazuli", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize, settings);
+    if(!OptionsSave::checkParam("fullscreen")){
+        OptionsSave::addOrModifParam("fullscreen", "false");
+    }
+    if(OptionsSave::getParam("fullscreen").getValue() == "true"){
+        window.create(sf::VideoMode::getFullscreenModes().at(0), "OpMon Lazuli", sf::Style::Fullscreen, settings);
+    }else{
+        window.create(sf::VideoMode(512, 512), "OpMon Lazuli", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize, settings);
+    }
     frame.create(512, 512);
     //Création du renderer.
     rlog << PRINT_TICKS << "Initialisation de la fenetre et du renderer terminée" << endl;
@@ -185,6 +192,9 @@ void winRefresh(){
     sf::Texture txture = frame.getTexture();
     sf::Sprite sprite;
     sprite.setTexture(txture);
+    if(OptionsSave::getParam("fullscreen").getValue() == "true"){
+        sprite.setScale(window.getSize().x / sprite.getGlobalBounds().width, window.getSize().y / sprite.getGlobalBounds().height);
+    }
 
     window.draw(sprite);
     window.display();
