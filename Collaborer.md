@@ -12,7 +12,7 @@ le contenu des fichiers logs et rerrLog pour me permettre de repérer le bug bea
 Ici aussi, tout se passe dans Issues. Merci de respecter ici aussi le formulaire par défaut. Précisez le plus clairement
 possible vos idées, sinon il me sera impossible de les réaliser.
 ## Collaborer autrement
-Vous pouvez aussi participer a la création du site, notamment si vous vous y connaîssez en CSS (Je recherche des gens pour refaire le CSS, utilisant actuellement un prestet github)
+Vous pouvez aussi participer a la création du site ou créer des OPMons.
 Le dépot du site est ici : <a href="http://github.com/jlppc/Site-OpMon">Dépot du site</a><br/>
 Vous pouvez aussi nous aider en améliorant le wiki, ou en améliorant la documentation du site grace aux commentaires du code!<br/>
 Vous pouvez aussi nous aider en parlant de ce projet a vos proches, pour le faire connaître! C'est grace a vous que ce projet avance!
