@@ -2,8 +2,8 @@
 #include "../regimys/start/main.hpp"
 UNS
 
-RFile::RFile(string path) {
-    this->path = path;
+RFile::RFile(string path) :
+path(path){
 }
 
 ifstream *RFile::getIn() const {

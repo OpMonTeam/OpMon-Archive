@@ -48,8 +48,8 @@ void initItems() {
 }
 
 
-Item::Item(string nom, bool usable, bool usableInFight, bool givable, int categorie, int id) {
-    this->nom = nom;
+Item::Item(string nom, bool usable, bool usableInFight, bool givable, int categorie, int id) :
+nom(nom){
     this->usable = usable;
     this->usableInFight = usableInFight;
     this->id = id;

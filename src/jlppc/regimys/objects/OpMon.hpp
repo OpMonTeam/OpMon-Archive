@@ -172,7 +172,7 @@ public:
     }
     /**Soigne le pokémon*/
     void heal(int PV);
-    bool getLevel() const {
+    int getLevel() const {
         return level;
     }
     Attaque **getAttaques() {

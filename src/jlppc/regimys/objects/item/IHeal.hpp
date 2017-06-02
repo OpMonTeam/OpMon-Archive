@@ -18,15 +18,15 @@ Définit un item de soin
 class I_Heal: public Item {
 public:
     /**Construit un item de heal (presque) polyvalent*/
-    I_Heal(std::string nom, bool usable, bool usableInFight, bool givable, int categorie, int pvHeal, int heal, bool healAllStatus, int ID);
+    I_Heal(std::string &nom, bool usable, bool usableInFight, bool givable, int categorie, int pvHeal, int heal, bool healAllStatus, int ID);
     /**Construit un item de heal de PP*/
-    I_Heal(std::string nom, bool usable, bool usableInFight, bool givable, int categorie, int ppHeal, bool allAttacksHeal, int ID);
+    I_Heal(std::string &nom, bool usable, bool usableInFight, bool givable, int categorie, int ppHeal, bool allAttacksHeal, int ID);
     /**Construit un item de heal de pv*/
-    I_Heal(std::string nom, bool usable, bool usableInFight, bool givable, int categorie, int pvHeal, int ID);
+    I_Heal(std::string &nom, bool usable, bool usableInFight, bool givable, int categorie, int pvHeal, int ID);
     /**Construit un item de heal de status*/
-    I_Heal(std::string nom, bool usable, bool usableInFight, bool givable, int categorie, int heal, bool healAllStatus, int ID, bool status);//De toutes facons meme si status est false ce sera quand meme du status lol
+    I_Heal(std::string &nom, bool usable, bool usableInFight, bool givable, int categorie, int heal, bool healAllStatus, int ID, bool status);//De toutes facons meme si status est false ce sera quand meme du status lol
     /**Construit un stat+*/
-    I_Heal(std::string nom, int statAdd, int ID);
+    I_Heal(std::string &nom, int statAdd, int ID);
     bool isHealAll() const {
         return healAll;
     }

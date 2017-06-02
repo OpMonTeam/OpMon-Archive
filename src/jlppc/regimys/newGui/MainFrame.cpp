@@ -42,23 +42,6 @@ void initAllStrings(){
     StartScene::initStrings();
 }
 
-int printChoice(string text, string choice1, string choice2, string choix3) {
-    //Non fini
-    /*bool triple = true;
-    if(choix3 == ""){
-        triple = false;
-    }
-    if(text == "" || choice1 == "" || choice2 == ""){
-        gererErreur("MainFrame::printChoice : Chaine de caractère vide.", true);
-    }
-    SDL_Rect placeChoix[3];
-    SDL_Texture *choix[3];
-    SDL_Texture *texte;
-    SDL_Texture *fondDialogue;
-    texte = renderText(renderer, text, font, noir, textPlace);*/
-    return 0;
-}
-
 void printText(sf::RenderTexture &framee, sf::String text[]) {
     int minusPos = 32;
     FOR_EACH(sf::String, text, 3, {)
@@ -113,7 +96,8 @@ void open() {
     rlog << PRINT_TICKS << "Initialisation de la fenetre et du renderer terminée" << endl;
     //Ouverture d'un son
     sf::SoundBuffer buf;
-    window.setVerticalSyncEnabled(true);
+    //window.setVerticalSyncEnabled(true);
+    window.setFramerateLimit(180);
 #ifdef _WIN32
     if(!buf.loadFromFile("ressources\\audio\\sounds\\dialogChange.ogg"))
 #else
