@@ -87,6 +87,7 @@ void open() {
         OptionsSave::addOrModifParam("fullscreen", "false");
     }
     if(OptionsSave::getParam("fullscreen").getValue() == "true"){
+        fullScreen = true;
         window.create(sf::VideoMode::getFullscreenModes().at(0), "OpMon Lazuli", sf::Style::Fullscreen, settings);
     }else{
         window.create(sf::VideoMode(512, 512), "OpMon Lazuli", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize, settings);
@@ -177,7 +178,7 @@ void winRefresh(){
     sf::Sprite sprite;
     sprite.setTexture(txture);
 
-    if(OptionsSave::getParam("fullscreen").getValue() == "true"){
+    if(fullScreen){
         float coef = window.getSize().y / (sprite.getGlobalBounds().height * 1.0);
         sprite.setScale(coef, coef);
         sprite.setPosition(window.getSize().x / 2 - (sprite.getGlobalBounds().width * coef) / 2.5, 0);
