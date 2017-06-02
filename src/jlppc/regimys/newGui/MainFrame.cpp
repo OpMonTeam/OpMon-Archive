@@ -99,7 +99,7 @@ void open() {
     init = true;
     //Ouverture de la fenetre
     sf::ContextSettings settings;
-    settings.antialiasingLevel = 4;
+    settings.antialiasingLevel = 8;
     if(!OptionsSave::checkParam("fullscreen")){
         OptionsSave::addOrModifParam("fullscreen", "false");
     }
@@ -192,10 +192,13 @@ void winRefresh(){
     sf::Texture txture = frame.getTexture();
     sf::Sprite sprite;
     sprite.setTexture(txture);
-    if(OptionsSave::getParam("fullscreen").getValue() == "true"){
-        sprite.setScale(window.getSize().x / sprite.getGlobalBounds().width, window.getSize().y / sprite.getGlobalBounds().height);
-    }
 
+    if(OptionsSave::getParam("fullscreen").getValue() == "true"){
+        float coef = window.getSize().y / (sprite.getGlobalBounds().height * 1.0);
+        sprite.setScale(coef, coef);
+        sprite.setPosition(window.getSize().x / 2 - (sprite.getGlobalBounds().width * coef) / 2.5, 0);
+    }
+    window.clear(sf::Color::Black);
     window.draw(sprite);
     window.display();
     /*int ancientTick = 0;
