@@ -8,8 +8,6 @@
 *.tmp
 exe/log.txt
 exe/errLog.txt
-exe/OpMon-Debug.exe
-exeLinux/OpMon-Debug
 exeLinux/log.txt
 exeLinux/errLog.txt
 *.db
@@ -27,7 +25,6 @@ pages/doc/DocSample.html
 /lib/
 /temp/
 /.objs/
-/exeLinux/ressources
 cbp2make/*
 doxygen/doxyfile
 *.opmod
