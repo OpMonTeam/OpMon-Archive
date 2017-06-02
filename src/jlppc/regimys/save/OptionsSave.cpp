@@ -1,5 +1,6 @@
 #include "OptionsSave.hpp"
 #include "../start/main.hpp"
+#include <cstdlib>
 
 UNS
 
@@ -75,7 +76,9 @@ void initParams(string file){
         }
         string noPm = StringKeys::split(read, '|', 1);//Ne prend que la partie après le pm|
         Param newParam = Param(StringKeys::split(noPm, '=', 0), StringKeys::split(noPm, '=', 1));//Splitte ensuite en deux parties, le nom et la valeur du paramètre.
-        paramList.push_back(newParam);
+        if(!checkParam(newParam.getName())){
+                paramList.push_back(newParam);
+        }
     }
     if(i == 100000){
         gererErreur("initParams : Boucle infinie stoppée", true);
@@ -90,8 +93,11 @@ void saveParams(string file){
     ofstream stream(file.c_str());
     string toGo;
     FOR_EACH(Param, paramList, paramList.size(), {)
-        toGo+=("pm|" + objActuel->getName() + "=" + objActuel->getValue());//Ajoute le pm| puis écrit le paramètre dans le fichier.
-        stream << toGo << endl;
+        //cout << objActuel->getName() << endl;
+        toGo+=("pm|" + objActuel->getName() + "=" + objActuel->getValue() + '\n');//Ajoute le pm| puis écrit le paramètre dans le fichier.
+        //cout << toGo;
+        stream << toGo;
+        toGo = string("");
     }
     stream.close();
 }
