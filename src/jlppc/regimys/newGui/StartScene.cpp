@@ -263,12 +263,12 @@ int boucle1() {
 								}
 								if (voided) {
 									pName[0] = ' ';
-									pName[0 + 1] = 'R';
-									pName[1 + 1] = 'o';
-									pName[2 + 1] = 'b';
-									pName[3 + 1] = 'e';
+									pName[0 + 1] = 'P';
+									pName[1 + 1] = 'i';
+									pName[2 + 1] = 'e';
+									pName[3 + 1] = 'r';
 									pName[4 + 1] = 'r';
-									pName[5 + 1] = 't';
+									pName[5 + 1] = 'e';
 									pName[6 + 1] = '\0';
 								} else {
                                     if(indexEnd != 0){
