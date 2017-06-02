@@ -2,7 +2,7 @@
 #include "../start/main.hpp"
 #include "../save/Save.hpp"
 
-Player::Player(std::string name) name(name){
+Player::Player(std::string name):name(name){
     dressID = Utils::randUI(0xFFFFFFFF);
     equipe = Equipe(name);
     for(unsigned int i = 0; i < ITEM_NUMBER; i++) {
