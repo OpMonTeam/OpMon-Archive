@@ -52,7 +52,7 @@ namespace OptionsSave{
 
     void initParams(std::string file);
 
-    bool checkParam(std::string name);
+    bool checkParam(std::string const& name);
 
 }
 

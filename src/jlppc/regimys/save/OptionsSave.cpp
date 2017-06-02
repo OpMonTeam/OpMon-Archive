@@ -6,7 +6,7 @@ UNS
 
 namespace OptionsSave{
 
-int searchParam(string nom);
+int searchParam(string const& nom);
 
 Param::Param(string nom, string valeur){
     this->paramName = nom;
@@ -48,7 +48,7 @@ Param deleteParam(string const& nom){
     }
 }
 
-int searchParam(string nom){
+int searchParam(string const& nom){
     FOR_EACH(Param, paramList, paramList.size(), {)
         if(objActuel->getName() == nom){
             return itor;
@@ -102,7 +102,7 @@ void saveParams(string file){
     stream.close();
 }
 
-bool checkParam(string name){
+bool checkParam(string const& name){
     return searchParam(name) != -1;
 }
 
