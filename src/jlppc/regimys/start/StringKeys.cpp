@@ -55,7 +55,7 @@ void initialize(string keysFileS) {
 
     }
 }
-
+sf::String voi;
 sf::String& get(string key) {
     key = string("key.") + key;//Ajout du préfixe key.
     for (unsigned int i = 0; i < keys.size(); i++) {//Scanne les clées
@@ -63,7 +63,7 @@ sf::String& get(string key) {
             return strings[i];
         }
     }
-    sf::String voi = sf::String("");
+    voi = sf::String("");
     return voi;//Si rien trouvé, retourne une chaine vide.
 }
 

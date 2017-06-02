@@ -4,8 +4,8 @@
 
 Class <Attaque> *Attaque::classe = new Class<Attaque>("Attaque", NULL);
 
-Attaque::Attaque(std::string nom, int puissance, int type, int precision, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite, std::string className) {
-    this->nom = nom;
+Attaque::Attaque(std::string nom, int puissance, int type, int precision, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite, std::string className) :
+nom(nom), className(className){
     this->puissance = puissance;
     this->type = type;
     this->precision = precision;
@@ -15,7 +15,6 @@ Attaque::Attaque(std::string nom, int puissance, int type, int precision, bool s
     this->rateJamais = rateJamais;
     this->pp = this->ppMax = ppMax;
     this->priorite = priorite;
-    this->className = className;
 }
 
 /*Pour les returns, equivalent exceptions java : Soit SameAtkPartTwo, qui ordonne de lancer la meme attaque au prochain tour (1)
