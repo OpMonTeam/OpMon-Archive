@@ -75,46 +75,6 @@
 		<Unit filename="src/jlppc/regimys/evolution/Evolution.hpp" />
 		<Unit filename="src/jlppc/regimys/evolution/evolutionInclude.hxx" />
 		<Unit filename="src/jlppc/regimys/evolution/evolutions.hpp" />
-		<Unit filename="src/jlppc/regimys/gui/Animations.cpp">
-			<Option compile="0" />
-			<Option link="0" />
-		</Unit>
-		<Unit filename="src/jlppc/regimys/gui/Animations.hpp" />
-		<Unit filename="src/jlppc/regimys/gui/Elements.cpp">
-			<Option compile="0" />
-			<Option link="0" />
-		</Unit>
-		<Unit filename="src/jlppc/regimys/gui/Elements.hpp" />
-		<Unit filename="src/jlppc/regimys/gui/Events.cpp">
-			<Option compile="0" />
-			<Option link="0" />
-		</Unit>
-		<Unit filename="src/jlppc/regimys/gui/Events.hpp" />
-		<Unit filename="src/jlppc/regimys/gui/MainFrame.cpp">
-			<Option compile="0" />
-			<Option link="0" />
-		</Unit>
-		<Unit filename="src/jlppc/regimys/gui/MainFrame.hpp" />
-		<Unit filename="src/jlppc/regimys/gui/MainMenu.cpp">
-			<Option compile="0" />
-			<Option link="0" />
-		</Unit>
-		<Unit filename="src/jlppc/regimys/gui/MainMenu.hpp" />
-		<Unit filename="src/jlppc/regimys/gui/OptionsMenu.cpp">
-			<Option compile="0" />
-			<Option link="0" />
-		</Unit>
-		<Unit filename="src/jlppc/regimys/gui/OptionsMenu.hpp" />
-		<Unit filename="src/jlppc/regimys/gui/Overworld.cpp">
-			<Option compile="0" />
-			<Option link="0" />
-		</Unit>
-		<Unit filename="src/jlppc/regimys/gui/Overworld.hpp" />
-		<Unit filename="src/jlppc/regimys/gui/StartScene.cpp">
-			<Option compile="0" />
-			<Option link="0" />
-		</Unit>
-		<Unit filename="src/jlppc/regimys/gui/StartScene.hpp" />
 		<Unit filename="src/jlppc/regimys/newGui/Animations.cpp" />
 		<Unit filename="src/jlppc/regimys/newGui/Animations.hpp" />
 		<Unit filename="src/jlppc/regimys/newGui/Elements.cpp" />
