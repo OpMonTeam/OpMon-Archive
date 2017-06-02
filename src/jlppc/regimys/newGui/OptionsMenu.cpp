@@ -33,7 +33,8 @@ sf::Sprite fondLangues;
 //J_Texture listeLangues[3] = {};
 sf::Vector2f curPosLang[4] = {};
 sf::Vector2f curSizeLang[4];
-sf::Texture textures2[3];
+sf::Texture textures2[4];
+sf::Sprite coche;
 
 void initStrings(){
     langFr.setString(L"Français");
@@ -52,7 +53,6 @@ void initStrings(){
     txtOptions.setFont(font);
     txtOptions.setCharacterSize(FONT_SIZE_DEFAULT);
     txtOpt1.setString(kget("options.ecran"));
-    txtOpt1.setColor(sf::Color::Red);
     txtOpt1.setFont(font);
     txtOpt1.setCharacterSize(FONT_SIZE_DEFAULT);
     txtOpt2.setString(kget("options.lang"));
@@ -82,17 +82,22 @@ void initVars() {
     textures2[0].loadFromFile("ressources\\backgrounds\\options.png");
     textures2[1].loadFromFile("ressources\\sprites\\misc\\selectBar.png");
     textures2[2].loadFromFile("ressources\\backgrounds\\lang.png");
+    textures2[3].loadFromFile(RESSOURCES_PATH + "sprites\\misc\\yes.png");
 
 #else
     textures2[0].loadFromFile(RESSOURCES_PATH + "backgrounds/options.png");
     textures2[1].loadFromFile(RESSOURCES_PATH + "sprites/misc/selectBar.png");
     textures2[2].loadFromFile(RESSOURCES_PATH + "backgrounds/lang.png");
+    textures2[3].loadFromFile(RESSOURCES_PATH + "sprites/misc/yes.png");
 
 
 #endif // _WIN32
     fondOpt.setTexture(textures2[0]);
     rectSurb.setTexture(textures2[1]);
     fondLangues.setTexture(textures2[2]);
+    coche.setTexture(textures2[3]);
+
+    coche.setPosition(425, 88);
 
 
     initStrings();
@@ -166,7 +171,12 @@ int boucle() {
                 case 0:
                     return 0;
                 case 1:
-                    bruitNope.play();
+                    if(OptionsSave::getParam("fullscreen").getValue() == "true"){
+                        OptionsSave::addOrModifParam("fullscreen", "false");
+                    }else{
+                        OptionsSave::addOrModifParam("fullscreen", "true");
+                    }
+
                     break;
                 case 2:
                     boucleLang();
@@ -219,6 +229,9 @@ int boucle() {
         frame.draw(txtOpt5);
         frame.draw(txtRetour);
         frame.draw(txtOptions);
+        if(OptionsSave::getParam("fullscreen").getValue() == "true"){
+            frame.draw(coche);
+        }
         rectSurb.setPosition(curPosOpt[curPosOptI]);
         rectSurb.setScale(curSizeOpt[curPosOptI]);
         frame.draw(rectSurb);
