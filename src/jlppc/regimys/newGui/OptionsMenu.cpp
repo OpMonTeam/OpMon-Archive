@@ -245,7 +245,6 @@ int boucleLang(){
                     return 0;
                 case 1:
                     OptionsSave::modifyParam("lang", "eng");
-                    OptionsSave::saveParams(optSave);
                 #ifdef _WIN32
                     StringKeys::initialize("ressources\\keys\\english.rkeys");
                 #else
@@ -256,7 +255,6 @@ int boucleLang(){
                     break;
                 case 2:
                     OptionsSave::modifyParam("lang", "esp");
-                    OptionsSave::saveParams(optSave);
                     #ifdef _WIN32
                         StringKeys::initialize("ressources\\keys\\espanol.rkeys");
                     #else
@@ -267,7 +265,6 @@ int boucleLang(){
                     break;
                 case 3:
                     OptionsSave::modifyParam("lang", "fr");
-                    OptionsSave::saveParams(optSave);
                     #ifdef _WIN32
                         StringKeys::initialize("ressources\\keys\\francais.rkeys");
                     #else
