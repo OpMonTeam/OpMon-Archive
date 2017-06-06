@@ -23,7 +23,8 @@ namespace Initializer {
 Evolutions::E_Nope *ne = new E_Nope();
 std::vector<int> evs[OP_NUMBER] = {};
 Espece *listeOp[OP_NUMBER] = {};
-Plan *faubourgEuvi = NULL;
+std::vector<Plan*> plans;
+std::vector<sf::Music*> townMusics;
 template<typename T>void pb(std::vector<T> &vecteur, T tab[], int longeurTab) {
     for (unsigned int i = 0; i < longeurTab; i++) {
         vecteur.push_back(tab[i]);
@@ -885,77 +886,25 @@ void initSprites() {
     //Init Sprites
 
 }
-//Indication : Dans les plans, pour les collisions, 0 est pour "Ca passe", 1 est pour "Ca passe pas", 2 est pour "Ca passe en nageant", 3 est pour "Hautes herbes", 4 pour "Grotte"
 void initPlans() {
     UNS
     //Chargement de fauxbourg euvi
-    int feTab[32][32] = {   {1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                            {2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                            {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                            {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                            {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                            {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                            {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1},
-                            {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1},
-                            {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1},
-                            {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                            {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                            {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                            {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                            {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
-                            {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
-                            {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
-                            {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
-                            {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
-                            {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1},
-                            {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1},
-                            {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1},
-                            {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
-                            {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
-                            {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
-                            {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
-                            {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
-                            {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1},
-                            {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1},
-                            {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1},
-                            {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1},
-                            {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1},
-                            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-    };
-    //Chargement des couches
-    sf::Texture couche1;
-
-    sf::Texture couche2;
-    sf::Texture couche3;
+    sf::Texture *couche1 = new sf::Texture();
+    sf::Texture *couche2 = new sf::Texture();
+    sf::Texture *couche3 = new sf::Texture();
+    townMusics.push_back(new sf::Music());
 #ifdef _WIN32
-    couche1.loadFromFile(RESSOURCES_PATH + "maps\\fe\\fe1.png");
-    couche2.loadFromFile(RESSOURCES_PATH +"maps\\fe\\fe2.png");
-    couche3.loadFromFile(RESSOURCES_PATH +"\maps\\fe\\fe3.png");
-    string path = RESSOURCES_PATH +"audio\\music\\faubourgeuvi.ogg";
+    couche1->loadFromFile(RESSOURCES_PATH + "maps\\fe\\fe1.png");
+    couche2->loadFromFile(RESSOURCES_PATH +"maps\\fe\\fe2.png");
+    couche3->loadFromFile(RESSOURCES_PATH +"\maps\\fe\\fe3.png");
+    townMusics[0]->openFromFile(RESSOURCES_PATH +"audio\\music\\faubourgeuvi.ogg");
 #else
-    couche1.loadFromFile(RESSOURCES_PATH +"maps/fe/fe1.png");
-    couche2.loadFromFile(RESSOURCES_PATH +"maps/fe/fe2.png");
-    couche3.loadFromFile(RESSOURCES_PATH +"maps/fe/fe3.png");
-    string path = RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg";
+    couche1->loadFromFile(RESSOURCES_PATH +"maps/fe/fe1.png");
+    couche2->loadFromFile(RESSOURCES_PATH +"maps/fe/fe2.png");
+    couche3->loadFromFile(RESSOURCES_PATH +"maps/fe/fe3.png");
+    townMusics[0]->openFromFile(RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg");
 #endif
-    //Vérification des couches
-    //Ouverture du fichier temporaire pour
-    /*ofstream tempFile(SAVE_PATH + "feTemp.tmp");
-    if(!tempFile) {
-        gererErreur("Impossible d'ouvrir feTemp.tmp. Les boites de collisions ne peuvent fonctionner.", true);
-    }
-    //Enregistrement de la boite de collision dans le fichier temporaire
-    for(int i = 0; i < 32; i++) {
-        for(int j = 0; j < 32; j++) {
-            tempFile << feTab[i][j] << endl;
-        }
-    }*/
-    /* Info :
-        L'enregistrement de la boite de collision dans un fichier est pour l'envoyer en paramètres
-        dans le constructeur en Plan. En effet, du au bordel de la transmission des tableaux par
-        paramètre, encore plus avec les tableaux a deux dimentions, j'ai décidé d'utiliser un fichier.
-    */
-    faubourgEuvi = new Plan(couche1, couche2, couche3, 32, 32, "colFe", path);
+    plans.push_back(new Plan(*couche1, *couche2, *couche3, 32, 32, "colFe", townMusics[0]));
 
 }
 
