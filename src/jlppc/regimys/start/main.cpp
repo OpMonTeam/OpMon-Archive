@@ -21,6 +21,7 @@
 #include "StringKeys.hpp"
 #include "../newGui/MainFrame.hpp"
 #include "../save/OptionsSave.hpp"
+#include "../save/InternalFiles.hpp"
 
 //#define DEBUG
 UNS
@@ -60,6 +61,7 @@ int starts() {
     if(!rerrLog && !rlog) {//Verification de leur ouverture
         exit(-1);
     }
+    InternalFiles::registerFiles();
     //Chargement des paramètres
     OptionsSave::initParams(optSave);
     if(!OptionsSave::checkParam("lang")){//Si le paramètre "lang" n'existe pas
