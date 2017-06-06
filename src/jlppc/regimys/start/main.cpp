@@ -89,12 +89,6 @@ int quit(int returne) {
     if (MainFrame::init) {
 
     }
-    for (unsigned int i = 0; i < OP_NUMBER; i++) {//Suppression des OpMon
-        if(Initializer::listeOp[i] != NULL) {
-            delete(Initializer::listeOp[i]);
-        }
-
-    }
     OptionsSave::saveParams(optSave);//Sauvegarde des paramètres
     rlog << PRINT_TICKS << "Fermeture du jeu. Return " << returne << endl;
     //Fermeture des log

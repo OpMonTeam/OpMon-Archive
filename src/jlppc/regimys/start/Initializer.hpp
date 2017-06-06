@@ -8,7 +8,7 @@ Contient la définition des methodes qui permettent d'initialiser les éléments
 */
 #ifndef INITIALIZER_HPP
 #define INITIALIZER_HPP
-#define OP_NUMBER 50
+#define OP_NUMBER 150
 
 #include <iostream>
 #include <vector>
