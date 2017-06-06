@@ -117,7 +117,7 @@ void initEvs() {
     evs[29].ATK;
     evs[29].PV;
 
-    /*evs[30].PV;
+    evs[30].PV;
     evs[30].PV;
 
     evs[31].PV;
@@ -511,16 +511,6 @@ void initEvs() {
 
     evs[171].PV;
     evs[171].PV;
-
-    evs[].;
-    evs[].;
-    evs[].;
-    evs[].;
-    evs[].;
-    evs[].;
-    evs[].;
-    evs[].;
-    evs[].;*/
 
 
 }
