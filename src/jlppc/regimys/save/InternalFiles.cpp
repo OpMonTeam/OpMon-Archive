@@ -34,6 +34,7 @@ namespace InternalFiles{
     }
 
     void registerFiles(){
+        //Indication : Dans les plans, pour les collisions, 0 est pour "Ca passe", 1 est pour "Ca passe pas", 2 est pour "Ca passe en nageant", 3 est pour "Hautes herbes", 4 pour "Grotte"
         filesNames.push_back("colFe");
         files.push_back(std::string("1 1 1 1 1 1 1 1 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1") /
                                     "2 2 2 2 2 2 2 2 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1" /

@@ -7,13 +7,11 @@
 
 UNS
 
-Plan::Plan(sf::Texture couche1, sf::Texture couche2, sf::Texture couche3, int w, int h, std::string filename, std::string fondPath) {
+Plan::Plan(sf::Texture couche1, sf::Texture couche2, sf::Texture couche3, int w, int h, std::string filename, sf::Music* fond) {
     this->couche1 = new sf::Texture(couche1);
     this->couche2 = new sf::Texture(couche2);
     this->couche3 = new sf::Texture(couche3);
-    this->fond = new sf::Music();
-    this->fond->openFromFile(fondPath);
-    this->musicPath = fondPath;
+    this->fond = fond;
 
     this->w = w;
     this->h = h;

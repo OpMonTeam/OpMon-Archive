@@ -34,6 +34,32 @@ int animsCounter = 0;
 bool scrollock[2] = {false, false};
 int ppDir = FACE;
 
+bool scrolling = true;
+
+int tp(int toTp, sf::Vector2i pos, bool scroll){
+    actuel = Initializer::plans[0];
+    if(actuel == NULL){
+        gererErreur("Erreur lors du changement de map : actuel == NULL", true);
+    }
+    scrolling = scroll;
+    personnage.setPosition(8 CASES + pos.x CASES - 16, 8 CASES + pos.y CASES);
+    if(music != actuel->getFond()){
+        music.stop();
+        music = actuel->getFond();
+        music.play();
+    }
+    delete(couche1);
+    delete(couche2);
+    delete(couche3);
+    couche1 = new sf::Sprite();
+    couche2 = new sf::Sprite();
+    couche3 = new sf::Sprite();
+    couche1->setTexture(*actuel->getCouche1());
+    couche2->setTexture(*actuel->getCouche2());
+    couche3->setTexture(*actuel->getCouche3());
+
+}
+
 void up() {
     if(anim == -1) {
         startFrames = frames;
@@ -85,7 +111,7 @@ void left() {
 }
 
 void initVars() {
-    actuel =  Initializer::faubourgEuvi;
+    actuel =  Initializer::plans[0];
     personnage.setTexture(Initializer::texturePP[FACE]);
     personnage.setPosition(8 CASES + 21 CASES - 16, 8 CASES + 14 CASES);
     camera.setCenter(21 CASES, 14 CASES);
@@ -112,6 +138,9 @@ int overworld() {
     frame.setView(camera);
     int returned = boucle();
     music->stop();
+    delete(couche1);
+    delete(couche2);
+    delete(couche3);
     return returned;
 }
 
@@ -161,7 +190,9 @@ int boucle() {
             }
             frame.draw(personnage);
             frame.draw(*couche3);
-            camera.setCenter(personnage.getPosition().x + 16, personnage.getPosition().y + 16);
+            if(scrolling){
+                    camera.setCenter(personnage.getPosition().x + 16, personnage.getPosition().y + 16);
+            }
             frame.setView(camera);
             frame.display();
             winRefresh();

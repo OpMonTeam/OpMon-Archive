@@ -25,6 +25,7 @@ void down();
 void right();
 void left();
 
+int tp(int toTp, sf::Vector2i pos);
 
 extern Plan *actuel;
 extern sf::Sprite personnage;

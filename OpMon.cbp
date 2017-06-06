@@ -5,6 +5,7 @@
 		<Option title="OpMon" />
 		<Option platforms="Windows;" />
 		<Option pch_mode="2" />
+		<Option default_target="Release" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
@@ -36,6 +37,8 @@
 				<Option object_output="obj/Release/" />
 				<Option type="0" />
 				<Option compiler="gcc" />
+				<Option host_application="exe/OpMon.exe" />
+				<Option run_host_application_in_terminal="1" />
 				<Compiler>
 					<Add option="-fexpensive-optimizations" />
 					<Add option="-O3" />
@@ -147,7 +150,6 @@
 		<Unit filename="src/jlppc/regimys/playercore/Player.cpp" />
 		<Unit filename="src/jlppc/regimys/playercore/Player.hpp" />
 		<Unit filename="src/jlppc/regimys/playercore/playercoreInclude.hxx" />
-		<Unit filename="src/jlppc/regimys/regimysInclude.hxx" />
 		<Unit filename="src/jlppc/regimys/save/InternalFiles.cpp" />
 		<Unit filename="src/jlppc/regimys/save/InternalFiles.hpp" />
 		<Unit filename="src/jlppc/regimys/save/OptionsSave.cpp" />
