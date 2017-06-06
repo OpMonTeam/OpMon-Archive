@@ -3,6 +3,7 @@
 #include "../start/main.hpp"
 #include "../start/Initializer.hpp"
 #include "MainFrame.hpp"
+#include "../save/InternalFiles.hpp"
 
 UNS
 
@@ -21,19 +22,12 @@ Plan::Plan(sf::Texture couche1, sf::Texture couche2, sf::Texture couche3, int w,
     for(int i = 0; i < h; i++) {
         this->passTab[i] = (int*)malloc(w * sizeof(int));
     }
-    ifstream inTemp(filename.c_str());
+    istringstream *inTemp = InternalFiles::openFileIn(filename);
     for(int i = 0; i < h; i++) {
         for(int j = 0; j < w; j++) {
-            inTemp >> passTab[i][j];
+            (*inTemp) >> passTab[i][j];
         }
     }
-    //Suppression du fichier temporaire
-    inTemp.close();
-#ifdef _WIN32
-    system((string("DEL ") + filename).c_str());
-#else
-    system((string("rm ") + filename).c_str());
-#endif // _WIN32
 
 }
 

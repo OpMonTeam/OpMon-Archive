@@ -940,7 +940,7 @@ void initPlans() {
 #endif
     //Vérification des couches
     //Ouverture du fichier temporaire pour
-    ofstream tempFile(SAVE_PATH + "feTemp.tmp");
+    /*ofstream tempFile(SAVE_PATH + "feTemp.tmp");
     if(!tempFile) {
         gererErreur("Impossible d'ouvrir feTemp.tmp. Les boites de collisions ne peuvent fonctionner.", true);
     }
@@ -949,18 +949,14 @@ void initPlans() {
         for(int j = 0; j < 32; j++) {
             tempFile << feTab[i][j] << endl;
         }
-    }
+    }*/
     /* Info :
         L'enregistrement de la boite de collision dans un fichier est pour l'envoyer en paramètres
         dans le constructeur en Plan. En effet, du au bordel de la transmission des tableaux par
         paramètre, encore plus avec les tableaux a deux dimentions, j'ai décidé d'utiliser un fichier.
     */
-    faubourgEuvi = new Plan(couche1, couche2, couche3, 32, 32, SAVE_PATH + "feTemp.tmp", path);
-    //Suppression du fichier sous Window (Parce comme windows c'est de la merde, on ne peut pas toucher aux fichiers si ils sont utilisés pas un autre flux.)
-    tempFile.close();
-    #ifdef _WIN32
-    system("del feTemp.tmp");
-    #endif
+    faubourgEuvi = new Plan(couche1, couche2, couche3, 32, 32, "colFe", path);
+
 }
 
 void initBackgrounds() {
