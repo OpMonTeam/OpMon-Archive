@@ -22,6 +22,9 @@ sf::Sprite *couche1;
 sf::Sprite *couche2;
 sf::Sprite *couche3;
 
+bool justTp = false;
+int tpCount = 0;
+
 int anim = -1;
 int moving = -1;
 bool anims = false;
@@ -37,6 +40,10 @@ int ppDir = FACE;
 bool scrolling = true;
 
 int tp(int toTp, sf::Vector2i pos, bool scroll){
+    if(moving || anim){
+        moving = false;
+        anim = false;
+    }
     actuel = Initializer::plans[0];
     if(actuel == NULL){
         gererErreur("Erreur lors du changement de map : actuel == NULL", true);
@@ -44,9 +51,9 @@ int tp(int toTp, sf::Vector2i pos, bool scroll){
     scrolling = scroll;
     personnage.setPosition(8 CASES + pos.x CASES - 16, 8 CASES + pos.y CASES);
     if(music != actuel->getFond()){
-        music.stop();
+        music->stop();
         music = actuel->getFond();
-        music.play();
+        music->play();
     }
     delete(couche1);
     delete(couche2);
@@ -57,7 +64,9 @@ int tp(int toTp, sf::Vector2i pos, bool scroll){
     couche1->setTexture(*actuel->getCouche1());
     couche2->setTexture(*actuel->getCouche2());
     couche3->setTexture(*actuel->getCouche3());
-
+    tpCount = 0;
+    justTp = true;
+    return 0;
 }
 
 void up() {
@@ -148,17 +157,28 @@ int boucle() {
     bool continuer = true;
     while(continuer) {
         if((GET_TICKS - ancientTick >= FPS_TICKS)) {
+            cout << "Position personnage : " << "P(" << personnage.getPosition().x << ";" << personnage.getPosition().y <<")" << endl;
             frames++;
+
+            if(justTp){
+                tpCount++;
+                justTp = tpCount < 16;
+            }
+
             ancientTick = GET_TICKS;
             window.pollEvent(events);
 
             switch(events.type) {
                 QUIT
 
-                FULLSCREEN_FULL
+                case sf::Event::KeyPressed:
+                    if(events.key.code == sf::Keyboard::F1){
+                        tp(0, sf::Vector2i(25, 28), true);
+                    }
             }
             ECHAP
-            if(isKeyPressed(sf::Keyboard::Up)) {
+            if(!justTp){
+                    if(isKeyPressed(sf::Keyboard::Up)) {
                 up();
             }
             if(isKeyPressed(sf::Keyboard::Down)) {
@@ -170,6 +190,8 @@ int boucle() {
             if(isKeyPressed(sf::Keyboard::Right)) {
                 right();
             }
+            }
+
             frame.clear(sf::Color::Black);
             frame.draw(*couche1);
             frame.draw(*couche2);
