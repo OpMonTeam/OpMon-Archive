@@ -181,7 +181,8 @@ void winRefresh(){
     if(fullScreen){
         float coef = window.getSize().y / (sprite.getGlobalBounds().height * 1.0);
         sprite.setScale(coef, coef);
-        sprite.setPosition(window.getSize().x / 2 - (sprite.getGlobalBounds().width * coef) / 2.5, 0);
+        sprite.setPosition(((window.getSize().x / 2) - (sprite.getGlobalBounds().width / 2)), 0);
+
     }
     window.clear(sf::Color::Black);
     window.draw(sprite);
