@@ -55,6 +55,9 @@ private:
     Equipe equipe = Equipe("temp");
     int posX = 0;
     int posY = 0;
+    int planID = 0;
+    int x = 0;
+    int y = 0;
 };
 
 #endif /* SRCCPP_JLPPC_REGIMYS_PLAYERCORE_PLAYER_HPP_ */

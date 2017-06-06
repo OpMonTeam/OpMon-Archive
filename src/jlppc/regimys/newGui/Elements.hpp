@@ -39,14 +39,13 @@ public:
     int w;
     int h;
     sf::Texture* couche3;
-    std::string musicPath;
     int **passTab;
     /**Le constructeur ne doit pas etre utilsé.
     Il est donc en privé. Si tout de meme cette protection est inéfficace,
     aucune definition n'est fournise de ce constructeur.*/
     Plan(Plan const& toCopy);
 public:
-    Plan(sf::Texture couche1, sf::Texture couche2, sf::Texture couche3, int w, int h, std::string filename, std::string fondPath);
+    Plan(sf::Texture couche1, sf::Texture couche2, sf::Texture couche3, int w, int h, std::string filename, sf::Music* fond);
     ~Plan();
     int getH() const {
         return h;
@@ -68,10 +67,6 @@ public:
     }
     sf::Music* getFond() {
         return fond;
-    }
-
-    std::string getMusicPath() const {
-        return musicPath;
     }
 
     //Event* getEvent(int x, int y){return events[y][x];}
