@@ -168,59 +168,59 @@ int boucle() {
             rerrLog << "Position joueur frame n°" << frames << ": P(" << personnage.getPosition().x << ";" << personnage.getPosition().y << ")" << endl;
 
             if(anim == DOS) {
-                if(frames - startFrames >= 5) {
-                    if(moving == DOS){
-                        personnage.move(0, -5.33333);
-                    }
+                if(frames - startFrames >= 7) {
+                        if(moving == DOS){
+                    personnage.move(0, -4);
+                        }
                     anim = -1;
                     moving = -1;
                 } else {
                     if(moving == DOS) {
-                        personnage.move(0, -5.33333);
+                        personnage.move(0, -4);
 
 
                     }
                 }
             }
             if(anim == FACE) {
-                if(frames - startFrames >= 2) {
+                if(frames - startFrames >= 7) {
                         if(moving == FACE){
-                        personnage.move(0, 5.33333);
+                        personnage.move(0, 4);
                 }
                     anim = -1;
                     moving = -1;
                 } else {
                     if(moving == FACE) {
-                        personnage.move(0, 5.33333);
+                        personnage.move(0, 4);
                     }
                 }
             }
 
             if(anim == GAUCHE) {
-                if(frames - startFrames >= 5) {
+                if(frames - startFrames >= 7) {
                     if(moving == GAUCHE){
-                        personnage.move(-5.33333, 0);
+                        personnage.move(-4, 0);
                     }
 
                     anim = -1;
                     moving = -1;
                 } else {
                     if(moving == GAUCHE) {
-                        personnage.move(-5.33333, 0);
+                        personnage.move(-4, 0);
                     }
                 }
             }
 
             if(anim == DROITE) {
-                if(frames - startFrames >= 5) {
+                if(frames - startFrames >= 7) {
                         if(moving == DROITE){
-                        personnage.move(5.33333, 0);
+                        personnage.move(4, 0);
                         }
                     anim = -1;
                     moving = -1;
                 } else {
                     if(moving == DROITE) {
-                        personnage.move(5.33333, 0);
+                        personnage.move(4, 0);
 
 
                     }
