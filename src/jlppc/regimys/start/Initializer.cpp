@@ -448,7 +448,7 @@ void initEvs() {
     evs[149].ATK;
     evs[149].ATK;
     evs[149].ATK;
-
+/*
     evs[150].DEF;
     evs[150].DEF;
     evs[150].DEF;
@@ -511,7 +511,7 @@ void initEvs() {
     evs[170].PV;
 
     evs[171].PV;
-    evs[171].PV;
+    evs[171].PV;*/
 
 
 }
