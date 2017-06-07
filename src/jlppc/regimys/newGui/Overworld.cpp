@@ -88,7 +88,10 @@ void down() {
         ppDir = FACE;
         if(actuel->getPassTab()[(int)(ppPosY + 1) + 1][(int)ppPosX + 1] == 0) {//Vérification des boites de collisions
             //TODO : Ensuite faudra faire la verif du passages des events
-            moving = FACE;
+            if(ppPosY + 1 <= actuel->getH()){
+                moving = FACE;
+            }
+
         }
     }
 }
@@ -100,7 +103,9 @@ void right() {
         ppDir = DROITE;
         if(actuel->getPassTab()[(int)(ppPosY + 1)][(int)(ppPosX + 1) + 1] == 0) {
             //Ensuite faudra faire la verif du passages des events
-            moving = DROITE;
+            if(ppPosX + 1 <= actuel->getW()){
+                moving = DROITE;
+            }
         }
     }
 }
