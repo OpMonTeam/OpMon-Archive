@@ -44,7 +44,7 @@ int tp(int toTp, sf::Vector2i pos, bool scroll){
         moving = -1;
         anim = -1;
     }
-    actuel = Initializer::plans[0];
+    actuel = Initializer::plans[toTp];
     if(actuel == NULL){
         gererErreur("Erreur lors du changement de map : actuel == NULL", true);
     }
@@ -178,6 +178,8 @@ int boucle() {
                 case sf::Event::KeyPressed:
                     if(events.key.code == sf::Keyboard::F1){
                         tp(0, sf::Vector2i(25, 28), true);
+                    }else if(events.key.code == sf::Keyboard::F2){
+                        tp(1, sf::Vector2i(9, 16), false);
                     }
             }
             ECHAP
