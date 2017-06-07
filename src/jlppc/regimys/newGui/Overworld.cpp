@@ -50,6 +50,11 @@ int tp(int toTp, sf::Vector2i pos, bool scroll){
     }
     scrolling = scroll;
     personnage.setPosition(8 CASES + pos.x CASES - 16, 8 CASES + pos.y CASES);
+    if(scrolling){
+        camera.setCenter(personnage.getPosition());
+    }else{
+        camera.setCenter((actuel->getW() CASES) / 2, (actuel->getH() CASES) / 2);
+    }
     if(music != actuel->getFond()){
         music->stop();
         music = actuel->getFond();
@@ -163,7 +168,7 @@ int boucle() {
     while(continuer) {
         if((GET_TICKS - ancientTick >= FPS_TICKS)) {
             frames++;
-
+            cout << "Position perso : P(" << personnage.getPosition().x << ";" << personnage.getPosition().y << ")" << endl;
             if(justTp){
                 tpCount++;
                 justTp = tpCount < 0;
@@ -179,7 +184,7 @@ int boucle() {
                     if(events.key.code == sf::Keyboard::F1){
                         tp(0, sf::Vector2i(25, 28), true);
                     }else if(events.key.code == sf::Keyboard::F2){
-                        tp(1, sf::Vector2i(9, 16), false);
+                        tp(1, sf::Vector2i(9, 12), true);
                     }
             }
             ECHAP
