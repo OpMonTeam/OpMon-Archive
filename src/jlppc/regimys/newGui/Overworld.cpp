@@ -40,9 +40,9 @@ int ppDir = FACE;
 bool scrolling = true;
 
 int tp(int toTp, sf::Vector2i pos, bool scroll){
-    if(moving || anim){
-        moving = false;
-        anim = false;
+    if(moving != -1|| anim != -1){
+        moving = -1;
+        anim = -1;
     }
     actuel = Initializer::plans[0];
     if(actuel == NULL){
@@ -157,12 +157,11 @@ int boucle() {
     bool continuer = true;
     while(continuer) {
         if((GET_TICKS - ancientTick >= FPS_TICKS)) {
-            cout << "Position personnage : " << "P(" << personnage.getPosition().x << ";" << personnage.getPosition().y <<")" << endl;
             frames++;
 
             if(justTp){
                 tpCount++;
-                justTp = tpCount < 16;
+                justTp = tpCount < 0;
             }
 
             ancientTick = GET_TICKS;
@@ -178,18 +177,18 @@ int boucle() {
             }
             ECHAP
             if(!justTp){
-                    if(isKeyPressed(sf::Keyboard::Up)) {
-                up();
-            }
-            if(isKeyPressed(sf::Keyboard::Down)) {
-                down();
-            }
-            if(isKeyPressed(sf::Keyboard::Left)) {
-                left();
-            }
-            if(isKeyPressed(sf::Keyboard::Right)) {
-                right();
-            }
+                if(isKeyPressed(sf::Keyboard::Up)) {
+                    up();
+                }
+                if(isKeyPressed(sf::Keyboard::Down)) {
+                    down();
+                }
+                if(isKeyPressed(sf::Keyboard::Left)) {
+                    left();
+                }
+                if(isKeyPressed(sf::Keyboard::Right)) {
+                    right();
+                }
             }
 
             frame.clear(sf::Color::Black);
