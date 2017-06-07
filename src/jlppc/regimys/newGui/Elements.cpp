@@ -24,7 +24,9 @@ Plan::Plan(sf::Texture couche1, sf::Texture couche2, sf::Texture couche3, int w,
     for(int i = 0; i < h; i++) {
         for(int j = 0; j < w; j++) {
             (*inTemp) >> passTab[i][j];
+            cout << passTab[i][j];
         }
+        cout << endl;
     }
 
 }
