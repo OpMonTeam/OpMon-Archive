@@ -905,6 +905,23 @@ void initPlans() {
     townMusics[0]->openFromFile(RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg");
 #endif
     plans.push_back(new Plan(*couche1, *couche2, *couche3, 32, 32, "colFe", townMusics[0]));
+    delete(couche1);
+    delete(couche2);
+    delete(couche3);
+    couche1 = new sf::Texture();
+    couche2 = new sf::Texture();
+    couche3 = new sf::Texture();
+    #ifdef _WIN32
+    couche1->loadFromFile(RESSOURCES_PATH + "maps\\pphome\\pphome1.png");
+    couche2->loadFromFile(RESSOURCES_PATH +"maps\\pphome\\pphome2.png");
+    couche3->loadFromFile(RESSOURCES_PATH +"\maps\\pphome\\pphome3.png");
+#else
+    couche1->loadFromFile(RESSOURCES_PATH +"maps/pphome/pphome1.png");
+    couche2->loadFromFile(RESSOURCES_PATH +"maps/pphome/pphome2.png");
+    couche3->loadFromFile(RESSOURCES_PATH +"maps/pphome/pphome3.png");
+#endif
+    plans.push_back(new Plan(*couche1, *couche2, *couche3, 256/32, 256/32, "colPPhome", townMusics[0]));
+
 
 }
 
