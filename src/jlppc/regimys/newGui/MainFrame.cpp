@@ -75,9 +75,9 @@ void open() {
         if(!font.loadFromFile(RESSOURCES_PATH + "fonts/Default.ttf"))
 #endif // _WIN32
     {
-        gererErreur("Erreur d'initialisation de la police d'écriture.", true);
+        gererErreur("Erreur d'initialisation de la police d'Ã©criture.", true);
     }
-    rlog << PRINT_TICKS << "Initialisation de la police terminée" << endl;
+    rlog << PRINT_TICKS << "Initialisation de la police terminÃ©e" << endl;
 
     init = true;
     //Ouverture de la fenetre
@@ -93,7 +93,7 @@ void open() {
         window.create(sf::VideoMode(512, 512), "OpMon Lazuli", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize, settings);
     }
     frame.create(512, 512);
-    //TODO : Écran de chargement
+    //TODO : Ã‰cran de chargement
     window.clear(sf::Color::White);
     sf::Texture loadTexture;
     #ifdef _WIN32
@@ -105,16 +105,16 @@ void open() {
     spriteLoad.setTexture(loadTexture);
     sf::Text textLoad;
     textLoad.setString(StringKeys::get("load.txt"));
-    textLoad.setCharacterSize(70);
+    textLoad.setCharacterSize(20);
     textLoad.setFont(font);
-    textLoad.setColor(sf::Color::Black);
-    textLoad.setPosition(25, 300);
+    textLoad.setColor(sf::Color::White);
+    textLoad.setPosition(25, 500);
     frame.draw(spriteLoad);
     frame.draw(textLoad);
     frame.display();
     winRefresh();
 
-    rlog << PRINT_TICKS << "Initialisation de la fenetre et du renderer terminée" << endl;
+    rlog << PRINT_TICKS << "Initialisation de la fenetre et du renderer terminÃ©e" << endl;
     //Ouverture d'un son
     sf::SoundBuffer buf;
     //window.setVerticalSyncEnabled(true);
