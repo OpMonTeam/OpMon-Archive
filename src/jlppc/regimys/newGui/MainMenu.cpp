@@ -63,10 +63,10 @@ void initVars() {
     bruitNope.setBuffer(sounds[2]);
     cursor.setScale(3, 3);
     initStrings();
-    play.setColor(sf::Color::Black);
-    charge.setColor(sf::Color::Black);
-    options.setColor(sf::Color::Black);
-    exit.setColor(sf::Color::Black);
+    play.setColor(sf::Color::White);
+    charge.setColor(sf::Color::White);
+    options.setColor(sf::Color::White);
+    exit.setColor(sf::Color::White);
     play.setFont(font);
     charge.setFont(font);
     options.setFont(font);
@@ -99,8 +99,8 @@ void deleteVars() {
 }
 int boucle0() {
 
-    rlog << PRINT_TICKS << "Entrée dans le menu" << endl;
-            //Actualisation des éléments
+    rlog << PRINT_TICKS << "EntrÃ©e dans le menu" << endl;
+            //Actualisation des Ã©lÃ©ments
         frame.draw(fond);
         frame.draw(play),
         frame.draw(charge);
@@ -163,7 +163,7 @@ int boucle0() {
         }
         frame.clear(sf::Color::Black);
 
-        //Actualisation des éléments
+        //Actualisation des Ã©lÃ©ments
         frame.draw(fond);
         frame.draw(play),
         frame.draw(charge);
@@ -182,7 +182,7 @@ int boucle0() {
 int mainMenu() {
     initVars();
     verifVars();
-    //Début de la musique
+    //DÃ©but de la musique
     fondMusTitle.setVolume(50);
     fondMusTitle.play();
     //Lancement de la boucle
