@@ -6,7 +6,7 @@
 #define FPS_TICKS 33
 #include <cmath>
 #define ppPosY ((personnage.getPosition().y / CASE_SIZE) - 8)
-#define ppPosX ((personnage.getPosition().x / CASE_SIZE) - 8)
+#define ppPosX (((personnage.getPosition().x - 16) / CASE_SIZE) - 8)
 UNS
 namespace MainFrame {
 namespace Overworld {
@@ -79,9 +79,13 @@ void up() {
         startFrames = frames;
         anim = DOS;
         ppDir = DOS;
+        if(ppPosY - 1 >= -1){
         if(actuel->getPassTab()[(int)(ppPosY + 1) - ((ppPosY + 1 <= 0) ? 0 : 1)][(int)ppPosX + 1] == 0) {
             //Ensuite faudra faire la verif du passages des events
-            moving = DOS;
+
+                moving = DOS;
+            }
+
         }
     }
 }
@@ -91,9 +95,10 @@ void down() {
         startFrames = frames;
         anim = FACE;
         ppDir = FACE;
+        if(ppPosY + 1 < actuel->getH() - 1){
         if(actuel->getPassTab()[(int)(ppPosY + 1) + 1][(int)ppPosX + 1] == 0) {//Vérification des boites de collisions
             //TODO : Ensuite faudra faire la verif du passages des events
-            if(ppPosY + 1 <= actuel->getH()){
+
                 moving = FACE;
             }
 
@@ -106,9 +111,10 @@ void right() {
         startFrames = frames;
         anim = DROITE;
         ppDir = DROITE;
+        if(ppPosX + 1 < actuel->getW() - 1){
         if(actuel->getPassTab()[(int)(ppPosY + 1)][(int)(ppPosX + 1) + 1] == 0) {
             //Ensuite faudra faire la verif du passages des events
-            if(ppPosX + 1 <= actuel->getW()){
+
                 moving = DROITE;
             }
         }
@@ -121,9 +127,12 @@ void left() {
         startFrames = frames;
         anim = GAUCHE;
         ppDir = GAUCHE;
+        if(ppPosX - 1 >= -1){
         if(actuel->getPassTab()[(int)(ppPosY + 1)][(int)(ppPosX + 1) - ((ppPosX + 1 <= 0) ? 0 : 1)] == 0) {
             //Ensuite faudra faire la verif du passages des events
-            moving = GAUCHE;
+
+                moving = GAUCHE;
+            }
 
         }
     }
@@ -168,7 +177,7 @@ int boucle() {
     while(continuer) {
         if((GET_TICKS - ancientTick >= FPS_TICKS)) {
             frames++;
-            cout << "Position perso : P(" << personnage.getPosition().x << ";" << personnage.getPosition().y << ")" << endl;
+            cout << "Position perso : P(" << ppPosX << ";" << ppPosY << ")" << endl;
             if(justTp){
                 tpCount++;
                 justTp = tpCount < 0;
@@ -184,7 +193,7 @@ int boucle() {
                     if(events.key.code == sf::Keyboard::F1){
                         tp(0, sf::Vector2i(25, 28), true);
                     }else if(events.key.code == sf::Keyboard::F2){
-                        tp(1, sf::Vector2i(9, 12), true);
+                        tp(1, sf::Vector2i(8, 14), true);
                     }
             }
             ECHAP
