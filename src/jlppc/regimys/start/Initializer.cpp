@@ -920,7 +920,7 @@ void initPlans() {
     couche2->loadFromFile(RESSOURCES_PATH +"maps/pphome/pphome2.png");
     couche3->loadFromFile(RESSOURCES_PATH +"maps/pphome/pphome3.png");
 #endif
-    plans.push_back(new Plan(*couche1, *couche2, *couche3, 512/32, 512/32, "colPPhome", townMusics[0]));
+    plans.push_back(new Plan(*couche1, *couche2, *couche3, 16, 16, "colPPhome", townMusics[0]));
 
 
 }
