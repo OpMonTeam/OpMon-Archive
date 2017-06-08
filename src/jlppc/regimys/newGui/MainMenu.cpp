@@ -79,19 +79,9 @@ void initVars() {
     //Mix_Volume(1, MIX_MAX_VOLUME);
     //Mix_Volume(0, MIX_MAX_VOLUME / 2);
     OptionsMenu::initVars();
-        frame.clear(sf::Color::White);
 
-        //Actualisation des éléments
-        frame.draw(fond);
-        frame.draw(play),
-        frame.draw(charge);
-        frame.draw(options);
-        frame.draw(exit);
-        cursor.setPosition(curPos[curPosI]);
-        frame.draw(cursor);
 
-        frame.display();
-        winRefresh();
+
         fondMusTitle.setLoop(true);
 }
 
@@ -110,6 +100,17 @@ void deleteVars() {
 int boucle0() {
 
     rlog << PRINT_TICKS << "Entrée dans le menu" << endl;
+            //Actualisation des éléments
+        frame.draw(fond);
+        frame.draw(play),
+        frame.draw(charge);
+        frame.draw(options);
+        frame.draw(exit);
+        cursor.setPosition(curPos[curPosI]);
+        frame.draw(cursor);
+
+        frame.display();
+        winRefresh();
     while(continuer) {
         window.waitEvent(events);
         switch(events.type) {
