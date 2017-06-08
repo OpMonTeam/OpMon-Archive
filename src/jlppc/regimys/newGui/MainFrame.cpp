@@ -105,10 +105,10 @@ void open() {
     spriteLoad.setTexture(loadTexture);
     sf::Text textLoad;
     textLoad.setString(StringKeys::get("load.txt"));
-    textLoad.setCharacterSize(20);
+    textLoad.setCharacterSize(70);
     textLoad.setFont(font);
-    textLoad.setColor(sf::Color::White);
-    textLoad.setPosition(25, 500);
+    textLoad.setColor(sf::Color::Black);
+    textLoad.setPosition(25, 300);
     frame.draw(spriteLoad);
     frame.draw(textLoad);
     frame.display();
