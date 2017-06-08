@@ -177,7 +177,7 @@ int boucle() {
     while(continuer) {
         if((GET_TICKS - ancientTick >= FPS_TICKS)) {
             frames++;
-            cout << "Position perso : P(" << ppPosX << ";" << ppPosY << ")" << endl;
+            //cout << "Position perso : P(" << ppPosX << ";" << ppPosY << ")" << endl;
             if(justTp){
                 tpCount++;
                 justTp = tpCount < 0;

@@ -93,7 +93,10 @@ void open() {
         window.create(sf::VideoMode(512, 512), "OpMon Lazuli", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize, settings);
     }
     frame.create(512, 512);
-    //Création du renderer.
+    //TODO : Écran de chargement
+    window.clear(sf::Color::White);
+    window.display();
+
     rlog << PRINT_TICKS << "Initialisation de la fenetre et du renderer terminée" << endl;
     //Ouverture d'un son
     sf::SoundBuffer buf;
