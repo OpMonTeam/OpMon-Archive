@@ -95,7 +95,24 @@ void open() {
     frame.create(512, 512);
     //TODO : Écran de chargement
     window.clear(sf::Color::White);
-    window.display();
+    sf::Texture loadTexture;
+    #ifdef _WIN32
+    loadTexture.loadFromFile(RESSOURCES_PATH + "backgrounds\\loading.png");
+    #else
+    loadTexture.loadFromFile(RESSOURCES_PATH + "backgrounds/loading.png");
+    #endif // _WIN32
+    sf::Sprite spriteLoad;
+    spriteLoad.setTexture(loadTexture);
+    sf::Text textLoad;
+    textLoad.setString(StringKeys::get("load.txt"));
+    textLoad.setCharacterSize(70);
+    textLoad.setFont(font);
+    textLoad.setColor(sf::Color::Black);
+    textLoad.setPosition(25, 300);
+    frame.draw(spriteLoad);
+    frame.draw(textLoad);
+    frame.display();
+    winRefresh();
 
     rlog << PRINT_TICKS << "Initialisation de la fenetre et du renderer terminée" << endl;
     //Ouverture d'un son
