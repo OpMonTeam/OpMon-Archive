@@ -194,6 +194,8 @@ int boucle() {
                         tp(0, sf::Vector2i(25, 28), true);
                     }else if(events.key.code == sf::Keyboard::F2){
                         tp(1, sf::Vector2i(8, 14), true);
+                    }else if(events.key.code == sf::Keyboard::F3){
+                        tp(2, sf::Vector2i(5, 5), true);
                     }
             }
             ECHAP

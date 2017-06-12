@@ -887,6 +887,12 @@ void initSprites() {
 
 }
 void initPlans() {
+    #define PLANS_RESET     delete(couche1);\
+    delete(couche2);\
+    delete(couche3);\
+    couche1 = new sf::Texture();\
+    couche2 = new sf::Texture();\
+    couche3 = new sf::Texture();
     UNS
     //Chargement de fauxbourg euvi
     sf::Texture *couche1 = new sf::Texture();
@@ -905,12 +911,7 @@ void initPlans() {
     townMusics[0]->openFromFile(RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg");
 #endif
     plans.push_back(new Plan(*couche1, *couche2, *couche3, 32, 32, "colFe", townMusics[0]));
-    delete(couche1);
-    delete(couche2);
-    delete(couche3);
-    couche1 = new sf::Texture();
-    couche2 = new sf::Texture();
-    couche3 = new sf::Texture();
+    PLANS_RESET
     #ifdef _WIN32
     couche1->loadFromFile(RESSOURCES_PATH + "maps\\pphome\\pphome1.png");
     couche2->loadFromFile(RESSOURCES_PATH +"maps\\pphome\\pphome2.png");
@@ -921,10 +922,27 @@ void initPlans() {
     couche3->loadFromFile(RESSOURCES_PATH +"maps/pphome/pphome3.png");
 #endif
     plans.push_back(new Plan(*couche1, *couche2, *couche3, 16, 16, "colPPhome", townMusics[0]));
+    PLANS_RESET
+    townMusics.push_back(new sf::Music());
+    #ifdef _WIN32
+    couche1->loadFromFile(RESSOURCES_PATH + "maps\\labo\\labo1.png");
+    couche2->loadFromFile(RESSOURCES_PATH + "maps\\labo\\labo2.png");
+    couche3->loadFromFile(RESSOURCES_PATH + "maps\\labo\\labo3.png");
+    townMusics[1]->openFromFile(RESSOURCES_PATH + "audio\\music\\intro.ogg");
+    #else
+    couche1->loadFromFile(RESSOURCES_PATH + "maps/labo/labo1.png");
+    couche2->loadFromFile(RESSOURCES_PATH + "maps/labo/labo2.png");
+    couche3->loadFromFile(RESSOURCES_PATH + "maps/labo/labo3.png");
+    townMusics[1]->openFromFile(RESSOURCES_PATH + "audio/music/intro.ogg");
+    #endif // _WIN32
+    plans.push_back(new Plan(*couche1, *couche2, *couche3, 32, 16, "colLabo", townMusics[1]));
 
+    delete(couche1);
+    delete(couche2);
+    delete(couche3);
 
 }
-
+#undef PLANS_RESET
 void initBackgrounds() {
 
 }
