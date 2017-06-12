@@ -12,7 +12,9 @@ Plan::Plan(sf::Texture couche1, sf::Texture couche2, sf::Texture couche3, int w,
     this->couche2 = new sf::Texture(couche2);
     this->couche3 = new sf::Texture(couche3);
     this->fond = fond;
-
+    if(!fond->getLoop()){
+        fond->setLoop(true);
+    }
     this->w = w;
     this->h = h;
     //Définition de la table de la collision
