@@ -28,14 +28,14 @@ class Event{
     virtual void update() = 0;
     /**Methode appellée lors du contact avec l'event (voir eventTrigger)*/
     virtual void action() = 0;
-}
+};
 
 /**
 Contient tout ce qui est en rapport avec les evenements
 */
 namespace Events {
     namespace EventTrigger{
-        const int PRESS = 0, TOUCH = 1, ZONE = 2, IN = 3;
+        const int PRESS = 0, TOUCH = 1, ZONE = 2, BE_IN = 3;
     }
 
     class TPEvent : public Event{
@@ -43,10 +43,10 @@ namespace Events {
         sf::Vector2i tpCoord;
         int mapID;
         public:
-        Event(sf::Texture baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2i position, sf::Vector2i tpPos, int mapID);
+        TPEvent(sf::Texture baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2i position, sf::Vector2i tpPos, int mapID);
         virtual void update();
         virtual void action();
-    }
+    };
     namespace DoorType{
         const int NORMAL = 0, SHOP = 1;
     }
@@ -55,9 +55,9 @@ namespace Events {
         //WaitEvent->DoorType
         int doorType;
         public:
-        Event(int doorType, sf::Vector2i position, sf::Vector2i tpPos, int eventTrigger = 3);
+        DoorEvent(int doorType, sf::Vector2i position, sf::Vector2i tpPos, int eventTrigger = 3);
         virtual void action();
-    }
+    };
 
     namespace MoveStyle{
         const int NO_MOVE = 0, PREDEFINED = 1, RANDOM = 2, FOLLOWING = 3;
@@ -68,10 +68,10 @@ namespace Events {
         //WaitEnum->MoveStyle
         int moveStyle;
         public:
-        Event(std::vector<sf::Texture> charTextures, sf::Vector2i position, int moveStyle = 0, int eventTrigger = 0);
+        CharacterEvent(std::vector<sf::Texture> charTextures, sf::Vector2i position, int moveStyle = 0, int eventTrigger = 0);
         virtual void update();
         virtual void action() = 0;
-    }
+    };
 
     class TalkingEvent : public Event{
         private:
@@ -79,11 +79,11 @@ namespace Events {
         protected:
         std::vector<std::string> dialogs;
         public:
-        Event(sf::Texture baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2i position, std::vector<std::string> dialogKeys);
+        TalkingEvent(sf::Texture baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2i position, std::vector<std::string> dialogKeys);
         void reloadKeys();
         virtual void update();
         virtual void action();
-    }
+    };
 
     class TalkingCharaEvent : public TalkingEvent, CharacterEvent{
         public:
@@ -91,7 +91,7 @@ namespace Events {
         public:
         virtual void update();
         virtual void action();
-    }
+    };
 }
 
 #endif // EVENTS_HPP
