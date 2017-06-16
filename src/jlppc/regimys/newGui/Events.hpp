@@ -11,6 +11,7 @@ Contient le namespace Events
 #include "MainFrame.hpp"
 #include "../enums/Enums.hpp"
 #include "../start/main.hpp"
+#include "../objects/item/Item.hpp"
 /**
 Contient la base de tous les types d'events
 */
@@ -52,7 +53,7 @@ namespace Events {
         sf::Vector2i tpCoord;
         int mapID;
         public:
-        TPEvent(sf::Texture baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2i position, sf::Vector2i tpPos, int mapID);
+        TPEvent(sf::Texture baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2i position, sf::Vector2i tpPos, int mapID, bool passable);
         virtual void update();
         virtual void action();
     };
@@ -66,14 +67,31 @@ namespace Events {
         sf::Texture selectDoorType(int doorType);
         std::vector<sf::Texture> selectDoorTypeOther(int doorType);
         public:
-        DoorEvent(int doorType, sf::Vector2i position, sf::Vector2i tpPos, int eventTrigger = 3);
+        DoorEvent(int doorType, sf::Vector2i position, sf::Vector2i tpPos, int mapID, int eventTrigger = 3, bool passable = true);
         virtual void action();
     };
 
-    class LockedDoorEvent : public DoorEvent{
+    class TalkingEvent : public Event{
+        private:
+        std::vector<std::string> dialogKeys;
         protected:
-            Item needed;
-    }
+        std::vector<std::string> dialogs;
+        public:
+        TalkingEvent(sf::Texture baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2i position, std::vector<std::string> dialogKeys);
+        void reloadKeys();
+        virtual void update();
+        virtual void action();
+    };
+
+    class LockedDoorEvent : public DoorEvent, TalkingEvent{
+        protected:
+            Item *needed;
+            bool consumeItem;
+            static std::vector<std::string> keysLock;
+        public:
+        virtual void action();
+        LockedDoorEvent(int doorType, Item* needed, sf::Vector2i position, sf::Vector2i tpPos, int mapID, int eventTrigger = 0, bool passable = false, bool consumeItem = false);
+    };
 
     namespace MoveStyle{
         const int NO_MOVE = 0, PREDEFINED = 1, RANDOM = 2, FOLLOWING = 3;
@@ -90,17 +108,7 @@ namespace Events {
         virtual void setPredefinedMove(std::vector<int> movement);
     };
 
-    class TalkingEvent : public Event{
-        private:
-        std::vector<std::string> dialogKeys;
-        protected:
-        std::vector<std::string> dialogs;
-        public:
-        TalkingEvent(sf::Texture baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2i position, std::vector<std::string> dialogKeys);
-        void reloadKeys();
-        virtual void update();
-        virtual void action();
-    };
+
 
     class TalkingCharaEvent : public TalkingEvent, CharacterEvent{
         public:
