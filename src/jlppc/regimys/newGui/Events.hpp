@@ -10,6 +10,7 @@ Contient le namespace Events
 #include "Elements.hpp"
 #include "MainFrame.hpp"
 #include "../enums/Enums.hpp"
+#include "../start/main.hpp"
 /**
 Contient la base de tous les types d'events
 */
@@ -21,8 +22,9 @@ class Event{
     //WaitEnum->EventTrigger
     int eventTrigger = 0;
     sf::Vector2i position;
+    bool passable;
     public:
-    Event(sf::Texture baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2i position);
+    Event(sf::Texture baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2i position, bool passable);
     virtual ~Event();
     /**Methode appelée chaque frame*/
     virtual void update() = 0;
@@ -34,6 +36,13 @@ class Event{
 Contient tout ce qui est en rapport avec les evenements
 */
 namespace Events {
+    /**
+    Contient les variables utiles sur le déroulement des events
+    */
+    namespace EventsVars{
+
+    }
+
     namespace EventTrigger{
         const int PRESS = 0, TOUCH = 1, ZONE = 2, BE_IN = 3;
     }
@@ -54,10 +63,17 @@ namespace Events {
         protected:
         //WaitEvent->DoorType
         int doorType;
+        sf::Texture selectDoorType(int doorType);
+        std::vector<sf::Texture> selectDoorTypeOther(int doorType);
         public:
         DoorEvent(int doorType, sf::Vector2i position, sf::Vector2i tpPos, int eventTrigger = 3);
         virtual void action();
     };
+
+    class LockedDoorEvent : public DoorEvent{
+        protected:
+            Item needed;
+    }
 
     namespace MoveStyle{
         const int NO_MOVE = 0, PREDEFINED = 1, RANDOM = 2, FOLLOWING = 3;
@@ -71,6 +87,7 @@ namespace Events {
         CharacterEvent(std::vector<sf::Texture> charTextures, sf::Vector2i position, int moveStyle = 0, int eventTrigger = 0);
         virtual void update();
         virtual void action() = 0;
+        virtual void setPredefinedMove(std::vector<int> movement);
     };
 
     class TalkingEvent : public Event{
