@@ -38,8 +38,7 @@ Player *loadPlayer(std::string fileIn) {
     }
     //Lecture des objets
     string pname = readLine(inStream);
-    Player *toReturn = new Player(pname);
-    toReturn->load(inStream);
+    Player *toReturn = new Player(inStream, pname);
     int hash = inStream.get();
     //Fermeture du flux
     inStream.close();
