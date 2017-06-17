@@ -40,7 +40,7 @@ string trainers[] = {"Brice", "Evan", "Mael", "Jlppc", "Red", "Blue", "Nikolai",
 float version = 0.1;
 int sousVers = 0;
 string versionS;
-extern Player joueur;
+Player player;
 #ifdef _WIN32
 string sep = "\\";
 #else

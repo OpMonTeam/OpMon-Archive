@@ -2,13 +2,21 @@
 #include "../start/main.hpp"
 #include "../save/Save.hpp"
 
-Player::Player(std::string name):name(name){
-    dressID = Utils::randUI(0xFFFFFFFF);
+Player::Player(std::string name):
+name(name), dressID(Utils::randUI(0xFFFFFFFF)){
     equipe = Equipe(name);
     for(unsigned int i = 0; i < ITEM_NUMBER; i++) {
         bag[i] = 0;
     }
 
+}
+
+Player::Player():
+dressID(Utils::randUI(0xFFFFFFFF)){
+    equipe = Equipe(name);
+    for(unsigned int i = 0; i < ITEM_NUMBER; i++) {
+        bag[i] = 0;
+    }
 }
 
 Equipe* Player::getEquipe() {
@@ -85,9 +93,9 @@ void Player::save() {
 
 }
 #include "../objects/OpMon.hpp"
-void Player::load(std::ifstream &in) {
+Player::Player(std::ifstream &in, std::string &name):
+name(name), dressID(in.get()) {
     UNS
-    this->dressID = in.get();
     in.get();
     int iNber = in.get();
     in.get();
