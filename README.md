@@ -19,6 +19,8 @@ Prochaines versions :<ul>
 <li>Alpha 0.13 : Amelioration des evenements<br>
 </ul>
 <br/>
+En travail actuellement : Les events
+<br/>
 
 
 Informations generales:<br/>
@@ -51,6 +53,8 @@ You can ask a question in the "F.A.Q" section of this wiki too!<br/>
 The game is actually in french, but if you talk french and english, you can help translate the game! And if the english translation of this presentation text contains errors, don't hesitate to notice us!<br/>
 If there are problems to understand the commits, because it's all in french, don't hesitate to ask too!<br/><br/>
 <a href="https://github.com/jlppc/OpMon/wiki/Journal-du-développement">Development Journal (in French) </a><br/>
+In working now : The events
+<br/>
 <!--<a href="">Regimys Youtube Channel</a><br/>-->
 <a href="http://opmon-game.ga">OPMon web site</a><br/>
 <a href="https://github.com/jlppc/Site-OpMon">Website repository</a><br/><br/>
