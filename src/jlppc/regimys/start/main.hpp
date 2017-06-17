@@ -71,6 +71,7 @@ void main();
 extern long startTime;
 extern std::string sep;
 extern bool reboot;
+extern Player player;
 
 }
 /**

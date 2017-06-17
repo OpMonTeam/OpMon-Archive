@@ -12,6 +12,10 @@ Fichier contenant des éléments utiles
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 
+#include "Events.hpp"
+
+class Event;
+
 /*class Event{
 private:
     //->WaitEnum->ActionType
@@ -31,7 +35,7 @@ public:
 Classe définissant une carte d'un lieu en particulier
 */
 class Plan {
-public:
+private:
     sf::Texture* couche1;
     sf::Texture* couche2;
     sf::Music *fond;
@@ -40,10 +44,13 @@ public:
     int h;
     sf::Texture* couche3;
     int **passTab;
-    /**Le constructeur ne doit pas etre utilsé.
+    /**Le constructeur de copie ne doit pas etre utilsé.
     Il est donc en privé. Si tout de meme cette protection est inéfficace,
     aucune definition n'est fournise de ce constructeur.*/
     Plan(Plan const& toCopy);
+
+    std::vector<Event*> events;
+
 public:
     Plan(sf::Texture couche1, sf::Texture couche2, sf::Texture couche3, int w, int h, std::string filename, sf::Music* fond);
     ~Plan();
@@ -68,21 +75,11 @@ public:
     sf::Music* getFond() {
         return fond;
     }
-
-    //Event* getEvent(int x, int y){return events[y][x];}
+    void addEvent(Event *event){
+        events.push_back(event);
+    }
+    std::vector<Event*> getEvent(sf::Vector2i position);
 };
-/*/**
-Structure permettant de regrouper les SDL_Texture avec un SDL_Rect correspondant
-*//*
-struct J_Texture {
-    SDL_Texture *texture;
-    SDL_Rect rect;
-};
-/**
-Permet d'afficher une J_Texture
-*//*
-int J_RenderCopy(SDL_Renderer *renderer, J_Texture *texture);
 
-typedef struct J_Texture J_Texture;*/
 
 #endif // ELEMENTS_HPP

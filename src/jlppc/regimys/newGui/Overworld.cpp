@@ -13,7 +13,6 @@ namespace Overworld {
 using namespace Side;
 
 Plan *actuel;
-sf::Sprite personnage;
 sf::View camera;
 sf::Sprite* plans[3];
 sf::Music* music;
@@ -140,6 +139,7 @@ void left() {
 
 void initVars() {
     actuel =  Initializer::plans[0];
+    personnage = Main::player.getSprite();
     personnage.setTexture(Initializer::texturePP[FACE]);
     personnage.setPosition(8 CASES + 21 CASES - 16, 8 CASES + 14 CASES);
     camera.setCenter(21 CASES, 14 CASES);

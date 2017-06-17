@@ -41,6 +41,16 @@ Plan::~Plan() {
     delete(fond);
 }
 
+std::vector<Event*> Plan::getEvent(sf::Vector2i position){
+        std::vector<Event*> toReturn;
+        FOR_EACH(Event*, events, events.size(), {)
+            if((*objActuel)->getPosition().x == position.x && (*objActuel)->getPosition().y == position.y){
+                toReturn.push_back(*objActuel);
+            }
+        }
+        return toReturn;
+}
+
 
 /*Plan::~Plan(){
     for(unsigned int i = 0; i < 32; i++){
