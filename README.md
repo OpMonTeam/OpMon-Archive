@@ -15,13 +15,15 @@ Prochaines versions :<ul>
 
 <li>Alpha 0.11 : Ajout de l'interieur des maisons, avec possibilité de les visiter en appuyant sur des touches du clavier (pas d'evenements)</li>
 <li>Alpha 0.12 : Amelioration de l'interieur des maisons et premiers petits evenements (les pancartes de Faubourg Euvi)</li>
-<a href="https://github.com/jlppc/OpMon/wiki/ROADMAP">Voir la ROADMAP détaillé</a>
+
 <li>Alpha 0.13 : Amelioration des evenements<br>
 </ul>
+<a href="https://github.com/jlppc/OpMon/wiki/ROADMAP">Voir la ROADMAP détaillé</a>
 <br/>
 En travail actuellement : Les events
 <br/>
-
+<br/>
+<br/>
 
 Informations generales:<br/>
 OpMon vient d'un jeu imaginé en 2012 et débuté en septembre 2016, c'est un clone de la célèbre licence Pokémon, appartenant à Nintendo. 
