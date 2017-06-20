@@ -9,12 +9,12 @@ Welcome to the project "OPMon Lazuli" !<br/>
 <a href="https://github.com/jlppc/Site-OpMon">Website's repository</a><br/><br/><br/>
 General Informations<br/>
 OPMon is a pokemon inspirated game project imaginated in 2012 and started in september 2016. This game is totally open source, allowing to the fans to come realize their dreams! You can add OpMons, attacks, items, and many other things! You just have to submit your modifications and maybe we'll add them to the game! And if you do a lot of good modifications, you can become collaborator!<br/><br/>
-Join us : jlppcprog@gmail.com for bugs, lags or about the code | evandib@gmail.com for sprites, the graphics, designs or graphics bugs<br/><br/>
+Contact us : jlppcprog@gmail.com for bugs, lags or about the code | evandib@gmail.com for sprites, the graphics, designs or graphics bugs<br/><br/>
 You can ask a question in the "F.A.Q" section of this wiki too!<br/>
 The game is actually in french, but if you talk french and english, you can help translate the game! And if the english translation of this presentation text contains errors, don't hesitate to notice us!<br/>
 If there are problems to understand the commits, because it's all in french, don't hesitate to ask too!<br/><br/>
 <a href="https://github.com/jlppc/OpMon/wiki/Journal-du-développement">Development Journal (in French) </a><br/>
-In working now : The events
+Work in progress now : The events
 <br/>
 Incoming versions :<ul>
 <li>Alpha 0.11 : Addition of houses' interiors, which can be entered by pressing the "F" keys on the keyboard.</li>
