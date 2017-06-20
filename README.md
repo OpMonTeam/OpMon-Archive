@@ -1,7 +1,28 @@
 ![Regimys LOGO](https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/opmon_title.png)<br>
+<h3> Welcome to Project "OPMon"!</h3>
+
+Welcome to the project "OPMon Lazuli" !<br/>
+General Informations<br/>
+OPMon is a pokemon inspirated game project imaginated in 2012 and started in september 2016. This game is totally open source, allowing to the fans to come realize their dreams! You can add OpMons, attacks, items, and many other things! You just have to submit your modifications and maybe we'll add them to the game! And if you do a lot of good modifications, you can become collaborator!<br/><br/>
+Join us : jlppcprog@gmail.com for bugs, lags or about the code | evandib@gmail.com for sprites, the graphics, designs or graphics bugs<br/><br/>
+You can ask a question in the "F.A.Q" section of this wiki too!<br/>
+The game is actually in french, but if you talk french and english, you can help translate the game! And if the english translation of this presentation text contains errors, don't hesitate to notice us!<br/>
+If there are problems to understand the commits, because it's all in french, don't hesitate to ask too!<br/><br/>
+<a href="https://github.com/jlppc/OpMon/wiki/Journal-du-développement">Development Journal (in French) </a><br/>
+In working now : The events
+<br/>
+Incoming versions :<ul>
+<li>Alpha 0.11 : Addition of houses' interiors, which can be entered by pressing the "F" keys on the keyboard.</li>
+<li>Alpha 0.12 : Improvement of the houses' interiors, addition of the first events.</li>
+<li>Alpha 0.13 : Improvement of the events, addition of characters.<br>
+</ul>
+<!--<a href="">Regimys Youtube Channel</a><br/>-->
+<a href="http://opmon-game.ga">OPMon web site</a><br/>
+<a href="https://github.com/jlppc/Site-OpMon">Website repository</a><br/><br/>
+<br/>Game version : Alpha 0.1 | Download : <a href="https://github.com/jlppc/OpMon/releases/tag/alpha-v0.1"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 
 <h2>--------En Français-------</h2>
-Look <a href="#------in-english-------"> In English</a><br/>
+
 <h3>Bienvenue sur le Projet "OPMon Lazuli"!</h3>
 
 Bienvenue sur le projet de OPMon Lazuli! Le clone <a href="https://github.com/jlppc/OpMon/wiki/FAQ">libre</a> de la celebre license de Nintendo !<br/>
@@ -45,20 +66,5 @@ Changelog avant la Alpha 0.05. Pour le reste du changelog après la Alpha 0.07, 
 <h2>Screenshot :</h2> 
 <img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/screenshot_1.png.PNG" alt="Désolé."/> 
 <h2>------In-English-------</h2>
-<h3> Welcome to Project "OPMon"!</h3>
 
-Welcome to the project "OPMon Lazuli" !<br/>
-General Informations<br/>
-OPMon is a pokemon inspirated game project imaginated in 2012 and started in september 2016. This game is totally open source, allowing to the fans to come realize their dreams! You can add OpMons, attacks, items, and many other things! You just have to submit your modifications and maybe we'll add them to the game! And if you do a lot of good modifications, you can become collaborator!<br/><br/>
-Join us : jlppcprog@gmail.com for bugs, lags or about the code | evandib@gmail.com for sprites, the graphics, designs or graphics bugs<br/><br/>
-You can ask a question in the "F.A.Q" section of this wiki too!<br/>
-The game is actually in french, but if you talk french and english, you can help translate the game! And if the english translation of this presentation text contains errors, don't hesitate to notice us!<br/>
-If there are problems to understand the commits, because it's all in french, don't hesitate to ask too!<br/><br/>
-<a href="https://github.com/jlppc/OpMon/wiki/Journal-du-développement">Development Journal (in French) </a><br/>
-In working now : The events
-<br/>
-<!--<a href="">Regimys Youtube Channel</a><br/>-->
-<a href="http://opmon-game.ga">OPMon web site</a><br/>
-<a href="https://github.com/jlppc/Site-OpMon">Website repository</a><br/><br/>
-<br/>Game version : Alpha 0.1 | Download : <a href="https://github.com/jlppc/OpMon/releases/download/alpha-v0.09/OpMon-setup.exe"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 
