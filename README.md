@@ -2,6 +2,11 @@
 <h3> Welcome to Project "OPMon"!</h3>
 
 Welcome to the project "OPMon Lazuli" !<br/>
+<a href="https://github.com/jlppc/OpMon/wiki/Journal-du-developpement">Developpment news (In french sorry)</a><br/>
+<a href="https://github.com/jlppc/OpMon/wiki/Monthly-reports---Bilans-Mensuels/">Monthly reports</a><br/>
+<a href="http://opmon-game.ga">Project's website</a><br/>
+<a href="https://github.com/jlppc/OpMon/blob/master/Credits.md">Credits</a><br/>
+<a href="https://github.com/jlppc/Site-OpMon">Website's repository</a><br/><br/><br/>
 General Informations<br/>
 OPMon is a pokemon inspirated game project imaginated in 2012 and started in september 2016. This game is totally open source, allowing to the fans to come realize their dreams! You can add OpMons, attacks, items, and many other things! You just have to submit your modifications and maybe we'll add them to the game! And if you do a lot of good modifications, you can become collaborator!<br/><br/>
 Join us : jlppcprog@gmail.com for bugs, lags or about the code | evandib@gmail.com for sprites, the graphics, designs or graphics bugs<br/><br/>
@@ -27,7 +32,7 @@ Incoming versions :<ul>
 
 Bienvenue sur le projet de OPMon Lazuli! Le clone <a href="https://github.com/jlppc/OpMon/wiki/FAQ">libre</a> de la celebre license de Nintendo !<br/>
 <a href="https://github.com/jlppc/OpMon/wiki/Journal-du-developpement">Journal de developpement</a><br/>
-<a href="https://github.com/jlppc/OpMon/wiki/Bilans-Mensuels">Bilans mensuels, récapitulatifs de nouveautées</a><br/>
+<a href="https://github.com/jlppc/OpMon/wiki/Monthly-reports---Bilans-Mensuels/">Bilans mensuels, récapitulatifs de nouveautées</a><br/>
 <a href="http://opmon-game.ga">Site web du jeu</a><br/>
 <a href="https://github.com/jlppc/OpMon/blob/master/Credits.md">Crédits</a><br/>
 <a href="https://github.com/jlppc/Site-OpMon">Dépot du site web du jeu</a><br/><br/>
