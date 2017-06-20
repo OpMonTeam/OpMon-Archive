@@ -22,8 +22,6 @@ Incoming versions :<ul>
 <li>Alpha 0.13 : Improvement of the events, addition of characters.<br>
 </ul>
 <!--<a href="">Regimys Youtube Channel</a><br/>-->
-<a href="http://opmon-game.ga">OPMon web site</a><br/>
-<a href="https://github.com/jlppc/Site-OpMon">Website repository</a><br/><br/>
 <br/>Game version : Alpha 0.1 | Download : <a href="https://github.com/jlppc/OpMon/releases/tag/alpha-v0.1"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 
 <h2>--------En Français-------</h2>
