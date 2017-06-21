@@ -19,6 +19,7 @@ namespace Overworld {
 void initVars();
 int overworld();
 int boucle();
+int boucleDialog(std::vector<sf::String> dialogs);
 
 void up();
 void down();

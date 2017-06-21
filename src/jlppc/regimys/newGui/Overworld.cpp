@@ -11,12 +11,16 @@ UNS
 namespace MainFrame {
 namespace Overworld {
 using namespace Side;
-
+/**
+actuel = actual (easy)
+*/
 Plan *actuel;
 sf::View camera;
 sf::Sprite* plans[3];
 sf::Music* music;
-
+/**
+couche = layer in french
+*/
 sf::Sprite *couche1;
 sf::Sprite *couche2;
 sf::Sprite *couche3;
@@ -38,6 +42,9 @@ bool scrollock[2] = {false, false};
 int ppDir = FACE;
 
 bool scrolling = true;
+/**
+personnage = character in french
+*/
 sf::Sprite &personnage = Main::player.persSprite;
 
 void initVars() {
@@ -48,7 +55,7 @@ void initVars() {
     camera.setCenter(21 CASES, 14 CASES);
     camera.setSize(sf::Vector2f(16 CASES, 16 CASES));
 
-/*    plans[0] = actuel->getCouche1();
+/*  plans[0] = actuel->getCouche1();
     plans[1] = actuel->getCouche2();
     plans[2] = actuel->getCouche3();*/
     music = actuel->getFond();
@@ -203,6 +210,7 @@ int boucle() {
                     }
             }
             ECHAP
+            if(Main::player.gameIsOver){return -1;}
             if(!justTp){
                 if(isKeyPressed(sf::Keyboard::Up)) {
                     up();
@@ -221,6 +229,10 @@ int boucle() {
             frame.clear(sf::Color::Black);
             frame.draw(*couche1);
             frame.draw(*couche2);
+            FOR_EACH(Event*, actuel->getEvents(), actuel->getEvents().size(), {)
+                (*objActuel)->update(Main::player);
+                frame.draw((*objActuel)->getSprite());
+            }
             if(anim != -1 && !anims) {
                 personnage.setTexture(Initializer::marchePP[anim]);
                 animsCounter++;
@@ -244,8 +256,39 @@ int boucle() {
             frame.setView(camera);
             frame.display();
             winRefresh();
-            rerrLog << "Position joueur frame n°" << frames << ": P(" << personnage.getPosition().x << ";" << personnage.getPosition().y << ")" << endl;
-
+            if(anim == -1){
+                if(isKeyPressed(sf::Keyboard::Return)){
+                    int lx = ppPosX;
+                    int ly = ppPosY;
+                    switch(ppDir){
+                        case DOS:
+                            ly--;
+                            break;
+                        case FACE:
+                            ly++;
+                            break;
+                        case GAUCHE:
+                            lx--;
+                            break;
+                        case DROITE:
+                            lx++;
+                            break;
+                        default:
+                            break;
+                    }
+                    vector<Event*> events = actuel->getEvent(sf::Vector2i(lx CASES, ly CASES));
+                    if(events.size() == 0){
+                        events = actuel->getEvent(sf::Vector2i(ppPosX CASES, ppPosY CASES));
+                    }
+                    if(events.size() > 0){
+                        for(unsigned int i = 0; i < events.size(); i++){
+                            if(events[i]->getEventTrigger() == Events::EventTrigger::PRESS){
+                                events[i]->action(Main::player);
+                            }
+                        }
+                    }
+                }
+            }
             if(anim == DOS) {
                 if(frames - startFrames >= 7) {
                         if(moving == DOS){
@@ -314,5 +357,101 @@ int boucle() {
 
     }
 }
+
+int boucleDialog(vector<sf::String> dialogs){
+    int sizeOfTxt = dialogs.size();
+    sf::String txtEnCours[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
+    bool continuer = true;
+    int dialog = 0;
+    bool changeDialog = false;
+    int i = 0;
+    int line = 0;
+
+    //->Useless
+    int phase;
+
+    while(continuer) {
+        if((GET_TICKS - ancientTick >= FPS_TICKS)) {
+            frames++;
+            if(justTp){
+                tpCount++;
+                justTp = tpCount < 0;
+            }
+
+            ancientTick = GET_TICKS;
+            window.pollEvent(events);
+
+            switch(events.type) {
+                QUIT
+
+                case sf::Event::KeyPressed:
+                    if(events.key.code == sf::Keyboard::Space){
+                        DIALOG_PASS(dialogs)
+                    }
+                break;
+            }
+            ECHAP
+
+            frame.clear(sf::Color::Black);
+            frame.draw(*couche1);
+            frame.draw(*couche2);
+            FOR_EACH(Event*, actuel->getEvents(), actuel->getEvents().size(), {)
+                frame.draw((*objActuel)->getSprite());
+            }
+            if(anim != -1 && !anims) {
+                personnage.setTexture(Initializer::marchePP[anim]);
+                animsCounter++;
+                anims = animsCounter > 8;
+
+            } else if(anim != -1 && anims) {
+                personnage.setTexture(Initializer::marchePP2[anim]);
+                animsCounter++;
+                if(animsCounter > 16) {
+                    anims = false;
+                    animsCounter = 0;
+                }
+            } else if(anim == -1){
+               personnage.setTexture(Initializer::texturePP[ppDir]);
+            }
+            frame.draw(personnage);
+            frame.draw(*couche3);
+            if(scrolling){
+                    camera.setCenter(personnage.getPosition().x + 16, personnage.getPosition().y + 16);
+            }
+            frame.setView(camera);
+            if(!changeDialog){
+                 if (!(i >= dialogs[line + dialog].toUtf32().size())) {
+
+                        if (txtEnCours[line] == sf::String(" ")) {
+                            txtEnCours[line] = dialogs[line + dialog].toUtf32()[i];
+                        } else {
+                            txtEnCours[line] += dialogs[line + dialog].toUtf32()[i];
+                        }
+
+                        i++;
+                    } else {
+                        if (line == 2) {
+                            changeDialog = true;
+                        } else {
+                            line++;
+                            i = 0;
+                        }
+                    }
+            }
+            frame.display();
+            winRefresh();
+
+
+        } else {
+            Utils::wait(FPS_TICKS - (GET_TICKS - ancientTick));
+        }
+
+
+    }
 }
+
+}
+
+
+
 }

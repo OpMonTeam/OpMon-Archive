@@ -61,6 +61,8 @@ public:
     */
     //DontUse
     sf::Sprite persSprite;
+
+    bool gameIsOver = false;
 private:
     std::string name;
     const unsigned int dressID;//jusqu'a 8 chiffres (Hexadecimal) (jusqu'a 16^8 soit 4 octets soit un int)

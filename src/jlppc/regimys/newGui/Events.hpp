@@ -32,6 +32,9 @@ class Event{
     /**Methode appellée lors du contact avec l'event (voir eventTrigger)*/
     virtual void action(Player &player) = 0;
 
+    sf::Sprite getSprite(){return *sprite;}
+    int getEventTrigger(){return eventTrigger;}
+
     virtual sf::Vector2f getPosition(){return position;}
 };
 
@@ -78,7 +81,7 @@ namespace Events {
         private:
         std::vector<std::string> dialogKeys;
         protected:
-        std::vector<std::string> dialogs;
+        std::vector<sf::String> dialogs;
         public:
         TalkingEvent(sf::Texture baseTexture, std::vector<sf::Texture> otherTextures, sf::Vector2f position, std::vector<std::string> dialogKeys, int eventTrigger = 0, bool passable = false);
         void reloadKeys();

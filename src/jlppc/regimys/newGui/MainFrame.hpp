@@ -107,6 +107,8 @@ namespace MainFrame {
     void destroyAll();
 
     void winRefresh();
+
+    sf::Vector2i vec2fTo2i(sf::Vector2f const& toTrans);
 }
 
 #endif /* SRC_JLPPC_REGIMYS_GUI_MAINFRAME_HPP_ */
