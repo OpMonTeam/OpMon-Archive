@@ -27,6 +27,7 @@ int tpCount = 0;
 int anim = -1;
 int moving = -1;
 bool anims = false;
+
 int ancientTick = 0;
 
 int frames = 0;
@@ -37,6 +38,31 @@ bool scrollock[2] = {false, false};
 int ppDir = FACE;
 
 bool scrolling = true;
+sf::Sprite &personnage = Main::player.persSprite;
+
+void initVars() {
+    actuel =  Initializer::plans[0];
+    personnage = Main::player.getSprite();
+    personnage.setTexture(Initializer::texturePP[FACE]);
+    personnage.setPosition(8 CASES + 21 CASES - 16, 8 CASES + 14 CASES);
+    camera.setCenter(21 CASES, 14 CASES);
+    camera.setSize(sf::Vector2f(16 CASES, 16 CASES));
+
+/*    plans[0] = actuel->getCouche1();
+    plans[1] = actuel->getCouche2();
+    plans[2] = actuel->getCouche3();*/
+    music = actuel->getFond();
+    music->setLoop(true);
+    couche1 = new sf::Sprite();
+    couche2 = new sf::Sprite();
+    couche3 = new sf::Sprite();
+    couche1->setTexture(*actuel->getCouche1());
+    couche2->setTexture(*actuel->getCouche2());
+    couche3->setTexture(*actuel->getCouche3());
+    personnage.setScale(2, 2);
+
+
+}
 
 int tp(int toTp, sf::Vector2i pos, bool scroll){
     if(moving != -1|| anim != -1){
@@ -137,29 +163,7 @@ void left() {
     }
 }
 
-void initVars() {
-    actuel =  Initializer::plans[0];
-    personnage = Main::player.getSprite();
-    personnage.setTexture(Initializer::texturePP[FACE]);
-    personnage.setPosition(8 CASES + 21 CASES - 16, 8 CASES + 14 CASES);
-    camera.setCenter(21 CASES, 14 CASES);
-    camera.setSize(sf::Vector2f(16 CASES, 16 CASES));
 
-/*    plans[0] = actuel->getCouche1();
-    plans[1] = actuel->getCouche2();
-    plans[2] = actuel->getCouche3();*/
-    music = actuel->getFond();
-    music->setLoop(true);
-    couche1 = new sf::Sprite();
-    couche2 = new sf::Sprite();
-    couche3 = new sf::Sprite();
-    couche1->setTexture(*actuel->getCouche1());
-    couche2->setTexture(*actuel->getCouche2());
-    couche3->setTexture(*actuel->getCouche3());
-    personnage.setScale(2, 2);
-
-
-}
 
 int overworld() {
     music->play();

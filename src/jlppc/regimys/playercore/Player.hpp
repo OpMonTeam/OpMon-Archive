@@ -55,6 +55,12 @@ public:
 
     void setPlan(int ID){planID = ID;}
     sf::Sprite& getSprite(){return persSprite;}
+    /**Translation : pers(onnage) = character
+    Sorry if I put it in public, I need it for in Overworld
+    DON'T USE!!! Use getSprite instead!
+    */
+    //DontUse
+    sf::Sprite persSprite;
 private:
     std::string name;
     const unsigned int dressID;//jusqu'a 8 chiffres (Hexadecimal) (jusqu'a 16^8 soit 4 octets soit un int)
@@ -63,7 +69,6 @@ private:
     Equipe equipe = Equipe("temp");
 
     int planID = 0;
-    sf::Sprite persSprite;
 };
 
 #endif /* SRCCPP_JLPPC_REGIMYS_PLAYERCORE_PLAYER_HPP_ */
