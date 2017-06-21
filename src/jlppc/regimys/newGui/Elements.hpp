@@ -79,6 +79,7 @@ public:
         events.push_back(event);
     }
     std::vector<Event*> getEvent(sf::Vector2i position);
+    std::vector<Event*> getEvents(){return events;};
 };
 
 
