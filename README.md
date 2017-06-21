@@ -19,7 +19,7 @@ If there are problems to understand the commits, because it's all in french, don
 Work in progress now : The events
 <br/>
 Incoming versions :<ul>
-<li>Alpha 0.11 : Addition of houses' interiors, which can be entered by pressing the "F" keys on the keyboard.</li>
+<li>Alpha 0.11 : Addition of houses' interiors, which can be entered by pressing the "F" keys on the keyboard, the beginning of event : dialogs</li>
 <li>Alpha 0.12 : Improvement of the houses' interiors, addition of the first events.</li>
 <li>Alpha 0.13 : Improvement of the events, addition of characters.<br>
 </ul>
@@ -39,7 +39,7 @@ Bienvenue sur le projet de OPMon Lazuli! Le clone <a href="https://github.com/jl
 <br/>Version du jeu : Alpha 0.1 | Téléchargement : <a href="http://opmon-game.ga/downloads.html"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 Prochaines versions :<ul>
 
-<li>Alpha 0.11 : Ajout de l'interieur des maisons, avec possibilité de les visiter en appuyant sur des touches du clavier (pas d'evenements)</li>
+<li>Alpha 0.11 : Ajout de l'interieur des maisons, avec possibilité de les visiter en appuyant sur des touches du clavier, travail sur les evenements de dialogues</li>
 <li>Alpha 0.12 : Amelioration de l'interieur des maisons et premiers petits evenements (les pancartes de Faubourg Euvi)</li>
 
 <li>Alpha 0.13 : Amelioration des evenements<br>
