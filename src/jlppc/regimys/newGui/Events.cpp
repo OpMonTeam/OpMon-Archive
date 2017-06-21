@@ -2,6 +2,10 @@
 
 UNS
 
+Event::~Event(){
+    delete(sprite);
+}
+
 Event::Event(sf::Texture baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2f position, bool passable) :
 baseTexture(baseTexture), otherTextures(otherTextures), eventTrigger(eventTrigger),
 position(position), passable(passable){
@@ -62,10 +66,59 @@ void TPEvent::action(Player &player){
 
 }
 
+void TPEvent::update(Player &player){
 
+}
 
+sf::Texture DoorEvent::selectDoorType(int doorType){
+    return sf::Texture();
+}
 
+std::vector<sf::Texture> DoorEvent::selectDoorTypeOther(int doorType){
+    return std::vector<sf::Texture>();
+}
 
+void DoorEvent::action(Player &player){
+
+}
+
+void DoorEvent::update(Player &player){
+
+}
+
+void TalkingEvent::action(Player &player){
+
+}
+
+void TalkingEvent::update(Player &player){
+
+}
+
+void CharacterEvent::update(Player &player){
+
+}
+
+void TalkingCharaEvent::action(Player &player){
+
+}
+
+void TalkingCharaEvent::update(Player &player){
+
+}
+
+void CharacterEvent::setPredefinedMove(std::vector<int> moves){
+
+}
+
+void LockedDoorEvent::action(Player &player){
+
+}
+
+void LockedDoorEvent::update(Player &player){
+
+}
+
+std::vector<std::string> LockedDoorEvent::keysLock = std::vector<std::string>();
 
 
 }

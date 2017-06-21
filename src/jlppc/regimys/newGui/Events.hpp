@@ -71,6 +71,7 @@ namespace Events {
         public:
         DoorEvent(int doorType, sf::Vector2f position, sf::Vector2i tpPos, int mapID, int eventTrigger = 3, bool passable = true);
         virtual void action(Player &player);
+        virtual void update(Player &player);
     };
 
     class TalkingEvent : public virtual Event{
