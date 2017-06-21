@@ -1,4 +1,6 @@
 ![Regimys LOGO](https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/opmon_title.png)<br>
+
+Voir <a href="#------en-français-------"> En Français</a><br/>
 <h3> Welcome to Project "OPMon"!</h3>
 
 Welcome to the project "OPMon Lazuli" !<br/>
@@ -68,6 +70,6 @@ Changelog avant la Alpha 0.05. Pour le reste du changelog après la Alpha 0.07, 
 </ul>
 <h2>Screenshot :</h2> 
 <img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/screenshot_1.png.PNG" alt="Désolé."/> 
-<h2>------In-English-------</h2>
+
 
 
