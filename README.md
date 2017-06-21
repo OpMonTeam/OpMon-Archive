@@ -1,6 +1,6 @@
 ![Regimys LOGO](https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/opmon_title.png)<br>
 
-Voir <a href="#------en-français-------"> En Français</a><br/>
+Voir <a href="#--------en-français-------"> En Français</a><br/>
 <h3> Welcome to Project "OPMon"!</h3>
 
 Welcome to the project "OPMon Lazuli" !<br/>
