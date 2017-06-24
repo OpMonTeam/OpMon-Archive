@@ -886,6 +886,7 @@ void initSprites() {
     //Init Sprites
 
 }
+sf::Texture alpha;
 void initPlans() {
     #define PLANS_RESET     delete(couche1);\
     delete(couche2);\
@@ -911,6 +912,11 @@ void initPlans() {
     townMusics[0]->openFromFile(RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg");
 #endif
     plans.push_back(new Plan(*couche1, *couche2, *couche3, 32, 32, "colFe", townMusics[0]));
+    std::vector<std::string> dkE1;
+    dkE1.push_back("dialogNope.1");
+    dkE1.push_back("dialogNope.2");
+    dkE1.push_back("dialogNope.3");
+    plans[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(22, 9), dkE1));
     PLANS_RESET
     #ifdef _WIN32
     couche1->loadFromFile(RESSOURCES_PATH + "maps\\pphome\\pphome1.png");
