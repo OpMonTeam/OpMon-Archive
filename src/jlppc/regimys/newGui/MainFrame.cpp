@@ -48,14 +48,14 @@ sf::Vector2i vec2fTo2i(sf::Vector2f const& toTrans){
 
 void printText(sf::RenderTexture &framee, sf::String text[]) {
     int minusPos = 32;
-    dialog.setPosition(framee.mapPixelToCoords(vec2fTo2i(dialog.getPosition())));
-    frame.draw(MainFrame::dialog);
+    dialog.setPosition(framee.mapPixelToCoords(sf::Vector2i(0, 362)));
+    framee.draw(MainFrame::dialog);
     FOR_EACH(sf::String, text, 3, {)
         dialogText[itor].setString(text[itor]);
         dialogText[itor].setFont(font);
         dialogText[itor].setCharacterSize(FONT_SIZE_DEFAULT);
         dialogText[itor].setColor(sf::Color::Black);
-        dialogText[itor].setPosition(framee.mapPixelToCoords(sf::Vector2i(25, dialog.getPosition().y + minusPos)));
+        dialogText[itor].setPosition(framee.mapPixelToCoords(sf::Vector2i(25, framee.mapCoordsToPixel(dialog.getPosition()).y + minusPos)));
         minusPos+=32;
 
         framee.draw(dialogText[itor]);
