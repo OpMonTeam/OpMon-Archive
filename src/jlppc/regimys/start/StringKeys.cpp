@@ -24,7 +24,7 @@ sf::String readLine(ifstream &input){
     return toReelReturn;
 }
 
-std::string sfStringtoStdString(sf::String &str){
+std::string sfStringtoStdString(sf::String const& str){
     string toReelReturn;
     basic_string<unsigned int> bs = str.toUtf32();
     for(int i = 0; i < bs.size(); i++){

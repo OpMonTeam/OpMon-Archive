@@ -207,6 +207,12 @@ int boucle() {
                         tp(1, sf::Vector2i(8, 14), true);
                     }else if(events.key.code == sf::Keyboard::F3){
                         tp(2, sf::Vector2i(15, 14), true);
+                    }else if(events.key.code == sf::Keyboard::F4){
+                        std::vector<sf::String> strs;
+                        strs.push_back(kget("dialogNope.1"));
+                        strs.push_back(kget("dialogNope.2"));
+                        strs.push_back(kget("dialogNope.3"));
+                        boucleDialog(strs);
                     }
             }
             ECHAP
@@ -367,10 +373,9 @@ int boucleDialog(vector<sf::String> dialogs){
     int i = 0;
     int line = 0;
 
-    //->Useless
-    int phase;
+    int phase = 0;
 
-    while(continuer) {
+    while(continuer && phase == 0) {
         if((GET_TICKS - ancientTick >= FPS_TICKS)) {
             frames++;
             if(justTp){
@@ -392,7 +397,6 @@ int boucleDialog(vector<sf::String> dialogs){
             }
             ECHAP
 
-            frame.clear(sf::Color::Black);
             frame.draw(*couche1);
             frame.draw(*couche2);
             FOR_EACH(Event*, actuel->getEvents(), actuel->getEvents().size(), {)
@@ -401,15 +405,9 @@ int boucleDialog(vector<sf::String> dialogs){
             if(anim != -1 && !anims) {
                 personnage.setTexture(Initializer::marchePP[anim]);
                 animsCounter++;
-                anims = animsCounter > 8;
-
             } else if(anim != -1 && anims) {
                 personnage.setTexture(Initializer::marchePP2[anim]);
                 animsCounter++;
-                if(animsCounter > 16) {
-                    anims = false;
-                    animsCounter = 0;
-                }
             } else if(anim == -1){
                personnage.setTexture(Initializer::texturePP[ppDir]);
             }
@@ -418,6 +416,7 @@ int boucleDialog(vector<sf::String> dialogs){
             if(scrolling){
                     camera.setCenter(personnage.getPosition().x + 16, personnage.getPosition().y + 16);
             }
+            frame.setView(frame.getDefaultView());
             frame.setView(camera);
             if(!changeDialog){
                  if (!(i >= dialogs[line + dialog].toUtf32().size())) {
@@ -438,6 +437,7 @@ int boucleDialog(vector<sf::String> dialogs){
                         }
                     }
             }
+            printText(frame, txtEnCours);
             frame.display();
             winRefresh();
 
