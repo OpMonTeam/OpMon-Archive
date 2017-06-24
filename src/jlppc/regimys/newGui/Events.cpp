@@ -1,4 +1,5 @@
 #include "Events.hpp"
+#include "Overworld.hpp"
 
 UNS
 
@@ -87,7 +88,7 @@ void DoorEvent::update(Player &player){
 }
 
 void TalkingEvent::action(Player &player){
-
+    MainFrame::Overworld::boucleDialog(this->dialogs);
 }
 
 void TalkingEvent::update(Player &player){
