@@ -25,7 +25,7 @@ class Event{
     sf::Vector2f position;
     bool passable;
     public:
-    Event(sf::Texture baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2f position, bool passable);
+    Event(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2f position, bool passable);
     virtual ~Event();
     /**Methode appelée chaque frame*/
     virtual void update(Player &player) = 0;
@@ -58,7 +58,7 @@ namespace Events {
         sf::Vector2i tpCoord;
         int mapID;
         public:
-        TPEvent(sf::Texture baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2f position, sf::Vector2i tpPos, int mapID, bool passable);
+        TPEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2f position, sf::Vector2i tpPos, int mapID, bool passable);
         virtual void update(Player &player);
         virtual void action(Player &player);
     };
@@ -69,7 +69,7 @@ namespace Events {
         protected:
         //WaitEvent->DoorType
         int doorType;
-        sf::Texture selectDoorType(int doorType);
+        sf::Texture& selectDoorType(int doorType);
         std::vector<sf::Texture> selectDoorTypeOther(int doorType);
         public:
         DoorEvent(int doorType, sf::Vector2f position, sf::Vector2i tpPos, int mapID, int eventTrigger = 3, bool passable = true);
@@ -83,7 +83,7 @@ namespace Events {
         protected:
         std::vector<sf::String> dialogs;
         public:
-        TalkingEvent(sf::Texture baseTexture, std::vector<sf::Texture> otherTextures, sf::Vector2f position, std::vector<std::string> dialogKeys, int eventTrigger = 0, bool passable = false);
+        TalkingEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, sf::Vector2f position, std::vector<std::string> dialogKeys, int eventTrigger = 0, bool passable = false);
         void reloadKeys();
         virtual void update(Player &player);
         virtual void action(Player &player);

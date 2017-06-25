@@ -4,6 +4,7 @@
 #include "../start/Initializer.hpp"
 #include "MainFrame.hpp"
 #include "../save/InternalFiles.hpp"
+#include "Overworld.hpp"
 
 UNS
 
@@ -44,11 +45,18 @@ Plan::~Plan() {
 std::vector<Event*> Plan::getEvent(sf::Vector2i position){
         std::vector<Event*> toReturn;
         FOR_EACH(Event*, events, events.size(), {)
-            if((*objActuel)->getPosition().x == position.x && (*objActuel)->getPosition().y == position.y){
+            if((*objActuel)->getPosition().x CASES  == position.x && (*objActuel)->getPosition().y CASES == position.y){
                 toReturn.push_back(*objActuel);
             }
         }
         return toReturn;
+}
+
+void Plan::updateEvents(Player &player){
+    for(Event* event : events){
+        event->update(player);
+        MainFrame::frame.draw(event->getSprite());
+    }
 }
 
 

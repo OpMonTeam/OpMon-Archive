@@ -1,8 +1,6 @@
 #include "Overworld.hpp"
 #include "../start/Initializer.hpp"
 #include "../start/main.hpp"
-#define CASES * 32
-#define CASE_SIZE 32
 #define FPS_TICKS 33
 #include <cmath>
 #define ppPosY ((personnage.getPosition().y / CASE_SIZE) - 8)
@@ -235,10 +233,7 @@ int boucle() {
             frame.clear(sf::Color::Black);
             frame.draw(*couche1);
             frame.draw(*couche2);
-            FOR_EACH(Event*, actuel->getEvents(), actuel->getEvents().size(), {)
-                (*objActuel)->update(Main::player);
-                frame.draw((*objActuel)->getSprite());
-            }
+            actuel->updateEvents(Main::player);
             if(anim != -1 && !anims) {
                 personnage.setTexture(Initializer::marchePP[anim]);
                 animsCounter++;
