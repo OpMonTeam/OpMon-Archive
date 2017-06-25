@@ -10,6 +10,8 @@ Contient le namespace Overworld
 #include "MainFrame.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#define CASES * 32
+#define CASE_SIZE 32
 
 namespace MainFrame {
 /**
