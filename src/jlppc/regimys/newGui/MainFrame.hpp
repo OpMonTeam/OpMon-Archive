@@ -71,9 +71,11 @@ Permet d'ouvrir la fenetre du jeu et de charger les ressources essensielles. Con
 		phase++;\
 	}\
 
-#define ANIM_ARROW 	arrDial.setPosition(arrDial.getPosition().x, arrDial.getPosition().y + 1);\
-	if (arrDial.getPosition().y - (512 - 30) > 5) {\
-        arrDial.setPosition(arrDial.getPosition().x, arrDial.getPosition().y - 6);\
+#define ANIM_ARROW 	\
+    sf::Vector2f posArrow = frame.mapPixelToCoords(sf::Vector2i(512-75, 512-30));\
+    arrDial.move(0, 1);\
+	if (arrDial.getPosition().y - posArrow.y > 5) {\
+        arrDial.move(0, -6);\
 	}\
 	frame.draw(arrDial);
 
@@ -90,6 +92,7 @@ namespace MainFrame {
     extern sf::Sprite dialog;
     extern sf::Text dialogText[3];
     extern bool init;
+    extern sf::Sprite arrDial;
     extern sf::Sprite ppSprite;
     extern sf::Sprite ppAnim;
     extern sf::Sound dialogPass;

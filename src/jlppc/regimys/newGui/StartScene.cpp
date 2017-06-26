@@ -6,11 +6,12 @@
 UNS
 
 namespace MainFrame {
+sf::Sprite arrDial;
 namespace StartScene {
 //Déclaration des SDL_Rect et des SDL_Texture secondaires, necessaires a cette scene (a détruire)
 sf::Sprite fondT;
 sf::Sprite profT;
-sf::Sprite arrDial;
+
 sf::Sprite textUre;
 sf::Music fondMus;
 //Déclaration des variables utilitaires (sera supprimé en cours de travail)
