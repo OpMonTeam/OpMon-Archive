@@ -915,10 +915,10 @@ void initPlans() {
 #endif
     plans.push_back(new Plan(*couche1, *couche2, *couche3, 32, 32, "colFe", townMusics[0]));
     std::vector<std::string> dkE1;
-    dkE1.push_back("dialogNope.1");
-    dkE1.push_back("dialogNope.2");
-    dkE1.push_back("dialogNope.3");
-    plans[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(20, 7), dkE1));
+    dkE1.push_back("fedesc.1");
+    dkE1.push_back("fedesc.2");
+    dkE1.push_back("fedesc.3");
+    plans[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(10, 1), dkE1));
     PLANS_RESET
     #ifdef _WIN32
     couche1->loadFromFile(RESSOURCES_PATH + "maps\\pphome\\pphome1.png");

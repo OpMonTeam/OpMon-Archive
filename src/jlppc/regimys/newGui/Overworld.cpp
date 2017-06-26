@@ -444,9 +444,6 @@ int boucleDialog(vector<sf::String> dialogs){
             for(Event* event : actuel->getEvents()){
                 frame.draw(*event->getSprite());
             }
-            FOR_EACH(Event*, actuel->getEvents(), actuel->getEvents().size(), {)
-                frame.draw(*(*objActuel)->getSprite());
-            }
             if(anim != -1 && !anims) {
                 personnage.setTexture(Initializer::marchePP[anim]);
                 animsCounter++;
