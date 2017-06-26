@@ -12,7 +12,7 @@ baseTexture(baseTexture), otherTextures(otherTextures), eventTrigger(eventTrigge
 position(position), passable(passable){
     sprite = new sf::Sprite();
     sprite->setTexture(this->baseTexture);
-    sf::Vector2f posMap(position.x*32, position.y*32);
+    sf::Vector2f posMap((position.x+9)*32, (position.y+9)*32);
     sprite->setPosition(posMap);
 }
 

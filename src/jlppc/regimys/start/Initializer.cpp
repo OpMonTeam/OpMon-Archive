@@ -875,14 +875,16 @@ void initTextures(){
 
 void initSprites() {
     using namespace std;
+
+    rlog << PRINT_TICKS << "Initialisation des textures" << endl;
+    initTextures();
     rlog << PRINT_TICKS << "Initialisation des fonds" << endl;
     initBackgrounds();
     rlog << PRINT_TICKS << "Initialisation des maps" << endl;
     initPlans();
     rlog << PRINT_TICKS << "Initialisation des animations" << endl;
     Animations::initAnims();
-    rlog << PRINT_TICKS << "Initialisation des textures" << endl;
-    initTextures();
+
     //Init Sprites
 
 }
@@ -916,7 +918,7 @@ void initPlans() {
     dkE1.push_back("dialogNope.1");
     dkE1.push_back("dialogNope.2");
     dkE1.push_back("dialogNope.3");
-    plans[0]->addEvent(new Events::TalkingEvent(marchePP[0], std::vector<sf::Texture>(), sf::Vector2f(22, 9), dkE1));
+    plans[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(20, 7), dkE1));
     PLANS_RESET
     #ifdef _WIN32
     couche1->loadFromFile(RESSOURCES_PATH + "maps\\pphome\\pphome1.png");

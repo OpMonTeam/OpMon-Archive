@@ -32,7 +32,8 @@ class Event{
     /**Methode appellée lors du contact avec l'event (voir eventTrigger)*/
     virtual void action(Player &player) = 0;
 
-    sf::Sprite getSprite(){return *sprite;}
+    sf::Sprite* getSprite(){return sprite;}
+    sf::Texture& getTexture(){return baseTexture;}
     int getEventTrigger(){return eventTrigger;}
 
     virtual sf::Vector2f getPosition(){return position;}
