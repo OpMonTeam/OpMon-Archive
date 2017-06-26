@@ -101,7 +101,7 @@ namespace InternalFiles{
                                 "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0" /
                                 "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0" /
                                 "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0" /
-                                "1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1");         
+                                "1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1");
 
     filesNames.push_back("colPProom");
     files.push_back(std::string("1 1 1 1 1 1 1 1 1") /
@@ -109,15 +109,15 @@ namespace InternalFiles{
                                 "0 0 0 0 0 0 0 0 0" /
                                 "0 0 0 1 1 0 0 0 0" /
                                 "0 0 0 0 1 0 0 0 0" /
-                                "1 0 0 0 0 0 0 0 0") /
-                                   
+                                "1 0 0 0 0 0 0 0 0");
+
     filesNames.push_back("colMomroom");
     files.push_back(std::string("1 1 1 1 1 1") /
                                 "1 1 1 0 1 1" /
                                 "0 1 1 0 0 0" /
                                 "0 0 0 0 0 0" /
                                 "0 0 0 0 0 0" /
-                                "1 0 0 0 0 0") /
+                                "1 0 0 0 0 0");
 
     filesNames.push_back("colLabo");//Nazi
     files.push_back(std::string("1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1") /
