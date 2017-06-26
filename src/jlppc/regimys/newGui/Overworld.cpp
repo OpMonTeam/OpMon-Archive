@@ -40,6 +40,10 @@ bool scrollock[2] = {false, false};
 int ppDir = FACE;
 
 bool scrolling = true;
+
+bool debugMode = false;
+bool printlayer[3] = {true, true, true};
+
 /**
 personnage = character in french
 */
@@ -211,6 +215,19 @@ int boucle() {
                         strs.push_back(kget("dialogNope.2"));
                         strs.push_back(kget("dialogNope.3"));
                         boucleDialog(strs);
+                    }else if(events.key.code == sf::Keyboard::Equal){
+                        debugMode = !debugMode;
+                    }
+                    if(debugMode){
+                        if(events.key.code == sf::Keyboard::F10){
+                            printlayer[0] = !printlayer[0];
+                        }
+                        if(events.key.code == sf::Keyboard::F11){
+                            printlayer[1] = !printlayer[1];
+                        }
+                        if(events.key.code == sf::Keyboard::F12){
+                            printlayer[2] = !printlayer[2];
+                        }
                     }
             }
             ECHAP
@@ -229,10 +246,34 @@ int boucle() {
                     right();
                 }
             }
+            sf::Text debugText;
+            if(debugMode){
+                if(isKeyPressed(sf::Keyboard::Numpad2)){
+                    camera.move(0, 4);
+                }
+                if(isKeyPressed(sf::Keyboard::Numpad4)){
+                    camera.move(-4, 0);
+                }
+                if(isKeyPressed(sf::Keyboard::Numpad8)){
+                    camera.move(0, -4);
+                }
+                if(isKeyPressed(sf::Keyboard::Numpad6)){
+                    camera.move(4, 0);
+                }
+                debugText.setString("Debug mode");
+                debugText.setPosition(frame.mapPixelToCoords(sf::Vector2i(0, 0)));
+                debugText.setFont(font);
+                debugText.setColor(sf::Color::Black);
+                debugText.setCharacterSize(40);
+            }
 
             frame.clear(sf::Color::Black);
-            frame.draw(*couche1);
-            frame.draw(*couche2);
+            if((debugMode ? printlayer[0] : true)){
+                frame.draw(*couche1);
+            }
+            if((debugMode ? printlayer[1] : true)){
+                frame.draw(*couche2);
+            }
             actuel->updateEvents(Main::player);
             if(anim != -1 && !anims) {
                 personnage.setTexture(Initializer::marchePP[anim]);
@@ -250,11 +291,17 @@ int boucle() {
                personnage.setTexture(Initializer::texturePP[ppDir]);
             }
             frame.draw(personnage);
-            frame.draw(*couche3);
-            if(scrolling){
+            if((debugMode ? printlayer[2] : true)){
+                frame.draw(*couche3);
+            }
+            if(scrolling && !debugMode){
                     camera.setCenter(personnage.getPosition().x + 16, personnage.getPosition().y + 16);
             }
             frame.setView(camera);
+            if(debugMode){
+                frame.draw(debugText);
+            }
+
             frame.display();
             winRefresh();
             if(anim == -1){
