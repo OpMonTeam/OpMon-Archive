@@ -55,7 +55,7 @@ std::vector<Event*> Plan::getEvent(sf::Vector2i position){
 void Plan::updateEvents(Player &player){
     for(Event* event : events){
         event->update(player);
-        MainFrame::frame.draw(event->getSprite());
+        MainFrame::frame.draw(*(event->getSprite()));
     }
 }
 
