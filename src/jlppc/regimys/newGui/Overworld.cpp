@@ -416,6 +416,8 @@ int boucleDialog(vector<sf::String> dialogs){
     int line = 0;
 
     int phase = 0;
+    sf::Vector2f posArrow = frame.mapPixelToCoords(sf::Vector2i(512-75, 512-30));
+    arrDial.setPosition(posArrow);\
 
     while(continuer && phase == 0) {
         if((GET_TICKS - ancientTick >= FPS_TICKS)) {
@@ -480,6 +482,7 @@ int boucleDialog(vector<sf::String> dialogs){
                     }
             }
             printText(frame, txtEnCours);
+            ANIM_ARROW
             frame.display();
             winRefresh();
 

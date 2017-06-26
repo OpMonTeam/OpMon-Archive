@@ -22,7 +22,6 @@ void initStrings();
 
 extern sf::Sprite fondT;
 extern sf::Sprite profT;
-extern sf::Sprite arrDial;
 extern sf::Music fondMus;
 }
 }
