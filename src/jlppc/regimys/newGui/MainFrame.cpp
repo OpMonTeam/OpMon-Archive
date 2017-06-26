@@ -15,6 +15,7 @@
 #include "../save/OptionsSave.hpp"
 
 #include "StartScene.hpp"
+#include "Events.hpp"
 
 bool keyPressed = false;
 
@@ -40,6 +41,14 @@ void initAllStrings(){
     MainMenu::OptionsMenu::initStrings();
     MainMenu::initStrings();
     StartScene::initStrings();
+    for(Plan* plan : Initializer::plans){
+        for(Event* event : plan->getEvents()){
+        Events::TalkingEvent* te = dynamic_cast<Events::TalkingEvent*>(event);
+            if(te != nullptr){
+                te->reloadKeys();
+            }
+        }
+    }
 }
 
 sf::Vector2i vec2fTo2i(sf::Vector2f const& toTrans){
