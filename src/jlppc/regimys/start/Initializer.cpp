@@ -905,7 +905,7 @@ void initPlans() {
 #ifdef _WIN32
     couche1->loadFromFile(RESSOURCES_PATH + "maps\\fe\\fe1.png");
     couche2->loadFromFile(RESSOURCES_PATH +"maps\\fe\\fe2.png");
-    couche3->loadFromFile(RESSOURCES_PATH +"\maps\\fe\\fe3.png");
+    couche3->loadFromFile(RESSOURCES_PATH +"maps\\fe\\fe3.png");
     townMusics[0]->openFromFile(RESSOURCES_PATH +"audio\\music\\faubourgeuvi.ogg");
 #else
     couche1->loadFromFile(RESSOURCES_PATH +"maps/fe/fe1.png");
@@ -923,7 +923,7 @@ void initPlans() {
     #ifdef _WIN32
     couche1->loadFromFile(RESSOURCES_PATH + "maps\\pphome\\pphome1.png");
     couche2->loadFromFile(RESSOURCES_PATH +"maps\\pphome\\pphome2.png");
-    couche3->loadFromFile(RESSOURCES_PATH +"\maps\\pphome\\pphome3.png");
+    couche3->loadFromFile(RESSOURCES_PATH +"maps\\pphome\\pphome3.png");
 #else
     couche1->loadFromFile(RESSOURCES_PATH +"maps/pphome/pphome1.png");
     couche2->loadFromFile(RESSOURCES_PATH +"maps/pphome/pphome2.png");
@@ -944,7 +944,17 @@ void initPlans() {
     townMusics[1]->openFromFile(RESSOURCES_PATH + "audio/music/intro.ogg");
     #endif // _WIN32
     plans.push_back(new Plan(*couche1, *couche2, *couche3, 32, 16, "colLabo", townMusics[1]));
-
+    PLANS_RESET
+    #ifdef _WIN32
+    couche1->loadFromFile(RESSOURCES_PATH + "maps\\rivalhome\\rivalhome1.png");
+    couche2->loadFromFile(RESSOURCES_PATH + "maps\\rivalhome\\rivalhome2.png");
+    couche3->loadFromFile(RESSOURCES_PATH + "maps\\rivalhome\\rivalhome3.png");
+    #else
+    couche1->loadFromFile(RESSOURCES_PATH + "maps/rivalhome/rivalhome1.png");
+    couche2->loadFromFile(RESSOURCES_PATH + "maps/rivalhome/rivalhome2.png");
+    couche3->loadFromFile(RESSOURCES_PATH + "maps/rivalhome/rivalhome3.png");
+    #endif // _WIN32
+    plans.push_back(new Plan(*couche1, *couche2, *couche3, 16, 16, "colRivalhome", townMusics[0]));
     delete(couche1);
     delete(couche2);
     delete(couche3);
