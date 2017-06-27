@@ -92,6 +92,13 @@ int quit(int returne) {
 
     }
     OptionsSave::saveParams(optSave);//Sauvegarde des paramètres
+    rlog << PRINT_TICKS << "Fermeture des ressources." << endl;
+    for(Plan* plan : Initializer::plans){
+        delete(plan);
+    }
+    for(sf::Music* mus : Initializer::townMusics){
+        delete(mus);
+    }
     rlog << PRINT_TICKS << "Fermeture du jeu. Return " << returne << endl;
     //Fermeture des log
     rlog.close();
