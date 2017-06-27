@@ -210,11 +210,7 @@ int boucle() {
                     }else if(events.key.code == sf::Keyboard::F3){
                         tp(2, sf::Vector2i(15, 14), true);
                     }else if(events.key.code == sf::Keyboard::F4){
-                        std::vector<sf::String> strs;
-                        strs.push_back(kget("dialogNope.1"));
-                        strs.push_back(kget("dialogNope.2"));
-                        strs.push_back(kget("dialogNope.3"));
-                        boucleDialog(strs);
+                        tp(3, sf::Vector2i(8, 14), true);
                     }else if(events.key.code == sf::Keyboard::Equal){
                         debugMode = !debugMode;
                     }
