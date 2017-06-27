@@ -29,15 +29,21 @@ Plan::Plan(sf::Texture couche1, sf::Texture couche2, sf::Texture couche3, int w,
             (*inTemp) >> passTab[i][j];
         }
     }
+    delete(inTemp);
 
 }
 
 Plan::~Plan() {
+    for(int i = 0; i < h; i++){
+        free(passTab[i]);
+    }
     free(passTab);
     delete(couche1);
     delete(couche2);
     delete(couche3);
-    delete(fond);
+    for(Event* event : events){
+        delete(event);
+    }
 }
 
 std::vector<Event*> Plan::getEvent(sf::Vector2i position){
