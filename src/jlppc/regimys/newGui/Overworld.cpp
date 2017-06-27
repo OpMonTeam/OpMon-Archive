@@ -214,7 +214,9 @@ int boucle() {
                     }else if(events.key.code == sf::Keyboard::Equal){
                         debugMode = !debugMode;
                     }else if(events.key.code == sf::Keyboard::F5){
-                        tp(4, sf::Vector2i(0, 0), true);
+                        tp(4, sf::Vector2i(0, 1), true);
+                    }else if(events.key.code == sf::Keyboard::F6){
+                        tp(5, sf::Vector2i(0, 0), true);
                     }
                     if(debugMode){
                         if(events.key.code == sf::Keyboard::F10){
