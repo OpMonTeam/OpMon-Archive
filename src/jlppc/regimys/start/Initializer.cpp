@@ -955,6 +955,19 @@ void initPlans() {
     couche3->loadFromFile(RESSOURCES_PATH + "maps/rivalhome/rivalhome3.png");
     #endif // _WIN32
     plans.push_back(new Plan(*couche1, *couche2, *couche3, 16, 16, "colRivalhome", townMusics[0]));
+    PLANS_RESET
+    #ifdef _WIN32
+    couche1->loadFromFile(RESSOURCES_PATH + "maps\\momroom\\momroom1.png");
+    couche2->loadFromFile(RESSOURCES_PATH + "maps\\momroom\\momroom2.png");
+    couche3->loadFromFile(RESSOURCES_PATH + "maps\\momroom\\momroom3.png");
+    #else
+    couche1->loadFromFile(RESSOURCES_PATH + "maps/momroom/momroom1.png");
+    couche2->loadFromFile(RESSOURCES_PATH + "maps/momroom/momroom2.png");
+    couche3->loadFromFile(RESSOURCES_PATH + "maps/momroom/momroom3.png");
+    #endif // _WIN32
+    plans.push_back(new Plan(*couche1, *couche2, *couche3, 6, 6, "colMomroom", townMusics[0]));
+    PLANS_RESET
+
     delete(couche1);
     delete(couche2);
     delete(couche3);
