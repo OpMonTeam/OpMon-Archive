@@ -1,4 +1,4 @@
-![Regimys LOGO](https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/opmon_title.png)<br>
+![Regimys LOGO](https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Others/opmon_title.png)<br>
 
 Voir <a href="#--------en-français-------"> En Français</a><br/>
 <h3> Welcome to Project "OPMon"!</h3>
@@ -24,7 +24,7 @@ Incoming versions :<ul>
 <li>Alpha 0.13 : Improvement of the events, addition of characters.<br>
 </ul>
 <!--<a href="">Regimys Youtube Channel</a><br/>-->
-<br/>Game version : Alpha 0.1 | Download : <a href="https://github.com/jlppc/OpMon/releases/tag/alpha-v0.1"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
+<br/>Game version : Alpha 0.11 | Download : <a href="https://github.com/jlppc/OpMon/releases/tag/alpha-v0.11"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Other/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 
 <h2>--------En Français-------</h2>
 
@@ -36,7 +36,7 @@ Bienvenue sur le projet de OPMon Lazuli! Le clone <a href="https://github.com/jl
 <a href="http://opmon-game.ga">Site web du jeu</a><br/>
 <a href="https://github.com/jlppc/OpMon/blob/master/Credits.md">Crédits</a><br/>
 <a href="https://github.com/jlppc/Site-OpMon">Dépot du site web du jeu</a><br/><br/>
-<br/>Version du jeu : Alpha 0.1 | Téléchargement : <a href="http://opmon-game.ga/downloads.html"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
+<br/>Version du jeu : Alpha 0.1 | Téléchargement : <a href="http://opmon-game.ga/downloads.html"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Others/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 Prochaines versions :<ul>
 
 <li>Alpha 0.11 : Ajout de l'interieur des maisons, avec possibilité de les visiter en appuyant sur des touches du clavier, travail sur les evenements de dialogues</li>
@@ -46,7 +46,7 @@ Prochaines versions :<ul>
 </ul>
 <a href="https://github.com/jlppc/OpMon/wiki/ROADMAP">Voir la ROADMAP détaillé</a>
 <br/>
-En travail actuellement : Les events
+
 <br/>
 <br/>
 <br/>
@@ -69,7 +69,7 @@ Changelog avant la Alpha 0.05. Pour le reste du changelog après la Alpha 0.07, 
 <li>Alpha 0.01 : Creation du systeme de combat de base</li>
 </ul>
 <h2>Screenshot :</h2> 
-<img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Autres/screenshot_1.png.PNG" alt="Désolé."/> 
+<img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Others/screenshot_1.png.PNG" alt="Désolé."/> 
 
 
 
