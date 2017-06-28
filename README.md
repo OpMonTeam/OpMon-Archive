@@ -11,7 +11,7 @@ Welcome to the project "OPMon Lazuli" !<br/>
 <a href="https://github.com/jlppc/Site-OpMon">Website's repository</a><br/><br/><br/>
 General Informations<br/>
 OPMon is a pokemon inspirated game project imaginated in 2012 and started in september 2016. This game is totally open source, allowing to the fans to come realize their dreams! You can add OpMons, attacks, items, and many other things! You just have to submit your modifications and maybe we'll add them to the game! And if you do a lot of good modifications, you can become collaborator!<br/><br/>
-Contact us : jlppcprog@gmail.com for bugs, lags or about the code | evandib@gmail.com for sprites, the graphics, designs or graphics bugs<br/><br/>
+Contact us : jlppcprog@ntymail.com for bugs, lags or about the code | evandib@gmail.com for sprites, the graphics, designs or graphics bugs<br/><br/>
 You can ask a question in the "F.A.Q" section of this wiki too!<br/>
 The game is actually in french, but if you talk french and english, you can help translate the game! And if the english translation of this presentation text contains errors, don't hesitate to notice us!<br/>
 If there are problems to understand the commits, because it's all in french, don't hesitate to ask too!<br/><br/>
@@ -58,7 +58,7 @@ Vous pouvez ajouter des OpMons, des attaques, des items, et autres!
 Vous n'avez qu'a nous proposer vos modifications et nous les ajouterons peut-être au jeu. 
 Et si vous nous proposez beaucoup de bonnes modifications, et qu'elles sont acceptées, vous deviendrez peut-être collaborateur!<br/>
 Nous sommes plusieurs sur le projet : Jlppc, le programmeur et créateur de l'histoire et des personnages ; Navet56, le graphiste et correcteur ; et d'autres contributeurs, merci à eux !<br/>
-Contacts : jlppcprog@gmail.com pour la programmation | evandib@gmail.com pour les graphismes<br/>
+Contacts : jlppcprog@ntymail.com pour la programmation | evandib@gmail.com pour les graphismes<br/>
 Si vous avez des questions à poser, n'hésitez pas à les demander dans la section F.A.Q. du wiki ou a nous contacter par mail!<br/><br/><br/>
 
 Changelog avant la Alpha 0.05. Pour le reste du changelog après la Alpha 0.07, il est dans la section Releases, sinon il est sur <a href="https://github.com/jlppc/Projet-Pokemon-Regimys/releases">l'ancien dépot</a>. Ces versions étaient en Java a l'époque, et en console.
