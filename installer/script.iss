@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "OpMon Lazuli"
-#define MyAppVersion "Alpha 0.1"
+#define MyAppVersion "Alpha 0.11"
 #define MyAppPublisher "Jlppc & Navet56"
 #define MyAppURL "http://opmon-game.ga"
 #define MyAppExeName "OpMon.exe"
