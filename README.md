@@ -36,7 +36,7 @@ Bienvenue sur le projet de OPMon Lazuli! Le clone <a href="https://github.com/jl
 <a href="http://opmon-game.ga">Site web du jeu</a><br/>
 <a href="https://github.com/jlppc/OpMon/blob/master/Credits.md">Crédits</a><br/>
 <a href="https://github.com/jlppc/Site-OpMon">Dépot du site web du jeu</a><br/><br/>
-<br/>Version du jeu : Alpha 0.1 | Téléchargement : <a href="http://opmon-game.ga/downloads.html"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Other/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
+<br/>Version du jeu : Alpha 0.11 | Téléchargement : <a href="http://opmon-game.ga/downloads.html"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Other/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 Prochaines versions :<ul>
 
 <li>Alpha 0.11 : Ajout de l'interieur des maisons, avec possibilité de les visiter en appuyant sur des touches du clavier, travail sur les evenements de dialogues</li>
