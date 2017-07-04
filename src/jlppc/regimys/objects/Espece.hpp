@@ -37,11 +37,11 @@ private:
     Evolution *evolType;
     int type1;
     int type2;
-    NumberedArray atksByLevels[];
+    //NumberedArray atksByLevels[];
     std::string entreeOpdex;
     float taille;
     float poids;
-    CT ctCompatibles[];
+    //CT ctCompatibles[];
     int baseAtk;
     int baseDef;
     int baseAtkSpe;
