@@ -8,13 +8,17 @@
 
 UNS
 
-Map::Map(sf::Texture layer1, sf::Texture layer2, sf::Texture layer3, int w, int h, std::string filename, sf::Music* fond) {
+Map::Map(sf::Texture layer1, sf::Texture layer2, sf::Texture layer3, int w, int h, std::string filename, sf::Music* fond, std::vector<std::vector<sf::Texture> > animatedElements) {
     this->layer1 = new sf::Texture(layer1);
     this->layer2 = new sf::Texture(layer2);
     this->layer3 = new sf::Texture(layer3);
     this->fond = fond;
     if(!fond->getLoop()){
         fond->setLoop(true);
+    }
+    this->animatedElements = animatedElements;
+    for(unsigned int i = 0; i < animatedElements.size(); i++){
+        elementsCount.push_back(0);
     }
     this->w = w;
     this->h = h;
@@ -60,6 +64,16 @@ void Map::updateEvents(Player &player){
     for(Event* event : events){
         event->update(player);
         MainFrame::frame.draw(*(event->getSprite()));
+    }
+}
+
+void Map::updateElements(sf::RenderTexture &frame){
+    for(unsigned int i = 0; i < animatedElements.size(); i++){
+        elementsCount[i]++;
+        if(elementsCount[i] >= animatedElements[i].size()){
+            elementsCount[i] = 0;
+        }
+        frame.draw(animatedElements[i][elementsCount]);
     }
 }
 
