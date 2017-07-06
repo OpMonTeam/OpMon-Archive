@@ -914,11 +914,26 @@ void initMaps() {
     townMusics[0]->openFromFile(RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg");
 #endif
     maps.push_back(new Map(*layer1, *layer2, *layer3, 32, 32, "colFe", townMusics[0]));
-    std::vector<std::string> dkE1;
-    dkE1.push_back("fedesc.1");
-    dkE1.push_back("fedesc.2");
-    dkE1.push_back("fedesc.3");
-    maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(10, 1), dkE1));
+    std::vector<std::string> feE1;
+    feE1.push_back("fedesc.1");
+    feE1.push_back("fedesc.2");
+    feE1.push_back("fedesc.3");
+    maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(10, 1), feE1));
+    std::vector<std::string> feE2;
+    feE2.push_back("ppHouse");
+    feE2.push_back("void");
+    feE2.push_back("void");
+    maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(20, 8), feE2));
+    std::vector<std::string> feE3;
+    feE3.push_back("rivalHouse");
+    feE3.push_back("void");
+    feE3.push_back("void");
+    maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(24, 8), feE3));
+    std::vector<std::string> feE4;
+    feE4.push_back("labo");
+    feE4.push_back("void");
+    feE4.push_back("void");
+    maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(13, 20), feE4));
     PLANS_RESET
     #ifdef _WIN32
     layer1->loadFromFile(RESSOURCES_PATH + "maps\\pphome\\pphome1.png");
