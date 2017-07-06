@@ -52,8 +52,11 @@ private:
 
     std::vector<Event*> events;
 
+    std::vector<std::vector<sf::Texture> > animatedElements;
+    std::vector<int> elementsCount;
+
 public:
-    Map(sf::Texture layer1, sf::Texture layer2, sf::Texture layer3, int w, int h, std::string filename, sf::Music* fond);
+    Map(sf::Texture layer1, sf::Texture layer2, sf::Texture layer3, int w, int h, std::string filename, sf::Music* fond, std::vector<std::vector<sf::Texture> > animatedElements = std::vector<std::vector<sf::Texture> >());
     ~Map();
     int getH() const {
         return h;
@@ -82,6 +85,7 @@ public:
     std::vector<Event*> getEvent(sf::Vector2i position);
     std::vector<Event*> getEvents(){return events;};
     void updateEvents(Player &player);
+    void updateElements(sf::RenderTexture &frame);
 };
 
 
