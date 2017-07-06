@@ -26,12 +26,12 @@ namespace Initializer {
 extern Espece *listeOp[OP_NUMBER];
 extern std::vector<NumberedArray> opOpLvl[OP_NUMBER]; //100 attaques max / poké
 extern Evolutions::E_Nope *ne;//ne = No Evolution
-extern std::vector<Plan*> plans;
+extern std::vector<Map*> maps;
 extern std::vector<sf::Music*> townMusics;
 extern sf::Texture texturePP[4];
 extern sf::Texture marchePP[4];
 extern sf::Texture marchePP2[4];
-extern sf::Texture plansFe[3];
+extern sf::Texture mapsFe[3];
 //std::string backgrounds[];
 extern std::vector<int> evs[OP_NUMBER];
 void initEvs();
@@ -40,7 +40,7 @@ void initAtkLvls();
 void initSprites();
 void initBackgrounds();
 void initKeys();
-void initPlans();
+void initMaps();
 void init();
 
 

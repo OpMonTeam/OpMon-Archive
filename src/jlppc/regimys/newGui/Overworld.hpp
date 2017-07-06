@@ -30,10 +30,10 @@ void left();
 
 int tp(int toTp, sf::Vector2i pos);
 
-extern Plan *actuel;
-extern sf::Sprite &personnage;
+extern Map *actual;
+extern sf::Sprite &character;
 extern sf::View camera;
-extern sf::Sprite* plans[3];
+extern sf::Sprite* maps[3];
 extern sf::Music* music;
 
 

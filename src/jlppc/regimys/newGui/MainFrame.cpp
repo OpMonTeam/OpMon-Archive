@@ -41,8 +41,8 @@ void initAllStrings(){
     MainMenu::OptionsMenu::initStrings();
     MainMenu::initStrings();
     StartScene::initStrings();
-    for(Plan* plan : Initializer::plans){
-        for(Event* event : plan->getEvents()){
+    for(Map* map : Initializer::maps){
+        for(Event* event : map->getEvents()){
         Events::TalkingEvent* te = dynamic_cast<Events::TalkingEvent*>(event);
             if(te != nullptr){
                 te->reloadKeys();

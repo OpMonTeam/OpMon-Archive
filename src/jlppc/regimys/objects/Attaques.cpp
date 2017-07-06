@@ -187,7 +187,7 @@ int Balayage::effetAvant(OpMon &atk, OpMon &def) {
 }
 
 int Berceuse::effetApres(OpMon &atk, OpMon &def) {
-    if (def.setStatus(Status::SOMMEIL)) {
+    if (def.setStatus(Status::SLEEPING)) {
 
     } else {
 
@@ -198,7 +198,7 @@ int Berceuse::effetApres(OpMon &atk, OpMon &def) {
 int Blizzard::effetApres(OpMon &atk, OpMon &def) {
     if(Utils::randU(10) == 2) {
         //Texte
-        def.setStatus(Status::GEL);
+        def.setStatus(Status::FROZEN);
     }
 }
 
@@ -237,7 +237,7 @@ int BullesDo::effetApres(OpMon &atk, OpMon &def) {
 int CageEclair::effetApres(OpMon &atk, OpMon &def) {
     if (def.getType1()==Type::ELECTRIQUE || def.getType2()==Type::ELECTRIQUE) {
     } else {
-        if(def.setStatus(Status::PARALYSIE)) {
+        if(def.setStatus(Status::PARALYSED)) {
         } else {
         }
     }
@@ -288,7 +288,7 @@ int ComboGriffe::effetApres(OpMon &atk, OpMon &def) {
 int Conversion::effetApres(OpMon &atk, OpMon &def) {
     Attaque **tab = atk.getAttaques();
     atk.setType1(tab[0]->getType());
-    atk.setType2(Type::AUCUN);
+    atk.setType2(Type::NOTHING);
     return 0;
 }
 
@@ -336,7 +336,7 @@ int CrocFatal::effetAvant(OpMon &atk, OpMon &def) {
 
 int CrocFeu::effetApres(OpMon &atk, OpMon &def) {
     if(Utils::randU(10) ==5) {
-        if(def.setStatus(Status::BRULURE)) {
+        if(def.setStatus(Status::BURNING)) {
 
         }
     }
@@ -376,7 +376,7 @@ int DanseLames::effetApres(OpMon &atk, OpMon &def) {
 
 int Deflagration::effetApres(OpMon &atk, OpMon &def) {
     if(Utils::randU(10) == 5) {
-        if(def.setStatus(Status::BRULURE)) {
+        if(def.setStatus(Status::BURNING)) {
 
         }
     }
@@ -388,13 +388,13 @@ int Destruction::effetApres(OpMon &atk, OpMon &def) {
 
 int Detritus::effetApres(OpMon &atk, OpMon &def) {
     if(Utils::randU(10) < 3) {
-        if(def.setStatus(Status::POISON)) {
+        if(def.setStatus(Status::POISONED)) {
         }
     }
 }
 
 int Devoreve::effetAvant(OpMon &atk, OpMon &def) {
-    if(!(def.getStatus() == Status::SOMMEIL)) {
+    if(!(def.getStatus() == Status::SLEEPING)) {
 
     }
 }
@@ -405,12 +405,12 @@ int Devoreve::effetApres(OpMon &atk, OpMon &def) {
 
 int DoubleDard::effetApres(OpMon &atk, OpMon &def) {
     if(Utils::randU(10) < 2) {
-        def.setStatus(Status::POISON);
+        def.setStatus(Status::POISONED);
     }
     if(def.getPV() <= 0) {
         def.attacked(pvPerdus);
         if(Utils::randU(10) < 2) {
-            def.setStatus(Status::POISON);
+            def.setStatus(Status::POISONED);
         }
     }
 }
