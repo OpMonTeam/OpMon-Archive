@@ -35,26 +35,26 @@ public:
 /**
 Classe définissant une carte d'un lieu en particulier
 */
-class Plan {
+class Map {
 private:
-    sf::Texture* couche1;
-    sf::Texture* couche2;
+    sf::Texture* layer1;
+    sf::Texture* layer2;
     sf::Music *fond;
     //Event events;
     int w;
     int h;
-    sf::Texture* couche3;
+    sf::Texture* layer3;
     int **passTab;
     /**Le constructeur de copie ne doit pas etre utilsé.
     Il est donc en privé. Si tout de meme cette protection est inéfficace,
     aucune definition n'est fournise de ce constructeur.*/
-    Plan(Plan const& toCopy);
+    Map(Map const& toCopy);
 
     std::vector<Event*> events;
 
 public:
-    Plan(sf::Texture couche1, sf::Texture couche2, sf::Texture couche3, int w, int h, std::string filename, sf::Music* fond);
-    ~Plan();
+    Map(sf::Texture layer1, sf::Texture layer2, sf::Texture layer3, int w, int h, std::string filename, sf::Music* fond);
+    ~Map();
     int getH() const {
         return h;
     }
@@ -64,14 +64,14 @@ public:
     int** getPassTab() const {
         return passTab;
     }
-    sf::Texture* getCouche1()  {
-        return couche1;
+    sf::Texture* getLayer1()  {
+        return layer1;
     }
-    sf::Texture* getCouche2()  {
-        return couche2;
+    sf::Texture* getLayer2()  {
+        return layer2;
     }
-    sf::Texture* getCouche3()  {
-        return couche3;
+    sf::Texture* getLayer3()  {
+        return layer3;
     }
     sf::Music* getFond() {
         return fond;

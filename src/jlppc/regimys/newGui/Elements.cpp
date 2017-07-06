@@ -8,10 +8,10 @@
 
 UNS
 
-Plan::Plan(sf::Texture couche1, sf::Texture couche2, sf::Texture couche3, int w, int h, std::string filename, sf::Music* fond) {
-    this->couche1 = new sf::Texture(couche1);
-    this->couche2 = new sf::Texture(couche2);
-    this->couche3 = new sf::Texture(couche3);
+Map::Map(sf::Texture layer1, sf::Texture layer2, sf::Texture layer3, int w, int h, std::string filename, sf::Music* fond) {
+    this->layer1 = new sf::Texture(layer1);
+    this->layer2 = new sf::Texture(layer2);
+    this->layer3 = new sf::Texture(layer3);
     this->fond = fond;
     if(!fond->getLoop()){
         fond->setLoop(true);
@@ -33,20 +33,20 @@ Plan::Plan(sf::Texture couche1, sf::Texture couche2, sf::Texture couche3, int w,
 
 }
 
-Plan::~Plan() {
+Map::~Map() {
     for(int i = 0; i < h; i++){
         free(passTab[i]);
     }
     free(passTab);
-    delete(couche1);
-    delete(couche2);
-    delete(couche3);
+    delete(layer1);
+    delete(layer2);
+    delete(layer3);
     for(Event* event : events){
         delete(event);
     }
 }
 
-std::vector<Event*> Plan::getEvent(sf::Vector2i position){
+std::vector<Event*> Map::getEvent(sf::Vector2i position){
         std::vector<Event*> toReturn;
         FOR_EACH(Event*, events, events.size(), {)
             if((*objActuel)->getPosition().x CASES  == position.x && (*objActuel)->getPosition().y CASES == position.y){
@@ -56,7 +56,7 @@ std::vector<Event*> Plan::getEvent(sf::Vector2i position){
         return toReturn;
 }
 
-void Plan::updateEvents(Player &player){
+void Map::updateEvents(Player &player){
     for(Event* event : events){
         event->update(player);
         MainFrame::frame.draw(*(event->getSprite()));
@@ -64,7 +64,7 @@ void Plan::updateEvents(Player &player){
 }
 
 
-/*Plan::~Plan(){
+/*Map::~Map(){
     for(unsigned int i = 0; i < 32; i++){
         for(unsigned int j = 0; j < 32; j++){
             delete(events[i][j]);

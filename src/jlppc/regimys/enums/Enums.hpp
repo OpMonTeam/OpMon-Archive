@@ -21,14 +21,14 @@ Enumère les status des Pokémons
 */
 //->Enum
 namespace Status {
-const int BRULURE = 0, PARALYSIE = 1, SOMMEIL = 2, GEL = 3, POISON = 4, AUCUN = 5;
+const int BURNING = 0, PARALYSED = 1, SLEEPING = 2, FROZEN = 3, POISONED = 4, NOTHING = 5;
 };
 /**
 Enumère les statistiques des Pokémons
 */
 //->Enum
 namespace Stats {
-const int ATK(6), DEF(1), ATKSPE(2), DEFSPE(3), VIT(4), PV(5), RIEN(0);
+const int ATK(6), DEF(1), ATKSPE(2), DEFSPE(3), VIT(4), PV(5), NOTHING(0);
 };
 /**
 Enumère les catégories du sac
@@ -42,7 +42,7 @@ Enumère les types
 */
 //->Enum
 namespace Type {
-const int EAU = 3, FEU = 6, PLANTE = 10, ELECTRIQUE = 4, PSY = 12, TENEBRES = 16, DRAGON = 2, COMBAT = 1, ROCHE = 13, SOL = 14, NORMAL = 9, FEE = 5, SPECTRE = 15, POISON = 11, ACIER = 0, INSECTE = 8, VOL = 17, GLACE = 7, AUCUN = -1;
+const int EAU = 3, FEU = 6, PLANTE = 10, ELECTRIQUE = 4, PSY = 12, TENEBRES = 16, DRAGON = 2, COMBAT = 1, ROCHE = 13, SOL = 14, NORMAL = 9, FEE = 5, SPECTRE = 15, POISON = 11, ACIER = 0, INSECTE = 8, VOL = 17, GLACE = 7, NOTHING = -1;
 };
 /**
 Enumère les types de contacts entre un evènement et le joueur.
@@ -56,7 +56,7 @@ Enumère les directions des sprites.
 */
 //->Enum
 namespace Side {
-const int FACE = 0, DROITE = 1, GAUCHE = 2, DOS = 3;
+const int TO_DOWN = 0, TO_RIGHT = 1, TO_LEFT = 2, TO_UP = 3;
 }
 
 /**

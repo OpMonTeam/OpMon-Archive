@@ -164,7 +164,7 @@ OpMon::OpMon(string surnom, Espece *espece, int level, Attaque *attaque1, Attaqu
 }
 
 bool OpMon::captured(I_Opball const &Opball) {
-    int a = round((((3 * statPV - 2 * PV) * tauxCapture * Opball.getTauxCapture() * (status == Status::PARALYSIE || status == Status::POISON || status == Status::BRULURE ? 1.5 : (status == Status::GEL || status == Status::SOMMEIL ? 2 : 1))) / (3 * statPV)));
+    int a = round((((3 * statPV - 2 * PV) * tauxCapture * Opball.getTauxCapture() * (status == Status::PARALYSED || status == Status::POISONED || status == Status::BURNING ? 1.5 : (status == Status::FROZEN || status == Status::SLEEPING ? 2 : 1))) / (3 * statPV)));
     int b = round((pow(2, 16) - 1) * pow(a / (pow(2, 8) - 1), 0.25));
     int c[] = { Utils::randU(65535), Utils::randU(65535), Utils::randU(65535),
                 Utils::randU(65535)
@@ -301,7 +301,7 @@ void OpMon::getEvs(OpMon const &vaincu) {
                     pvEV++;
                 }
                 break;
-            case Stats::RIEN:
+            case Stats::NOTHING:
                 break;
             case Stats::VIT:
                 if (vitEV < 252) {
@@ -363,27 +363,27 @@ bool OpMon::itemUsed(Item *used) {
             heal(usedI->getPvHeal());
 
         }
-        if (usedI->isHealAll() && status == Status::AUCUN) {
-            setStatus(Status::AUCUN);
+        if (usedI->isHealAll() && status == Status::NOTHING) {
+            setStatus(Status::NOTHING);
 
-        } else if (usedI->getStatusHeald() != Status::AUCUN && status == usedI->getStatusHeald()) {
-            setStatus(Status::AUCUN);
+        } else if (usedI->getStatusHeald() != Status::NOTHING && status == usedI->getStatusHeald()) {
+            setStatus(Status::NOTHING);
             switch (usedI->getStatusHeald()) {
-            case Status::AUCUN:
+            case Status::NOTHING:
                 break;
-            case Status::BRULURE:
+            case Status::BURNING:
                 //keyout(key("status.brulure.heal"), surnom);
                 break;
-            case Status::GEL:
+            case Status::FROZEN:
                 //keyout(key("status.gel.heal"), surnom);
                 break;
-            case Status::PARALYSIE:
+            case Status::PARALYSED:
                 //keyout(key("status.para.heal"), surnom);
                 break;
-            case Status::POISON:
+            case Status::POISONED:
                 //keyout(key("status.poison.heal"), surnom);
                 break;
-            case Status::SOMMEIL:
+            case Status::SLEEPING:
                 //keyout(key("status.sommeil.heal"), surnom);
                 break;
             default:
@@ -1467,34 +1467,34 @@ bool OpMon::changeVIT(int power) {
 }
 
 bool OpMon::setStatus(int status) {
-    if (status == Status::BRULURE && this->status == Status::BRULURE) {
+    if (status == Status::BURNING && this->status == Status::BURNING) {
         //System.out.println(surnom + " est déjà  brulé!");
         return false;
-    } else if (status == Status::SOMMEIL && this->status == Status::SOMMEIL) {
+    } else if (status == Status::SLEEPING && this->status == Status::SLEEPING) {
         //System.out.println("Mais " + surnom + " dort déjà !");
         return false;
-    } else if (status == Status::PARALYSIE && this->status == Status::PARALYSIE) {
+    } else if (status == Status::PARALYSED && this->status == Status::PARALYSED) {
         //System.out.println(surnom + " est déjà  paralysé!");
         return false;
-    } else if (status == Status::GEL && this->status == Status::GEL) {
+    } else if (status == Status::FROZEN && this->status == Status::FROZEN) {
         //System.out.println(surnom + " est déjà  gelé!");
         return false;
-    } else if (status == Status::POISON && this->status == Status::POISON) {
+    } else if (status == Status::POISONED && this->status == Status::POISONED) {
         //System.out.println(surnom + " est déjà  empoisonné!");
         return false;
-    } else if (this->status != Status::AUCUN && status != Status::AUCUN) {
+    } else if (this->status != Status::NOTHING && status != Status::NOTHING) {
         //System.out.println("Mais " + surnom + " a déjà  un status!");
         return false;
-    } else if (status == Status::BRULURE) {
+    } else if (status == Status::BURNING) {
         changeATK(-1);
         atkChange++;
-    } else if (status == Status::AUCUN && this->status == Status::BRULURE) {
+    } else if (status == Status::NOTHING && this->status == Status::BURNING) {
         changeATK(1);
         atkChange--;
-    } else if (status == Status::PARALYSIE) {
+    } else if (status == Status::PARALYSED) {
         changeVIT(-1);
         vitChange++;
-    } else if (status == Status::AUCUN && this->status == Status::PARALYSIE) {
+    } else if (status == Status::NOTHING && this->status == Status::PARALYSED) {
         changeVIT(1);
         vitChange--;
     }

@@ -84,7 +84,7 @@ private:
     /**Attention : Cette variable contient les PV actuels du pokémon, la classe statPV contient les PV max*/
     int PV;
     //->WaitEnum->Status
-    int status = Status::AUCUN;
+    int status = Status::NOTHING;
     //->WaitEnum->Type
     int type1;
     //->WaitEnum->Type
