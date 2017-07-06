@@ -3,25 +3,21 @@
 #include "../start/main.hpp"
 #define FPS_TICKS 33
 #include <cmath>
-#define ppPosY ((personnage.getPosition().y / CASE_SIZE) - 8)
-#define ppPosX (((personnage.getPosition().x - 16) / CASE_SIZE) - 8)
+#define ppPosY ((character.getPosition().y / CASE_SIZE) - 8)
+#define ppPosX (((character.getPosition().x - 16) / CASE_SIZE) - 8)
 UNS
 namespace MainFrame {
 namespace Overworld {
 using namespace Side;
-/**
-actuel = actual (easy)
-*/
-Plan *actuel;
+
+Map *actual;
 sf::View camera;
-sf::Sprite* plans[3];
+sf::Sprite* maps[3];
 sf::Music* music;
-/**
-couche = layer in french
-*/
-sf::Sprite *couche1;
-sf::Sprite *couche2;
-sf::Sprite *couche3;
+
+sf::Sprite *layer1;
+sf::Sprite *layer2;
+sf::Sprite *layer3;
 
 bool justTp = false;
 int tpCount = 0;
@@ -37,38 +33,35 @@ int startFrames = 0;
 int animsCounter = 0;
 
 bool scrollock[2] = {false, false};
-int ppDir = FACE;
+int ppDir = TO_DOWN;
 
 bool scrolling = true;
 
 bool debugMode = false;
 bool printlayer[3] = {true, true, true};
 
-/**
-personnage = character in french
-*/
-sf::Sprite &personnage = Main::player.persSprite;
+sf::Sprite &character = Main::player.persSprite;
 
 void initVars() {
-    actuel =  Initializer::plans[0];
-    personnage = Main::player.getSprite();
-    personnage.setTexture(Initializer::texturePP[FACE]);
-    personnage.setPosition(8 CASES + 21 CASES - 16, 8 CASES + 14 CASES);
+    actual =  Initializer::maps[0];
+    character = Main::player.getSprite();
+    character.setTexture(Initializer::texturePP[TO_DOWN]);
+    character.setPosition(8 CASES + 21 CASES - 16, 8 CASES + 14 CASES);
     camera.setCenter(21 CASES, 14 CASES);
     camera.setSize(sf::Vector2f(16 CASES, 16 CASES));
 
-/*  plans[0] = actuel->getCouche1();
-    plans[1] = actuel->getCouche2();
-    plans[2] = actuel->getCouche3();*/
-    music = actuel->getFond();
+/*  maps[0] = actual->getLayer1();
+    maps[1] = actual->getLayer2();
+    maps[2] = actual->getLayer3();*/
+    music = actual->getFond();
     music->setLoop(true);
-    couche1 = new sf::Sprite();
-    couche2 = new sf::Sprite();
-    couche3 = new sf::Sprite();
-    couche1->setTexture(*actuel->getCouche1());
-    couche2->setTexture(*actuel->getCouche2());
-    couche3->setTexture(*actuel->getCouche3());
-    personnage.setScale(2, 2);
+    layer1 = new sf::Sprite();
+    layer2 = new sf::Sprite();
+    layer3 = new sf::Sprite();
+    layer1->setTexture(*actual->getLayer1());
+    layer2->setTexture(*actual->getLayer2());
+    layer3->setTexture(*actual->getLayer3());
+    character.setScale(2, 2);
 
 
 }
@@ -78,31 +71,31 @@ int tp(int toTp, sf::Vector2i pos, bool scroll){
         moving = -1;
         anim = -1;
     }
-    actuel = Initializer::plans[toTp];
-    if(actuel == NULL){
-        gererErreur("Erreur lors du changement de map : actuel == NULL", true);
+    actual = Initializer::maps[toTp];
+    if(actual == NULL){
+        gererErreur("Erreur lors du changement de map : actual == NULL", true);
     }
     scrolling = scroll;
-    personnage.setPosition(8 CASES + pos.x CASES - 16, 8 CASES + pos.y CASES);
+    character.setPosition(8 CASES + pos.x CASES - 16, 8 CASES + pos.y CASES);
     if(scrolling){
-        camera.setCenter(personnage.getPosition());
+        camera.setCenter(character.getPosition());
     }else{
-        camera.setCenter((actuel->getW() CASES) / 2, (actuel->getH() CASES) / 2);
+        camera.setCenter((actual->getW() CASES) / 2, (actual->getH() CASES) / 2);
     }
-    if(music != actuel->getFond()){
+    if(music != actual->getFond()){
         music->stop();
-        music = actuel->getFond();
+        music = actual->getFond();
         music->play();
     }
-    delete(couche1);
-    delete(couche2);
-    delete(couche3);
-    couche1 = new sf::Sprite();
-    couche2 = new sf::Sprite();
-    couche3 = new sf::Sprite();
-    couche1->setTexture(*actuel->getCouche1());
-    couche2->setTexture(*actuel->getCouche2());
-    couche3->setTexture(*actuel->getCouche3());
+    delete(layer1);
+    delete(layer2);
+    delete(layer3);
+    layer1 = new sf::Sprite();
+    layer2 = new sf::Sprite();
+    layer3 = new sf::Sprite();
+    layer1->setTexture(*actual->getLayer1());
+    layer2->setTexture(*actual->getLayer2());
+    layer3->setTexture(*actual->getLayer3());
     tpCount = 0;
     justTp = true;
     return 0;
@@ -111,13 +104,13 @@ int tp(int toTp, sf::Vector2i pos, bool scroll){
 void up() {
     if(anim == -1) {
         startFrames = frames;
-        anim = DOS;
-        ppDir = DOS;
+        anim = TO_UP;
+        ppDir = TO_UP;
         if(ppPosY - 1 >= -1){
-        if(actuel->getPassTab()[(int)(ppPosY + 1) - ((ppPosY + 1 <= 0) ? 0 : 1)][(int)ppPosX + 1] == 0) {
+        if(actual->getPassTab()[(int)(ppPosY + 1) - ((ppPosY + 1 <= 0) ? 0 : 1)][(int)ppPosX + 1] == 0) {
             //Ensuite faudra faire la verif du passages des events
 
-                moving = DOS;
+                moving = TO_UP;
             }
 
         }
@@ -127,13 +120,13 @@ void up() {
 void down() {
     if(anim == -1) {//Si une animation n'est pas déjà en cours
         startFrames = frames;
-        anim = FACE;
-        ppDir = FACE;
-        if(ppPosY + 1 < actuel->getH() - 1){
-        if(actuel->getPassTab()[(int)(ppPosY + 1) + 1][(int)ppPosX + 1] == 0) {//Vérification des boites de collisions
+        anim = TO_DOWN;
+        ppDir = TO_DOWN;
+        if(ppPosY + 1 < actual->getH() - 1){
+        if(actual->getPassTab()[(int)(ppPosY + 1) + 1][(int)ppPosX + 1] == 0) {//Vérification des boites de collisions
             //TODO : Ensuite faudra faire la verif du passages des events
 
-                moving = FACE;
+                moving = TO_DOWN;
             }
 
         }
@@ -143,13 +136,13 @@ void down() {
 void right() {
     if(anim == -1) {
         startFrames = frames;
-        anim = DROITE;
-        ppDir = DROITE;
-        if(ppPosX + 1 < actuel->getW() - 1){
-        if(actuel->getPassTab()[(int)(ppPosY + 1)][(int)(ppPosX + 1) + 1] == 0) {
+        anim = TO_RIGHT;
+        ppDir = TO_RIGHT;
+        if(ppPosX + 1 < actual->getW() - 1){
+        if(actual->getPassTab()[(int)(ppPosY + 1)][(int)(ppPosX + 1) + 1] == 0) {
             //Ensuite faudra faire la verif du passages des events
 
-                moving = DROITE;
+                moving = TO_RIGHT;
             }
         }
     }
@@ -159,13 +152,13 @@ void right() {
 void left() {
     if(anim == -1) {
         startFrames = frames;
-        anim = GAUCHE;
-        ppDir = GAUCHE;
+        anim = TO_LEFT;
+        ppDir = TO_LEFT;
         if(ppPosX - 1 >= -1){
-        if(actuel->getPassTab()[(int)(ppPosY + 1)][(int)(ppPosX + 1) - ((ppPosX + 1 <= 0) ? 0 : 1)] == 0) {
+        if(actual->getPassTab()[(int)(ppPosY + 1)][(int)(ppPosX + 1) - ((ppPosX + 1 <= 0) ? 0 : 1)] == 0) {
             //Ensuite faudra faire la verif du passages des events
 
-                moving = GAUCHE;
+                moving = TO_LEFT;
             }
 
         }
@@ -179,9 +172,9 @@ int overworld() {
     frame.setView(camera);
     int returned = boucle();
     music->stop();
-    delete(couche1);
-    delete(couche2);
-    delete(couche3);
+    delete(layer1);
+    delete(layer2);
+    delete(layer3);
     return returned;
 }
 
@@ -269,33 +262,33 @@ int boucle() {
 
             frame.clear(sf::Color::Black);
             if((debugMode ? printlayer[0] : true)){
-                frame.draw(*couche1);
+                frame.draw(*layer1);
             }
             if((debugMode ? printlayer[1] : true)){
-                frame.draw(*couche2);
+                frame.draw(*layer2);
             }
-            actuel->updateEvents(Main::player);
+            actual->updateEvents(Main::player);
             if(anim != -1 && !anims) {
-                personnage.setTexture(Initializer::marchePP[anim]);
+                character.setTexture(Initializer::marchePP[anim]);
                 animsCounter++;
                 anims = animsCounter > 8;
 
             } else if(anim != -1 && anims) {
-                personnage.setTexture(Initializer::marchePP2[anim]);
+                character.setTexture(Initializer::marchePP2[anim]);
                 animsCounter++;
                 if(animsCounter > 16) {
                     anims = false;
                     animsCounter = 0;
                 }
             } else if(anim == -1){
-               personnage.setTexture(Initializer::texturePP[ppDir]);
+               character.setTexture(Initializer::texturePP[ppDir]);
             }
-            frame.draw(personnage);
+            frame.draw(character);
             if((debugMode ? printlayer[2] : true)){
-                frame.draw(*couche3);
+                frame.draw(*layer3);
             }
             if(scrolling && !debugMode){
-                    camera.setCenter(personnage.getPosition().x + 16, personnage.getPosition().y + 16);
+                    camera.setCenter(character.getPosition().x + 16, character.getPosition().y + 16);
             }
             frame.setView(camera);
             if(debugMode){
@@ -309,24 +302,24 @@ int boucle() {
                     int lx = ppPosX;
                     int ly = ppPosY;
                     switch(ppDir){
-                        case DOS:
+                        case TO_UP:
                             ly--;
                             break;
-                        case FACE:
+                        case TO_DOWN:
                             ly++;
                             break;
-                        case GAUCHE:
+                        case TO_LEFT:
                             lx--;
                             break;
-                        case DROITE:
+                        case TO_RIGHT:
                             lx++;
                             break;
                         default:
                             break;
                     }
-                    vector<Event*> events = actuel->getEvent(sf::Vector2i(lx CASES, ly CASES));
+                    vector<Event*> events = actual->getEvent(sf::Vector2i(lx CASES, ly CASES));
                     if(events.size() == 0){
-                        events = actuel->getEvent(sf::Vector2i(ppPosX CASES, ppPosY CASES));
+                        events = actual->getEvent(sf::Vector2i(ppPosX CASES, ppPosY CASES));
                     }
                     if(events.size() > 0){
                         for(unsigned int i = 0; i < events.size(); i++){
@@ -337,60 +330,60 @@ int boucle() {
                     }
                 }
             }
-            if(anim == DOS) {
+            if(anim == TO_UP) {
                 if(frames - startFrames >= 7) {
-                        if(moving == DOS){
-                    personnage.move(0, -4);
+                        if(moving == TO_UP){
+                    character.move(0, -4);
                         }
                     anim = -1;
                     moving = -1;
                 } else {
-                    if(moving == DOS) {
-                        personnage.move(0, -4);
+                    if(moving == TO_UP) {
+                        character.move(0, -4);
 
 
                     }
                 }
             }
-            if(anim == FACE) {
+            if(anim == TO_DOWN) {
                 if(frames - startFrames >= 7) {
-                        if(moving == FACE){
-                        personnage.move(0, 4);
+                        if(moving == TO_DOWN){
+                        character.move(0, 4);
                 }
                     anim = -1;
                     moving = -1;
                 } else {
-                    if(moving == FACE) {
-                        personnage.move(0, 4);
+                    if(moving == TO_DOWN) {
+                        character.move(0, 4);
                     }
                 }
             }
 
-            if(anim == GAUCHE) {
+            if(anim == TO_LEFT) {
                 if(frames - startFrames >= 7) {
-                    if(moving == GAUCHE){
-                        personnage.move(-4, 0);
+                    if(moving == TO_LEFT){
+                        character.move(-4, 0);
                     }
 
                     anim = -1;
                     moving = -1;
                 } else {
-                    if(moving == GAUCHE) {
-                        personnage.move(-4, 0);
+                    if(moving == TO_LEFT) {
+                        character.move(-4, 0);
                     }
                 }
             }
 
-            if(anim == DROITE) {
+            if(anim == TO_RIGHT) {
                 if(frames - startFrames >= 7) {
-                        if(moving == DROITE){
-                        personnage.move(4, 0);
+                        if(moving == TO_RIGHT){
+                        character.move(4, 0);
                         }
                     anim = -1;
                     moving = -1;
                 } else {
-                    if(moving == DROITE) {
-                        personnage.move(4, 0);
+                    if(moving == TO_RIGHT) {
+                        character.move(4, 0);
 
 
                     }
@@ -441,24 +434,24 @@ int boucleDialog(vector<sf::String> dialogs){
             }
             ECHAP
 
-            frame.draw(*couche1);
-            frame.draw(*couche2);
-            for(Event* event : actuel->getEvents()){
+            frame.draw(*layer1);
+            frame.draw(*layer2);
+            for(Event* event : actual->getEvents()){
                 frame.draw(*event->getSprite());
             }
             if(anim != -1 && !anims) {
-                personnage.setTexture(Initializer::marchePP[anim]);
+                character.setTexture(Initializer::marchePP[anim]);
                 animsCounter++;
             } else if(anim != -1 && anims) {
-                personnage.setTexture(Initializer::marchePP2[anim]);
+                character.setTexture(Initializer::marchePP2[anim]);
                 animsCounter++;
             } else if(anim == -1){
-               personnage.setTexture(Initializer::texturePP[ppDir]);
+               character.setTexture(Initializer::texturePP[ppDir]);
             }
-            frame.draw(personnage);
-            frame.draw(*couche3);
+            frame.draw(character);
+            frame.draw(*layer3);
             if(scrolling){
-                    camera.setCenter(personnage.getPosition().x + 16, personnage.getPosition().y + 16);
+                    camera.setCenter(character.getPosition().x + 16, character.getPosition().y + 16);
             }
             frame.setView(frame.getDefaultView());
             frame.setView(camera);

@@ -39,7 +39,7 @@ public:
     }
     const int evolID = 6;
 private:
-    //Plan carteDuLieu;
+    //Map carteDuLieu;
 };
 
 class E_Level: public Evolution {

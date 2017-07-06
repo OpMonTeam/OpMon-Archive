@@ -11,7 +11,7 @@ void Equipe::heal() {
         if (equipe[i]->falsif != PNULL->falsif) {
             equipe[i]->heal(equipe[i]->getStatPV());
             equipe[i]->confus = false;
-            equipe[i]->setStatus(Status::AUCUN);
+            equipe[i]->setStatus(Status::NOTHING);
         }
 
     }

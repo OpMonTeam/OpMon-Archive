@@ -9,12 +9,12 @@ UNS
 Item *Item::itemsLst[ITEM_NUMBER] = {0};
 
 void initItems() {
-    /*Item::itemsLst[0] = new I_Heal("Baie Oran", true, true, true, BagCat::BAIES, 10, Status::AUCUN, false, 0);
-    Item::itemsLst[1] = new I_Heal("Baie Sitrus", true, true, true, BagCat::BAIES, 30, Status::AUCUN, false, 1);
+    /*Item::itemsLst[0] = new I_Heal("Baie Oran", true, true, true, BagCat::BAIES, 10, Status::NOTHING, false, 0);
+    Item::itemsLst[1] = new I_Heal("Baie Sitrus", true, true, true, BagCat::BAIES, 30, Status::NOTHING, false, 1);
     Item::itemsLst[2] = new I_Heal("Baie Mepo", true, true, true, BagCat::BAIES, 10, false, 2);
-    Item::itemsLst[3] = new I_Heal("Baie Prine", true, true, true, BagCat::BAIES, 0, Status::POISON, true, 3);
-    Item::itemsLst[4] = new I_Heal("Baie Willia", true, true, true, BagCat::BAIES, 0, Status::GEL, false, 4);
-    Item::itemsLst[5] = new I_Heal("Baie Fraive", true, true, true, BagCat::BAIES, 0, Status::BRULURE, false, 5);
+    Item::itemsLst[3] = new I_Heal("Baie Prine", true, true, true, BagCat::BAIES, 0, Status::POISONED, true, 3);
+    Item::itemsLst[4] = new I_Heal("Baie Willia", true, true, true, BagCat::BAIES, 0, Status::FROZEN, false, 4);
+    Item::itemsLst[5] = new I_Heal("Baie Fraive", true, true, true, BagCat::BAIES, 0, Status::BURNING, false, 5);
     //Jusqu'a 24 : Baies (Pas de baies de soin conditionnel, pas de baies autres
     Item::itemsLst[25] = new I_Heal("Défense +", Stats::DEF, 25);
     //Jusqu'a 31 : Stats+ sauf Muscle +
@@ -32,7 +32,7 @@ void initItems() {
     //Jusqu'a 99 : Items de soin de PP
     //itemsLst[] = new const I_Heal("Rappel", TODO)) Items de Rappel a faire
     //Jusqu'a 103 : Items de Rappel
-    Item::itemsLst[104] = new I_Heal("Galette Illumis", true, true, true, BagCat::SOIN, 0, Status::POISON, true, 104);
+    Item::itemsLst[104] = new I_Heal("Galette Illumis", true, true, true, BagCat::SOIN, 0, Status::POISONED, true, 104);
     //Jusqu'a 114 : Items de Soin de Status
     Item::itemsLst[115] = new I_Opball("Poké Ball", 1, 115);
     //Jusqu'a 124 : Balls classiques (+ Memoire Ball + HonorC:\Users\_le_pichon\Downloads\PPR\srcCpp\jlppc\regimys\objects\item\Item.cpp|66|error: expected type-specifier before 'I_Heal'| ball + Reve ball)

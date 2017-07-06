@@ -53,7 +53,7 @@ public:
     void save();
     Player(std::ifstream &in, std::string &name);
 
-    void setPlan(int ID){planID = ID;}
+    void setMap(int ID){mapID = ID;}
     sf::Sprite& getSprite(){return persSprite;}
     /**Translation : pers(onnage) = character
     Sorry if I put it in public, I need it for in Overworld
@@ -70,7 +70,7 @@ private:
     std::vector<OpMon*> pc = std::vector<OpMon*>();
     Equipe equipe = Equipe("temp");
 
-    int planID = 0;
+    int mapID = 0;
 };
 
 #endif /* SRCCPP_JLPPC_REGIMYS_PLAYERCORE_PLAYER_HPP_ */

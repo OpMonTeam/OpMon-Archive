@@ -93,8 +93,8 @@ int quit(int returne) {
     }
     OptionsSave::saveParams(optSave);//Sauvegarde des paramètres
     rlog << PRINT_TICKS << "Fermeture des ressources." << endl;
-    for(Plan* plan : Initializer::plans){
-        delete(plan);
+    for(Map* map : Initializer::maps){
+        delete(map);
     }
     for(sf::Music* mus : Initializer::townMusics){
         delete(mus);
