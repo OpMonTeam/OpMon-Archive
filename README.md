@@ -13,8 +13,8 @@ General Informations<br/>
 OPMon is a pokemon inspirated game project imaginated in 2012 and started in september 2016. This game is totally open source, allowing to the fans to come realize their dreams! You can add OpMons, attacks, items, and many other things! You just have to submit your modifications and maybe we'll add them to the game! And if you do a lot of good modifications, you can become collaborator!<br/><br/>
 Contact us : jlppcprog@ntymail.com for bugs, lags or about the code | evandib@gmail.com for sprites, the graphics, designs or graphics bugs<br/><br/>
 You can ask a question in the "F.A.Q" section of this wiki too!<br/>
-The game is actually in french, but if you talk french and english, you can help translate the game! And if the english translation of this presentation text contains errors, don't hesitate to notice us!<br/>
-If there are problems to understand the commits, because it's all in french, don't hesitate to ask too!<br/><br/>
+English is not our native language, we do our best! If you see some errors, don't hesitate to tell us, so we won't make them again!<br/>
+If there are problems to understand the old commits or monthly reports, because it's all in french, don't hesitate to ask!<br/><br/>
 <a href="https://github.com/jlppc/OpMon/wiki/Journal-du-développement">Development Journal (in French) </a><br/>
 Work in progress now : The events
 <br/>
