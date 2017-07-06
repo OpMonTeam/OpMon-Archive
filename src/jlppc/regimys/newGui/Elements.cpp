@@ -8,7 +8,7 @@
 
 UNS
 
-Map::Map(sf::Texture layer1, sf::Texture layer2, sf::Texture layer3, int w, int h, std::string filename, sf::Music* fond, std::vector<std::vector<sf::Texture> > animatedElements) {
+Map::Map(sf::Texture layer1, sf::Texture layer2, sf::Texture layer3, int w, int h, std::string filename, sf::Music* fond, std::vector<std::vector<sf::Texture> > animatedElements, std::vector<sf::Vector2f> elementsPos) {
     this->layer1 = new sf::Texture(layer1);
     this->layer2 = new sf::Texture(layer2);
     this->layer3 = new sf::Texture(layer3);
@@ -17,8 +17,17 @@ Map::Map(sf::Texture layer1, sf::Texture layer2, sf::Texture layer3, int w, int 
         fond->setLoop(true);
     }
     this->animatedElements = animatedElements;
+    this->elementsPos = elementsPos;
+
+    if(animatedElements.size() != elementsPos.size()){
+        gererErreur("Error: Map() - elementsPos size is not equal to animatedElements.", true);
+    }
+
     for(unsigned int i = 0; i < animatedElements.size(); i++){
         elementsCount.push_back(0);
+        elementsSprites.push_back(sf::Sprite());
+        elementsSprites[i].setTexture(animatedElements[i][0]);
+        elementsSprites[i].setPosition(elementsPos[i]);
     }
     this->w = w;
     this->h = h;
@@ -73,7 +82,8 @@ void Map::updateElements(sf::RenderTexture &frame){
         if(elementsCount[i] >= animatedElements[i].size()){
             elementsCount[i] = 0;
         }
-        frame.draw(animatedElements[i][elementsCount]);
+        elementsSprites[i].setTexture(animatedElements[i][elementsCount[i]]);
+        frame.draw(elementsSprites[i]);
     }
 }
 

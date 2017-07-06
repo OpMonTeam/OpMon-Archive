@@ -17,21 +17,6 @@ Fichier contenant des éléments utiles
 
 class Event;
 
-/*class Event{
-private:
-    //->WaitEnum->ActionType
-    int actionType;
-    bool passable;
-    SDL_Texture *apparence;
-public:
-    virtual void action() = 0;
-    virtual void update() = 0;
-    Event(SDL_Texture *texture, bool passable, int actionType) : apparence(texture) {this->passable = passable;this->actionType = actionType;}
-    bool isPassable(){return passable;}
-    int getActionType(){return actionType;}
-    SDL_Texture* getApparence() {return apparence;}
-};*/
-
 /**
 Classe définissant une carte d'un lieu en particulier
 */
@@ -53,10 +38,12 @@ private:
     std::vector<Event*> events;
 
     std::vector<std::vector<sf::Texture> > animatedElements;
+    std::vector<sf::Vector2f> elementsPos;
+    std::vector<sf::Sprite> elementsSprites;
     std::vector<int> elementsCount;
 
 public:
-    Map(sf::Texture layer1, sf::Texture layer2, sf::Texture layer3, int w, int h, std::string filename, sf::Music* fond, std::vector<std::vector<sf::Texture> > animatedElements = std::vector<std::vector<sf::Texture> >());
+    Map(sf::Texture layer1, sf::Texture layer2, sf::Texture layer3, int w, int h, std::string filename, sf::Music* fond, std::vector<std::vector<sf::Texture> > animatedElements = std::vector<std::vector<sf::Texture> >(), std::vector<sf::Vector2f> elementsPos = std::vector<sf::Vector2f>());
     ~Map();
     int getH() const {
         return h;
