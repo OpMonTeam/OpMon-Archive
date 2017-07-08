@@ -284,9 +284,11 @@ int boucle() {
                character.setTexture(Initializer::texturePP[ppDir]);
             }
             frame.draw(character);
+
             if((debugMode ? printlayer[2] : true)){
                 frame.draw(*layer3);
             }
+            actual->updateElements(MainFrame::frame);
             if(scrolling && !debugMode){
                     camera.setCenter(character.getPosition().x + 16, character.getPosition().y + 16);
             }
