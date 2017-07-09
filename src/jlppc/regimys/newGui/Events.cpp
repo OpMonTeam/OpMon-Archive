@@ -16,10 +16,12 @@ position(position), passable(passable){
     sprite->setPosition(posMap);
 }
 
+
+
 namespace Events{
 
 namespace DoorType{
-    const std::vector<sf::Texture>& NORMAL = Initializer::doorsTextures[0], SHOP = Initializer::doorsTextures[1];
+    std::vector<sf::Texture> NORMAL, SHOP;
 }
 
 TPEvent::TPEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2f position, sf::Vector2i tpPos, int mapID, bool passable):
@@ -119,4 +121,9 @@ void LockedDoorEvent::update(Player &player){
 std::vector<std::string> LockedDoorEvent::keysLock = std::vector<std::string>();
 
 
+}
+
+void initEnumsEvents(){
+    Events::DoorType::NORMAL = Initializer::doorsTextures[0];
+    Events::DoorType::SHOP = Initializer::doorsTextures[1];
 }
