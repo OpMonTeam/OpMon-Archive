@@ -5,7 +5,9 @@
 #include "../save/Save.hpp"
 #include <sstream>
 #include "item/IHeal.hpp"
+#include "Attaques.hpp"
 #include <fstream>
+#include "../start/Initializer.hpp"
 
 UNS
 
@@ -1587,8 +1589,7 @@ string OpMon::save() {
     }
 
 }
-#include "Attaques.hpp"
-#include "../start/Initializer.hpp"
+
 OpMon::OpMon(ifstream &in) {
     this->surnom = Save::readLine(in);
     if(surnom != "NULL") {

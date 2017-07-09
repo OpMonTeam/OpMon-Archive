@@ -10,6 +10,7 @@
 #include "../newGui/Animations.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include "../newGui/Events.hpp"
 
 #define ATK push_back(Stats::ATK)
 #define ATKSPE push_back(Stats::ATKSPE)
@@ -25,6 +26,7 @@ std::vector<int> evs[OP_NUMBER] = {};
 Espece *listeOp[OP_NUMBER] = {};
 std::vector<Map*> maps;
 std::vector<sf::Music*> townMusics;
+std::vector<std::vector<sf::Texture> > doorsTextures;
 template<typename T>void pb(std::vector<T> &vecteur, T tab[], int longeurTab) {
     for (unsigned int i = 0; i < longeurTab; i++) {
         vecteur.push_back(tab[i]);
@@ -856,7 +858,27 @@ void initTextures(){
     marchePP2[TO_DOWN].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp20.png");
     marchePP2[TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp21.png");
     marchePP2[TO_LEFT].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp22.png");
-    marchePP2[TO_UP].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp23.png");;
+    marchePP2[TO_UP].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp23.png");
+
+    std::vector<sf::Texture> basicDoor;
+    for(unsigned int i = 0; i < 4; i++){
+        ostringstream oss;
+        oss << RESSOURCES_PATH << "animations\\basicdoor\\basic_door" << i + 1 << ".png";
+        sf::Texture txtr;
+        txtr.loadFromFile(oss.str());
+        basicDoor.push_back(basicDoor);
+    }
+    doorsTextures.push_back(txtr);
+
+    std::vector<sf::Texture> shopDoor;
+    for(unsigned int i = 0; i < 4; i++){
+        ostringstream oss;
+        oss << RESSOURCES_PATH << "animations\\basicdoor\\shop_door" << i + 1 << ".png";
+        sf::Texture txtr;
+        txtr.loadFromFile(oss.str());
+        shopDoor.push_back(txtr);
+    }
+    doorsTextures.push_back(shopDoor);
 #else
     texturePP[TO_DOWN].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp0.png");
     texturePP[TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp1.png");
@@ -870,7 +892,27 @@ void initTextures(){
     marchePP2[TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp21.png");
     marchePP2[TO_LEFT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp22.png");
     marchePP2[TO_UP].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp23.png");
-    #endif // _WIN32
+
+    std::vector<sf::Texture> basicDoor;
+    for(unsigned int i = 0; i < 4; i++){
+        std::ostringstream oss;
+        oss << RESSOURCES_PATH << "animations/basicdoor/basic_door" << i + 1 << ".png";
+        sf::Texture txtr;
+        txtr.loadFromFile(oss.str());
+        basicDoor.push_back(txtr);
+    }
+    doorsTextures.push_back(basicDoor);
+
+    std::vector<sf::Texture> shopDoor;
+    for(unsigned int i = 0; i < 4; i++){
+        std::ostringstream oss;
+        oss << RESSOURCES_PATH << "animations/basicdoor/shop_door" << i + 1 << ".png";
+        sf::Texture txtr;
+        txtr.loadFromFile(oss.str());
+        shopDoor.push_back(txtr);
+    }
+    doorsTextures.push_back(shopDoor);
+#endif // _WIN32
 }
 
 void initSprites() {
