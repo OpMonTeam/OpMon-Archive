@@ -906,13 +906,14 @@ void initTextures(){
     std::vector<sf::Texture> shopDoor;
     for(unsigned int i = 0; i < 4; i++){
         std::ostringstream oss;
-        oss << RESSOURCES_PATH << "animations/basicdoor/shop_door" << i + 1 << ".png";
+        oss << RESSOURCES_PATH << "animations/shopdoor/shop_door" << i + 1 << ".png";
         sf::Texture txtr;
         txtr.loadFromFile(oss.str());
         shopDoor.push_back(txtr);
     }
     doorsTextures.push_back(shopDoor);
 #endif // _WIN32
+initEnumsEvents();
 }
 
 void initSprites() {

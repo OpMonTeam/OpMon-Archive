@@ -41,6 +41,7 @@ class Event{
     virtual sf::Vector2f getPosition(){return position;}
 };
 
+void initEnumsEvents();
 /**
 Contient tout ce qui est en rapport avec les evenements
 */
@@ -66,7 +67,7 @@ namespace Events {
         virtual void action(Player &player);
     };
     namespace DoorType{
-        extern const std::vector<sf::Texture>& NORMAL, SHOP;
+        extern std::vector<sf::Texture> NORMAL, SHOP;
     }
     class DoorEvent : public TPEvent{
         protected:
