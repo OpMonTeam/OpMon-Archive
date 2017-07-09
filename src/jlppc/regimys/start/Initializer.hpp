@@ -21,6 +21,7 @@ Contient la définition des methodes qui permettent d'initialiser les éléments
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "../newGui/Elements.hpp"
+class Map;
 //->NoDoc
 namespace Initializer {
 extern Espece *listeOp[OP_NUMBER];
@@ -32,6 +33,8 @@ extern sf::Texture texturePP[4];
 extern sf::Texture marchePP[4];
 extern sf::Texture marchePP2[4];
 extern sf::Texture mapsFe[3];
+
+extern std::vector<std::vector<sf::Texture> > doorsTextures;
 //std::string backgrounds[];
 extern std::vector<int> evs[OP_NUMBER];
 void initEvs();

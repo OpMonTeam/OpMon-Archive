@@ -18,14 +18,18 @@ position(position), passable(passable){
 
 namespace Events{
 
+namespace DoorType{
+    const std::vector<sf::Texture>& NORMAL = Initializer::doorsTextures[0], SHOP = Initializer::doorsTextures[1];
+}
+
 TPEvent::TPEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2f position, sf::Vector2i tpPos, int mapID, bool passable):
 Event(baseTexture, otherTextures, eventTrigger, position, passable), tpCoord(tpPos), mapID(mapID){
 
 }
 
-DoorEvent::DoorEvent(int doorType, sf::Vector2f position, sf::Vector2i tpPos, int mapID, int eventTrigger, bool passable):
-Event(selectDoorType(doorType), selectDoorTypeOther(doorType), eventTrigger, position, passable),
-TPEvent(selectDoorType(doorType), selectDoorTypeOther(doorType), eventTrigger, position, tpPos, mapID, passable){
+DoorEvent::DoorEvent(std::vector<sf::Texture>& doorType, sf::Vector2f position, sf::Vector2i tpPos, int mapID, int eventTrigger, bool passable):
+Event(doorType[0], doorType, eventTrigger, position, passable),
+TPEvent(doorType[0], doorType, eventTrigger, position, tpPos, mapID, passable){
 
 }
 
@@ -41,7 +45,7 @@ void TalkingEvent::reloadKeys(){
     }
 }
 
-LockedDoorEvent::LockedDoorEvent(int doorType, Item* needed, sf::Vector2f position, sf::Vector2i tpPos, int mapID, int eventTrigger, bool consumeItem, bool passable) :
+LockedDoorEvent::LockedDoorEvent(std::vector<sf::Texture>& doorType, Item* needed, sf::Vector2f position, sf::Vector2i tpPos, int mapID, int eventTrigger, bool consumeItem, bool passable) :
 DoorEvent(doorType, position, tpPos, mapID, eventTrigger, passable),
 Event(this->baseTexture, this->otherTextures, eventTrigger, position, passable),
 TalkingEvent(this->baseTexture, this->otherTextures, position, LockedDoorEvent::keysLock, eventTrigger, passable),
@@ -70,13 +74,6 @@ void TPEvent::action(Player &player){
 
 void TPEvent::update(Player &player){
 
-}
-
-sf::Texture& DoorEvent::selectDoorType(int doorType){
-}
-
-std::vector<sf::Texture> DoorEvent::selectDoorTypeOther(int doorType){
-    return std::vector<sf::Texture>();
 }
 
 void DoorEvent::action(Player &player){

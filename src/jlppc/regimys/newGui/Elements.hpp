@@ -3,7 +3,7 @@ Elements.hpp
 Auteur : Jlppc
 Fichier sous licence GPL-3.0
 http://opmon-game.ga
-Fichier contenant des éléments utiles
+Fichier contenant des Ã©lÃ©ments utiles
 */
 #ifndef ELEMENTS_HPP
 #define ELEMENTS_HPP
@@ -12,7 +12,6 @@ Fichier contenant des éléments utiles
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 
-#include "Events.hpp"
 #include "../playercore/Player.hpp"
 
 class Event;
@@ -32,8 +31,8 @@ public:
     SDL_Texture* getApparence() {return apparence;}
 };*/
 
-/**
-Classe définissant une carte d'un lieu en particulier
+/**Åœ
+Classe dÃ©finissant une carte d'un lieu en particulier
 */
 class Map {
 private:
@@ -45,8 +44,8 @@ private:
     int h;
     sf::Texture* layer3;
     int **passTab;
-    /**Le constructeur de copie ne doit pas etre utilsé.
-    Il est donc en privé. Si tout de meme cette protection est inéfficace,
+    /**Le constructeur de copie ne doit pas etre utilsÃ©.
+    Il est donc en privÃ©. Si tout de meme cette protection est inÃ©fficace,
     aucune definition n'est fournise de ce constructeur.*/
     Map(Map const& toCopy);
 

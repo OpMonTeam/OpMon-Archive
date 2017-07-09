@@ -5,6 +5,7 @@
 #include <cmath>
 #define ppPosY ((character.getPosition().y / CASE_SIZE) - 8)
 #define ppPosX (((character.getPosition().x - 16) / CASE_SIZE) - 8)
+#include "Events.hpp"
 UNS
 namespace MainFrame {
 namespace Overworld {
