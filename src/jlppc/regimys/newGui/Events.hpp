@@ -11,7 +11,9 @@ Contient le namespace Events
 #include "MainFrame.hpp"
 #include "../enums/Enums.hpp"
 #include "../start/main.hpp"
+#include "../start/Initializer.hpp"
 #include "../objects/item/Item.hpp"
+
 /**
 Contient la base de tous les types d'events
 */
@@ -64,16 +66,15 @@ namespace Events {
         virtual void action(Player &player);
     };
     namespace DoorType{
-        const int NORMAL = 0, SHOP = 1;
+        extern const std::vector<sf::Texture>& NORMAL, SHOP;
     }
     class DoorEvent : public TPEvent{
         protected:
         //WaitEvent->DoorType
         int doorType;
         sf::Texture& selectDoorType(int doorType);
-        std::vector<sf::Texture> selectDoorTypeOther(int doorType);
         public:
-        DoorEvent(int doorType, sf::Vector2f position, sf::Vector2i tpPos, int mapID, int eventTrigger = 3, bool passable = true);
+        DoorEvent(std::vector<sf::Texture>& doorType, sf::Vector2f position, sf::Vector2i tpPos, int mapID, int eventTrigger = 3, bool passable = true);
         virtual void action(Player &player);
         virtual void update(Player &player);
     };
@@ -98,7 +99,7 @@ namespace Events {
         public:
         virtual void action(Player &player);
         virtual void update(Player &player);
-        LockedDoorEvent(int doorType, Item* needed, sf::Vector2f position, sf::Vector2i tpPos, int mapID, int eventTrigger = 0, bool consumeItem = false, bool passable = false);
+        LockedDoorEvent(std::vector<sf::Texture>& doorType, Item* needed, sf::Vector2f position, sf::Vector2i tpPos, int mapID, int eventTrigger = 0, bool consumeItem = false, bool passable = false);
     };
 
     namespace MoveStyle{

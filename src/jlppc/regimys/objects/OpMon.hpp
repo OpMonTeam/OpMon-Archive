@@ -17,6 +17,7 @@ Contient la d�finition du namepsace CalcCourbes et de la classe OpMon
 #include "item/Item.hpp"
 #include "item/IOpball.hpp"
 
+
 /**
 Namespace permettant de faire des calculs sur les courbes d'experience. D'ou son nom, j'ai envie de dire...
 */
