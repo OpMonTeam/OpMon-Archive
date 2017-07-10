@@ -32,7 +32,10 @@ Event(baseTexture, otherTextures, eventTrigger, position, passable), tpCoord(tpP
 DoorEvent::DoorEvent(std::vector<sf::Texture>& doorType, sf::Vector2f position, sf::Vector2i tpPos, int mapID, int eventTrigger, bool passable):
 Event(doorType[0], doorType, eventTrigger, position, passable),
 TPEvent(doorType[0], doorType, eventTrigger, position, tpPos, mapID, passable){
-
+    this->sprite->move(0, -6);
+    if(&doorType[0] == &DoorType::SHOP[0]){
+        this->sprite->move(-4, 0);
+    }
 }
 
 TalkingEvent::TalkingEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, sf::Vector2f position, std::vector<std::string> dialogKeys, int eventTrigger, bool passable):
