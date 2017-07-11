@@ -28,7 +28,7 @@ void down();
 void right();
 void left();
 
-int tp(int toTp, sf::Vector2i pos);
+int tp(int toTp, sf::Vector2i pos, bool scroll = true);
 
 extern Map *actual;
 extern sf::Sprite &character;
