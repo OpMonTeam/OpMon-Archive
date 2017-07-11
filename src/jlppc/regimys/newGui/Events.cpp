@@ -82,11 +82,21 @@ void TPEvent::update(Player &player){
 }
 
 void DoorEvent::action(Player &player){
-
+    animStarted = 0;
 }
 
 void DoorEvent::update(Player &player){
+    if(animStarted != -1){
+        animStarted++;
+        if(animStarted < 8 && (animStarted / 2)*2 == animStarted){
+            sprite->setTexture(otherTextures[animStarted / 2]);
+        }else if(animStarted > 16){
+            MainFrame::Overworld::tp(mapID, tpCoord);
+            animStarted = -1;
+            sprite->setTexture(otherTextures[0]);
+        }
 
+    }
 }
 
 void TalkingEvent::action(Player &player){

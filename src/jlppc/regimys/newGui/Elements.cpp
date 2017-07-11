@@ -49,10 +49,13 @@ Map::~Map() {
 
 std::vector<Event*> Map::getEvent(sf::Vector2i position){
         std::vector<Event*> toReturn;
-        FOR_EACH(Event*, events, events.size(), {)
-            if((*objActuel)->getPosition().x CASES  == position.x && (*objActuel)->getPosition().y CASES == position.y){
-                toReturn.push_back(*objActuel);
+        for(Event* event : events){
+            if(event->getPosition().x CASES  == position.x && event->getPosition().y CASES == position.y){
+                toReturn.push_back(event);
             }
+        }
+        FOR_EACH(Event*, events, events.size(), {)
+
         }
         return toReturn;
 }
@@ -63,6 +66,8 @@ void Map::updateEvents(Player &player){
         MainFrame::frame.draw(*(event->getSprite()));
     }
 }
+
+
 
 
 /*Map::~Map(){

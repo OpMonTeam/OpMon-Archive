@@ -6,6 +6,13 @@
 #define ppPosY ((character.getPosition().y / CASE_SIZE) - 8)
 #define ppPosX (((character.getPosition().x - 16) / CASE_SIZE) - 8)
 #include "Events.hpp"
+
+#ifndef _WIN32
+
+//#define DEBUG_REPORT
+
+#endif
+
 UNS
 namespace MainFrame {
 namespace Overworld {
@@ -108,10 +115,18 @@ void up() {
         anim = TO_UP;
         ppDir = TO_UP;
         if(ppPosY - 1 >= -1){
-        if(actual->getPassTab()[(int)(ppPosY + 1) - ((ppPosY + 1 <= 0) ? 0 : 1)][(int)ppPosX + 1] == 0) {
+            if(actual->getPassTab()[(int)(ppPosY + 1) - ((ppPosY + 1 <= 0) ? 0 : 1)][(int)ppPosX + 1] == 0) {
             //Ensuite faudra faire la verif du passages des events
 
                 moving = TO_UP;
+                std::vector<Event*> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY - 1) CASES));
+                if(nextEvents.size() > 0){
+                    for(Event* nextEvent : nextEvents){
+                        if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN){
+                            nextEvent->action(Main::player);
+                        }
+                    }
+                }
             }
 
         }
@@ -184,6 +199,17 @@ int boucle() {
     while(continuer) {
         if((GET_TICKS - ancientTick >= FPS_TICKS)) {
             frames++;
+            #ifdef DEBUG_REPORT
+            rerrLog << "[FRAME N°" << frames << "]" << endl;
+            rerrLog << "Boucle : Normal" << endl;
+            rerrLog << "Tick: " << ticks.getElapsedTime().asMilliseconds() << "ms" << endl;
+            rerrLog << "PlayerPosition: " << ppPosX << " - " << ppPosY << endl;
+            rerrLog << "Moving: " << moving << endl;
+            rerrLog << "Anim: " << anim << endl;
+            rerrLog << "PlayerDirection: " << ppDir << endl;
+            rerrLog << "DebugMode: " << debugMode << endl;
+            #endif
+
             //cout << "Position perso : P(" << ppPosX << ";" << ppPosY << ")" << endl;
             if(justTp){
                 tpCount++;
@@ -392,6 +418,7 @@ int boucle() {
             }
 
 
+
         } else {
             Utils::wait(FPS_TICKS - (GET_TICKS - ancientTick));
         }
@@ -479,6 +506,7 @@ int boucleDialog(vector<sf::String> dialogs){
             ANIM_ARROW
             frame.display();
             winRefresh();
+
 
 
         } else {
