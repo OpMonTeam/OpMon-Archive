@@ -905,7 +905,9 @@ void initMaps() {
     std::vector<std::vector<sf::Texture> > feElements;
     std::vector<sf::Vector2f> feEPos;
     feElements.push_back(std::vector<sf::Texture>());
+    feElements.push_back(std::vector<sf::Texture>());
     feEPos.push_back(sf::Vector2f(8 *32 + 25 *32 - 8, 3 *32 + 8));
+    feEPos.push_back(sf::Vector2f(8*32+18*32, 11*32));
 #ifdef _WIN32
     layer1->loadFromFile(RESSOURCES_PATH + "maps\\fe\\fe1.png");
     layer2->loadFromFile(RESSOURCES_PATH +"maps\\fe\\fe2.png");
@@ -915,7 +917,13 @@ void initMaps() {
       ostringstream str;
       str << RESSOURCES_PATH + "animations\\windturbine\\blade_" << i << ".png";
       feElements[0].push_back(sf::Texture());
-      feElements[0][i - 1].loadFromFile(str.toStr());
+      feElements[0][i - 1].loadFromFile(str.str());
+    }
+    for(unsigned int i = 1; i < 17; i++){
+      ostringstream str;
+      str << RESSOURCES_PATH + "animations\\chimneysmoke\\chimneysmoke_" << i << ".png";
+      feElements[1].push_back(sf::Texture());
+      feElements[1][i - 1].loadFromFile(str.str());
     }
 
 #else
@@ -928,6 +936,12 @@ void initMaps() {
       str << RESSOURCES_PATH + "animations/windturbine/blade_" << i << ".png";
       feElements[0].push_back(sf::Texture());
       feElements[0][i - 1].loadFromFile(str.str());
+    }
+    for(unsigned int i = 1; i < 17; i++){
+      ostringstream str;
+      str << RESSOURCES_PATH + "animations/chimneysmoke/chimneysmoke_" << i << ".png";
+      feElements[1].push_back(sf::Texture());
+      feElements[1][i - 1].loadFromFile(str.str());
     }
 #endif
     maps.push_back(new Map(*layer1, *layer2, *layer3, 32, 32, "colFe", townMusics[0], feElements, feEPos));
