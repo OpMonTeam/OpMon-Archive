@@ -143,6 +143,14 @@ void down() {
             //TODO : Ensuite faudra faire la verif du passages des events
 
                 moving = TO_DOWN;
+                std::vector<Event*> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY + 1) CASES));
+                if(nextEvents.size() > 0){
+                    for(Event* nextEvent : nextEvents){
+                        if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN){
+                            nextEvent->action(Main::player);
+                        }
+                    }
+                }
             }
 
         }
@@ -159,6 +167,14 @@ void right() {
             //Ensuite faudra faire la verif du passages des events
 
                 moving = TO_RIGHT;
+                 std::vector<Event*> nextEvents = actual->getEvent(sf::Vector2i((ppPosX - 1) CASES, ppPosY CASES));
+                if(nextEvents.size() > 0){
+                    for(Event* nextEvent : nextEvents){
+                        if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN){
+                            nextEvent->action(Main::player);
+                        }
+                    }
+                }
             }
         }
     }
@@ -175,6 +191,14 @@ void left() {
             //Ensuite faudra faire la verif du passages des events
 
                 moving = TO_LEFT;
+                std::vector<Event*> nextEvents = actual->getEvent(sf::Vector2i((ppPosX + 1) CASES, ppPosY CASES));
+                if(nextEvents.size() > 0){
+                    for(Event* nextEvent : nextEvents){
+                        if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN){
+                            nextEvent->action(Main::player);
+                        }
+                    }
+                }
             }
 
         }
@@ -344,10 +368,13 @@ int boucle() {
                         default:
                             break;
                     }
+                    cout << "PPPOS: " << ppPosX << " - " << ppPosY << endl;
+                    cout << "EVENTSEARCH: " << lx << " - " << ly << endl;
                     vector<Event*> events = actual->getEvent(sf::Vector2i(lx CASES, ly CASES));
-                    if(events.size() == 0){
+                    /*if(events.size() == 0){
                         events = actual->getEvent(sf::Vector2i(ppPosX CASES, ppPosY CASES));
-                    }
+                    }*/
+
                     if(events.size() > 0){
                         for(unsigned int i = 0; i < events.size(); i++){
                             if(events[i]->getEventTrigger() == Events::EventTrigger::PRESS){
