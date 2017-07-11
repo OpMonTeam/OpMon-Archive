@@ -58,6 +58,8 @@ namespace Events {
     }
 
     class TPEvent : public virtual Event{
+        private:
+        int frames = -1;
         protected:
         sf::Vector2i tpCoord;
         int mapID;

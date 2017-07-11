@@ -74,11 +74,17 @@ TalkingEvent(charTextures[0], charTextures, position, dialogKeys, eventTrigger, 
 //les actions
 
 void TPEvent::action(Player &player){
-
+    frames = 0;
 }
 
 void TPEvent::update(Player &player){
-
+    if(frames != -1){
+        frames++;
+        if(frames > 15){
+            frames = -1;
+            MainFrame::Overworld::tp(mapID, tpCoord);
+        }
+    }
 }
 
 void DoorEvent::action(Player &player){
