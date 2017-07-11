@@ -457,6 +457,7 @@ int boucleDialog(vector<sf::String> dialogs){
             }
             frame.setView(frame.getDefaultView());
             frame.setView(camera);
+            actual->updateElements(MainFrame::frame);
             if(!changeDialog){
                  if (!(i >= dialogs[line + dialog].toUtf32().size())) {
 
