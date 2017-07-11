@@ -977,9 +977,9 @@ void initMaps() {
     feE4.push_back("void");
     feE4.push_back("void");
     maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(13, 20), feE4));
-    maps[0]->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(18, 7), sf::Vector2i(1, 1), 1));
-    maps[0]->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(26, 7), sf::Vector2i(1, 1), 1));
-    maps[0]->addEvent(new Events::DoorEvent(Events::DoorType::SHOP, sf::Vector2f(18, 19), sf::Vector2i(1, 1), 1));
+    maps[0]->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(18, 7), sf::Vector2i(8, 14), 1));
+    maps[0]->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(26, 7), sf::Vector2i(8, 14), 3));
+    maps[0]->addEvent(new Events::DoorEvent(Events::DoorType::SHOP, sf::Vector2f(18, 19), sf::Vector2i(15, 14), 2));
     PLANS_RESET
     #ifdef _WIN32
     layer1->loadFromFile(RESSOURCES_PATH + "maps\\pphome\\pphome1.png");
