@@ -54,7 +54,7 @@ namespace Events {
     }
 
     namespace EventTrigger{
-        const int PRESS = 0, TOUCH = 1, ZONE = 2, BE_IN = 3;
+        const int PRESS = 0, GO_IN = 1, ZONE = 2, BE_IN = 3;
     }
 
     class TPEvent : public virtual Event{
@@ -62,7 +62,7 @@ namespace Events {
         sf::Vector2i tpCoord;
         int mapID;
         public:
-        TPEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2f position, sf::Vector2i tpPos, int mapID, bool passable);
+        TPEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2f position, sf::Vector2i tpPos, int mapID, bool passable = true);
         virtual void update(Player &player);
         virtual void action(Player &player);
     };
@@ -74,8 +74,9 @@ namespace Events {
         //WaitEvent->DoorType
         int doorType;
         sf::Texture& selectDoorType(int doorType);
+        int animStarted = -1;
         public:
-        DoorEvent(std::vector<sf::Texture>& doorType, sf::Vector2f position, sf::Vector2i tpPos, int mapID, int eventTrigger = 3, bool passable = true);
+        DoorEvent(std::vector<sf::Texture>& doorType, sf::Vector2f position, sf::Vector2i tpPos, int mapID, int eventTrigger = 1, bool passable = true);
         virtual void action(Player &player);
         virtual void update(Player &player);
     };
