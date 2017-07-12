@@ -71,11 +71,8 @@ public:
     std::vector<Event*> getEvent(sf::Vector2i position);
     std::vector<Event*> getEvents(){return events;};
     void updateEvents(Player &player);
-<<<<<<< HEAD
     void debugInfo();
-=======
     void updateElements(sf::RenderTexture &frame);
->>>>>>> mapAnim
 };
 
 
