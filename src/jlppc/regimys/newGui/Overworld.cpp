@@ -335,9 +335,11 @@ int boucle() {
                character.setTexture(Initializer::texturePP[ppDir]);
             }
             frame.draw(character);
+
             if((debugMode ? printlayer[2] : true)){
                 frame.draw(*layer3);
             }
+            actual->updateElements(MainFrame::frame);
             if(scrolling && !debugMode){
                     camera.setCenter(character.getPosition().x + 16, character.getPosition().y + 16);
             }
@@ -510,6 +512,7 @@ int boucleDialog(vector<sf::String> dialogs){
             }
             frame.setView(frame.getDefaultView());
             frame.setView(camera);
+            actual->updateElements(MainFrame::frame);
             if(!changeDialog){
                  if (!(i >= dialogs[line + dialog].toUtf32().size())) {
 

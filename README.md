@@ -19,7 +19,7 @@ If there are problems to understand the old commits or monthly reports, because 
 Work in progress now : The events
 <br/>
 Incoming versions :<ul>
-<li>Alpha 0.12 : Improvement of the houses' interiors, addition of the first events.</li>
+<li>Alpha 0.12 : Improvement of the house's interiors, addition of the first events and overworld animations in Euvi-Town</li>
 <li>Alpha 0.13 : Improvement of the events, addition of characters.<br>
 </ul>
 <!--<a href="">Regimys Youtube Channel</a><br/>-->
@@ -37,9 +37,9 @@ Bienvenue sur le projet de OPMon Lazuli! Le clone <a href="https://github.com/jl
 <a href="https://github.com/jlppc/Site-OpMon">Dépot du site web du jeu</a><br/><br/>
 <br/>Version du jeu : Alpha 0.11 | Téléchargement : <a href="http://opmon-game.ga/downloads.html"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Other/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 Prochaines versions :<ul>
-<li>Alpha 0.12 : Amelioration de l'interieur des maisons et premiers petits evenements (les pancartes de Faubourg Euvi)</li>
+<li>Alpha 0.12 : Amelioration de l'interieur des maisons et premiers petits evenements (les pancartes de Faubourg Euvi) et ajout d'animations dans Fauxbourg Euvi>
 
-<li>Alpha 0.13 : Amelioration des evenements<br>
+<li>Alpha 0.13 : Amelioration des evenements et ajout de PNJs</li>
 </ul>
 <a href="https://github.com/jlppc/OpMon/wiki/ROADMAP">Voir la ROADMAP détaillé</a>
 <br/>
