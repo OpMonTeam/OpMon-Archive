@@ -945,18 +945,49 @@ void initMaps() {
     sf::Texture *layer2 = new sf::Texture();
     sf::Texture *layer3 = new sf::Texture();
     townMusics.push_back(new sf::Music());
+    std::vector<std::vector<sf::Texture> > feElements;
+    std::vector<sf::Vector2f> feEPos;
+    feElements.push_back(std::vector<sf::Texture>());
+    feElements.push_back(std::vector<sf::Texture>());
+    feEPos.push_back(sf::Vector2f(8 *32 + 25 *32 - 8, 3 *32 + 8));
+    feEPos.push_back(sf::Vector2f(8*32+18*32, 11*32));
 #ifdef _WIN32
     layer1->loadFromFile(RESSOURCES_PATH + "maps\\fe\\fe1.png");
     layer2->loadFromFile(RESSOURCES_PATH +"maps\\fe\\fe2.png");
     layer3->loadFromFile(RESSOURCES_PATH +"maps\\fe\\fe3.png");
     townMusics[0]->openFromFile(RESSOURCES_PATH +"audio\\music\\faubourgeuvi.ogg");
+    for(unsigned int i = 1; i < 17; i++){
+      ostringstream str;
+      str << RESSOURCES_PATH + "animations\\windturbine\\blade_" << i << ".png";
+      feElements[0].push_back(sf::Texture());
+      feElements[0][i - 1].loadFromFile(str.str());
+    }
+    for(unsigned int i = 1; i < 17; i++){
+      ostringstream str;
+      str << RESSOURCES_PATH + "animations\\chimneysmoke\\chimneysmoke_" << i << ".png";
+      feElements[1].push_back(sf::Texture());
+      feElements[1][i - 1].loadFromFile(str.str());
+    }
+
 #else
     layer1->loadFromFile(RESSOURCES_PATH +"maps/fe/fe1.png");
     layer2->loadFromFile(RESSOURCES_PATH +"maps/fe/fe2.png");
     layer3->loadFromFile(RESSOURCES_PATH +"maps/fe/fe3.png");
     townMusics[0]->openFromFile(RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg");
+    for(unsigned int i = 1; i < 17; i++){
+      ostringstream str;
+      str << RESSOURCES_PATH + "animations/windturbine/blade_" << i << ".png";
+      feElements[0].push_back(sf::Texture());
+      feElements[0][i - 1].loadFromFile(str.str());
+    }
+    for(unsigned int i = 1; i < 17; i++){
+      ostringstream str;
+      str << RESSOURCES_PATH + "animations/chimneysmoke/chimneysmoke_" << i << ".png";
+      feElements[1].push_back(sf::Texture());
+      feElements[1][i - 1].loadFromFile(str.str());
+    }
 #endif
-    maps.push_back(new Map(*layer1, *layer2, *layer3, 32, 32, "colFe", townMusics[0]));
+    maps.push_back(new Map(*layer1, *layer2, *layer3, 32, 32, "colFe", townMusics[0], feElements, feEPos));
     std::vector<std::string> feE1;
     feE1.push_back("fedesc.1");
     feE1.push_back("fedesc.2");
