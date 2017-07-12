@@ -1027,7 +1027,7 @@ void initMaps() {
     layer3->loadFromFile(RESSOURCES_PATH +"maps/pphome/pphome3.png");
 #endif
     maps.push_back(new Map(*layer1, *layer2, *layer3, 16, 16, "colPPhome", townMusics[0]));
-    maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::GO_IN, sf::Vector2f(7, 14), sf::Vector2i(19, 8), 0, true));
+    maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::GO_IN, sf::Vector2f(6, 14), sf::Vector2i(19, 8), 0, true));
     PLANS_RESET
     townMusics.push_back(new sf::Music());
     #ifdef _WIN32
