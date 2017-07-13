@@ -114,6 +114,18 @@ void up() {
         startFrames = frames;
         anim = TO_UP;
         ppDir = TO_UP;
+
+        if(debugMode){
+            moving = TO_UP;
+                std::vector<Event*> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY - 1) CASES));
+                if(nextEvents.size() > 0){
+                    for(Event* nextEvent : nextEvents){
+                        if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN){
+                            nextEvent->action(Main::player);
+                        }
+                    }
+                }
+        }
         if(ppPosY - 1 >= -1){
             if(actual->getPassTab()[(int)(ppPosY + 1) - ((ppPosY + 1 <= 0) ? 0 : 1)][(int)ppPosX + 1] == 0) {
             //Ensuite faudra faire la verif du passages des events
@@ -138,6 +150,17 @@ void down() {
         startFrames = frames;
         anim = TO_DOWN;
         ppDir = TO_DOWN;
+        if(debugMode){
+            moving = TO_DOWN;
+                std::vector<Event*> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY + 1) CASES));
+                if(nextEvents.size() > 0){
+                    for(Event* nextEvent : nextEvents){
+                        if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN){
+                            nextEvent->action(Main::player);
+                        }
+                    }
+                }
+        }
         if(ppPosY + 1 < actual->getH() - 1){
         if(actual->getPassTab()[(int)(ppPosY + 1) + 1][(int)ppPosX + 1] == 0) {//Vérification des boites de collisions
             //TODO : Ensuite faudra faire la verif du passages des events
@@ -162,6 +185,17 @@ void right() {
         startFrames = frames;
         anim = TO_RIGHT;
         ppDir = TO_RIGHT;
+        if(debugMode){
+            moving = TO_RIGHT;
+                 std::vector<Event*> nextEvents = actual->getEvent(sf::Vector2i((ppPosX - 1) CASES, ppPosY CASES));
+                if(nextEvents.size() > 0){
+                    for(Event* nextEvent : nextEvents){
+                        if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN){
+                            nextEvent->action(Main::player);
+                        }
+                    }
+                }
+        }
         if(ppPosX + 1 < actual->getW() - 1){
         if(actual->getPassTab()[(int)(ppPosY + 1)][(int)(ppPosX + 1) + 1] == 0) {
             //Ensuite faudra faire la verif du passages des events
@@ -186,6 +220,18 @@ void left() {
         startFrames = frames;
         anim = TO_LEFT;
         ppDir = TO_LEFT;
+        if(debugMode){
+            moving = TO_LEFT;
+                std::vector<Event*> nextEvents = actual->getEvent(sf::Vector2i((ppPosX + 1) CASES, ppPosY CASES));
+                if(nextEvents.size() > 0){
+                    for(Event* nextEvent : nextEvents){
+                        if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN){
+                            nextEvent->action(Main::player);
+                        }
+                    }
+                }
+                return;
+        }
         if(ppPosX - 1 >= -1){
         if(actual->getPassTab()[(int)(ppPosY + 1)][(int)(ppPosX + 1) - ((ppPosX + 1 <= 0) ? 0 : 1)] == 0) {
             //Ensuite faudra faire la verif du passages des events
@@ -247,20 +293,8 @@ int boucle() {
                 QUIT
 
                 case sf::Event::KeyPressed:
-                    if(events.key.code == sf::Keyboard::F1){
-                        tp(0, sf::Vector2i(25, 28), true);
-                    }else if(events.key.code == sf::Keyboard::F2){
-                        tp(1, sf::Vector2i(8, 14), true);
-                    }else if(events.key.code == sf::Keyboard::F3){
-                        tp(2, sf::Vector2i(15, 14), true);
-                    }else if(events.key.code == sf::Keyboard::F4){
-                        tp(3, sf::Vector2i(8, 14), true);
-                    }else if(events.key.code == sf::Keyboard::Equal){
+                    if(events.key.code == sf::Keyboard::Equal){
                         debugMode = !debugMode;
-                    }else if(events.key.code == sf::Keyboard::F5){
-                        tp(4, sf::Vector2i(0, 1), true);
-                    }else if(events.key.code == sf::Keyboard::F6){
-                        tp(5, sf::Vector2i(0, 0), true);
                     }
                     if(debugMode){
                         if(events.key.code == sf::Keyboard::F10){
@@ -271,6 +305,20 @@ int boucle() {
                         }
                         if(events.key.code == sf::Keyboard::F12){
                             printlayer[2] = !printlayer[2];
+                        }
+
+                        if(events.key.code == sf::Keyboard::F5){
+                        tp(4, sf::Vector2i(0, 1), true);
+                        }else if(events.key.code == sf::Keyboard::F6){
+                            tp(5, sf::Vector2i(0, 0), true);
+                        }else if(events.key.code == sf::Keyboard::F1){
+                        tp(0, sf::Vector2i(25, 28), true);
+                        }else if(events.key.code == sf::Keyboard::F2){
+                            tp(1, sf::Vector2i(8, 14), true);
+                        }else if(events.key.code == sf::Keyboard::F3){
+                            tp(2, sf::Vector2i(15, 14), true);
+                        }else if(events.key.code == sf::Keyboard::F4){
+                            tp(3, sf::Vector2i(8, 14), true);
                         }
                     }
             }
@@ -339,6 +387,16 @@ int boucle() {
             if((debugMode ? printlayer[2] : true)){
                 frame.draw(*layer3);
             }
+            if(moving == -1){
+                 std::vector<Event*> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, ppPosY CASES));
+                if(nextEvents.size() > 0){
+                    for(Event* nextEvent : nextEvents){
+                        if(nextEvent->getEventTrigger() == Events::EventTrigger::BE_IN){
+                            nextEvent->action(Main::player);
+                        }
+                    }
+                }
+            }
             actual->updateElements(MainFrame::frame);
             if(scrolling && !debugMode){
                     camera.setCenter(character.getPosition().x + 16, character.getPosition().y + 16);
@@ -347,7 +405,6 @@ int boucle() {
             if(debugMode){
                 frame.draw(debugText);
             }
-
             frame.display();
             winRefresh();
             if(anim == -1){
@@ -489,8 +546,10 @@ int boucleDialog(vector<sf::String> dialogs){
                     }
                 break;
             }
-            ECHAP
-
+            if(isKeyPressed(sf::Keyboard::Escape)){
+                Main::player.gameIsOver = true;
+                return -1;
+            }
             frame.draw(*layer1);
             frame.draw(*layer2);
             for(Event* event : actual->getEvents()){
