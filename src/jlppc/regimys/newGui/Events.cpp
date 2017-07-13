@@ -24,14 +24,14 @@ namespace DoorType{
     std::vector<sf::Texture> NORMAL, SHOP;
 }
 
-TPEvent::TPEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2f position, sf::Vector2i tpPos, int mapID, bool passable):
-Event(baseTexture, otherTextures, eventTrigger, position, passable), tpCoord(tpPos), mapID(mapID){
+TPEvent::TPEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2f position, sf::Vector2i tpPos, int mapID, int ppDir, bool passable):
+Event(baseTexture, otherTextures, eventTrigger, position, passable), tpCoord(tpPos), mapID(mapID), ppDir(ppDir){
 
 }
 
-DoorEvent::DoorEvent(std::vector<sf::Texture>& doorType, sf::Vector2f position, sf::Vector2i tpPos, int mapID, int eventTrigger, bool passable):
+DoorEvent::DoorEvent(std::vector<sf::Texture>& doorType, sf::Vector2f position, sf::Vector2i tpPos, int mapID, int eventTrigger, int ppDir, bool passable):
 Event(doorType[0], doorType, eventTrigger, position, passable),
-TPEvent(doorType[0], doorType, eventTrigger, position, tpPos, mapID, passable){
+TPEvent(doorType[0], doorType, eventTrigger, position, tpPos, mapID, ppDir, passable){
     this->sprite->move(0, -6);
     if(&doorType[0] == &DoorType::SHOP[0]){
         this->sprite->move(-4, 0);
@@ -50,8 +50,8 @@ void TalkingEvent::reloadKeys(){
     }
 }
 
-LockedDoorEvent::LockedDoorEvent(std::vector<sf::Texture>& doorType, Item* needed, sf::Vector2f position, sf::Vector2i tpPos, int mapID, int eventTrigger, bool consumeItem, bool passable) :
-DoorEvent(doorType, position, tpPos, mapID, eventTrigger, passable),
+LockedDoorEvent::LockedDoorEvent(std::vector<sf::Texture>& doorType, Item* needed, sf::Vector2f position, sf::Vector2i tpPos, int mapID, int ppDir, int eventTrigger, bool consumeItem, bool passable) :
+DoorEvent(doorType, position, tpPos, mapID, eventTrigger, ppDir, passable),
 Event(this->baseTexture, this->otherTextures, eventTrigger, position, passable),
 TalkingEvent(this->baseTexture, this->otherTextures, position, LockedDoorEvent::keysLock, eventTrigger, passable),
 needed(needed), consumeItem(consumeItem){
@@ -74,17 +74,14 @@ TalkingEvent(charTextures[0], charTextures, position, dialogKeys, eventTrigger, 
 //les actions
 
 void TPEvent::action(Player &player){
-    frames = 0;
+    MainFrame::Overworld::tp(mapID, tpCoord);
+    if(this->ppDir != -1){
+        MainFrame::Overworld::ppDir = this->ppDir;
+    }
 }
 
 void TPEvent::update(Player &player){
-    if(frames != -1){
-        frames++;
-        if(frames > 15){
-            frames = -1;
-            MainFrame::Overworld::tp(mapID, tpCoord);
-        }
-    }
+
 }
 
 void DoorEvent::action(Player &player){
@@ -97,7 +94,7 @@ void DoorEvent::update(Player &player){
         if(animStarted < 8 && (animStarted / 2)*2 == animStarted){
             sprite->setTexture(otherTextures[animStarted / 2]);
         }else if(animStarted > 16){
-            MainFrame::Overworld::tp(mapID, tpCoord);
+            TPEvent::action(player);
             animStarted = -1;
             sprite->setTexture(otherTextures[0]);
         }
