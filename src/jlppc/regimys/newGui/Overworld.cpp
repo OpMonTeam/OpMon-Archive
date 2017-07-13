@@ -108,7 +108,7 @@ int tp(int toTp, sf::Vector2i pos, bool scroll){
     justTp = true;
     return 0;
 }
-
+#define UNLOCK_TP  Events::justTP = false;
 void up() {
     if(anim == -1) {
         startFrames = frames;
@@ -116,6 +116,7 @@ void up() {
         ppDir = TO_UP;
 
         if(debugMode){
+            UNLOCK_TP
             moving = TO_UP;
                 std::vector<Event*> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY - 1) CASES));
                 if(nextEvents.size() > 0){
@@ -129,7 +130,7 @@ void up() {
         if(ppPosY - 1 >= -1){
             if(actual->getPassTab()[(int)(ppPosY + 1) - ((ppPosY + 1 <= 0) ? 0 : 1)][(int)ppPosX + 1] == 0) {
             //Ensuite faudra faire la verif du passages des events
-
+                UNLOCK_TP
                 moving = TO_UP;
                 std::vector<Event*> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY - 1) CASES));
                 if(nextEvents.size() > 0){
@@ -151,6 +152,7 @@ void down() {
         anim = TO_DOWN;
         ppDir = TO_DOWN;
         if(debugMode){
+        UNLOCK_TP
             moving = TO_DOWN;
                 std::vector<Event*> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY + 1) CASES));
                 if(nextEvents.size() > 0){
@@ -164,7 +166,7 @@ void down() {
         if(ppPosY + 1 < actual->getH() - 1){
         if(actual->getPassTab()[(int)(ppPosY + 1) + 1][(int)ppPosX + 1] == 0) {//Vérification des boites de collisions
             //TODO : Ensuite faudra faire la verif du passages des events
-
+UNLOCK_TP
                 moving = TO_DOWN;
                 std::vector<Event*> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY + 1) CASES));
                 if(nextEvents.size() > 0){
@@ -186,6 +188,7 @@ void right() {
         anim = TO_RIGHT;
         ppDir = TO_RIGHT;
         if(debugMode){
+        UNLOCK_TP
             moving = TO_RIGHT;
                  std::vector<Event*> nextEvents = actual->getEvent(sf::Vector2i((ppPosX - 1) CASES, ppPosY CASES));
                 if(nextEvents.size() > 0){
@@ -199,7 +202,7 @@ void right() {
         if(ppPosX + 1 < actual->getW() - 1){
         if(actual->getPassTab()[(int)(ppPosY + 1)][(int)(ppPosX + 1) + 1] == 0) {
             //Ensuite faudra faire la verif du passages des events
-
+                UNLOCK_TP
                 moving = TO_RIGHT;
                  std::vector<Event*> nextEvents = actual->getEvent(sf::Vector2i((ppPosX - 1) CASES, ppPosY CASES));
                 if(nextEvents.size() > 0){
@@ -221,6 +224,7 @@ void left() {
         anim = TO_LEFT;
         ppDir = TO_LEFT;
         if(debugMode){
+        UNLOCK_TP
             moving = TO_LEFT;
                 std::vector<Event*> nextEvents = actual->getEvent(sf::Vector2i((ppPosX + 1) CASES, ppPosY CASES));
                 if(nextEvents.size() > 0){
@@ -235,7 +239,7 @@ void left() {
         if(ppPosX - 1 >= -1){
         if(actual->getPassTab()[(int)(ppPosY + 1)][(int)(ppPosX + 1) - ((ppPosX + 1 <= 0) ? 0 : 1)] == 0) {
             //Ensuite faudra faire la verif du passages des events
-
+                UNLOCK_TP
                 moving = TO_LEFT;
                 std::vector<Event*> nextEvents = actual->getEvent(sf::Vector2i((ppPosX + 1) CASES, ppPosY CASES));
                 if(nextEvents.size() > 0){
@@ -251,6 +255,7 @@ void left() {
     }
 }
 
+#undef UNLOCK_TP
 
 
 int overworld() {
