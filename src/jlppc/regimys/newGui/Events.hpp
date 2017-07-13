@@ -57,6 +57,8 @@ namespace Events {
         const int PRESS = 0, GO_IN = 1, ZONE = 2, BE_IN = 3;
     }
 
+    extern bool justTP;
+
     class TPEvent : public virtual Event{
         private:
         int frames = -1;
