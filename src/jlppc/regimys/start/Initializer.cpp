@@ -1029,6 +1029,7 @@ void initMaps() {
     maps.push_back(new Map(*layer1, *layer2, *layer3, 16, 16, "colPPhome", townMusics[0]));
     maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(6, 14), sf::Vector2i(19, 8), 0, Side::TO_DOWN));
     maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(14, 1), sf::Vector2i(7, 4), 5, Side::TO_LEFT));
+    maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(-1, 10), sf::Vector2i(4, 2), 4, Side::TO_RIGHT));
     PLANS_RESET
     townMusics.push_back(new sf::Music());
     #ifdef _WIN32
@@ -1067,6 +1068,7 @@ void initMaps() {
     layer3->loadFromFile(RESSOURCES_PATH + "maps/momroom/momroom3.png");
     #endif // _WIN32
     maps.push_back(new Map(*layer1, *layer2, *layer3, 6, 6, "colMomroom", townMusics[0]));
+    maps[4]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(4, 2), sf::Vector2i(0, 10), 1, Side::TO_RIGHT));
     PLANS_RESET
     #ifdef _WIN32
     layer1->loadFromFile(RESSOURCES_PATH + "maps\\pproom\\pproom1.png");
