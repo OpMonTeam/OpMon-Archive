@@ -20,6 +20,8 @@ position(position), passable(passable){
 
 namespace Events{
 
+bool justTP = false;
+
 namespace DoorType{
     std::vector<sf::Texture> NORMAL, SHOP;
 }
@@ -74,10 +76,14 @@ TalkingEvent(charTextures[0], charTextures, position, dialogKeys, eventTrigger, 
 //les actions
 
 void TPEvent::action(Player &player){
-    MainFrame::Overworld::tp(mapID, tpCoord);
-    if(this->ppDir != -1){
-        MainFrame::Overworld::ppDir = this->ppDir;
+    if(!justTP){
+        MainFrame::Overworld::tp(mapID, tpCoord);
+        if(this->ppDir != -1){
+            MainFrame::Overworld::ppDir = this->ppDir;
+        }
+        justTP = true;
     }
+
 }
 
 void TPEvent::update(Player &player){
@@ -93,7 +99,7 @@ void DoorEvent::update(Player &player){
         animStarted++;
         if(animStarted < 8 && (animStarted / 2)*2 == animStarted){
             sprite->setTexture(otherTextures[animStarted / 2]);
-        }else if(animStarted > 16){
+        }else if(animStarted > 10){
             TPEvent::action(player);
             animStarted = -1;
             sprite->setTexture(otherTextures[0]);
