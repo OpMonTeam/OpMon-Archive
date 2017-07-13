@@ -37,7 +37,7 @@ namespace Main {
 ostringstream oss;
 bool connected = false;
 string trainers[] = {"Brice", "Evan", "Mael", "Jlppc", "Red", "Blue", "Nikolai", "N", "Belladonis", "Aristote", "Giovanni", "Flora", "Silver", "Jules Cesar", "Brahim"};
-float version = 0.1;
+float version = 0.11;
 int sousVers = 0;
 string versionS;
 Player player;
