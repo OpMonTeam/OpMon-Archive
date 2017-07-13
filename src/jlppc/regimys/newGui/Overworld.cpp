@@ -51,12 +51,13 @@ bool printlayer[3] = {true, true, true};
 sf::Sprite &character = Main::player.persSprite;
 
 void initVars() {
-    actual =  Initializer::maps[0];
+    actual =  Initializer::maps[5];
     character = Main::player.getSprite();
     character.setTexture(Initializer::texturePP[TO_DOWN]);
-    character.setPosition(8 CASES + 21 CASES - 16, 8 CASES + 14 CASES);
-    camera.setCenter(21 CASES, 14 CASES);
+    character.setPosition(8 CASES + 1 CASES - 16, 8 CASES + 1 CASES);
+    camera.setCenter(character.getPosition());
     camera.setSize(sf::Vector2f(16 CASES, 16 CASES));
+    ppDir = TO_UP;
 
 /*  maps[0] = actual->getLayer1();
     maps[1] = actual->getLayer2();
