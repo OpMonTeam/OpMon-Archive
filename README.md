@@ -22,7 +22,7 @@ Incoming versions :<ul>
 <li>Alpha 0.13 : Improvement of the events, addition of characters.<br>
 </ul>
 <!--<a href="">Regimys Youtube Channel</a><br/>-->
-<br/>Game version : Alpha 0.12 | Download : <a href="https://opmon-game.ga"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Other/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
+<br/>Game version : Alpha 0.12 | Download : <a href="http://opmon-game.ga"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Other/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 
 <h2>--------En Français-------</h2>
 
