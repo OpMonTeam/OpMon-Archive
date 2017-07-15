@@ -16,14 +16,13 @@ You can ask a question in the "F.A.Q" section of this wiki too!<br/>
 English is not our native language, we do our best! If you see some errors, don't hesitate to tell us, so we won't make them again!<br/>
 If there are problems to understand the old commits or monthly reports, because it's all in french, don't hesitate to ask!<br/><br/>
 <a href="https://github.com/jlppc/OpMon/wiki/Journal-du-développement">Development Journal (in French) </a><br/>
-Work in progress now : The events
+
 <br/>
 Incoming versions :<ul>
-<li>Alpha 0.12 : Improvement of the house's interiors, addition of the first events and overworld animations in Euvi-Town</li>
 <li>Alpha 0.13 : Improvement of the events, addition of characters.<br>
 </ul>
 <!--<a href="">Regimys Youtube Channel</a><br/>-->
-<br/>Game version : Alpha 0.11 | Download : <a href="https://github.com/jlppc/OpMon/releases/tag/alpha-v0.11"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Other/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
+<br/>Game version : Alpha 0.12 | Download : <a href="https://opmon-game.ga"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Other/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 
 <h2>--------En Français-------</h2>
 
@@ -35,10 +34,8 @@ Bienvenue sur le projet de OPMon Lazuli! Le clone <a href="https://github.com/jl
 <a href="http://opmon-game.ga">Site web du jeu</a><br/>
 <a href="https://github.com/jlppc/OpMon/blob/master/Credits.md">Crédits</a><br/>
 <a href="https://github.com/jlppc/Site-OpMon">Dépot du site web du jeu</a><br/><br/>
-<br/>Version du jeu : Alpha 0.11 | Téléchargement : <a href="http://opmon-game.ga/downloads.html"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Other/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
+<br/>Version du jeu : Alpha 0.12 | Téléchargement : <a href="http://opmon-game.ga"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Other/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 Prochaines versions :<ul>
-<li>Alpha 0.12 : Amelioration de l'interieur des maisons et premiers petits evenements (les pancartes de Faubourg Euvi) et ajout d'animations dans Fauxbourg Euvi>
-
 <li>Alpha 0.13 : Amelioration des evenements et ajout de PNJs</li>
 </ul>
 <a href="https://github.com/jlppc/OpMon/wiki/ROADMAP">Voir la ROADMAP détaillé</a>
