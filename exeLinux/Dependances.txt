@@ -1,3 +1,44 @@
 You must install this to start OPMon :
 
-gcc libstdc++6 libsmpeg0 and libsfml-dev
+gcc
+libstdc++6 
+libsmpeg0  
+libsfml-dev
+
+/!\ If libsfml-dev doesn't exist, please install all "libsfml" packages  /!\
+
+
+
+
+ · Dependances install in Fedora / Mageia / OpenMandriva / openSUSE :
+
+Copy/Paste in Terminal :
+
+sudo dnf install gcc libstdc++6 libsmpeg0 libsfml-dev
+
+
+
+
+· Dependances install in Debian / Ubuntu / Linux Mint :
+
+Copy/Past in Terminal :
+
+sudo apt install gcc libstdc++6 libsmpeg0 libsfml-dev
+
+
+
+
+
+· Dependances install in Arch Linux / Manjaro / Antergos (and other Arch Based distros)
+
+Copy/Past in Terminal :
+
+sudo pacman -S gcc libstdc++6 libsmpeg0 libsfml-dev
+
+
+
+
+
+
+
+If OPmON DON'T WORK, PLEASE CONTACT US QUICKLY : evandib@gmail.com or jlppcprog@ntmail.com
