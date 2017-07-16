@@ -443,7 +443,19 @@ int boucle() {
                     if(events.size() > 0){
                         for(unsigned int i = 0; i < events.size(); i++){
                             if(events[i]->getEventTrigger() == Events::EventTrigger::PRESS){
-                                events[i]->action(Main::player);
+			      bool go = false;
+			      if(((events[i]->getSide() & SIDE_UP) == SIDE_UP) && ppDir == TO_UP){
+				go = true;
+			      }else if(((events[i]->getSide() & SIDE_DOWN) == SIDE_DOWN) && ppDir == TO_DOWN){
+				go = true;
+			      }else if(((events[i]->getSide() & SIDE_RIGHT) == SIDE_RIGHT) && ppDir == TO_RIGHT){
+				go = true;
+			      }else if(((events[i]->getSide() & SIDE_LEFT) == SIDE_LEFT) && ppDir == TO_LEFT){
+				go = true;
+			      }
+			      if(go){
+				events[i]->action(Main::player);
+			      }
                             }
                         }
                     }
