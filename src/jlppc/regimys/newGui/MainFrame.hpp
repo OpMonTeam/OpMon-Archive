@@ -10,7 +10,7 @@ Permet d'ouvrir la fenetre du jeu et de charger les ressources essensielles. Con
 #define SRC_JLPPC_REGIMYS_GUI_MAINFRAME_HPP_
 
 #include "Elements.hpp"
-#include "../start/StringKeys.hpp""
+#include "../start/StringKeys.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
@@ -80,7 +80,8 @@ Permet d'ouvrir la fenetre du jeu et de charger les ressources essensielles. Con
 	frame.draw(arrDial);
 
 
-/**Contient toutes les methodes permettant de gérer et de faire fonctionner l'interface graphique
+/*
+Contient toutes les methodes permettant de gérer et de faire fonctionner l'interface graphique
  * Contient aussi le déroulement des évenements
  */
 namespace MainFrame {
