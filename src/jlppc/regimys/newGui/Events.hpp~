@@ -18,7 +18,7 @@ Contient le namespace Events
 #define SIDE_DOWN 0x0002
 #define SIDE_LEFT 0x0010
 #define SIDE_RIGHT 0x0020
-#define SIDE_ALL (SIDE_UP | SIDE_DOWN | SIDE_RIGHT | SIDE_LEFT)
+#define SIDE_ALL (UP | DOWN | RIGHT | LEFT)
 
 /**
 Contient la base de tous les types d'events
@@ -40,7 +40,7 @@ class Event{
     virtual void update(Player &player) = 0;
     /**Methode appellée lors du contact avec l'event (voir eventTrigger)*/
     virtual void action(Player &player) = 0;
-  int getSide(){return sides;}
+
     sf::Sprite* getSprite(){return sprite;}
     sf::Texture& getTexture(){return baseTexture;}
     int getEventTrigger(){return eventTrigger;}
@@ -88,7 +88,7 @@ namespace Events {
         sf::Texture& selectDoorType(int doorType);
         int animStarted = -1;
         public:
-      DoorEvent(std::vector<sf::Texture>& doorType, sf::Vector2f position, sf::Vector2i tpPos, int mapID, int eventTrigger = 1, int ppDir = -1, int sides = SIDE_ALL, bool passable = true);
+        DoorEvent(std::vector<sf::Texture>& doorType, sf::Vector2f position, sf::Vector2i tpPos, int mapID, int eventTrigger = 1, int ppDir = -1, bool passable = true);
         virtual void action(Player &player);
         virtual void update(Player &player);
     };
@@ -113,7 +113,7 @@ namespace Events {
         public:
         virtual void action(Player &player);
         virtual void update(Player &player);
-      LockedDoorEvent(std::vector<sf::Texture>& doorType, Item* needed, sf::Vector2f position, sf::Vector2i tpPos, int mapID, int ppDir = -1, int eventTrigger = 0, bool consumeItem = false,int sides = SIDE_ALL, bool passable = false);
+        LockedDoorEvent(std::vector<sf::Texture>& doorType, Item* needed, sf::Vector2f position, sf::Vector2i tpPos, int mapID, int ppDir = -1, int eventTrigger = 0, bool consumeItem = false, bool passable = false);
     };
 
     namespace MoveStyle{
