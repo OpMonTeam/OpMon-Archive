@@ -53,6 +53,10 @@ void initEnumsEvents();
 Contient tout ce qui est en rapport avec les evenements
 */
 namespace Events {
+  /**
+     Le son des portes
+  */
+  extern sf::Sound doorSound;
     /**
     Contient les variables utiles sur le déroulement des events
     */

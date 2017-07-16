@@ -27,6 +27,7 @@ Espece *listeOp[OP_NUMBER] = {};
 std::vector<Map*> maps;
 std::vector<sf::Music*> townMusics;
 std::vector<std::vector<sf::Texture> > doorsTextures;
+  sf::SoundBuffer doorSoundBuffer;
 template<typename T>void pb(std::vector<T> &vecteur, T tab[], int longeurTab) {
     for (unsigned int i = 0; i < longeurTab; i++) {
         vecteur.push_back(tab[i]);
@@ -871,6 +872,7 @@ void initTextures(){
     doorsTextures.push_back(txtr);
 
     std::vector<sf::Texture> shopDoor;
+
     for(unsigned int i = 0; i < 4; i++){
         ostringstream oss;
         oss << RESSOURCES_PATH << "animations\\basicdoor\\shop_door" << i + 1 << ".png";
@@ -879,6 +881,8 @@ void initTextures(){
         shopDoor.push_back(txtr);
     }
     doorsTextures.push_back(shopDoor);
+
+    doorSoundBuffer.loadFromFile(RESSOURCES_PATH + "audio\\sounds\\door.ogg");
 #else
     texturePP[TO_DOWN].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp0.png");
     texturePP[TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp1.png");
@@ -902,6 +906,7 @@ void initTextures(){
         basicDoor.push_back(txtr);
     }
     doorsTextures.push_back(basicDoor);
+    doorSoundBuffer.loadFromFile(RESSOURCES_PATH + "audio/sounds/door.ogg");
 
     std::vector<sf::Texture> shopDoor;
     for(unsigned int i = 0; i < 4; i++){
@@ -913,6 +918,7 @@ void initTextures(){
     }
     doorsTextures.push_back(shopDoor);
 #endif // _WIN32
+    Events::doorSound.setBuffer(doorSoundBuffer);
 initEnumsEvents();
 }
 
