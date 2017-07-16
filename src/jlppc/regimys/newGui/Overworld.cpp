@@ -201,7 +201,7 @@ void right() {
                 }
         }
         if(ppPosX + 1 < actual->getW() - 1){
-        if(actual->getPassTab()[(int)(ppPosY + 1)][(int)(ppPosX + 1) + 1] == 0) {
+        if(actual->getPassTab()[(int)(ppPosY + 1)][(int)(ppPosX + 1) + 1] == 0 || actual->getPassTab()[(int)(ppPosY + 1)][(int)(ppPosX + 1) + 1] == 5) {
             //Ensuite faudra faire la verif du passages des events
                 UNLOCK_TP
                 moving = TO_RIGHT;
