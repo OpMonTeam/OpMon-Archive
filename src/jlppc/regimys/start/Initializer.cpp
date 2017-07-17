@@ -1033,9 +1033,9 @@ void initMaps() {
     layer3->loadFromFile(RESSOURCES_PATH +"maps/pphome/pphome3.png");
 #endif
     maps.push_back(new Map(*layer1, *layer2, *layer3, 16, 16, "colPPhome", townMusics[0]));
-    maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(6, 14), sf::Vector2i(19, 8), 0, Side::TO_DOWN));
-    maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(14, 1), sf::Vector2i(8, 4), 5, Side::TO_LEFT));
-    maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(-1, 10), sf::Vector2i(5, 2), 4, Side::TO_LEFT));
+    maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(6, 14), sf::Vector2i(19, 8), 0, Side::TO_DOWN, SIDE_DOWN));
+    maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(14, 1), sf::Vector2i(8, 4), 5, Side::TO_LEFT, SIDE_RIGHT));
+    maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(-1, 10), sf::Vector2i(5, 2), 4, Side::TO_LEFT, SIDE_LEFT));
     PLANS_RESET
     townMusics.push_back(new sf::Music());
     #ifdef _WIN32
@@ -1050,7 +1050,7 @@ void initMaps() {
     townMusics[1]->openFromFile(RESSOURCES_PATH + "audio/music/intro.ogg");
     #endif // _WIN32
     maps.push_back(new Map(*layer1, *layer2, *layer3, 32, 16, "colLabo", townMusics[1]));
-    maps[2]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(14, 14), sf::Vector2i(19, 20), 0, Side::TO_DOWN));
+    maps[2]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(14, 14), sf::Vector2i(19, 20), 0, Side::TO_DOWN, SIDE_DOWN));
     PLANS_RESET
     #ifdef _WIN32
     layer1->loadFromFile(RESSOURCES_PATH + "maps\\rivalhome\\rivalhome1.png");
@@ -1062,7 +1062,7 @@ void initMaps() {
     layer3->loadFromFile(RESSOURCES_PATH + "maps/rivalhome/rivalhome3.png");
     #endif // _WIN32
     maps.push_back(new Map(*layer1, *layer2, *layer3, 16, 16, "colRivalhome", townMusics[0]));
-    maps[3]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(7, 14), sf::Vector2i(27, 8), 0, Side::TO_DOWN));
+    maps[3]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(7, 14), sf::Vector2i(27, 8), 0, Side::TO_DOWN, SIDE_DOWN));
     PLANS_RESET
     #ifdef _WIN32
     layer1->loadFromFile(RESSOURCES_PATH + "maps\\momroom\\momroom1.png");
@@ -1074,7 +1074,7 @@ void initMaps() {
     layer3->loadFromFile(RESSOURCES_PATH + "maps/momroom/momroom3.png");
     #endif // _WIN32
     maps.push_back(new Map(*layer1, *layer2, *layer3, 6, 6, "colMomroom", townMusics[0]));
-    maps[4]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(4, 2), sf::Vector2i(0, 10), 1, Side::TO_RIGHT));
+    maps[4]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(4, 2), sf::Vector2i(0, 10), 1, Side::TO_RIGHT, SIDE_RIGHT));
     PLANS_RESET
     #ifdef _WIN32
     layer1->loadFromFile(RESSOURCES_PATH + "maps\\pproom\\pproom1.png");
@@ -1086,7 +1086,7 @@ void initMaps() {
     layer3->loadFromFile(RESSOURCES_PATH + "maps/pproom/pproom3.png");
     #endif // _WIN32
     maps.push_back(new Map(*layer1, *layer2, *layer3, 9, 6, "colPProom", townMusics[0]));
-    maps[5]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(7, 4), sf::Vector2i(15, 1), 1, Side::TO_LEFT));
+    maps[5]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(7, 4), sf::Vector2i(15, 1), 1, Side::TO_LEFT, SIDE_RIGHT));
     PLANS_RESET
 
     delete(layer1);
