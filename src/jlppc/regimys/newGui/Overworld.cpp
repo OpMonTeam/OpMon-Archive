@@ -122,7 +122,7 @@ void up() {
                 std::vector<Event*> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY - 1) CASES));
                 if(nextEvents.size() > 0){
                     for(Event* nextEvent : nextEvents){
-                        if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN){
+		      if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN){
                             nextEvent->action(Main::player);
                         }
                     }
@@ -136,7 +136,7 @@ void up() {
                 std::vector<Event*> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY - 1) CASES));
                 if(nextEvents.size() > 0){
                     for(Event* nextEvent : nextEvents){
-                        if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN){
+		      if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN && ((nextEvent->getSide() & SIDE_UP) == SIDE_UP)){
                             nextEvent->action(Main::player);
                         }
                     }
@@ -158,7 +158,7 @@ void down() {
                 std::vector<Event*> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY + 1) CASES));
                 if(nextEvents.size() > 0){
                     for(Event* nextEvent : nextEvents){
-                        if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN){
+		      if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN){
                             nextEvent->action(Main::player);
                         }
                     }
@@ -172,7 +172,7 @@ UNLOCK_TP
                 std::vector<Event*> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY + 1) CASES));
                 if(nextEvents.size() > 0){
                     for(Event* nextEvent : nextEvents){
-                        if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN){
+		      if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN && ((nextEvent->getSide() & SIDE_DOWN) == SIDE_DOWN)){
                             nextEvent->action(Main::player);
                         }
                     }
@@ -194,7 +194,7 @@ void right() {
                  std::vector<Event*> nextEvents = actual->getEvent(sf::Vector2i((ppPosX - 1) CASES, ppPosY CASES));
                 if(nextEvents.size() > 0){
                     for(Event* nextEvent : nextEvents){
-                        if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN){
+		      if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN){
                             nextEvent->action(Main::player);
                         }
                     }
@@ -208,7 +208,7 @@ void right() {
                  std::vector<Event*> nextEvents = actual->getEvent(sf::Vector2i((ppPosX - 1) CASES, ppPosY CASES));
                 if(nextEvents.size() > 0){
                     for(Event* nextEvent : nextEvents){
-                        if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN){
+		      if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN && ((nextEvent->getSide() & SIDE_RIGHT) == SIDE_RIGHT)){
                             nextEvent->action(Main::player);
                         }
                     }
@@ -245,7 +245,7 @@ void left() {
                 std::vector<Event*> nextEvents = actual->getEvent(sf::Vector2i((ppPosX + 1) CASES, ppPosY CASES));
                 if(nextEvents.size() > 0){
                     for(Event* nextEvent : nextEvents){
-                        if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN){
+		      if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN && ((nextEvent->getSide() & SIDE_LEFT) == SIDE_LEFT)){
                             nextEvent->action(Main::player);
                         }
                     }
@@ -398,7 +398,19 @@ int boucle() {
                 if(nextEvents.size() > 0){
                     for(Event* nextEvent : nextEvents){
                         if(nextEvent->getEventTrigger() == Events::EventTrigger::BE_IN){
+bool go = false;
+			      if(((nextEvent->getSide() & SIDE_UP) == SIDE_UP) && ppDir == TO_UP){
+				go = true;
+			      }else if(((nextEvent->getSide() & SIDE_DOWN) == SIDE_DOWN) && ppDir == TO_DOWN){
+				go = true;
+			      }else if(((nextEvent->getSide() & SIDE_RIGHT) == SIDE_RIGHT) && ppDir == TO_RIGHT){
+				go = true;
+			      }else if(((nextEvent->getSide() & SIDE_LEFT) == SIDE_LEFT) && ppDir == TO_LEFT){
+				go = true;
+			      }
+			      if(go){
                             nextEvent->action(Main::player);
+}
                         }
                     }
                 }
