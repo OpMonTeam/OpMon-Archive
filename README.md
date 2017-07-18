@@ -36,7 +36,7 @@ Bienvenue sur le projet de OPMon Lazuli! Le clone <a href="https://github.com/jl
 <a href="https://github.com/jlppc/Site-OpMon">Dépot du site web du jeu</a><br/><br/>
 <br/>Version du jeu : Alpha 0.12 | Téléchargement : <a href="http://opmon-game.ga"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Other/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 Prochaines versions :<ul>
-<li>Alpha 0.13 : Amelioration des evenements et ajout de PNJs</li>
+<li>Alpha 0.13 : Amelioration des evenements (les objets dans les batiments) et ajout de PNJs</li>
 </ul>
 <a href="https://github.com/jlppc/OpMon/wiki/ROADMAP">Voir la ROADMAP détaillé</a>
 <br/>
