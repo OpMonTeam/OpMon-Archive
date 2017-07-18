@@ -19,7 +19,7 @@ If there are problems to understand the old commits or monthly reports, because 
 
 <br/>
 Incoming versions :<ul>
-<li>Alpha 0.13 : Improvement of the events, addition of characters.<br>
+<li>Alpha 0.13 : Improvement of the events, addition of characters. Add some objects' descriptions.<br>
 </ul>
 <!--<a href="">Regimys Youtube Channel</a><br/>-->
 <br/>Game version : Alpha 0.12 | Download : <a href="http://opmon-game.ga"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Other/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
