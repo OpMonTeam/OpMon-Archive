@@ -63,7 +63,7 @@ Changelog avant la Alpha 0.05. Pour le reste du changelog après la Alpha 0.07, 
 <li>Alpha 0.01 : Creation du systeme de combat de base</li>
 </ul>
 <h2>Screenshot :</h2> 
-<img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Other/screenshot_1.png.PNG" alt="Désolé."/> 
+<img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Other/screenshot_1.png" alt="Screenshot"/> 
 
 
 
