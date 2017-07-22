@@ -48,7 +48,7 @@ bool scrolling = true;
 bool debugMode = false;
 bool printlayer[3] = {true, true, true};
 
-sf::Sprite &character = Main::player.persSprite;
+sf::Sprite &character = Main::player.getSprite();
 
 void initVars() {
     actual =  Initializer::maps[5];
@@ -58,6 +58,7 @@ void initVars() {
     camera.setCenter(character.getPosition());
     camera.setSize(sf::Vector2f(16 CASES, 16 CASES));
     ppDir = TO_UP;
+    Main::player.setppDirPointer(&ppDir);
 
 /*  maps[0] = actual->getLayer1();
     maps[1] = actual->getLayer2();

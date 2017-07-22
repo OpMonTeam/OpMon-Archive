@@ -82,7 +82,7 @@ void TPEvent::action(Player &player){
     if(!justTP){
         MainFrame::Overworld::tp(mapID, tpCoord);
         if(this->ppDir != -1){
-            MainFrame::Overworld::ppDir = this->ppDir;
+	  Main::player.setppDir(this->ppDir);
         }
         justTP = true;
     }

@@ -24,7 +24,7 @@ namespace Events{
 bool justTP = false;
 
 sf::Sound doorSound;
-  
+
 namespace DoorType{
     std::vector<sf::Texture> NORMAL, SHOP;
 }
@@ -82,7 +82,7 @@ void TPEvent::action(Player &player){
     if(!justTP){
         MainFrame::Overworld::tp(mapID, tpCoord);
         if(this->ppDir != -1){
-            MainFrame::Overworld::ppDir = this->ppDir;
+	  Main;
         }
         justTP = true;
     }
@@ -106,7 +106,7 @@ void DoorEvent::update(Player &player){
             TPEvent::action(player);
             animStarted = -1;
             sprite->setTexture(otherTextures[0]);
-	    
+            doorSound.setVolume(100);
 	    doorSound.play();
         }
 

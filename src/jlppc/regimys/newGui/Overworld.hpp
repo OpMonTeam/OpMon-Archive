@@ -35,7 +35,6 @@ extern sf::Sprite &character;
 extern sf::View camera;
 extern sf::Sprite* maps[3];
 extern sf::Music* music;
-extern int ppDir;
 
 
 }
