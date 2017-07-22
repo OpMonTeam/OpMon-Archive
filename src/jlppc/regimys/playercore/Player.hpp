@@ -55,6 +55,9 @@ public:
 
     void setMap(int ID){mapID = ID;}
     sf::Sprite& getSprite(){return persSprite;}
+  int getppDir(){return *ppDir;}
+  void setppDirPointer(int* ppDir){this->ppDir = ppDir;}
+  void setppDir(int ppDir){*(this->ppDir) = ppDir;}
     /**Translation : pers(onnage) = character
     Sorry if I put it in public, I need it for in Overworld
     DON'T USE!!! Use getSprite instead!
@@ -69,7 +72,7 @@ private:
     int bag[ITEM_NUMBER];
     std::vector<OpMon*> pc = std::vector<OpMon*>();
     Equipe equipe = Equipe("temp");
-
+  int *ppDir;
     int mapID = 0;
 };
 
