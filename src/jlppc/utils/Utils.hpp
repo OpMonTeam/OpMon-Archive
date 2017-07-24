@@ -3,7 +3,7 @@ Utils.hpp
 Auteur : Jlppc
 Fichier sous licence GPL-3.0
 http://opmon-game.ga
-Définit le namespace Utils
+DÃ©finit le namespace Utils
 */
 #ifndef UTILS_HPP
 #define UTILS_HPP
@@ -15,10 +15,10 @@ Définit le namespace Utils
 Namespace contenant des fonctions utiles
 */
 namespace Utils {
-int randU(int limit);
-unsigned int randUI(unsigned int limit);
-void wait(int ticks);
-long hash(std::string str);
+    int randU(int limit);
+    unsigned int randUI(unsigned int limit);
+    void wait(int ticks);
+    long hash(std::string str);
 }
 
 #endif // UTILS_HPP

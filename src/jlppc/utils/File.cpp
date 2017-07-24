@@ -3,7 +3,7 @@
 UNS
 
 RFile::RFile(string path) :
-path(path){
+    path(path) {
 }
 
 ifstream *RFile::getIn() const {

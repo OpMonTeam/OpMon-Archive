@@ -13,17 +13,17 @@ Contient le namespace StartScene
 #include <SFML/Graphics.hpp>
 
 namespace MainFrame {
-/**Fait se dérouler la scène de début*/
-namespace StartScene {
-int startScene();
-void initVars();
-void destroyVars();
-void initStrings();
+    /**Fait se dÃ©rouler la scÃ¨ne de dÃ©but*/
+    namespace StartScene {
+        int startScene();
+        void initVars();
+        void destroyVars();
+        void initStrings();
 
-extern sf::Sprite fondT;
-extern sf::Sprite profT;
-extern sf::Music fondMus;
-}
+        extern sf::Sprite fondT;
+        extern sf::Sprite profT;
+        extern sf::Music fondMus;
+    }
 }
 
 

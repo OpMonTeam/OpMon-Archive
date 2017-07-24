@@ -14,30 +14,30 @@ Contient le namespace Overworld
 #define CASE_SIZE 32
 
 namespace MainFrame {
-/**
-Contient les éléments fonctionnels de l'overworld
-*/
-namespace Overworld {
-void initVars();
-int overworld();
-int boucle();
-int boucleDialog(std::vector<sf::String> dialogs);
+    /**
+    Contient les éléments fonctionnels de l'overworld
+    */
+    namespace Overworld {
+        void initVars();
+        int overworld();
+        int boucle();
+        int boucleDialog(std::vector<sf::String> dialogs);
 
-void up();
-void down();
-void right();
-void left();
+        void up();
+        void down();
+        void right();
+        void left();
 
-int tp(int toTp, sf::Vector2i pos, bool scroll = true);
+        int tp(int toTp, sf::Vector2i pos, bool scroll = true);
 
-extern Map *actual;
-extern sf::Sprite &character;
-extern sf::View camera;
-extern sf::Sprite* maps[3];
-extern sf::Music* music;
+        extern Map *actual;
+        extern sf::Sprite &character;
+        extern sf::View camera;
+        extern sf::Sprite *maps[3];
+        extern sf::Music *music;
 
 
-}
+    }
 }
 
 #endif // OVERWORLD_HPP
