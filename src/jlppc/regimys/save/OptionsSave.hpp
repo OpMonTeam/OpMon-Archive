@@ -21,29 +21,29 @@ Contient le namespace OptionsSave
 /**
 Namespace permettant de sauvegarder les paramètres
 */
-namespace OptionsSave{
+namespace OptionsSave {
     /**
     Classe définissant un paramètre
     */
-    class Param{
+    class Param {
         private:
-        std::string paramName;
-        std::string valeur;
+            std::string paramName;
+            std::string valeur;
         public:
-        Param(std::string name, std::string valeur);
-        std::string getName() const;
-        std::string getValue() const;
-        void setValue(std::string value);
+            Param(std::string name, std::string valeur);
+            std::string getName() const;
+            std::string getValue() const;
+            void setValue(std::string value);
 
     };
 
     extern std::vector<Param> paramList;
 
-    Param getParam(std::string const& nom);
+    Param getParam(std::string const &nom);
 
-    void addOrModifParam(std::string const& nom, std::string const& value);
+    void addOrModifParam(std::string const &nom, std::string const &value);
 
-    Param deleteParam(std::string const& nom);
+    Param deleteParam(std::string const &nom);
 
     //CPP ONLY :
     //int searchParam(string nom);
@@ -52,7 +52,7 @@ namespace OptionsSave{
 
     void initParams(std::string file);
 
-    bool checkParam(std::string const& name);
+    bool checkParam(std::string const &name);
 
 }
 

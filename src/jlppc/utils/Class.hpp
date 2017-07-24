@@ -3,7 +3,7 @@ Class.hpp
 Auteur : Jlppc
 Fichier sous licence GPL-3.0
 http://opmon-game.ga
-Définit la classe... Class.
+DÃ©finit la classe... Class.
 */
 #ifndef CLASS_HPP
 #define CLASS_HPP
@@ -11,33 +11,33 @@ Définit la classe... Class.
 #include <iostream>
 
 /**
-Définit une classe. Pratique pour le newInstance()
+DÃ©finit une classe. Pratique pour le newInstance()
 */
 template <typename T>
 class Class {
-public:
-    Class(std::string name, int ID) {//ID doit etre en hexadécimal, c'est mieux.
-        this->name = name;
-        this->id = id;
-    }
-    Class() {}
-    T *newInstance() const {
-        return new T();
-    }
-    std::string getName() const {
-        return name;
-    }
-    int getID() const {
-        return id;
-    }
-    template<typename U>bool operator==(Class<U> const &y) {
-        if (id == y.id) {
-            return true;
+    public:
+        Class(std::string name, int ID) {//ID doit etre en hexadÃ©cimal, c'est mieux.
+            this->name = name;
+            this->id = id;
         }
-    }
-private:
-    std::string name;
-    int id;
+        Class() {}
+        T *newInstance() const {
+            return new T();
+        }
+        std::string getName() const {
+            return name;
+        }
+        int getID() const {
+            return id;
+        }
+        template<typename U>bool operator==(Class<U> const &y) {
+            if (id == y.id) {
+                    return true;
+                }
+        }
+    private:
+        std::string name;
+        int id;
 };
 
 #endif /* CLASS_HPP */

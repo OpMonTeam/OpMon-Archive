@@ -15,26 +15,26 @@ Contient les définitions des classes des attaques
 #include "../../utils/Class.hpp"
 /**Macros permettant de facilité l'écriture des classes*/
 #define ATK_CLASS(name) class name : public Attaque {\
-public:
+        public:
 
 #define EAv int effetAvant(OpMon &atk, OpMon &def)
 #define EAp int effetApres(OpMon &atk, OpMon &def)
 #define IF_ATK(NAME) if(name == #NAME){\
-                        return new NAME();\
-                    }
+            return new NAME();\
+        }
 /**
 Namespace contenant les définitions des attaques
 */
 //->NoDoc
 namespace Attaques {
 
-Attaque* newAtk(std::string name);
+    Attaque *newAtk(std::string name);
 
-ATK_CLASS(Abime)
-Abime() : Attaque("Abime", 99999, Type::SOL, 30, false, false, -1, false, 5, 0, "Abime") {}
-EAv;
-EAp {return 0;}
-static Class<Abime> *classe;
+    ATK_CLASS(Abime)
+    Abime() : Attaque("Abime", 99999, Type::SOL, 30, false, false, -1, false, 5, 0, "Abime") {}
+    EAv;
+    EAp {return 0;}
+    static Class<Abime> *classe;
 };
 
 ATK_CLASS(Acidarmure)

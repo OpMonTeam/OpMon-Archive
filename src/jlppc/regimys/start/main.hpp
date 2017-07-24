@@ -18,8 +18,8 @@ Contient des fonctions necessaires au programme
 #define toStr(toStrP) #toStrP
 
 #define FOR_EACH(tabType, tabName, sizeTab, acolade) for(unsigned int itor = 0; itor < (sizeTab); itor++) acolade \
-tabType* objActuel = NULL;\
-objActuel = &(tabName[itor]);\
+        tabType* objActuel = NULL;\
+    objActuel = &(tabName[itor]);\
 
 #define LOCAL_TEST
 
@@ -54,7 +54,7 @@ extern sf::Clock ticks;
 
 /**
 Methode a appeler lorsqu'une erreur peut intervenir dans le programme
-fatal : si true, éteint le programme
+fatal : si true, Ã©teint le programme
 */
 void gererErreur(std::string errorName, bool fatal);
 /**
@@ -66,12 +66,12 @@ int quit(int retourne);
 Namespace contenant des variables utiles au fonctionnement du jeu
 */
 namespace Main {
-void main();
+    void main();
 //->Useless
-extern long startTime;
-extern std::string sep;
-extern bool reboot;
-extern Player player;
+    extern long startTime;
+    extern std::string sep;
+    extern bool reboot;
+    extern Player player;
 
 }
 /**

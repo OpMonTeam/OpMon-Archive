@@ -3,7 +3,7 @@ StringKeys.hpp
 Auteur : Jlppc
 Fichier sous licence GPL-3.0
 http://opmon-game.ga
-Contient la défnition du namespace StringKeys
+Contient la dÃ©fnition du namespace StringKeys
 */
 #ifndef STRINGKEYS_HPP
 #define STRINGKEYS_HPP
@@ -14,12 +14,12 @@ Contient la défnition du namespace StringKeys
 #include <SFML/System.hpp>
 
 namespace StringKeys {
-extern std::vector<std::string> keys;
-extern std::vector<sf::String> strings;
-sf::String& get(std::string key);
-void initialize(std::string file);
-sf::String split(sf::String str, char splitter, int part);
-std::string sfStringtoStdString(sf::String const& str);
+    extern std::vector<std::string> keys;
+    extern std::vector<sf::String> strings;
+    sf::String &get(std::string key);
+    void initialize(std::string file);
+    sf::String split(sf::String str, char splitter, int part);
+    std::string sfStringtoStdString(sf::String const &str);
 }
 
 #endif // STRINGKEYS_HPP
