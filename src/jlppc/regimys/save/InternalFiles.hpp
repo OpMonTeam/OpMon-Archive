@@ -5,13 +5,12 @@
 #include <sstream>
 #include <vector>
 
-namespace InternalFiles
-{
+namespace InternalFiles {
     extern std::vector<std::string> filesNames;
     extern std::vector<std::string> files;
     void registerFiles();
-    std::ostringstream* openFileOut(std::string name);
-    std::istringstream* openFileIn(std::string name);
+    std::ostringstream *openFileOut(std::string name);
+    std::istringstream *openFileIn(std::string name);
 };
 
 #endif // INTERNALFILES_HPP

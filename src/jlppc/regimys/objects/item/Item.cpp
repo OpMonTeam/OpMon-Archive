@@ -49,7 +49,7 @@ void initItems() {
 
 
 Item::Item(string nom, bool usable, bool usableInFight, bool givable, int categorie, int id) :
-nom(nom){
+    nom(nom) {
     this->usable = usable;
     this->usableInFight = usableInFight;
     this->id = id;
@@ -59,53 +59,54 @@ nom(nom){
 
 Item *Item::getItem(string const &name)  {
     for (unsigned int i = 0; i < ITEM_NUMBER; i++) {
-        if(itemsLst[i] != NULL) {
-            if (itemsLst[i]->getNom() == name) {
-                return itemsLst[i];
-            }
-        }
+            if(itemsLst[i] != NULL) {
+                    if (itemsLst[i]->getNom() == name) {
+                            return itemsLst[i];
+                        }
+                }
 
-    }
+        }
     return itemsLst[0];//Default
 }
 
 Item *Item::getItem(int id2)  {
     unsigned int id = id2;
     if (!(id < 0 || id > ITEM_NUMBER || itemsLst[id] != NULL)) {
-        return itemsLst[id];
-    } else {
-        return itemsLst[0];
-    }
+            return itemsLst[id];
+        }
+    else {
+            return itemsLst[0];
+        }
 }
 
 int Item::searchItem(Item *toSearch)  {
     for (unsigned int i = 0; i < ITEM_NUMBER; i++) {
-        if (toSearch == itemsLst[i]) {
-            return i;
+            if (toSearch == itemsLst[i]) {
+                    return i;
+                }
         }
-    }
     return -1;
 }
 
 bool Item::operator==(Item const &b) const {
     if (categorie != b.categorie) {
-        return false;
-    }
+            return false;
+        }
     if (givable != b.givable) {
-        return false;
-    }
+            return false;
+        }
     if (!(nom == b.nom)) {
-        return false;
-    }
+            return false;
+        }
     if (usable != b.usable) {
-        return false;
-    }
+            return false;
+        }
     if (usableInFight != b.usableInFight) {
-        return false;
-    }
+            return false;
+        }
     if (id != b.id) {
-        return false;
-    }
+            return false;
+        }
     return true;
 }
 

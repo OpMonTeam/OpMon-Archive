@@ -7,79 +7,79 @@
 UNS
 
 namespace Save {
-ostringstream saveOutput;
-int save(Player* toSave, string fileOut) {
-    //Ouverture du flux de sauvegarde
-    ofstream outStream(fileOut.c_str());
-    string outStr;
-    //Indique que c'est bien une sauvegarde de OpMon
-    saveOutput << "OP_SAVE" << endl;
-    toSave->save();
-    outStr = SOUT.str();
-    /*
-    long hash = Utils::hash(outStr);
-    cout << outStr << endl;
-    cout << hash << endl;
-    outStream << outStr << intToChar(hash) << endl;
-    outStream << hash;*/
-    //J'ai pas encore mis d'algorithme de hash dans le programme
-    //Fermeture du flux
-    outStream.close();
-}
-
-Player *loadPlayer(std::string fileIn) {
-    //Ouverture des flux de chargement
-    ifstream inStream(fileIn.c_str());
-    string inStr;
-    char actu = '\0';
-    string verif = readLine(inStream);
-    if(verif != "OP_SAVE") {//Vérification de la validité du fichier de sauvegarde
-        return NULL;
+    ostringstream saveOutput;
+    int save(Player *toSave, string fileOut) {
+        //Ouverture du flux de sauvegarde
+        ofstream outStream(fileOut.c_str());
+        string outStr;
+        //Indique que c'est bien une sauvegarde de OpMon
+        saveOutput << "OP_SAVE" << endl;
+        toSave->save();
+        outStr = SOUT.str();
+        /*
+        long hash = Utils::hash(outStr);
+        cout << outStr << endl;
+        cout << hash << endl;
+        outStream << outStr << intToChar(hash) << endl;
+        outStream << hash;*/
+        //J'ai pas encore mis d'algorithme de hash dans le programme
+        //Fermeture du flux
+        outStream.close();
     }
-    //Lecture des objets
-    string pname = readLine(inStream);
-    Player *toReturn = new Player(inStream, pname);
-    int hash = inStream.get();
-    //Fermeture du flux
-    inStream.close();
-    /*inStream.open(fileIn.c_str());
-    int i = 0;
-    while(true){
-        i++;
-        actu = inStream.get();
-        if(charToInt(actu) == hash){break;}
-        //cout << actu;
-        inStr+=actu;
-        if(i >= 1000000){break;}
-    }
-    if(Utils::hash(inStr) != hash){//Sauvegarde modifiée
-        cout << "NOPE!" << endl;
-        cout << Utils::hash(inStr) << " != " << hash << endl;
-        return NULL;
-    }*///J'ai pas encore mis d'algorithme de hash dans le programme
-    return toReturn;
 
-}
-
-int charToInt(char toInt) {
-    return toInt;
-}
-char intToChar(int toChar) {
-    return toChar;
-}
-
-std::string readLine(std::ifstream &in) {
-    string toReturn("");
-    char actu = '\0';
-    while(true) {//Lit la chaine caractère par caractère
-        actu = in.get();
-        if(actu == '\n') {
-            break;
+    Player *loadPlayer(std::string fileIn) {
+        //Ouverture des flux de chargement
+        ifstream inStream(fileIn.c_str());
+        string inStr;
+        char actu = '\0';
+        string verif = readLine(inStream);
+        if(verif != "OP_SAVE") {//Vérification de la validité du fichier de sauvegarde
+                return NULL;
+            }
+        //Lecture des objets
+        string pname = readLine(inStream);
+        Player *toReturn = new Player(inStream, pname);
+        int hash = inStream.get();
+        //Fermeture du flux
+        inStream.close();
+        /*inStream.open(fileIn.c_str());
+        int i = 0;
+        while(true){
+            i++;
+            actu = inStream.get();
+            if(charToInt(actu) == hash){break;}
+            //cout << actu;
+            inStr+=actu;
+            if(i >= 1000000){break;}
         }
-        toReturn+=actu;
+        if(Utils::hash(inStr) != hash){//Sauvegarde modifiée
+            cout << "NOPE!" << endl;
+            cout << Utils::hash(inStr) << " != " << hash << endl;
+            return NULL;
+        }*///J'ai pas encore mis d'algorithme de hash dans le programme
+        return toReturn;
 
     }
-    return toReturn;
-}
+
+    int charToInt(char toInt) {
+        return toInt;
+    }
+    char intToChar(int toChar) {
+        return toChar;
+    }
+
+    std::string readLine(std::ifstream &in) {
+        string toReturn("");
+        char actu = '\0';
+        while(true) {//Lit la chaine caractère par caractère
+                actu = in.get();
+                if(actu == '\n') {
+                        break;
+                    }
+                toReturn+=actu;
+
+            }
+        return toReturn;
+    }
 
 }

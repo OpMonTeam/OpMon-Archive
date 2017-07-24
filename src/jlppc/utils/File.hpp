@@ -3,7 +3,7 @@ File.hpp
 Auteur : Jlppc
 Fichier sous licence GPL-3.0
 http://opmon-game.ga
-Définit la classe RFile
+DÃ©finit la classe RFile
 */
 #ifndef FILE_HPP
 #define FILE_HPP
@@ -12,17 +12,17 @@ Définit la classe RFile
 #include <fstream>
 #include "Class.hpp"
 /**
-Permet de stocker une chaine de caractère dans le but de récuperer un flux d'entrée ou de sortie
+Permet de stocker une chaine de caractÃ¨re dans le but de rÃ©cuperer un flux d'entrÃ©e ou de sortie
 */
 class RFile {
-public:
-    RFile(std::string path);
-    std::ifstream *getIn() const;
-    std::ofstream *getOut() const;
-protected:
+    public:
+        RFile(std::string path);
+        std::ifstream *getIn() const;
+        std::ofstream *getOut() const;
+    protected:
 
-private:
-    std::string path;
+    private:
+        std::string path;
 };
 
 #endif // FILE_HPP

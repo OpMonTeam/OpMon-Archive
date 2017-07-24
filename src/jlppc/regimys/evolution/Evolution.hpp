@@ -3,7 +3,7 @@ Evolution.hpp
 Auteur : Jlppc
 Fichier sous licence GPL-3.0
 http://opmon-game.ga
-Contient la définition da la classe Evolution
+Contient la dÃ©finition da la classe Evolution
 */
 #ifndef EVOLUTION_HPP
 #define EVOLUTION_HPP
@@ -14,34 +14,34 @@ Contient la définition da la classe Evolution
 
 class Espece;
 /**
-Permet de définir un type d'évolution
+Permet de dÃ©finir un type d'Ã©volution
 */
 //->PureVirtual
 class Evolution {
-public:
-    virtual ~Evolution() {}
-    Evolution() {
-        evo = -1;
-    }
-    Evolution(int evo);
-    /**Permet de vérifier si le pokémon évolue. Renvoie true si il peut evoluer*/
-    virtual bool checkEvolve(OpMon const &toCheck) const = 0;
-    Espece *getEvolution() const;
-    /**Check evo permet de récuperer l'espece d'évolution. Ne pas confondre avec checkEvolve*/
-    void checkEvo();
-    virtual int getEvolID() const {
-        return evolID;
-    }
-    //->JustUse->E_Item
-    virtual bool itemEvolve(Item *tem) const {
-        return false;
-    }
+    public:
+        virtual ~Evolution() {}
+        Evolution() {
+            evo = -1;
+        }
+        Evolution(int evo);
+        /**Permet de vÃ©rifier si le pokÃ©mon Ã©volue. Renvoie true si il peut evoluer*/
+        virtual bool checkEvolve(OpMon const &toCheck) const = 0;
+        Espece *getEvolution() const;
+        /**Check evo permet de rÃ©cuperer l'espece d'Ã©volution. Ne pas confondre avec checkEvolve*/
+        void checkEvo();
+        virtual int getEvolID() const {
+            return evolID;
+        }
+        //->JustUse->E_Item
+        virtual bool itemEvolve(Item *tem) const {
+            return false;
+        }
 
 
-protected:
-    static const int evolID = 0;
-    Espece *toEvolve;
-    int evo;
+    protected:
+        static const int evolID = 0;
+        Espece *toEvolve;
+        int evo;
 };
 
 #endif /* EVOLUTION_HPP */
