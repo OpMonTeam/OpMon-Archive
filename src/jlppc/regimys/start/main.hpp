@@ -69,14 +69,12 @@ namespace Main {
     void main();
 //->Useless
     extern long startTime;
-    extern std::string sep;
-    extern bool reboot;
+  //  extern std::string sep;
+  // extern bool reboot;
     extern Player player;
 
 }
-/**
-Methode permettant de demmarer le jeu
-*/
+
 int main(int argc, char *argv[]);
 
 typedef unsigned int p_int;
