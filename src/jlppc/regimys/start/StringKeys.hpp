@@ -19,7 +19,9 @@ namespace StringKeys {
     sf::String &get(std::string key);
     void initialize(std::string file);
     sf::String split(sf::String str, char splitter, int part);
+  std::vector<sf::String> split(sf::String str, char splitter);
     std::string sfStringtoStdString(sf::String const &str);
+  int countInstances(sf::String str, char toSearch);
 }
 
 #endif // STRINGKEYS_HPP

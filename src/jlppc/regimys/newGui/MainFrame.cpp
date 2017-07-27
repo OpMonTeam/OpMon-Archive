@@ -191,7 +191,7 @@ namespace MainFrame {
                         StartScene::fondMus.stop();
                         if(Overworld::overworld() != -1) {
                                 if(Overworld::overworld() == 2) {
-                                        Main::reboot = true;
+                                        
 
                                     }
                             }
