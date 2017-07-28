@@ -297,8 +297,9 @@ namespace MainFrame {
                     FOR_EACH(sf::Text, texteDescs, 4, {)
                              objActuel->setColor(sf::Color::White);
                              frame.draw(*objActuel);
-                            }
-                    nameT.setString(string(pName));
+                    }
+		    nameT.setString(string(pName));
+		    Main::player.setName(string(pName));
                     frame.draw(nameT);
                     frame.display();
                     winRefresh();
