@@ -123,6 +123,8 @@
 		<Unit filename="src/jlppc/regimys/save/Save.hpp" />
 		<Unit filename="src/jlppc/regimys/start/Initializer.cpp" />
 		<Unit filename="src/jlppc/regimys/start/Initializer.hpp" />
+		<Unit filename="src/jlppc/regimys/start/OpString.cpp" />
+		<Unit filename="src/jlppc/regimys/start/OpString.hpp" />
 		<Unit filename="src/jlppc/regimys/start/PersistentVars.cpp" />
 		<Unit filename="src/jlppc/regimys/start/PersistentVars.hpp" />
 		<Unit filename="src/jlppc/regimys/start/StringKeys.cpp" />

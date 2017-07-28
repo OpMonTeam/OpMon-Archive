@@ -11,6 +11,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "../newGui/Events.hpp"
+#include "OpString.hpp"
 
 #define ATK push_back(Stats::ATK)
 #define ATKSPE push_back(Stats::ATKSPE)
@@ -581,7 +582,7 @@ namespace Initializer {
       listeOp[55] = new Espece(82, 78, 95, 80, 85, 80, "Akwakwak", Type::EAU, Type::NOTHING, 0, -1, ne, evs[55], 1.7, 76.6, "Il apparaà®t dans les étendues d'eau au crépuscule. Si son front brille, il se sert de sa télékinésie.", 174, 1000000, 75, 55);
       listeOp[56] = new Espece(80, 35, 35, 45, 70, 40, "Férosinge", Type::COMBAT, Type::NOTHING, 0, 28, new E_Level(57, 28),evs[56], 0.5, 2, "Il ne peut dissocier ses amis de ses ennemis et a tendance à  enrager lorsqu'on l'approche.", 74, 1000000, 190, 56);
       listeOp[57] = new Espece(105, 60, 60, 70, 95, 65, "Colossinge", Type::COMBAT, Type::NOTHING, 0, -1, ne, evs[57], 1, 32, "Sa fureur prend fin quand il n'a plus personne à  frapper. Il est difficile d'en Ãªtre témoin.", 149, 1000000, 75, 57);
-      listeOp[58] = new Espece(70, 45, 70, 50, 60, 55, "Caninos", Type::FEU, Type::NOTHING, 0, -1, new E_Item(59, Item::getItem("Pierre Feu")),evs[58], 0.7, 19, "Il est courageux et fier. Il se dresse vaillamment devant ses ennemis mÃªme s'ils sont plus puissants.", 91, 1250000, 190, 58);
+      listeOp[58] = new Espece(70, 45, 70, 50, 60, 55, "Caninos", Type::FEU, Type::NOTHING, 0, -1, new E_Item(59, Item::getItem("Pierre Feu")),evs[58], 0.7, 19, "Il est courageux et fier. Il se dresse vaillamment devant ses ennemis mÃªme s'ils sont plus _puissants.", 91, 1250000, 190, 58);
       listeOp[59] = new Espece(110, 80, 100, 80 , 95, 90, "Arcanin", Type::FEU, Type::NOTHING, 0, -1, ne,evs[59], 1.9, 155, "Son aboiement est tout simplement majestueux. On ne peut que ramper à  ses pieds après l'avoir entendu.", 213, 1250000, 75, 59);
       listeOp[60] = new Espece(50, 40, 40, 40, 90, 40, "Ptitard", Type::EAU, Type::NOTHING, 0, 25, new E_Level(61, 25), evs[60], 0.6, 12.4, "Sa peau est si mince qu'on voit ses organes internes. Il tient à  peine sur ses nouveaux pieds.", 77, 1059860, 255, 60);
       listeOp[61] = new Espece(65, 65, 50, 50, 90, 65, "TÃªtarte", Type::EAU, Type::NOTHING, 0, -1, new E_Item(62, Item::getItem("Pierre Eau")), evs[61], 1, 20, " Ce Pokémon amphibie transpire continuellement quand il est hors de l'eau afin d'hydrater son corps.", 131, 1059860, 120, 61);
@@ -996,15 +997,15 @@ namespace Initializer {
     }
 #endif
     maps.push_back(new Map(*layer1, *layer2, *layer3, 32, 32, "colFe", townMusics[0], feElements, feEPos));
-    std::vector<std::string> feE1 {"fedesc.1", "fedesc.2", "fedesc.3"};
+    std::vector<OpString> feE1 {OpString("fedesc.1"), OpString("fedesc.2"), OpString("fedesc.3")};
     maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(10, 1), feE1, SIDE_UP));
-    std::vector<std::string> feE2 {"ppHouse", "void", "void"};
+    std::vector<OpString> feE2 {OpString("ppHouse", Main::player.getNameP()), OpString::voidStr, OpString::voidStr};
     maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(20, 7), feE2, SIDE_UP));
-    std::vector<std::string> feE3 {"rivalHouse", "void", "void"};
+    std::vector<OpString> feE3 {OpString("rivalHouse"), OpString::voidStr, OpString::voidStr};
     maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(24, 7), feE3, SIDE_UP));
-    std::vector<std::string> feE4 {"labo", "void", "void"};
+    std::vector<OpString> feE4 {OpString("labo"), OpString::voidStr, OpString::voidStr};
     maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(13, 19), feE4, SIDE_UP));
-    std::vector<std::string> feE5 {"weirdsign.1", "weirdsign.2", "void"};
+    std::vector<OpString> feE5 {OpString("weirdsign.1"), OpString("weirdsign.2"), OpString::voidStr};
     maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(22, 19), feE5, SIDE_UP));
     maps[0]->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(18, 7), sf::Vector2i(7, 14), 1));
     maps[0]->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(26, 7), sf::Vector2i(8, 14), 3));
