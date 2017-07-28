@@ -13,6 +13,7 @@ Contient le namespace Events
 #include "../start/main.hpp"
 #include "../start/Initializer.hpp"
 #include "../objects/item/Item.hpp"
+#include "../start/OpString.hpp"
 
 #define SIDE_UP 0x0001
 #define SIDE_DOWN 0x0002
@@ -109,11 +110,11 @@ namespace Events {
 
     class TalkingEvent : public virtual Event {
         private:
-            std::vector<std::string> dialogKeys;
+            std::vector<OpString> dialogKeys;
         protected:
             std::vector<sf::String> dialogs;
         public:
-            TalkingEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, sf::Vector2f position, std::vector<std::string> dialogKeys, int sides = SIDE_ALL, int eventTrigger = 0, bool passable = false);
+            TalkingEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, sf::Vector2f position, std::vector<OpString> dialogKeys, int sides = SIDE_ALL, int eventTrigger = 0, bool passable = false);
             void reloadKeys();
             virtual void update(Player &player);
             virtual void action(Player &player);
@@ -123,7 +124,7 @@ namespace Events {
         protected:
             Item *needed;
             bool consumeItem;
-            static std::vector<std::string> keysLock;
+            static std::vector<OpString> keysLock;
         public:
             virtual void action(Player &player);
             virtual void update(Player &player);
@@ -149,7 +150,7 @@ namespace Events {
 
     class TalkingCharaEvent : public TalkingEvent, CharacterEvent {
         public:
-            TalkingCharaEvent(std::vector<sf::Texture> charTextures, sf::Vector2f position, std::vector<std::string> dialogKeys, int eventTrigger = 0, int moveStyle = 0, bool passable = false, int side = SIDE_ALL);
+            TalkingCharaEvent(std::vector<sf::Texture> charTextures, sf::Vector2f position, std::vector<OpString> dialogKeys, int eventTrigger = 0, int moveStyle = 0, bool passable = false, int side = SIDE_ALL);
         public:
             virtual void update(Player &player);
             virtual void action(Player &player);

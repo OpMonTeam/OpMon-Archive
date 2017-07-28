@@ -30,6 +30,9 @@ class Player {
         std::string getName() const {
             return name;
         }
+  const std::string* getNameP() const{
+    return &name;
+  }
         void setName(std::string const &name) {
             this->name = name;
         }

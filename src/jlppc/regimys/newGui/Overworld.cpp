@@ -72,8 +72,6 @@ namespace MainFrame {
             layer2->setTexture(*actual->getLayer2());
             layer3->setTexture(*actual->getLayer3());
             character.setScale(2, 2);
-
-
         }
 
         int tp(int toTp, sf::Vector2i pos, bool scroll) {
@@ -262,14 +260,23 @@ namespace MainFrame {
 
 
         int overworld() {
-            music->play();
-            frame.setView(camera);
-            int returned = boucle();
-            music->stop();
-            delete(layer1);
-            delete(layer2);
-            delete(layer3);
-            return returned;
+	  for(Map *map : Initializer::maps) {
+	    for(Event *event : map->getEvents()) {
+	      Events::TalkingEvent *te = dynamic_cast<Events::TalkingEvent *>(event);
+	      if(te != nullptr) {
+		te->reloadKeys();
+	      }
+	    }
+	  }
+	  
+	  music->play();
+	  frame.setView(camera);
+	  int returned = boucle();
+	  music->stop();
+	  delete(layer1);
+	  delete(layer2);
+	  delete(layer3);
+	  return returned;
         }
 
         int boucle() {

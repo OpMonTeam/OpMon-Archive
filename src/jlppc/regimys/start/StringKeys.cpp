@@ -115,9 +115,9 @@ namespace StringKeys {
   int countInstances(sf::String str, char toSearch){
     int instances = 0;
     for (unsigned int i = 0; i < str.toUtf32().size(); i++) {
-	  if (str.toUtf32()[i] == toSearch) {
-	    instances++;
-	  }
+      if (str.toUtf32()[i] == toSearch) {
+	instances++;
+      }
     }
     return instances;
   }

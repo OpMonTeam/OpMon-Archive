@@ -43,16 +43,16 @@ namespace Events {
             }
     }
 
-    TalkingEvent::TalkingEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, sf::Vector2f position, std::vector<std::string> dialogKeys, int sides, int eventTrigger, bool passable):
+    TalkingEvent::TalkingEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, sf::Vector2f position, std::vector<OpString> dialogKeys, int sides, int eventTrigger, bool passable):
         Event(baseTexture, otherTextures, eventTrigger, position, sides, passable), dialogKeys(dialogKeys) {
         this->reloadKeys();
     }
 
     void TalkingEvent::reloadKeys() {
         dialogs.clear();
-        FOR_EACH(std::string, this->dialogKeys, this->dialogKeys.size(), {)
-                 dialogs.push_back(StringKeys::get(*objActuel));
-                }
+        FOR_EACH(OpString, this->dialogKeys, this->dialogKeys.size(), {)
+                 dialogs.push_back(objActuel->getString());
+        }
     }
 
     LockedDoorEvent::LockedDoorEvent(std::vector<sf::Texture> &doorType, Item *needed, sf::Vector2f position, sf::Vector2i tpPos, int mapID, int ppDir, int eventTrigger, bool consumeItem,int sides, bool passable) :
@@ -69,7 +69,7 @@ namespace Events {
 
     }
 
-    TalkingCharaEvent::TalkingCharaEvent(std::vector<sf::Texture> charTextures, sf::Vector2f position, std::vector<std::string> dialogKeys, int eventTrigger, int moveStyle, bool passable, int sides):
+    TalkingCharaEvent::TalkingCharaEvent(std::vector<sf::Texture> charTextures, sf::Vector2f position, std::vector<OpString> dialogKeys, int eventTrigger, int moveStyle, bool passable, int sides):
         Event(charTextures[0], charTextures, eventTrigger, position, sides, passable),
         CharacterEvent(charTextures, position, moveStyle, eventTrigger, sides),
         TalkingEvent(charTextures[0], charTextures, position, dialogKeys, sides, eventTrigger, passable) {
@@ -146,7 +146,7 @@ namespace Events {
 
     }
 
-    std::vector<std::string> LockedDoorEvent::keysLock = std::vector<std::string>();
+  std::vector<OpString> LockedDoorEvent::keysLock = std::vector<OpString>();
 
 
 }
