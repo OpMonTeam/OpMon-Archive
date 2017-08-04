@@ -3,9 +3,9 @@ You must install this to start OPMon :
 gcc
 libstdc++6 
 libsmpeg0  
-libsfml-dev
+sfml (or libsfml or libsfml-dev)
 
-/!\ If libsfml-dev doesn't exist, please install all "libsfml" packages  /!\
+/!\ If libsfml-dev doesn't exist, please install all "sfml" packages  /!\
 
 
 
@@ -14,7 +14,7 @@ libsfml-dev
 
 Copy/Paste in Terminal :
 
-sudo dnf install gcc libstdc++6 libsmpeg0 libsfml-dev
+sudo dnf install gcc libstdc++6 libsmpeg0 libsfml
 
 
 
@@ -33,7 +33,7 @@ sudo apt install gcc libstdc++6 libsmpeg0 libsfml-dev
 
 Copy/Past in Terminal :
 
-sudo pacman -S gcc libstdc++6 libsmpeg0 libsfml-dev
+sudo pacman -S gcc libstdc++5 smpeg sfml
 
 
 
