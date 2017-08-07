@@ -552,7 +552,7 @@ int boucle() {
     }
 }
 
-int boucleDialog(vector<sf::String> dialogs) {
+int boucleDialog(vector<sf::String> const& dialogs) {
     int sizeOfTxt = dialogs.size();
     sf::String txtEnCours[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
     bool continuer = true;

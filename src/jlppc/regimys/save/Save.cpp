@@ -8,7 +8,7 @@ UNS
 
 namespace Save {
     ostringstream saveOutput;
-    int save(Player *toSave, string fileOut) {
+    int save(Player *toSave, string const& fileOut) {
         //Ouverture du flux de sauvegarde
         ofstream outStream(fileOut.c_str());
         string outStr;
@@ -27,7 +27,7 @@ namespace Save {
         outStream.close();
     }
 
-    Player *loadPlayer(std::string fileIn) {
+    Player *loadPlayer(std::string const& fileIn) {
         //Ouverture des flux de chargement
         ifstream inStream(fileIn.c_str());
         string inStr;

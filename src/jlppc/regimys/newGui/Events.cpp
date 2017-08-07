@@ -7,7 +7,7 @@ Event::~Event() {
     delete(sprite);
 }
 
-Event::Event(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2f position, int sides, bool passable) :
+Event::Event(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2f const& position, int sides, bool passable) :
     baseTexture(baseTexture), otherTextures(otherTextures), eventTrigger(eventTrigger),
     position(position), passable(passable), sides(sides) {
     sprite = new sf::Sprite();
@@ -28,12 +28,12 @@ namespace Events {
         std::vector<sf::Texture> NORMAL, SHOP;
     }
 
-    TPEvent::TPEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2f position, sf::Vector2i tpPos, int mapID, int ppDir, int sides, bool passable):
+    TPEvent::TPEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2f const& position, sf::Vector2i const& tpPos, int mapID, int ppDir, int sides, bool passable):
         Event(baseTexture, otherTextures, eventTrigger, position, sides, passable), tpCoord(tpPos), mapID(mapID), ppDir(ppDir) {
 
     }
 
-    DoorEvent::DoorEvent(std::vector<sf::Texture> &doorType, sf::Vector2f position, sf::Vector2i tpPos, int mapID, int eventTrigger, int ppDir, int sides, bool passable):
+    DoorEvent::DoorEvent(std::vector<sf::Texture> &doorType, sf::Vector2f const& position, sf::Vector2i const& tpPos, int mapID, int eventTrigger, int ppDir, int sides, bool passable):
         Event(doorType[0], doorType, eventTrigger, position, sides, passable),
         TPEvent(doorType[0], doorType, eventTrigger, position, tpPos, mapID, ppDir, sides, passable) {
         this->sprite->move(0, -6);
@@ -42,7 +42,7 @@ namespace Events {
             }
     }
 
-    TalkingEvent::TalkingEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, sf::Vector2f position, std::vector<OpString> dialogKeys, int sides, int eventTrigger, bool passable):
+    TalkingEvent::TalkingEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, sf::Vector2f const& position, std::vector<OpString> const& dialogKeys, int sides, int eventTrigger, bool passable):
         Event(baseTexture, otherTextures, eventTrigger, position, sides, passable), dialogKeys(dialogKeys) {
         this->reloadKeys();
     }
@@ -54,7 +54,7 @@ namespace Events {
         }
     }
 
-    LockedDoorEvent::LockedDoorEvent(std::vector<sf::Texture> &doorType, Item *needed, sf::Vector2f position, sf::Vector2i tpPos, int mapID, int ppDir, int eventTrigger, bool consumeItem,int sides, bool passable) :
+    LockedDoorEvent::LockedDoorEvent(std::vector<sf::Texture> &doorType, Item *needed, sf::Vector2f const& position, sf::Vector2i const& tpPos, int mapID, int ppDir, int eventTrigger, bool consumeItem,int sides, bool passable) :
         DoorEvent(doorType, position, tpPos, mapID, eventTrigger, ppDir, sides, passable),
         Event(this->baseTexture, this->otherTextures, eventTrigger, position, sides, passable),
         TalkingEvent(this->baseTexture, this->otherTextures, position, LockedDoorEvent::keysLock, sides, eventTrigger, passable),
@@ -62,13 +62,13 @@ namespace Events {
 
     }
 
-    CharacterEvent::CharacterEvent(std::vector<sf::Texture> charTextures, sf::Vector2f position, int moveStyle, int eventTrigger, bool passable, int sides):
+    CharacterEvent::CharacterEvent(std::vector<sf::Texture> charTextures, sf::Vector2f const& position, int moveStyle, int eventTrigger, bool passable, int sides):
         Event(charTextures[0], charTextures, eventTrigger, position, sides, passable),
         moveStyle(moveStyle) {
 
     }
 
-    TalkingCharaEvent::TalkingCharaEvent(std::vector<sf::Texture> charTextures, sf::Vector2f position, std::vector<OpString> dialogKeys, int eventTrigger, int moveStyle, bool passable, int sides):
+    TalkingCharaEvent::TalkingCharaEvent(std::vector<sf::Texture> charTextures, sf::Vector2f const& position, std::vector<OpString> const& dialogKeys, int eventTrigger, int moveStyle, bool passable, int sides):
         Event(charTextures[0], charTextures, eventTrigger, position, sides, passable),
         CharacterEvent(charTextures, position, moveStyle, eventTrigger, sides),
         TalkingEvent(charTextures[0], charTextures, position, dialogKeys, sides, eventTrigger, passable) {

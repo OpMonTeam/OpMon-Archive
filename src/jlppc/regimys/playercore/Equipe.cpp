@@ -2,7 +2,7 @@
 
 OpMon *Equipe::PNULL = new OpMon();
 
-Equipe::Equipe(std::string nom) {
+Equipe::Equipe(std::string const& nom) {
     this->nom = nom;
 }
 

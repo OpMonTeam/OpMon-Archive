@@ -9,14 +9,14 @@
 
 UNS
 
-Map::Map(sf::Texture layer1, sf::Texture layer2, sf::Texture layer3, int w, int h, std::string filename, sf::Music *fond, std::vector<std::vector<sf::Texture> > animatedElements, std::vector<sf::Vector2f> elementsPos) {
+Map::Map(sf::Texture const& layer1, sf::Texture const& layer2, sf::Texture const& layer3, int w, int h, std::string const& filename, sf::Music *fond, std::vector<std::vector<sf::Texture> > const& animatedElements, std::vector<sf::Vector2f> const& elementsPos) {
     this->layer1 = new sf::Texture(layer1);
     this->layer2 = new sf::Texture(layer2);
     this->layer3 = new sf::Texture(layer3);
     this->fond = fond;
     if(!fond->getLoop()) {
-            fond->setLoop(true);
-        }
+        fond->setLoop(true);
+    }
     this->animatedElements = animatedElements;
     this->elementsPos = elementsPos;
 
