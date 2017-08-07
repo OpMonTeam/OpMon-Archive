@@ -7,7 +7,7 @@ UNS
 
 OpString OpString::voidStr = OpString("void");
 
-OpString::OpString(string key, ...){
+OpString::OpString(string const& key, ...){
   va_list ap;
   this->key = key;
   va_start(ap, key);

@@ -21,7 +21,7 @@ namespace MainFrame {
         void initVars();
         int overworld();
         int boucle();
-        int boucleDialog(std::vector<sf::String> dialogs);
+        int boucleDialog(std::vector<sf::String> const& dialogs);
 
         void up();
         void down();

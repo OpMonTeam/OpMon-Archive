@@ -9,8 +9,8 @@ namespace InternalFiles {
     extern std::vector<std::string> filesNames;
     extern std::vector<std::string> files;
     void registerFiles();
-    std::ostringstream *openFileOut(std::string name);
-    std::istringstream *openFileIn(std::string name);
+    std::ostringstream *openFileOut(std::string const& name);
+    std::istringstream *openFileIn(std::string const& name);
 };
 
 #endif // INTERNALFILES_HPP

@@ -66,7 +66,7 @@ namespace OptionsSave {
     return -1;
 }
 
-void initParams(string file) {
+void initParams(string const& file) {
         rlog << PRINT_TICKS << "Chargement des paramètres" << endl;
         ifstream stream(file.c_str());
         if(!stream) { //Si le fichier ne peut etre ouvert, il est crée et sera ouvert lors de la sauvegarde.
@@ -98,7 +98,7 @@ void initParams(string file) {
 
     }
 
-    void saveParams(string file) {
+    void saveParams(string const& file) {
         ofstream stream(file.c_str());
         string toGo;
         FOR_EACH(Param, paramList, paramList.size(), {)

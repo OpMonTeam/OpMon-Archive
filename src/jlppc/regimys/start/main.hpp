@@ -56,12 +56,12 @@ extern sf::Clock ticks;
 Methode a appeler lorsqu'une erreur peut intervenir dans le programme
 fatal : si true, éteint le programme
 */
-void gererErreur(std::string errorName, bool fatal);
+void gererErreur(std::string const& errorName, bool const& fatal);
 /**
 Methode qui quitte le programme en fermant toutes les ressources
 retourne : ce que le programme retournera
 */
-int quit(int retourne);
+int quit(int const& retourne);
 /**
 Namespace contenant des variables utiles au fonctionnement du jeu
 */

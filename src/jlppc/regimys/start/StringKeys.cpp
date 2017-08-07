@@ -7,23 +7,23 @@ namespace StringKeys {
     vector<string> keys = vector<string>();
     vector<sf::String> strings = vector<sf::String>();
 
-  sf::String readLine(ifstream &input) {                                                                                       
-    string toReturn;                                                                                                           
-    for(unsigned int i = 0; i < 1024; i++) {                                                                                   
-      int got = input.get();                                                                                                   
-      char traded = got;                                                                                                      
-      if(got == '\n' || got < 31) {                                                                                            
-	break;                                                                                                                 
-      }else {                                                                                                                  
-	char truc = got;                                                               
+  sf::String readLine(ifstream &input) {
+    string toReturn;
+    for(unsigned int i = 0; i < 1024; i++) {
+      int got = input.get();
+      char traded = got;
+      if(got == '\n' || got < 31) {
+	break;
+      }else {
+	char truc = got;
 	toReturn+=truc;
-      }                                                                                                                        
-    }                                                                                                                          
-    sf::String toReelReturn;                                                                                                   
-    toReelReturn = sf::String::fromUtf8(toReturn.begin(), toReturn.end());                                              
-    return toReelReturn;                                                                                                       
+      }
+    }
+    sf::String toReelReturn;
+    toReelReturn = sf::String::fromUtf8(toReturn.begin(), toReturn.end());
+    return toReelReturn;
   }
-  
+
     std::string sfStringtoStdString(sf::String const &str) {
         string toReelReturn;
         basic_string<unsigned int> bs = str.toUtf32();
@@ -33,7 +33,7 @@ namespace StringKeys {
         return toReelReturn;
     }
 
-    void initialize(string keysFileS) {
+    void initialize(string const& keysFileS) {
         //Ouverture du fichier de clées, initialisation des vectors
         ifstream keysFile(keysFileS.c_str());
         keys = vector<string>();
@@ -76,7 +76,7 @@ namespace StringKeys {
         return -1;//Si rien trouvé, retourne -1
     }
 
-    sf::String split(sf::String str, char splitter, int part) {
+    sf::String split(sf::String const& str, char const& splitter, int const& part) {
         int instances = 0;//Compte le nombre d'instances du splitter
         for (unsigned int i = 0; i < str.toUtf32().size(); i++) {//Scanne la chaine pour récuperer le nombre d'instances du splitter
                 if (str.toUtf32()[i] == splitter) {
@@ -94,7 +94,7 @@ namespace StringKeys {
         return toReturn[part];
     }
 
-  std::vector<sf::String> split(sf::String str, char splitter) {
+  std::vector<sf::String> split(sf::String const& str, char const& splitter) {
         int instances = 0;//Compte le nombre d'instances du splitter
         for (unsigned int i = 0; i < str.toUtf32().size(); i++) {//Scanne la chaine pour récuperer le nombre d'instances du splitter
                 if (str.toUtf32()[i] == splitter) {
@@ -111,8 +111,8 @@ namespace StringKeys {
             }
         return toReturn;
     }
-  
-  int countInstances(sf::String str, char toSearch){
+
+  int countInstances(sf::String const& str, char const& toSearch){
     int instances = 0;
     for (unsigned int i = 0; i < str.toUtf32().size(); i++) {
       if (str.toUtf32()[i] == toSearch) {

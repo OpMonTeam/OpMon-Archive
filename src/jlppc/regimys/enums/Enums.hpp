@@ -76,7 +76,7 @@ namespace TableTypes {
     /**Calcule l'efficacité des types selon les paramètres donnés, et la renvoie.
      * Les paramètres attendent une énumération du namespace Type
      */
-    float calcEfficacite(int atk, int def1, int def2);
+    const float calcEfficacite(int atk, int def1, int def2);
 
 }
 

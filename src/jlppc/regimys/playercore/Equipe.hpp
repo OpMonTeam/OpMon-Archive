@@ -15,11 +15,11 @@ Classe permettant de contenir l'equipe d'un joueur ou d'un dresseur.
 */
 class Equipe {
     public:
-        Equipe(std::string nom);
+        Equipe(std::string const& nom);
         std::string getNom() const {
             return nom;
         }
-        OpMon **getEquipe()  {
+        OpMon **getEquipe(){
             return equipe;
         }
         /**Soigne toute l'equipe*/
@@ -37,7 +37,6 @@ class Equipe {
         /**Renvoie true si l'équipe est K.O*/
         bool isKo() const ;
         int getSize() const ;
-        //Opérateurs non pratiques, mais je les met quand meme.Ils permettent de raccourcir l'utilisation de quelques methodes, mais ne sont surement pas conformes a leur utilisation de base.
         void operator+=(OpMon *pkmn) {
             addOpMon(pkmn);
         }
