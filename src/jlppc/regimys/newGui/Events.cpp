@@ -14,7 +14,6 @@ Event::Event(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, i
     sprite->setTexture(this->baseTexture);
     sf::Vector2f posMap((position.x+9)*32, (position.y+9)*32);
     sprite->setPosition(posMap);
-    cout << sides << endl;
 }
 
 

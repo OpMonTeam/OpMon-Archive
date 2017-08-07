@@ -35,6 +35,7 @@ namespace MainFrame {
     sf::Sound dialogPass;
     sf::Thread *windowRefresh = NULL;
     bool fullScreen = false;
+    sf::Thread mapsInit(Initializer::initMaps);
 
 
     void initAllStrings() {
@@ -75,7 +76,7 @@ namespace MainFrame {
     void initAll() {
         MainMenu::initVars();
         StartScene::initVars();
-        Overworld::initVars();
+
     }
 
     void destroyAll() {
@@ -148,6 +149,7 @@ namespace MainFrame {
         Initializer::initSprites();
         rlog << PRINT_TICKS << "Chargement des variables de chaque partie" << endl;
         initAll();
+        mapsInit.launch();
         frame.clear(sf::Color::White);
         //#define TEST
 #ifdef TEST
