@@ -268,7 +268,7 @@ namespace MainFrame {
 	      }
 	    }
 	  }
-	  
+
 	  music->play();
 	  frame.setView(camera);
 	  int returned = boucle();
@@ -584,7 +584,7 @@ namespace MainFrame {
             int phase = 0;
             sf::Vector2f posArrow = frame.mapPixelToCoords(sf::Vector2i(512-75, 512-30));
             arrDial.setPosition(posArrow);
-            \
+
 
             while(continuer && phase == 0) {
                     if((GET_TICKS - ancientTick >= FPS_TICKS)) {

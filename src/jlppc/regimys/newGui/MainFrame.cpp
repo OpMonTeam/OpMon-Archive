@@ -80,7 +80,6 @@ namespace MainFrame {
 
     void destroyAll() {
         MainMenu::deleteVars();
-        StartScene::destroyVars();
     }
 
     void open() {
@@ -188,10 +187,10 @@ namespace MainFrame {
                 MainMenu::bruitPush.play();
                 MainMenu::fondMusTitle.stop();
                 if(StartScene::startScene() != -1) {
-                        StartScene::fondMus.stop();
+                        StartScene::bgMus.stop();
                         if(Overworld::overworld() != -1) {
                                 if(Overworld::overworld() == 2) {
-                                        
+
 
                                     }
                             }
