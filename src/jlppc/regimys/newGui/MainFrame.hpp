@@ -97,6 +97,8 @@ namespace MainFrame {
     extern sf::Sound dialogPass;
     extern bool fullScreen;
 
+    extern sf::Thread mapsInit;
+
 
     void open();
 
