@@ -59,9 +59,7 @@ Permet d'ouvrir la fenetre du jeu et de charger les ressources essensielles. Con
         } else if (!(dialog + 3 >= sizeOfTxt)) {\
             dialogPass.play();\
             line = 0;\
-            dialog++;\
-            dialog++;\
-            dialog++;\
+            dialog+=3;\
             i = 0;\
             txtEnCours[0] = string(" ");\
             txtEnCours[1] = string(" ");\
