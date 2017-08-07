@@ -77,6 +77,10 @@ namespace Main {
 
 int main(int argc, char *argv[]);
 
+std::string& operator<<(std::string &str, std::string const& thing);
+std::string& operator<<(std::string &str, int const& nbre);
+std::string& operator<<(std::string &str, char nbre[]);
+
 typedef unsigned int p_int;
 
 

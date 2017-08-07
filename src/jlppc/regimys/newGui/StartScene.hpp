@@ -1,28 +1,25 @@
 /*
 StartScene.hpp
-Auteur : Jlppc
-Fichier sous license GPL-3.0
+Author : Jlppc
+File under the GPL-3.0 license
 http://opmon-game.ga
-Contient le namespace StartScene
 */
-#ifndef STARTSCENE_H
-#define STARTSCENE_H
+#ifndef STARTSCENE_HPP
+#define STARTSCENE_HPP
 
 #include "../start/bigDefines.hxx"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 
 namespace MainFrame {
-    /**Fait se dérouler la scène de début*/
     namespace StartScene {
         int startScene();
         void initVars();
-        void destroyVars();
         void initStrings();
 
-        extern sf::Sprite fondT;
-        extern sf::Sprite profT;
-        extern sf::Music fondMus;
+        extern sf::Sprite bg;
+        extern sf::Sprite prof;
+        extern sf::Music bgMus;
     }
 }
 

@@ -19,8 +19,14 @@ OpString::OpString(string key, ...){
   va_end(ap);
 }
 
+OpString::OpString(){
+
+}
+
 sf::String OpString::getString(){
-  if(key == "ppHouse")cout << *objects[0] << endl;
+    if(this->key.empty()){
+        return sf::String();
+    }
   if(objects.size() == 0){
     return StringKeys::get(key);
   }
@@ -28,6 +34,7 @@ sf::String OpString::getString(){
   if(StringKeys::get(key).toUtf32()[StringKeys::get(key).toUtf32().size() - 1] == '~'){
     splitted.push_back(" ");
   }
+
   int i = 0;
   sf::String toReturn;
   if(StringKeys::get(key).toUtf32()[0] != '~'){
@@ -37,6 +44,8 @@ sf::String OpString::getString(){
     toReturn+=sf::String((*objects[i]));
     toReturn+=splitted[i + ((StringKeys::get(key).toUtf32()[0] != '~') ? 1 : 0)];
   }
-  cout << StringKeys::sfStringtoStdString(toReturn) << endl;
+  if(StringKeys::get(key).toUtf32()[0] == '~'){
+    toReturn+=splitted[splitted.size() - 1];
+  }
   return toReturn;
 }

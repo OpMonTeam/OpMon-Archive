@@ -119,6 +119,14 @@ std::string& operator<<(std::string &str, std::string const& thing){
   return str;
 }
 
+std::string& operator<<(std::string &str, char thing[]){
+    string strThing(thing);
+    ostringstream oss;
+    oss << str << strThing;
+    str = oss.str();
+    return str;
+}
+
 #include "../objects/Attaques.hpp"
 #include "../save/Save.hpp"
 int main(int argc, char *argv[]) {

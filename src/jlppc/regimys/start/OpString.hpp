@@ -11,6 +11,7 @@ private:
   std::vector<std::string*> objects;
 public:
   OpString(std::string key, ...);
+  OpString();
 
   std::string getObject(int index){return *(objects[0]);}
   std::string getKey(){return key;}
