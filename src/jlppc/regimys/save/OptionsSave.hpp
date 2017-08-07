@@ -48,9 +48,9 @@ namespace OptionsSave {
     //CPP ONLY :
     //int searchParam(string nom);
 
-    void saveParams(std::string file);
+    void saveParams(std::string const& file);
 
-    void initParams(std::string file);
+    void initParams(std::string const& file);
 
     bool checkParam(std::string const &name);
 

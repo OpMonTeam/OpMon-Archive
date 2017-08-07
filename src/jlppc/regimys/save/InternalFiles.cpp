@@ -16,7 +16,7 @@ namespace InternalFiles {
     std::vector<std::string> filesNames;
     std::vector<std::string> files;
 
-    int searchFile(std::string name) {
+    int searchFile(std::string const& name) {
         for(unsigned int i = 0; i < filesNames.size(); i++) {
                 if(filesNames[i] == name) {
                         return i;
@@ -25,11 +25,11 @@ namespace InternalFiles {
         return -1;
     }
 
-    std::ostringstream *openFileOut(std::string name) {
+    std::ostringstream *openFileOut(std::string const& name) {
         return new std::ostringstream(files[searchFile(name)]);
     }
 
-    std::istringstream *openFileIn(std::string name) {
+    std::istringstream *openFileIn(std::string const& name) {
         return new std::istringstream(files[searchFile(name)]);
     }
 

@@ -18,7 +18,7 @@ Classe représentant le joueur
 */
 class Player {
     public:
-        Player(std::string name);
+        Player(std::string const& name);
         Player();
         Equipe *getEquipe();
         /**Ajoute un item au sac*/
@@ -30,9 +30,9 @@ class Player {
         std::string getName() const {
             return name;
         }
-  const std::string* getNameP() const{
-    return &name;
-  }
+        const std::string* getNameP() const{
+            return &name;
+        }
         void setName(std::string const &name) {
             this->name = name;
         }

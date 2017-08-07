@@ -42,7 +42,7 @@ class Map {
         std::vector<int> elementsCount;
 
     public:
-        Map(sf::Texture layer1, sf::Texture layer2, sf::Texture layer3, int w, int h, std::string filename, sf::Music *fond, std::vector<std::vector<sf::Texture> > animatedElements = std::vector<std::vector<sf::Texture> >(), std::vector<sf::Vector2f> elementsPos = std::vector<sf::Vector2f>());
+        Map(sf::Texture const& layer1, sf::Texture const& layer2, sf::Texture const& layer3, int w, int h, std::string const& filename, sf::Music *fond, std::vector<std::vector<sf::Texture> > const& animatedElements = std::vector<std::vector<sf::Texture> >(), std::vector<sf::Vector2f> const& elementsPos = std::vector<sf::Vector2f>());
         ~Map();
         int getH() const {
             return h;
@@ -53,23 +53,23 @@ class Map {
         int **getPassTab() const {
             return passTab;
         }
-        sf::Texture *getLayer1()  {
+        const sf::Texture *getLayer1() const {
             return layer1;
         }
-        sf::Texture *getLayer2()  {
+        const sf::Texture *getLayer2() const {
             return layer2;
         }
-        sf::Texture *getLayer3()  {
+        const sf::Texture *getLayer3() const {
             return layer3;
         }
-        sf::Music *getFond() {
+        sf::Music *getFond() const {
             return fond;
         }
         void addEvent(Event *event) {
             events.push_back(event);
         }
         std::vector<Event *> getEvent(sf::Vector2i position);
-        std::vector<Event *> getEvents() {
+        const std::vector<Event *> getEvents() const {
             return events;
         };
         void updateEvents(Player &player);

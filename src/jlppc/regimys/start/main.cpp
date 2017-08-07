@@ -75,7 +75,7 @@ namespace Main {
 
 }
 
-void gererErreur(string errorName, bool fatal) {
+void gererErreur(string const& errorName, bool const& fatal) {
     rerrLog << "Erreur : " << errorName << endl;
     if (fatal) {//Si besoin d'un crash
             rerrLog << "Erreur fatale." << endl;
@@ -84,7 +84,7 @@ void gererErreur(string errorName, bool fatal) {
         }
 }
 
-int quit(int returne) {
+int quit(int const& returne) {
     if (MainFrame::init) {
 
     }
