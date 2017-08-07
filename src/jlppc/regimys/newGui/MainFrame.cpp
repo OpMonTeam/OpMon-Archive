@@ -190,6 +190,10 @@ namespace MainFrame {
                 MainMenu::fondMusTitle.stop();
                 if(StartScene::startScene() != -1) {
                         StartScene::bgMus.stop();
+                        frame.draw(spriteLoad);
+                        frame.draw(textLoad);
+                        frame.display();
+                        winRefresh();
                         if(Overworld::overworld() != -1) {
                                 if(Overworld::overworld() == 2) {
 
