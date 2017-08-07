@@ -12,6 +12,7 @@
 #include <SFML/Audio.hpp>
 #include "../newGui/Events.hpp"
 #include "OpString.hpp"
+#include "../newGui/Overworld.hpp"
 
 #define ATK push_back(Stats::ATK)
 #define ATKSPE push_back(Stats::ATKSPE)
@@ -862,7 +863,7 @@ namespace Initializer {
     marchePP2[TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp21.png");
     marchePP2[TO_LEFT].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp22.png");
     marchePP2[TO_UP].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp23.png");
-	
+
     std::vector<sf::Texture> basicDoor;
     for(unsigned int i = 0; i < 4; i++) {
       ostringstream oss;
@@ -872,7 +873,7 @@ namespace Initializer {
       doorsTextures.push_back(txtr);
     }
     doorsTextures.push_back(basicDoor);
-        
+
 
     std::vector<sf::Texture> shopDoor;
 
@@ -932,8 +933,6 @@ namespace Initializer {
     initTextures();
     rlog << PRINT_TICKS << "Initialisation des fonds" << endl;
     initBackgrounds();
-    rlog << PRINT_TICKS << "Initialisation des maps" << endl;
-    initMaps();
     rlog << PRINT_TICKS << "Initialisation des animations" << endl;
     Animations::initAnims();
 
@@ -1080,6 +1079,8 @@ namespace Initializer {
       delete(layer1);
     delete(layer2);
     delete(layer3);
+
+    MainFrame::Overworld::initVars();
 
   }
 #undef PLANS_RESET
