@@ -66,4 +66,3 @@ Changelog avant la Alpha 0.05. Pour le reste du changelog après la Alpha 0.07, 
 <img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Other/screenshot_1.png" alt="Screenshot"/> 
 
 
-
