@@ -866,27 +866,24 @@ namespace Initializer {
 
     std::vector<sf::Texture> basicDoor;
     for(unsigned int i = 0; i < 4; i++) {
-      ostringstream oss;
+      std::ostringstream oss;
       oss << RESSOURCES_PATH << "animations\\basicdoor\\basic_door" << i + 1 << ".png";
       sf::Texture txtr;
       txtr.loadFromFile(oss.str());
-      doorsTextures.push_back(txtr);
+      basicDoor.push_back(txtr);
     }
     doorsTextures.push_back(basicDoor);
-
+    doorSoundBuffer.loadFromFile(RESSOURCES_PATH + "audio\\sounds\\door.ogg");
 
     std::vector<sf::Texture> shopDoor;
-
     for(unsigned int i = 0; i < 4; i++) {
-      ostringstream oss;
-      oss << RESSOURCES_PATH << "animations\\basicdoor\\shop_door" << i + 1 << ".png";
+      std::ostringstream oss;
+      oss << RESSOURCES_PATH << "animations\\shopdoor\\shop_door" << i + 1 << ".png";
       sf::Texture txtr;
       txtr.loadFromFile(oss.str());
       shopDoor.push_back(txtr);
     }
     doorsTextures.push_back(shopDoor);
-
-    doorSoundBuffer.loadFromFile(RESSOURCES_PATH + "audio\\sounds\\door.ogg");
 #else
     texturePP[TO_DOWN].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp0.png");
     texturePP[TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp1.png");
