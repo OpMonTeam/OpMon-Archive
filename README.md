@@ -4,7 +4,7 @@ Voir <a href="#--------en-français-------"> En Français</a><br/>
 <h3> Welcome to Project "OPMon"!</h3>
 
 Welcome to the project "OPMon Lazuli" !<br/>
-<a href="https://github.com/jlppc/OpMon/wiki/Journal-du-developpement">Developpment news (In french sorry)</a><br/>
+<a href="https://github.com/jlppc/OpMon/wiki/Journal-du-développement">Developpment news (In french sorry)</a><br/>
 <a href="https://github.com/jlppc/OpMon/wiki/Monthly-reports---Bilans-Mensuels/">Monthly reports</a><br/>
 <a href="http://opmon-game.ga">Project's website</a><br/>
 <a href="https://github.com/jlppc/OpMon/blob/master/Credits.md">Credits</a><br/>
@@ -29,7 +29,7 @@ Incoming versions :<ul>
 <h3>Bienvenue sur le Projet "OPMon Lazuli"!</h3>
 
 Bienvenue sur le projet de OPMon Lazuli! Le clone libre de la celebre license de Nintendo !<br/>
-<a href="https://github.com/jlppc/OpMon/wiki/Journal-du-developpement">Journal de developpement</a><br/>
+<a href="https://github.com/jlppc/OpMon/wiki/Journal-du-développement">Journal de developpement</a><br/>
 <a href="https://github.com/jlppc/OpMon/wiki/Monthly-reports---Bilans-Mensuels/">Bilans mensuels, récapitulatifs de nouveautées</a><br/>
 <a href="http://opmon-game.ga">Site web du jeu</a><br/>
 <a href="https://github.com/jlppc/OpMon/blob/master/Credits.md">Crédits</a><br/>
