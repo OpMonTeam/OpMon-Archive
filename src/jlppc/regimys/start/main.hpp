@@ -21,7 +21,7 @@ Contient des fonctions necessaires au programme
         tabType* objActuel = NULL;\
     objActuel = &(tabName[itor]);\
 
-#define LOCAL_TEST
+//#define LOCAL_TEST
 
 #define GET_TICKS ticks.getElapsedTime().asMilliseconds()
 #ifndef _WIN32
