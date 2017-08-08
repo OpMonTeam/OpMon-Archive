@@ -2,10 +2,10 @@
 #include "OpMon.hpp"
 #include <sstream>
 
-Class <Attaque> *Attaque::classe = new Class<Attaque>("Attaque", NULL);
+Class <Attaque> *Attaque::classe = new Class<Attaque>("Attaque", 0x00000000);
 
 Attaque::Attaque(std::string nom, int puissance, int type, int precision, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite, std::string className) :
-    nom(nom), className(className) {
+  className(className), nom(nom) {
     this->puissance = puissance;
     this->type = type;
     this->precision = precision;

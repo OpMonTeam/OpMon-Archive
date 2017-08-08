@@ -28,7 +28,7 @@ UNS
 	    sf::Text nameField;
 
 	    sf::String txtEnCours[] = {sf::String(" "), sf::String(" "), sf::String(" ")};
-	    int line = 0, i = 0, dialog = 0, total = 0;
+	    unsigned int line = 0, i = 0, dialog = 0, total = 0;
 
 	    bool changeDialog = false;
 	    int phase = 0;
@@ -40,7 +40,7 @@ UNS
 		unsigned int it = 0;
 		for(it = 0; it < 18; it++){
 		    string actual;
-		    actual << "prof.dialog.start." << it+1;
+		    actual << string("prof.dialog.start.") << it+1;
 		    txtP0[it] = kget(actual);
 		}
 		int ite = 1;
@@ -49,7 +49,7 @@ UNS
 		txtP1[0] = strName.getString();
 		for(it = it; it < 27; it++){
 		    string actual;
-		    actual << "prof.dialog.start." << it+1;
+		    actual << string("prof.dialog.start.") << it+1;
 		    txtP1[ite] = kget(actual);
 		    ite++;
 		}
@@ -134,7 +134,8 @@ UNS
 				DIALOG_PASS(txtP0)
 				    }
 			    break;
-
+			default:
+			  break;
 			}
 
 			ECHAP
@@ -219,6 +220,8 @@ UNS
 			    continuer = false;
 			}
 			break;
+		    default:
+		      break;
 		    }
 
 		    ECHAP
@@ -261,6 +264,9 @@ UNS
 				DIALOG_PASS(txtP1)
 			    }
 			    break;
+
+			default:
+			  break;
 
 			}
 

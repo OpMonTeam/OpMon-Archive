@@ -15,7 +15,7 @@ Contient la définition du namespace Animations.
 /*Define permettant de vérifier si les animations ont été initialisées*/
 #define ANIM_CHECK_INIT \
     if(!init){\
-            gererErreur("Erreur : Animations non initialisées", true);\
+            handleError("Erreur : Animations non initialisées", true);\
         }
 
 /**

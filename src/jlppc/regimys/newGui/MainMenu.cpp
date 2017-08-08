@@ -40,7 +40,7 @@ namespace MainFrame {
                     textPos[i]->setPosition(sf::Vector2f(60, j));
                     j+=85;
                 }
-            bool ok = true;
+	    // bool ok = true;
 #ifdef _WIN32
             textures[0].loadFromFile("ressources\\backgrounds\\titlescreen.png");
             textures[1].loadFromFile("ressources\\sprites\\misc\\arrChoice.png");
@@ -87,10 +87,10 @@ namespace MainFrame {
 
         void verifVars() {
             if(fond.getTexture() == NULL) {
-                    gererErreur("Texture du fond du menu manquante", true);
+                    handleError("Texture du fond du menu manquante", true);
                 }
             if(cursor.getTexture() == NULL) {
-                    gererErreur("Texture du curseur manquant", true);
+                    handleError("Texture du curseur manquant", true);
                 }
         }
 
@@ -137,6 +137,8 @@ namespace MainFrame {
                                             }
                                     }
                                 break;
+		    default:
+		      break;
 
                         }
                     if(isKeyPressed(sf::Keyboard::Up)) {

@@ -22,56 +22,55 @@ bool keyPressed = false;
 UNS
 
 namespace MainFrame {
-    sf::RenderTexture frame;
-    sf::RenderWindow window;
-    sf::Sprite fond;
-    sf::Event events;
-    sf::Font font;
-    sf::Sprite dialog;
-    sf::Text dialogText[3];
-    bool init = false;
-    sf::Sprite ppSprite;
-    sf::Sprite ppAnim;
-    sf::Sound dialogPass;
-    sf::Thread *windowRefresh = NULL;
-    bool fullScreen = false;
-    sf::Thread mapsInit(Initializer::initMaps);
+  sf::RenderTexture frame;
+  sf::RenderWindow window;
+  sf::Sprite fond;
+  sf::Event events;
+  sf::Font font;
+  sf::Sprite dialog;
+  sf::Text dialogText[3];
+  bool init = false;
+  sf::Sprite ppSprite;
+  sf::Sprite ppAnim;
+  sf::Sound dialogPass;
+  sf::Thread *windowRefresh = NULL;
+  bool fullScreen = false;
+  sf::Thread mapsInit(Initializer::initMaps);
 
 
-    void initAllStrings() {
-        MainMenu::OptionsMenu::initStrings();
-        MainMenu::initStrings();
-        StartScene::initStrings();
-        for(Map *map : Initializer::maps) {
-                for(Event *event : map->getEvents()) {
-                        Events::TalkingEvent *te = dynamic_cast<Events::TalkingEvent *>(event);
-                        if(te != nullptr) {
-                                te->reloadKeys();
-                            }
-                    }
-            }
+  void initAllStrings() {
+    MainMenu::OptionsMenu::initStrings();
+    MainMenu::initStrings();
+    StartScene::initStrings();
+    for(Map *map : Initializer::maps) {
+      for(Event *event : map->getEvents()) {
+	Events::TalkingEvent *te = dynamic_cast<Events::TalkingEvent *>(event);
+	if(te != nullptr) {
+	  te->reloadKeys();
+	}
+      }
     }
+  }
 
-    sf::Vector2i vec2fTo2i(sf::Vector2f const &toTrans) {
-        return sf::Vector2i(toTrans.x, toTrans.y);
+  sf::Vector2i vec2fTo2i(sf::Vector2f const &toTrans) {
+    return sf::Vector2i(toTrans.x, toTrans.y);
+  }
+
+  void printText(sf::RenderTexture &framee, sf::String text[]) {
+    int minusPos = 32;
+    dialog.setPosition(framee.mapPixelToCoords(sf::Vector2i(0, 362)));
+    framee.draw(MainFrame::dialog);
+    for(unsigned int itor = 0; itor < 3; itor++){
+      dialogText[itor].setString(text[itor]);
+      dialogText[itor].setFont(font);
+      dialogText[itor].setCharacterSize(FONT_SIZE_DEFAULT);
+      dialogText[itor].setColor(sf::Color::Black);
+      dialogText[itor].setPosition(framee.mapPixelToCoords(sf::Vector2i(25, framee.mapCoordsToPixel(dialog.getPosition()).y + minusPos)));
+      minusPos+=32;
+
+      framee.draw(dialogText[itor]);
     }
-
-    void printText(sf::RenderTexture &framee, sf::String text[]) {
-        int minusPos = 32;
-        dialog.setPosition(framee.mapPixelToCoords(sf::Vector2i(0, 362)));
-        framee.draw(MainFrame::dialog);
-        FOR_EACH(sf::String, text, 3, {)
-                 dialogText[itor].setString(text[itor]);
-                 dialogText[itor].setFont(font);
-                 dialogText[itor].setCharacterSize(FONT_SIZE_DEFAULT);
-                 dialogText[itor].setColor(sf::Color::Black);
-                 dialogText[itor].setPosition(framee.mapPixelToCoords(sf::Vector2i(25, framee.mapCoordsToPixel(dialog.getPosition()).y + minusPos)));
-                 minusPos+=32;
-
-                 framee.draw(dialogText[itor]);
-                }
-
-    }
+  }
 
     void initAll() {
         MainMenu::initVars();
@@ -89,34 +88,37 @@ namespace MainFrame {
 #else
         if(!font.loadFromFile(RESSOURCES_PATH + "fonts/Default.ttf"))
 #endif // _WIN32
-            {
-                gererErreur("Erreur d'initialisation de la police d'écriture.", true);
-            }
-        rlog << PRINT_TICKS << "Initialisation de la police terminée" << endl;
+	  {
+	    handleError("Font cannot be opened.", true);
+	  }
+        rlog << PRINT_TICKS << "Font opened" << endl;
 
         init = true;
-        //Ouverture de la fenetre
+
+
         sf::ContextSettings settings;
-        settings.antialiasingLevel = 8;
+        //settings.antialiasingLevel = 8;
         if(!OptionsSave::checkParam("fullscreen")) {
                 OptionsSave::addOrModifParam("fullscreen", "false");
-            }
+	}
         if(OptionsSave::getParam("fullscreen").getValue() == "true") {
                 fullScreen = true;
                 window.create(sf::VideoMode::getFullscreenModes().at(0), "OpMon Lazuli", sf::Style::Fullscreen, settings);
-            }
-        else {
+	}else {
                 window.create(sf::VideoMode(512, 512), "OpMon Lazuli", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize, settings);
-            }
+	}
+
         frame.create(512, 512);
-        //TODO : Écran de chargement
         window.clear(sf::Color::White);
         sf::Texture loadTexture;
 #ifdef _WIN32
-        loadTexture.loadFromFile(RESSOURCES_PATH + "backgrounds\\loading.png");
+	if(!loadTexture.loadFromFile(RESSOURCES_PATH + "backgrounds\\loading.png"))
 #else
-        loadTexture.loadFromFile(RESSOURCES_PATH + "backgrounds/loading.png");
+	  if(! loadTexture.loadFromFile(RESSOURCES_PATH + "backgrounds/loading.png"))
 #endif // _WIN32
+	    {
+	      handleError("Unable to open the loading screen.", false);
+	    }
         sf::Sprite spriteLoad;
         spriteLoad.setTexture(loadTexture);
         sf::Text textLoad;
@@ -130,24 +132,25 @@ namespace MainFrame {
         frame.display();
         winRefresh();
 
-        rlog << PRINT_TICKS << "Initialisation de la fenetre et du renderer terminée" << endl;
-        //Ouverture d'un son
+        rlog << PRINT_TICKS << "Window initialized!" << endl;
         sf::SoundBuffer buf;
-        //window.setVerticalSyncEnabled(true);
+#if 0
+        window.setVerticalSyncEnabled(true);
+#endif
         window.setFramerateLimit(180);
 #ifdef _WIN32
         if(!buf.loadFromFile("ressources\\audio\\sounds\\dialogChange.ogg"))
 #else
         if(!buf.loadFromFile(RESSOURCES_PATH + "audio/sounds/dialogChange.ogg"))
 #endif
-            {
-                gererErreur("Impossible d'ouvrir le son de changement de dialogue.", false);
-            }
+	  {
+	    handleError("Unable to open dialog sound.", false);
+	  }
         window.setKeyRepeatEnabled(false);
         dialogPass.setBuffer(buf);
-        rlog << PRINT_TICKS << "Chargement des sprites globaux (Initializer)" << endl;
+        rlog << PRINT_TICKS << "Loading sprites" << endl;
         Initializer::initSprites();
-        rlog << PRINT_TICKS << "Chargement des variables de chaque partie" << endl;
+        rlog << PRINT_TICKS << "Loading variables" << endl;
         initAll();
         mapsInit.launch();
         frame.clear(sf::Color::White);
@@ -183,8 +186,7 @@ namespace MainFrame {
 
         dialogPass.setVolume(50);
         frame.clear(sf::Color::Black);
-        rlog << PRINT_TICKS << "Lancement du menu." << endl;
-        //Lancement du jeu
+        rlog << PRINT_TICKS << "Launching the main menu." << endl;
         if(MainMenu::mainMenu() != -1) {
                 MainMenu::bruitPush.play();
                 MainMenu::fondMusTitle.stop();
@@ -198,20 +200,20 @@ namespace MainFrame {
                                 if(Overworld::overworld() == 2) {
 
 
-                                    }
-                            }
-                    }
-            }
-        else {
+				}
+			}
+		}
+	}else {
                 MainMenu::bruitPush.play();
-            }
+	}
 
-        rlog << PRINT_TICKS << "Suppression des variables de chaque partie" << endl;
+        rlog << PRINT_TICKS << "Deleting the variables..." << endl;
         destroyAll();
-        rlog << PRINT_TICKS << "Fermeture de la fenetre" << endl;
+        rlog << PRINT_TICKS << "Closing the window..." << endl;
         window.close();
         init = false;
         delete(windowRefresh);
+	rlog << PRINT_TICKS << "Window closed. No error detected. Goodbye." << endl;
     }
 
 

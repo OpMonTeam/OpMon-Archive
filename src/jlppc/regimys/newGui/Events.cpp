@@ -1,5 +1,7 @@
 #include "Events.hpp"
 #include "Overworld.hpp"
+#pragma GCC diagnostic ignored "-Wreorder"
+
 
 UNS
 
@@ -49,7 +51,7 @@ namespace Events {
 
     void TalkingEvent::reloadKeys() {
         dialogs.clear();
-        FOR_EACH(OpString, this->dialogKeys, this->dialogKeys.size(), {)
+        FOR_EACH(OpString, this->dialogKeys, (int) this->dialogKeys.size(), {)
                  dialogs.push_back(objActuel->getString());
         }
     }
@@ -58,7 +60,7 @@ namespace Events {
         DoorEvent(doorType, position, tpPos, mapID, eventTrigger, ppDir, sides, passable),
         Event(this->baseTexture, this->otherTextures, eventTrigger, position, sides, passable),
         TalkingEvent(this->baseTexture, this->otherTextures, position, LockedDoorEvent::keysLock, sides, eventTrigger, passable),
-        needed(needed), consumeItem(consumeItem) {
+	needed(needed), consumeItem(consumeItem){
 
     }
 
