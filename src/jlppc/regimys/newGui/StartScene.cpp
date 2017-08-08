@@ -104,7 +104,7 @@ UNS
 		prof.setScale(1.5, 1.5);
 
 		rlog << PRINT_TICKS << "End of start scene initializations" << endl;
-		for(sf::Text cellTxt : textDescs){
+		for(sf::Text &cellTxt : textDescs){
 		    cellTxt.setCharacterSize(FONT_SIZE_DEFAULT);
 		    cellTxt.setColor(sf::Color::Black);
 		    cellTxt.setFont(font);
