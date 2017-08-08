@@ -21,7 +21,7 @@ Map::Map(sf::Texture const& layer1, sf::Texture const& layer2, sf::Texture const
     this->elementsPos = elementsPos;
 
     if(animatedElements.size() != elementsPos.size()) {
-            gererErreur("Error: Map() - elementsPos size is not equal to animatedElements.", true);
+            handleError("Error: Map() - elementsPos size is not equal to animatedElements.", true);
         }
 
     for(unsigned int i = 0; i < animatedElements.size(); i++) {
@@ -67,9 +67,6 @@ std::vector<Event *> Map::getEvent(sf::Vector2i position) {
                     toReturn.push_back(event);
                 }
         }
-    FOR_EACH(Event *, events, events.size(), {)
-
-            }
     return toReturn;
 }
 
@@ -83,7 +80,7 @@ void Map::updateEvents(Player &player) {
 void Map::updateElements(sf::RenderTexture &frame) {
     for(unsigned int i = 0; i < animatedElements.size(); i++) {
             elementsCount[i]++;
-            if(elementsCount[i] >= animatedElements[i].size()) {
+            if(elementsCount[i] >= (int) animatedElements[i].size()) {
                     elementsCount[i] = 0;
                 }
             elementsSprites[i].setTexture(animatedElements[i][elementsCount[i]]);

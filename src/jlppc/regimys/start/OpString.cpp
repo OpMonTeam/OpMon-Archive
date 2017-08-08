@@ -12,7 +12,7 @@ OpString::OpString(string const& key, ...){
   this->key = key;
   va_start(ap, key);
   int instances = StringKeys::countInstances(StringKeys::get(key), '~');
-  for(unsigned int i = 0; i < instances; i++){
+  for(int i = 0; i < instances; i++){
     std::string *actual = va_arg(ap, std::string*);
     objects.push_back(actual);
   }
@@ -35,7 +35,7 @@ sf::String OpString::getString(){
     splitted.push_back(" ");
   }
 
-  int i = 0;
+  unsigned int i = 0;
   sf::String toReturn;
   if(StringKeys::get(key).toUtf32()[0] != '~'){
     toReturn+=splitted[0];

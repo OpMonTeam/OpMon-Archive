@@ -81,7 +81,7 @@ int tp(int toTp, sf::Vector2i pos, bool scroll) {
     }
     actual = Initializer::maps[toTp];
     if(actual == NULL) {
-        gererErreur("Erreur lors du changement de map : actual == NULL", true);
+        handleError("Erreur lors du changement de map : actual == NULL", true);
     }
     scrolling = scroll;
     character.setPosition(8 CASES + pos.x CASES - 16, 8 CASES + pos.y CASES);
@@ -279,287 +279,290 @@ int overworld() {
     return returned;
 }
 
-int boucle() {
+  int boucle() {
     bool continuer = true;
     while(continuer) {
-        if((GET_TICKS - ancientTick >= FPS_TICKS)) {
-            frames++;
+      if((GET_TICKS - ancientTick >= FPS_TICKS)) {
+	frames++;
 #ifdef DEBUG_REPORT
-            rerrLog << "[FRAME N°" << frames << "]" << endl;
-            rerrLog << "Boucle : Normal" << endl;
-            rerrLog << "Tick: " << ticks.getElapsedTime().asMilliseconds() << "ms" << endl;
-            rerrLog << "PlayerPosition: " << ppPosX << " - " << ppPosY << endl;
-            rerrLog << "Moving: " << moving << endl;
-            rerrLog << "Anim: " << anim << endl;
-            rerrLog << "PlayerDirection: " << ppDir << endl;
-            rerrLog << "DebugMode: " << debugMode << endl;
+	rerrLog << "[FRAME N°" << frames << "]" << endl;
+	rerrLog << "Boucle : Normal" << endl;
+	rerrLog << "Tick: " << ticks.getElapsedTime().asMilliseconds() << "ms" << endl;
+	rerrLog << "PlayerPosition: " << ppPosX << " - " << ppPosY << endl;
+	rerrLog << "Moving: " << moving << endl;
+	rerrLog << "Anim: " << anim << endl;
+	rerrLog << "PlayerDirection: " << ppDir << endl;
+	rerrLog << "DebugMode: " << debugMode << endl;
 #endif
 
-            //cout << "Position perso : P(" << ppPosX << ";" << ppPosY << ")" << endl;
-            if(justTp) {
-                tpCount++;
-                justTp = tpCount < 0;
-            }
+	//cout << "Position perso : P(" << ppPosX << ";" << ppPosY << ")" << endl;
+	if(justTp) {
+	  tpCount++;
+	  justTp = tpCount < 0;
+	}
 
-            ancientTick = GET_TICKS;
-            window.pollEvent(events);
+	ancientTick = GET_TICKS;
+	window.pollEvent(events);
 
-            switch(events.type) {
-                QUIT
+	switch(events.type) {
+	  QUIT
 
-            case sf::Event::KeyPressed:
-                if(events.key.code == sf::Keyboard::Equal) {
-                    debugMode = !debugMode;
-                }
-                if(debugMode) {
-                    if(events.key.code == sf::Keyboard::F10) {
-                        printlayer[0] = !printlayer[0];
-                    }
-                    if(events.key.code == sf::Keyboard::F11) {
-                        printlayer[1] = !printlayer[1];
-                    }
-                    if(events.key.code == sf::Keyboard::F12) {
-                        printlayer[2] = !printlayer[2];
-                    }
+	case sf::Event::KeyPressed:
+	  if(events.key.code == sf::Keyboard::Equal) {
+	    debugMode = !debugMode;
+	  }
+	  if(debugMode) {
+	    if(events.key.code == sf::Keyboard::F10) {
+	      printlayer[0] = !printlayer[0];
+	    }
+	    if(events.key.code == sf::Keyboard::F11) {
+	      printlayer[1] = !printlayer[1];
+	    }
+	    if(events.key.code == sf::Keyboard::F12) {
+	      printlayer[2] = !printlayer[2];
+	    }
 
-                    if(events.key.code == sf::Keyboard::F5) {
-                        tp(4, sf::Vector2i(0, 1), true);
-                    } else if(events.key.code == sf::Keyboard::F6) {
-                        tp(5, sf::Vector2i(0, 0), true);
-                    } else if(events.key.code == sf::Keyboard::F1) {
-                        tp(0, sf::Vector2i(25, 28), true);
-                    } else if(events.key.code == sf::Keyboard::F2) {
-                        tp(1, sf::Vector2i(8, 14), true);
-                    } else if(events.key.code == sf::Keyboard::F3) {
-                        tp(2, sf::Vector2i(15, 14), true);
-                    } else if(events.key.code == sf::Keyboard::F4) {
-                        tp(3, sf::Vector2i(8, 14), true);
-                    }
-                }
-            }
-            ECHAP
-            if(Main::player.gameIsOver) {
-                return -1;
-            }
-            if(!justTp) {
-                if(isKeyPressed(sf::Keyboard::Up)) {
-                    up();
-                }
-                if(isKeyPressed(sf::Keyboard::Down)) {
-                    down();
-                }
-                if(isKeyPressed(sf::Keyboard::Left)) {
-                    left();
-                }
-                if(isKeyPressed(sf::Keyboard::Right)) {
-                    right();
-                }
-            }
-            sf::Text debugText;
-            if(debugMode) {
-                if(isKeyPressed(sf::Keyboard::Numpad2)) {
-                    camera.move(0, 4);
-                }
-                if(isKeyPressed(sf::Keyboard::Numpad4)) {
-                    camera.move(-4, 0);
-                }
-                if(isKeyPressed(sf::Keyboard::Numpad8)) {
-                    camera.move(0, -4);
-                }
-                if(isKeyPressed(sf::Keyboard::Numpad6)) {
-                    camera.move(4, 0);
-                }
-                debugText.setString("Debug mode");
-                debugText.setPosition(frame.mapPixelToCoords(sf::Vector2i(0, 0)));
-                debugText.setFont(font);
-                debugText.setColor(sf::Color::Black);
-                debugText.setCharacterSize(40);
-            }
+	    if(events.key.code == sf::Keyboard::F5) {
+	      tp(4, sf::Vector2i(0, 1), true);
+	    } else if(events.key.code == sf::Keyboard::F6) {
+	      tp(5, sf::Vector2i(0, 0), true);
+	    } else if(events.key.code == sf::Keyboard::F1) {
+	      tp(0, sf::Vector2i(25, 28), true);
+	    } else if(events.key.code == sf::Keyboard::F2) {
+	      tp(1, sf::Vector2i(8, 14), true);
+	    } else if(events.key.code == sf::Keyboard::F3) {
+	      tp(2, sf::Vector2i(15, 14), true);
+	    } else if(events.key.code == sf::Keyboard::F4) {
+	      tp(3, sf::Vector2i(8, 14), true);
+	    }
+	  }
+	default:
+	  break;
+	}
+	ECHAP
+	  if(Main::player.gameIsOver) {
+	    return -1;
+	  }
+	if(!justTp) {
+	  if(isKeyPressed(sf::Keyboard::Up)) {
+	    up();
+	  }
+	  if(isKeyPressed(sf::Keyboard::Down)) {
+	    down();
+	  }
+	  if(isKeyPressed(sf::Keyboard::Left)) {
+	    left();
+	  }
+	  if(isKeyPressed(sf::Keyboard::Right)) {
+	    right();
+	  }
+	}
+	sf::Text debugText;
+	if(debugMode) {
+	  if(isKeyPressed(sf::Keyboard::Numpad2)) {
+	    camera.move(0, 4);
+	  }
+	  if(isKeyPressed(sf::Keyboard::Numpad4)) {
+	    camera.move(-4, 0);
+	  }
+	  if(isKeyPressed(sf::Keyboard::Numpad8)) {
+	    camera.move(0, -4);
+	  }
+	  if(isKeyPressed(sf::Keyboard::Numpad6)) {
+	    camera.move(4, 0);
+	  }
+	  debugText.setString("Debug mode");
+	  debugText.setPosition(frame.mapPixelToCoords(sf::Vector2i(0, 0)));
+	  debugText.setFont(font);
+	  debugText.setColor(sf::Color::Black);
+	  debugText.setCharacterSize(40);
+	}
 
-            frame.clear(sf::Color::Black);
-            if((debugMode ? printlayer[0] : true)) {
-                frame.draw(*layer1);
-            }
-            if((debugMode ? printlayer[1] : true)) {
-                frame.draw(*layer2);
-            }
-            actual->updateEvents(Main::player);
-            if(anim != -1 && !anims) {
-                character.setTexture(Initializer::marchePP[anim]);
-                animsCounter++;
-                anims = animsCounter > 8;
+	frame.clear(sf::Color::Black);
+	if((debugMode ? printlayer[0] : true)) {
+	  frame.draw(*layer1);
+	}
+	if((debugMode ? printlayer[1] : true)) {
+	  frame.draw(*layer2);
+	}
+	actual->updateEvents(Main::player);
+	if(anim != -1 && !anims) {
+	  character.setTexture(Initializer::marchePP[anim]);
+	  animsCounter++;
+	  anims = animsCounter > 8;
 
-            } else if(anim != -1 && anims) {
-                character.setTexture(Initializer::marchePP2[anim]);
-                animsCounter++;
-                if(animsCounter > 16) {
-                    anims = false;
-                    animsCounter = 0;
-                }
-            } else if(anim == -1) {
-                character.setTexture(Initializer::texturePP[ppDir]);
-            }
-            frame.draw(character);
+	} else if(anim != -1 && anims) {
+	  character.setTexture(Initializer::marchePP2[anim]);
+	  animsCounter++;
+	  if(animsCounter > 16) {
+	    anims = false;
+	    animsCounter = 0;
+	  }
+	} else if(anim == -1) {
+	  character.setTexture(Initializer::texturePP[ppDir]);
+	}
+	frame.draw(character);
 
-            if((debugMode ? printlayer[2] : true)) {
-                frame.draw(*layer3);
-            }
-            if(moving == -1) {
-                std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, ppPosY CASES));
-                if(nextEvents.size() > 0) {
-                    for(Event *nextEvent : nextEvents) {
-                        if(nextEvent->getEventTrigger() == Events::EventTrigger::BE_IN) {
-                            bool go = false;
-                            if(((nextEvent->getSide() & SIDE_UP) == SIDE_UP) && ppDir == TO_UP) {
-                                go = true;
-                            } else if(((nextEvent->getSide() & SIDE_DOWN) == SIDE_DOWN) && ppDir == TO_DOWN) {
-                                go = true;
-                            } else if(((nextEvent->getSide() & SIDE_RIGHT) == SIDE_RIGHT) && ppDir == TO_RIGHT) {
-                                go = true;
-                            } else if(((nextEvent->getSide() & SIDE_LEFT) == SIDE_LEFT) && ppDir == TO_LEFT) {
-                                go = true;
-                            }
-                            if(go) {
-                                nextEvent->action(Main::player);
-                            }
-                        }
-                    }
-                }
-            }
-            actual->updateElements(MainFrame::frame);
-            if(scrolling && !debugMode) {
-                camera.setCenter(character.getPosition().x + 16, character.getPosition().y + 16);
-            }
-            frame.setView(camera);
-            if(debugMode) {
-                frame.draw(debugText);
-            }
-            frame.display();
-            winRefresh();
-            if(anim == -1) {
-                if(isKeyPressed(sf::Keyboard::Return)) {
-                    int lx = ppPosX;
-                    int ly = ppPosY;
-                    switch(ppDir) {
-                    case TO_UP:
-                        ly--;
-                        break;
-                    case TO_DOWN:
-                        ly++;
-                        break;
-                    case TO_LEFT:
-                        lx--;
-                        break;
-                    case TO_RIGHT:
-                        lx++;
-                        break;
-                    default:
-                        break;
-                    }
-                    vector<Event *> events = actual->getEvent(sf::Vector2i(lx CASES, ly CASES));
-                    /*if(events.size() == 0){
-                        events = actual->getEvent(sf::Vector2i(ppPosX CASES, ppPosY CASES));
-                    }*/
+	if((debugMode ? printlayer[2] : true)) {
+	  frame.draw(*layer3);
+	}
+	if(moving == -1) {
+	  std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, ppPosY CASES));
+	  if(nextEvents.size() > 0) {
+	    for(Event *nextEvent : nextEvents) {
+	      if(nextEvent->getEventTrigger() == Events::EventTrigger::BE_IN) {
+		bool go = false;
+		if(((nextEvent->getSide() & SIDE_UP) == SIDE_UP) && ppDir == TO_UP) {
+		  go = true;
+		} else if(((nextEvent->getSide() & SIDE_DOWN) == SIDE_DOWN) && ppDir == TO_DOWN) {
+		  go = true;
+		} else if(((nextEvent->getSide() & SIDE_RIGHT) == SIDE_RIGHT) && ppDir == TO_RIGHT) {
+		  go = true;
+		} else if(((nextEvent->getSide() & SIDE_LEFT) == SIDE_LEFT) && ppDir == TO_LEFT) {
+		  go = true;
+		}
+		if(go) {
+		  nextEvent->action(Main::player);
+		}
+	      }
+	    }
+	  }
+	}
+	actual->updateElements(MainFrame::frame);
+	if(scrolling && !debugMode) {
+	  camera.setCenter(character.getPosition().x + 16, character.getPosition().y + 16);
+	}
+	frame.setView(camera);
+	if(debugMode) {
+	  frame.draw(debugText);
+	}
+	frame.display();
+	winRefresh();
+	if(anim == -1) {
+	  if(isKeyPressed(sf::Keyboard::Return)) {
+	    int lx = ppPosX;
+	    int ly = ppPosY;
+	    switch(ppDir) {
+	    case TO_UP:
+	      ly--;
+	      break;
+	    case TO_DOWN:
+	      ly++;
+	      break;
+	    case TO_LEFT:
+	      lx--;
+	      break;
+	    case TO_RIGHT:
+	      lx++;
+	      break;
+	    default:
+	      break;
+	    }
+	    vector<Event *> events = actual->getEvent(sf::Vector2i(lx CASES, ly CASES));
+	    /*if(events.size() == 0){
+	      events = actual->getEvent(sf::Vector2i(ppPosX CASES, ppPosY CASES));
+	      }*/
 
-                    if(events.size() > 0) {
-                        for(unsigned int i = 0; i < events.size(); i++) {
-                            if(events[i]->getEventTrigger() == Events::EventTrigger::PRESS) {
-                                bool go = false;
-                                if(((events[i]->getSide() & SIDE_UP) == SIDE_UP) && ppDir == TO_UP) {
-                                    go = true;
-                                } else if(((events[i]->getSide() & SIDE_DOWN) == SIDE_DOWN) && ppDir == TO_DOWN) {
-                                    go = true;
-                                } else if(((events[i]->getSide() & SIDE_RIGHT) == SIDE_RIGHT) && ppDir == TO_RIGHT) {
-                                    go = true;
-                                } else if(((events[i]->getSide() & SIDE_LEFT) == SIDE_LEFT) && ppDir == TO_LEFT) {
-                                    go = true;
-                                }
-                                if(go) {
-                                    events[i]->action(Main::player);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            if(anim == TO_UP) {
-                if(frames - startFrames >= 7) {
-                    if(moving == TO_UP) {
-                        character.move(0, -4);
-                    }
-                    anim = -1;
-                    moving = -1;
-                } else {
-                    if(moving == TO_UP) {
-                        character.move(0, -4);
-
-
-                    }
-                }
-            }
-            if(anim == TO_DOWN) {
-                if(frames - startFrames >= 7) {
-                    if(moving == TO_DOWN) {
-                        character.move(0, 4);
-                    }
-                    anim = -1;
-                    moving = -1;
-                } else {
-                    if(moving == TO_DOWN) {
-                        character.move(0, 4);
-                    }
-                }
-            }
-
-            if(anim == TO_LEFT) {
-                if(frames - startFrames >= 7) {
-                    if(moving == TO_LEFT) {
-                        character.move(-4, 0);
-                    }
-
-                    anim = -1;
-                    moving = -1;
-                } else {
-                    if(moving == TO_LEFT) {
-                        character.move(-4, 0);
-                    }
-                }
-            }
-
-            if(anim == TO_RIGHT) {
-                if(frames - startFrames >= 7) {
-                    if(moving == TO_RIGHT) {
-                        character.move(4, 0);
-                    }
-                    anim = -1;
-                    moving = -1;
-                } else {
-                    if(moving == TO_RIGHT) {
-                        character.move(4, 0);
+	    if(events.size() > 0) {
+	      for(unsigned int i = 0; i < events.size(); i++) {
+		if(events[i]->getEventTrigger() == Events::EventTrigger::PRESS) {
+		  bool go = false;
+		  if(((events[i]->getSide() & SIDE_UP) == SIDE_UP) && ppDir == TO_UP) {
+		    go = true;
+		  } else if(((events[i]->getSide() & SIDE_DOWN) == SIDE_DOWN) && ppDir == TO_DOWN) {
+		    go = true;
+		  } else if(((events[i]->getSide() & SIDE_RIGHT) == SIDE_RIGHT) && ppDir == TO_RIGHT) {
+		    go = true;
+		  } else if(((events[i]->getSide() & SIDE_LEFT) == SIDE_LEFT) && ppDir == TO_LEFT) {
+		    go = true;
+		  }
+		  if(go) {
+		    events[i]->action(Main::player);
+		  }
+		}
+	      }
+	    }
+	  }
+	}
+	if(anim == TO_UP) {
+	  if(frames - startFrames >= 7) {
+	    if(moving == TO_UP) {
+	      character.move(0, -4);
+	    }
+	    anim = -1;
+	    moving = -1;
+	  } else {
+	    if(moving == TO_UP) {
+	      character.move(0, -4);
 
 
-                    }
-                }
-            }
+	    }
+	  }
+	}
+	if(anim == TO_DOWN) {
+	  if(frames - startFrames >= 7) {
+	    if(moving == TO_DOWN) {
+	      character.move(0, 4);
+	    }
+	    anim = -1;
+	    moving = -1;
+	  } else {
+	    if(moving == TO_DOWN) {
+	      character.move(0, 4);
+	    }
+	  }
+	}
+
+	if(anim == TO_LEFT) {
+	  if(frames - startFrames >= 7) {
+	    if(moving == TO_LEFT) {
+	      character.move(-4, 0);
+	    }
+
+	    anim = -1;
+	    moving = -1;
+	  } else {
+	    if(moving == TO_LEFT) {
+	      character.move(-4, 0);
+	    }
+	  }
+	}
+
+	if(anim == TO_RIGHT) {
+	  if(frames - startFrames >= 7) {
+	    if(moving == TO_RIGHT) {
+	      character.move(4, 0);
+	    }
+	    anim = -1;
+	    moving = -1;
+	  } else {
+	    if(moving == TO_RIGHT) {
+	      character.move(4, 0);
+
+
+	    }
+	  }
+	}
 
 
 
-        } else {
-            Utils::wait(FPS_TICKS - (GET_TICKS - ancientTick));
-        }
+      } else {
+	Utils::wait(FPS_TICKS - (GET_TICKS - ancientTick));
+      }
 
-
+      
     }
-}
+    return 0;
+  }
 
 int boucleDialog(vector<sf::String> const& dialogs) {
     int sizeOfTxt = dialogs.size();
     sf::String txtEnCours[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
     bool continuer = true;
-    int dialog = 0;
+    unsigned int dialog = 0;
     bool changeDialog = false;
-    int i = 0;
-    int line = 0;
+    unsigned int i = 0;
+    unsigned int line = 0;
 
     int phase = 0;
     sf::Vector2f posArrow = frame.mapPixelToCoords(sf::Vector2i(512-75, 512-30));
@@ -585,6 +588,8 @@ int boucleDialog(vector<sf::String> const& dialogs) {
                     DIALOG_PASS(dialogs)
                 }
                 break;
+	    default:
+	      break;
             }
             if(isKeyPressed(sf::Keyboard::Escape)) {
                 Main::player.gameIsOver = true;
@@ -642,8 +647,9 @@ int boucleDialog(vector<sf::String> const& dialogs) {
             Utils::wait(FPS_TICKS - (GET_TICKS - ancientTick));
         }
 
-
+	
     }
+    return 0;
 }
 
 }

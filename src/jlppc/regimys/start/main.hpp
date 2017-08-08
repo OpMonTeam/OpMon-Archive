@@ -17,7 +17,7 @@ Contient des fonctions necessaires au programme
 #define UNS using namespace std;
 #define toStr(toStrP) #toStrP
 
-#define FOR_EACH(tabType, tabName, sizeTab, acolade) for(unsigned int itor = 0; itor < (sizeTab); itor++) acolade \
+#define FOR_EACH(tabType, tabName, sizeTab, acolade) for(int itor = 0; itor < (sizeTab); itor++) acolade \
         tabType* objActuel = NULL;\
     objActuel = &(tabName[itor]);\
 
@@ -56,7 +56,7 @@ extern sf::Clock ticks;
 Methode a appeler lorsqu'une erreur peut intervenir dans le programme
 fatal : si true, éteint le programme
 */
-void gererErreur(std::string const& errorName, bool const& fatal);
+void handleError(std::string const& errorName, bool fatal);
 /**
 Methode qui quitte le programme en fermant toutes les ressources
 retourne : ce que le programme retournera

@@ -56,7 +56,7 @@ Permet d'ouvrir la fenetre du jeu et de charger les ressources essensielles. Con
             printText(frame, tab);\
             changeDialog = true;\
             Utils::wait(50);\
-        } else if (!(dialog + 3 >= sizeOfTxt)) {\
+  } else if (!(dialog + 3 >= (unsigned int) sizeOfTxt)) {	\
             dialogPass.play();\
             line = 0;\
             dialog+=3;\

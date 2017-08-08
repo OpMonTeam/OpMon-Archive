@@ -47,7 +47,7 @@ int CalcCourbes::erratique(int n) {
             return round(pow(n, 3) * ((160 - n) / 100));
         }
     else {
-            gererErreur("Erreur dans le calcul d'experience : niveau <= 0",
+            handleError("Erreur dans le calcul d'experience : niveau <= 0",
                         true);
             return 0;
         }
@@ -64,7 +64,7 @@ int CalcCourbes::fluctuante(int n) {
             return round(pow(n, 3) * ((32 + (n / 2)) / 50));
         }
     else {
-            gererErreur("Erreur dans le calcul d'experience : niveau <= 0",
+            handleError("Erreur dans le calcul d'experience : niveau <= 0",
                         true);
             return 0;
         }
@@ -202,7 +202,7 @@ bool OpMon::captured(I_Opball const &Opball) {
                     return false;
                 }
             if (nbreOk != 4) {
-                    gererErreur("InternalError : OpMon.cpp : nbreOk != 4",
+                    handleError("InternalError : OpMon.cpp : nbreOk != 4",
                                 true);
                 }
             return true;
@@ -286,11 +286,11 @@ int OpMon::win(OpMon const &vaincu) {
 void OpMon::getEvs(OpMon const &vaincu) {
     if (!((atkEV + defEV + pvEV + atkSpeEV + defSpeEV + vitEV) > 510)) {
             vector<int> statsVaincu;
-            for (unsigned int i = 0; i < vaincu.espece->getEvSize(); i++) {
+            for (int i = 0; i < vaincu.espece->getEvSize(); i++) {
                     statsVaincu.push_back(vaincu.espece->getEv()[i]);
                 }
 
-            for (int i = 0; i < statsVaincu.size(); i++) {
+            for (unsigned int i = 0; i < statsVaincu.size(); i++) {
                     switch (statsVaincu[i]) { //Creer enumération Stats
                             case Stats::ATK:
                                 if (atkEV < 252) {
@@ -433,7 +433,7 @@ void OpMon::toolEvTrade() {
 }
 
 void OpMon::evolve() {
-    bool changeName = (surnom == espece->getNom());
+  //bool changeName = (surnom == espece->getNom());
     espece = espece->getEvolution();
 }
 

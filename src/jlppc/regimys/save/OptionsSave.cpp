@@ -58,7 +58,7 @@ namespace OptionsSave {
     }
 
     int searchParam(string const &nom) {
-        FOR_EACH(Param, paramList, paramList.size(), {)
+      FOR_EACH(Param, paramList, (int) paramList.size(), {)
         if(objActuel->getName() == nom) {
             return itor;
         }
@@ -73,7 +73,7 @@ void initParams(string const& file) {
                 ofstream strm(file.c_str());
                 strm.close();
                 ifstream cpy(file.c_str());
-                gererErreur("Impossible d'ouvrir le fichier des paramètres. Si le fichier était seulement inexistant, il a été crée. Il sera ouvert donc correctement au redemmarage.", false);
+                handleError("Impossible d'ouvrir le fichier des paramètres. Si le fichier était seulement inexistant, il a été crée. Il sera ouvert donc correctement au redemmarage.", false);
 
             }
         string read;
@@ -90,7 +90,7 @@ void initParams(string const& file) {
                     }
             }
         if(i == 100000) {
-                gererErreur("initParams : Boucle infinie stoppée", true);
+                handleError("initParams : Boucle infinie stoppée", true);
             }
 
         stream.close();
@@ -101,7 +101,7 @@ void initParams(string const& file) {
     void saveParams(string const& file) {
         ofstream stream(file.c_str());
         string toGo;
-        FOR_EACH(Param, paramList, paramList.size(), {)
+        FOR_EACH(Param, paramList, (int) paramList.size(), {)
                  //cout << objActuel->getName() << endl;
                  toGo+=("pm|" + objActuel->getName() + "=" + objActuel->getValue() + '\n');//Ajoute le pm| puis écrit le paramètre dans le fichier.
                  //cout << toGo;
