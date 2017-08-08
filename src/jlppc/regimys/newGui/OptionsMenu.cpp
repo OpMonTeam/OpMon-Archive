@@ -194,6 +194,9 @@ namespace MainFrame {
                                                 }
                                         }
                                     break;
+
+			default:
+			  break;
                             }
 
                         ECHAP
@@ -295,6 +298,8 @@ namespace MainFrame {
                                                 }
                                         }
                                     break;
+			default:
+			  break;
 
                             }
 

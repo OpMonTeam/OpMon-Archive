@@ -75,13 +75,23 @@ namespace Main {
 
 }
 
-void gererErreur(string const& errorName, bool const& fatal) {
-    rerrLog << "Erreur : " << errorName << endl;
-    if (fatal) {//Si besoin d'un crash
-            rerrLog << "Erreur fatale." << endl;
-            rlog << PRINT_TICKS << "Crash." << endl;
-            quit(1);
-        }
+int errors = 0;
+
+void handleError(string const& errorName, bool fatal) {
+  errors++;
+    rerrLog << "Error  n°" << errors << " : " << errorName << endl;
+    cerr << "Error n°" << errors << " : " << errorName << endl;
+    if(errors > 20){//If the program gets more than 20 errors, he stops.
+      cerr << "Too many errors. Closing program. Please verify your installation." << endl;
+      rerrLog << "Too many errors. Closing program. Please verify your installation." << endl;
+      fatal = true;
+    }
+    if (fatal) {
+      rerrLog << "Fatal error. Total errors : " << errors << endl;
+      cerr << "Fatal error." << endl;
+      rlog << PRINT_TICKS << "Crash." << endl;
+      quit(1);
+    }
 }
 
 int quit(int const& returne) {
@@ -132,13 +142,16 @@ std::string& operator<<(std::string &str, char thing[]){
 int main(int argc, char *argv[]) {
     ticks.restart();
     //CrÃ©ation de la chaine de caractÃ¨re de version
-    Main::versionS << "Alpha " << Main::version << "." << Main::sousVers;
+    Main::versionS << string("Alpha ") << Main::version << string(".") << Main::sousVers;
     //Traitement des arguments
 #ifndef _WIN32
     string str("mkdir -p ");
+    #pragma GCC diagnostic push
+    #pragma GCC diagnostic ignored "-Wunused-result"
     system((str + RESSOURCES_PATH).c_str());
     system((str + SAVE_PATH).c_str());
     system((str + LOG_PATH).c_str());
+    #pragma GCC diagnostic pop
 #endif
     if(argc >= 2) {
             FOR_EACH(char *, argv, argc, {)

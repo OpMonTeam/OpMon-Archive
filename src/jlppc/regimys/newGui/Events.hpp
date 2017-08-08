@@ -148,7 +148,7 @@ namespace Events {
 
 
 
-    class TalkingCharaEvent : public TalkingEvent, CharacterEvent {
+  class TalkingCharaEvent : public CharacterEvent, TalkingEvent {
         public:
             TalkingCharaEvent(std::vector<sf::Texture> charTextures, sf::Vector2f const& position, std::vector<OpString> const& dialogKeys, int eventTrigger = 0, int moveStyle = 0, bool passable = false, int side = SIDE_ALL);
         public:

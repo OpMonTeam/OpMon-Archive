@@ -41,6 +41,8 @@ namespace Animations {
                         ancientChrono = ticks.getElapsedTime().asMilliseconds();
                         switch (events.type) {
                                     QUIT
+			default:
+			  break;
                             }
 
                         ECHAP
@@ -71,6 +73,8 @@ namespace Animations {
                         ancientChrono = ticks.getElapsedTime().asMilliseconds();
                         switch (events.type) {
                                     QUIT
+			default:
+			  break;
                             }
 
                         ECHAP

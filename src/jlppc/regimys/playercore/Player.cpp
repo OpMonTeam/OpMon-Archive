@@ -30,7 +30,7 @@ void Player::addItem(int itemID) {
 int Player::checkItem(int itemID) {
     unsigned int itemID2 = itemID;
     if (itemID2 > ITEM_NUMBER || itemID2 < 0) {
-            gererErreur("Player : itemID invalide", true);
+            handleError("Player : itemID invalide", true);
         }
     return bag[itemID];
 }
@@ -38,7 +38,7 @@ int Player::checkItem(int itemID) {
 bool Player::deleteItem(int itemID) {
 
     if (bag[itemID] != 0 || itemID < 0) {
-            gererErreur("Player : itemID invalide", true);
+            handleError("Player : itemID invalide", true);
         }
     if (bag[itemID] != 0) {
             bag[itemID]--;
@@ -104,7 +104,7 @@ Player::Player(std::ifstream &in, std::string &name):
     if(iNber > ITEM_NUMBER) {
             iNber = ITEM_NUMBER;
         }
-    for(unsigned int i = 0; i < iNber; i++) {
+    for(int i = 0; i < iNber; i++) {
             this->bag[i] = in.get();
             in.get();
         }
@@ -115,7 +115,7 @@ Player::Player(std::ifstream &in, std::string &name):
         }
     int pcNbre = in.get();
     in.get();
-    for(unsigned int i = 0; i < pcNbre; i++) {
+    for(int i = 0; i < pcNbre; i++) {
             OpMon *op = new OpMon(in);
             this->pc.push_back(op);
         }

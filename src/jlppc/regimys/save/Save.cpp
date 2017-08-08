@@ -25,13 +25,14 @@ namespace Save {
         //J'ai pas encore mis d'algorithme de hash dans le programme
         //Fermeture du flux
         outStream.close();
+	return 0;
     }
 
     Player *loadPlayer(std::string const& fileIn) {
         //Ouverture des flux de chargement
         ifstream inStream(fileIn.c_str());
         string inStr;
-        char actu = '\0';
+        //char actu = '\0';
         string verif = readLine(inStream);
         if(verif != "OP_SAVE") {//Vérification de la validité du fichier de sauvegarde
                 return NULL;
@@ -39,7 +40,7 @@ namespace Save {
         //Lecture des objets
         string pname = readLine(inStream);
         Player *toReturn = new Player(inStream, pname);
-        int hash = inStream.get();
+        //int hash = inStream.get();
         //Fermeture du flux
         inStream.close();
         /*inStream.open(fileIn.c_str());

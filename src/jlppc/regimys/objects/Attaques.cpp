@@ -214,6 +214,7 @@ namespace Attaques {
                 //Texte
                 def.setStatus(Status::FROZEN);
             }
+	return 0;
     }
 
     int Bouclier::effetApres(OpMon &atk, OpMon &def) {
@@ -238,6 +239,7 @@ namespace Attaques {
         // atk.setStats(Fight.oldStats[0], atk.getAttaques(), atk.getEspece(), new Type[]{atk.getType1(), atk.getType2()});
         //def.setStats(Fight.oldStats[1], def.getAttaques(), def.getEspece(), new Type[]{def.getType1(), def.getType2()});
         //TODO
+      return 0;
     }
 
 
@@ -365,11 +367,13 @@ namespace Attaques {
         if(Utils::randU(10) ==7) {
                 def.peur = true;
             }
+	return 0;
 
     }
 
     int Damocles::effetApres(OpMon &atk, OpMon &def) {
         atk.attacked(pvPerdus / 3);
+	return 0;
     }
 
 
@@ -393,10 +397,12 @@ namespace Attaques {
                 atk.confus = true;
 
             }
+	return 0;
     }
     int DanseLames::effetApres(OpMon &atk, OpMon &def) {
         if(atk.changeATK(2)) {
             }
+	return 0;
     }
 
     int Deflagration::effetApres(OpMon &atk, OpMon &def) {
@@ -405,10 +411,12 @@ namespace Attaques {
 
                     }
             }
+	return 0;
     }
 
     int Destruction::effetApres(OpMon &atk, OpMon &def) {
         atk.attacked(atk.getPV());
+	return 0;
     }
 
     int Detritus::effetApres(OpMon &atk, OpMon &def) {
@@ -416,16 +424,19 @@ namespace Attaques {
                 if(def.setStatus(Status::POISONED)) {
                     }
             }
+	return 0;
     }
 
     int Devoreve::effetAvant(OpMon &atk, OpMon &def) {
         if(!(def.getStatus() == Status::SLEEPING)) {
 
             }
+	return 0;
     }
 
     int Devoreve::effetApres(OpMon &atk, OpMon &def) {
         atk.heal(pvPerdus / 2);
+	return 0;
     }
 
     int DoubleDard::effetApres(OpMon &atk, OpMon &def) {
@@ -438,6 +449,7 @@ namespace Attaques {
                         def.setStatus(Status::POISONED);
                     }
             }
+	return 0;
     }
 
 
