@@ -28,7 +28,7 @@ mkdir $pkgdir/usr/share
 mkdir $pkgdir/usr/share/OpMon
 
 
-cp $srcdir/opmon-arch/exeLinux/OpMon $pkgdir/usr/bin/
+cp $srcdir/opmon-arch/arch_install/bin/usr/bin/opmon $pkgdir/usr/bin/
 chmod +x $pkgdir/usr/bin
 cp -r $srcdir/opmon-arch/arch_install/bin/usr/share/OpMon $pkgdir/usr/share/OpMon
 cp -r $srcdir/opmon-arch/arch_install/bin/usr/share/applications $pkgdir/usr/share/applications
