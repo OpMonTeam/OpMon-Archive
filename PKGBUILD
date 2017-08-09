@@ -11,24 +11,30 @@ url="http://opmon-game.ga"
 depends=('sfml' 'gcc' 'libstdc++5' 'smpeg') 
 makedepends=('make') 
 source=(https://github.com/jlppc/OpMon/raw/master/opmon-arch.tar.gz) 
-md5sums=('dc4b7a9ee207633ab03c57c5287ba517') 
+md5sums=('24065981b0125dafe02dda7ba344c7a7') 
 
 build() { 
 cd $srcdir/opmon-arch
 
 make || return 1 
  
-mkdir -p $pkgdir/usr/bin/
-mkdir -p $pkgdir/usr/share/OpMon/
-
-cp exeLinux/OpMon $pkgdir/usr/bin/
-chmod +x $pkgdir/usr/bin
-cp arch_install/bin/usr/share/OpMon $pkgdir/usr/share/OpMon
-cp arch_install/bin/usr/share/applications $pkgdir/usr/share/applications
 }
 
 package() 
 {
-  cd "$srcdir/opmon-arch"
-  make DESTIDIR="$pkgdir" install	
+mkdir $pkgdir/usr
+mkdir $pkgdir/usr/bin
+mkdir $pkgdir/usr/share
+mkdir $pkgdir/usr/share/OpMon
+
+
+cp $srcdir/opmon-arch/exeLinux/OpMon $pkgdir/usr/bin/
+chmod +x $pkgdir/usr/bin
+cp -r $srcdir/opmon-arch/arch_install/bin/usr/share/OpMon $pkgdir/usr/share/OpMon
+cp -r $srcdir/opmon-arch/arch_install/bin/usr/share/applications $pkgdir/usr/share/applications
+chmod 777 $pkgdir/usr/share/OpMon
+cp -r $srcdir/opmon-arch/Makefile $pkgdir/
+
+cd "$srcdir/opmon-arch"
+make DESTIDIR="$pkgdir"
 }
