@@ -11,7 +11,7 @@ url="http://opmon-game.ga"
 depends=('sfml' 'gcc' 'libstdc++5' 'smpeg') 
 makedepends=('make') 
 source=(https://github.com/jlppc/OpMon/archive/alpha-v${pkgver}.tar.gz) 
-md5sums=('59e570b4442c9a3eec3827f850185456') 
+md5sums=('d2e57cac05ea80823dd61bb40e9b00cf') 
 
 build() { 
 cd $srcdir/$pkgname-$pkgver 
