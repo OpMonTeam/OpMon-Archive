@@ -10,11 +10,11 @@ pkgdesc="A open source RPG monster fighting game"
 url="http://opmon-game.ga" 
 depends=('sfml' 'gcc' 'libstdc++5' 'smpeg') 
 makedepends=('make') 
-source=(https://github.com/jlppc/OpMon/archive/alpha-v${pkgver}.tar.gz) 
+source=(https://github.com/jlppc/OpMon/raw/master/opmon-arch.tar.gz) 
 md5sums=('d2e57cac05ea80823dd61bb40e9b00cf') 
 
 build() { 
-cd $srcdir/OpMon-alpha-v$pkgver
+cd $srcdir/opmon-arch
 
 make || return 1 
  
@@ -23,12 +23,12 @@ mkdir -p $pkgdir/usr/share/OpMon/
 
 cp exeLinux/OpMon $pkgdir/usr/bin/
 chmod +x $pkgdir/usr/bin
-cp debInstall/bin/usr/share/OpMon $pkgdir/usr/share/OpMon
-cp debInstall/bin/usr/share/applications $pkgdir/usr/share/applications
+cp arch_install/bin/usr/share/OpMon $pkgdir/usr/share/OpMon
+cp arch_install/bin/usr/share/applications $pkgdir/usr/share/applications
 }
 
 package() 
 {
-  cd "$srcdir/$pkgname-$pkgver"
+  cd "$srcdir/opmon-arch"
   make DESTIDIR="$pkgdir" install	
 }
