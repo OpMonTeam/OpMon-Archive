@@ -55,9 +55,8 @@
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-std=c++11" />
-			<Add option="-w" />
 			<Add option="-Wall" />
+			<Add option="-std=c++11" />
 		</Compiler>
 		<Unit filename="src/jlppc/regimys/enums/Caractere.cpp" />
 		<Unit filename="src/jlppc/regimys/enums/Caractere.hpp" />
