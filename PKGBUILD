@@ -2,7 +2,7 @@
 # Maintainer: Navet56 <evandib@gmail.com> 
 
 pkgname=opmon
-pkgver=0.13
+pkgver=0.12.1
 pkgrel=1 
 license=('GPL') 
 arch=('x86_64') 
@@ -27,3 +27,8 @@ cp debInstall/bin/usr/share/OpMon $pkgdir/usr/share/OpMon
 cp debInstall/bin/usr/share/applications $pkgdir/usr/share/applications
 }
 
+package() 
+{
+  cd "$srcdir/$pkgname-$pkgver"
+  make DESTIDIR="$pkgdir" install	
+}
