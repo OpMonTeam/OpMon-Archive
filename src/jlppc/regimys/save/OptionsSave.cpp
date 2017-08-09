@@ -84,7 +84,7 @@ void initParams(string const& file) {
                         break;
                     }
                 string noPm = StringKeys::sfStringtoStdString(StringKeys::split(read, '|', 1));//Ne prend que la partie après le pm|
-                Param newParam = Param(StringKeys::sfStringtoStdString(StringKeys::split(noPm, '=', 0), StringKeys::split(noPm, '=', 1)));//Splitte ensuite en deux parties, le nom et la valeur du paramètre.
+                Param newParam = Param(StringKeys::sfStringtoStdString(StringKeys::split(noPm, '=', 0)), StringKeys::sfStringtoStdString(StringKeys::split(noPm, '=', 1)));//Splitte ensuite en deux parties, le nom et la valeur du paramètre.
                 if(!checkParam(newParam.getName())) {
                         paramList.push_back(newParam);
                     }
