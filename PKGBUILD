@@ -14,7 +14,7 @@ source=(https://github.com/jlppc/OpMon/archive/alpha-v${pkgver}.tar.gz)
 md5sums=('d2e57cac05ea80823dd61bb40e9b00cf') 
 
 build() { 
-cd $srcdir/$pkgname-$pkgver 
+cd $srcdir/OpMon-alpha-v$pkgver
 
 make || return 1 
  
