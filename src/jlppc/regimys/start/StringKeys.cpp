@@ -50,7 +50,7 @@ namespace StringKeys {
                         break;//Sinon arrête de lire
                     }
                 //Splittage de la ligne en deux parties
-                keys.push_back(split(read, '=', 0));
+                keys.push_back(sfStringtoStdString(split(read, '=', 0)));
                 strings.push_back(split(read, '=', 1));
 
             }

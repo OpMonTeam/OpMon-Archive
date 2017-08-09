@@ -83,8 +83,8 @@ void initParams(string const& file) {
                 if(!(read.substr(0, read.size() - (read.size() - 3)) == "pm|")) { //Vérifie si le préfixe pm| est bien présent, sinon arrête la boucle.
                         break;
                     }
-                string noPm = StringKeys::split(read, '|', 1);//Ne prend que la partie après le pm|
-                Param newParam = Param(StringKeys::split(noPm, '=', 0), StringKeys::split(noPm, '=', 1));//Splitte ensuite en deux parties, le nom et la valeur du paramètre.
+                string noPm = StringKeys::sfStringtoStdString(StringKeys::split(read, '|', 1));//Ne prend que la partie après le pm|
+                Param newParam = Param(StringKeys::sfStringtoStdString(StringKeys::split(noPm, '=', 0), StringKeys::split(noPm, '=', 1)));//Splitte ensuite en deux parties, le nom et la valeur du paramètre.
                 if(!checkParam(newParam.getName())) {
                         paramList.push_back(newParam);
                     }
