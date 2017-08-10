@@ -24,15 +24,15 @@ package()
 {
 
 mkdir $pkgdir/usr
-mkdir $pkgdir/usr/bin
 mkdir $pkgdir/usr/share
 mkdir $pkgdir/usr/share/OpMon
 
-cp $srcdir/opmon-arch/arch_install/bin/usr/bin/opmon $pkgdir/usr/bin/
-chmod +x $pkgdir/usr/bin
+cp $srcdir/opmon-arch/arch_install/bin/usr/bin $pkgdir/usr/
+chmod +x $pkgdir/usr/bin/opmon
 cp -r $srcdir/opmon-arch/arch_install/bin/usr/share/OpMon $pkgdir/usr/share/OpMon
 cp -r $srcdir/opmon-arch/arch_install/bin/usr/share/applications $pkgdir/usr/share/applications
 chmod 777 $pkgdir/usr/share/OpMon
+chmod 777 $pkgdir/usr/bin
 cp -r $srcdir/opmon-arch/Makefile $pkgdir/
 
 cd "$srcdir/opmon-arch"
