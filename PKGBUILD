@@ -22,11 +22,11 @@ make || return 1
 
 package() 
 {
+
 mkdir $pkgdir/usr
 mkdir $pkgdir/usr/bin
 mkdir $pkgdir/usr/share
 mkdir $pkgdir/usr/share/OpMon
-
 
 cp $srcdir/opmon-arch/arch_install/bin/usr/bin/opmon $pkgdir/usr/bin/
 chmod +x $pkgdir/usr/bin
@@ -37,4 +37,5 @@ cp -r $srcdir/opmon-arch/Makefile $pkgdir/
 
 cd "$srcdir/opmon-arch"
 make DESTIDIR="$pkgdir"
+
 }
