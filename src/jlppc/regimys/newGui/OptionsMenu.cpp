@@ -10,12 +10,22 @@ namespace MainFrame {
     namespace MainMenu {
         namespace OptionsMenu {
 
+            sf::Sprite fondCredits;
             sf::Sprite fondOpt;
             sf::Text langFr;
             sf::Text langEng;
             sf::Text langEsp;
             sf::Text txtRetour;
             sf::Text txtOptions;
+            sf::Text txtCre1;
+            sf::Text txtCre2;
+            sf::Text txtCre3;
+            sf::Text txtCre4;
+            sf::Text txtCre5;
+            sf::Text txtCre6;
+            sf::Text txtCre7;
+            sf::Text txtCre8;
+            sf::Text txtCre9;
             sf::Text txtOpt1;
             sf::Text txtOpt2;
             sf::Text txtOpt3;
@@ -29,6 +39,7 @@ namespace MainFrame {
             int curPosLangI = 0;
 
             sf::Text txtLang;
+            sf::Text txtCred;
             sf::Sprite fondLangues;
 //J_Texture listeLangues[3] = {};
             sf::Vector2f curPosLang[4] = {};
@@ -74,6 +85,39 @@ namespace MainFrame {
                 txtLang.setString(kget("options.lang.title"));
                 txtLang.setFont(font);
                 txtLang.setCharacterSize(FONT_SIZE_DEFAULT);
+
+                txtCred.setString(kget("options.cred.title"));
+                txtCred.setFont(font);
+                txtCred.setCharacterSize(FONT_SIZE_DEFAULT);
+
+
+                txtCre1.setString(kget("options.credit.1"));
+                txtCre1.setFont(font);
+                txtCre1.setCharacterSize(FONT_SIZE_DEFAULT);
+                txtCre2.setString(kget("options.credit.2"));
+                txtCre2.setFont(font);
+                txtCre2.setCharacterSize(FONT_SIZE_DEFAULT);
+                txtCre3.setString(kget("options.credit.3"));
+                txtCre3.setFont(font);
+                txtCre3.setCharacterSize(FONT_SIZE_DEFAULT);
+                txtCre4.setString(kget("options.credit.4"));
+                txtCre4.setFont(font);
+                txtCre4.setCharacterSize(FONT_SIZE_DEFAULT);
+                txtCre5.setString(kget("options.credit.5"));
+                txtCre5.setFont(font);
+                txtCre5.setCharacterSize(FONT_SIZE_DEFAULT);
+                txtCre6.setString(kget("options.credit.6"));
+                txtCre6.setFont(font);
+                txtCre6.setCharacterSize(FONT_SIZE_DEFAULT);
+                txtCre7.setString(kget("options.credit.7"));
+                txtCre7.setFont(font);
+                txtCre7.setCharacterSize(FONT_SIZE_DEFAULT);
+                txtCre8.setString(kget("options.credit.8"));
+                txtCre8.setFont(font);
+                txtCre8.setCharacterSize(FONT_SIZE_DEFAULT);
+                txtCre9.setString(kget("options.credit.8"));
+                txtCre9.setFont(font);
+                txtCre9.setCharacterSize(FONT_SIZE_DEFAULT);
             }
 
             void initVars() {
@@ -83,12 +127,14 @@ namespace MainFrame {
                 textures2[1].loadFromFile("ressources\\sprites\\misc\\selectBar.png");
                 textures2[2].loadFromFile("ressources\\backgrounds\\lang.png");
                 textures2[3].loadFromFile(RESSOURCES_PATH + "sprites\\misc\\yes.png");
+                textures2[4].loadFromFile(RESSOURCES_PATH + "backgrounds\\credits.png");
 
 #else
                 textures2[0].loadFromFile(RESSOURCES_PATH + "backgrounds/options.png");
                 textures2[1].loadFromFile(RESSOURCES_PATH + "sprites/misc/selectBar.png");
                 textures2[2].loadFromFile(RESSOURCES_PATH + "backgrounds/lang.png");
                 textures2[3].loadFromFile(RESSOURCES_PATH + "sprites/misc/yes.png");
+                textures2[4].loadFromFile(RESSOURCES_PATH + "backgrounds/credits.png");
 
 
 #endif // _WIN32
@@ -96,6 +142,7 @@ namespace MainFrame {
                 rectSurb.setTexture(textures2[1]);
                 fondLangues.setTexture(textures2[2]);
                 coche.setTexture(textures2[3]);
+                fondCredits.setTexture(textures2[4]);
 
                 coche.setPosition(425, 88);
 
@@ -116,6 +163,17 @@ namespace MainFrame {
 
                 txtLang.setPosition(250, 25);
                 txtOptions.setPosition(230, 25);
+                txtCred.setPosition(250, 25);
+                
+                txtCre1.setPosition(100, 220);
+                txtCre2.setPosition(283, 220);
+                txtCre3.setPosition(283, 280);
+                txtCre4.setPosition(172, 352);
+                txtCre5.setPosition(140, 378);
+                txtCre6.setPosition(165, 400);
+                txtCre7.setPosition(172, 426);
+                txtCre8.setPosition(44, 461);
+                txtCre9.setPosition(463, 498);
 
                 curPosOpt[0].x = 23;
                 curPosOpt[0].y = 17;
@@ -189,7 +247,7 @@ namespace MainFrame {
                                                         bruitNope.play();//Non disponible
                                                         break;
                                                     case 5:
-                                                        bruitNope.play();//Non disponible
+                                                        boucleCredits();
                                                         break;
                                                 }
                                         }
@@ -302,7 +360,6 @@ namespace MainFrame {
 			  break;
 
                             }
-
                         ECHAP
                         if(isKeyPressed(sf::Keyboard::Up)) {
                                 bruitArr.play();
@@ -338,6 +395,75 @@ namespace MainFrame {
                         frame.draw(txtLang);
                         rectSurb.setPosition(curPosOpt[curPosOptI]);
                         rectSurb.setScale(curSizeLang[curPosOptI]);
+                        frame.draw(rectSurb);
+
+                        frame.display();
+                        winRefresh();
+
+                    }
+
+                return 0;
+            }
+            int boucleCredits() {
+                while(continuer) {
+                        window.waitEvent(events);
+                        switch(events.type) {
+                                    QUIT
+
+                                case sf::Event::KeyPressed:
+                                    if(events.key.code == sf::Keyboard::Return) {
+                                            switch(curPosOptI) {
+                                                    case 0://Bouton Retour
+                                                        initAllStrings();
+                                                        return 0;
+                                                    
+                                                        break;
+                                                }
+                                        }
+                                    break;
+			default:
+			  break;
+
+                            }
+                        ECHAP
+                        if(isKeyPressed(sf::Keyboard::Up)) {
+                                bruitArr.play();
+                                curPosOptI--;
+                                if(curPosOptI >= 4) {
+                                        curPosOptI = 0;
+                                    }
+                                else if(curPosOptI < 0) {
+                                        curPosOptI = 3;
+                                    }
+                            }
+                        else if(isKeyPressed(sf::Keyboard::Down)) {
+                                bruitArr.play();
+                                curPosOptI++;
+                                if(curPosOptI >= 4) {
+                                        curPosOptI = 0;
+                                    }
+                                else if(curPosOptI < 0) {
+                                        curPosOptI = 3;
+                                    }
+                            }
+                        else if(isKeyPressed(sf::Keyboard::BackSpace)) {
+                                return 0;
+                            }
+
+                        frame.clear(sf::Color::White);
+
+                        frame.draw(fondCredits);
+                        frame.draw(txtCre1);
+                        frame.draw(txtCre2);
+                        frame.draw(txtCre3);
+                        frame.draw(txtCre4);
+                        frame.draw(txtCre5);
+                        frame.draw(txtCre6);
+                        frame.draw(txtCre7);
+                        frame.draw(txtCre8);
+                        frame.draw(txtCre9);
+                        frame.draw(txtRetour);
+                        frame.draw(txtCred);
                         frame.draw(rectSurb);
 
                         frame.display();

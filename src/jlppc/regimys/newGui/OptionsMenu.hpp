@@ -35,6 +35,15 @@ namespace MainFrame {
             extern sf::Text txtOpt3;
             extern sf::Text txtOpt4;
             extern sf::Text txtOpt5;
+            extern sf::Text txtCre5;
+            extern sf::Text txtCre1;
+            extern sf::Text txtCre2;
+            extern sf::Text txtCre3;
+            extern sf::Text txtCre4;
+            extern sf::Text txtCre6;
+            extern sf::Text txtCre7;
+            extern sf::Text txtCre8;
+            extern sf::Text txtCre9;
             extern sf::Sprite rectSurb;
 
             extern sf::Text txtLang;
@@ -42,12 +51,16 @@ namespace MainFrame {
             //extern sf::Text listeLangues[3];
             extern sf::Vector2f curPosLang[4];
 
+            extern sf::Sprite fondCredits;
+            extern sf::Text txtCred;
+
             int optionsMenu();
             void initVars();
             void verifVars();
             void deleteVars();
             int boucle();
             int boucleLang();
+            int boucleCredits();
             void initStrings();
 
         }
