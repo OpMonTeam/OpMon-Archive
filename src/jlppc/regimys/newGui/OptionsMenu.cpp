@@ -44,7 +44,7 @@ namespace MainFrame {
 //J_Texture listeLangues[3] = {};
             sf::Vector2f curPosLang[4] = {};
             sf::Vector2f curSizeLang[4];
-            sf::Texture textures2[4];
+            sf::Texture textures2[5];
             sf::Sprite coche;
 
             void initStrings() {
