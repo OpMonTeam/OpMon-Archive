@@ -115,7 +115,7 @@ namespace MainFrame {
                 txtCre8.setString(kget("options.credit.8"));
                 txtCre8.setFont(font);
                 txtCre8.setCharacterSize(FONT_SIZE_DEFAULT);
-                txtCre9.setString(kget("options.credit.8"));
+                txtCre9.setString(kget("options.credit.9"));
                 txtCre9.setFont(font);
                 txtCre9.setCharacterSize(FONT_SIZE_DEFAULT);
             }
