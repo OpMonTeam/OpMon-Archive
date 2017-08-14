@@ -80,7 +80,7 @@ namespace MainFrame {
                 txtOpt5.setString(kget("options.credit"));
                 txtOpt5.setFont(font);
                 txtOpt5.setCharacterSize(FONT_SIZE_DEFAULT);
-                txtOpt5.setColor(sf::Color::Red);
+                txtOpt5.setColor(sf::Color::White);
 
                 txtLang.setString(kget("options.lang.title"));
                 txtLang.setFont(font);
