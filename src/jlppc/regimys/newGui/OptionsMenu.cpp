@@ -464,7 +464,6 @@ namespace MainFrame {
                         frame.draw(txtCre9);
                         frame.draw(txtRetour);
                         frame.draw(txtCred);
-                        frame.draw(rectSurb);
 
                         frame.display();
                         winRefresh();
