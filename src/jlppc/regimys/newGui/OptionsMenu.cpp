@@ -93,31 +93,34 @@ namespace MainFrame {
 
                 txtCre1.setString(kget("options.credit.1"));
                 txtCre1.setFont(font);
-                txtCre1.setCharacterSize(FONT_SIZE_DEFAULT);
+                txtCre1.setCharacterSize(14);
+                txtCre1.setColor(sf::Color::Black);
                 txtCre2.setString(kget("options.credit.2"));
                 txtCre2.setFont(font);
-                txtCre2.setCharacterSize(FONT_SIZE_DEFAULT);
+                txtCre2.setCharacterSize(14);
+                txtCre2.setColor(sf::Color::Black);
                 txtCre3.setString(kget("options.credit.3"));
                 txtCre3.setFont(font);
-                txtCre3.setCharacterSize(FONT_SIZE_DEFAULT);
+                txtCre3.setCharacterSize(14);
+                txtCre3.setColor(sf::Color::Black);
                 txtCre4.setString(kget("options.credit.4"));
                 txtCre4.setFont(font);
-                txtCre4.setCharacterSize(FONT_SIZE_DEFAULT);
+                txtCre4.setCharacterSize(12);
                 txtCre5.setString(kget("options.credit.5"));
                 txtCre5.setFont(font);
-                txtCre5.setCharacterSize(FONT_SIZE_DEFAULT);
+                txtCre5.setCharacterSize(12);
                 txtCre6.setString(kget("options.credit.6"));
                 txtCre6.setFont(font);
-                txtCre6.setCharacterSize(FONT_SIZE_DEFAULT);
+                txtCre6.setCharacterSize(12);
                 txtCre7.setString(kget("options.credit.7"));
                 txtCre7.setFont(font);
-                txtCre7.setCharacterSize(FONT_SIZE_DEFAULT);
+                txtCre7.setCharacterSize(12);
                 txtCre8.setString(kget("options.credit.8"));
                 txtCre8.setFont(font);
-                txtCre8.setCharacterSize(FONT_SIZE_DEFAULT);
+                txtCre8.setCharacterSize(12);
                 txtCre9.setString(kget("options.credit.9"));
                 txtCre9.setFont(font);
-                txtCre9.setCharacterSize(FONT_SIZE_DEFAULT);
+                txtCre9.setCharacterSize(13);
             }
 
             void initVars() {
@@ -165,15 +168,15 @@ namespace MainFrame {
                 txtOptions.setPosition(230, 25);
                 txtCred.setPosition(250, 25);
                 
-                txtCre1.setPosition(100, 220);
+                txtCre1.setPosition(105, 220);
                 txtCre2.setPosition(283, 220);
                 txtCre3.setPosition(283, 280);
-                txtCre4.setPosition(172, 352);
-                txtCre5.setPosition(140, 378);
-                txtCre6.setPosition(165, 400);
-                txtCre7.setPosition(172, 426);
-                txtCre8.setPosition(44, 461);
-                txtCre9.setPosition(463, 498);
+                txtCre4.setPosition(172, 347);
+                txtCre5.setPosition(140, 372);
+                txtCre6.setPosition(165, 395);
+                txtCre7.setPosition(172, 422);
+                txtCre8.setPosition(75, 457);
+                txtCre9.setPosition(385, 488);
 
                 curPosOpt[0].x = 23;
                 curPosOpt[0].y = 17;
