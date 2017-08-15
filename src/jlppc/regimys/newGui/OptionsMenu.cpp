@@ -175,7 +175,7 @@ namespace MainFrame {
                 txtCre5.setPosition(140, 372);
                 txtCre6.setPosition(165, 395);
                 txtCre7.setPosition(172, 422);
-                txtCre8.setPosition(75, 457);
+                txtCre8.setPosition(60, 457);
                 txtCre9.setPosition(385, 488);
 
                 curPosOpt[0].x = 23;
