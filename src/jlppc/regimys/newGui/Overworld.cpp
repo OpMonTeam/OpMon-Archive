@@ -81,7 +81,7 @@ int tp(int toTp, sf::Vector2i pos, bool scroll) {
     }
     actual = Initializer::maps[toTp];
     if(actual == NULL) {
-        handleError("Erreur lors du changement de map : actual == NULL", true);
+        handleError("Error changing map : actual == NULL", true);
     }
     scrolling = scroll;
     character.setPosition(8 CASES + pos.x CASES - 16, 8 CASES + pos.y CASES);
