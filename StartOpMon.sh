@@ -1,3 +1,4 @@
+cd ~/OpMon
 make
-cd ~/opmon/exeLinux
+cd ~/OpMon/exeLinux
 ./OpMon
