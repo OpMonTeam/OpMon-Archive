@@ -67,13 +67,13 @@ namespace OptionsSave {
 }
 
 void initParams(string const& file) {
-        rlog << PRINT_TICKS << "Chargement des paramètres" << endl;
+        rlog << PRINT_TICKS << "Settings loading" << endl;
         ifstream stream(file.c_str());
         if(!stream) { //Si le fichier ne peut etre ouvert, il est crée et sera ouvert lors de la sauvegarde.
                 ofstream strm(file.c_str());
                 strm.close();
                 ifstream cpy(file.c_str());
-                handleError("Impossible d'ouvrir le fichier des paramètres. Si le fichier était seulement inexistant, il a été crée. Il sera ouvert donc correctement au redemmarage.", false);
+                handleError("Unable to open the settings file. If the file was only non-existent, it was created. It will therefore be opened correctly when rebooting.", false);
 
             }
         string read;
@@ -90,7 +90,7 @@ void initParams(string const& file) {
                     }
             }
         if(i == 100000) {
-                handleError("initParams : Boucle infinie stoppée", true);
+                handleError("initParams : Endless loop stopped", true);
             }
 
         stream.close();

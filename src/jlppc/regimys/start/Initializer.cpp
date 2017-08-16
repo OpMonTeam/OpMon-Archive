@@ -918,21 +918,20 @@ namespace Initializer {
       shopDoor.push_back(txtr);
     }
     doorsTextures.push_back(shopDoor);
-    shopdoorSoundBuffer.loadFromFile(RESSOURCES_PATH + "audio/sounds/shopdoor.ogg");
 #endif // _WIN32
     Events::doorSound.setBuffer(doorSoundBuffer);
-    Events::shopdoorSound.setBuffer(shopdoorSoundBuffer);
+
     initEnumsEvents();
   }
 
   void initSprites() {
     using namespace std;
 
-    rlog << PRINT_TICKS << "Initialisation des textures" << endl;
+    rlog << PRINT_TICKS << "Textures initialization" << endl;
     initTextures();
-    rlog << PRINT_TICKS << "Initialisation des fonds" << endl;
+    rlog << PRINT_TICKS << "Backgrounds initialization" << endl;
     initBackgrounds();
-    rlog << PRINT_TICKS << "Initialisation des animations" << endl;
+    rlog << PRINT_TICKS << "Animations initialization" << endl;
     Animations::initAnims();
 
     //Init Sprites
@@ -1110,16 +1109,16 @@ namespace Initializer {
   }
 
   void init() {
-    rlog << PRINT_TICKS << "Initialisation des clées" << std::endl;
+    rlog << PRINT_TICKS << "Keys initialization" << std::endl;
     initKeys();
-    rlog << PRINT_TICKS << "Initialisation des items" << std::endl;
+    rlog << PRINT_TICKS << "Items initialization" << std::endl;
     initItems();
-    rlog << PRINT_TICKS << "Initialisation des attaques par niveau" << std::endl;
+    rlog << PRINT_TICKS << "Attaks by levels initialization" << std::endl;
     initAtkLvls();
-    rlog << PRINT_TICKS << "Initialisation des evs" << std::endl;
+    rlog << PRINT_TICKS << "EVs initialization" << std::endl;
     initEvs();
-    rlog << PRINT_TICKS << "Initialisation des OpMon" << std::endl;
+    rlog << PRINT_TICKS << "OPMons initialization" << std::endl;
     initOpMons();
-    rlog << PRINT_TICKS << "Fin des initialisations d'objets." << std::endl;
+    rlog << PRINT_TICKS << "Objects initialization ending" << std::endl;
   }
 }

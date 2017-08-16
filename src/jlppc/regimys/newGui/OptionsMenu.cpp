@@ -167,7 +167,7 @@ namespace MainFrame {
                 txtLang.setPosition(250, 25);
                 txtOptions.setPosition(230, 25);
                 txtCred.setPosition(250, 25);
-                
+
                 txtCre1.setPosition(105, 220);
                 txtCre2.setPosition(283, 220);
                 txtCre3.setPosition(283, 280);
@@ -320,8 +320,8 @@ namespace MainFrame {
 
                                 case sf::Event::KeyPressed:
                                     if(events.key.code == sf::Keyboard::Return) {
-                                            switch(curPosOptI) {//Choix de la langue
-                                                    case 0://Bouton Retour
+                                            switch(curPosOptI) {//CLanguage choice
+                                                    case 0://Back button
                                                         return 0;
                                                     case 1:
                                                         OptionsSave::modifyParam("lang", "eng");
@@ -416,7 +416,7 @@ namespace MainFrame {
                                                     case 0://Bouton Retour
                                                         initAllStrings();
                                                         return 0;
-                                                    
+
                                                         break;
                                                 }
                                         }
