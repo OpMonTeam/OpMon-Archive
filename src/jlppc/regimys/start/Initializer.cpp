@@ -918,8 +918,10 @@ namespace Initializer {
       shopDoor.push_back(txtr);
     }
     doorsTextures.push_back(shopDoor);
+    shopdoorSoundBuffer.loadFromFile(RESSOURCES_PATH + "audio/sounds/shopdoor.ogg");
 #endif // _WIN32
     Events::doorSound.setBuffer(doorSoundBuffer);
+    Events::shopdoorSound.setBuffer(shopdoorSoundBuffer);
     initEnumsEvents();
   }
 

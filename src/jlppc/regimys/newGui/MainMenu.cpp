@@ -87,10 +87,10 @@ namespace MainFrame {
 
         void verifVars() {
             if(fond.getTexture() == NULL) {
-                    handleError("Texture du fond du menu manquante", true);
+                    handleError("Missing menu bottom texture", true);
                 }
             if(cursor.getTexture() == NULL) {
-                    handleError("Texture du curseur manquant", true);
+                    handleError("Missing cursor texture", true);
                 }
         }
 
@@ -99,7 +99,7 @@ namespace MainFrame {
         }
         int boucle0() {
 
-            rlog << PRINT_TICKS << "Entrée dans le menu" << endl;
+            rlog << PRINT_TICKS << "Entering the menu" << endl;
             //Actualisation des éléments
             frame.draw(fond);
             frame.draw(play),

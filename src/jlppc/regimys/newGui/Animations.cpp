@@ -29,12 +29,12 @@ namespace Animations {
     }
 
     int animFenOpen(sf::RenderTexture &window, sf::Sprite const &fond) {
-        ANIM_CHECK_INIT//Vérification de l'initialisation des animations
-        //Déclaration des variables
+        ANIM_CHECK_INIT//Verification of animation initialization
+        //Variables declaration
         sf::Sprite anim[6];
         int ancientChrono = 0;
 
-        //Frame par frame
+        //Frame by frame
         for (int i = 0; i < 6; i++) {
                 if ((ticks.getElapsedTime().asMilliseconds() - ancientChrono) >= 33) {
                         MainFrame::window.pollEvent(events);
@@ -65,6 +65,7 @@ namespace Animations {
     int animFenClose(sf::RenderTexture &window, sf::Sprite const &fond) {
         //Se réferer aux commentaires de la fonction précédente
         ANIM_CHECK_INIT
+        //Variables declaration
         sf::Sprite anim[6];
         int ancientChrono = 0;
         for (int i = 5; i >= 0; i--) {

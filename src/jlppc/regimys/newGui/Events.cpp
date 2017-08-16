@@ -25,6 +25,7 @@ namespace Events {
     bool justTP = false;
 
     sf::Sound doorSound;
+    sf::Sound shopdoorSound;
 
     namespace DoorType {
         std::vector<sf::Texture> NORMAL, SHOP;

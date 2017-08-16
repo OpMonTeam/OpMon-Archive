@@ -38,9 +38,9 @@ namespace StringKeys {
         ifstream keysFile(keysFileS.c_str());
         keys = vector<string>();
         strings = vector<sf::String>();
-        rlog << PRINT_TICKS << "Initialisation des clées" << endl;
+        rlog << PRINT_TICKS << "Keys initialization" << endl;
         if (!keysFile) {//Si ouverture du fichier échouée.
-                handleError("Initialisation des clées impossible.", true);
+                handleError("Keys initialization error", true);
         }
         //Récupération des clées
         while (true) {
