@@ -215,7 +215,7 @@ UNS
 		    case sf::Event::KeyPressed:
 			if(events.key.code == sf::Keyboard::Return) {
 			    if (pName.empty()) {
-				pName = "Pierre";
+				pName = "Céchine";
 			    }
 			    continuer = false;
 			}

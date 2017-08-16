@@ -68,6 +68,7 @@ namespace Events {
        Le son des portes
     */
     extern sf::Sound doorSound;
+    extern sf::Sound shopdoorSound;
     /**
     Contient les variables utiles sur le déroulement des events
     */

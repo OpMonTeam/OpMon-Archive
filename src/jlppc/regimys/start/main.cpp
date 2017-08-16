@@ -51,20 +51,20 @@ namespace Main {
     int starts() {
         //Chargement des fichiers du log
         if (!rlog) {
-                cout << "Erreur d'initialisation du log" << endl;
+                cout << "Initialisation error of error log" << endl;
                 exit(-1);
         }
         if (!rerrLog) {
-                cout << "Erreur d'ouverture du log d'erreur" << endl;
+                cout << "Error opening of error log" << endl;
                 exit(-1);
         }
         InternalFiles::registerFiles();
         //Chargement des paramètres
         OptionsSave::initParams(optSave);
-        if(!OptionsSave::checkParam("lang")) { //Si le paramètre "lang" n'existe pas
+        if(!OptionsSave::checkParam("lang")) { //If the "lang" setting don't exist
                 OptionsSave::addParam("lang", "eng");
         }
-        rlog << PRINT_TICKS << "Initialisation du log terminée." << endl;
+        rlog << PRINT_TICKS << "Log initialisation completed." << endl;
         //Initialisation des objets
         Initializer::init();
         //Ouverture de la fenetre
@@ -98,15 +98,15 @@ int quit(int const& returne) {
     if (MainFrame::init) {
 
     }
-    OptionsSave::saveParams(optSave);//Sauvegarde des paramètres
-    rlog << PRINT_TICKS << "Fermeture des ressources." << endl;
+    OptionsSave::saveParams(optSave);//Settings save
+    rlog << PRINT_TICKS << "Resources closure" << endl;
     for(Map *map : Initializer::maps) {
             delete(map);
     }
     for(sf::Music *mus : Initializer::townMusics) {
             delete(mus);
     }
-    rlog << PRINT_TICKS << "Fermeture du jeu. Return " << returne << endl;
+    rlog << PRINT_TICKS << "Game closure. Return " << returne << endl;
 
     /*#ifdef DEBUG//Outdated : Unused
     system("pause");
@@ -156,8 +156,8 @@ int main(int argc, char *argv[]) {
     if(argc >= 2) {
             FOR_EACH(char *, argv, argc, {)
                 string str = string(*objActuel);
-                if(str == "--version") { //Affichage de la version
-                    cout << "OpMon Regimys version " << Main::versionS << endl;
+                if(str == "--version") { //Version display
+                    cout << "OpMon Lazuli version " << Main::versionS << endl;
                     exit(0);
                 }
                 else if(str == "--opt") {//Changement de l'emplacement du fichier de sauvegarde des paramètres
@@ -169,5 +169,5 @@ int main(int argc, char *argv[]) {
                 }
            }
         }
-    return Main::starts();//Lancement du jeu
+    return Main::starts();//Game opening
 }
