@@ -76,7 +76,7 @@ namespace MainFrame {
                 txtOpt4.setString( kget("options.control"));
                 txtOpt4.setFont(font);
                 txtOpt4.setCharacterSize(FONT_SIZE_DEFAULT);
-                txtOpt4.setColor(sf::Color::Red);
+                txtOpt4.setColor(sf::Color::White);
                 txtOpt5.setString(kget("options.credit"));
                 txtOpt5.setFont(font);
                 txtOpt5.setCharacterSize(FONT_SIZE_DEFAULT);
@@ -247,9 +247,6 @@ namespace MainFrame {
                                                         bruitNope.play();//Non disponible
                                                         break;
                                                     case 4:
-                                                        bruitNope.play();//Non disponible
-                                                        break;
-                                                    case 5:
                                                         boucleCredits();
                                                         break;
                                                 }
