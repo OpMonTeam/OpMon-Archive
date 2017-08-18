@@ -9,7 +9,7 @@ Equipe::Equipe(std::string const& nom) {
 void Equipe::heal() {
     for (int i = 0; i < nbreOfOp; i++) {
             if (equipe[i]->falsif != PNULL->falsif) {
-                    equipe[i]->heal(equipe[i]->getStatPV());
+                    equipe[i]->heal(equipe[i]->getStatHP());
                     equipe[i]->confus = false;
                     equipe[i]->setStatus(Status::NOTHING);
                 }
@@ -54,7 +54,7 @@ bool Equipe::isKo() const {
             if (equipe[i]->falsif == PNULL->falsif) {
                     ko++;
                 }
-            else if (equipe[i]->getPV() <= 0) {
+            else if (equipe[i]->getHP() <= 0) {
                     ko++;
                 }
         }

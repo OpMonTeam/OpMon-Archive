@@ -103,7 +103,7 @@ namespace Attaques {
                 return 2;
             }
         else {
-                def.attacked(def.getPV());
+                def.attacked(def.getHP());
                 return 2;
             }
     }
@@ -173,7 +173,7 @@ namespace Attaques {
     }
 
     int Belier::effetApres(OpMon &atk, OpMon &def) {
-        atk.attacked(round(pvPerdus / 4));
+        atk.attacked(round(hpPerdus / 4));
         return 0;
     }
 
@@ -292,14 +292,14 @@ namespace Attaques {
     }
 
     int ComboGriffe::effetApres(OpMon &atk, OpMon &def) {
-        if(def.getPV() <= 0) {
+        if(def.getHP() <= 0) {
                 return 0;
             }
         int it = 0;
         int coups = Utils::randU(4);
         for(it = 0; it != coups + 1; it++) {
-                def.attacked(pvPerdus);
-                if(def.getPV() <= 0) {
+                def.attacked(hpPerdus);
+                if(def.getHP() <= 0) {
                         return 0;
                     }
             }
@@ -349,8 +349,8 @@ namespace Attaques {
         return 0;
     }
     int CrocFatal::effetAvant(OpMon &atk, OpMon &def) {
-        if(def.getPV() != 1) {
-                def.attacked(def.getPV() / 2);
+        if(def.getHP() != 1) {
+                def.attacked(def.getHP() / 2);
             }
         else {
                 def.attacked(1);
@@ -372,7 +372,7 @@ namespace Attaques {
     }
 
     int Damocles::effetApres(OpMon &atk, OpMon &def) {
-        atk.attacked(pvPerdus / 3);
+        atk.attacked(hpPerdus / 3);
 	return 0;
     }
 
@@ -415,7 +415,7 @@ namespace Attaques {
     }
 
     int Destruction::effetApres(OpMon &atk, OpMon &def) {
-        atk.attacked(atk.getPV());
+        atk.attacked(atk.getHP());
 	return 0;
     }
 
@@ -435,7 +435,7 @@ namespace Attaques {
     }
 
     int Devoreve::effetApres(OpMon &atk, OpMon &def) {
-        atk.heal(pvPerdus / 2);
+        atk.heal(hpPerdus / 2);
 	return 0;
     }
 
@@ -443,8 +443,8 @@ namespace Attaques {
         if(Utils::randU(10) < 2) {
                 def.setStatus(Status::POISONED);
             }
-        if(def.getPV() <= 0) {
-                def.attacked(pvPerdus);
+        if(def.getHP() <= 0) {
+                def.attacked(hpPerdus);
                 if(Utils::randU(10) < 2) {
                         def.setStatus(Status::POISONED);
                     }
