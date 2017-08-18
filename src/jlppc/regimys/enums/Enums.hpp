@@ -28,7 +28,7 @@ Enumère les statistiques des Pokémons
 */
 //->Enum
 namespace Stats {
-    const int ATK(6), DEF(1), ATKSPE(2), DEFSPE(3), VIT(4), PV(5), NOTHING(0);
+    const int ATK(6), DEF(1), ATKSPE(2), DEFSPE(3), VIT(4), HP(5), NOTHING(0);
 };
 /**
 Enumère les catégories du sac

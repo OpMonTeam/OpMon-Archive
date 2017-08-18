@@ -53,7 +53,7 @@ namespace Events {
     void TalkingEvent::reloadKeys() {
         dialogs.clear();
         FOR_EACH(OpString, this->dialogKeys, (int) this->dialogKeys.size(), {)
-                 dialogs.push_back(objActuel->getString());
+                 dialogs.push_back(currentObj->getString());
         }
     }
 

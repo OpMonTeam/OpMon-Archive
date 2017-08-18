@@ -65,7 +65,7 @@ class Attaque {
         int chanceDeCoups;
         bool rateJamais;
         /**Variable utilisée dans effetAvant et effetAprès*/
-        int pvPerdus = 0;
+        int hpPerdus = 0;
     private:
         static Class<Attaque> *classe;
 };

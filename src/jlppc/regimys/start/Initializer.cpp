@@ -19,7 +19,7 @@
 #define DEFSPE push_back(Stats::DEFSPE)
 #define DEF push_back(Stats::DEF)
 #define VIT push_back(Stats::VIT)
-#define PV push_back(Stats::PV)
+#define HP push_back(Stats::HP)
 
 typedef NumberedArray AtkArray;
 
@@ -66,9 +66,9 @@ namespace Initializer {
     evs[9].DEFSPE;
     evs[9].DEFSPE;
 
-    evs[10].PV;
+    evs[10].HP;
 
-    evs[11].PV;
+    evs[11].HP;
     evs[11].DEF;
 
     evs[12].DEF;
@@ -96,7 +96,7 @@ namespace Initializer {
     evs[19].ATKSPE;
 
     evs[20].ATKSPE;
-    evs[20].PV;
+    evs[20].HP;
 
     evs[21].VIT;
 
@@ -122,14 +122,14 @@ namespace Initializer {
 
     evs[29].ATK;
     evs[29].ATK;
-    evs[29].PV;
+    evs[29].HP;
 
-    evs[30].PV;
-    evs[30].PV;
+    evs[30].HP;
+    evs[30].HP;
 
-    evs[31].PV;
-    evs[31].PV;
-    evs[31].PV;
+    evs[31].HP;
+    evs[31].HP;
+    evs[31].HP;
 
     evs[32].ATK;
 
@@ -140,24 +140,24 @@ namespace Initializer {
     evs[34].ATK;
     evs[34].ATK;
 
-    evs[35].PV;
-    evs[35].PV;
+    evs[35].HP;
+    evs[35].HP;
 
-    evs[36].PV;
-    evs[36].PV;
-    evs[36].PV;
+    evs[36].HP;
+    evs[36].HP;
+    evs[36].HP;
 
     evs[37].VIT;
 
     evs[38].VIT;
     evs[38].DEFSPE;
 
-    evs[39].PV;
-    evs[39].PV;
+    evs[39].HP;
+    evs[39].HP;
 
-    evs[40].PV;
-    evs[40].PV;
-    evs[40].PV;
+    evs[40].HP;
+    evs[40].HP;
+    evs[40].HP;
 
     evs[41].VIT;
 
@@ -265,7 +265,7 @@ namespace Initializer {
     evs[78].VIT;
     evs[78].VIT;
 
-    evs[79].PV;
+    evs[79].HP;
 
     evs[80].DEF;
     evs[80].DEF;
@@ -287,9 +287,9 @@ namespace Initializer {
     evs[87].DEFSPE;
     evs[87].DEFSPE;
 
-    evs[88].PV;
+    evs[88].HP;
 
-    evs[89].PV;
+    evs[89].HP;
     evs[89].ATK;
 
     evs[90].DEF;
@@ -339,8 +339,8 @@ namespace Initializer {
     evs[107].DEFSPE;
     evs[107].DEFSPE;
 
-    evs[108].PV;
-    evs[108].PV;
+    evs[108].HP;
+    evs[108].HP;
 
     evs[109].ATKSPE;
 
@@ -352,13 +352,13 @@ namespace Initializer {
     evs[112].ATK;
     evs[112].ATK;
 
-    evs[113].PV;
-    evs[113].PV;
+    evs[113].HP;
+    evs[113].HP;
 
     evs[114].ATKSPE;
 
-    evs[115].PV;
-    evs[115].PV;
+    evs[115].HP;
+    evs[115].HP;
 
     evs[116].DEF;
 
@@ -400,15 +400,15 @@ namespace Initializer {
     evs[130].ATK;
     evs[130].ATK;
 
-    evs[131].PV;
-    evs[131].PV;
+    evs[131].HP;
+    evs[131].HP;
 
-    evs[132].PV;
+    evs[132].HP;
 
     evs[133].DEFSPE;
 
-    evs[134].PV;
-    evs[134].PV;
+    evs[134].HP;
+    evs[134].HP;
 
     evs[135].VIT;
     evs[135].VIT;
@@ -431,8 +431,8 @@ namespace Initializer {
     evs[142].VIT;
     evs[142].VIT;
 
-    evs[143].PV;
-    evs[143].PV;
+    evs[143].HP;
+    evs[143].HP;
 
     evs[144].DEFSPE;
     evs[144].DEFSPE;
@@ -459,9 +459,9 @@ namespace Initializer {
       evs[150].DEF;
       evs[150].DEF;
 
-      evs[151].PV;
-      evs[151].PV;
-      evs[151].PV;
+      evs[151].HP;
+      evs[151].HP;
+      evs[151].HP;
 
       evs[152].DEFSPE;
 
@@ -495,10 +495,10 @@ namespace Initializer {
       evs[162].VIT;
       evs[162].VIT;
 
-      evs[163].PV;
+      evs[163].HP;
 
-      evs[164].PV;
-      evs[164].PV;
+      evs[164].HP;
+      evs[164].HP;
 
       evs[165].DEFSPE;
 
@@ -514,10 +514,10 @@ namespace Initializer {
       evs[169].VIT;
       evs[169].VIT;
 
-      evs[170].PV;
+      evs[170].HP;
 
-      evs[171].PV;
-      evs[171].PV;*/
+      evs[171].HP;
+      evs[171].HP;*/
 
 
   }
@@ -613,8 +613,8 @@ namespace Initializer {
       listeOp[85] = new Espece(110, 70, 60, 60, 110, 60, "Dodrio", Type::NORMAL, Type::VOL, 0, -1, ne, {Stats.ATK, Stats.ATK}, 1., 85.2, "Un ennemi ne faisant pas attention à  l'une des trois tÃªtes pendant une seconde se fait picorer.", 158, 1000000, 45, 85);
       listeOp[86] = new Espece(45, 55, 45, 70, 45, 65, "Otaria", Type::EAU, Type::NOTHING, 0, 34, new E_Level(34, 87), {Stats.DEFSPE}, 1.1, 90, "Un habitant des icebergs. En mer, il utilise la corne sur sa tÃªte pour briser la banquise.", 100, 1000000, 190, 86);
       listeOp[87] = new Espece(70, 80, 70, 95, 70, 90, "Lamantine", Type::EAU, Type::GLACE, 0, -1, ne, {Stats.DEFSPE, Stats.DEFSPE}, 1.7, 120, "Son corps hydrodynamique glisse dans l'eau. Plus l'eau est froide plus il se sent à  l'aise.", 176, 1000000, 75, 87);
-      listeOp[88] = new Espece(80, 50, 40, 50, 25, 80, "Tadmorv", Type::POISON, Type::NOTHING, 0, 38, new E_Level(38, 89), {Stats.PV}, 0.9, 30, "Vivant dans des tas d'ordures, il se nourrit des déchets polluants rejetés par les usines.", 90, 1000000, 190, 88);
-      listeOp[89] = new Espece(105, 75, 65, 100, 50, 105, "Grotadmorv", Type::POISON, Type::NOTHING, 0, -1, ne, {Stats.PV, Stats.ATK}, 1.2, 30, "Son corps exsude un fluide toxique qui tue instantanément les plantes et les arbres au contact.", 157, 1000000, 75, 89);
+      listeOp[88] = new Espece(80, 50, 40, 50, 25, 80, "Tadmorv", Type::POISON, Type::NOTHING, 0, 38, new E_Level(38, 89), {Stats.HP}, 0.9, 30, "Vivant dans des tas d'ordures, il se nourrit des déchets polluants rejetés par les usines.", 90, 1000000, 190, 88);
+      listeOp[89] = new Espece(105, 75, 65, 100, 50, 105, "Grotadmorv", Type::POISON, Type::NOTHING, 0, -1, ne, {Stats.HP, Stats.ATK}, 1.2, 30, "Son corps exsude un fluide toxique qui tue instantanément les plantes et les arbres au contact.", 157, 1000000, 75, 89);
       listeOp[90] = new Espece(65, 100, 45, 25, 40, 30, "Kokiyas", Type::EAU, Type::NOTHING, 0, -1, new E_Item(91, Item::getItem("Pierre Feu")), {Stats.DEF}, 0.3, 4, "Il se referme sur un ennemi pour attaquer mais ceci le rend vulnérable et il ne le fait que rarement.", 97, 1250000, 190, 90);
       listeOp[91] = new Espece(95, 180, 85, 45, 70, 50, "Crustabri", Type::EAU, Type::GLACE, 0, -1, ne, {Stats.DEF, Stats.DEF}, 1.5, 132.5, "Sa coquille est extrÃªmement résistante. Rien ne peut la détruire, pas mÃªme une bombe. Il ne l'ouvre que lorsqu'il attaque.", 203, 1250000, 60, 91);
       listeOp[92] = new Espece(35, 30, 100, 35, 80, 30, "Fantominus", Type::SPECTRE, Type::POISON, 0, 25,new E_Level(93, 25), {Stats.ATKSPE}, 1.3, 0.1, "Son corps composé de gaz toxique pourrait asphyxier n'importe qui en quelques secondes.", 95, 1059860, 190, 92);
@@ -633,14 +633,14 @@ namespace Initializer {
       listeOp[105] = new Espece(80, 110, 50, 80, 45, 60, "Ossatueur", Type::SOL, Type::NOTHING, 0, -1, ne, {Stats.DEF, Stats.DEF}, 1, 45, "Il porte constamment le crâne de sa mère. Personne ne sait à  quoi il ressemble sans ce crâne.", 124, 1000000, 75, 105);
       listeOp[106] = new Espece(120, 53, 35, 110, 87, 50, "Kicklee", Type::COMBAT, Type::NOTHING, 0, -1, ne, {Stats.ATK, Stats.ATK}, 1.4, 49., "Ses pattes élastiques s'allongent, ce qui ne manque jamais de surprendre au premier combat.", 139, 1000000, 45, 106);
       listeOp[107] = new Espece(105, 79, 35, 110, 76, 50, "Tygnon", Type::COMBAT, Type::NOTHING, 0, -1, ne, {Stats.DEFSPE, Stats.DEFSPE}, 1.4, 50.2, "MÃªme le béton cède sous ses poings dévastateurs. Au combat, il s'essouffle au bout de 3 minutes.", 140, 1000000, 45, 107);
-      listeOp[108] = new Espece(55, 75, 60, 75, 30, 90, "Excelangue", Type::NORMAL, Type::NOTHING, 0, -1, ne, {Stats.PV, Stats.PV}, 1.2, 65.5, "Chaque fois qu'Excelangue découvre quelque chose de nouveau, il le lèche. Sa mémoire est basée sur le goà»t et la texture des objets. Il n'aime pas les choses acides.", 127, 1000000, 45, 108);
+      listeOp[108] = new Espece(55, 75, 60, 75, 30, 90, "Excelangue", Type::NORMAL, Type::NOTHING, 0, -1, ne, {Stats.HP, Stats.HP}, 1.2, 65.5, "Chaque fois qu'Excelangue découvre quelque chose de nouveau, il le lèche. Sa mémoire est basée sur le goà»t et la texture des objets. Il n'aime pas les choses acides.", 127, 1000000, 45, 108);
       listeOp[109] = new Espece(65, 95, 60, 45, 35, 40, "Smogo", Type::POISON, Type::NOTHING, 0, 35,new E_Level(110, 35), {Stats.DEF}, 0.6, 1, "Son corps très fin en forme de ballon est rempli d'un horrible gaz toxique. L'air est nauséabond à  proximité de ce Pokémon.", 114, 1000000, 190, 109);
       listeOp[110] = new Espece(90, 120, 85, 70, 60, 65, "Smogogo", Type::POISON, Type::NOTHING, 0, -1, ne, {Stats.DEF}, 1.2, 9.5, "Il peut arriver que deux Smogo mutent et s'associent pour former un Smogogo, mais c'est très rare.", 173, 1000000, 60, 110);
       listeOp[111] = new Espece(85, 95,  30, 30, 25, 30, "Rhinocorne", Type::SOL, Type::ROCHE,0, 42, new E_Level(112, 42), {Stats.DEF}, 1, 115, "Ses petites jambes ne lui permettent pas de tourner facilement. Il ne peut charger que tout droit.", 135, 1250000, 120, 111);
       listeOp[112] = new Espece(130, 120, 45, 45, 40, 105, "Rhinoféros", Type::SOL, Type::ROCHE,0, -1, new E_TradeItem(0, Item::getItem("Protecteur")), {Stats.ATK, Stats.ATK}, 1.9, 120, "Son épiderme très épais lui permet de survivre dans un environnement où il fait plus de 2000Ã‚Â°c.", 204, 1250000, 60, 112);
-      listeOp[113] = new Espece(5, 5, 35, 105, 50, 250, "Leveinard", Type::NORMAL, Type::NOTHING,0, -1, ne, {Stats.PV, Stats.PV}, 1.1, 34.6, "Il est censé apporter la joie. Ce Pokémon charitable offre ses oeufs aux blessés.", 395, 800000, 30, 113);
+      listeOp[113] = new Espece(5, 5, 35, 105, 50, 250, "Leveinard", Type::NORMAL, Type::NOTHING,0, -1, ne, {Stats.HP, Stats.HP}, 1.1, 34.6, "Il est censé apporter la joie. Ce Pokémon charitable offre ses oeufs aux blessés.", 395, 800000, 30, 113);
       listeOp[114] = new Espece(55, 115, 100, 40, 60, 65, "Saquedeneu", Type::PLANTE, Type::NOTHING, 0, -1, ne, {Stats.DEF}, 1, 35, "Il paralyse tout ce qui bouge avec ses lianes. Elles vous chatouillent si vous Ãªtes capturé.", 166, 1000000, 45, 114);
-      listeOp[115] = new Espece(95, 80, 40, 80, 90, 105, "Kangourex", Type::NORMAL, Type::NOTHING, 0, -1, ne, {Stats.PV, Stats.PV}, 2.2, 80, "Il élève ses petits dans sa poche ventrale. Il attend d'être en lieu sà»r pour les laisser jouer dehors.", 175, 1000000, 45, 115);
+      listeOp[115] = new Espece(95, 80, 40, 80, 90, 105, "Kangourex", Type::NORMAL, Type::NOTHING, 0, -1, ne, {Stats.HP, Stats.HP}, 2.2, 80, "Il élève ses petits dans sa poche ventrale. Il attend d'être en lieu sà»r pour les laisser jouer dehors.", 175, 1000000, 45, 115);
       listeOp[116] = new Espece(40, 70, 70, 25, 60, 30, "Hypotrempe", Type::EAU, Type::NOTHING, 0, 32, new E_Level(117, 32), {Stats.ATKSPE}, 0.4, 8, "Il abat les insectes volants en leur tirant un jet d'encre depuis la surface de l'eau. Ses tirs sont toujours précis.", 83, 1059860, 255, 116);
       listeOp[117] = new Espece(65, 95, 95, 45, 85, 55, "Hypocéan", Type::EAU, Type::NOTHING, 0, -1, ne, {Stats.DEF, Stats.ATKSPE}, 1.2, 25, "Il peut nager à  l'envers en agitant ses petites nageoires pectorales.", 155, 1000000, 75, 117);
       listeOp[118] = new Espece(67, 60, 35, 50, 63, 45, "Poissirène", Type::EAU, Type::NOTHING, 0, 33, new E_Level(119, 33), {Stats.ATK}, 0.6, 15, "Ses nageoires dorsales et pectorales bougent avec élégance. Il est surnommé le danseur des flots", 111, 1000000, 225, 118);
@@ -656,10 +656,10 @@ namespace Initializer {
       listeOp[128] = new Espece(100, 95, 40, 70, 110, 75, "Tauros", Type::NORMAL, Type::NOTHING, 0, -1, ne, {Stats.ATK, Stats.VIT}, 1.4, 88.4, "Juste avant d'utiliser Charge, ce Pokémon agite frénétiquement ses trois grandes queues.", 211, 1250000, 45, 128);
       listeOp[129] = new Espece(10, 55, 15, 20, 80, 20, "Magicarpe", Type::EAU, Type::NOTHING, 0, 20, new E_Level(130, 20), {Stats.VIT}, 0.9, 10, "Ce pokémon ne mérite mÃªme pas  de description tellement il respire l'inutilité", 20, 1250000, 255, 129);
       listeOp[130] = new Espece(95, 125, 79, 60, 100, 81, "Léviator", Type::EAU, Type::VOL, 0, -1, ne, {Stats.VIT, Stats.VIT}, 6.5, 235, "La littérature ancienne fait état d'un Léviator qui aurait rasé un village sous le coup de la colère.", 214, 1250000, 40, 130);
-      listeOp[131] = new Espece(85, 80, 85, 95, 60, 130, "Lokhlass", Type::EAU, Type::GLACE, 0, -1, ne, {Stats.PV, Stats.PV}, 2.5, 220, "Ils sont d'une nature gentille. Comme ils se défendent rarement, ils sont en voie d'extinction.", 219, 1250000, 45, 131);
-      listeOp[132] = new Espece(48, 48, 48, 48, 48, 48, "Métamorph", Type::NORMAL, Type::NOTHING, 0, -1, ne, {Stats.PV}, 0.3, 4, "Métamorph peut modifier sa structure moléculaire pour prendre d'autres formes. Lorsqu'il essaie de se transformer de mémoire, il lui arrive de se tromper sur certains détails.", 61, 1000000, 35, 132);
+      listeOp[131] = new Espece(85, 80, 85, 95, 60, 130, "Lokhlass", Type::EAU, Type::GLACE, 0, -1, ne, {Stats.HP, Stats.HP}, 2.5, 220, "Ils sont d'une nature gentille. Comme ils se défendent rarement, ils sont en voie d'extinction.", 219, 1250000, 45, 131);
+      listeOp[132] = new Espece(48, 48, 48, 48, 48, 48, "Métamorph", Type::NORMAL, Type::NOTHING, 0, -1, ne, {Stats.HP}, 0.3, 4, "Métamorph peut modifier sa structure moléculaire pour prendre d'autres formes. Lorsqu'il essaie de se transformer de mémoire, il lui arrive de se tromper sur certains détails.", 61, 1000000, 35, 132);
       listeOp[133] = new Espece(55, 50, 45, 65, 55, 55, "Evoli", Type::NORMAL, Type::NOTHING, 0, -1, new E_Item(134, Item::getItem("Pierre Eau")), {Stats.DEFSPE}, 0.3, 6.5, "L'ADN de ce Pokémon très particulier recèle de nombreuses possibilités d'évolution.", 92, 1000000, 45, 133);
-      listeOp[134] = new Espece(65, 60, 110, 95, 65, 130, "Aquali", Type::EAU, Type::NOTHING, 0, -1, ne, {Stats.PV, Stats.PV}, 1, 29, "Il a évolué pour s'adapter au milieu aquatique. Il peut se fondre et disparaà®tre dans l'élément liquide.",  196, 1000000, 45, 134);
+      listeOp[134] = new Espece(65, 60, 110, 95, 65, 130, "Aquali", Type::EAU, Type::NOTHING, 0, -1, ne, {Stats.HP, Stats.HP}, 1, 29, "Il a évolué pour s'adapter au milieu aquatique. Il peut se fondre et disparaà®tre dans l'élément liquide.",  196, 1000000, 45, 134);
       listeOp[135] = new Espece(65, 60, 110, 95, 130, 65, "Voltali", Type::ELECTRIQUE, Type::NOTHING, 0, -1, ne, {Stats.VIT, Stats.VIT}, 0., 24.5, "Chaque poil sur son corps se dresse quand il se charge en électricité.", 197, 1000000, 45, 135);
       listeOp[136] = new Espece(130, 60, 95, 110, 65, 65, "Pyroli", Type::FEU, Type::NOTHING, 0, -1, ne, {Stats.ATK, Stats.ATK}, 0.9, 25.9, "Son corps contient une glande enflammée. Sa température monte à  900Ã‚Â°C avant le combat.", 198, 1000000, 45, 136);
       listeOp[137] = new Espece(60, 70, 85, 75, 40, 65, "Porygon", Type::NORMAL, Type::NOTHING, 0, -1, new E_TradeItem(0, Item::getItem("Ameliorator")), {Stats.ATK}, 0., 36.5, "Ce Pokémon a été développé en Java, il adore se fofiler dans les programmes pour tout modifier.", 133, 1000000, 45, 137);
@@ -668,7 +668,7 @@ namespace Initializer {
       listeOp[140] = new Espece(80, 90, 55, 45, 55, 30, "Kabuto", Type::ROCHE, Type::EAU, 0, 40,new E_Level(140, 40), {Stats.DEF}, 0.5, 11.5, "Ce Pokémon a été reconstitué à  partir du fossile d'une ancienne créature. Il se protège à  l'aide de sa carapace.", 99, 1000000, 45, 140);
       listeOp[141] = new Espece(115, 105, 65, 70, 80, 60, "Kabutops", Type::ROCHE, Type::EAU, 0, -1,new E_Level(140, 40), {Stats.ATK, Stats.ATK}, 1.3, 40.5, "C'est un très bon nageur. Il lacère sa proie de ses longues griffes et en absorbe les fluides corporels.", 199, 1000000, 45, 141);
       listeOp[142] = new Espece(105, 65, 60, 75, 130, 80, "Ptéra", Type::ROCHE, Type::VOL, 0, -1, ne, {Stats.VIT, Stats.VIT}, 1., 59, "Ce terrible Pokémon a dominé les cieux d'une autre époque, terrorisant ses ennemis.", 202, 1250000, 45, 142);
-      listeOp[143] = new Espece(110, 65, 65, 110, 30, 160, "Ronflex", Type::NORMAL, Type::NOTHING, 0, -1, ne, {Stats.PV, Stats.PV}, 2.1, 460, "Les journées de Ronflex se résument aux repas et aux siestes. IL est tellement gentil que les enfants n'hésitent pas à  jouer sur son énorme ventre.", 154, 1250000, 25, 143);
+      listeOp[143] = new Espece(110, 65, 65, 110, 30, 160, "Ronflex", Type::NORMAL, Type::NOTHING, 0, -1, ne, {Stats.HP, Stats.HP}, 2.1, 460, "Les journées de Ronflex se résument aux repas et aux siestes. IL est tellement gentil que les enfants n'hésitent pas à  jouer sur son énorme ventre.", 154, 1250000, 25, 143);
       listeOp[144] = new Espece(85, 100, 95, 125, 85, 90, "Artikodin", Type::ELECTRIQUE, Type::VOL, 0, -1, ne, {Stats.DEFSPE, Stats.DEFSPE, Stats.DEFSPE}, 1.7, 55.4, "Le légendaire oiseau des glaces. On dit qu'il apparaà®t aux gens perdus dans les sommets.", 215, 1250000, 3, 144);
       listeOp[145] = new Espece(90, 85, 125, 90, 100, 90, "Electhor", Type::ELECTRIQUE, Type::VOL, 0, -1, ne, {Stats.ATKSPE, Stats.ATKSPE, Stats.ATKSPE}, 1.6, 52.6, "Un Pokémon Oiseau légendaire dont on dit qu'il vit dans les nuages d'orage. Il contrôle la foudre.", 216, 1250000, 3, 145);
       listeOp[146] = new Espece(100, 90, 125, 85, 90, 90, "Sulfura", Type::FEU, Type::VOL, 0, -1, ne, {Stats.ATKSPE, Stats.ATKSPE, Stats.ATKSPE}, 2, 60, "C'est un Pokémon oiseau légendaire capable de contrôler le feu. On raconte que lorsqu'il est blessé, il se baigne dans le magma d'un volcan pour se soigner.", 217, 1250000, 3, 146);
@@ -776,7 +776,7 @@ namespace Initializer {
       listeOp[248] = new Espece(134, 110, 95, 100, 61, 100, "Tyranocif", Type::ROCHE, Type::TENEBRES, 0, -1, ne, {Stats.ATK, Stats.ATK, Stats.ATK}, 2, 202, "Lorsqu'il est en colère, il abat des montagnes et enterre des fleuves. On doit alors modifier les cartes.", 218, 1250000, 45, 248);
       listeOp[249] = new Espece(90, 130, 90, 154, 110, 106, "Lugia", Type::PSY, Type::VOL, 0, -1, ne, {Stats.DEFSPE, Stats.DEFSPE, Stats.DEFSPE}, 5.2, 216, "Il dort dans une faille des grands fonds. Ses battements d'ailes génèrent une tempête de 40 jours.", 220, 1250000, 3, 249);
       listeOp[250] = new Espece(130, 90, 110, 154, 90, 106, "Ho-Oh", Type::FEU, Type::VOL, 0, -1, ne, {Stats.DEFSPE, Stats.DEFSPE, Stats.DEFSPE}, 3., 199, "Une légende raconte que son corps brille de sept couleurs. Un arc-en-ciel se forme derrière lui quand il vole.", 211, 1250000, 3, 250);
-      listeOp[?] = new Espece(100, 100, 100, 100, 100, 100, "Clair de Lune", Type::LUMIERE, Type::TENEBRES, 0, -1, ne, {Stats.ATKSPE, Stats.DEFSPE, Stats.PV}, 0.4, 5, "Ce chat adorait contempler la lune chaques soirs, une nuit, elle eu raison de lui", 300, 1250000, 3, ?);
+      listeOp[?] = new Espece(100, 100, 100, 100, 100, 100, "Clair de Lune", Type::LUMIERE, Type::TENEBRES, 0, -1, ne, {Stats.ATKSPE, Stats.DEFSPE, Stats.}, 0.4, 5, "Ce chat adorait contempler la lune chaques soirs, une nuit, elle eu raison de lui", 300, 1250000, 3, ?);
     */
   }
 

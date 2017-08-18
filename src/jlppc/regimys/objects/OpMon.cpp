@@ -90,7 +90,7 @@ OpMon::OpMon(string surnom, Espece *espece, int level, Attaque *attaque1, Attaqu
     atkSpeIV = Utils::randU(32);
     defSpeIV = Utils::randU(32);
     vitIV = Utils::randU(32);
-    pvIV = Utils::randU(32);
+    hpIV = Utils::randU(32);
     statATK = round(
                   ((((2 * espece->getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100)
                    + 5)
@@ -120,7 +120,7 @@ OpMon::OpMon(string surnom, Espece *espece, int level, Attaque *attaque1, Attaqu
                    + 5)
                   * ((caractere.bonus == Stats::VIT) ?
                      1.1 : ((caractere.malus == Stats::VIT) ? 0.9 : 1)));
-    statPV = round(((2 * espece->getBasePV() + pvIV + (pvEV / 4)) * level) / 100)
+    statHP = round(((2 * espece->getBaseHP() + hpIV + (hpEV / 4)) * level) / 100)
              + level + 10;
     this->espece = espece;
     this->level = level;
@@ -134,7 +134,7 @@ OpMon::OpMon(string surnom, Espece *espece, int level, Attaque *attaque1, Attaqu
     this->caractere = caractere;
     this->surnom = surnom;
     tauxCapture = espece->getTauxDeCapture();
-    PV = statPV;
+    HP = statHP;
     type1 = espece->getType1();
     type2 = espece->getType2();
     using namespace CalcCourbes;
@@ -173,7 +173,7 @@ OpMon::OpMon(string surnom, Espece *espece, int level, Attaque *attaque1, Attaqu
 }
 
 bool OpMon::captured(I_Opball const &Opball) {
-    int a = round((((3 * statPV - 2 * PV) * tauxCapture * Opball.getTauxCapture() * (status == Status::PARALYSED || status == Status::POISONED || status == Status::BURNING ? 1.5 : (status == Status::FROZEN || status == Status::SLEEPING ? 2 : 1))) / (3 * statPV)));
+    int a = round((((3 * statHP - 2 * HP) * tauxCapture * Opball.getTauxCapture() * (status == Status::PARALYSED || status == Status::POISONED || status == Status::BURNING ? 1.5 : (status == Status::FROZEN || status == Status::SLEEPING ? 2 : 1))) / (3 * statHP)));
     int b = round((pow(2, 16) - 1) * pow(a / (pow(2, 8) - 1), 0.25));
     int c[] = { Utils::randU(65535), Utils::randU(65535), Utils::randU(65535),
                 Utils::randU(65535)
@@ -225,8 +225,8 @@ void OpMon::setStat(string const &stat, int newStat) {
     else if (stat == "vit") {
             statVIT = newStat;
         }
-    else if (stat == "pv") {
-            statPV = newStat;
+    else if (stat == "hp") {
+            statHP = newStat;
         }
     else {
 
@@ -284,7 +284,7 @@ int OpMon::win(OpMon const &vaincu) {
 }
 
 void OpMon::getEvs(OpMon const &vaincu) {
-    if (!((atkEV + defEV + pvEV + atkSpeEV + defSpeEV + vitEV) > 510)) {
+    if (!((atkEV + defEV + hpEV + atkSpeEV + defSpeEV + vitEV) > 510)) {
             vector<int> statsVaincu;
             for (int i = 0; i < vaincu.espece->getEvSize(); i++) {
                     statsVaincu.push_back(vaincu.espece->getEv()[i]);
@@ -312,9 +312,9 @@ void OpMon::getEvs(OpMon const &vaincu) {
                                         defSpeEV++;
                                     }
                                 break;
-                            case Stats::PV:
-                                if (pvEV < 252) {
-                                        pvEV++;
+                            case Stats::HP:
+                                if (hpEV < 252) {
+                                        hpEV++;
                                     }
                                 break;
                             case Stats::NOTHING:
@@ -361,7 +361,7 @@ void OpMon::calcStats() {
                    + 5)
                   * ((caractere.bonus == Stats::VIT) ?
                      1.1 : ((caractere.malus == Stats::VIT) ? 0.9 : 1)));
-    statPV = round(((2 * espece->getBasePV() + pvIV + (pvEV / 4)) * level) / 100)
+    statHP = round(((2 * espece->getBaseHP() + hpIV + (hpEV / 4)) * level) / 100)
              + level + 10;
 }
 
@@ -457,9 +457,9 @@ void OpMon::setStats(int stats[], Attaque *attacks[], Espece *espece, int types[
 
 }
 
-void OpMon::attacked(int pvPerdus) {
-    PV -= pvPerdus;
-    PV = (PV < 0) ? 0 : PV;
+void OpMon::attacked(int hpPerdus) {
+    HP -= hpPerdus;
+    HP = (HP < 0) ? 0 : HP;
 }
 
 bool OpMon::changeATK(int power) {
@@ -1535,12 +1535,12 @@ bool OpMon::setStatus(int status) {
     return true;
 }
 
-void OpMon::heal(int PV) {
-    if ((PV + this->PV) > statPV) {
-            this->PV = statPV;
+void OpMon::heal(int HP) {
+    if ((HP + this->HP) > statHP) {
+            this->HP = statHP;
         }
     else {
-            this->PV += PV;
+            this->HP += HP;
         }
 }
 
@@ -1560,13 +1560,13 @@ string OpMon::save() {
             oss << Save::intToChar(atkSpeIV) << endl;
             oss << Save::intToChar(defSpeIV) << endl;
             oss << Save::intToChar(vitIV) << endl;
-            oss << Save::intToChar(pvIV) << endl;
+            oss << Save::intToChar(hpIV) << endl;
             oss << Save::intToChar(atkEV) << endl;
             oss << Save::intToChar(defEV) << endl;
             oss << Save::intToChar(atkSpeEV) << endl;
             oss << Save::intToChar(defSpeEV) << endl;
             oss << Save::intToChar(vitEV) << endl;
-            oss << Save::intToChar(pvEV) << endl;
+            oss << Save::intToChar(hpEV) << endl;
             oss << Save::intToChar(statLove) << endl;
             oss << Save::intToChar(level) << endl;
             oss << Save::intToChar(caractere.id) << endl;
@@ -1607,7 +1607,7 @@ string OpMon::save() {
                     oss << "NULL" << endl;
                 }
             oss << Save::intToChar(espece->getOpdexNumber()) << endl;
-            oss << Save::intToChar(PV) << endl;
+            oss << Save::intToChar(HP) << endl;
             oss << Save::intToChar(exp) << endl;
             oss << Save::intToChar(toNextLevel) << endl;
             oss << Save::intToChar(expBoost * 10) << endl;
@@ -1641,7 +1641,7 @@ OpMon::OpMon(ifstream &in) {
             in.get();
             vitIV = in.get();
             in.get();
-            pvIV = in.get();
+            hpIV = in.get();
             in.get();
             atkEV = in.get();
             in.get();
@@ -1654,7 +1654,7 @@ OpMon::OpMon(ifstream &in) {
             vitEV = in.get();
             in.get();
 
-            pvEV = in.get();
+            hpEV = in.get();
             in.get();
             statLove = in.get();
             in.get();
@@ -1697,7 +1697,7 @@ OpMon::OpMon(ifstream &in) {
             int especeID = in.get();
             espece = Initializer::listeOp[especeID];
             in.get();
-            PV = in.get();
+            HP = in.get();
             in.get();
             exp = in.get();
             in.get();
