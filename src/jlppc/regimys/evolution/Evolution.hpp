@@ -12,7 +12,7 @@ Contient la définition da la classe Evolution
 #include "../objects/OpMon.hpp"
 #include "../../utils/Class.hpp"
 
-class Espece;
+class Species;
 /**
 Permet de définir un type d'évolution
 */
@@ -26,8 +26,8 @@ class Evolution {
         Evolution(int evo);
         /**Permet de vérifier si le pokémon évolue. Renvoie true si il peut evoluer*/
         virtual bool checkEvolve(OpMon const &toCheck) const = 0;
-        Espece *getEvolution() const;
-        /**Check evo permet de récuperer l'espece d'évolution. Ne pas confondre avec checkEvolve*/
+        Species *getEvolution() const;
+        /**Check evo permet de récuperer l'species d'évolution. Ne pas confondre avec checkEvolve*/
         void checkEvo();
         virtual int getEvolID() const {
             return evolID;
@@ -40,7 +40,7 @@ class Evolution {
 
     protected:
         static const int evolID = 0;
-        Espece *toEvolve;
+        Species *toEvolve;
         int evo;
 };
 

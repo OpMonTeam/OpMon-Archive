@@ -1,9 +1,9 @@
 /*
-Espece.hpp
+Species.hpp
 Auteur : Jlppc
 Fichier sous licence GPL-3.0
 http://opmon-game.ga
-Définit l'énumération CourbeExp et la classe Espece
+Définit l'énumération CourbeExp et la classe Species
 */
 #ifndef ESPECE_HPP
 #define ESPECE_HPP
@@ -25,14 +25,14 @@ namespace CourbeExp {
 Classe permettant de définir une espèce de Pokémon.
 */
 //->Final
-class Espece {
+class Species {
 
     protected:
 
     private:
         std::string nom;
         int numeroOpdex;
-        Espece *evolution;
+        Species *evolution;
         int niveauEvolution;
         Evolution *evolType;
         int type1;
@@ -62,8 +62,8 @@ class Espece {
         int evSize;
 
     public:
-        virtual ~Espece();
-        Espece(int atk, int def, int atkSpe, int defSpe, int vit, int hp, std::string name, int type1, int type2, int maniereEvolution, int niveauEvolution, Evolution *evolType, std::vector<int> &EVGiven, float taille, float poids, std::string entreeOpdex, int expGiven, int expMax, int tauxDeCapture, int numeroOpdex);
+        virtual ~Species();
+        Species(int atk, int def, int atkSpe, int defSpe, int spe, int hp, std::string name, int type1, int type2, int maniereEvolution, int niveauEvolution, Evolution *evolType, std::vector<int> &EVGiven, float taille, float poids, std::string entreeOpdex, int expGiven, int expMax, int tauxDeCapture, int numeroOpdex);
         /**Methode permettant de récuperer l'espèce d'évolution, car le mode d'initialisation des espèces ne permet pas de le faire dans le constructeur*/
         void checkEvol();
         /**Methode ayant la même fonction que checkEvol mais pour les attaques par niveau*/
@@ -107,7 +107,7 @@ class Espece {
         int getCourbe() const {
             return courbe;
         }
-        Espece *getEvolution() const {
+        Species *getEvolution() const {
             return evolution;
         }
         float getPoids() const {

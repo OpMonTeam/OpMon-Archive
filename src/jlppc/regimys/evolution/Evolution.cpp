@@ -7,7 +7,7 @@ void Evolution::checkEvo() {
     //toEvolve = Initializer::listeOp[evo];
 }
 
-Espece *Evolution::getEvolution() const {
+Species *Evolution::getEvolution() const {
     return toEvolve;
 }
 
