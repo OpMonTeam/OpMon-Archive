@@ -59,7 +59,7 @@ namespace OptionsSave {
 
     int searchParam(string const &nom) {
       FOR_EACH(Param, paramList, (int) paramList.size(), {)
-        if(objActuel->getName() == nom) {
+        if(currentObj->getName() == nom) {
             return itor;
         }
             }
@@ -103,7 +103,7 @@ void initParams(string const& file) {
         string toGo;
         FOR_EACH(Param, paramList, (int) paramList.size(), {)
                  //cout << objActuel->getName() << endl;
-                 toGo+=("pm|" + objActuel->getName() + "=" + objActuel->getValue() + '\n');//Ajoute le pm| puis écrit le paramètre dans le fichier.
+                 toGo+=("pm|" + currentObj->getName() + "=" + currentObj->getValue() + '\n');//Ajoute le pm| puis écrit le paramètre dans le fichier.
                  //cout << toGo;
                  stream << toGo;
                  toGo = string("");

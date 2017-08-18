@@ -40,18 +40,18 @@ int Attaque::attack(OpMon &atk, OpMon &def) {
             return -1;
         }
     if (!status) {//Attaque de PV si ce n'est pas une attaque de status
-            pvPerdus = (((atk.getLevel() * 0.4 + 2) * (special ? atk.getStatATKSPE() : atk.getStatATK()) * puissance) / ((special ? def.getStatDEFSPE() : def.getStatDEF()) * 50) + 2);
+            hpPerdus = (((atk.getLevel() * 0.4 + 2) * (special ? atk.getStatATKSPE() : atk.getStatATK()) * puissance) / ((special ? def.getStatDEFSPE() : def.getStatDEF()) * 50) + 2);
             if (type == atk.getType1() || type == atk.getType2()) {
-                    pvPerdus = round(pvPerdus * 1.5);
+                    hpPerdus = round(hpPerdus * 1.5);
                 }
             float efficacite = (TableTypes::calcEfficacite(type, def.getType1(), def.getType2()));
             //if(efficacite)//A utiliser pour les dialogues
-            pvPerdus = round(pvPerdus * efficacite);
+            hpPerdus = round(hpPerdus * efficacite);
             if (Utils::randU(chanceDeCoups) == 1) {
-                    pvPerdus = round(pvPerdus * 1.5);
+                    hpPerdus = round(hpPerdus * 1.5);
                 }
-            pvPerdus = round(pvPerdus * (Utils::randU(100 - 85 + 1) + 85) / 100);
-            def.attacked(pvPerdus);
+            hpPerdus = round(hpPerdus * (Utils::randU(100 - 85 + 1) + 85) / 100);
+            def.attacked(hpPerdus);
         }
     return effetApres(atk, def);
 }

@@ -38,7 +38,7 @@ namespace Main {
     //bool connected = false;
     string trainers[] = {"Brice", "Evan", "Mael", "Jlppc", "Red", "Blue", "Nikolai", "N", "Belladonis", "Aristote", "Giovanni", "Flora", "Silver", "Jules Cesar", "Brahim"};
     float version = 0.12;
-    int sousVers = 0;
+    int underVers = 0;
     string versionS;
     Player player;
 /*#ifdef _WIN32
@@ -49,7 +49,6 @@ namespace Main {
     //bool reboot = false;
 
     int starts() {
-        //Chargement des fichiers du log
         if (!rlog) {
                 cout << "Initialisation error of error log" << endl;
                 exit(-1);
@@ -59,15 +58,12 @@ namespace Main {
                 exit(-1);
         }
         InternalFiles::registerFiles();
-        //Chargement des paramètres
         OptionsSave::initParams(optSave);
         if(!OptionsSave::checkParam("lang")) { //If the "lang" setting don't exist
                 OptionsSave::addParam("lang", "eng");
         }
         rlog << PRINT_TICKS << "Log initialisation completed." << endl;
-        //Initialisation des objets
         Initializer::init();
-        //Ouverture de la fenetre
         MainFrame::open();
 
         return quit(0);
@@ -81,7 +77,7 @@ void handleError(string const& errorName, bool fatal) {
   errors++;
     rerrLog << "Error  n�" << errors << " : " << errorName << endl;
     cerr << "Error n�" << errors << " : " << errorName << endl;
-    if(errors > 20){//If the program gets more than 20 errors, he stops.
+    if(errors > 20){//If the program gets more than 20 errors, it stops.
       cerr << "Too many errors. Closing program. Please verify your installation." << endl;
       rerrLog << "Too many errors. Closing program. Please verify your installation." << endl;
       fatal = true;
@@ -94,25 +90,22 @@ void handleError(string const& errorName, bool fatal) {
     }
 }
 
-int quit(int const& returne) {
+int quit(int const& returns) {
     if (MainFrame::init) {
 
     }
     OptionsSave::saveParams(optSave);//Settings save
-    rlog << PRINT_TICKS << "Resources closure" << endl;
+    rlog << PRINT_TICKS << "Deletions of the resources" << endl;
     for(Map *map : Initializer::maps) {
             delete(map);
     }
     for(sf::Music *mus : Initializer::townMusics) {
             delete(mus);
     }
-    rlog << PRINT_TICKS << "Game closure. Return " << returne << endl;
+    rlog << PRINT_TICKS << "End of the program. Return " << returns << endl;
 
-    /*#ifdef DEBUG//Outdated : Unused
-    system("pause");
-    #endif // DEBUG*/
-    exit(returne);
-    return returne;
+    exit(returns);
+    return returns;
 }
 
 std::string& operator<<(std::string &str, int const& nbre){
@@ -141,9 +134,7 @@ std::string& operator<<(std::string &str, char thing[]){
 #include "../save/Save.hpp"
 int main(int argc, char *argv[]) {
     ticks.restart();
-    //Création de la chaine de caractère de version
-    Main::versionS << string("Alpha ") << Main::version << string(".") << Main::sousVers;
-    //Traitement des arguments
+    Main::versionS << string("Alpha ") << Main::version << string(".") << Main::underVers;
 #ifndef _WIN32
     string str("mkdir -p ");
     #pragma GCC diagnostic push
@@ -155,13 +146,13 @@ int main(int argc, char *argv[]) {
 #endif
     if(argc >= 2) {
             FOR_EACH(char *, argv, argc, {)
-                string str = string(*objActuel);
-                if(str == "--version") { //Version display
+                string str = string(*currentObj);
+                if(str == "--version") {
                     cout << "OpMon Lazuli version " << Main::versionS << endl;
                     exit(0);
                 }
-                else if(str == "--opt") {//Changement de l'emplacement du fichier de sauvegarde des paramètres
-                    if(itor + 1 == argc) { //Si pas d'arguments a l'option --opt
+                else if(str == "--opt") {
+                    if(itor + 1 == argc) {
                             exit(2);
                     }else {
                             optSave = string(argv[itor + 1]);

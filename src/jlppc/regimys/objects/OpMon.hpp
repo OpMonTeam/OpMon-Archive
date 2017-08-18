@@ -47,13 +47,13 @@ class OpMon {
         int atkSpeIV = Utils::randU(32);
         int defSpeIV = Utils::randU(32);
         int vitIV = Utils::randU(32);
-        int pvIV = Utils::randU(32);
+        int hpIV = Utils::randU(32);
         int atkEV = 0;
         int defEV = 0;
         int atkSpeEV = 0;
         int defSpeEV = 0;
         int vitEV = 0;
-        int pvEV = 0;
+        int hpEV = 0;
 
         //Les statistiques en general
         int statATK;
@@ -64,7 +64,7 @@ class OpMon {
         //Les autrees stats.
         int statESQ;
         float statPRE;
-        int statPV;
+        int statHP;
         int statLove;
         //Les variables indiquant le niveau de changement.
         int atkChange = 0;
@@ -83,7 +83,7 @@ class OpMon {
 
         Espece *espece;
         /**Attention : Cette variable contient les PV actuels du pokémon, la classe statPV contient les PV max*/
-        int PV;
+        int HP;
         //->WaitEnum->Status
         int status = Status::NOTHING;
         //->WaitEnum->Type
@@ -145,7 +145,7 @@ class OpMon {
         /**Permet de completement changer le pokémon*/
         void setStats(int stats[], Attaque *attacks[], Espece *espece, int types[]);
         /**Fait perdre des pv*/
-        void attacked(int pvPerdus);
+        void attacked(int hpPerdus);
         /**Les methode suivantes modifient les stats en fonction des niveaux. Cela ne modifie pas directement la stat*/
         bool changeATK(int power);
         bool changePRE(int power);
@@ -159,20 +159,20 @@ class OpMon {
         }
         /**Change le status*/
         bool setStatus(int status);
-        int getStatPV() const {
-            return statPV;
+        int getStatHP() const {
+            return statHP;
         }
         int getStatLove() const {
             return statLove;
         }
-        int getPV() const {
-            return PV;
+        int getHP() const {
+            return HP;
         }
         std::string getSurnom() {
             return surnom;
         }
         /**Soigne le pokémon*/
-        void heal(int PV);
+        void heal(int HP);
         int getLevel() const {
             return level;
         }
