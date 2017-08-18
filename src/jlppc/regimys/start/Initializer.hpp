@@ -13,7 +13,7 @@ Contient la définition des methodes qui permettent d'initialiser les éléments
 #include <iostream>
 #include <vector>
 #include "../../utils/NumberedArray.hpp"
-#include "../objects/Espece.hpp"
+#include "../objects/Species.hpp"
 #include "../evolution/evolutions.hpp"
 
 #define ATK_LIST(OpId) AtkArray tab##OpId[]
@@ -24,7 +24,7 @@ Contient la définition des methodes qui permettent d'initialiser les éléments
 class Map;
 //->NoDoc
 namespace Initializer {
-    extern Espece *listeOp[OP_NUMBER];
+    extern Species *listeOp[OP_NUMBER];
     extern std::vector<NumberedArray> opOpLvl[OP_NUMBER]; //100 attaques max / poké
     extern Evolutions::E_Nope *ne;//ne = No Evolution
     extern std::vector<Map *> maps;
