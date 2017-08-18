@@ -83,46 +83,46 @@ int CalcCourbes::parabolique(int n) {
 int CalcCourbes::rapide(int n) {
     return round(0.8f * pow(n, 3));
 }
-OpMon::OpMon(string surnom, Espece *espece, int level, Attaque *attaque1, Attaque *attaque2, Attaque *attaque3, Attaque *attaque4,
+OpMon::OpMon(string surnom, Species *species, int level, Attaque *attaque1, Attaque *attaque2, Attaque *attaque3, Attaque *attaque4,
              CaractereClass caractere) {
     atkIV = Utils::randU(32);
     defIV = Utils::randU(32);
     atkSpeIV = Utils::randU(32);
     defSpeIV = Utils::randU(32);
-    vitIV = Utils::randU(32);
+    speIV = Utils::randU(32);
     hpIV = Utils::randU(32);
     statATK = round(
-                  ((((2 * espece->getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100)
+                  ((((2 * species->getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100)
                    + 5)
                   * ((caractere.bonus == Stats::ATK) ?
                      1.1 : ((caractere.malus == Stats::ATK) ? 0.9 : 1)));
     statDEF = round(
-                  ((((2 * espece->getBaseDef() + defIV + (defEV / 4)) * level) / 100)
+                  ((((2 * species->getBaseDef() + defIV + (defEV / 4)) * level) / 100)
                    + 5)
                   * ((caractere.bonus == Stats::DEF) ?
                      1.1 : ((caractere.malus == Stats::DEF) ? 0.9 : 1)));
     statATKSPE =
         round(
-            ((((2 * espece->getBaseAtkSpe() + atkSpeIV + (atkSpeEV / 4))
+            ((((2 * species->getBaseAtkSpe() + atkSpeIV + (atkSpeEV / 4))
                * level) / 100) + 5)
             * ((caractere.bonus == Stats::ATKSPE) ?
                1.1 :
                ((caractere.malus == Stats::ATKSPE) ? 0.9 : 1)));
     statDEFSPE =
         round(
-            ((((2 * espece->getBaseDefSpe() + defSpeIV + (defSpeEV / 4))
+            ((((2 * species->getBaseDefSpe() + defSpeIV + (defSpeEV / 4))
                * level) / 100) + 5)
             * ((caractere.bonus == Stats::DEFSPE) ?
                1.1 :
                ((caractere.malus == Stats::DEFSPE) ? 0.9 : 1)));
-    statVIT = round(
-                  ((((2 * espece->getBaseVit() + vitIV + (vitEV / 4)) * level) / 100)
+    statSPE = round(
+                  ((((2 * species->getBaseVit() + speIV + (speEV / 4)) * level) / 100)
                    + 5)
-                  * ((caractere.bonus == Stats::VIT) ?
-                     1.1 : ((caractere.malus == Stats::VIT) ? 0.9 : 1)));
-    statHP = round(((2 * espece->getBaseHP() + hpIV + (hpEV / 4)) * level) / 100)
+                  * ((caractere.bonus == Stats::SPE) ?
+                     1.1 : ((caractere.malus == Stats::SPE) ? 0.9 : 1)));
+    statHP = round(((2 * species->getBaseHP() + hpIV + (hpEV / 4)) * level) / 100)
              + level + 10;
-    this->espece = espece;
+    this->species = species;
     this->level = level;
 
     this->attaques[0] = attaque1;
@@ -133,12 +133,12 @@ OpMon::OpMon(string surnom, Espece *espece, int level, Attaque *attaque1, Attaqu
     //TODO attaquesChoix Quand les attaques seront ok
     this->caractere = caractere;
     this->surnom = surnom;
-    tauxCapture = espece->getTauxDeCapture();
+    tauxCapture = species->getTauxDeCapture();
     HP = statHP;
-    type1 = espece->getType1();
-    type2 = espece->getType2();
+    type1 = species->getType1();
+    type2 = species->getType2();
     using namespace CalcCourbes;
-    switch (this->espece->getCourbe()) {
+    switch (this->species->getCourbe()) {
             case CourbeExp::ERRATIQUE:
                 toNextLevel = erratique(this->level + 1);
                 exp = erratique(this->level);
@@ -222,8 +222,8 @@ void OpMon::setStat(string const &stat, int newStat) {
     else if (stat == "defspe") {
             statDEFSPE = newStat;
         }
-    else if (stat == "vit") {
-            statVIT = newStat;
+    else if (stat == "spe") {
+            statSPE = newStat;
         }
     else if (stat == "hp") {
             statHP = newStat;
@@ -236,7 +236,7 @@ void OpMon::setStat(string const &stat, int newStat) {
 void OpMon::levelUp() {
     using namespace CalcCourbes;
     level++;
-    switch (this->espece->getCourbe()) {
+    switch (this->species->getCourbe()) {
             case CourbeExp::ERRATIQUE:
                 toNextLevel = erratique(this->level + 1);
                 exp = erratique(this->level);
@@ -263,8 +263,8 @@ void OpMon::levelUp() {
                 break;
         }
     calcStats();
-    if (espece->getEvolType()->checkEvolve(*this)) {
-            if ((espece->getEvolType()->getEvolID()) == (Evolutions::ETrade)) {
+    if (species->getEvolType()->checkEvolve(*this)) {
+            if ((species->getEvolType()->getEvolID()) == (Evolutions::ETrade)) {
                     evolve();
                 }
         }
@@ -272,7 +272,7 @@ void OpMon::levelUp() {
 
 int OpMon::win(OpMon const &vaincu) {
     getEvs(vaincu);
-    exp += ((vaincu.espece->getExp() * vaincu.level) / this->level) * expBoost;
+    exp += ((vaincu.species->getExp() * vaincu.level) / this->level) * expBoost;
     while (exp >= toNextLevel && level < 100) {
             if (exp < toNextLevel) {
                     break;
@@ -280,14 +280,14 @@ int OpMon::win(OpMon const &vaincu) {
             levelUp();
         }
     calcStats();
-    return (((vaincu.espece->getExp() * vaincu.level) / this->level) * expBoost);
+    return (((vaincu.species->getExp() * vaincu.level) / this->level) * expBoost);
 }
 
 void OpMon::getEvs(OpMon const &vaincu) {
-    if (!((atkEV + defEV + hpEV + atkSpeEV + defSpeEV + vitEV) > 510)) {
+    if (!((atkEV + defEV + hpEV + atkSpeEV + defSpeEV + speEV) > 510)) {
             vector<int> statsVaincu;
-            for (int i = 0; i < vaincu.espece->getEvSize(); i++) {
-                    statsVaincu.push_back(vaincu.espece->getEv()[i]);
+            for (int i = 0; i < vaincu.species->getEvSize(); i++) {
+                    statsVaincu.push_back(vaincu.species->getEv()[i]);
                 }
 
             for (unsigned int i = 0; i < statsVaincu.size(); i++) {
@@ -319,9 +319,9 @@ void OpMon::getEvs(OpMon const &vaincu) {
                                 break;
                             case Stats::NOTHING:
                                 break;
-                            case Stats::VIT:
-                                if (vitEV < 252) {
-                                        vitEV++;
+                            case Stats::SPE:
+                                if (speEV < 252) {
+                                        speEV++;
                                     }
                                 break;
 
@@ -333,41 +333,41 @@ void OpMon::getEvs(OpMon const &vaincu) {
 
 void OpMon::calcStats() {
     statATK = round(
-                  ((((2 * espece->getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100)
+                  ((((2 * species->getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100)
                    + 5)
                   * ((caractere.bonus == Stats::ATK) ?
                      1.1 : ((caractere.malus == Stats::ATK) ? 0.9 : 1)));
     statDEF = round(
-                  ((((2 * espece->getBaseDef() + defIV + (defEV / 4)) * level) / 100)
+                  ((((2 * species->getBaseDef() + defIV + (defEV / 4)) * level) / 100)
                    + 5)
                   * ((caractere.bonus == Stats::DEF) ?
                      1.1 : ((caractere.malus == Stats::DEF) ? 0.9 : 1)));
     statATKSPE =
         round(
-            ((((2 * espece->getBaseAtkSpe() + atkSpeIV + (atkSpeEV / 4))
+            ((((2 * species->getBaseAtkSpe() + atkSpeIV + (atkSpeEV / 4))
                * level) / 100) + 5)
             * ((caractere.bonus == Stats::ATKSPE) ?
                1.1 :
                ((caractere.malus == Stats::ATKSPE) ? 0.9 : 1)));
     statDEFSPE =
         round(
-            ((((2 * espece->getBaseDefSpe() + defSpeIV + (defSpeEV / 4))
+            ((((2 * species->getBaseDefSpe() + defSpeIV + (defSpeEV / 4))
                * level) / 100) + 5)
             * ((caractere.bonus == Stats::DEFSPE) ?
                1.1 :
                ((caractere.malus == Stats::DEFSPE) ? 0.9 : 1)));
-    statVIT = round(
-                  ((((2 * espece->getBaseVit() + vitIV + (vitEV / 4)) * level) / 100)
+    statSPE = round(
+                  ((((2 * species->getBaseVit() + speIV + (speEV / 4)) * level) / 100)
                    + 5)
-                  * ((caractere.bonus == Stats::VIT) ?
-                     1.1 : ((caractere.malus == Stats::VIT) ? 0.9 : 1)));
-    statHP = round(((2 * espece->getBaseHP() + hpIV + (hpEV / 4)) * level) / 100)
+                  * ((caractere.bonus == Stats::SPE) ?
+                     1.1 : ((caractere.malus == Stats::SPE) ? 0.9 : 1)));
+    statHP = round(((2 * species->getBaseHP() + hpIV + (hpEV / 4)) * level) / 100)
              + level + 10;
 }
 
 bool OpMon::itemUsed(Item *used) {
-    if ((espece->getEvolType()->getEvolID()) == Evolutions::EItem) {
-            if (espece->getEvolType()->itemEvolve(used)) {
+    if ((species->getEvolType()->getEvolID()) == Evolutions::EItem) {
+            if (species->getEvolType()->itemEvolve(used)) {
                     evolve();
                     return true;
                 }
@@ -427,27 +427,27 @@ void OpMon::traded() {
 }
 
 void OpMon::toolEvTrade() {
-    if (espece->getEvolType()->getEvolID() == Evolutions::ETrade) {
+    if (species->getEvolType()->getEvolID() == Evolutions::ETrade) {
             evolve();
         }
 }
 
 void OpMon::evolve() {
-  //bool changeName = (surnom == espece->getNom());
-    espece = espece->getEvolution();
+  //bool changeName = (surnom == species->getNom());
+    species = species->getEvolution();
 }
 
-void OpMon::setStats(int stats[], Attaque *attacks[], Espece *espece, int types[]) {
+void OpMon::setStats(int stats[], Attaque *attacks[], Species *species, int types[]) {
     statATK = stats[0];
     statDEF = stats[1];
     statATKSPE = stats[2];
     statDEFSPE = stats[3];
-    statVIT = stats[4];
+    statSPE = stats[4];
     statPRE = 100;
     statESQ = 100;
     type1 = types[0];
     type2 = types[1];
-    this->espece = espece;
+    this->species = species;
     attaques[0] = attacks[0];
     attaques[1] = attacks[1];
     attaques[2] = attacks[2];
@@ -1343,72 +1343,72 @@ bool OpMon::changeDEFSPE(int power) {
     return true;
 }
 
-bool OpMon::changeVIT(int power) {
+bool OpMon::changeSPE(int power) {
     if (power < 0) {
             for (int i = 0; i > power; i--) {
-                    switch (vitChange) {
+                    switch (speChange) {
                             case -6:
                                 return false;
                             case -5:
 
-                                statVIT = round(statVIT / 1.16);
+                                statSPE = round(statSPE / 1.16);
 
-                                vitChange--;
+                                speChange--;
                                 break;
                             case -4:
 
-                                statVIT = round(statVIT * 0.878788);
-                                vitChange--;
+                                statSPE = round(statSPE * 0.878788);
+                                speChange--;
                                 break;
                             case -3:
 
-                                statVIT = round(statVIT * 0.825);
-                                vitChange--;
+                                statSPE = round(statSPE * 0.825);
+                                speChange--;
                                 break;
                             case -2:
 
-                                statVIT = round(statVIT / 1.25);
-                                vitChange--;
+                                statSPE = round(statSPE / 1.25);
+                                speChange--;
                                 break;
                             case -1:
 
-                                statVIT = round(statVIT / 1.34);
-                                vitChange--;
+                                statSPE = round(statSPE / 1.34);
+                                speChange--;
                                 break;
                             case 0:
 
-                                statVIT = round(statVIT * 0.67);
-                                vitChange--;
+                                statSPE = round(statSPE * 0.67);
+                                speChange--;
                                 break;
                             case 1:
 
-                                statVIT = round(statVIT / 1.5);
-                                vitChange--;
+                                statSPE = round(statSPE / 1.5);
+                                speChange--;
                                 break;
                             case 2:
 
-                                statVIT = round(statVIT * 0.75);
-                                vitChange--;
+                                statSPE = round(statSPE * 0.75);
+                                speChange--;
                                 break;
                             case 3:
 
-                                statVIT = round(statVIT / 1.25);
-                                vitChange--;
+                                statSPE = round(statSPE / 1.25);
+                                speChange--;
                                 break;
                             case 4:
 
-                                statVIT = round(statVIT / 1.2);
-                                vitChange--;
+                                statSPE = round(statSPE / 1.2);
+                                speChange--;
                                 break;
                             case 5:
 
-                                statVIT = round(statVIT / 1.1667);
-                                vitChange--;
+                                statSPE = round(statSPE / 1.1667);
+                                speChange--;
                                 break;
                             case 6:
 
-                                statVIT = round(statVIT * 0.875);
-                                vitChange--;
+                                statSPE = round(statSPE * 0.875);
+                                speChange--;
                                 break;
                             default:
                                 break;
@@ -1418,66 +1418,66 @@ bool OpMon::changeVIT(int power) {
     else {
 
             for (int i = 0; i > power; i--) {
-                    switch (vitChange) {
+                    switch (speChange) {
                             case -6:
 
-                                statVIT = round(statVIT * 1.16);
-                                vitChange++;
+                                statSPE = round(statSPE * 1.16);
+                                speChange++;
                                 break;
                             case -5:
 
-                                statVIT = round(statVIT / 0.878788);
-                                vitChange++;
+                                statSPE = round(statSPE / 0.878788);
+                                speChange++;
                                 break;
                             case -4:
 
-                                statVIT = round(statVIT / 0.825);
-                                vitChange++;
+                                statSPE = round(statSPE / 0.825);
+                                speChange++;
                                 break;
                             case -3:
 
-                                statVIT = round(statVIT * 1.25);
-                                vitChange++;
+                                statSPE = round(statSPE * 1.25);
+                                speChange++;
                                 break;
                             case -2:
 
-                                statVIT = round(statVIT * 1.34);
-                                vitChange++;
+                                statSPE = round(statSPE * 1.34);
+                                speChange++;
                                 break;
                             case -1:
 
-                                statVIT = round(statVIT / 0.67);
-                                vitChange++;
+                                statSPE = round(statSPE / 0.67);
+                                speChange++;
                                 break;
                             case 0:
 
-                                statVIT = round(statVIT * 1.5);
-                                vitChange++;
+                                statSPE = round(statSPE * 1.5);
+                                speChange++;
                                 break;
                             case 1:
 
-                                statVIT = round(statVIT / 0.75);
-                                vitChange++;
+                                statSPE = round(statSPE / 0.75);
+                                speChange++;
                                 break;
                             case 2:
 
-                                statVIT = round(statVIT * 1.25);
-                                vitChange++;
+                                statSPE = round(statSPE * 1.25);
+                                speChange++;
                                 break;
                             case 3:
 
-                                statVIT = round(statVIT * 1.2);
-                                vitChange++;
+                                statSPE = round(statSPE * 1.2);
+                                speChange++;
                                 break;
                             case 4:
 
-                                statVIT = round(statVIT * 1.1667);
-                                vitChange++;
+                                statSPE = round(statSPE * 1.1667);
+                                speChange++;
                                 break;
                             case 5:
 
-                                statVIT = round(statVIT / 0.875);
-                                vitChange++;
+                                statSPE = round(statSPE / 0.875);
+                                speChange++;
                                 break;
                             case 6:
                                 return false;
@@ -1524,12 +1524,12 @@ bool OpMon::setStatus(int status) {
             atkChange--;
         }
     else if (status == Status::PARALYSED) {
-            changeVIT(-1);
-            vitChange++;
+            changeSPE(-1);
+            speChange++;
         }
     else if (status == Status::NOTHING && this->status == Status::PARALYSED) {
-            changeVIT(1);
-            vitChange--;
+            changeSPE(1);
+            speChange--;
         }
     this->status = status;
     return true;
@@ -1559,13 +1559,13 @@ string OpMon::save() {
             oss << Save::intToChar(defIV) << endl;
             oss << Save::intToChar(atkSpeIV) << endl;
             oss << Save::intToChar(defSpeIV) << endl;
-            oss << Save::intToChar(vitIV) << endl;
+            oss << Save::intToChar(speIV) << endl;
             oss << Save::intToChar(hpIV) << endl;
             oss << Save::intToChar(atkEV) << endl;
             oss << Save::intToChar(defEV) << endl;
             oss << Save::intToChar(atkSpeEV) << endl;
             oss << Save::intToChar(defSpeEV) << endl;
-            oss << Save::intToChar(vitEV) << endl;
+            oss << Save::intToChar(speEV) << endl;
             oss << Save::intToChar(hpEV) << endl;
             oss << Save::intToChar(statLove) << endl;
             oss << Save::intToChar(level) << endl;
@@ -1606,7 +1606,7 @@ string OpMon::save() {
             else {
                     oss << "NULL" << endl;
                 }
-            oss << Save::intToChar(espece->getOpdexNumber()) << endl;
+            oss << Save::intToChar(species->getOpdexNumber()) << endl;
             oss << Save::intToChar(HP) << endl;
             oss << Save::intToChar(exp) << endl;
             oss << Save::intToChar(toNextLevel) << endl;
@@ -1639,7 +1639,7 @@ OpMon::OpMon(ifstream &in) {
             in.get();
             defSpeIV = in.get();
             in.get();
-            vitIV = in.get();
+            speIV = in.get();
             in.get();
             hpIV = in.get();
             in.get();
@@ -1651,7 +1651,7 @@ OpMon::OpMon(ifstream &in) {
             in.get();
             defSpeEV = in.get();
             in.get();
-            vitEV = in.get();
+            speEV = in.get();
             in.get();
 
             hpEV = in.get();
@@ -1694,8 +1694,8 @@ OpMon::OpMon(ifstream &in) {
                     attaques[3]->setPPMax(in.get());
                     in.get();
                 }
-            int especeID = in.get();
-            espece = Initializer::listeOp[especeID];
+            int speciesID = in.get();
+            species = Initializer::listeOp[speciesID];
             in.get();
             HP = in.get();
             in.get();
@@ -1718,8 +1718,8 @@ OpMon::OpMon(ifstream &in) {
             tauxCapture = in.get();
             in.get();
             calcStats();
-            type1 = espece->getType1();
-            type2 = espece->getType2();
+            type1 = species->getType1();
+            type2 = species->getType2();
             statPRE = 100;
             statESQ = 100;
             falsif = false;

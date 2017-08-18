@@ -12,7 +12,7 @@ Contient la d�finition du namepsace CalcCourbes et de la classe OpMon
 #include <iostream>
 #include <cmath>
 #include "../enums/Caractere.hpp"
-#include "Espece.hpp"
+#include "Species.hpp"
 #include "../../utils/Utils.hpp"
 #include "item/Item.hpp"
 #include "item/IOpball.hpp"
@@ -33,7 +33,7 @@ namespace CalcCourbes {
 
 class Attaque;
 /**
-Classe définissant un pokémon en particulier. Pour voir la classe qui définit une espece, voir Espece.hpp
+Classe définissant un pokémon en particulier. Pour voir la classe qui définit une species, voir Species.hpp
 */
 class OpMon {
 
@@ -46,13 +46,13 @@ class OpMon {
         int defIV = Utils::randU(32);
         int atkSpeIV = Utils::randU(32);
         int defSpeIV = Utils::randU(32);
-        int vitIV = Utils::randU(32);
+        int speIV = Utils::randU(32);
         int hpIV = Utils::randU(32);
         int atkEV = 0;
         int defEV = 0;
         int atkSpeEV = 0;
         int defSpeEV = 0;
-        int vitEV = 0;
+        int speEV = 0;
         int hpEV = 0;
 
         //Les statistiques en general
@@ -60,7 +60,7 @@ class OpMon {
         int statDEF;
         int statATKSPE;
         int statDEFSPE;
-        int statVIT;
+        int statSPE;
         //Les autrees stats.
         int statESQ;
         float statPRE;
@@ -73,7 +73,7 @@ class OpMon {
         int atkSpeChange = 0;
         int esqChange = 0;
         int preChange = 0;
-        int vitChange = 0;
+        int speChange = 0;
 
         int level;
 
@@ -81,7 +81,7 @@ class OpMon {
 
         Attaque *attaques[4];
 
-        Espece *espece;
+        Species *species;
         /**Attention : Cette variable contient les PV actuels du pokémon, la classe statPV contient les PV max*/
         int HP;
         //->WaitEnum->Status
@@ -113,7 +113,7 @@ class OpMon {
         virtual ~OpMon();
         //->DontUse
         OpMon() {};
-        OpMon(std::string surnom, Espece *espece, int level, Attaque *attaque1, Attaque *attaque2, Attaque *attaque3, Attaque *attaque4, CaractereClass caractere);
+        OpMon(std::string surnom, Species *species, int level, Attaque *attaque1, Attaque *attaque2, Attaque *attaque3, Attaque *attaque4, CaractereClass caractere);
         /**
         Merci d'utiliser ce constructeur dans le cadre du chargement et UNIQUEMENT dans ce cas, sinon cela pourrait
         conduire a des bugs. Explication : Ce constructeur est concu pour marcher dans un shema bien particulier.
@@ -122,7 +122,7 @@ class OpMon {
         OpMon(std::ifstream &in);
         /**Renvoie true si le pokémon est bien capturé.*/
         bool captured(I_Opball const &Opball);
-        /**Permet de changer une stat, les possibilités d'entrées dans le paramètre stat sont "ATK" "DEF" "ATKSPE" "DEFSPE" "VIT" "PV"*/
+        /**Permet de changer une stat, les possibilités d'entrées dans le paramètre stat sont "ATK" "DEF" "ATKSPE" "DEFSPE" "SPE" "PV"*/
         void setStat(std::string const &stat, int newStat);
         /**Methode appellée lors d'une montée de niveau*/
         void levelUp();
@@ -143,7 +143,7 @@ class OpMon {
         /**Methode appelée lors de l'évolution*/
         void evolve();
         /**Permet de completement changer le pokémon*/
-        void setStats(int stats[], Attaque *attacks[], Espece *espece, int types[]);
+        void setStats(int stats[], Attaque *attacks[], Species *species, int types[]);
         /**Fait perdre des pv*/
         void attacked(int hpPerdus);
         /**Les methode suivantes modifient les stats en fonction des niveaux. Cela ne modifie pas directement la stat*/
@@ -153,7 +153,7 @@ class OpMon {
         bool changeDEF(int power);
         bool changeATKSPE(int power);
         bool changeDEFSPE(int power);
-        bool changeVIT(int power);
+        bool changeSPE(int power);
         int getStatus() {
             return status;
         }
@@ -206,8 +206,8 @@ class OpMon {
         int getStatDEFSPE() const {
             return statDEFSPE;
         }
-        Espece *getEspece() const {
-            return espece;
+        Species *getSpecies() const {
+            return species;
         }
         //Attention! Les opérateurs == et != ne comparent pas deux pok�mons! Ils comparent si les pok�mons sont falsifs ou non (voir falsif)
         bool operator==(OpMon const &a) {

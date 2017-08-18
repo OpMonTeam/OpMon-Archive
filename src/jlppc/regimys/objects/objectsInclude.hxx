@@ -10,7 +10,7 @@ Permet d'inclure tous les fichiers du dossier objects et de ses sous-dossiers
 
 #include "item/itemInclude.hxx"
 #include "Attaque.hpp"
-#include "Espece.hpp"
+#include "Species.hpp"
 #include "Attaques.hpp"
 #include "OpMon.hpp"
 #include "RegimysObject.hpp"

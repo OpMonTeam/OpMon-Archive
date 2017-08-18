@@ -178,19 +178,19 @@ namespace Attaques {
     }
 
     int Balayage::effetAvant(OpMon &atk, OpMon &def) {
-        if (def.getEspece()->getPoids() <= 10) {
+        if (def.getSpecies()->getPoids() <= 10) {
                 puissance = 20;
             }
-        else if (def.getEspece()->getPoids() > 10 && def.getEspece()->getPoids() <= 25) {
+        else if (def.getSpecies()->getPoids() > 10 && def.getSpecies()->getPoids() <= 25) {
                 puissance = 40;
             }
-        else if (def.getEspece()->getPoids() > 25 && def.getEspece()->getPoids() <= 50) {
+        else if (def.getSpecies()->getPoids() > 25 && def.getSpecies()->getPoids() <= 50) {
                 puissance = 60;
             }
-        else if (def.getEspece()->getPoids() > 50 && def.getEspece()->getPoids() <= 100) {
+        else if (def.getSpecies()->getPoids() > 50 && def.getSpecies()->getPoids() <= 100) {
                 puissance = 80;
             }
-        else if (def.getEspece()->getPoids() > 100 && def.getEspece()->getPoids() <= 200) {
+        else if (def.getSpecies()->getPoids() > 100 && def.getSpecies()->getPoids() <= 200) {
                 puissance = 100;
             }
         else {
@@ -236,8 +236,8 @@ namespace Attaques {
     }
 
     int BueeNoire::effetApres(OpMon &atk, OpMon &def) {
-        // atk.setStats(Fight.oldStats[0], atk.getAttaques(), atk.getEspece(), new Type[]{atk.getType1(), atk.getType2()});
-        //def.setStats(Fight.oldStats[1], def.getAttaques(), def.getEspece(), new Type[]{def.getType1(), def.getType2()});
+        // atk.setStats(Fight.oldStats[0], atk.getAttaques(), atk.getSpecies(), new Type[]{atk.getType1(), atk.getType2()});
+        //def.setStats(Fight.oldStats[1], def.getAttaques(), def.getSpecies(), new Type[]{def.getType1(), def.getType2()});
         //TODO
       return 0;
     }
@@ -245,7 +245,7 @@ namespace Attaques {
 
     int BullesDo::effetApres(OpMon &atk, OpMon &def) {
         if (Utils::randU(10) ==2) {
-                if(def.changeVIT(-1)) {
+                if(def.changeSPE(-1)) {
                     }
                 else {
                     }
