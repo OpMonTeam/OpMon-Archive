@@ -26,7 +26,9 @@ If there are problems understanding the old commits or monthly reports that are 
 __The current game version is Alpha 0.12.1. Download link: <a href="http://opmon-game.ga/downloads"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Other/version_logo.png" alt="Logo Téléchargement"></a>__
 
 __The next game version will be Alpha 0.13 : Event improvements, added new characters, and added descriptions on objects__
-[Look the ROADMAP](https://github.com/jlppc/OpMon/wiki/ROADMAP)__
+[Look the ROADMAP](https://github.com/jlppc/OpMon/wiki/ROADMAP)
+
+
 # En Français<a name="enfrancais">
 
 <h3>Bienvenue sur le Projet "OPMon Lazuli"!</h3>
