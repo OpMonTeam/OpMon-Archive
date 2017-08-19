@@ -5,7 +5,7 @@
 #include "../save/Save.hpp"
 #include <sstream>
 #include "item/IHeal.hpp"
-#include "Attaques.hpp"
+#include "Attacks.hpp"
 #include <fstream>
 #include "../start/Initializer.hpp"
 
@@ -13,8 +13,8 @@ UNS
 
 OpMon::~OpMon() {
     for (int i = 0; i < 4; i++) {
-            if(attaques[i] != NULL) {
-                    delete(attaques[i]);
+            if(attacks[i] != NULL) {
+                    delete(attacks[i]);
                 }
 
         }
@@ -83,7 +83,7 @@ int CalcCourbes::parabolique(int n) {
 int CalcCourbes::rapide(int n) {
     return round(0.8f * pow(n, 3));
 }
-OpMon::OpMon(string surnom, Species *species, int level, Attaque *attaque1, Attaque *attaque2, Attaque *attaque3, Attaque *attaque4,
+OpMon::OpMon(string surnom, Species *species, int level, Attack *attack1, Attack *attack2, Attack *attack3, Attack *attack4,
              CaractereClass caractere) {
     atkIV = Utils::randU(32);
     defIV = Utils::randU(32);
@@ -125,10 +125,10 @@ OpMon::OpMon(string surnom, Species *species, int level, Attaque *attaque1, Atta
     this->species = species;
     this->level = level;
 
-    this->attaques[0] = attaque1;
-    this->attaques[1] = attaque2;
-    this->attaques[2] = attaque3;
-    this->attaques[3] = attaque4;
+    this->attacks[0] = attack1;
+    this->attacks[1] = attack2;
+    this->attacks[2] = attack3;
+    this->attacks[3] = attack4;
 
     //TODO attaquesChoix Quand les attaques seront ok
     this->caractere = caractere;
@@ -437,7 +437,7 @@ void OpMon::evolve() {
     species = species->getEvolution();
 }
 
-void OpMon::setStats(int stats[], Attaque *attacks[], Species *species, int types[]) {
+void OpMon::setStats(int stats[], Attack *attacks[], Species *species, int types[]) {
     statATK = stats[0];
     statDEF = stats[1];
     statATKSPE = stats[2];
@@ -448,10 +448,10 @@ void OpMon::setStats(int stats[], Attaque *attacks[], Species *species, int type
     type1 = types[0];
     type2 = types[1];
     this->species = species;
-    attaques[0] = attacks[0];
-    attaques[1] = attacks[1];
-    attaques[2] = attacks[2];
-    attaques[3] = attacks[3];
+    this->attacks[0] = attacks[0];
+    this->attacks[1] = attacks[1];
+    this->attacks[2] = attacks[2];
+    this->attacks[3] = attacks[3];
     type1 = types[0];
     type2 = types[1];
 
@@ -1571,37 +1571,37 @@ string OpMon::save() {
             oss << Save::intToChar(level) << endl;
             oss << Save::intToChar(caractere.id) << endl;
             /*for(unsigned int it = 0; it < 4; it++){
-                cout << "Attaque : " << it << " Pointer : " << attaques[it] << endl;
-                Attaque *atk = attaques[it];
+                cout << "Attack : " << it << " Pointer : " << attaques[it] << endl;
+                Attack *atk = attaques[it];
                 cout << "Pointer : " << atk << endl;
                 if(atk != NULL){
-                    cout << "Attaque no NULL" << endl;
+                    cout << "Attack no NULL" << endl;
                     oss << atk->save();
                 }else{
-                    cout << "Attaque NULL" << endl;
+                    cout << "Attack NULL" << endl;
                     oss << "NULL" << endl;
                 }
             }*/
-            if(attaques[0] != NULL) {
-                    oss << attaques[0]->save();
+            if(attacks[0] != NULL) {
+                    oss << attacks[0]->save();
                 }
             else {
                     oss << "NULL" << endl;
                 }
-            if(attaques[1] != NULL) {
-                    oss << attaques[1]->save();
+            if(attacks[1] != NULL) {
+                    oss << attacks[1]->save();
                 }
             else {
                     oss << "NULL" << endl;
                 }
-            if(attaques[2] != NULL) {
-                    oss << attaques[2]->save();
+            if(attacks[2] != NULL) {
+                    oss << attacks[2]->save();
                 }
             else {
                     oss << "NULL" << endl;
                 }
-            if(attaques[3] != NULL) {
-                    oss << attaques[3]->save();
+            if(attacks[3] != NULL) {
+                    oss << attacks[3]->save();
                 }
             else {
                     oss << "NULL" << endl;
@@ -1664,38 +1664,38 @@ OpMon::OpMon(ifstream &in) {
             int toSearch = in.get();
             caractere = *Caractere::enumsList[toSearch];
             in.get();
-            attaques[0] = Attaques::newAtk(Save::readLine(in));
-            if(attaques[0] != NULL) {
-                    attaques[0]->setPP(in.get());
+            attacks[0] = Attacks::newAtk(Save::readLine(in));
+            if(attacks[0] != NULL) {
+                    attacks[0]->setPP(in.get());
                     in.get();
-                    attaques[0]->setPPMax(in.get());
-                    in.get();
-                }
-
-            attaques[1] = Attaques::newAtk(Save::readLine(in));
-            if(attaques[1] != NULL) {
-                    attaques[1]->setPP(in.get());
-                    in.get();
-                    attaques[1]->setPPMax(in.get());
+                    attacks[0]->setPPMax(in.get());
                     in.get();
                 }
 
-            attaques[2] = Attaques::newAtk(Save::readLine(in));
-            if(attaques[2] != NULL) {
-                    attaques[2]->setPP(in.get());
+            attacks[1] = Attacks::newAtk(Save::readLine(in));
+            if(attacks[1] != NULL) {
+                    attacks[1]->setPP(in.get());
                     in.get();
-                    attaques[2]->setPPMax(in.get());
+                    attacks[1]->setPPMax(in.get());
                     in.get();
                 }
-            attaques[3] = Attaques::newAtk(Save::readLine(in));
-            if(attaques[3] != NULL) {
-                    attaques[3]->setPP(in.get());
+
+            attacks[2] = Attacks::newAtk(Save::readLine(in));
+            if(attacks[2] != NULL) {
+                    attacks[2]->setPP(in.get());
                     in.get();
-                    attaques[3]->setPPMax(in.get());
+                    attacks[2]->setPPMax(in.get());
+                    in.get();
+                }
+            attacks[3] = Attacks::newAtk(Save::readLine(in));
+            if(attacks[3] != NULL) {
+                    attacks[3]->setPP(in.get());
+                    in.get();
+                    attacks[3]->setPPMax(in.get());
                     in.get();
                 }
             int speciesID = in.get();
-            species = Initializer::listeOp[speciesID];
+            species = Initializer::listOp[speciesID];
             in.get();
             HP = in.get();
             in.get();

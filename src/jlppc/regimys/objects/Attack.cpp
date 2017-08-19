@@ -1,10 +1,10 @@
-#include "Attaque.hpp"
+#include "Attack.hpp"
 #include "OpMon.hpp"
 #include <sstream>
 
-Class <Attaque> *Attaque::classe = new Class<Attaque>("Attaque", 0x00000000);
+Class <Attack> *Attack::classe = new Class<Attack>("Attack", 0x00000000);
 
-Attaque::Attaque(std::string nom, int puissance, int type, int precision, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite, std::string className) :
+Attack::Attack(std::string nom, int puissance, int type, int precision, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite, std::string className) :
   className(className), nom(nom) {
     this->puissance = puissance;
     this->type = type;
@@ -23,7 +23,7 @@ Attaque::Attaque(std::string nom, int puissance, int type, int precision, bool s
  * Tout les nombres sont possible (Il est tout de même conseillé de mettre 0). Si 1 est revoyé, par contre,
  * ce sera le meme effet que 1 dans effetAvant.
  */
-int Attaque::attack(OpMon &atk, OpMon &def) {
+int Attack::attack(OpMon &atk, OpMon &def) {
     pp--;
     //Fail d'attaque
     if ((Utils::randU(100)) > (precision * (atk.getStatPRE() / def.getStatESQ())) && rateJamais == false) {
@@ -39,7 +39,7 @@ int Attaque::attack(OpMon &atk, OpMon &def) {
             siEchoue(atk, def);
             return -1;
         }
-    if (!status) {//Attaque de PV si ce n'est pas une attaque de status
+    if (!status) {//Attack de PV si ce n'est pas une attaque de status
             hpPerdus = (((atk.getLevel() * 0.4 + 2) * (special ? atk.getStatATKSPE() : atk.getStatATK()) * puissance) / ((special ? def.getStatDEFSPE() : def.getStatDEF()) * 50) + 2);
             if (type == atk.getType1() || type == atk.getType2()) {
                     hpPerdus = round(hpPerdus * 1.5);
@@ -57,7 +57,7 @@ int Attaque::attack(OpMon &atk, OpMon &def) {
 }
 #include "../start/main.hpp"
 #include "../save/Save.hpp"
-std::string Attaque::save() {
+std::string Attack::save() {
     UNS
     ostringstream oss;
     oss << this->className << endl;

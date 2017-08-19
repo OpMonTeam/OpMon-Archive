@@ -24,7 +24,7 @@ Contient la définition des methodes qui permettent d'initialiser les éléments
 class Map;
 //->NoDoc
 namespace Initializer {
-    extern Species *listeOp[OP_NUMBER];
+    extern Species *listOp[OP_NUMBER];
     extern std::vector<NumberedArray> opOpLvl[OP_NUMBER]; //100 attaques max / poké
     extern Evolutions::E_Nope *ne;//ne = No Evolution
     extern std::vector<Map *> maps;

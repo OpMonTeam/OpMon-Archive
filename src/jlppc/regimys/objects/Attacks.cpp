@@ -1,13 +1,13 @@
-#include "Attaques.hpp"
+#include "Attacks.hpp"
 
-void initAttaquesClass(void) {
-    using namespace Attaques;
+void initAttacksClass(void) {
+    using namespace Attacks;
 
 }
 
-namespace Attaques {
+namespace Attacks {
 
-    Attaque *newAtk(std::string name) {
+    Attack *newAtk(std::string name) {
         IF_ATK(Abime)
         IF_ATK(Acidarmure)
         IF_ATK(Acide)
@@ -307,7 +307,7 @@ namespace Attaques {
     }
 
     int Conversion::effetApres(OpMon &atk, OpMon &def) {
-        Attaque **tab = atk.getAttaques();
+        Attack **tab = atk.getAttacks();
         atk.setType1(tab[0]->getType());
         atk.setType2(Type::NOTHING);
         return 0;

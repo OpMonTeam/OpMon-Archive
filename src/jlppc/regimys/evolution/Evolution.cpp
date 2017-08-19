@@ -4,7 +4,7 @@ Evolution::Evolution(int evo) : evo(evo) {
 }
 
 void Evolution::checkEvo() {
-    //toEvolve = Initializer::listeOp[evo];
+    //toEvolve = Initializer::listOp[evo];
 }
 
 Species *Evolution::getEvolution() const {

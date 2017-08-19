@@ -1,9 +1,9 @@
 /*
-Attaque.hpp
+Attack.hpp
 Auteur : Jlppc
 Fichier sous licence GPL-3.0
 http://opmon-game.ga
-Contient la définition de la classe Attaque
+Contient la définition de la classe Attack
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUE_HPP_
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUE_HPP_
@@ -18,10 +18,10 @@ class OpMon;
 Représente une attaque Pokémon
 */
 //->PureVirtual
-class Attaque {
+class Attack {
     public:
-        virtual ~Attaque() {}
-        Attaque(std::string nom, int puissance, int type, int precision, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite, std::string className);
+        virtual ~Attack() {}
+        Attack(std::string nom, int puissance, int type, int precision, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite, std::string className);
         //->PureVirtual
         virtual int effetAvant(OpMon &atk, OpMon &def) = 0;
         //->PureVirtual
@@ -36,7 +36,7 @@ class Attaque {
         //->Final
         virtual int attack(OpMon &atk, OpMon &def);
         virtual void siEchoue(OpMon &atk, OpMon &def) {}
-        virtual Class<Attaque> *getClass() {
+        virtual Class<Attack> *getClass() {
             return classe;
         }
         virtual std::string getClassName() {
@@ -67,7 +67,7 @@ class Attaque {
         /**Variable utilisée dans effetAvant et effetAprès*/
         int hpPerdus = 0;
     private:
-        static Class<Attaque> *classe;
+        static Class<Attack> *classe;
 };
 
 #endif /* SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUE_HPP_ */
