@@ -9,9 +9,10 @@ OPMon is a Pokémon-inspired game project imagined in 2012 and started in septem
 ### Links
 * [Opmon Lazuli's website](http://opmon-game.ga)
 * [Development news (Sorry, it's in French)](https://github.com/jlppc/OpMon/wiki/Journal-du-développement)
-* [Monthly Reports](https://github.com/jlppc/OpMon/wiki/Monthly-reports---Bilans-Mensuels/)
+* [Monthly Reports](https://github.com/jlppc/OpMon/wiki/Monthly-reports)
 * [Credits](https://github.com/jlppc/OpMon/blob/master/Credits.md)
 * [Github repo for the game website, opmon-game.ga](https://github.com/jlppc/Site-OpMon)
+* [Documentation] (http://opmon-game.ga/pages/doc)
 
 
 ### Contact Us
@@ -24,9 +25,9 @@ English is not our native language, but we do our best! If you see some errors, 
 
 If there are problems understanding the old commits or monthly reports that are in French, don't hesitate to ask!
 
-__The current game version is Alpha 0.12.1. Download link: <a href="http://opmon-game.ga/downloads"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Other/version_logo.png" alt="Logo Téléchargement"></a>__
+__The current game version is Alpha 0.12.1.__ Download link: <a href="http://opmon-game.ga/downloads"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Other/version_logo.png" alt="Logo Téléchargement"></a>
 
-__The next game version will be Alpha 0.13 : Event improvements, added new characters, and added descriptions on objects__
+__The next game version will be Alpha 0.13__ : Event improvements, added new characters, and added descriptions on objects
 [Look the ROADMAP](https://github.com/jlppc/OpMon/wiki/ROADMAP)
 
 
