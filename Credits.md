@@ -8,7 +8,8 @@
 <li><h3>Jo</h3></li>
 <li><h3>dogmotion</h3></li>
 <li><h3>imZeRRkA</h3></li>
-<li><h3>atxtechcrew</h3></li></ul>
+<li><h3>atxtechcrew</h3></li>
+<li><h3>jseutter</h3></li></ul>
 
 ## Inspirations :
 <li><h3>Satoshi Tajiri (Pokemon creation)</h3></li>
