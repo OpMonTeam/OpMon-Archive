@@ -12,7 +12,7 @@ OPMon is a Pokémon-inspired game project imagined in 2012 and started in septem
 * [Monthly Reports](https://github.com/jlppc/OpMon/wiki/Monthly-reports)
 * [Credits](https://github.com/jlppc/OpMon/blob/master/Credits.md)
 * [Github repo for the game website, opmon-game.ga](https://github.com/jlppc/Site-OpMon)
-* [Documentation] (http://opmon-game.ga/pages/doc)
+* [Documentation](http://opmon-game.ga/pages/doc)
 
 
 ### Contact Us
