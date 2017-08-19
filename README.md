@@ -1,28 +1,28 @@
 ![Regimys LOGO](https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Other/opmon_title.png)<br>
 
 Voir <a href="#--------en-français-------"> En Français</a><br/>
-<h3> Welcome to Project "OPMon"!</h3>
+# Welcome to Project OPMon Lazuli!
 
-Welcome to the project "OPMon Lazuli" !<br/>
-<a href="https://github.com/jlppc/OpMon/wiki/Journal-du-développement">Developpment news (In french sorry)</a><br/>
-<a href="https://github.com/jlppc/OpMon/wiki/Monthly-reports---Bilans-Mensuels/">Monthly reports</a><br/>
-<a href="http://opmon-game.ga">Project's website</a><br/>
-<a href="https://github.com/jlppc/OpMon/blob/master/Credits.md">Credits</a><br/>
-<a href="https://github.com/jlppc/Site-OpMon">Website's repository</a><br/><br/><br/>
-General Informations<br/>
-OPMon is a pokemon inspirated game project imaginated in 2012 and started in september 2016. This game is totally open source, allowing to the fans to come realize their dreams! You can add OpMons, attacks, items, and many other things! You just have to submit your modifications and maybe we'll add them to the game! And if you do a lot of good modifications, you can become collaborator!<br/><br/>
-Contact us : jlppcprog@ntymail.com for bugs, lags or about the code | evandib@gmail.com for sprites, the graphics, designs or graphics bugs<br/><br/>
-You can ask a question in the "F.A.Q" section of this wiki too!<br/>
-English is not our native language, we do our best! If you see some errors, don't hesitate to tell us, so we won't make them again!<br/>
-If there are problems to understand the old commits or monthly reports, because it's all in french, don't hesitate to ask!<br/><br/>
-<a href="https://github.com/jlppc/OpMon/wiki/Journal-du-développement">Development Journal (in French) </a><br/>
+OPMon is a pokemon inspired game project imagined in 2012 and started in september 2016. This game is totally open source, allowing to the fans to come realize their dreams! You can add OpMons, attacks, items, and many other things! You just have to submit your modifications and maybe we'll add them to the game! And if you do a lot of good modifications, you can become a collaborator!<br/><br/>
 
-<br/>
-Incoming versions :<ul>
-<li>Alpha 0.13 : Improvement of the events, addition of characters. Add some objects' descriptions.<br>
-</ul>
-<!--<a href="">Regimys Youtube Channel</a><br/>-->
-<br/>Game version : Alpha 0.12.1 | Download : <a href="http://opmon-game.ga"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Other/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
+### Links
+[Opmon Lazuli's website](http://opmon-game.ga)
+[Development news (Sorry, it's in French)](https://github.com/jlppc/OpMon/wiki/Journal-du-développement)
+[Monthly Reports](https://github.com/jlppc/OpMon/wiki/Monthly-reports---Bilans-Mensuels/)
+[Credits](https://github.com/jlppc/OpMon/blob/master/Credits.md)
+[Github repo for the game website, opmon-game.ga](https://github.com/jlppc/Site-OpMon)
+
+### Contact Us
+* jlppcprog@ntymail.com for bugs, lags or about the code
+* evandib@gmail.com for sprites, the graphics, design or graphics bugs
+* Ask a question in the "F.A.Q" section in this wiki
+
+English is not our native language, but we do our best! If you see some errors, don't hesitate to tell us, so we won't make them again!<br/>
+If there are problems understanding the old commits or monthly reports that are in French, don't hesitate to ask!<br/><br/>
+
+__The current game version is Alpha 0.12.1. Download link: <a href="http://opmon-game.ga"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Other/version_logo.png" alt="Logo Téléchargement"></a>__
+
+__The next game version will be Alpha 0.13 : Event improvements, added new characters, and added descriptions on objects__
 
 <h2>--------En Français-------</h2>
 
