@@ -19,6 +19,7 @@ OPMon is a Pokémon-inspired game project imagined in 2012 and started in septem
 * evandib@gmail.com for sprites, the graphics, design or graphics bugs
 * Ask a question in the "F.A.Q" section in this wiki
 * [Discord server](https://discord.gg/QkyCKh5)
+<br>
 English is not our native language, but we do our best! If you see some errors, don't hesitate to tell us, so we won't make them again!
 
 If there are problems understanding the old commits or monthly reports that are in French, don't hesitate to ask!
