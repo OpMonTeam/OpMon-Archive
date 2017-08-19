@@ -12,26 +12,26 @@ OPMon is a Pokémon-inspired game project imagined in 2012 and started in septem
 * [Monthly Reports](https://github.com/jlppc/OpMon/wiki/Monthly-reports---Bilans-Mensuels/)
 * [Credits](https://github.com/jlppc/OpMon/blob/master/Credits.md)
 * [Github repo for the game website, opmon-game.ga](https://github.com/jlppc/Site-OpMon)
-* [Discord server](https://discord.gg/QkyCKh5)
+
 
 ### Contact Us
 * jlppcprog@ntymail.com for bugs, lags or about the code
 * evandib@gmail.com for sprites, the graphics, design or graphics bugs
 * Ask a question in the "F.A.Q" section in this wiki
-
+* [Discord server](https://discord.gg/QkyCKh5)
 English is not our native language, but we do our best! If you see some errors, don't hesitate to tell us, so we won't make them again!
 
 If there are problems understanding the old commits or monthly reports that are in French, don't hesitate to ask!
 
-__The current game version is Alpha 0.12.1. Download link: <a href="http://opmon-game.ga"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Other/version_logo.png" alt="Logo Téléchargement"></a>__
+__The current game version is Alpha 0.12.1. Download link: <a href="http://opmon-game.ga/downloads"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Other/version_logo.png" alt="Logo Téléchargement"></a>__
 
 __The next game version will be Alpha 0.13 : Event improvements, added new characters, and added descriptions on objects__
-
+[Look the ROADMAP](https://github.com/jlppc/OpMon/wiki/ROADMAP)__
 # En Français<a name="enfrancais">
 
 <h3>Bienvenue sur le Projet "OPMon Lazuli"!</h3>
 
-Bienvenue sur le projet de OPMon Lazuli! Le clone libre de la celebre license de Nintendo !<br/>
+Bienvenue sur le dépot du jeu OPMon Lazuli! Le clone libre de la celebre license de Nintendo !<br/>
 <a href="https://github.com/jlppc/OpMon/wiki/Journal-du-développement">Journal de developpement</a><br/>
 <a href="https://github.com/jlppc/OpMon/wiki/Monthly-reports---Bilans-Mensuels/">Bilans mensuels, récapitulatifs de nouveautées</a><br/>
 <a href="http://opmon-game.ga">Site web du jeu</a><br/>
