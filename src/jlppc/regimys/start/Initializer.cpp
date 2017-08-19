@@ -1,6 +1,6 @@
 #include "Initializer.hpp"
 #include "../enums/Enums.hpp"
-#include "../objects/Attaques.hpp"
+#include "../objects/Attacks.hpp"
 #include "StringKeys.hpp"
 #include "main.hpp"
 #include <sstream>

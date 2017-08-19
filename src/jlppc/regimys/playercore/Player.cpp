@@ -58,7 +58,7 @@ void Player::healOp() {
             pkmn->malediction = false;
             pkmn->vampigraine = false;
             for (int j = 0; j < 4; j++) {
-                    Attaque *atk = (pkmn->getAttaques())[j];
+                    Attack *atk = (pkmn->getAttacks())[j];
                     atk->healPP();
 
                 }

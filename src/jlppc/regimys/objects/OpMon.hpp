@@ -31,7 +31,7 @@ namespace CalcCourbes {
     int rapide(int n);
 };
 
-class Attaque;
+class Attack;
 /**
 Classe définissant un pokémon en particulier. Pour voir la classe qui définit une species, voir Species.hpp
 */
@@ -79,7 +79,7 @@ class OpMon {
 
         CaractereClass caractere;
 
-        Attaque *attaques[4];
+        Attack *attacks[4];
 
         Species *species;
         /**Attention : Cette variable contient les PV actuels du pokémon, la classe statPV contient les PV max*/
@@ -113,7 +113,7 @@ class OpMon {
         virtual ~OpMon();
         //->DontUse
         OpMon() {};
-        OpMon(std::string surnom, Species *species, int level, Attaque *attaque1, Attaque *attaque2, Attaque *attaque3, Attaque *attaque4, CaractereClass caractere);
+        OpMon(std::string surnom, Species *species, int level, Attack *attack1, Attack *attack2, Attack *attack3, Attack *attack4, CaractereClass caractere);
         /**
         Merci d'utiliser ce constructeur dans le cadre du chargement et UNIQUEMENT dans ce cas, sinon cela pourrait
         conduire a des bugs. Explication : Ce constructeur est concu pour marcher dans un shema bien particulier.
@@ -143,7 +143,7 @@ class OpMon {
         /**Methode appelée lors de l'évolution*/
         void evolve();
         /**Permet de completement changer le pokémon*/
-        void setStats(int stats[], Attaque *attacks[], Species *species, int types[]);
+        void setStats(int stats[], Attack *attacks[], Species *species, int types[]);
         /**Fait perdre des pv*/
         void attacked(int hpPerdus);
         /**Les methode suivantes modifient les stats en fonction des niveaux. Cela ne modifie pas directement la stat*/
@@ -176,8 +176,8 @@ class OpMon {
         int getLevel() const {
             return level;
         }
-        Attaque **getAttaques() {
-            return attaques;
+        Attack **getAttacks() {
+            return attacks;
         }
         int getStatESQ() const {
             return statESQ;

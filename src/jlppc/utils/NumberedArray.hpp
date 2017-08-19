@@ -17,15 +17,15 @@ A l'origine prévue pour tout, cette classe permet une association d'un objet st
 class NumberedArray {
     public:
         NumberedArray(int number, std::string str);
-        std::string getAttaque() const {
-            return attaque;
+        std::string getAttack() const {
+            return attack;
         }
         int getNumber() const {
             return number;
         }
     private:
         int number;
-        std::string attaque;
+        std::string attack;
 
 };
 

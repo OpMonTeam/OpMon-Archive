@@ -10,20 +10,20 @@ Contient la définition de la classe CT
 
 #include "../../../utils/Class.hpp"
 #include "Item.hpp"
-#include "../Attaque.hpp"
+#include "../Attack.hpp"
 /**
 Définit un item de type CT
 */
 class CT : public Item {
     public:
-        CT(Class<Attaque *> atk, int ctNumber, int ID);
-        Class<Attaque *> getAtk() const {
+        CT(Class<Attack *> atk, int ctNumber, int ID);
+        Class<Attack *> getAtk() const {
             return atk;
         }
         int itemTypeID = 3;
     private:
         /**Contient la classe de l'attaque de la CT*/
-        Class<Attaque *> atk;
+        Class<Attack *> atk;
 };
 
 #endif /* SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_CT_HPP_ */
