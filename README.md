@@ -26,7 +26,7 @@ __The current game version is Alpha 0.12.1. Download link: <a href="http://opmon
 
 __The next game version will be Alpha 0.13 : Event improvements, added new characters, and added descriptions on objects__
 
-# En Français<a name="enfrançais">
+# En Français<a name="enfrancais">
 
 <h3>Bienvenue sur le Projet "OPMon Lazuli"!</h3>
 
