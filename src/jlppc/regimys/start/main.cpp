@@ -130,7 +130,7 @@ std::string& operator<<(std::string &str, char thing[]){
     return str;
 }
 
-#include "../objects/Attaques.hpp"
+#include "../objects/Attacks.hpp"
 #include "../save/Save.hpp"
 int main(int argc, char *argv[]) {
     ticks.restart();
