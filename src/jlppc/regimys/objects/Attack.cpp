@@ -4,11 +4,11 @@
 
 Class <Attack> *Attack::classe = new Class<Attack>("Attack", 0x00000000);
 
-Attack::Attack(std::string nom, int puissance, int type, int precision, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite, std::string className) :
+Attack::Attack(std::string nom, int puissance, int type, int accuracy, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite, std::string className) :
   className(className), nom(nom) {
     this->puissance = puissance;
     this->type = type;
-    this->precision = precision;
+    this->accuracy = accuracy;
     this->special = special;
     this->status = status;
     this->chanceDeCoups = chanceDeCoups;
@@ -26,7 +26,7 @@ Attack::Attack(std::string nom, int puissance, int type, int precision, bool spe
 int Attack::attack(OpMon &atk, OpMon &def) {
     pp--;
     //Fail d'attaque
-    if ((Utils::randU(100)) > (precision * (atk.getStatPRE() / def.getStatESQ())) && rateJamais == false) {
+    if ((Utils::randU(100)) > (accuracy * (atk.getStatACC() / def.getStatEVA())) && rateJamais == false) {
             siEchoue(atk, def);
             return -2;
         }

@@ -83,7 +83,7 @@ int CalcCourbes::parabolique(int n) {
 int CalcCourbes::rapide(int n) {
     return round(0.8f * pow(n, 3));
 }
-OpMon::OpMon(string nickname, Species *species, int level, Attack *attack1, Attack *attack2, Attack *attack3, Attack *attack4, CaractereClass caractere) {
+OpMon::OpMon(string nickname, Species *species, int level, Attack *attack1, Attack *attack2, Attack *attack3, Attack *attack4, NatureClass nature) {
     atkIV = Utils::randU(32);
     defIV = Utils::randU(32);
     atkSpeIV = Utils::randU(32);
@@ -93,32 +93,32 @@ OpMon::OpMon(string nickname, Species *species, int level, Attack *attack1, Atta
     statATK = round(
                   ((((2 * species->getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100)
                    + 5)
-                  * ((caractere.bonus == Stats::ATK) ?
-                     1.1 : ((caractere.malus == Stats::ATK) ? 0.9 : 1)));
+                  * ((nature.bonus == Stats::ATK) ?
+                     1.1 : ((nature.malus == Stats::ATK) ? 0.9 : 1)));
     statDEF = round(
                   ((((2 * species->getBaseDef() + defIV + (defEV / 4)) * level) / 100)
                    + 5)
-                  * ((caractere.bonus == Stats::DEF) ?
-                     1.1 : ((caractere.malus == Stats::DEF) ? 0.9 : 1)));
+                  * ((nature.bonus == Stats::DEF) ?
+                     1.1 : ((nature.malus == Stats::DEF) ? 0.9 : 1)));
     statATKSPE =
         round(
             ((((2 * species->getBaseAtkSpe() + atkSpeIV + (atkSpeEV / 4))
                * level) / 100) + 5)
-            * ((caractere.bonus == Stats::ATKSPE) ?
+            * ((nature.bonus == Stats::ATKSPE) ?
                1.1 :
-               ((caractere.malus == Stats::ATKSPE) ? 0.9 : 1)));
+               ((nature.malus == Stats::ATKSPE) ? 0.9 : 1)));
     statDEFSPE =
         round(
             ((((2 * species->getBaseDefSpe() + defSpeIV + (defSpeEV / 4))
                * level) / 100) + 5)
-            * ((caractere.bonus == Stats::DEFSPE) ?
+            * ((nature.bonus == Stats::DEFSPE) ?
                1.1 :
-               ((caractere.malus == Stats::DEFSPE) ? 0.9 : 1)));
+               ((nature.malus == Stats::DEFSPE) ? 0.9 : 1)));
     statSPE = round(
                   ((((2 * species->getBaseVit() + speIV + (speEV / 4)) * level) / 100)
                    + 5)
-                  * ((caractere.bonus == Stats::SPE) ?
-                     1.1 : ((caractere.malus == Stats::SPE) ? 0.9 : 1)));
+                  * ((nature.bonus == Stats::SPE) ?
+                     1.1 : ((nature.malus == Stats::SPE) ? 0.9 : 1)));
     statHP = round(((2 * species->getBaseHP() + hpIV + (hpEV / 4)) * level) / 100)
              + level + 10;
     this->species = species;
@@ -130,7 +130,7 @@ OpMon::OpMon(string nickname, Species *species, int level, Attack *attack1, Atta
     this->attacks[3] = attack4;
 
     //TODO attaquesChoix Quand les attaques seront ok
-    this->caractere = caractere;
+    this->nature = nature;
     this->nickname = nickname;
     tauxCapture = species->getTauxDeCapture();
     HP = statHP;
@@ -165,8 +165,8 @@ OpMon::OpMon(string nickname, Species *species, int level, Attack *attack1, Atta
         }
     held = NULL;
     statLove = 100;
-    statPRE = 100;
-    statESQ = 100;
+    statACC = 100;
+    statEVA = 100;
     falsif = false;
 
 }
@@ -334,32 +334,32 @@ void OpMon::calcStats() {
     statATK = round(
                   ((((2 * species->getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100)
                    + 5)
-                  * ((caractere.bonus == Stats::ATK) ?
-                     1.1 : ((caractere.malus == Stats::ATK) ? 0.9 : 1)));
+                  * ((nature.bonus == Stats::ATK) ?
+                     1.1 : ((nature.malus == Stats::ATK) ? 0.9 : 1)));
     statDEF = round(
                   ((((2 * species->getBaseDef() + defIV + (defEV / 4)) * level) / 100)
                    + 5)
-                  * ((caractere.bonus == Stats::DEF) ?
-                     1.1 : ((caractere.malus == Stats::DEF) ? 0.9 : 1)));
+                  * ((nature.bonus == Stats::DEF) ?
+                     1.1 : ((nature.malus == Stats::DEF) ? 0.9 : 1)));
     statATKSPE =
         round(
             ((((2 * species->getBaseAtkSpe() + atkSpeIV + (atkSpeEV / 4))
                * level) / 100) + 5)
-            * ((caractere.bonus == Stats::ATKSPE) ?
+            * ((nature.bonus == Stats::ATKSPE) ?
                1.1 :
-               ((caractere.malus == Stats::ATKSPE) ? 0.9 : 1)));
+               ((nature.malus == Stats::ATKSPE) ? 0.9 : 1)));
     statDEFSPE =
         round(
             ((((2 * species->getBaseDefSpe() + defSpeIV + (defSpeEV / 4))
                * level) / 100) + 5)
-            * ((caractere.bonus == Stats::DEFSPE) ?
+            * ((nature.bonus == Stats::DEFSPE) ?
                1.1 :
-               ((caractere.malus == Stats::DEFSPE) ? 0.9 : 1)));
+               ((nature.malus == Stats::DEFSPE) ? 0.9 : 1)));
     statSPE = round(
                   ((((2 * species->getBaseVit() + speIV + (speEV / 4)) * level) / 100)
                    + 5)
-                  * ((caractere.bonus == Stats::SPE) ?
-                     1.1 : ((caractere.malus == Stats::SPE) ? 0.9 : 1)));
+                  * ((nature.bonus == Stats::SPE) ?
+                     1.1 : ((nature.malus == Stats::SPE) ? 0.9 : 1)));
     statHP = round(((2 * species->getBaseHP() + hpIV + (hpEV / 4)) * level) / 100)
              + level + 10;
 }
@@ -442,8 +442,8 @@ void OpMon::setStats(int stats[], Attack *attacks[], Species *species, int types
     statATKSPE = stats[2];
     statDEFSPE = stats[3];
     statSPE = stats[4];
-    statPRE = 100;
-    statESQ = 100;
+    statACC = 100;
+    statEVA = 100;
     type1 = types[0];
     type2 = types[1];
     this->species = species;
@@ -608,71 +608,71 @@ bool OpMon::changeATK(int power) {
     return true;
 }
 
-bool OpMon::changePRE(int power) {
+bool OpMon::changeACC(int power) {
     if (power < 0) {
             for (int i = 0; i > power; i--) {
-                    switch (preChange) {
+                    switch (accChange) {
                             case -6:
                                 return false;
                             case -5:
 
-                                statPRE = round(statPRE * 0.888);
-                                preChange--;
+                                statACC = round(statACC * 0.888);
+                                accChange--;
                                 break;
                             case -4:
 
-                                statPRE = round(statPRE / 1.144);
-                                preChange--;
+                                statACC = round(statACC / 1.144);
+                                accChange--;
                                 break;
                             case -3:
 
-                                statPRE = round(statPRE * 0.858);
-                                preChange--;
+                                statACC = round(statACC * 0.858);
+                                accChange--;
                                 break;
                             case -2:
 
-                                statPRE = round(statPRE / 1.2);
-                                preChange--;
+                                statACC = round(statACC / 1.2);
+                                accChange--;
                                 break;
                             case -1:
 
-                                statPRE = round(statPRE / 1.25);
-                                preChange--;
+                                statACC = round(statACC / 1.25);
+                                accChange--;
                                 break;
                             case 0:
 
-                                statPRE = round(statPRE * 0.75);
-                                preChange--;
+                                statACC = round(statACC * 0.75);
+                                accChange--;
                                 break;
                             case 1:
 
-                                statPRE = round(statPRE / 1.333);
-                                preChange--;
+                                statACC = round(statACC / 1.333);
+                                accChange--;
                                 break;
                             case 2:
 
-                                statPRE = round(statPRE * 0.799640);
-                                preChange--;
+                                statACC = round(statACC * 0.799640);
+                                accChange--;
                                 break;
                             case 3:
 
-                                statPRE = round(statPRE * 0.8335);
-                                preChange--;
+                                statACC = round(statACC * 0.8335);
+                                accChange--;
                                 break;
                             case 4:
 
-                                statPRE = round(statPRE / 1.1665);
-                                preChange--;
+                                statACC = round(statACC / 1.1665);
+                                accChange--;
                                 break;
                             case 5:
 
-                                statPRE = round(statPRE * 0.8747657);
-                                preChange--;
+                                statACC = round(statACC * 0.8747657);
+                                accChange--;
                                 break;
                             case 6:
 
-                                statPRE = round(statPRE * 0.889);
-                                preChange--;
+                                statACC = round(statACC * 0.889);
+                                accChange--;
                                 break;
                             default:
                                 break;
@@ -682,66 +682,66 @@ bool OpMon::changePRE(int power) {
     else {
 
             for (int i = 0; i > power; i--) {
-                    switch (preChange) {
+                    switch (accChange) {
                             case -6:
 
-                                statPRE = round(statPRE / 0.888);
-                                preChange++;
+                                statACC = round(statACC / 0.888);
+                                accChange++;
                                 break;
                             case -5:
 
-                                statPRE = round(statPRE * 1.144);
-                                preChange++;
+                                statACC = round(statACC * 1.144);
+                                accChange++;
                                 break;
                             case -4:
 
-                                statPRE = round(statPRE / 0.858);
-                                preChange++;
+                                statACC = round(statACC / 0.858);
+                                accChange++;
                                 break;
                             case -3:
 
-                                statPRE = round(statPRE * 1.2);
-                                preChange++;
+                                statACC = round(statACC * 1.2);
+                                accChange++;
                                 break;
                             case -2:
 
-                                statPRE = round(statPRE * 1.25);
-                                preChange++;
+                                statACC = round(statACC * 1.25);
+                                accChange++;
                                 break;
                             case -1:
 
-                                statPRE = round(statPRE / 0.75);
-                                preChange++;
+                                statACC = round(statACC / 0.75);
+                                accChange++;
                                 break;
                             case 0:
 
-                                statPRE = round(statPRE * 1.333);
-                                preChange++;
+                                statACC = round(statACC * 1.333);
+                                accChange++;
                                 break;
                             case 1:
 
-                                statPRE = round(statPRE / 0.799640);
-                                preChange++;
+                                statACC = round(statACC / 0.799640);
+                                accChange++;
                                 break;
                             case 2:
 
-                                statPRE = round(statPRE / 0.8335);
-                                preChange++;
+                                statACC = round(statACC / 0.8335);
+                                accChange++;
                                 break;
                             case 3:
 
-                                statPRE = round(statPRE * 1.1665);
-                                preChange++;
+                                statACC = round(statACC * 1.1665);
+                                accChange++;
                                 break;
                             case 4:
 
-                                statPRE = round(statPRE / 0.8747657);
-                                preChange++;
+                                statACC = round(statACC / 0.8747657);
+                                accChange++;
                                 break;
                             case 5:
 
-                                statPRE = round(statPRE / 0.889);
-                                preChange++;
+                                statACC = round(statACC / 0.889);
+                                accChange++;
                                 break;
                             case 6:
                                 return false;
@@ -755,71 +755,71 @@ bool OpMon::changePRE(int power) {
     return true;
 }
 
-bool OpMon::changeESQ(int power) {
+bool OpMon::changeEVA(int power) {
     if (power < 0) {
             for (int i = 0; i > power; i--) {
-                    switch (esqChange) {
+                    switch (evaChange) {
                             case -6:
                                 return false;
                             case -5:
 
-                                statESQ = round(statESQ / 1.16);
-                                esqChange--;
+                                statEVA = round(statEVA / 1.16);
+                                evaChange--;
                                 break;
                             case -4:
 
-                                statESQ = round(statESQ * 0.878788);
-                                esqChange--;
+                                statEVA = round(statEVA * 0.878788);
+                                evaChange--;
                                 break;
                             case -3:
 
-                                statESQ = round(statESQ * 0.825);
-                                esqChange--;
+                                statEVA = round(statEVA * 0.825);
+                                evaChange--;
                                 break;
                             case -2:
 
-                                statESQ = round(statESQ / 1.25);
-                                esqChange--;
+                                statEVA = round(statEVA / 1.25);
+                                evaChange--;
                                 break;
                             case -1:
 
-                                statESQ = round(statESQ / 1.34);
-                                esqChange--;
+                                statEVA = round(statEVA / 1.34);
+                                evaChange--;
                                 break;
                             case 0:
 
-                                statESQ = round(statESQ * 0.67);
-                                esqChange--;
+                                statEVA = round(statEVA * 0.67);
+                                evaChange--;
                                 break;
                             case 1:
 
-                                statESQ = round(statESQ / 1.5);
-                                esqChange--;
+                                statEVA = round(statEVA / 1.5);
+                                evaChange--;
                                 break;
                             case 2:
 
-                                statESQ = round(statESQ * 0.75);
-                                esqChange--;
+                                statEVA = round(statEVA * 0.75);
+                                evaChange--;
                                 break;
                             case 3:
 
-                                statESQ = round(statESQ / 1.25);
-                                esqChange--;
+                                statEVA = round(statEVA / 1.25);
+                                evaChange--;
                                 break;
                             case 4:
 
-                                statESQ = round(statESQ / 1.2);
-                                esqChange--;
+                                statEVA = round(statEVA / 1.2);
+                                evaChange--;
                                 break;
                             case 5:
 
-                                statESQ = round(statESQ / 1.1667);
-                                esqChange--;
+                                statEVA = round(statEVA / 1.1667);
+                                evaChange--;
                                 break;
                             case 6:
 
-                                statESQ = round(statESQ * 0.875);
-                                esqChange--;
+                                statEVA = round(statEVA * 0.875);
+                                evaChange--;
                                 break;
                             default:
                                 break;
@@ -829,66 +829,66 @@ bool OpMon::changeESQ(int power) {
     else {
 
             for (int i = 0; i > power; i--) {
-                    switch (esqChange) {
+                    switch (evaChange) {
                             case -6:
 
-                                statESQ = round(statESQ * 1.16);
-                                esqChange++;
+                                statEVA = round(statEVA * 1.16);
+                                evaChange++;
                                 break;
                             case -5:
 
-                                statESQ = round(statESQ / 0.878788);
-                                esqChange++;
+                                statEVA = round(statEVA / 0.878788);
+                                evaChange++;
                                 break;
                             case -4:
 
-                                statESQ = round(statESQ / 0.825);
-                                esqChange++;
+                                statEVA = round(statEVA / 0.825);
+                                evaChange++;
                                 break;
                             case -3:
 
-                                statESQ = round(statESQ * 1.25);
-                                esqChange++;
+                                statEVA = round(statEVA * 1.25);
+                                evaChange++;
                                 break;
                             case -2:
 
-                                statESQ = round(statESQ * 1.34);
-                                esqChange++;
+                                statEVA = round(statEVA * 1.34);
+                                evaChange++;
                                 break;
                             case -1:
 
-                                statESQ = round(statESQ / 0.67);
-                                esqChange++;
+                                statEVA = round(statEVA / 0.67);
+                                evaChange++;
                                 break;
                             case 0:
 
-                                statESQ = round(statESQ * 1.5);
-                                esqChange++;
+                                statEVA = round(statEVA * 1.5);
+                                evaChange++;
                                 break;
                             case 1:
 
-                                statESQ = round(statESQ / 0.75);
-                                esqChange++;
+                                statEVA = round(statEVA / 0.75);
+                                evaChange++;
                                 break;
                             case 2:
 
-                                statESQ = round(statESQ * 1.25);
-                                esqChange++;
+                                statEVA = round(statEVA * 1.25);
+                                evaChange++;
                                 break;
                             case 3:
 
-                                statESQ = round(statESQ * 1.2);
-                                esqChange++;
+                                statEVA = round(statEVA * 1.2);
+                                evaChange++;
                                 break;
                             case 4:
 
-                                statESQ = round(statESQ * 1.1667);
-                                esqChange++;
+                                statEVA = round(statEVA * 1.1667);
+                                evaChange++;
                                 break;
                             case 5:
 
-                                statESQ = round(statESQ / 0.875);
-                                esqChange++;
+                                statEVA = round(statEVA / 0.875);
+                                evaChange++;
                                 break;
                             case 6:
                                 return false;
@@ -1568,7 +1568,7 @@ string OpMon::save() {
             oss << Save::intToChar(hpEV) << endl;
             oss << Save::intToChar(statLove) << endl;
             oss << Save::intToChar(level) << endl;
-            oss << Save::intToChar(caractere.id) << endl;
+            oss << Save::intToChar(nature.id) << endl;
             /*for(unsigned int it = 0; it < 4; it++){
                 cout << "Attack : " << it << " Pointer : " << attaques[it] << endl;
                 Attack *atk = attaques[it];
@@ -1661,7 +1661,7 @@ OpMon::OpMon(ifstream &in) {
             level = in.get();
             in.get();
             int toSearch = in.get();
-            caractere = *Caractere::enumsList[toSearch];
+            nature = *Nature::enumsList[toSearch];
             in.get();
             attacks[0] = Attacks::newAtk(Save::readLine(in));
             if(attacks[0] != NULL) {
@@ -1719,8 +1719,8 @@ OpMon::OpMon(ifstream &in) {
             calcStats();
             type1 = species->getType1();
             type2 = species->getType2();
-            statPRE = 100;
-            statESQ = 100;
+            statACC = 100;
+            statEVA = 100;
             falsif = false;
         }
     else {
