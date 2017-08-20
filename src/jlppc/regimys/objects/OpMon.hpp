@@ -41,7 +41,7 @@ class OpMon {
 
 
     private:
-        std::string surnom;
+        std::string nickname;
         int atkIV = Utils::randU(32);
         int defIV = Utils::randU(32);
         int atkSpeIV = Utils::randU(32);
@@ -113,7 +113,7 @@ class OpMon {
         virtual ~OpMon();
         //->DontUse
         OpMon() {};
-        OpMon(std::string surnom, Species *species, int level, Attack *attack1, Attack *attack2, Attack *attack3, Attack *attack4, CaractereClass caractere);
+        OpMon(std::string nickname, Species *species, int level, Attack *attack1, Attack *attack2, Attack *attack3, Attack *attack4, CaractereClass caractere);
         /**
         Merci d'utiliser ce constructeur dans le cadre du chargement et UNIQUEMENT dans ce cas, sinon cela pourrait
         conduire a des bugs. Explication : Ce constructeur est concu pour marcher dans un shema bien particulier.
@@ -168,8 +168,8 @@ class OpMon {
         int getHP() const {
             return HP;
         }
-        std::string getSurnom() {
-            return surnom;
+        std::string getNickname() {
+            return nickname;
         }
         /**Soigne le pokémon*/
         void heal(int HP);

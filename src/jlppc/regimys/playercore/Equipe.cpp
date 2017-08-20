@@ -2,8 +2,8 @@
 
 OpMon *Equipe::PNULL = new OpMon();
 
-Equipe::Equipe(std::string const& nom) {
-    this->nom = nom;
+Equipe::Equipe(std::string const& name) {
+    this->name = name;
 }
 
 void Equipe::heal() {

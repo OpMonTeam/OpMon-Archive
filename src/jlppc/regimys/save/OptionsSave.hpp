@@ -39,14 +39,14 @@ namespace OptionsSave {
 
     extern std::vector<Param> paramList;
 
-    Param getParam(std::string const &nom);
+    Param getParam(std::string const &name);
 
-    void addOrModifParam(std::string const &nom, std::string const &value);
+    void addOrModifParam(std::string const &name, std::string const &value);
 
-    Param deleteParam(std::string const &nom);
+    Param deleteParam(std::string const &name);
 
     //CPP ONLY :
-    //int searchParam(string nom);
+    //int searchParam(string name);
 
     void saveParams(std::string const& file);
 

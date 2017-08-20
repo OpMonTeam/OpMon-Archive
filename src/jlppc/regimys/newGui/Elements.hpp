@@ -23,7 +23,7 @@ class Map {
     private:
         sf::Texture *layer1;
         sf::Texture *layer2;
-        sf::Music *fond;
+        sf::Music *bg;
         //Event events;
         int w;
         int h;
@@ -42,7 +42,7 @@ class Map {
         std::vector<int> elementsCount;
 
     public:
-        Map(sf::Texture const& layer1, sf::Texture const& layer2, sf::Texture const& layer3, int w, int h, std::string const& filename, sf::Music *fond, std::vector<std::vector<sf::Texture> > const& animatedElements = std::vector<std::vector<sf::Texture> >(), std::vector<sf::Vector2f> const& elementsPos = std::vector<sf::Vector2f>());
+        Map(sf::Texture const& layer1, sf::Texture const& layer2, sf::Texture const& layer3, int w, int h, std::string const& filename, sf::Music *bg, std::vector<std::vector<sf::Texture> > const& animatedElements = std::vector<std::vector<sf::Texture> >(), std::vector<sf::Vector2f> const& elementsPos = std::vector<sf::Vector2f>());
         ~Map();
         int getH() const {
             return h;
@@ -62,8 +62,8 @@ class Map {
         const sf::Texture *getLayer3() const {
             return layer3;
         }
-        sf::Music *getFond() const {
-            return fond;
+        sf::Music *getBg() const {
+            return bg;
         }
         void addEvent(Event *event) {
             events.push_back(event);
