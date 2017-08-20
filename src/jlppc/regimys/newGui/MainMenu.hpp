@@ -18,14 +18,14 @@ namespace MainFrame {
     */
     namespace MainMenu {
 
-        extern sf::Sprite fond;
+        extern sf::Sprite bg;
         extern sf::Text play;
         extern sf::Text charge;
         extern sf::Text options;
         extern sf::Text exit;
         extern sf::Sprite cursor;
         extern sf::Vector2f curPos[4];
-        extern sf::Music fondMusTitle;
+        extern sf::Music bgMusTitle;
         extern sf::Sound bruitArr;
         extern sf::Sound bruitPush;
         extern sf::Sound bruitNope;

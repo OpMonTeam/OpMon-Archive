@@ -22,7 +22,7 @@ namespace MainFrame {
         */
         namespace OptionsMenu {
 
-            extern sf::Sprite fondOpt;
+            extern sf::Sprite bgOpt;
             //extern SDL_Rect curseurOpt;
             //extern SDL_Rect curseurSnd;
             extern sf::Text langFr;
@@ -47,11 +47,11 @@ namespace MainFrame {
             extern sf::Sprite rectSurb;
 
             extern sf::Text txtLang;
-            extern sf::Sprite fondLangues;
+            extern sf::Sprite bgLangues;
             //extern sf::Text listeLangues[3];
             extern sf::Vector2f curPosLang[4];
 
-            extern sf::Sprite fondCredits;
+            extern sf::Sprite bgCredits;
             extern sf::Text txtCred;
 
             int optionsMenu();

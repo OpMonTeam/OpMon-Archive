@@ -63,7 +63,7 @@ void initVars() {
     /*  maps[0] = actual->getLayer1();
         maps[1] = actual->getLayer2();
         maps[2] = actual->getLayer3();*/
-    music = actual->getFond();
+    music = actual->getBg();
     music->setLoop(true);
     layer1 = new sf::Sprite();
     layer2 = new sf::Sprite();
@@ -90,9 +90,9 @@ int tp(int toTp, sf::Vector2i pos, bool scroll) {
     } else {
         camera.setCenter((actual->getW() CASES) / 2, (actual->getH() CASES) / 2);
     }
-    if(music != actual->getFond()) {
+    if(music != actual->getBg()) {
         music->stop();
-        music = actual->getFond();
+        music = actual->getBg();
         music->play();
     }
     delete(layer1);
@@ -550,7 +550,7 @@ int overworld() {
 	Utils::wait(FPS_TICKS - (GET_TICKS - ancientTick));
       }
 
-      
+
     }
     return 0;
   }
@@ -647,7 +647,7 @@ int boucleDialog(vector<sf::String> const& dialogs) {
             Utils::wait(FPS_TICKS - (GET_TICKS - ancientTick));
         }
 
-	
+
     }
     return 0;
 }

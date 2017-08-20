@@ -15,9 +15,9 @@ Classe permettant de contenir l'equipe d'un joueur ou d'un dresseur.
 */
 class Equipe {
     public:
-        Equipe(std::string const& nom);
-        std::string getNom() const {
-            return nom;
+        Equipe(std::string const& name);
+        std::string getName() const {
+            return name;
         }
         OpMon **getEquipe(){
             return equipe;
@@ -52,7 +52,7 @@ class Equipe {
         //->Useless
         int nbreOfOp = 6;
         OpMon *equipe[6] = {PNULL, PNULL, PNULL, PNULL, PNULL, PNULL};
-        std::string nom;
+        std::string name;
 };
 
 #endif /* SRCCPP_JLPPC_REGIMYS_PLAYERCORE_EQUIPE_HPP_ */

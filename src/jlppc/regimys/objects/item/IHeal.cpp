@@ -12,7 +12,7 @@
 
 UNS
 
-I_Heal::I_Heal(string &nom, bool usable, bool usableInFight, bool givable, int categorie, int hpHeal, int heal, bool healAllStatus, int ID) : Item(nom, usable, usableInFight, givable, categorie, ID) {
+I_Heal::I_Heal(string &name, bool usable, bool usableInFight, bool givable, int categorie, int hpHeal, int heal, bool healAllStatus, int ID) : Item(name, usable, usableInFight, givable, categorie, ID) {
     this->hpHeal = hpHeal;
     this->healed = heal;
     healAll = healAllStatus;
@@ -22,7 +22,7 @@ I_Heal::I_Heal(string &nom, bool usable, bool usableInFight, bool givable, int c
     PPheal = false;
 }
 
-I_Heal::I_Heal(string &nom, bool usable, bool usableInFight, bool givable, int categorie, int ppHeal, bool allAttacksHeal, int ID) : Item(nom, usable, usableInFight, givable, categorie, ID) {
+I_Heal::I_Heal(string &name, bool usable, bool usableInFight, bool givable, int categorie, int ppHeal, bool allAttacksHeal, int ID) : Item(name, usable, usableInFight, givable, categorie, ID) {
     this->hpHeal = 0;
     this->healed = Status::NOTHING;
     healAll = false;
@@ -32,7 +32,7 @@ I_Heal::I_Heal(string &nom, bool usable, bool usableInFight, bool givable, int c
     this->allAttacksHeal = allAttacksHeal;
 }
 
-I_Heal::I_Heal(string &nom, bool usable, bool usableInFight, bool givable, int categorie, int hpHeal, int ID) : Item(nom, usable, usableInFight, givable, categorie, ID) {
+I_Heal::I_Heal(string &name, bool usable, bool usableInFight, bool givable, int categorie, int hpHeal, int ID) : Item(name, usable, usableInFight, givable, categorie, ID) {
     this->hpHeal = hpHeal;
     this->healed = Status::NOTHING;
     this->healAll = false;
@@ -42,7 +42,7 @@ I_Heal::I_Heal(string &nom, bool usable, bool usableInFight, bool givable, int c
     PPheal = false;
 }
 
-I_Heal::I_Heal(string &nom, bool usable, bool usableInFight, bool givable, int categorie, int heal, bool healAllStatus, int ID, bool status) : Item(nom, usable, usableInFight, givable, categorie, ID) {
+I_Heal::I_Heal(string &name, bool usable, bool usableInFight, bool givable, int categorie, int heal, bool healAllStatus, int ID, bool status) : Item(name, usable, usableInFight, givable, categorie, ID) {
     this->hpHeal = 0;
     this->healed = heal;
     healAll = healAllStatus;
@@ -52,7 +52,7 @@ I_Heal::I_Heal(string &nom, bool usable, bool usableInFight, bool givable, int c
     PPheal = false;
 }
 
-I_Heal::I_Heal(string &nom, int statAdd, int ID) : Item(nom, true, true, true, BagCat::SOIN, ID) {
+I_Heal::I_Heal(string &name, int statAdd, int ID) : Item(name, true, true, true, BagCat::SOIN, ID) {
     hpHeal = 0;
     healed = Status::NOTHING;
     healAll = false;

@@ -85,7 +85,7 @@ Contient toutes les methodes permettant de gérer et de faire fonctionner l'inte
 namespace MainFrame {
     extern sf::RenderTexture frame;
     extern sf::RenderWindow window;
-    extern sf::Sprite fond;
+    extern sf::Sprite bg;
     extern sf::Event events;
     extern sf::Font font;
     extern sf::Sprite dialog;

@@ -48,8 +48,8 @@ void initItems() {
 }
 
 
-Item::Item(string nom, bool usable, bool usableInFight, bool givable, int categorie, int id) :
-    nom(nom) {
+Item::Item(string name, bool usable, bool usableInFight, bool givable, int categorie, int id) :
+    name(name) {
     this->usable = usable;
     this->usableInFight = usableInFight;
     this->id = id;
@@ -60,7 +60,7 @@ Item::Item(string nom, bool usable, bool usableInFight, bool givable, int catego
 Item *Item::getItem(string const &name)  {
     for (unsigned int i = 0; i < ITEM_NUMBER; i++) {
             if(itemsLst[i] != NULL) {
-                    if (itemsLst[i]->getNom() == name) {
+                    if (itemsLst[i]->getName() == name) {
                             return itemsLst[i];
                         }
                 }
@@ -95,7 +95,7 @@ bool Item::operator==(Item const &b) const {
     if (givable != b.givable) {
             return false;
         }
-    if (!(nom == b.nom)) {
+    if (!(name == b.name)) {
             return false;
         }
     if (usable != b.usable) {

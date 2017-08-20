@@ -6,10 +6,10 @@ UNS
 
 namespace OptionsSave {
 
-    int searchParam(string const &nom);
+    int searchParam(string const &name);
 
-    Param::Param(string nom, string valeur) {
-        this->paramName = nom;
+    Param::Param(string name, string valeur) {
+        this->paramName = name;
         this->valeur = valeur;
     }
 
@@ -27,9 +27,9 @@ namespace OptionsSave {
 
     std::vector<Param> paramList;
 
-    Param getParam(string const &nom) {
-        if(searchParam(nom) != -1) {
-                return paramList[searchParam(nom)];
+    Param getParam(string const &name) {
+        if(searchParam(name) != -1) {
+                return paramList[searchParam(name)];
             }
         else {
                 return Param("NULL", "NULL");
@@ -37,29 +37,29 @@ namespace OptionsSave {
 
     }
 
-    void addOrModifParam(string const &nom, string const &value) {
-        if(searchParam(nom) == -1) { //Add Param (No Exist)
-                paramList.push_back(Param(nom, value));
+    void addOrModifParam(string const &name, string const &value) {
+        if(searchParam(name) == -1) { //Add Param (No Exist)
+                paramList.push_back(Param(name, value));
             }
         else {//Param Exist
-                paramList[searchParam(nom)].setValue(value);
+                paramList[searchParam(name)].setValue(value);
             }
     }
 
-    Param deleteParam(string const &nom) {
-        if(searchParam(nom) == -1) {
+    Param deleteParam(string const &name) {
+        if(searchParam(name) == -1) {
                 return Param("NULL", "NULL");
             }
         else {
-                Param toReturn = paramList[searchParam(nom)];
-                paramList.erase(paramList.begin() + searchParam(nom));
+                Param toReturn = paramList[searchParam(name)];
+                paramList.erase(paramList.begin() + searchParam(name));
                 return toReturn;
             }
     }
 
-    int searchParam(string const &nom) {
+    int searchParam(string const &name) {
       FOR_EACH(Param, paramList, (int) paramList.size(), {)
-        if(currentObj->getName() == nom) {
+        if(currentObj->getName() == name) {
             return itor;
         }
             }
@@ -84,7 +84,7 @@ void initParams(string const& file) {
                         break;
                     }
                 string noPm = StringKeys::sfStringtoStdString(StringKeys::split(read, '|', 1));//Ne prend que la partie après le pm|
-                Param newParam = Param(StringKeys::sfStringtoStdString(StringKeys::split(noPm, '=', 0)), StringKeys::sfStringtoStdString(StringKeys::split(noPm, '=', 1)));//Splitte ensuite en deux parties, le nom et la valeur du paramètre.
+                Param newParam = Param(StringKeys::sfStringtoStdString(StringKeys::split(noPm, '=', 0)), StringKeys::sfStringtoStdString(StringKeys::split(noPm, '=', 1)));//Splitte ensuite en deux parties, le name et la valeur du paramètre.
                 if(!checkParam(newParam.getName())) {
                         paramList.push_back(newParam);
                     }
