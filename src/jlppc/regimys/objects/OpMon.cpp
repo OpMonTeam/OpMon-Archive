@@ -83,8 +83,7 @@ int CalcCourbes::parabolique(int n) {
 int CalcCourbes::rapide(int n) {
     return round(0.8f * pow(n, 3));
 }
-OpMon::OpMon(string surnom, Species *species, int level, Attack *attack1, Attack *attack2, Attack *attack3, Attack *attack4,
-             CaractereClass caractere) {
+OpMon::OpMon(string nickname, Species *species, int level, Attack *attack1, Attack *attack2, Attack *attack3, Attack *attack4, CaractereClass caractere) {
     atkIV = Utils::randU(32);
     defIV = Utils::randU(32);
     atkSpeIV = Utils::randU(32);
@@ -132,7 +131,7 @@ OpMon::OpMon(string surnom, Species *species, int level, Attack *attack1, Attack
 
     //TODO attaquesChoix Quand les attaques seront ok
     this->caractere = caractere;
-    this->surnom = surnom;
+    this->nickname = nickname;
     tauxCapture = species->getTauxDeCapture();
     HP = statHP;
     type1 = species->getType1();
@@ -389,19 +388,19 @@ bool OpMon::itemUsed(Item *used) {
                             case Status::NOTHING:
                                 break;
                             case Status::BURNING:
-                                //keyout(key("status.brulure.heal"), surnom);
+                                //keyout(key("status.brulure.heal"), nickname);
                                 break;
                             case Status::FROZEN:
-                                //keyout(key("status.gel.heal"), surnom);
+                                //keyout(key("status.gel.heal"), nickname);
                                 break;
                             case Status::PARALYSED:
-                                //keyout(key("status.para.heal"), surnom);
+                                //keyout(key("status.para.heal"), nickname);
                                 break;
                             case Status::POISONED:
-                                //keyout(key("status.poison.heal"), surnom);
+                                //keyout(key("status.poison.heal"), nickname);
                                 break;
                             case Status::SLEEPING:
-                                //keyout(key("status.sommeil.heal"), surnom);
+                                //keyout(key("status.sommeil.heal"), nickname);
                                 break;
                             default:
                                 break;
@@ -433,7 +432,7 @@ void OpMon::toolEvTrade() {
 }
 
 void OpMon::evolve() {
-  //bool changeName = (surnom == species->getNom());
+  //bool changeName = (nickname == species->getName());
     species = species->getEvolution();
 }
 
@@ -1492,27 +1491,27 @@ bool OpMon::changeSPE(int power) {
 
 bool OpMon::setStatus(int status) {
     if (status == Status::BURNING && this->status == Status::BURNING) {
-            //System.out.println(surnom + " est déjà  brulé!");
+            //System.out.println(nickname + " est déjà  brulé!");
             return false;
         }
     else if (status == Status::SLEEPING && this->status == Status::SLEEPING) {
-            //System.out.println("Mais " + surnom + " dort déjà !");
+            //System.out.println("Mais " + nickname + " dort déjà !");
             return false;
         }
     else if (status == Status::PARALYSED && this->status == Status::PARALYSED) {
-            //System.out.println(surnom + " est déjà  paralysé!");
+            //System.out.println(nickname + " est déjà  paralysé!");
             return false;
         }
     else if (status == Status::FROZEN && this->status == Status::FROZEN) {
-            //System.out.println(surnom + " est déjà  gelé!");
+            //System.out.println(nickname + " est déjà  gelé!");
             return false;
         }
     else if (status == Status::POISONED && this->status == Status::POISONED) {
-            //System.out.println(surnom + " est déjà  empoisonné!");
+            //System.out.println(nickname + " est déjà  empoisonné!");
             return false;
         }
     else if (this->status != Status::NOTHING && status != Status::NOTHING) {
-            //System.out.println("Mais " + surnom + " a déjà  un status!");
+            //System.out.println("Mais " + nickname + " a déjà  un status!");
             return false;
         }
     else if (status == Status::BURNING) {
@@ -1554,7 +1553,7 @@ string OpMon::save() {
     if(!falsif) {
 
             ostringstream oss;
-            oss << surnom << endl;
+            oss << nickname << endl;
             oss << Save::intToChar(atkIV) << endl;
             oss << Save::intToChar(defIV) << endl;
             oss << Save::intToChar(atkSpeIV) << endl;
@@ -1629,8 +1628,8 @@ string OpMon::save() {
 }
 
 OpMon::OpMon(ifstream &in) {
-    this->surnom = Save::readLine(in);
-    if(surnom != "NULL") {
+    this->nickname = Save::readLine(in);
+    if(nickname != "NULL") {
             atkIV = in.get();
             in.get();
             defIV = in.get();

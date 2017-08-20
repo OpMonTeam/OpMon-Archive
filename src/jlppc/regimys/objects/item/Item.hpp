@@ -25,14 +25,14 @@ class Item {
     public:
         /**La liste des items du jeu*/
         static Item *itemsLst[ITEM_NUMBER];
-        Item(std::string nom, bool usable, bool usableInFight, bool givable, int categorie, int id);
+        Item(std::string name, bool usable, bool usableInFight, bool givable, int categorie, int id);
         static  Item *getItem (std::string const &name);
         static  Item *getItem (int id);
         /**Recherche un item et renvoie son ID dans itemsList*/
         static int searchItem (Item *toSearch);
         bool operator==(Item const &b) const;
-        std::string getNom() const {
-            return nom;
+        std::string getName() const {
+            return name;
         }
         bool isUsable() const {
             return usable;
@@ -59,7 +59,7 @@ class Item {
 
     private:
         int itemTypeID = 0;
-        std::string nom;
+        std::string name;
         bool usable;
         bool givable;
         int categorie;

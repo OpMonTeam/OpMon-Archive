@@ -10,8 +10,8 @@ namespace MainFrame {
     namespace MainMenu {
         namespace OptionsMenu {
 
-            sf::Sprite fondCredits;
-            sf::Sprite fondOpt;
+            sf::Sprite bgCredits;
+            sf::Sprite bgOpt;
             sf::Text langFr;
             sf::Text langEng;
             sf::Text langEsp;
@@ -40,7 +40,7 @@ namespace MainFrame {
 
             sf::Text txtLang;
             sf::Text txtCred;
-            sf::Sprite fondLangues;
+            sf::Sprite bgLangues;
 //J_Texture listeLangues[3] = {};
             sf::Vector2f curPosLang[4] = {};
             sf::Vector2f curSizeLang[4];
@@ -141,11 +141,11 @@ namespace MainFrame {
 
 
 #endif // _WIN32
-                fondOpt.setTexture(textures2[0]);
+                bgOpt.setTexture(textures2[0]);
                 rectSurb.setTexture(textures2[1]);
-                fondLangues.setTexture(textures2[2]);
+                bgLangues.setTexture(textures2[2]);
                 coche.setTexture(textures2[3]);
-                fondCredits.setTexture(textures2[4]);
+                bgCredits.setTexture(textures2[4]);
 
                 coche.setPosition(425, 88);
 
@@ -288,7 +288,7 @@ namespace MainFrame {
 
                         frame.clear(sf::Color::White);
 
-                        frame.draw(fondOpt);
+                        frame.draw(bgOpt);
                         frame.draw(txtOpt1);
                         frame.draw(txtOpt2);
                         frame.draw(txtOpt3);
@@ -387,7 +387,7 @@ namespace MainFrame {
 
                         frame.clear(sf::Color::White);
 
-                        frame.draw(fondLangues);
+                        frame.draw(bgLangues);
                         frame.draw(langEng);
                         frame.draw(langEsp);
                         frame.draw(langFr);
@@ -452,7 +452,7 @@ namespace MainFrame {
 
                         frame.clear(sf::Color::White);
 
-                        frame.draw(fondCredits);
+                        frame.draw(bgCredits);
                         frame.draw(txtCre1);
                         frame.draw(txtCre2);
                         frame.draw(txtCre3);

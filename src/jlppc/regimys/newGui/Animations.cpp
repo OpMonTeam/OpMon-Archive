@@ -28,7 +28,7 @@ namespace Animations {
         init = false;
     }
 
-    int animFenOpen(sf::RenderTexture &window, sf::Sprite const &fond) {
+    int animFenOpen(sf::RenderTexture &window, sf::Sprite const &bg) {
         ANIM_CHECK_INIT//Verification of animation initialization
         //Variables declaration
         sf::Sprite anim[6];
@@ -48,7 +48,7 @@ namespace Animations {
                         ECHAP
                         anim[i].setTexture(fen[i]);
                         window.clear(sf::Color::White);
-                        window.draw(fond);
+                        window.draw(bg);
                         window.draw(anim[i]);
 
                         window.display();
@@ -62,7 +62,7 @@ namespace Animations {
         return 0;
     }
 
-    int animFenClose(sf::RenderTexture &window, sf::Sprite const &fond) {
+    int animFenClose(sf::RenderTexture &window, sf::Sprite const &bg) {
         //Se réferer aux commentaires de la fonction précédente
         ANIM_CHECK_INIT
         //Variables declaration
@@ -84,7 +84,7 @@ namespace Animations {
 
                         window.clear(sf::Color::White);
 
-                        window.draw(fond);
+                        window.draw(bg);
                         window.draw(anim[i]);
 
                         window.display();

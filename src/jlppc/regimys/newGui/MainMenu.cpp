@@ -8,14 +8,14 @@ UNS
 namespace MainFrame {
     namespace MainMenu {
 
-        sf::Sprite fond;
+        sf::Sprite bg;
         sf::Text play;
         sf::Text charge;
         sf::Text options;
         sf::Text exit;
         sf::Sprite cursor;
         sf::Vector2f curPos[4];
-        sf::Music fondMusTitle;
+        sf::Music bgMusTitle;
         sf::Sound bruitArr;
         sf::Sound bruitPush;
         sf::Sound bruitNope;
@@ -44,19 +44,19 @@ namespace MainFrame {
 #ifdef _WIN32
             textures[0].loadFromFile("ressources\\backgrounds\\titlescreen.png");
             textures[1].loadFromFile("ressources\\sprites\\misc\\arrChoice.png");
-            fondMusTitle.openFromFile("ressources\\audio\\music\\title.ogg");
+            bgMusTitle.openFromFile("ressources\\audio\\music\\title.ogg");
             sounds[0].loadFromFile("ressources\\audio\\sounds\\select.ogg");
             sounds[1].loadFromFile("ressources\\audio\\sounds\\selectbuttons.ogg");
             sounds[2].loadFromFile("ressources\\audio\\sounds\\nope.ogg");
 #else
             textures[0].loadFromFile(RESSOURCES_PATH + "backgrounds/titlescreen.png");
             textures[1].loadFromFile(RESSOURCES_PATH + "sprites/misc/arrChoice.png");
-            fondMusTitle.openFromFile(RESSOURCES_PATH + "audio/music/title.ogg");
+            bgMusTitle.openFromFile(RESSOURCES_PATH + "audio/music/title.ogg");
             sounds[0].loadFromFile(RESSOURCES_PATH + "audio/sounds/select.ogg");
             sounds[1].loadFromFile(RESSOURCES_PATH + "audio/sounds/selectbuttons.ogg");
             sounds[2].loadFromFile(RESSOURCES_PATH + "audio/sounds/nope.ogg");
 #endif // _WIN32
-            fond.setTexture(textures[0]);
+            bg.setTexture(textures[0]);
             cursor.setTexture(textures[1]);
             bruitArr.setBuffer(sounds[0]);
             bruitPush.setBuffer(sounds[1]);
@@ -82,11 +82,11 @@ namespace MainFrame {
 
 
 
-            fondMusTitle.setLoop(true);
+            bgMusTitle.setLoop(true);
         }
 
         void verifVars() {
-            if(fond.getTexture() == NULL) {
+            if(bg.getTexture() == NULL) {
                     handleError("Missing menu bottom texture", true);
                 }
             if(cursor.getTexture() == NULL) {
@@ -101,7 +101,7 @@ namespace MainFrame {
 
             rlog << PRINT_TICKS << "Entering the menu" << endl;
             //Actualisation des éléments
-            frame.draw(fond);
+            frame.draw(bg);
             frame.draw(play),
                        frame.draw(charge);
             frame.draw(options);
@@ -121,10 +121,10 @@ namespace MainFrame {
                                         switch(curPosI) {
                                                 //Traitement de l'action en fonction de la position du curseur
                                                 case 0:
-                                                    fondMusTitle.stop();
+                                                    bgMusTitle.stop();
                                                     return 0;
                                                 case 3:
-                                                    fondMusTitle.stop();
+                                                    bgMusTitle.stop();
                                                     return -1;
                                                 case 2:
                                                     if(OptionsMenu::optionsMenu() == -1) {
@@ -164,13 +164,13 @@ namespace MainFrame {
                                 }
                         }
                     else if(isKeyPressed(sf::Keyboard::Escape)) {
-                            fondMusTitle.stop();
+                            bgMusTitle.stop();
                             return -1;
                         }
                     frame.clear(sf::Color::Black);
 
                     //Actualisation des éléments
-                    frame.draw(fond);
+                    frame.draw(bg);
                     frame.draw(play),
                                frame.draw(charge);
                     frame.draw(options);
@@ -181,7 +181,7 @@ namespace MainFrame {
                     frame.display();
                     winRefresh();
                 }
-            fondMusTitle.stop();
+            bgMusTitle.stop();
             return 0;
         }
 
@@ -189,8 +189,8 @@ namespace MainFrame {
             initVars();
             verifVars();
             //Début de la musique
-            fondMusTitle.setVolume(50);
-            fondMusTitle.play();
+            bgMusTitle.setVolume(50);
+            bgMusTitle.play();
             //Lancement de la boucle
             return boucle0();
         }

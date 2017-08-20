@@ -15,7 +15,7 @@ Définit un item de type Opball
 */
 class I_Opball: public Item {
     public:
-        I_Opball(std::string &nom, float tauxCapture, int ID);
+        I_Opball(std::string &name, float tauxCapture, int ID);
         float getTauxCapture() const {
             return tauxCapture;
         }

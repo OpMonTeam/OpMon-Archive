@@ -24,7 +24,7 @@ UNS
 namespace MainFrame {
   sf::RenderTexture frame;
   sf::RenderWindow window;
-  sf::Sprite fond;
+  sf::Sprite bg;
   sf::Event events;
   sf::Font font;
   sf::Sprite dialog;
@@ -189,7 +189,7 @@ namespace MainFrame {
         rlog << PRINT_TICKS << "Launching the main menu." << endl;
         if(MainMenu::mainMenu() != -1) {
                 MainMenu::bruitPush.play();
-                MainMenu::fondMusTitle.stop();
+                MainMenu::bgMusTitle.stop();
                 if(StartScene::startScene() != -1) {
                         StartScene::bgMus.stop();
                         frame.draw(spriteLoad);
