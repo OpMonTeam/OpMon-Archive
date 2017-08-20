@@ -32,8 +32,8 @@ namespace Animations {
     */
     void deleteAnims();
 
-    int animFenOpen(sf::RenderTexture &window, sf::Sprite const &bg);
-    int animFenClose(sf::RenderTexture &window, sf::Sprite const &bg);
+    int animWinOpen(sf::RenderTexture &window, sf::Sprite const &bg);
+    int animWinClose(sf::RenderTexture &window, sf::Sprite const &bg);
 
 }
 

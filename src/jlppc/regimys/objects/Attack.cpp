@@ -35,7 +35,7 @@ int Attack::attack(OpMon &atk, OpMon &def) {
             return effetAv;
         }
     //Fail de types
-    if (TableTypes::calcEfficacite(type, def.getType1(), def.getType2()) == 0 && (rateJamais == false || status == false)) {
+    if (ArrayTypes::calcEfficacite(type, def.getType1(), def.getType2()) == 0 && (rateJamais == false || status == false)) {
             siEchoue(atk, def);
             return -1;
         }
@@ -44,7 +44,7 @@ int Attack::attack(OpMon &atk, OpMon &def) {
             if (type == atk.getType1() || type == atk.getType2()) {
                     hpPerdus = round(hpPerdus * 1.5);
                 }
-            float efficacite = (TableTypes::calcEfficacite(type, def.getType1(), def.getType2()));
+            float efficacite = (ArrayTypes::calcEfficacite(type, def.getType1(), def.getType2()));
             //if(efficacite)//A utiliser pour les dialogues
             hpPerdus = round(hpPerdus * efficacite);
             if (Utils::randU(chanceDeCoups) == 1) {
