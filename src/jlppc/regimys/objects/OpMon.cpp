@@ -53,7 +53,7 @@ int CalcCourbes::erratic(int n) {
         }
 }
 
-int CalcCourbes::fluctuante(int n) {
+int CalcCourbes::fluctuating(int n) {
     if (0 < n && n <= 15) {
             return round(pow(n, 3) * ((24 + ((n + 1) / 3) / 50)));
         }
@@ -70,17 +70,17 @@ int CalcCourbes::fluctuante(int n) {
         }
 }
 
-int CalcCourbes::lente(int n) {
+int CalcCourbes::slow(int n) {
     return round(1.25f * pow(n, 3));
 }
 
-int CalcCourbes::moyenne(int n) {
+int CalcCourbes::normal(int n) {
     return round(pow(n, 3));
 }
-int CalcCourbes::parabolique(int n) {
+int CalcCourbes::parabolic(int n) {
     return round(1.2f * pow(n, 3) - 15 * pow(n, 2) + (100 * n) - 140);
 }
-int CalcCourbes::rapide(int n) {
+int CalcCourbes::quick(int n) {
     return round(0.8f * pow(n, 3));
 }
 OpMon::OpMon(string nickname, Species *species, int level, Attack *attack1, Attack *attack2, Attack *attack3, Attack *attack4, NatureClass nature) {
@@ -143,24 +143,24 @@ OpMon::OpMon(string nickname, Species *species, int level, Attack *attack1, Atta
                 exp = erratic(this->level);
                 break;
             case CourbeExp::FLUCTUANTE:
-                toNextLevel = fluctuante(this->level + 1);
-                exp = fluctuante(this->level);
+                toNextLevel = fluctuating(this->level + 1);
+                exp = fluctuating(this->level);
                 break;
             case CourbeExp::LENTE:
-                toNextLevel = lente(this->level + 1);
-                exp = lente(this->level);
+                toNextLevel = slow(this->level + 1);
+                exp = slow(this->level);
                 break;
             case CourbeExp::MOYENNE:
-                toNextLevel = moyenne(this->level + 1);
-                exp = moyenne(this->level);
+                toNextLevel = normal(this->level + 1);
+                exp = normal(this->level);
                 break;
             case CourbeExp::PARABOLIQUE:
-                toNextLevel = parabolique(this->level + 1);
-                exp = parabolique(this->level);
+                toNextLevel = parabolic(this->level + 1);
+                exp = parabolic(this->level);
                 break;
             case CourbeExp::RAPIDE:
-                toNextLevel = rapide(this->level + 1);
-                exp = rapide(this->level);
+                toNextLevel = quick(this->level + 1);
+                exp = quick(this->level);
                 break;
         }
     held = NULL;
@@ -241,24 +241,24 @@ void OpMon::levelUp() {
                 exp = erratic(this->level);
                 break;
             case CourbeExp::FLUCTUANTE:
-                toNextLevel = fluctuante(this->level + 1);
-                exp = fluctuante(this->level);
+                toNextLevel = fluctuating(this->level + 1);
+                exp = fluctuating(this->level);
                 break;
             case CourbeExp::LENTE:
-                toNextLevel = lente(this->level + 1);
-                exp = lente(this->level);
+                toNextLevel = slow(this->level + 1);
+                exp = slow(this->level);
                 break;
             case CourbeExp::MOYENNE:
-                toNextLevel = moyenne(this->level + 1);
-                exp = moyenne(this->level);
+                toNextLevel = normal(this->level + 1);
+                exp = normal(this->level);
                 break;
             case CourbeExp::PARABOLIQUE:
-                toNextLevel = parabolique(this->level + 1);
-                exp = parabolique(this->level);
+                toNextLevel = parabolic(this->level + 1);
+                exp = parabolic(this->level);
                 break;
             case CourbeExp::RAPIDE:
-                toNextLevel = rapide(this->level + 1);
-                exp = rapide(this->level);
+                toNextLevel = quick(this->level + 1);
+                exp = quick(this->level);
                 break;
         }
     calcStats();

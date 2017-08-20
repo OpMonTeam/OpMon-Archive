@@ -24,11 +24,11 @@ Namespace permettant de faire des calculs sur les courbes d'experience. D'ou son
 namespace CalcCourbes {
     float p(int x);
     int erratic(int n);
-    int fluctuante(int n);
-    int lente(int n);
-    int moyenne(int n);
-    int parabolique(int n);
-    int rapide(int n);
+    int fluctuating(int n);
+    int slow(int n);
+    int normal(int n);
+    int parabolic(int n);
+    int quick(int n);
 };
 
 class Attack;
