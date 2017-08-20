@@ -17,7 +17,7 @@ Définit un item de soin
 */
 class I_Heal: public Item {
     public:
-        /**Construit un item de heal (presque) polyvalent*/
+        /**Construit un item de heal (prevaue) polyvalent*/
         I_Heal(std::string &name, bool usable, bool usableInFight, bool givable, int categorie, int hpHeal, int heal, bool healAllStatus, int ID);
         /**Construit un item de heal de PP*/
         I_Heal(std::string &name, bool usable, bool usableInFight, bool givable, int categorie, int ppHeal, bool allAttacksHeal, int ID);

@@ -95,11 +95,11 @@ namespace Attacks {
 
 
     int Abime::effetAvant(OpMon &atk, OpMon &def) {
-        precision = ((atk.getLevel() - def.getLevel()) + 30);
+        accuracy = ((atk.getLevel() - def.getLevel()) + 30);
         if (atk.getLevel() < def.getLevel()) {
                 return 2;
             }
-        if (Utils::randU(100) > precision) {
+        if (Utils::randU(100) > accuracy) {
                 return 2;
             }
         else {
@@ -145,7 +145,7 @@ namespace Attacks {
             }
         else {
             }
-        if (atk.changePRE(1)) {
+        if (atk.changeACC(1)) {
             }
         else {
             }
@@ -227,7 +227,7 @@ namespace Attacks {
     }
 
     int Brouillard::effetApres(OpMon &atk, OpMon &def) {
-        if(def.changePRE(-1)) {
+        if(def.changeACC(-1)) {
             }
         else {
             }
