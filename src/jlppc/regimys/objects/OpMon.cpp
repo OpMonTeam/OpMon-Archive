@@ -20,7 +20,7 @@ OpMon::~OpMon() {
         }
 }
 
-float CalcCourbes::p(int x) {
+float CalcCourbs::p(int x) {
     switch (x) {
             case 0:
                 return 0;
@@ -33,7 +33,7 @@ float CalcCourbes::p(int x) {
         }
 }
 
-int CalcCourbes::erratic(int n) {
+int CalcCourbs::erratic(int n) {
     if (0 < n && n <= 50) {
             return round(pow(n, 3) * ((100 - n) / 50));
         }
@@ -53,7 +53,7 @@ int CalcCourbes::erratic(int n) {
         }
 }
 
-int CalcCourbes::fluctuating(int n) {
+int CalcCourbs::fluctuating(int n) {
     if (0 < n && n <= 15) {
             return round(pow(n, 3) * ((24 + ((n + 1) / 3) / 50)));
         }
@@ -70,17 +70,17 @@ int CalcCourbes::fluctuating(int n) {
         }
 }
 
-int CalcCourbes::slow(int n) {
+int CalcCourbs::slow(int n) {
     return round(1.25f * pow(n, 3));
 }
 
-int CalcCourbes::normal(int n) {
+int CalcCourbs::normal(int n) {
     return round(pow(n, 3));
 }
-int CalcCourbes::parabolic(int n) {
+int CalcCourbs::parabolic(int n) {
     return round(1.2f * pow(n, 3) - 15 * pow(n, 2) + (100 * n) - 140);
 }
-int CalcCourbes::quick(int n) {
+int CalcCourbs::quick(int n) {
     return round(0.8f * pow(n, 3));
 }
 OpMon::OpMon(string nickname, Species *species, int level, Attack *attack1, Attack *attack2, Attack *attack3, Attack *attack4, NatureClass nature) {
@@ -136,7 +136,7 @@ OpMon::OpMon(string nickname, Species *species, int level, Attack *attack1, Atta
     HP = statHP;
     type1 = species->getType1();
     type2 = species->getType2();
-    using namespace CalcCourbes;
+    using namespace CalcCourbs;
     switch (this->species->getCourbe()) {
             case CourbeExp::ERRATIQUE:
                 toNextLevel = erratic(this->level + 1);
@@ -233,7 +233,7 @@ void OpMon::setStat(string const &stat, int newStat) {
 }
 
 void OpMon::levelUp() {
-    using namespace CalcCourbes;
+    using namespace CalcCourbs;
     level++;
     switch (this->species->getCourbe()) {
             case CourbeExp::ERRATIQUE:

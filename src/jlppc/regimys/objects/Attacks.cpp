@@ -307,8 +307,8 @@ namespace Attacks {
     }
 
     int Conversion::effetApres(OpMon &atk, OpMon &def) {
-        Attack **tab = atk.getAttacks();
-        atk.setType1(tab[0]->getType());
+        Attack **arr = atk.getAttacks();
+        atk.setType1(arr[0]->getType());
         atk.setType2(Type::NOTHING);
         return 0;
     }

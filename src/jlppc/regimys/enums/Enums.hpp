@@ -69,7 +69,7 @@ namespace Encoding {
 /**
 Gère la table des types
 */
-namespace TableTypes {
+namespace ArrayTypes {
 
 
 

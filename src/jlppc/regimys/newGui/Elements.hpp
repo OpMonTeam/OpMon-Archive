@@ -28,7 +28,7 @@ class Map {
         int w;
         int h;
         sf::Texture *layer3;
-        int **passTab;
+        int **passArr;
         /**Le constructeur de copie ne doit pas etre utilsÃ©.
         Il est donc en privÃ©. Si tout de meme cette protection est inÃ©fficace,
         aucune definition n'est fournise de ce constructeur.*/
@@ -50,8 +50,8 @@ class Map {
         int getW() const {
             return w;
         }
-        int **getPassTab() const {
-            return passTab;
+        int **getPassArr() const {
+            return passArr;
         }
         const sf::Texture *getLayer1() const {
             return layer1;

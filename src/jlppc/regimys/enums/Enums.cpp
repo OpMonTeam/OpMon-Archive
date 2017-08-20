@@ -1,8 +1,8 @@
 #include "Enums.hpp"
 
 
-namespace TableTypes {
-    const float tabUnType[][18] = {
+namespace ArrayTypes {
+    const float arrOneType[][18] = {
 
         {PE, TE, PE, NE, NE, PE, TE, PE, PE, PE, PE, IN, PE, PE, TE, NE, NE, PE},
         {NE, NE, NE, NE, NE, TE, NE, NE, PE, NE, NE, NE, TE, PE, NE, NE, PE, TE},
@@ -24,7 +24,7 @@ namespace TableTypes {
         {NE, PE, NE, NE, TE, NE, NE, TE, PE, NE, PE, NE, NE, TE, IN, NE, NE, NE}
     };
     /**Un tableau qui réunit tous les tables a double type*/
-    const float tableDeuxTypes[][18][18] = {{
+    const float arrTwoTypes[][18][18] = {{
             {TP, SE, TP, NE, NE, TP, SE, TP, TP, TP, TP, IN, TP, TP, SE, NE, NE, TP},
             {PE, TE, PE, NE, NE, NE, TE, PE, TP, PE, PE, IN, NE, TP, TE, NE, PE, NE},
             {PE, TE, NE, PE, PE, NE, NE, NE, PE, PE, TP, IN, PE, PE, TE, NE, NE, PE},
@@ -376,10 +376,10 @@ namespace TableTypes {
     const float calcEfficacite(int atk, int def1, int def2) {
         int atkI(atk), type1I(def1), type2I(def2);
         if (def2 == Type::NOTHING) {
-                return tabUnType[type1I][atkI];
+                return arrOneType[type1I][atkI];
             }
         else {
-                return tableDeuxTypes[type1I][type2I][atkI];
+                return arrTwoTypes[type1I][type2I][atkI];
             }
     }
 }
