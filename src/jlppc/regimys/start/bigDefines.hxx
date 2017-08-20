@@ -1,6 +1,6 @@
 /*
 bigDefines.hpp
-Auteur : Jlppc
+Author : Jlppc
 Fichier sous licence GPL-3.0
 http://opmon-game.ga
 Contient des gros macros, morceaux de code faisant tache dans certains fichiers, ils sont donc placés ici

@@ -1,6 +1,6 @@
 /*
 Mainframe.hpp
-Auteur : Jlppc
+Author : Jlppc
 Fichier sous licence GPL-3.0
 http://opmon-game.ga
 Permet d'ouvrir la fenetre du jeu et de charger les ressources essensielles. Contient aussi des methodes et macros utiles dans l'interface graphique.

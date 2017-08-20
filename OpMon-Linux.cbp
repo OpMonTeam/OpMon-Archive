@@ -58,10 +58,10 @@
 			<Add option="-Wall" />
 			<Add option="-std=c++11" />
 		</Compiler>
-		<Unit filename="src/jlppc/regimys/enums/Caractere.cpp" />
-		<Unit filename="src/jlppc/regimys/enums/Caractere.hpp" />
 		<Unit filename="src/jlppc/regimys/enums/Enums.cpp" />
 		<Unit filename="src/jlppc/regimys/enums/Enums.hpp" />
+		<Unit filename="src/jlppc/regimys/enums/Nature.cpp" />
+		<Unit filename="src/jlppc/regimys/enums/Nature.hpp" />
 		<Unit filename="src/jlppc/regimys/enums/enumsInclude.hxx" />
 		<Unit filename="src/jlppc/regimys/evolution/EItem.cpp" />
 		<Unit filename="src/jlppc/regimys/evolution/ELand.cpp" />
@@ -93,6 +93,7 @@
 		<Unit filename="src/jlppc/regimys/objects/Attack.cpp" />
 		<Unit filename="src/jlppc/regimys/objects/Attack.hpp" />
 		<Unit filename="src/jlppc/regimys/objects/Attacks.cpp" />
+		<Unit filename="src/jlppc/regimys/objects/Attacks.hpp" />
 		<Unit filename="src/jlppc/regimys/objects/OpMon.cpp" />
 		<Unit filename="src/jlppc/regimys/objects/OpMon.hpp" />
 		<Unit filename="src/jlppc/regimys/objects/Species.cpp" />
@@ -109,8 +110,8 @@
 		<Unit filename="src/jlppc/regimys/objects/item/itemInclude.hxx" />
 		<Unit filename="src/jlppc/regimys/objects/objectsInclude.hxx" />
 		<Unit filename="src/jlppc/regimys/opmonInclude.hxx" />
-		<Unit filename="src/jlppc/regimys/playercore/Equipe.cpp" />
-		<Unit filename="src/jlppc/regimys/playercore/Equipe.hpp" />
+		<Unit filename="src/jlppc/regimys/playercore/OpTeam.cpp" />
+		<Unit filename="src/jlppc/regimys/playercore/OpTeam.hpp" />
 		<Unit filename="src/jlppc/regimys/playercore/Player.cpp" />
 		<Unit filename="src/jlppc/regimys/playercore/Player.hpp" />
 		<Unit filename="src/jlppc/regimys/playercore/playercoreInclude.hxx" />

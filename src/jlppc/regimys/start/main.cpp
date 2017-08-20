@@ -13,7 +13,7 @@
 #include "../objects/item/Item.hpp"
 #include "../objects/item/itemInclude.hxx"
 #include "../playercore/Player.hpp"
-#include "../playercore/Equipe.hpp"
+#include "../playercore/OpTeam.hpp"
 #include "../evolution/evolutionInclude.hxx"
 #include "../../utils/Class.hpp"
 #include "../../utils/File.hpp"
