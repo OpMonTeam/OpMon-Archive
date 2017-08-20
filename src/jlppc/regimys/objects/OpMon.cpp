@@ -33,7 +33,7 @@ float CalcCourbes::p(int x) {
         }
 }
 
-int CalcCourbes::erratique(int n) {
+int CalcCourbes::erratic(int n) {
     if (0 < n && n <= 50) {
             return round(pow(n, 3) * ((100 - n) / 50));
         }
@@ -139,8 +139,8 @@ OpMon::OpMon(string nickname, Species *species, int level, Attack *attack1, Atta
     using namespace CalcCourbes;
     switch (this->species->getCourbe()) {
             case CourbeExp::ERRATIQUE:
-                toNextLevel = erratique(this->level + 1);
-                exp = erratique(this->level);
+                toNextLevel = erratic(this->level + 1);
+                exp = erratic(this->level);
                 break;
             case CourbeExp::FLUCTUANTE:
                 toNextLevel = fluctuante(this->level + 1);
@@ -237,8 +237,8 @@ void OpMon::levelUp() {
     level++;
     switch (this->species->getCourbe()) {
             case CourbeExp::ERRATIQUE:
-                toNextLevel = erratique(this->level + 1);
-                exp = erratique(this->level);
+                toNextLevel = erratic(this->level + 1);
+                exp = erratic(this->level);
                 break;
             case CourbeExp::FLUCTUANTE:
                 toNextLevel = fluctuante(this->level + 1);

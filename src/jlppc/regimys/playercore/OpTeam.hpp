@@ -1,9 +1,9 @@
 /*
-Equipe.hpp
-Auteur : Jlppc
+OpTeam.hpp
+Author : Jlppc
 Fichier sous licence GPL-3.0
 http://opmon-game.ga
-Contient la définition de la classe Equipe
+Contient la définition de la classe OpTeam
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_PLAYERCORE_EQUIPE_HPP_
 #define SRCCPP_JLPPC_REGIMYS_PLAYERCORE_EQUIPE_HPP_
@@ -11,21 +11,21 @@ Contient la définition de la classe Equipe
 #include <iostream>
 #include "../objects/OpMon.hpp"
 /**
-Classe permettant de contenir l'equipe d'un joueur ou d'un dresseur.
+Classe permettant de contenir l'opteam d'un joueur ou d'un dresseur.
 */
-class Equipe {
+class OpTeam {
     public:
-        Equipe(std::string const& name);
+        OpTeam(std::string const& name);
         std::string getName() const {
             return name;
         }
-        OpMon **getEquipe(){
-            return equipe;
+        OpMon **getOpTeam(){
+            return opteam;
         }
-        /**Soigne toute l'equipe*/
+        /**Soigne toute l'opteam*/
         void heal();
         /**
-        Ajoute un pokémon a l'equipe. Renvoie false si l'equipe est pleine
+        Ajoute un pokémon a l'opteam. Renvoie false si l'opteam est pleine
         */
         bool addOpMon(OpMon *toAdd);
         /**Suprime de numberième pokémon dans l'équipe*/
@@ -51,7 +51,7 @@ class Equipe {
     private:
         //->Useless
         int nbreOfOp = 6;
-        OpMon *equipe[6] = {PNULL, PNULL, PNULL, PNULL, PNULL, PNULL};
+        OpMon *opteam[6] = {PNULL, PNULL, PNULL, PNULL, PNULL, PNULL};
         std::string name;
 };
 

@@ -1,6 +1,6 @@
 /*
 Item.hpp
-Auteur : Jlppc
+Author : Jlppc
 Fichier sous licence GPL-3.0
 http://opmon-game.ga
 Contient la définition de l'énumération ItemType et de la classe Item

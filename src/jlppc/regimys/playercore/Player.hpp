@@ -1,6 +1,6 @@
 /*
 Player.hpp
-Auteur : Jlppc
+Author : Jlppc
 Fichier sous licence GPL-3.0
 http://opmon-game.ga
 Contient la définition de la classe Player
@@ -10,7 +10,7 @@ Contient la définition de la classe Player
 
 #include <iostream>
 #include <vector>
-#include "Equipe.hpp"
+#include "OpTeam.hpp"
 #include "../objects/item/Item.hpp"
 #include <SFML/Graphics.hpp>
 /**
@@ -20,7 +20,7 @@ class Player {
     public:
         Player(std::string const& name);
         Player();
-        Equipe *getEquipe();
+        OpTeam *getOpTeam();
         /**Ajoute un item au sac*/
         void addItem(int itemID);
         /**Renvoie le nombre d'exemplaires dans le sac de l'item donné en paramètres*/
@@ -43,15 +43,15 @@ class Player {
             pc.push_back(toAdd);
         }
         OpMon *getOp(int ID) const {
-            return equipe[ID];
+            return opteam[ID];
         }
         OpMon *getPcOp(int ID) const {
             return pc[ID];
         }
         /**Soigne tous les Poké*/
         void healOp();
-        /**Essaie d'ajouter un pokémon a l'equipe. Renvoie false si ce n'est pas possible*/
-        bool addOpToEquipe(OpMon *toAdd);
+        /**Essaie d'ajouter un pokémon a l'opteam. Renvoie false si ce n'est pas possible*/
+        bool addOpToOpTeam(OpMon *toAdd);
 
         void save();
         Player(std::ifstream &in, std::string &name);
@@ -84,7 +84,7 @@ class Player {
         const unsigned int dressID;//jusqu'a 8 chiffres (Hexadecimal) (jusqu'a 16^8 soit 4 octets soit un int)
         int bag[ITEM_NUMBER];
         std::vector<OpMon *> pc = std::vector<OpMon *>();
-        Equipe equipe = Equipe("temp");
+        OpTeam opteam = OpTeam("temp");
         int *ppDir;
         int mapID = 0;
 };

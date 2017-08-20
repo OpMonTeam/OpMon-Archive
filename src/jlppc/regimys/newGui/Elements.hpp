@@ -1,6 +1,6 @@
 /*
 Elements.hpp
-Auteur : Jlppc
+Author : Jlppc
 Fichier sous licence GPL-3.0
 http://opmon-game.ga
 Fichier contenant des Ã©lÃ©ments utiles

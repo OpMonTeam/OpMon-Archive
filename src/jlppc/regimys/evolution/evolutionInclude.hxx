@@ -1,6 +1,6 @@
 /*
 evolutionInclude.hxx
-Auteur : Jlppc
+Author : Jlppc
 Fichier sous licence GPL-3.0
 http://opmon-game.ga
 Permet d'inclure tous les fichiers du dossier evolution
