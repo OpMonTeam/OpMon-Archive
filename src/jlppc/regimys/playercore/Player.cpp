@@ -4,7 +4,7 @@
 
 Player::Player(std::string const& name):
     name(name), dressID(Utils::randUI(0xFFFFFFFF)) {
-    equipe = Equipe(name);
+    opteam = OpTeam(name);
     for(unsigned int i = 0; i < ITEM_NUMBER; i++) {
             bag[i] = 0;
         }
@@ -13,14 +13,14 @@ Player::Player(std::string const& name):
 
 Player::Player():
     dressID(Utils::randUI(0xFFFFFFFF)) {
-    equipe = Equipe(name);
+    opteam = OpTeam(name);
     for(unsigned int i = 0; i < ITEM_NUMBER; i++) {
             bag[i] = 0;
         }
 }
 
-Equipe *Player::getEquipe() {
-    return &equipe;
+OpTeam *Player::getOpTeam() {
+    return &opteam;
 }
 
 void Player::addItem(int itemID) {
@@ -50,9 +50,9 @@ bool Player::deleteItem(int itemID) {
 }
 
 void Player::healOp() {
-    equipe.heal();
-    for (int i = 0; i < equipe.getSize(); i++) {
-            OpMon *pkmn = equipe[i];
+    opteam.heal();
+    for (int i = 0; i < opteam.getSize(); i++) {
+            OpMon *pkmn = opteam[i];
 
             pkmn->amour = false;
             pkmn->malediction = false;
@@ -67,8 +67,8 @@ void Player::healOp() {
         }
 }
 
-bool Player::addOpToEquipe(OpMon *toAdd) {
-    if (equipe.addOpMon(toAdd)) {
+bool Player::addOpToOpTeam(OpMon *toAdd) {
+    if (opteam.addOpMon(toAdd)) {
             return true;
         }
     else {
@@ -90,7 +90,7 @@ void Player::save() {
             SOUT << pc[it]->save();
         }
     for(unsigned int it = 0; it < 6; it++) {
-            SOUT << equipe[it]->save();
+            SOUT << opteam[it]->save();
         }
 
 }
@@ -121,7 +121,7 @@ Player::Player(std::ifstream &in, std::string &name):
         }
     for(unsigned int i = 0; i < 6; i++) {
             OpMon *op = new OpMon(in);
-            equipe.addOpMon(op);
+            opteam.addOpMon(op);
         }
 
 }

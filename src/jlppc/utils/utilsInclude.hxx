@@ -1,6 +1,6 @@
 /*
 utilsInclude.hxx
-Auteur : Jlppc
+Author : Jlppc
 Fichier sous licence GPL-3.0
 http://opmon-game.ga
 Permet d'inclure tout les fichiers du dossier utils

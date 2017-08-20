@@ -1,6 +1,6 @@
 /*
 OpMon.hpp
-Auteur : Jlppc
+Author : Jlppc
 Fichier sous licence GPL-3.0. Le nom Pok�mon appartient a Nintendo(r).
 http://opmon-game.ga
 Contient la d�finition du namepsace CalcCourbes et de la classe OpMon
@@ -23,7 +23,7 @@ Namespace permettant de faire des calculs sur les courbes d'experience. D'ou son
 */
 namespace CalcCourbes {
     float p(int x);
-    int erratique(int n);
+    int erratic(int n);
     int fluctuante(int n);
     int lente(int n);
     int moyenne(int n);

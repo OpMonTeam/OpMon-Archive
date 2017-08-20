@@ -1,6 +1,6 @@
 /*
 evolutions.hpp
-Auteur : Jlppc
+Author : Jlppc
 Fichier sous licence GPL-3.0
 http://opmon-game.ga
 Contient les définitions des évolutions

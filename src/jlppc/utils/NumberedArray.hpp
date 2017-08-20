@@ -1,6 +1,6 @@
 /*
 NumberedArray.hpp
-Auteur : Jlppc
+Author : Jlppc
 Fichier sous licence GPL-3.0
 http://opmon-game.ga
 Définit la classe NumberedArray

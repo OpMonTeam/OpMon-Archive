@@ -1,6 +1,6 @@
 /*
 Comparaisons.hpp
-Auteur : Jlppc
+Author : Jlppc
 Fichier sous licence GPL-3.0
 http://opmon-game.ga
 Définit le namespace Comparaions

@@ -1,6 +1,6 @@
 /*
 Initializer.hpp
-Auteur : Jlppc
+Author : Jlppc
 Contributeurs au fichier .cpp: Navet56, Aerzia
 Fichier sous licence GPL-3.0
 http://opmon-game.ga

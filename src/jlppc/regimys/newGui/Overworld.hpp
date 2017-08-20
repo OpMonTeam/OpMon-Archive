@@ -1,7 +1,7 @@
 /*
 Overworld.hpp
-Auteur : Jlppc
-Fichier sous license GPL-3.0
+Author : Jlppc
+File under the license GPL-3.0
 http://opmon-game.ga
 Contient le namespace Overworld
 */
