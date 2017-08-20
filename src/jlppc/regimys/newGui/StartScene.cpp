@@ -168,8 +168,8 @@ UNS
 				}
 			    }
 
-			    sf::String tab[3] = {txtEnCours[0], txtEnCours[1], txtEnCours[2]};
-			    printText(frame, tab);
+			    sf::String arr[3] = {txtEnCours[0], txtEnCours[1], txtEnCours[2]};
+			    printText(frame, arr);
 			    ANIM_ARROW
 				frame.display();
 			    winRefresh();
@@ -298,8 +298,8 @@ UNS
 				}
 			    }
 
-			    sf::String tab[3] = {txtEnCours[0], txtEnCours[1], txtEnCours[2]};
-			    printText(frame, tab);
+			    sf::String arr[3] = {txtEnCours[0], txtEnCours[1], txtEnCours[2]};
+			    printText(frame, arr);
 			    ANIM_ARROW
 				frame.display();
 			    winRefresh();
@@ -323,7 +323,7 @@ UNS
             phase = 1;
 
             //Animation 1
-            Animations::animFenOpen(frame, bg);
+            Animations::animWinOpen(frame, bg);
 
 
             if(boucle1() == -1) {
@@ -331,7 +331,7 @@ UNS
             }
 
             //Animation 2
-            Animations::animFenClose(frame, bg);
+            Animations::animWinClose(frame, bg);
             phase = 2;
             sizeOfTxt = 27 - 18;
             i = 0;

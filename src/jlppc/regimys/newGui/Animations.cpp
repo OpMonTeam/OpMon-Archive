@@ -28,7 +28,7 @@ namespace Animations {
         init = false;
     }
 
-    int animFenOpen(sf::RenderTexture &window, sf::Sprite const &bg) {
+    int animWinOpen(sf::RenderTexture &window, sf::Sprite const &bg) {
         ANIM_CHECK_INIT//Verification of animation initialization
         //Variables declaration
         sf::Sprite anim[6];
@@ -62,7 +62,7 @@ namespace Animations {
         return 0;
     }
 
-    int animFenClose(sf::RenderTexture &window, sf::Sprite const &bg) {
+    int animWinClose(sf::RenderTexture &window, sf::Sprite const &bg) {
         //Se réferer aux commentaires de la fonction précédente
         ANIM_CHECK_INIT
         //Variables declaration

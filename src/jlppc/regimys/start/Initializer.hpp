@@ -16,8 +16,8 @@ Contient la définition des methodes qui permettent d'initialiser les éléments
 #include "../objects/Species.hpp"
 #include "../evolution/evolutions.hpp"
 
-#define ATK_LIST(OpId) AtkArray tab##OpId[]
-#define ATK_ADD_LIST(OpID, atkLength) pb(atkOpLvl[(OpId)], tab##OpId , (atkLength) )
+#define ATK_LIST(OpId) AtkArray arr##OpId[]
+#define ATK_ADD_LIST(OpID, atkLength) pb(atkOpLvl[(OpId)], arr##OpId , (atkLength) )
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "../newGui/Elements.hpp"

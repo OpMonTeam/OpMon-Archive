@@ -52,8 +52,8 @@ Permet d'ouvrir la fenetre du jeu et de charger les ressources essensielles. Con
             txtEnCours[0] = varname[dialog];\
             txtEnCours[1] = varname[dialog + 1];\
             txtEnCours[2] = varname[dialog + 2];\
-            sf::String tab[3] = {txtEnCours[0], txtEnCours[1], txtEnCours[2]};\
-            printText(frame, tab);\
+            sf::String arr[3] = {txtEnCours[0], txtEnCours[1], txtEnCours[2]};\
+            printText(frame, arr);\
             changeDialog = true;\
             Utils::wait(50);\
   } else if (!(dialog + 3 >= (unsigned int) sizeOfTxt)) {	\

@@ -33,14 +33,14 @@ Map::Map(sf::Texture const& layer1, sf::Texture const& layer2, sf::Texture const
     this->w = w;
     this->h = h;
     //Définition de la table de la collision
-    this->passTab = (int **)malloc(h * sizeof(int *));
+    this->passArr = (int **)malloc(h * sizeof(int *));
     for(int i = 0; i < h; i++) {
-            this->passTab[i] = (int *)malloc(w * sizeof(int));
+            this->passArr[i] = (int *)malloc(w * sizeof(int));
         }
     istringstream *inTemp = InternalFiles::openFileIn(filename);
     for(int i = 0; i < h; i++) {
             for(int j = 0; j < w; j++) {
-                    (*inTemp) >> passTab[i][j];
+                    (*inTemp) >> passArr[i][j];
                 }
         }
     delete(inTemp);
@@ -49,9 +49,9 @@ Map::Map(sf::Texture const& layer1, sf::Texture const& layer2, sf::Texture const
 
 Map::~Map() {
     for(int i = 0; i < h; i++) {
-            free(passTab[i]);
+            free(passArr[i]);
         }
-    free(passTab);
+    free(passArr);
     delete(layer1);
     delete(layer2);
     delete(layer3);
