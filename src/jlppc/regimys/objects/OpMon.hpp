@@ -11,7 +11,7 @@ Contient la d�finition du namepsace CalcCourbes et de la classe OpMon
 
 #include <iostream>
 #include <cmath>
-#include "../enums/Caractere.hpp"
+#include "../enums/Nature.hpp"
 #include "Species.hpp"
 #include "../../utils/Utils.hpp"
 #include "item/Item.hpp"
@@ -62,8 +62,8 @@ class OpMon {
         int statDEFSPE;
         int statSPE;
         //Les autrees stats.
-        int statESQ;
-        float statPRE;
+        int statEVA;
+        float statACC;
         int statHP;
         int statLove;
         //Les variables indiquant le niveau de changement.
@@ -71,13 +71,13 @@ class OpMon {
         int defChange = 0;
         int defSpeChange = 0;
         int atkSpeChange = 0;
-        int esqChange = 0;
-        int preChange = 0;
+        int evaChange = 0;
+        int accChange = 0;
         int speChange = 0;
 
         int level;
 
-        CaractereClass caractere;
+        NatureClass nature;
 
         Attack *attacks[4];
 
@@ -113,7 +113,7 @@ class OpMon {
         virtual ~OpMon();
         //->DontUse
         OpMon() {};
-        OpMon(std::string nickname, Species *species, int level, Attack *attack1, Attack *attack2, Attack *attack3, Attack *attack4, CaractereClass caractere);
+        OpMon(std::string nickname, Species *species, int level, Attack *attack1, Attack *attack2, Attack *attack3, Attack *attack4, NatureClass nature);
         /**
         Merci d'utiliser ce constructeur dans le cadre du chargement et UNIQUEMENT dans ce cas, sinon cela pourrait
         conduire a des bugs. Explication : Ce constructeur est concu pour marcher dans un shema bien particulier.
@@ -148,8 +148,8 @@ class OpMon {
         void attacked(int hpPerdus);
         /**Les methode suivantes modifient les stats en fonction des niveaux. Cela ne modifie pas directement la stat*/
         bool changeATK(int power);
-        bool changePRE(int power);
-        bool changeESQ(int power);
+        bool changeACC(int power);
+        bool changeEVA(int power);
         bool changeDEF(int power);
         bool changeATKSPE(int power);
         bool changeDEFSPE(int power);
@@ -179,11 +179,11 @@ class OpMon {
         Attack **getAttacks() {
             return attacks;
         }
-        int getStatESQ() const {
-            return statESQ;
+        int getStatEVA() const {
+            return statEVA;
         }
-        int getStatPRE() const {
-            return statPRE;
+        int getStatACC() const {
+            return statACC;
         }
         void getEvs(OpMon const &vaincu);
         int getType1() const {
