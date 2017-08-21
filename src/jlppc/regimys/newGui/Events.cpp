@@ -125,7 +125,11 @@ namespace Events {
     }
 
     void CharacterEvent::update(Player &player) {
-
+      using namespace Side;
+      using namespace MoveStyle;
+      if(moveStyle != NO_MOVE){
+	
+      }
     }
 
     void TalkingCharaEvent::action(Player &player) {
