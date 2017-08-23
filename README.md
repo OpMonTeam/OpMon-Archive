@@ -19,7 +19,7 @@ OPMon is a Pokémon-inspired game project imagined in 2012 and started in septem
 * jlppcprog@ntymail.com for bugs, lags or about the code
 * evandib@gmail.com for sprites, the graphics, design or graphics bugs
 * Ask a question in the "F.A.Q" section in this wiki
-* [Discord server](https://discord.gg/QkyCKh5)
+* [Discord server](https://discord.gg/XwyKFzh)
 <br>
 English is not our native language, but we do our best! If you see some errors, don't hesitate to tell us, so we won't make them again!
 
@@ -33,9 +33,11 @@ __The next game version will be Alpha 0.13__ : Event improvements, added new cha
 
 # En Français<a name="enfrancais">
 
-<h3>Bienvenue sur le Projet "OPMon Lazuli"!</h3>
+# Bienvenue sur le Projet "OPMon Lazuli"!
 
-Bienvenue sur le dépot du jeu OPMon Lazuli! Le clone libre de la celebre license de Nintendo !<br/>
+## Bienvenue sur le dépot du jeu OPMon Lazuli! Le clone libre de la celebre license de Nintendo !
+
+<br/>
 <a href="https://github.com/jlppc/OpMon/wiki/Journal-du-développement">Journal de developpement</a><br/>
 <a href="https://github.com/jlppc/OpMon/wiki/Monthly-reports---Bilans-Mensuels/">Bilans mensuels, récapitulatifs de nouveautées</a><br/>
 <a href="http://opmon-game.ga">Site web du jeu</a><br/>
@@ -45,14 +47,15 @@ Bienvenue sur le dépot du jeu OPMon Lazuli! Le clone libre de la celebre licens
 Prochaines versions :<ul>
 <li>Alpha 0.13 : Amelioration des evenements (les objets dans les batiments) et ajout de PNJs</li>
 </ul>
-<a href="https://github.com/jlppc/OpMon/wiki/ROADMAP">Voir la ROADMAP détaillé</a>
+[Voir la ROADMAP détaillée](https://github.com/jlppc/OpMon/wiki/ROADMAP)
 <br/>
 
 <br/>
 <br/>
 <br/>
 
-Informations generales:<br/>
+### Informations generales:
+<br/>
 OpMon vient d'un jeu imaginé en 2012 et débuté en septembre 2016, c'est un clone de la célèbre licence Pokémon, appartenant à Nintendo. 
 Ce jeu est totalement open-source, ce qui permet aux gens de venir realiser leurs rêves les plus fous! 
 Vous pouvez ajouter des OpMons, des attaques, des items, et autres! 
@@ -62,14 +65,14 @@ Nous sommes plusieurs sur le projet : Jlppc, le programmeur et créateur de l'hi
 Contacts : jlppcprog@ntymail.com pour la programmation | evandib@gmail.com pour les graphismes<br/>
 Si vous avez des questions à poser, n'hésitez pas à les demander dans la section F.A.Q. du wiki ou a nous contacter par mail!<br/><br/><br/>
 
-Changelog avant la Alpha 0.05. Pour le reste du changelog après la Alpha 0.07, il est dans la section Releases, sinon il est sur <a href="https://github.com/jlppc/Projet-Pokemon-Regimys/releases">l'ancien dépot</a>. Ces versions étaient en Java a l'époque, et en console.
+Changelog avant la Alpha 0.05. Pour le reste du changelog après la Alpha 0.07, il est dans la section Releases, sinon il est sur [l'ancien dépot](https://github.com/jlppc/Projet-Pokemon-Regimys/releases). Ces versions étaient en Java a l'époque, et en console.
 <ul>
 <li>Alpha 0.04 : Ajout de la gestion des double types</li>
 <li>Alpha 0.03 : Modification du systeme de combat</li>
 <li>Alpha 0.02 : Ajout des status, types, équations de base ect...</li>
 <li>Alpha 0.01 : Creation du systeme de combat de base</li>
 </ul>
-<h2>Screenshot :</h2> 
+## Screenshot : 
 <img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Other/screenshot_2.png" alt="Screenshot"/> 
 
 
