@@ -111,9 +111,12 @@ int tp(int toTp, sf::Vector2i pos, bool scroll) {
 #define UNLOCK_TP  Events::justTP = false;
 void up() {
     if(anim == -1) {
-        startFrames = frames;
+	if(ppDir != TO_UP){
+	  ppDir = TO_UP;
+	  return;
+	}
+	startFrames = frames;
         anim = TO_UP;
-        ppDir = TO_UP;
 
         if(debugMode) {
             UNLOCK_TP
@@ -147,10 +150,13 @@ void up() {
 }
 
 void down() {
-    if(anim == -1) {//Si une animation n'est pas déjà en cours
+    if(anim == -1) {//Si une animation n'est pas dÃ©jÃ  en cours
+	if(ppDir != TO_DOWN){
+	  ppDir = TO_DOWN;
+	  return;
+	}
         startFrames = frames;
         anim = TO_DOWN;
-        ppDir = TO_DOWN;
         if(debugMode) {
             UNLOCK_TP
             moving = TO_DOWN;
@@ -164,7 +170,7 @@ void down() {
             }
         }
         if(ppPosY + 1 < actual->getH() - 1) {
-            if(actual->getPassArr()[(int)(ppPosY + 1) + 1][(int)ppPosX + 1] == 0) {//Vérification des boites de collisions
+            if(actual->getPassArr()[(int)(ppPosY + 1) + 1][(int)ppPosX + 1] == 0) {//VÃ©rification des boites de collisions
                 //TODO : Ensuite faudra faire la verif du passages des events
                 UNLOCK_TP
                 moving = TO_DOWN;
@@ -183,10 +189,13 @@ void down() {
 }
 
 void right() {
-    if(anim == -1) {
-        startFrames = frames;
+    if(anim == -1) {  
+	if(ppDir != TO_RIGHT){
+	  ppDir = TO_RIGHT;
+	  return;
+	}
+	startFrames = frames;
         anim = TO_RIGHT;
-        ppDir = TO_RIGHT;
         if(debugMode) {
             UNLOCK_TP
             moving = TO_RIGHT;
@@ -220,9 +229,12 @@ void right() {
 
 void left() {
     if(anim == -1) {
-        startFrames = frames;
+	if(ppDir != TO_LEFT){
+	  ppDir = TO_LEFT;
+	  return;
+	}
+	startFrames = frames;
         anim = TO_LEFT;
-        ppDir = TO_LEFT;
         if(debugMode) {
             UNLOCK_TP
             moving = TO_LEFT;
@@ -285,7 +297,7 @@ int overworld() {
       if((GET_TICKS - ancientTick >= FPS_TICKS)) {
 	frames++;
 #ifdef DEBUG_REPORT
-	rerrLog << "[FRAME N°" << frames << "]" << endl;
+	rerrLog << "[FRAME NÂ°" << frames << "]" << endl;
 	rerrLog << "Boucle : Normal" << endl;
 	rerrLog << "Tick: " << ticks.getElapsedTime().asMilliseconds() << "ms" << endl;
 	rerrLog << "PlayerPosition: " << ppPosX << " - " << ppPosY << endl;

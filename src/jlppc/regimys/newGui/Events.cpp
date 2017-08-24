@@ -125,11 +125,37 @@ namespace Events {
     }
 
     void CharacterEvent::update(Player &player) {
-      using namespace Side;
-      using namespace MoveStyle;
-      if(moveStyle != NO_MOVE){
-	
+      if(anim == -1){
+	switch(moveStyle){
+	case MoveStyle::PREDEFINED:
+	  predefinedCounter++;
+	  if(predefinedCounter >= movements.size()){
+	    predefinedCounter = 0;
+	  }
+	  move(movements[predefinedCounter]);
+	  break;
+
+	case MoveStyle::NO_MOVE:
+	  break;
+
+	case MoveStyle::RANDOM:
+	  move(Utils::randUI(4));
+	  break;
+
+	case MoveStyle::FOLLOWING:
+	  //TODO
+	  break;
+	}
       }
+
+    }
+
+    void CharacterEvent::move(int direction){
+	if(anim == -1){
+	    startFrames = MainFrame::Overworld::frames;
+	    anim = direction;
+	    this->charaDir = direction;
+	}
     }
 
     void TalkingCharaEvent::action(Player &player) {

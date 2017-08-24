@@ -20,11 +20,5 @@ void Utils::wait(int ticks) {
 }
 
 long Utils::hash(std::string str) {
-    int code = 42;//Life and universe!
-    int othercode = 56;//Get the reference
-    long hash = 12;
-    for(unsigned int i = 0; i < str.size(); i++) {
-            hash += (str[i] * code + (hash/othercode));
-        }
-    return hash;
+  return 0;
 }
