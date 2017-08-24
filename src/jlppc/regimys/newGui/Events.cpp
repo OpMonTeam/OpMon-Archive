@@ -14,7 +14,7 @@ Event::Event(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, i
     position(position), passable(passable), sides(sides) {
     sprite = new sf::Sprite();
     sprite->setTexture(this->baseTexture);
-    sf::Vector2f posMap((position.x+9)*32, (position.y+9)*32);
+    sf::Vector2f posMap((position.x+8)*32, (position.y+8)*32);
     sprite->setPosition(posMap);
 }
 
@@ -42,7 +42,7 @@ namespace Events {
         this->sprite->move(0, -6);
         if(&doorType[0] == &DoorType::SHOP[0]) {
                 this->sprite->move(-4, 0);
-            }
+	}
     }
 
     TalkingEvent::TalkingEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, sf::Vector2f const& position, std::vector<OpString> const& dialogKeys, int sides, int eventTrigger, bool passable):
@@ -96,7 +96,9 @@ namespace Events {
     }
 
     void DoorEvent::action(Player &player) {
-        animStarted = 0;
+      animStarted = 0;
+      doorSound.setVolume(100);
+      doorSound.play();
     }
 
     void DoorEvent::update(Player &player) {
@@ -109,8 +111,6 @@ namespace Events {
                         TPEvent::action(player);
                         animStarted = -1;
                         sprite->setTexture(otherTextures[0]);
-                        doorSound.setVolume(100);
-                        doorSound.play();
                     }
 
             }
@@ -154,7 +154,15 @@ namespace Events {
 	if(anim == -1){
 	    startFrames = MainFrame::Overworld::frames;
 	    anim = direction;
-	    this->charaDir = direction;
+	    charaDir = direction;
+	    switch(direction){
+	    case Side::TO_UP:
+	      if(position.y - 1 >= -1){
+		if(MainFrame::Overworld::actual->getPassArr()[(int)(position.y + 1) - ((position.y + 1 <= 0) ? 0 : 1)][(int)position.x + 1]){
+		  moving = Side::TO_UP;
+		}
+	      }
+	    }
 	}
     }
 
