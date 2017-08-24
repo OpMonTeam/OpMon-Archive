@@ -72,6 +72,7 @@ void initVars() {
     layer2->setTexture(*actual->getLayer2());
     layer3->setTexture(*actual->getLayer3());
     character.setScale(2, 2);
+    character.setOrigin(16, 16);
 }
 
 int tp(int toTp, sf::Vector2i pos, bool scroll) {
@@ -104,6 +105,9 @@ int tp(int toTp, sf::Vector2i pos, bool scroll) {
     layer1->setTexture(*actual->getLayer1());
     layer2->setTexture(*actual->getLayer2());
     layer3->setTexture(*actual->getLayer3());
+    // layer1->move(32, 32);
+    // layer2->move(32, 32);
+    // layer3->move(32, 32);
     tpCount = 0;
     justTp = true;
     return 0;
@@ -130,8 +134,8 @@ void up() {
                 }
             }
         }
-        if(ppPosY - 1 >= -1) {
-            if(actual->getPassArr()[(int)(ppPosY + 1) - ((ppPosY + 1 <= 0) ? 0 : 1)][(int)ppPosX + 1] == 0) {
+        if(ppPosY - 1 >= 0) {
+	  if(actual->getPassArr()[(int)(ppPosY -1)][(int)ppPosX] == 0) {
                 //Ensuite faudra faire la verif du passages des events
                 UNLOCK_TP
                 moving = TO_UP;
@@ -169,8 +173,8 @@ void down() {
                 }
             }
         }
-        if(ppPosY + 1 < actual->getH() - 1) {
-            if(actual->getPassArr()[(int)(ppPosY + 1) + 1][(int)ppPosX + 1] == 0) {//VÃ©rification des boites de collisions
+        if(ppPosY + 1 < actual->getH()) {
+	  if(actual->getPassArr()[(int)(ppPosY + 1)][(int)ppPosX] == 0) {//VÃ©rification des boites de collisions
                 //TODO : Ensuite faudra faire la verif du passages des events
                 UNLOCK_TP
                 moving = TO_DOWN;
@@ -208,8 +212,8 @@ void right() {
                 }
             }
         }
-        if(ppPosX + 1 < actual->getW() - 1) {
-            if(actual->getPassArr()[(int)(ppPosY + 1)][(int)(ppPosX + 1) + 1] == 0 || actual->getPassArr()[(int)(ppPosY + 1)][(int)(ppPosX + 1) + 1] == 5) {
+        if(ppPosX + 1 < actual->getW()) {
+	  if(actual->getPassArr()[(int)(ppPosY)][(int)(ppPosX + 1)] == 0 || actual->getPassArr()[(int)(ppPosY)][(int)(ppPosX + 1)] == 5) {
                 //Ensuite faudra faire la verif du passages des events
                 UNLOCK_TP
                 moving = TO_RIGHT;
@@ -248,8 +252,8 @@ void left() {
             }
             return;
         }
-        if(ppPosX - 1 >= -1) {
-            if(actual->getPassArr()[(int)(ppPosY + 1)][(int)(ppPosX + 1) - ((ppPosX + 1 <= 0) ? 0 : 1)] == 0) {
+        if(ppPosX - 1 >= 0) {
+	  if(actual->getPassArr()[(int)(ppPosY)][(int)(ppPosX - 1)] == 0) {
                 //Ensuite faudra faire la verif du passages des events
                 UNLOCK_TP
                 moving = TO_LEFT;
@@ -296,15 +300,18 @@ int overworld() {
     while(continuer) {
       if((GET_TICKS - ancientTick >= FPS_TICKS)) {
 	frames++;
+	#define DEBUG_REPORT
 #ifdef DEBUG_REPORT
-	rerrLog << "[FRAME NÂ°" << frames << "]" << endl;
-	rerrLog << "Boucle : Normal" << endl;
-	rerrLog << "Tick: " << ticks.getElapsedTime().asMilliseconds() << "ms" << endl;
-	rerrLog << "PlayerPosition: " << ppPosX << " - " << ppPosY << endl;
-	rerrLog << "Moving: " << moving << endl;
-	rerrLog << "Anim: " << anim << endl;
-	rerrLog << "PlayerDirection: " << ppDir << endl;
-	rerrLog << "DebugMode: " << debugMode << endl;
+	cout << "[FRAME N°" << frames << "]" << endl;
+	cout << "Boucle : Normal" << endl;
+	cout << "Tick: " << ticks.getElapsedTime().asMilliseconds() << "ms" << endl;
+	cout << "PlayerPosition: " << ppPosX << " - " << ppPosY << endl;
+	cout << "PlayerPositionPx: " << character.getPosition().x << " - " << character.getPosition().y << endl;
+	cout << "Moving: " << moving << endl;
+	cout << "Anim: " << anim << endl;
+	cout << "PlayerDirection: " << ppDir << endl;
+	cout << "DebugMode: " << debugMode << endl;
+	cout << "MapPos: " << layer1->getPosition().x << " - " << layer1->getPosition().y << endl;
 #endif
 
 	//cout << "Position perso : P(" << ppPosX << ";" << ppPosY << ")" << endl;

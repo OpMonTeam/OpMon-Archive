@@ -995,18 +995,18 @@ namespace Initializer {
 #endif
     maps.push_back(new Map(*layer1, *layer2, *layer3, 32, 32, "colFe", townMusics[0], feElements, feEPos));
     std::vector<OpString> feE1 {OpString("fedesc.1"), OpString("fedesc.2"), OpString("fedesc.3")};
-    maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(10, 1), feE1, SIDE_UP));
+    maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(11, 2), feE1, SIDE_UP));
     std::vector<OpString> feE2 {OpString("ppHouse", Main::player.getNameP()), OpString::voidStr, OpString::voidStr};
-    maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(20, 7), feE2, SIDE_UP));
+    maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(21, 8), feE2, SIDE_UP));
     std::vector<OpString> feE3 {OpString("rivalHouse"), OpString::voidStr, OpString::voidStr};
-    maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(24, 7), feE3, SIDE_UP));
+    maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(25, 8), feE3, SIDE_UP));
     std::vector<OpString> feE4 {OpString("labo"), OpString::voidStr, OpString::voidStr};
-    maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(13, 19), feE4, SIDE_UP));
+    maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(14, 20), feE4, SIDE_UP));
     std::vector<OpString> feE5 {OpString("weirdsign.1"), OpString("weirdsign.2"), OpString::voidStr};
-    maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(22, 19), feE5, SIDE_UP));
-    maps[0]->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(18, 7), sf::Vector2i(7, 14), 1));
-    maps[0]->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(26, 7), sf::Vector2i(8, 14), 3));
-    maps[0]->addEvent(new Events::DoorEvent(Events::DoorType::SHOP, sf::Vector2f(18, 19), sf::Vector2i(15, 14), 2));
+    maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(23, 20), feE5, SIDE_UP));
+    maps[0]->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(19, 8), sf::Vector2i(8, 15), 1));
+    maps[0]->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(27, 8), sf::Vector2i(9, 15), 3));
+    maps[0]->addEvent(new Events::DoorEvent(Events::DoorType::SHOP, sf::Vector2f(19, 20), sf::Vector2i(16, 15), 2));
     PLANS_RESET
 #ifdef _WIN32
       layer1->loadFromFile(RESSOURCES_PATH + "maps\\pphome\\pphome1.png");
@@ -1018,9 +1018,9 @@ namespace Initializer {
     layer3->loadFromFile(RESSOURCES_PATH +"maps/pphome/pphome3.png");
 #endif
     maps.push_back(new Map(*layer1, *layer2, *layer3, 16, 16, "colPPhome", townMusics[0]));
-    maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(6, 14), sf::Vector2i(19, 8), 0, Side::TO_DOWN, SIDE_DOWN));
-    maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(14, 1), sf::Vector2i(8, 4), 5, Side::TO_LEFT, SIDE_RIGHT));
-    maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(-1, 10), sf::Vector2i(5, 2), 4, Side::TO_LEFT, SIDE_LEFT));
+    maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(7, 15), sf::Vector2i(20, 9), 0, Side::TO_DOWN, SIDE_DOWN));
+    maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(15, 2), sf::Vector2i(9, 5), 5, Side::TO_LEFT, SIDE_RIGHT));
+    maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(0, 11), sf::Vector2i(6, 3), 4, Side::TO_LEFT, SIDE_LEFT));
     PLANS_RESET
       townMusics.push_back(new sf::Music());
 #ifdef _WIN32
@@ -1035,7 +1035,7 @@ namespace Initializer {
     townMusics[1]->openFromFile(RESSOURCES_PATH + "audio/music/intro.ogg");
 #endif // _WIN32
     maps.push_back(new Map(*layer1, *layer2, *layer3, 32, 16, "colLabo", townMusics[1]));
-    maps[2]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(14, 14), sf::Vector2i(19, 20), 0, Side::TO_DOWN, SIDE_DOWN));
+    maps[2]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(15, 15), sf::Vector2i(21, 22), 0, Side::TO_DOWN, SIDE_DOWN));
     PLANS_RESET
 #ifdef _WIN32
       layer1->loadFromFile(RESSOURCES_PATH + "maps\\rivalhome\\rivalhome1.png");
@@ -1047,7 +1047,7 @@ namespace Initializer {
     layer3->loadFromFile(RESSOURCES_PATH + "maps/rivalhome/rivalhome3.png");
 #endif // _WIN32
     maps.push_back(new Map(*layer1, *layer2, *layer3, 16, 16, "colRivalhome", townMusics[0]));
-    maps[3]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(7, 14), sf::Vector2i(27, 8), 0, Side::TO_DOWN, SIDE_DOWN));
+    maps[3]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(8, 15), sf::Vector2i(28, 9), 0, Side::TO_DOWN, SIDE_DOWN));
     PLANS_RESET
 #ifdef _WIN32
       layer1->loadFromFile(RESSOURCES_PATH + "maps\\momroom\\momroom1.png");
@@ -1059,7 +1059,7 @@ namespace Initializer {
     layer3->loadFromFile(RESSOURCES_PATH + "maps/momroom/momroom3.png");
 #endif // _WIN32
     maps.push_back(new Map(*layer1, *layer2, *layer3, 6, 6, "colMomroom", townMusics[0]));
-    maps[4]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(4, 2), sf::Vector2i(0, 10), 1, Side::TO_RIGHT, SIDE_RIGHT));
+    maps[4]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(5, 3), sf::Vector2i(1, 11), 1, Side::TO_RIGHT, SIDE_RIGHT));
     PLANS_RESET
 #ifdef _WIN32
     layer1->loadFromFile(RESSOURCES_PATH + "maps\\pproom\\pproom1.png");
@@ -1071,7 +1071,7 @@ namespace Initializer {
     layer3->loadFromFile(RESSOURCES_PATH + "maps/pproom/pproom3.png");
 #endif // _WIN32
     maps.push_back(new Map(*layer1, *layer2, *layer3, 9, 6, "colPProom", townMusics[0]));
-    maps[5]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(7, 4), sf::Vector2i(15, 1), 1, Side::TO_LEFT, SIDE_RIGHT));
+    maps[5]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(8, 5), sf::Vector2i(16, 2), 1, Side::TO_LEFT, SIDE_RIGHT));
     //PLANS_RESET
 
       delete(layer1);
