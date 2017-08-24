@@ -147,6 +147,7 @@ namespace Events {
 	//}
 
 	unsigned int predefinedCounter = 0;
+	int animsCounter = 0;
 	//ExpectEnum->Side
 	std::vector<int> movements;
 
@@ -156,7 +157,7 @@ namespace Events {
         public:
 	CharacterEvent(std::vector<sf::Texture> charTextures, sf::Vector2f const& position, int moveStyle = 0, int eventTrigger = 0, bool passable = false, int sides = SIDE_ALL);
 	virtual void update(Player &player);
-	virtual void action(Player &player) = 0;
+      virtual void action(Player &player){};
 	void setPredefinedMove(std::vector<int> movement);
 	void move(int direction);
     };

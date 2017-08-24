@@ -54,7 +54,7 @@ void initVars() {
     actual =  Initializer::maps[5];
     character = Main::player.getSprite();
     character.setTexture(Initializer::texturePP[TO_DOWN]);
-    character.setPosition(8 CASES + 1 CASES - 16, 8 CASES + 1 CASES);
+    character.setPosition(8 CASES + 2 CASES - 16, 8 CASES + 2 CASES);
     camera.setCenter(character.getPosition());
     camera.setSize(sf::Vector2f(16 CASES, 16 CASES));
     ppDir = TO_UP;
@@ -393,7 +393,7 @@ int overworld() {
 	  debugText.setString("Debug mode");
 	  debugText.setPosition(frame.mapPixelToCoords(sf::Vector2i(0, 0)));
 	  debugText.setFont(font);
-	  debugText.setColor(sf::Color::Black);
+	  debugText.setColor(sf::Color(127, 127, 127));
 	  debugText.setCharacterSize(40);
 	}
 

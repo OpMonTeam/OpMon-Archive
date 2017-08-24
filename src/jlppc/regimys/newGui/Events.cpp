@@ -5,13 +5,16 @@
 
 UNS
 
-Event::~Event() {
+    Event::~Event() {
     delete(sprite);
 }
 
 Event::Event(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2f const& position, int sides, bool passable) :
     baseTexture(baseTexture), otherTextures(otherTextures), eventTrigger(eventTrigger),
-    position(position), passable(passable), sides(sides) {
+    position(position),
+    passable(passable),
+    sides(sides)
+{
     sprite = new sf::Sprite();
     sprite->setTexture(this->baseTexture);
     sf::Vector2f posMap((position.x+8)*32, (position.y+8)*32);
@@ -28,31 +31,31 @@ namespace Events {
     sf::Sound shopdoorSound;
 
     namespace DoorType {
-        std::vector<sf::Texture> NORMAL, SHOP;
+	std::vector<sf::Texture> NORMAL, SHOP;
     }
 
     TPEvent::TPEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2f const& position, sf::Vector2i const& tpPos, int mapID, int ppDir, int sides, bool passable):
-        Event(baseTexture, otherTextures, eventTrigger, position, sides, passable), tpCoord(tpPos), mapID(mapID), ppDir(ppDir) {
+	Event(baseTexture, otherTextures, eventTrigger, position, sides, passable), tpCoord(tpPos), mapID(mapID), ppDir(ppDir) {
 
     }
 
     DoorEvent::DoorEvent(std::vector<sf::Texture> &doorType, sf::Vector2f const& position, sf::Vector2i const& tpPos, int mapID, int eventTrigger, int ppDir, int sides, bool passable):
-        Event(doorType[0], doorType, eventTrigger, position, sides, passable),
-        TPEvent(doorType[0], doorType, eventTrigger, position, tpPos, mapID, ppDir, sides, passable) {
-        this->sprite->move(0, -6);
-        if(&doorType[0] == &DoorType::SHOP[0]) {
-                this->sprite->move(-4, 0);
+	Event(doorType[0], doorType, eventTrigger, position, sides, passable),
+	TPEvent(doorType[0], doorType, eventTrigger, position, tpPos, mapID, ppDir, sides, passable) {
+	this->sprite->move(0, -6);
+	if(&doorType[0] == &DoorType::SHOP[0]) {
+	    this->sprite->move(-4, 0);
 	}
     }
 
     TalkingEvent::TalkingEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, sf::Vector2f const& position, std::vector<OpString> const& dialogKeys, int sides, int eventTrigger, bool passable):
-        Event(baseTexture, otherTextures, eventTrigger, position, sides, passable), dialogKeys(dialogKeys) {
-        this->reloadKeys();
+	Event(baseTexture, otherTextures, eventTrigger, position, sides, passable), dialogKeys(dialogKeys) {
+	this->reloadKeys();
     }
 
     void TalkingEvent::reloadKeys() {
-        dialogs.clear();
-        FOR_EACH(OpString, this->dialogKeys, (int) this->dialogKeys.size(), {)
+	dialogs.clear();
+	FOR_EACH(OpString, this->dialogKeys, (int) this->dialogKeys.size(), {)
                  dialogs.push_back(currentObj->getString());
         }
     }
@@ -68,7 +71,11 @@ namespace Events {
     CharacterEvent::CharacterEvent(std::vector<sf::Texture> charTextures, sf::Vector2f const& position, int moveStyle, int eventTrigger, bool passable, int sides):
         Event(charTextures[0], charTextures, eventTrigger, position, sides, passable),
         moveStyle(moveStyle) {
-
+      sprite->setScale(2, 2);
+      sprite->setOrigin(16, 16);
+      sf::Vector2f posMap((position.x+8)*32, (position.y+8)*32);
+      sprite->setPosition(posMap);
+      
     }
 
     TalkingCharaEvent::TalkingCharaEvent(std::vector<sf::Texture> charTextures, sf::Vector2f const& position, std::vector<OpString> const& dialogKeys, int eventTrigger, int moveStyle, bool passable, int sides):
@@ -78,7 +85,7 @@ namespace Events {
 
     }
 
-//les actions
+//Actions
 
     void TPEvent::action(Player &player) {
         if(!justTP) {
@@ -147,6 +154,85 @@ namespace Events {
 	  break;
 	}
       }
+      if(anim != -1 && !anims){
+	sprite->setTexture(otherTextures[4 + anim]);
+	animsCounter++;
+	anims = animsCounter > 8;
+      }else if(anim != -1 && anims){
+	sprite->setTexture(otherTextures[8 + anim]);
+	animsCounter++;
+	if(animsCounter > 16){
+	    anims = false;
+	    animsCounter = 0;
+	}
+      }else if(anim == -1){
+	  sprite->setTexture(otherTextures[anim]);
+      }
+      MainFrame::frame.draw(*sprite);
+
+      using namespace Side;
+      
+      switch(anim){
+      case Side::TO_UP:
+	if(MainFrame::Overworld::frames - startFrames >= 7){
+	  if(moving == TO_UP){
+	    sprite->move(0, -4);
+	  }
+	  anim = -1;
+	  moving = -1;
+	}else{
+	  if(moving == TO_UP){
+	    sprite->move(0, -4);
+	  }
+	}
+	break;
+      
+      
+      case Side::TO_DOWN:
+	if(MainFrame::Overworld::frames - startFrames >= 7){
+	  if(moving == TO_DOWN){
+	    sprite->move(0, 4);
+	  }
+	  anim = -1;
+	  moving = -1;
+	}else{
+	  if(moving == TO_DOWN){
+	    sprite->move(0, 4);
+	  }
+	}
+	break;
+
+	
+      case Side::TO_LEFT:
+	if(MainFrame::Overworld::frames - startFrames >= 7){
+	  if(moving == TO_LEFT){
+	    sprite->move(-4, 0);
+	  }
+	  anim = -1;
+	  moving = -1;
+	}else{
+	  if(moving == TO_LEFT){
+	    sprite->move(-4, 0);
+	  }
+	}
+	break;
+
+	
+      case Side::TO_RIGHT:
+	if(MainFrame::Overworld::frames - startFrames >= 7){
+	  if(moving == TO_RIGHT){
+	    sprite->move(4, 0);
+	  }
+	  anim = -1;
+	  moving = -1;
+	}else{
+	  if(moving == TO_RIGHT){
+	    sprite->move(4, 0);
+	  }
+	}
+	break;
+      }
+      
 
     }
 
@@ -157,11 +243,35 @@ namespace Events {
 	    charaDir = direction;
 	    switch(direction){
 	    case Side::TO_UP:
-	      if(position.y - 1 >= -1){
-		if(MainFrame::Overworld::actual->getPassArr()[(int)(position.y + 1) - ((position.y + 1 <= 0) ? 0 : 1)][(int)position.x + 1]){
+	      if(position.y - 1 >= 0){
+		if(MainFrame::Overworld::actual->getPassArr()[(int)position.y - 1][(int)position.x]){
 		  moving = Side::TO_UP;
 		}
 	      }
+	      break;
+	    case Side::TO_DOWN:
+	      if(position.y + 1 < MainFrame::Overworld::actual->getH()){
+		if(MainFrame::Overworld::actual->getPassArr()[(int)position.y + 1][(int)position.x]){
+		  moving = Side::TO_DOWN;
+		}
+	      }
+	      break;
+	      
+	    case Side::TO_RIGHT:
+	      if(position.x + 1 < MainFrame::Overworld::actual->getW()){
+		if(MainFrame::Overworld::actual->getPassArr()[(int)position.y][(int)position.x + 1]){
+		  moving = Side::TO_RIGHT;
+		}
+	      }
+	      break;
+	      
+	    case Side::TO_LEFT:
+	      if(position.x - 1 >= 0){
+		if(MainFrame::Overworld::actual->getPassArr()[(int)position.y][(int)position.x - 1]){
+		  moving = Side::TO_LEFT;
+		}
+	      }
+	      break;
 	    }
 	}
     }
