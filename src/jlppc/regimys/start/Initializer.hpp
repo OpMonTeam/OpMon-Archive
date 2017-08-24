@@ -30,8 +30,8 @@ namespace Initializer {
     extern std::vector<Map *> maps;
     extern std::vector<sf::Music *> townMusics;
     extern sf::Texture texturePP[4];
-    extern sf::Texture marchePP[4];
-    extern sf::Texture marchePP2[4];
+    extern sf::Texture walkingPP[4];
+    extern sf::Texture walkingPP2[4];
     extern sf::Texture mapsFe[3];
 
     extern std::vector<std::vector<sf::Texture> > doorsTextures;

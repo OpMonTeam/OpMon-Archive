@@ -36,8 +36,8 @@ class Player {
         void setName(std::string const &name) {
             this->name = name;
         }
-        int getDressID() const {
-            return dressID;
+        int getTrainerID() const {
+            return trainerID;
         }
         void addOpMonToPC(OpMon *toAdd) {
             pc.push_back(toAdd);
@@ -81,7 +81,7 @@ class Player {
         bool gameIsOver = false;
     private:
         std::string name;
-        const unsigned int dressID;//jusqu'a 8 chiffres (Hexadecimal) (jusqu'a 16^8 soit 4 octets soit un int)
+        const unsigned int trainerID;//jusqu'a 8 chiffres (Hexadecimal) (jusqu'a 16^8 soit 4 octets soit un int)
         int bag[ITEM_NUMBER];
         std::vector<OpMon *> pc = std::vector<OpMon *>();
         OpTeam opteam = OpTeam("temp");
