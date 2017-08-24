@@ -15,7 +15,7 @@ Contient le namespace Overworld
 
 namespace MainFrame {
     /**
-    Contient les éléments fonctionnels de l'overworld
+    Contient les Ã©lÃ©ments fonctionnels de l'overworld
     */
     namespace Overworld {
         void initVars();
@@ -35,6 +35,8 @@ namespace MainFrame {
         extern sf::View camera;
         extern sf::Sprite *maps[3];
         extern sf::Music *music;
+
+	extern int frames;
 
 
     }
