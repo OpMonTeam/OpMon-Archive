@@ -846,8 +846,8 @@ namespace Initializer {
        */
   }
   sf::Texture texturePP[4];
-  sf::Texture marchePP[4];
-  sf::Texture marchePP2[4];
+  sf::Texture walkingPP[4];
+  sf::Texture walkingPP2[4];
   void initTextures() {
     using namespace Side;
 #ifdef _WIN32
@@ -855,14 +855,14 @@ namespace Initializer {
     texturePP[TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\pp1.png");
     texturePP[TO_LEFT].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\pp2.png");
     texturePP[TO_UP].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\pp3.png");
-    marchePP[TO_DOWN].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp0.png");
-    marchePP[TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp1.png");
-    marchePP[TO_LEFT].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp2.png");
-    marchePP[TO_UP].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp3.png");
-    marchePP2[TO_DOWN].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp20.png");
-    marchePP2[TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp21.png");
-    marchePP2[TO_LEFT].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp22.png");
-    marchePP2[TO_UP].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp23.png");
+    walkingPP[TO_DOWN].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp0.png");
+    walkingPP[TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp1.png");
+    walkingPP[TO_LEFT].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp2.png");
+    walkingPP[TO_UP].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp3.png");
+    walkingPP2[TO_DOWN].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp20.png");
+    walkingPP2[TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp21.png");
+    walkingPP2[TO_LEFT].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp22.png");
+    walkingPP2[TO_UP].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp23.png");
 
     std::vector<sf::Texture> basicDoor;
     for(unsigned int i = 0; i < 4; i++) {
@@ -889,14 +889,14 @@ namespace Initializer {
     texturePP[TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp1.png");
     texturePP[TO_LEFT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp2.png");
     texturePP[TO_UP].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp3.png");
-    marchePP[TO_DOWN].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp0.png");
-    marchePP[TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp1.png");
-    marchePP[TO_LEFT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp2.png");
-    marchePP[TO_UP].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp3.png");
-    marchePP2[TO_DOWN].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp20.png");
-    marchePP2[TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp21.png");
-    marchePP2[TO_LEFT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp22.png");
-    marchePP2[TO_UP].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp23.png");
+    walkingPP[TO_DOWN].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp0.png");
+    walkingPP[TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp1.png");
+    walkingPP[TO_LEFT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp2.png");
+    walkingPP[TO_UP].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp3.png");
+    walkingPP2[TO_DOWN].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp20.png");
+    walkingPP2[TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp21.png");
+    walkingPP2[TO_LEFT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp22.png");
+    walkingPP2[TO_UP].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp23.png");
 
     std::vector<sf::Texture> basicDoor;
     for(unsigned int i = 0; i < 4; i++) {

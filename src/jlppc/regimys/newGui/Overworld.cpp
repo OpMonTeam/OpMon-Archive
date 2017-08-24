@@ -387,12 +387,12 @@ int overworld() {
 	}
 	actual->updateEvents(Main::player);
 	if(anim != -1 && !anims) {
-	  character.setTexture(Initializer::marchePP[anim]);
+	  character.setTexture(Initializer::walkingPP[anim]);
 	  animsCounter++;
 	  anims = animsCounter > 8;
 
 	} else if(anim != -1 && anims) {
-	  character.setTexture(Initializer::marchePP2[anim]);
+	  character.setTexture(Initializer::walkingPP2[anim]);
 	  animsCounter++;
 	  if(animsCounter > 16) {
 	    anims = false;
@@ -601,10 +601,10 @@ int boucleDialog(vector<sf::String> const& dialogs) {
                 frame.draw(*event->getSprite());
             }
             if(anim != -1 && !anims) {
-                character.setTexture(Initializer::marchePP[anim]);
+                character.setTexture(Initializer::walkingPP[anim]);
                 animsCounter++;
             } else if(anim != -1 && anims) {
-                character.setTexture(Initializer::marchePP2[anim]);
+                character.setTexture(Initializer::walkingPP2[anim]);
                 animsCounter++;
             } else if(anim == -1) {
                 character.setTexture(Initializer::texturePP[ppDir]);
