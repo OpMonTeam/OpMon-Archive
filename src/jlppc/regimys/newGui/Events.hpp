@@ -141,7 +141,7 @@ namespace Events {
 	//ExpectEnum->MoveStyle
 	int moveStyle;
 	//ExpectEnum->Side{
-	int charaDir = -1;
+      int charaDir = Side::TO_DOWN;
 	int anim = -1;
 	int moving = -1;
 	//}
