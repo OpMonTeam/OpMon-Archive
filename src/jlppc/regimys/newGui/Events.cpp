@@ -249,6 +249,11 @@ namespace Events {
 	      if(position.y - 1 >= 0){
 		if(MainFrame::Overworld::actual->getPassArr()[(int)position.y - 1][(int)position.x] == 0){
 		  if(!(position.y - 1 == player.getPosY() && position.x == player.getPosX())){
+		    for(Event *nextEvent : MainFrame::Overworld::actual->getEvent(sf::Vector2i(position.x, position.y - 1))){
+		      if(!nextEvent->isPassable()){
+			return;
+		      }
+		    }
 		    moving = Side::TO_UP;
 		    position.y--;
 		  }else if(moveStyle == MoveStyle::PREDEFINED){
@@ -262,6 +267,11 @@ namespace Events {
 	      if(position.y + 1 < MainFrame::Overworld::actual->getH()){
 		if(MainFrame::Overworld::actual->getPassArr()[(int)position.y + 1][(int)position.x] == 0){
 		  if(!(position.y + 1 == player.getPosY() && position.x == player.getPosX())){
+		    for(Event *nextEvent : MainFrame::Overworld::actual->getEvent(sf::Vector2i(position.x, position.y + 1))){
+		      if(!nextEvent->isPassable()){
+			return;
+		      }
+		    }
 		    moving = Side::TO_DOWN;
 		    position.y++;
 		  }else if(moveStyle == MoveStyle::PREDEFINED){
@@ -276,6 +286,11 @@ namespace Events {
 	      if(position.x + 1 < MainFrame::Overworld::actual->getW()){
 		if(MainFrame::Overworld::actual->getPassArr()[(int)position.y][(int)position.x + 1] == 0){
 		  if(!(position.x + 1 == player.getPosX() && position.y == player.getPosY())){
+		    for(Event *nextEvent : MainFrame::Overworld::actual->getEvent(sf::Vector2i(position.x + 1, position.y))){
+		      if(!nextEvent->isPassable()){
+			return;
+		      }
+		    }
 		    moving = Side::TO_RIGHT;
 		    position.x++;
 		  }else if(moveStyle == MoveStyle::PREDEFINED){
@@ -290,6 +305,11 @@ namespace Events {
 	      if(position.x - 1 >= 0){
 		if(MainFrame::Overworld::actual->getPassArr()[(int)position.y][(int)position.x - 1] == 0){
 		  if(!(position.x - 1 == player.getPosX() && position.y == player.getPosY())){
+		    for(Event *nextEvent : MainFrame::Overworld::actual->getEvent(sf::Vector2i(position.x - 1, position.y))){
+		      if(!nextEvent->isPassable()){
+			return;
+		      }
+		    }
 		    moving = Side::TO_LEFT;
 		    position.x--;
 		  }else if(moveStyle == MoveStyle::PREDEFINED){
