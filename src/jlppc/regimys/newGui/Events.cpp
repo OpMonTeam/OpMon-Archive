@@ -143,14 +143,14 @@ namespace Events {
 	  }
 	  cout << movements.size() << endl;
 	  cout << predefinedCounter << endl;
-	  move(movements[predefinedCounter]);
+	  move(movements[predefinedCounter], player);
 	  break;
 
 	case MoveStyle::NO_MOVE:
 	  break;
 
 	case MoveStyle::RANDOM:
-	  move(Utils::randUI(5) - 1);
+	  move(Utils::randUI(5) - 1, player);
 	  break;
 
 	case MoveStyle::FOLLOWING:
@@ -234,15 +234,12 @@ namespace Events {
 	  }
 	}
 	break;
-      }
-
-      position.x = (((sprite->getPosition().x - 16) / 32) - 8);
-      position.y = ((sprite->getPosition().y / 32) - 8);
+      };
       
 
     }
 
-    void CharacterEvent::move(int direction){
+  void CharacterEvent::move(int direction, Player& player){
       if(anim == -1 && direction != -1){
 	    startFrames = frames;
 	    anim = direction;
@@ -251,14 +248,26 @@ namespace Events {
 	    case Side::TO_UP:
 	      if(position.y - 1 >= 0){
 		if(MainFrame::Overworld::actual->getPassArr()[(int)position.y - 1][(int)position.x] == 0){
-		  moving = Side::TO_UP;
+		  if(!(position.y - 1 == player.getPosY() && position.x == player.getPosX())){
+		    moving = Side::TO_UP;
+		    position.y--;
+		  }else if(moveStyle == MoveStyle::PREDEFINED){
+		    predefinedCounter--;
+		  }
+
 		}
 	      }
 	      break;
 	    case Side::TO_DOWN:
 	      if(position.y + 1 < MainFrame::Overworld::actual->getH()){
 		if(MainFrame::Overworld::actual->getPassArr()[(int)position.y + 1][(int)position.x] == 0){
-		  moving = Side::TO_DOWN;
+		  if(!(position.y + 1 == player.getPosY() && position.x == player.getPosX())){
+		    moving = Side::TO_DOWN;
+		    position.y++;
+		  }else if(moveStyle == MoveStyle::PREDEFINED){
+		    predefinedCounter--;
+		  }
+		  
 		}
 	      }
 	      break;
@@ -266,7 +275,13 @@ namespace Events {
 	    case Side::TO_RIGHT:
 	      if(position.x + 1 < MainFrame::Overworld::actual->getW()){
 		if(MainFrame::Overworld::actual->getPassArr()[(int)position.y][(int)position.x + 1] == 0){
-		  moving = Side::TO_RIGHT;
+		  if(!(position.x + 1 == player.getPosX() && position.y == player.getPosY())){
+		    moving = Side::TO_RIGHT;
+		    position.x++;
+		  }else if(moveStyle == MoveStyle::PREDEFINED){
+		    predefinedCounter--;
+		  }
+											     
 		}
 	      }
 	      break;
@@ -274,7 +289,13 @@ namespace Events {
 	    case Side::TO_LEFT:
 	      if(position.x - 1 >= 0){
 		if(MainFrame::Overworld::actual->getPassArr()[(int)position.y][(int)position.x - 1] == 0){
-		  moving = Side::TO_LEFT;
+		  if(!(position.x - 1 == player.getPosX() && position.y == player.getPosY())){
+		    moving = Side::TO_LEFT;
+		    position.x--;
+		  }else if(moveStyle == MoveStyle::PREDEFINED){
+		    predefinedCounter--;
+		  }
+
 		}
 	      }
 	      break;
