@@ -73,7 +73,7 @@ namespace Events {
         moveStyle(moveStyle) {
       sprite->setScale(2, 2);
       sprite->setOrigin(16, 16);
-      sf::Vector2f posMap((position.x+8)*32, (position.y+8)*32);
+      sf::Vector2f posMap(((position.x+8)*32) + 16, (position.y+8)*32);
       sprite->setPosition(posMap);
       
     }
@@ -146,7 +146,7 @@ namespace Events {
 	  break;
 
 	case MoveStyle::RANDOM:
-	  move(Utils::randUI(4));
+	  move(Utils::randUI(5) - 1);
 	  break;
 
 	case MoveStyle::FOLLOWING:
@@ -166,7 +166,7 @@ namespace Events {
 	    animsCounter = 0;
 	}
       }else if(anim == -1){
-	  sprite->setTexture(otherTextures[anim]);
+	  sprite->setTexture(otherTextures[charaDir]);
       }
       MainFrame::frame.draw(*sprite);
 
@@ -232,26 +232,29 @@ namespace Events {
 	}
 	break;
       }
+
+      position.x = (((sprite->getPosition().x - 16) / 32) - 8);
+      position.y = ((sprite->getPosition().y / 32) - 8);
       
 
     }
 
     void CharacterEvent::move(int direction){
-	if(anim == -1){
+      if(anim == -1 && direction != -1){
 	    startFrames = MainFrame::Overworld::frames;
 	    anim = direction;
 	    charaDir = direction;
 	    switch(direction){
 	    case Side::TO_UP:
 	      if(position.y - 1 >= 0){
-		if(MainFrame::Overworld::actual->getPassArr()[(int)position.y - 1][(int)position.x]){
+		if(MainFrame::Overworld::actual->getPassArr()[(int)position.y - 1][(int)position.x] == 0){
 		  moving = Side::TO_UP;
 		}
 	      }
 	      break;
 	    case Side::TO_DOWN:
 	      if(position.y + 1 < MainFrame::Overworld::actual->getH()){
-		if(MainFrame::Overworld::actual->getPassArr()[(int)position.y + 1][(int)position.x]){
+		if(MainFrame::Overworld::actual->getPassArr()[(int)position.y + 1][(int)position.x] == 0){
 		  moving = Side::TO_DOWN;
 		}
 	      }
@@ -259,7 +262,7 @@ namespace Events {
 	      
 	    case Side::TO_RIGHT:
 	      if(position.x + 1 < MainFrame::Overworld::actual->getW()){
-		if(MainFrame::Overworld::actual->getPassArr()[(int)position.y][(int)position.x + 1]){
+		if(MainFrame::Overworld::actual->getPassArr()[(int)position.y][(int)position.x + 1] == 0){
 		  moving = Side::TO_RIGHT;
 		}
 	      }
@@ -267,12 +270,16 @@ namespace Events {
 	      
 	    case Side::TO_LEFT:
 	      if(position.x - 1 >= 0){
-		if(MainFrame::Overworld::actual->getPassArr()[(int)position.y][(int)position.x - 1]){
+		if(MainFrame::Overworld::actual->getPassArr()[(int)position.y][(int)position.x - 1] == 0){
 		  moving = Side::TO_LEFT;
 		}
 	      }
 	      break;
+	      default:
+		break;
 	    }
+
+	
 	}
     }
 
