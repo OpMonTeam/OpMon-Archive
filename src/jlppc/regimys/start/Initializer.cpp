@@ -1026,17 +1026,18 @@ namespace Initializer {
     maps[0]->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(27, 8), sf::Vector2i(9, 15), 3));
     maps[0]->addEvent(new Events::DoorEvent(Events::DoorType::SHOP, sf::Vector2f(19, 20), sf::Vector2i(16, 15), 2));
     std::vector<int> pathChara1;
-    pathChara1.push_back(Side::TO_DOWN);
-    pathChara1.push_back(Side::TO_DOWN);
-    pathChara1.push_back(Side::TO_RIGHT);
-    pathChara1.push_back(Side::TO_RIGHT);
-    pathChara1.push_back(Side::TO_UP);
-    pathChara1.push_back(Side::TO_UP);
-    pathChara1.push_back(Side::TO_LEFT);
-    pathChara1.push_back(Side::TO_LEFT);
-    for(unsigned int i = 0; i < 1000; i++){
-      maps[0]->addEvent(new Events::CharacterEvent(kidTextures, sf::Vector2f(Utils::randU(31), Utils::randU(31)), Events::MoveStyle::RANDOM));
-    }
+    for(int i = 0; i < 10; i++)
+      pathChara1.push_back(Side::TO_RIGHT);
+
+    pathChara1.push_back(-1);
+    
+    for(int i = 0; i < 10; i++)
+      pathChara1.push_back(Side::TO_LEFT);
+
+    pathChara1.push_back(-1);
+    
+    maps[0]->addEvent(new Events::CharacterEvent(kidTextures, sf::Vector2f(17, 13), Events::MoveStyle::PREDEFINED, 0, pathChara1));
+    
 
     PLANS_RESET
 #ifdef _WIN32

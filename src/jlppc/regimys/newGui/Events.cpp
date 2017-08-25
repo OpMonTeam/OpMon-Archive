@@ -158,18 +158,18 @@ namespace Events {
 	  break;
 	}
       }
-      if(anim != -1 && !anims){
+      if(anim >= 0 && !anims){
 	sprite->setTexture(otherTextures[4 + anim]);
 	animsCounter++;
 	anims = animsCounter > 8;
-      }else if(anim != -1 && anims){
+      }else if(anim >= 0 && anims){
 	sprite->setTexture(otherTextures[8 + anim]);
 	animsCounter++;
 	if(animsCounter > 16){
 	    anims = false;
 	    animsCounter = 0;
 	}
-      }else if(anim == -1){
+      }else if(anim < 0){
 	  sprite->setTexture(otherTextures[charaDir]);
       }
 
@@ -234,14 +234,23 @@ namespace Events {
 	  }
 	}
 	break;
+
+      case -2:
+	if(frames - startFrames >= 7){
+	  anim = -1;
+	}
       };
       
 
     }
 
   void CharacterEvent::move(int direction, Player& player){
+    startFrames = frames;
+    if(anim == -1 && direction == -1){
+      anim = -2;
+      return;
+    }
       if(anim == -1 && direction != -1){
-	    startFrames = frames;
 	    anim = direction;
 	    charaDir = direction;
 	    switch(direction){

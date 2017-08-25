@@ -23,6 +23,11 @@ sf::View camera;
 sf::Sprite *maps[3];
 sf::Music *music;
 
+    std::string fps;
+    int fpsCounter;
+    sf::Text fpsPrint;
+    int oldTicksFps;
+    
 sf::Sprite *layer1;
 sf::Sprite *layer2;
 sf::Sprite *layer3;
@@ -334,6 +339,13 @@ int overworld() {
     bool continuer = true;
     while(continuer) {
       if((GET_TICKS - ancientTick >= FPS_TICKS)) {
+	  fpsCounter++;
+	  if(GET_TICKS - oldTicksFps >= 1000){
+	      fps = "";
+	      fps << fpsCounter;
+	      fpsPrint.setString(fps);
+	      fpsCounter = 0;
+	  }
 	frames++;
 	#define DEBUG_REPORT
 #ifdef DEBUG_REPORT
@@ -430,6 +442,9 @@ int overworld() {
 	  debugText.setFont(font);
 	  debugText.setColor(sf::Color(127, 127, 127));
 	  debugText.setCharacterSize(40);
+	  fpsPrint.setPosition(frame.mapPixelToCoords(sf::Vector2i(0, 50)));
+	  fpsPrint.setFont(font);
+	  fpsPrint.setCharacterSize(48);
 	}
 
 	frame.clear(sf::Color::Black);
@@ -498,6 +513,7 @@ int overworld() {
 	frame.setView(camera);
 	if(debugMode) {
 	  frame.draw(debugText);
+	  frame.draw(fpsPrint);
 	}
 	frame.display();
 	winRefresh();
