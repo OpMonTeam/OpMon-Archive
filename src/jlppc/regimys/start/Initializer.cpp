@@ -1034,8 +1034,10 @@ namespace Initializer {
     pathChara1.push_back(Side::TO_UP);
     pathChara1.push_back(Side::TO_LEFT);
     pathChara1.push_back(Side::TO_LEFT);
-    maps[0]->addEvent(new Events::CharacterEvent(kidTextures, sf::Vector2f(21, 10), Events::MoveStyle::PREDEFINED, 0, pathChara1));
-    
+    for(unsigned int i = 0; i < 1000; i++){
+      maps[0]->addEvent(new Events::CharacterEvent(kidTextures, sf::Vector2f(Utils::randU(31), Utils::randU(31)), Events::MoveStyle::RANDOM));
+    }
+
     PLANS_RESET
 #ifdef _WIN32
       layer1->loadFromFile(RESSOURCES_PATH + "maps\\pphome\\pphome1.png");
