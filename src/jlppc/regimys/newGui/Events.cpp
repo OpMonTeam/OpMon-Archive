@@ -168,7 +168,6 @@ namespace Events {
       }else if(anim == -1){
 	  sprite->setTexture(otherTextures[charaDir]);
       }
-      MainFrame::frame.draw(*sprite);
 
       using namespace Side;
       
