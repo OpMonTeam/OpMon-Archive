@@ -133,6 +133,7 @@ namespace Events {
     }
 
     void CharacterEvent::update(Player &player) {
+      frames++;
       if(anim == -1){
 	switch(moveStyle){
 	case MoveStyle::PREDEFINED:
@@ -176,7 +177,7 @@ namespace Events {
       
       switch(anim){
       case Side::TO_UP:
-	if(MainFrame::Overworld::frames - startFrames >= 7){
+	if(frames - startFrames >= 7){
 	  if(moving == TO_UP){
 	    sprite->move(0, -4);
 	  }
@@ -191,7 +192,7 @@ namespace Events {
       
       
       case Side::TO_DOWN:
-	if(MainFrame::Overworld::frames - startFrames >= 7){
+	if(frames - startFrames >= 7){
 	  if(moving == TO_DOWN){
 	    sprite->move(0, 4);
 	  }
@@ -206,7 +207,7 @@ namespace Events {
 
 	
       case Side::TO_LEFT:
-	if(MainFrame::Overworld::frames - startFrames >= 7){
+	if(frames - startFrames >= 7){
 	  if(moving == TO_LEFT){
 	    sprite->move(-4, 0);
 	  }
@@ -221,7 +222,7 @@ namespace Events {
 
 	
       case Side::TO_RIGHT:
-	if(MainFrame::Overworld::frames - startFrames >= 7){
+	if(frames - startFrames >= 7){
 	  if(moving == TO_RIGHT){
 	    sprite->move(4, 0);
 	  }
@@ -243,7 +244,7 @@ namespace Events {
 
     void CharacterEvent::move(int direction){
       if(anim == -1 && direction != -1){
-	    startFrames = MainFrame::Overworld::frames;
+	    startFrames = frames;
 	    anim = direction;
 	    charaDir = direction;
 	    switch(direction){
