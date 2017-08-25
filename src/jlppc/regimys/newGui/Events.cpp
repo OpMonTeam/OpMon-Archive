@@ -68,19 +68,20 @@ namespace Events {
 
     }
 
-    CharacterEvent::CharacterEvent(std::vector<sf::Texture> charTextures, sf::Vector2f const& position, int moveStyle, int eventTrigger, bool passable, int sides):
+  CharacterEvent::CharacterEvent(std::vector<sf::Texture> charTextures, sf::Vector2f const& position, int moveStyle, int eventTrigger, std::vector<int> predefinedPath, bool passable, int sides):
         Event(charTextures[0], charTextures, eventTrigger, position, sides, passable),
         moveStyle(moveStyle) {
       sprite->setScale(2, 2);
       sprite->setOrigin(16, 16);
       sf::Vector2f posMap(((position.x+8)*32) + 16, (position.y+8)*32);
       sprite->setPosition(posMap);
+      setPredefinedMove(predefinedPath);
       
     }
 
-    TalkingCharaEvent::TalkingCharaEvent(std::vector<sf::Texture> charTextures, sf::Vector2f const& position, std::vector<OpString> const& dialogKeys, int eventTrigger, int moveStyle, bool passable, int sides):
+  TalkingCharaEvent::TalkingCharaEvent(std::vector<sf::Texture> charTextures, sf::Vector2f const& position, std::vector<OpString> const& dialogKeys, int eventTrigger, int moveStyle, std::vector<int> predefinedPath, bool passable, int sides):
         Event(charTextures[0], charTextures, eventTrigger, position, sides, passable),
-        CharacterEvent(charTextures, position, moveStyle, eventTrigger, sides),
+        CharacterEvent(charTextures, position, moveStyle, eventTrigger, predefinedPath, passable, sides),
         TalkingEvent(charTextures[0], charTextures, position, dialogKeys, sides, eventTrigger, passable) {
 
     }
@@ -139,6 +140,8 @@ namespace Events {
 	  if(predefinedCounter >= movements.size()){
 	    predefinedCounter = 0;
 	  }
+	  cout << movements.size() << endl;
+	  cout << predefinedCounter << endl;
 	  move(movements[predefinedCounter]);
 	  break;
 
@@ -291,7 +294,7 @@ namespace Events {
     }
 
     void CharacterEvent::setPredefinedMove(std::vector<int> moves) {
-
+      this->movements = moves;
     }
 
     void LockedDoorEvent::action(Player &player) {
