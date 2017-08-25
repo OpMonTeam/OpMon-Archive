@@ -3,8 +3,8 @@
 #include "../start/main.hpp"
 #define FPS_TICKS 33
 #include <cmath>
-#define ppPosY ((character.getPosition().y / CASE_SIZE) - 8)
-#define ppPosX (((character.getPosition().x - 16) / CASE_SIZE) - 8)
+//#define ppPosY ((character.getPosition().y / CASE_SIZE) - 8)
+//#define ppPosX (((character.getPosition().x - 16) / CASE_SIZE) - 8)
 #include "Events.hpp"
 
 #ifndef _WIN32
@@ -27,6 +27,9 @@ sf::Sprite *layer1;
 sf::Sprite *layer2;
 sf::Sprite *layer3;
 
+  int &ppPosX = Main::player.getPosX();
+  int &ppPosY = Main::player.getPosY();
+
 bool justTp = false;
 int tpCount = 0;
 
@@ -48,13 +51,15 @@ bool scrolling = true;
 bool debugMode = false;
 bool printlayer[3] = {true, true, true};
 
-sf::Sprite &character = Main::player.getSprite();
+  sf::Sprite &character = Main::player.getSprite();
 
 void initVars() {
     actual =  Initializer::maps[5];
     character = Main::player.getSprite();
     character.setTexture(Initializer::texturePP[TO_DOWN]);
     character.setPosition(8 CASES + 2 CASES - 16, 8 CASES + 2 CASES);
+    ppPosX = 1;
+    ppPosY = 2;
     camera.setCenter(character.getPosition());
     camera.setSize(sf::Vector2f(16 CASES, 16 CASES));
     ppDir = TO_UP;
@@ -86,6 +91,8 @@ int tp(int toTp, sf::Vector2i pos, bool scroll) {
     }
     scrolling = scroll;
     character.setPosition(8 CASES + pos.x CASES - 16, 8 CASES + pos.y CASES);
+    ppPosX = pos.x - 1;
+    ppPosY = pos.y;
     if(scrolling) {
         camera.setCenter(character.getPosition());
     } else {
@@ -125,6 +132,7 @@ void up() {
         if(debugMode) {
             UNLOCK_TP
             moving = TO_UP;
+	    ppPosY--;
             std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY - 1) CASES));
             if(nextEvents.size() > 0) {
                 for(Event *nextEvent : nextEvents) {
@@ -133,13 +141,20 @@ void up() {
                     }
                 }
             }
+	    return;
         }
         if(ppPosY - 1 >= 0) {
 	  if(actual->getPassArr()[(int)(ppPosY -1)][(int)ppPosX] == 0) {
-                //Ensuite faudra faire la verif du passages des events
+	    std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY - 1) CASES));
+	    for(Event *nextEvent : nextEvents){
+	      if(!nextEvent->isPassable()){
+		return;
+	      }
+	    }
                 UNLOCK_TP
                 moving = TO_UP;
-                std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY - 1) CASES));
+		ppPosY--;
+                
                 if(nextEvents.size() > 0) {
                     for(Event *nextEvent : nextEvents) {
                         if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN && ((nextEvent->getSide() & SIDE_UP) == SIDE_UP)) {
@@ -164,6 +179,7 @@ void down() {
         if(debugMode) {
             UNLOCK_TP
             moving = TO_DOWN;
+	    ppPosY++;
             std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY + 1) CASES));
             if(nextEvents.size() > 0) {
                 for(Event *nextEvent : nextEvents) {
@@ -172,13 +188,19 @@ void down() {
                     }
                 }
             }
+	    return;
         }
         if(ppPosY + 1 < actual->getH()) {
 	  if(actual->getPassArr()[(int)(ppPosY + 1)][(int)ppPosX] == 0) {//VÃ©rification des boites de collisions
-                //TODO : Ensuite faudra faire la verif du passages des events
+	    std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY + 1) CASES));
+	    for(Event *nextEvent : nextEvents){
+	      if(!nextEvent->isPassable()){
+		return;
+	      }
+	    }
                 UNLOCK_TP
                 moving = TO_DOWN;
-                std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY + 1) CASES));
+                ppPosY++;
                 if(nextEvents.size() > 0) {
                     for(Event *nextEvent : nextEvents) {
                         if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN && ((nextEvent->getSide() & SIDE_DOWN) == SIDE_DOWN)) {
@@ -203,7 +225,8 @@ void right() {
         if(debugMode) {
             UNLOCK_TP
             moving = TO_RIGHT;
-            std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX - 1) CASES, ppPosY CASES));
+	    ppPosX++;
+            std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX + 1) CASES, ppPosY CASES));
             if(nextEvents.size() > 0) {
                 for(Event *nextEvent : nextEvents) {
                     if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN) {
@@ -211,13 +234,19 @@ void right() {
                     }
                 }
             }
+	    return;
         }
         if(ppPosX + 1 < actual->getW()) {
 	  if(actual->getPassArr()[(int)(ppPosY)][(int)(ppPosX + 1)] == 0 || actual->getPassArr()[(int)(ppPosY)][(int)(ppPosX + 1)] == 5) {
-                //Ensuite faudra faire la verif du passages des events
+	   std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX + 1) CASES, ppPosY CASES));  
+	    for(Event *nextEvent : nextEvents){
+	      if(!nextEvent->isPassable()){
+		return;
+	      }
+	    }
                 UNLOCK_TP
                 moving = TO_RIGHT;
-                std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX - 1) CASES, ppPosY CASES));
+		ppPosX++;
                 if(nextEvents.size() > 0) {
                     for(Event *nextEvent : nextEvents) {
                         if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN && ((nextEvent->getSide() & SIDE_RIGHT) == SIDE_RIGHT)) {
@@ -242,7 +271,8 @@ void left() {
         if(debugMode) {
             UNLOCK_TP
             moving = TO_LEFT;
-            std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX + 1) CASES, ppPosY CASES));
+	    ppPosX--;
+            std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX - 1) CASES, ppPosY CASES));
             if(nextEvents.size() > 0) {
                 for(Event *nextEvent : nextEvents) {
                     if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN) {
@@ -254,10 +284,15 @@ void left() {
         }
         if(ppPosX - 1 >= 0) {
 	  if(actual->getPassArr()[(int)(ppPosY)][(int)(ppPosX - 1)] == 0) {
-                //Ensuite faudra faire la verif du passages des events
+	    std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX - 1) CASES, ppPosY CASES));
+	    for(Event *nextEvent : nextEvents){
+	      if(!nextEvent->isPassable()){
+		return;
+	      }
+	    }
                 UNLOCK_TP
                 moving = TO_LEFT;
-                std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX + 1) CASES, ppPosY CASES));
+                ppPosX--;
                 if(nextEvents.size() > 0) {
                     for(Event *nextEvent : nextEvents) {
                         if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN && ((nextEvent->getSide() & SIDE_LEFT) == SIDE_LEFT)) {
@@ -406,7 +441,7 @@ int overworld() {
 	}
 	actual->updateEvents(Main::player);
 	for(Event *event : actual->getEvents()) {
-	  if(event->getPosition().y < ppPosY){
+	  if(event->getPosition().y <= ppPosY){
 	    frame.draw(*event->getSprite());
 	  }
 	}
@@ -427,7 +462,7 @@ int overworld() {
 	}
 	frame.draw(character);
 	for(Event *event : actual->getEvents()) {
-	  if(event->getPosition().y >= ppPosY){
+	  if(event->getPosition().y > ppPosY){
 	    frame.draw(*event->getSprite());
 	  }
 	}

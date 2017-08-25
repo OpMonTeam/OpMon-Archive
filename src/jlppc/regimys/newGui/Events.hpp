@@ -54,9 +54,13 @@ class Event {
 	return eventTrigger;
     }
 
-    virtual sf::Vector2f getPosition() const {
+    sf::Vector2f getPosition() const {
 	return position;
     }
+
+  bool isPassable() const{
+    return passable;
+  }
 };
 
 void initEnumsEvents();
@@ -160,7 +164,7 @@ namespace Events {
 	virtual void update(Player &player);
       virtual void action(Player &player){};
 	void setPredefinedMove(std::vector<int> movement);
-	void move(int direction);
+      void move(int direction, Player& player);
     };
 
 
