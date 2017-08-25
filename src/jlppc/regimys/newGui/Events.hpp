@@ -153,6 +153,7 @@ namespace Events {
 
 	int startFrames = 0;
 	bool anims = false;
+      int frames = 0;
       
         public:
       CharacterEvent(std::vector<sf::Texture> charTextures, sf::Vector2f const& position, int moveStyle = 0, int eventTrigger = 0, std::vector<int> predefinedPath = std::vector<int>(), bool passable = false, int sides = SIDE_ALL);
