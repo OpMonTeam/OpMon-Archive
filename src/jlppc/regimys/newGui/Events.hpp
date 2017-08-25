@@ -155,7 +155,7 @@ namespace Events {
 	bool anims = false;
       
         public:
-	CharacterEvent(std::vector<sf::Texture> charTextures, sf::Vector2f const& position, int moveStyle = 0, int eventTrigger = 0, bool passable = false, int sides = SIDE_ALL);
+      CharacterEvent(std::vector<sf::Texture> charTextures, sf::Vector2f const& position, int moveStyle = 0, int eventTrigger = 0, std::vector<int> predefinedPath = std::vector<int>(), bool passable = false, int sides = SIDE_ALL);
 	virtual void update(Player &player);
       virtual void action(Player &player){};
 	void setPredefinedMove(std::vector<int> movement);
@@ -166,7 +166,7 @@ namespace Events {
 
     class TalkingCharaEvent : public CharacterEvent, TalkingEvent {
         public:
-	TalkingCharaEvent(std::vector<sf::Texture> charTextures, sf::Vector2f const& position, std::vector<OpString> const& dialogKeys, int eventTrigger = 0, int moveStyle = 0, bool passable = false, int side = SIDE_ALL);
+      TalkingCharaEvent(std::vector<sf::Texture> charTextures, sf::Vector2f const& position, std::vector<OpString> const& dialogKeys, int eventTrigger = 0, int moveStyle = 0, std::vector<int> predefinedPath = std::vector<int>(), bool passable = false, int side = SIDE_ALL);
         public:
 	virtual void update(Player &player);
 	virtual void action(Player &player);
