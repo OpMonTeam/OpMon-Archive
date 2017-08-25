@@ -405,6 +405,11 @@ int overworld() {
 	  frame.draw(*layer2);
 	}
 	actual->updateEvents(Main::player);
+	for(Event *event : actual->getEvents()) {
+	  if(event->getPosition().y < ppPosY){
+	    frame.draw(*event->getSprite());
+	  }
+	}
 	if(anim != -1 && !anims) {
 	  character.setTexture(Initializer::marchePP[anim]);
 	  animsCounter++;
@@ -421,7 +426,11 @@ int overworld() {
 	  character.setTexture(Initializer::texturePP[ppDir]);
 	}
 	frame.draw(character);
-
+	for(Event *event : actual->getEvents()) {
+	  if(event->getPosition().y >= ppPosY){
+	    frame.draw(*event->getSprite());
+	  }
+	}
 	if((debugMode ? printlayer[2] : true)) {
 	  frame.draw(*layer3);
 	}
@@ -617,7 +626,9 @@ int boucleDialog(vector<sf::String> const& dialogs) {
             frame.draw(*layer1);
             frame.draw(*layer2);
             for(Event *event : actual->getEvents()) {
-                frame.draw(*event->getSprite());
+	      if(event->getPosition().y <= ppPosY){
+		frame.draw(*event->getSprite());
+	      }
             }
             if(anim != -1 && !anims) {
                 character.setTexture(Initializer::marchePP[anim]);
@@ -629,6 +640,11 @@ int boucleDialog(vector<sf::String> const& dialogs) {
                 character.setTexture(Initializer::texturePP[ppDir]);
             }
             frame.draw(character);
+	    for(Event *event : actual->getEvents()) {
+	      if(event->getPosition().y > ppPosY){
+		frame.draw(*event->getSprite());
+	      }
+            }
             frame.draw(*layer3);
             if(scrolling) {
                 camera.setCenter(character.getPosition().x + 16, character.getPosition().y + 16);
