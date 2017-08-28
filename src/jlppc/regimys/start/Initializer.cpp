@@ -1036,7 +1036,7 @@ namespace Initializer {
 
     pathChara1.push_back(-1);
     
-    maps[0]->addEvent(new Events::CharacterEvent(kidTextures, sf::Vector2f(17, 13), Events::MoveStyle::PREDEFINED, 0, pathChara1));
+    maps[0]->addEvent(new Events::TalkingCharaEvent(kidTextures, sf::Vector2f(17, 13), feE5, 0, Events::MoveStyle::PREDEFINED, pathChara1));
     
 
     PLANS_RESET
