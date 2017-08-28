@@ -40,7 +40,7 @@ class I_Heal: public Item {
     private:
         int hpHeal;
         /**Le status soigné*/
-        //->WaitEnum->Status
+        //->ExpectEnum->Status
         int healed;
         /**Si l'item soigne tous les status*/
         bool healAll;

@@ -49,7 +49,7 @@ class Species {
         int baseVit;
         int baseHP;
         /**La courbe d'experience*/
-        //->WaitEnum->CourbeExp
+        //->ExpectEnum->CourbeExp
         int courbe;
         /**L'exp au niveau 100*/
         int expMax;
