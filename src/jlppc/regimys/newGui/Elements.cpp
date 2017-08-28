@@ -9,7 +9,7 @@
 
 UNS
 
-Map::Map(sf::Texture const& layer1, sf::Texture const& layer2, sf::Texture const& layer3, int w, int h, std::string const& filename, sf::Music *bg, std::vector<std::vector<sf::Texture> > const& animatedElements, std::vector<sf::Vector2f> const& elementsPos) {
+Map::Map(sf::Texture const& layer1, sf::Texture const& layer2, sf::Texture const& layer3, int w, int h, char** collision, sf::Music *bg, std::vector<std::vector<sf::Texture> > const& animatedElements, std::vector<sf::Vector2f> const& elementsPos) {
     this->layer1 = new sf::Texture(layer1);
     this->layer2 = new sf::Texture(layer2);
     this->layer3 = new sf::Texture(layer3);
@@ -29,22 +29,20 @@ Map::Map(sf::Texture const& layer1, sf::Texture const& layer2, sf::Texture const
             elementsSprites.push_back(sf::Sprite());
             elementsSprites[i].setTexture(animatedElements[i][0]);
             elementsSprites[i].setPosition(elementsPos[i]);
-        }
+    }
     this->w = w;
     this->h = h;
+    
     //Définition de la table de la collision
-    this->passArr = (int **)malloc(h * sizeof(int *));
+    this->passArr = (char **)malloc(h * sizeof(char *));
     for(int i = 0; i < h; i++) {
-            this->passArr[i] = (int *)malloc(w * sizeof(int));
-        }
-    istringstream *inTemp = InternalFiles::openFileIn(filename);
+            this->passArr[i] = (char *)malloc(w * sizeof(char));
+    }
     for(int i = 0; i < h; i++) {
             for(int j = 0; j < w; j++) {
-                    (*inTemp) >> passArr[i][j];
-                }
-        }
-    delete(inTemp);
-
+                     passArr[i][j] = collision[i][j];
+	    }
+    }
 }
 
 Map::~Map() {
