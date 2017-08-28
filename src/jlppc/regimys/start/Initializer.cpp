@@ -890,7 +890,7 @@ namespace Initializer {
 
     for(unsigned int i = 0; i < 12; i++){
       std::string str;
-      str << RESSOURCES_PATH << "sprites\\chara\\kid\\kid" << i << ".png";
+      str << RESSOURCES_PATH << std::string("sprites\\chara\\kid\\kid") << i << std::string(".png");
       kidTextures.push_back(new sf::Texture());
       kidTextures[i].loadFromFile(str);
     }
@@ -923,7 +923,7 @@ namespace Initializer {
     std::vector<sf::Texture> shopDoor;
     for(unsigned int i = 0; i < 4; i++) {
       std::ostringstream oss;
-      oss << RESSOURCES_PATH << "animations/shopdoor/shop_door" << i + 1 << ".png";
+      oss << RESSOURCES_PATH << "animations/shopdoor/shop_door" << i + 1 << std::string(".png");
       sf::Texture txtr;
       txtr.loadFromFile(oss.str());
       shopDoor.push_back(txtr);
@@ -931,7 +931,7 @@ namespace Initializer {
     doorsTextures.push_back(shopDoor);
     for(unsigned int i = 0; i < 12; i++){
       std::string str;
-      str << RESSOURCES_PATH << "sprites/chara/kid/kid" << i << ".png";
+      str << RESSOURCES_PATH << std::string("sprites/chara/kid/kid") << i << std::string(".png");
       kidTextures.push_back(sf::Texture());
       kidTextures[i].loadFromFile(str);
     }
@@ -982,13 +982,13 @@ namespace Initializer {
     townMusics[0]->openFromFile(RESSOURCES_PATH +"audio\\music\\faubourgeuvi.ogg");
     for(unsigned int i = 1; i < 17; i++) {
       ostringstream str;
-      str << RESSOURCES_PATH + "animations\\windturbine\\blade_" << i << ".png";
+      str << RESSOURCES_PATH + "animations\\windturbine\\blade_" << i << string(".png");
       feElements[0].push_back(sf::Texture());
       feElements[0][i - 1].loadFromFile(str.str());
     }
     for(unsigned int i = 1; i < 17; i++) {
       ostringstream str;
-      str << RESSOURCES_PATH + "animations\\chimneysmoke\\chimneysmoke_" << i << ".png";
+      str << RESSOURCES_PATH + "animations\\chimneysmoke\\chimneysmoke_" << i << string(".png");
       feElements[1].push_back(sf::Texture());
       feElements[1][i - 1].loadFromFile(str.str());
     }
@@ -1000,13 +1000,13 @@ namespace Initializer {
     townMusics[0]->openFromFile(RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg");
     for(unsigned int i = 1; i < 17; i++) {
       ostringstream str;
-      str << RESSOURCES_PATH + "animations/windturbine/blade_" << i << ".png";
+      str << RESSOURCES_PATH + "animations/windturbine/blade_" << i << string(".png");
       feElements[0].push_back(sf::Texture());
       feElements[0][i - 1].loadFromFile(str.str());
     }
     for(unsigned int i = 1; i < 17; i++) {
       ostringstream str;
-      str << RESSOURCES_PATH + "animations/chimneysmoke/chimneysmoke_" << i << ".png";
+      str << RESSOURCES_PATH + "animations/chimneysmoke/chimneysmoke_" << i << string(".png");
       feElements[1].push_back(sf::Texture());
       feElements[1][i - 1].loadFromFile(str.str());
     }
@@ -1025,6 +1025,7 @@ namespace Initializer {
     maps[0]->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(19, 8), sf::Vector2i(8, 15), 1));
     maps[0]->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(27, 8), sf::Vector2i(9, 15), 3));
     maps[0]->addEvent(new Events::DoorEvent(Events::DoorType::SHOP, sf::Vector2f(19, 20), sf::Vector2i(16, 15), 2));
+    /*Character 1*/
     std::vector<int> pathChara1;
     for(int i = 0; i < 10; i++)
       pathChara1.push_back(Side::TO_RIGHT);
@@ -1035,8 +1036,11 @@ namespace Initializer {
       pathChara1.push_back(Side::TO_LEFT);
 
     pathChara1.push_back(-1);
+
+    std::vector<OpString> feC1 {OpString("kid"), OpString::voidStr, OpString::voidStr};
     
-    maps[0]->addEvent(new Events::TalkingCharaEvent(kidTextures, sf::Vector2f(17, 13), feE5, 0, Events::MoveStyle::PREDEFINED, pathChara1));
+    maps[0]->addEvent(new Events::TalkingCharaEvent(kidTextures, sf::Vector2f(17, 13), feC1, 0, Events::MoveStyle::PREDEFINED, pathChara1));
+    /*End of character 1*/
     
 
     PLANS_RESET
