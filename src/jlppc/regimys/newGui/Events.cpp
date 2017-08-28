@@ -343,7 +343,6 @@ namespace Events {
     }
 
     void TalkingCharaEvent::update(Player &player) {
-      CharacterEvent::update(player);
       if(MainFrame::Overworld::movementLock && talking && anim == -1){
 	switch(player.getppDir()){
 	case Side::TO_UP:
@@ -363,6 +362,7 @@ namespace Events {
 	talking = false;
 	MainFrame::Overworld::boucleDialog(this->dialogs);
       }
+      CharacterEvent::update(player);
     }
 
     void CharacterEvent::setPredefinedMove(std::vector<int> moves) {
