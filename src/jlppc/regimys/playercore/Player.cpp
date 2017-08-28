@@ -3,7 +3,7 @@
 #include "../save/Save.hpp"
 
 Player::Player(std::string const& name):
-    name(name), dressID(Utils::randUI(0xFFFFFFFF)) {
+    name(name), trainerID(Utils::randUI(0xFFFFFFFF)) {
     opteam = OpTeam(name);
     for(unsigned int i = 0; i < ITEM_NUMBER; i++) {
             bag[i] = 0;
@@ -12,7 +12,7 @@ Player::Player(std::string const& name):
 }
 
 Player::Player():
-    dressID(Utils::randUI(0xFFFFFFFF)) {
+    trainerID(Utils::randUI(0xFFFFFFFF)) {
     opteam = OpTeam(name);
     for(unsigned int i = 0; i < ITEM_NUMBER; i++) {
             bag[i] = 0;
@@ -80,7 +80,7 @@ bool Player::addOpToOpTeam(OpMon *toAdd) {
 void Player::save() {
     UNS
     SOUT << this->name << endl;
-    SOUT << Save::intToChar(dressID) << endl;
+    SOUT << Save::intToChar(trainerID) << endl;
     SOUT << Save::intToChar(ITEM_NUMBER) << endl;
     for(unsigned int it = 0; it < ITEM_NUMBER; it++) {
             SOUT << Save::intToChar(bag[it]) << endl;
@@ -96,7 +96,7 @@ void Player::save() {
 }
 #include "../objects/OpMon.hpp"
 Player::Player(std::ifstream &in, std::string &name):
-    name(name), dressID(in.get()) {
+    name(name), trainerID(in.get()) {
     UNS
     in.get();
     int iNber = in.get();

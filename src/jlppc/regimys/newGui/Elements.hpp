@@ -28,7 +28,7 @@ class Map {
         int w;
         int h;
         sf::Texture *layer3;
-        int **passArr;
+        char **passArr;
         /**Le constructeur de copie ne doit pas etre utilsÃ©.
         Il est donc en privÃ©. Si tout de meme cette protection est inÃ©fficace,
         aucune definition n'est fournise de ce constructeur.*/
@@ -42,7 +42,7 @@ class Map {
         std::vector<int> elementsCount;
 
     public:
-        Map(sf::Texture const& layer1, sf::Texture const& layer2, sf::Texture const& layer3, int w, int h, std::string const& filename, sf::Music *bg, std::vector<std::vector<sf::Texture> > const& animatedElements = std::vector<std::vector<sf::Texture> >(), std::vector<sf::Vector2f> const& elementsPos = std::vector<sf::Vector2f>());
+  Map(sf::Texture const& layer1, sf::Texture const& layer2, sf::Texture const& layer3, int w, int h, char** collisions, sf::Music *bg, std::vector<std::vector<sf::Texture> > const& animatedElements = std::vector<std::vector<sf::Texture> >(), std::vector<sf::Vector2f> const& elementsPos = std::vector<sf::Vector2f>());
         ~Map();
         int getH() const {
             return h;
@@ -50,7 +50,7 @@ class Map {
         int getW() const {
             return w;
         }
-        int **getPassArr() const {
+        char **getPassArr() const {
             return passArr;
         }
         const sf::Texture *getLayer1() const {
