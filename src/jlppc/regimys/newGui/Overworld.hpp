@@ -37,6 +37,7 @@ namespace MainFrame {
         extern sf::Music *music;
 
 	extern int frames;
+      extern bool movementLock;
 
 
     }

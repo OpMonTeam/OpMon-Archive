@@ -48,6 +48,8 @@ int frames = 0;
 int startFrames = 0;
 int animsCounter = 0;
 
+  bool movementLock = false;
+  
 bool scrollock[2] = {false, false};
 int ppDir = TO_DOWN;
 
@@ -126,7 +128,7 @@ int tp(int toTp, sf::Vector2i pos, bool scroll) {
 }
 #define UNLOCK_TP  Events::justTP = false;
 void up() {
-    if(anim == -1) {
+    if(anim == -1 && !movementLock) {
 	if(ppDir != TO_UP){
 	  ppDir = TO_UP;
 	  return;
@@ -174,7 +176,7 @@ void up() {
 }
 
 void down() {
-    if(anim == -1) {//Si une animation n'est pas dÃ©jÃ  en cours
+    if(anim == -1 && !movementLock) {//Si une animation n'est pas dÃ©jÃ  en cours
 	if(ppDir != TO_DOWN){
 	  ppDir = TO_DOWN;
 	  return;
@@ -220,7 +222,7 @@ void down() {
 }
 
 void right() {
-    if(anim == -1) {  
+    if(anim == -1 && !movementLock) {  
 	if(ppDir != TO_RIGHT){
 	  ppDir = TO_RIGHT;
 	  return;
@@ -266,7 +268,7 @@ void right() {
 
 
 void left() {
-    if(anim == -1) {
+    if(anim == -1 && !movementLock) {
 	if(ppDir != TO_LEFT){
 	  ppDir = TO_LEFT;
 	  return;
