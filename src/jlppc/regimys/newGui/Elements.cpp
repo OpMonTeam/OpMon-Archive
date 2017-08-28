@@ -71,7 +71,6 @@ std::vector<Event *> Map::getEvent(sf::Vector2i position) {
 void Map::updateEvents(Player &player) {
     for(Event *event : events) {
             event->update(player);
-            MainFrame::frame.draw(*(event->getSprite()));
         }
 }
 

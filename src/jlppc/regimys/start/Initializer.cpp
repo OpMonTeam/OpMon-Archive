@@ -32,6 +32,9 @@ namespace Initializer {
   std::vector<sf::Music*> townMusics;
   std::vector<std::vector<sf::Texture> > doorsTextures;
   sf::SoundBuffer doorSoundBuffer;
+
+  std::vector<sf::Texture> kidTextures;
+  
   template<typename T>void pb(std::vector<T> &vect, T arr[], int sizeArr) {
     for (unsigned int i = 0; i < sizeArr; i++) {
       vect.push_back(arr[i]);
@@ -885,6 +888,14 @@ namespace Initializer {
       shopDoor.push_back(txtr);
     }
     doorsTextures.push_back(shopDoor);
+
+    for(unsigned int i = 0; i < 12; i++){
+      std::string str;
+      str << RESSOURCES_PATH << std::string("sprites\\chara\\kid\\kid") << i << std::string(".png");
+      kidTextures.push_back(new sf::Texture());
+      kidTextures[i].loadFromFile(str);
+    }
+    
 #else
     texturePP[TO_DOWN].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp0.png");
     texturePP[TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp1.png");
@@ -913,12 +924,19 @@ namespace Initializer {
     std::vector<sf::Texture> shopDoor;
     for(unsigned int i = 0; i < 4; i++) {
       std::ostringstream oss;
-      oss << RESSOURCES_PATH << "animations/shopdoor/shop_door" << i + 1 << ".png";
+      oss << RESSOURCES_PATH << "animations/shopdoor/shop_door" << i + 1 << std::string(".png");
       sf::Texture txtr;
       txtr.loadFromFile(oss.str());
       shopDoor.push_back(txtr);
     }
     doorsTextures.push_back(shopDoor);
+    for(unsigned int i = 0; i < 12; i++){
+      std::string str;
+      str << RESSOURCES_PATH << std::string("sprites/chara/kid/kid") << i << std::string(".png");
+      kidTextures.push_back(sf::Texture());
+      kidTextures[i].loadFromFile(str);
+    }
+    
 #endif // _WIN32
     Events::doorSound.setBuffer(doorSoundBuffer);
 
@@ -981,13 +999,13 @@ namespace Initializer {
     townMusics[0]->openFromFile(RESSOURCES_PATH +"audio\\music\\faubourgeuvi.ogg");
     for(unsigned int i = 1; i < 17; i++) {
       ostringstream str;
-      str << RESSOURCES_PATH + "animations\\windturbine\\blade_" << i << ".png";
+      str << RESSOURCES_PATH + "animations\\windturbine\\blade_" << i << string(".png");
       feElements[0].push_back(sf::Texture());
       feElements[0][i - 1].loadFromFile(str.str());
     }
     for(unsigned int i = 1; i < 17; i++) {
       ostringstream str;
-      str << RESSOURCES_PATH + "animations\\chimneysmoke\\chimneysmoke_" << i << ".png";
+      str << RESSOURCES_PATH + "animations\\chimneysmoke\\chimneysmoke_" << i << string(".png");
       feElements[1].push_back(sf::Texture());
       feElements[1][i - 1].loadFromFile(str.str());
     }
@@ -999,13 +1017,13 @@ namespace Initializer {
     townMusics[0]->openFromFile(RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg");
     for(unsigned int i = 1; i < 17; i++) {
       ostringstream str;
-      str << RESSOURCES_PATH + "animations/windturbine/blade_" << i << ".png";
+      str << RESSOURCES_PATH + "animations/windturbine/blade_" << i << string(".png");
       feElements[0].push_back(sf::Texture());
       feElements[0][i - 1].loadFromFile(str.str());
     }
     for(unsigned int i = 1; i < 17; i++) {
       ostringstream str;
-      str << RESSOURCES_PATH + "animations/chimneysmoke/chimneysmoke_" << i << ".png";
+      str << RESSOURCES_PATH + "animations/chimneysmoke/chimneysmoke_" << i << string(".png");
       feElements[1].push_back(sf::Texture());
       feElements[1][i - 1].loadFromFile(str.str());
     }
@@ -1014,18 +1032,36 @@ namespace Initializer {
     maps.push_back(new Map(*layer1, *layer2, *layer3, 32, 32, feCol, townMusics[0], feElements, feEPos));
     FREE_TAB(feCol, 32);
     std::vector<OpString> feE1 {OpString("fedesc.1"), OpString("fedesc.2"), OpString("fedesc.3")};
-    maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(10, 1), feE1, SIDE_UP));
+    maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(11, 2), feE1, SIDE_UP));
     std::vector<OpString> feE2 {OpString("ppHouse", Main::player.getNameP()), OpString::voidStr, OpString::voidStr};
-    maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(20, 7), feE2, SIDE_UP));
+    maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(21, 8), feE2, SIDE_UP));
     std::vector<OpString> feE3 {OpString("rivalHouse"), OpString::voidStr, OpString::voidStr};
-    maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(24, 7), feE3, SIDE_UP));
+    maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(25, 8), feE3, SIDE_UP));
     std::vector<OpString> feE4 {OpString("labo"), OpString::voidStr, OpString::voidStr};
-    maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(13, 19), feE4, SIDE_UP));
+    maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(14, 20), feE4, SIDE_UP));
     std::vector<OpString> feE5 {OpString("weirdsign.1"), OpString("weirdsign.2"), OpString::voidStr};
-    maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(22, 19), feE5, SIDE_UP));
-    maps[0]->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(18, 7), sf::Vector2i(7, 14), 1));
-    maps[0]->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(26, 7), sf::Vector2i(8, 14), 3));
-    maps[0]->addEvent(new Events::DoorEvent(Events::DoorType::SHOP, sf::Vector2f(18, 19), sf::Vector2i(15, 14), 2));
+    maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(23, 20), feE5, SIDE_UP));
+    maps[0]->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(19, 8), sf::Vector2i(8, 15), 1));
+    maps[0]->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(27, 8), sf::Vector2i(9, 15), 3));
+    maps[0]->addEvent(new Events::DoorEvent(Events::DoorType::SHOP, sf::Vector2f(19, 20), sf::Vector2i(16, 15), 2));
+    /*Character 1*/
+    std::vector<int> pathChara1;
+    for(int i = 0; i < 10; i++)
+      pathChara1.push_back(Side::TO_RIGHT);
+
+    pathChara1.push_back(-1);
+    
+    for(int i = 0; i < 10; i++)
+      pathChara1.push_back(Side::TO_LEFT);
+
+    pathChara1.push_back(-1);
+
+    std::vector<OpString> feC1 {OpString("kid"), OpString::voidStr, OpString::voidStr};
+    
+    maps[0]->addEvent(new Events::TalkingCharaEvent(kidTextures, sf::Vector2f(17, 13), feC1, 0, Events::MoveStyle::PREDEFINED, pathChara1));
+    /*End of character 1*/
+    
+
     PLANS_RESET
 #ifdef _WIN32
       layer1->loadFromFile(RESSOURCES_PATH + "maps\\pphome\\pphome1.png");
@@ -1036,12 +1072,13 @@ namespace Initializer {
     layer2->loadFromFile(RESSOURCES_PATH +"maps/pphome/pphome2.png");
     layer3->loadFromFile(RESSOURCES_PATH +"maps/pphome/pphome3.png");
 #endif
+
     TAB_TO_POINTER(Collisions::ppHomeCol, ppHomeCol, 16, 16);
     maps.push_back(new Map(*layer1, *layer2, *layer3, 16, 16, ppHomeCol, townMusics[0]));
     FREE_TAB(ppHomeCol, 16);
-    maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(6, 14), sf::Vector2i(19, 8), 0, Side::TO_DOWN, SIDE_DOWN));
-    maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(14, 1), sf::Vector2i(8, 4), 5, Side::TO_LEFT, SIDE_RIGHT));
-    maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(-1, 10), sf::Vector2i(5, 2), 4, Side::TO_LEFT, SIDE_LEFT));
+    maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(7, 15), sf::Vector2i(20, 9), 0, Side::TO_DOWN, SIDE_DOWN));
+    maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(15, 2), sf::Vector2i(9, 5), 5, Side::TO_LEFT, SIDE_RIGHT));
+    maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(0, 11), sf::Vector2i(6, 3), 4, Side::TO_LEFT, SIDE_LEFT));
     PLANS_RESET
       townMusics.push_back(new sf::Music());
 #ifdef _WIN32
@@ -1058,7 +1095,7 @@ namespace Initializer {
     TAB_TO_POINTER(Collisions::laboCol, laboCol, 16, 32);
     maps.push_back(new Map(*layer1, *layer2, *layer3, 32, 16, laboCol, townMusics[1]));
     FREE_TAB(laboCol, 16);
-    maps[2]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(14, 14), sf::Vector2i(19, 20), 0, Side::TO_DOWN, SIDE_DOWN));
+    maps[2]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(15, 15), sf::Vector2i(21, 22), 0, Side::TO_DOWN, SIDE_DOWN));
     PLANS_RESET
 #ifdef _WIN32
       layer1->loadFromFile(RESSOURCES_PATH + "maps\\rivalhome\\rivalhome1.png");
@@ -1072,7 +1109,7 @@ namespace Initializer {
     TAB_TO_POINTER(Collisions::rivalHomeCol, rivalHomeCol, 16, 16);
     maps.push_back(new Map(*layer1, *layer2, *layer3, 16, 16, rivalHomeCol, townMusics[0]));
     FREE_TAB(rivalHomeCol, 16);
-    maps[3]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(7, 14), sf::Vector2i(27, 8), 0, Side::TO_DOWN, SIDE_DOWN));
+    maps[3]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(8, 15), sf::Vector2i(28, 9), 0, Side::TO_DOWN, SIDE_DOWN));
     PLANS_RESET
 #ifdef _WIN32
       layer1->loadFromFile(RESSOURCES_PATH + "maps\\momroom\\momroom1.png");
@@ -1086,7 +1123,7 @@ namespace Initializer {
     TAB_TO_POINTER(Collisions::momRoomCol, momRoomCol, 6, 6);
     maps.push_back(new Map(*layer1, *layer2, *layer3, 6, 6, momRoomCol, townMusics[0]));
     FREE_TAB(momRoomCol, 6);
-    maps[4]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(4, 2), sf::Vector2i(0, 10), 1, Side::TO_RIGHT, SIDE_RIGHT));
+    maps[4]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(5, 3), sf::Vector2i(1, 11), 1, Side::TO_RIGHT, SIDE_RIGHT));
     PLANS_RESET
 #ifdef _WIN32
     layer1->loadFromFile(RESSOURCES_PATH + "maps\\pproom\\pproom1.png");
@@ -1100,9 +1137,9 @@ namespace Initializer {
     TAB_TO_POINTER(Collisions::ppRoomCol, ppRoomCol, 6, 9);
     maps.push_back(new Map(*layer1, *layer2, *layer3, 9, 6, ppRoomCol, townMusics[0]));
     FREE_TAB(ppRoomCol, 6);
-    maps[5]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(7, 4), sf::Vector2i(15, 1), 1, Side::TO_LEFT, SIDE_RIGHT));
+    maps[5]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(8, 5), sf::Vector2i(16, 2), 1, Side::TO_LEFT, SIDE_RIGHT));
     //PLANS_RESET
-
+    
       delete(layer1);
     delete(layer2);
     delete(layer3);

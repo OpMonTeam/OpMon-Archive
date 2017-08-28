@@ -16,10 +16,10 @@ Définit la classe des caractères
 class NatureClass {
     public:
         /**La stat que boost le caractère*/
-        //->WaitEnum->Stats
+        //->ExpectEnum->Stats
         int bonus;
         /**La stat que réduit le caractère*/
-        //->WaitEnum->Stats
+        //->ExpectEnum->Stats
         int malus;
 
         int id;

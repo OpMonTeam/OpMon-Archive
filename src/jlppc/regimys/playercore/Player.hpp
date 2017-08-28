@@ -60,7 +60,7 @@ class Player {
             mapID = ID;
         }
         sf::Sprite &getSprite() {
-            return persSprite;
+            return charaSprite;
         }
         int getppDir() {
             return *ppDir;
@@ -71,12 +71,14 @@ class Player {
         void setppDir(int ppDir) {
             *(this->ppDir) = ppDir;
         }
-        /**Translation : pers(onnage) = character
-        Sorry if I put it in public, I need it for in Overworld
-        DON'T USE!!! Use getSprite instead!
-        */
+  int &getPosX(){
+    return posX;
+  }
+  int &getPosY(){
+    return posY;
+  }
         //DontUse
-        sf::Sprite persSprite;
+        sf::Sprite charaSprite;
 
         bool gameIsOver = false;
     private:
@@ -87,6 +89,8 @@ class Player {
         OpTeam opteam = OpTeam("temp");
         int *ppDir;
         int mapID = 0;
+  int posX = 2;
+  int posY = 2;
 };
 
 #endif /* SRCCPP_JLPPC_REGIMYS_PLAYERCORE_PLAYER_HPP_ */
