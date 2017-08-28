@@ -337,11 +337,26 @@ namespace Events {
     }
 
     void TalkingCharaEvent::action(Player &player) {
-
+      switch(player.getppDir()){
+      case Side::TO_UP:
+	sprite->setTexture(otherTextures[Side::TO_DOWN]);
+	break;
+      case Side::TO_DOWN:
+	sprite->setTexture(otherTextures[Side::TO_UP]);
+	break;
+      case Side::TO_LEFT:
+	sprite->setTexture(otherTextures[Side::TO_RIGHT]);
+	break;
+      case Side::TO_RIGHT:
+	sprite->setTexture(otherTextures[Side::TO_LEFT]);
+	break;
+      }
+      MainFrame::Overworld::boucleDialog(this->dialogs);
+      
     }
 
     void TalkingCharaEvent::update(Player &player) {
-
+      CharacterEvent::update(player);
     }
 
     void CharacterEvent::setPredefinedMove(std::vector<int> moves) {
