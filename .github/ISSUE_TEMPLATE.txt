@@ -1,1 +1,1 @@
-Thank you to report a bug or giving us an enhancement idea. If you want to report a bug, please check if it already exists here : https://gist.github.com/jlppc/65f35e276842f49ad401966eb761094b
+Thank you for reporting a bug or giving us an enhancement idea. If you want to report a bug, please check if it already exists here : https://gist.github.com/jlppc/65f35e276842f49ad401966eb761094b
