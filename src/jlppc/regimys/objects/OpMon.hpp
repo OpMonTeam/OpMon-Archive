@@ -84,11 +84,11 @@ class OpMon {
         Species *species;
         /**Attention : Cette variable contient les PV actuels du pokémon, la classe statPV contient les PV max*/
         int HP;
-        //->WaitEnum->Status
+        //->ExpectEnum->Status
         int status = Status::NOTHING;
-        //->WaitEnum->Type
+        //->ExpectEnum->Type
         int type1;
-        //->WaitEnum->Type
+        //->ExpectEnum->Type
         int type2;
 
         int exp;

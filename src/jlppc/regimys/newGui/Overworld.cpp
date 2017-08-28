@@ -3,8 +3,8 @@
 #include "../start/main.hpp"
 #define FPS_TICKS 33
 #include <cmath>
-#define ppPosY ((character.getPosition().y / CASE_SIZE) - 8)
-#define ppPosX (((character.getPosition().x - 16) / CASE_SIZE) - 8)
+//#define ppPosY ((character.getPosition().y / CASE_SIZE) - 8)
+//#define ppPosX (((character.getPosition().x - 16) / CASE_SIZE) - 8)
 #include "Events.hpp"
 
 #ifndef _WIN32
@@ -23,9 +23,17 @@ sf::View camera;
 sf::Sprite *maps[3];
 sf::Music *music;
 
+    std::string fps;
+    int fpsCounter;
+    sf::Text fpsPrint;
+    int oldTicksFps;
+    
 sf::Sprite *layer1;
 sf::Sprite *layer2;
 sf::Sprite *layer3;
+
+  int &ppPosX = Main::player.getPosX();
+  int &ppPosY = Main::player.getPosY();
 
 bool justTp = false;
 int tpCount = 0;
@@ -40,6 +48,8 @@ int frames = 0;
 int startFrames = 0;
 int animsCounter = 0;
 
+  bool movementLock = false;
+  
 bool scrollock[2] = {false, false};
 int ppDir = TO_DOWN;
 
@@ -48,13 +58,15 @@ bool scrolling = true;
 bool debugMode = false;
 bool printlayer[3] = {true, true, true};
 
-sf::Sprite &character = Main::player.getSprite();
+  sf::Sprite &character = Main::player.getSprite();
 
 void initVars() {
     actual =  Initializer::maps[5];
     character = Main::player.getSprite();
     character.setTexture(Initializer::texturePP[TO_DOWN]);
-    character.setPosition(8 CASES + 1 CASES - 16, 8 CASES + 1 CASES);
+    character.setPosition(8 CASES + 2 CASES - 16, 8 CASES + 2 CASES);
+    ppPosX = 1;
+    ppPosY = 2;
     camera.setCenter(character.getPosition());
     camera.setSize(sf::Vector2f(16 CASES, 16 CASES));
     ppDir = TO_UP;
@@ -72,6 +84,7 @@ void initVars() {
     layer2->setTexture(*actual->getLayer2());
     layer3->setTexture(*actual->getLayer3());
     character.setScale(2, 2);
+    character.setOrigin(16, 16);
 }
 
 int tp(int toTp, sf::Vector2i pos, bool scroll) {
@@ -85,6 +98,8 @@ int tp(int toTp, sf::Vector2i pos, bool scroll) {
     }
     scrolling = scroll;
     character.setPosition(8 CASES + pos.x CASES - 16, 8 CASES + pos.y CASES);
+    ppPosX = pos.x - 1;
+    ppPosY = pos.y;
     if(scrolling) {
         camera.setCenter(character.getPosition());
     } else {
@@ -104,20 +119,27 @@ int tp(int toTp, sf::Vector2i pos, bool scroll) {
     layer1->setTexture(*actual->getLayer1());
     layer2->setTexture(*actual->getLayer2());
     layer3->setTexture(*actual->getLayer3());
+    // layer1->move(32, 32);
+    // layer2->move(32, 32);
+    // layer3->move(32, 32);
     tpCount = 0;
     justTp = true;
     return 0;
 }
 #define UNLOCK_TP  Events::justTP = false;
 void up() {
-    if(anim == -1) {
-        startFrames = frames;
+    if(anim == -1 && !movementLock) {
+	if(ppDir != TO_UP){
+	  ppDir = TO_UP;
+	  return;
+	}
+	startFrames = frames;
         anim = TO_UP;
-        ppDir = TO_UP;
 
         if(debugMode) {
             UNLOCK_TP
             moving = TO_UP;
+	    ppPosY--;
             std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY - 1) CASES));
             if(nextEvents.size() > 0) {
                 for(Event *nextEvent : nextEvents) {
@@ -126,13 +148,20 @@ void up() {
                     }
                 }
             }
+	    return;
         }
-        if(ppPosY - 1 >= -1) {
-            if(actual->getPassArr()[(int)(ppPosY + 1) - ((ppPosY + 1 <= 0) ? 0 : 1)][(int)ppPosX + 1] == 0) {
-                //Ensuite faudra faire la verif du passages des events
+        if(ppPosY - 1 >= 0) {
+	  if(actual->getPassArr()[(int)(ppPosY -1)][(int)ppPosX] == 0) {
+	    std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY - 1) CASES));
+	    for(Event *nextEvent : nextEvents){
+	      if(!nextEvent->isPassable()){
+		return;
+	      }
+	    }
                 UNLOCK_TP
                 moving = TO_UP;
-                std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY - 1) CASES));
+		ppPosY--;
+                
                 if(nextEvents.size() > 0) {
                     for(Event *nextEvent : nextEvents) {
                         if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN && ((nextEvent->getSide() & SIDE_UP) == SIDE_UP)) {
@@ -147,13 +176,17 @@ void up() {
 }
 
 void down() {
-    if(anim == -1) {//Si une animation n'est pas déjà en cours
+    if(anim == -1 && !movementLock) {//Si une animation n'est pas dÃ©jÃ  en cours
+	if(ppDir != TO_DOWN){
+	  ppDir = TO_DOWN;
+	  return;
+	}
         startFrames = frames;
         anim = TO_DOWN;
-        ppDir = TO_DOWN;
         if(debugMode) {
             UNLOCK_TP
             moving = TO_DOWN;
+	    ppPosY++;
             std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY + 1) CASES));
             if(nextEvents.size() > 0) {
                 for(Event *nextEvent : nextEvents) {
@@ -162,13 +195,19 @@ void down() {
                     }
                 }
             }
+	    return;
         }
-        if(ppPosY + 1 < actual->getH() - 1) {
-            if(actual->getPassArr()[(int)(ppPosY + 1) + 1][(int)ppPosX + 1] == 0) {//Vérification des boites de collisions
-                //TODO : Ensuite faudra faire la verif du passages des events
+        if(ppPosY + 1 < actual->getH()) {
+	  if(actual->getPassArr()[(int)(ppPosY + 1)][(int)ppPosX] == 0) {//VÃ©rification des boites de collisions
+	    std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY + 1) CASES));
+	    for(Event *nextEvent : nextEvents){
+	      if(!nextEvent->isPassable()){
+		return;
+	      }
+	    }
                 UNLOCK_TP
                 moving = TO_DOWN;
-                std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY + 1) CASES));
+                ppPosY++;
                 if(nextEvents.size() > 0) {
                     for(Event *nextEvent : nextEvents) {
                         if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN && ((nextEvent->getSide() & SIDE_DOWN) == SIDE_DOWN)) {
@@ -183,14 +222,18 @@ void down() {
 }
 
 void right() {
-    if(anim == -1) {
-        startFrames = frames;
+    if(anim == -1 && !movementLock) {  
+	if(ppDir != TO_RIGHT){
+	  ppDir = TO_RIGHT;
+	  return;
+	}
+	startFrames = frames;
         anim = TO_RIGHT;
-        ppDir = TO_RIGHT;
         if(debugMode) {
             UNLOCK_TP
             moving = TO_RIGHT;
-            std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX - 1) CASES, ppPosY CASES));
+	    ppPosX++;
+            std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX + 1) CASES, ppPosY CASES));
             if(nextEvents.size() > 0) {
                 for(Event *nextEvent : nextEvents) {
                     if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN) {
@@ -198,13 +241,19 @@ void right() {
                     }
                 }
             }
+	    return;
         }
-        if(ppPosX + 1 < actual->getW() - 1) {
-            if(actual->getPassArr()[(int)(ppPosY + 1)][(int)(ppPosX + 1) + 1] == 0 || actual->getPassArr()[(int)(ppPosY + 1)][(int)(ppPosX + 1) + 1] == 5) {
-                //Ensuite faudra faire la verif du passages des events
+        if(ppPosX + 1 < actual->getW()) {
+	  if(actual->getPassArr()[(int)(ppPosY)][(int)(ppPosX + 1)] == 0 || actual->getPassArr()[(int)(ppPosY)][(int)(ppPosX + 1)] == 5) {
+	   std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX + 1) CASES, ppPosY CASES));  
+	    for(Event *nextEvent : nextEvents){
+	      if(!nextEvent->isPassable()){
+		return;
+	      }
+	    }
                 UNLOCK_TP
                 moving = TO_RIGHT;
-                std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX - 1) CASES, ppPosY CASES));
+		ppPosX++;
                 if(nextEvents.size() > 0) {
                     for(Event *nextEvent : nextEvents) {
                         if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN && ((nextEvent->getSide() & SIDE_RIGHT) == SIDE_RIGHT)) {
@@ -219,14 +268,18 @@ void right() {
 
 
 void left() {
-    if(anim == -1) {
-        startFrames = frames;
+    if(anim == -1 && !movementLock) {
+	if(ppDir != TO_LEFT){
+	  ppDir = TO_LEFT;
+	  return;
+	}
+	startFrames = frames;
         anim = TO_LEFT;
-        ppDir = TO_LEFT;
         if(debugMode) {
             UNLOCK_TP
             moving = TO_LEFT;
-            std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX + 1) CASES, ppPosY CASES));
+	    ppPosX--;
+            std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX - 1) CASES, ppPosY CASES));
             if(nextEvents.size() > 0) {
                 for(Event *nextEvent : nextEvents) {
                     if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN) {
@@ -236,12 +289,17 @@ void left() {
             }
             return;
         }
-        if(ppPosX - 1 >= -1) {
-            if(actual->getPassArr()[(int)(ppPosY + 1)][(int)(ppPosX + 1) - ((ppPosX + 1 <= 0) ? 0 : 1)] == 0) {
-                //Ensuite faudra faire la verif du passages des events
+        if(ppPosX - 1 >= 0) {
+	  if(actual->getPassArr()[(int)(ppPosY)][(int)(ppPosX - 1)] == 0) {
+	    std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX - 1) CASES, ppPosY CASES));
+	    for(Event *nextEvent : nextEvents){
+	      if(!nextEvent->isPassable()){
+		return;
+	      }
+	    }
                 UNLOCK_TP
                 moving = TO_LEFT;
-                std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX + 1) CASES, ppPosY CASES));
+                ppPosX--;
                 if(nextEvents.size() > 0) {
                     for(Event *nextEvent : nextEvents) {
                         if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN && ((nextEvent->getSide() & SIDE_LEFT) == SIDE_LEFT)) {
@@ -283,16 +341,26 @@ int overworld() {
     bool continuer = true;
     while(continuer) {
       if((GET_TICKS - ancientTick >= FPS_TICKS)) {
+	  fpsCounter++;
+	  if(GET_TICKS - oldTicksFps >= 1000){
+	      fps = "";
+	      fps << fpsCounter;
+	      fpsPrint.setString(fps);
+	      fpsCounter = 0;
+	  }
 	frames++;
+	#define DEBUG_REPORT
 #ifdef DEBUG_REPORT
-	rerrLog << "[FRAME N°" << frames << "]" << endl;
-	rerrLog << "Boucle : Normal" << endl;
-	rerrLog << "Tick: " << ticks.getElapsedTime().asMilliseconds() << "ms" << endl;
-	rerrLog << "PlayerPosition: " << ppPosX << " - " << ppPosY << endl;
-	rerrLog << "Moving: " << moving << endl;
-	rerrLog << "Anim: " << anim << endl;
-	rerrLog << "PlayerDirection: " << ppDir << endl;
-	rerrLog << "DebugMode: " << debugMode << endl;
+	cout << "[FRAME N°" << frames << "]" << endl;
+	cout << "Boucle : Normal" << endl;
+	cout << "Tick: " << ticks.getElapsedTime().asMilliseconds() << "ms" << endl;
+	cout << "PlayerPosition: " << ppPosX << " - " << ppPosY << endl;
+	cout << "PlayerPositionPx: " << character.getPosition().x << " - " << character.getPosition().y << endl;
+	cout << "Moving: " << moving << endl;
+	cout << "Anim: " << anim << endl;
+	cout << "PlayerDirection: " << ppDir << endl;
+	cout << "DebugMode: " << debugMode << endl;
+	cout << "MapPos: " << layer1->getPosition().x << " - " << layer1->getPosition().y << endl;
 #endif
 
 	//cout << "Position perso : P(" << ppPosX << ";" << ppPosY << ")" << endl;
@@ -374,8 +442,11 @@ int overworld() {
 	  debugText.setString("Debug mode");
 	  debugText.setPosition(frame.mapPixelToCoords(sf::Vector2i(0, 0)));
 	  debugText.setFont(font);
-	  debugText.setColor(sf::Color::Black);
+	  debugText.setColor(sf::Color(127, 127, 127));
 	  debugText.setCharacterSize(40);
+	  fpsPrint.setPosition(frame.mapPixelToCoords(sf::Vector2i(0, 50)));
+	  fpsPrint.setFont(font);
+	  fpsPrint.setCharacterSize(48);
 	}
 
 	frame.clear(sf::Color::Black);
@@ -386,6 +457,11 @@ int overworld() {
 	  frame.draw(*layer2);
 	}
 	actual->updateEvents(Main::player);
+	for(Event *event : actual->getEvents()) {
+	  if(event->getPosition().y <= ppPosY){
+	    frame.draw(*event->getSprite());
+	  }
+	}
 	if(anim != -1 && !anims) {
 	  character.setTexture(Initializer::walkingPP[anim]);
 	  animsCounter++;
@@ -402,7 +478,11 @@ int overworld() {
 	  character.setTexture(Initializer::texturePP[ppDir]);
 	}
 	frame.draw(character);
-
+	for(Event *event : actual->getEvents()) {
+	  if(event->getPosition().y > ppPosY){
+	    frame.draw(*event->getSprite());
+	  }
+	}
 	if((debugMode ? printlayer[2] : true)) {
 	  frame.draw(*layer3);
 	}
@@ -435,6 +515,7 @@ int overworld() {
 	frame.setView(camera);
 	if(debugMode) {
 	  frame.draw(debugText);
+	  frame.draw(fpsPrint);
 	}
 	frame.display();
 	winRefresh();
@@ -598,7 +679,9 @@ int boucleDialog(vector<sf::String> const& dialogs) {
             frame.draw(*layer1);
             frame.draw(*layer2);
             for(Event *event : actual->getEvents()) {
-                frame.draw(*event->getSprite());
+	      if(event->getPosition().y <= ppPosY){
+		frame.draw(*event->getSprite());
+	      }
             }
             if(anim != -1 && !anims) {
                 character.setTexture(Initializer::walkingPP[anim]);
@@ -610,6 +693,11 @@ int boucleDialog(vector<sf::String> const& dialogs) {
                 character.setTexture(Initializer::texturePP[ppDir]);
             }
             frame.draw(character);
+	    for(Event *event : actual->getEvents()) {
+	      if(event->getPosition().y > ppPosY){
+		frame.draw(*event->getSprite());
+	      }
+            }
             frame.draw(*layer3);
             if(scrolling) {
                 camera.setCenter(character.getPosition().x + 16, character.getPosition().y + 16);
