@@ -1,8 +1,8 @@
-#Pas de raccourcis
+# No windows shortcuts
 *.lnk
-#Pas de lock de OpenOffice
+# No Openoffice .lock
 .lock
-#Pas de fichiers de sauvegarde opmon
+# No OpMon save files
 *.oparams
 *.osave
 *.tmp
@@ -21,26 +21,17 @@ installers/Debian/*.deb
 *.info
 *.txt
 *.db
-pages/doc/DocSample.html
-/Debug/
-# Pas de fichier de compilation C++
+# No C/C++ compiled files
 *.o
 *.res
 /bin/
 /include/
 /lib/
-/temp/
-/.objs/
-cbp2make/*
-doxygen/doxyfile
-*.opmod
 OpMon_build_log.html
 OpMon.layout
 OpMon.depend
 OpMon-Linux.layout
 OpMon-Linux.depend
 TODO
-/ziplinux/*
 OpMon-Win_NoInstall.zip
 Makefile
-/doc/*
