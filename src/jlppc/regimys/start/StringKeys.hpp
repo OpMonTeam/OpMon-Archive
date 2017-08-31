@@ -14,14 +14,14 @@ Contient la défnition du namespace StringKeys
 #include <SFML/System.hpp>
 
 namespace StringKeys {
-    extern std::vector<std::string> keys;
-    extern std::vector<sf::String> strings;
-    sf::String &get(std::string key);
-    void initialize(std::string const& file);
-    sf::String split(sf::String const& str, char const& splitter, int const& part);
-  std::vector<sf::String> split(sf::String const& str, char const& splitter);
-    std::string sfStringtoStdString(sf::String const &str);
-  int countInstances(sf::String const& str, char const& toSearch);
+extern std::vector<std::string> keys;
+extern std::vector<sf::String> strings;
+sf::String &get(std::string key);
+void initialize(std::string const& file);
+sf::String split(sf::String const& str, char const& splitter, int const& part);
+std::vector<sf::String> split(sf::String const& str, char const& splitter);
+std::string sfStringtoStdString(sf::String const &str);
+int countInstances(sf::String const& str, char const& toSearch);
 }
 
 #endif // STRINGKEYS_HPP

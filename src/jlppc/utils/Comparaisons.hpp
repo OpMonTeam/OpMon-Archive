@@ -14,7 +14,7 @@ Définit le namespace Comparaions
 Permet de comparer des choses plus facilement
 */
 namespace Comparaisons {
-    template<typename T, typename U> bool multiEgal(T const &object, U toCompare[]);
+template<typename T, typename U> bool multiEgal(T const &object, U toCompare[]);
 }
 
 #endif // COMPARAISONS_HPP

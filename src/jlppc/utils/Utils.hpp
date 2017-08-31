@@ -15,10 +15,10 @@ Définit le namespace Utils
 Namespace contenant des fonctions utiles
 */
 namespace Utils {
-    int randU(int limit);
-    unsigned int randUI(unsigned int limit);
-    void wait(int ticks);
-    long hash(std::string str);
+int randU(int limit);
+unsigned int randUI(unsigned int limit);
+void wait(int ticks);
+long hash(std::string str);
 }
 
 #endif // UTILS_HPP

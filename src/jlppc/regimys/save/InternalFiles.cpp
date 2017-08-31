@@ -13,8 +13,8 @@ std::string operator/(std::string const &str1, std::string const &str2) {
 }
 
 namespace Collisions {
-  //Indication : The collisions are : 0 for "Ok, you can go!", 1 for "You shall not pass.", 2 for "Bring your swimming suit (Water titles)", 3 for "Random encounters on roads", 4 4 "Grotto"
-  char feCol[32][32] = {
+//Indication : The collisions are : 0 for "Ok, you can go!", 1 for "You shall not pass.", 2 for "Bring your swimming suit (Water titles)", 3 for "Random encounters on roads", 4 4 "Grotto"
+char feCol[32][32] = {
     {1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
     {2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
     {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1},
@@ -47,9 +47,9 @@ namespace Collisions {
     {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1},
     {2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1},
     {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-  };
+};
 
-  char ppHomeCol[16][16] = {
+char ppHomeCol[16][16] = {
     {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
     {1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 5},
@@ -66,9 +66,9 @@ namespace Collisions {
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-  };
+};
 
-  char rivalHomeCol[16][16] = {
+char rivalHomeCol[16][16] = {
     {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
     {1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -85,27 +85,27 @@ namespace Collisions {
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-  };
+};
 
-  char ppRoomCol[6][9] = {
+char ppRoomCol[6][9] = {
     {1, 1, 1, 1, 1, 1, 1, 1, 1},
     {0, 1, 1, 0, 1, 1, 1, 0, 1},
     {0, 0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 1, 1, 0, 0, 0, 0},
     {0, 0, 0, 0, 1, 0, 0, 0, 0},
     {1, 0, 0, 0, 0, 0, 0, 0, 0}
-  };
+};
 
-  char momRoomCol[6][6] = {
+char momRoomCol[6][6] = {
     {1, 1, 1, 1, 1, 1},
     {1, 1, 1, 0, 1, 1},
     {0, 1, 1, 0, 0, 0},
     {0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0}
-  };
+};
 
-  char laboCol[16][32] = {
+char laboCol[16][32] = {
     {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
     {1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1},
     {0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -122,33 +122,33 @@ namespace Collisions {
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-  };
-  
+};
+
 }
 
 namespace InternalFiles {
-    std::vector<std::string> filesNames;
-    std::vector<std::string> files;
+std::vector<std::string> filesNames;
+std::vector<std::string> files;
 
-    int searchFile(std::string const& name) {
-        for(unsigned int i = 0; i < filesNames.size(); i++) {
-                if(filesNames[i] == name) {
-                        return i;
-                    }
-            }
-        return -1;
+int searchFile(std::string const& name) {
+    for(unsigned int i = 0; i < filesNames.size(); i++) {
+        if(filesNames[i] == name) {
+            return i;
+        }
     }
+    return -1;
+}
 
-    std::ostringstream *openFileOut(std::string const& name) {
-        return new std::ostringstream(files[searchFile(name)]);
-    }
+std::ostringstream *openFileOut(std::string const& name) {
+    return new std::ostringstream(files[searchFile(name)]);
+}
 
-    std::istringstream *openFileIn(std::string const& name) {
-        return new std::istringstream(files[searchFile(name)]);
-    }
+std::istringstream *openFileIn(std::string const& name) {
+    return new std::istringstream(files[searchFile(name)]);
+}
 
-    void registerFiles() {
-        
-    }
+void registerFiles() {
+
+}
 
 }
