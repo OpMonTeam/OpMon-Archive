@@ -10,37 +10,72 @@ Contient le namespace Overworld
 #include "MainFrame.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include "../start/main.hpp"
 #define CASES * 32
 #define CASE_SIZE 32
 
-namespace MainFrame {
-    /**
-    Contient les Ã©lÃ©ments fonctionnels de l'overworld
-    */
-    namespace Overworld {
-        void initVars();
-        int overworld();
-        int boucle();
-        int boucleDialog(std::vector<sf::String> const& dialogs);
+/**
+Contient les Ã©lÃ©ments fonctionnels de l'overworld
+*/
+class Overworld {
+public:
 
-        void up();
-        void down();
-        void right();
-        void left();
+Map *actual;
+sf::View camera;
+sf::Sprite *maps[3];
+sf::Music *music;
 
-        int tp(int toTp, sf::Vector2i pos, bool scroll = true);
+std::string fps;
+int fpsCounter;
+sf::Text fpsPrint;
+int oldTicksFps;
 
-        extern Map *actual;
-        extern sf::Sprite &character;
-        extern sf::View camera;
-        extern sf::Sprite *maps[3];
-        extern sf::Music *music;
+sf::Sprite *layer1;
+sf::Sprite *layer2;
+sf::Sprite *layer3;
 
-	extern int frames;
-      extern bool movementLock;
+int &ppPosX = Main::player.getPosX();
+int &ppPosY = Main::player.getPosY();
+
+bool justTp = false;
+int tpCount = 0;
+
+int anim = -1;
+int moving = -1;
+bool anims = false;
+
+int ancientTick = 0;
+
+int frames = 0;
+int startFrames = 0;
+int animsCounter = 0;
+
+bool movementLock = false;
+
+bool scrollock[2] = {false, false};
+  int ppDir = Side::TO_DOWN;
+
+bool scrolling = true;
+
+bool debugMode = false;
+bool printlayer[3] = {true, true, true};
+
+sf::Sprite &character = Main::player.getSprite();
+
+void initVars();
+int overworld();
+int boucle();
+int boucleDialog(std::vector<sf::String> const& dialogs);
+
+void up();
+void down();
+void right();
+void left();
+
+int tp(int toTp, sf::Vector2i pos, bool scroll = true);
 
 
-    }
-}
+
+};
 
 #endif // OVERWORLD_HPP

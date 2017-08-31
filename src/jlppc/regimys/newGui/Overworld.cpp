@@ -14,53 +14,12 @@
 #endif
 
 UNS
-namespace MainFrame {
-namespace Overworld {
+
 using namespace Side;
 
-Map *actual;
-sf::View camera;
-sf::Sprite *maps[3];
-sf::Music *music;
 
-    std::string fps;
-    int fpsCounter;
-    sf::Text fpsPrint;
-    int oldTicksFps;
-    
-sf::Sprite *layer1;
-sf::Sprite *layer2;
-sf::Sprite *layer3;
 
-  int &ppPosX = Main::player.getPosX();
-  int &ppPosY = Main::player.getPosY();
-
-bool justTp = false;
-int tpCount = 0;
-
-int anim = -1;
-int moving = -1;
-bool anims = false;
-
-int ancientTick = 0;
-
-int frames = 0;
-int startFrames = 0;
-int animsCounter = 0;
-
-  bool movementLock = false;
-  
-bool scrollock[2] = {false, false};
-int ppDir = TO_DOWN;
-
-bool scrolling = true;
-
-bool debugMode = false;
-bool printlayer[3] = {true, true, true};
-
-  sf::Sprite &character = Main::player.getSprite();
-
-void initVars() {
+void Overworld::initVars() {
     actual =  Initializer::maps[5];
     character = Main::player.getSprite();
     character.setTexture(Initializer::texturePP[TO_DOWN]);
@@ -87,7 +46,7 @@ void initVars() {
     character.setOrigin(16, 16);
 }
 
-int tp(int toTp, sf::Vector2i pos, bool scroll) {
+int Overworld::tp(int toTp, sf::Vector2i pos, bool scroll) {
     if(moving != -1|| anim != -1) {
         moving = -1;
         anim = -1;
@@ -127,19 +86,19 @@ int tp(int toTp, sf::Vector2i pos, bool scroll) {
     return 0;
 }
 #define UNLOCK_TP  Events::justTP = false;
-void up() {
+void Overworld::up() {
     if(anim == -1 && !movementLock) {
-	if(ppDir != TO_UP){
-	  ppDir = TO_UP;
-	  return;
-	}
-	startFrames = frames;
+        if(ppDir != TO_UP) {
+            ppDir = TO_UP;
+            return;
+        }
+        startFrames = frames;
         anim = TO_UP;
 
         if(debugMode) {
             UNLOCK_TP
             moving = TO_UP;
-	    ppPosY--;
+            ppPosY--;
             std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY - 1) CASES));
             if(nextEvents.size() > 0) {
                 for(Event *nextEvent : nextEvents) {
@@ -148,20 +107,20 @@ void up() {
                     }
                 }
             }
-	    return;
+            return;
         }
         if(ppPosY - 1 >= 0) {
-	  if(actual->getPassArr()[(int)(ppPosY -1)][(int)ppPosX] == 0) {
-	    std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY - 1) CASES));
-	    for(Event *nextEvent : nextEvents){
-	      if(!nextEvent->isPassable()){
-		return;
-	      }
-	    }
+            if(actual->getPassArr()[(int)(ppPosY -1)][(int)ppPosX] == 0) {
+                std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY - 1) CASES));
+                for(Event *nextEvent : nextEvents) {
+                    if(!nextEvent->isPassable()) {
+                        return;
+                    }
+                }
                 UNLOCK_TP
                 moving = TO_UP;
-		ppPosY--;
-                
+                ppPosY--;
+
                 if(nextEvents.size() > 0) {
                     for(Event *nextEvent : nextEvents) {
                         if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN && ((nextEvent->getSide() & SIDE_UP) == SIDE_UP)) {
@@ -175,18 +134,18 @@ void up() {
     }
 }
 
-void down() {
+void Overworld::down() {
     if(anim == -1 && !movementLock) {//Si une animation n'est pas dÃ©jÃ  en cours
-	if(ppDir != TO_DOWN){
-	  ppDir = TO_DOWN;
-	  return;
-	}
+        if(ppDir != TO_DOWN) {
+            ppDir = TO_DOWN;
+            return;
+        }
         startFrames = frames;
         anim = TO_DOWN;
         if(debugMode) {
             UNLOCK_TP
             moving = TO_DOWN;
-	    ppPosY++;
+            ppPosY++;
             std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY + 1) CASES));
             if(nextEvents.size() > 0) {
                 for(Event *nextEvent : nextEvents) {
@@ -195,16 +154,16 @@ void down() {
                     }
                 }
             }
-	    return;
+            return;
         }
         if(ppPosY + 1 < actual->getH()) {
-	  if(actual->getPassArr()[(int)(ppPosY + 1)][(int)ppPosX] == 0) {//VÃ©rification des boites de collisions
-	    std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY + 1) CASES));
-	    for(Event *nextEvent : nextEvents){
-	      if(!nextEvent->isPassable()){
-		return;
-	      }
-	    }
+            if(actual->getPassArr()[(int)(ppPosY + 1)][(int)ppPosX] == 0) {//VÃ©rification des boites de collisions
+                std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY + 1) CASES));
+                for(Event *nextEvent : nextEvents) {
+                    if(!nextEvent->isPassable()) {
+                        return;
+                    }
+                }
                 UNLOCK_TP
                 moving = TO_DOWN;
                 ppPosY++;
@@ -221,18 +180,18 @@ void down() {
     }
 }
 
-void right() {
-    if(anim == -1 && !movementLock) {  
-	if(ppDir != TO_RIGHT){
-	  ppDir = TO_RIGHT;
-	  return;
-	}
-	startFrames = frames;
+void Overworld::right() {
+    if(anim == -1 && !movementLock) {
+        if(ppDir != TO_RIGHT) {
+            ppDir = TO_RIGHT;
+            return;
+        }
+        startFrames = frames;
         anim = TO_RIGHT;
         if(debugMode) {
             UNLOCK_TP
             moving = TO_RIGHT;
-	    ppPosX++;
+            ppPosX++;
             std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX + 1) CASES, ppPosY CASES));
             if(nextEvents.size() > 0) {
                 for(Event *nextEvent : nextEvents) {
@@ -241,19 +200,19 @@ void right() {
                     }
                 }
             }
-	    return;
+            return;
         }
         if(ppPosX + 1 < actual->getW()) {
-	  if(actual->getPassArr()[(int)(ppPosY)][(int)(ppPosX + 1)] == 0 || actual->getPassArr()[(int)(ppPosY)][(int)(ppPosX + 1)] == 5) {
-	   std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX + 1) CASES, ppPosY CASES));  
-	    for(Event *nextEvent : nextEvents){
-	      if(!nextEvent->isPassable()){
-		return;
-	      }
-	    }
+            if(actual->getPassArr()[(int)(ppPosY)][(int)(ppPosX + 1)] == 0 || actual->getPassArr()[(int)(ppPosY)][(int)(ppPosX + 1)] == 5) {
+                std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX + 1) CASES, ppPosY CASES));
+                for(Event *nextEvent : nextEvents) {
+                    if(!nextEvent->isPassable()) {
+                        return;
+                    }
+                }
                 UNLOCK_TP
                 moving = TO_RIGHT;
-		ppPosX++;
+                ppPosX++;
                 if(nextEvents.size() > 0) {
                     for(Event *nextEvent : nextEvents) {
                         if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN && ((nextEvent->getSide() & SIDE_RIGHT) == SIDE_RIGHT)) {
@@ -267,18 +226,18 @@ void right() {
 }
 
 
-void left() {
+void Overworld::left() {
     if(anim == -1 && !movementLock) {
-	if(ppDir != TO_LEFT){
-	  ppDir = TO_LEFT;
-	  return;
-	}
-	startFrames = frames;
+        if(ppDir != TO_LEFT) {
+            ppDir = TO_LEFT;
+            return;
+        }
+        startFrames = frames;
         anim = TO_LEFT;
         if(debugMode) {
             UNLOCK_TP
             moving = TO_LEFT;
-	    ppPosX--;
+            ppPosX--;
             std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX - 1) CASES, ppPosY CASES));
             if(nextEvents.size() > 0) {
                 for(Event *nextEvent : nextEvents) {
@@ -290,13 +249,13 @@ void left() {
             return;
         }
         if(ppPosX - 1 >= 0) {
-	  if(actual->getPassArr()[(int)(ppPosY)][(int)(ppPosX - 1)] == 0) {
-	    std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX - 1) CASES, ppPosY CASES));
-	    for(Event *nextEvent : nextEvents){
-	      if(!nextEvent->isPassable()){
-		return;
-	      }
-	    }
+            if(actual->getPassArr()[(int)(ppPosY)][(int)(ppPosX - 1)] == 0) {
+                std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX - 1) CASES, ppPosY CASES));
+                for(Event *nextEvent : nextEvents) {
+                    if(!nextEvent->isPassable()) {
+                        return;
+                    }
+                }
                 UNLOCK_TP
                 moving = TO_LEFT;
                 ppPosX--;
@@ -316,7 +275,7 @@ void left() {
 #undef UNLOCK_TP
 
 
-int overworld() {
+int Overworld::overworld() {
     MainFrame::mapsInit.wait();
     for(Map *map : Initializer::maps) {
         for(Event *event : map->getEvents()) {
@@ -337,306 +296,306 @@ int overworld() {
     return returned;
 }
 
-  int boucle() {
+int boucle() {
     bool continuer = true;
     while(continuer) {
-      if((GET_TICKS - ancientTick >= FPS_TICKS)) {
-	  fpsCounter++;
-	  if(GET_TICKS - oldTicksFps >= 1000){
-	      fps = "";
-	      fps << fpsCounter;
-	      fpsPrint.setString(fps);
-	      fpsCounter = 0;
-	  }
-	frames++;
-	#define DEBUG_REPORT
+        if((GET_TICKS - ancientTick >= FPS_TICKS)) {
+            fpsCounter++;
+            if(GET_TICKS - oldTicksFps >= 1000) {
+                fps = "";
+                fps << fpsCounter;
+                fpsPrint.setString(fps);
+                fpsCounter = 0;
+            }
+            frames++;
+#define DEBUG_REPORT
 #ifdef DEBUG_REPORT
-	cout << "[FRAME N°" << frames << "]" << endl;
-	cout << "Boucle : Normal" << endl;
-	cout << "Tick: " << ticks.getElapsedTime().asMilliseconds() << "ms" << endl;
-	cout << "PlayerPosition: " << ppPosX << " - " << ppPosY << endl;
-	cout << "PlayerPositionPx: " << character.getPosition().x << " - " << character.getPosition().y << endl;
-	cout << "Moving: " << moving << endl;
-	cout << "Anim: " << anim << endl;
-	cout << "PlayerDirection: " << ppDir << endl;
-	cout << "DebugMode: " << debugMode << endl;
-	cout << "MapPos: " << layer1->getPosition().x << " - " << layer1->getPosition().y << endl;
+            cout << "[FRAME N°" << frames << "]" << endl;
+            cout << "Boucle : Normal" << endl;
+            cout << "Tick: " << ticks.getElapsedTime().asMilliseconds() << "ms" << endl;
+            cout << "PlayerPosition: " << ppPosX << " - " << ppPosY << endl;
+            cout << "PlayerPositionPx: " << character.getPosition().x << " - " << character.getPosition().y << endl;
+            cout << "Moving: " << moving << endl;
+            cout << "Anim: " << anim << endl;
+            cout << "PlayerDirection: " << ppDir << endl;
+            cout << "DebugMode: " << debugMode << endl;
+            cout << "MapPos: " << layer1->getPosition().x << " - " << layer1->getPosition().y << endl;
 #endif
 
-	//cout << "Position perso : P(" << ppPosX << ";" << ppPosY << ")" << endl;
-	if(justTp) {
-	  tpCount++;
-	  justTp = tpCount < 0;
-	}
+            //cout << "Position perso : P(" << ppPosX << ";" << ppPosY << ")" << endl;
+            if(justTp) {
+                tpCount++;
+                justTp = tpCount < 0;
+            }
 
-	ancientTick = GET_TICKS;
-	window.pollEvent(events);
+            ancientTick = GET_TICKS;
+            window.pollEvent(events);
 
-	switch(events.type) {
-	  QUIT
+            switch(events.type) {
+                QUIT
 
-	case sf::Event::KeyPressed:
-	  if(events.key.code == sf::Keyboard::Equal) {
-	    debugMode = !debugMode;
-	  }
-	  if(debugMode) {
-	    if(events.key.code == sf::Keyboard::F10) {
-	      printlayer[0] = !printlayer[0];
-	    }
-	    if(events.key.code == sf::Keyboard::F11) {
-	      printlayer[1] = !printlayer[1];
-	    }
-	    if(events.key.code == sf::Keyboard::F12) {
-	      printlayer[2] = !printlayer[2];
-	    }
+            case sf::Event::KeyPressed:
+                if(events.key.code == sf::Keyboard::Equal) {
+                    debugMode = !debugMode;
+                }
+                if(debugMode) {
+                    if(events.key.code == sf::Keyboard::F10) {
+                        printlayer[0] = !printlayer[0];
+                    }
+                    if(events.key.code == sf::Keyboard::F11) {
+                        printlayer[1] = !printlayer[1];
+                    }
+                    if(events.key.code == sf::Keyboard::F12) {
+                        printlayer[2] = !printlayer[2];
+                    }
 
-	    if(events.key.code == sf::Keyboard::F5) {
-	      tp(4, sf::Vector2i(0, 1), true);
-	    } else if(events.key.code == sf::Keyboard::F6) {
-	      tp(5, sf::Vector2i(0, 0), true);
-	    } else if(events.key.code == sf::Keyboard::F1) {
-	      tp(0, sf::Vector2i(25, 28), true);
-	    } else if(events.key.code == sf::Keyboard::F2) {
-	      tp(1, sf::Vector2i(8, 14), true);
-	    } else if(events.key.code == sf::Keyboard::F3) {
-	      tp(2, sf::Vector2i(15, 14), true);
-	    } else if(events.key.code == sf::Keyboard::F4) {
-	      tp(3, sf::Vector2i(8, 14), true);
-	    }
-	  }
-	default:
-	  break;
-	}
-	ECHAP
-	  if(Main::player.gameIsOver) {
-	    return -1;
-	  }
-	if(!justTp) {
-	  if(isKeyPressed(sf::Keyboard::Up)) {
-	    up();
-	  }
-	  if(isKeyPressed(sf::Keyboard::Down)) {
-	    down();
-	  }
-	  if(isKeyPressed(sf::Keyboard::Left)) {
-	    left();
-	  }
-	  if(isKeyPressed(sf::Keyboard::Right)) {
-	    right();
-	  }
-	}
-	sf::Text debugText;
-	if(debugMode) {
-	  if(isKeyPressed(sf::Keyboard::Numpad2)) {
-	    camera.move(0, 4);
-	  }
-	  if(isKeyPressed(sf::Keyboard::Numpad4)) {
-	    camera.move(-4, 0);
-	  }
-	  if(isKeyPressed(sf::Keyboard::Numpad8)) {
-	    camera.move(0, -4);
-	  }
-	  if(isKeyPressed(sf::Keyboard::Numpad6)) {
-	    camera.move(4, 0);
-	  }
-	  debugText.setString("Debug mode");
-	  debugText.setPosition(frame.mapPixelToCoords(sf::Vector2i(0, 0)));
-	  debugText.setFont(font);
-	  debugText.setColor(sf::Color(127, 127, 127));
-	  debugText.setCharacterSize(40);
-	  fpsPrint.setPosition(frame.mapPixelToCoords(sf::Vector2i(0, 50)));
-	  fpsPrint.setFont(font);
-	  fpsPrint.setCharacterSize(48);
-	}
+                    if(events.key.code == sf::Keyboard::F5) {
+                        tp(4, sf::Vector2i(0, 1), true);
+                    } else if(events.key.code == sf::Keyboard::F6) {
+                        tp(5, sf::Vector2i(0, 0), true);
+                    } else if(events.key.code == sf::Keyboard::F1) {
+                        tp(0, sf::Vector2i(25, 28), true);
+                    } else if(events.key.code == sf::Keyboard::F2) {
+                        tp(1, sf::Vector2i(8, 14), true);
+                    } else if(events.key.code == sf::Keyboard::F3) {
+                        tp(2, sf::Vector2i(15, 14), true);
+                    } else if(events.key.code == sf::Keyboard::F4) {
+                        tp(3, sf::Vector2i(8, 14), true);
+                    }
+                }
+            default:
+                break;
+            }
+            ECHAP
+            if(Main::player.gameIsOver) {
+                return -1;
+            }
+            if(!justTp) {
+                if(isKeyPressed(sf::Keyboard::Up)) {
+                    up();
+                }
+                if(isKeyPressed(sf::Keyboard::Down)) {
+                    down();
+                }
+                if(isKeyPressed(sf::Keyboard::Left)) {
+                    left();
+                }
+                if(isKeyPressed(sf::Keyboard::Right)) {
+                    right();
+                }
+            }
+            sf::Text debugText;
+            if(debugMode) {
+                if(isKeyPressed(sf::Keyboard::Numpad2)) {
+                    camera.move(0, 4);
+                }
+                if(isKeyPressed(sf::Keyboard::Numpad4)) {
+                    camera.move(-4, 0);
+                }
+                if(isKeyPressed(sf::Keyboard::Numpad8)) {
+                    camera.move(0, -4);
+                }
+                if(isKeyPressed(sf::Keyboard::Numpad6)) {
+                    camera.move(4, 0);
+                }
+                debugText.setString("Debug mode");
+                debugText.setPosition(frame.mapPixelToCoords(sf::Vector2i(0, 0)));
+                debugText.setFont(font);
+                debugText.setColor(sf::Color(127, 127, 127));
+                debugText.setCharacterSize(40);
+                fpsPrint.setPosition(frame.mapPixelToCoords(sf::Vector2i(0, 50)));
+                fpsPrint.setFont(font);
+                fpsPrint.setCharacterSize(48);
+            }
 
-	frame.clear(sf::Color::Black);
-	if((debugMode ? printlayer[0] : true)) {
-	  frame.draw(*layer1);
-	}
-	if((debugMode ? printlayer[1] : true)) {
-	  frame.draw(*layer2);
-	}
-	actual->updateEvents(Main::player);
-	for(Event *event : actual->getEvents()) {
-	  if(event->getPosition().y <= ppPosY){
-	    frame.draw(*event->getSprite());
-	  }
-	}
-	if(anim != -1 && !anims) {
-	  character.setTexture(Initializer::walkingPP[anim]);
-	  animsCounter++;
-	  anims = animsCounter > 8;
+            frame.clear(sf::Color::Black);
+            if((debugMode ? printlayer[0] : true)) {
+                frame.draw(*layer1);
+            }
+            if((debugMode ? printlayer[1] : true)) {
+                frame.draw(*layer2);
+            }
+            actual->updateEvents(Main::player);
+            for(Event *event : actual->getEvents()) {
+                if(event->getPosition().y <= ppPosY) {
+                    frame.draw(*event->getSprite());
+                }
+            }
+            if(anim != -1 && !anims) {
+                character.setTexture(Initializer::walkingPP[anim]);
+                animsCounter++;
+                anims = animsCounter > 8;
 
-	} else if(anim != -1 && anims) {
-	  character.setTexture(Initializer::walkingPP2[anim]);
-	  animsCounter++;
-	  if(animsCounter > 16) {
-	    anims = false;
-	    animsCounter = 0;
-	  }
-	} else if(anim == -1) {
-	  character.setTexture(Initializer::texturePP[ppDir]);
-	}
-	frame.draw(character);
-	for(Event *event : actual->getEvents()) {
-	  if(event->getPosition().y > ppPosY){
-	    frame.draw(*event->getSprite());
-	  }
-	}
-	if((debugMode ? printlayer[2] : true)) {
-	  frame.draw(*layer3);
-	}
-	if(moving == -1) {
-	  std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, ppPosY CASES));
-	  if(nextEvents.size() > 0) {
-	    for(Event *nextEvent : nextEvents) {
-	      if(nextEvent->getEventTrigger() == Events::EventTrigger::BE_IN) {
-		bool go = false;
-		if(((nextEvent->getSide() & SIDE_UP) == SIDE_UP) && ppDir == TO_UP) {
-		  go = true;
-		} else if(((nextEvent->getSide() & SIDE_DOWN) == SIDE_DOWN) && ppDir == TO_DOWN) {
-		  go = true;
-		} else if(((nextEvent->getSide() & SIDE_RIGHT) == SIDE_RIGHT) && ppDir == TO_RIGHT) {
-		  go = true;
-		} else if(((nextEvent->getSide() & SIDE_LEFT) == SIDE_LEFT) && ppDir == TO_LEFT) {
-		  go = true;
-		}
-		if(go) {
-		  nextEvent->action(Main::player);
-		}
-	      }
-	    }
-	  }
-	}
-	actual->updateElements(MainFrame::frame);
-	if(scrolling && !debugMode) {
-	  camera.setCenter(character.getPosition().x + 16, character.getPosition().y + 16);
-	}
-	frame.setView(camera);
-	if(debugMode) {
-	  frame.draw(debugText);
-	  frame.draw(fpsPrint);
-	}
-	frame.display();
-	winRefresh();
-	if(anim == -1) {
-	  if(isKeyPressed(sf::Keyboard::Return)) {
-	    int lx = ppPosX;
-	    int ly = ppPosY;
-	    switch(ppDir) {
-	    case TO_UP:
-	      ly--;
-	      break;
-	    case TO_DOWN:
-	      ly++;
-	      break;
-	    case TO_LEFT:
-	      lx--;
-	      break;
-	    case TO_RIGHT:
-	      lx++;
-	      break;
-	    default:
-	      break;
-	    }
-	    vector<Event *> events = actual->getEvent(sf::Vector2i(lx CASES, ly CASES));
-	    /*if(events.size() == 0){
-	      events = actual->getEvent(sf::Vector2i(ppPosX CASES, ppPosY CASES));
-	      }*/
+            } else if(anim != -1 && anims) {
+                character.setTexture(Initializer::walkingPP2[anim]);
+                animsCounter++;
+                if(animsCounter > 16) {
+                    anims = false;
+                    animsCounter = 0;
+                }
+            } else if(anim == -1) {
+                character.setTexture(Initializer::texturePP[ppDir]);
+            }
+            frame.draw(character);
+            for(Event *event : actual->getEvents()) {
+                if(event->getPosition().y > ppPosY) {
+                    frame.draw(*event->getSprite());
+                }
+            }
+            if((debugMode ? printlayer[2] : true)) {
+                frame.draw(*layer3);
+            }
+            if(moving == -1) {
+                std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, ppPosY CASES));
+                if(nextEvents.size() > 0) {
+                    for(Event *nextEvent : nextEvents) {
+                        if(nextEvent->getEventTrigger() == Events::EventTrigger::BE_IN) {
+                            bool go = false;
+                            if(((nextEvent->getSide() & SIDE_UP) == SIDE_UP) && ppDir == TO_UP) {
+                                go = true;
+                            } else if(((nextEvent->getSide() & SIDE_DOWN) == SIDE_DOWN) && ppDir == TO_DOWN) {
+                                go = true;
+                            } else if(((nextEvent->getSide() & SIDE_RIGHT) == SIDE_RIGHT) && ppDir == TO_RIGHT) {
+                                go = true;
+                            } else if(((nextEvent->getSide() & SIDE_LEFT) == SIDE_LEFT) && ppDir == TO_LEFT) {
+                                go = true;
+                            }
+                            if(go) {
+                                nextEvent->action(Main::player);
+                            }
+                        }
+                    }
+                }
+            }
+            actual->updateElements(MainFrame::frame);
+            if(scrolling && !debugMode) {
+                camera.setCenter(character.getPosition().x + 16, character.getPosition().y + 16);
+            }
+            frame.setView(camera);
+            if(debugMode) {
+                frame.draw(debugText);
+                frame.draw(fpsPrint);
+            }
+            frame.display();
+            winRefresh();
+            if(anim == -1) {
+                if(isKeyPressed(sf::Keyboard::Return)) {
+                    int lx = ppPosX;
+                    int ly = ppPosY;
+                    switch(ppDir) {
+                    case TO_UP:
+                        ly--;
+                        break;
+                    case TO_DOWN:
+                        ly++;
+                        break;
+                    case TO_LEFT:
+                        lx--;
+                        break;
+                    case TO_RIGHT:
+                        lx++;
+                        break;
+                    default:
+                        break;
+                    }
+                    vector<Event *> events = actual->getEvent(sf::Vector2i(lx CASES, ly CASES));
+                    /*if(events.size() == 0){
+                      events = actual->getEvent(sf::Vector2i(ppPosX CASES, ppPosY CASES));
+                      }*/
 
-	    if(events.size() > 0) {
-	      for(unsigned int i = 0; i < events.size(); i++) {
-		if(events[i]->getEventTrigger() == Events::EventTrigger::PRESS) {
-		  bool go = false;
-		  if(((events[i]->getSide() & SIDE_UP) == SIDE_UP) && ppDir == TO_UP) {
-		    go = true;
-		  } else if(((events[i]->getSide() & SIDE_DOWN) == SIDE_DOWN) && ppDir == TO_DOWN) {
-		    go = true;
-		  } else if(((events[i]->getSide() & SIDE_RIGHT) == SIDE_RIGHT) && ppDir == TO_RIGHT) {
-		    go = true;
-		  } else if(((events[i]->getSide() & SIDE_LEFT) == SIDE_LEFT) && ppDir == TO_LEFT) {
-		    go = true;
-		  }
-		  if(go) {
-		    events[i]->action(Main::player);
-		  }
-		}
-	      }
-	    }
-	  }
-	}
-	if(anim == TO_UP) {
-	  if(frames - startFrames >= 7) {
-	    if(moving == TO_UP) {
-	      character.move(0, -4);
-	    }
-	    anim = -1;
-	    moving = -1;
-	  } else {
-	    if(moving == TO_UP) {
-	      character.move(0, -4);
-
-
-	    }
-	  }
-	}
-	if(anim == TO_DOWN) {
-	  if(frames - startFrames >= 7) {
-	    if(moving == TO_DOWN) {
-	      character.move(0, 4);
-	    }
-	    anim = -1;
-	    moving = -1;
-	  } else {
-	    if(moving == TO_DOWN) {
-	      character.move(0, 4);
-	    }
-	  }
-	}
-
-	if(anim == TO_LEFT) {
-	  if(frames - startFrames >= 7) {
-	    if(moving == TO_LEFT) {
-	      character.move(-4, 0);
-	    }
-
-	    anim = -1;
-	    moving = -1;
-	  } else {
-	    if(moving == TO_LEFT) {
-	      character.move(-4, 0);
-	    }
-	  }
-	}
-
-	if(anim == TO_RIGHT) {
-	  if(frames - startFrames >= 7) {
-	    if(moving == TO_RIGHT) {
-	      character.move(4, 0);
-	    }
-	    anim = -1;
-	    moving = -1;
-	  } else {
-	    if(moving == TO_RIGHT) {
-	      character.move(4, 0);
+                    if(events.size() > 0) {
+                        for(unsigned int i = 0; i < events.size(); i++) {
+                            if(events[i]->getEventTrigger() == Events::EventTrigger::PRESS) {
+                                bool go = false;
+                                if(((events[i]->getSide() & SIDE_UP) == SIDE_UP) && ppDir == TO_UP) {
+                                    go = true;
+                                } else if(((events[i]->getSide() & SIDE_DOWN) == SIDE_DOWN) && ppDir == TO_DOWN) {
+                                    go = true;
+                                } else if(((events[i]->getSide() & SIDE_RIGHT) == SIDE_RIGHT) && ppDir == TO_RIGHT) {
+                                    go = true;
+                                } else if(((events[i]->getSide() & SIDE_LEFT) == SIDE_LEFT) && ppDir == TO_LEFT) {
+                                    go = true;
+                                }
+                                if(go) {
+                                    events[i]->action(Main::player);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if(anim == TO_UP) {
+                if(frames - startFrames >= 7) {
+                    if(moving == TO_UP) {
+                        character.move(0, -4);
+                    }
+                    anim = -1;
+                    moving = -1;
+                } else {
+                    if(moving == TO_UP) {
+                        character.move(0, -4);
 
 
-	    }
-	  }
-	}
+                    }
+                }
+            }
+            if(anim == TO_DOWN) {
+                if(frames - startFrames >= 7) {
+                    if(moving == TO_DOWN) {
+                        character.move(0, 4);
+                    }
+                    anim = -1;
+                    moving = -1;
+                } else {
+                    if(moving == TO_DOWN) {
+                        character.move(0, 4);
+                    }
+                }
+            }
+
+            if(anim == TO_LEFT) {
+                if(frames - startFrames >= 7) {
+                    if(moving == TO_LEFT) {
+                        character.move(-4, 0);
+                    }
+
+                    anim = -1;
+                    moving = -1;
+                } else {
+                    if(moving == TO_LEFT) {
+                        character.move(-4, 0);
+                    }
+                }
+            }
+
+            if(anim == TO_RIGHT) {
+                if(frames - startFrames >= 7) {
+                    if(moving == TO_RIGHT) {
+                        character.move(4, 0);
+                    }
+                    anim = -1;
+                    moving = -1;
+                } else {
+                    if(moving == TO_RIGHT) {
+                        character.move(4, 0);
+
+
+                    }
+                }
+            }
 
 
 
-      } else {
-	Utils::wait(FPS_TICKS - (GET_TICKS - ancientTick));
-      }
+        } else {
+            Utils::wait(FPS_TICKS - (GET_TICKS - ancientTick));
+        }
 
 
     }
     return 0;
-  }
+}
 
-int boucleDialog(vector<sf::String> const& dialogs) {
+int Overworld::boucleDialog(vector<sf::String> const& dialogs) {
     int sizeOfTxt = dialogs.size();
     sf::String txtEnCours[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
     bool continuer = true;
@@ -669,8 +628,8 @@ int boucleDialog(vector<sf::String> const& dialogs) {
                     DIALOG_PASS(dialogs)
                 }
                 break;
-	    default:
-	      break;
+            default:
+                break;
             }
             if(isKeyPressed(sf::Keyboard::Escape)) {
                 Main::player.gameIsOver = true;
@@ -679,9 +638,9 @@ int boucleDialog(vector<sf::String> const& dialogs) {
             frame.draw(*layer1);
             frame.draw(*layer2);
             for(Event *event : actual->getEvents()) {
-	      if(event->getPosition().y <= ppPosY){
-		frame.draw(*event->getSprite());
-	      }
+                if(event->getPosition().y <= ppPosY) {
+                    frame.draw(*event->getSprite());
+                }
             }
             if(anim != -1 && !anims) {
                 character.setTexture(Initializer::walkingPP[anim]);
@@ -693,10 +652,10 @@ int boucleDialog(vector<sf::String> const& dialogs) {
                 character.setTexture(Initializer::texturePP[ppDir]);
             }
             frame.draw(character);
-	    for(Event *event : actual->getEvents()) {
-	      if(event->getPosition().y > ppPosY){
-		frame.draw(*event->getSprite());
-	      }
+            for(Event *event : actual->getEvents()) {
+                if(event->getPosition().y > ppPosY) {
+                    frame.draw(*event->getSprite());
+                }
             }
             frame.draw(*layer3);
             if(scrolling) {
@@ -740,8 +699,4 @@ int boucleDialog(vector<sf::String> const& dialogs) {
     return 0;
 }
 
-}
 
-
-
-}

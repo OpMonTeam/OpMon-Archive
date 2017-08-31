@@ -22,37 +22,37 @@ Contient le namespace OptionsSave
 Namespace permettant de sauvegarder les paramètres
 */
 namespace OptionsSave {
-    /**
-    Classe définissant un paramètre
-    */
-    class Param {
-        private:
-            std::string paramName;
-            std::string valeur;
-        public:
-            Param(std::string name, std::string valeur);
-            std::string getName() const;
-            std::string getValue() const;
-            void setValue(std::string value);
+/**
+Classe définissant un paramètre
+*/
+class Param {
+private:
+    std::string paramName;
+    std::string valeur;
+public:
+    Param(std::string name, std::string valeur);
+    std::string getName() const;
+    std::string getValue() const;
+    void setValue(std::string value);
 
-    };
+};
 
-    extern std::vector<Param> paramList;
+extern std::vector<Param> paramList;
 
-    Param getParam(std::string const &name);
+Param getParam(std::string const &name);
 
-    void addOrModifParam(std::string const &name, std::string const &value);
+void addOrModifParam(std::string const &name, std::string const &value);
 
-    Param deleteParam(std::string const &name);
+Param deleteParam(std::string const &name);
 
-    //CPP ONLY :
-    //int searchParam(string name);
+//CPP ONLY :
+//int searchParam(string name);
 
-    void saveParams(std::string const& file);
+void saveParams(std::string const& file);
 
-    void initParams(std::string const& file);
+void initParams(std::string const& file);
 
-    bool checkParam(std::string const &name);
+bool checkParam(std::string const &name);
 
 }
 

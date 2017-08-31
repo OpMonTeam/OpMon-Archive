@@ -18,30 +18,30 @@ Permet de définir un type d'évolution
 */
 //->PureVirtual
 class Evolution {
-    public:
-        virtual ~Evolution() {}
-        Evolution() {
-            evo = -1;
-        }
-        Evolution(int evo);
-        /**Permet de vérifier si le pokémon évolue. Renvoie true si il peut evoluer*/
-        virtual bool checkEvolve(OpMon const &toCheck) const = 0;
-        Species *getEvolution() const;
-        /**Check evo permet de récuperer l'species d'évolution. Ne pas confondre avec checkEvolve*/
-        void checkEvo();
-        virtual int getEvolID() const {
-            return evolID;
-        }
-        //->JustUse->E_Item
-        virtual bool itemEvolve(Item *tem) const {
-            return false;
-        }
+public:
+    virtual ~Evolution() {}
+    Evolution() {
+        evo = -1;
+    }
+    Evolution(int evo);
+    /**Permet de vérifier si le pokémon évolue. Renvoie true si il peut evoluer*/
+    virtual bool checkEvolve(OpMon const &toCheck) const = 0;
+    Species *getEvolution() const;
+    /**Check evo permet de récuperer l'species d'évolution. Ne pas confondre avec checkEvolve*/
+    void checkEvo();
+    virtual int getEvolID() const {
+        return evolID;
+    }
+    //->JustUse->E_Item
+    virtual bool itemEvolve(Item *tem) const {
+        return false;
+    }
 
 
-    protected:
-        static const int evolID = 0;
-        Species *toEvolve;
-        int evo;
+protected:
+    static const int evolID = 0;
+    Species *toEvolve;
+    int evo;
 };
 
 #endif /* EVOLUTION_HPP */

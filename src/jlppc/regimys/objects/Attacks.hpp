@@ -28,13 +28,13 @@ Namespace contenant les définitions des attaques
 //->NoDoc
 namespace Attacks {
 
-    Attack *newAtk(std::string name);
+Attack *newAtk(std::string name);
 
-    ATK_CLASS(Abime)
-    Abime() : Attack("Abime", 99999, Type::SOL, 30, false, false, -1, false, 5, 0, "Abime") {}
-    EAv;
-    EAp {return 0;}
-    static Class<Abime> *classe;
+ATK_CLASS(Abime)
+Abime() : Attack("Abime", 99999, Type::SOL, 30, false, false, -1, false, 5, 0, "Abime") {}
+EAv;
+EAp {return 0;}
+static Class<Abime> *classe;
 };
 
 ATK_CLASS(Acidarmure)

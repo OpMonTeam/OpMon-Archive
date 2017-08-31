@@ -13,6 +13,11 @@ Permet d'ouvrir la fenetre du jeu et de charger les ressources essensielles. Con
 #include "../start/StringKeys.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include "../start/Initializer.hpp"
+#include "Overworld.hpp"
+#include "StartScene.hpp"
+#include "MainMenu.hpp"
+#include "OptionsMenu.hpp"
 
 
 #define rLog rlog
@@ -53,11 +58,11 @@ Permet d'ouvrir la fenetre du jeu et de charger les ressources essensielles. Con
             txtEnCours[1] = varname[dialog + 1];\
             txtEnCours[2] = varname[dialog + 2];\
             sf::String arr[3] = {txtEnCours[0], txtEnCours[1], txtEnCours[2]};\
-            printText(frame, arr);\
+	    Main::mainframe.printText(Main::mainframe.frame, arr);		\
             changeDialog = true;\
             Utils::wait(50);\
   } else if (!(dialog + 3 >= (unsigned int) sizeOfTxt)) {	\
-            dialogPass.play();\
+    Main::mainframe.dialogPass.play();				\
             line = 0;\
             dialog+=3;\
             i = 0;\
@@ -71,35 +76,46 @@ Permet d'ouvrir la fenetre du jeu et de charger les ressources essensielles. Con
 
 #define ANIM_ARROW 	\
     sf::Vector2f posArrow = frame.mapPixelToCoords(sf::Vector2i(512-75, 512-30));\
-    arrDial.move(0, 1);\
-    if (arrDial.getPosition().y - posArrow.y > 5) {\
-            arrDial.move(0, -6);\
+    Main::mainframe.arrDial.move(0, 1);\
+    if (Main::mainframe.arrDial.getPosition().y - posArrow.y > 5) {\
+            Main::mainframe.arrDial.move(0, -6);\
         }\
-    frame.draw(arrDial);
+    frame.draw(Main::mainframe.arrDial);
 
 
 /*
 Contient toutes les methodes permettant de gérer et de faire fonctionner l'interface graphique
  * Contient aussi le déroulement des évenements
  */
-namespace MainFrame {
-    extern sf::RenderTexture frame;
-    extern sf::RenderWindow window;
-    extern sf::Sprite bg;
-    extern sf::Event events;
-    extern sf::Font font;
-    extern sf::Sprite dialog;
-    extern sf::Text dialogText[3];
-    extern bool init;
-    extern sf::Sprite arrDial;
-    extern sf::Sprite ppSprite;
-    extern sf::Sprite ppAnim;
-    extern sf::Sound dialogPass;
-    extern bool fullScreen;
+class MainFrame {
+public:
+    sf::RenderTexture frame;
+    sf::RenderWindow window;
+    sf::Sprite bg;
+    sf::Event events;
+    sf::Font font;
+    sf::Sprite dialog;
+    sf::Text dialogText[3];
+    bool init = false;
+    sf::Sprite arrDial;
+    sf::Sprite ppSprite;
+    sf::Sprite ppAnim;
+    sf::Sound dialogPass;
+  sf::Thread mapsInit;
 
-    extern sf::Thread mapsInit;
+    sf::Thread *windowRefresh = NULL;
 
+    Overworld overworld;
+    StartScene startscene;
+    MainMenu mainmenu;
+    OptionsMenu optionsmenu;
 
+    bool fullScreen = false;
+
+  MainFrame();
+
+  
+  
     void open();
 
     void printText(sf::RenderTexture &frame, sf::String text[]);
@@ -113,6 +129,9 @@ namespace MainFrame {
     void winRefresh();
 
     sf::Vector2i vec2fTo2i(sf::Vector2f const &toTrans);
-}
+
+private:
+  MainFrame(MainFrame&&);
+};
 
 #endif /* SRC_JLPPC_REGIMYS_GUI_MAINFRAME_HPP_ */

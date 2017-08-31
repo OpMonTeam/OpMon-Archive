@@ -20,61 +20,61 @@ class Event;
 Classe définissant une carte d'un lieu en particulier
 */
 class Map {
-    private:
-        sf::Texture *layer1;
-        sf::Texture *layer2;
-        sf::Music *bg;
-        //Event events;
-        int w;
-        int h;
-        sf::Texture *layer3;
-        char **passArr;
-        /**Le constructeur de copie ne doit pas etre utilsÃ©.
-        Il est donc en privÃ©. Si tout de meme cette protection est inÃ©fficace,
-        aucune definition n'est fournise de ce constructeur.*/
-        Map(Map const &toCopy);
+private:
+    sf::Texture *layer1;
+    sf::Texture *layer2;
+    sf::Music *bg;
+    //Event events;
+    int w;
+    int h;
+    sf::Texture *layer3;
+    char **passArr;
+    /**Le constructeur de copie ne doit pas etre utilsÃ©.
+    Il est donc en privÃ©. Si tout de meme cette protection est inÃ©fficace,
+    aucune definition n'est fournise de ce constructeur.*/
+    Map(Map const &toCopy);
 
-        std::vector<Event *> events;
+    std::vector<Event *> events;
 
-        std::vector<std::vector<sf::Texture> > animatedElements;
-        std::vector<sf::Vector2f> elementsPos;
-        std::vector<sf::Sprite> elementsSprites;
-        std::vector<int> elementsCount;
+    std::vector<std::vector<sf::Texture> > animatedElements;
+    std::vector<sf::Vector2f> elementsPos;
+    std::vector<sf::Sprite> elementsSprites;
+    std::vector<int> elementsCount;
 
-    public:
-  Map(sf::Texture const& layer1, sf::Texture const& layer2, sf::Texture const& layer3, int w, int h, char** collisions, sf::Music *bg, std::vector<std::vector<sf::Texture> > const& animatedElements = std::vector<std::vector<sf::Texture> >(), std::vector<sf::Vector2f> const& elementsPos = std::vector<sf::Vector2f>());
-        ~Map();
-        int getH() const {
-            return h;
-        }
-        int getW() const {
-            return w;
-        }
-        char **getPassArr() const {
-            return passArr;
-        }
-        const sf::Texture *getLayer1() const {
-            return layer1;
-        }
-        const sf::Texture *getLayer2() const {
-            return layer2;
-        }
-        const sf::Texture *getLayer3() const {
-            return layer3;
-        }
-        sf::Music *getBg() const {
-            return bg;
-        }
-        void addEvent(Event *event) {
-            events.push_back(event);
-        }
-        std::vector<Event *> getEvent(sf::Vector2i position);
-        const std::vector<Event *> getEvents() const {
-            return events;
-        };
-        void updateEvents(Player &player);
-        void debugInfo();
-        void updateElements(sf::RenderTexture &frame);
+public:
+    Map(sf::Texture const& layer1, sf::Texture const& layer2, sf::Texture const& layer3, int w, int h, char** collisions, sf::Music *bg, std::vector<std::vector<sf::Texture> > const& animatedElements = std::vector<std::vector<sf::Texture> >(), std::vector<sf::Vector2f> const& elementsPos = std::vector<sf::Vector2f>());
+    ~Map();
+    int getH() const {
+        return h;
+    }
+    int getW() const {
+        return w;
+    }
+    char **getPassArr() const {
+        return passArr;
+    }
+    const sf::Texture *getLayer1() const {
+        return layer1;
+    }
+    const sf::Texture *getLayer2() const {
+        return layer2;
+    }
+    const sf::Texture *getLayer3() const {
+        return layer3;
+    }
+    sf::Music *getBg() const {
+        return bg;
+    }
+    void addEvent(Event *event) {
+        events.push_back(event);
+    }
+    std::vector<Event *> getEvent(sf::Vector2i position);
+    const std::vector<Event *> getEvents() const {
+        return events;
+    };
+    void updateEvents(Player &player);
+    void debugInfo();
+    void updateElements(sf::RenderTexture &frame);
 };
 
 

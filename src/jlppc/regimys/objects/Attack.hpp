@@ -19,55 +19,55 @@ Représente une attaque Pokémon
 */
 //->PureVirtual
 class Attack {
-    public:
-        virtual ~Attack() {}
-        Attack(std::string nom, int puissance, int type, int accuracy, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite, std::string className);
-        //->PureVirtual
-        virtual int effetAvant(OpMon &atk, OpMon &def) = 0;
-        //->PureVirtual
-        virtual int effetApres(OpMon &atk, OpMon &def) = 0;
-        void healPP() {
-            pp = ppMax;
-        }
-        int getType() {
-            return type;
-        }
-        /**atk attaque le pokémon def*/
-        //->Final
-        virtual int attack(OpMon &atk, OpMon &def);
-        virtual void siEchoue(OpMon &atk, OpMon &def) {}
-        virtual Class<Attack> *getClass() {
-            return classe;
-        }
-        virtual std::string getClassName() {
-            return className;
-        }
-        virtual std::string save();
-        void setPP(int PP) {
-            this->pp = PP;
-        }
-        void setPPMax(int PPMax) {
-            this->ppMax = PPMax;
-        }
-    protected:
-        std::string className;
-        std::string nom;
-        int puissance;
-        int priorite;
-        int accuracy;
-        int type;
-        bool special;
-        bool status;
-        int part = 0;
-        int pp;
-        int ppMax;
-        /**La chance de coups critiques, en 1/nombre (Par défaut, 16)*/
-        int chanceDeCoups;
-        bool rateJamais;
-        /**Variable utilisée dans effetAvant et effetAprès*/
-        int hpPerdus = 0;
-    private:
-        static Class<Attack> *classe;
+public:
+    virtual ~Attack() {}
+    Attack(std::string nom, int puissance, int type, int accuracy, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite, std::string className);
+    //->PureVirtual
+    virtual int effetAvant(OpMon &atk, OpMon &def) = 0;
+    //->PureVirtual
+    virtual int effetApres(OpMon &atk, OpMon &def) = 0;
+    void healPP() {
+        pp = ppMax;
+    }
+    int getType() {
+        return type;
+    }
+    /**atk attaque le pokémon def*/
+    //->Final
+    virtual int attack(OpMon &atk, OpMon &def);
+    virtual void siEchoue(OpMon &atk, OpMon &def) {}
+    virtual Class<Attack> *getClass() {
+        return classe;
+    }
+    virtual std::string getClassName() {
+        return className;
+    }
+    virtual std::string save();
+    void setPP(int PP) {
+        this->pp = PP;
+    }
+    void setPPMax(int PPMax) {
+        this->ppMax = PPMax;
+    }
+protected:
+    std::string className;
+    std::string nom;
+    int puissance;
+    int priorite;
+    int accuracy;
+    int type;
+    bool special;
+    bool status;
+    int part = 0;
+    int pp;
+    int ppMax;
+    /**La chance de coups critiques, en 1/nombre (Par défaut, 16)*/
+    int chanceDeCoups;
+    bool rateJamais;
+    /**Variable utilisée dans effetAvant et effetAprès*/
+    int hpPerdus = 0;
+private:
+    static Class<Attack> *classe;
 };
 
 #endif /* SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUE_HPP_ */

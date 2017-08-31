@@ -23,17 +23,17 @@ Le namespace Animations contient toutes les animations du jeu. Ces animations do
 */
 namespace Animations {
 
-    /**
-    Initialise les animations
-    */
-    void initAnims();
-    /**
-    Libère les ressources associées aux animations
-    */
-    void deleteAnims();
+/**
+Initialise les animations
+*/
+void initAnims();
+/**
+Libère les ressources associées aux animations
+*/
+void deleteAnims();
 
-    int animWinOpen(sf::RenderTexture &window, sf::Sprite const &bg);
-    int animWinClose(sf::RenderTexture &window, sf::Sprite const &bg);
+int animWinOpen(sf::RenderTexture &window, sf::Sprite const &bg);
+int animWinClose(sf::RenderTexture &window, sf::Sprite const &bg);
 
 }
 

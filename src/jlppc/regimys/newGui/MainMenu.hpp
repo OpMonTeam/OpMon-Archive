@@ -12,34 +12,38 @@ Contient le namespace MainMenu
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
-namespace MainFrame {
-    /**
-    Namespace contenant les éléments du menu principal
-    */
-    namespace MainMenu {
+/**
+Namespace contenant les éléments du menu principal
+*/
+class MainMenu {
 
-        extern sf::Sprite bg;
-        extern sf::Text play;
-        extern sf::Text charge;
-        extern sf::Text options;
-        extern sf::Text exit;
-        extern sf::Sprite cursor;
-        extern sf::Vector2f curPos[4];
-        extern sf::Music bgMusTitle;
-        extern sf::Sound bruitArr;
-        extern sf::Sound bruitPush;
-        extern sf::Sound bruitNope;
+public:
 
-        extern bool continuer;
+sf::Sprite bg;
+sf::Text play;
+sf::Text charge;
+sf::Text options;
+sf::Text exit;
+sf::Sprite cursor;
+sf::Vector2f curPos[4];
+sf::Music bgMusTitle;
+sf::Sound bruitArr;
+sf::Sound bruitPush;
+sf::Sound bruitNope;
+sf::Texture textures[2];
+sf::SoundBuffer sounds[3];
+int curPosI = 0;
 
-        void initVars();
-        void verifVars();
-        void deleteVars();
-        int mainMenu();
-        int boucle0();
-        void initStrings();
-    }
-}
+bool continuer = true;
+
+
+void initVars();
+void verifVars();
+void deleteVars();
+int mainMenu();
+int boucle0();
+void initStrings();
+};
 
 
 #endif // MAINMENU_HPP
