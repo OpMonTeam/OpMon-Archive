@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ -e /usr/share/OpMon ]
+then
+sudo chmod -R 777 /usr/share/OpMon
+fi
+cd /usr/src/opmon/
+make

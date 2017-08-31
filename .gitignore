@@ -10,6 +10,12 @@ exe/log.txt
 exe/errLog.txt
 exeLinux/log.txt
 exeLinux/errLog.txt
+exeLinux/OpMon
+exeLinux/OpMon-Debug
+exe/OpMon.exe
+exe/OpMon-Debug.exe
+installers/Windows/*.exe
+installers/Debian/*.deb
 *.db
 *.class
 *.info
