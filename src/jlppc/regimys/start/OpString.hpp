@@ -5,17 +5,21 @@
 #include <vector>
 #include <SFML/System.hpp>
 
-class OpString{
+class OpString {
 private:
-  std::string key;
-  std::vector<std::string*> objects;
+    std::string key;
+    std::vector<std::string*> objects;
 public:
-  OpString(std::string const& key, ...);
-  OpString();
+    OpString(std::string const& key, ...);
+    OpString();
 
-  std::string getObject(int const& index){return *(objects[0]);}
-  std::string getKey(){return key;}
-  sf::String getString();
-  static OpString voidStr;
+    std::string getObject(int const& index) {
+        return *(objects[0]);
+    }
+    std::string getKey() {
+        return key;
+    }
+    sf::String getString();
+    static OpString voidStr;
 };
 #endif

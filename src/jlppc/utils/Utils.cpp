@@ -5,12 +5,12 @@
 #include <SFML/System.hpp>
 
 int Utils::randU(int limit) {
-  srand(time(NULL) + rand() * rand());
+    srand(time(NULL) + rand() * rand());
     return rand() % limit;
 }
 
 unsigned int Utils::randUI(unsigned int limit) {
-  srand(time(NULL) + rand() * rand());
+    srand(time(NULL) + rand() * rand());
     unsigned int toReturn = rand() % limit;
     return toReturn;
 }
@@ -20,5 +20,5 @@ void Utils::wait(int ticks) {
 }
 
 long Utils::hash(std::string str) {
-  return 0;
+    return 0;
 }

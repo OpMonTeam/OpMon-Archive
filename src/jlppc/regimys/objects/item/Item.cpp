@@ -59,54 +59,53 @@ Item::Item(string name, bool usable, bool usableInFight, bool givable, int categ
 
 Item *Item::getItem(string const &name)  {
     for (unsigned int i = 0; i < ITEM_NUMBER; i++) {
-            if(itemsLst[i] != NULL) {
-                    if (itemsLst[i]->getName() == name) {
-                            return itemsLst[i];
-                        }
-                }
-
+        if(itemsLst[i] != NULL) {
+            if (itemsLst[i]->getName() == name) {
+                return itemsLst[i];
+            }
         }
+
+    }
     return itemsLst[0];//Default
 }
 
 Item *Item::getItem(int id2)  {
     unsigned int id = id2;
     if (!(id < 0 || id > ITEM_NUMBER || itemsLst[id] != NULL)) {
-            return itemsLst[id];
-        }
-    else {
-            return itemsLst[0];
-        }
+        return itemsLst[id];
+    } else {
+        return itemsLst[0];
+    }
 }
 
 int Item::searchItem(Item *toSearch)  {
     for (unsigned int i = 0; i < ITEM_NUMBER; i++) {
-            if (toSearch == itemsLst[i]) {
-                    return i;
-                }
+        if (toSearch == itemsLst[i]) {
+            return i;
         }
+    }
     return -1;
 }
 
 bool Item::operator==(Item const &b) const {
     if (categorie != b.categorie) {
-            return false;
-        }
+        return false;
+    }
     if (givable != b.givable) {
-            return false;
-        }
+        return false;
+    }
     if (!(name == b.name)) {
-            return false;
-        }
+        return false;
+    }
     if (usable != b.usable) {
-            return false;
-        }
+        return false;
+    }
     if (usableInFight != b.usableInFight) {
-            return false;
-        }
+        return false;
+    }
     if (id != b.id) {
-            return false;
-        }
+        return false;
+    }
     return true;
 }
 

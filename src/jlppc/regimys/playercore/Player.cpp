@@ -6,8 +6,8 @@ Player::Player(std::string const& name):
     name(name), trainerID(Utils::randUI(0xFFFFFFFF)) {
     opteam = OpTeam(name);
     for(unsigned int i = 0; i < ITEM_NUMBER; i++) {
-            bag[i] = 0;
-        }
+        bag[i] = 0;
+    }
 
 }
 
@@ -15,8 +15,8 @@ Player::Player():
     trainerID(Utils::randUI(0xFFFFFFFF)) {
     opteam = OpTeam(name);
     for(unsigned int i = 0; i < ITEM_NUMBER; i++) {
-            bag[i] = 0;
-        }
+        bag[i] = 0;
+    }
 }
 
 OpTeam *Player::getOpTeam() {
@@ -30,51 +30,49 @@ void Player::addItem(int itemID) {
 int Player::checkItem(int itemID) {
     unsigned int itemID2 = itemID;
     if (itemID2 > ITEM_NUMBER || itemID2 < 0) {
-            handleError("Player : itemID invalide", true);
-        }
+        handleError("Player : itemID invalide", true);
+    }
     return bag[itemID];
 }
 
 bool Player::deleteItem(int itemID) {
 
     if (bag[itemID] != 0 || itemID < 0) {
-            handleError("Player : itemID invalide", true);
-        }
+        handleError("Player : itemID invalide", true);
+    }
     if (bag[itemID] != 0) {
-            bag[itemID]--;
-            return true;
-        }
-    else {
-            return false;
-        }
+        bag[itemID]--;
+        return true;
+    } else {
+        return false;
+    }
 }
 
 void Player::healOp() {
     opteam.heal();
     for (int i = 0; i < opteam.getSize(); i++) {
-            OpMon *pkmn = opteam[i];
+        OpMon *pkmn = opteam[i];
 
-            pkmn->amour = false;
-            pkmn->malediction = false;
-            pkmn->vampigraine = false;
-            for (int j = 0; j < 4; j++) {
-                    Attack *atk = (pkmn->getAttacks())[j];
-                    atk->healPP();
-
-                }
-
+        pkmn->amour = false;
+        pkmn->malediction = false;
+        pkmn->vampigraine = false;
+        for (int j = 0; j < 4; j++) {
+            Attack *atk = (pkmn->getAttacks())[j];
+            atk->healPP();
 
         }
+
+
+    }
 }
 
 bool Player::addOpToOpTeam(OpMon *toAdd) {
     if (opteam.addOpMon(toAdd)) {
-            return true;
-        }
-    else {
-            addOpMonToPC(toAdd);
-            return false;
-        }
+        return true;
+    } else {
+        addOpMonToPC(toAdd);
+        return false;
+    }
 }
 
 void Player::save() {
@@ -83,15 +81,15 @@ void Player::save() {
     SOUT << Save::intToChar(trainerID) << endl;
     SOUT << Save::intToChar(ITEM_NUMBER) << endl;
     for(unsigned int it = 0; it < ITEM_NUMBER; it++) {
-            SOUT << Save::intToChar(bag[it]) << endl;
-        }
+        SOUT << Save::intToChar(bag[it]) << endl;
+    }
     SOUT << Save::intToChar(pc.size()) << endl;
     for(unsigned int it = 0; it < pc.size(); it++) {
-            SOUT << pc[it]->save();
-        }
+        SOUT << pc[it]->save();
+    }
     for(unsigned int it = 0; it < 6; it++) {
-            SOUT << opteam[it]->save();
-        }
+        SOUT << opteam[it]->save();
+    }
 
 }
 #include "../objects/OpMon.hpp"
@@ -102,26 +100,26 @@ Player::Player(std::ifstream &in, std::string &name):
     int iNber = in.get();
     in.get();
     if(iNber > ITEM_NUMBER) {
-            iNber = ITEM_NUMBER;
-        }
+        iNber = ITEM_NUMBER;
+    }
     for(int i = 0; i < iNber; i++) {
-            this->bag[i] = in.get();
-            in.get();
-        }
+        this->bag[i] = in.get();
+        in.get();
+    }
     if(iNber < ITEM_NUMBER) {
-            for(unsigned int i = iNber - 1; i < ITEM_NUMBER; i++) {
-                    bag[i] = 0;
-                }
+        for(unsigned int i = iNber - 1; i < ITEM_NUMBER; i++) {
+            bag[i] = 0;
         }
+    }
     int pcNbre = in.get();
     in.get();
     for(int i = 0; i < pcNbre; i++) {
-            OpMon *op = new OpMon(in);
-            this->pc.push_back(op);
-        }
+        OpMon *op = new OpMon(in);
+        this->pc.push_back(op);
+    }
     for(unsigned int i = 0; i < 6; i++) {
-            OpMon *op = new OpMon(in);
-            opteam.addOpMon(op);
-        }
+        OpMon *op = new OpMon(in);
+        opteam.addOpMon(op);
+    }
 
 }

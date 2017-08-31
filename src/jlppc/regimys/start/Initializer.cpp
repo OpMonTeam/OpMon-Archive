@@ -25,22 +25,22 @@
 typedef NumberedArray AtkArray;
 
 namespace Initializer {
-  Evolutions::E_Nope *ne = new E_Nope();
-  std::vector<int> evs[OP_NUMBER];
-  Species *listOp[OP_NUMBER];
-  std::vector<Map*> maps;
-  std::vector<sf::Music*> townMusics;
-  std::vector<std::vector<sf::Texture> > doorsTextures;
-  sf::SoundBuffer doorSoundBuffer;
+Evolutions::E_Nope *ne = new E_Nope();
+std::vector<int> evs[OP_NUMBER];
+Species *listOp[OP_NUMBER];
+std::vector<Map*> maps;
+std::vector<sf::Music*> townMusics;
+std::vector<std::vector<sf::Texture> > doorsTextures;
+sf::SoundBuffer doorSoundBuffer;
 
-  std::vector<sf::Texture> kidTextures;
-  
-  template<typename T>void pb(std::vector<T> &vect, T arr[], int sizeArr) {
+std::vector<sf::Texture> kidTextures;
+
+template<typename T>void pb(std::vector<T> &vect, T arr[], int sizeArr) {
     for (unsigned int i = 0; i < sizeArr; i++) {
-      vect.push_back(arr[i]);
+        vect.push_back(arr[i]);
     }
-  }
-  void initEvs() {
+}
+void initEvs() {
     evs[0].ATK;
 
     evs[1].ATKSPE;
@@ -524,9 +524,9 @@ namespace Initializer {
       evs[171].HP;*/
 
 
-  }
+}
 
-  void initOpMons() {
+void initOpMons() {
     initEvs();
     using namespace Evolutions;
     listOp[0] = new Species(136, 0, 1, 1, 29, 33, "MissingNo.", Type::NORMAL, Type::VOL, 0, 80, new E_Level(0, 80), evs[0], 0, 0, "ERROR : MISSINGNO.", 0, 1250000, 3, 0);
@@ -782,9 +782,9 @@ namespace Initializer {
       listOp[250] = new Species(130, 90, 110, 154, 90, 106, "Ho-Oh", Type::FEU, Type::VOL, 0, -1, ne, {Stats.DEFSPE, Stats.DEFSPE, Stats.DEFSPE}, 3., 199, "Une légende raconte que son corps brille de sept couleurs. Un arc-en-ciel se forme derrière lui quand il vole.", 211, 1250000, 3, 250);
       listOp[?] = new Species(100, 100, 100, 100, 100, 100, "Clair de Lune", Type::LUMIERE, Type::TENEBRES, 0, -1, ne, {Stats.ATKSPE, Stats.DEFSPE, Stats.}, 0.4, 5, "Ce chat adorait contempler la lune chaques soirs, une nuit, elle eu raison de lui", 300, 1250000, 3, ?);
     */
-  }
+}
 
-  void initAtkLvls() {
+void initAtkLvls() {
     /*//atkPokeLvl[0] = nullptr;
       ATK_LIST(1) = {NumberedArray(0, "Charge"),  NumberedArray(3, "Rugissement"),  NumberedArray(7, "Vampigraine"), ect... ||| NumberedArray(9, FouetLianes::classe),  NumberedArray(13, PoudreToxik::classe),  NumberedArray(13, PoudreDodo::classe),  NumberedArray(15, Belier::classe),  NumberedArray(19, TranchHerbe::classe),  NumberedArray(21, DouxParfum::classe),  NumberedArray(25, Croissance::classe),  NumberedArray(27, Damocles::classe),  NumberedArray(33, Synthese::classe),  NumberedArray(37, CanonGraine::classe)};
       ATK_ADD_LIST(1, 13);
@@ -846,13 +846,13 @@ namespace Initializer {
     */
     /*pb(atkPokeLvl[52], NumberedArray(0, Griffe::classe),  NumberedArray(0, Rugissement::classe),  NumberedArray(6, GrossePatoune::classe),  NumberedArray(9, Bluff::classe),  NumberedArray(14, ComboGriffe::classe),  NumberedArray(17, Grincement::classe),  NumberedArray(22, Feinte::classe),  NumberedArray(25, Provoc::classe),  NumberedArray(30, Jackpot::classe),  NumberedArray(33, CoudPonpon::classe),  NumberedArray(38, Machination::classe),  NumberedArray(41, Assurance::classe),  NumberedArray(46, Séduction::classe),  NumberedArray(49, tranche-Nuit::classe),  NumberedArray(50, Ruse::classe);
      *//*pb(atkPokeLvl[53], NumberedArray(0, Calinerie::classe),  NumberedArray(0, PassePasse::classe),  NumberedArray(0, Griffe::classe),  NumberedArray(0, Rugissement::classe),  NumberedArray(6, Morsure::classe),  NumberedArray(9, Bluff::classe),  NumberedArray(14, ComboGriffe::classe), NumberedArray(17, Grincement::classe),  NumberedArray(22, Feinte::classe),  NumberedArray(25, Provoc::classe),  NumberedArray(28, Météores::classe), NumberedArray(32, RayonGemme::classe),  NumberedArray(37, Tranche::classe),  NumberedArray(44, Machination::classe),  NumberedArray(49, Assurance::classe),  NumberedArray(56, Séduction::classe),  NumberedArray(61, tranche-Nuit::classe),  NumberedArray(68, Ruse::classe);
-	 pb( atkPokeLvl[54], NumberedArray(0, Tourniquet::classe),  NumberedArray(0, Griffe::classe),  NumberedArray(4, MimiQueue::classe),  NumberedArray(8, PistoletAO::classe),  NumberedArray(11, ChocMental::classe),  NumberedArray(15, ComboGriffe::classe),  NumberedArray(18, Vibraqua::classe),  NumberedArray(22, Entrave::classe),  NumberedArray(25, Grincement::classe),  NumberedArray(29, HydroQueue::classe),  NumberedArray(32, PsykoudBoul::classe),  NumberedArray(36, Detrempage::classe),  NumberedArray(39, Boost::classe),  NumberedArray(43, Amnesie::classe),  NumberedArray(46, Hydrocanon::classe),  NumberedArray(50, ZoneEtrange::classe);
-       */
-  }
-  sf::Texture texturePP[4];
-  sf::Texture walkingPP[4];
-  sf::Texture walkingPP2[4];
-  void initTextures() {
+ pb( atkPokeLvl[54], NumberedArray(0, Tourniquet::classe),  NumberedArray(0, Griffe::classe),  NumberedArray(4, MimiQueue::classe),  NumberedArray(8, PistoletAO::classe),  NumberedArray(11, ChocMental::classe),  NumberedArray(15, ComboGriffe::classe),  NumberedArray(18, Vibraqua::classe),  NumberedArray(22, Entrave::classe),  NumberedArray(25, Grincement::classe),  NumberedArray(29, HydroQueue::classe),  NumberedArray(32, PsykoudBoul::classe),  NumberedArray(36, Detrempage::classe),  NumberedArray(39, Boost::classe),  NumberedArray(43, Amnesie::classe),  NumberedArray(46, Hydrocanon::classe),  NumberedArray(50, ZoneEtrange::classe);
+   */
+}
+sf::Texture texturePP[4];
+sf::Texture walkingPP[4];
+sf::Texture walkingPP2[4];
+void initTextures() {
     using namespace Side;
 #ifdef _WIN32
     texturePP[TO_DOWN].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\pp0.png");
@@ -870,32 +870,32 @@ namespace Initializer {
 
     std::vector<sf::Texture> basicDoor;
     for(unsigned int i = 0; i < 4; i++) {
-      std::ostringstream oss;
-      oss << RESSOURCES_PATH << "animations\\basicdoor\\basic_door" << i + 1 << ".png";
-      sf::Texture txtr;
-      txtr.loadFromFile(oss.str());
-      basicDoor.push_back(txtr);
+        std::ostringstream oss;
+        oss << RESSOURCES_PATH << "animations\\basicdoor\\basic_door" << i + 1 << ".png";
+        sf::Texture txtr;
+        txtr.loadFromFile(oss.str());
+        basicDoor.push_back(txtr);
     }
     doorsTextures.push_back(basicDoor);
     doorSoundBuffer.loadFromFile(RESSOURCES_PATH + "audio\\sounds\\door.ogg");
 
     std::vector<sf::Texture> shopDoor;
     for(unsigned int i = 0; i < 4; i++) {
-      std::ostringstream oss;
-      oss << RESSOURCES_PATH << "animations\\shopdoor\\shop_door" << i + 1 << ".png";
-      sf::Texture txtr;
-      txtr.loadFromFile(oss.str());
-      shopDoor.push_back(txtr);
+        std::ostringstream oss;
+        oss << RESSOURCES_PATH << "animations\\shopdoor\\shop_door" << i + 1 << ".png";
+        sf::Texture txtr;
+        txtr.loadFromFile(oss.str());
+        shopDoor.push_back(txtr);
     }
     doorsTextures.push_back(shopDoor);
 
-    for(unsigned int i = 0; i < 12; i++){
-      std::string str;
-      str << RESSOURCES_PATH << std::string("sprites\\chara\\kid\\kid") << i << std::string(".png");
-      kidTextures.push_back(new sf::Texture());
-      kidTextures[i].loadFromFile(str);
+    for(unsigned int i = 0; i < 12; i++) {
+        std::string str;
+        str << RESSOURCES_PATH << std::string("sprites\\chara\\kid\\kid") << i << std::string(".png");
+        kidTextures.push_back(new sf::Texture());
+        kidTextures[i].loadFromFile(str);
     }
-    
+
 #else
     texturePP[TO_DOWN].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp0.png");
     texturePP[TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp1.png");
@@ -912,38 +912,38 @@ namespace Initializer {
 
     std::vector<sf::Texture> basicDoor;
     for(unsigned int i = 0; i < 4; i++) {
-      std::ostringstream oss;
-      oss << RESSOURCES_PATH << "animations/basicdoor/basic_door" << i + 1 << ".png";
-      sf::Texture txtr;
-      txtr.loadFromFile(oss.str());
-      basicDoor.push_back(txtr);
+        std::ostringstream oss;
+        oss << RESSOURCES_PATH << "animations/basicdoor/basic_door" << i + 1 << ".png";
+        sf::Texture txtr;
+        txtr.loadFromFile(oss.str());
+        basicDoor.push_back(txtr);
     }
     doorsTextures.push_back(basicDoor);
     doorSoundBuffer.loadFromFile(RESSOURCES_PATH + "audio/sounds/door.ogg");
 
     std::vector<sf::Texture> shopDoor;
     for(unsigned int i = 0; i < 4; i++) {
-      std::ostringstream oss;
-      oss << RESSOURCES_PATH << "animations/shopdoor/shop_door" << i + 1 << std::string(".png");
-      sf::Texture txtr;
-      txtr.loadFromFile(oss.str());
-      shopDoor.push_back(txtr);
+        std::ostringstream oss;
+        oss << RESSOURCES_PATH << "animations/shopdoor/shop_door" << i + 1 << std::string(".png");
+        sf::Texture txtr;
+        txtr.loadFromFile(oss.str());
+        shopDoor.push_back(txtr);
     }
     doorsTextures.push_back(shopDoor);
-    for(unsigned int i = 0; i < 12; i++){
-      std::string str;
-      str << RESSOURCES_PATH << std::string("sprites/chara/kid/kid") << i << std::string(".png");
-      kidTextures.push_back(sf::Texture());
-      kidTextures[i].loadFromFile(str);
+    for(unsigned int i = 0; i < 12; i++) {
+        std::string str;
+        str << RESSOURCES_PATH << std::string("sprites/chara/kid/kid") << i << std::string(".png");
+        kidTextures.push_back(sf::Texture());
+        kidTextures[i].loadFromFile(str);
     }
-    
+
 #endif // _WIN32
     Events::doorSound.setBuffer(doorSoundBuffer);
 
     initEnumsEvents();
-  }
+}
 
-  void initSprites() {
+void initSprites() {
     using namespace std;
 
     rlog << PRINT_TICKS << "Textures initialization" << endl;
@@ -955,9 +955,9 @@ namespace Initializer {
 
     //Init Sprites
 
-  }
-  sf::Texture alpha;
-  void initMaps() {
+}
+sf::Texture alpha;
+void initMaps() {
 #define PLANS_RESET     delete(layer1);		\
     delete(layer2);				\
     delete(layer3);				\
@@ -972,17 +972,17 @@ namespace Initializer {
     }									\
     for(int i = 0; i < sizeY ; i++)					\
       for(int j = 0; j < sizeX ; j++)					\
-	pointerName[i][j] = name[i][j]					
-    
+	pointerName[i][j] = name[i][j]
+
 #define FREE_TAB(pointerName, sizeY) \
       for(int i = 0; i < sizeY; i++){	    \
 	free(pointerName[i]);		    \
       }					    \
       free(pointerName)
 
-      
-      //Chargement de fauxbourg euvi
-      sf::Texture *layer1 = new sf::Texture();
+
+    //Chargement de fauxbourg euvi
+    sf::Texture *layer1 = new sf::Texture();
     sf::Texture *layer2 = new sf::Texture();
     sf::Texture *layer3 = new sf::Texture();
     townMusics.push_back(new sf::Music());
@@ -998,16 +998,16 @@ namespace Initializer {
     layer3->loadFromFile(RESSOURCES_PATH +"maps\\fe\\fe3.png");
     townMusics[0]->openFromFile(RESSOURCES_PATH +"audio\\music\\faubourgeuvi.ogg");
     for(unsigned int i = 1; i < 17; i++) {
-      ostringstream str;
-      str << RESSOURCES_PATH + "animations\\windturbine\\blade_" << i << string(".png");
-      feElements[0].push_back(sf::Texture());
-      feElements[0][i - 1].loadFromFile(str.str());
+        ostringstream str;
+        str << RESSOURCES_PATH + "animations\\windturbine\\blade_" << i << string(".png");
+        feElements[0].push_back(sf::Texture());
+        feElements[0][i - 1].loadFromFile(str.str());
     }
     for(unsigned int i = 1; i < 17; i++) {
-      ostringstream str;
-      str << RESSOURCES_PATH + "animations\\chimneysmoke\\chimneysmoke_" << i << string(".png");
-      feElements[1].push_back(sf::Texture());
-      feElements[1][i - 1].loadFromFile(str.str());
+        ostringstream str;
+        str << RESSOURCES_PATH + "animations\\chimneysmoke\\chimneysmoke_" << i << string(".png");
+        feElements[1].push_back(sf::Texture());
+        feElements[1][i - 1].loadFromFile(str.str());
     }
 
 #else
@@ -1016,16 +1016,16 @@ namespace Initializer {
     layer3->loadFromFile(RESSOURCES_PATH +"maps/fe/fe3.png");
     townMusics[0]->openFromFile(RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg");
     for(unsigned int i = 1; i < 17; i++) {
-      ostringstream str;
-      str << RESSOURCES_PATH + "animations/windturbine/blade_" << i << string(".png");
-      feElements[0].push_back(sf::Texture());
-      feElements[0][i - 1].loadFromFile(str.str());
+        ostringstream str;
+        str << RESSOURCES_PATH + "animations/windturbine/blade_" << i << string(".png");
+        feElements[0].push_back(sf::Texture());
+        feElements[0][i - 1].loadFromFile(str.str());
     }
     for(unsigned int i = 1; i < 17; i++) {
-      ostringstream str;
-      str << RESSOURCES_PATH + "animations/chimneysmoke/chimneysmoke_" << i << string(".png");
-      feElements[1].push_back(sf::Texture());
-      feElements[1][i - 1].loadFromFile(str.str());
+        ostringstream str;
+        str << RESSOURCES_PATH + "animations/chimneysmoke/chimneysmoke_" << i << string(".png");
+        feElements[1].push_back(sf::Texture());
+        feElements[1][i - 1].loadFromFile(str.str());
     }
 #endif
     TAB_TO_POINTER(Collisions::feCol, feCol, 32, 32);
@@ -1047,24 +1047,24 @@ namespace Initializer {
     /*Character 1*/
     std::vector<int> pathChara1;
     for(int i = 0; i < 10; i++)
-      pathChara1.push_back(Side::TO_RIGHT);
+        pathChara1.push_back(Side::TO_RIGHT);
 
     pathChara1.push_back(-1);
-    
+
     for(int i = 0; i < 10; i++)
-      pathChara1.push_back(Side::TO_LEFT);
+        pathChara1.push_back(Side::TO_LEFT);
 
     pathChara1.push_back(-1);
 
     std::vector<OpString> feC1 {OpString("kid"), OpString::voidStr, OpString::voidStr};
-    
+
     maps[0]->addEvent(new Events::TalkingCharaEvent(kidTextures, sf::Vector2f(17, 13), feC1, 0, Events::MoveStyle::PREDEFINED, pathChara1));
     /*End of character 1*/
-    
+
 
     PLANS_RESET
 #ifdef _WIN32
-      layer1->loadFromFile(RESSOURCES_PATH + "maps\\pphome\\pphome1.png");
+    layer1->loadFromFile(RESSOURCES_PATH + "maps\\pphome\\pphome1.png");
     layer2->loadFromFile(RESSOURCES_PATH +"maps\\pphome\\pphome2.png");
     layer3->loadFromFile(RESSOURCES_PATH +"maps\\pphome\\pphome3.png");
 #else
@@ -1080,7 +1080,7 @@ namespace Initializer {
     maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(15, 2), sf::Vector2i(9, 5), 5, Side::TO_LEFT, SIDE_RIGHT));
     maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(0, 11), sf::Vector2i(6, 3), 4, Side::TO_LEFT, SIDE_LEFT));
     PLANS_RESET
-      townMusics.push_back(new sf::Music());
+    townMusics.push_back(new sf::Music());
 #ifdef _WIN32
     layer1->loadFromFile(RESSOURCES_PATH + "maps\\labo\\labo1.png");
     layer2->loadFromFile(RESSOURCES_PATH + "maps\\labo\\labo2.png");
@@ -1098,7 +1098,7 @@ namespace Initializer {
     maps[2]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(15, 15), sf::Vector2i(21, 22), 0, Side::TO_DOWN, SIDE_DOWN));
     PLANS_RESET
 #ifdef _WIN32
-      layer1->loadFromFile(RESSOURCES_PATH + "maps\\rivalhome\\rivalhome1.png");
+    layer1->loadFromFile(RESSOURCES_PATH + "maps\\rivalhome\\rivalhome1.png");
     layer2->loadFromFile(RESSOURCES_PATH + "maps\\rivalhome\\rivalhome2.png");
     layer3->loadFromFile(RESSOURCES_PATH + "maps\\rivalhome\\rivalhome3.png");
 #else
@@ -1112,7 +1112,7 @@ namespace Initializer {
     maps[3]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(8, 15), sf::Vector2i(28, 9), 0, Side::TO_DOWN, SIDE_DOWN));
     PLANS_RESET
 #ifdef _WIN32
-      layer1->loadFromFile(RESSOURCES_PATH + "maps\\momroom\\momroom1.png");
+    layer1->loadFromFile(RESSOURCES_PATH + "maps\\momroom\\momroom1.png");
     layer2->loadFromFile(RESSOURCES_PATH + "maps\\momroom\\momroom2.png");
     layer3->loadFromFile(RESSOURCES_PATH + "maps\\momroom\\momroom3.png");
 #else
@@ -1139,42 +1139,42 @@ namespace Initializer {
     FREE_TAB(ppRoomCol, 6);
     maps[5]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(8, 5), sf::Vector2i(16, 2), 1, Side::TO_LEFT, SIDE_RIGHT));
     //PLANS_RESET
-    
-      delete(layer1);
+
+    delete(layer1);
     delete(layer2);
     delete(layer3);
 
-    MainFrame::Overworld::initVars();
+    Main::mainframe.overworld.initVars();
 
-  }
+}
 #undef PLANS_RESET
-  void initBackgrounds() {
+void initBackgrounds() {
 
-  }
+}
 
-  void initKeys() {
+void initKeys() {
     //Définit la langue a initialiser dans les clées
 #ifdef _WIN32
     if(OptionsSave::getParam("lang").getValue() == "fr") {
-      StringKeys::initialize(RESSOURCES_PATH + "keys\\francais.rkeys");
-    }else if(OptionsSave::getParam("lang").getValue() == "esp") {
-      StringKeys::initialize(RESSOURCES_PATH + "keys\\espanol.rkeys");
-    }else {
-      StringKeys::initialize(RESSOURCES_PATH + "keys\\english.rkeys");
+        StringKeys::initialize(RESSOURCES_PATH + "keys\\francais.rkeys");
+    } else if(OptionsSave::getParam("lang").getValue() == "esp") {
+        StringKeys::initialize(RESSOURCES_PATH + "keys\\espanol.rkeys");
+    } else {
+        StringKeys::initialize(RESSOURCES_PATH + "keys\\english.rkeys");
     }
 
 #else
     if(OptionsSave::getParam("lang").getValue() == "fr") {
-      StringKeys::initialize(RESSOURCES_PATH + "keys/francais.rkeys");
-    }else if(OptionsSave::getParam("lang").getValue() == "esp") {
-      StringKeys::initialize(RESSOURCES_PATH + "keys/espanol.rkeys");
-    }else {
-      StringKeys::initialize(RESSOURCES_PATH + "keys/english.rkeys");
+        StringKeys::initialize(RESSOURCES_PATH + "keys/francais.rkeys");
+    } else if(OptionsSave::getParam("lang").getValue() == "esp") {
+        StringKeys::initialize(RESSOURCES_PATH + "keys/espanol.rkeys");
+    } else {
+        StringKeys::initialize(RESSOURCES_PATH + "keys/english.rkeys");
     }
 #endif
-  }
+}
 
-  void init() {
+void init() {
     rlog << PRINT_TICKS << "Keys initialization" << std::endl;
     initKeys();
     rlog << PRINT_TICKS << "Items initialization" << std::endl;
@@ -1186,5 +1186,5 @@ namespace Initializer {
     rlog << PRINT_TICKS << "OPMons initialization" << std::endl;
     initOpMons();
     rlog << PRINT_TICKS << "Objects initialization ending" << std::endl;
-  }
+}
 }

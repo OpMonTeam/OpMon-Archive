@@ -15,56 +15,58 @@ Contient le namespace OptionsMenu
 #include <SFML/Audio.hpp>
 #include "Elements.hpp"
 
-namespace MainFrame {
-    namespace MainMenu {
-        /**
-        Namespace contenant les éléments du menu des options
-        */
-        namespace OptionsMenu {
+/**
+Namespace contenant les éléments du menu des options
+*/
+class OptionsMenu {
+    public:
+sf::Sprite bgCredits;
+sf::Sprite bgOpt;
+sf::Text langFr;
+sf::Text langEng;
+sf::Text langEsp;
+sf::Text txtRetour;
+sf::Text txtOptions;
+sf::Text txtCre1;
+sf::Text txtCre2;
+sf::Text txtCre3;
+sf::Text txtCre4;
+sf::Text txtCre5;
+sf::Text txtCre6;
+sf::Text txtCre7;
+sf::Text txtCre8;
+sf::Text txtCre9;
+sf::Text txtOpt1;
+sf::Text txtOpt2;
+sf::Text txtOpt3;
+sf::Text txtOpt4;
+sf::Text txtOpt5;
+sf::Sprite rectSurb;
+sf::Vector2f curPosOpt[6] = {};
+sf::Vector2f curSizeOpt[6];
+int optionSelect = -1;
+int curPosOptI = 0;
+int curPosLangI = 0;
 
-            extern sf::Sprite bgOpt;
-            //extern SDL_Rect curseurOpt;
-            //extern SDL_Rect curseurSnd;
-            extern sf::Text langFr;
-            extern sf::Text langEng;
-            extern sf::Text langEsp;
-            extern sf::Text txtRetour;
-            extern sf::Text txtOptions;
-            extern sf::Text txtOpt1;
-            extern sf::Text txtOpt2;
-            extern sf::Text txtOpt3;
-            extern sf::Text txtOpt4;
-            extern sf::Text txtOpt5;
-            extern sf::Text txtCre5;
-            extern sf::Text txtCre1;
-            extern sf::Text txtCre2;
-            extern sf::Text txtCre3;
-            extern sf::Text txtCre4;
-            extern sf::Text txtCre6;
-            extern sf::Text txtCre7;
-            extern sf::Text txtCre8;
-            extern sf::Text txtCre9;
-            extern sf::Sprite rectSurb;
+sf::Text txtLang;
+sf::Text txtCred;
+sf::Sprite bgLangues;
+//J_Texture listeLangues[3] = {};
+sf::Vector2f curPosLang[4] = {};
+sf::Vector2f curSizeLang[4];
+sf::Texture textures2[5];
+sf::Sprite coche;
 
-            extern sf::Text txtLang;
-            extern sf::Sprite bgLangues;
-            //extern sf::Text listeLangues[3];
-            extern sf::Vector2f curPosLang[4];
 
-            extern sf::Sprite bgCredits;
-            extern sf::Text txtCred;
+int optionsMenu();
+void initVars();
+void verifVars();
+void deleteVars();
+int boucle();
+int boucleLang();
+int boucleCredits();
+void initStrings();
 
-            int optionsMenu();
-            void initVars();
-            void verifVars();
-            void deleteVars();
-            int boucle();
-            int boucleLang();
-            int boucleCredits();
-            void initStrings();
-
-        }
-    }
-}
+};
 
 #endif // OPTIONSMENU_HPP
