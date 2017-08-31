@@ -1,4 +1,4 @@
-![Regimys LOGO](https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Other/opmon_title.png)<br>
+![Regimys LOGO](https://raw.githubusercontent.com/jlppc/OpMon/master/Resources/Other/opmon_title.png)<br>
 
 [Voir En Français](#enfrancais)
 
@@ -25,7 +25,7 @@ English is not our native language, but we do our best! If you see some errors, 
 
 If there are problems understanding the old commits or monthly reports that are in French, don't hesitate to ask!
 
-__The current game version is Alpha 0.12.1.__ Download link: <a href="http://opmon-game.ga/downloads"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Other/version_logo.png" alt="Logo Téléchargement"></a>
+__The current game version is Alpha 0.12.1.__ Download link: <a href="http://opmon-game.ga/downloads"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Resources/Other/version_logo.png" alt="Logo Téléchargement"></a>
 
 __The next game version will be Alpha 0.13__ : Event improvements, added new characters, and added descriptions on objects
 * [Look the ROADMAP](https://github.com/jlppc/OpMon/wiki/ROADMAP)
@@ -43,7 +43,7 @@ __The next game version will be Alpha 0.13__ : Event improvements, added new cha
 <a href="http://opmon-game.ga">Site web du jeu</a><br/>
 <a href="https://github.com/jlppc/OpMon/blob/master/Credits.md">Crédits</a><br/>
 <a href="https://github.com/jlppc/Site-OpMon">Dépot du site web du jeu</a><br/><br/>
-<br/>Version du jeu : Alpha 0.12.1 | Téléchargement : <a href="http://opmon-game.ga"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Other/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
+<br/>Version du jeu : Alpha 0.12.1 | Téléchargement : <a href="http://opmon-game.ga"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Resources/Other/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 Prochaines versions :<ul>
 <li>Alpha 0.13 : Amelioration des evenements (les objets dans les batiments) et ajout de PNJs</li>
 </ul>
@@ -75,6 +75,6 @@ Changelog avant la Alpha 0.05. Pour le reste du changelog après la Alpha 0.07, 
 
 ## Screenshot : 
 
-![Screenshot](https://raw.githubusercontent.com/jlppc/OpMon/master/Ressources/Other/screenshot_2.png)
+![Screenshot](https://raw.githubusercontent.com/jlppc/OpMon/master/Resources/Other/screenshot_2.png)
 
 
