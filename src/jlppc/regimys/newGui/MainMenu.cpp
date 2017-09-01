@@ -2,6 +2,7 @@
 #include "../start/main.hpp"
 #include <iostream>
 #include "OptionsMenu.hpp"
+#include "MainFrame.hpp"
 
 UNS
 
@@ -48,10 +49,10 @@ void MainMenu::initVars() {
     charge.setColor(sf::Color::White);
     options.setColor(sf::Color::White);
     exit.setColor(sf::Color::White);
-    play.setFont(font);
-    charge.setFont(font);
-    options.setFont(font);
-    exit.setFont(font);
+    play.setFont(Main::mainframe.font);
+    charge.setFont(Main::mainframe.font);
+    options.setFont(Main::mainframe.font);
+    exit.setFont(Main::mainframe.font);
     play.setCharacterSize(FONT_SIZE_DEFAULT);
     charge.setCharacterSize(FONT_SIZE_DEFAULT);
     options.setCharacterSize(FONT_SIZE_DEFAULT);
@@ -59,7 +60,7 @@ void MainMenu::initVars() {
     //Mix_Volume(2, MIX_MAX_VOLUME / 4);
     //Mix_Volume(1, MIX_MAX_VOLUME);
     //Mix_Volume(0, MIX_MAX_VOLUME / 2);
-    OptionsMenu::initVars();
+    Main::mainframe.optionsmenu.initVars();
 
 
 
@@ -82,23 +83,23 @@ int MainMenu::boucle0() {
 
     rlog << PRINT_TICKS << "Entering the menu" << endl;
     //Actualisation des éléments
-    frame.draw(bg);
-    frame.draw(play),
-               frame.draw(charge);
-    frame.draw(options);
-    frame.draw(exit);
+    Main::mainframe.frame.draw(bg);
+    Main::mainframe.frame.draw(play),
+               Main::mainframe.frame.draw(charge);
+    Main::mainframe.frame.draw(options);
+    Main::mainframe.frame.draw(exit);
     cursor.setPosition(curPos[curPosI]);
-    frame.draw(cursor);
+    Main::mainframe.frame.draw(cursor);
 
-    frame.display();
-    winRefresh();
+    Main::mainframe.frame.display();
+    Main::mainframe.winRefresh();
     while(continuer) {
-        window.waitEvent(events);
-        switch(events.type) {
+        Main::mainframe.window.waitEvent(Main::mainframe.events);
+        switch(Main::mainframe.events.type) {
             QUIT
 
         case sf::Event::KeyPressed:
-            if(events.key.code == sf::Keyboard::Return) {
+            if(Main::mainframe.events.key.code == sf::Keyboard::Return) {
                 switch(curPosI) {
                 //Traitement de l'action en fonction de la position du curseur
                 case 0:
@@ -108,7 +109,7 @@ int MainMenu::boucle0() {
                     bgMusTitle.stop();
                     return -1;
                 case 2:
-                    if(OptionsMenu::optionsMenu() == -1) {
+                    if(Main::mainframe.optionsmenu.optionsMenu() == -1) {
                         return -1;
                     }
                     break;
@@ -144,19 +145,19 @@ int MainMenu::boucle0() {
             bgMusTitle.stop();
             return -1;
         }
-        frame.clear(sf::Color::Black);
+        Main::mainframe.frame.clear(sf::Color::Black);
 
         //Actualisation des éléments
-        frame.draw(bg);
-        frame.draw(play),
-                   frame.draw(charge);
-        frame.draw(options);
-        frame.draw(exit);
+        Main::mainframe.frame.draw(bg);
+        Main::mainframe.frame.draw(play),
+                   Main::mainframe.frame.draw(charge);
+        Main::mainframe.frame.draw(options);
+        Main::mainframe.frame.draw(exit);
         cursor.setPosition(curPos[curPosI]);
-        frame.draw(cursor);
+        Main::mainframe.frame.draw(cursor);
 
-        frame.display();
-        winRefresh();
+        Main::mainframe.frame.display();
+        Main::mainframe.winRefresh();
     }
     bgMusTitle.stop();
     return 0;

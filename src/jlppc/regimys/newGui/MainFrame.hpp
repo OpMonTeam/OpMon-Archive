@@ -75,13 +75,12 @@ Permet d'ouvrir la fenetre du jeu et de charger les ressources essensielles. Con
         }\
 
 #define ANIM_ARROW 	\
-    sf::Vector2f posArrow = frame.mapPixelToCoords(sf::Vector2i(512-75, 512-30));\
+  sf::Vector2f posArrow = Main::mainframe.frame.mapPixelToCoords(sf::Vector2i(512-75, 512-30)); \
     Main::mainframe.arrDial.move(0, 1);\
     if (Main::mainframe.arrDial.getPosition().y - posArrow.y > 5) {\
             Main::mainframe.arrDial.move(0, -6);\
         }\
-    frame.draw(Main::mainframe.arrDial);
-
+    Main::mainframe.frame.draw(Main::mainframe.arrDial);
 
 /*
 Contient toutes les methodes permettant de gérer et de faire fonctionner l'interface graphique

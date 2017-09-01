@@ -9,8 +9,6 @@ Contient le namespace OptionsMenu
 #define OPTIONSMENU_HPP
 
 #include <iostream>
-#include "MainFrame.hpp"
-#include "MainMenu.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "Elements.hpp"
@@ -56,6 +54,8 @@ sf::Vector2f curPosLang[4] = {};
 sf::Vector2f curSizeLang[4];
 sf::Texture textures2[5];
 sf::Sprite coche;
+
+  bool continuer = true;
 
 
 int optionsMenu();
