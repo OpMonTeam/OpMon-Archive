@@ -8,77 +8,77 @@ UNS
 
 void OptionsMenu::initStrings() {
     langFr.setString(L"Français");
-    langFr.setFont(font);
+    langFr.setFont(Main::mainframe.font);
     langFr.setCharacterSize(FONT_SIZE_DEFAULT);
     langEng.setString("English");
-    langEng.setFont(font);
+    langEng.setFont(Main::mainframe.font);
     langEng.setCharacterSize(FONT_SIZE_DEFAULT);
     langEsp.setString(L"Espa\u00F1ol");
-    langEsp.setFont(font);
+    langEsp.setFont(Main::mainframe.font);
     langEsp.setCharacterSize(FONT_SIZE_DEFAULT);
     txtRetour.setString(kget("options.retour"));
-    txtRetour.setFont(font);
+    txtRetour.setFont(Main::mainframe.font);
     txtRetour.setCharacterSize(FONT_SIZE_DEFAULT);
     txtOptions.setString(kget("options.title"));
-    txtOptions.setFont(font);
+    txtOptions.setFont(Main::mainframe.font);
     txtOptions.setCharacterSize(FONT_SIZE_DEFAULT);
     txtOpt1.setString(kget("options.ecran"));
-    txtOpt1.setFont(font);
+    txtOpt1.setFont(Main::mainframe.font);
     txtOpt1.setCharacterSize(FONT_SIZE_DEFAULT);
     txtOpt2.setString(kget("options.lang"));
-    txtOpt2.setFont(font);
+    txtOpt2.setFont(Main::mainframe.font);
     txtOpt2.setCharacterSize(FONT_SIZE_DEFAULT);
     txtOpt3.setString(kget("options.vol"));
-    txtOpt3.setFont(font);
+    txtOpt3.setFont(Main::mainframe.font);
     txtOpt3.setCharacterSize(FONT_SIZE_DEFAULT);
     txtOpt3.setColor(sf::Color::Red);
     txtOpt4.setString( kget("options.control"));
-    txtOpt4.setFont(font);
+    txtOpt4.setFont(Main::mainframe.font);
     txtOpt4.setCharacterSize(FONT_SIZE_DEFAULT);
     txtOpt4.setColor(sf::Color::White);
     txtOpt5.setString(kget("options.credit"));
-    txtOpt5.setFont(font);
+    txtOpt5.setFont(Main::mainframe.font);
     txtOpt5.setCharacterSize(FONT_SIZE_DEFAULT);
     txtOpt5.setColor(sf::Color::White);
 
     txtLang.setString(kget("options.lang.title"));
-    txtLang.setFont(font);
+    txtLang.setFont(Main::mainframe.font);
     txtLang.setCharacterSize(FONT_SIZE_DEFAULT);
 
     txtCred.setString(kget("options.cred.title"));
-    txtCred.setFont(font);
+    txtCred.setFont(Main::mainframe.font);
     txtCred.setCharacterSize(FONT_SIZE_DEFAULT);
 
 
     txtCre1.setString(kget("options.credit.1"));
-    txtCre1.setFont(font);
+    txtCre1.setFont(Main::mainframe.font);
     txtCre1.setCharacterSize(14);
     txtCre1.setColor(sf::Color::Black);
     txtCre2.setString(kget("options.credit.2"));
-    txtCre2.setFont(font);
+    txtCre2.setFont(Main::mainframe.font);
     txtCre2.setCharacterSize(14);
     txtCre2.setColor(sf::Color::Black);
     txtCre3.setString(kget("options.credit.3"));
-    txtCre3.setFont(font);
+    txtCre3.setFont(Main::mainframe.font);
     txtCre3.setCharacterSize(14);
     txtCre3.setColor(sf::Color::Black);
     txtCre4.setString(kget("options.credit.4"));
-    txtCre4.setFont(font);
+    txtCre4.setFont(Main::mainframe.font);
     txtCre4.setCharacterSize(12);
     txtCre5.setString(kget("options.credit.5"));
-    txtCre5.setFont(font);
+    txtCre5.setFont(Main::mainframe.font);
     txtCre5.setCharacterSize(12);
     txtCre6.setString(kget("options.credit.6"));
-    txtCre6.setFont(font);
+    txtCre6.setFont(Main::mainframe.font);
     txtCre6.setCharacterSize(12);
     txtCre7.setString(kget("options.credit.7"));
-    txtCre7.setFont(font);
+    txtCre7.setFont(Main::mainframe.font);
     txtCre7.setCharacterSize(12);
     txtCre8.setString(kget("options.credit.8"));
-    txtCre8.setFont(font);
+    txtCre8.setFont(Main::mainframe.font);
     txtCre8.setCharacterSize(12);
     txtCre9.setString(kget("options.credit.9"));
-    txtCre9.setFont(font);
+    txtCre9.setFont(Main::mainframe.font);
     txtCre9.setCharacterSize(13);
 }
 
@@ -182,11 +182,11 @@ int OptionsMenu::optionsMenu() {
 
 int OptionsMenu::boucle() {
     while(continuer) {
-        window.waitEvent(events);
-        switch(events.type) {
+        Main::mainframe.window.waitEvent(Main::mainframe.events);
+        switch(Main::mainframe.events.type) {
             QUIT
         case sf::Event::KeyPressed:
-            if(events.key.code == sf::Keyboard::Return) {
+            if(Main::mainframe.events.key.code == sf::Keyboard::Return) {
                 switch(curPosOptI) {
                 case 0:
                     return 0;
@@ -202,7 +202,7 @@ int OptionsMenu::boucle() {
                     boucleLang();
                     break;
                 case 3:
-                    bruitNope.play();//Non disponible
+                    Main::mainframe.mainmenu.bruitNope.play();//Non disponible
                     break;
                 case 4:
                     boucleCredits();
@@ -219,7 +219,7 @@ int OptionsMenu::boucle() {
         if(isKeyPressed(sf::Keyboard::Return)) {
 
         } else if(isKeyPressed(sf::Keyboard::Up)) {
-            bruitArr.play();
+            Main::mainframe.mainmenu.bruitArr.play();
             curPosOptI--;
             if(curPosOptI >= 6) {
                 curPosOptI = 0;
@@ -227,7 +227,7 @@ int OptionsMenu::boucle() {
                 curPosOptI = 5;
             }
         } else if(isKeyPressed(sf::Keyboard::Down)) {
-            bruitArr.play();
+            Main::mainframe.mainmenu.bruitArr.play();
             curPosOptI++;
             if(curPosOptI >= 6) {
                 curPosOptI = 0;
@@ -239,25 +239,25 @@ int OptionsMenu::boucle() {
         }
 
 
-        frame.clear(sf::Color::White);
+        Main::mainframe.frame.clear(sf::Color::White);
 
-        frame.draw(bgOpt);
-        frame.draw(txtOpt1);
-        frame.draw(txtOpt2);
-        frame.draw(txtOpt3);
-        frame.draw(txtOpt4);
-        frame.draw(txtOpt5);
-        frame.draw(txtRetour);
-        frame.draw(txtOptions);
+        Main::mainframe.frame.draw(bgOpt);
+        Main::mainframe.frame.draw(txtOpt1);
+        Main::mainframe.frame.draw(txtOpt2);
+        Main::mainframe.frame.draw(txtOpt3);
+        Main::mainframe.frame.draw(txtOpt4);
+        Main::mainframe.frame.draw(txtOpt5);
+        Main::mainframe.frame.draw(txtRetour);
+        Main::mainframe.frame.draw(txtOptions);
         if(OptionsSave::getParam("fullscreen").getValue() == "true") {
-            frame.draw(coche);
+            Main::mainframe.frame.draw(coche);
         }
         rectSurb.setPosition(curPosOpt[curPosOptI]);
         rectSurb.setScale(curSizeOpt[curPosOptI]);
-        frame.draw(rectSurb);
+        Main::mainframe.frame.draw(rectSurb);
 
-        frame.display();
-        winRefresh();
+        Main::mainframe.frame.display();
+        Main::mainframe.winRefresh();
 
     }
 
@@ -267,12 +267,12 @@ int OptionsMenu::boucle() {
 
 int OptionsMenu::boucleLang() {
     while(continuer) {
-        window.waitEvent(events);
-        switch(events.type) {
+        Main::mainframe.window.waitEvent(Main::mainframe.events);
+        switch(Main::mainframe.events.type) {
             QUIT
 
         case sf::Event::KeyPressed:
-            if(events.key.code == sf::Keyboard::Return) {
+            if(Main::mainframe.events.key.code == sf::Keyboard::Return) {
                 switch(curPosOptI) {//CLanguage choice
                 case 0://Back button
                     return 0;
@@ -283,7 +283,7 @@ int OptionsMenu::boucleLang() {
 #else
                     StringKeys::initialize(RESSOURCES_PATH + "keys/english.rkeys");
 #endif
-                    initAllStrings();
+                    Main::mainframe.initAllStrings();
                     return 0;
                     break;
                 case 2:
@@ -293,7 +293,7 @@ int OptionsMenu::boucleLang() {
 #else
                     StringKeys::initialize(RESSOURCES_PATH + "keys/espanol.rkeys");
 #endif // _WIN32
-                    initAllStrings();
+                    Main::mainframe.initAllStrings();
                     return 0;
                     break;
                 case 3:
@@ -303,7 +303,7 @@ int OptionsMenu::boucleLang() {
 #else
                     StringKeys::initialize(RESSOURCES_PATH + "keys/francais.rkeys");
 #endif
-                    initAllStrings();
+                    Main::mainframe.initAllStrings();
                     return 0;
                     break;
                 }
@@ -315,7 +315,7 @@ int OptionsMenu::boucleLang() {
         }
         ECHAP
         if(isKeyPressed(sf::Keyboard::Up)) {
-            bruitArr.play();
+            Main::mainframe.mainmenu.bruitArr.play();
             curPosOptI--;
             if(curPosOptI >= 4) {
                 curPosOptI = 0;
@@ -323,7 +323,7 @@ int OptionsMenu::boucleLang() {
                 curPosOptI = 3;
             }
         } else if(isKeyPressed(sf::Keyboard::Down)) {
-            bruitArr.play();
+	  Main::mainframe.mainmenu.bruitArr.play();
             curPosOptI++;
             if(curPosOptI >= 4) {
                 curPosOptI = 0;
@@ -334,20 +334,20 @@ int OptionsMenu::boucleLang() {
             return 0;
         }
 
-        frame.clear(sf::Color::White);
+        Main::mainframe.frame.clear(sf::Color::White);
 
-        frame.draw(bgLangues);
-        frame.draw(langEng);
-        frame.draw(langEsp);
-        frame.draw(langFr);
-        frame.draw(txtRetour);
-        frame.draw(txtLang);
+        Main::mainframe.frame.draw(bgLangues);
+        Main::mainframe.frame.draw(langEng);
+        Main::mainframe.frame.draw(langEsp);
+        Main::mainframe.frame.draw(langFr);
+        Main::mainframe.frame.draw(txtRetour);
+        Main::mainframe.frame.draw(txtLang);
         rectSurb.setPosition(curPosOpt[curPosOptI]);
         rectSurb.setScale(curSizeLang[curPosOptI]);
-        frame.draw(rectSurb);
+        Main::mainframe.frame.draw(rectSurb);
 
-        frame.display();
-        winRefresh();
+        Main::mainframe.frame.display();
+        Main::mainframe.winRefresh();
 
     }
 
@@ -355,15 +355,15 @@ int OptionsMenu::boucleLang() {
 }
 int OptionsMenu::boucleCredits() {
     while(continuer) {
-        window.waitEvent(events);
-        switch(events.type) {
+        Main::mainframe.window.waitEvent(Main::mainframe.events);
+        switch(Main::mainframe.events.type) {
             QUIT
 
         case sf::Event::KeyPressed:
-            if(events.key.code == sf::Keyboard::Return) {
+            if(Main::mainframe.events.key.code == sf::Keyboard::Return) {
                 switch(curPosOptI) {
                 case 0://Bouton Retour
-                    initAllStrings();
+                    Main::mainframe.initAllStrings();
                     return 0;
 
                     break;
@@ -376,7 +376,7 @@ int OptionsMenu::boucleCredits() {
         }
         ECHAP
         if(isKeyPressed(sf::Keyboard::Up)) {
-            bruitArr.play();
+            Main::mainframe.mainmenu.bruitArr.play();
             curPosOptI--;
             if(curPosOptI >= 4) {
                 curPosOptI = 0;
@@ -384,7 +384,7 @@ int OptionsMenu::boucleCredits() {
                 curPosOptI = 3;
             }
         } else if(isKeyPressed(sf::Keyboard::Down)) {
-            bruitArr.play();
+            Main::mainframe.mainmenu.bruitArr.play();
             curPosOptI++;
             if(curPosOptI >= 4) {
                 curPosOptI = 0;
@@ -395,23 +395,23 @@ int OptionsMenu::boucleCredits() {
             return 0;
         }
 
-        frame.clear(sf::Color::White);
+        Main::mainframe.frame.clear(sf::Color::White);
 
-        frame.draw(bgCredits);
-        frame.draw(txtCre1);
-        frame.draw(txtCre2);
-        frame.draw(txtCre3);
-        frame.draw(txtCre4);
-        frame.draw(txtCre5);
-        frame.draw(txtCre6);
-        frame.draw(txtCre7);
-        frame.draw(txtCre8);
-        frame.draw(txtCre9);
-        frame.draw(txtRetour);
-        frame.draw(txtCred);
+        Main::mainframe.frame.draw(bgCredits);
+        Main::mainframe.frame.draw(txtCre1);
+        Main::mainframe.frame.draw(txtCre2);
+        Main::mainframe.frame.draw(txtCre3);
+        Main::mainframe.frame.draw(txtCre4);
+        Main::mainframe.frame.draw(txtCre5);
+        Main::mainframe.frame.draw(txtCre6);
+        Main::mainframe.frame.draw(txtCre7);
+        Main::mainframe.frame.draw(txtCre8);
+        Main::mainframe.frame.draw(txtCre9);
+        Main::mainframe.frame.draw(txtRetour);
+        Main::mainframe.frame.draw(txtCred);
 
-        frame.display();
-        winRefresh();
+        Main::mainframe.frame.display();
+        Main::mainframe.winRefresh();
 
     }
 

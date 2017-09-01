@@ -82,7 +82,7 @@ extern MainFrame mainframe;
 
 }
 
-#include "../newGui/MainFrame.hpp"
+
 
 int main(int argc, char *argv[]);
 

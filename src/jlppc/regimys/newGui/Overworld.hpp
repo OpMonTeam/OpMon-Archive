@@ -7,10 +7,10 @@ Contient le namespace Overworld
 */
 #ifndef OVERWORLD_HPP
 #define OVERWORLD_HPP
-#include "MainFrame.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "../start/main.hpp"
+#include "Elements.hpp"
 #define CASES * 32
 #define CASE_SIZE 32
 
