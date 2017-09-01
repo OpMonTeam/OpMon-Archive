@@ -8,7 +8,6 @@ Contient le namespace MainMenu
 #ifndef MAINMENU_HPP
 #define MAINMENU_HPP
 
-#include "MainFrame.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 

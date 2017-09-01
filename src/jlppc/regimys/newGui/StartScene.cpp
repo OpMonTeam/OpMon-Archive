@@ -146,7 +146,7 @@ int StartScene::boucle0() {
                 sf::String arr[3] = {txtEnCours[0], txtEnCours[1], txtEnCours[2]};
                 Main::mainframe.printText(Main::mainframe.frame, arr);
                 ANIM_ARROW
-                frame.display();
+                Main::mainframe.frame.display();
                 Main::mainframe.winRefresh();
             } else {
                 continuer = false;
@@ -179,16 +179,16 @@ int StartScene::boucle1() {
             if(Main::mainframe.events.text.unicode == 8) { //Backspace
                 if(!pName.empty())
                     pName.pop_back();//C++11
-            } else if(events.text.unicode == '\n' || events.text.unicode <= 32) {//Do nothing
+            } else if(Main::mainframe.events.text.unicode == '\n' || Main::mainframe.events.text.unicode <= 32) {//Do nothing
             } else {
                 if (pName.size() < 14) {//14 = Max name length
-                    pName += events.text.unicode;
+                    pName += Main::mainframe.events.text.unicode;
                 }
             }
             break;
 
         case sf::Event::KeyPressed:
-            if(events.key.code == sf::Keyboard::Return) {
+            if(Main::mainframe.events.key.code == sf::Keyboard::Return) {
                 if (pName.empty()) {
                     pName = "Céchine";
                 }
@@ -201,16 +201,16 @@ int StartScene::boucle1() {
 
         ECHAP
 
-        frame.clear(sf::Color::White);
-        frame.draw(bgName);
+        Main::mainframe.frame.clear(sf::Color::White);
+        Main::mainframe.frame.draw(bgName);
         for(sf::Text desc : textDescs) {
             desc.setColor(sf::Color::White);
             desc.setFont(Main::mainframe.font);
-            frame.draw(desc);
+            Main::mainframe.frame.draw(desc);
         }
         nameField.setString(pName);
-        frame.draw(nameField);
-        frame.display();
+        Main::mainframe.frame.draw(nameField);
+        Main::mainframe.frame.display();
         Main::mainframe.winRefresh();
 
 
@@ -230,12 +230,12 @@ int StartScene::boucle2() {
 
             Main::mainframe.window.pollEvent(Main::mainframe.events);
 
-            switch (events.type) {
+            switch (Main::mainframe.events.type) {
 
                 QUIT
 
             case sf::Event::KeyPressed:
-                if(events.key.code == sf::Keyboard::Space) {
+                if(Main::mainframe.events.key.code == sf::Keyboard::Space) {
                     DIALOG_PASS(txtP1)
                 }
                 break;
@@ -250,8 +250,8 @@ int StartScene::boucle2() {
             if(phase == 2) {
                 Main::mainframe.frame.clear(sf::Color::White);
                 Main::mainframe.frame.draw(bg);
-                frame.draw(prof);
-                frame.draw(Main::mainframe.dialog);
+                Main::mainframe.frame.draw(prof);
+                Main::mainframe.frame.draw(Main::mainframe.dialog);
                 if(!changeDialog) {
                     total = line + dialog;
                     if (!(i >= txtP1[total].toUtf32().size())) {
@@ -274,10 +274,10 @@ int StartScene::boucle2() {
                 }
 
                 sf::String arr[3] = {txtEnCours[0], txtEnCours[1], txtEnCours[2]};
-                Main::mainframe.printText(frame, arr);
+                Main::mainframe.printText(Main::mainframe.frame, arr);
                 ANIM_ARROW
-                frame.display();
-                winRefresh();
+                Main::mainframe.frame.display();
+                Main::mainframe.winRefresh();
             } else {
                 continuer = false;
             }
@@ -298,7 +298,7 @@ int StartScene::startScene() {
     phase = 1;
 
     //Animation 1
-    Animations::animWinOpen(frame, bg);
+    Animations::animWinOpen(Main::mainframe.frame, bg);
 
 
     if(boucle1() == -1) {
@@ -306,7 +306,7 @@ int StartScene::startScene() {
     }
 
     //Animation 2
-    Animations::animWinClose(frame, bg);
+    Animations::animWinClose(Main::mainframe.frame, bg);
     phase = 2;
     sizeOfTxt = 27 - 18;
     i = 0;

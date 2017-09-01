@@ -276,7 +276,7 @@ void Overworld::left() {
 
 
 int Overworld::overworld() {
-    MainFrame::mapsInit.wait();
+  Main::mainframe.mapsInit.wait();
     for(Map *map : Initializer::maps) {
         for(Event *event : map->getEvents()) {
             Events::TalkingEvent *te = dynamic_cast<Events::TalkingEvent *>(event);
@@ -287,7 +287,7 @@ int Overworld::overworld() {
     }
 
     music->play();
-    frame.setView(camera);
+    Main::mainframe.frame.setView(camera);
     int returned = boucle();
     music->stop();
     delete(layer1);
@@ -296,7 +296,7 @@ int Overworld::overworld() {
     return returned;
 }
 
-int boucle() {
+int Overworld::boucle() {
     bool continuer = true;
     while(continuer) {
         if((GET_TICKS - ancientTick >= FPS_TICKS)) {
@@ -329,37 +329,37 @@ int boucle() {
             }
 
             ancientTick = GET_TICKS;
-            window.pollEvent(events);
+	    Main::mainframe.window.pollEvent(Main::mainframe.events);
 
-            switch(events.type) {
+            switch(Main::mainframe.events.type) {
                 QUIT
 
             case sf::Event::KeyPressed:
-                if(events.key.code == sf::Keyboard::Equal) {
+                if(Main::mainframe.events.key.code == sf::Keyboard::Equal) {
                     debugMode = !debugMode;
                 }
                 if(debugMode) {
-                    if(events.key.code == sf::Keyboard::F10) {
+                    if(Main::mainframe.events.key.code == sf::Keyboard::F10) {
                         printlayer[0] = !printlayer[0];
                     }
-                    if(events.key.code == sf::Keyboard::F11) {
+                    if(Main::mainframe.events.key.code == sf::Keyboard::F11) {
                         printlayer[1] = !printlayer[1];
                     }
-                    if(events.key.code == sf::Keyboard::F12) {
+                    if(Main::mainframe.events.key.code == sf::Keyboard::F12) {
                         printlayer[2] = !printlayer[2];
                     }
 
-                    if(events.key.code == sf::Keyboard::F5) {
+                    if(Main::mainframe.events.key.code == sf::Keyboard::F5) {
                         tp(4, sf::Vector2i(0, 1), true);
-                    } else if(events.key.code == sf::Keyboard::F6) {
+                    } else if(Main::mainframe.events.key.code == sf::Keyboard::F6) {
                         tp(5, sf::Vector2i(0, 0), true);
-                    } else if(events.key.code == sf::Keyboard::F1) {
+                    } else if(Main::mainframe.events.key.code == sf::Keyboard::F1) {
                         tp(0, sf::Vector2i(25, 28), true);
-                    } else if(events.key.code == sf::Keyboard::F2) {
+                    } else if(Main::mainframe.events.key.code == sf::Keyboard::F2) {
                         tp(1, sf::Vector2i(8, 14), true);
-                    } else if(events.key.code == sf::Keyboard::F3) {
+                    } else if(Main::mainframe.events.key.code == sf::Keyboard::F3) {
                         tp(2, sf::Vector2i(15, 14), true);
-                    } else if(events.key.code == sf::Keyboard::F4) {
+                    } else if(Main::mainframe.events.key.code == sf::Keyboard::F4) {
                         tp(3, sf::Vector2i(8, 14), true);
                     }
                 }
@@ -399,26 +399,26 @@ int boucle() {
                     camera.move(4, 0);
                 }
                 debugText.setString("Debug mode");
-                debugText.setPosition(frame.mapPixelToCoords(sf::Vector2i(0, 0)));
-                debugText.setFont(font);
+                debugText.setPosition(Main::mainframe.frame.mapPixelToCoords(sf::Vector2i(0, 0)));
+                debugText.setFont(Main::mainframe.font);
                 debugText.setColor(sf::Color(127, 127, 127));
                 debugText.setCharacterSize(40);
-                fpsPrint.setPosition(frame.mapPixelToCoords(sf::Vector2i(0, 50)));
-                fpsPrint.setFont(font);
+                fpsPrint.setPosition(Main::mainframe.frame.mapPixelToCoords(sf::Vector2i(0, 50)));
+                fpsPrint.setFont(Main::mainframe.font);
                 fpsPrint.setCharacterSize(48);
             }
 
-            frame.clear(sf::Color::Black);
+            Main::mainframe.frame.clear(sf::Color::Black);
             if((debugMode ? printlayer[0] : true)) {
-                frame.draw(*layer1);
+                Main::mainframe.frame.draw(*layer1);
             }
             if((debugMode ? printlayer[1] : true)) {
-                frame.draw(*layer2);
+                Main::mainframe.frame.draw(*layer2);
             }
             actual->updateEvents(Main::player);
             for(Event *event : actual->getEvents()) {
                 if(event->getPosition().y <= ppPosY) {
-                    frame.draw(*event->getSprite());
+                    Main::mainframe.frame.draw(*event->getSprite());
                 }
             }
             if(anim != -1 && !anims) {
@@ -436,14 +436,14 @@ int boucle() {
             } else if(anim == -1) {
                 character.setTexture(Initializer::texturePP[ppDir]);
             }
-            frame.draw(character);
+            Main::mainframe.frame.draw(character);
             for(Event *event : actual->getEvents()) {
                 if(event->getPosition().y > ppPosY) {
-                    frame.draw(*event->getSprite());
+                    Main::mainframe.frame.draw(*event->getSprite());
                 }
             }
             if((debugMode ? printlayer[2] : true)) {
-                frame.draw(*layer3);
+                Main::mainframe.frame.draw(*layer3);
             }
             if(moving == -1) {
                 std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, ppPosY CASES));
@@ -467,17 +467,17 @@ int boucle() {
                     }
                 }
             }
-            actual->updateElements(MainFrame::frame);
+            actual->updateElements(Main::mainframe.frame);
             if(scrolling && !debugMode) {
                 camera.setCenter(character.getPosition().x + 16, character.getPosition().y + 16);
             }
-            frame.setView(camera);
+            Main::mainframe.frame.setView(camera);
             if(debugMode) {
-                frame.draw(debugText);
-                frame.draw(fpsPrint);
+                Main::mainframe.frame.draw(debugText);
+                Main::mainframe.frame.draw(fpsPrint);
             }
-            frame.display();
-            winRefresh();
+            Main::mainframe.frame.display();
+            Main::mainframe.winRefresh();
             if(anim == -1) {
                 if(isKeyPressed(sf::Keyboard::Return)) {
                     int lx = ppPosX;
@@ -605,8 +605,8 @@ int Overworld::boucleDialog(vector<sf::String> const& dialogs) {
     unsigned int line = 0;
 
     int phase = 0;
-    sf::Vector2f posArrow = frame.mapPixelToCoords(sf::Vector2i(512-75, 512-30));
-    arrDial.setPosition(posArrow);
+    sf::Vector2f posArrow = Main::mainframe.frame.mapPixelToCoords(sf::Vector2i(512-75, 512-30));
+    Main::mainframe.arrDial.setPosition(posArrow);
 
 
     while(continuer && phase == 0) {
@@ -618,13 +618,13 @@ int Overworld::boucleDialog(vector<sf::String> const& dialogs) {
             }
 
             ancientTick = GET_TICKS;
-            window.pollEvent(events);
+            Main::mainframe.window.pollEvent(Main::mainframe.events);
 
-            switch(events.type) {
+            switch(Main::mainframe.events.type) {
                 QUIT
 
             case sf::Event::KeyPressed:
-                if(events.key.code == sf::Keyboard::Space) {
+                if(Main::mainframe.events.key.code == sf::Keyboard::Space) {
                     DIALOG_PASS(dialogs)
                 }
                 break;
@@ -635,11 +635,11 @@ int Overworld::boucleDialog(vector<sf::String> const& dialogs) {
                 Main::player.gameIsOver = true;
                 return -1;
             }
-            frame.draw(*layer1);
-            frame.draw(*layer2);
+            Main::mainframe.frame.draw(*layer1);
+            Main::mainframe.frame.draw(*layer2);
             for(Event *event : actual->getEvents()) {
                 if(event->getPosition().y <= ppPosY) {
-                    frame.draw(*event->getSprite());
+                    Main::mainframe.frame.draw(*event->getSprite());
                 }
             }
             if(anim != -1 && !anims) {
@@ -651,19 +651,19 @@ int Overworld::boucleDialog(vector<sf::String> const& dialogs) {
             } else if(anim == -1) {
                 character.setTexture(Initializer::texturePP[ppDir]);
             }
-            frame.draw(character);
+            Main::mainframe.frame.draw(character);
             for(Event *event : actual->getEvents()) {
                 if(event->getPosition().y > ppPosY) {
-                    frame.draw(*event->getSprite());
+                    Main::mainframe.frame.draw(*event->getSprite());
                 }
             }
-            frame.draw(*layer3);
+            Main::mainframe.frame.draw(*layer3);
             if(scrolling) {
                 camera.setCenter(character.getPosition().x + 16, character.getPosition().y + 16);
             }
-            frame.setView(frame.getDefaultView());
-            frame.setView(camera);
-            actual->updateElements(MainFrame::frame);
+            Main::mainframe.frame.setView(Main::mainframe.frame.getDefaultView());
+            Main::mainframe.frame.setView(camera);
+            actual->updateElements(Main::mainframe.frame);
             if(!changeDialog) {
                 if (!(i >= dialogs[line + dialog].toUtf32().size())) {
 
@@ -683,10 +683,10 @@ int Overworld::boucleDialog(vector<sf::String> const& dialogs) {
                     }
                 }
             }
-            printText(frame, txtEnCours);
+            Main::mainframe.printText(Main::mainframe.frame, txtEnCours);
             ANIM_ARROW
-            frame.display();
-            winRefresh();
+            Main::mainframe.frame.display();
+            Main::mainframe.winRefresh();
 
 
 
