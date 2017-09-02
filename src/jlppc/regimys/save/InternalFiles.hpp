@@ -22,4 +22,10 @@ extern char momRoomCol[6][6];
 extern char laboCol[16][32];
 }
 
+namespace Maps {
+  extern int feLayer1[48][48];
+  extern int feLayer2[48][48];
+  extern int feLayer3[48][48];
+}
+
 #endif // INTERNALFILES_HPP

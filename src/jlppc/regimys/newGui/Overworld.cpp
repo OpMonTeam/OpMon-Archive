@@ -36,12 +36,9 @@ void Overworld::initVars() {
         maps[2] = actual->getLayer3();*/
     music = actual->getBg();
     music->setLoop(true);
-    layer1 = new sf::Sprite();
-    layer2 = new sf::Sprite();
-    layer3 = new sf::Sprite();
-    layer1->setTexture(*actual->getLayer1());
-    layer2->setTexture(*actual->getLayer2());
-    layer3->setTexture(*actual->getLayer3());
+    layer1 = actual->getLayer1();
+    layer2 = actual->getLayer2();
+    layer3 = actual->getLayer3();
     character.setScale(2, 2);
     character.setOrigin(16, 16);
 }

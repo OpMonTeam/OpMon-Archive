@@ -33,6 +33,8 @@ std::vector<sf::Music*> townMusics;
 std::vector<std::vector<sf::Texture> > doorsTextures;
 sf::SoundBuffer doorSoundBuffer;
 
+  sf::Texture tileset;
+  
 std::vector<sf::Texture> kidTextures;
 
 template<typename T>void pb(std::vector<T> &vect, T arr[], int sizeArr) {
@@ -855,6 +857,9 @@ sf::Texture walkingPP2[4];
 void initTextures() {
     using namespace Side;
 #ifdef _WIN32
+
+    tileset.loadFromFile(RESSOURCES_PATH + "maps\\tileset.png");
+    
     texturePP[TO_DOWN].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\pp0.png");
     texturePP[TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\pp1.png");
     texturePP[TO_LEFT].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\pp2.png");
@@ -897,6 +902,9 @@ void initTextures() {
     }
 
 #else
+
+    tileset.loadFromFile(RESSOURCES_PATH + "maps/tileset.png");
+    
     texturePP[TO_DOWN].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp0.png");
     texturePP[TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp1.png");
     texturePP[TO_LEFT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp2.png");
