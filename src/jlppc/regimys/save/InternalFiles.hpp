@@ -23,9 +23,9 @@ extern char laboCol[16][32];
 }
 
 namespace Maps {
-  extern int feLayer1[48][48];
-  extern int feLayer2[48][48];
-  extern int feLayer3[48][48];
+  extern int feLayer1[2304];
+  extern int feLayer2[2304];
+  extern int feLayer3[2304];
 }
 
 #endif // INTERNALFILES_HPP
