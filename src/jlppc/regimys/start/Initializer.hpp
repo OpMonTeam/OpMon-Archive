@@ -34,6 +34,8 @@ extern sf::Texture walkingPP[4];
 extern sf::Texture walkingPP2[4];
 extern sf::Texture mapsFe[3];
 
+  extern sf::Texture tileset;
+
 extern std::vector<std::vector<sf::Texture> > doorsTextures;
 //std::string backgrounds[];
 extern std::vector<int> evs[OP_NUMBER];

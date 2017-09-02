@@ -16,18 +16,26 @@ Fichier contenant des Ã©lÃ©ments utiles
 
 class Event;
 
+class MapLayer : public sf::Drawable, public sf::Transformable{
+private:
+  virtual void draw(sf::RenderTarget &target, sf::RenderStats stats) const;
+  sf::VertexArray tiles;
+public:
+  MapLayer(sf::Vector2i size, const int* tilesCode);
+};
+
 /**
 Classe définissant une carte d'un lieu en particulier
 */
 class Map {
 private:
-    sf::Texture *layer1;
-    sf::Texture *layer2;
+    MapLayer *layer1;
+    MapLayer *layer2;
     sf::Music *bg;
     //Event events;
     int w;
     int h;
-    sf::Texture *layer3;
+    MapLayer *layer3;
     char **passArr;
     /**Le constructeur de copie ne doit pas etre utilsÃ©.
     Il est donc en privÃ©. Si tout de meme cette protection est inÃ©fficace,
@@ -42,7 +50,7 @@ private:
     std::vector<int> elementsCount;
 
 public:
-    Map(sf::Texture const& layer1, sf::Texture const& layer2, sf::Texture const& layer3, int w, int h, char** collisions, sf::Music *bg, std::vector<std::vector<sf::Texture> > const& animatedElements = std::vector<std::vector<sf::Texture> >(), std::vector<sf::Vector2f> const& elementsPos = std::vector<sf::Vector2f>());
+    Map(const int** layer1, const int** layer2, const int** layer3, int w, int h, char** collisions, sf::Music *bg, std::vector<std::vector<sf::Texture> > const& animatedElements = std::vector<std::vector<sf::Texture> >(), std::vector<sf::Vector2f> const& elementsPos = std::vector<sf::Vector2f>());
     ~Map();
     int getH() const {
         return h;
@@ -53,13 +61,13 @@ public:
     char **getPassArr() const {
         return passArr;
     }
-    const sf::Texture *getLayer1() const {
+    const MapLayer *getLayer1() const {
         return layer1;
     }
-    const sf::Texture *getLayer2() const {
+    const MapLayer *getLayer2() const {
         return layer2;
     }
-    const sf::Texture *getLayer3() const {
+    const MapLayer *getLayer3() const {
         return layer3;
     }
     sf::Music *getBg() const {
