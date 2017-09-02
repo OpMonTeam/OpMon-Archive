@@ -16,9 +16,13 @@ MapLayer::MapLayer(sf::Vector2i size, const int** tilesCodes){
 
   for(unsigned int i = 0; i < size.y; i++){
     for(unsigned int j = 0; j < size.x; j++){
+      
+      int tileNumber = tiles[i][j] - 1;
 
-      int tileNumber = tiles[i][j];
-
+      if(tileNumber == -1){
+	tileNumber = 258;//Void tile
+      }
+      
       int tx = tileNumber % (tileset.getSize().x / 32);
       tnt ty = tileNumber / (tileset.getSize().x / 32);
 
