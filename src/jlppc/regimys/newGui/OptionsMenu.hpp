@@ -20,7 +20,7 @@ class OptionsMenu {
     public:
 sf::Sprite bgCredits;
 sf::Sprite bgOpt;
-sf::Text langFr;
+  sf::Text langFr;
 sf::Text langEng;
 sf::Text langEsp;
 sf::Text txtRetour;

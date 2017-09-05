@@ -966,12 +966,7 @@ void initSprites() {
 }
 sf::Texture alpha;
 void initMaps() {
-#define PLANS_RESET     delete(layer1);		\
-    delete(layer2);				\
-    delete(layer3);				\
-    layer1 = new sf::Texture();			\
-    layer2 = new sf::Texture();			\
-    layer3 = new sf::Texture();
+
     UNS
 
 #define TAB_TO_POINTER(name, pointerName, sizeY, sizeX) char** pointerName = (char**) malloc(sizeY * sizeof(char*)); \
@@ -990,9 +985,6 @@ void initMaps() {
 
 
     //Chargement de fauxbourg euvi
-    sf::Texture *layer1 = new sf::Texture();
-    sf::Texture *layer2 = new sf::Texture();
-    sf::Texture *layer3 = new sf::Texture();
     townMusics.push_back(new sf::Music());
     std::vector<std::vector<sf::Texture> > feElements;
     std::vector<sf::Vector2f> feEPos;
@@ -1001,9 +993,6 @@ void initMaps() {
     feEPos.push_back(sf::Vector2f(8 *32 + 25 *32 - 8, 3 *32 + 8));
     feEPos.push_back(sf::Vector2f(8*32+18*32, 11*32));
 #ifdef _WIN32
-    layer1->loadFromFile(RESSOURCES_PATH + "maps\\fe\\fe1.png");
-    layer2->loadFromFile(RESSOURCES_PATH +"maps\\fe\\fe2.png");
-    layer3->loadFromFile(RESSOURCES_PATH +"maps\\fe\\fe3.png");
     townMusics[0]->openFromFile(RESSOURCES_PATH +"audio\\music\\faubourgeuvi.ogg");
     for(unsigned int i = 1; i < 17; i++) {
         ostringstream str;
@@ -1019,9 +1008,6 @@ void initMaps() {
     }
 
 #else
-    layer1->loadFromFile(RESSOURCES_PATH +"maps/fe/fe1.png");
-    layer2->loadFromFile(RESSOURCES_PATH +"maps/fe/fe2.png");
-    layer3->loadFromFile(RESSOURCES_PATH +"maps/fe/fe3.png");
     townMusics[0]->openFromFile(RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg");
     for(unsigned int i = 1; i < 17; i++) {
         ostringstream str;
@@ -1037,7 +1023,7 @@ void initMaps() {
     }
 #endif
     TAB_TO_POINTER(Collisions::feCol, feCol, 32, 32);
-    maps.push_back(new Map(*layer1, *layer2, *layer3, 32, 32, feCol, townMusics[0], feElements, feEPos));
+    maps.push_back(new Map(Maps::feLayer1, Maps::feLayer2, Maps::feLayer3, 32, 32, feCol, townMusics[0], feElements, feEPos));
     FREE_TAB(feCol, 32);
     std::vector<OpString> feE1 {OpString("fedesc.1"), OpString("fedesc.2"), OpString("fedesc.3")};
     maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(11, 2), feE1, SIDE_UP));
@@ -1068,7 +1054,7 @@ void initMaps() {
 
     maps[0]->addEvent(new Events::TalkingCharaEvent(kidTextures, sf::Vector2f(17, 13), feC1, 0, Events::MoveStyle::PREDEFINED, pathChara1));
     /*End of character 1*/
-
+    /*
 
     PLANS_RESET
 #ifdef _WIN32
@@ -1151,9 +1137,9 @@ void initMaps() {
     delete(layer1);
     delete(layer2);
     delete(layer3);
-
+    */
     Main::mainframe.overworld.initVars();
-
+    
 }
 #undef PLANS_RESET
 void initBackgrounds() {
