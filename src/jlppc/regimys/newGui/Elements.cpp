@@ -9,7 +9,7 @@
 
 UNS
 
-MapLayer::MapLayer(sf::Vector2i size, const int** tilesCodes){
+MapLayer::MapLayer(sf::Vector2i size, const int tilesCodes[]){
   sf::Texture &tileset = Initializer::tileset;
   tiles.setPrimitiveType(sf::Quads);
   tiles.resize(size.x * size.y * 4);
@@ -17,34 +17,34 @@ MapLayer::MapLayer(sf::Vector2i size, const int** tilesCodes){
   for(unsigned int i = 0; i < size.y; i++){
     for(unsigned int j = 0; j < size.x; j++){
       
-      int tileNumber = tiles[i][j] - 1;
+      int tileNumber = tilesCodes[(i * size.x) + j] - 1;
 
       if(tileNumber == -1){
 	tileNumber = 258;//Void tile
       }
       
       int tx = tileNumber % (tileset.getSize().x / 32);
-      tnt ty = tileNumber / (tileset.getSize().x / 32);
+      int ty = tileNumber / (tileset.getSize().x / 32);
 
-      sf::Vertex* quad = &tiles[(i + j * size.x) * 4];
+      sf::Vertex* quad = &tiles[((i * size.x) + j) * 4];
 
       quad[0].position = sf::Vector2f(j * 32, i * 32);
-      quad[0].position = sf::Vector2f((j+1) * 32, i * 32);
-      quad[0].position = sf::Vector2f((j+1) * 32, (i+1) * 32);
-      quad[0].position = sf::Vector2f(j * 32, (i+1) * 32);
+      quad[1].position = sf::Vector2f((j+1) * 32, i * 32);
+      quad[2].position = sf::Vector2f((j+1) * 32, (i+1) * 32);
+      quad[3].position = sf::Vector2f(j * 32, (i+1) * 32);
 
       
-      quad[0].position = sf::Vector2f(tx * 32, ty * 32);
-      quad[0].position = sf::Vector2f((tx+1) * 32, ty * 32);
-      quad[0].position = sf::Vector2f((tx+1) * 32, (ty+1) * 32);
-      quad[0].position = sf::Vector2f(tx * 32, (ty+1) * 32);
+      quad[0].texCoords = sf::Vector2f(tx * 32, ty * 32);
+      quad[1].texCoords = sf::Vector2f((tx+1) * 32, ty * 32);
+      quad[2].texCoords = sf::Vector2f((tx+1) * 32, (ty+1) * 32);
+      quad[3].texCoords = sf::Vector2f(tx * 32, (ty+1) * 32);
       
     }
   }
   
 }
 
-MapLayer::draw(sf::RenderTarget &target, sf::RenderStats states) const{
+void MapLayer::draw(sf::RenderTarget &target, sf::RenderStates states) const{
   states.transform *= getTransform();
 
   states.texture = &Initializer::tileset;
@@ -52,7 +52,7 @@ MapLayer::draw(sf::RenderTarget &target, sf::RenderStats states) const{
   target.draw(tiles, states);
 }
 
-Map::Map(const int** layer1, const int** layer2, const int** layer3, int w, int h, char** collision, sf::Music *bg, std::vector<std::vector<sf::Texture> > const& animatedElements, std::vector<sf::Vector2f> const& elementsPos) {
+Map::Map(const int layer1[], const int layer2[], const int layer3[], int w, int h, char** collision, sf::Music *bg, std::vector<std::vector<sf::Texture> > const& animatedElements, std::vector<sf::Vector2f> const& elementsPos) {
   this->layer1 = new MapLayer(sf::Vector2i(w + 16, h + 16), layer1);
     this->layer2 = new MapLayer(sf::Vector2i(w + 16, h + 16), layer2);
     this->layer3 = new MapLayer(sf::Vector2i(w + 16, h + 16), layer3);
