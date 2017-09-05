@@ -66,15 +66,10 @@ int Overworld::tp(int toTp, sf::Vector2i pos, bool scroll) {
         music = actual->getBg();
         music->play();
     }
-    delete(layer1);
-    delete(layer2);
-    delete(layer3);
-    layer1 = new sf::Sprite();
-    layer2 = new sf::Sprite();
-    layer3 = new sf::Sprite();
-    layer1->setTexture(*actual->getLayer1());
-    layer2->setTexture(*actual->getLayer2());
-    layer3->setTexture(*actual->getLayer3());
+
+    layer1 = actual->getLayer1();
+    layer2 = actual->getLayer2();
+    layer3 = actual->getLayer3();
     // layer1->move(32, 32);
     // layer2->move(32, 32);
     // layer3->move(32, 32);
@@ -287,9 +282,6 @@ int Overworld::overworld() {
     Main::mainframe.frame.setView(camera);
     int returned = boucle();
     music->stop();
-    delete(layer1);
-    delete(layer2);
-    delete(layer3);
     return returned;
 }
 

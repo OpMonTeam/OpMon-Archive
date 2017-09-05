@@ -18,10 +18,10 @@ class Event;
 
 class MapLayer : public sf::Drawable, public sf::Transformable{
 private:
-  virtual void draw(sf::RenderTarget &target, sf::RenderStats stats) const;
+  virtual void draw(sf::RenderTarget &target, sf::RenderStates stats) const;
   sf::VertexArray tiles;
 public:
-  MapLayer(sf::Vector2i size, const int* tilesCode);
+  MapLayer(sf::Vector2i size, const int tilesCode[]);
 };
 
 /**
@@ -40,7 +40,7 @@ private:
     /**Le constructeur de copie ne doit pas etre utilsÃ©.
     Il est donc en privÃ©. Si tout de meme cette protection est inÃ©fficace,
     aucune definition n'est fournise de ce constructeur.*/
-    Map(Map const &toCopy);
+    Map(Map const &toCopy) = delete;
 
     std::vector<Event *> events;
 
@@ -50,7 +50,7 @@ private:
     std::vector<int> elementsCount;
 
 public:
-    Map(const int** layer1, const int** layer2, const int** layer3, int w, int h, char** collisions, sf::Music *bg, std::vector<std::vector<sf::Texture> > const& animatedElements = std::vector<std::vector<sf::Texture> >(), std::vector<sf::Vector2f> const& elementsPos = std::vector<sf::Vector2f>());
+    Map(const int layer1[], const int layer2[], const int layer3[], int w, int h, char** collisions, sf::Music *bg, std::vector<std::vector<sf::Texture> > const& animatedElements = std::vector<std::vector<sf::Texture> >(), std::vector<sf::Vector2f> const& elementsPos = std::vector<sf::Vector2f>());
     ~Map();
     int getH() const {
         return h;
