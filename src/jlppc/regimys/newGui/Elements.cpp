@@ -56,6 +56,9 @@ Map::Map(const int layer1[], const int layer2[], const int layer3[], int w, int 
   this->layer1 = new MapLayer(sf::Vector2i(w + 16, h + 16), layer1);
     this->layer2 = new MapLayer(sf::Vector2i(w + 16, h + 16), layer2);
     this->layer3 = new MapLayer(sf::Vector2i(w + 16, h + 16), layer3);
+    this->layer1->move(-32, 0);
+    this->layer2->move(-32, 0);
+    this->layer3->move(-32, 0);
     this->bg = bg;
     if(!bg->getLoop()) {
         bg->setLoop(true);
