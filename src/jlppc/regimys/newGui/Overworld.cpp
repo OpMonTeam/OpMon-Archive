@@ -23,9 +23,9 @@ void Overworld::initVars() {
     actual =  Initializer::maps[0];
     character = Main::player.getSprite();
     character.setTexture(Initializer::texturePP[TO_DOWN]);
-    character.setPosition(8 CASES + 20 CASES - 16, 8 CASES + 19 CASES);
+    character.setPosition(8 CASES + 20 CASES - 16, 8 CASES + 9 CASES);
     ppPosX = 19;
-    ppPosY = 19;
+    ppPosY = 9;
     camera.setCenter(character.getPosition());
     camera.setSize(sf::Vector2f(16 CASES, 16 CASES));
     ppDir = TO_UP;
