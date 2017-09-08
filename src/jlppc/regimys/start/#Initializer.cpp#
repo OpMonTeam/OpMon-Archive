@@ -1068,71 +1068,55 @@ void initMaps() {
 #endif
 
     TAB_TO_POINTER(Collisions::ppHomeCol, ppHomeCol, 16, 16);
-    maps.push_back(new Map(*layer1, *layer2, *layer3, 16, 16, ppHomeCol, townMusics[0]));
-    FREE_TAB(ppHomeCol, 16);
-    maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(7, 15), sf::Vector2i(20, 9), 0, Side::TO_DOWN, SIDE_DOWN));
-    maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(15, 2), sf::Vector2i(9, 5), 5, Side::TO_LEFT, SIDE_RIGHT));
-    maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(0, 11), sf::Vector2i(6, 3), 4, Side::TO_LEFT, SIDE_LEFT));
-    PLANS_RESET
-    */
-    townMusics.push_back(new sf::Music());
-#ifdef _WIN32
-    townMusics[1]->openFromFile(RESSOURCES_PATH + "audio\\music\\intro.ogg");
-#else
-    townMusics[1]->openFromFile(RESSOURCES_PATH + "audio/music/intro.ogg");
-#endif // _WIN32
-    TAB_TO_POINTER(Collisions::laboCol, laboColF, 16, 32);
-    maps.push_back(new Map(Maps::laboLayer1, Maps::laboLayer2, Maps::laboLayer3, 32, 16, laboColF, townMusics[1]));
-    FREE_TAB(laboColF, 16);
-    
-    TAB_TO_POINTER(Collisions::laboCol, laboCol, 16, 32);
-    maps.push_back(new Map(Maps::laboLayer1, Maps::laboLayer2, Maps::laboLayer3, 32, 16, laboCol, townMusics[1]));
-    FREE_TAB(laboCol, 16);
-    maps[2]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(15, 15), sf::Vector2i(21, 22), 0, Side::TO_DOWN, SIDE_DOWN));
-    /*
-    PLANS_RESET
-#ifdef _WIN32
-    layer1->loadFromFile(RESSOURCES_PATH + "maps\\rivalhome\\rivalhome1.png");
-    layer2->loadFromFile(RESSOURCES_PATH + "maps\\rivalhome\\rivalhome2.png");
-    layer3->loadFromFile(RESSOURCES_PATH + "maps\\rivalhome\\rivalhome3.png");
-#else
-    layer1->loadFromFile(RESSOURCES_PATH + "maps/rivalhome/rivalhome1.png");
-    layer2->loadFromFile(RESSOURCES_PATH + "maps/rivalhome/rivalhome2.png");
-    layer3->loadFromFile(RESSOURCES_PATH + "maps/rivalhome/rivalhome3.png");
-#endif // _WIN32
+    maps.push_back(new Map(*layer1, *layer2, *layer3, 16, 16,
+    ppHomeCol, townMusics[0])); FREE_TAB(ppHomeCol, 16);
+    maps[1]->addEvent(new Events::TPEvent(alpha,
+    std::vector<sf::Texture>(), Events::EventTrigger::BE_IN,
+    sf::Vector2f(7, 15), sf::Vector2i(20, 9), 0, Side::TO_DOWN,
+    SIDE_DOWN)); maps[1]->addEvent(new Events::TPEvent(alpha,
+    std::vector<sf::Texture>(), Events::EventTrigger::BE_IN,
+    sf::Vector2f(15, 2), sf::Vector2i(9, 5), 5, Side::TO_LEFT,
+    SIDE_RIGHT)); maps[1]->addEvent(new Events::TPEvent(alpha,
+    std::vector<sf::Texture>(), Events::EventTrigger::BE_IN,
+    sf::Vector2f(0, 11), sf::Vector2i(6, 3),
+    4,TAB_TO_POINTER(Collisions::laboCol, laboCol, 16, 32);
+    maps.push_back(new Map(Maps::laboLayer1, Maps::laboLayer2,
+    Maps::laboLayer3, 32, 16, laboCol, townMusics[1]));
+    FREE_TAB(laboCol, 16); maps[2]->addEvent(new
+    Events::TPEvent(alpha, std::vector<sf::Texture>(),
+    Events::EventTrigger::BE_IN, sf::Vector2f(15, 15),
+    sf::Vector2i(21, 22), 0, Side::TO_DOWN, SIDE_DOWN)); /*
+    PLANS_RESET #ifdef _WIN32 layer1->loadFromFile(RESSOURCES_PATH +
+    "maps\\rivalhome\\rivalhome1.png");
+    layer2->loadFromFile(RESSOURCES_PATH +
+    "maps\\rivalhome\\rivalhome2.png");
+    layer3->loadFromFile(RESSOURCES_PATH +
+    "maps\\rivalhome\\rivalhome3.png"); #else
+    layer1->loadFromFile(RESSOURCES_PATH +
+    "maps/rivalhome/rivalhome1.png");
+    layer2->loadFromFile(RESSOURCES_PATH +
+    "maps/rivalhome/rivalhome2.png");
+    layer3->loadFromFile(RESSOURCES_PATH +
+    "maps/rivalhome/rivalhome3.png"); #endif // _WIN32
     TAB_TO_POINTER(Collisions::rivalHomeCol, rivalHomeCol, 16, 16);
-    maps.push_back(new Map(*layer1, *layer2, *layer3, 16, 16, rivalHomeCol, townMusics[0]));
-    FREE_TAB(rivalHomeCol, 16);
-    maps[3]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(8, 15), sf::Vector2i(28, 9), 0, Side::TO_DOWN, SIDE_DOWN));
-    PLANS_RESET
-#ifdef _WIN32
-    layer1->loadFromFile(RESSOURCES_PATH + "maps\\momroom\\momroom1.png");
-    layer2->loadFromFile(RESSOURCES_PATH + "maps\\momroom\\momroom2.png");
-    layer3->loadFromFile(RESSOURCES_PATH + "maps\\momroom\\momroom3.png");
-#else
-    layer1->loadFromFile(RESSOURCES_PATH + "maps/momroom/momroom1.png");
-    layer2->loadFromFile(RESSOURCES_PATH + "maps/momroom/momroom2.png");
-    layer3->loadFromFile(RESSOURCES_PATH + "maps/momroom/momroom3.png");
-#endif // _WIN32
-    TAB_TO_POINTER(Collisions::momRoomCol, momRoomCol, 6, 6);
-    maps.push_back(new Map(*layer1, *layer2, *layer3, 6, 6, momRoomCol, townMusics[0]));
-    FREE_TAB(momRoomCol, 6);
-    maps[4]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(5, 3), sf::Vector2i(1, 11), 1, Side::TO_RIGHT, SIDE_RIGHT));
-    PLANS_RESET
-#ifdef _WIN32
-    layer1->loadFromFile(RESSOURCES_PATH + "maps\\pproom\\pproom1.png");
-    layer2->loadFromFile(RESSOURCES_PATH + "maps\\pproom\\pproom2.png");
-    layer3->loadFromFile(RESSOURCES_PATH + "maps\\pproom\\pproom3.png");
-#else
-    layer1->loadFromFile(RESSOURCES_PATH + "maps/pproom/pproom1.png");
-    layer2->loadFromFile(RESSOURCES_PATH + "maps/pproom/pproom2.png");
-    layer3->loadFromFile(RESSOURCES_PATH + "maps/pproom/pproom3.png");
-#endif // _WIN32
-    TAB_TO_POINTER(Collisions::ppRoomCol, ppRoomCol, 6, 9);
-    maps.push_back(new Map(*layer1, *layer2, *layer3, 9, 6, ppRoomCol, townMusics[0]));
-    FREE_TAB(ppRoomCol, 6);
-    maps[5]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(8, 5), sf::Vector2i(16, 2), 1, Side::TO_LEFT, SIDE_RIGHT));
-    //PLANS_RESET
+    maps.push_back(new Map(*layer1, *layer2, *layer3, 16, 16,
+    rivalHomeCol, townMusics[0])); FREE_TAB(rivalHomeCol, 16);
+    maps[3]->addEvent(new Events::TPEvent(alpha,
+    std::vector<sf::Texture>(), Events::EventTrigger::BE_IN,
+    sf::Vector2f(8, 15), sf::Vector2i(28, 9), 0, Side::TO_DOWN,
+    SIDE_DOWN)); PLANS_RESET #ifdef _WIN32
+    layer1->loadFromFile(RESSOURCES_PATH +
+    "maps\\momroom\\momroom1.png");
+    layer2->loadFromFile(RESSOURCES_PATH +
+    "maps\\momroom\\momroom2.png");
+    layer3->loadFromFile(RESSOURCES_PATH +
+    "maps\\momroom\\momroom3.png"); #else
+    layer1->loadFromFile(RESSOURCES_PATH +
+    "maps/momroom/momroom1.png"); layer2->loadFromFile(RESSOURCES_PATH
+    + "maps/momroom/momroom2.png");
+    layer3->loadFromFile(RESSOURCES_PATH +
+    "maps/momroom/momroom3.png"); #endif // _WIN32
+TAB_TO_POINTER(Collisions::momRoomCol, momRoomCol, 6, 6); maps.push_back(new Map(*layer1, *layer2, *layer3, 6, 6, momRoomCol, townMusics[0])); FREE_TAB(momRoomCol, 6); maps[4]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(5, 3), sf::Vector2i(1, 11), 1, Side::TO_RIGHT, SIDE_RIGHT)); PLANS_RESET #ifdef _WIN32 layer1->loadFromFile(RESSOURCES_PATH + "maps\\pproom\\pproom1.png"); layer2->loadFromFile(RESSOURCES_PATH + "maps\\pproom\\pproom2.png"); layer3->loadFromFile(RESSOURCES_PATH + "maps\\pproom\\pproom3.png"); #else layer1->loadFromFile(RESSOURCES_PATH + "maps/pproom/pproom1.png"); layer2->loadFromFile(RESSOURCES_PATH + "maps/pproom/pproom2.png"); layer3->loadFromFile(RESSOURCES_PATH + "maps/pproom/pproom3.png"); #endif // _WIN32 TAB_TO_POINTER(Collisions::ppRoomCol, ppRoomCol, 6, 9); maps.push_back(new Map(*layer1, *layer2, *layer3, 9, 6, ppRoomCol, townMusics[0])); FREE_TAB(ppRoomCol, 6); maps[5]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(8, 5), sf::Vector2i(16, 2), 1, Side::TO_LEFT, SIDE_RIGHT)); //PLANS_RESET
 
     delete(layer1);
     delete(layer2);
