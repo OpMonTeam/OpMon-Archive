@@ -1,9 +1,5 @@
 #include "main.hpp"
 
-#ifndef __cplusplus
-#error This is a C++ program!
-#endif
-
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -25,7 +21,9 @@
 
 //#define DEBUG
 UNS
-
+/*
+Logs and save files initialization
+*/
 ofstream rlog(LOG_PATH + "log.txt");
 ofstream rerrLog(LOG_PATH + "errLog.txt");
 string optSave(SAVE_PATH + "optSave.oparams");
@@ -33,12 +31,13 @@ string optSave(SAVE_PATH + "optSave.oparams");
 sf::Clock ticks;
 
 namespace Main {
-
-ostringstream oss;
-//bool connected = false;
+    //Will be used for checking the internet connection
+    //bool connected = false;
+    /** Trainer names. No longer useful.*/
+    //->Useless
 string trainers[] = {"Brice", "Evan", "Mael", "Jlppc", "Red", "Blue", "Nikolai", "N", "Belladonis", "Aristote", "Giovanni", "Flora", "Silver", "Jules Cesar", "Brahim"};
-float version = 0.12;
-int underVers = 0;
+
+    string version = "0.12.1";
 string versionS;
 Player player;
 /*#ifdef _WIN32
@@ -52,30 +51,38 @@ MainFrame mainframe;
 
 int starts() {
     if (!rlog) {
-        cout << "Initialisation error of error log" << endl;
-        exit(-1);
+        cout << "Unable to open the log." << endl;
     }
 
     if (!rerrLog) {
-        cout << "Error opening of error log" << endl;
-        exit(-1);
+        cout << "Unable to open the error log" << endl;
     }
 
+    rlog << PRINT_TICKS << "Log opening OK. Welcome in OpMon Lazuli." << endl;
+    rlog << PRINT_TICKS << "Version : " << version << endl;
+    rlog << PRINT_TICKS << "Date in seconds : " << time(NULL) << endl;
+    #ifdef _WIN32
+    rlog << PRINT_TICKS << "Plateform : Windows" << endl;
+    #else
+    rlog << PRINT_TICKS << "Plateform : Unix" << endl;
+    #endif
+    rlog << PRINT_TICKS << "Loading internal files." << endl;
     InternalFiles::registerFiles();
-    OptionsSave::initParams(optSave);
+    rlog << PRINT_TICKS << "Loading options" << endl;
+    OptionsSave::initParams(optSave);//Loading parameters
     if(!OptionsSave::checkParam("lang")) { //If the "lang" setting don't exist
         OptionsSave::addParam("lang", "eng");
     }
-    rlog << PRINT_TICKS << "Log initialisation completed." << endl;
+    rlog << PRINT_TICKS << "Loading the resources." << endl;
     Initializer::init();
-
+    rlog << PRINT_TICKS << "Loading completed! Opening gui." << endl;
     mainframe.open();
-
+    rlog << PRINT_TICKS << "Ending the game normally." << endl;
     return quit(0);
 }
 
 }
-
+//The number of errors handeled in the program.
 int errors = 0;
 
 void handleError(string const& errorName, bool fatal) {
@@ -84,7 +91,7 @@ void handleError(string const& errorName, bool fatal) {
     cerr << "Error n°" << errors << " : " << errorName << endl;
     if(errors > 20) { //If the program gets more than 20 errors, it stops.
         cerr << "Too many errors. Closing program. Please verify your installation." << endl;
-        rerrLog << "Too many errors. Closing program. Please verify your installation." << endl;
+        rerrLog << "Too many errors. Closing program. Please verify your installation. If the problems persists, warn us." << endl;
         fatal = true;
     }
     if (fatal) {
@@ -96,19 +103,23 @@ void handleError(string const& errorName, bool fatal) {
 }
 
 int quit(int const& returns) {
-  if (Main::mainframe.init) {
-
+    /*
+    if (Main::mainframe.init) {
+	//Nothing here anymore, was used for the SDL. I keep it because it may be useful one day.
     }
-    OptionsSave::saveParams(optSave);//Settings save
-    rlog << PRINT_TICKS << "Deletions of the resources" << endl;
-    for(Map *map : Initializer::maps) {
+    */
+    OptionsSave::saveParams(optSave);//Saving parameters
+    rlog << PRINT_TICKS << "Deleting resources in the memory" << endl;
+    for(Map *map : Initializer::maps) {//Deleting the maps
         delete(map);
     }
-    for(sf::Music *mus : Initializer::townMusics) {
+    for(sf::Music *mus : Initializer::townMusics) {//Deleting the maps' music
         delete(mus);
     }
     rlog << PRINT_TICKS << "End of the program. Return " << returns << endl;
-
+    if(returns != 0){
+	rlog << PRINT_TICKS << "There is a problem. Create an issue on github!" << endl;
+    }
     exit(returns);
     return returns;
 }
@@ -139,7 +150,7 @@ std::string& operator<<(std::string &str, char thing[]) {
 #include "../save/Save.hpp"
 int main(int argc, char *argv[]) {
     ticks.restart();
-    Main::versionS << string("Alpha ") << Main::version << string(".") << Main::underVers;
+    Main::versionS += string("Alpha ") + Main::version;
 #ifndef _WIN32
     string str("mkdir -p ");
 #pragma GCC diagnostic push
@@ -154,6 +165,7 @@ int main(int argc, char *argv[]) {
                  string str = string(*currentObj);
         if(str == "--version") {
         cout << "OpMon Lazuli version " << Main::versionS << endl;
+	cout << "Under GNU GPL 3.0 license" << endl;
         exit(0);
         } else if(str == "--opt") {
         if(itor + 1 == argc) {
