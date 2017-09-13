@@ -58,46 +58,60 @@ int starts() {
         cout << "Unable to open the error log" << endl;
     }
 
-    rlog << PRINT_TICKS << "Log opening OK. Welcome in OpMon Lazuli." << endl;
-    rlog << PRINT_TICKS << "Version : " << version << endl;
-    rlog << PRINT_TICKS << "Date in seconds : " << time(NULL) << endl;
+    oplog("Log opening OK. Welcome in OpMon Lazuli.");
+    oplog("Version : " + version);
+    ostringstream osslog;
+    osslog << "Date in seconds : " << time(NULL);
+    oplog(osslog.str());
     #ifdef _WIN32
-    rlog << PRINT_TICKS << "Plateform : Windows" << endl;
+    oplog("Plateform : Windows");
     #else
-    rlog << PRINT_TICKS << "Plateform : Unix" << endl;
+    oplog("Plateform : Unix");
     #endif
-    rlog << PRINT_TICKS << "Loading internal files." << endl;
+    oplog("Loading internal files.");
     InternalFiles::registerFiles();
-    rlog << PRINT_TICKS << "Loading options" << endl;
+    oplog("Loading options");
     OptionsSave::initParams(optSave);//Loading parameters
     if(!OptionsSave::checkParam("lang")) { //If the "lang" setting don't exist
         OptionsSave::addParam("lang", "eng");
     }
-    rlog << PRINT_TICKS << "Loading the resources." << endl;
+    oplog("Loading the resources.");
     Initializer::init();
-    rlog << PRINT_TICKS << "Loading completed! Opening gui." << endl;
+    oplog("Loading completed! Opening gui.");
     mainframe.open();
-    rlog << PRINT_TICKS << "Ending the game normally." << endl;
+    oplog("Ending the game normally.");
     return quit(0);
 }
 
 }
+
+void oplog(string toSay, bool error){
+    if(error){
+      rerrLog << PRINT_TICKS << toSay << endl;
+    }else{
+      rlog << PRINT_TICKS << toSay << endl;
+    }
+  }
 //The number of errors handeled in the program.
 int errors = 0;
 
 void handleError(string const& errorName, bool fatal) {
     errors++;
-    rerrLog << "Error  n°" << errors << " : " << errorName << endl;
+    ostringstream osslog;
+    osslog << string("Error  n°") << errors << (string(" : ") + errorName); 
+    oplog(osslog.str(), true);
     cerr << "Error n°" << errors << " : " << errorName << endl;
     if(errors > 20) { //If the program gets more than 20 errors, it stops.
         cerr << "Too many errors. Closing program. Please verify your installation." << endl;
-        rerrLog << "Too many errors. Closing program. Please verify your installation. If the problems persists, warn us." << endl;
+        oplog("Too many errors. Closing program. Please verify your installation. If the problems persists, warn us.", true);
         fatal = true;
     }
     if (fatal) {
-        rerrLog << "Fatal error. Total errors : " << errors << endl;
+      ostringstream ossslog;
+      ossslog << "Fatal error. Total errors : " << errors;
+      oplog(ossslog.str(), true);
         cerr << "Fatal error." << endl;
-        rlog << PRINT_TICKS << "Crash." << endl;
+	oplog("Crash.");
         quit(1);
     }
 }
@@ -109,16 +123,18 @@ int quit(int const& returns) {
     }
     */
     OptionsSave::saveParams(optSave);//Saving parameters
-    rlog << PRINT_TICKS << "Deleting resources in the memory" << endl;
+    oplog("Deleting resources in the memory");
     for(Map *map : Initializer::maps) {//Deleting the maps
         delete(map);
     }
     for(sf::Music *mus : Initializer::townMusics) {//Deleting the maps' music
         delete(mus);
     }
-    rlog << PRINT_TICKS << "End of the program. Return " << returns << endl;
+    ostringstream osslog;
+    osslog << "End of the program. Return " << returns;
+    oplog(osslog.str());
     if(returns != 0){
-	rlog << PRINT_TICKS << "There is a problem. Create an issue on github!" << endl;
+      oplog("There is a problem. Create an issue on github!");
     }
     exit(returns);
     return returns;
@@ -145,6 +161,8 @@ std::string& operator<<(std::string &str, char thing[]) {
     str = oss.str();
     return str;
 }
+
+  
 
 #include "../objects/Attacks.hpp"
 #include "../save/Save.hpp"
