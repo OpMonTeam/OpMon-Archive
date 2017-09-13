@@ -113,7 +113,11 @@ namespace Main {
   */
   extern MainFrame mainframe;
 
+  
+
 }
+
+void oplog(std::string toSay, bool error = false);
 
 
 /**
