@@ -37,7 +37,7 @@ void StartScene::initStrings() {
 
 void StartScene::initVars() {
     initStrings();
-    rlog << PRINT_TICKS << "Initializating start scene's variables." << endl;
+    oplog("Initializating start scene's variables.");
     Main::mainframe.dialog.setPosition(0, 362);
     textDescs[1].setPosition(85, 25);
     textDescs[0].setPosition(155, 200);
@@ -50,7 +50,7 @@ void StartScene::initVars() {
     txtEnCours[2] = sf::String(" ");
     sizeOfTxt = 18;
 
-    rlog << PRINT_TICKS << "Initialization of the sprites" << endl;
+    oplog("Initialization of the sprites");
 #ifdef _WIN32
     textures[0].loadFromFile("ressources\\backgrounds\\start\\startscene.png");
     textures[1].loadFromFile("ressources\\sprites\\chara\\jlppc\\profkiwai.png");
@@ -78,7 +78,7 @@ void StartScene::initVars() {
     prof.setPosition(205, 120);
     prof.setScale(1.5, 1.5);
 
-    rlog << PRINT_TICKS << "End of start scene initializations" << endl;
+    oplog("End of start scene initializations");
     for(sf::Text &cellTxt : textDescs) {
         cellTxt.setCharacterSize(FONT_SIZE_DEFAULT);
         cellTxt.setColor(sf::Color::Black);

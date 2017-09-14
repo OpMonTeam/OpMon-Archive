@@ -64,7 +64,7 @@ return -1;
 }
 
 void initParams(string const& file) {
-    rlog << PRINT_TICKS << "Settings loading" << endl;
+    oplog("Settings loading");
     ifstream stream(file.c_str());
     if(!stream) { //Si le fichier ne peut etre ouvert, il est crée et sera ouvert lors de la sauvegarde.
         ofstream strm(file.c_str());
