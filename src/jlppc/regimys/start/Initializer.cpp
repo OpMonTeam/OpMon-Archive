@@ -946,11 +946,11 @@ void initTextures() {
 void initSprites() {
     using namespace std;
 
-    rlog << PRINT_TICKS << "Textures initialization" << endl;
+    oplog("Textures initialization");
     initTextures();
-    rlog << PRINT_TICKS << "Backgrounds initialization" << endl;
+    oplog("Backgrounds initialization");
     initBackgrounds();
-    rlog << PRINT_TICKS << "Animations initialization" << endl;
+    oplog("Animations initialization");
     Animations::initAnims();
 
     //Init Sprites
@@ -1175,16 +1175,16 @@ void initKeys() {
 }
 
 void init() {
-    rlog << PRINT_TICKS << "Keys initialization" << std::endl;
+  oplog("Keys initialization");
     initKeys();
-    rlog << PRINT_TICKS << "Items initialization" << std::endl;
+    oplog("Items initialization");
     initItems();
-    rlog << PRINT_TICKS << "Attaks by levels initialization" << std::endl;
+    oplog("Attaks by levels initialization");
     initAtkLvls();
-    rlog << PRINT_TICKS << "EVs initialization" << std::endl;
+    oplog("EVs initialization");
     initEvs();
-    rlog << PRINT_TICKS << "OPMons initialization" << std::endl;
+    oplog("OPMons initialization");
     initOpMons();
-    rlog << PRINT_TICKS << "Objects initialization ending" << std::endl;
+    oplog("Objects initialization ending");
 }
 }

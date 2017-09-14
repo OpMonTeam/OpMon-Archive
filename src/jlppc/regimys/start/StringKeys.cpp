@@ -38,7 +38,7 @@ void initialize(string const& keysFileS) {
     ifstream keysFile(keysFileS.c_str());
     keys = vector<string>();
     strings = vector<sf::String>();
-    rlog << PRINT_TICKS << "Keys initialization" << endl;
+    oplog("Keys initialization");
     if (!keysFile) {//Si ouverture du fichier échouée.
         handleError("Keys initialization error", true);
     }

@@ -81,7 +81,7 @@ void MainMenu::deleteVars() {
 }
 int MainMenu::boucle0() {
 
-    rlog << PRINT_TICKS << "Entering the menu" << endl;
+    oplog("Entering the menu");
     //Actualisation des éléments
     Main::mainframe.frame.draw(bg);
     Main::mainframe.frame.draw(play),
