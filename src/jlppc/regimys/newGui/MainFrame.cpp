@@ -75,7 +75,7 @@ void MainFrame::open() {
     {
         handleError("Font cannot be opened.", true);
     }
-    rlog << PRINT_TICKS << "Font opened" << endl;
+    oplog("Font opened");
 
     init = true;
 
@@ -116,7 +116,7 @@ void MainFrame::open() {
     frame.display();
     winRefresh();
 
-    rlog << PRINT_TICKS << "Window initialized!" << endl;
+    oplog("Window initialized!");
     sf::SoundBuffer buf;
 #if 0
     window.setVerticalSyncEnabled(true);
@@ -132,9 +132,9 @@ void MainFrame::open() {
     }
     window.setKeyRepeatEnabled(false);
     dialogPass.setBuffer(buf);
-    rlog << PRINT_TICKS << "Loading sprites" << endl;
+    oplog("Loading sprites");
     Initializer::initSprites();
-    rlog << PRINT_TICKS << "Loading variables" << endl;
+    oplog("Loading variables");
     initAll();
     mapsInit.launch();
     frame.clear(sf::Color::White);
@@ -170,7 +170,7 @@ void MainFrame::open() {
 
     dialogPass.setVolume(50);
     frame.clear(sf::Color::Black);
-    rlog << PRINT_TICKS << "Launching the main menu." << endl;
+    oplog("Launching the main menu.");
     if(mainmenu.mainMenu() != -1) {
         mainmenu.bruitPush.play();
         mainmenu.bgMusTitle.stop();
@@ -191,13 +191,13 @@ void MainFrame::open() {
         mainmenu.bruitPush.play();
     }
 
-    rlog << PRINT_TICKS << "Deleting the variables..." << endl;
+    oplog("Deleting the variables...");
     destroyAll();
-    rlog << PRINT_TICKS << "Closing the window..." << endl;
+    oplog("Closing the window...");
     window.close();
     init = false;
     delete(windowRefresh);
-    rlog << PRINT_TICKS << "Window closed. No error detected. Goodbye." << endl;
+    oplog("Window closed. No error detected. Goodbye.");
 }
 
 
