@@ -3,6 +3,7 @@
 #include "Animations.hpp"
 #include "MainFrame.hpp"
 #include "../start/OpString.hpp"
+#include "Dialog.hpp"
 
 #define SIZE_P0 18
 #define SIZE_P1 15
@@ -106,7 +107,8 @@ int StartScene::boucle0() {
 
             case sf::Event::KeyPressed:
                 if(Main::mainframe.events.key.code == sf::Keyboard::Space) {
-                    DIALOG_PASS(txtP0)
+                    dialogPass(txtP0, changeDialog, txtEnCours, dialog,
+                                sizeOfTxt, line, i, phase);
                 }
                 break;
             default:
@@ -236,7 +238,8 @@ int StartScene::boucle2() {
 
             case sf::Event::KeyPressed:
                 if(Main::mainframe.events.key.code == sf::Keyboard::Space) {
-                    DIALOG_PASS(txtP1)
+                    dialogPass(txtP1, changeDialog, txtEnCours, dialog,
+                                sizeOfTxt, line, i, phase);
                 }
                 break;
 
