@@ -93,10 +93,8 @@ void StartScene::initVars() {
 }
 
 int StartScene::boucle0() {
-    unsigned int line = 0, i = 0, dialog = 0, total = 0;
-    sf::String txtEnCours[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
-    bool changeDialog = false;
     int sizeOfTxt = 18;
+    Dialog dialog(txtP0, sizeOfTxt);
 
     bool continuer = true;
     while(continuer) {
@@ -111,8 +109,7 @@ int StartScene::boucle0() {
 
             case sf::Event::KeyPressed:
                 if(Main::mainframe.events.key.code == sf::Keyboard::Space) {
-                    dialogPass(txtP0, changeDialog, txtEnCours, dialog,
-                                sizeOfTxt, line, i, phase);
+                    dialog.pass();
                 }
                 break;
             default:
@@ -123,33 +120,14 @@ int StartScene::boucle0() {
             else if(isKeyPressed(sf::Keyboard::P))
                 return 2;
 
-            if(phase == 0) {
+            if(!dialog.isDialogOver()) {
                 Main::mainframe.frame.clear(sf::Color::White);
                 Main::mainframe.frame.draw(bg);
                 Main::mainframe.frame.draw(prof);
-                if(!changeDialog) {
-                    total = line + dialog;
-                    if (!(i >= txtP0[total].toUtf32().size())) {
 
-                        if (txtEnCours[line] == sf::String(" ")) {
-                            txtEnCours[line] = txtP0[total].toUtf32()[i];
-                        } else {
-                            txtEnCours[line] += txtP0[total].toUtf32()[i];
-                        }
+                dialog.updateTextAnimation();
 
-                        i++;
-                    } else {
-                        if (line == 2) {
-                            changeDialog = true;
-                        } else {
-                            line++;
-                            i = 0;
-                        }
-                    }
-                }
-
-                Main::mainframe.printText(Main::mainframe.frame, txtEnCours);
-                ANIM_ARROW
+                dialog.draw();
                 Main::mainframe.frame.display();
                 Main::mainframe.winRefresh();
             } else {
@@ -227,10 +205,8 @@ int StartScene::boucle1() {
 }
 
 int StartScene::boucle2() {
-    unsigned int line = 0, i = 0, dialog = 0, total = 0;
-    sf::String txtEnCours[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
-    bool changeDialog = false;
     int sizeOfTxt = 27 - 18;
+    Dialog dialog(txtP1, sizeOfTxt);
 
     bool continuer = true;
     while(continuer) {
@@ -245,8 +221,7 @@ int StartScene::boucle2() {
 
             case sf::Event::KeyPressed:
                 if(Main::mainframe.events.key.code == sf::Keyboard::Space) {
-                    dialogPass(txtP1, changeDialog, txtEnCours, dialog,
-                                sizeOfTxt, line, i, phase);
+                    dialog.pass();
                 }
                 break;
 
@@ -257,33 +232,14 @@ int StartScene::boucle2() {
 
             ECHAP
 
-            if(phase == 2) {
+            if(!dialog.isDialogOver()) {
                 Main::mainframe.frame.clear(sf::Color::White);
                 Main::mainframe.frame.draw(bg);
                 Main::mainframe.frame.draw(prof);
-                if(!changeDialog) {
-                    total = line + dialog;
-                    if (!(i >= txtP1[total].toUtf32().size())) {
 
-                        if (txtEnCours[line] == sf::String(" ")) {
-                            txtEnCours[line] = txtP1[total].toUtf32()[i];
-                        } else {
-                            txtEnCours[line] += txtP1[total].toUtf32()[i];
-                        }
+                dialog.updateTextAnimation();
 
-                        i++;
-                    } else {
-                        if (line == 2) {
-                            changeDialog = true;
-                        } else {
-                            line++;
-                            i = 0;
-                        }
-                    }
-                }
-
-                Main::mainframe.printText(Main::mainframe.frame, txtEnCours);
-                ANIM_ARROW
+                dialog.draw();
                 Main::mainframe.frame.display();
                 Main::mainframe.winRefresh();
             } else {
@@ -303,7 +259,6 @@ int StartScene::startScene() {
     if(result == -1 || result == 2) {
         return result;
     }
-    phase = 1;
 
     //Animation 1
     Animations::animWinOpen(Main::mainframe.frame, bg);
@@ -315,7 +270,6 @@ int StartScene::startScene() {
 
     //Animation 2
     Animations::animWinClose(Main::mainframe.frame, bg);
-    phase = 2;
 
     if(boucle2() == -1) {
         return -1;

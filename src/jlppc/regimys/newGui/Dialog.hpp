@@ -7,27 +7,63 @@
 #include "MainFrame.hpp"
 
 
-/**
- * Move forward in a dialog, in response to an event like a space key pressed.
- *
- * If the text animation is ongoing, display the 3 lines from the `dialog` index,
- * wait 50ms, then mark the text animation has over.
- * If there is no text animation, and there still remains lines to display, play a sound
- * (dialogPass) then reset the animation variables.
- * If there is no more line to display, the dialog is over, we go to the next
- * phase.
- *
- * @param varname (sf::String[] or std::vector<sf::String>): the full dialog
- * @param changeDialog  `true` if there is no ongoing text animation.
- * @param txtEnCours    the 3 lines currently displayed
- * @param dialog        index of the first line to be displayed on screen
- * @param sizeOfTxt     number of dialog lines in `varname`
- * @param line          current line of the text animation
- * @param i             next character to be displayed by the text animation.
- * @param phase         reference incremented by 1 when the dialog is over.
- */
-void dialogPass(const sf::String varname[], bool &changeDialog,
-                 sf::String txtEnCours[3], unsigned int &dialog, int sizeOfTxt,
-                 unsigned int &line, unsigned int &i, int &phase);
+class Dialog {
+private:
+    /** array of all lines composing the dialog. */
+    const sf::String *text;
+
+    /** number of lines in `text`. */
+    unsigned int sizeOfTxt;
+
+    /** The 3 lines currently displayed. */
+    sf::String txtEnCours[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
+
+    /** index of the first line currently displayed on screen */
+    unsigned int dialog = 0;
+
+    /**
+     * If true, the dialog is fully displayed by the text animation, and the
+     * next step (on user action) would be to display the next lines.
+     */
+    bool changeDialog = false;
+
+    /** index of line being displayed by the text animation. */
+    unsigned int line = 0;
+    /** index of the next character to display by the text animation. */
+    unsigned int i = 0;
+
+    /** Set to `true` when the entire dialog has been displayed. */
+    bool is_dialog_over = false;
+
+public:
+
+    Dialog(const sf::String *text, unsigned int size);
+
+    /**
+     * Move forward in a dialog, in response to an event like a space key pressed.
+     *
+     * If the current dialog lines aren't fully displayed (text animation
+     * ongoing), terminate the animation, wait 50ms, then ask for a dialog change.
+     * If the animation is over, and there still remaining lines to display,
+     * play a sound (dialogPass) then pass to the next lines.
+     * If there is no more line to display, the dialog is over.
+     */
+    void pass();
+
+    /**
+     * Display the dialog character by character until the 2 lines are fully displayed.
+     */
+    void updateTextAnimation();
+
+    /**
+     * Draw the dialog on the main frame.
+     */
+    void draw();
+
+    /**
+     * @return `true` is the entire dialog has been displayed; `false` otherwise.
+     */
+    bool isDialogOver();
+};
 
 #endif //OPMON_DIALOG_CPP_HPP
