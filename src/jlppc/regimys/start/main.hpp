@@ -71,9 +71,9 @@ Use in a stream with the << operator. Prints the number of milliseconds passed s
 #define PRINT_TICKS "[T = " << ticks.getElapsedTime().asMilliseconds() << "] - "
 
 /**Principal log*/
-extern std::ofstream rlog;
+extern std::ofstream *rlog;
 /**Error log*/
-extern std::ofstream rerrLog;
+extern std::ofstream *rerrLog;
 /**Path to the options save file*/
 extern std::string optSave;
 /**

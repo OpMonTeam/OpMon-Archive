@@ -24,8 +24,8 @@ UNS
 /*
 Logs and save files initialization
 */
-ofstream rlog(LOG_PATH + "log.txt");
-ofstream rerrLog(LOG_PATH + "errLog.txt");
+ofstream *rlog = new ofstream(LOG_PATH + "log.txt");
+ofstream *rerrLog = new ofstream(LOG_PATH + "errLog.txt");
 string optSave(SAVE_PATH + "optSave.oparams");
 
 sf::Clock ticks;
@@ -50,13 +50,41 @@ Player player;
 MainFrame mainframe;
 
 int starts() {
-    if (!rlog) {
+  if (!(*rlog)) {
         cout << "Unable to open the log." << endl;
-    }
+#ifndef _WIN32
+	string str("mkdir -p ");
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-result"
+	system((str + RESSOURCES_PATH).c_str());
+	system((str + SAVE_PATH).c_str());
+	system((str + LOG_PATH).c_str());
+#pragma GCC diagnostic pop
+#endif
+	cout << "Retry." << endl;
+	delete(rlog);
+	rlog = new ofstream(LOG_PATH + "log.txt");
+	starts();
+	return 0;
+  }
 
-    if (!rerrLog) {
+  if (!(*rerrLog)) {
         cout << "Unable to open the error log" << endl;
-    }
+#ifndef _WIN32
+	string str("mkdir -p ");
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-result"
+	system((str + RESSOURCES_PATH).c_str());
+	system((str + SAVE_PATH).c_str());
+	system((str + LOG_PATH).c_str());
+#pragma GCC diagnostic pop
+#endif
+	cout << "Retry." << endl;
+	delete(rerrLog);
+	rerrLog = new ofstream(LOG_PATH + "errLog.txt");
+	starts();
+	return 0;
+  }
 
     oplog("Log opening OK. Welcome in OpMon Lazuli.");
     oplog("Version : " + version);
@@ -87,11 +115,11 @@ int starts() {
 
 void oplog(string toSay, bool error){
     if(error){
-      rerrLog << PRINT_TICKS << toSay << endl;
+      (*rerrLog) << PRINT_TICKS << toSay << endl;
     }else{
-      rlog << PRINT_TICKS << toSay << endl;
+      (*rlog) << PRINT_TICKS << toSay << endl;
     }
-  }
+}
 //The number of errors handeled in the program.
 int errors = 0;
 
