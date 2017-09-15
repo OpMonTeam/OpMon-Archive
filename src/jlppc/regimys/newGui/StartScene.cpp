@@ -49,7 +49,6 @@ void StartScene::initVars() {
     txtEnCours[0] = sf::String(" ");
     txtEnCours[1] = sf::String(" ");
     txtEnCours[2] = sf::String(" ");
-    sizeOfTxt = 18;
 
     oplog("Initialization of the sprites");
 #ifdef _WIN32
@@ -94,6 +93,11 @@ void StartScene::initVars() {
 }
 
 int StartScene::boucle0() {
+    unsigned int line = 0, i = 0, dialog = 0, total = 0;
+    sf::String txtEnCours[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
+    bool changeDialog = false;
+    int sizeOfTxt = 18;
+
     bool continuer = true;
     while(continuer) {
         if((ticks.getElapsedTime().asMilliseconds() - ancientTick) >= FPS_TICKS) {
@@ -123,7 +127,6 @@ int StartScene::boucle0() {
                 Main::mainframe.frame.clear(sf::Color::White);
                 Main::mainframe.frame.draw(bg);
                 Main::mainframe.frame.draw(prof);
-                Main::mainframe.frame.draw(Main::mainframe.dialog);
                 if(!changeDialog) {
                     total = line + dialog;
                     if (!(i >= txtP0[total].toUtf32().size())) {
@@ -145,8 +148,7 @@ int StartScene::boucle0() {
                     }
                 }
 
-                sf::String arr[3] = {txtEnCours[0], txtEnCours[1], txtEnCours[2]};
-                Main::mainframe.printText(Main::mainframe.frame, arr);
+                Main::mainframe.printText(Main::mainframe.frame, txtEnCours);
                 ANIM_ARROW
                 Main::mainframe.frame.display();
                 Main::mainframe.winRefresh();
@@ -225,6 +227,11 @@ int StartScene::boucle1() {
 }
 
 int StartScene::boucle2() {
+    unsigned int line = 0, i = 0, dialog = 0, total = 0;
+    sf::String txtEnCours[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
+    bool changeDialog = false;
+    int sizeOfTxt = 27 - 18;
+
     bool continuer = true;
     while(continuer) {
         if((ticks.getElapsedTime().asMilliseconds() - ancientTick) >= FPS_TICKS) {
@@ -254,7 +261,6 @@ int StartScene::boucle2() {
                 Main::mainframe.frame.clear(sf::Color::White);
                 Main::mainframe.frame.draw(bg);
                 Main::mainframe.frame.draw(prof);
-                Main::mainframe.frame.draw(Main::mainframe.dialog);
                 if(!changeDialog) {
                     total = line + dialog;
                     if (!(i >= txtP1[total].toUtf32().size())) {
@@ -276,8 +282,7 @@ int StartScene::boucle2() {
                     }
                 }
 
-                sf::String arr[3] = {txtEnCours[0], txtEnCours[1], txtEnCours[2]};
-                Main::mainframe.printText(Main::mainframe.frame, arr);
+                Main::mainframe.printText(Main::mainframe.frame, txtEnCours);
                 ANIM_ARROW
                 Main::mainframe.frame.display();
                 Main::mainframe.winRefresh();
@@ -311,14 +316,6 @@ int StartScene::startScene() {
     //Animation 2
     Animations::animWinClose(Main::mainframe.frame, bg);
     phase = 2;
-    sizeOfTxt = 27 - 18;
-    i = 0;
-    line = 0;
-    dialog = 0;
-    txtEnCours[0] = sf::String(" ");
-    txtEnCours[1] = sf::String(" ");
-    txtEnCours[2] = sf::String(" ");
-    changeDialog = false;
 
     if(boucle2() == -1) {
         return -1;
