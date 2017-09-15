@@ -600,20 +600,15 @@ int Overworld::boucle() {
  * Loop used when the player speak to a NPC
  */
 int Overworld::boucleDialog(vector<sf::String> const& dialogs) {
-    int sizeOfTxt = dialogs.size();
-    sf::String txtEnCours[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
-    bool continuer = true;
-    unsigned int dialog = 0;
-    bool changeDialog = false;
-    unsigned int i = 0;
-    unsigned int line = 0;
+    // `&dialogs[0]` converts the std::vector into a regular array.
+    Dialog dialog(&dialogs[0], dialogs.size());
 
-    int phase = 0;
+
     sf::Vector2f posArrow = Main::mainframe.frame.mapPixelToCoords(sf::Vector2i(512-75, 512-30));
     Main::mainframe.arrDial.setPosition(posArrow);
 
 
-    while(continuer && phase == 0) {
+    while(!dialog.isDialogOver()) {
         if((GET_TICKS - ancientTick >= FPS_TICKS)) {
             frames++;
             if(justTp) {
@@ -629,9 +624,7 @@ int Overworld::boucleDialog(vector<sf::String> const& dialogs) {
 
                 case sf::Event::KeyPressed:
                     if(Main::mainframe.events.key.code == sf::Keyboard::Space) {
-                        // `&dialogs[0]` converts the std::vector into a regular array.
-                        dialogPass(&dialogs[0], changeDialog, txtEnCours, dialog,
-                                    sizeOfTxt, line, i, phase);
+                        dialog.pass();
                     }
                     break;
                 default:
@@ -670,27 +663,10 @@ int Overworld::boucleDialog(vector<sf::String> const& dialogs) {
             Main::mainframe.frame.setView(Main::mainframe.frame.getDefaultView());
             Main::mainframe.frame.setView(camera);
             actual->updateElements(Main::mainframe.frame);
-            if(!changeDialog) {
-                if (!(i >= dialogs[line + dialog].toUtf32().size())) {
 
-                    if (txtEnCours[line] == sf::String(" ")) {
-                        txtEnCours[line] = dialogs[line + dialog].toUtf32()[i];
-                    } else {
-                        txtEnCours[line] += dialogs[line + dialog].toUtf32()[i];
-                    }
+            dialog.updateTextAnimation();
 
-                    i++;
-                } else {
-                    if (line == 2) {
-                        changeDialog = true;
-                    } else {
-                        line++;
-                        i = 0;
-                    }
-                }
-            }
-            Main::mainframe.printText(Main::mainframe.frame, txtEnCours);
-            ANIM_ARROW
+            dialog.draw();
             Main::mainframe.frame.display();
             Main::mainframe.winRefresh();
 
