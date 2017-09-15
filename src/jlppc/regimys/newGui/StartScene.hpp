@@ -30,8 +30,7 @@ sf::Text nameField;
 
 sf::String txtEnCours[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
 
-int phase = 0;
-  std::string pName;
+std::string pName;
 
 long ancientTick = 0;
 int startScene();
