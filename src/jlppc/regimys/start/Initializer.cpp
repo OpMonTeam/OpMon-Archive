@@ -854,77 +854,34 @@ sf::Texture walkingPP[4];
 sf::Texture walkingPP2[4];
 void initTextures() {
     using namespace Side;
-#ifdef _WIN32
-    texturePP[TO_DOWN].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\pp0.png");
-    texturePP[TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\pp1.png");
-    texturePP[TO_LEFT].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\pp2.png");
-    texturePP[TO_UP].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\pp3.png");
-    walkingPP[TO_DOWN].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp0.png");
-    walkingPP[TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp1.png");
-    walkingPP[TO_LEFT].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp2.png");
-    walkingPP[TO_UP].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp3.png");
-    walkingPP2[TO_DOWN].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp20.png");
-    walkingPP2[TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp21.png");
-    walkingPP2[TO_LEFT].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp22.png");
-    walkingPP2[TO_UP].loadFromFile(RESSOURCES_PATH + "sprites\\chara\\pp\\mpp23.png");
+    texturePP[TO_DOWN].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp0.png"));
+    texturePP[TO_RIGHT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp1.png"));
+    texturePP[TO_LEFT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp2.png"));
+    texturePP[TO_UP].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp3.png"));
+    walkingPP[TO_DOWN].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp0.png"));
+    walkingPP[TO_RIGHT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp1.png"));
+    walkingPP[TO_LEFT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp2.png"));
+    walkingPP[TO_UP].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp3.png"));
+    walkingPP2[TO_DOWN].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp20.png"));
+    walkingPP2[TO_RIGHT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp21.png"));
+    walkingPP2[TO_LEFT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp22.png"));
+    walkingPP2[TO_UP].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp23.png"));
 
     std::vector<sf::Texture> basicDoor;
     for(unsigned int i = 0; i < 4; i++) {
         std::ostringstream oss;
-        oss << RESSOURCES_PATH << "animations\\basicdoor\\basic_door" << i + 1 << ".png";
+        oss << RESSOURCES_PATH << getPath("animations/basicdoor/basic_door") << i + 1 << ".png";
         sf::Texture txtr;
         txtr.loadFromFile(oss.str());
         basicDoor.push_back(txtr);
     }
     doorsTextures.push_back(basicDoor);
-    doorSoundBuffer.loadFromFile(RESSOURCES_PATH + "audio\\sounds\\door.ogg");
+    doorSoundBuffer.loadFromFile(getPath(RESSOURCES_PATH + "audio/sounds/door.ogg"));
 
     std::vector<sf::Texture> shopDoor;
     for(unsigned int i = 0; i < 4; i++) {
         std::ostringstream oss;
-        oss << RESSOURCES_PATH << "animations\\shopdoor\\shop_door" << i + 1 << ".png";
-        sf::Texture txtr;
-        txtr.loadFromFile(oss.str());
-        shopDoor.push_back(txtr);
-    }
-    doorsTextures.push_back(shopDoor);
-
-    for(unsigned int i = 0; i < 12; i++) {
-        std::string str;
-        str << RESSOURCES_PATH << std::string("sprites\\chara\\kid\\kid") << i << std::string(".png");
-        kidTextures.push_back(new sf::Texture());
-        kidTextures[i].loadFromFile(str);
-    }
-
-#else
-    texturePP[TO_DOWN].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp0.png");
-    texturePP[TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp1.png");
-    texturePP[TO_LEFT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp2.png");
-    texturePP[TO_UP].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp3.png");
-    walkingPP[TO_DOWN].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp0.png");
-    walkingPP[TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp1.png");
-    walkingPP[TO_LEFT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp2.png");
-    walkingPP[TO_UP].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp3.png");
-    walkingPP2[TO_DOWN].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp20.png");
-    walkingPP2[TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp21.png");
-    walkingPP2[TO_LEFT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp22.png");
-    walkingPP2[TO_UP].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp23.png");
-
-    std::vector<sf::Texture> basicDoor;
-    for(unsigned int i = 0; i < 4; i++) {
-        std::ostringstream oss;
-        oss << RESSOURCES_PATH << "animations/basicdoor/basic_door" << i + 1 << ".png";
-        sf::Texture txtr;
-        txtr.loadFromFile(oss.str());
-        basicDoor.push_back(txtr);
-    }
-    doorsTextures.push_back(basicDoor);
-    doorSoundBuffer.loadFromFile(RESSOURCES_PATH + "audio/sounds/door.ogg");
-
-    std::vector<sf::Texture> shopDoor;
-    for(unsigned int i = 0; i < 4; i++) {
-        std::ostringstream oss;
-        oss << RESSOURCES_PATH << "animations/shopdoor/shop_door" << i + 1 << std::string(".png");
+        oss << RESSOURCES_PATH << getPath("animations/shopdoor/shop_door") << i + 1 << std::string(".png");
         sf::Texture txtr;
         txtr.loadFromFile(oss.str());
         shopDoor.push_back(txtr);
@@ -932,12 +889,10 @@ void initTextures() {
     doorsTextures.push_back(shopDoor);
     for(unsigned int i = 0; i < 12; i++) {
         std::string str;
-        str << RESSOURCES_PATH << std::string("sprites/chara/kid/kid") << i << std::string(".png");
+        str << RESSOURCES_PATH << getPath("sprites/chara/kid/kid") << i << std::string(".png");
         kidTextures.push_back(sf::Texture());
         kidTextures[i].loadFromFile(str);
     }
-
-#endif // _WIN32
     Events::doorSound.setBuffer(doorSoundBuffer);
 
     initEnumsEvents();
@@ -963,7 +918,7 @@ void initMaps() {
     delete(layer3);				\
     layer1 = new sf::Texture();			\
     layer2 = new sf::Texture();			\
-    layer3 = new sf::Texture();
+    layer3 = new sf::Texture()
     UNS
 
 #define TAB_TO_POINTER(name, pointerName, sizeY, sizeX) char** pointerName = (char**) malloc(sizeY * sizeof(char*)); \
@@ -992,45 +947,27 @@ void initMaps() {
     feElements.push_back(std::vector<sf::Texture>());
     feEPos.push_back(sf::Vector2f(8 *32 + 25 *32 - 8, 3 *32 + 8));
     feEPos.push_back(sf::Vector2f(8*32+18*32, 11*32));
-#ifdef _WIN32
-    layer1->loadFromFile(RESSOURCES_PATH + "maps\\fe\\fe1.png");
-    layer2->loadFromFile(RESSOURCES_PATH +"maps\\fe\\fe2.png");
-    layer3->loadFromFile(RESSOURCES_PATH +"maps\\fe\\fe3.png");
-    townMusics[0]->openFromFile(RESSOURCES_PATH +"audio\\music\\faubourgeuvi.ogg");
+    
+    layer1->loadFromFile(getPath(RESSOURCES_PATH +"maps/fe/fe1.png"));
+    layer2->loadFromFile(getPath(RESSOURCES_PATH +"maps/fe/fe2.png"));
+    layer3->loadFromFile(getPath(RESSOURCES_PATH +"maps/fe/fe3.png"));
+    townMusics[0]->openFromFile(getPath(RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg"));
     for(unsigned int i = 1; i < 17; i++) {
         ostringstream str;
-        str << RESSOURCES_PATH + "animations\\windturbine\\blade_" << i << string(".png");
+        str << RESSOURCES_PATH + getPath("animations/windturbine/blade_") << i << string(".png");
         feElements[0].push_back(sf::Texture());
         feElements[0][i - 1].loadFromFile(str.str());
     }
     for(unsigned int i = 1; i < 17; i++) {
         ostringstream str;
-        str << RESSOURCES_PATH + "animations\\chimneysmoke\\chimneysmoke_" << i << string(".png");
+        str << RESSOURCES_PATH + getPath("animations/chimneysmoke/chimneysmoke_") << i << string(".png");
         feElements[1].push_back(sf::Texture());
         feElements[1][i - 1].loadFromFile(str.str());
     }
-
-#else
-    layer1->loadFromFile(RESSOURCES_PATH +"maps/fe/fe1.png");
-    layer2->loadFromFile(RESSOURCES_PATH +"maps/fe/fe2.png");
-    layer3->loadFromFile(RESSOURCES_PATH +"maps/fe/fe3.png");
-    townMusics[0]->openFromFile(RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg");
-    for(unsigned int i = 1; i < 17; i++) {
-        ostringstream str;
-        str << RESSOURCES_PATH + "animations/windturbine/blade_" << i << string(".png");
-        feElements[0].push_back(sf::Texture());
-        feElements[0][i - 1].loadFromFile(str.str());
-    }
-    for(unsigned int i = 1; i < 17; i++) {
-        ostringstream str;
-        str << RESSOURCES_PATH + "animations/chimneysmoke/chimneysmoke_" << i << string(".png");
-        feElements[1].push_back(sf::Texture());
-        feElements[1][i - 1].loadFromFile(str.str());
-    }
-#endif
     TAB_TO_POINTER(Collisions::feCol, feCol, 32, 32);
     maps.push_back(new Map(*layer1, *layer2, *layer3, 32, 32, feCol, townMusics[0], feElements, feEPos));
     FREE_TAB(feCol, 32);
+    
     std::vector<OpString> feE1 {OpString("fedesc.1"), OpString("fedesc.2"), OpString("fedesc.3")};
     maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(11, 2), feE1, SIDE_UP));
     std::vector<OpString> feE2 {OpString("ppHouse", Main::player.getNameP()), OpString::voidStr, OpString::voidStr};
@@ -1062,16 +999,11 @@ void initMaps() {
     /*End of character 1*/
 
 
-    PLANS_RESET
-#ifdef _WIN32
-    layer1->loadFromFile(RESSOURCES_PATH + "maps\\pphome\\pphome1.png");
-    layer2->loadFromFile(RESSOURCES_PATH +"maps\\pphome\\pphome2.png");
-    layer3->loadFromFile(RESSOURCES_PATH +"maps\\pphome\\pphome3.png");
-#else
-    layer1->loadFromFile(RESSOURCES_PATH +"maps/pphome/pphome1.png");
-    layer2->loadFromFile(RESSOURCES_PATH +"maps/pphome/pphome2.png");
-    layer3->loadFromFile(RESSOURCES_PATH +"maps/pphome/pphome3.png");
-#endif
+    PLANS_RESET;
+      
+    layer1->loadFromFile(getPath(RESSOURCES_PATH +"maps/pphome/pphome1.png"));
+    layer2->loadFromFile(getPath(RESSOURCES_PATH +"maps/pphome/pphome2.png"));
+    layer3->loadFromFile(getPath(RESSOURCES_PATH +"maps/pphome/pphome3.png"));
 
     TAB_TO_POINTER(Collisions::ppHomeCol, ppHomeCol, 16, 16);
     maps.push_back(new Map(*layer1, *layer2, *layer3, 16, 16, ppHomeCol, townMusics[0]));
@@ -1079,61 +1011,36 @@ void initMaps() {
     maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(7, 15), sf::Vector2i(20, 9), 0, Side::TO_DOWN, SIDE_DOWN));
     maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(15, 2), sf::Vector2i(9, 5), 5, Side::TO_LEFT, SIDE_RIGHT));
     maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(0, 11), sf::Vector2i(6, 3), 4, Side::TO_LEFT, SIDE_LEFT));
-    PLANS_RESET
+    PLANS_RESET;
     townMusics.push_back(new sf::Music());
-#ifdef _WIN32
-    layer1->loadFromFile(RESSOURCES_PATH + "maps\\labo\\labo1.png");
-    layer2->loadFromFile(RESSOURCES_PATH + "maps\\labo\\labo2.png");
-    layer3->loadFromFile(RESSOURCES_PATH + "maps\\labo\\labo3.png");
-    townMusics[1]->openFromFile(RESSOURCES_PATH + "audio\\music\\intro.ogg");
-#else
-    layer1->loadFromFile(RESSOURCES_PATH + "maps/labo/labo1.png");
-    layer2->loadFromFile(RESSOURCES_PATH + "maps/labo/labo2.png");
-    layer3->loadFromFile(RESSOURCES_PATH + "maps/labo/labo3.png");
-    townMusics[1]->openFromFile(RESSOURCES_PATH + "audio/music/intro.ogg");
-#endif // _WIN32
+    layer1->loadFromFile(getPath(RESSOURCES_PATH + "maps/labo/labo1.png"));
+    layer2->loadFromFile(getPath(RESSOURCES_PATH + "maps/labo/labo2.png"));
+    layer3->loadFromFile(getPath(RESSOURCES_PATH + "maps/labo/labo3.png"));
+    townMusics[1]->openFromFile(getPath(RESSOURCES_PATH + "audio/music/intro.ogg"));
     TAB_TO_POINTER(Collisions::laboCol, laboCol, 16, 32);
     maps.push_back(new Map(*layer1, *layer2, *layer3, 32, 16, laboCol, townMusics[1]));
     FREE_TAB(laboCol, 16);
     maps[2]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(15, 15), sf::Vector2i(21, 22), 0, Side::TO_DOWN, SIDE_DOWN));
-    PLANS_RESET
-#ifdef _WIN32
-    layer1->loadFromFile(RESSOURCES_PATH + "maps\\rivalhome\\rivalhome1.png");
-    layer2->loadFromFile(RESSOURCES_PATH + "maps\\rivalhome\\rivalhome2.png");
-    layer3->loadFromFile(RESSOURCES_PATH + "maps\\rivalhome\\rivalhome3.png");
-#else
-    layer1->loadFromFile(RESSOURCES_PATH + "maps/rivalhome/rivalhome1.png");
-    layer2->loadFromFile(RESSOURCES_PATH + "maps/rivalhome/rivalhome2.png");
-    layer3->loadFromFile(RESSOURCES_PATH + "maps/rivalhome/rivalhome3.png");
-#endif // _WIN32
+    PLANS_RESET;
+    layer1->loadFromFile(getPath(RESSOURCES_PATH + "maps/rivalhome/rivalhome1.png"));
+    layer2->loadFromFile(getPath(RESSOURCES_PATH + "maps/rivalhome/rivalhome2.png"));
+    layer3->loadFromFile(getPath(RESSOURCES_PATH + "maps/rivalhome/rivalhome3.png"));
     TAB_TO_POINTER(Collisions::rivalHomeCol, rivalHomeCol, 16, 16);
     maps.push_back(new Map(*layer1, *layer2, *layer3, 16, 16, rivalHomeCol, townMusics[0]));
     FREE_TAB(rivalHomeCol, 16);
     maps[3]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(8, 15), sf::Vector2i(28, 9), 0, Side::TO_DOWN, SIDE_DOWN));
-    PLANS_RESET
-#ifdef _WIN32
-    layer1->loadFromFile(RESSOURCES_PATH + "maps\\momroom\\momroom1.png");
-    layer2->loadFromFile(RESSOURCES_PATH + "maps\\momroom\\momroom2.png");
-    layer3->loadFromFile(RESSOURCES_PATH + "maps\\momroom\\momroom3.png");
-#else
-    layer1->loadFromFile(RESSOURCES_PATH + "maps/momroom/momroom1.png");
-    layer2->loadFromFile(RESSOURCES_PATH + "maps/momroom/momroom2.png");
-    layer3->loadFromFile(RESSOURCES_PATH + "maps/momroom/momroom3.png");
-#endif // _WIN32
+    PLANS_RESET;
+    layer1->loadFromFile(getPath(RESSOURCES_PATH + "maps/momroom/momroom1.png"));
+    layer2->loadFromFile(getPath(RESSOURCES_PATH + "maps/momroom/momroom2.png"));
+    layer3->loadFromFile(getPath(RESSOURCES_PATH + "maps/momroom/momroom3.png"));
     TAB_TO_POINTER(Collisions::momRoomCol, momRoomCol, 6, 6);
     maps.push_back(new Map(*layer1, *layer2, *layer3, 6, 6, momRoomCol, townMusics[0]));
     FREE_TAB(momRoomCol, 6);
     maps[4]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(5, 3), sf::Vector2i(1, 11), 1, Side::TO_RIGHT, SIDE_RIGHT));
-    PLANS_RESET
-#ifdef _WIN32
-    layer1->loadFromFile(RESSOURCES_PATH + "maps\\pproom\\pproom1.png");
-    layer2->loadFromFile(RESSOURCES_PATH + "maps\\pproom\\pproom2.png");
-    layer3->loadFromFile(RESSOURCES_PATH + "maps\\pproom\\pproom3.png");
-#else
-    layer1->loadFromFile(RESSOURCES_PATH + "maps/pproom/pproom1.png");
-    layer2->loadFromFile(RESSOURCES_PATH + "maps/pproom/pproom2.png");
-    layer3->loadFromFile(RESSOURCES_PATH + "maps/pproom/pproom3.png");
-#endif // _WIN32
+    PLANS_RESET;
+    layer1->loadFromFile(getPath(RESSOURCES_PATH + "maps/pproom/pproom1.png"));
+    layer2->loadFromFile(getPath(RESSOURCES_PATH + "maps/pproom/pproom2.png"));
+    layer3->loadFromFile(getPath(RESSOURCES_PATH + "maps/pproom/pproom3.png"));
     TAB_TO_POINTER(Collisions::ppRoomCol, ppRoomCol, 6, 9);
     maps.push_back(new Map(*layer1, *layer2, *layer3, 9, 6, ppRoomCol, townMusics[0]));
     FREE_TAB(ppRoomCol, 6);
@@ -1154,24 +1061,13 @@ void initBackgrounds() {
 
 void initKeys() {
     //Définit la langue a initialiser dans les clées
-#ifdef _WIN32
     if(OptionsSave::getParam("lang").getValue() == "fr") {
-        StringKeys::initialize(RESSOURCES_PATH + "keys\\francais.rkeys");
+      StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/francais.rkeys"));
     } else if(OptionsSave::getParam("lang").getValue() == "esp") {
-        StringKeys::initialize(RESSOURCES_PATH + "keys\\espanol.rkeys");
+      StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/espanol.rkeys"));
     } else {
-        StringKeys::initialize(RESSOURCES_PATH + "keys\\english.rkeys");
+      StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/english.rkeys"));
     }
-
-#else
-    if(OptionsSave::getParam("lang").getValue() == "fr") {
-        StringKeys::initialize(RESSOURCES_PATH + "keys/francais.rkeys");
-    } else if(OptionsSave::getParam("lang").getValue() == "esp") {
-        StringKeys::initialize(RESSOURCES_PATH + "keys/espanol.rkeys");
-    } else {
-        StringKeys::initialize(RESSOURCES_PATH + "keys/english.rkeys");
-    }
-#endif
 }
 
 void init() {
