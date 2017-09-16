@@ -33,8 +33,9 @@ std::string sfStringtoStdString(sf::String const &str) {
     return toReelReturn;
 }
 
-void initialize(string const& keysFileS) {
+void initialize(string keysFileS) {
     //Ouverture du fichier de clées, initialisation des vectors
+    keysFileS = getPath(keysFileS);
     ifstream keysFile(keysFileS.c_str());
     keys = vector<string>();
     strings = vector<sf::String>();

@@ -51,21 +51,12 @@ void StartScene::initVars() {
     txtEnCours[2] = sf::String(" ");
 
     oplog("Initialization of the sprites");
-#ifdef _WIN32
-    textures[0].loadFromFile("ressources\\backgrounds\\start\\startscene.png");
-    textures[1].loadFromFile("ressources\\sprites\\chara\\jlppc\\profkiwai.png");
-    textures[2].loadFromFile("ressources\\backgrounds\\dialog\\dialog.png");
-    textures[3].loadFromFile("ressources\\sprites\\misc\\arrDial.png");
-    textures[4].loadFromFile("ressources\\backgrounds\\start\\nameEntry.png");
-    bgMus.openFromFile("ressources\\audio\\music\\intro.ogg");
-#else
-    textures[0].loadFromFile(RESSOURCES_PATH + "backgrounds/start/startscene.png");
-    textures[1].loadFromFile(RESSOURCES_PATH + "sprites/chara/jlppc/profkiwai.png");
-    textures[2].loadFromFile(RESSOURCES_PATH + "backgrounds/dialog/dialog.png");
-    textures[3].loadFromFile(RESSOURCES_PATH + "sprites/misc/arrDial.png");
-    textures[4].loadFromFile(RESSOURCES_PATH + "backgrounds/start/nameEntry.png");
-    bgMus.openFromFile(RESSOURCES_PATH + "audio/music/intro.ogg");
-#endif
+    textures[0].loadFromFile(getPath(RESSOURCES_PATH + "backgrounds/start/startscene.png"));
+    textures[1].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/jlppc/profkiwai.png"));
+    textures[2].loadFromFile(getPath(RESSOURCES_PATH + "backgrounds/dialog/dialog.png"));
+    textures[3].loadFromFile(getPath(RESSOURCES_PATH + "sprites/misc/arrDial.png"));
+    textures[4].loadFromFile(getPath(RESSOURCES_PATH + "backgrounds/start/nameEntry.png"));
+    bgMus.openFromFile(getPath(RESSOURCES_PATH + "audio/music/intro.ogg"));
     bg.setTexture(textures[0]);
     prof.setTexture(textures[1]);
     Main::mainframe.dialog.setTexture(textures[2]);
