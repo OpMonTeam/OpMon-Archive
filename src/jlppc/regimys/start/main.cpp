@@ -30,6 +30,22 @@ string optSave(SAVE_PATH + "optSave.oparams");
 
 sf::Clock ticks;
 
+string getPath(string const& path){
+#ifdef _WIN32
+  vector<sf::String> splitted = StringKeys::split(path, '/');
+  string returned = "";
+  for(unsigned int i = 0; i < splitted.size(); i++){
+    returned += splitted[i];
+    if(i != splitted.size() - 1){
+      returned += "\\";
+    }
+  }
+  return returned;
+#else
+  return path;
+#endif
+}
+
 namespace Main {
     //Will be used for checking the internet connection
     //bool connected = false;
@@ -37,7 +53,7 @@ namespace Main {
     //->Useless
 string trainers[] = {"Brice", "Evan", "Mael", "Jlppc", "Red", "Blue", "Nikolai", "N", "Belladonis", "Aristote", "Giovanni", "Flora", "Silver", "Jules Cesar", "Brahim"};
 
-    string version = "0.12.1";
+  string version = "0.12.1";
 string versionS;
 Player player;
 /*#ifdef _WIN32
@@ -52,15 +68,20 @@ MainFrame mainframe;
 int starts() {
   if (!(*rlog)) {
         cout << "Unable to open the log." << endl;
+	
 #ifndef _WIN32
 	string str("mkdir -p ");
+#else
+	string str("mkdir");
+#endif
+	
 #pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-result"
+#pragma GCC diagnostic ignored "-Wunused-result"//Ignore this warning
 	system((str + RESSOURCES_PATH).c_str());
 	system((str + SAVE_PATH).c_str());
 	system((str + LOG_PATH).c_str());
 #pragma GCC diagnostic pop
-#endif
+	
 	cout << "Retry." << endl;
 	delete(rlog);
 	rlog = new ofstream(LOG_PATH + "log.txt");
@@ -70,15 +91,20 @@ int starts() {
 
   if (!(*rerrLog)) {
         cout << "Unable to open the error log" << endl;
+	
 #ifndef _WIN32
 	string str("mkdir -p ");
+#else
+	string str("mkdir");
+#endif
+	
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-result"
 	system((str + RESSOURCES_PATH).c_str());
 	system((str + SAVE_PATH).c_str());
 	system((str + LOG_PATH).c_str());
 #pragma GCC diagnostic pop
-#endif
+	
 	cout << "Retry." << endl;
 	delete(rerrLog);
 	rerrLog = new ofstream(LOG_PATH + "errLog.txt");
@@ -199,28 +225,38 @@ int main(int argc, char *argv[]) {
     Main::versionS += string("Alpha ") + Main::version;
 #ifndef _WIN32
     string str("mkdir -p ");
+#else
+    string str("mkdir");
+#endif
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-result"
     system((str + RESSOURCES_PATH).c_str());
     system((str + SAVE_PATH).c_str());
     system((str + LOG_PATH).c_str());
 #pragma GCC diagnostic pop
-#endif
+    //Checking parameters
     if(argc >= 2) {
         FOR_EACH(char *, argv, argc, {)
                  string str = string(*currentObj);
         if(str == "--version") {
         cout << "OpMon Lazuli version " << Main::versionS << endl;
 	cout << "Under GNU GPL 3.0 license" << endl;
-        exit(0);
+        return 0;
         } else if(str == "--opt") {
         if(itor + 1 == argc) {
-                exit(2);
+	     return 2;
             } else {
                 optSave = string(argv[itor + 1]);
             }
-        }
-                }
+        }else if(str == "--help") {
+	  cout << "--version : Prints the version and quit." << endl;
+	  cout << "--help : Prints this message and quit." << endl;
+	  cout << "--opt <path> : Changes the options save file's location." << endl;
+	  return 0;
+	} else {
+	  cout << "Unknown parameters. Skipping." << endl;
+	}
+      }
     }
     return Main::starts();
 }

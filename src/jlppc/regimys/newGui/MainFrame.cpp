@@ -67,12 +67,7 @@ void MainFrame::destroyAll() {
 }
 
 void MainFrame::open() {
-#ifdef _WIN32
-    if(!font.loadFromFile("ressources\\fonts\\Default.ttf"))
-#else
-    if(!font.loadFromFile(RESSOURCES_PATH + "fonts/Default.ttf"))
-#endif // _WIN32
-    {
+    if(!font.loadFromFile(getPath(RESSOURCES_PATH + "fonts/Default.ttf"))){
         handleError("Font cannot be opened.", true);
     }
     oplog("Font opened");
@@ -95,12 +90,7 @@ void MainFrame::open() {
     frame.create(512, 512);
     window.clear(sf::Color::White);
     sf::Texture loadTexture;
-#ifdef _WIN32
-    if(!loadTexture.loadFromFile(RESSOURCES_PATH + "backgrounds\\loading.png"))
-#else
-    if(! loadTexture.loadFromFile(RESSOURCES_PATH + "backgrounds/loading.png"))
-#endif // _WIN32
-    {
+    if(! loadTexture.loadFromFile(getPath(RESSOURCES_PATH + "backgrounds/loading.png"))) {
         handleError("Unable to open the loading screen.", false);
     }
     sf::Sprite spriteLoad;
@@ -122,12 +112,7 @@ void MainFrame::open() {
     window.setVerticalSyncEnabled(true);
 #endif
     window.setFramerateLimit(180);
-#ifdef _WIN32
-    if(!buf.loadFromFile("ressources\\audio\\sounds\\dialogChange.ogg"))
-#else
-    if(!buf.loadFromFile(RESSOURCES_PATH + "audio/sounds/dialogChange.ogg"))
-#endif
-    {
+    if(!buf.loadFromFile(getPath(RESSOURCES_PATH + "audio/sounds/dialogChange.ogg"))) {
         handleError("Unable to open dialog sound.", false);
     }
     window.setKeyRepeatEnabled(false);

@@ -14,11 +14,7 @@ sf::Texture fen[6];
 void initAnims() {
     for(int i = 0; i < 6; i++) {
         ostringstream oss;
-#ifdef _WIN32
-        oss << "ressources\\animations\\winChange\\animWindowFrame" << i + 1 << ".png";
-#else
-        oss << RESSOURCES_PATH + "animations/winChange/animWindowFrame" << i + 1 << ".png";
-#endif // _WIN32
+        oss << getPath(RESSOURCES_PATH + "animations/winChange/animWindowFrame") << i + 1 << ".png";
         fen[i].loadFromFile(oss.str());
     }
     init = true;
