@@ -21,7 +21,6 @@ sf::Music bgMus;
 sf::String txtP1[15];
 sf::String txtP0[18];
 OpString strName;
-int sizeOfTxt = 18;
 
 sf::Texture textures[5];
 
@@ -31,11 +30,7 @@ sf::Text nameField;
 
 sf::String txtEnCours[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
 
-unsigned int line = 0, i = 0, dialog = 0, total = 0;
-
-bool changeDialog = false;
-int phase = 0;
-  std::string pName;
+std::string pName;
 
 long ancientTick = 0;
 int startScene();
