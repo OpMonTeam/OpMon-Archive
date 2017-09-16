@@ -6,6 +6,7 @@
 //#define ppPosY ((character.getPosition().y / CASE_SIZE) - 8)
 //#define ppPosX (((character.getPosition().x - 16) / CASE_SIZE) - 8)
 #include "Events.hpp"
+#include "Dialog.hpp"
 
 #ifndef _WIN32
 
@@ -276,7 +277,7 @@ void Overworld::left() {
 
 
 int Overworld::overworld() {
-  Main::mainframe.mapsInit.wait();
+    Main::mainframe.mapsInit.wait();
     for(Map *map : Initializer::maps) {
         for(Event *event : map->getEvents()) {
             Events::TalkingEvent *te = dynamic_cast<Events::TalkingEvent *>(event);
@@ -329,42 +330,42 @@ int Overworld::boucle() {
             }
 
             ancientTick = GET_TICKS;
-	    Main::mainframe.window.pollEvent(Main::mainframe.events);
+            Main::mainframe.window.pollEvent(Main::mainframe.events);
 
             switch(Main::mainframe.events.type) {
                 QUIT
 
-            case sf::Event::KeyPressed:
-                if(Main::mainframe.events.key.code == sf::Keyboard::Equal) {
-                    debugMode = !debugMode;
-                }
-                if(debugMode) {
-                    if(Main::mainframe.events.key.code == sf::Keyboard::F10) {
-                        printlayer[0] = !printlayer[0];
+                case sf::Event::KeyPressed:
+                    if(Main::mainframe.events.key.code == sf::Keyboard::Equal) {
+                        debugMode = !debugMode;
                     }
-                    if(Main::mainframe.events.key.code == sf::Keyboard::F11) {
-                        printlayer[1] = !printlayer[1];
-                    }
-                    if(Main::mainframe.events.key.code == sf::Keyboard::F12) {
-                        printlayer[2] = !printlayer[2];
-                    }
+                    if(debugMode) {
+                        if(Main::mainframe.events.key.code == sf::Keyboard::F10) {
+                            printlayer[0] = !printlayer[0];
+                        }
+                        if(Main::mainframe.events.key.code == sf::Keyboard::F11) {
+                            printlayer[1] = !printlayer[1];
+                        }
+                        if(Main::mainframe.events.key.code == sf::Keyboard::F12) {
+                            printlayer[2] = !printlayer[2];
+                        }
 
-                    if(Main::mainframe.events.key.code == sf::Keyboard::F5) {
-                        tp(4, sf::Vector2i(0, 1), true);
-                    } else if(Main::mainframe.events.key.code == sf::Keyboard::F6) {
-                        tp(5, sf::Vector2i(0, 0), true);
-                    } else if(Main::mainframe.events.key.code == sf::Keyboard::F1) {
-                        tp(0, sf::Vector2i(25, 28), true);
-                    } else if(Main::mainframe.events.key.code == sf::Keyboard::F2) {
-                        tp(1, sf::Vector2i(8, 14), true);
-                    } else if(Main::mainframe.events.key.code == sf::Keyboard::F3) {
-                        tp(2, sf::Vector2i(15, 14), true);
-                    } else if(Main::mainframe.events.key.code == sf::Keyboard::F4) {
-                        tp(3, sf::Vector2i(8, 14), true);
+                        if(Main::mainframe.events.key.code == sf::Keyboard::F5) {
+                            tp(4, sf::Vector2i(0, 1), true);
+                        } else if(Main::mainframe.events.key.code == sf::Keyboard::F6) {
+                            tp(5, sf::Vector2i(0, 0), true);
+                        } else if(Main::mainframe.events.key.code == sf::Keyboard::F1) {
+                            tp(0, sf::Vector2i(25, 28), true);
+                        } else if(Main::mainframe.events.key.code == sf::Keyboard::F2) {
+                            tp(1, sf::Vector2i(8, 14), true);
+                        } else if(Main::mainframe.events.key.code == sf::Keyboard::F3) {
+                            tp(2, sf::Vector2i(15, 14), true);
+                        } else if(Main::mainframe.events.key.code == sf::Keyboard::F4) {
+                            tp(3, sf::Vector2i(8, 14), true);
+                        }
                     }
-                }
-            default:
-                break;
+                default:
+                    break;
             }
             ECHAP
             if(Main::player.gameIsOver) {
@@ -483,20 +484,20 @@ int Overworld::boucle() {
                     int lx = ppPosX;
                     int ly = ppPosY;
                     switch(ppDir) {
-                    case TO_UP:
-                        ly--;
-                        break;
-                    case TO_DOWN:
-                        ly++;
-                        break;
-                    case TO_LEFT:
-                        lx--;
-                        break;
-                    case TO_RIGHT:
-                        lx++;
-                        break;
-                    default:
-                        break;
+                        case TO_UP:
+                            ly--;
+                            break;
+                        case TO_DOWN:
+                            ly++;
+                            break;
+                        case TO_LEFT:
+                            lx--;
+                            break;
+                        case TO_RIGHT:
+                            lx++;
+                            break;
+                        default:
+                            break;
                     }
                     vector<Event *> events = actual->getEvent(sf::Vector2i(lx CASES, ly CASES));
                     /*if(events.size() == 0){
@@ -595,21 +596,19 @@ int Overworld::boucle() {
     return 0;
 }
 
+/**
+ * Loop used when the player speak to a NPC
+ */
 int Overworld::boucleDialog(vector<sf::String> const& dialogs) {
-    int sizeOfTxt = dialogs.size();
-    sf::String txtEnCours[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
-    bool continuer = true;
-    unsigned int dialog = 0;
-    bool changeDialog = false;
-    unsigned int i = 0;
-    unsigned int line = 0;
+    // `&dialogs[0]` converts the std::vector into a regular array.
+    Dialog dialog(&dialogs[0], dialogs.size());
 
-    int phase = 0;
+
     sf::Vector2f posArrow = Main::mainframe.frame.mapPixelToCoords(sf::Vector2i(512-75, 512-30));
     Main::mainframe.arrDial.setPosition(posArrow);
 
 
-    while(continuer && phase == 0) {
+    while(!dialog.isDialogOver()) {
         if((GET_TICKS - ancientTick >= FPS_TICKS)) {
             frames++;
             if(justTp) {
@@ -623,13 +622,13 @@ int Overworld::boucleDialog(vector<sf::String> const& dialogs) {
             switch(Main::mainframe.events.type) {
                 QUIT
 
-            case sf::Event::KeyPressed:
-                if(Main::mainframe.events.key.code == sf::Keyboard::Space) {
-                    DIALOG_PASS(dialogs)
-                }
-                break;
-            default:
-                break;
+                case sf::Event::KeyPressed:
+                    if(Main::mainframe.events.key.code == sf::Keyboard::Space) {
+                        dialog.pass();
+                    }
+                    break;
+                default:
+                    break;
             }
             if(isKeyPressed(sf::Keyboard::Escape)) {
                 Main::player.gameIsOver = true;
@@ -664,27 +663,10 @@ int Overworld::boucleDialog(vector<sf::String> const& dialogs) {
             Main::mainframe.frame.setView(Main::mainframe.frame.getDefaultView());
             Main::mainframe.frame.setView(camera);
             actual->updateElements(Main::mainframe.frame);
-            if(!changeDialog) {
-                if (!(i >= dialogs[line + dialog].toUtf32().size())) {
 
-                    if (txtEnCours[line] == sf::String(" ")) {
-                        txtEnCours[line] = dialogs[line + dialog].toUtf32()[i];
-                    } else {
-                        txtEnCours[line] += dialogs[line + dialog].toUtf32()[i];
-                    }
+            dialog.updateTextAnimation();
 
-                    i++;
-                } else {
-                    if (line == 2) {
-                        changeDialog = true;
-                    } else {
-                        line++;
-                        i = 0;
-                    }
-                }
-            }
-            Main::mainframe.printText(Main::mainframe.frame, txtEnCours);
-            ANIM_ARROW
+            dialog.draw();
             Main::mainframe.frame.display();
             Main::mainframe.winRefresh();
 
