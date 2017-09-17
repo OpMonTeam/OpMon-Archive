@@ -47,9 +47,8 @@ __The next game version will be Alpha 0.13__ : Event improvements, added new cha
 Prochaines versions :<ul>
 <li>Alpha 0.13 : Amelioration des evenements (les objets dans les batiments) et ajout de PNJs</li>
 </ul>
-[Voir la ROADMAP détaillée](https://github.com/jlppc/OpMon/wiki/ROADMAP)
+* [Voir la ROADMAP](https://github.com/jlppc/OpMon/wiki/ROADMAP)
 <br/>
-
 <br/>
 <br/>
 <br/>
@@ -66,12 +65,12 @@ Contacts : jlppcprog@ntymail.com pour la programmation | evandib@gmail.com pour 
 Si vous avez des questions à poser, n'hésitez pas à les demander dans la section F.A.Q. du wiki ou a nous contacter par mail!<br/><br/><br/>
 
 Changelog avant la Alpha 0.05. Pour le reste du changelog après la Alpha 0.07, il est dans la section Releases, sinon il est sur [l'ancien dépot](https://github.com/jlppc/Projet-Pokemon-Regimys/releases). Ces versions étaient en Java a l'époque, et en console. The changelog before the 0.12.1s is lost in the void.
-<ul>
-<li>Alpha 0.04 : Ajout de la gestion des double types</li>
-<li>Alpha 0.03 : Modification du systeme de combat</li>
-<li>Alpha 0.02 : Ajout des status, types, équations de base ect...</li>
-<li>Alpha 0.01 : Creation du systeme de combat de base</li>
-</ul>
+
+* Alpha 0.04 : Ajout de la gestion des double types
+* Alpha 0.03 : Modification du systeme de combat
+* Alpha 0.02 : Ajout des status, types, équations de base ect...
+* Alpha 0.01 : Creation du systeme de combat de base
+
 
 ## Screenshot : 
 
