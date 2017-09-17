@@ -4,6 +4,7 @@
 ## Major collaborators : Aerzia
 ## and Silvermoon who created some OpMons.
 ## Contributors : <ul>
+<li><h3>BAKFR</h3></li>
 <li><h3>linkyFR</h3></li>
 <li><h3>Jo</h3></li>
 <li><h3>dogmotion</h3></li>
