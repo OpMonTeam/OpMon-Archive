@@ -68,20 +68,20 @@ MainFrame mainframe;
 int starts() {
   if (!(*rlog)) {
         cout << "Unable to open the log." << endl;
-	
+
 #ifndef _WIN32
 	string str("mkdir -p ");
 #else
 	string str("mkdir");
 #endif
-	
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-result"//Ignore this warning
 	system((str + RESSOURCES_PATH).c_str());
 	system((str + SAVE_PATH).c_str());
 	system((str + LOG_PATH).c_str());
 #pragma GCC diagnostic pop
-	
+
 	cout << "Retry." << endl;
 	delete(rlog);
 	rlog = new ofstream(LOG_PATH + "log.txt");
@@ -91,20 +91,20 @@ int starts() {
 
   if (!(*rerrLog)) {
         cout << "Unable to open the error log" << endl;
-	
+
 #ifndef _WIN32
 	string str("mkdir -p ");
 #else
 	string str("mkdir");
 #endif
-	
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-result"
 	system((str + RESSOURCES_PATH).c_str());
 	system((str + SAVE_PATH).c_str());
 	system((str + LOG_PATH).c_str());
 #pragma GCC diagnostic pop
-	
+
 	cout << "Retry." << endl;
 	delete(rerrLog);
 	rerrLog = new ofstream(LOG_PATH + "errLog.txt");
@@ -152,7 +152,7 @@ int errors = 0;
 void handleError(string const& errorName, bool fatal) {
     errors++;
     ostringstream osslog;
-    osslog << string("Error  n°") << errors << (string(" : ") + errorName); 
+    osslog << string("Error  n°") << errors << (string(" : ") + errorName);
     oplog(osslog.str(), true);
     cerr << "Error n°" << errors << " : " << errorName << endl;
     if(errors > 20) { //If the program gets more than 20 errors, it stops.
@@ -216,7 +216,7 @@ std::string& operator<<(std::string &str, char thing[]) {
     return str;
 }
 
-  
+
 
 #include "../objects/Attacks.hpp"
 #include "../save/Save.hpp"

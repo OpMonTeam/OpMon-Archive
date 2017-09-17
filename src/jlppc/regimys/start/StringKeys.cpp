@@ -47,13 +47,16 @@ void initialize(string keysFileS) {
     while (true) {
         sf::String read;
         read = readLine(keysFile);
-        if (!(read.toUtf32().substr(0, read.toUtf32().size() - (read.toUtf32().size() - 3)) == sf::String("key"))) {//Vérifie si la ligne lue est correcte
+        if ((sfStringtoStdString(read) == "end")) {//Vérifie si la ligne lue est correcte
             break;//Sinon arrête de lire
         }
         //Splittage de la ligne en deux parties
         keys.push_back(sfStringtoStdString(split(read, '=', 0)));
         strings.push_back(split(read, '=', 1));
 
+    }
+    for(unsigned int i = 0; i < keys.size(); i++){
+        cout << keys[i] << "=" << sfStringtoStdString(strings[i]) << endl;
     }
 }
 sf::String voi;
