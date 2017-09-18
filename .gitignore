@@ -12,6 +12,7 @@ exeLinux/log.txt
 exeLinux/errLog.txt
 exeLinux/OpMon
 exeLinux/OpMon-Debug
+exeLinux/vgcore.*
 exe/OpMon.exe
 exe/OpMon-Debug.exe
 installers/Windows/*.exe
