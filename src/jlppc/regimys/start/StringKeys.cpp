@@ -51,8 +51,15 @@ void initialize(string keysFileS) {
             break;//Sinon arrête de lire
         }
         //Splittage de la ligne en deux parties
-        keys.push_back(sfStringtoStdString(split(read, '=', 0)));
-        strings.push_back(split(read, '=', 1));
+	std::vector<sf::String> strSplit = split(read, '=');
+	if(!strSplit.size() == 0 && strSplit[0] != ""){
+	  keys.push_back(strSplit[0]);
+	  if(strSplit.size() < 2){
+	    strings.push_back(" ");
+	  }else{
+	    strings.push_back(sfStringtoStdString(strSplit[1]));
+	  }
+	}
 
     }
     for(unsigned int i = 0; i < keys.size(); i++){
