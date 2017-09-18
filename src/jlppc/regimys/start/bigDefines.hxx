@@ -527,7 +527,7 @@ Utilisé dans StartScene
                             break;\
                         }\
                 }\
-            rerrLog << "OK2" << endl;\
+            oplog("OK2", true);\
             if (voided) {\
                     pName[0] = ' ';\
                     pName[0 + 1] = 'R';\
@@ -543,7 +543,7 @@ Utilisé dans StartScene
                         }\
                 }\
             continuer = false;\
-            rerrLog << "OK" << endl;\
+            oplog("OK", true);\
             break;\
             \
             \
