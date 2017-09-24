@@ -113,7 +113,6 @@ void initEvs() {
     evs[24].ATK;
 
     evs[25].ATK;
-    evs[25].ATKSPE;
 
     evs[26].ATK;
     evs[26].ATKSPE;
@@ -554,7 +553,7 @@ void initOpMons() {
     listOp[22] = new Species(160, 65, 31, 31, 10, 95, "Himondelle", Type::POISON, Type::VOL, 0, -1, NULL, evs[22], 1.9, 190, "Cet OPMon plutôt imposant, ne peut plus voler depuis qu'il a évoluer, cela resulte d'un manque de migrations du à l'abondance d'insectes dans cette région", 162, 1000000, 90, 22);
     listOp[23] = new Species(60, 44, 40, 54, 55, 35, "Serpiterre", Type::SOL, Type::TENEBRES, 0, 24, new E_Level(24, 22), evs[23], 2, 6.9, "Plus il est âgé, plus son corps est long. Il se nourrit de spectres nocturnes caché sous terre", 62, 1000000, 255, 23);
     listOp[24] = new Species(85, 69, 65, 79, 80, 60, "Serpenair", Type::VOL, Type::TENEBRES, 0, -1, NULL, evs[24], 3.5, 65, "Il adore planer au dessus des ses proies, les fantomes de nuits, pour jouer avec eux, avant de les aspirer.", 147, 1000000, 90, 24);
-    listOp[25] = new Species(55, 40, 50, 50, 90, 35, "Nucléage", Type::ELECTRIQUE, Type::NOTHING, 0, -1, new E_Item(26, Item::getItem("Invocation de la foudre")), evs[25], 7.4, 6, "Ce nuage s'amuse à viser les monuments ou objets très grands, ils sont à l'origine des éclairs aleatoires dans le ciel. Ils aiment se caché parmi les vraies nuages", 82, 1000000, 100, 25);
+    listOp[25] = new Species(55, 53, 31, 48, 37, 69, "Gouachtiti", Type::NORMAL, Type::NOTHING, 0, -1, new E_Level(26, 29), evs[25], 0.8, 18, "Gouachtiti est un petit singe qui aime taguer partout et a un sacré coup de crayon !", 82, 1000000, 100, 60);
     listOp[26] = new Species(200, 55, 90, 80, 110, 60, "Cielectrik", Type::ELECTRIQUE, Type::NOTHING, 0, -1, NULL, evs[26], 0., 30, "Il peut terrasser tout ses en libérant un décharge foudroyante plus de 550 000 V.", 122, 1000000, 65, 26);
     listOp[27] = new Species(60, 58, 30, 52, 33, 65, "Oursiflamme", Type::FEU, Type::NOTHING, 0, 28, new E_Level(19, 28),evs[27], 0.5, 20, "Un si gentil ourson qui est tout feu tout flamme.", 93, 1000000, 45, 27);
     listOp[28] = new Species(80, 75, 60, 59, 54, 78, "Oursibraise", Type::FEU, Type::NOTHING, 0, 29, new E_Level(37,29), evs[28], 1.1, 29.5, "Cet ours est colérique, un rien peut lui mettre le feu au poudre.", 122, 1000000, 60, 28);
