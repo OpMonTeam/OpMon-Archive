@@ -28,7 +28,7 @@ If there are problems understanding the old commits or monthly reports that are 
 __The current game version is Alpha 0.12.1s.__ Download link: <a href="http://opmon-game.ga/downloads"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Resources/Other/version_logo.png" alt="Logo Téléchargement"></a>
 
 __The next game version will be Alpha 0.13__ : Event improvements, added new characters, and added descriptions on objects
-* [Look the ROADMAP](https://github.com/jlppc/OpMon/wiki/ROADMAP) 
+* [Look the ROADMAP](https://github.com/jlppc/OpMon/wiki/ROADMAP)
 * [Look the Releases changelog](https://github.com/jlppc/OpMon/wiki/Releases)
 
 
@@ -52,7 +52,6 @@ Prochaines versions :<ul>
 <br/>
 <br/>
 <br/>
-<br/>
 
 ### Informations generales:
 <br/>
@@ -67,6 +66,7 @@ Si vous avez des questions à poser, n'hésitez pas à les demander dans la sect
 
 ## Changelog des versions
 [Voir le changelog de toutes les versions du jeu](http://github.com/jlppc/OpMon/wiki/Releases)
+
 <br/>
 ## Screenshot : 
 
