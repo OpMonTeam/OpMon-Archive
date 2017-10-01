@@ -48,7 +48,9 @@ __The next game version will be Alpha 0.13__ : Event improvements, added new cha
 Prochaines versions :<ul>
 <li>Alpha 0.13 : Amelioration des evenements (les objets dans les batiments) et ajout de PNJs</li>
 </ul>
-* [Voir la ROADMAP](https://github.com/jlppc/OpMon/wiki/ROADMAP)
+
+* [Voir la RoadMap](https://github.com/jlppc/OpMon/wiki/ROADMAP)
+
 <br/>
 <br/>
 <br/>
@@ -66,8 +68,8 @@ Si vous avez des questions à poser, n'hésitez pas à les demander dans la sect
 
 ## Changelog des versions
 [Voir le changelog de toutes les versions du jeu](http://github.com/jlppc/OpMon/wiki/Releases)
-
 <br/>
+
 ## Screenshot : 
 
 ![Screenshot](https://raw.githubusercontent.com/jlppc/OpMon/master/Resources/Other/screenshot_2.png)
