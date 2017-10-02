@@ -86,18 +86,18 @@
 			<Add option="-Wall" />
 			<Add option="-std=c++14" />
 			<Add option="-D_WIN32" />
-			<Add directory="include" />
+			<Add directory="../../SFML-2.4.2/include" />
 		</Compiler>
 		<Linker>
-			<Add directory="lib" />
+			<Add directory="../../SFML-2.4.2/lib" />
 		</Linker>
 		<Unit filename="resources.rc">
 			<Option compilerVar="WINDRES" />
 		</Unit>
-		<Unit filename="src/jlppc/regimys/enums/Caractere.cpp" />
-		<Unit filename="src/jlppc/regimys/enums/Caractere.hpp" />
 		<Unit filename="src/jlppc/regimys/enums/Enums.cpp" />
 		<Unit filename="src/jlppc/regimys/enums/Enums.hpp" />
+		<Unit filename="src/jlppc/regimys/enums/Nature.cpp" />
+		<Unit filename="src/jlppc/regimys/enums/Nature.hpp" />
 		<Unit filename="src/jlppc/regimys/enums/enumsInclude.hxx" />
 		<Unit filename="src/jlppc/regimys/evolution/EItem.cpp" />
 		<Unit filename="src/jlppc/regimys/evolution/ELand.cpp" />
@@ -112,6 +112,8 @@
 		<Unit filename="src/jlppc/regimys/evolution/evolutions.hpp" />
 		<Unit filename="src/jlppc/regimys/newGui/Animations.cpp" />
 		<Unit filename="src/jlppc/regimys/newGui/Animations.hpp" />
+		<Unit filename="src/jlppc/regimys/newGui/Dialog.cpp" />
+		<Unit filename="src/jlppc/regimys/newGui/Dialog.hpp" />
 		<Unit filename="src/jlppc/regimys/newGui/Elements.cpp" />
 		<Unit filename="src/jlppc/regimys/newGui/Elements.hpp" />
 		<Unit filename="src/jlppc/regimys/newGui/Events.cpp" />
@@ -126,14 +128,14 @@
 		<Unit filename="src/jlppc/regimys/newGui/Overworld.hpp" />
 		<Unit filename="src/jlppc/regimys/newGui/StartScene.cpp" />
 		<Unit filename="src/jlppc/regimys/newGui/StartScene.hpp" />
-		<Unit filename="src/jlppc/regimys/objects/Attaque.cpp" />
-		<Unit filename="src/jlppc/regimys/objects/Attaque.hpp" />
-		<Unit filename="src/jlppc/regimys/objects/Attaques.cpp" />
-		<Unit filename="src/jlppc/regimys/objects/Attaques.hpp" />
-		<Unit filename="src/jlppc/regimys/objects/Espece.cpp" />
-		<Unit filename="src/jlppc/regimys/objects/Espece.hpp" />
+		<Unit filename="src/jlppc/regimys/objects/Attack.cpp" />
+		<Unit filename="src/jlppc/regimys/objects/Attack.hpp" />
+		<Unit filename="src/jlppc/regimys/objects/Attacks.cpp" />
+		<Unit filename="src/jlppc/regimys/objects/Attacks.hpp" />
 		<Unit filename="src/jlppc/regimys/objects/OpMon.cpp" />
 		<Unit filename="src/jlppc/regimys/objects/OpMon.hpp" />
+		<Unit filename="src/jlppc/regimys/objects/Species.cpp" />
+		<Unit filename="src/jlppc/regimys/objects/Species.hpp" />
 		<Unit filename="src/jlppc/regimys/objects/item/CT.cpp" />
 		<Unit filename="src/jlppc/regimys/objects/item/CT.hpp" />
 		<Unit filename="src/jlppc/regimys/objects/item/IHeal.cpp" />
@@ -145,8 +147,8 @@
 		<Unit filename="src/jlppc/regimys/objects/item/itemInclude.hxx" />
 		<Unit filename="src/jlppc/regimys/objects/objectsInclude.hxx" />
 		<Unit filename="src/jlppc/regimys/opmonInclude.hxx" />
-		<Unit filename="src/jlppc/regimys/playercore/Equipe.cpp" />
-		<Unit filename="src/jlppc/regimys/playercore/Equipe.hpp" />
+		<Unit filename="src/jlppc/regimys/playercore/OpTeam.cpp" />
+		<Unit filename="src/jlppc/regimys/playercore/OpTeam.hpp" />
 		<Unit filename="src/jlppc/regimys/playercore/Player.cpp" />
 		<Unit filename="src/jlppc/regimys/playercore/Player.hpp" />
 		<Unit filename="src/jlppc/regimys/playercore/playercoreInclude.hxx" />
@@ -158,6 +160,8 @@
 		<Unit filename="src/jlppc/regimys/save/Save.hpp" />
 		<Unit filename="src/jlppc/regimys/start/Initializer.cpp" />
 		<Unit filename="src/jlppc/regimys/start/Initializer.hpp" />
+		<Unit filename="src/jlppc/regimys/start/OpString.cpp" />
+		<Unit filename="src/jlppc/regimys/start/OpString.hpp" />
 		<Unit filename="src/jlppc/regimys/start/PersistentVars.cpp" />
 		<Unit filename="src/jlppc/regimys/start/PersistentVars.hpp" />
 		<Unit filename="src/jlppc/regimys/start/StringKeys.cpp" />
