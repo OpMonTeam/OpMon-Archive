@@ -29,6 +29,7 @@ __The current game version is Alpha 0.12.1s.__ Download link: <a href="http://op
 
 __The next game version will be Alpha 0.13__ : Event improvements, added new characters, and added descriptions on objects
 * [Look the ROADMAP](https://github.com/jlppc/OpMon/wiki/ROADMAP)
+* [Look the Releases changelog](https://github.com/jlppc/OpMon/wiki/Releases)
 
 
 # En Français<a name="enfrancais">
@@ -47,8 +48,9 @@ __The next game version will be Alpha 0.13__ : Event improvements, added new cha
 Prochaines versions :<ul>
 <li>Alpha 0.13 : Amelioration des evenements (les objets dans les batiments) et ajout de PNJs</li>
 </ul>
-* [Voir la ROADMAP](https://github.com/jlppc/OpMon/wiki/ROADMAP)
-<br/>
+
+* [Voir la RoadMap](https://github.com/jlppc/OpMon/wiki/ROADMAP)
+
 <br/>
 <br/>
 <br/>
@@ -64,13 +66,9 @@ Nous sommes plusieurs sur le projet : Jlppc, le programmeur et créateur de l'hi
 Contacts : jlppcprog@ntymail.com pour la programmation | evandib@gmail.com pour les graphismes<br/>
 Si vous avez des questions à poser, n'hésitez pas à les demander dans la section F.A.Q. du wiki ou a nous contacter par mail!<br/><br/><br/>
 
-Changelog avant la Alpha 0.05. Pour le reste du changelog après la Alpha 0.07, il est dans la section Releases, sinon il est sur [l'ancien dépot](https://github.com/jlppc/Projet-Pokemon-Regimys/releases). Ces versions étaient en Java a l'époque, et en console. The changelog before the 0.12.1s is lost in the void.
-
-* Alpha 0.04 : Ajout de la gestion des double types
-* Alpha 0.03 : Modification du systeme de combat
-* Alpha 0.02 : Ajout des status, types, équations de base ect...
-* Alpha 0.01 : Creation du systeme de combat de base
-
+## Changelog des versions
+[Voir le changelog de toutes les versions du jeu](http://github.com/jlppc/OpMon/wiki/Releases)
+<br/>
 
 ## Screenshot : 
 
