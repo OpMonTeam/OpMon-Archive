@@ -72,7 +72,7 @@ int starts() {
 #ifndef _WIN32
 	string str("mkdir -p ");
 #else
-	string str("mkdir");
+	string str("mkdir ");
 #endif
 
 #pragma GCC diagnostic push
@@ -95,7 +95,7 @@ int starts() {
 #ifndef _WIN32
 	string str("mkdir -p ");
 #else
-	string str("mkdir");
+	string str("mkdir ");
 #endif
 
 #pragma GCC diagnostic push
@@ -226,7 +226,7 @@ int main(int argc, char *argv[]) {
 #ifndef _WIN32
     string str("mkdir -p ");
 #else
-    string str("mkdir");
+    string str("mkdir ");
 #endif
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-result"

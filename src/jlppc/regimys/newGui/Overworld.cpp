@@ -89,10 +89,11 @@ int Overworld::tp(int toTp, sf::Vector2i pos, bool scroll) {
 #define UNLOCK_TP  Events::justTP = false;
 void Overworld::up() {
     if(anim == -1 && !movementLock) {
-        if(ppDir != TO_UP) {
+        /*if(ppDir != TO_UP) {
             ppDir = TO_UP;
             return;
-        }
+        }*/
+        ppDir = TO_UP;
         startFrames = frames;
         anim = TO_UP;
 
@@ -137,10 +138,11 @@ void Overworld::up() {
 
 void Overworld::down() {
     if(anim == -1 && !movementLock) {//Si une animation n'est pas dÃ©jÃ  en cours
-        if(ppDir != TO_DOWN) {
+        /*if(ppDir != TO_DOWN) {
             ppDir = TO_DOWN;
             return;
-        }
+        }*/
+        ppDir = TO_DOWN;
         startFrames = frames;
         anim = TO_DOWN;
         if(debugMode) {
@@ -183,10 +185,11 @@ void Overworld::down() {
 
 void Overworld::right() {
     if(anim == -1 && !movementLock) {
-        if(ppDir != TO_RIGHT) {
+        /*if(ppDir != TO_RIGHT) {
             ppDir = TO_RIGHT;
             return;
-        }
+        }*/
+        ppDir = TO_RIGHT;
         startFrames = frames;
         anim = TO_RIGHT;
         if(debugMode) {
@@ -229,10 +232,11 @@ void Overworld::right() {
 
 void Overworld::left() {
     if(anim == -1 && !movementLock) {
-        if(ppDir != TO_LEFT) {
+        /*if(ppDir != TO_LEFT) {
             ppDir = TO_LEFT;
             return;
-        }
+        }*/
+        ppDir = TO_LEFT;
         startFrames = frames;
         anim = TO_LEFT;
         if(debugMode) {
@@ -374,14 +378,11 @@ int Overworld::boucle() {
             if(!justTp) {
                 if(isKeyPressed(sf::Keyboard::Up)) {
                     up();
-                }
-                if(isKeyPressed(sf::Keyboard::Down)) {
+                }else if(isKeyPressed(sf::Keyboard::Down)) {
                     down();
-                }
-                if(isKeyPressed(sf::Keyboard::Left)) {
+                }else if(isKeyPressed(sf::Keyboard::Left)) {
                     left();
-                }
-                if(isKeyPressed(sf::Keyboard::Right)) {
+                }else if(isKeyPressed(sf::Keyboard::Right)) {
                     right();
                 }
             }
