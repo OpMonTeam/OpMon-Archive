@@ -20,7 +20,7 @@ bool keyPressed = false;
 
 UNS
 
-MainFrame::MainFrame() : mapsInit(Initializer::initMaps){}
+MainFrame::MainFrame() : mapsInit(Initializer::initMaps) {}
 
 void MainFrame::initAllStrings() {
     optionsmenu.initStrings();
@@ -67,7 +67,7 @@ void MainFrame::destroyAll() {
 }
 
 void MainFrame::open() {
-    if(!font.loadFromFile(getPath(RESSOURCES_PATH + "fonts/Default.ttf"))){
+    if(!font.loadFromFile(getPath(RESSOURCES_PATH + "fonts/Default.ttf"))) {
         handleError("Font cannot be opened.", true);
     }
     oplog("Font opened");

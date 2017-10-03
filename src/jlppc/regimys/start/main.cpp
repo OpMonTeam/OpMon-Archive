@@ -30,30 +30,30 @@ string optSave(SAVE_PATH + "optSave.oparams");
 
 sf::Clock ticks;
 
-string getPath(string const& path){
+string getPath(string const& path) {
 #ifdef _WIN32
-  vector<sf::String> splitted = StringKeys::split(path, '/');
-  string returned = "";
-  for(unsigned int i = 0; i < splitted.size(); i++){
-    returned += splitted[i];
-    if(i != splitted.size() - 1){
-      returned += "\\";
+    vector<sf::String> splitted = StringKeys::split(path, '/');
+    string returned = "";
+    for(unsigned int i = 0; i < splitted.size(); i++) {
+        returned += splitted[i];
+        if(i != splitted.size() - 1) {
+            returned += "\\";
+        }
     }
-  }
-  return returned;
+    return returned;
 #else
-  return path;
+    return path;
 #endif
 }
 
 namespace Main {
-    //Will be used for checking the internet connection
-    //bool connected = false;
-    /** Trainer names. No longer useful.*/
-    //->Useless
+//Will be used for checking the internet connection
+//bool connected = false;
+/** Trainer names. No longer useful.*/
+//->Useless
 string trainers[] = {"Brice", "Evan", "Mael", "Jlppc", "Red", "Blue", "Nikolai", "N", "Belladonis", "Aristote", "Giovanni", "Flora", "Silver", "Jules Cesar", "Brahim"};
 
-  string version = "0.12.1";
+string version = "0.12.1";
 string versionS;
 Player player;
 /*#ifdef _WIN32
@@ -66,62 +66,62 @@ Player player;
 MainFrame mainframe;
 
 int starts() {
-  if (!(*rlog)) {
+    if (!(*rlog)) {
         cout << "Unable to open the log." << endl;
 
 #ifndef _WIN32
-	string str("mkdir -p ");
+        string str("mkdir -p ");
 #else
-	string str("mkdir ");
+        string str("mkdir ");
 #endif
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-result"//Ignore this warning
-	system((str + RESSOURCES_PATH).c_str());
-	system((str + SAVE_PATH).c_str());
-	system((str + LOG_PATH).c_str());
+        system((str + RESSOURCES_PATH).c_str());
+        system((str + SAVE_PATH).c_str());
+        system((str + LOG_PATH).c_str());
 #pragma GCC diagnostic pop
 
-	cout << "Retry." << endl;
-	delete(rlog);
-	rlog = new ofstream(LOG_PATH + "log.txt");
-	starts();
-	return 0;
-  }
+        cout << "Retry." << endl;
+        delete(rlog);
+        rlog = new ofstream(LOG_PATH + "log.txt");
+        starts();
+        return 0;
+    }
 
-  if (!(*rerrLog)) {
+    if (!(*rerrLog)) {
         cout << "Unable to open the error log" << endl;
 
 #ifndef _WIN32
-	string str("mkdir -p ");
+        string str("mkdir -p ");
 #else
-	string str("mkdir ");
+        string str("mkdir ");
 #endif
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-result"
-	system((str + RESSOURCES_PATH).c_str());
-	system((str + SAVE_PATH).c_str());
-	system((str + LOG_PATH).c_str());
+        system((str + RESSOURCES_PATH).c_str());
+        system((str + SAVE_PATH).c_str());
+        system((str + LOG_PATH).c_str());
 #pragma GCC diagnostic pop
 
-	cout << "Retry." << endl;
-	delete(rerrLog);
-	rerrLog = new ofstream(LOG_PATH + "errLog.txt");
-	starts();
-	return 0;
-  }
+        cout << "Retry." << endl;
+        delete(rerrLog);
+        rerrLog = new ofstream(LOG_PATH + "errLog.txt");
+        starts();
+        return 0;
+    }
 
     oplog("Log opening OK. Welcome in OpMon Lazuli.");
     oplog("Version : " + version);
     ostringstream osslog;
     osslog << "Date in seconds : " << time(NULL);
     oplog(osslog.str());
-    #ifdef _WIN32
+#ifdef _WIN32
     oplog("Plateform : Windows");
-    #else
+#else
     oplog("Plateform : Unix");
-    #endif
+#endif
     oplog("Loading internal files.");
     InternalFiles::registerFiles();
     oplog("Loading options");
@@ -139,11 +139,11 @@ int starts() {
 
 }
 
-void oplog(string toSay, bool error){
-    if(error){
-      (*rerrLog) << PRINT_TICKS << toSay << endl;
-    }else{
-      (*rlog) << PRINT_TICKS << toSay << endl;
+void oplog(string toSay, bool error) {
+    if(error) {
+        (*rerrLog) << PRINT_TICKS << toSay << endl;
+    } else {
+        (*rlog) << PRINT_TICKS << toSay << endl;
     }
 }
 //The number of errors handeled in the program.
@@ -161,11 +161,11 @@ void handleError(string const& errorName, bool fatal) {
         fatal = true;
     }
     if (fatal) {
-      ostringstream ossslog;
-      ossslog << "Fatal error. Total errors : " << errors;
-      oplog(ossslog.str(), true);
+        ostringstream ossslog;
+        ossslog << "Fatal error. Total errors : " << errors;
+        oplog(ossslog.str(), true);
         cerr << "Fatal error." << endl;
-	oplog("Crash.");
+        oplog("Crash.");
         quit(1);
     }
 }
@@ -173,7 +173,7 @@ void handleError(string const& errorName, bool fatal) {
 int quit(int const& returns) {
     /*
     if (Main::mainframe.init) {
-	//Nothing here anymore, was used for the SDL. I keep it because it may be useful one day.
+    //Nothing here anymore, was used for the SDL. I keep it because it may be useful one day.
     }
     */
     OptionsSave::saveParams(optSave);//Saving parameters
@@ -187,8 +187,8 @@ int quit(int const& returns) {
     ostringstream osslog;
     osslog << "End of the program. Return " << returns;
     oplog(osslog.str());
-    if(returns != 0){
-      oplog("There is a problem. Create an issue on github!");
+    if(returns != 0) {
+        oplog("There is a problem. Create an issue on github!");
     }
     exit(returns);
     return returns;
@@ -240,23 +240,23 @@ int main(int argc, char *argv[]) {
                  string str = string(*currentObj);
         if(str == "--version") {
         cout << "OpMon Lazuli version " << Main::versionS << endl;
-	cout << "Under GNU GPL 3.0 license" << endl;
+        cout << "Under GNU GPL 3.0 license" << endl;
         return 0;
-        } else if(str == "--opt") {
+    } else if(str == "--opt") {
         if(itor + 1 == argc) {
-	     return 2;
+                return 2;
             } else {
                 optSave = string(argv[itor + 1]);
             }
-        }else if(str == "--help") {
-	  cout << "--version : Prints the version and quit." << endl;
-	  cout << "--help : Prints this message and quit." << endl;
-	  cout << "--opt <path> : Changes the options save file's location." << endl;
-	  return 0;
-	} else {
-	  cout << "Unknown parameters. Skipping." << endl;
-	}
-      }
+        } else if(str == "--help") {
+        cout << "--version : Prints the version and quit." << endl;
+        cout << "--help : Prints this message and quit." << endl;
+        cout << "--opt <path> : Changes the options save file's location." << endl;
+        return 0;
+    } else {
+        cout << "Unknown parameters. Skipping." << endl;
     }
-    return Main::starts();
+            }
+}
+return Main::starts();
 }

@@ -137,7 +137,7 @@ void Overworld::up() {
 }
 
 void Overworld::down() {
-    if(anim == -1 && !movementLock) {//Si une animation n'est pas dÃ©jÃ  en cours
+    if(anim == -1 && !movementLock) {//Si une animation n'est pas déjà en cours
         /*if(ppDir != TO_DOWN) {
             ppDir = TO_DOWN;
             return;
@@ -160,7 +160,7 @@ void Overworld::down() {
             return;
         }
         if(ppPosY + 1 < actual->getH()) {
-            if(actual->getPassArr()[(int)(ppPosY + 1)][(int)ppPosX] == 0) {//VÃ©rification des boites de collisions
+            if(actual->getPassArr()[(int)(ppPosY + 1)][(int)ppPosX] == 0) {//Vérification des boites de collisions
                 std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY + 1) CASES));
                 for(Event *nextEvent : nextEvents) {
                     if(!nextEvent->isPassable()) {
@@ -315,7 +315,7 @@ int Overworld::boucle() {
             frames++;
 #define DEBUG_REPORT
 #ifdef DEBUG_REPORT
-            cout << "[FRAME N°" << frames << "]" << endl;
+            cout << "[FRAME N�" << frames << "]" << endl;
             cout << "Boucle : Normal" << endl;
             cout << "Tick: " << ticks.getElapsedTime().asMilliseconds() << "ms" << endl;
             cout << "PlayerPosition: " << ppPosX << " - " << ppPosY << endl;
@@ -339,37 +339,37 @@ int Overworld::boucle() {
             switch(Main::mainframe.events.type) {
                 QUIT
 
-                case sf::Event::KeyPressed:
-                    if(Main::mainframe.events.key.code == sf::Keyboard::Equal) {
-                        debugMode = !debugMode;
+            case sf::Event::KeyPressed:
+                if(Main::mainframe.events.key.code == sf::Keyboard::Equal) {
+                    debugMode = !debugMode;
+                }
+                if(debugMode) {
+                    if(Main::mainframe.events.key.code == sf::Keyboard::F10) {
+                        printlayer[0] = !printlayer[0];
                     }
-                    if(debugMode) {
-                        if(Main::mainframe.events.key.code == sf::Keyboard::F10) {
-                            printlayer[0] = !printlayer[0];
-                        }
-                        if(Main::mainframe.events.key.code == sf::Keyboard::F11) {
-                            printlayer[1] = !printlayer[1];
-                        }
-                        if(Main::mainframe.events.key.code == sf::Keyboard::F12) {
-                            printlayer[2] = !printlayer[2];
-                        }
+                    if(Main::mainframe.events.key.code == sf::Keyboard::F11) {
+                        printlayer[1] = !printlayer[1];
+                    }
+                    if(Main::mainframe.events.key.code == sf::Keyboard::F12) {
+                        printlayer[2] = !printlayer[2];
+                    }
 
-                        if(Main::mainframe.events.key.code == sf::Keyboard::F5) {
-                            tp(4, sf::Vector2i(0, 1), true);
-                        } else if(Main::mainframe.events.key.code == sf::Keyboard::F6) {
-                            tp(5, sf::Vector2i(0, 0), true);
-                        } else if(Main::mainframe.events.key.code == sf::Keyboard::F1) {
-                            tp(0, sf::Vector2i(25, 28), true);
-                        } else if(Main::mainframe.events.key.code == sf::Keyboard::F2) {
-                            tp(1, sf::Vector2i(8, 14), true);
-                        } else if(Main::mainframe.events.key.code == sf::Keyboard::F3) {
-                            tp(2, sf::Vector2i(15, 14), true);
-                        } else if(Main::mainframe.events.key.code == sf::Keyboard::F4) {
-                            tp(3, sf::Vector2i(8, 14), true);
-                        }
+                    if(Main::mainframe.events.key.code == sf::Keyboard::F5) {
+                        tp(4, sf::Vector2i(0, 1), true);
+                    } else if(Main::mainframe.events.key.code == sf::Keyboard::F6) {
+                        tp(5, sf::Vector2i(0, 0), true);
+                    } else if(Main::mainframe.events.key.code == sf::Keyboard::F1) {
+                        tp(0, sf::Vector2i(25, 28), true);
+                    } else if(Main::mainframe.events.key.code == sf::Keyboard::F2) {
+                        tp(1, sf::Vector2i(8, 14), true);
+                    } else if(Main::mainframe.events.key.code == sf::Keyboard::F3) {
+                        tp(2, sf::Vector2i(15, 14), true);
+                    } else if(Main::mainframe.events.key.code == sf::Keyboard::F4) {
+                        tp(3, sf::Vector2i(8, 14), true);
                     }
-                default:
-                    break;
+                }
+            default:
+                break;
             }
             ECHAP
             if(Main::player.gameIsOver) {
@@ -378,11 +378,11 @@ int Overworld::boucle() {
             if(!justTp) {
                 if(isKeyPressed(sf::Keyboard::Up)) {
                     up();
-                }else if(isKeyPressed(sf::Keyboard::Down)) {
+                } else if(isKeyPressed(sf::Keyboard::Down)) {
                     down();
-                }else if(isKeyPressed(sf::Keyboard::Left)) {
+                } else if(isKeyPressed(sf::Keyboard::Left)) {
                     left();
-                }else if(isKeyPressed(sf::Keyboard::Right)) {
+                } else if(isKeyPressed(sf::Keyboard::Right)) {
                     right();
                 }
             }
@@ -485,20 +485,20 @@ int Overworld::boucle() {
                     int lx = ppPosX;
                     int ly = ppPosY;
                     switch(ppDir) {
-                        case TO_UP:
-                            ly--;
-                            break;
-                        case TO_DOWN:
-                            ly++;
-                            break;
-                        case TO_LEFT:
-                            lx--;
-                            break;
-                        case TO_RIGHT:
-                            lx++;
-                            break;
-                        default:
-                            break;
+                    case TO_UP:
+                        ly--;
+                        break;
+                    case TO_DOWN:
+                        ly++;
+                        break;
+                    case TO_LEFT:
+                        lx--;
+                        break;
+                    case TO_RIGHT:
+                        lx++;
+                        break;
+                    default:
+                        break;
                     }
                     vector<Event *> events = actual->getEvent(sf::Vector2i(lx CASES, ly CASES));
                     /*if(events.size() == 0){
@@ -623,13 +623,13 @@ int Overworld::boucleDialog(vector<sf::String> const& dialogs) {
             switch(Main::mainframe.events.type) {
                 QUIT
 
-                case sf::Event::KeyPressed:
-                    if(Main::mainframe.events.key.code == sf::Keyboard::Space) {
-                        dialog.pass();
-                    }
-                    break;
-                default:
-                    break;
+            case sf::Event::KeyPressed:
+                if(Main::mainframe.events.key.code == sf::Keyboard::Space) {
+                    dialog.pass();
+                }
+                break;
+            default:
+                break;
             }
             if(isKeyPressed(sf::Keyboard::Escape)) {
                 Main::player.gameIsOver = true;

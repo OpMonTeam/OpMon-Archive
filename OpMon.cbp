@@ -86,10 +86,10 @@
 			<Add option="-Wall" />
 			<Add option="-std=c++14" />
 			<Add option="-D_WIN32" />
-			<Add directory="../../SFML-2.4.2/include" />
+			<Add directory="../../../SFML-2.4.2/include" />
 		</Compiler>
 		<Linker>
-			<Add directory="../../SFML-2.4.2/lib" />
+			<Add directory="../../../SFML-2.4.2/lib" />
 		</Linker>
 		<Unit filename="resources.rc">
 			<Option compilerVar="WINDRES" />
