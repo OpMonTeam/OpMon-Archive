@@ -34,6 +34,7 @@ std::vector<std::vector<sf::Texture> > doorsTextures;
 sf::SoundBuffer doorSoundBuffer;
 
 std::vector<sf::Texture> kidTextures;
+std::vector<sf::Texture> kiwaiTextures;
 
 template<typename T>void pb(std::vector<T> &vect, T arr[], int sizeArr) {
     for (unsigned int i = 0; i < sizeArr; i++) {
@@ -893,7 +894,12 @@ void initTextures() {
         kidTextures[i].loadFromFile(str);
     }
     Events::doorSound.setBuffer(doorSoundBuffer);
-
+    for(unsigned int i = 0; i < 12; i++) {
+        std::string str;
+        str << RESSOURCES_PATH << getPath("sprites/chara/prof/prof") << i << std::string(".png");
+        kiwaiTextures.push_back(sf::Texture());
+        kiwaiTextures[i].loadFromFile(str);
+    }
     initEnumsEvents();
 }
 
@@ -994,7 +1000,7 @@ void initMaps() {
 
     std::vector<OpString> feC1 {OpString("kid"), OpString::voidStr, OpString::voidStr};
 
-    maps[0]->addEvent(new Events::TalkingCharaEvent(kidTextures, sf::Vector2f(17, 13), feC1, 0, Events::MoveStyle::PREDEFINED, pathChara1));
+    maps[0]->addEvent(new Events::TalkingCharaEvent(kidTextures, sf::Vector2f(17, 13), feC1, Events::EventTrigger::PRESS, Events::MoveStyle::PREDEFINED, pathChara1));
     /*End of character 1*/
 
 
@@ -1020,6 +1026,12 @@ void initMaps() {
     maps.push_back(new Map(*layer1, *layer2, *layer3, 32, 16, laboCol, townMusics[1]));
     FREE_TAB(laboCol, 16);
     maps[2]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(15, 15), sf::Vector2i(21, 22), 0, Side::TO_DOWN, SIDE_DOWN));
+    //Dialogs
+    std::vector<OpString> felaboC1 {OpString("prof.dialog.1"), OpString("prof.dialog.2"), OpString("prof.dialog.3")};
+
+    //Load Npcs
+    maps[2]->addEvent(new Events::TalkingCharaEvent(kiwaiTextures, sf::Vector2f(15, 4), felaboC1, Events::EventTrigger::PRESS, Events::MoveStyle::NO_MOVE));
+
     PLANS_RESET;
     layer1->loadFromFile(getPath(RESSOURCES_PATH + "maps/rivalhome/rivalhome1.png"));
     layer2->loadFromFile(getPath(RESSOURCES_PATH + "maps/rivalhome/rivalhome2.png"));
