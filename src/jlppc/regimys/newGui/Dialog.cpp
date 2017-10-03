@@ -1,9 +1,8 @@
-
 #include "Dialog.hpp"
 
 
 Dialog::Dialog(const sf::String *text, unsigned int sizeOfText)
-        : text(text), sizeOfTxt(sizeOfText) {}
+    : text(text), sizeOfTxt(sizeOfText) {}
 
 void Dialog::pass() {
     if (changeDialog == false) {

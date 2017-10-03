@@ -18,30 +18,30 @@ class MainMenu {
 
 public:
 
-sf::Sprite bg;
-sf::Text play;
-sf::Text charge;
-sf::Text options;
-sf::Text exit;
-sf::Sprite cursor;
-sf::Vector2f curPos[4];
-sf::Music bgMusTitle;
-sf::Sound bruitArr;
-sf::Sound bruitPush;
-sf::Sound bruitNope;
-sf::Texture textures[2];
-sf::SoundBuffer sounds[3];
-int curPosI = 0;
+    sf::Sprite bg;
+    sf::Text play;
+    sf::Text charge;
+    sf::Text options;
+    sf::Text exit;
+    sf::Sprite cursor;
+    sf::Vector2f curPos[4];
+    sf::Music bgMusTitle;
+    sf::Sound bruitArr;
+    sf::Sound bruitPush;
+    sf::Sound bruitNope;
+    sf::Texture textures[2];
+    sf::SoundBuffer sounds[3];
+    int curPosI = 0;
 
-bool continuer = true;
+    bool continuer = true;
 
 
-void initVars();
-void verifVars();
-void deleteVars();
-int mainMenu();
-int boucle0();
-void initStrings();
+    void initVars();
+    void verifVars();
+    void deleteVars();
+    int mainMenu();
+    int boucle0();
+    void initStrings();
 };
 
 

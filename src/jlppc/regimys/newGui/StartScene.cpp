@@ -92,7 +92,7 @@ int StartScene::boucle0() {
         if((ticks.getElapsedTime().asMilliseconds() - ancientTick) >= FPS_TICKS) {
             ancientTick = ticks.getElapsedTime().asMilliseconds();
 
-	    Main::mainframe.window.pollEvent(Main::mainframe.events);
+            Main::mainframe.window.pollEvent(Main::mainframe.events);
 
             switch (Main::mainframe.events.type) {
 

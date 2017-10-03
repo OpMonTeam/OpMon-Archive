@@ -89,7 +89,7 @@ TalkingCharaEvent::TalkingCharaEvent(std::vector<sf::Texture> charTextures, sf::
 
 void TPEvent::action(Player &player) {
     if(!justTP) {
-      Main::mainframe.overworld.tp(mapID, tpCoord);
+        Main::mainframe.overworld.tp(mapID, tpCoord);
         if(this->ppDir != -1) {
             Main::player.setppDir(this->ppDir);
         }
@@ -123,7 +123,7 @@ void DoorEvent::update(Player &player) {
 }
 
 void TalkingEvent::action(Player &player) {
-  Main::mainframe.overworld.boucleDialog(this->dialogs);
+    Main::mainframe.overworld.boucleDialog(this->dialogs);
 }
 
 void TalkingEvent::update(Player &player) {
@@ -254,7 +254,7 @@ void CharacterEvent::move(int direction, Player& player) {
         switch(direction) {
         case Side::TO_UP:
             if(position.y - 1 >= 0) {
-	      if(Main::mainframe.overworld.actual->getPassArr()[(int)position.y - 1][(int)position.x] == 0) {
+                if(Main::mainframe.overworld.actual->getPassArr()[(int)position.y - 1][(int)position.x] == 0) {
                     if(!(position.y - 1 == player.getPosY() && position.x == player.getPosX())) {
                         for(Event *nextEvent : Main::mainframe.overworld.actual->getEvent(sf::Vector2i(position.x, position.y - 1))) {
                             if(!nextEvent->isPassable()) {
