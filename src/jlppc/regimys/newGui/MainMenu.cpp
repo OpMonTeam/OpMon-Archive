@@ -76,7 +76,7 @@ int MainMenu::boucle0() {
     //Actualisation des éléments
     Main::mainframe.frame.draw(bg);
     Main::mainframe.frame.draw(play),
-               Main::mainframe.frame.draw(charge);
+         Main::mainframe.frame.draw(charge);
     Main::mainframe.frame.draw(options);
     Main::mainframe.frame.draw(exit);
     cursor.setPosition(curPos[curPosI]);
@@ -141,7 +141,7 @@ int MainMenu::boucle0() {
         //Actualisation des éléments
         Main::mainframe.frame.draw(bg);
         Main::mainframe.frame.draw(play),
-                   Main::mainframe.frame.draw(charge);
+             Main::mainframe.frame.draw(charge);
         Main::mainframe.frame.draw(options);
         Main::mainframe.frame.draw(exit);
         cursor.setPosition(curPos[curPosI]);

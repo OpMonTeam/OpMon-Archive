@@ -33,7 +33,7 @@ int animWinOpen(sf::RenderTexture &window, sf::Sprite const &bg) {
     //Frame by frame
     for (int i = 0; i < 6; i++) {
         if ((ticks.getElapsedTime().asMilliseconds() - ancientChrono) >= 33) {
-	  Main::mainframe.window.pollEvent(events);
+            Main::mainframe.window.pollEvent(events);
             ancientChrono = ticks.getElapsedTime().asMilliseconds();
             switch (events.type) {
                 QUIT
@@ -48,7 +48,7 @@ int animWinOpen(sf::RenderTexture &window, sf::Sprite const &bg) {
             window.draw(anim[i]);
 
             window.display();
-	    Main::mainframe.winRefresh();
+            Main::mainframe.winRefresh();
         } else {
             Utils::wait(200 - (ticks.getElapsedTime().asMilliseconds() - ancientTick));
             i--;

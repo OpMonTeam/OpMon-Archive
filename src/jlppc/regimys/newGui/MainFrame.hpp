@@ -80,7 +80,7 @@ public:
     sf::Sprite ppSprite;
     sf::Sprite ppAnim;
     sf::Sound dialogPass;
-  sf::Thread mapsInit;
+    sf::Thread mapsInit;
 
     sf::Thread *windowRefresh = NULL;
 
@@ -91,10 +91,10 @@ public:
 
     bool fullScreen = false;
 
-  MainFrame();
+    MainFrame();
 
-  
-  
+
+
     void open();
 
     void printText(sf::RenderTexture &frame, sf::String text[]);
@@ -110,7 +110,7 @@ public:
     sf::Vector2i vec2fTo2i(sf::Vector2f const &toTrans);
 
 private:
-  MainFrame(MainFrame&&);
+    MainFrame(MainFrame&&);
 };
 
 #endif /* SRC_JLPPC_REGIMYS_GUI_MAINFRAME_HPP_ */

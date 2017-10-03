@@ -20,59 +20,59 @@ Contient les Ã©lÃ©ments fonctionnels de l'overworld
 class Overworld {
 public:
 
-Map *actual;
-sf::View camera;
-sf::Sprite *maps[3];
-sf::Music *music;
+    Map *actual;
+    sf::View camera;
+    sf::Sprite *maps[3];
+    sf::Music *music;
 
-std::string fps;
-int fpsCounter;
-sf::Text fpsPrint;
-int oldTicksFps;
+    std::string fps;
+    int fpsCounter;
+    sf::Text fpsPrint;
+    int oldTicksFps;
 
-sf::Sprite *layer1;
-sf::Sprite *layer2;
-sf::Sprite *layer3;
+    sf::Sprite *layer1;
+    sf::Sprite *layer2;
+    sf::Sprite *layer3;
 
-int &ppPosX = Main::player.getPosX();
-int &ppPosY = Main::player.getPosY();
+    int &ppPosX = Main::player.getPosX();
+    int &ppPosY = Main::player.getPosY();
 
-bool justTp = false;
-int tpCount = 0;
+    bool justTp = false;
+    int tpCount = 0;
 
-int anim = -1;
-int moving = -1;
-bool anims = false;
+    int anim = -1;
+    int moving = -1;
+    bool anims = false;
 
-int ancientTick = 0;
+    int ancientTick = 0;
 
-int frames = 0;
-int startFrames = 0;
-int animsCounter = 0;
+    int frames = 0;
+    int startFrames = 0;
+    int animsCounter = 0;
 
-bool movementLock = false;
+    bool movementLock = false;
 
-bool scrollock[2] = {false, false};
-  int ppDir = Side::TO_DOWN;
+    bool scrollock[2] = {false, false};
+    int ppDir = Side::TO_DOWN;
 
-bool scrolling = true;
+    bool scrolling = true;
 
-bool debugMode = false;
-bool printlayer[3] = {true, true, true};
+    bool debugMode = false;
+    bool printlayer[3] = {true, true, true};
 
-sf::Sprite &character = Main::player.getSprite();
+    sf::Sprite &character = Main::player.getSprite();
 
-void initVars();
-int overworld();
-int boucle();
-int boucleDialog(std::vector<sf::String> const& dialogs);
+    void initVars();
+    int overworld();
+    int boucle();
+    int boucleDialog(std::vector<sf::String> const& dialogs);
 
-void up();
-void down();
-void right();
-void left();
+    void up();
+    void down();
+    void right();
+    void left();
 
-int tp(int toTp, sf::Vector2i pos, bool scroll = true);
+    int tp(int toTp, sf::Vector2i pos, bool scroll = true);
 
 
 
