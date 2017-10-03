@@ -845,8 +845,8 @@ void initAtkLvls() {
     */
     /*pb(atkPokeLvl[52], NumberedArray(0, Griffe::classe),  NumberedArray(0, Rugissement::classe),  NumberedArray(6, GrossePatoune::classe),  NumberedArray(9, Bluff::classe),  NumberedArray(14, ComboGriffe::classe),  NumberedArray(17, Grincement::classe),  NumberedArray(22, Feinte::classe),  NumberedArray(25, Provoc::classe),  NumberedArray(30, Jackpot::classe),  NumberedArray(33, CoudPonpon::classe),  NumberedArray(38, Machination::classe),  NumberedArray(41, Assurance::classe),  NumberedArray(46, Séduction::classe),  NumberedArray(49, tranche-Nuit::classe),  NumberedArray(50, Ruse::classe);
      *//*pb(atkPokeLvl[53], NumberedArray(0, Calinerie::classe),  NumberedArray(0, PassePasse::classe),  NumberedArray(0, Griffe::classe),  NumberedArray(0, Rugissement::classe),  NumberedArray(6, Morsure::classe),  NumberedArray(9, Bluff::classe),  NumberedArray(14, ComboGriffe::classe), NumberedArray(17, Grincement::classe),  NumberedArray(22, Feinte::classe),  NumberedArray(25, Provoc::classe),  NumberedArray(28, Météores::classe), NumberedArray(32, RayonGemme::classe),  NumberedArray(37, Tranche::classe),  NumberedArray(44, Machination::classe),  NumberedArray(49, Assurance::classe),  NumberedArray(56, Séduction::classe),  NumberedArray(61, tranche-Nuit::classe),  NumberedArray(68, Ruse::classe);
- pb( atkPokeLvl[54], NumberedArray(0, Tourniquet::classe),  NumberedArray(0, Griffe::classe),  NumberedArray(4, MimiQueue::classe),  NumberedArray(8, PistoletAO::classe),  NumberedArray(11, ChocMental::classe),  NumberedArray(15, ComboGriffe::classe),  NumberedArray(18, Vibraqua::classe),  NumberedArray(22, Entrave::classe),  NumberedArray(25, Grincement::classe),  NumberedArray(29, HydroQueue::classe),  NumberedArray(32, PsykoudBoul::classe),  NumberedArray(36, Detrempage::classe),  NumberedArray(39, Boost::classe),  NumberedArray(43, Amnesie::classe),  NumberedArray(46, Hydrocanon::classe),  NumberedArray(50, ZoneEtrange::classe);
-   */
+pb( atkPokeLvl[54], NumberedArray(0, Tourniquet::classe),  NumberedArray(0, Griffe::classe),  NumberedArray(4, MimiQueue::classe),  NumberedArray(8, PistoletAO::classe),  NumberedArray(11, ChocMental::classe),  NumberedArray(15, ComboGriffe::classe),  NumberedArray(18, Vibraqua::classe),  NumberedArray(22, Entrave::classe),  NumberedArray(25, Grincement::classe),  NumberedArray(29, HydroQueue::classe),  NumberedArray(32, PsykoudBoul::classe),  NumberedArray(36, Detrempage::classe),  NumberedArray(39, Boost::classe),  NumberedArray(43, Amnesie::classe),  NumberedArray(46, Hydrocanon::classe),  NumberedArray(50, ZoneEtrange::classe);
+*/
 }
 sf::Texture texturePP[4];
 sf::Texture walkingPP[4];
@@ -946,7 +946,7 @@ void initMaps() {
     feElements.push_back(std::vector<sf::Texture>());
     feEPos.push_back(sf::Vector2f(8 *32 + 25 *32 - 8, 3 *32 + 8));
     feEPos.push_back(sf::Vector2f(8*32+18*32, 11*32));
-    
+
     layer1->loadFromFile(getPath(RESSOURCES_PATH +"maps/fe/fe1.png"));
     layer2->loadFromFile(getPath(RESSOURCES_PATH +"maps/fe/fe2.png"));
     layer3->loadFromFile(getPath(RESSOURCES_PATH +"maps/fe/fe3.png"));
@@ -966,7 +966,7 @@ void initMaps() {
     TAB_TO_POINTER(Collisions::feCol, feCol, 32, 32);
     maps.push_back(new Map(*layer1, *layer2, *layer3, 32, 32, feCol, townMusics[0], feElements, feEPos));
     FREE_TAB(feCol, 32);
-    
+
     std::vector<OpString> feE1 {OpString("fedesc.1"), OpString("fedesc.2"), OpString("fedesc.3")};
     maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(11, 2), feE1, SIDE_UP));
     std::vector<OpString> feE2 {OpString("ppHouse", Main::player.getNameP()), OpString::voidStr, OpString::voidStr};
@@ -999,7 +999,7 @@ void initMaps() {
 
 
     PLANS_RESET;
-      
+
     layer1->loadFromFile(getPath(RESSOURCES_PATH +"maps/pphome/pphome1.png"));
     layer2->loadFromFile(getPath(RESSOURCES_PATH +"maps/pphome/pphome2.png"));
     layer3->loadFromFile(getPath(RESSOURCES_PATH +"maps/pphome/pphome3.png"));
@@ -1061,16 +1061,16 @@ void initBackgrounds() {
 void initKeys() {
     //Définit la langue a initialiser dans les clées
     if(OptionsSave::getParam("lang").getValue() == "fr") {
-      StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/francais.rkeys"));
+        StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/francais.rkeys"));
     } else if(OptionsSave::getParam("lang").getValue() == "esp") {
-      StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/espanol.rkeys"));
+        StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/espanol.rkeys"));
     } else {
-      StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/english.rkeys"));
+        StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/english.rkeys"));
     }
 }
 
 void init() {
-  oplog("Keys initialization");
+    oplog("Keys initialization");
     initKeys();
     oplog("Items initialization");
     initItems();

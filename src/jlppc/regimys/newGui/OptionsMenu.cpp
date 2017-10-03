@@ -7,7 +7,7 @@
 UNS
 
 void OptionsMenu::initStrings() {
-    langFr.setString(L"FranÃ§ais");
+    langFr.setString(L"Français");
     langFr.setFont(Main::mainframe.font);
     langFr.setCharacterSize(FONT_SIZE_DEFAULT);
     langEng.setString("English");
@@ -302,7 +302,7 @@ int OptionsMenu::boucleLang() {
                 curPosOptI = 3;
             }
         } else if(isKeyPressed(sf::Keyboard::Down)) {
-	  Main::mainframe.mainmenu.bruitArr.play();
+            Main::mainframe.mainmenu.bruitArr.play();
             curPosOptI++;
             if(curPosOptI >= 4) {
                 curPosOptI = 0;

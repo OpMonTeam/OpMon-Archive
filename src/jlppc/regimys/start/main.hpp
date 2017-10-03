@@ -84,9 +84,9 @@ sf::Clock counting the number of milliseconds passed since the beginning of the 
 extern sf::Clock ticks;
 /**
 Returns the path depending of the system.
-By default, please use the "/" separator. 
+By default, please use the "/" separator.
 Then, if the os is Windows, this function will change the "/" by "\".
-If you use the "\" separator in the path given, 
+If you use the "\" separator in the path given,
 nothing will change, on unix systems and on Windows systems.
 */
 std::string getPath(std::string const& path);
@@ -106,24 +106,24 @@ class MainFrame;
 Namespace containing the main contents of the game
 */
 namespace Main {
-  /**
-     The game's main
-  */
-  void main();
-  //->Useless (I should delete this variable, but I need to check some things first)
-  extern long startTime;
-  //  extern std::string sep;
-  // extern bool reboot;
-  /**
-     Contains the player
-  */
-  extern Player player;
-  /**
-     Contains the frame, and all the elements
-  */
-  extern MainFrame mainframe;
+/**
+   The game's main
+*/
+void main();
+//->Useless (I should delete this variable, but I need to check some things first)
+extern long startTime;
+//  extern std::string sep;
+// extern bool reboot;
+/**
+   Contains the player
+*/
+extern Player player;
+/**
+   Contains the frame, and all the elements
+*/
+extern MainFrame mainframe;
 
-  
+
 
 }
 
