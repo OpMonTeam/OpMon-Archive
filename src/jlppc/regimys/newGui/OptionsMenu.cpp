@@ -7,13 +7,13 @@
 UNS
 
 void OptionsMenu::initStrings() {
-    langFr.setString("Fran\u00E7ais");
+    langFr.setString("Francais");
     langFr.setFont(Main::mainframe.font);
     langFr.setCharacterSize(FONT_SIZE_DEFAULT);
     langEng.setString("English");
     langEng.setFont(Main::mainframe.font);
     langEng.setCharacterSize(FONT_SIZE_DEFAULT);
-    langEsp.setString("Espa\u00F1ol");
+    langEsp.setString("Espanol");
     langEsp.setFont(Main::mainframe.font);
     langEsp.setCharacterSize(FONT_SIZE_DEFAULT);
     txtRetour.setString(kget("options.retour"));
