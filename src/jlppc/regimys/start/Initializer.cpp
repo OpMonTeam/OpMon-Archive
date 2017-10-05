@@ -32,6 +32,7 @@ std::vector<Map*> maps;
 std::vector<sf::Music*> townMusics;
 std::vector<std::vector<sf::Texture> > doorsTextures;
 sf::SoundBuffer doorSoundBuffer;
+sf::SoundBuffer shopDoorSoundBuffer;
 
 std::vector<sf::Texture> kidTextures;
 std::vector<sf::Texture> kiwaiTextures;
@@ -877,7 +878,9 @@ void initTextures() {
     }
     doorsTextures.push_back(basicDoor);
     doorSoundBuffer.loadFromFile(getPath(RESSOURCES_PATH + "audio/sounds/door.ogg"));
-
+    shopDoorSoundBuffer.loadFromFile(getPath(RESSOURCES_PATH + "audio/sounds/shopdoor.ogg"));
+    Events::doorSound.setBuffer(doorSoundBuffer);
+    Events::shopdoorSound.setBuffer(shopDoorSoundBuffer);
     std::vector<sf::Texture> shopDoor;
     for(unsigned int i = 0; i < 4; i++) {
         std::ostringstream oss;
@@ -893,13 +896,15 @@ void initTextures() {
         kidTextures.push_back(sf::Texture());
         kidTextures[i].loadFromFile(str);
     }
-    Events::doorSound.setBuffer(doorSoundBuffer);
+
     for(unsigned int i = 0; i < 12; i++) {
         std::string str;
         str << RESSOURCES_PATH << getPath("sprites/chara/prof/prof") << i << std::string(".png");
         kiwaiTextures.push_back(sf::Texture());
         kiwaiTextures[i].loadFromFile(str);
     }
+
+
     initEnumsEvents();
 }
 
