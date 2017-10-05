@@ -62,7 +62,11 @@ bool mkdir(const std::string &path) {
     if (result) {
         cout << "creation of folder \"" << path << " failed: errno " << result << endl;
     }
+    #ifndef _WIN32
     return !result;
+    #else
+    return true;//Because mkdir in windows returns false if the directory exists
+    #endif
 }
 
 
