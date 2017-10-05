@@ -13,6 +13,7 @@ http://opmon-game.ga
 
 #include <iostream>
 #include <fstream>
+#include "log.hpp"
 #include "../../utils/File.hpp"
 #include "../playercore/Player.hpp"
 #include <sstream>
@@ -70,12 +71,7 @@ This code define the location of the logs, saves and resources folders.
 /**
 Use in a stream with the << operator. Prints the number of milliseconds passed since the beginning of the game.
 */
-#define PRINT_TICKS "[T = " << ticks.getElapsedTime().asMilliseconds() << "] - "
 
-/**Principal log*/
-extern std::ofstream *rlog;
-/**Error log*/
-extern std::ofstream *rerrLog;
 /**Path to the options save file*/
 extern std::string optSave;
 /**
@@ -127,7 +123,8 @@ extern MainFrame mainframe;
 
 }
 
-void oplog(std::string toSay, bool error = false);
+// Create a directory (if it doesn't exist yet)
+bool mkdir(const std::string &path);
 
 
 /**

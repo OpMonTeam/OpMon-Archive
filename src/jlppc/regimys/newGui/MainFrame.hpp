@@ -20,7 +20,6 @@ Permet d'ouvrir la fenetre du jeu et de charger les ressources essensielles. Con
 #include "OptionsMenu.hpp"
 
 
-#define rLog rlog
 #define charLineDialog 33
 #define kget StringKeys::get
 #define QUIT case sf::Event::Closed:\
