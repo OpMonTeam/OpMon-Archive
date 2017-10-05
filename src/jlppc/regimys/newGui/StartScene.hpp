@@ -7,7 +7,6 @@ http://opmon-game.ga
 #ifndef STARTSCENE_HPP
 #define STARTSCENE_HPP
 
-#include "../start/bigDefines.hxx"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "../start/OpString.hpp"

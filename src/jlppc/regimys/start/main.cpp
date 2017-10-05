@@ -24,8 +24,6 @@ UNS
 /*
 Logs and save files initialization
 */
-ofstream *rlog = new ofstream(LOG_PATH + "log.txt");
-ofstream *rerrLog = new ofstream(LOG_PATH + "errLog.txt");
 string optSave(SAVE_PATH + "optSave.oparams");
 
 sf::Clock ticks;
@@ -45,6 +43,28 @@ string getPath(string const& path) {
     return path;
 #endif
 }
+
+
+/**
+ * Make a new directory (if it does not exist yet).
+ *
+ * @param path
+ * @return `true` if the directory exists; `false` in case of error.
+ */
+bool mkdir(const std::string &path) {
+#ifndef _WIN32
+    const char *cmd = "mkdir -p ";
+#else
+    const char *cmd = "mkdir ";
+#endif
+
+    int result = system((cmd + path).c_str());
+    if (result) {
+        cout << "creation of folder \"" << path << " failed: errno " << result << endl;
+    }
+    return !result;
+}
+
 
 namespace Main {
 //Will be used for checking the internet connection
@@ -66,51 +86,6 @@ Player player;
 MainFrame mainframe;
 
 int starts() {
-    if (!(*rlog)) {
-        cout << "Unable to open the log." << endl;
-
-#ifndef _WIN32
-        string str("mkdir -p ");
-#else
-        string str("mkdir ");
-#endif
-
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-result"//Ignore this warning
-        system((str + RESSOURCES_PATH).c_str());
-        system((str + SAVE_PATH).c_str());
-        system((str + LOG_PATH).c_str());
-#pragma GCC diagnostic pop
-
-        cout << "Retry." << endl;
-        delete(rlog);
-        rlog = new ofstream(LOG_PATH + "log.txt");
-        starts();
-        return 0;
-    }
-
-    if (!(*rerrLog)) {
-        cout << "Unable to open the error log" << endl;
-
-#ifndef _WIN32
-        string str("mkdir -p ");
-#else
-        string str("mkdir ");
-#endif
-
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-result"
-        system((str + RESSOURCES_PATH).c_str());
-        system((str + SAVE_PATH).c_str());
-        system((str + LOG_PATH).c_str());
-#pragma GCC diagnostic pop
-
-        cout << "Retry." << endl;
-        delete(rerrLog);
-        rerrLog = new ofstream(LOG_PATH + "errLog.txt");
-        starts();
-        return 0;
-    }
 
     oplog("Log opening OK. Welcome in OpMon Lazuli.");
     oplog("Version : " + version);
@@ -139,22 +114,15 @@ int starts() {
 
 }
 
-void oplog(string toSay, bool error) {
-    if(error) {
-        (*rerrLog) << PRINT_TICKS << toSay << endl;
-    } else {
-        (*rlog) << PRINT_TICKS << toSay << endl;
-    }
-}
 //The number of errors handeled in the program.
 int errors = 0;
 
 void handleError(string const& errorName, bool fatal) {
     errors++;
     ostringstream osslog;
-    osslog << string("Error  n°") << errors << (string(" : ") + errorName);
+    osslog << string("Error  nÂ°") << errors << (string(" : ") + errorName);
     oplog(osslog.str(), true);
-    cerr << "Error n°" << errors << " : " << errorName << endl;
+    cerr << "Error nÂ°" << errors << " : " << errorName << endl;
     if(errors > 20) { //If the program gets more than 20 errors, it stops.
         cerr << "Too many errors. Closing program. Please verify your installation." << endl;
         oplog("Too many errors. Closing program. Please verify your installation. If the problems persists, warn us.", true);
@@ -222,41 +190,41 @@ std::string& operator<<(std::string &str, char thing[]) {
 #include "../save/Save.hpp"
 int main(int argc, char *argv[]) {
     ticks.restart();
+    if (!initLogStream()) {
+        cout << "Exiting" << endl;
+        return -1;
+    }
+
     Main::versionS += string("Alpha ") + Main::version;
-#ifndef _WIN32
-    string str("mkdir -p ");
-#else
-    string str("mkdir ");
-#endif
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-result"
-    system((str + RESSOURCES_PATH).c_str());
-    system((str + SAVE_PATH).c_str());
-    system((str + LOG_PATH).c_str());
-#pragma GCC diagnostic pop
+
+    if (!mkdir(RESSOURCES_PATH) || !mkdir(SAVE_PATH)) {
+        cout << "Exiting" << endl;
+        return -1;
+    }
+
     //Checking parameters
     if(argc >= 2) {
         FOR_EACH(char *, argv, argc, {)
-                 string str = string(*currentObj);
-        if(str == "--version") {
-        cout << "OpMon Lazuli version " << Main::versionS << endl;
-        cout << "Under GNU GPL 3.0 license" << endl;
-        return 0;
-    } else if(str == "--opt") {
-        if(itor + 1 == argc) {
-                return 2;
+            string str = string(*currentObj);
+            if(str == "--version") {
+                cout << "OpMon Lazuli version " << Main::versionS << endl;
+                cout << "Under GNU GPL 3.0 license" << endl;
+                return 0;
+            } else if(str == "--opt") {
+                if(itor + 1 == argc) {
+                    return 2;
+                } else {
+                    optSave = string(argv[itor + 1]);
+                }
+            } else if(str == "--help") {
+                cout << "--version : Prints the version and quit." << endl;
+                cout << "--help : Prints this message and quit." << endl;
+                cout << "--opt <path> : Changes the options save file's location." << endl;
+                return 0;
             } else {
-                optSave = string(argv[itor + 1]);
+                cout << "Unknown parameters. Skipping." << endl;
             }
-        } else if(str == "--help") {
-        cout << "--version : Prints the version and quit." << endl;
-        cout << "--help : Prints this message and quit." << endl;
-        cout << "--opt <path> : Changes the options save file's location." << endl;
-        return 0;
-    } else {
-        cout << "Unknown parameters. Skipping." << endl;
+        }
     }
-            }
-}
-return Main::starts();
+    return Main::starts();
 }
