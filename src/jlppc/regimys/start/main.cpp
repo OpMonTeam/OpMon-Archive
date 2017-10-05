@@ -65,7 +65,7 @@ bool mkdir(const std::string &path) {
     #ifndef _WIN32
     return !result;
     #else
-    return true;//Because mkdir in windows returns false if the directory exists
+    return true;//Because mkdir in windows returns false if the directory exists$
     #endif
 }
 
