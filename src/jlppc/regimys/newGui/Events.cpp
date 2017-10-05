@@ -44,6 +44,9 @@ DoorEvent::DoorEvent(std::vector<sf::Texture> &doorType, sf::Vector2f const& pos
     this->sprite->move(0, -6);
     if(&doorType[0] == &DoorType::SHOP[0]) {
         this->sprite->move(-4, 0);
+        this->doorType = 1;
+    }else{
+        this->doorType = 0;
     }
 }
 
@@ -104,8 +107,14 @@ void TPEvent::update(Player &player) {
 
 void DoorEvent::action(Player &player) {
     animStarted = 0;
-    doorSound.setVolume(100);
-    doorSound.play();
+    if(doorType == 0){
+        doorSound.setVolume(100);
+        doorSound.play();
+    }else if(doorType == 1){
+        shopdoorSound.setVolume(300);
+        shopdoorSound.play();
+    }
+
 }
 
 void DoorEvent::update(Player &player) {
