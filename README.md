@@ -25,10 +25,11 @@ English is not our native language, but we do our best! If you see some errors, 
 
 If there are problems understanding the old commits or monthly reports that are in French, don't hesitate to ask!
 
-__The current game version is Alpha 0.12.1s.__ Download link: <a href="http://opmon-game.ga/downloads"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Resources/Other/version_logo.png" alt="Logo Téléchargement"></a>
+__The current game version is Alpha 0.13__ Download link: <a 
+href="http://opmon-game.ga/downloads"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Resources/Other/version_logo.png" alt="Logo Téléchargement"></a>
 
-__The next game version will be Alpha 0.13__ : Event improvements, added characters, and added descriptions on objects
-__The next game version will be Alpha 0.13.1__: Added descriptions on objects, Map system recreation and code fixes
+__The next game version will be Alpha 0.13.1__: Added descriptions on 
+objects, Map system recreation and code fixes
 __After : ALpha 0.14__: Added new objects descriptions, new characters (mom, rival) and the start of the story
 * [Look the ROADMAP](https://github.com/jlppc/OpMon/wiki/ROADMAP)
 * [Look the Releases changelog](https://github.com/jlppc/OpMon/wiki/Releases)
@@ -46,9 +47,9 @@ __After : ALpha 0.14__: Added new objects descriptions, new characters (mom, riv
 <a href="http://opmon-game.ga">Site web du jeu</a><br/>
 <a href="https://github.com/jlppc/OpMon/blob/master/Credits.md">Crédits</a><br/>
 <a href="https://github.com/jlppc/Site-OpMon">Dépot du site web du jeu</a><br/><br/>
-<br/>Version du jeu : Alpha 0.12.1s | Téléchargement : <a href="http://opmon-game.ga"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Resources/Other/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
+<br/>Version du jeu : Alpha 0.13 | Téléchargement : <a 
+href="http://opmon-game.ga"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Resources/Other/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 Prochaines versions :<ul>
-<li>Alpha 0.13 : Amelioration des evenements (les objets dans les batiments) et ajout de PNJs</li>
 <li>Alpha 0.13.1 : Ajout de descriptions d'objets et ajout du nouveau système de maps</li>
 <li>Alpha 0.14 : Ajout de nouveaux PNJs et du début de l'histoire</li>
 </ul>

@@ -53,7 +53,7 @@ namespace Main {
 //->Useless
 string trainers[] = {"Brice", "Evan", "Mael", "Jlppc", "Red", "Blue", "Nikolai", "N", "Belladonis", "Aristote", "Giovanni", "Flora", "Silver", "Jules Cesar", "Brahim"};
 
-string version = "0.12.1";
+string version = "0.13";
 string versionS;
 Player player;
 /*#ifdef _WIN32
