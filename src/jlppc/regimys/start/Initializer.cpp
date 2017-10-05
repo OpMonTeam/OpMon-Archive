@@ -1030,7 +1030,7 @@ void initMaps() {
     TAB_TO_POINTER(Collisions::laboCol, laboCol, 16, 32);
     maps.push_back(new Map(*layer1, *layer2, *layer3, 32, 16, laboCol, townMusics[1]));
     FREE_TAB(laboCol, 16);
-    maps[2]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(15, 15), sf::Vector2i(21, 22), 0, Side::TO_DOWN, SIDE_DOWN));
+    maps[2]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(15, 15), sf::Vector2i(20, 21), 0, Side::TO_DOWN, SIDE_DOWN));
     //Dialogs
     std::vector<OpString> felaboC1 {OpString("prof.dialog.1"), OpString("prof.dialog.2"), OpString("prof.dialog.3")};
 
