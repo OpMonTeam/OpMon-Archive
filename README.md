@@ -8,7 +8,7 @@ OPMon is a Pokémon-inspired game project imagined in 2012 and started in septem
 
 ### Links
 * [Opmon Lazuli's website](http://opmon-game.ga)
-* [Development news (Sorry, it's in French)](https://github.com/jlppc/OpMon/wiki/Journal-du-développement)
+* [Development news](https://translate.google.com/translate?act=url&depth=1&hl=fr&ie=UTF8&prev=_t&rurl=translate.google.fr&sl=fr&sp=nmt4&tl=en&u=https://github.com/jlppc/OpMon/wiki/Journal-du-d%25C3%25A9veloppement)
 * [Monthly Reports](https://github.com/jlppc/OpMon/wiki/Monthly-reports)
 * [Credits](https://github.com/jlppc/OpMon/blob/master/Credits.md)
 * [Github repo for the game website, opmon-game.ga](https://github.com/jlppc/Site-OpMon)
