@@ -917,7 +917,7 @@ void initSprites() {
     initBackgrounds();
     oplog("Animations initialization");
     Animations::initAnims();
-
+    Main::mainframe.initEnd = true;
     //Init Sprites
 
 }
