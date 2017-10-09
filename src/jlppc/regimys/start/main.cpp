@@ -149,6 +149,8 @@ int quit(int const& returns) {
     }
     */
     OptionsSave::saveParams(optSave);//Saving parameters
+    oplog("Waiting for the initialization");
+    Main::mainframe.mapsInit.wait();
     oplog("Deleting resources in the memory");
     for(Map *map : Initializer::maps) {//Deleting the maps
         delete(map);
