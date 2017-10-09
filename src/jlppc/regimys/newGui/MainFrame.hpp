@@ -90,6 +90,8 @@ public:
 
     bool fullScreen = false;
 
+  bool initEnd = false;
+  
     MainFrame();
 
 
