@@ -22,7 +22,7 @@ private:
 
   int oldStats[2][5];
   Type oldTypes[2][2];
-  int oldEspece[2];
+  Espece* oldSpecies[2];
   Attaque oldAttacks[2][4];
 
   OpMon *op1 = nullptr;
