@@ -124,7 +124,12 @@ OpMon::OpMon(string nickname, Species *species, int level, Attack *attack1, Atta
 
     //TODO attaquesChoix Quand les attaques seront ok
     this->nature = nature;
-    this->nickname = nickname;
+    if(nickname.empty()){
+      this->nickname = species->getName();
+    }else{
+      this->nickname = nickname;
+    }
+    
     tauxCapture = species->getTauxDeCapture();
     HP = statHP;
     type1 = species->getType1();
