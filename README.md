@@ -4,7 +4,7 @@
 
 # Welcome to Project OPMon Lazuli!
 
-OPMon is a Pokémon-inspired game project imagined in 2012 and started in september 2016. This game is totally open source, allowing to the fans to come realize their dreams! You can add OpMons, attacks, items, and many other things! You just have to submit your modifications and maybe we'll add them to the game! And if you do a lot of good modifications, you can become a collaborator!<br/><br/>
+OPMon is a Pokémon-inspired game project imagined in 2012 and started in september 2016. This game is totally open source, allowing the fans to come realize their dreams! You can add OpMons, attacks, items, and many other things! You just have to submit your modifications and maybe we will add them to the game! And if you submit a lot of good changes, you can become a collaborator!<br/><br/>
 
 ### Links
 * [Opmon Lazuli's website](http://opmon-game.ga)
@@ -63,11 +63,11 @@ Prochaines versions :<ul>
 ### Informations generales:
 <br/>
 OpMon vient d'un jeu imaginé en 2012 et débuté en septembre 2016, c'est un clone de la célèbre licence Pokémon, appartenant à Nintendo. 
-Ce jeu est totalement open-source, ce qui permet aux gens de venir realiser leurs rêves les plus fous! 
+Ce jeu est totalement open-source, ce qui permet aux gens de venir réaliser leurs rêves les plus fous! 
 Vous pouvez ajouter des OpMons, des attaques, des items, et autres! 
-Vous n'avez qu'a nous proposer vos modifications et nous les ajouterons peut-être au jeu. 
-Et si vous nous proposez beaucoup de bonnes modifications, et qu'elles sont acceptées, vous deviendrez peut-être collaborateur!<br/>
-Nous sommes plusieurs sur le projet : Jlppc, le programmeur et créateur de l'histoire et des personnages ; Navet56, le graphiste et correcteur ; et d'autres contributeurs, merci à eux !<br/>
+Vous n'avez qu'à nous proposer vos modifications et nous les ajouterons peut-être au jeu. 
+Si vous nous proposez beaucoup de bonnes modifications, et qu'elles sont acceptées, vous deviendrez peut-être collaborateur!<br/>
+Nous sommes plusieurs sur le projet : Jlppc, le programmeur et créateur de l'histoire et des personnages ; Navet56, le graphiste et correcteur ; et d'autres contributeurs, comme Imperator Dei, qui a corrigé les fautes d'orthographe sur la version française,  merci à eux !<br/>
 Contacts : jlppcprog@ntymail.com pour la programmation | evandib@gmail.com pour les graphismes<br/>
 Si vous avez des questions à poser, n'hésitez pas à les demander dans la section F.A.Q. du wiki ou a nous contacter par mail!<br/><br/><br/>
 
