@@ -855,30 +855,61 @@ sf::Texture walkingPP[4];
 sf::Texture walkingPP2[4];
 void initTextures() {
     using namespace Side;
-    texturePP[TO_DOWN].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp0.png"));
-    texturePP[TO_RIGHT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp1.png"));
-    texturePP[TO_LEFT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp2.png"));
-    texturePP[TO_UP].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp3.png"));
-    walkingPP[TO_DOWN].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp0.png"));
-    walkingPP[TO_RIGHT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp1.png"));
-    walkingPP[TO_LEFT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp2.png"));
-    walkingPP[TO_UP].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp3.png"));
-    walkingPP2[TO_DOWN].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp20.png"));
-    walkingPP2[TO_RIGHT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp21.png"));
-    walkingPP2[TO_LEFT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp22.png"));
-    walkingPP2[TO_UP].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp23.png"));
+    
+    if(!texturePP[TO_DOWN].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp0.png"))){
+      handleError("Failed to load one of the PP sprites", false);
+    }
+    if(!texturePP[TO_RIGHT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp1.png"))){
+      handleError("Failed to load one of the PP sprites", false);
+    }
+    if(!texturePP[TO_LEFT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp2.png"))){
+      handleError("Failed to load one of the PP sprites", false);
+    }
+    if(!texturePP[TO_UP].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp3.png"))){
+      handleError("Failed to load one of the PP sprites", false);
+    }
+    if(!walkingPP[TO_DOWN].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp0.png"))){
+      handleError("Failed to load one of the PP sprites", false);
+    }
+    if(!walkingPP[TO_RIGHT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp1.png"))){
+      handleError("Failed to load one of the PP sprites", false);
+    }
+    if(!walkingPP[TO_LEFT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp2.png"))){
+      handleError("Failed to load one of the PP sprites", false);
+    }
+    if(!walkingPP[TO_UP].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp3.png"))){
+      handleError("Failed to load one of the PP sprites", false);
+    }
+    if(!walkingPP2[TO_DOWN].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp20.png"))){
+      handleError("Failed to load one of the PP sprites", false);
+    }
+    if(!walkingPP2[TO_RIGHT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp21.png"))){
+      handleError("Failed to load one of the PP sprites", false);
+    }
+    if(!walkingPP2[TO_LEFT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp22.png"))){
+      handleError("Failed to load one of the PP sprites", false);
+    }
+    if(!walkingPP2[TO_UP].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp23.png"))){
+      handleError("Failed to load one of the PP sprites", false);
+    }
 
     std::vector<sf::Texture> basicDoor;
     for(unsigned int i = 0; i < 4; i++) {
         std::ostringstream oss;
         oss << RESSOURCES_PATH << getPath("animations/basicdoor/basic_door") << i + 1 << ".png";
         sf::Texture txtr;
-        txtr.loadFromFile(oss.str());
+        if(!txtr.loadFromFile(oss.str())){
+	  handleError("Failed to load one of the basic door sprites", false);
+	}
         basicDoor.push_back(txtr);
     }
     doorsTextures.push_back(basicDoor);
-    doorSoundBuffer.loadFromFile(getPath(RESSOURCES_PATH + "audio/sounds/door.ogg"));
-    shopDoorSoundBuffer.loadFromFile(getPath(RESSOURCES_PATH + "audio/sounds/shopdoor.ogg"));
+    if(!doorSoundBuffer.loadFromFile(getPath(RESSOURCES_PATH + "audio/sounds/door.ogg"))){
+      handleError("Failed to load the door sound.", false);
+    }
+    if(!shopDoorSoundBuffer.loadFromFile(getPath(RESSOURCES_PATH + "audio/sounds/shopdoor.ogg"))){
+      handleError("Failed to load the shop door sound.", false);
+    }
     Events::doorSound.setBuffer(doorSoundBuffer);
     Events::shopdoorSound.setBuffer(shopDoorSoundBuffer);
     std::vector<sf::Texture> shopDoor;
@@ -886,22 +917,28 @@ void initTextures() {
         std::ostringstream oss;
         oss << RESSOURCES_PATH << getPath("animations/shopdoor/shop_door") << i + 1 << std::string(".png");
         sf::Texture txtr;
-        txtr.loadFromFile(oss.str());
+        if(!txtr.loadFromFile(oss.str())){
+	  handleError("Failed to load the shop door sprite.", false);
+	}
         shopDoor.push_back(txtr);
     }
     doorsTextures.push_back(shopDoor);
     for(unsigned int i = 0; i < 12; i++) {
         std::string str;
         str << RESSOURCES_PATH << getPath("sprites/chara/kid/kid") << i << std::string(".png");
-        kidTextures.push_back(sf::Texture());
-        kidTextures[i].loadFromFile(str);
+	kidTextures.push_back(sf::Texture());
+        if(!kidTextures[i].loadFromFile(str)){
+	  handleError("Failed to load one of the kid sprites", false);
+	}
     }
 
     for(unsigned int i = 0; i < 12; i++) {
         std::string str;
         str << RESSOURCES_PATH << getPath("sprites/chara/prof/prof") << i << std::string(".png");
         kiwaiTextures.push_back(sf::Texture());
-        kiwaiTextures[i].loadFromFile(str);
+        if(!kiwaiTextures[i].loadFromFile(str)){
+	  handleError("Failed to load one of the prof sprites", false);
+	}
     }
 
 
