@@ -29,7 +29,7 @@ public:
     */
     bool addOpMon(OpMon *toAdd);
     /**Suprime de numberième pokémon dans l'équipe*/
-    void removeOp(int number);
+    OpMon* removeOp(int number);
     /**
     Operateur permettant de recuperer le Pokémon a la place donnée en parametre
     */
@@ -43,15 +43,12 @@ public:
     void operator-=(int id) {
         removeOp(id);
     }
-    /**Opmon vide*/
-    static OpMon *PNULL;
-
     void save();
 
 private:
     //->Useless
     int nbreOfOp = 6;
-    OpMon *opteam[6] = {PNULL, PNULL, PNULL, PNULL, PNULL, PNULL};
+    OpMon *opteam[6] = {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr};
     std::string name;
 };
 

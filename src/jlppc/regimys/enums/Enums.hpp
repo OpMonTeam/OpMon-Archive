@@ -81,5 +81,4 @@ const float calcEfficacite(int atk, int def1, int def2);
 }
 
 
-
 #endif /* ENUMS_HPP */
