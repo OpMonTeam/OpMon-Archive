@@ -206,21 +206,25 @@ bool OpMon::captured(I_Opball const &Opball) {
 }
 
 void OpMon::setStat(string const &stat, int newStat) {
-    if (stat == "atk") {
-        statATK = newStat;
-    } else if (stat == "def") {
-        statDEF = newStat;
-    } else if (stat == "atkspe") {
-        statATKSPE = newStat;
-    } else if (stat == "defspe") {
-        statDEFSPE = newStat;
-    } else if (stat == "spe") {
-        statSPE = newStat;
-    } else if (stat == "hp") {
-        statHP = newStat;
-    } else {
-
-    }
+  if (stat == "atk") {
+    statATK = newStat;
+  } else if (stat == "def") {
+    statDEF = newStat;
+  } else if (stat == "atkspe") {
+    statATKSPE = newStat;
+  } else if (stat == "defspe") {
+    statDEFSPE = newStat;
+  } else if (stat == "spe") {
+    statSPE = newStat;
+  } else if (stat == "hp") {
+    statHP = newStat;
+  } else if(stat == "eva"){
+    statEVA = newStat;
+  } else if(stat == "acc"){
+    statACC = newStat;
+  } else {
+    
+  }
 }
 
 void OpMon::levelUp() {
