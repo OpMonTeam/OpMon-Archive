@@ -34,7 +34,7 @@ Species::Species(int atk, int def, int atkSpe, int defSpe, int spe, int hp, std:
     this->baseAtkSpe = atkSpe;
     this->baseDefSpe = defSpe;
     this->baseVit = spe;
-    this->nom = name;
+    this->name = name;
     this->baseHP = hp;
     this->type1 = type1;
     this->type2 = type2;

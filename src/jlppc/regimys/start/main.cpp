@@ -158,6 +158,11 @@ int quit(int const& returns) {
     for(sf::Music *mus : Initializer::townMusics) {//Deleting the maps' music
         delete(mus);
     }
+    for(unsigned short i = 0; i < 6; i++){
+      if(Main::player.getOp(i) != nullptr){
+	delete(Main::player.getOp(i));
+      }
+    }
     ostringstream osslog;
     osslog << "End of the program. Return " << returns;
     oplog(osslog.str());
