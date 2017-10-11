@@ -15,7 +15,7 @@
 #include "../../utils/File.hpp"
 #include "Initializer.hpp"
 #include "StringKeys.hpp"
-#include "../newGui/MainFrame.hpp"
+#include "../gui/MainFrame.hpp"
 #include "../save/OptionsSave.hpp"
 #include "../save/InternalFiles.hpp"
 

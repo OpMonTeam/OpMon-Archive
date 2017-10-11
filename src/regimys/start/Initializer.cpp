@@ -4,15 +4,15 @@
 #include "StringKeys.hpp"
 #include "main.hpp"
 #include <sstream>
-#include "../newGui/MainFrame.hpp"
+#include "../gui/MainFrame.hpp"
 #include <fstream>
 #include "../save/OptionsSave.hpp"
-#include "../newGui/Animations.hpp"
+#include "../gui/Animations.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-#include "../newGui/Events.hpp"
+#include "../gui/Events.hpp"
 #include "OpString.hpp"
-#include "../newGui/Overworld.hpp"
+#include "../gui/Overworld.hpp"
 #include "../save/InternalFiles.hpp"
 
 #define ATK push_back(Stats::ATK)
@@ -855,7 +855,7 @@ sf::Texture walkingPP[4];
 sf::Texture walkingPP2[4];
 void initTextures() {
     using namespace Side;
-    
+
     if(!texturePP[TO_DOWN].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp0.png"))){
       handleError("Failed to load one of the PP sprites", false);
     }
