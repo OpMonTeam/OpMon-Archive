@@ -47,7 +47,7 @@ Attack *newAtk(std::string name) {
     IF_ATK(Detritus)
     IF_ATK(Devoreve)
     IF_ATK(DoubleDard)
-    return NULL;
+    return nullptr;
 
 
 }

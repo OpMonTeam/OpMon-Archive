@@ -110,6 +110,8 @@
 		<Unit filename="src/jlppc/regimys/evolution/Evolution.hpp" />
 		<Unit filename="src/jlppc/regimys/evolution/evolutionInclude.hxx" />
 		<Unit filename="src/jlppc/regimys/evolution/evolutions.hpp" />
+		<Unit filename="src/jlppc/regimys/fight/Fight.cpp" />
+		<Unit filename="src/jlppc/regimys/fight/Fight.hpp" />
 		<Unit filename="src/jlppc/regimys/newGui/Animations.cpp" />
 		<Unit filename="src/jlppc/regimys/newGui/Animations.hpp" />
 		<Unit filename="src/jlppc/regimys/newGui/Dialog.cpp" />

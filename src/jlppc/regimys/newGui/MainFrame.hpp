@@ -81,7 +81,7 @@ public:
     sf::Sound dialogPass;
     sf::Thread mapsInit;
 
-    sf::Thread *windowRefresh = NULL;
+    sf::Thread *windowRefresh = nullptr;
 
     Overworld overworld;
     StartScene startscene;
@@ -91,7 +91,7 @@ public:
     bool fullScreen = false;
 
   bool initEnd = false;
-  
+
     MainFrame();
 
 
