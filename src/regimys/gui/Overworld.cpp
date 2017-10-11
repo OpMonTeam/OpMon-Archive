@@ -87,194 +87,143 @@ int Overworld::tp(int toTp, sf::Vector2i pos, bool scroll) {
     return 0;
 }
 #define UNLOCK_TP  Events::justTP = false;
-void Overworld::up() {
-    if(anim == -1 && !movementLock) {
-        /*if(ppDir != TO_UP) {
-            ppDir = TO_UP;
-            return;
-        }*/
-        ppDir = TO_UP;
-        startFrames = frames;
-        anim = TO_UP;
 
-        if(debugMode) {
-            UNLOCK_TP
-            moving = TO_UP;
-            ppPosY--;
-            std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY - 1) CASES));
-            if(nextEvents.size() > 0) {
-                for(Event *nextEvent : nextEvents) {
-                    if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN) {
-                        nextEvent->action(Main::player);
-                    }
-                }
-            }
-            return;
-        }
-        if(ppPosY - 1 >= 0) {
-            if(actual->getPassArr()[(int)(ppPosY -1)][(int)ppPosX] == 0) {
-                std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY - 1) CASES));
-                for(Event *nextEvent : nextEvents) {
-                    if(!nextEvent->isPassable()) {
-                        return;
-                    }
-                }
-                UNLOCK_TP
-                moving = TO_UP;
-                ppPosY--;
+void Overworld::move(int direction){
+  if(anim == -1 && !movementLock){
+    ppDir = direction;
+    startFrames = frames;
+    anim = direction;
 
-                if(nextEvents.size() > 0) {
-                    for(Event *nextEvent : nextEvents) {
-                        if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN && ((nextEvent->getSide() & SIDE_UP) == SIDE_UP)) {
-                            nextEvent->action(Main::player);
-                        }
-                    }
-                }
-            }
-
-        }
+    if(debugMode){
+      UNLOCK_TP
+	moving = direction;
+      switch(direction){
+      case TO_UP:
+	ppPosY--;
+	break;
+      case TO_DOWN:
+	ppPosY++;
+	break;
+      case TO_LEFT:
+	ppPosX--;
+	break;
+      case TO_RIGHT:
+	ppPosX++;
+	break;
+      }
+      std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, ppPosY CASES));
+      if(nextEvents.size() > 0) {
+	for(Event *nextEvent : nextEvents) {
+	  if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN) {
+	    nextEvent->action(Main::player);
+	  }
+	}
+      }
+      return;
     }
+    if(checkPass(direction)){
+      UNLOCK_TP
+	moving = TO_UP;
+      switch(direction){
+      case TO_UP:
+	ppPosY--;
+	break;
+      case TO_DOWN:
+	ppPosY++;
+	break;
+      case TO_LEFT:
+	ppPosX--;
+	break;
+      case TO_RIGHT:
+	ppPosX++;
+	break;
+      }
+      std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, ppPosY CASES));
+      if(nextEvents.size() > 0) {
+	for(Event *nextEvent : nextEvents) {
+	  if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN && ((nextEvent->getSide() & SIDE_UP) == SIDE_UP)) {
+	    nextEvent->action(Main::player);
+	  }
+	}
+      }
+    }
+    
+  }
+}
+
+bool Overworld::checkPass(int direction){
+  switch(direction){
+  case TO_UP:
+    if(ppPosY - 1 >= 0) {
+      if(actual->getPassArr()[(int)(ppPosY - 1)][(int)ppPosX] == 0) {
+	std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY - 1) CASES));
+	for(Event *nextEvent : nextEvents) {
+	  if(!nextEvent->isPassable()) {
+	    return false;
+	  }
+	  return true;
+	}
+      }
+    }
+    return false;
+  case TO_DOWN:
+    if(ppPosY - 1 >= 0) {
+      if(actual->getPassArr()[(int)(ppPosY + 1)][(int)ppPosX] == 0) {
+	std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY + 1) CASES));
+	for(Event *nextEvent : nextEvents) {
+	  if(!nextEvent->isPassable()) {
+	    return false;
+	  }
+	  return true;
+	}
+      }
+    }
+    return false;
+  case TO_LEFT:
+    if(ppPosY - 1 >= 0) {
+      if(actual->getPassArr()[(int) ppPosY][(int) (ppPosX - 1)] == 0) {
+	std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX - 1) CASES, ppPosY CASES));
+	for(Event *nextEvent : nextEvents) {
+	  if(!nextEvent->isPassable()) {
+	    return false;
+	  }
+	  return true;
+	}
+      }
+    }
+    return false;
+  case TO_RIGHT:
+    if(ppPosY - 1 >= 0) {
+      if(actual->getPassArr()[(int) ppPosY][(int) (ppPosX + 1)] == 0) {
+	std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX + 1) CASES, ppPosY CASES));
+	for(Event *nextEvent : nextEvents) {
+	  if(!nextEvent->isPassable()) {
+	    return false;
+	  }
+	  return true;
+	}
+      }
+    }
+    return false;
+  }
+  return false;
+}
+
+void Overworld::up() {
+  move(TO_UP);
 }
 
 void Overworld::down() {
-    if(anim == -1 && !movementLock) {//Si une animation n'est pas déjà en cours
-        /*if(ppDir != TO_DOWN) {
-            ppDir = TO_DOWN;
-            return;
-        }*/
-        ppDir = TO_DOWN;
-        startFrames = frames;
-        anim = TO_DOWN;
-        if(debugMode) {
-            UNLOCK_TP
-            moving = TO_DOWN;
-            ppPosY++;
-            std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY + 1) CASES));
-            if(nextEvents.size() > 0) {
-                for(Event *nextEvent : nextEvents) {
-                    if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN) {
-                        nextEvent->action(Main::player);
-                    }
-                }
-            }
-            return;
-        }
-        if(ppPosY + 1 < actual->getH()) {
-            if(actual->getPassArr()[(int)(ppPosY + 1)][(int)ppPosX] == 0) {//Vérification des boites de collisions
-                std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY + 1) CASES));
-                for(Event *nextEvent : nextEvents) {
-                    if(!nextEvent->isPassable()) {
-                        return;
-                    }
-                }
-                UNLOCK_TP
-                moving = TO_DOWN;
-                ppPosY++;
-                if(nextEvents.size() > 0) {
-                    for(Event *nextEvent : nextEvents) {
-                        if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN && ((nextEvent->getSide() & SIDE_DOWN) == SIDE_DOWN)) {
-                            nextEvent->action(Main::player);
-                        }
-                    }
-                }
-            }
-
-        }
-    }
+  move(TO_DOWN);
 }
 
 void Overworld::right() {
-    if(anim == -1 && !movementLock) {
-        /*if(ppDir != TO_RIGHT) {
-            ppDir = TO_RIGHT;
-            return;
-        }*/
-        ppDir = TO_RIGHT;
-        startFrames = frames;
-        anim = TO_RIGHT;
-        if(debugMode) {
-            UNLOCK_TP
-            moving = TO_RIGHT;
-            ppPosX++;
-            std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX + 1) CASES, ppPosY CASES));
-            if(nextEvents.size() > 0) {
-                for(Event *nextEvent : nextEvents) {
-                    if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN) {
-                        nextEvent->action(Main::player);
-                    }
-                }
-            }
-            return;
-        }
-        if(ppPosX + 1 < actual->getW()) {
-            if(actual->getPassArr()[(int)(ppPosY)][(int)(ppPosX + 1)] == 0 || actual->getPassArr()[(int)(ppPosY)][(int)(ppPosX + 1)] == 5) {
-                std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX + 1) CASES, ppPosY CASES));
-                for(Event *nextEvent : nextEvents) {
-                    if(!nextEvent->isPassable()) {
-                        return;
-                    }
-                }
-                UNLOCK_TP
-                moving = TO_RIGHT;
-                ppPosX++;
-                if(nextEvents.size() > 0) {
-                    for(Event *nextEvent : nextEvents) {
-                        if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN && ((nextEvent->getSide() & SIDE_RIGHT) == SIDE_RIGHT)) {
-                            nextEvent->action(Main::player);
-                        }
-                    }
-                }
-            }
-        }
-    }
+  move(TO_RIGHT);
 }
 
 
 void Overworld::left() {
-    if(anim == -1 && !movementLock) {
-        /*if(ppDir != TO_LEFT) {
-            ppDir = TO_LEFT;
-            return;
-        }*/
-        ppDir = TO_LEFT;
-        startFrames = frames;
-        anim = TO_LEFT;
-        if(debugMode) {
-            UNLOCK_TP
-            moving = TO_LEFT;
-            ppPosX--;
-            std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX - 1) CASES, ppPosY CASES));
-            if(nextEvents.size() > 0) {
-                for(Event *nextEvent : nextEvents) {
-                    if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN) {
-                        nextEvent->action(Main::player);
-                    }
-                }
-            }
-            return;
-        }
-        if(ppPosX - 1 >= 0) {
-            if(actual->getPassArr()[(int)(ppPosY)][(int)(ppPosX - 1)] == 0) {
-                std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX - 1) CASES, ppPosY CASES));
-                for(Event *nextEvent : nextEvents) {
-                    if(!nextEvent->isPassable()) {
-                        return;
-                    }
-                }
-                UNLOCK_TP
-                moving = TO_LEFT;
-                ppPosX--;
-                if(nextEvents.size() > 0) {
-                    for(Event *nextEvent : nextEvents) {
-                        if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN && ((nextEvent->getSide() & SIDE_LEFT) == SIDE_LEFT)) {
-                            nextEvent->action(Main::player);
-                        }
-                    }
-                }
-            }
-
-        }
-    }
+  move(TO_LEFT);
 }
 
 #undef UNLOCK_TP
