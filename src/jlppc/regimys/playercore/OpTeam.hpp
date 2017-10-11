@@ -34,6 +34,9 @@ public:
     Operateur permettant de recuperer le Pokémon a la place donnée en parametre
     */
     OpMon *operator[](int id) const;
+    OpMon *getOp(int id) const{
+        return (*this)[id];
+    }
     /**Renvoie true si l'équipe est K.O*/
     bool isKo() const ;
     int getSize() const ;

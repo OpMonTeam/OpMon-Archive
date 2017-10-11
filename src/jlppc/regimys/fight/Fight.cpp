@@ -1,14 +1,15 @@
 #include "Fight.hpp"
+#include "../start/main.hpp"
 
-Fight::Fight(Equipe *teamVS){
+Fight::Fight(OpTeam *teamVS){
   this->teamVS = teamVS;
 }
 
 void Fight::startFight(){
   while(!(Main::player.isKo() || teamVS->isKo())){
     op1 = Main::player.getOp(playerOpId);
-    op2 = teamVS->getOp(npcId);
-    pokeFight();
+    op2 = (*teamVS)[npcId];
+    opFight();
   }
 }
 
@@ -47,14 +48,14 @@ void Fight::fightLoop(){
   bool defCanAttack = true;
 
   bool endOfMatch = false;
-  
+
   while(!endOfMatch){
     //Choose atk
   }
-  
-  
+
+
 }
 
 void Fight::opFight(){
-  
+
 }

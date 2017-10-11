@@ -59,7 +59,7 @@ Item::Item(string name, bool usable, bool usableInFight, bool givable, int categ
 
 Item *Item::getItem(string const &name)  {
     for (unsigned int i = 0; i < ITEM_NUMBER; i++) {
-        if(itemsLst[i] != NULL) {
+        if(itemsLst[i] != nullptr) {
             if (itemsLst[i]->getName() == name) {
                 return itemsLst[i];
             }
@@ -71,7 +71,7 @@ Item *Item::getItem(string const &name)  {
 
 Item *Item::getItem(int id2)  {
     unsigned int id = id2;
-    if (!(id < 0 || id > ITEM_NUMBER || itemsLst[id] != NULL)) {
+    if (!(id < 0 || id > ITEM_NUMBER || itemsLst[id] != nullptr)) {
         return itemsLst[id];
     } else {
         return itemsLst[0];

@@ -53,8 +53,8 @@ int Overworld::tp(int toTp, sf::Vector2i pos, bool scroll) {
         anim = -1;
     }
     actual = Initializer::maps[toTp];
-    if(actual == NULL) {
-        handleError("Error changing map : actual == NULL", true);
+    if(actual == nullptr) {
+        handleError("Error changing map : actual == nullptr", true);
     }
     scrolling = scroll;
     character.setPosition(8 CASES + pos.x CASES - 16, 8 CASES + pos.y CASES);
