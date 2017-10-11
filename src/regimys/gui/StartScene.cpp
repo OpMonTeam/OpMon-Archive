@@ -163,7 +163,7 @@ int StartScene::boucle1() {
         case sf::Event::KeyPressed:
             if(Main::mainframe.events.key.code == sf::Keyboard::Return) {
                 if (pName.empty()) {
-                    pName = "Céchine";
+                    pName = "Doku";
                 }
                 continuer = false;
             }
