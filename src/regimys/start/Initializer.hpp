@@ -20,7 +20,7 @@ Contient la définition des methodes qui permettent d'initialiser les éléments
 #define ATK_ADD_LIST(OpID, atkLength) pb(atkOpLvl[(OpId)], arr##OpId , (atkLength) )
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-#include "../newGui/Elements.hpp"
+#include "../gui/Elements.hpp"
 class Map;
 //->NoDoc
 namespace Initializer {
