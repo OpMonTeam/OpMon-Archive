@@ -337,7 +337,7 @@ int Overworld::boucle() {
             Main::mainframe.window.pollEvent(Main::mainframe.events);
 
             switch(Main::mainframe.events.type) {
-                QUIT
+                RETURN_ON_CLOSE_EVENT
 
             case sf::Event::KeyPressed:
                 if(Main::mainframe.events.key.code == sf::Keyboard::Equal) {
@@ -371,7 +371,7 @@ int Overworld::boucle() {
             default:
                 break;
             }
-            ECHAP
+            RETURN_ON_ECHAP_EVENT
             if(Main::player.gameIsOver) {
                 return -1;
             }
@@ -621,7 +621,7 @@ int Overworld::boucleDialog(vector<sf::String> const& dialogs) {
             Main::mainframe.window.pollEvent(Main::mainframe.events);
 
             switch(Main::mainframe.events.type) {
-                QUIT
+                RETURN_ON_CLOSE_EVENT
 
             case sf::Event::KeyPressed:
                 if(Main::mainframe.events.key.code == sf::Keyboard::Space) {
