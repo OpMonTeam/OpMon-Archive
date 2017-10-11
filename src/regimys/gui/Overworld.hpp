@@ -67,10 +67,13 @@ public:
     int boucle();
     int boucleDialog(std::vector<sf::String> const& dialogs);
 
-    void up();
-    void down();
-    void right();
-    void left();
+  void move(int direction);
+  bool checkPass(int direction);
+  
+    OP_DEPRECATED void up();
+    OP_DEPRECATED void down();
+    OP_DEPRECATED void right();
+    OP_DEPRECATED void left();
 
     int tp(int toTp, sf::Vector2i pos, bool scroll = true);
 
