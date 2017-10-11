@@ -96,7 +96,7 @@ int StartScene::boucle0() {
 
             switch (Main::mainframe.events.type) {
 
-                QUIT
+                RETURN_ON_CLOSE_EVENT
 
             case sf::Event::KeyPressed:
                 if(Main::mainframe.events.key.code == sf::Keyboard::Space) {
@@ -107,7 +107,7 @@ int StartScene::boucle0() {
                 break;
             }
 
-            ECHAP
+            RETURN_ON_ECHAP_EVENT
             else if(isKeyPressed(sf::Keyboard::P))
                 return 2;
 
@@ -146,7 +146,7 @@ int StartScene::boucle1() {
     while(continuer) {
         Main::mainframe.window.waitEvent(Main::mainframe.events);
         switch (Main::mainframe.events.type) {
-            QUIT
+            RETURN_ON_CLOSE_EVENT
 
         case sf::Event::TextEntered:
             if(Main::mainframe.events.text.unicode == 8) { //Backspace
@@ -172,7 +172,7 @@ int StartScene::boucle1() {
             break;
         }
 
-        ECHAP
+        RETURN_ON_ECHAP_EVENT
 
         Main::mainframe.frame.clear(sf::Color::White);
         Main::mainframe.frame.draw(bgName);
@@ -208,7 +208,7 @@ int StartScene::boucle2() {
 
             switch (Main::mainframe.events.type) {
 
-                QUIT
+                RETURN_ON_CLOSE_EVENT
 
             case sf::Event::KeyPressed:
                 if(Main::mainframe.events.key.code == sf::Keyboard::Space) {
@@ -221,7 +221,7 @@ int StartScene::boucle2() {
 
             }
 
-            ECHAP
+            RETURN_ON_ECHAP_EVENT
 
             if(!dialog.isDialogOver()) {
                 Main::mainframe.frame.clear(sf::Color::White);

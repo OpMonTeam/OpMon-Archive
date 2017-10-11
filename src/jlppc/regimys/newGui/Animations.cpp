@@ -36,12 +36,12 @@ int animWinOpen(sf::RenderTexture &window, sf::Sprite const &bg) {
             Main::mainframe.window.pollEvent(events);
             ancientChrono = ticks.getElapsedTime().asMilliseconds();
             switch (events.type) {
-                QUIT
+                RETURN_ON_CLOSE_EVENT
             default:
                 break;
             }
 
-            ECHAP
+            RETURN_ON_ECHAP_EVENT
             anim[i].setTexture(fen[i]);
             window.clear(sf::Color::White);
             window.draw(bg);
@@ -68,12 +68,12 @@ int animWinClose(sf::RenderTexture &window, sf::Sprite const &bg) {
             Main::mainframe.window.pollEvent(events);
             ancientChrono = ticks.getElapsedTime().asMilliseconds();
             switch (events.type) {
-                QUIT
+                RETURN_ON_CLOSE_EVENT
             default:
                 break;
             }
 
-            ECHAP
+            RETURN_ON_ECHAP_EVENT
 
             anim[i].setTexture(fen[i]);
 
