@@ -13,7 +13,7 @@ UNS
 
 OpMon::~OpMon() {
     for (int i = 0; i < 4; i++) {
-        if(attacks[i] != NULL) {
+        if(attacks[i] != nullptr) {
             delete(attacks[i]);
         }
 
@@ -129,7 +129,7 @@ OpMon::OpMon(string nickname, Species *species, int level, Attack *attack1, Atta
     }else{
       this->nickname = nickname;
     }
-    
+
     tauxCapture = species->getTauxDeCapture();
     HP = statHP;
     type1 = species->getType1();
@@ -161,7 +161,7 @@ OpMon::OpMon(string nickname, Species *species, int level, Attack *attack1, Atta
         exp = quick(this->level);
         break;
     }
-    held = NULL;
+    held = nullptr;
     statLove = 100;
     statACC = 100;
     statEVA = 100;
@@ -223,7 +223,7 @@ void OpMon::setStat(string const &stat, int newStat) {
   } else if(stat == "acc"){
     statACC = newStat;
   } else {
-    
+
   }
 }
 
@@ -1550,30 +1550,30 @@ string OpMon::save() {
             cout << "Attack : " << it << " Pointer : " << attaques[it] << endl;
             Attack *atk = attaques[it];
             cout << "Pointer : " << atk << endl;
-            if(atk != NULL){
+            if(atk != nullptr){
                 cout << "Attack no NULL" << endl;
                 oss << atk->save();
             }else{
-                cout << "Attack NULL" << endl;
-                oss << "NULL" << endl;
+                cout << "Attack nullptr" << endl;
+                oss << "nullptr" << endl;
             }
         }*/
-        if(attacks[0] != NULL) {
+        if(attacks[0] != nullptr) {
             oss << attacks[0]->save();
         } else {
             oss << "NULL" << endl;
         }
-        if(attacks[1] != NULL) {
+        if(attacks[1] != nullptr) {
             oss << attacks[1]->save();
         } else {
             oss << "NULL" << endl;
         }
-        if(attacks[2] != NULL) {
+        if(attacks[2] != nullptr) {
             oss << attacks[2]->save();
         } else {
             oss << "NULL" << endl;
         }
-        if(attacks[3] != NULL) {
+        if(attacks[3] != nullptr) {
             oss << attacks[3]->save();
         } else {
             oss << "NULL" << endl;
@@ -1583,7 +1583,7 @@ string OpMon::save() {
         oss << Save::intToChar(exp) << endl;
         oss << Save::intToChar(toNextLevel) << endl;
         oss << Save::intToChar(expBoost * 10) << endl;
-        if(held != NULL) {
+        if(held != nullptr) {
             oss << "Y" << endl;
             oss << Save::intToChar(held->getID()) << endl;
         } else {
@@ -1635,7 +1635,7 @@ OpMon::OpMon(ifstream &in) {
         nature = *Nature::enumsList[toSearch];
         in.get();
         attacks[0] = Attacks::newAtk(Save::readLine(in));
-        if(attacks[0] != NULL) {
+        if(attacks[0] != nullptr) {
             attacks[0]->setPP(in.get());
             in.get();
             attacks[0]->setPPMax(in.get());
@@ -1643,7 +1643,7 @@ OpMon::OpMon(ifstream &in) {
         }
 
         attacks[1] = Attacks::newAtk(Save::readLine(in));
-        if(attacks[1] != NULL) {
+        if(attacks[1] != nullptr) {
             attacks[1]->setPP(in.get());
             in.get();
             attacks[1]->setPPMax(in.get());
@@ -1651,14 +1651,14 @@ OpMon::OpMon(ifstream &in) {
         }
 
         attacks[2] = Attacks::newAtk(Save::readLine(in));
-        if(attacks[2] != NULL) {
+        if(attacks[2] != nullptr) {
             attacks[2]->setPP(in.get());
             in.get();
             attacks[2]->setPPMax(in.get());
             in.get();
         }
         attacks[3] = Attacks::newAtk(Save::readLine(in));
-        if(attacks[3] != NULL) {
+        if(attacks[3] != nullptr) {
             attacks[3]->setPP(in.get());
             in.get();
             attacks[3]->setPPMax(in.get());
@@ -1681,7 +1681,7 @@ OpMon::OpMon(ifstream &in) {
             in.get();
         } else {
             in.get();
-            held = NULL;
+            held = nullptr;
             in.get();
         }
         tauxCapture = in.get();
