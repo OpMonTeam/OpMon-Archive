@@ -30,7 +30,7 @@ href="http://opmon-game.ga/downloads"><img src="https://raw.githubusercontent.co
 
 __The next game version will be Alpha 0.13.1__: Added descriptions on 
 objects, Map system recreation and code fixes
-__After : ALpha 0.14__: Added new objects descriptions, new characters (mom, rival) and the start of the story
+__After : ALpha 0.14__: Added the first OPMon's fight
 * [Look the ROADMAP](https://github.com/jlppc/OpMon/wiki/ROADMAP)
 * [Look the Releases changelog](https://github.com/jlppc/OpMon/wiki/Releases)
 
@@ -51,7 +51,7 @@ __After : ALpha 0.14__: Added new objects descriptions, new characters (mom, riv
 href="http://opmon-game.ga"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Resources/Other/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 Prochaines versions :<ul>
 <li>Alpha 0.13.1 : Ajout de descriptions d'objets et ajout du nouveau système de maps</li>
-<li>Alpha 0.14 : Ajout de nouveaux PNJs et du début de l'histoire</li>
+<li>Alpha 0.14 : Ajout du premier combat entre dresseurs</li>
 </ul>
 
 * [Voir la RoadMap](https://github.com/jlppc/OpMon/wiki/ROADMAP)
