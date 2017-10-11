@@ -4,11 +4,11 @@
 #include "../start/main.hpp"
 
 Species::~Species() {
-    if(evolType != NULL) {
+    if(evolType != nullptr) {
 
         delete(evolType);
     }
-    if(EVgiven != NULL) {
+    if(EVgiven != nullptr) {
 
         free(EVgiven);
     }
@@ -24,7 +24,7 @@ Species::Species(int atk, int def, int atkSpe, int defSpe, int spe, int hp, std:
     if (expGiven < 0) {
         handleError("expGiven < 0 Species<Initializer>", true);
     }
-    if(evolType == NULL) {
+    if(evolType == nullptr) {
         evolType = new E_Nope();
     }
     this->numeroOpdex = numeroOpdex;

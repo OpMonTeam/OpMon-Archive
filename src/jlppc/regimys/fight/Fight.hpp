@@ -10,6 +10,9 @@ Author : Jlppc
 #include "../objects/OpMon.hpp"
 #include "../objects/Attack.hpp"
 #include <vector>
+#include "../objects/Species.hpp"
+#include "../playercore/OpTeam.hpp"
+#include "../enums/Enums.hpp"
 
 //->Enum
 namespace FightSignals{
@@ -18,18 +21,19 @@ namespace FightSignals{
 
 class Fight{
 private:
-  Equipe *teamVS;
+  OpTeam *teamVS;
 
   int oldStats[2][5];
-  Type oldTypes[2][2];
-  Espece* oldSpecies[2];
-  Attaque oldAttacks[2][4];
+  //->WaitEnum->Type
+  int oldTypes[2][2];
+  Species* oldSpecies[2];
+  Attack** oldAttacks[2];
 
   OpMon *op1 = nullptr;
   OpMon *op2 = nullptr;
 
   int actionToDo = 0;
-  
+
   int playerOpId = 0, npcId = 0;
   /**
      Fight between two OpMons
@@ -39,13 +43,13 @@ private:
      Graphic part of the fight
   */
   void fightLoop();
-  
+
 public:
 
-  Fight(Equipe *teamVS);
+  Fight(OpTeam *teamVS);
 
   void startFight();
-  
+
 };
 
 
