@@ -22,7 +22,7 @@ Permet d'ouvrir la fenetre du jeu et de charger les ressources essensielles. Con
 
 #define charLineDialog 33
 #define kget StringKeys::get
-#define QUIT case sf::Event::Closed:\
+#define RETURN_ON_CLOSE_EVENT case sf::Event::Closed:\
     return -1;
 
 #define FULLSCREEN if(events.key.code == sf::Keyboard::F){\
@@ -39,7 +39,7 @@ Permet d'ouvrir la fenetre du jeu et de charger les ressources essensielles. Con
 #define FULLSCREEN_FULL case sf::Event::KeyPressed:\
     FULLSCREEN\
     break;
-#define ECHAP if(isKeyPressed(sf::Keyboard::Escape)){return -1;}
+#define RETURN_ON_ECHAP_EVENT if(isKeyPressed(sf::Keyboard::Escape)){return -1;}
 
 #define isKeyPressed sf::Keyboard::isKeyPressed
 
@@ -91,7 +91,7 @@ public:
     bool fullScreen = false;
 
   bool initEnd = false;
-  
+
     MainFrame();
 
 
