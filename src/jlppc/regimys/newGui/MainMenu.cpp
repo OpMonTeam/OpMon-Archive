@@ -87,7 +87,7 @@ int MainMenu::boucle0() {
     while(continuer) {
         Main::mainframe.window.waitEvent(Main::mainframe.events);
         switch(Main::mainframe.events.type) {
-            QUIT
+            RETURN_ON_CLOSE_EVENT
 
         case sf::Event::KeyPressed:
             if(Main::mainframe.events.key.code == sf::Keyboard::Return) {
