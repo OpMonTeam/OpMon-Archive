@@ -65,9 +65,6 @@ void initialize(string keysFileS) {
         }
 
     }
-    for(unsigned int i = 0; i < keys.size(); i++) {
-        cout << keys[i] << "=" << sfStringtoStdString(strings[i]) << endl;
-    }
 }
 sf::String voi;
 sf::String &get(string key) {
