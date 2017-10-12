@@ -263,9 +263,10 @@ int Overworld::boucle() {
                 fps << fpsCounter;
                 fpsPrint.setString(fps);
                 fpsCounter = 0;
+		oldTicksFps = GET_TICKS;
             }
             frames++;
-	    if(debug){
+	    if(debugMode){
 	      cout << "[FRAME N°" << frames << "]" << endl;
 	      cout << "Boucle : Normal" << endl;
 	      cout << "Tick: " << ticks.getElapsedTime().asMilliseconds() << "ms" << endl;
