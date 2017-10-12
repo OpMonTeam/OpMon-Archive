@@ -123,7 +123,7 @@ void Overworld::move(int direction){
     }
     if(checkPass(direction)){
       UNLOCK_TP
-	moving = TO_UP;
+	moving = direction;
       switch(direction){
       case TO_UP:
 	ppPosY--;
@@ -161,47 +161,50 @@ bool Overworld::checkPass(int direction){
 	  if(!nextEvent->isPassable()) {
 	    return false;
 	  }
-	  return true;
-	}
+	  
+	}	
+	return true;
       }
     }
     return false;
   case TO_DOWN:
-    if(ppPosY - 1 >= 0) {
+    if(ppPosY + 1 < actual->getH()) {
       if(actual->getPassArr()[(int)(ppPosY + 1)][(int)ppPosX] == 0) {
 	std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY + 1) CASES));
 	for(Event *nextEvent : nextEvents) {
 	  if(!nextEvent->isPassable()) {
 	    return false;
 	  }
-	  return true;
+	  
 	}
+	return true;
       }
     }
     return false;
   case TO_LEFT:
-    if(ppPosY - 1 >= 0) {
+    if(ppPosX - 1 >= 0) {
       if(actual->getPassArr()[(int) ppPosY][(int) (ppPosX - 1)] == 0) {
 	std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX - 1) CASES, ppPosY CASES));
 	for(Event *nextEvent : nextEvents) {
 	  if(!nextEvent->isPassable()) {
 	    return false;
 	  }
-	  return true;
+
 	}
+	return true;
       }
     }
     return false;
   case TO_RIGHT:
-    if(ppPosY - 1 >= 0) {
+    if(ppPosX + 1 < actual->getW()) {
       if(actual->getPassArr()[(int) ppPosY][(int) (ppPosX + 1)] == 0) {
 	std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX + 1) CASES, ppPosY CASES));
 	for(Event *nextEvent : nextEvents) {
 	  if(!nextEvent->isPassable()) {
 	    return false;
 	  }
-	  return true;
-	}
+	}	
+	return true;
       }
     }
     return false;
