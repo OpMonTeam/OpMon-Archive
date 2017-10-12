@@ -265,21 +265,20 @@ int Overworld::boucle() {
                 fpsCounter = 0;
             }
             frames++;
-#define DEBUG_REPORT
-#ifdef DEBUG_REPORT
-            cout << "[FRAME N°" << frames << "]" << endl;
-            cout << "Boucle : Normal" << endl;
-            cout << "Tick: " << ticks.getElapsedTime().asMilliseconds() << "ms" << endl;
-            cout << "PlayerPosition: " << ppPosX << " - " << ppPosY << endl;
-            cout << "PlayerPositionPx: " << character.getPosition().x << " - " << character.getPosition().y << endl;
-            cout << "Moving: " << moving << endl;
-            cout << "Anim: " << anim << endl;
-            cout << "PlayerDirection: " << ppDir << endl;
-            cout << "DebugMode: " << debugMode << endl;
-            cout << "MapPos: " << layer1->getPosition().x << " - " << layer1->getPosition().y << endl;
-#endif
-
-            //cout << "Position perso : P(" << ppPosX << ";" << ppPosY << ")" << endl;
+	    if(debug){
+	      cout << "[FRAME N°" << frames << "]" << endl;
+	      cout << "Boucle : Normal" << endl;
+	      cout << "Tick: " << ticks.getElapsedTime().asMilliseconds() << "ms" << endl;
+	      cout << "PlayerPosition: " << ppPosX << " - " << ppPosY << endl;
+	      cout << "PlayerPositionPx: " << character.getPosition().x << " - " << character.getPosition().y << endl;
+	      cout << "Moving: " << moving << endl;
+	      cout << "Anim: " << anim << endl;
+	      cout << "PlayerDirection: " << ppDir << endl;
+	      cout << "DebugMode: " << debugMode << endl;
+	      cout << "MapPos: " << layer1->getPosition().x << " - " << layer1->getPosition().y << endl;
+	      //cout << "Position perso : P(" << ppPosX << ";" << ppPosY << ")" << endl;
+	    }
+           
             if(justTp) {
                 tpCount++;
                 justTp = tpCount < 0;
