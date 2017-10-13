@@ -4,7 +4,7 @@ OPMon musics are not under this license, but visible here: <a href="https://raw.
 <br><br>
 The license is <h3>GNU GPL V3</h3>
                     
-                    <h2>GNU GENERAL PUBLIC LICENSE</h2>
+                     GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 
  Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
