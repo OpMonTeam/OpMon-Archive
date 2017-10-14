@@ -20,7 +20,6 @@ installers/Debian/*.deb
 *.db
 *.class
 *.info
-*.txt
 *.db
 # No C/C++ compiled files
 *.o
