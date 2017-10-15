@@ -20,12 +20,12 @@ using namespace Side;
 
 
 void Overworld::initVars() {
-    actual =  Initializer::maps[0];
+    actual =  Initializer::maps[5];
     character = Main::player.getSprite();
     character.setTexture(Initializer::texturePP[TO_DOWN]);
-    character.setPosition(8 CASES + 20 CASES - 16, 8 CASES + 9 CASES);
-    ppPosX = 19;
-    ppPosY = 9;
+    character.setPosition(8 CASES + 2 CASES - 16, 8 CASES + 2 CASES);
+    ppPosX = (((character.getPosition().x - 16) / CASE_SIZE) - 8);
+    ppPosY = ((character.getPosition().y / CASE_SIZE) - 8);
     camera.setCenter(character.getPosition());
     camera.setSize(sf::Vector2f(16 CASES, 16 CASES));
     ppDir = TO_UP;
