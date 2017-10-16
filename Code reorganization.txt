@@ -33,12 +33,24 @@ Map ] updateElements() -> Overworld & updateEvents() -> Overworld
 Map [ (new) getEvents() (Retourne un tableau pointant vers tous les events) & getElements() (Retourne un tableau pointant vers tous les elements)
 Event 0
 Events 0
+(new) Movement [Tout ce qui gère le mouvement, que ce soit d'events ou de joueur.
+evolution 0
+enums 0
+(new) Debug [Toutes les données du debug mode
 Vue :
+(new) DebugView [Tous les affichages du debug mode
 Animations ] initAnims() -> Initializer & deleteAnims() -> Destructor
 Dialog 0
 MainFrame ] Les macros a refaire & Toutes les variables de sprites et de textures -> Initializer & initAll() + initAllStrings() -> Initializer & destroyAll() -> Destructor & open() \ -> main, Initializer
 	(MainFrame::open()) \ (Gestion des paramètres de la fenetre, l'affichage, l'appel des autres interfaces)
 MainMenu ] Variables de sprites + initVars() + initStrings() -> Initializer & deleteVars() -> Destructor & verifVars() -> Verificator
 OptionsMenu ] Variables de sprites + initVars() + initStrings() -> Initializer & deleteVars() -> Destructor & verifVars() -> Verificator
+Overworld ] Variables de sprites + initVars() -> Initializer & Variables de mouvement + move() + checkPass() + tp() -> Movement & Variables de joueur -> Player & Toutes les parties du debug mode -> DebugView, DebugCtrl, Debug
+StartScene ] Variables de sprites + initVars() + initStrings() -> Initializer
 
-
+Controller :
+(new) FightCtrl [Toutes les gestions d'entrées des combats
+(new) DialogCtrl [Toutes les gestions d'entrées des dialogues
+(new) OverworldCtrl [Toutes les gestions d'entrées de l'overworld
+(new) MenuCtrl [Toutes les gestions d'entrées des menus
+(new) DebugCtrl [Toutes les entrées du debug mode
