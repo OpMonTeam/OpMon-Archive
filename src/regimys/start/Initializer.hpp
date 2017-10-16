@@ -20,7 +20,7 @@ Contient la définition des methodes qui permettent d'initialiser les éléments
 #define ATK_ADD_LIST(OpID, atkLength) pb(atkOpLvl[(OpId)], arr##OpId , (atkLength) )
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-#include "../gui/Elements.hpp"
+#include "../newGui/Elements.hpp"
 class Map;
 //->NoDoc
 namespace Initializer {
@@ -33,6 +33,8 @@ extern sf::Texture texturePP[4];
 extern sf::Texture walkingPP[4];
 extern sf::Texture walkingPP2[4];
 extern sf::Texture mapsFe[3];
+
+  extern sf::Texture tileset;
 
 extern std::vector<std::vector<sf::Texture> > doorsTextures;
 //std::string backgrounds[];
