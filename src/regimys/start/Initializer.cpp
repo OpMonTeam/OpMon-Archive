@@ -4,15 +4,15 @@
 #include "StringKeys.hpp"
 #include "main.hpp"
 #include <sstream>
-#include "../newGui/MainFrame.hpp"
+#include "../gui/MainFrame.hpp"
 #include <fstream>
 #include "../save/OptionsSave.hpp"
-#include "../newGui/Animations.hpp"
+#include "../gui/Animations.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-#include "../newGui/Events.hpp"
+#include "../gui/Events.hpp"
 #include "OpString.hpp"
-#include "../newGui/Overworld.hpp"
+#include "../gui/Overworld.hpp"
 #include "../save/InternalFiles.hpp"
 
 #define ATK push_back(Stats::ATK)
@@ -32,7 +32,7 @@ std::vector<Map*> maps;
 std::vector<sf::Music*> townMusics;
 std::vector<std::vector<sf::Texture> > doorsTextures;
 sf::SoundBuffer doorSoundBuffer;
-sf::SoundBuffer doorSoundBuffer;
+  sf::SoundBuffer shopDoorSoundBuffer;
 sf::Texture tileset;
 std::vector<sf::Texture> kiwaiTextures;  
 std::vector<sf::Texture> kidTextures;
@@ -1057,7 +1057,10 @@ void initMaps() {
     maps[2]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(15, 15), sf::Vector2i(20, 21), 0, Side::TO_DOWN, SIDE_DOWN));
     
     //Load Npcs
-    maps[2]->addEvent(new Events::TalkingCharaEvent(kiwaiTextures, sf::Vector2f(15, 4), felaboC1, Events::EventTrigger::PRESS, Events::MoveStyle::NO_MOVE));
+
+    std::vector<OpString> laboC1 {OpString("prof.dialog.1"), OpString("prof.dialog.2"), OpString("prof.dialog.3")};
+    
+    maps[2]->addEvent(new Events::TalkingCharaEvent(kiwaiTextures, sf::Vector2f(15, 4), laboC1, Events::EventTrigger::PRESS, Events::MoveStyle::NO_MOVE));
 
     TAB_TO_POINTER(Collisions::rivalHomeCol, rivalHomeCol, 16, 16);
     maps.push_back(new Map(Maps::rivalhomeLayer1, Maps::rivalhomeLayer2, Maps::rivalhomeLayer3, 16, 16, rivalHomeCol, townMusics[0]));
