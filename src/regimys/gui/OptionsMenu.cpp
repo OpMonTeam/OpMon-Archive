@@ -7,13 +7,13 @@
 UNS
 
 void OptionsMenu::initStrings() {
-    langFr.setString("Francais");
+    langFr.setString("Français");
     langFr.setFont(Main::mainframe.font);
     langFr.setCharacterSize(FONT_SIZE_DEFAULT);
     langEng.setString("English");
     langEng.setFont(Main::mainframe.font);
     langEng.setCharacterSize(FONT_SIZE_DEFAULT);
-    langEsp.setString("Espanol");
+    langEsp.setString("Espa\u00F1ol");
     langEsp.setFont(Main::mainframe.font);
     langEsp.setCharacterSize(FONT_SIZE_DEFAULT);
     txtRetour.setString(kget("options.retour"));
@@ -84,13 +84,22 @@ void OptionsMenu::initStrings() {
 
 void OptionsMenu::initVars() {
 
+#ifdef _WIN32
+    textures2[0].loadFromFile("ressources\\backgrounds\\options.png");
+    textures2[1].loadFromFile("ressources\\sprites\\misc\\selectBar.png");
+    textures2[2].loadFromFile("ressources\\backgrounds\\lang.png");
+    textures2[3].loadFromFile(RESSOURCES_PATH + "sprites\\misc\\yes.png");
+    textures2[4].loadFromFile(RESSOURCES_PATH + "backgrounds\\credits.png");
 
-    textures2[0].loadFromFile(getPath(RESSOURCES_PATH + "backgrounds/options.png"));
-    textures2[1].loadFromFile(getPath(RESSOURCES_PATH + "sprites/misc/selectBar.png"));
-    textures2[2].loadFromFile(getPath(RESSOURCES_PATH + "backgrounds/lang.png"));
-    textures2[3].loadFromFile(getPath(RESSOURCES_PATH + "sprites/misc/yes.png"));
-    textures2[4].loadFromFile(getPath(RESSOURCES_PATH + "backgrounds/credits.png"));
+#else
+    textures2[0].loadFromFile(RESSOURCES_PATH + "backgrounds/options.png");
+    textures2[1].loadFromFile(RESSOURCES_PATH + "sprites/misc/selectBar.png");
+    textures2[2].loadFromFile(RESSOURCES_PATH + "backgrounds/lang.png");
+    textures2[3].loadFromFile(RESSOURCES_PATH + "sprites/misc/yes.png");
+    textures2[4].loadFromFile(RESSOURCES_PATH + "backgrounds/credits.png");
 
+
+#endif // _WIN32
     bgOpt.setTexture(textures2[0]);
     rectSurb.setTexture(textures2[1]);
     bgLangues.setTexture(textures2[2]);
@@ -175,7 +184,7 @@ int OptionsMenu::boucle() {
     while(continuer) {
         Main::mainframe.window.waitEvent(Main::mainframe.events);
         switch(Main::mainframe.events.type) {
-            RETURN_ON_CLOSE_EVENT
+            QUIT
         case sf::Event::KeyPressed:
             if(Main::mainframe.events.key.code == sf::Keyboard::Return) {
                 switch(curPosOptI) {
@@ -206,7 +215,7 @@ int OptionsMenu::boucle() {
             break;
         }
 
-        RETURN_ON_ECHAP_EVENT
+        ECHAP
         if(isKeyPressed(sf::Keyboard::Return)) {
 
         } else if(isKeyPressed(sf::Keyboard::Up)) {
@@ -260,7 +269,7 @@ int OptionsMenu::boucleLang() {
     while(continuer) {
         Main::mainframe.window.waitEvent(Main::mainframe.events);
         switch(Main::mainframe.events.type) {
-            RETURN_ON_CLOSE_EVENT
+            QUIT
 
         case sf::Event::KeyPressed:
             if(Main::mainframe.events.key.code == sf::Keyboard::Return) {
@@ -269,19 +278,31 @@ int OptionsMenu::boucleLang() {
                     return 0;
                 case 1:
                     OptionsSave::modifyParam("lang", "eng");
+#ifdef _WIN32
+                    StringKeys::initialize("ressources\\keys\\english.rkeys");
+#else
                     StringKeys::initialize(RESSOURCES_PATH + "keys/english.rkeys");
+#endif
                     Main::mainframe.initAllStrings();
                     return 0;
                     break;
                 case 2:
                     OptionsSave::modifyParam("lang", "esp");
+#ifdef _WIN32
+                    StringKeys::initialize("ressources\\keys\\espanol.rkeys");
+#else
                     StringKeys::initialize(RESSOURCES_PATH + "keys/espanol.rkeys");
+#endif // _WIN32
                     Main::mainframe.initAllStrings();
                     return 0;
                     break;
                 case 3:
                     OptionsSave::modifyParam("lang", "fr");
+#ifdef _WIN32
+                    StringKeys::initialize("ressources\\keys\\francais.rkeys");
+#else
                     StringKeys::initialize(RESSOURCES_PATH + "keys/francais.rkeys");
+#endif
                     Main::mainframe.initAllStrings();
                     return 0;
                     break;
@@ -292,7 +313,7 @@ int OptionsMenu::boucleLang() {
             break;
 
         }
-        RETURN_ON_ECHAP_EVENT
+        ECHAP
         if(isKeyPressed(sf::Keyboard::Up)) {
             Main::mainframe.mainmenu.bruitArr.play();
             curPosOptI--;
@@ -302,7 +323,7 @@ int OptionsMenu::boucleLang() {
                 curPosOptI = 3;
             }
         } else if(isKeyPressed(sf::Keyboard::Down)) {
-            Main::mainframe.mainmenu.bruitArr.play();
+	  Main::mainframe.mainmenu.bruitArr.play();
             curPosOptI++;
             if(curPosOptI >= 4) {
                 curPosOptI = 0;
@@ -336,7 +357,7 @@ int OptionsMenu::boucleCredits() {
     while(continuer) {
         Main::mainframe.window.waitEvent(Main::mainframe.events);
         switch(Main::mainframe.events.type) {
-            RETURN_ON_CLOSE_EVENT
+            QUIT
 
         case sf::Event::KeyPressed:
             if(Main::mainframe.events.key.code == sf::Keyboard::Return) {
@@ -353,7 +374,7 @@ int OptionsMenu::boucleCredits() {
             break;
 
         }
-        RETURN_ON_ECHAP_EVENT
+        ECHAP
         if(isKeyPressed(sf::Keyboard::Up)) {
             Main::mainframe.mainmenu.bruitArr.play();
             curPosOptI--;
