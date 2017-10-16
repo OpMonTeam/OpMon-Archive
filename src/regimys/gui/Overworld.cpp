@@ -1,3 +1,4 @@
+
 #include "Overworld.hpp"
 #include "../start/Initializer.hpp"
 #include "../start/main.hpp"
@@ -7,7 +8,7 @@
 //#define ppPosX (((character.getPosition().x - 16) / CASE_SIZE) - 8)
 #include "Events.hpp"
 #include "Dialog.hpp"
-
+					      
 #ifndef _WIN32
 
 //#define DEBUG_REPORT
@@ -25,8 +26,8 @@ void Overworld::initVars() {
     character = Main::player.getSprite();
     character.setTexture(Initializer::texturePP[TO_DOWN]);
     character.setPosition(8 CASES + 2 CASES - 16, 8 CASES + 2 CASES);
-    ppPosX = 1;
-    ppPosY = 2;
+    ppPosX = (((character.getPosition().x - 16) / CASE_SIZE) - 8);
+    ppPosY = ((character.getPosition().y / CASE_SIZE) - 8);
     camera.setCenter(character.getPosition());
     camera.setSize(sf::Vector2f(16 CASES, 16 CASES));
     ppDir = TO_UP;
@@ -37,12 +38,9 @@ void Overworld::initVars() {
         maps[2] = actual->getLayer3();*/
     music = actual->getBg();
     music->setLoop(true);
-    layer1 = new sf::Sprite();
-    layer2 = new sf::Sprite();
-    layer3 = new sf::Sprite();
-    layer1->setTexture(*actual->getLayer1());
-    layer2->setTexture(*actual->getLayer2());
-    layer3->setTexture(*actual->getLayer3());
+    layer1 = actual->getLayer1();
+    layer2 = actual->getLayer2();
+    layer3 = actual->getLayer3();
     character.setScale(2, 2);
     character.setOrigin(16, 16);
 }
@@ -70,15 +68,10 @@ int Overworld::tp(int toTp, sf::Vector2i pos, bool scroll) {
         music = actual->getBg();
         music->play();
     }
-    delete(layer1);
-    delete(layer2);
-    delete(layer3);
-    layer1 = new sf::Sprite();
-    layer2 = new sf::Sprite();
-    layer3 = new sf::Sprite();
-    layer1->setTexture(*actual->getLayer1());
-    layer2->setTexture(*actual->getLayer2());
-    layer3->setTexture(*actual->getLayer3());
+
+    layer1 = actual->getLayer1();
+    layer2 = actual->getLayer2();
+    layer3 = actual->getLayer3();
     // layer1->move(32, 32);
     // layer2->move(32, 32);
     // layer3->move(32, 32);
@@ -233,7 +226,7 @@ void Overworld::left() {
 
 
 int Overworld::overworld() {
-    Main::mainframe.mapsInit.wait();
+  Main::mainframe.mapsInit.wait();
     for(Map *map : Initializer::maps) {
         for(Event *event : map->getEvents()) {
             Events::TalkingEvent *te = dynamic_cast<Events::TalkingEvent *>(event);
@@ -247,9 +240,6 @@ int Overworld::overworld() {
     Main::mainframe.frame.setView(camera);
     int returned = boucle();
     music->stop();
-    delete(layer1);
-    delete(layer2);
-    delete(layer3);
     return returned;
 }
 
@@ -257,7 +247,7 @@ int Overworld::boucle() {
     bool continuer = true;
     while(continuer) {
         if((GET_TICKS - ancientTick >= FPS_TICKS)) {
-            fpsCounter++;
+	   fpsCounter++;
             if(GET_TICKS - oldTicksFps >= 1000) {
                 fps = "";
                 fps << fpsCounter;
@@ -267,7 +257,7 @@ int Overworld::boucle() {
             }
             frames++;
 	    if(debugMode){
-	      cout << "[FRAME N°" << frames << "]" << endl;
+	      cout << "[FRAME Nï½°" << frames << "]" << endl;
 	      cout << "Boucle : Normal" << endl;
 	      cout << "Tick: " << ticks.getElapsedTime().asMilliseconds() << "ms" << endl;
 	      cout << "PlayerPosition: " << ppPosX << " - " << ppPosY << endl;
@@ -279,17 +269,17 @@ int Overworld::boucle() {
 	      cout << "MapPos: " << layer1->getPosition().x << " - " << layer1->getPosition().y << endl;
 	      //cout << "Position perso : P(" << ppPosX << ";" << ppPosY << ")" << endl;
 	    }
-           
+	    
             if(justTp) {
                 tpCount++;
                 justTp = tpCount < 0;
             }
 
             ancientTick = GET_TICKS;
-            Main::mainframe.window.pollEvent(Main::mainframe.events);
+	    Main::mainframe.window.pollEvent(Main::mainframe.events);
 
             switch(Main::mainframe.events.type) {
-                RETURN_ON_CLOSE_EVENT
+	      RETURN_ON_CLOSE_EVENT
 
             case sf::Event::KeyPressed:
                 if(Main::mainframe.events.key.code == sf::Keyboard::Equal) {
@@ -541,7 +531,7 @@ int Overworld::boucle() {
 
 
         } else {
-            Utils::wait(FPS_TICKS - (GET_TICKS - ancientTick));
+	  Utils::wait(FPS_TICKS - (GET_TICKS - ancientTick));
         }
 
 
@@ -553,13 +543,12 @@ int Overworld::boucle() {
  * Loop used when the player speak to a NPC
  */
 int Overworld::boucleDialog(vector<sf::String> const& dialogs) {
-    // `&dialogs[0]` converts the std::vector into a regular array.
+      // `&dialogs[0]` converts the std::vector into a regular array.
     Dialog dialog(&dialogs[0], dialogs.size());
 
 
     sf::Vector2f posArrow = Main::mainframe.frame.mapPixelToCoords(sf::Vector2i(512-75, 512-30));
     Main::mainframe.arrDial.setPosition(posArrow);
-
 
     while(!dialog.isDialogOver()) {
         if((GET_TICKS - ancientTick >= FPS_TICKS)) {
@@ -568,10 +557,8 @@ int Overworld::boucleDialog(vector<sf::String> const& dialogs) {
                 tpCount++;
                 justTp = tpCount < 0;
             }
-
             ancientTick = GET_TICKS;
             Main::mainframe.window.pollEvent(Main::mainframe.events);
-
             switch(Main::mainframe.events.type) {
                 RETURN_ON_CLOSE_EVENT
 
@@ -616,22 +603,15 @@ int Overworld::boucleDialog(vector<sf::String> const& dialogs) {
             Main::mainframe.frame.setView(Main::mainframe.frame.getDefaultView());
             Main::mainframe.frame.setView(camera);
             actual->updateElements(Main::mainframe.frame);
-
             dialog.updateTextAnimation();
 
             dialog.draw();
             Main::mainframe.frame.display();
             Main::mainframe.winRefresh();
 
-
-
         } else {
             Utils::wait(FPS_TICKS - (GET_TICKS - ancientTick));
         }
-
-
     }
     return 0;
 }
-
-

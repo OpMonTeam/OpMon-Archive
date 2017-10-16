@@ -4,15 +4,15 @@
 #include "StringKeys.hpp"
 #include "main.hpp"
 #include <sstream>
-#include "../gui/MainFrame.hpp"
+#include "../newGui/MainFrame.hpp"
 #include <fstream>
 #include "../save/OptionsSave.hpp"
-#include "../gui/Animations.hpp"
+#include "../newGui/Animations.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-#include "../gui/Events.hpp"
+#include "../newGui/Events.hpp"
 #include "OpString.hpp"
-#include "../gui/Overworld.hpp"
+#include "../newGui/Overworld.hpp"
 #include "../save/InternalFiles.hpp"
 
 #define ATK push_back(Stats::ATK)
@@ -32,10 +32,10 @@ std::vector<Map*> maps;
 std::vector<sf::Music*> townMusics;
 std::vector<std::vector<sf::Texture> > doorsTextures;
 sf::SoundBuffer doorSoundBuffer;
-sf::SoundBuffer shopDoorSoundBuffer;
-
+sf::SoundBuffer doorSoundBuffer;
+sf::Texture tileset;
+std::vector<sf::Texture> kiwaiTextures;  
 std::vector<sf::Texture> kidTextures;
-std::vector<sf::Texture> kiwaiTextures;
 
 template<typename T>void pb(std::vector<T> &vect, T arr[], int sizeArr) {
     for (unsigned int i = 0; i < sizeArr; i++) {
@@ -115,6 +115,7 @@ void initEvs() {
     evs[24].ATK;
 
     evs[25].ATK;
+    evs[25].ATKSPE;
 
     evs[26].ATK;
     evs[26].ATKSPE;
@@ -555,7 +556,7 @@ void initOpMons() {
     listOp[22] = new Species(160, 65, 31, 31, 10, 95, "Himondelle", Type::POISON, Type::VOL, 0, -1, NULL, evs[22], 1.9, 190, "Cet OPMon plutôt imposant, ne peut plus voler depuis qu'il a évoluer, cela resulte d'un manque de migrations du à l'abondance d'insectes dans cette région", 162, 1000000, 90, 22);
     listOp[23] = new Species(60, 44, 40, 54, 55, 35, "Serpiterre", Type::SOL, Type::TENEBRES, 0, 24, new E_Level(24, 22), evs[23], 2, 6.9, "Plus il est âgé, plus son corps est long. Il se nourrit de spectres nocturnes caché sous terre", 62, 1000000, 255, 23);
     listOp[24] = new Species(85, 69, 65, 79, 80, 60, "Serpenair", Type::VOL, Type::TENEBRES, 0, -1, NULL, evs[24], 3.5, 65, "Il adore planer au dessus des ses proies, les fantomes de nuits, pour jouer avec eux, avant de les aspirer.", 147, 1000000, 90, 24);
-    listOp[25] = new Species(55, 53, 31, 48, 37, 69, "Gouachtiti", Type::NORMAL, Type::NOTHING, 0, -1, new E_Level(26, 29), evs[25], 0.8, 18, "Gouachtiti est un petit singe qui aime taguer partout et a un sacré coup de crayon !", 82, 1000000, 100, 60);
+    listOp[25] = new Species(55, 40, 50, 50, 90, 35, "Nucléage", Type::ELECTRIQUE, Type::NOTHING, 0, -1, new E_Item(26, Item::getItem("Invocation de la foudre")), evs[25], 7.4, 6, "Ce nuage s'amuse à viser les monuments ou objets très grands, ils sont à l'origine des éclairs aleatoires dans le ciel. Ils aiment se caché parmi les vraies nuages", 82, 1000000, 100, 25);
     listOp[26] = new Species(200, 55, 90, 80, 110, 60, "Cielectrik", Type::ELECTRIQUE, Type::NOTHING, 0, -1, NULL, evs[26], 0., 30, "Il peut terrasser tout ses en libérant un décharge foudroyante plus de 550 000 V.", 122, 1000000, 65, 26);
     listOp[27] = new Species(60, 58, 30, 52, 33, 65, "Oursiflamme", Type::FEU, Type::NOTHING, 0, 28, new E_Level(19, 28),evs[27], 0.5, 20, "Un si gentil ourson qui est tout feu tout flamme.", 93, 1000000, 45, 27);
     listOp[28] = new Species(80, 75, 60, 59, 54, 78, "Oursibraise", Type::FEU, Type::NOTHING, 0, 29, new E_Level(37,29), evs[28], 1.1, 29.5, "Cet ours est colérique, un rien peut lui mettre le feu au poudre.", 122, 1000000, 60, 28);
@@ -847,8 +848,8 @@ void initAtkLvls() {
     */
     /*pb(atkPokeLvl[52], NumberedArray(0, Griffe::classe),  NumberedArray(0, Rugissement::classe),  NumberedArray(6, GrossePatoune::classe),  NumberedArray(9, Bluff::classe),  NumberedArray(14, ComboGriffe::classe),  NumberedArray(17, Grincement::classe),  NumberedArray(22, Feinte::classe),  NumberedArray(25, Provoc::classe),  NumberedArray(30, Jackpot::classe),  NumberedArray(33, CoudPonpon::classe),  NumberedArray(38, Machination::classe),  NumberedArray(41, Assurance::classe),  NumberedArray(46, Séduction::classe),  NumberedArray(49, tranche-Nuit::classe),  NumberedArray(50, Ruse::classe);
      *//*pb(atkPokeLvl[53], NumberedArray(0, Calinerie::classe),  NumberedArray(0, PassePasse::classe),  NumberedArray(0, Griffe::classe),  NumberedArray(0, Rugissement::classe),  NumberedArray(6, Morsure::classe),  NumberedArray(9, Bluff::classe),  NumberedArray(14, ComboGriffe::classe), NumberedArray(17, Grincement::classe),  NumberedArray(22, Feinte::classe),  NumberedArray(25, Provoc::classe),  NumberedArray(28, Météores::classe), NumberedArray(32, RayonGemme::classe),  NumberedArray(37, Tranche::classe),  NumberedArray(44, Machination::classe),  NumberedArray(49, Assurance::classe),  NumberedArray(56, Séduction::classe),  NumberedArray(61, tranche-Nuit::classe),  NumberedArray(68, Ruse::classe);
-pb( atkPokeLvl[54], NumberedArray(0, Tourniquet::classe),  NumberedArray(0, Griffe::classe),  NumberedArray(4, MimiQueue::classe),  NumberedArray(8, PistoletAO::classe),  NumberedArray(11, ChocMental::classe),  NumberedArray(15, ComboGriffe::classe),  NumberedArray(18, Vibraqua::classe),  NumberedArray(22, Entrave::classe),  NumberedArray(25, Grincement::classe),  NumberedArray(29, HydroQueue::classe),  NumberedArray(32, PsykoudBoul::classe),  NumberedArray(36, Detrempage::classe),  NumberedArray(39, Boost::classe),  NumberedArray(43, Amnesie::classe),  NumberedArray(46, Hydrocanon::classe),  NumberedArray(50, ZoneEtrange::classe);
-*/
+ pb( atkPokeLvl[54], NumberedArray(0, Tourniquet::classe),  NumberedArray(0, Griffe::classe),  NumberedArray(4, MimiQueue::classe),  NumberedArray(8, PistoletAO::classe),  NumberedArray(11, ChocMental::classe),  NumberedArray(15, ComboGriffe::classe),  NumberedArray(18, Vibraqua::classe),  NumberedArray(22, Entrave::classe),  NumberedArray(25, Grincement::classe),  NumberedArray(29, HydroQueue::classe),  NumberedArray(32, PsykoudBoul::classe),  NumberedArray(36, Detrempage::classe),  NumberedArray(39, Boost::classe),  NumberedArray(43, Amnesie::classe),  NumberedArray(46, Hydrocanon::classe),  NumberedArray(50, ZoneEtrange::classe);
+   */
 }
 sf::Texture texturePP[4];
 sf::Texture walkingPP[4];
@@ -856,7 +857,8 @@ sf::Texture walkingPP2[4];
 void initTextures() {
     using namespace Side;
 
-    if(!texturePP[TO_DOWN].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp0.png"))){
+    tileset.loadFromFile(getPath(RESSOURCES_PATH + "maps/tileset.png"));
+        if(!texturePP[TO_DOWN].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp0.png"))){
       handleError("Failed to load one of the PP sprites", false);
     }
     if(!texturePP[TO_RIGHT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp1.png"))){
@@ -898,7 +900,7 @@ void initTextures() {
         std::ostringstream oss;
         oss << RESSOURCES_PATH << getPath("animations/basicdoor/basic_door") << i + 1 << ".png";
         sf::Texture txtr;
-        if(!txtr.loadFromFile(oss.str())){
+	if(!txtr.loadFromFile(oss.str())){
 	  handleError("Failed to load one of the basic door sprites", false);
 	}
         basicDoor.push_back(txtr);
@@ -941,12 +943,12 @@ void initTextures() {
 	}
     }
 
-
-    initEnumsEvents();
+       initEnumsEvents();
 }
 
 void initSprites() {
     using namespace std;
+
 
     oplog("Textures initialization");
     initTextures();
@@ -957,15 +959,18 @@ void initSprites() {
     Main::mainframe.initEnd = true;
     //Init Sprites
 
+    oplog("Textures initialization");
+    initTextures();
+    oplog("Backgrounds initialization");
+    initBackgrounds();
+    oplog("Animations initialization");
+    Animations::initAnims();
+    Main::mainframe.initEnd = true;
+    //Init Sprites
 }
 sf::Texture alpha;
 void initMaps() {
-#define PLANS_RESET     delete(layer1);		\
-    delete(layer2);				\
-    delete(layer3);				\
-    layer1 = new sf::Texture();			\
-    layer2 = new sf::Texture();			\
-    layer3 = new sf::Texture()
+
     UNS
 
 #define TAB_TO_POINTER(name, pointerName, sizeY, sizeX) char** pointerName = (char**) malloc(sizeY * sizeof(char*)); \
@@ -984,9 +989,6 @@ void initMaps() {
 
 
     //Chargement de fauxbourg euvi
-    sf::Texture *layer1 = new sf::Texture();
-    sf::Texture *layer2 = new sf::Texture();
-    sf::Texture *layer3 = new sf::Texture();
     townMusics.push_back(new sf::Music());
     std::vector<std::vector<sf::Texture> > feElements;
     std::vector<sf::Vector2f> feEPos;
@@ -994,10 +996,6 @@ void initMaps() {
     feElements.push_back(std::vector<sf::Texture>());
     feEPos.push_back(sf::Vector2f(8 *32 + 25 *32 - 8, 3 *32 + 8));
     feEPos.push_back(sf::Vector2f(8*32+18*32, 11*32));
-
-    layer1->loadFromFile(getPath(RESSOURCES_PATH +"maps/fe/fe1.png"));
-    layer2->loadFromFile(getPath(RESSOURCES_PATH +"maps/fe/fe2.png"));
-    layer3->loadFromFile(getPath(RESSOURCES_PATH +"maps/fe/fe3.png"));
     townMusics[0]->openFromFile(getPath(RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg"));
     for(unsigned int i = 1; i < 17; i++) {
         ostringstream str;
@@ -1012,9 +1010,8 @@ void initMaps() {
         feElements[1][i - 1].loadFromFile(str.str());
     }
     TAB_TO_POINTER(Collisions::feCol, feCol, 32, 32);
-    maps.push_back(new Map(*layer1, *layer2, *layer3, 32, 32, feCol, townMusics[0], feElements, feEPos));
+    maps.push_back(new Map(Maps::feLayer1, Maps::feLayer2, Maps::feLayer3, 32, 32, feCol, townMusics[0], feElements, feEPos));
     FREE_TAB(feCol, 32);
-
     std::vector<OpString> feE1 {OpString("fedesc.1"), OpString("fedesc.2"), OpString("fedesc.3")};
     maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(11, 2), feE1, SIDE_UP));
     std::vector<OpString> feE2 {OpString("ppHouse", Main::player.getNameP()), OpString::voidStr, OpString::voidStr};
@@ -1042,70 +1039,43 @@ void initMaps() {
 
     std::vector<OpString> feC1 {OpString("kid"), OpString::voidStr, OpString::voidStr};
 
-    maps[0]->addEvent(new Events::TalkingCharaEvent(kidTextures, sf::Vector2f(17, 13), feC1, Events::EventTrigger::PRESS, Events::MoveStyle::PREDEFINED, pathChara1));
+    maps[0]->addEvent(new Events::TalkingCharaEvent(kidTextures, sf::Vector2f(17, 13), feC1, 0, Events::MoveStyle::PREDEFINED, pathChara1));
     /*End of character 1*/
-
-
-    PLANS_RESET;
-
-    layer1->loadFromFile(getPath(RESSOURCES_PATH +"maps/pphome/pphome1.png"));
-    layer2->loadFromFile(getPath(RESSOURCES_PATH +"maps/pphome/pphome2.png"));
-    layer3->loadFromFile(getPath(RESSOURCES_PATH +"maps/pphome/pphome3.png"));
-
+    
     TAB_TO_POINTER(Collisions::ppHomeCol, ppHomeCol, 16, 16);
-    maps.push_back(new Map(*layer1, *layer2, *layer3, 16, 16, ppHomeCol, townMusics[0]));
+    maps.push_back(new Map(Maps::pphomeLayer1, Maps::pphomeLayer2, Maps::pphomeLayer3, 16, 16, ppHomeCol, townMusics[0]));
     FREE_TAB(ppHomeCol, 16);
     maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(7, 15), sf::Vector2i(20, 9), 0, Side::TO_DOWN, SIDE_DOWN));
     maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(15, 2), sf::Vector2i(9, 5), 5, Side::TO_LEFT, SIDE_RIGHT));
     maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(0, 11), sf::Vector2i(6, 3), 4, Side::TO_LEFT, SIDE_LEFT));
-    PLANS_RESET;
+
     townMusics.push_back(new sf::Music());
-    layer1->loadFromFile(getPath(RESSOURCES_PATH + "maps/labo/labo1.png"));
-    layer2->loadFromFile(getPath(RESSOURCES_PATH + "maps/labo/labo2.png"));
-    layer3->loadFromFile(getPath(RESSOURCES_PATH + "maps/labo/labo3.png"));
-    townMusics[1]->openFromFile(getPath(RESSOURCES_PATH + "audio/music/intro.ogg"));
+        townMusics[1]->openFromFile(getPath(RESSOURCES_PATH + "audio/music/intro.ogg"));
     TAB_TO_POINTER(Collisions::laboCol, laboCol, 16, 32);
-    maps.push_back(new Map(*layer1, *layer2, *layer3, 32, 16, laboCol, townMusics[1]));
+    maps.push_back(new Map(Maps::laboLayer1, Maps::laboLayer2, Maps::laboLayer3, 32, 16, laboCol, townMusics[1]));
     FREE_TAB(laboCol, 16);
     maps[2]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(15, 15), sf::Vector2i(20, 21), 0, Side::TO_DOWN, SIDE_DOWN));
-    //Dialogs
-    std::vector<OpString> felaboC1 {OpString("prof.dialog.1"), OpString("prof.dialog.2"), OpString("prof.dialog.3")};
-
+    
     //Load Npcs
     maps[2]->addEvent(new Events::TalkingCharaEvent(kiwaiTextures, sf::Vector2f(15, 4), felaboC1, Events::EventTrigger::PRESS, Events::MoveStyle::NO_MOVE));
 
-    PLANS_RESET;
-    layer1->loadFromFile(getPath(RESSOURCES_PATH + "maps/rivalhome/rivalhome1.png"));
-    layer2->loadFromFile(getPath(RESSOURCES_PATH + "maps/rivalhome/rivalhome2.png"));
-    layer3->loadFromFile(getPath(RESSOURCES_PATH + "maps/rivalhome/rivalhome3.png"));
     TAB_TO_POINTER(Collisions::rivalHomeCol, rivalHomeCol, 16, 16);
-    maps.push_back(new Map(*layer1, *layer2, *layer3, 16, 16, rivalHomeCol, townMusics[0]));
+    maps.push_back(new Map(Maps::rivalhomeLayer1, Maps::rivalhomeLayer2, Maps::rivalhomeLayer3, 16, 16, rivalHomeCol, townMusics[0]));
     FREE_TAB(rivalHomeCol, 16);
     maps[3]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(8, 15), sf::Vector2i(28, 9), 0, Side::TO_DOWN, SIDE_DOWN));
-    PLANS_RESET;
-    layer1->loadFromFile(getPath(RESSOURCES_PATH + "maps/momroom/momroom1.png"));
-    layer2->loadFromFile(getPath(RESSOURCES_PATH + "maps/momroom/momroom2.png"));
-    layer3->loadFromFile(getPath(RESSOURCES_PATH + "maps/momroom/momroom3.png"));
+
     TAB_TO_POINTER(Collisions::momRoomCol, momRoomCol, 6, 6);
-    maps.push_back(new Map(*layer1, *layer2, *layer3, 6, 6, momRoomCol, townMusics[0]));
+    maps.push_back(new Map(Maps::momroomLayer1, Maps::momroomLayer2, Maps::momroomLayer3, 6, 6, momRoomCol, townMusics[0]));
     FREE_TAB(momRoomCol, 6);
     maps[4]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(5, 3), sf::Vector2i(1, 11), 1, Side::TO_RIGHT, SIDE_RIGHT));
-    PLANS_RESET;
-    layer1->loadFromFile(getPath(RESSOURCES_PATH + "maps/pproom/pproom1.png"));
-    layer2->loadFromFile(getPath(RESSOURCES_PATH + "maps/pproom/pproom2.png"));
-    layer3->loadFromFile(getPath(RESSOURCES_PATH + "maps/pproom/pproom3.png"));
+
     TAB_TO_POINTER(Collisions::ppRoomCol, ppRoomCol, 6, 9);
-    maps.push_back(new Map(*layer1, *layer2, *layer3, 9, 6, ppRoomCol, townMusics[0]));
+    maps.push_back(new Map(Maps::pproomLayer1, Maps::pproomLayer2, Maps::pproomLayer3, 9, 6, ppRoomCol, townMusics[0]));
     FREE_TAB(ppRoomCol, 6);
     maps[5]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(8, 5), sf::Vector2i(16, 2), 1, Side::TO_LEFT, SIDE_RIGHT));
-    //PLANS_RESET
-
-    delete(layer1);
-    delete(layer2);
-    delete(layer3);
 
     Main::mainframe.overworld.initVars();
-
+    
 }
 #undef PLANS_RESET
 void initBackgrounds() {
@@ -1114,16 +1084,28 @@ void initBackgrounds() {
 
 void initKeys() {
     //Définit la langue a initialiser dans les clées
+#ifdef _WIN32
     if(OptionsSave::getParam("lang").getValue() == "fr") {
-        StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/francais.rkeys"));
+        StringKeys::initialize(RESSOURCES_PATH + "keys\\francais.rkeys");
     } else if(OptionsSave::getParam("lang").getValue() == "esp") {
-        StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/espanol.rkeys"));
+        StringKeys::initialize(RESSOURCES_PATH + "keys\\espanol.rkeys");
     } else {
-        StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/english.rkeys"));
+        StringKeys::initialize(RESSOURCES_PATH + "keys\\english.rkeys");
     }
+
+#else
+    if(OptionsSave::getParam("lang").getValue() == "fr") {
+        StringKeys::initialize(RESSOURCES_PATH + "keys/francais.rkeys");
+    } else if(OptionsSave::getParam("lang").getValue() == "esp") {
+        StringKeys::initialize(RESSOURCES_PATH + "keys/espanol.rkeys");
+    } else {
+        StringKeys::initialize(RESSOURCES_PATH + "keys/english.rkeys");
+    }
+#endif
 }
 
 void init() {
+  
     oplog("Keys initialization");
     initKeys();
     oplog("Items initialization");

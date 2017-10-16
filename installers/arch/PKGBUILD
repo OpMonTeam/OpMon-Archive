@@ -3,7 +3,7 @@
 
 pkgname=opmon
 pkgver=0.12.1
-pkgrel=1 
+pkgrel=2 
 license=('GPL') 
 arch=('x86_64') 
 pkgdesc="A open source RPG monster fighting game" 
@@ -33,7 +33,7 @@ cp -r "${srcdir}/opmon-arch/arch_install/bin/usr/share/OpMon" "${pkgdir}/usr/sha
 cp "${srcdir}/opmon-arch/arch_install/bin/usr/share/applications/OPMon.desktop" "${pkgdir}/usr/share/applications/"
 
 cd "${srcdir}/opmon-arch"
-make DESTIDIR="${pkgdir}"
+make DESTIDIR="${pkgdir}" || return 1
 
 chmod -R 777 "${pkgdir}/usr/share/OpMon"
 }
