@@ -184,7 +184,7 @@ int OptionsMenu::boucle() {
     while(continuer) {
         Main::mainframe.window.waitEvent(Main::mainframe.events);
         switch(Main::mainframe.events.type) {
-            QUIT
+            RETURN_ON_CLOSE_EVENT
         case sf::Event::KeyPressed:
             if(Main::mainframe.events.key.code == sf::Keyboard::Return) {
                 switch(curPosOptI) {
@@ -215,7 +215,7 @@ int OptionsMenu::boucle() {
             break;
         }
 
-        ECHAP
+        RETURN_ON_ECHAP_EVENT
         if(isKeyPressed(sf::Keyboard::Return)) {
 
         } else if(isKeyPressed(sf::Keyboard::Up)) {
@@ -269,7 +269,7 @@ int OptionsMenu::boucleLang() {
     while(continuer) {
         Main::mainframe.window.waitEvent(Main::mainframe.events);
         switch(Main::mainframe.events.type) {
-            QUIT
+            RETURN_ON_CLOSE_EVENT
 
         case sf::Event::KeyPressed:
             if(Main::mainframe.events.key.code == sf::Keyboard::Return) {
@@ -313,7 +313,7 @@ int OptionsMenu::boucleLang() {
             break;
 
         }
-        ECHAP
+        RETURN_ON_ECHAP_EVENT
         if(isKeyPressed(sf::Keyboard::Up)) {
             Main::mainframe.mainmenu.bruitArr.play();
             curPosOptI--;
@@ -357,7 +357,7 @@ int OptionsMenu::boucleCredits() {
     while(continuer) {
         Main::mainframe.window.waitEvent(Main::mainframe.events);
         switch(Main::mainframe.events.type) {
-            QUIT
+            RETURN_ON_CLOSE_EVENT
 
         case sf::Event::KeyPressed:
             if(Main::mainframe.events.key.code == sf::Keyboard::Return) {
@@ -374,7 +374,7 @@ int OptionsMenu::boucleCredits() {
             break;
 
         }
-        ECHAP
+        RETURN_ON_ECHAP_EVENT
         if(isKeyPressed(sf::Keyboard::Up)) {
             Main::mainframe.mainmenu.bruitArr.play();
             curPosOptI--;

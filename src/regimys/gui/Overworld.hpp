@@ -30,9 +30,9 @@ public:
     sf::Text fpsPrint;
     int oldTicksFps;
 
-    sf::Sprite *layer1;
-    sf::Sprite *layer2;
-    sf::Sprite *layer3;
+    const MapLayer *layer1;
+    const MapLayer *layer2;
+    const MapLayer *layer3;
 
     int &ppPosX = Main::player.getPosX();
     int &ppPosY = Main::player.getPosY();
