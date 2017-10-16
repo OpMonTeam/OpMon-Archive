@@ -3,6 +3,12 @@
 ## Game and graphics designer, project co-creator : Navet56
 ## Major collaborators : Aerzia
 ## and Silvermoon who created some OpMons.
+
+## Advisors : <ul>
+<li><h3>BAKFR</h3></li>
+<li><h3>BakomVarjeFura</h3></li>
+</ul>
+
 ## Contributors : <ul>
 <li><h3>BAKFR</h3></li>
 <li><h3>linkyFR</h3></li>
