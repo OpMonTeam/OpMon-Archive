@@ -19,7 +19,14 @@ http://opmon-game.ga
 #include <sstream>
 #include <SFML/System.hpp>
 
-#define OP_DEPRECATED __attribute__ ((deprecated))
+#ifdef __GNUC__
+#define OP_DEPRECATED __attribute__((deprecated))
+#elif defined(_MSC_VER)
+#define OP_DEPRECATED __declspec(deprecated)
+#else
+#define OP_DEPRECATED
+#endif
+
 
 /**
 Shortcuts
