@@ -36,3 +36,4 @@ TODO
 OpMon-Win_NoInstall.zip
 Makefile
 .orig
+build/
