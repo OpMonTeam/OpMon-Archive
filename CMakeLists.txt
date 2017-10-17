@@ -64,14 +64,20 @@ include_directories(${SFML_INCLUDE_DIR})
 
 
 # Install target
-install(TARGETS ${EXECUTABLE_NAME} DESTINATION bin)
+if (UNIX)
+    install(TARGETS ${EXECUTABLE_NAME} DESTINATION bin)
+    install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/resources/OPMon.desktop DESTINATION share/applications)
 
-# TODO: linux only ???
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/resources/OPMon.desktop DESTINATION share/applications)
-
-# TODO: put resource files in the correct folder
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/resources/opmon.png DESTINATION share/OpMon)
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/resources DESTINATION share/OpMon)
+    # TODO: put resource files in the correct folder
+    install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/resources/opmon.png DESTINATION share/OpMon)
+    install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/resources DESTINATION share/OpMon)
+else()
+    install(TARGETS ${EXECUTABLE_NAME} DESTINATION .)
+    install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/resources DESTINATION .)
+    # TODO: copy only usefull DLL
+    # Note: trailing slash "bin/" is important.
+    install(DIRECTORY ${SFML_ROOT}/bin/ DESTINATION .) # copy SFML DLL
+endif()
 
 
 # CPack packaging
