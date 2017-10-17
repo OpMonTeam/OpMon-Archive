@@ -50,7 +50,7 @@ endif()
 
 
 # Note: the executable must be declared before adding libraries
-add_executable(${EXECUTABLE_NAME} ${SOURCE_FILES})
+add_executable(${EXECUTABLE_NAME} WIN32 ${SOURCE_FILES})
 set(EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE})
 
 
