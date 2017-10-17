@@ -18,7 +18,9 @@ set(OPMON_VERSION "${OPMON_VERSION_MAJOR}.${OPMON_VERSION_MINOR}.${OPMON_VERSION
 
 # Compiler options
 set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pedantic -Wextra")
+if(NOT MSVC)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pedantic -Wextra")
+endif()
 set(CMAKE_DEBUG_POSTFIX "Debug")
 
 
