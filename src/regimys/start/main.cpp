@@ -6,6 +6,7 @@
 
 #include <cstdlib>
 
+#include "config.hpp"
 #include "../objects/item/Item.hpp"
 #include "../objects/item/itemInclude.hxx"
 #include "../playercore/Player.hpp"
@@ -77,7 +78,7 @@ namespace Main {
 //->Useless
 string trainers[] = {"Brice", "Evan", "Mael", "Jlppc", "Red", "Blue", "Nikolai", "N", "Belladonis", "Aristote", "Giovanni", "Flora", "Silver", "Jules Cesar", "Brahim"};
 
-string version = "0.13";
+string version = OPMON_VERSION;
 string versionS;
 Player player;
 /*#ifdef _WIN32
