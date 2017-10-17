@@ -58,8 +58,9 @@ set(EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE})
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 
 # Add SFML
-find_package(SFML COMPONENTS graphics window system audio)
+find_package(SFML 2.3 COMPONENTS graphics window system audio)
 target_link_libraries(${EXECUTABLE_NAME} ${SFML_LIBRARIES})
+include_directories(${SFML_INCLUDE_DIR})
 
 
 # Install target
