@@ -1,0 +1,7 @@
+
+#ifndef CONFIG_HPP_IN
+#define CONFIG_HPP_IN
+
+#define OPMON_VERSION "@OPMON_VERSION@"
+
+#endif /* CONFIG_HPP_IN */
