@@ -16,6 +16,10 @@ set(OPMON_DEBIAN_CATEGORY games)
 set(OPMON_VERSION "${OPMON_VERSION_MAJOR}.${OPMON_VERSION_MINOR}.${OPMON_VERSION_PATCH}")
 
 
+# Make SFML_ROOT appear in cmake-gui
+set(SFML_ROOT "" CACHE PATH "SFML root directory.")
+
+
 # Compiler options
 set(CMAKE_CXX_STANDARD 11)
 if(NOT MSVC)
@@ -59,6 +63,9 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 
 # Add SFML
 find_package(SFML 2.3 COMPONENTS graphics window system audio)
+if(NOT SFML_FOUND)
+    message(FATAL_ERROR "SFML not found; You should set SFML_ROOT to the SFML path")
+endif()
 target_link_libraries(${EXECUTABLE_NAME} ${SFML_LIBRARIES})
 include_directories(${SFML_INCLUDE_DIR})
 
