@@ -75,7 +75,7 @@ public:
     OP_DEPRECATED void right();
     OP_DEPRECATED void left();
 
-    int tp(int toTp, sf::Vector2i pos, bool scroll = true);
+  int tp(std::string toTp, sf::Vector2i pos, bool scroll = true);
 
 
 
