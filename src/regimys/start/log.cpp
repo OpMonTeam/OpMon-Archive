@@ -10,6 +10,10 @@ static ofstream *rlog;
 static ofstream *rerrLog;
 
 
+/* location of the log folder */
+#define LOG_PATH std::string("logs/")
+
+
 bool initLogStream() {
 
     mkdir(LOG_PATH);
