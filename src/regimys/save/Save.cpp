@@ -35,7 +35,7 @@ Player *loadPlayer(std::string const& fileIn) {
     //char actu = '\0';
     string verif = readLine(inStream);
     if(verif != "OP_SAVE") {//Vérification de la validité du fichier de sauvegarde
-        return NULL;
+        return nullptr;
     }
     //Lecture des objets
     string pname = readLine(inStream);
@@ -56,7 +56,7 @@ Player *loadPlayer(std::string const& fileIn) {
     if(Utils::hash(inStr) != hash){//Sauvegarde modifiée
         cout << "NOPE!" << endl;
         cout << Utils::hash(inStr) << " != " << hash << endl;
-        return NULL;
+        return nullptr;
     }*///J'ai pas encore mis d'algorithme de hash dans le programme
     return toReturn;
 

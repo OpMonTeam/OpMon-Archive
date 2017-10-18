@@ -631,7 +631,7 @@ void initOpMons() {
       listOp[97] = new Species(73, 70, 73, 115, 67, 85, "Hypnomade", Type::PSY, Type::NOTHING, 0, -1, ne, {Stats.DEFSPE, Stats.DEFSPE}, 1, 75, "La vue de son pendule oscillant endort en trois secondes, même quand on vient de se réveiller.", 165, 1000000, 75, 97);
       listOp[98] = new Species(105, 90, 25, 25, 50, 30, "Krabby", Type::EAU, Type::NOTHING, 0, 28,new E_Level(99, 28), {Stats.ATK}, 0.4, 6.5, "Il creuse son terrier sur des plages sablonneuses. Ses pinces repoussent si on les brise.", 115, 1000000, 255, 98);
       listOp[99] = new Species(130, 115, 50, 50, 75, 55, "Kraboss", Type::EAU, Type::NOTHING, 0, -1, ne, {Stats.ATK, Stats.ATK}, 1.3, 60, "Sa pince devient énorme. S'il la soulève trop vite, il risque de perdre l'équilibre.", 206, 1000000, 60, 99);
-      .listOp[100] = new Species(76, 54, 89, 48, 60, 150, "MagMortis", Type::FEU, Type::ROCHE, 0, -1,NULL, evs[100], 3.64, 532, "Cet Opmon oublié au fil du temps est à l'origine de la disparition d'une ancienne génération de monstres combattants.", 200, 1850000, 4, 100);
+      listOp[100] = new Species(76, 54, 89, 48, 60, 150, "MagMortis", Type::FEU, Type::ROCHE, 0, -1,nullptr, evs[100], 3.64, 532, "Cet Opmon oublié au fil du temps est à l'origine de la disparition d'une ancienne génération de monstres combattants.", 200, 1850000, 4, 100);
       listOp[101] = new Species(50, 70, 80, 80, 140, 60, "Electrode", Type::ELECTRIQUE, Type::NOTHING, 0, -1, ne, {Stats.SPE, Stats.SPE}, 1.2, 66.6, "Il stocke tellement d'énergie dans son corps qu'une simple secousse peut le faire exploser.", 150, 1000000, 60, 101);
       listOp[102] = new Species(40, 80, 60, 45, 140, 60, "Noeunoeuf", Type::PLANTE, Type::PSY, 0, -1, new E_Item(103, Item::getItem("Pierre Plante")), {Stats.DEF}, 0.4, 2.5, "Il stocke tellement d'énergie dans son corps qu'une simple secousse peut le faire exploser.", 98, 1250000, 90, 102);
       listOp[103] = new Species(95, 85, 125, 65, 55, 95, "Noadkoko", Type::PLANTE, Type::PSY, 0, -1, ne, {Stats.DEF}, 2, 120, "Il stocke tellement d'énergie dans son corps qu'une simple secousse peut le faire exploser.", 215, 1250000, 45, 103);
@@ -858,7 +858,7 @@ void initTextures() {
     using namespace Side;
 
     tileset.loadFromFile(getPath(RESSOURCES_PATH + "maps/tileset.png"));
-        if(!texturePP[TO_DOWN].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp0.png"))){
+    if(!texturePP[TO_DOWN].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp0.png"))){
       handleError("Failed to load one of the PP sprites", false);
     }
     if(!texturePP[TO_RIGHT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp1.png"))){
@@ -949,7 +949,6 @@ void initTextures() {
 void initSprites() {
     using namespace std;
 
-
     oplog("Textures initialization");
     initTextures();
     oplog("Backgrounds initialization");
@@ -959,14 +958,6 @@ void initSprites() {
     Main::mainframe.initEnd = true;
     //Init Sprites
 
-    oplog("Textures initialization");
-    initTextures();
-    oplog("Backgrounds initialization");
-    initBackgrounds();
-    oplog("Animations initialization");
-    Animations::initAnims();
-    Main::mainframe.initEnd = true;
-    //Init Sprites
 }
 sf::Texture alpha;
 void initMaps() {
@@ -1055,8 +1046,11 @@ void initMaps() {
     maps.push_back(new Map(Maps::laboLayer1, Maps::laboLayer2, Maps::laboLayer3, 32, 16, laboCol, townMusics[1]));
     FREE_TAB(laboCol, 16);
     maps[2]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(15, 15), sf::Vector2i(20, 21), 0, Side::TO_DOWN, SIDE_DOWN));
-    
+    //Dialogs
+    std::vector<OpString> felaboC1 {OpString("prof.dialog.1"), OpString("prof.dialog.2"), OpString("prof.dialog.3")};
+
     //Load Npcs
+    maps[2]->addEvent(new Events::TalkingCharaEvent(kiwaiTextures, sf::Vector2f(15, 4), felaboC1, Events::EventTrigger::PRESS, Events::MoveStyle::NO_MOVE));
 
     std::vector<OpString> laboC1 {OpString("prof.dialog.1"), OpString("prof.dialog.2"), OpString("prof.dialog.3")};
     
@@ -1078,7 +1072,7 @@ void initMaps() {
     maps[5]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(8, 5), sf::Vector2i(16, 2), 1, Side::TO_LEFT, SIDE_RIGHT));
 
     Main::mainframe.overworld.initVars();
-    
+
 }
 #undef PLANS_RESET
 void initBackgrounds() {
@@ -1087,28 +1081,16 @@ void initBackgrounds() {
 
 void initKeys() {
     //Définit la langue a initialiser dans les clées
-#ifdef _WIN32
     if(OptionsSave::getParam("lang").getValue() == "fr") {
-        StringKeys::initialize(RESSOURCES_PATH + "keys\\francais.rkeys");
+        StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/francais.rkeys"));
     } else if(OptionsSave::getParam("lang").getValue() == "esp") {
-        StringKeys::initialize(RESSOURCES_PATH + "keys\\espanol.rkeys");
+        StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/espanol.rkeys"));
     } else {
-        StringKeys::initialize(RESSOURCES_PATH + "keys\\english.rkeys");
+        StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/english.rkeys"));
     }
-
-#else
-    if(OptionsSave::getParam("lang").getValue() == "fr") {
-        StringKeys::initialize(RESSOURCES_PATH + "keys/francais.rkeys");
-    } else if(OptionsSave::getParam("lang").getValue() == "esp") {
-        StringKeys::initialize(RESSOURCES_PATH + "keys/espanol.rkeys");
-    } else {
-        StringKeys::initialize(RESSOURCES_PATH + "keys/english.rkeys");
-    }
-#endif
 }
 
 void init() {
-  
     oplog("Keys initialization");
     initKeys();
     oplog("Items initialization");

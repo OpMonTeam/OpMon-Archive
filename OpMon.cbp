@@ -94,6 +94,7 @@
 		<Unit filename="resources.rc">
 			<Option compilerVar="WINDRES" />
 		</Unit>
+
 		<Unit filename="src/regimys/enums/Enums.cpp" />
 		<Unit filename="src/regimys/enums/Enums.hpp" />
 		<Unit filename="src/regimys/enums/Nature.cpp" />
@@ -134,6 +135,8 @@
 		<Unit filename="src/regimys/objects/Attacks.hpp" />
 		<Unit filename="src/regimys/objects/OpMon.cpp" />
 		<Unit filename="src/regimys/objects/OpMon.hpp" />
+		<Unit filename="src/regimys/fight/Fight.cpp" />
+		<Unit filename="src/regimys/fight/Fight.hpp" />
 		<Unit filename="src/regimys/objects/Species.cpp" />
 		<Unit filename="src/regimys/objects/Species.hpp" />
 		<Unit filename="src/regimys/objects/item/CT.cpp" />
@@ -182,6 +185,7 @@
 		<Unit filename="src/utils/Utils.cpp" />
 		<Unit filename="src/utils/Utils.hpp" />
 		<Unit filename="src/utils/utilsInclude.hxx" />
+
 		<Extensions>
 			<code_completion />
 			<envvars />

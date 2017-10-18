@@ -127,7 +127,7 @@ public:
     /**Methode appellée lors d'une montée de niveau*/
     void levelUp();
     bool isHoldingItem() const {
-        return (held == NULL);
+        return (held == nullptr);
     }
     /**Methode appelée lors d'une victoire*/
     int win(OpMon const &vaincu);
@@ -205,6 +205,9 @@ public:
     }
     int getStatDEFSPE() const {
         return statDEFSPE;
+    }
+    int getStatSPE() const{
+        return statSPE;
     }
     Species *getSpecies() const {
         return species;
