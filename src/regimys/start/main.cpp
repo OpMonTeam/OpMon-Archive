@@ -152,8 +152,10 @@ int quit(int const& returns) {
     oplog("Waiting for the initialization");
     Main::mainframe.mapsInit.wait();
     oplog("Deleting resources in the memory");
-    for(Map *map : Initializer::maps) {//Deleting the maps
-        delete(map);
+    for(std::map<std::string, Map*>::iterator map = Initializer::maps.begin(); map!=Initializer::maps.end(); ++map){
+      if(map->second != nullptr){
+	delete(map->second);
+      }
     }
     for(sf::Music *mus : Initializer::townMusics) {//Deleting the maps' music
         delete(mus);
