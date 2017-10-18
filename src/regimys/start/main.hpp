@@ -49,32 +49,20 @@ Linux only. If defined, the program will search for the resources on the local d
 Return how many time in milliseconds the program is open
 */
 #define GET_TICKS ticks.getElapsedTime().asMilliseconds()
-/*
-This code define the location of the logs, saves and resources folders.
-*/
-#ifndef _WIN32
 
-#ifdef LOCAL_TEST
-
+/**
+ * Location of the resource folder
+ */
+#if defined(LOCAL_TEST) && !defined(_WIN32)
 #define RESSOURCES_PATH std::string("resources/")
-#define LOG_PATH std::string("logs/")
-#define SAVE_PATH std::string("saves/")
-
 #else
-
 #define RESSOURCES_PATH std::string("/usr/share/OpMon/resources/")
-#define LOG_PATH std::string("/usr/share/OpMon/logs/")
-#define SAVE_PATH std::string("/usr/share/OpMon/saves/")
-
 #endif
 
-#else
+/* location of the save folder */
+#define SAVE_PATH std::string("saves/")
 
-#define RESSOURCES_PATH std::string("resources\\")
-#define LOG_PATH std::string("logs\\")
-#define SAVE_PATH std::string("saves\\")
 
-#endif // _WIN32
 /**
 Use in a stream with the << operator. Prints the number of milliseconds passed since the beginning of the game.
 */
