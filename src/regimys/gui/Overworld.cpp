@@ -21,7 +21,7 @@ using namespace Side;
 
 
 void Overworld::initVars() {
-    actual =  Initializer::maps[5];
+    actual =  Initializer::maps["Player's room"];
     character = Main::player.getSprite();
     character.setTexture(Initializer::texturePP[TO_DOWN]);
     character.setPosition(8 CASES + 2 CASES - 16, 8 CASES + 2 CASES);
@@ -44,7 +44,7 @@ void Overworld::initVars() {
     character.setOrigin(16, 16);
 }
 
-int Overworld::tp(int toTp, sf::Vector2i pos, bool scroll) {
+int Overworld::tp(string toTp, sf::Vector2i pos, bool scroll) {
     if(moving != -1|| anim != -1) {
         moving = -1;
         anim = -1;
@@ -226,8 +226,8 @@ void Overworld::left() {
 
 int Overworld::overworld() {
   Main::mainframe.mapsInit.wait();
-    for(Map *map : Initializer::maps) {
-        for(Event *event : map->getEvents()) {
+    for(std::map<std::string, Map*>::iterator map = Initializer::maps.begin(); map!=Initializer::maps.end(); ++map) {
+        for(Event *event : map->second->getEvents()) {
             Events::TalkingEvent *te = dynamic_cast<Events::TalkingEvent *>(event);
             if(te != nullptr) {
                 te->reloadKeys();
@@ -296,17 +296,17 @@ int Overworld::boucle() {
                     }
 
                     if(Main::mainframe.events.key.code == sf::Keyboard::F5) {
-                        tp(4, sf::Vector2i(0, 1), true);
+                        tp("Mom's room", sf::Vector2i(0, 1), true);
                     } else if(Main::mainframe.events.key.code == sf::Keyboard::F6) {
-                        tp(5, sf::Vector2i(0, 0), true);
+                        tp("Player's room", sf::Vector2i(0, 0), true);
                     } else if(Main::mainframe.events.key.code == sf::Keyboard::F1) {
-                        tp(0, sf::Vector2i(25, 28), true);
+                        tp("Fauxbourg Euvi", sf::Vector2i(25, 28), true);
                     } else if(Main::mainframe.events.key.code == sf::Keyboard::F2) {
-                        tp(1, sf::Vector2i(8, 14), true);
+                        tp("Player's home", sf::Vector2i(8, 14), true);
                     } else if(Main::mainframe.events.key.code == sf::Keyboard::F3) {
-                        tp(2, sf::Vector2i(15, 14), true);
+                        tp("Laboratory", sf::Vector2i(15, 14), true);
                     } else if(Main::mainframe.events.key.code == sf::Keyboard::F4) {
-                        tp(3, sf::Vector2i(8, 14), true);
+                        tp("Rival's house", sf::Vector2i(8, 14), true);
                     }
                 }
             default:

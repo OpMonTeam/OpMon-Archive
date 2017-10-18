@@ -27,8 +27,8 @@ void MainFrame::initAllStrings() {
     optionsmenu.initStrings();
     mainmenu.initStrings();
     startscene.initStrings();
-    for(Map *map : Initializer::maps) {
-        for(Event *event : map->getEvents()) {
+    for(std::map<std::string, Map*>::iterator map = Initializer::maps.begin(); map!=Initializer::maps.end(); ++map) {
+        for(Event *event : map->second->getEvents()) {
             Events::TalkingEvent *te = dynamic_cast<Events::TalkingEvent *>(event);
             if(te != nullptr) {
                 te->reloadKeys();
