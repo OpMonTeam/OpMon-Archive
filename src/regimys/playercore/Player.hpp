@@ -77,6 +77,10 @@ public:
     int &getPosY() {
         return posY;
     }
+
+  bool isKo(){
+    return opteam.isKo();
+  }
     //DontUse
     sf::Sprite charaSprite;
 

@@ -12,6 +12,7 @@
 #include "Overworld.hpp"
 #include "OptionsMenu.hpp"
 #include "../save/OptionsSave.hpp"
+#include "../objects/Attacks.hpp"
 
 #include "StartScene.hpp"
 #include "Events.hpp"
@@ -165,6 +166,14 @@ void MainFrame::open() {
             frame.draw(textLoad);
             frame.display();
             winRefresh();
+	    if(Main::player.getName().empty()){
+	      Main::player.setName("Céchine");
+	    }
+	    //Initializating opmons
+	    OpMon *op1 = new OpMon("", Initializer::listOp[4], 20, new Attacks::Belier(), new Attacks::Charge(), nullptr, nullptr, Nature::BIZARRE);
+	    OpMon *op2 = new OpMon("", Initializer::listOp[1], 22, new Attacks::Belier(), new Attacks::Charge(), nullptr, nullptr, Nature::PUDIQUE);
+	    Main::player.addOpToOpTeam(op1);
+	    Main::player.addOpToOpTeam(op2);
             if(overworld.overworld() != -1) {
                 if(overworld.overworld() == 2) {
 

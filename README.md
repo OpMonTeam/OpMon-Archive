@@ -39,14 +39,14 @@ __After : ALpha 0.14__: Added the first OPMon's fight
 
 # Bienvenue sur le Projet "OPMon Lazuli"!
 
-## Bienvenue sur le dépot du jeu OPMon Lazuli! Le clone libre de la celebre license de Nintendo !
+## Bienvenue sur le dépot du jeu OPMon Lazuli! Le clone libre de la célèbre license de Nintendo !
 
 <br/>
-<a href="https://github.com/jlppc/OpMon/wiki/Journal-du-développement">Journal de developpement</a><br/>
-<a href="https://github.com/jlppc/OpMon/wiki/Monthly-reports---Bilans-Mensuels/">Bilans mensuels, récapitulatifs de nouveautées</a><br/>
+<a href="https://github.com/jlppc/OpMon/wiki/Journal-du-développement">Journal de développement</a><br/>
+<a href="https://github.com/jlppc/OpMon/wiki/Monthly-reports---Bilans-Mensuels/">Bilans mensuels, récapitulatifs des nouveautés</a><br/>
 <a href="http://opmon-game.ga">Site web du jeu</a><br/>
 <a href="https://github.com/jlppc/OpMon/blob/master/Credits.md">Crédits</a><br/>
-<a href="https://github.com/jlppc/Site-OpMon">Dépot du site web du jeu</a><br/><br/>
+<a href="https://github.com/jlppc/Site-OpMon">Dépôt du site web du jeu</a><br/><br/>
 <br/>Version du jeu : Alpha 0.13 | Téléchargement : <a 
 href="http://opmon-game.ga"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Resources/Other/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 Prochaines versions :<ul>
