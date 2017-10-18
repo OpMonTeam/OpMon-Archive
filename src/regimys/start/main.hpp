@@ -54,9 +54,9 @@ Return how many time in milliseconds the program is open
  * Location of the resource folder
  */
 #if defined(LOCAL_TEST) && !defined(_WIN32)
-#define RESSOURCES_PATH std::string("resources/")
+#define RESSOURCES_PATH std::string("data/")
 #else
-#define RESSOURCES_PATH std::string("/usr/share/OpMon/resources/")
+#define RESSOURCES_PATH std::string("/usr/share/OpMon/")
 #endif
 
 /* location of the save folder */
