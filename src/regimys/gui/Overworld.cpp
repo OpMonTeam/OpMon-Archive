@@ -1,4 +1,3 @@
-
 #include "Overworld.hpp"
 #include "../start/Initializer.hpp"
 #include "../start/main.hpp"
@@ -51,8 +50,8 @@ int Overworld::tp(int toTp, sf::Vector2i pos, bool scroll) {
         anim = -1;
     }
     actual = Initializer::maps[toTp];
-    if(actual == NULL) {
-        handleError("Error changing map : actual == NULL", true);
+    if(actual == nullptr) {
+        handleError("Error changing map : actual == nullptr", true);
     }
     scrolling = scroll;
     character.setPosition(8 CASES + pos.x CASES - 16, 8 CASES + pos.y CASES);
@@ -550,6 +549,7 @@ int Overworld::boucleDialog(vector<sf::String> const& dialogs) {
     sf::Vector2f posArrow = Main::mainframe.frame.mapPixelToCoords(sf::Vector2i(512-75, 512-30));
     Main::mainframe.arrDial.setPosition(posArrow);
 
+
     while(!dialog.isDialogOver()) {
         if((GET_TICKS - ancientTick >= FPS_TICKS)) {
             frames++;
@@ -557,8 +557,10 @@ int Overworld::boucleDialog(vector<sf::String> const& dialogs) {
                 tpCount++;
                 justTp = tpCount < 0;
             }
+
             ancientTick = GET_TICKS;
             Main::mainframe.window.pollEvent(Main::mainframe.events);
+
             switch(Main::mainframe.events.type) {
                 RETURN_ON_CLOSE_EVENT
 
@@ -603,15 +605,22 @@ int Overworld::boucleDialog(vector<sf::String> const& dialogs) {
             Main::mainframe.frame.setView(Main::mainframe.frame.getDefaultView());
             Main::mainframe.frame.setView(camera);
             actual->updateElements(Main::mainframe.frame);
+
             dialog.updateTextAnimation();
 
             dialog.draw();
             Main::mainframe.frame.display();
             Main::mainframe.winRefresh();
 
+
+
         } else {
             Utils::wait(FPS_TICKS - (GET_TICKS - ancientTick));
         }
+
+
     }
     return 0;
 }
+
+
