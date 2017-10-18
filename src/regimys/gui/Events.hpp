@@ -91,10 +91,10 @@ private:
     int frames = -1;
 protected:
     sf::Vector2i tpCoord;
-    int mapID;
+  std::string map;
     int ppDir;
 public:
-    TPEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2f const& position, sf::Vector2i const& tpPos, int mapID, int ppDir = -1, int sides = SIDE_ALL, bool passable = true);
+  TPEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2f const& position, sf::Vector2i const& tpPos, std::string const& map, int ppDir = -1, int sides = SIDE_ALL, bool passable = true);
     virtual void update(Player &player);
     virtual void action(Player &player);
 };
@@ -108,7 +108,7 @@ protected:
     sf::Texture &selectDoorType(int doorType);
     int animStarted = -1;
 public:
-    DoorEvent(std::vector<sf::Texture> &doorType, sf::Vector2f const& position, sf::Vector2i const& tpPos, int mapID, int eventTrigger = 1, int ppDir = -1, int sides = SIDE_ALL, bool passable = true);
+  DoorEvent(std::vector<sf::Texture> &doorType, sf::Vector2f const& position, sf::Vector2i const& tpPos, std::string const& map, int eventTrigger = 1, int ppDir = -1, int sides = SIDE_ALL, bool passable = true);
     virtual void action(Player &player);
     virtual void update(Player &player);
 };
@@ -133,7 +133,7 @@ protected:
 public:
     virtual void action(Player &player);
     virtual void update(Player &player);
-    LockedDoorEvent(std::vector<sf::Texture> &doorType, Item *needed, sf::Vector2f const& position, sf::Vector2i const& tpPos, int mapID, int ppDir = -1, int eventTrigger = 0, bool consumeItem = false,int sides = SIDE_ALL, bool passable = false);
+  LockedDoorEvent(std::vector<sf::Texture> &doorType, Item *needed, sf::Vector2f const& position, sf::Vector2i const& tpPos, std::string const& map, int ppDir = -1, int eventTrigger = 0, bool consumeItem = false,int sides = SIDE_ALL, bool passable = false);
 };
 
 namespace MoveStyle {

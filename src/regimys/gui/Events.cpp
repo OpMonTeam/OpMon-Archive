@@ -33,14 +33,14 @@ namespace DoorType {
 std::vector<sf::Texture> NORMAL, SHOP;
 }
 
-TPEvent::TPEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2f const& position, sf::Vector2i const& tpPos, int mapID, int ppDir, int sides, bool passable):
-    Event(baseTexture, otherTextures, eventTrigger, position, sides, passable), tpCoord(tpPos), mapID(mapID), ppDir(ppDir) {
+TPEvent::TPEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2f const& position, sf::Vector2i const& tpPos, string const& map, int ppDir, int sides, bool passable):
+    Event(baseTexture, otherTextures, eventTrigger, position, sides, passable), tpCoord(tpPos), map(map), ppDir(ppDir) {
 
 }
 
-DoorEvent::DoorEvent(std::vector<sf::Texture> &doorType, sf::Vector2f const& position, sf::Vector2i const& tpPos, int mapID, int eventTrigger, int ppDir, int sides, bool passable):
+DoorEvent::DoorEvent(std::vector<sf::Texture> &doorType, sf::Vector2f const& position, sf::Vector2i const& tpPos, string const& map, int eventTrigger, int ppDir, int sides, bool passable):
     Event(doorType[0], doorType, eventTrigger, position, sides, passable),
-    TPEvent(doorType[0], doorType, eventTrigger, position, tpPos, mapID, ppDir, sides, passable) {
+    TPEvent(doorType[0], doorType, eventTrigger, position, tpPos, map, ppDir, sides, passable) {
     this->sprite->move(0, -6);
     if(&doorType[0] == &DoorType::SHOP[0]) {
         this->sprite->move(-4, 0);
@@ -62,8 +62,8 @@ void TalkingEvent::reloadKeys() {
             }
 }
 
-LockedDoorEvent::LockedDoorEvent(std::vector<sf::Texture> &doorType, Item *needed, sf::Vector2f const& position, sf::Vector2i const& tpPos, int mapID, int ppDir, int eventTrigger, bool consumeItem,int sides, bool passable) :
-    DoorEvent(doorType, position, tpPos, mapID, eventTrigger, ppDir, sides, passable),
+LockedDoorEvent::LockedDoorEvent(std::vector<sf::Texture> &doorType, Item *needed, sf::Vector2f const& position, sf::Vector2i const& tpPos, string const& map, int ppDir, int eventTrigger, bool consumeItem,int sides, bool passable) :
+    DoorEvent(doorType, position, tpPos, map, eventTrigger, ppDir, sides, passable),
     Event(this->baseTexture, this->otherTextures, eventTrigger, position, sides, passable),
     TalkingEvent(this->baseTexture, this->otherTextures, position, LockedDoorEvent::keysLock, sides, eventTrigger, passable),
     needed(needed), consumeItem(consumeItem) {
@@ -92,7 +92,7 @@ TalkingCharaEvent::TalkingCharaEvent(std::vector<sf::Texture> charTextures, sf::
 
 void TPEvent::action(Player &player) {
     if(!justTP) {
-        Main::mainframe.overworld.tp(mapID, tpCoord);
+        Main::mainframe.overworld.tp(map, tpCoord);
         if(this->ppDir != -1) {
             Main::player.setppDir(this->ppDir);
         }

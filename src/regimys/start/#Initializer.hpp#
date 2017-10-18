@@ -4,7 +4,7 @@ Author : Jlppc
 Contributeurs au fichier .cpp: Navet56, Aerzia
 Fichier sous licence GPL-3.0
 http://opmon-game.ga
-Contient la définition des methodes qui permettent d'initialiser les éléments du jeu
+Contient la dÃ©finition des methodes qui permettent d'initialiser les Ã©lÃ©ments du jeu
 */
 #ifndef INITIALIZER_HPP
 #define INITIALIZER_HPP
@@ -25,7 +25,7 @@ class Map;
 //->NoDoc
 namespace Initializer {
 extern Species *listOp[OP_NUMBER];
-extern std::vector<NumberedArray> opOpLvl[OP_NUMBER]; //100 attaques max / poké
+extern std::vector<NumberedArray> opOpLvl[OP_NUMBER]; //100 attaques max / pokÃ©
 extern Evolutions::E_Nope *ne;//ne = No Evolution
   extern std::map<std::string, Map *> maps;
 extern std::vector<sf::Music *> townMusics;
