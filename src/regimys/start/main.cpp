@@ -6,6 +6,7 @@
 
 #include <cstdlib>
 
+#include "config.hpp"
 #include "../objects/item/Item.hpp"
 #include "../objects/item/itemInclude.hxx"
 #include "../playercore/Player.hpp"
@@ -48,19 +49,22 @@ string getPath(string const& path) {
 /**
  * Make a new directory (if it does not exist yet).
  *
- * @param path
+ * @param path file path in the UNIX format
  * @return `true` if the directory exists; `false` in case of error.
  */
 bool mkdir(const std::string &path) {
+    // Path in the local system format
+    std::string path2 = getPath(path);
+
 #ifndef _WIN32
     const char *cmd = "mkdir -p ";
 #else
     const char *cmd = "mkdir ";
 #endif
 
-    int result = system((cmd + path).c_str());
+    int result = system((cmd + path2).c_str());
     if (result) {
-        cout << "creation of folder \"" << path << " failed: errno " << result << endl;
+        cout << "creation of folder \"" << path2 << " failed: errno " << result << endl;
     }
     #ifndef _WIN32
     return !result;
@@ -77,7 +81,7 @@ namespace Main {
 //->Useless
 string trainers[] = {"Brice", "Evan", "Mael", "Jlppc", "Red", "Blue", "Nikolai", "N", "Belladonis", "Aristote", "Giovanni", "Flora", "Silver", "Jules Cesar", "Brahim"};
 
-string version = "0.13";
+string version = OPMON_VERSION;
 string versionS;
 Player player;
 /*#ifdef _WIN32
