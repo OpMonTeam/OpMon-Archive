@@ -30,7 +30,7 @@ class Species {
 protected:
 
 private:
-    std::string nom;
+    std::string name;
     int numeroOpdex;
     Species *evolution;
     int niveauEvolution;
@@ -86,8 +86,8 @@ public:
     int getBaseHP() const {
         return baseHP;
     }
-    std::string getNom() const {
-        return nom;
+    std::string getName() const {
+        return name;
     }
     int getTauxDeCapture() const {
         return tauxDeCapture;
