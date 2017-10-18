@@ -14,6 +14,18 @@ OPMon is a Pokémon-inspired game project imagined in 2012 and started in septem
 * [Github repo for the game website, opmon-game.ga](https://github.com/jlppc/Site-OpMon)
 * [Documentation](http://opmon-game.ga/pages/doc)
 
+### Build
+
+The build system use *cmake*.
+
+```sh
+mkdir build/
+cd build
+cmake ..
+make
+sudo make install   # install the game into your system
+make package        # generate both .deb package and .tar.gz package
+```
 
 ### Contact Us
 * jlppcprog@ntymail.com for bugs, lags or about the code
@@ -70,6 +82,19 @@ Si vous nous proposez beaucoup de bonnes modifications, et qu'elles sont accept�
 Nous sommes plusieurs sur le projet : Jlppc, le programmeur et créateur de l'histoire et des personnages ; Navet56, le graphiste et correcteur ; et d'autres contributeurs, comme Imperator Dei, qui a corrigé les fautes d'orthographe sur la version française,  merci à eux !<br/>
 Contacts : jlppcprog@ntymail.com pour la programmation | evandib@gmail.com pour les graphismes<br/>
 Si vous avez des questions à poser, n'hésitez pas à les demander dans la section F.A.Q. du wiki ou a nous contacter par mail!<br/><br/><br/>
+
+### Build
+
+Le systèmle de build utilise *cmake*. Voici les commandes pour compiler le jeu et l'installer (sous Linux).
+
+```sh
+mkdir build/
+cd build
+cmake ..
+make
+sudo make install   # installe le jeu sur votre système
+make package        # génère deux paquets: un fichier générique .tar.gz et un paquet .deb
+```
 
 ## Changelog des versions
 [Voir le changelog de toutes les versions du jeu](http://github.com/jlppc/OpMon/wiki/Releases)
