@@ -1,1 +1,0 @@
-Error  n�1 : Impossible d'ouvrir le fichier des paramètres. Si le fichier était seulement inexistant, il a été crée. Il sera ouvert donc correctement au redemmarage.
