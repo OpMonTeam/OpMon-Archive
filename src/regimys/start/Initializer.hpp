@@ -25,7 +25,7 @@ class Map;
 //->NoDoc
 namespace Initializer {
 extern Species *listOp[OP_NUMBER];
-extern std::vector<NumberedArray> opOpLvl[OP_NUMBER]; //100 attaques max / poké
+  extern std::vector<std::map<int, Attack> > atkOpLvl; 
 extern Evolutions::E_Nope *ne;//ne = No Evolution
   extern std::map<std::string, Map *> maps;
 extern std::vector<sf::Music *> townMusics;
@@ -35,7 +35,7 @@ extern sf::Texture walkingPP2[4];
 extern sf::Texture backPP;//Not init yet
 extern sf::Texture mapsFe[3];
 
-  extern sf::Texture tileset;
+extern sf::Texture tileset;
 //Battle
 extern sf::Texture bActButtons[4];
 extern sf::Texture bHpBar;
