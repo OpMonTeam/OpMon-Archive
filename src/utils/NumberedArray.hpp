@@ -12,9 +12,10 @@ Définit la classe NumberedArray
 #include "Class.hpp"
 
 /**
-A l'origine prévue pour tout, cette classe permet une association d'un objet string a un nombre
+In java, this class was used to associate to objects.
+EDIT October 2017 : I discovered std::map. Now this class is deprecated
 */
-class NumberedArray {
+OP_DEPRECATED class NumberedArray {
 public:
     NumberedArray(int number, std::string str);
     std::string getAttack() const {
