@@ -19,13 +19,16 @@ OPMon is a Pokémon-inspired game project imagined in 2012 and started in septem
 The build system use *cmake*.
 
 ```sh
-mkdir build/
-cd build
-cmake ..
+cmake .             #If you want to build in Debug, use -DCMAKE_BUILD_TYPE=Debug
 make
+# The next two commands are not completely configured. They might be unfunctional. Try if you want!
 sudo make install   # install the game into your system
 make package        # generate both .deb package and .tar.gz package
 ```
+
+If you want to edit the data files' location, edit the macros containing the resources, log and saves path in src/regimys/start/main.hpp.<br/>
+If you want to play to the game quickly, use build-and-run.sh. The game will be built in bin/Release, and the data will be pasted in this repertory. The game will launch after building..<br/>
+If you don't use build.sh, don't forget to copy the data folder in the game's folder of in the path you have set.
 
 ### Contact Us
 * jlppcprog@ntymail.com for bugs, lags or about the code
@@ -88,13 +91,15 @@ Si vous avez des questions à poser, n'hésitez pas à les demander dans la sect
 Le systèmle de build utilise *cmake*. Voici les commandes pour compiler le jeu et l'installer (sous Linux).
 
 ```sh
-mkdir build/
-cd build
-cmake ..
+cmake .
 make
 sudo make install   # installe le jeu sur votre système
 make package        # génère deux paquets: un fichier générique .tar.gz et un paquet .deb
 ```
+
+Vous pouvez aussi utiliser le build-and-run.sh pour compiler et jouer au jeu rapidement. Le jeu se trouvera alors dans le dossier bin/Release, avec le dossier data copié dedans. Il se lancera dès la fin de la compilation.<br/>
+Si vous voulez modifier l'emplacement des dossiers, vous pouvez aller dans src/regimys/start/main.hpp et modifier les macros correspondants.<br/>
+Si vous n'utilisez pas le build.sh, n'oubliez pas de copier le dossier data dans le dossier du jeu ou a l'emplacement que vous avez configuré!
 
 ## Changelog des versions
 [Voir le changelog de toutes les versions du jeu](http://github.com/jlppc/OpMon/wiki/Releases)
