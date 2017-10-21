@@ -37,3 +37,10 @@ OpMon-Win_NoInstall.zip
 Makefile
 .orig
 build/
+#CMake
+CMakeFiles/*
+CMakeCache.txt
+CPackConfig.cmake
+CPackSourceConfig.cmake
+cmake_install.cmake
+config.hpp
