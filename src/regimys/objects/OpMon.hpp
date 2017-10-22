@@ -18,6 +18,8 @@ Contient la d�finition du namepsace CalcCourbs et de la classe OpMon
 #include "item/IOpball.hpp"
 
 
+class Species;
+
 /**
 Namespace permettant de faire des calculs sur les courbes d'experience. D'ou son nom, j'ai envie de dire...
 */

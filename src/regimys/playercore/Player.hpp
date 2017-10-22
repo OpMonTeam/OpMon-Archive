@@ -13,6 +13,11 @@ Contient la définition de la classe Player
 #include "OpTeam.hpp"
 #include "../objects/item/Item.hpp"
 #include <SFML/Graphics.hpp>
+#include "../objects/OpMon.hpp"
+
+class OpMon;
+class OpTeam;
+
 /**
 Classe représentant le joueur
 */
@@ -90,7 +95,7 @@ private:
     const unsigned int trainerID;//jusqu'a 8 chiffres (Hexadecimal) (jusqu'a 16^8 soit 4 octets soit un int)
     int bag[ITEM_NUMBER];
     std::vector<OpMon *> pc = std::vector<OpMon *>();
-    OpTeam opteam = OpTeam("temp");
+    OpTeam opteam;
     int *ppDir;
     int mapID = 0;
     int posX = 2;
