@@ -25,7 +25,7 @@ class Map;
 //->NoDoc
 namespace Initializer {
 extern Species *listOp[OP_NUMBER];
-  extern std::vector<std::map<int, Attack> > atkOpLvl; 
+  extern std::vector<std::map<int, std::string> > atkOpLvl; 
 extern Evolutions::E_Nope *ne;//ne = No Evolution
   extern std::map<std::string, Map *> maps;
 extern std::vector<sf::Music *> townMusics;
