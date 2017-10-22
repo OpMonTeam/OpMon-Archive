@@ -11,8 +11,13 @@ Contient le namespace Overworld
 #include <SFML/Audio.hpp>
 #include "../start/main.hpp"
 #include "Elements.hpp"
+#include "../playercore/Player.hpp"
 #define CASES * 32
 #define CASE_SIZE 32
+
+namespace Main{
+  extern Player player;
+}
 
 /**
 Contient les Ã©lÃ©ments fonctionnels de l'overworld

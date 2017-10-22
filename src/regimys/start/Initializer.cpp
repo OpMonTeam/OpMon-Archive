@@ -36,7 +36,7 @@ sf::SoundBuffer doorSoundBuffer;
 sf::Texture tileset;
 std::vector<sf::Texture> kiwaiTextures;  
 std::vector<sf::Texture> kidTextures;
-std::vector<std::map<int, Attack> > atkOpLvl;
+  std::vector<std::map<int, std::string> > atkOpLvl;
 template<typename T>void pb(std::vector<T> &vect, T arr[], int sizeArr) {
     for (unsigned int i = 0; i < sizeArr; i++) {
         vect.push_back(arr[i]);
@@ -789,10 +789,10 @@ void initOpMons() {
 void initAtkLvls() {
 
   atkOpLvl.push_back(std::map<int, std::string>());
-  atkOpLvl[1][0] = "Charge";
-  atkOpLvl[1][3] = "Rugissement";
-  atkOpLvl[1][7] = "Vampigraine";
-  atkOpLvl[1][9] = "FoutetLianes";
+  atkOpLvl[0][0] = "Charge";
+  atkOpLvl[0][3] = "Rugissement";
+  atkOpLvl[0][7] = "Vampigraine";
+  atkOpLvl[0][9] = "FoutetLianes";
   //etc...
     /*//atkPokeLvl[0] = nullptr;
       ATK_LIST(1) = {NumberedArray(0, "Charge"),  NumberedArray(3, "Rugissement"),  NumberedArray(7, "Vampigraine"), ect... ||| NumberedArray(9, FouetLianes::classe),  NumberedArray(13, PoudreToxik::classe),  NumberedArray(13, PoudreDodo::classe),  NumberedArray(15, Belier::classe),  NumberedArray(19, TranchHerbe::classe),  NumberedArray(21, DouxParfum::classe),  NumberedArray(25, Croissance::classe),  NumberedArray(27, Damocles::classe),  NumberedArray(33, Synthese::classe),  NumberedArray(37, CanonGraine::classe)};
