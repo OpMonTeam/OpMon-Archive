@@ -10,12 +10,13 @@ Définit la classe NumberedArray
 
 #include <iostream>
 #include "Class.hpp"
+#include "../regimys/start/defines.hpp"
 
 /**
 In java, this class was used to associate to objects.
 EDIT October 2017 : I discovered std::map. Now this class is deprecated
 */
-OP_DEPRECATED class NumberedArray {
+class NumberedArray {
 public:
     NumberedArray(int number, std::string str);
     std::string getAttack() const {
