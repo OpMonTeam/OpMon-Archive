@@ -58,7 +58,7 @@ public:
     bool movementLock = false;
 
     bool scrollock[2] = {false, false};
-    int ppDir = Side::TO_DOWN;
+  int ppDir = (int) Side::TO_DOWN;
 
     bool scrolling = true;
 
