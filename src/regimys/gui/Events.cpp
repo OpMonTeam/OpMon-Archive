@@ -120,6 +120,7 @@ void DoorEvent::action(Player &player) {
 void DoorEvent::update(Player &player) {
     if(animStarted != -1) {
         animStarted++;
+
         if(animStarted < 8 && (animStarted / 2)*2 == animStarted) {
             sprite->setTexture(otherTextures[animStarted / 2]);
         } else if(animStarted > 10) {
@@ -148,8 +149,6 @@ void CharacterEvent::update(Player &player) {
             if(predefinedCounter >= movements.size()) {
                 predefinedCounter = 0;
             }
-            cout << movements.size() << endl;
-            cout << predefinedCounter << endl;
             move(movements[predefinedCounter], player);
             break;
 
@@ -157,7 +156,27 @@ void CharacterEvent::update(Player &player) {
             break;
 
         case MoveStyle::RANDOM:
-            move(Utils::randUI(5) - 1, player);
+	  int randomMove = Utils::randUI(5) - 1;
+	  switch(randomMove){
+	  case -1:
+	    move(Side::NO_MOVE, player);
+	    break;
+	  case 0:
+	    move(Side::TO_UP, player);
+	    break;
+	  case 1:
+	    move(Side::TO_DOWN, player);
+	    break;
+	  case 2:
+	    move(Side::TO_LEFT, player);
+	    break;
+	  case 3:
+	    move(Side::TO_RIGHT, player);
+	    break;
+	  default:
+	    oplog("[WARNING] - Random number out of bounds CharacterEvent::update");
+	    move(Side::NO_MOVE, player);
+	  }
             break;
 
         case MoveStyle::FOLLOWING:
@@ -180,12 +199,10 @@ void CharacterEvent::update(Player &player) {
         sprite->setTexture(otherTextures[charaDir]);
     }
 
-    using namespace Side;
-
     switch(anim) {
     case Side::TO_UP:
         if(frames - startFrames >= 7) {
-            if(moving == TO_UP) {
+	  if(moving == Side::TO_UP) {
                 sprite->move(0, -4);
             }
             anim = -1;
@@ -251,7 +268,7 @@ void CharacterEvent::update(Player &player) {
 
 }
 
-void CharacterEvent::move(int direction, Player& player) {
+void CharacterEvent::move(Side direction, Player& player) {
     startFrames = frames;
     if(anim == -1 && direction == -1) {
         anim = -2;
