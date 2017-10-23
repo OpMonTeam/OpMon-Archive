@@ -2,7 +2,7 @@
 # Maintainer: Navet56 <evandib@gmail.com> 
 
 pkgname=opmon
-pkgver=0.12.1
+pkgver=0.13
 pkgrel=2 
 license=('GPL') 
 arch=('x86_64') 
@@ -11,7 +11,7 @@ url="http://opmon-game.ga"
 depends=('sfml' 'gcc' 'libstdc++5' 'smpeg') 
 makedepends=('make') 
 source=(https://github.com/jlppc/OpMon/raw/master/installers/arch/opmon-arch.tar.gz) 
-md5sums=('040779d18328c973b8c664eff345ed84') 
+md5sums=('49350972309677B2E2F78AF32B95559D') 
 
 build() { 
 cd $srcdir/opmon-arch
