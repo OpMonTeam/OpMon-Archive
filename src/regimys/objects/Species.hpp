@@ -63,7 +63,7 @@ private:
 
 public:
     virtual ~Species();
-    Species(int atk, int def, int atkSpe, int defSpe, int spe, int hp, std::string name, int type1, int type2, int maniereEvolution, int niveauEvolution, Evolution *evolType, std::vector<int> &EVGiven, float taille, float poids, std::string entreeOpdex, int expGiven, int expMax, int tauxDeCapture, int numeroOpdex);
+    Species(int atk, int def, int atkSpe, int defSpe, int spe, int hp, std::string name, int type1, int type2, int maniereEvolution, int niveauEvolution, Evolution *evolType, std::vector<int> EVGiven, float taille, float poids, std::string entreeOpdex, int expGiven, int expMax, int tauxDeCapture, int numeroOpdex);
     /**Methode permettant de récuperer l'espèce d'évolution, car le mode d'initialisation des espèces ne permet pas de le faire dans le constructeur*/
     void checkEvol();
     /**Methode ayant la même fonction que checkEvol mais pour les attaques par niveau*/
