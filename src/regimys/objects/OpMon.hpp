@@ -79,19 +79,19 @@ private:
 
     int level;
 
-    NatureClass nature;
+    Nature nature;
 
-    Attack *attacks[4];
+  std::vector<Attack*> attacks;
 
     Species *species;
     /**Attention : Cette variable contient les PV actuels du pokémon, la classe statPV contient les PV max*/
     int HP;
     //->ExpectEnum->Status
-    int status = Status::NOTHING;
+    Status status = Status::NOTHING;
     //->ExpectEnum->Type
-    int type1;
+    Type type1;
     //->ExpectEnum->Type
-    int type2;
+    Type type2;
 
     int exp;
     /**L'experience a avoir pour le prochain niveau*/
@@ -115,7 +115,7 @@ public:
     virtual ~OpMon();
     //->DontUse
     OpMon() {};
-    OpMon(std::string nickname, Species *species, int level, Attack *attack1, Attack *attack2, Attack *attack3, Attack *attack4, NatureClass nature);
+  OpMon(std::string nickname, Species *species, int level, std::vector<Attack*> attacks);
     /**
     Merci d'utiliser ce constructeur dans le cadre du chargement et UNIQUEMENT dans ce cas, sinon cela pourrait
     conduire a des bugs. Explication : Ce constructeur est concu pour marcher dans un shema bien particulier.
@@ -125,7 +125,7 @@ public:
     /**Renvoie true si le pokémon est bien capturé.*/
     bool captured(I_Opball const &Opball);
     /**Permet de changer une stat, les possibilités d'entrées dans le paramètre stat sont "ATK" "DEF" "ATKSPE" "DEFSPE" "SPE" "PV"*/
-    void setStat(std::string const &stat, int newStat);
+    void setStat(Stats stat, int newStat);
     /**Methode appellée lors d'une montée de niveau*/
     void levelUp();
     bool isHoldingItem() const {
@@ -145,7 +145,7 @@ public:
     /**Methode appelée lors de l'évolution*/
     void evolve();
     /**Permet de completement changer le pokémon*/
-    void setStats(int stats[], Attack *attacks[], Species *species, int types[]);
+    void setStats(int stats[], Attack *attacks[], Species *species, Type types[]);
     /**Fait perdre des pv*/
     void attacked(int hpPerdus);
     /**Les methode suivantes modifient les stats en fonction des niveaux. Cela ne modifie pas directement la stat*/
@@ -156,11 +156,11 @@ public:
     bool changeATKSPE(int power);
     bool changeDEFSPE(int power);
     bool changeSPE(int power);
-    int getStatus() {
+    Status getStatus() {
         return status;
     }
     /**Change le status*/
-    bool setStatus(int status);
+    bool setStatus(Status status);
     int getStatHP() const {
         return statHP;
     }
@@ -178,7 +178,7 @@ public:
     int getLevel() const {
         return level;
     }
-    Attack **getAttacks() {
+  std::vector<Attack*> getAttacks() {
         return attacks;
     }
     int getStatEVA() const {
@@ -188,14 +188,14 @@ public:
         return statACC;
     }
     void getEvs(OpMon const &vaincu);
-    int getType1() const {
+  Type getType1() const {
         return type1;
     }
-    int getType2() const {
+    Type getType2() const {
         return type2;
     }
-    void setType1(int type);
-    void setType2(int type);
+    void setType1(Type type);
+    void setType2(Type type);
     int getStatATK() const {
         return statATK;
     }

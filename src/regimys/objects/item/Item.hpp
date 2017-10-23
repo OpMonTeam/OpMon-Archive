@@ -15,9 +15,15 @@ Contient la définition de l'énumération ItemType et de la classe Item
 /**
 Namespace énumérant les types de classes d'item
 */
-namespace ItemType {
-const int IHeal = 1, IOpball = 2, ICT = 3;
-}
+enum class ItemType : int{
+IHeal = 1, IOpball = 2, ICT = 3
+};
+/**
+Enumarions containing the items ids
+*/
+enum class Items : unsigned int{
+  
+};
 /**
 Classe définissant un item du jeu
 */

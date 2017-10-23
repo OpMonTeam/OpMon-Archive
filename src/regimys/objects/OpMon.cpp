@@ -76,7 +76,8 @@ int CalcCourbs::parabolic(int n) {
 int CalcCourbs::quick(int n) {
     return round(0.8f * pow(n, 3));
 }
-OpMon::OpMon(string nickname, Species *species, int level, Attack *attack1, Attack *attack2, Attack *attack3, Attack *attack4, NatureClass nature) {
+
+OpMon::OpMon(string nickname, Species *species, int level, std::vector<Attack *> attacks, NatureClass nature) {
     atkIV = Utils::randU(32);
     defIV = Utils::randU(32);
     atkSpeIV = Utils::randU(32);
@@ -117,10 +118,7 @@ OpMon::OpMon(string nickname, Species *species, int level, Attack *attack1, Atta
     this->species = species;
     this->level = level;
 
-    this->attacks[0] = attack1;
-    this->attacks[1] = attack2;
-    this->attacks[2] = attack3;
-    this->attacks[3] = attack4;
+    this->attacks = attacks;
 
     //TODO attaquesChoix Quand les attaques seront ok
     this->nature = nature;
@@ -205,25 +203,35 @@ bool OpMon::captured(I_Opball const &Opball) {
     }
 }
 
-void OpMon::setStat(string const &stat, int newStat) {
-  if (stat == "atk") {
+void OpMon::setStat(Stats stat, int newStat) {
+  switch(stat){
+  case Stats::ATK:
     statATK = newStat;
-  } else if (stat == "def") {
+    break;
+  case Stats::DEF:
     statDEF = newStat;
-  } else if (stat == "atkspe") {
+    break;
+  case Stats::ATKSPE:
     statATKSPE = newStat;
-  } else if (stat == "defspe") {
+    break;
+  case Stats::DEFSPE:
     statDEFSPE = newStat;
-  } else if (stat == "spe") {
+    break;
+  case Stats::SPE:
     statSPE = newStat;
-  } else if (stat == "hp") {
+    break;
+  case Stats::HP:
     statHP = newStat;
-  } else if(stat == "eva"){
+    break;
+  case Stats::EVA:
     statEVA = newStat;
-  } else if(stat == "acc"){
+    break;
+  case Stats::ACC:
     statACC = newStat;
-  } else {
-
+    break;
+  case Stats::NOTHING:
+    oplog("[WARNING] - Incorrect value in a switch (OpMon::setStat). Expected a stat, got Stats::NOTHING.");
+    break;
   }
 }
 

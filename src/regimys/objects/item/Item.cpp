@@ -8,7 +8,10 @@ UNS
 
 Item *Item::itemsLst[ITEM_NUMBER] = {0};
 
+
+
 void initItems() {
+  //For each item, add an enumeration entry in Items
     /*Item::itemsLst[0] = new I_Heal("Baie Oran", true, true, true, BagCat::BAIES, 10, Status::NOTHING, false, 0);
     Item::itemsLst[1] = new I_Heal("Baie Sitrus", true, true, true, BagCat::BAIES, 30, Status::NOTHING, false, 1);
     Item::itemsLst[2] = new I_Heal("Baie Mepo", true, true, true, BagCat::BAIES, 10, false, 2);

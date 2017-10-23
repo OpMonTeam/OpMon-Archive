@@ -25,9 +25,9 @@ private:
 
   int oldStats[2][5];
   //->WaitEnum->Type
-  int oldTypes[2][2];
+  Type oldTypes[2][2];
   Species* oldSpecies[2];
-  Attack** oldAttacks[2];
+  std::vector<Attack*> oldAttacks[2];
 
   OpMon *op1 = nullptr;
   OpMon *op2 = nullptr;
