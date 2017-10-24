@@ -170,15 +170,15 @@ int Belier::effetApres(OpMon &atk, OpMon &def) {
 }
 
 int Balayage::effetAvant(OpMon &atk, OpMon &def) {
-    if (def.getSpecies()->getPoids() <= 10) {
+    if (def.getSpecies()->getWeight() <= 10) {
         puissance = 20;
-    } else if (def.getSpecies()->getPoids() > 10 && def.getSpecies()->getPoids() <= 25) {
+    } else if (def.getSpecies()->getWeight() > 10 && def.getSpecies()->getWeight() <= 25) {
         puissance = 40;
-    } else if (def.getSpecies()->getPoids() > 25 && def.getSpecies()->getPoids() <= 50) {
+    } else if (def.getSpecies()->getWeight() > 25 && def.getSpecies()->getWeight() <= 50) {
         puissance = 60;
-    } else if (def.getSpecies()->getPoids() > 50 && def.getSpecies()->getPoids() <= 100) {
+    } else if (def.getSpecies()->getWeight() > 50 && def.getSpecies()->getWeight() <= 100) {
         puissance = 80;
-    } else if (def.getSpecies()->getPoids() > 100 && def.getSpecies()->getPoids() <= 200) {
+    } else if (def.getSpecies()->getWeight() > 100 && def.getSpecies()->getWeight() <= 200) {
         puissance = 100;
     } else {
         puissance = 120;
@@ -263,12 +263,12 @@ int ChocMental::effetApres(OpMon &atk, OpMon &def) {
 int ChocPsy::effetAvant(OpMon &atk, OpMon &def) {
     this->def = def.getStatDEF();
     this->defspe = def.getStatDEFSPE();
-    def.setStat("DEFSPE", this->def);
+    def.setStat(Stats::DEFSPE, this->def);
     return 0;
 }
 
 int ChocPsy::effetApres(OpMon &atk, OpMon &def) {
-    def.setStat("DEFSPE", this->defspe);
+  def.setStat(Stats::DEFSPE, this->defspe);
     return 0;
 }
 
@@ -288,7 +288,7 @@ int ComboGriffe::effetApres(OpMon &atk, OpMon &def) {
 }
 
 int Conversion::effetApres(OpMon &atk, OpMon &def) {
-    Attack **arr = atk.getAttacks();
+  std::vector<Attack*> arr = atk.getAttacks();
     atk.setType1(arr[0]->getType());
     atk.setType2(Type::NOTHING);
     return 0;

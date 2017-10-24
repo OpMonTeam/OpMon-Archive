@@ -8,22 +8,11 @@ Species::~Species() {
 
         delete(evolType);
     }
-    if(EVgiven != nullptr) {
-
-        free(EVgiven);
-    }
 
 
 }
 
-Species::Species(int atk, int def, int atkSpe, int defSpe, int spe, int hp, std::string name, int type1, int type2, int maniereEvolution/*En fait faut mettre 0, il est la pour un souci de compatibilit�*/, int niveauEvolution, Evolution *evolType, std::vector<int> &EVGiven, float taille, float poids, std::string entreeOpdex, int expGiven, int expMax, int tauxDeCapture, int numeroOpdex) {
-    //Vérification des variables
-    if (atk < 0 || def < 0 || atkSpe < 0 || defSpe < 0 || spe < 0 || hp < 0) {
-        handleError("Stats < 0 Species<Initializer>", true);
-    }
-    if (expGiven < 0) {
-        handleError("expGiven < 0 Species<Initializer>", true);
-    }
+Species::Species(unsigned int atk, unsigned int def, unsigned int atkSpe, unsigned int defSpe, unsigned int spe, unsigned int hp, std::string name, Type type1, Type type2, int maniereEvolution/*En fait faut mettre 0, il est la pour un souci de compatibilit�*/, int niveauEvolution, Evolution *evolType, std::vector<int> EVGiven, float height, float weight, std::string entreeOpdex, unsigned int expGiven, int expMax, int tauxDeCapture, int numeroOpdex) {
     if(evolType == nullptr) {
         evolType = new E_Nope();
     }
@@ -41,38 +30,34 @@ Species::Species(int atk, int def, int atkSpe, int defSpe, int spe, int hp, std:
     this->niveauEvolution = niveauEvolution;
     this->evolType = evolType;
     this->evolution = this->evolType->getEvolution();
-    this->poids = poids;
-    this->taille = taille;
+    this->weight = weight;
+    this->height = height;
     this->entreeOpdex = entreeOpdex;
     this->expGiven = expGiven;
-    EVgiven = (int *)malloc( EVGiven.size() * sizeof(int) );
-    evSize = EVGiven.size();
-    for (unsigned int i = 0; i < EVGiven.size(); i++) {
-        EVgiven[i] = EVGiven[i];
-    }
+    this->EVgiven = EVGiven;
     //Mise en place des courbes d'exp
     this->expMax = expMax;
     switch (this->expMax) {
     case 800000:
-        courbe = CourbeExp::RAPIDE;
+        courbe = CourbeExp::QUICK;
         break;
     case 1000000:
-        courbe = CourbeExp::MOYENNE;
+        courbe = CourbeExp::AVERAGE;
         break;
     case 1059860:
-        courbe = CourbeExp::PARABOLIQUE;
+        courbe = CourbeExp::PARABOLIC;
         break;
     case 1250000:
-        courbe = CourbeExp::LENTE;
+        courbe = CourbeExp::SLOW;
         break;
     case 600000:
-        courbe = CourbeExp::ERRATIQUE;
+        courbe = CourbeExp::ERRATIC;
         break;
     case 1640000:
-        courbe = CourbeExp::FLUCTUANTE;
+        courbe = CourbeExp::FLUCTUATING;
         break;
     default:
-        courbe = CourbeExp::MOYENNE;
+        courbe = CourbeExp::AVERAGE;
     }
     this->numeroOpdex = numeroOpdex;
 
