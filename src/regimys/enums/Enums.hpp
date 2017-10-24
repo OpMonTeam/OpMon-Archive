@@ -56,7 +56,7 @@ Enumère les directions des sprites.
 */
 //->Enum
 enum class Side : int{
-  TO_DOWN = 0, TO_RIGHT = 1, TO_LEFT = 2, TO_UP = 3, NO_MOVE = -1
+  TO_DOWN = 0, TO_RIGHT = 1, TO_LEFT = 2, TO_UP = 3, NO_MOVE = -1, STAY = -2
 };
 
 /**
@@ -68,7 +68,13 @@ LATIN, UNICODE, UTF8
 };
 
 bool operator==(Side side, int integer);
-
+bool operator!=(Side side, int integer);
+bool operator>=(Side, int);
+bool operator>(Side, int);
+bool operator<=(Side, int);
+bool operator<(Side, int);
+Side operator+(Side, int);
+Side operator-(Side, int);
 /**
 Gère la table des types
 */
@@ -79,7 +85,7 @@ namespace ArrayTypes {
 /**Calcule l'efficacité des types selon les paramètres donnés, et la renvoie.
  * Les paramètres attendent une énumération du namespace Type
  */
-const float calcEfficacite(int atk, int def1, int def2);
+const float calcEfficacite(Type atk, Type def1, Type def2);
 
 }
 

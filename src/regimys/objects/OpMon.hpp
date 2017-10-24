@@ -115,6 +115,9 @@ public:
     virtual ~OpMon();
     //->DontUse
     OpMon() {};
+
+  OpMon(std::string nickname, Species *species, int level, std::vector<Attack*> attacks, Nature nature);
+  
   OpMon(std::string nickname, Species *species, int level, std::vector<Attack*> attacks);
     /**
     Merci d'utiliser ce constructeur dans le cadre du chargement et UNIQUEMENT dans ce cas, sinon cela pourrait
