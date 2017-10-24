@@ -20,7 +20,7 @@ extern char rivalHomeCol[16][16];
 extern char ppRoomCol[6][9];
 extern char momRoomCol[6][6];
 extern char laboCol[16][32];
-  extern char route14Col[57][90];
+extern char route14Col[41][74];
 }
 
 
