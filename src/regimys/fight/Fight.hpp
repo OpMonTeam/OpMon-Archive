@@ -24,7 +24,6 @@ private:
   OpTeam *teamVS;
 
   int oldStats[2][5];
-  //->WaitEnum->Type
   Type oldTypes[2][2];
   Species* oldSpecies[2];
   std::vector<Attack*> oldAttacks[2];

@@ -35,7 +35,6 @@ void Fight::fightLoop(){
 
   oldAttacks[0] = op1->getAttacks();
   oldAttacks[1] = op2->getAttacks();
-
   op1->setStat(Stats::EVA, 100);
   op1->setStat(Stats::ACC, 100);
   op2->setStat(Stats::EVA, 100);
