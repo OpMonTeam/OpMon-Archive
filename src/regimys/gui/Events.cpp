@@ -5,11 +5,13 @@
 
 UNS
 
+using namespace Events;
+
 Event::~Event() {
     delete(sprite);
 }
 
-Event::Event(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2f const& position, int sides, bool passable) :
+Event::Event(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, EventTrigger eventTrigger, sf::Vector2f const& position, int sides, bool passable) :
     baseTexture(baseTexture), otherTextures(otherTextures), eventTrigger(eventTrigger),
     position(position),
     passable(passable),
@@ -33,12 +35,12 @@ namespace DoorType {
 std::vector<sf::Texture> NORMAL, SHOP;
 }
 
-TPEvent::TPEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, int eventTrigger, sf::Vector2f const& position, sf::Vector2i const& tpPos, string const& map, int ppDir, int sides, bool passable):
+TPEvent::TPEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, EventTrigger eventTrigger, sf::Vector2f const& position, sf::Vector2i const& tpPos, string const& map, Side ppDir, int sides, bool passable):
     Event(baseTexture, otherTextures, eventTrigger, position, sides, passable), tpCoord(tpPos), map(map), ppDir(ppDir) {
 
 }
 
-DoorEvent::DoorEvent(std::vector<sf::Texture> &doorType, sf::Vector2f const& position, sf::Vector2i const& tpPos, string const& map, int eventTrigger, int ppDir, int sides, bool passable):
+DoorEvent::DoorEvent(std::vector<sf::Texture> &doorType, sf::Vector2f const& position, sf::Vector2i const& tpPos, string const& map, EventTrigger eventTrigger, Side ppDir, int sides, bool passable):
     Event(doorType[0], doorType, eventTrigger, position, sides, passable),
     TPEvent(doorType[0], doorType, eventTrigger, position, tpPos, map, ppDir, sides, passable) {
     this->sprite->move(0, -6);
@@ -50,7 +52,7 @@ DoorEvent::DoorEvent(std::vector<sf::Texture> &doorType, sf::Vector2f const& pos
     }
 }
 
-TalkingEvent::TalkingEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, sf::Vector2f const& position, std::vector<OpString> const& dialogKeys, int sides, int eventTrigger, bool passable):
+TalkingEvent::TalkingEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, sf::Vector2f const& position, std::vector<OpString> const& dialogKeys, int sides, EventTrigger eventTrigger, bool passable):
     Event(baseTexture, otherTextures, eventTrigger, position, sides, passable), dialogKeys(dialogKeys) {
     this->reloadKeys();
 }
@@ -62,7 +64,7 @@ void TalkingEvent::reloadKeys() {
             }
 }
 
-LockedDoorEvent::LockedDoorEvent(std::vector<sf::Texture> &doorType, Item *needed, sf::Vector2f const& position, sf::Vector2i const& tpPos, string const& map, int ppDir, int eventTrigger, bool consumeItem,int sides, bool passable) :
+LockedDoorEvent::LockedDoorEvent(std::vector<sf::Texture> &doorType, Item *needed, sf::Vector2f const& position, sf::Vector2i const& tpPos, string const& map, Side ppDir, EventTrigger eventTrigger, bool consumeItem,int sides, bool passable) :
     DoorEvent(doorType, position, tpPos, map, eventTrigger, ppDir, sides, passable),
     Event(this->baseTexture, this->otherTextures, eventTrigger, position, sides, passable),
     TalkingEvent(this->baseTexture, this->otherTextures, position, LockedDoorEvent::keysLock, sides, eventTrigger, passable),
@@ -70,7 +72,7 @@ LockedDoorEvent::LockedDoorEvent(std::vector<sf::Texture> &doorType, Item *neede
 
 }
 
-CharacterEvent::CharacterEvent(std::vector<sf::Texture> charTextures, sf::Vector2f const& position, int moveStyle, int eventTrigger, std::vector<int> predefinedPath, bool passable, int sides):
+  CharacterEvent::CharacterEvent(std::vector<sf::Texture> charTextures, sf::Vector2f const& position, MoveStyle moveStyle, EventTrigger eventTrigger, std::vector<Side> predefinedPath, bool passable, int sides):
     Event(charTextures[0], charTextures, eventTrigger, position, sides, passable),
     moveStyle(moveStyle) {
     sprite->setScale(2, 2);
@@ -81,7 +83,7 @@ CharacterEvent::CharacterEvent(std::vector<sf::Texture> charTextures, sf::Vector
 
 }
 
-TalkingCharaEvent::TalkingCharaEvent(std::vector<sf::Texture> charTextures, sf::Vector2f const& position, std::vector<OpString> const& dialogKeys, int eventTrigger, int moveStyle, std::vector<int> predefinedPath, bool passable, int sides):
+TalkingCharaEvent::TalkingCharaEvent(std::vector<sf::Texture> charTextures, sf::Vector2f const& position, std::vector<OpString> const& dialogKeys, EventTrigger eventTrigger, MoveStyle moveStyle, std::vector<Side> predefinedPath, bool passable, int sides):
     Event(charTextures[0], charTextures, eventTrigger, position, sides, passable),
     CharacterEvent(charTextures, position, moveStyle, eventTrigger, predefinedPath, passable, sides),
     TalkingEvent(charTextures[0], charTextures, position, dialogKeys, sides, eventTrigger, passable) {
@@ -142,8 +144,9 @@ void TalkingEvent::update(Player &player) {
 
 void CharacterEvent::update(Player &player) {
     frames++;
-    if(anim == -1) {
-        switch(moveStyle) {
+    if(anim == Side::NO_MOVE) {
+      int randomMove;
+      switch(moveStyle) {
         case MoveStyle::PREDEFINED:
             predefinedCounter++;
             if(predefinedCounter >= movements.size()) {
@@ -156,7 +159,7 @@ void CharacterEvent::update(Player &player) {
             break;
 
         case MoveStyle::RANDOM:
-	  int randomMove = Utils::randUI(5) - 1;
+	  randomMove = Utils::randUI(5) - 1;
 	  switch(randomMove){
 	  case -1:
 	    move(Side::NO_MOVE, player);
@@ -185,18 +188,18 @@ void CharacterEvent::update(Player &player) {
         }
     }
     if(anim >= 0 && !anims) {
-        sprite->setTexture(otherTextures[4 + anim]);
+      sprite->setTexture(otherTextures[(int) (anim + 4)]);
         animsCounter++;
         anims = animsCounter > 8;
     } else if(anim >= 0 && anims) {
-        sprite->setTexture(otherTextures[8 + anim]);
+      sprite->setTexture(otherTextures[(int) (anim + 8)]);
         animsCounter++;
         if(animsCounter > 16) {
             anims = false;
             animsCounter = 0;
         }
     } else if(anim < 0) {
-        sprite->setTexture(otherTextures[charaDir]);
+      sprite->setTexture(otherTextures[(int) charaDir]);
     }
 
     switch(anim) {
@@ -205,10 +208,10 @@ void CharacterEvent::update(Player &player) {
 	  if(moving == Side::TO_UP) {
                 sprite->move(0, -4);
             }
-            anim = -1;
-            moving = -1;
+	  anim = Side::NO_MOVE;
+	  moving = Side::NO_MOVE;
         } else {
-            if(moving == TO_UP) {
+            if(moving == Side::TO_UP) {
                 sprite->move(0, -4);
             }
         }
@@ -217,13 +220,13 @@ void CharacterEvent::update(Player &player) {
 
     case Side::TO_DOWN:
         if(frames - startFrames >= 7) {
-            if(moving == TO_DOWN) {
+            if(moving == Side::TO_DOWN) {
                 sprite->move(0, 4);
             }
-            anim = -1;
-            moving = -1;
+            anim = Side::NO_MOVE;
+            moving = Side::NO_MOVE;
         } else {
-            if(moving == TO_DOWN) {
+            if(moving == Side::TO_DOWN) {
                 sprite->move(0, 4);
             }
         }
@@ -232,13 +235,13 @@ void CharacterEvent::update(Player &player) {
 
     case Side::TO_LEFT:
         if(frames - startFrames >= 7) {
-            if(moving == TO_LEFT) {
+            if(moving == Side::TO_LEFT) {
                 sprite->move(-4, 0);
             }
-            anim = -1;
-            moving = -1;
+            anim = Side::NO_MOVE;
+            moving = Side::NO_MOVE;
         } else {
-            if(moving == TO_LEFT) {
+            if(moving == Side::TO_LEFT) {
                 sprite->move(-4, 0);
             }
         }
@@ -247,21 +250,21 @@ void CharacterEvent::update(Player &player) {
 
     case Side::TO_RIGHT:
         if(frames - startFrames >= 7) {
-            if(moving == TO_RIGHT) {
+            if(moving == Side::TO_RIGHT) {
                 sprite->move(4, 0);
             }
-            anim = -1;
-            moving = -1;
+            anim = Side::NO_MOVE;
+            moving = Side::NO_MOVE;
         } else {
-            if(moving == TO_RIGHT) {
+            if(moving == Side::TO_RIGHT) {
                 sprite->move(4, 0);
             }
         }
         break;
 
-    case -2:
+    case Side::STAY:
         if(frames - startFrames >= 7) {
-            anim = -1;
+	  anim = Side::NO_MOVE;
         }
     };
 
@@ -270,11 +273,11 @@ void CharacterEvent::update(Player &player) {
 
 void CharacterEvent::move(Side direction, Player& player) {
     startFrames = frames;
-    if(anim == -1 && direction == -1) {
-        anim = -2;
-        return;
+    if(anim == Side::NO_MOVE && direction == Side::NO_MOVE) {
+      anim = Side::STAY;
+      return;
     }
-    if(anim == -1 && direction != -1) {
+    if(anim == Side::NO_MOVE && direction != Side::NO_MOVE) {
         anim = direction;
         charaDir = direction;
         switch(direction) {
@@ -370,17 +373,17 @@ void TalkingCharaEvent::update(Player &player) {
     if(Main::mainframe.overworld.movementLock && talking && anim == -1) {
         switch(player.getppDir()) {
         case Side::TO_UP:
-            sprite->setTexture(otherTextures[Side::TO_DOWN]);
-            break;
+	  sprite->setTexture(otherTextures[(int) Side::TO_DOWN]);
+	  break;
         case Side::TO_DOWN:
-            sprite->setTexture(otherTextures[Side::TO_UP]);
-            break;
+	  sprite->setTexture(otherTextures[(int) Side::TO_UP]);
+	  break;
         case Side::TO_LEFT:
-            sprite->setTexture(otherTextures[Side::TO_RIGHT]);
-            break;
+	  sprite->setTexture(otherTextures[(int) Side::TO_RIGHT]);
+	  break;
         case Side::TO_RIGHT:
-            sprite->setTexture(otherTextures[Side::TO_LEFT]);
-            break;
+	  sprite->setTexture(otherTextures[(int) Side::TO_LEFT]);
+	  break;
         }
         Main::mainframe.overworld.movementLock = false;
         talking = false;
@@ -389,7 +392,7 @@ void TalkingCharaEvent::update(Player &player) {
     CharacterEvent::update(player);
 }
 
-void CharacterEvent::setPredefinedMove(std::vector<int> moves) {
+void CharacterEvent::setPredefinedMove(std::vector<Side> moves) {
     this->movements = moves;
 }
 

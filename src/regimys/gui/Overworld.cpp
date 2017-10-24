@@ -16,20 +16,16 @@
 
 UNS
 
-using namespace Side;
-
-
-
 void Overworld::initVars() {
     actual =  Initializer::maps["Player's room"];
     character = Main::player.getSprite();
-    character.setTexture(Initializer::texturePP[TO_DOWN]);
+    character.setTexture(Initializer::texturePP[(int) Side::TO_DOWN]);
     character.setPosition(8 CASES + 2 CASES - 16, 8 CASES + 2 CASES);
     ppPosX = (((character.getPosition().x - 16) / CASE_SIZE) - 8);
     ppPosY = ((character.getPosition().y / CASE_SIZE) - 8);
     camera.setCenter(character.getPosition());
     camera.setSize(sf::Vector2f(16 CASES, 16 CASES));
-    ppDir = TO_UP;
+    ppDir = Side::TO_UP;
     Main::player.setppDirPointer(&ppDir);
 
     /*  maps[0] = actual->getLayer1();
@@ -45,9 +41,9 @@ void Overworld::initVars() {
 }
 
 int Overworld::tp(string toTp, sf::Vector2i pos, bool scroll) {
-    if(moving != -1|| anim != -1) {
-        moving = -1;
-        anim = -1;
+    if(moving != Side::NO_MOVE|| anim != Side::NO_MOVE) {
+        moving = Side::NO_MOVE;
+        anim = Side::NO_MOVE;
     }
     actual = Initializer::maps[toTp];
     if(actual == nullptr) {
@@ -80,8 +76,8 @@ int Overworld::tp(string toTp, sf::Vector2i pos, bool scroll) {
 }
 #define UNLOCK_TP  Events::justTP = false;
 
-void Overworld::move(int direction){
-  if(anim == -1 && !movementLock){
+void Overworld::move(Side direction){
+  if(anim == Side::NO_MOVE && !movementLock){
     ppDir = direction;
     startFrames = frames;
     anim = direction;
@@ -90,16 +86,16 @@ void Overworld::move(int direction){
       UNLOCK_TP
 	moving = direction;
       switch(direction){
-      case TO_UP:
+      case Side::TO_UP:
 	ppPosY--;
 	break;
-      case TO_DOWN:
+      case Side::TO_DOWN:
 	ppPosY++;
 	break;
-      case TO_LEFT:
+      case Side::TO_LEFT:
 	ppPosX--;
 	break;
-      case TO_RIGHT:
+      case Side::TO_RIGHT:
 	ppPosX++;
 	break;
       }
@@ -117,16 +113,16 @@ void Overworld::move(int direction){
       UNLOCK_TP
 	moving = direction;
       switch(direction){
-      case TO_UP:
+      case Side::TO_UP:
 	ppPosY--;
 	break;
-      case TO_DOWN:
+      case Side::TO_DOWN:
 	ppPosY++;
 	break;
-      case TO_LEFT:
+      case Side::TO_LEFT:
 	ppPosX--;
 	break;
-      case TO_RIGHT:
+      case Side::TO_RIGHT:
 	ppPosX++;
 	break;
       }
@@ -143,9 +139,9 @@ void Overworld::move(int direction){
   }
 }
 
-bool Overworld::checkPass(int direction){
+bool Overworld::checkPass(Side direction){
   switch(direction){
-  case TO_UP:
+  case Side::TO_UP:
     if(ppPosY - 1 >= 0) {
       if(actual->getPassArr()[(int)(ppPosY - 1)][(int)ppPosX] == 0) {
 	std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY - 1) CASES));
@@ -159,7 +155,7 @@ bool Overworld::checkPass(int direction){
       }
     }
     return false;
-  case TO_DOWN:
+  case Side::TO_DOWN:
     if(ppPosY + 1 < actual->getH()) {
       if(actual->getPassArr()[(int)(ppPosY + 1)][(int)ppPosX] == 0) {
 	std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY + 1) CASES));
@@ -173,7 +169,7 @@ bool Overworld::checkPass(int direction){
       }
     }
     return false;
-  case TO_LEFT:
+  case Side::TO_LEFT:
     if(ppPosX - 1 >= 0) {
       if(actual->getPassArr()[(int) ppPosY][(int) (ppPosX - 1)] == 0) {
 	std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX - 1) CASES, ppPosY CASES));
@@ -187,7 +183,7 @@ bool Overworld::checkPass(int direction){
       }
     }
     return false;
-  case TO_RIGHT:
+  case Side::TO_RIGHT:
     if(ppPosX + 1 < actual->getW()) {
       if(actual->getPassArr()[(int) ppPosY][(int) (ppPosX + 1)] == 0) {
 	std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX + 1) CASES, ppPosY CASES));
@@ -205,20 +201,20 @@ bool Overworld::checkPass(int direction){
 }
 
 void Overworld::up() {
-  move(TO_UP);
+  move(Side::TO_UP);
 }
 
 void Overworld::down() {
-  move(TO_DOWN);
+  move(Side::TO_DOWN);
 }
 
 void Overworld::right() {
-  move(TO_RIGHT);
+  move(Side::TO_RIGHT);
 }
 
 
 void Overworld::left() {
-  move(TO_LEFT);
+  move(Side::TO_LEFT);
 }
 
 #undef UNLOCK_TP
@@ -261,9 +257,9 @@ int Overworld::boucle() {
 	      cout << "Tick: " << ticks.getElapsedTime().asMilliseconds() << "ms" << endl;
 	      cout << "PlayerPosition: " << ppPosX << " - " << ppPosY << endl;
 	      cout << "PlayerPositionPx: " << character.getPosition().x << " - " << character.getPosition().y << endl;
-	      cout << "Moving: " << moving << endl;
-	      cout << "Anim: " << anim << endl;
-	      cout << "PlayerDirection: " << ppDir << endl;
+	      cout << "Moving: " << (int) moving << endl;
+	      cout << "Anim: " << (int) anim << endl;
+	      cout << "PlayerDirection: " << (int) ppDir << endl;
 	      cout << "DebugMode: " << debugMode << endl;
 	      cout << "MapPos: " << layer1->getPosition().x << " - " << layer1->getPosition().y << endl;
 	      //cout << "Position perso : P(" << ppPosX << ";" << ppPosY << ")" << endl;
@@ -366,20 +362,20 @@ int Overworld::boucle() {
                     Main::mainframe.frame.draw(*event->getSprite());
                 }
             }
-            if(anim != -1 && !anims) {
-                character.setTexture(Initializer::walkingPP[anim]);
+            if(anim != Side::NO_MOVE && !anims) {
+	      character.setTexture(Initializer::walkingPP[(int) anim]);
                 animsCounter++;
                 anims = animsCounter > 8;
 
-            } else if(anim != -1 && anims) {
-                character.setTexture(Initializer::walkingPP2[anim]);
+            } else if(anim != Side::NO_MOVE && anims) {
+	      character.setTexture(Initializer::walkingPP2[(int) anim]);
                 animsCounter++;
                 if(animsCounter > 16) {
                     anims = false;
                     animsCounter = 0;
                 }
-            } else if(anim == -1) {
-                character.setTexture(Initializer::texturePP[ppDir]);
+            } else if(anim == Side::NO_MOVE) {
+	      character.setTexture(Initializer::texturePP[(int) ppDir]);
             }
             Main::mainframe.frame.draw(character);
             for(Event *event : actual->getEvents()) {
@@ -390,19 +386,19 @@ int Overworld::boucle() {
             if((debugMode ? printlayer[2] : true)) {
                 Main::mainframe.frame.draw(*layer3);
             }
-            if(moving == -1) {
+            if(moving == Side::NO_MOVE) {
                 std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, ppPosY CASES));
                 if(nextEvents.size() > 0) {
                     for(Event *nextEvent : nextEvents) {
                         if(nextEvent->getEventTrigger() == Events::EventTrigger::BE_IN) {
                             bool go = false;
-                            if(((nextEvent->getSide() & SIDE_UP) == SIDE_UP) && ppDir == TO_UP) {
+                            if(((nextEvent->getSide() & SIDE_UP) == SIDE_UP) && ppDir == Side::TO_UP) {
                                 go = true;
-                            } else if(((nextEvent->getSide() & SIDE_DOWN) == SIDE_DOWN) && ppDir == TO_DOWN) {
+                            } else if(((nextEvent->getSide() & SIDE_DOWN) == SIDE_DOWN) && ppDir == Side::TO_DOWN) {
                                 go = true;
-                            } else if(((nextEvent->getSide() & SIDE_RIGHT) == SIDE_RIGHT) && ppDir == TO_RIGHT) {
+                            } else if(((nextEvent->getSide() & SIDE_RIGHT) == SIDE_RIGHT) && ppDir == Side::TO_RIGHT) {
                                 go = true;
-                            } else if(((nextEvent->getSide() & SIDE_LEFT) == SIDE_LEFT) && ppDir == TO_LEFT) {
+                            } else if(((nextEvent->getSide() & SIDE_LEFT) == SIDE_LEFT) && ppDir == Side::TO_LEFT) {
                                 go = true;
                             }
                             if(go) {
@@ -423,21 +419,21 @@ int Overworld::boucle() {
             }
             Main::mainframe.frame.display();
             Main::mainframe.winRefresh();
-            if(anim == -1) {
+            if(anim == Side::NO_MOVE) {
                 if(isKeyPressed(sf::Keyboard::Return)) {
                     int lx = ppPosX;
                     int ly = ppPosY;
                     switch(ppDir) {
-                    case TO_UP:
+                    case Side::TO_UP:
                         ly--;
                         break;
-                    case TO_DOWN:
+                    case Side::TO_DOWN:
                         ly++;
                         break;
-                    case TO_LEFT:
+                    case Side::TO_LEFT:
                         lx--;
                         break;
-                    case TO_RIGHT:
+                    case Side::TO_RIGHT:
                         lx++;
                         break;
                     default:
@@ -452,13 +448,13 @@ int Overworld::boucle() {
                         for(unsigned int i = 0; i < events.size(); i++) {
                             if(events[i]->getEventTrigger() == Events::EventTrigger::PRESS) {
                                 bool go = false;
-                                if(((events[i]->getSide() & SIDE_UP) == SIDE_UP) && ppDir == TO_UP) {
+                                if(((events[i]->getSide() & SIDE_UP) == SIDE_UP) && ppDir == Side::TO_UP) {
                                     go = true;
-                                } else if(((events[i]->getSide() & SIDE_DOWN) == SIDE_DOWN) && ppDir == TO_DOWN) {
+                                } else if(((events[i]->getSide() & SIDE_DOWN) == SIDE_DOWN) && ppDir == Side::TO_DOWN) {
                                     go = true;
-                                } else if(((events[i]->getSide() & SIDE_RIGHT) == SIDE_RIGHT) && ppDir == TO_RIGHT) {
+                                } else if(((events[i]->getSide() & SIDE_RIGHT) == SIDE_RIGHT) && ppDir == Side::TO_RIGHT) {
                                     go = true;
-                                } else if(((events[i]->getSide() & SIDE_LEFT) == SIDE_LEFT) && ppDir == TO_LEFT) {
+                                } else if(((events[i]->getSide() & SIDE_LEFT) == SIDE_LEFT) && ppDir == Side::TO_LEFT) {
                                     go = true;
                                 }
                                 if(go) {
@@ -469,59 +465,59 @@ int Overworld::boucle() {
                     }
                 }
             }
-            if(anim == TO_UP) {
+            if(anim == Side::TO_UP) {
                 if(frames - startFrames >= 7) {
-                    if(moving == TO_UP) {
+                    if(moving == Side::TO_UP) {
                         character.move(0, -4);
                     }
-                    anim = -1;
-                    moving = -1;
+                    anim = Side::NO_MOVE;
+                    moving = Side::NO_MOVE;
                 } else {
-                    if(moving == TO_UP) {
+                    if(moving == Side::TO_UP) {
                         character.move(0, -4);
 
 
                     }
                 }
             }
-            if(anim == TO_DOWN) {
+            if(anim == Side::TO_DOWN) {
                 if(frames - startFrames >= 7) {
-                    if(moving == TO_DOWN) {
+                    if(moving == Side::TO_DOWN) {
                         character.move(0, 4);
                     }
-                    anim = -1;
-                    moving = -1;
+                    anim = Side::NO_MOVE;
+                    moving = Side::NO_MOVE;
                 } else {
-                    if(moving == TO_DOWN) {
+                    if(moving == Side::TO_DOWN) {
                         character.move(0, 4);
                     }
                 }
             }
 
-            if(anim == TO_LEFT) {
+            if(anim == Side::TO_LEFT) {
                 if(frames - startFrames >= 7) {
-                    if(moving == TO_LEFT) {
+                    if(moving == Side::TO_LEFT) {
                         character.move(-4, 0);
                     }
 
-                    anim = -1;
-                    moving = -1;
+                    anim = Side::NO_MOVE;
+                    moving = Side::NO_MOVE;
                 } else {
-                    if(moving == TO_LEFT) {
+                    if(moving == Side::TO_LEFT) {
                         character.move(-4, 0);
                     }
                 }
             }
 
-            if(anim == TO_RIGHT) {
+            if(anim == Side::TO_RIGHT) {
                 if(frames - startFrames >= 7) {
-                    if(moving == TO_RIGHT) {
+                    if(moving == Side::TO_RIGHT) {
                         character.move(4, 0);
                     }
-                    anim = -1;
-                    moving = -1;
+                    anim = Side::NO_MOVE;
+                    moving = Side::NO_MOVE;
                 } else {
-                    if(moving == TO_RIGHT) {
+                    if(moving == Side::TO_RIGHT) {
                         character.move(4, 0);
 
 
@@ -585,14 +581,14 @@ int Overworld::boucleDialog(vector<sf::String> const& dialogs) {
                     Main::mainframe.frame.draw(*event->getSprite());
                 }
             }
-            if(anim != -1 && !anims) {
-                character.setTexture(Initializer::walkingPP[anim]);
+            if(anim != Side::NO_MOVE && !anims) {
+	      character.setTexture(Initializer::walkingPP[(int) anim]);
                 animsCounter++;
-            } else if(anim != -1 && anims) {
-                character.setTexture(Initializer::walkingPP2[anim]);
+            } else if(anim != Side::NO_MOVE && anims) {
+	      character.setTexture(Initializer::walkingPP2[(int) anim]);
                 animsCounter++;
-            } else if(anim == -1) {
-                character.setTexture(Initializer::texturePP[ppDir]);
+            } else if(anim == Side::NO_MOVE) {
+	      character.setTexture(Initializer::texturePP[(int) ppDir]);
             }
             Main::mainframe.frame.draw(character);
             for(Event *event : actual->getEvents()) {
