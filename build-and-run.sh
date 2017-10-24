@@ -1,5 +1,5 @@
 #!/bin/bash
-#Change every Release to Debug if you want to build the game in debug.
+#Change every Release in this file to Debug if you want to build the game in debug.
 cmake . -DCMAKE_BUILD_TYPE=Release
 make
 cp -r data bin/Release/data
