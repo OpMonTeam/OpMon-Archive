@@ -308,7 +308,7 @@ int Overworld::boucle() {
                     } else if(Main::mainframe.events.key.code == sf::Keyboard::F4) {
 		      tp("Rival's house", sf::Vector2i(8, 14), true);
                     } else if(Main::mainframe.events.key.code == sf::Keyboard::F7){
-		      tp("Route 14", sf::Vector2i(0, 0), true);
+		      tp("Route 14", sf::Vector2i(0, 31), true);
 		    }
                 }
             default:
