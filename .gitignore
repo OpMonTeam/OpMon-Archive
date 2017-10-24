@@ -1,3 +1,5 @@
+# No backup files
+*~
 # No windows shortcuts
 *.lnk
 # No Openoffice .lock
@@ -12,7 +14,7 @@ exeLinux/log.txt
 exeLinux/errLog.txt
 exeLinux/OpMon
 exeLinux/OpMon-Debug
-exeLinux/vgcore.*
+*vgcore*
 exe/OpMon.exe
 exe/OpMon-Debug.exe
 installers/Windows/*.exe

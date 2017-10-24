@@ -15,9 +15,15 @@ Contient la définition de l'énumération ItemType et de la classe Item
 /**
 Namespace énumérant les types de classes d'item
 */
-namespace ItemType {
-const int IHeal = 1, IOpball = 2, ICT = 3;
-}
+enum class ItemType : int{
+  Unknown = 0, IHeal = 1, IOpball = 2, ICT = 3
+};
+/**
+Enumarions containing the items ids
+*/
+enum class Items : unsigned int{
+  
+};
 /**
 Classe définissant un item du jeu
 */
@@ -25,7 +31,7 @@ class Item {
 public:
     /**La liste des items du jeu*/
     static Item *itemsLst[ITEM_NUMBER];
-    Item(std::string name, bool usable, bool usableInFight, bool givable, int categorie, int id);
+    Item(std::string name, bool usable, bool usableInFight, bool givable, BagCat categorie, int id);
     static  Item *getItem (std::string const &name);
     static  Item *getItem (int id);
     /**Recherche un item et renvoie son ID dans itemsList*/
@@ -40,7 +46,7 @@ public:
     bool isGivable() const {
         return givable;
     }
-    int getCategorie () const {
+    BagCat getCategorie () const {
         return categorie;
     }
     bool isUsableInFight() const {
@@ -52,17 +58,17 @@ public:
     static int getItemNumber() {
         return ITEM_NUMBER;
     }
-    virtual int getItemTypeID() const {
+    virtual ItemType getItemTypeID() const {
         return itemTypeID;
     }
 
 
 private:
-    int itemTypeID = 0;
+  ItemType itemTypeID = ItemType::Unknown;
     std::string name;
     bool usable;
     bool givable;
-    int categorie;
+    BagCat categorie;
     bool usableInFight;
     int id;
 

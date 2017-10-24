@@ -11,8 +11,13 @@ Contient le namespace Overworld
 #include <SFML/Audio.hpp>
 #include "../start/main.hpp"
 #include "Elements.hpp"
+#include "../playercore/Player.hpp"
 #define CASES * 32
 #define CASE_SIZE 32
+
+namespace Main{
+  extern Player player;
+}
 
 /**
 Contient les Ã©lÃ©ments fonctionnels de l'overworld
@@ -40,8 +45,8 @@ public:
     bool justTp = false;
     int tpCount = 0;
 
-    int anim = -1;
-    int moving = -1;
+  Side anim = Side::NO_MOVE;
+  Side moving = Side::NO_MOVE;
     bool anims = false;
 
     int ancientTick = 0;
@@ -53,7 +58,7 @@ public:
     bool movementLock = false;
 
     bool scrollock[2] = {false, false};
-    int ppDir = Side::TO_DOWN;
+  Side ppDir = Side::TO_DOWN;
 
     bool scrolling = true;
 
@@ -67,15 +72,15 @@ public:
     int boucle();
     int boucleDialog(std::vector<sf::String> const& dialogs);
 
-  void move(int direction);
-  bool checkPass(int direction);
+  void move(Side direction);
+  bool checkPass(Side direction);
   
     OP_DEPRECATED void up();
     OP_DEPRECATED void down();
     OP_DEPRECATED void right();
     OP_DEPRECATED void left();
 
-    int tp(int toTp, sf::Vector2i pos, bool scroll = true);
+  int tp(std::string toTp, sf::Vector2i pos, bool scroll = true);
 
 
 
