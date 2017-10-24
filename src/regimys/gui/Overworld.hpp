@@ -45,8 +45,8 @@ public:
     bool justTp = false;
     int tpCount = 0;
 
-    int anim = -1;
-    int moving = -1;
+  Side anim = Side::NO_MOVE;
+  Side moving = Side::NO_MOVE;
     bool anims = false;
 
     int ancientTick = 0;
@@ -58,7 +58,7 @@ public:
     bool movementLock = false;
 
     bool scrollock[2] = {false, false};
-  int ppDir = (int) Side::TO_DOWN;
+  Side ppDir = Side::TO_DOWN;
 
     bool scrolling = true;
 
@@ -72,8 +72,8 @@ public:
     int boucle();
     int boucleDialog(std::vector<sf::String> const& dialogs);
 
-  void move(int direction);
-  bool checkPass(int direction);
+  void move(Side direction);
+  bool checkPass(Side direction);
   
     OP_DEPRECATED void up();
     OP_DEPRECATED void down();

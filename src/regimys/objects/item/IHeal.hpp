@@ -18,13 +18,13 @@ Définit un item de soin
 class I_Heal: public Item {
 public:
     /**Construit un item de heal (prevaue) polyvalent*/
-    I_Heal(std::string &name, bool usable, bool usableInFight, bool givable, int categorie, int hpHeal, int heal, bool healAllStatus, int ID);
+    I_Heal(std::string &name, bool usable, bool usableInFight, bool givable, BagCat categorie, int hpHeal, Status heal, bool healAllStatus, int ID);
     /**Construit un item de heal de PP*/
-    I_Heal(std::string &name, bool usable, bool usableInFight, bool givable, int categorie, int ppHeal, bool allAttacksHeal, int ID);
+    I_Heal(std::string &name, bool usable, bool usableInFight, bool givable, BagCat categorie, int ppHeal, bool allAttacksHeal, int ID);
     /**Construit un item de heal de pv*/
-    I_Heal(std::string &name, bool usable, bool usableInFight, bool givable, int categorie, int hpHeal, int ID);
+    I_Heal(std::string &name, bool usable, bool usableInFight, bool givable, BagCat categorie, int hpHeal, int ID);
     /**Construit un item de heal de status*/
-    I_Heal(std::string &name, bool usable, bool usableInFight, bool givable, int categorie, int heal, bool healAllStatus, int ID, bool status);//De toutes facons meme si status est false ce sera quand meme du status lol
+    I_Heal(std::string &name, bool usable, bool usableInFight, bool givable, BagCat categorie, Status heal, bool healAllStatus, int ID, bool status);//De toutes facons meme si status est false ce sera quand meme du status
     /**Construit un stat+*/
     I_Heal(std::string &name, int statAdd, int ID);
     bool isHealAll() const {
@@ -33,15 +33,15 @@ public:
     bool getPvHeal() const {
         return hpHeal;
     }
-    int getStatusHeald() const {
+    Status getStatusHeald() const {
         return healed;
     }
-    int itemTypeID = 1;
+  ItemType itemTypeID = ItemType::IHeal;
 private:
     int hpHeal;
     /**Le status soigné*/
     //->ExpectEnum->Status
-    int healed;
+    Status healed;
     /**Si l'item soigne tous les status*/
     bool healAll;
     int statAdd;
