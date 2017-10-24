@@ -20,7 +20,9 @@ extern char rivalHomeCol[16][16];
 extern char ppRoomCol[6][9];
 extern char momRoomCol[6][6];
 extern char laboCol[16][32];
+extern char route14Col[41][74];
 }
+
 
 namespace Maps {
   extern int feLayer1[2304];
@@ -41,6 +43,9 @@ namespace Maps {
   extern int rivalhomeLayer1[1024];
   extern int rivalhomeLayer2[1024];
   extern int rivalhomeLayer3[1024];
+  extern int route14Layer1[5130];
+  extern int route14Layer2[5130];
+  extern int route14Layer3[5130];
 }
 
 #endif // INTERNALFILES_HPP

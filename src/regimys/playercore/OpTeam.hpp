@@ -10,6 +10,9 @@ Contient la définition de la classe OpTeam
 
 #include <iostream>
 #include "../objects/OpMon.hpp"
+
+class OpMon;
+
 /**
 Classe permettant de contenir l'opteam d'un joueur ou d'un dresseur.
 */

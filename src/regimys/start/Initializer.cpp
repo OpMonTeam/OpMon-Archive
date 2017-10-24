@@ -15,20 +15,22 @@
 #include "../gui/Overworld.hpp"
 #include "../save/InternalFiles.hpp"
 
+/*
 #define ATK push_back(Stats::ATK)
 #define ATKSPE push_back(Stats::ATKSPE)
 #define DEFSPE push_back(Stats::DEFSPE)
 #define DEF push_back(Stats::DEF)
 #define SPE push_back(Stats::SPE)
 #define HP push_back(Stats::HP)
+*/
 
-typedef NumberedArray AtkArray;
+OP_DEPRECATED typedef NumberedArray AtkArray;
 
 namespace Initializer {
 Evolutions::E_Nope *ne = new E_Nope();
 std::vector<int> evs[OP_NUMBER];
 Species *listOp[OP_NUMBER];
-std::vector<Map*> maps;
+  std::map<std::string, Map*> maps;
 std::vector<sf::Music*> townMusics;
 std::vector<std::vector<sf::Texture> > doorsTextures;
 sf::SoundBuffer doorSoundBuffer;
@@ -36,502 +38,16 @@ sf::SoundBuffer doorSoundBuffer;
 sf::Texture tileset;
 std::vector<sf::Texture> kiwaiTextures;  
 std::vector<sf::Texture> kidTextures;
-
+  std::vector<std::map<int, std::string> > atkOpLvl;
 template<typename T>void pb(std::vector<T> &vect, T arr[], int sizeArr) {
     for (unsigned int i = 0; i < sizeArr; i++) {
         vect.push_back(arr[i]);
     }
 }
-void initEvs() {
-    evs[0].ATK;
-
-    evs[1].ATKSPE;
-
-    evs[2].ATKSPE;
-    evs[2].ATKSPE;
-
-    evs[3].ATKSPE;
-    evs[3].ATKSPE;
-    evs[3].DEFSPE;
-
-    evs[4].ATK;
-
-    evs[5].SPE;
-    evs[5].ATK;
-
-    evs[6].ATK;
-    evs[6].SPE;
-    evs[6].ATKSPE;
-
-    evs[7].DEF;
-
-    evs[8].DEF;
-    evs[8].DEFSPE;
-
-    evs[9].DEF;
-    evs[9].DEFSPE;
-    evs[9].DEFSPE;
-
-    evs[10].HP;
-
-    evs[11].HP;
-    evs[11].DEF;
-
-    evs[12].DEF;
-    evs[12].DEF;
-    evs[12].DEFSPE;
-
-    evs[13].SPE;
-
-    evs[14].SPE;
-    evs[14].DEF;
-
-    evs[15].SPE;
-    evs[15].SPE;
-    evs[15].DEFSPE;
-
-    evs[16].ATK;
-
-    evs[17].ATK;
-    evs[17].SPE;
-
-    evs[18].ATK;
-    evs[18].SPE;
-    evs[18].SPE;
-
-    evs[19].ATKSPE;
-
-    evs[20].ATKSPE;
-    evs[20].HP;
-
-    evs[21].SPE;
-
-    evs[22].SPE;
-    evs[22].SPE;
-
-    evs[23].SPE;
-
-    evs[24].SPE;
-    evs[24].ATK;
-
-    evs[25].ATK;
-    evs[25].ATKSPE;
-
-    evs[26].ATK;
-    evs[26].ATKSPE;
-    evs[26].ATKSPE;
-
-    evs[27].ATK;
-
-    evs[28].ATK;
-    evs[28].ATK;
-
-    evs[29].ATK;
-    evs[29].ATK;
-    evs[29].HP;
-
-    evs[30].HP;
-    evs[30].HP;
-
-    evs[31].HP;
-    evs[31].HP;
-    evs[31].HP;
-
-    evs[32].ATK;
-
-    evs[33].ATK;
-    evs[33].ATK;
-
-    evs[34].ATK;
-    evs[34].ATK;
-    evs[34].ATK;
-
-    evs[35].HP;
-    evs[35].HP;
-
-    evs[36].HP;
-    evs[36].HP;
-    evs[36].HP;
-
-    evs[37].SPE;
-
-    evs[38].SPE;
-    evs[38].DEFSPE;
-
-    evs[39].HP;
-    evs[39].HP;
-
-    evs[40].HP;
-    evs[40].HP;
-    evs[40].HP;
-
-    evs[41].SPE;
-
-    evs[42].SPE;
-    evs[42].SPE;
-
-    evs[43].ATKSPE;
-
-    evs[44].ATKSPE;
-    evs[44].ATKSPE;
-
-    evs[45].ATKSPE;
-    evs[45].ATKSPE;
-    evs[45].ATKSPE;
-
-    evs[46].ATK;
-
-    evs[47].ATK;
-    evs[47].ATK;
-    evs[47].DEF;
-
-    evs[48].DEFSPE;
-    evs[48].DEFSPE;
-
-    evs[49].ATKSPE;
-    evs[49].SPE;
-
-    evs[50].SPE;
-
-    evs[51].SPE;
-    evs[51].SPE;
-
-    evs[52].SPE;
-
-    evs[53].SPE;
-    evs[53].SPE;
-
-    evs[54].ATKSPE;
-
-    evs[55].ATKSPE;
-    evs[55].ATKSPE;
-
-    evs[56].ATK;
-
-    evs[57].ATK;
-    evs[57].ATK;
-
-    evs[58].ATK;
-
-    evs[59].ATK;
-    evs[59].ATK;
-
-    evs[60].SPE;
-
-    evs[61].SPE;
-    evs[61].SPE;
-
-    evs[62].DEF;
-    evs[62].DEF;
-    evs[62].DEF;
-
-    evs[63].ATKSPE;
-
-    evs[64].ATKSPE;
-    evs[64].ATKSPE;
-
-    evs[65].ATKSPE;
-    evs[65].ATKSPE;
-    evs[65].ATKSPE;
-
-    evs[66].ATK;
-
-    evs[67].ATK;
-    evs[67].ATK;
-
-    evs[68].ATK;
-    evs[68].ATK;
-    evs[68].ATK;
-
-    evs[69].ATK;
-
-    evs[70].ATK;
-    evs[70].ATK;
-
-    evs[71].ATK;
-    evs[71].ATK;
-    evs[71].ATK;
-
-    evs[72].DEFSPE;
-
-    evs[73].DEFSPE;
-    evs[73].DEFSPE;
-
-    evs[74].DEF;
-
-    evs[75].DEF;
-    evs[75].DEF;
-
-    evs[76].DEF;
-    evs[76].DEF;
-    evs[76].DEF;
-
-    evs[77].SPE;
-
-    evs[78].SPE;
-    evs[78].SPE;
-
-    evs[79].HP;
-
-    evs[80].DEF;
-    evs[80].DEF;
-
-    evs[81].ATKSPE;
-
-    evs[82].ATKSPE;
-    evs[82].ATKSPE;
-
-    evs[83].ATK;
-
-    evs[84].ATK;
-
-    evs[85].ATK;
-    evs[85].ATK;
-
-    evs[86].DEFSPE;
-
-    evs[87].DEFSPE;
-    evs[87].DEFSPE;
-
-    evs[88].HP;
-
-    evs[89].HP;
-    evs[89].ATK;
-
-    evs[90].DEF;
-
-    evs[91].DEF;
-    evs[91].DEF;
-
-    evs[92].ATKSPE;
-
-    evs[93].ATKSPE;
-    evs[93].ATKSPE;
-
-    evs[94].ATKSPE;
-    evs[94].ATKSPE;
-    evs[94].ATKSPE;
-
-    evs[95].DEF;
-
-    evs[96].DEFSPE;
-
-    evs[97].DEFSPE;
-    evs[97].DEFSPE;
-
-    evs[98].ATK;
-
-    evs[99].ATK;
-    evs[99].ATK;
-
-    evs[100].SPE;
-
-    evs[101].SPE;
-    evs[101].SPE;
-
-    evs[102].ATKSPE;
-
-    evs[103].DEF;
-    evs[103].DEF;
-
-    evs[104].ATKSPE;
-
-    evs[105].ATKSPE;
-    evs[105].ATKSPE;
-
-    evs[106].ATK;
-    evs[106].ATK;
-
-    evs[107].DEFSPE;
-    evs[107].DEFSPE;
-
-    evs[108].HP;
-    evs[108].HP;
-
-    evs[109].ATKSPE;
-
-    evs[110].ATKSPE;
-    evs[110].ATKSPE;
-
-    evs[111].ATKSPE;
-
-    evs[112].ATK;
-    evs[112].ATK;
-
-    evs[113].HP;
-    evs[113].HP;
-
-    evs[114].ATKSPE;
-
-    evs[115].HP;
-    evs[115].HP;
-
-    evs[116].DEF;
-
-    evs[117].ATKSPE;
-    evs[117].DEF;
-
-    evs[118].ATK;
-
-    evs[119].ATK;
-    evs[119].ATK;
-
-    evs[120].SPE;
-
-    evs[121].SPE;
-    evs[121].SPE;
-
-    evs[122].DEFSPE;
-    evs[122].DEFSPE;
-
-    evs[123].ATK;
-
-    evs[124].DEF;
-    evs[124].DEF;
-
-    evs[125].SPE;
-    evs[125].SPE;
-
-    evs[126].DEF;
-    evs[126].DEF;
-
-    evs[127].ATK;
-    evs[127].ATK;
-
-    evs[128].ATK;
-    evs[128].SPE;
-
-    evs[129].SPE;
-
-    evs[130].ATK;
-    evs[130].ATK;
-
-    evs[131].HP;
-    evs[131].HP;
-
-    evs[132].HP;
-
-    evs[133].DEFSPE;
-
-    evs[134].HP;
-    evs[134].HP;
-
-    evs[135].SPE;
-    evs[135].SPE;
-
-    evs[136].ATK;
-    evs[136].ATK;
-
-    evs[137].DEF;
-
-    evs[138].ATKSPE;
-
-    evs[139].ATKSPE;
-    evs[139].ATKSPE;
-
-    evs[140].ATKSPE;
-
-    evs[141].ATK;
-    evs[141].ATK;
-
-    evs[142].SPE;
-    evs[142].SPE;
-
-    evs[143].HP;
-    evs[143].HP;
-
-    evs[144].DEFSPE;
-    evs[144].DEFSPE;
-    evs[144].DEFSPE;
-
-    evs[145].DEF;
-    evs[145].DEF;
-    evs[145].DEF;
-
-    evs[146].DEF;
-    evs[146].DEF;
-    evs[146].DEF;
-
-    evs[147].ATK;
-
-    evs[148].ATK;
-    evs[148].ATK;
-
-    evs[149].ATK;
-    evs[149].ATK;
-    evs[149].ATK;
-    /*
-      evs[150].DEF;
-      evs[150].DEF;
-      evs[150].DEF;
-
-      evs[151].HP;
-      evs[151].HP;
-      evs[151].HP;
-
-      evs[152].DEFSPE;
-
-      evs[153].ATKSPE;
-      evs[153].DEFSPE;
-
-      evs[154].ATKSPE;
-      evs[154].DEFSPE;
-      evs[154].DEFSPE;
-
-      evs[155].SPE;
-
-      evs[156].DEF;
-      evs[156].SPE;
-
-      evs[157].DEF;
-      evs[157].DEF;
-      evs[157].DEF;
-
-      evs[158].ATK;
-
-      evs[159].ATK;
-      evs[159].ATKSPE;
-
-      evs[160].ATK;
-      evs[160].ATK;
-      evs[160].ATKSPE;
-
-      evs[161].ATK;
-
-      evs[162].SPE;
-      evs[162].SPE;
-
-      evs[163].HP;
-
-      evs[164].HP;
-      evs[164].HP;
-
-      evs[165].DEFSPE;
-
-      evs[166].DEFSPE;
-      evs[166].DEFSPE;
-
-      evs[167].ATK;
-
-      evs[168].ATK;
-      evs[168].ATK;
-
-      evs[169].SPE;
-      evs[169].SPE;
-      evs[169].SPE;
-
-      evs[170].HP;
-
-      evs[171].HP;
-      evs[171].HP;*/
-
-
-}
 
 void initOpMons() {
-    initEvs();
     using namespace Evolutions;
-    listOp[0] = new Species(136, 0, 1, 1, 29, 33, "MissingNo.", Type::NORMAL, Type::VOL, 0, 80, new E_Level(0, 80), evs[0], 0, 0, "ERROR : MISSINGNO.", 0, 1250000, 3, 0);
+    listOp[0] = new Species(136, 0, 1, 1, 29, 33, "MissingNo.", Type::NORMAL, Type::VOL, 0, 80, new E_Level(0, 80), {Stats::ATK}, 0, 0, "ERROR : MISSINGNO.", 0, 1250000, 3, 0);
     listOp[1] = new Species(49, 49, 65, 65, 45, 45, "Rosarin", Type::PLANTE, Type::POISON, 0, 16, new E_Level(2, 16), evs[1], 0.7, 6.9, "L'amour de cet OpMon est incroyable, il ne demande que d'affection.", 64, 1059860, 45, 1);
     listOp[2] = new Species(62, 63, 80, 80, 60, 60, "Poisiplante",Type::PLANTE, Type::POISON, 0, 32, new E_Level(3, 32), evs[2], 1, 13, "Cet OpMon est extrememnt puissant, il empoisonne de façon violente tout ce qui passe sur son chemin.", 141, 1059860, 45, 2);
     listOp[3] = new Species(82, 83, 100, 100, 80, 80, "Toxiris", Type::PLANTE, Type::POISON, 0, -1, NULL, evs[3], 2, 100, "Cet OpMon a la capacité de laché son poison a une vitesse exeptionnelle", 236, 1059860, 45, 3);
@@ -787,6 +303,13 @@ void initOpMons() {
 }
 
 void initAtkLvls() {
+
+  atkOpLvl.push_back(std::map<int, std::string>());
+  atkOpLvl[0][0] = "Charge";
+  atkOpLvl[0][3] = "Rugissement";
+  atkOpLvl[0][7] = "Vampigraine";
+  atkOpLvl[0][9] = "FoutetLianes";
+  //etc...
     /*//atkPokeLvl[0] = nullptr;
       ATK_LIST(1) = {NumberedArray(0, "Charge"),  NumberedArray(3, "Rugissement"),  NumberedArray(7, "Vampigraine"), ect... ||| NumberedArray(9, FouetLianes::classe),  NumberedArray(13, PoudreToxik::classe),  NumberedArray(13, PoudreDodo::classe),  NumberedArray(15, Belier::classe),  NumberedArray(19, TranchHerbe::classe),  NumberedArray(21, DouxParfum::classe),  NumberedArray(25, Croissance::classe),  NumberedArray(27, Damocles::classe),  NumberedArray(33, Synthese::classe),  NumberedArray(37, CanonGraine::classe)};
       ATK_ADD_LIST(1, 13);
@@ -1001,21 +524,21 @@ void initMaps() {
         feElements[1][i - 1].loadFromFile(str.str());
     }
     TAB_TO_POINTER(Collisions::feCol, feCol, 32, 32);
-    maps.push_back(new Map(Maps::feLayer1, Maps::feLayer2, Maps::feLayer3, 32, 32, feCol, townMusics[0], feElements, feEPos));
+    maps["Fauxbourg Euvi"] = new Map(Maps::feLayer1, Maps::feLayer2, Maps::feLayer3, 32, 32, feCol, townMusics[0], feElements, feEPos);
     FREE_TAB(feCol, 32);
     std::vector<OpString> feE1 {OpString("fedesc.1"), OpString("fedesc.2"), OpString("fedesc.3")};
-    maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(11, 2), feE1, SIDE_UP));
+    maps["Fauxbourg Euvi"]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(11, 2), feE1, SIDE_UP));
     std::vector<OpString> feE2 {OpString("ppHouse", Main::player.getNameP()), OpString::voidStr, OpString::voidStr};
-    maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(21, 8), feE2, SIDE_UP));
+    maps["Fauxbourg Euvi"]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(21, 8), feE2, SIDE_UP));
     std::vector<OpString> feE3 {OpString("rivalHouse"), OpString::voidStr, OpString::voidStr};
-    maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(25, 8), feE3, SIDE_UP));
+    maps["Fauxbourg Euvi"]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(25, 8), feE3, SIDE_UP));
     std::vector<OpString> feE4 {OpString("labo"), OpString::voidStr, OpString::voidStr};
-    maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(14, 20), feE4, SIDE_UP));
+    maps["Fauxbourg Euvi"]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(14, 20), feE4, SIDE_UP));
     std::vector<OpString> feE5 {OpString("weirdsign.1"), OpString("weirdsign.2"), OpString::voidStr};
-    maps[0]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(23, 20), feE5, SIDE_UP));
-    maps[0]->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(19, 8), sf::Vector2i(8, 15), 1));
-    maps[0]->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(27, 8), sf::Vector2i(9, 15), 3));
-    maps[0]->addEvent(new Events::DoorEvent(Events::DoorType::SHOP, sf::Vector2f(19, 20), sf::Vector2i(16, 15), 2));
+    maps["Fauxbourg Euvi"]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(23, 20), feE5, SIDE_UP));
+    maps["Fauxbourg Euvi"]->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(19, 8), sf::Vector2i(8, 15), "Player's home"));
+    maps["Fauxbourg Euvi"]->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(27, 8), sf::Vector2i(9, 15), "Rival's house"));
+    maps["Fauxbourg Euvi"]->addEvent(new Events::DoorEvent(Events::DoorType::SHOP, sf::Vector2f(19, 20), sf::Vector2i(16, 15), "Laboratory"));
     /*Character 1*/
     std::vector<int> pathChara1;
     for(int i = 0; i < 10; i++)
@@ -1030,47 +553,47 @@ void initMaps() {
 
     std::vector<OpString> feC1 {OpString("kid"), OpString::voidStr, OpString::voidStr};
 
-    maps[0]->addEvent(new Events::TalkingCharaEvent(kidTextures, sf::Vector2f(17, 13), feC1, 0, Events::MoveStyle::PREDEFINED, pathChara1));
+    maps["Fauxbourg Euvi"]->addEvent(new Events::TalkingCharaEvent(kidTextures, sf::Vector2f(17, 13), feC1, 0, Events::MoveStyle::PREDEFINED, pathChara1));
     /*End of character 1*/
     
     TAB_TO_POINTER(Collisions::ppHomeCol, ppHomeCol, 16, 16);
-    maps.push_back(new Map(Maps::pphomeLayer1, Maps::pphomeLayer2, Maps::pphomeLayer3, 16, 16, ppHomeCol, townMusics[0]));
+    maps["Player's home"] = new Map(Maps::pphomeLayer1, Maps::pphomeLayer2, Maps::pphomeLayer3, 16, 16, ppHomeCol, townMusics[0]);
     FREE_TAB(ppHomeCol, 16);
-    maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(7, 15), sf::Vector2i(20, 9), 0, Side::TO_DOWN, SIDE_DOWN));
-    maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(15, 2), sf::Vector2i(9, 5), 5, Side::TO_LEFT, SIDE_RIGHT));
-    maps[1]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(0, 11), sf::Vector2i(6, 3), 4, Side::TO_LEFT, SIDE_LEFT));
+    maps["Player's home"]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(7, 15), sf::Vector2i(20, 9), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
+    maps["Player's home"]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(15, 2), sf::Vector2i(9, 5), "Player's room", Side::TO_LEFT, SIDE_RIGHT));
+    maps["Player's home"]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(0, 11), sf::Vector2i(6, 3), "Mom's room", Side::TO_LEFT, SIDE_LEFT));
 
     townMusics.push_back(new sf::Music());
-        townMusics[1]->openFromFile(getPath(RESSOURCES_PATH + "audio/music/intro.ogg"));
+    townMusics[1]->openFromFile(getPath(RESSOURCES_PATH + "audio/music/intro.ogg"));
     TAB_TO_POINTER(Collisions::laboCol, laboCol, 16, 32);
-    maps.push_back(new Map(Maps::laboLayer1, Maps::laboLayer2, Maps::laboLayer3, 32, 16, laboCol, townMusics[1]));
+    maps["Laboratory"] = new Map(Maps::laboLayer1, Maps::laboLayer2, Maps::laboLayer3, 32, 16, laboCol, townMusics[1]);
     FREE_TAB(laboCol, 16);
-    maps[2]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(15, 15), sf::Vector2i(20, 21), 0, Side::TO_DOWN, SIDE_DOWN));
+    maps["Laboratory"]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(15, 15), sf::Vector2i(20, 21), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
     //Dialogs
     std::vector<OpString> felaboC1 {OpString("prof.dialog.1"), OpString("prof.dialog.2"), OpString("prof.dialog.3")};
 
     //Load Npcs
-    maps[2]->addEvent(new Events::TalkingCharaEvent(kiwaiTextures, sf::Vector2f(15, 4), felaboC1, Events::EventTrigger::PRESS, Events::MoveStyle::NO_MOVE));
-
-    std::vector<OpString> laboC1 {OpString("prof.dialog.1"), OpString("prof.dialog.2"), OpString("prof.dialog.3")};
-    
-    maps[2]->addEvent(new Events::TalkingCharaEvent(kiwaiTextures, sf::Vector2f(15, 4), laboC1, Events::EventTrigger::PRESS, Events::MoveStyle::NO_MOVE));
+    maps["Laboratory"]->addEvent(new Events::TalkingCharaEvent(kiwaiTextures, sf::Vector2f(15, 4), felaboC1, Events::EventTrigger::PRESS, Events::MoveStyle::NO_MOVE));
 
     TAB_TO_POINTER(Collisions::rivalHomeCol, rivalHomeCol, 16, 16);
-    maps.push_back(new Map(Maps::rivalhomeLayer1, Maps::rivalhomeLayer2, Maps::rivalhomeLayer3, 16, 16, rivalHomeCol, townMusics[0]));
+    maps["Rival's house"] = new Map(Maps::rivalhomeLayer1, Maps::rivalhomeLayer2, Maps::rivalhomeLayer3, 16, 16, rivalHomeCol, townMusics[0]);
     FREE_TAB(rivalHomeCol, 16);
-    maps[3]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(8, 15), sf::Vector2i(28, 9), 0, Side::TO_DOWN, SIDE_DOWN));
+    maps["Rival's house"]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(8, 15), sf::Vector2i(28, 9), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
 
     TAB_TO_POINTER(Collisions::momRoomCol, momRoomCol, 6, 6);
-    maps.push_back(new Map(Maps::momroomLayer1, Maps::momroomLayer2, Maps::momroomLayer3, 6, 6, momRoomCol, townMusics[0]));
+    maps["Mom's room"] = new Map(Maps::momroomLayer1, Maps::momroomLayer2, Maps::momroomLayer3, 6, 6, momRoomCol, townMusics[0]);
     FREE_TAB(momRoomCol, 6);
-    maps[4]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(5, 3), sf::Vector2i(1, 11), 1, Side::TO_RIGHT, SIDE_RIGHT));
+    maps["Mom's room"]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(5, 3), sf::Vector2i(1, 11), "Player's home", Side::TO_RIGHT, SIDE_RIGHT));
 
     TAB_TO_POINTER(Collisions::ppRoomCol, ppRoomCol, 6, 9);
-    maps.push_back(new Map(Maps::pproomLayer1, Maps::pproomLayer2, Maps::pproomLayer3, 9, 6, ppRoomCol, townMusics[0]));
+    maps["Player's room"] = new Map(Maps::pproomLayer1, Maps::pproomLayer2, Maps::pproomLayer3, 9, 6, ppRoomCol, townMusics[0]);
     FREE_TAB(ppRoomCol, 6);
-    maps[5]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(8, 5), sf::Vector2i(16, 2), 1, Side::TO_LEFT, SIDE_RIGHT));
+    maps["Player's room"]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(8, 5), sf::Vector2i(16, 2), "Player's home", Side::TO_LEFT, SIDE_RIGHT));
 
+    TAB_TO_POINTER(Collisions::route14Col, route14Col, 41, 74);
+    maps["Route 14"] = new Map(Maps::route14Layer1, Maps::route14Layer2, Maps::route14Layer3, 74, 41, route14Col, townMusics[0]); 
+    FREE_TAB(route14Col, 41);
+			       
     Main::mainframe.overworld.initVars();
 
 }
@@ -1097,8 +620,6 @@ void init() {
     initItems();
     oplog("Attaks by levels initialization");
     initAtkLvls();
-    oplog("EVs initialization");
-    initEvs();
     oplog("OPMons initialization");
     initOpMons();
     oplog("Objects initialization ending");
