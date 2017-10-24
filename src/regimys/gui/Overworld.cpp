@@ -296,18 +296,20 @@ int Overworld::boucle() {
                     }
 
                     if(Main::mainframe.events.key.code == sf::Keyboard::F5) {
-                        tp("Mom's room", sf::Vector2i(0, 1), true);
+		      tp("Mom's room", sf::Vector2i(0, 1), true);
                     } else if(Main::mainframe.events.key.code == sf::Keyboard::F6) {
-                        tp("Player's room", sf::Vector2i(0, 0), true);
+		      tp("Player's room", sf::Vector2i(0, 0), true);
                     } else if(Main::mainframe.events.key.code == sf::Keyboard::F1) {
-                        tp("Fauxbourg Euvi", sf::Vector2i(25, 28), true);
+		      tp("Fauxbourg Euvi", sf::Vector2i(25, 28), true);
                     } else if(Main::mainframe.events.key.code == sf::Keyboard::F2) {
-                        tp("Player's home", sf::Vector2i(8, 14), true);
+		      tp("Player's home", sf::Vector2i(8, 14), true);
                     } else if(Main::mainframe.events.key.code == sf::Keyboard::F3) {
-                        tp("Laboratory", sf::Vector2i(15, 14), true);
+		      tp("Laboratory", sf::Vector2i(15, 14), true);
                     } else if(Main::mainframe.events.key.code == sf::Keyboard::F4) {
-                        tp("Rival's house", sf::Vector2i(8, 14), true);
-                    }
+		      tp("Rival's house", sf::Vector2i(8, 14), true);
+                    } else if(Main::mainframe.events.key.code == sf::Keyboard::F7){
+		      tp("Route 14", sf::Vector2i(0, 0), true);
+		    }
                 }
             default:
                 break;
