@@ -52,7 +52,7 @@ private:
     /**L'exp au niveau 100*/
     int expMax;
     /**C'est le tableau des EV donnés*/
-  std::vector<int> EVgiven;
+  std::vector<Stats> EVgiven;
     //Variables de sprites a inserer ICI
     unsigned int expGiven;
     int tauxDeCapture;
@@ -114,7 +114,7 @@ public:
   float getHeight() const {
     return height;
   }
-  std::vector<int> getEv() const {
+  std::vector<Stats> getEv() const {
         return EVgiven;
     }
     int getEvSize() const {
