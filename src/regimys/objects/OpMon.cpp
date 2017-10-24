@@ -77,7 +77,7 @@ int CalcCourbs::quick(int n) {
     return round(0.8f * pow(n, 3));
 }
 
-OpMon::OpMon(string nickname, Species *species, int level, std::vector<Attack *> attacks, NatureClass nature) {
+OpMon::OpMon(string nickname, Species *species, int level, std::vector<Attack *> attacks, Nature nature) {
     atkIV = Utils::randU(32);
     defIV = Utils::randU(32);
     atkSpeIV = Utils::randU(32);
@@ -87,32 +87,32 @@ OpMon::OpMon(string nickname, Species *species, int level, std::vector<Attack *>
     statATK = round(
                   ((((2 * species->getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100)
                    + 5)
-                  * ((nature.bonus == Stats::ATK) ?
-                     1.1 : ((nature.malus == Stats::ATK) ? 0.9 : 1)));
+                   * ((natures[(int) nature].bonus == Stats::ATK) ?
+                     1.1 : ((natures[(int) nature].malus == Stats::ATK) ? 0.9 : 1)));
     statDEF = round(
                   ((((2 * species->getBaseDef() + defIV + (defEV / 4)) * level) / 100)
                    + 5)
-                  * ((nature.bonus == Stats::DEF) ?
-                     1.1 : ((nature.malus == Stats::DEF) ? 0.9 : 1)));
+                  * ((natures[(int) nature].bonus == Stats::DEF) ?
+                     1.1 : ((natures[(int) nature].malus == Stats::DEF) ? 0.9 : 1)));
     statATKSPE =
         round(
             ((((2 * species->getBaseAtkSpe() + atkSpeIV + (atkSpeEV / 4))
                * level) / 100) + 5)
-            * ((nature.bonus == Stats::ATKSPE) ?
+            * ((natures[(int) nature].bonus == Stats::ATKSPE) ?
                1.1 :
-               ((nature.malus == Stats::ATKSPE) ? 0.9 : 1)));
+               ((natures[(int) nature].malus == Stats::ATKSPE) ? 0.9 : 1)));
     statDEFSPE =
         round(
             ((((2 * species->getBaseDefSpe() + defSpeIV + (defSpeEV / 4))
                * level) / 100) + 5)
-            * ((nature.bonus == Stats::DEFSPE) ?
+            * ((natures[(int) nature].bonus == Stats::DEFSPE) ?
                1.1 :
-               ((nature.malus == Stats::DEFSPE) ? 0.9 : 1)));
+               ((natures[(int) nature].malus == Stats::DEFSPE) ? 0.9 : 1)));
     statSPE = round(
                   ((((2 * species->getBaseVit() + speIV + (speEV / 4)) * level) / 100)
                    + 5)
-                  * ((nature.bonus == Stats::SPE) ?
-                     1.1 : ((nature.malus == Stats::SPE) ? 0.9 : 1)));
+                  * ((natures[(int) nature].bonus == Stats::SPE) ?
+                     1.1 : ((natures[(int) nature].malus == Stats::SPE) ? 0.9 : 1)));
     statHP = round(((2 * species->getBaseHP() + hpIV + (hpEV / 4)) * level) / 100)
              + level + 10;
     this->species = species;
@@ -133,28 +133,28 @@ OpMon::OpMon(string nickname, Species *species, int level, std::vector<Attack *>
     type1 = species->getType1();
     type2 = species->getType2();
     using namespace CalcCourbs;
-    switch (this->species->getCourbe()) {
-    case CourbeExp::ERRATIQUE:
+    switch (this->species->getCurve()) {
+    case CurveExp::ERRATIC:
         toNextLevel = erratic(this->level + 1);
         exp = erratic(this->level);
         break;
-    case CourbeExp::FLUCTUANTE:
+    case CurveExp::FLUCTUATING:
         toNextLevel = fluctuating(this->level + 1);
         exp = fluctuating(this->level);
         break;
-    case CourbeExp::LENTE:
+    case CurveExp::SLOW:
         toNextLevel = slow(this->level + 1);
         exp = slow(this->level);
         break;
-    case CourbeExp::MOYENNE:
+    case CurveExp::AVERAGE:
         toNextLevel = normal(this->level + 1);
         exp = normal(this->level);
         break;
-    case CourbeExp::PARABOLIQUE:
+    case CurveExp::PARABOLIC:
         toNextLevel = parabolic(this->level + 1);
         exp = parabolic(this->level);
         break;
-    case CourbeExp::RAPIDE:
+    case CurveExp::QUICK:
         toNextLevel = quick(this->level + 1);
         exp = quick(this->level);
         break;
@@ -238,28 +238,28 @@ void OpMon::setStat(Stats stat, int newStat) {
 void OpMon::levelUp() {
     using namespace CalcCourbs;
     level++;
-    switch (this->species->getCourbe()) {
-    case CourbeExp::ERRATIQUE:
+    switch (this->species->getCurve()) {
+    case CurveExp::ERRATIC:
         toNextLevel = erratic(this->level + 1);
         exp = erratic(this->level);
         break;
-    case CourbeExp::FLUCTUANTE:
+    case CurveExp::FLUCTUATING:
         toNextLevel = fluctuating(this->level + 1);
         exp = fluctuating(this->level);
         break;
-    case CourbeExp::LENTE:
+    case CurveExp::SLOW:
         toNextLevel = slow(this->level + 1);
         exp = slow(this->level);
         break;
-    case CourbeExp::MOYENNE:
+    case CurveExp::AVERAGE:
         toNextLevel = normal(this->level + 1);
         exp = normal(this->level);
         break;
-    case CourbeExp::PARABOLIQUE:
+    case CurveExp::PARABOLIC:
         toNextLevel = parabolic(this->level + 1);
         exp = parabolic(this->level);
         break;
-    case CourbeExp::RAPIDE:
+    case CurveExp::QUICK:
         toNextLevel = quick(this->level + 1);
         exp = quick(this->level);
         break;
@@ -287,7 +287,7 @@ int OpMon::win(OpMon const &vaincu) {
 
 void OpMon::getEvs(OpMon const &vaincu) {
     if (!((atkEV + defEV + hpEV + atkSpeEV + defSpeEV + speEV) > 510)) {
-        vector<int> statsVaincu;
+        vector<Stats> statsVaincu;
         for (int i = 0; i < vaincu.species->getEvSize(); i++) {
             statsVaincu.push_back(vaincu.species->getEv()[i]);
         }
@@ -337,32 +337,32 @@ void OpMon::calcStats() {
     statATK = round(
                   ((((2 * species->getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100)
                    + 5)
-                  * ((nature.bonus == Stats::ATK) ?
-                     1.1 : ((nature.malus == Stats::ATK) ? 0.9 : 1)));
+                  * ((natures[(int) nature].bonus == Stats::ATK) ?
+                     1.1 : ((natures[(int) nature].malus == Stats::ATK) ? 0.9 : 1)));
     statDEF = round(
                   ((((2 * species->getBaseDef() + defIV + (defEV / 4)) * level) / 100)
                    + 5)
-                  * ((nature.bonus == Stats::DEF) ?
-                     1.1 : ((nature.malus == Stats::DEF) ? 0.9 : 1)));
+                  * ((natures[(int) nature].bonus == Stats::DEF) ?
+                     1.1 : ((natures[(int) nature].malus == Stats::DEF) ? 0.9 : 1)));
     statATKSPE =
         round(
             ((((2 * species->getBaseAtkSpe() + atkSpeIV + (atkSpeEV / 4))
                * level) / 100) + 5)
-            * ((nature.bonus == Stats::ATKSPE) ?
+            * ((natures[(int) nature].bonus == Stats::ATKSPE) ?
                1.1 :
-               ((nature.malus == Stats::ATKSPE) ? 0.9 : 1)));
+               ((natures[(int) nature].malus == Stats::ATKSPE) ? 0.9 : 1)));
     statDEFSPE =
         round(
             ((((2 * species->getBaseDefSpe() + defSpeIV + (defSpeEV / 4))
                * level) / 100) + 5)
-            * ((nature.bonus == Stats::DEFSPE) ?
+            * ((natures[(int) nature].bonus == Stats::DEFSPE) ?
                1.1 :
-               ((nature.malus == Stats::DEFSPE) ? 0.9 : 1)));
+               ((natures[(int) nature].malus == Stats::DEFSPE) ? 0.9 : 1)));
     statSPE = round(
                   ((((2 * species->getBaseVit() + speIV + (speEV / 4)) * level) / 100)
                    + 5)
-                  * ((nature.bonus == Stats::SPE) ?
-                     1.1 : ((nature.malus == Stats::SPE) ? 0.9 : 1)));
+                  * ((natures[(int) nature].bonus == Stats::SPE) ?
+                     1.1 : ((natures[(int) nature].malus == Stats::SPE) ? 0.9 : 1)));
     statHP = round(((2 * species->getBaseHP() + hpIV + (hpEV / 4)) * level) / 100)
              + level + 10;
 }
@@ -1640,7 +1640,7 @@ OpMon::OpMon(ifstream &in) {
         level = in.get();
         in.get();
         int toSearch = in.get();
-        nature = *Nature::enumsList[toSearch];
+        nature = toSearch;
         in.get();
         attacks[0] = Attacks::newAtk(Save::readLine(in));
         if(attacks[0] != nullptr) {

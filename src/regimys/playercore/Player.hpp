@@ -67,13 +67,13 @@ public:
     sf::Sprite &getSprite() {
         return charaSprite;
     }
-    int getppDir() {
+    Side getppDir() {
         return *ppDir;
     }
-    void setppDirPointer(int *ppDir) {
+    void setppDirPointer(Side *ppDir) {
         this->ppDir = ppDir;
     }
-    void setppDir(int ppDir) {
+    void setppDir(Side ppDir) {
         *(this->ppDir) = ppDir;
     }
     int &getPosX() {
@@ -96,7 +96,7 @@ private:
     int bag[ITEM_NUMBER];
     std::vector<OpMon *> pc = std::vector<OpMon *>();
     OpTeam opteam;
-    int *ppDir;
+    Side *ppDir;
     int mapID = 0;
     int posX = 2;
     int posY = 2;
