@@ -21,6 +21,7 @@ extern char ppRoomCol[6][9];
 extern char momRoomCol[6][6];
 extern char laboCol[16][32];
 extern char route14Col[41][74];
+extern char myciCol[19][19];
 }
 
 
@@ -46,6 +47,10 @@ namespace Maps {
   extern int route14Layer1[5130];
   extern int route14Layer2[5130];
   extern int route14Layer3[5130];
+  extern int myciLayer1[1225];
+  extern int myciLayer2[1225];
+  extern int myciLayer3[1225];
+
 }
 
 #endif // INTERNALFILES_HPP
