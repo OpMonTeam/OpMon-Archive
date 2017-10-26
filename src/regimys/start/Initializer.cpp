@@ -593,6 +593,12 @@ void initMaps() {
     TAB_TO_POINTER(Collisions::route14Col, route14Col, 41, 74);
     maps["Route 14"] = new Map(Maps::route14Layer1, Maps::route14Layer2, Maps::route14Layer3, 74, 41, route14Col, townMusics[0]); 
     FREE_TAB(route14Col, 41);
+
+    townMusics.push_back(new sf::Music());
+    townMusics[2]->openFromFile(getPath(RESSOURCES_PATH + "audio/music/mysterioucity.ogg"));
+    TAB_TO_POINTER(Collisions::myciCol, myciCol, 19, 19);
+    maps["MysteriouCity"] = new Map(Maps::myciLayer1, Maps::myciLayer2, Maps::myciLayer3, 19, 19, myciCol, townMusics[2]); 
+    FREE_TAB(myciCol, 19);
 			       
     Main::mainframe.overworld.initVars();
 
