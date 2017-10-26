@@ -589,7 +589,9 @@ void initMaps() {
     maps["Player's room"] = new Map(Maps::pproomLayer1, Maps::pproomLayer2, Maps::pproomLayer3, 9, 6, ppRoomCol, townMusics[0]);
     FREE_TAB(ppRoomCol, 6);
     maps["Player's room"]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(8, 5), sf::Vector2i(16, 2), "Player's home", Side::TO_LEFT, SIDE_RIGHT));
-
+    std::vector<OpString> phoE1 {OpString("pcRunLinux"), OpString::voidStr, OpString::voidStr};
+    maps["Player's room"]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(1, 1), phoE1, SIDE_UP));
+	
     TAB_TO_POINTER(Collisions::route14Col, route14Col, 41, 74);
     maps["Route 14"] = new Map(Maps::route14Layer1, Maps::route14Layer2, Maps::route14Layer3, 74, 41, route14Col, townMusics[0]); 
     FREE_TAB(route14Col, 41);
