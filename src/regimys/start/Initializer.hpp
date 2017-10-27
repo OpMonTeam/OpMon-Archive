@@ -46,7 +46,7 @@ extern std::vector<sf::Texture> charaFront;
 
 extern std::vector<std::vector<sf::Texture> > doorsTextures;
 //std::string backgrounds[];
-extern std::vector<int> evs[OP_NUMBER];
+extern std::vector<Stats> evs[OP_NUMBER];
 void initOpMons();
 void initAtkLvls();
 void initSprites();
