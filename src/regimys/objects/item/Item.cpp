@@ -51,7 +51,7 @@ void initItems() {
 }
 
 
-Item::Item(string name, bool usable, bool usableInFight, bool givable, int categorie, int id) :
+Item::Item(string name, bool usable, bool usableInFight, bool givable, BagCat categorie, int id) :
     name(name) {
     this->usable = usable;
     this->usableInFight = usableInFight;

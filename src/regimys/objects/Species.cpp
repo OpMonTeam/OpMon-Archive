@@ -12,7 +12,7 @@ Species::~Species() {
 
 }
 
-Species::Species(unsigned int atk, unsigned int def, unsigned int atkSpe, unsigned int defSpe, unsigned int spe, unsigned int hp, std::string name, Type type1, Type type2, int maniereEvolution/*En fait faut mettre 0, il est la pour un souci de compatibilit�*/, int niveauEvolution, Evolution *evolType, std::vector<int> EVGiven, float height, float weight, std::string entreeOpdex, unsigned int expGiven, int expMax, int tauxDeCapture, int numeroOpdex) {
+Species::Species(unsigned int atk, unsigned int def, unsigned int atkSpe, unsigned int defSpe, unsigned int spe, unsigned int hp, std::string name, Type type1, Type type2, int maniereEvolution/*En fait faut mettre 0, il est la pour un souci de compatibilit�*/, int niveauEvolution, Evolution *evolType, std::vector<Stats> EVGiven, float height, float weight, std::string entreeOpdex, unsigned int expGiven, int expMax, int tauxDeCapture, int numeroOpdex) {
     if(evolType == nullptr) {
         evolType = new E_Nope();
     }
@@ -35,29 +35,29 @@ Species::Species(unsigned int atk, unsigned int def, unsigned int atkSpe, unsign
     this->entreeOpdex = entreeOpdex;
     this->expGiven = expGiven;
     this->EVgiven = EVGiven;
-    //Mise en place des courbes d'exp
+    //Mise en place des curves d'exp
     this->expMax = expMax;
     switch (this->expMax) {
     case 800000:
-        courbe = CourbeExp::QUICK;
+        curve = CurveExp::QUICK;
         break;
     case 1000000:
-        courbe = CourbeExp::AVERAGE;
+        curve = CurveExp::AVERAGE;
         break;
     case 1059860:
-        courbe = CourbeExp::PARABOLIC;
+        curve = CurveExp::PARABOLIC;
         break;
     case 1250000:
-        courbe = CourbeExp::SLOW;
+        curve = CurveExp::SLOW;
         break;
     case 600000:
-        courbe = CourbeExp::ERRATIC;
+        curve = CurveExp::ERRATIC;
         break;
     case 1640000:
-        courbe = CourbeExp::FLUCTUATING;
+        curve = CurveExp::FLUCTUATING;
         break;
     default:
-        courbe = CourbeExp::AVERAGE;
+        curve = CurveExp::AVERAGE;
     }
     this->numeroOpdex = numeroOpdex;
 

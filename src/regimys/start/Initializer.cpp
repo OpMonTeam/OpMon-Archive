@@ -28,7 +28,7 @@ OP_DEPRECATED typedef NumberedArray AtkArray;
 
 namespace Initializer {
 Evolutions::E_Nope *ne = new E_Nope();
-std::vector<int> evs[OP_NUMBER];
+std::vector<Stats> evs[OP_NUMBER];
 Species *listOp[OP_NUMBER];
   std::map<std::string, Map*> maps;
 std::vector<sf::Music*> townMusics;
@@ -378,43 +378,42 @@ sf::Texture texturePP[4];
 sf::Texture walkingPP[4];
 sf::Texture walkingPP2[4];
 void initTextures() {
-    using namespace Side;
 
     tileset.loadFromFile(getPath(RESSOURCES_PATH + "maps/tileset.png"));
-    if(!texturePP[TO_DOWN].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp0.png"))){
+    if(!texturePP[(int) Side::TO_DOWN].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp0.png"))){
       handleError("Failed to load one of the PP sprites", false);
     }
-    if(!texturePP[TO_RIGHT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp1.png"))){
+    if(!texturePP[(int) Side::TO_RIGHT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp1.png"))){
       handleError("Failed to load one of the PP sprites", false);
     }
-    if(!texturePP[TO_LEFT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp2.png"))){
+    if(!texturePP[(int) Side::TO_LEFT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp2.png"))){
       handleError("Failed to load one of the PP sprites", false);
     }
-    if(!texturePP[TO_UP].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp3.png"))){
+    if(!texturePP[(int) Side::TO_UP].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp3.png"))){
       handleError("Failed to load one of the PP sprites", false);
     }
-    if(!walkingPP[TO_DOWN].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp0.png"))){
+    if(!walkingPP[(int) Side::TO_DOWN].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp0.png"))){
       handleError("Failed to load one of the PP sprites", false);
     }
-    if(!walkingPP[TO_RIGHT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp1.png"))){
+    if(!walkingPP[(int) Side::TO_RIGHT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp1.png"))){
       handleError("Failed to load one of the PP sprites", false);
     }
-    if(!walkingPP[TO_LEFT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp2.png"))){
+    if(!walkingPP[(int) Side::TO_LEFT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp2.png"))){
       handleError("Failed to load one of the PP sprites", false);
     }
-    if(!walkingPP[TO_UP].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp3.png"))){
+    if(!walkingPP[(int) Side::TO_UP].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp3.png"))){
       handleError("Failed to load one of the PP sprites", false);
     }
-    if(!walkingPP2[TO_DOWN].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp20.png"))){
+    if(!walkingPP2[(int) Side::TO_DOWN].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp20.png"))){
       handleError("Failed to load one of the PP sprites", false);
     }
-    if(!walkingPP2[TO_RIGHT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp21.png"))){
+    if(!walkingPP2[(int) Side::TO_RIGHT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp21.png"))){
       handleError("Failed to load one of the PP sprites", false);
     }
-    if(!walkingPP2[TO_LEFT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp22.png"))){
+    if(!walkingPP2[(int) Side::TO_LEFT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp22.png"))){
       handleError("Failed to load one of the PP sprites", false);
     }
-    if(!walkingPP2[TO_UP].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp23.png"))){
+    if(!walkingPP2[(int) Side::TO_UP].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp23.png"))){
       handleError("Failed to load one of the PP sprites", false);
     }
 
@@ -540,20 +539,20 @@ void initMaps() {
     maps["Fauxbourg Euvi"]->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(27, 8), sf::Vector2i(9, 15), "Rival's house"));
     maps["Fauxbourg Euvi"]->addEvent(new Events::DoorEvent(Events::DoorType::SHOP, sf::Vector2f(19, 20), sf::Vector2i(16, 15), "Laboratory"));
     /*Character 1*/
-    std::vector<int> pathChara1;
+    std::vector<Side> pathChara1;
     for(int i = 0; i < 10; i++)
         pathChara1.push_back(Side::TO_RIGHT);
 
-    pathChara1.push_back(-1);
+    pathChara1.push_back(Side::NO_MOVE);
 
     for(int i = 0; i < 10; i++)
         pathChara1.push_back(Side::TO_LEFT);
 
-    pathChara1.push_back(-1);
+    pathChara1.push_back(Side::NO_MOVE);
 
     std::vector<OpString> feC1 {OpString("kid"), OpString::voidStr, OpString::voidStr};
 
-    maps["Fauxbourg Euvi"]->addEvent(new Events::TalkingCharaEvent(kidTextures, sf::Vector2f(17, 13), feC1, 0, Events::MoveStyle::PREDEFINED, pathChara1));
+    maps["Fauxbourg Euvi"]->addEvent(new Events::TalkingCharaEvent(kidTextures, sf::Vector2f(17, 13), feC1, Events::EventTrigger::PRESS, Events::MoveStyle::PREDEFINED, pathChara1));
     /*End of character 1*/
     
     TAB_TO_POINTER(Collisions::ppHomeCol, ppHomeCol, 16, 16);
