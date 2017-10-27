@@ -377,8 +377,8 @@ bool OpMon::itemUsed(Item *used) {
     if (used->getItemTypeID() == ItemType::IHeal) {
 
         I_Heal *usedI = dynamic_cast<I_Heal *>(used);
-        if (usedI->getPvHeal() > 0) {
-            heal(usedI->getPvHeal());
+        if (usedI->getHpHeal() > 0) {
+            heal(usedI->getHpHeal());
 
         }
         if (usedI->isHealAll() && status == Status::NOTHING) {
@@ -438,7 +438,7 @@ void OpMon::evolve() {
     species = species->getEvolution();
 }
 
-void OpMon::setStats(int stats[], Attack *attacks[], Species *species, int types[]) {
+void OpMon::setStats(int stats[], Attack *attacks[], Species *species, Type types[]) {
     statATK = stats[0];
     statDEF = stats[1];
     statATKSPE = stats[2];
@@ -1484,7 +1484,7 @@ bool OpMon::changeSPE(int power) {
     return true;
 }
 
-bool OpMon::setStatus(int status) {
+bool OpMon::setStatus(Status status) {
     if (status == Status::BURNING && this->status == Status::BURNING) {
         //System.out.println(nickname + " est déjà  brulé!");
         return false;
@@ -1528,10 +1528,10 @@ void OpMon::heal(int HP) {
     }
 }
 
-void OpMon::setType1(int type) {
+void OpMon::setType1(Type type) {
     this->type1 = type;
 }
-void OpMon::setType2(int type) {
+void OpMon::setType2(Type type) {
     this->type2 = type;
 }
 string OpMon::save() {
@@ -1553,7 +1553,7 @@ string OpMon::save() {
         oss << Save::intToChar(hpEV) << endl;
         oss << Save::intToChar(statLove) << endl;
         oss << Save::intToChar(level) << endl;
-        oss << Save::intToChar(nature.id) << endl;
+        oss << Save::intToChar(natures[(int) nature].id) << endl;
         /*for(unsigned int it = 0; it < 4; it++){
             cout << "Attack : " << it << " Pointer : " << attaques[it] << endl;
             Attack *atk = attaques[it];
@@ -1640,7 +1640,7 @@ OpMon::OpMon(ifstream &in) {
         level = in.get();
         in.get();
         int toSearch = in.get();
-        nature = toSearch;
+        //nature = toSearch;
         in.get();
         attacks[0] = Attacks::newAtk(Save::readLine(in));
         if(attacks[0] != nullptr) {
