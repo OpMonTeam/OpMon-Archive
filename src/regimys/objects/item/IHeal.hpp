@@ -26,11 +26,11 @@ public:
     /**Construit un item de heal de status*/
     I_Heal(std::string &name, bool usable, bool usableInFight, bool givable, BagCat categorie, Status heal, bool healAllStatus, int ID, bool status);//De toutes facons meme si status est false ce sera quand meme du status
     /**Construit un stat+*/
-    I_Heal(std::string &name, int statAdd, int ID);
+    I_Heal(std::string &name, Stats statAdd, int ID);
     bool isHealAll() const {
         return healAll;
     }
-    bool getPvHeal() const {
+    bool getHpHeal() const {
         return hpHeal;
     }
     Status getStatusHeald() const {
@@ -44,7 +44,7 @@ private:
     Status healed;
     /**Si l'item soigne tous les status*/
     bool healAll;
-    int statAdd;
+    Stats statAdd;
     /**Si l'item soigne des PP*/
     bool PPheal;
     /**Les PP soignés*/
