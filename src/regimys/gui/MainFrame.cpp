@@ -167,7 +167,7 @@ void MainFrame::open() {
             frame.display();
             winRefresh();
 	    if(Main::player.getName().empty()){
-	      Main::player.setName("Céchine");
+	      Main::player.setName("CÃ©chine");
 	    }
 	    //Initializating opmons
 	    OpMon *op1 = new OpMon("", Initializer::listOp[4], 20, {new Attacks::Belier(), new Attacks::Charge(), nullptr, nullptr}, Nature::BOLD);
