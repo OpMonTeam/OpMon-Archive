@@ -11,7 +11,7 @@ Event::~Event() {
     delete(sprite);
 }
 
-Event::Event(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, EventTrigger eventTrigger, sf::Vector2f const& position, int sides, bool passable) :
+Event::Event(sf::Texture &baseTexture, std::vector<sf::Texture>& otherTextures, EventTrigger eventTrigger, sf::Vector2f const& position, int sides, bool passable) :
     baseTexture(baseTexture), otherTextures(otherTextures), eventTrigger(eventTrigger),
     position(position),
     passable(passable),
@@ -35,7 +35,7 @@ namespace DoorType {
 std::vector<sf::Texture> NORMAL, SHOP;
 }
 
-TPEvent::TPEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, EventTrigger eventTrigger, sf::Vector2f const& position, sf::Vector2i const& tpPos, string const& map, Side ppDir, int sides, bool passable):
+TPEvent::TPEvent(sf::Texture &baseTexture, std::vector<sf::Texture>& otherTextures, EventTrigger eventTrigger, sf::Vector2f const& position, sf::Vector2i const& tpPos, string const& map, Side ppDir, int sides, bool passable):
     Event(baseTexture, otherTextures, eventTrigger, position, sides, passable), tpCoord(tpPos), map(map), ppDir(ppDir) {
 
 }
@@ -52,7 +52,7 @@ DoorEvent::DoorEvent(std::vector<sf::Texture> &doorType, sf::Vector2f const& pos
     }
 }
 
-TalkingEvent::TalkingEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, sf::Vector2f const& position, std::vector<OpString> const& dialogKeys, int sides, EventTrigger eventTrigger, bool passable):
+TalkingEvent::TalkingEvent(sf::Texture &baseTexture, std::vector<sf::Texture>& otherTextures, sf::Vector2f const& position, std::vector<OpString> const& dialogKeys, int sides, EventTrigger eventTrigger, bool passable):
     Event(baseTexture, otherTextures, eventTrigger, position, sides, passable), dialogKeys(dialogKeys) {
     this->reloadKeys();
 }
