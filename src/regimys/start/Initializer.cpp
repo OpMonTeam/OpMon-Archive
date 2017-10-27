@@ -36,9 +36,11 @@ std::vector<std::vector<sf::Texture> > doorsTextures;
 sf::SoundBuffer doorSoundBuffer;
   sf::SoundBuffer shopDoorSoundBuffer;
 sf::Texture tileset;
-std::vector<sf::Texture> kiwaiTextures;  
-std::vector<sf::Texture> kidTextures;
+  std::map<std::string, std::vector<sf::Texture> > charaTextures;
   std::vector<std::map<int, std::string> > atkOpLvl;
+
+  
+  
 template<typename T>void pb(std::vector<T> &vect, T arr[], int sizeArr) {
     for (unsigned int i = 0; i < sizeArr; i++) {
         vect.push_back(arr[i]);
@@ -450,8 +452,8 @@ void initTextures() {
     for(unsigned int i = 0; i < 12; i++) {
         std::string str;
         str << RESSOURCES_PATH << getPath("sprites/chara/kid/kid") << i << std::string(".png");
-	kidTextures.push_back(sf::Texture());
-        if(!kidTextures[i].loadFromFile(str)){
+	charaTextures["kid"].push_back(sf::Texture());
+        if(!charaTextures["kid"][i].loadFromFile(str)){
 	  handleError("Failed to load one of the kid sprites", false);
 	}
     }
@@ -459,8 +461,8 @@ void initTextures() {
     for(unsigned int i = 0; i < 12; i++) {
         std::string str;
         str << RESSOURCES_PATH << getPath("sprites/chara/prof/prof") << i << std::string(".png");
-        kiwaiTextures.push_back(sf::Texture());
-        if(!kiwaiTextures[i].loadFromFile(str)){
+        charaTextures["kiwai"].push_back(sf::Texture());
+        if(!charaTextures["kiwai"][i].loadFromFile(str)){
 	  handleError("Failed to load one of the prof sprites", false);
 	}
     }
@@ -481,7 +483,8 @@ void initSprites() {
     //Init Sprites
 
 }
-sf::Texture alpha;
+  sf::Texture alpha = sf::Texture();
+  std::vector<sf::Texture> alphaTab = std::vector<sf::Texture>();
 void initMaps() {
 
     UNS
@@ -505,11 +508,13 @@ void initMaps() {
     townMusics.push_back(new sf::Music());
     std::vector<std::vector<sf::Texture> > feElements;
     std::vector<sf::Vector2f> feEPos;
-    feElements.push_back(std::vector<sf::Texture>());
-    feElements.push_back(std::vector<sf::Texture>());
+    feElements.push_back(alphaTab);
+    feElements.push_back(alphaTab);
     feEPos.push_back(sf::Vector2f(8 *32 + 25 *32 - 8, 3 *32 + 8));
     feEPos.push_back(sf::Vector2f(8*32+18*32, 11*32));
-    townMusics[0]->openFromFile(getPath(RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg"));
+    if(!townMusics[0]->openFromFile(getPath(RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg"))){
+      handleError("Unable to open the music faubourgeuvi.ogg", false);
+    }
     for(unsigned int i = 1; i < 17; i++) {
         ostringstream str;
         str << RESSOURCES_PATH + getPath("animations/windturbine/blade_") << i << string(".png");
@@ -525,16 +530,11 @@ void initMaps() {
     TAB_TO_POINTER(Collisions::feCol, feCol, 32, 32);
     maps["Fauxbourg Euvi"] = new Map(Maps::feLayer1, Maps::feLayer2, Maps::feLayer3, 32, 32, feCol, townMusics[0], feElements, feEPos);
     FREE_TAB(feCol, 32);
-    std::vector<OpString> feE1 {OpString("fedesc.1"), OpString("fedesc.2"), OpString("fedesc.3")};
-    maps["Fauxbourg Euvi"]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(11, 2), feE1, SIDE_UP));
-    std::vector<OpString> feE2 {OpString("ppHouse", Main::player.getNameP()), OpString::voidStr, OpString::voidStr};
-    maps["Fauxbourg Euvi"]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(21, 8), feE2, SIDE_UP));
-    std::vector<OpString> feE3 {OpString("rivalHouse"), OpString::voidStr, OpString::voidStr};
-    maps["Fauxbourg Euvi"]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(25, 8), feE3, SIDE_UP));
-    std::vector<OpString> feE4 {OpString("labo"), OpString::voidStr, OpString::voidStr};
-    maps["Fauxbourg Euvi"]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(14, 20), feE4, SIDE_UP));
-    std::vector<OpString> feE5 {OpString("weirdsign.1"), OpString("weirdsign.2"), OpString::voidStr};
-    maps["Fauxbourg Euvi"]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(23, 20), feE5, SIDE_UP));
+    maps["Fauxbourg Euvi"]->addEvent(new Events::TalkingEvent(alpha, alphaTab, sf::Vector2f(11, 2),  {OpString("fedesc.1"), OpString("fedesc.2"), OpString("fedesc.3")}, SIDE_UP));
+    maps["Fauxbourg Euvi"]->addEvent(new Events::TalkingEvent(alpha, alphaTab, sf::Vector2f(21, 8),  {OpString("ppHouse", Main::player.getNameP()), OpString::voidStr, OpString::voidStr}, SIDE_UP));
+    maps["Fauxbourg Euvi"]->addEvent(new Events::TalkingEvent(alpha, alphaTab, sf::Vector2f(25, 8), {OpString("rivalHouse"), OpString::voidStr, OpString::voidStr}, SIDE_UP));
+    maps["Fauxbourg Euvi"]->addEvent(new Events::TalkingEvent(alpha, alphaTab, sf::Vector2f(14, 20),  {OpString("labo"), OpString::voidStr, OpString::voidStr}, SIDE_UP));
+    maps["Fauxbourg Euvi"]->addEvent(new Events::TalkingEvent(alpha, alphaTab, sf::Vector2f(23, 20), {OpString("weirdsign.1"), OpString("weirdsign.2"), OpString::voidStr}, SIDE_UP));
     maps["Fauxbourg Euvi"]->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(19, 8), sf::Vector2i(8, 15), "Player's home"));
     maps["Fauxbourg Euvi"]->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(27, 8), sf::Vector2i(9, 15), "Rival's house"));
     maps["Fauxbourg Euvi"]->addEvent(new Events::DoorEvent(Events::DoorType::SHOP, sf::Vector2f(19, 20), sf::Vector2i(16, 15), "Laboratory"));
@@ -550,53 +550,51 @@ void initMaps() {
 
     pathChara1.push_back(Side::NO_MOVE);
 
-    std::vector<OpString> feC1 {OpString("kid"), OpString::voidStr, OpString::voidStr};
-
-    maps["Fauxbourg Euvi"]->addEvent(new Events::TalkingCharaEvent(kidTextures, sf::Vector2f(17, 13), feC1, Events::EventTrigger::PRESS, Events::MoveStyle::PREDEFINED, pathChara1));
-    /*End of character 1*/
+    maps["Fauxbourg Euvi"]->addEvent(new Events::TalkingCharaEvent("kid", sf::Vector2f(17, 13),  {OpString("kid"), OpString::voidStr, OpString::voidStr}, Events::EventTrigger::PRESS, Events::MoveStyle::PREDEFINED, pathChara1));
     
     TAB_TO_POINTER(Collisions::ppHomeCol, ppHomeCol, 16, 16);
     maps["Player's home"] = new Map(Maps::pphomeLayer1, Maps::pphomeLayer2, Maps::pphomeLayer3, 16, 16, ppHomeCol, townMusics[0]);
     FREE_TAB(ppHomeCol, 16);
-    maps["Player's home"]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(7, 15), sf::Vector2i(20, 9), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
-    maps["Player's home"]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(15, 2), sf::Vector2i(9, 5), "Player's room", Side::TO_LEFT, SIDE_RIGHT));
-    maps["Player's home"]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(0, 11), sf::Vector2i(6, 3), "Mom's room", Side::TO_LEFT, SIDE_LEFT));
+    maps["Player's home"]->addEvent(new Events::TPEvent(alpha, alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(7, 15), sf::Vector2i(20, 9), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
+    maps["Player's home"]->addEvent(new Events::TPEvent(alpha, alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(15, 2), sf::Vector2i(9, 5), "Player's room", Side::TO_LEFT, SIDE_RIGHT));
+    maps["Player's home"]->addEvent(new Events::TPEvent(alpha, alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(0, 11), sf::Vector2i(6, 3), "Mom's room", Side::TO_LEFT, SIDE_LEFT));
 
     townMusics.push_back(new sf::Music());
-    townMusics[1]->openFromFile(getPath(RESSOURCES_PATH + "audio/music/intro.ogg"));
+    if(!townMusics[1]->openFromFile(getPath(RESSOURCES_PATH + "audio/music/intro.ogg"))){
+      handleError("Unable to open the music intro.ogg", false);
+    }
     TAB_TO_POINTER(Collisions::laboCol, laboCol, 16, 32);
     maps["Laboratory"] = new Map(Maps::laboLayer1, Maps::laboLayer2, Maps::laboLayer3, 32, 16, laboCol, townMusics[1]);
     FREE_TAB(laboCol, 16);
-    maps["Laboratory"]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(15, 15), sf::Vector2i(20, 21), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
-    //Dialogs
-    std::vector<OpString> felaboC1 {OpString("prof.dialog.1"), OpString("prof.dialog.2"), OpString("prof.dialog.3")};
+    maps["Laboratory"]->addEvent(new Events::TPEvent(alpha, alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(15, 15), sf::Vector2i(20, 21), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
 
-    //Load Npcs
-    maps["Laboratory"]->addEvent(new Events::TalkingCharaEvent(kiwaiTextures, sf::Vector2f(15, 4), felaboC1, Events::EventTrigger::PRESS, Events::MoveStyle::NO_MOVE));
+    maps["Laboratory"]->addEvent(new Events::TalkingCharaEvent("kiwai", sf::Vector2f(15, 4), {OpString("prof.dialog.1"), OpString("prof.dialog.2"), OpString("prof.dialog.3")}, Events::EventTrigger::PRESS, Events::MoveStyle::NO_MOVE));
 
     TAB_TO_POINTER(Collisions::rivalHomeCol, rivalHomeCol, 16, 16);
     maps["Rival's house"] = new Map(Maps::rivalhomeLayer1, Maps::rivalhomeLayer2, Maps::rivalhomeLayer3, 16, 16, rivalHomeCol, townMusics[0]);
     FREE_TAB(rivalHomeCol, 16);
-    maps["Rival's house"]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(8, 15), sf::Vector2i(28, 9), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
+    maps["Rival's house"]->addEvent(new Events::TPEvent(alpha, alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 15), sf::Vector2i(28, 9), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
 
     TAB_TO_POINTER(Collisions::momRoomCol, momRoomCol, 6, 6);
     maps["Mom's room"] = new Map(Maps::momroomLayer1, Maps::momroomLayer2, Maps::momroomLayer3, 6, 6, momRoomCol, townMusics[0]);
     FREE_TAB(momRoomCol, 6);
-    maps["Mom's room"]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(5, 3), sf::Vector2i(1, 11), "Player's home", Side::TO_RIGHT, SIDE_RIGHT));
+    maps["Mom's room"]->addEvent(new Events::TPEvent(alpha, alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(5, 3), sf::Vector2i(1, 11), "Player's home", Side::TO_RIGHT, SIDE_RIGHT));
 
     TAB_TO_POINTER(Collisions::ppRoomCol, ppRoomCol, 6, 9);
     maps["Player's room"] = new Map(Maps::pproomLayer1, Maps::pproomLayer2, Maps::pproomLayer3, 9, 6, ppRoomCol, townMusics[0]);
     FREE_TAB(ppRoomCol, 6);
-    maps["Player's room"]->addEvent(new Events::TPEvent(alpha, std::vector<sf::Texture>(), Events::EventTrigger::BE_IN, sf::Vector2f(8, 5), sf::Vector2i(16, 2), "Player's home", Side::TO_LEFT, SIDE_RIGHT));
+    maps["Player's room"]->addEvent(new Events::TPEvent(alpha, alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 5), sf::Vector2i(16, 2), "Player's home", Side::TO_LEFT, SIDE_RIGHT));
     std::vector<OpString> phoE1 {OpString("pcRunLinux"), OpString::voidStr, OpString::voidStr};
-    maps["Player's room"]->addEvent(new Events::TalkingEvent(alpha, std::vector<sf::Texture>(), sf::Vector2f(1, 1), phoE1, SIDE_UP));
+    maps["Player's room"]->addEvent(new Events::TalkingEvent(alpha, alphaTab, sf::Vector2f(1, 1), phoE1, SIDE_UP));
 	
     TAB_TO_POINTER(Collisions::route14Col, route14Col, 41, 74);
     maps["Route 14"] = new Map(Maps::route14Layer1, Maps::route14Layer2, Maps::route14Layer3, 74, 41, route14Col, townMusics[0]); 
     FREE_TAB(route14Col, 41);
 
     townMusics.push_back(new sf::Music());
-    townMusics[2]->openFromFile(getPath(RESSOURCES_PATH + "audio/music/mysterioucity.ogg"));
+    if(!townMusics[2]->openFromFile(getPath(RESSOURCES_PATH + "audio/music/mysterioucity.ogg"))){
+      handleError("Unable to open the music mysterioucity.ogg", false);
+    }
     TAB_TO_POINTER(Collisions::myciCol, myciCol, 19, 19);
     maps["MysteriouCity"] = new Map(Maps::myciLayer1, Maps::myciLayer2, Maps::myciLayer3, 19, 19, myciCol, townMusics[2]); 
     FREE_TAB(myciCol, 19);

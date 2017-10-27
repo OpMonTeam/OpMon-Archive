@@ -72,8 +72,8 @@ LockedDoorEvent::LockedDoorEvent(std::vector<sf::Texture> &doorType, Item *neede
 
 }
 
-  CharacterEvent::CharacterEvent(std::vector<sf::Texture> charTextures, sf::Vector2f const& position, MoveStyle moveStyle, EventTrigger eventTrigger, std::vector<Side> predefinedPath, bool passable, int sides):
-    Event(charTextures[0], charTextures, eventTrigger, position, sides, passable),
+  CharacterEvent::CharacterEvent(std::string texturesKey, sf::Vector2f const& position, MoveStyle moveStyle, EventTrigger eventTrigger, std::vector<Side> predefinedPath, bool passable, int sides):
+    Event(Initializer::charaTextures[texturesKey][0], Initializer::charaTextures[texturesKey], eventTrigger, position, sides, passable),
     moveStyle(moveStyle) {
     sprite->setScale(2, 2);
     sprite->setOrigin(16, 16);
@@ -83,10 +83,10 @@ LockedDoorEvent::LockedDoorEvent(std::vector<sf::Texture> &doorType, Item *neede
 
 }
 
-TalkingCharaEvent::TalkingCharaEvent(std::vector<sf::Texture> charTextures, sf::Vector2f const& position, std::vector<OpString> const& dialogKeys, EventTrigger eventTrigger, MoveStyle moveStyle, std::vector<Side> predefinedPath, bool passable, int sides):
-    Event(charTextures[0], charTextures, eventTrigger, position, sides, passable),
-    CharacterEvent(charTextures, position, moveStyle, eventTrigger, predefinedPath, passable, sides),
-    TalkingEvent(charTextures[0], charTextures, position, dialogKeys, sides, eventTrigger, passable) {
+  TalkingCharaEvent::TalkingCharaEvent(std::string texturesKey, sf::Vector2f const& position, std::vector<OpString> const& dialogKeys, EventTrigger eventTrigger, MoveStyle moveStyle, std::vector<Side> predefinedPath, bool passable, int sides):
+  Event(Initializer::charaTextures[texturesKey][0], Initializer::charaTextures[texturesKey], eventTrigger, position, sides, passable),
+    CharacterEvent(texturesKey, position, moveStyle, eventTrigger, predefinedPath, passable, sides),
+    TalkingEvent(Initializer::charaTextures[texturesKey][0], Initializer::charaTextures[texturesKey], position, dialogKeys, sides, eventTrigger, passable) {
 
 }
 
