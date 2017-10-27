@@ -2,6 +2,11 @@
 #Change every Release in this file to Debug if you want to build the game in debug.
 cmake . -DCMAKE_BUILD_TYPE=Release
 make
-cp -r data bin/Release/data
+cd bin/Release
+rm -r data
+cd ../
+cd ../
+cp -r data bin/Release/
 cd bin/Release
 ./OpMon
+
