@@ -34,7 +34,7 @@ namespace Events{
 class Event {
 protected:
     sf::Texture baseTexture;
-    std::vector<sf::Texture> otherTextures;
+    std::vector<sf::Texture>& otherTextures;
     sf::Sprite *sprite;
     //ExpectEnum->EventTrigger
   Events::EventTrigger eventTrigger;
@@ -42,7 +42,7 @@ protected:
     bool passable;
     int sides;
 public:
-  Event(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, Events::EventTrigger eventTrigger, sf::Vector2f const& position, int sides, bool passable);
+  Event(sf::Texture &baseTexture, std::vector<sf::Texture>& otherTextures, Events::EventTrigger eventTrigger, sf::Vector2f const& position, int sides, bool passable);
     virtual ~Event();
     /**Methode appelÃ©e chaque frame*/
     virtual void update(Player &player) = 0;
@@ -98,7 +98,7 @@ protected:
   std::string map;
     Side ppDir;
 public:
-  TPEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, EventTrigger eventTrigger, sf::Vector2f const& position, sf::Vector2i const& tpPos, std::string const& map, Side ppDir = Side::NO_MOVE, int sides = SIDE_ALL, bool passable = true);
+  TPEvent(sf::Texture &baseTexture, std::vector<sf::Texture>& otherTextures, EventTrigger eventTrigger, sf::Vector2f const& position, sf::Vector2i const& tpPos, std::string const& map, Side ppDir = Side::NO_MOVE, int sides = SIDE_ALL, bool passable = true);
     virtual void update(Player &player);
     virtual void action(Player &player);
 };
@@ -124,7 +124,7 @@ private:
 protected:
     std::vector<sf::String> dialogs;
 public:
-  TalkingEvent(sf::Texture &baseTexture, std::vector<sf::Texture> otherTextures, sf::Vector2f const& position, std::vector<OpString> const& dialogKeys, int sides = SIDE_ALL, EventTrigger eventTrigger = EventTrigger::PRESS, bool passable = false);
+  TalkingEvent(sf::Texture &baseTexture, std::vector<sf::Texture>& otherTextures, sf::Vector2f const& position, std::vector<OpString> const& dialogKeys, int sides = SIDE_ALL, EventTrigger eventTrigger = EventTrigger::PRESS, bool passable = false);
     void reloadKeys();
     virtual void update(Player &player);
     virtual void action(Player &player);
@@ -163,7 +163,7 @@ protected:
     int frames = 0;
 
 public:
-  CharacterEvent(std::vector<sf::Texture> charTextures, sf::Vector2f const& position, MoveStyle moveStyle = MoveStyle::NO_MOVE, EventTrigger eventTrigger = EventTrigger::PRESS, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int sides = SIDE_ALL);
+  CharacterEvent(std::string texturesKey, sf::Vector2f const& position, MoveStyle moveStyle = MoveStyle::NO_MOVE, EventTrigger eventTrigger = EventTrigger::PRESS, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int sides = SIDE_ALL);
     virtual void update(Player &player);
     virtual void action(Player &player) {};
     void setPredefinedMove(std::vector<Side> movement);
@@ -177,7 +177,7 @@ class TalkingCharaEvent : public CharacterEvent, TalkingEvent {
     bool talking = false;
 
 public:
-  TalkingCharaEvent(std::vector<sf::Texture> charTextures, sf::Vector2f const& position, std::vector<OpString> const& dialogKeys, EventTrigger eventTrigger = EventTrigger::PRESS, MoveStyle moveStyle = MoveStyle::NO_MOVE, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int side = SIDE_ALL);
+  TalkingCharaEvent(std::string texturesKey, sf::Vector2f const& position, std::vector<OpString> const& dialogKeys, EventTrigger eventTrigger = EventTrigger::PRESS, MoveStyle moveStyle = MoveStyle::NO_MOVE, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int side = SIDE_ALL);
 public:
     virtual void update(Player &player);
     virtual void action(Player &player);
