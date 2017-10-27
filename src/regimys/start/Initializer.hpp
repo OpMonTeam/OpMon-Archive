@@ -35,6 +35,8 @@ extern sf::Texture walkingPP2[4];
 extern sf::Texture backPP;//Not init yet
 extern sf::Texture mapsFe[3];
 
+  extern std::map<std::string, std::vector<sf::Texture> > charaTextures;
+  
 extern sf::Texture tileset;
 //Battle
 extern sf::Texture bActButtons[4];
