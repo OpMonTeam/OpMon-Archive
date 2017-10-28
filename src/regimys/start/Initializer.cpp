@@ -587,13 +587,9 @@ void initMaps() {
     std::vector<OpString> phoE1 {OpString("pcRunLinux"), OpString::voidStr, OpString::voidStr};
     maps["Player's room"]->addEvent(new Events::TalkingEvent(alpha, alphaTab, sf::Vector2f(1, 1), phoE1, SIDE_UP));
 
-//Route 14 loading
-    townMusics.push_back(new sf::Music());
-    if(!townMusics[3]->openFromFile(getPath(RESSOURCES_PATH + "audio/music/route14.ogg"))){
-      handleError("Unable to open the music route14.ogg", false);
-    }	
+//Route 14 loading	
     TAB_TO_POINTER(Collisions::route14Col, route14Col, 41, 74);
-    maps["Route 14"] = new Map(Maps::route14Layer1, Maps::route14Layer2, Maps::route14Layer3, 74, 41, route14Col, townMusics[3]); 
+    maps["Route 14"] = new Map(Maps::route14Layer1, Maps::route14Layer2, Maps::route14Layer3, 74, 41, route14Col, townMusics[0]); 
     FREE_TAB(route14Col, 41);
 
 //MysteriouCity loading
