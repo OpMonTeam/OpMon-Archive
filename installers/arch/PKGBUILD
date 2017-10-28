@@ -11,7 +11,7 @@ url="http://opmon-game.ga"
 depends=('sfml' 'gcc' 'libstdc++5' 'smpeg') 
 makedepends=('make') 
 source=(https://github.com/jlppc/OpMon/raw/master/installers/arch/opmon-arch.tar.gz) 
-md5sums=('750ae9c646ce93f1bf0fe04e67d31966') 
+md5sums=('f2b843a5b4148fa3f932e9b60134b905') 
 
 build() { 
 cd $srcdir/opmon-arch
