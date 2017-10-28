@@ -45,4 +45,3 @@ CMakeCache.txt
 CPackConfig.cmake
 CPackSourceConfig.cmake
 cmake_install.cmake
-config.hpp
