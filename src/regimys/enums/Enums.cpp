@@ -415,8 +415,12 @@ bool operator<=(Side side, int integer){
   return sideInt <= integer;
 }
 
-Side operator+(Side side, int integer){
-  switch(((int) side) + integer){
+int operator+(Side side, int integer){
+  return ((int) side) + integer;
+}
+
+Side getSide(int id){
+  switch(id){
   case -1:
     return Side::NO_MOVE;
   case 0:
@@ -434,21 +438,6 @@ Side operator+(Side side, int integer){
   }
 }
 
-Side operator-(Side side, int integer){
-  switch(((int)side) - integer){
-  case -1:
-    return Side::NO_MOVE;
-  case 0:
-    return Side::TO_DOWN;
-  case 1:
-    return Side::TO_RIGHT;
-  case 2:
-    return Side::TO_LEFT;
-  case 3:
-    return Side::TO_UP;
-  case -2:
-    return Side::STAY;
-  default:
-    return Side::NO_MOVE;
-  }
+int operator-(Side side, int integer){
+  return ((int)side) - integer;
 }
