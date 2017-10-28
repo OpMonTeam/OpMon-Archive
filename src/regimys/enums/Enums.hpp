@@ -73,8 +73,9 @@ bool operator>=(Side, int);
 bool operator>(Side, int);
 bool operator<=(Side, int);
 bool operator<(Side, int);
-Side operator+(Side, int);
-Side operator-(Side, int);
+int operator+(Side, int);
+int operator-(Side, int);
+Side getSide(int);
 /**
 Gère la table des types
 */

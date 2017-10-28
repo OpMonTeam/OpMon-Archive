@@ -237,8 +237,16 @@ int main(int argc, char *argv[]) {
                 cout << "--version : Prints the version and quit." << endl;
                 cout << "--help : Prints this message and quit." << endl;
                 cout << "--opt <path> : Changes the options save file's location." << endl;
+		cout << "--debug : Starts the game with debug code. Changes when needed." << endl;
                 return 0;
-            } else {
+            } else if(str == "--debug"){
+	      cout << (int) Side::TO_UP << endl;
+	      cout << (int) Side::TO_DOWN << endl;
+	      cout << (int) Side::TO_LEFT << endl;
+	      cout << (int) Side::TO_RIGHT << endl;
+	      cout << (int) (Side::TO_UP + 4) << endl;
+	      return 0;
+	    }else {
                 cout << "Unknown parameters. Skipping." << endl;
             }
         }
