@@ -10,8 +10,8 @@ pkgdesc="A open source RPG monster fighting game"
 url="http://opmon-game.ga" 
 depends=('sfml' 'gcc' 'libstdc++5' 'smpeg') 
 makedepends=('make') 
-source=(https://github.com/jlppc/OpMon/raw/master/installers/arch/opmon-arch.tar.gz) 
-md5sums=('f2b843a5b4148fa3f932e9b60134b905') 
+source=(opmon-arch.tar.gz) 
+md5sums=('325aacc7d397d127d82b631a3013bb3a') 
 
 build() { 
 cd $srcdir/opmon-arch
