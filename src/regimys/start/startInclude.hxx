@@ -1,9 +1,8 @@
 /*
 startInclude.hxx
 Author : Jlppc
-Fichier sous licence GPL-3.0
+File under license GNU GPL-3.0
 http://opmon-game.ga
-Permet d'inclure tous les headers du dossier start
 */
 #ifndef _STARTINCLUDE_HXX_
 #define _STARTINCLUDE_HXX_
