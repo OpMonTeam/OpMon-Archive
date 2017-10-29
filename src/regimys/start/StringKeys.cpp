@@ -34,21 +34,21 @@ std::string sfStringtoStdString(sf::String const &str) {
 }
 
 void initialize(string keysFileS) {
-    //Ouverture du fichier de clées, initialisation des vectors
+    //Ouverture du fichier de clÃ©es, initialisation des vectors
     keysFileS = getPath(keysFileS);
     ifstream keysFile(keysFileS.c_str());
     keys = vector<string>();
     strings = vector<sf::String>();
     oplog("Keys initialization");
-    if (!keysFile) {//Si ouverture du fichier échouée.
+    if (!keysFile) {//Si ouverture du fichier Ã©chouÃ©e.
         handleError("Keys initialization error", true);
     }
-    //Récupération des clées
+    //RÃ©cupÃ©ration des clÃ©es
     while (true) {
         sf::String read;
         read = readLine(keysFile);
-        if ((sfStringtoStdString(read) == "end")) {//Vérifie si la ligne lue est correcte
-            break;//Sinon arrête de lire
+        if ((sfStringtoStdString(read) == "end")) {//VÃ©rifie si la ligne lue est correcte
+            break;//Sinon arrÃªte de lire
         }
         //Splittage de la ligne en deux parties
         if(read[0] != '#' || read[0] != ' ' || !read.isEmpty()) { //Checks if the string is valid
@@ -68,34 +68,34 @@ void initialize(string keysFileS) {
 }
 sf::String voi;
 sf::String &get(string key) {
-    key = string("key.") + key;//Ajout du préfixe key.
-    for (unsigned int i = 0; i < keys.size(); i++) {//Scanne les clées
+    key = string("key.") + key;//Ajout du prÃ©fixe key.
+    for (unsigned int i = 0; i < keys.size(); i++) {//Scanne les clÃ©es
         if (keys[i] == key) {
             return strings[i];
         }
     }
-    return voi;//Si rien trouvé, retourne une chaine vide.
+    return voi;//Si rien trouvÃ©, retourne une chaine vide.
 }
 
 int getIndex(string key) {
-    key = string("key.") + key;//Ajout du préfixe key.
-    for (unsigned int i = 0; i < keys.size(); i++) {//Scanne les clées
+    key = string("key.") + key;//Ajout du prÃ©fixe key.
+    for (unsigned int i = 0; i < keys.size(); i++) {//Scanne les clÃ©es
         if (keys[i] == key) {
             return i;
         }
     }
-    return -1;//Si rien trouvé, retourne -1
+    return -1;//Si rien trouvÃ©, retourne -1
 }
 
 sf::String split(sf::String const& str, char const& splitter, int const& part) {
     int instances = 0;//Compte le nombre d'instances du splitter
-    for (unsigned int i = 0; i < str.toUtf32().size(); i++) {//Scanne la chaine pour récuperer le nombre d'instances du splitter
+    for (unsigned int i = 0; i < str.toUtf32().size(); i++) {//Scanne la chaine pour rÃ©cuperer le nombre d'instances du splitter
         if ((char) str.toUtf32()[i] == splitter) {
             instances++;
         }
     }
-    sf::String toReturn[instances + 1];//Crée un tableau contenant tous les splits
-    for (unsigned int i = 0, enCours = 0; i < str.toUtf32().size(); i++) {//Parcours la chaine pour la séparer
+    sf::String toReturn[instances + 1];//CrÃ©e un tableau contenant tous les splits
+    for (unsigned int i = 0, enCours = 0; i < str.toUtf32().size(); i++) {//Parcours la chaine pour la sÃ©parer
         if ((char) str.toUtf32()[i] == splitter) {
             enCours++;
         } else {
@@ -107,13 +107,13 @@ sf::String split(sf::String const& str, char const& splitter, int const& part) {
 
 std::vector<sf::String> split(sf::String const& str, char const& splitter) {
     int instances = 0;//Compte le nombre d'instances du splitter
-    for (unsigned int i = 0; i < str.toUtf32().size(); i++) {//Scanne la chaine pour récuperer le nombre d'instances du splitter
+    for (unsigned int i = 0; i < str.toUtf32().size(); i++) {//Scanne la chaine pour rÃ©cuperer le nombre d'instances du splitter
         if ((char) str.toUtf32()[i] == splitter) {
             instances++;
         }
     }
-    std::vector<sf::String> toReturn(instances + 1);//Crée un tableau contenant tous les splits
-    for (unsigned int i = 0, enCours = 0; i < str.toUtf32().size(); i++) {//Parcours la chaine pour la séparer
+    std::vector<sf::String> toReturn(instances + 1);//CrÃ©e un tableau contenant tous les splits
+    for (unsigned int i = 0, enCours = 0; i < str.toUtf32().size(); i++) {//Parcours la chaine pour la sÃ©parer
         if ((char) str.toUtf32()[i] == splitter) {
             enCours++;
         } else {

@@ -3,7 +3,7 @@ Animations.hpp
 Author : Jlppc
 File under the license GPL-3.0
 http://opmon-game.ga
-Contient la définition du namespace Animations.
+Contient la dÃ©finition du namespace Animations.
 */
 #ifndef ANIMATIONS_HPP
 #define ANIMATIONS_HPP
@@ -12,14 +12,14 @@ Contient la définition du namespace Animations.
 #include "../start/main.hpp"
 #include <SFML/Graphics.hpp>
 
-/*Define permettant de vérifier si les animations ont été initialisées*/
+/*Define permettant de vÃ©rifier si les animations ont Ã©tÃ© initialisÃ©es*/
 #define ANIM_CHECK_INIT \
     if(!init){\
-            handleError("Erreur : Animations non initialisées", true);\
+            handleError("Erreur : Animations non initialisÃ©es", true);\
         }
 
 /**
-Le namespace Animations contient toutes les animations du jeu. Ces animations doivent etre initialisées avec initAnims() puis détruites avec deleteAnims()
+Le namespace Animations contient toutes les animations du jeu. Ces animations doivent etre initialisÃ©es avec initAnims() puis dÃ©truites avec deleteAnims()
 */
 namespace Animations {
 
@@ -28,7 +28,7 @@ Initialise les animations
 */
 void initAnims();
 /**
-Libère les ressources associées aux animations
+LibÃ¨re les ressources associÃ©es aux animations
 */
 void deleteAnims();
 
