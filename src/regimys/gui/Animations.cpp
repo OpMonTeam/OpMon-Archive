@@ -58,7 +58,7 @@ int animWinOpen(sf::RenderTexture &window, sf::Sprite const &bg) {
 }
 
 int animWinClose(sf::RenderTexture &window, sf::Sprite const &bg) {
-    //Se réferer aux commentaires de la fonction précédente
+    //Se rÃ©ferer aux commentaires de la fonction prÃ©cÃ©dente
     ANIM_CHECK_INIT
     //Variables declaration
     sf::Sprite anim[6];
