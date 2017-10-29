@@ -4,8 +4,7 @@ cmake . -DCMAKE_BUILD_TYPE=Release
 make
 cd bin/Release
 rm -r data
-cd ../
-cd ../
+cd ../../
 cp -r data bin/Release/
 cd bin/Release
 ./OpMon
