@@ -479,6 +479,8 @@ void initSprites() {
     initBackgrounds();
     oplog("Animations initialization");
     Animations::initAnims();
+    oplog("Maps initialization");
+    initMaps();
     Main::mainframe.initEnd = true;
     //Init Sprites
 
@@ -630,5 +632,6 @@ void init() {
     oplog("OPMons initialization");
     initOpMons();
     oplog("Objects initialization ending");
+    initSprites();
 }
 }

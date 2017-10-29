@@ -221,7 +221,6 @@ void Overworld::left() {
 
 
 int Overworld::overworld() {
-  Main::mainframe.mapsInit.wait();
     for(std::map<std::string, Map*>::iterator map = Initializer::maps.begin(); map!=Initializer::maps.end(); ++map) {
         for(Event *event : map->second->getEvents()) {
             Events::TalkingEvent *te = dynamic_cast<Events::TalkingEvent *>(event);

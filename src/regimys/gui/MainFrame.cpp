@@ -21,7 +21,7 @@ bool keyPressed = false;
 
 UNS
 
-MainFrame::MainFrame() : mapsInit(Initializer::initMaps) {}
+MainFrame::MainFrame(){}
 
 void MainFrame::initAllStrings() {
     optionsmenu.initStrings();
@@ -118,11 +118,8 @@ void MainFrame::open() {
     }
     window.setKeyRepeatEnabled(false);
     dialogPass.setBuffer(buf);
-    oplog("Loading sprites");
-    Initializer::initSprites();
     oplog("Loading variables");
     initAll();
-    mapsInit.launch();
     frame.clear(sf::Color::White);
     //#define TEST
 #ifdef TEST
