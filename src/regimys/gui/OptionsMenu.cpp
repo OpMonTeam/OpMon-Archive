@@ -7,7 +7,7 @@
 UNS
 
 void OptionsMenu::initStrings() {
-    langFr.setString("Français");
+    langFr.setString("FranÃ§ais");
     langFr.setFont(Main::mainframe.font);
     langFr.setCharacterSize(FONT_SIZE_DEFAULT);
     langEng.setString("English");
