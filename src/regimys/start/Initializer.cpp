@@ -27,15 +27,15 @@
 OP_DEPRECATED typedef NumberedArray AtkArray;
 
 namespace Initializer {
-Evolutions::E_Nope *ne = new E_Nope();
-std::vector<Stats> evs[OP_NUMBER];
-Species *listOp[OP_NUMBER];
+  Evolutions::E_Nope *ne = new E_Nope();
+  std::vector<Stats> evs[OP_NUMBER];
+  Species *listOp[OP_NUMBER];
   std::map<std::string, Map*> maps;
-std::vector<sf::Music*> townMusics;
-std::vector<std::vector<sf::Texture> > doorsTextures;
-sf::SoundBuffer doorSoundBuffer;
+  std::vector<sf::Music*> townMusics;
+  std::vector<std::vector<sf::Texture> > doorsTextures;
+  sf::SoundBuffer doorSoundBuffer;
   sf::SoundBuffer shopDoorSoundBuffer;
-sf::Texture tileset;
+  sf::Texture tileset;
   std::map<std::string, std::vector<sf::Texture> > charaTextures;
   std::vector<std::map<int, std::string> > atkOpLvl;
 
