@@ -52,7 +52,7 @@ void MapLayer::draw(sf::RenderTarget &target, sf::RenderStates states) const{
   target.draw(tiles, states);
 }
 
-Map::Map(const int layer1[], const int layer2[], const int layer3[], int w, int h, char** collision, sf::Music *bg, std::vector<std::vector<sf::Texture> > const& animatedElements, std::vector<sf::Vector2f> const& elementsPos) {
+Map::Map(const int layer1[], const int layer2[], const int layer3[], int w, int h, const char* const* collision, sf::Music *bg, std::vector<std::vector<sf::Texture> > const& animatedElements, std::vector<sf::Vector2f> const& elementsPos) {
   this->layer1 = new MapLayer(sf::Vector2i(w + 16, h + 16), layer1);
     this->layer2 = new MapLayer(sf::Vector2i(w + 16, h + 16), layer2);
     this->layer3 = new MapLayer(sf::Vector2i(w + 16, h + 16), layer3);
