@@ -55,12 +55,12 @@ Param deleteParam(string const &name) {
 }
 
 int searchParam(string const &name) {
-    FOR_EACH(Param, paramList, (int) paramList.size(), {)
-    if(currentObj->getName() == name) {
-    return itor;
-}
+    for (int i = 0; i < paramList.size(); ++i) {
+        if (paramList[i].getName() == name) {
+            return i;
         }
-return -1;
+    }
+    return -1;
 }
 
 void initParams(string const& file) {
@@ -98,13 +98,13 @@ void initParams(string const& file) {
 void saveParams(string const& file) {
     ofstream stream(file.c_str());
     string toGo;
-    FOR_EACH(Param, paramList, (int) paramList.size(), {)
-             //cout << objActuel->getName() << endl;
-             toGo+=("pm|" + currentObj->getName() + "=" + currentObj->getValue() + '\n');//Ajoute le pm| puis écrit le paramètre dans le fichier.
-             //cout << toGo;
-             stream << toGo;
-             toGo = string("");
-            }
+    for (auto &currentObj : paramList) {
+        //cout << objActuel->getName() << endl;
+        toGo += ("pm|" + currentObj.getName() + "=" + currentObj.getValue() + '\n');//Ajoute le pm| puis écrit le paramètre dans le fichier.
+        //cout << toGo;
+        stream << toGo;
+        toGo = string("");
+    }
     stream.close();
 }
 

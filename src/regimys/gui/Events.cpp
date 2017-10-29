@@ -59,9 +59,9 @@ TalkingEvent::TalkingEvent(sf::Texture &baseTexture, std::vector<sf::Texture>& o
 
 void TalkingEvent::reloadKeys() {
     dialogs.clear();
-    FOR_EACH(OpString, this->dialogKeys, (int) this->dialogKeys.size(), {)
-             dialogs.push_back(currentObj->getString());
-            }
+    for(auto &currentObj: this->dialogKeys) {
+        dialogs.push_back(currentObj.getString());
+    }
 }
 
 LockedDoorEvent::LockedDoorEvent(std::vector<sf::Texture> &doorType, Item *needed, sf::Vector2f const& position, sf::Vector2i const& tpPos, string const& map, Side ppDir, EventTrigger eventTrigger, bool consumeItem,int sides, bool passable) :
