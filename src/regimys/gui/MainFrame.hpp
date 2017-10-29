@@ -79,7 +79,6 @@ public:
     sf::Sprite ppSprite;
     sf::Sprite ppAnim;
     sf::Sound dialogPass;
-    sf::Thread mapsInit;
 
     sf::Thread *windowRefresh = nullptr;
 

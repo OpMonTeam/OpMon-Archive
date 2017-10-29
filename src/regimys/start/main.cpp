@@ -153,8 +153,6 @@ int quit(int const& returns) {
     }
     */
     OptionsSave::saveParams(optSave);//Saving parameters
-    oplog("Waiting for the initialization");
-    Main::mainframe.mapsInit.wait();
     oplog("Deleting resources in the memory");
     for(std::map<std::string, Map*>::iterator map = Initializer::maps.begin(); map!=Initializer::maps.end(); ++map){
       if(map->second != nullptr){
