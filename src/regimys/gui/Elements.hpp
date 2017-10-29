@@ -50,7 +50,7 @@ private:
     std::vector<int> elementsCount;
 
 public:
-    Map(const int layer1[], const int layer2[], const int layer3[], int w, int h, char** collisions, sf::Music *bg, std::vector<std::vector<sf::Texture> > const& animatedElements = std::vector<std::vector<sf::Texture> >(), std::vector<sf::Vector2f> const& elementsPos = std::vector<sf::Vector2f>());
+    Map(const int layer1[], const int layer2[], const int layer3[], int w, int h, const char* const* collisions, sf::Music *bg, std::vector<std::vector<sf::Texture> > const& animatedElements = std::vector<std::vector<sf::Texture> >(), std::vector<sf::Vector2f> const& elementsPos = std::vector<sf::Vector2f>());
     ~Map();
     int getH() const {
         return h;
