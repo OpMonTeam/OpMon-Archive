@@ -219,32 +219,32 @@ int main(int argc, char *argv[]) {
 
     //Checking parameters
     if(argc >= 2) {
-        FOR_EACH(char *, argv, argc, {)
-            string str = string(*currentObj);
+        for (int i = 0; i < argc; i++) {
+            string str = string(argv[i]);
             if(str == "--version") {
                 cout << "OpMon Lazuli version " << Main::versionS << endl;
                 cout << "Under GNU GPL 3.0 license" << endl;
                 return 0;
             } else if(str == "--opt") {
-                if(itor + 1 == argc) {
+                if(i + 1 == argc) {
                     return 2;
                 } else {
-                    optSave = string(argv[itor + 1]);
+                    optSave = string(argv[i + 1]);
                 }
             } else if(str == "--help") {
                 cout << "--version : Prints the version and quit." << endl;
                 cout << "--help : Prints this message and quit." << endl;
                 cout << "--opt <path> : Changes the options save file's location." << endl;
-		cout << "--debug : Starts the game with debug code. Changes when needed." << endl;
+		        cout << "--debug : Starts the game with debug code. Changes when needed." << endl;
                 return 0;
-            } else if(str == "--debug"){
-	      cout << (int) Side::TO_UP << endl;
-	      cout << (int) Side::TO_DOWN << endl;
-	      cout << (int) Side::TO_LEFT << endl;
-	      cout << (int) Side::TO_RIGHT << endl;
-	      cout << (int) (Side::TO_UP + 4) << endl;
-	      return 0;
-	    }else {
+            } else if(str == "--debug") {
+              cout << (int) Side::TO_UP << endl;
+              cout << (int) Side::TO_DOWN << endl;
+              cout << (int) Side::TO_LEFT << endl;
+              cout << (int) Side::TO_RIGHT << endl;
+              cout << (int) (Side::TO_UP + 4) << endl;
+              return 0;
+	        } else {
                 cout << "Unknown parameters. Skipping." << endl;
             }
         }

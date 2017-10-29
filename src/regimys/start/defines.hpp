@@ -16,13 +16,6 @@ Shortcuts
 #define toStr(toStrP) #toStrP
 
 /**
-Equivalent of for(var : array) but with an iterator and a pointer.
-*/
-#define FOR_EACH(arrType, arrName, sizeArr, bracket)			\
-  for(int itor = 0; itor < (sizeArr); itor++) bracket			\
-      arrType* currentObj = nullptr;				       	\
-      currentObj = &(arrName[itor]);
-/**
 Linux only. If defined, the program will search for the resources on the local directory, instead of /usr/share/OpMon
 */
 #define LOCAL_TEST
