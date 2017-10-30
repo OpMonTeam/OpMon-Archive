@@ -8,14 +8,14 @@ vector<string> keys = vector<string>();
 vector<sf::String> strings = vector<sf::String>();
 
 sf::String readLine(ifstream &input) {
-    string toReturn;
+  basic_string<unsigned char> toReturn;
     for(unsigned int i = 0; i < 1024; i++) {
         int got = input.get();
         // char traded = got;
         if(got == '\n' || got < 31) {
             break;
         } else {
-            char truc = got;
+            unsigned char truc = got;
             toReturn+=truc;
         }
     }
@@ -26,7 +26,7 @@ sf::String readLine(ifstream &input) {
 
 std::string sfStringtoStdString(sf::String const &str) {
     string toReelReturn;
-    basic_string<unsigned int> bs = str.toUtf32();
+    basic_string<unsigned char> bs = str.toUtf8();
     for(unsigned int i = 0; i < bs.size(); i++) {
         toReelReturn+=bs.at(i);
     }
