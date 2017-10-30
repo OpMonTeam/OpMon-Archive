@@ -1,22 +1,22 @@
 # Project credits
 ## Programmer, project creator : Jlppc
 ## Game and graphics designer, project co-creator : Navet56
-## Collaborator since the very beginning : Aerzia
+## Collaborators since the very beginning : Aerzia
 ## and Silvermoon who created some OpMons.
 
 ## OpFriends (People that helped the project a lot. Big thanks to them!) : <ul>
-<li><h3>BAKFR</h3></li>
-<li><h3>BakomVarjeFura</h3></li>
+<li><h3>BAKFR (Collaborator and advisor)</h3></li>
+<li><h3>BakomVarjeFura (advisor)</h3></li>
 </ul>
 
-## Collaborators (Push access to the repository) : <ul>
+<!--## Collaborators (Push access to the repository) : <ul>
 <li><h3>BAKFR</h3></li>
-</ul>
+</ul>-->
 
-## Advisors : <ul>
+<!--## Advisors : <ul>
 <li><h3>BAKFR</h3></li>
 <li><h3>BakomVarjeFura</h3></li>
-</ul>
+</ul>-->
 
 ## Contributors : <ul>
 <li><h3>linkyFR</h3></li>
