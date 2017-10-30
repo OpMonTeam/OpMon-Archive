@@ -31,7 +31,7 @@ void Dialog::pass() {
 
 void Dialog::updateTextAnimation() {
     if(!changeDialog) {
-        if (i < text[line + dialog].toUtf32().size()) {
+        if (i < text[line + dialog].toUtf8().size()) {
 
             if (txtEnCours[line] == sf::String(" ")) {
                 txtEnCours[line] = text[line + dialog].toUtf32()[i];
