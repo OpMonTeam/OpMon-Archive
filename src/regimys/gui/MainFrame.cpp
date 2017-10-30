@@ -42,18 +42,21 @@ sf::Vector2i MainFrame::vec2fTo2i(sf::Vector2f const &toTrans) {
 }
 
 void MainFrame::printText(sf::RenderTexture &framee, sf::String text[]) {
+  cout << StringKeys::sfStringtoStdString(text[0]) << endl;
+  cout << StringKeys::sfStringtoStdString(text[1]) << endl;
+  cout << StringKeys::sfStringtoStdString(text[2]) << endl;
     int minusPos = 32;
     dialog.setPosition(framee.mapPixelToCoords(sf::Vector2i(0, 362)));
     framee.draw(MainFrame::dialog);
     for(unsigned int itor = 0; itor < 3; itor++) {
-        dialogText[itor].setString(text[itor]);
-        dialogText[itor].setFont(font);
-        dialogText[itor].setCharacterSize(FONT_SIZE_DEFAULT);
-        dialogText[itor].setColor(sf::Color::Black);
-        dialogText[itor].setPosition(framee.mapPixelToCoords(sf::Vector2i(25, framee.mapCoordsToPixel(dialog.getPosition()).y + minusPos)));
-        minusPos+=32;
-
-        framee.draw(dialogText[itor]);
+      dialogText[itor].setString(text[itor].toUtf32());
+      dialogText[itor].setFont(font);
+      dialogText[itor].setCharacterSize(FONT_SIZE_DEFAULT);
+      dialogText[itor].setColor(sf::Color::Black);
+      dialogText[itor].setPosition(framee.mapPixelToCoords(sf::Vector2i(25, framee.mapCoordsToPixel(dialog.getPosition()).y + minusPos)));
+      minusPos+=32;
+      
+      framee.draw(dialogText[itor]);
     }
 }
 
