@@ -55,7 +55,7 @@ Param deleteParam(string const &name) {
 }
 
 int searchParam(string const &name) {
-    for (int i = 0; i < paramList.size(); ++i) {
+    for (size_t i = 0; i < paramList.size(); ++i) {
         if (paramList[i].getName() == name) {
             return i;
         }
