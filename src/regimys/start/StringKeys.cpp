@@ -44,6 +44,7 @@ void initialize(string keysFileS) {
         handleError("Keys initialization error", true);
     }
     //Récupération des clées
+    int itore = 0;
     while (true) {
         sf::String read;
         read = readLine(keysFile);
@@ -58,7 +59,8 @@ void initialize(string keysFileS) {
                 if(strSplit.size() < 2) {
                     strings.push_back(" ");
                 } else {
-                    strings.push_back(sfStringtoStdString(strSplit[1]));
+		  strings.push_back(sf::String(strSplit[1]));
+		  itore++;
                 }
             }
 
@@ -66,7 +68,9 @@ void initialize(string keysFileS) {
 
     }
 }
+  
 sf::String voi;
+  
 sf::String &get(string key) {
     key = string("key.") + key;//Ajout du préfixe key.
     for (unsigned int i = 0; i < keys.size(); i++) {//Scanne les clées
