@@ -4,7 +4,7 @@
 ## Collaborators since the very beginning : Aerzia
 ## and Silvermoon who created some OpMons.
 
-## OpFriends (People that helped the project a lot. Big thanks to them!) : <ul>
+## OpFriends (People who helped the project a lot. Big thanks to them!) : <ul>
 <li><h3>BAKFR (Collaborator and advisor)</h3></li>
 <li><h3>BakomVarjeFura (advisor)</h3></li>
 </ul>
