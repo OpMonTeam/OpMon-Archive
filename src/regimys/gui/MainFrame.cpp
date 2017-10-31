@@ -42,9 +42,6 @@ sf::Vector2i MainFrame::vec2fTo2i(sf::Vector2f const &toTrans) {
 }
 
 void MainFrame::printText(sf::RenderTexture &framee, sf::String text[]) {
-  cout << StringKeys::sfStringtoStdString(text[0]) << endl;
-  cout << StringKeys::sfStringtoStdString(text[1]) << endl;
-  cout << StringKeys::sfStringtoStdString(text[2]) << endl;
     int minusPos = 32;
     dialog.setPosition(framee.mapPixelToCoords(sf::Vector2i(0, 362)));
     framee.draw(MainFrame::dialog);
