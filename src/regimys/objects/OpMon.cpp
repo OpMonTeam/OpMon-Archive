@@ -77,7 +77,7 @@ int CalcCourbs::quick(int n) {
     return round(0.8f * pow(n, 3));
 }
 
-OpMon::OpMon(string nickname, Species *species, int level, std::vector<Attack *> attacks, Nature nature) {
+OpMon::OpMon(const string &nickname, const Species &species, int level, const std::vector<Attack *> &attacks, Nature nature) {
     atkIV = Utils::randU(32);
     defIV = Utils::randU(32);
     atkSpeIV = Utils::randU(32);
@@ -85,37 +85,37 @@ OpMon::OpMon(string nickname, Species *species, int level, std::vector<Attack *>
     speIV = Utils::randU(32);
     hpIV = Utils::randU(32);
     statATK = round(
-                  ((((2 * species->getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100)
+                  ((((2 * species.getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100)
                    + 5)
                    * ((natures[(int) nature].bonus == Stats::ATK) ?
                      1.1 : ((natures[(int) nature].malus == Stats::ATK) ? 0.9 : 1)));
     statDEF = round(
-                  ((((2 * species->getBaseDef() + defIV + (defEV / 4)) * level) / 100)
+                  ((((2 * species.getBaseDef() + defIV + (defEV / 4)) * level) / 100)
                    + 5)
                   * ((natures[(int) nature].bonus == Stats::DEF) ?
                      1.1 : ((natures[(int) nature].malus == Stats::DEF) ? 0.9 : 1)));
     statATKSPE =
         round(
-            ((((2 * species->getBaseAtkSpe() + atkSpeIV + (atkSpeEV / 4))
+            ((((2 * species.getBaseAtkSpe() + atkSpeIV + (atkSpeEV / 4))
                * level) / 100) + 5)
             * ((natures[(int) nature].bonus == Stats::ATKSPE) ?
                1.1 :
                ((natures[(int) nature].malus == Stats::ATKSPE) ? 0.9 : 1)));
     statDEFSPE =
         round(
-            ((((2 * species->getBaseDefSpe() + defSpeIV + (defSpeEV / 4))
+            ((((2 * species.getBaseDefSpe() + defSpeIV + (defSpeEV / 4))
                * level) / 100) + 5)
             * ((natures[(int) nature].bonus == Stats::DEFSPE) ?
                1.1 :
                ((natures[(int) nature].malus == Stats::DEFSPE) ? 0.9 : 1)));
     statSPE = round(
-                  ((((2 * species->getBaseVit() + speIV + (speEV / 4)) * level) / 100)
+                  ((((2 * species.getBaseVit() + speIV + (speEV / 4)) * level) / 100)
                    + 5)
                   * ((natures[(int) nature].bonus == Stats::SPE) ?
                      1.1 : ((natures[(int) nature].malus == Stats::SPE) ? 0.9 : 1)));
-    statHP = round(((2 * species->getBaseHP() + hpIV + (hpEV / 4)) * level) / 100)
+    statHP = round(((2 * species.getBaseHP() + hpIV + (hpEV / 4)) * level) / 100)
              + level + 10;
-    this->species = species;
+    this->species = &species;
     this->level = level;
 
     this->attacks = attacks;
@@ -123,15 +123,15 @@ OpMon::OpMon(string nickname, Species *species, int level, std::vector<Attack *>
     //TODO attaquesChoix Quand les attaques seront ok
     this->nature = nature;
     if(nickname.empty()){
-      this->nickname = species->getName();
+      this->nickname = species.getName();
     }else{
       this->nickname = nickname;
     }
 
-    tauxCapture = species->getTauxDeCapture();
+    tauxCapture = species.getTauxDeCapture();
     HP = statHP;
-    type1 = species->getType1();
-    type2 = species->getType2();
+    type1 = species.getType1();
+    type2 = species.getType2();
     using namespace CalcCourbs;
     switch (this->species->getCurve()) {
     case CurveExp::ERRATIC:
@@ -438,7 +438,7 @@ void OpMon::evolve() {
     species = species->getEvolution();
 }
 
-void OpMon::setStats(int stats[], Attack *attacks[], Species *species, Type types[]) {
+void OpMon::setStats(int stats[], Attack *attacks[], const Species &species, Type types[]) {
     statATK = stats[0];
     statDEF = stats[1];
     statATKSPE = stats[2];
@@ -448,7 +448,7 @@ void OpMon::setStats(int stats[], Attack *attacks[], Species *species, Type type
     statEVA = 100;
     type1 = types[0];
     type2 = types[1];
-    this->species = species;
+    this->species = &species;
     this->attacks[0] = attacks[0];
     this->attacks[1] = attacks[1];
     this->attacks[2] = attacks[2];
@@ -1673,7 +1673,7 @@ OpMon::OpMon(ifstream &in) {
             in.get();
         }
         int speciesID = in.get();
-        species = Initializer::listOp[speciesID];
+        species = &Initializer::listOp.at(speciesID);
         in.get();
         HP = in.get();
         in.get();
