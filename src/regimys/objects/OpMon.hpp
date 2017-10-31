@@ -83,7 +83,7 @@ private:
 
   std::vector<Attack*> attacks;
 
-    Species *species;
+    const Species *species;
     /**Attention : Cette variable contient les PV actuels du pokémon, la classe statPV contient les PV max*/
     int HP;
     //->ExpectEnum->Status
@@ -113,12 +113,9 @@ public:
     bool malediction = false;
 
     virtual ~OpMon();
-    //->DontUse
-    OpMon() {};
 
-  OpMon(std::string nickname, Species *species, int level, std::vector<Attack*> attacks, Nature nature);
+  OpMon(const std::string &nickname, const Species &species, int level, const std::vector<Attack*> &attacks, Nature nature);
   
-  OpMon(std::string nickname, Species *species, int level, std::vector<Attack*> attacks);
     /**
     Merci d'utiliser ce constructeur dans le cadre du chargement et UNIQUEMENT dans ce cas, sinon cela pourrait
     conduire a des bugs. Explication : Ce constructeur est concu pour marcher dans un shema bien particulier.
@@ -148,7 +145,7 @@ public:
     /**Methode appelée lors de l'évolution*/
     void evolve();
     /**Permet de completement changer le pokémon*/
-    void setStats(int stats[], Attack *attacks[], Species *species, Type types[]);
+    void setStats(int stats[], Attack *attacks[], const Species &species, Type types[]);
     /**Fait perdre des pv*/
     void attacked(int hpPerdus);
     /**Les methode suivantes modifient les stats en fonction des niveaux. Cela ne modifie pas directement la stat*/
@@ -214,8 +211,8 @@ public:
     int getStatSPE() const{
         return statSPE;
     }
-    Species *getSpecies() const {
-        return species;
+    const Species &getSpecies() const {
+        return *species;
     }
     //Attention! Les opérateurs == et != ne comparent pas deux pok�mons! Ils comparent si les pok�mons sont falsifs ou non (voir falsif)
     bool operator==(OpMon const &a) {

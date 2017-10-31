@@ -167,8 +167,8 @@ void MainFrame::open() {
 	      Main::player.setName("Céchine");
 	    }
 	    //Initializating opmons
-	    OpMon *op1 = new OpMon("", Initializer::listOp[4], 20, {new Attacks::Belier(), new Attacks::Charge(), nullptr, nullptr}, Nature::BOLD);
-	    OpMon *op2 = new OpMon("", Initializer::listOp[1], 22, {new Attacks::Belier(), new Attacks::Charge(), nullptr, nullptr}, Nature::NAIVE);
+	    OpMon *op1 = new OpMon("", Initializer::listOp.at(4), 20, {new Attacks::Belier(), new Attacks::Charge(), nullptr, nullptr}, Nature::BOLD);
+	    OpMon *op2 = new OpMon("", Initializer::listOp.at(1), 22, {new Attacks::Belier(), new Attacks::Charge(), nullptr, nullptr}, Nature::NAIVE);
 	    Main::player.addOpToOpTeam(op1);
 	    Main::player.addOpToOpTeam(op2);
             if(overworld.overworld() != -1) {

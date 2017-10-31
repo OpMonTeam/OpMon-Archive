@@ -30,8 +30,8 @@ void Fight::fightLoop(){
   oldTypes[0][1] = op1->getType2();
   oldTypes[1][0] = op2->getType1();
   oldTypes[1][1] = op2->getType2();
-  oldSpecies[0] = op1->getSpecies();
-  oldSpecies[1] = op2->getSpecies();
+  oldSpecies[0] = &op1->getSpecies();
+  oldSpecies[1] = &op2->getSpecies();
 
   oldAttacks[0] = op1->getAttacks();
   oldAttacks[1] = op2->getAttacks();
