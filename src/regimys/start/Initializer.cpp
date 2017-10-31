@@ -24,8 +24,6 @@
 #define HP push_back(Stats::HP)
 */
 
-OP_DEPRECATED typedef NumberedArray AtkArray;
-
 namespace Initializer {
   std::vector<Stats> evs[OP_NUMBER];
   std::map<unsigned int, Species> listOp;
