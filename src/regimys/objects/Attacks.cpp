@@ -170,15 +170,15 @@ int Belier::effetApres(OpMon &atk, OpMon &def) {
 }
 
 int Balayage::effetAvant(OpMon &atk, OpMon &def) {
-    if (def.getSpecies()->getWeight() <= 10) {
+    if (def.getSpecies().getWeight() <= 10) {
         puissance = 20;
-    } else if (def.getSpecies()->getWeight() > 10 && def.getSpecies()->getWeight() <= 25) {
+    } else if (def.getSpecies().getWeight() > 10 && def.getSpecies().getWeight() <= 25) {
         puissance = 40;
-    } else if (def.getSpecies()->getWeight() > 25 && def.getSpecies()->getWeight() <= 50) {
+    } else if (def.getSpecies().getWeight() > 25 && def.getSpecies().getWeight() <= 50) {
         puissance = 60;
-    } else if (def.getSpecies()->getWeight() > 50 && def.getSpecies()->getWeight() <= 100) {
+    } else if (def.getSpecies().getWeight() > 50 && def.getSpecies().getWeight() <= 100) {
         puissance = 80;
-    } else if (def.getSpecies()->getWeight() > 100 && def.getSpecies()->getWeight() <= 200) {
+    } else if (def.getSpecies().getWeight() > 100 && def.getSpecies().getWeight() <= 200) {
         puissance = 100;
     } else {
         puissance = 120;
