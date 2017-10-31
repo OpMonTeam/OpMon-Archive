@@ -10,7 +10,6 @@ Contient la définition de l'énumération ItemType et de la classe Item
 
 #include <iostream>
 #include "../../enums/Enums.hpp"
-#include "../../../utils/Class.hpp"
 #define ITEM_NUMBER 151
 /**
 Namespace énumérant les types de classes d'item

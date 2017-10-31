@@ -2,7 +2,6 @@
 #include "OpMon.hpp"
 #include <sstream>
 
-Class <Attack> *Attack::classe = new Class<Attack>("Attack", 0x00000000);
 
 Attack::Attack(std::string nom, int puissance, Type type, int accuracy, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite, std::string className) :
     className(className), nom(nom) {

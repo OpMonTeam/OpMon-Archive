@@ -9,7 +9,6 @@ Définit l'énumération CourbeExp et la classe Species
 #define ESPECE_HPP
 
 #include <iostream>
-#include "../../utils/NumberedArray.hpp"
 #include "item/CT.hpp"
 #include <vector>
 

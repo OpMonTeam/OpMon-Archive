@@ -12,7 +12,6 @@ Contient la définition des methodes qui permettent d'initialiser les éléments
 
 #include <iostream>
 #include <vector>
-#include "../../utils/NumberedArray.hpp"
 #include "../objects/Species.hpp"
 #include "../evolution/evolutions.hpp"
 
