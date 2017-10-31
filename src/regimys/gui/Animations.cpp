@@ -24,8 +24,17 @@ void deleteAnims() {
     init = false;
 }
 
+/**
+ * check if animations has been initialized.
+ */
+static void anim_check_init() {
+    if (!init) {
+        handleError("Erreur : Animations non initialisées", true);
+    }
+}
+
 int animWinOpen(sf::RenderTexture &window, sf::Sprite const &bg) {
-    ANIM_CHECK_INIT//Verification of animation initialization
+    anim_check_init(); //Verification of animation initialization
     //Variables declaration
     sf::Sprite anim[6];
     int ancientChrono = 0;
@@ -59,7 +68,7 @@ int animWinOpen(sf::RenderTexture &window, sf::Sprite const &bg) {
 
 int animWinClose(sf::RenderTexture &window, sf::Sprite const &bg) {
     //Se rÃ©ferer aux commentaires de la fonction prÃ©cÃ©dente
-    ANIM_CHECK_INIT
+    anim_check_init();
     //Variables declaration
     sf::Sprite anim[6];
     int ancientChrono = 0;
