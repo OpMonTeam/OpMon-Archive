@@ -52,48 +52,6 @@ Attack *newAtk(std::string name) {
 
 }
 
-Class<Abime> *Abime::classe = new Class<Abime>("Abime", 0xFFFF);
-Class<Acidarmure> *Acidarmure::classe = new Class<Acidarmure>("Acidarmure", 0xFFFE);
-Class<Acide> *Acide::classe = new Class<Acide>("Acide", 0xFFFD);
-Class<Affutage> *Affutage::classe = new Class<Affutage>("Affutage", 0xFFFC);
-Class<Aiguisage> *Aiguisage::classe = new Class<Aiguisage>("Aiguisage", 0xFFFB);
-Class<Amnesie> *Amnesie::classe = new Class<Amnesie>("Amnesie", 0xFFFA);
-Class<Armure> *Armure::classe = new Class<Armure>("Armure", 0xFFF9);
-Class<Belier> *Belier::classe = new Class<Belier>("Belier", 0xFFF8);
-Class<Balayage> *Balayage::classe = new Class<Balayage>("Balayage", 0xFFF7);
-Class<BecVrille> *BecVrille::classe = new Class<BecVrille>("BecVrille", 0xFFF6);
-Class<Berceuse> *Berceuse::classe = new Class<Berceuse>("Berceuse", 0xFFF5);
-Class<BombOeuf> *BombOeuf::classe = new Class<BombOeuf>("BombOeuf", 0xFFF4);
-Class<Bouclier> *Bouclier::classe = new Class<Bouclier>("Bouclier", 0xFFF3);
-Class<Brouillard> *Brouillard::classe = new Class<Brouillard>("Brouillard", 0xFFF2);
-Class<BueeNoire> *BueeNoire::classe = new Class<BueeNoire>("BueeNoire", 0xFFF1);
-Class<BullesDo> *BullesDo::classe = new Class<BullesDo>("BullesDo", 0xFFF0);
-Class<CageEclair> *CageEclair::classe = new Class<CageEclair>("CageEclair", 0xFFEF);
-Class<CanonGraine> *CanonGraine::classe = new Class<CanonGraine>("Canongraine", 0xFFEE);
-Class<Cascade> *Cascade::classe = new Class<Cascade>("Cascade", 0xFFED);
-Class<Charge> *Charge::classe = new Class<Charge>("Charge", 0xFFEC);
-Class<ChocMental> *ChocMental::classe = new Class<ChocMental>("ChocMental", 0xFFEB);
-Class<ChocPsy> *ChocPsy::classe = new Class<ChocPsy>("ChocPsy", 0xFFEA);
-Class<ComboGriffe> *ComboGriffe::classe = new Class<ComboGriffe>("ComboGriffe", 0xFFE9);
-Class<Conversion> *Conversion::classe = new Class<Conversion>("Conversion", 0xFFE8);
-Class<CoupdBoule> *CoupdBoule::classe = new Class<CoupdBoule>("CoupdBoule", 0xFFE7);
-Class<CoudKrane> *CoudKrane::classe = new Class<CoudKrane>("CoudKrane", 0xFFE6);
-Class<CoupeVent> *CoupeVent::classe = new Class<CoupeVent>("CoupeVent", 0xFFE5);
-Class<CrocDeMort> *CrocDeMort::classe = new Class<CrocDeMort>("CrocDeMort", 0xFFE4);
-Class<CrocFatal> *CrocFatal::classe = new Class<CrocFatal>("CrocFatal", 0xFFE3);
-Class<CrocFeu> *CrocFeu::classe = new Class<CrocFeu>("CrocFeu", 0xFFE2);
-Class<CruAiles> *CruAiles::classe = new Class<CruAiles>("CruAiles", 0xFFE1);
-Class<Damocles> *Damocles::classe = new Class<Damocles>("Damocles", 0xFFE0);
-Class<DanseFleur> *DanseFleur::classe = new Class<DanseFleur>("DanseFleur", 0xFFDF);
-Class<DanseLames> *DanseLames::classe = new Class<DanseLames>("DanseLames", 0xFFDE);
-Class<Deflagration> *Deflagration::classe = new Class<Deflagration>("Deflagration", 0xFFDD);
-Class<Destruction> *Destruction::classe = new Class<Destruction>("Destruction", 0xFFEC);
-Class<Detritus> *Detritus::classe = new Class<Detritus>("Detritus", 0xFFDB);
-Class<Devoreve> *Devoreve::classe = new Class<Devoreve>("Devoreve", 0xFFDA);
-Class<DoubleDard> *DoubleDard::classe = new Class<DoubleDard>("DoubleDard", 0xFFD0);
-
-
-
 int Abime::effetAvant(OpMon &atk, OpMon &def) {
     accuracy = ((atk.getLevel() - def.getLevel()) + 30);
     if (atk.getLevel() < def.getLevel()) {

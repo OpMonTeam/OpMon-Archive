@@ -12,8 +12,6 @@
 #include "../playercore/Player.hpp"
 #include "../playercore/OpTeam.hpp"
 #include "../evolution/evolutionInclude.hxx"
-#include "../../utils/Class.hpp"
-#include "../../utils/File.hpp"
 #include "Initializer.hpp"
 #include "StringKeys.hpp"
 #include "../gui/MainFrame.hpp"
