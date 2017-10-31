@@ -1,52 +1,107 @@
 #include "Core.hpp"
 
-/*
-Logs and save files initialization
-*/
-string optSave(SAVE_PATH + "optSave.oparams");
+namespace OpMon{
 
-sf::Clock ticks;
+  /*
+    Logs and save files initialization
+  */
+  string optSave(SAVE_PATH + "optSave.oparams");
 
-string getPath(string const& path) {
+  sf::Clock ticks;
+
+  string getPath(string const& path) {
 #ifdef _WIN32
     vector<sf::String> splitted = StringKeys::split(path, '/');
     string returned = "";
     for(unsigned int i = 0; i < splitted.size(); i++) {
-        returned += splitted[i];
-        if(i != splitted.size() - 1) {
-            returned += "\\";
-        }
+      returned += splitted[i];
+      if(i != splitted.size() - 1) {
+	returned += "\\";
+      }
     }
     return returned;
 #else
     return path;
 #endif
-}
+  }
 
 
-/**
- * Make a new directory (if it does not exist yet).
- *
- * @param path file path in the UNIX format
- * @return `true` if the directory exists; `false` in case of error.
- */
-bool mkdir(const std::string &path) {
-    // Path in the local system format
-    std::string path2 = getPath(path);
+  //The number of errors handeled in the program.
+  int errors = 0;
 
-#ifndef _WIN32
-    const char *cmd = "mkdir -p ";
-#else
-    const char *cmd = "mkdir ";
-#endif
-
-    int result = system((cmd + path2).c_str());
-    if (result) {
-        cout << "creation of folder \"" << path2 << " failed: errno " << result << endl;
+  void handleError(string const& errorName, bool fatal) {
+    errors++;
+    ostringstream osslog;
+    osslog << string("Error  n°") << errors << (string(" : ") + errorName);
+    oplog(osslog.str(), true);
+    cerr << "Error n°" << errors << " : " << errorName << endl;
+    if(errors > 20) { //If the program gets more than 20 errors, it stops.
+      cerr << "Too many errors. Closing program. Please verify your installation." << endl;
+      oplog("Too many errors. Closing program. Please verify your installation. If the problems persists, warn us.", true);
+      fatal = true;
     }
-    #ifndef _WIN32
-    return !result;
-    #else
-    return true;//Because mkdir in windows returns false if the directory exists$
-    #endif
+    if (fatal) {
+      ostringstream ossslog;
+      ossslog << "Fatal error. Total errors : " << errors;
+      oplog(ossslog.str(), true);
+      cerr << "Fatal error." << endl;
+      oplog("Crash.");
+      quit(1);
+    }
+  }
+
+  int quit(int const& returns) {
+    /*
+      if (Main::mainframe.init) {
+      //Nothing here anymore, was used for the SDL. I keep it because it may be useful one day.
+      }
+    */
+    OptionsSave::saveParams(optSave);//Saving parameters
+    oplog("Deleting resources in the memory");
+    for(std::map<std::string, Map*>::iterator map = Initializer::maps.begin(); map!=Initializer::maps.end(); ++map){
+      if(map->second != nullptr){
+	delete(map->second);
+      }
+    }
+    for(sf::Music *mus : Initializer::townMusics) {//Deleting the maps' music
+      delete(mus);
+    }
+    for(unsigned short i = 0; i < 6; i++){
+      if(Main::player.getOp(i) != nullptr){
+	delete(Main::player.getOp(i));
+      }
+    }
+    ostringstream osslog;
+    osslog << "End of the program. Return " << returns;
+    oplog(osslog.str());
+    if(returns != 0) {
+      oplog("There is a problem. Create an issue on github!");
+    }
+    exit(returns);
+    return returns;
+  }
+
+  std::string& operator<<(std::string &str, int const& nbre) {
+    ostringstream oss;
+    oss << str << nbre;
+    str = oss.str();
+    return str;
+  }
+
+  std::string& operator<<(std::string &str, std::string const& thing) {
+    ostringstream oss;
+    oss << str << thing;
+    str = oss.str();
+    return str;
+  }
+
+  std::string& operator<<(std::string &str, char thing[]) {
+    string strThing(thing);
+    ostringstream oss;
+    oss << str << strThing;
+    str = oss.str();
+    return str;
+  }
+
+  
 }
