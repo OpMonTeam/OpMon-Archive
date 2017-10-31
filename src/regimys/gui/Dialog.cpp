@@ -31,7 +31,7 @@ void Dialog::pass() {
 
 void Dialog::updateTextAnimation() {
     if(!changeDialog) {
-        if (i < text[line + dialog].toUtf8().size()) {
+        if (i < text[line + dialog].toUtf32().size()) {
 	  
             if (txtEnCours[line] == sf::String(" ")) {
                 txtEnCours[line] = text[line + dialog].toUtf32()[i];
@@ -39,8 +39,9 @@ void Dialog::updateTextAnimation() {
                 txtEnCours[line] += text[line + dialog].toUtf32()[i];
             }
 	    UNS
-	    cout << (char) text[line + dialog].toUtf32()[i] << endl;
-
+	      /*cout << (char) text[line + dialog].toUtf32()[i] << "|" << text[line + dialog].toUtf32()[i] << endl;
+	    cout << "Caractère : " << i << " - Ligne : " << line << endl;
+	    cout << "Taille : " << text[line + dialog].toUtf32().size() << endl;*/
             i++;
         } else {
             if (line == 2) {
