@@ -23,7 +23,7 @@ Classe représentant le joueur
 */
 class Player {
 public:
-    Player(std::string const& name);
+  Player(sf::String const& name);
     Player();
     OpTeam *getOpTeam();
     /**Ajoute un item au sac*/
@@ -32,13 +32,13 @@ public:
     int checkItem(int itemID);
     /**Enlève un exemplaire de l'item dans le sac donné en paramètres*/
     bool deleteItem(int itemID);
-    std::string getName() const {
+  sf::String getName() const {
         return name;
     }
-    const std::string* getNameP() const {
+  const sf::String* getNameP() const {
         return &name;
     }
-    void setName(std::string const &name) {
+  void setName(sf::String const &name) {
         this->name = name;
     }
     int getTrainerID() const {
@@ -91,7 +91,7 @@ public:
 
     bool gameIsOver = false;
 private:
-    std::string name;
+  sf::String name;
     const unsigned int trainerID;//jusqu'a 8 chiffres (Hexadecimal) (jusqu'a 16^8 soit 4 octets soit un int)
     int bag[ITEM_NUMBER];
     std::vector<OpMon *> pc = std::vector<OpMon *>();

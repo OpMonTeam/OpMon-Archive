@@ -163,7 +163,7 @@ void MainFrame::open() {
             frame.draw(textLoad);
             frame.display();
             winRefresh();
-	    if(Main::player.getName().empty()){
+	    if(Main::player.getName().isEmpty()){
 	      Main::player.setName("Céchine");
 	    }
 	    //Initializating opmons

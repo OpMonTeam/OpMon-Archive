@@ -14,7 +14,7 @@ OpString::OpString(string const& key, ...) {//If you have other solutions to hav
     va_start(ap, key);
     int instances = StringKeys::countInstances(StringKeys::get(key), '~');
     for(int i = 0; i < instances; i++) {
-        std::string *actual = va_arg(ap, std::string*);
+      sf::String *actual = va_arg(ap, sf::String*);
         objects.push_back(actual);
     }
     va_end(ap);
@@ -42,13 +42,13 @@ sf::String OpString::getString() {
     /*Let's complete!*/
     unsigned int i = 0;
     sf::String toReturn;
-    /*If the first character is a ~, just add the completion now. Don't swap text chunks.*/
+    /*If the first character isn't a ~, don't add the completion first. Don't swap text chunks.*/
     if(StringKeys::get(key).toUtf32()[0] != '~') {
         toReturn+=splitted[0];
     }
     /*Here we go. The completion.*/
     for(i = i; i < objects.size(); i++) {
-        toReturn+=sf::String((*objects[i]));
+        toReturn+=*objects[i];
         toReturn+=splitted[i + ((StringKeys::get(key).toUtf32()[0] != '~') ? 1 : 0)];
     }
     /*If the first characters is a ~, complete the string, because we have started a bit in advance.*/
