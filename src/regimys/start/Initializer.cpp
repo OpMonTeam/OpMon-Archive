@@ -487,24 +487,36 @@ void initSprites() {
 }
   sf::Texture alpha = sf::Texture();
   std::vector<sf::Texture> alphaTab = std::vector<sf::Texture>();
+
+
+/**
+ * Convert a 2d array into an array of pointer.
+ *
+ * The 2d array must be cast into a "char *", as it's an unsafe operation.
+ * Also, the array of pointer itself is dynamically allocated, and should be freed by the caller after use.
+ *
+ * @example
+ *  char array[10][20];
+ *  char **ptr = array_to_pointer((char *)array, 10, 20);
+ *  delete[] ptr;
+ *
+ * @param src 2d source array
+ * @param sizeY first level size
+ * @param sizeX second level size
+ * @return the new pointer.
+ */
+char **array_to_pointer(char *src, size_t sizeY, size_t sizeX) {
+    auto pointer = new char*[sizeY];
+
+    for (size_t i = 0; i < sizeY; ++i)
+        pointer[i] = &src[i * sizeX];
+    return pointer;
+}
+
+
 void initMaps() {
 
     UNS
-
-#define TAB_TO_POINTER(name, pointerName, sizeY, sizeX) char** pointerName = (char**) malloc(sizeY * sizeof(char*)); \
-    for(int i = 0; i < sizeY ; i++){					\
-      pointerName[i] = (char*) malloc(sizeX * sizeof(char) );		\
-    }									\
-    for(int i = 0; i < sizeY ; i++)					\
-      for(int j = 0; j < sizeX ; j++)					\
-	pointerName[i][j] = name[i][j]
-
-#define FREE_TAB(pointerName, sizeY) \
-      for(int i = 0; i < sizeY; i++){	    \
-	free(pointerName[i]);		    \
-      }					    \
-      free(pointerName)
-
 
     //Fauxbourg Euvi loading
     townMusics.push_back(new sf::Music());
@@ -529,9 +541,9 @@ void initMaps() {
         feElements[1].push_back(sf::Texture());
         feElements[1][i - 1].loadFromFile(str.str());
     }
-    TAB_TO_POINTER(Collisions::feCol, feCol, 32, 32);
+    auto feCol = array_to_pointer((char*) Collisions::feCol, 32, 32);
     maps["Fauxbourg Euvi"] = new Map(Maps::feLayer1, Maps::feLayer2, Maps::feLayer3, 32, 32, feCol, townMusics[0], feElements, feEPos);
-    FREE_TAB(feCol, 32);
+    delete[] feCol;
     maps["Fauxbourg Euvi"]->addEvent(new Events::TalkingEvent(alpha, alphaTab, sf::Vector2f(11, 2),  {OpString("fedesc.1"), OpString("fedesc.2"), OpString("fedesc.3")}, SIDE_UP));
     maps["Fauxbourg Euvi"]->addEvent(new Events::TalkingEvent(alpha, alphaTab, sf::Vector2f(21, 8),  {OpString("ppHouse", Main::player.getNameP()), OpString::voidStr, OpString::voidStr}, SIDE_UP));
     maps["Fauxbourg Euvi"]->addEvent(new Events::TalkingEvent(alpha, alphaTab, sf::Vector2f(25, 8), {OpString("rivalHouse"), OpString::voidStr, OpString::voidStr}, SIDE_UP));
@@ -553,10 +565,10 @@ void initMaps() {
     pathChara1.push_back(Side::NO_MOVE);
 
     maps["Fauxbourg Euvi"]->addEvent(new Events::TalkingCharaEvent("kid", sf::Vector2f(17, 13),  {OpString("kid"), OpString::voidStr, OpString::voidStr}, Events::EventTrigger::PRESS, Events::MoveStyle::PREDEFINED, pathChara1));
-    
-    TAB_TO_POINTER(Collisions::ppHomeCol, ppHomeCol, 16, 16);
+
+    auto ppHomeCol = array_to_pointer((char*) Collisions::ppHomeCol, 16, 16);
     maps["Player's home"] = new Map(Maps::pphomeLayer1, Maps::pphomeLayer2, Maps::pphomeLayer3, 16, 16, ppHomeCol, townMusics[0]);
-    FREE_TAB(ppHomeCol, 16);
+    delete[] ppHomeCol;
     maps["Player's home"]->addEvent(new Events::TPEvent(alpha, alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(7, 15), sf::Vector2i(20, 9), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
     maps["Player's home"]->addEvent(new Events::TPEvent(alpha, alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(15, 2), sf::Vector2i(9, 5), "Player's room", Side::TO_LEFT, SIDE_RIGHT));
     maps["Player's home"]->addEvent(new Events::TPEvent(alpha, alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(0, 11), sf::Vector2i(6, 3), "Mom's room", Side::TO_LEFT, SIDE_LEFT));
@@ -565,43 +577,43 @@ void initMaps() {
     if(!townMusics[1]->openFromFile(getPath(RESSOURCES_PATH + "audio/music/intro.ogg"))){
       handleError("Unable to open the music intro.ogg", false);
     }
-    TAB_TO_POINTER(Collisions::laboCol, laboCol, 16, 32);
+    auto laboCol = array_to_pointer((char*) Collisions::laboCol, 16, 32);
     maps["Laboratory"] = new Map(Maps::laboLayer1, Maps::laboLayer2, Maps::laboLayer3, 32, 16, laboCol, townMusics[1]);
-    FREE_TAB(laboCol, 16);
+    delete[] laboCol;
     maps["Laboratory"]->addEvent(new Events::TPEvent(alpha, alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(15, 15), sf::Vector2i(20, 21), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
 
     maps["Laboratory"]->addEvent(new Events::TalkingCharaEvent("kiwai", sf::Vector2f(15, 4), {OpString("prof.dialog.1"), OpString("prof.dialog.2"), OpString("prof.dialog.3")}, Events::EventTrigger::PRESS, Events::MoveStyle::NO_MOVE));
 
-    TAB_TO_POINTER(Collisions::rivalHomeCol, rivalHomeCol, 16, 16);
+    auto rivalHomeCol = array_to_pointer((char*) Collisions::rivalHomeCol, 16, 16);
     maps["Rival's house"] = new Map(Maps::rivalhomeLayer1, Maps::rivalhomeLayer2, Maps::rivalhomeLayer3, 16, 16, rivalHomeCol, townMusics[0]);
-    FREE_TAB(rivalHomeCol, 16);
+    delete[] rivalHomeCol;
     maps["Rival's house"]->addEvent(new Events::TPEvent(alpha, alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 15), sf::Vector2i(28, 9), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
 
-    TAB_TO_POINTER(Collisions::momRoomCol, momRoomCol, 6, 6);
+    auto momRoomCol = array_to_pointer((char*) Collisions::momRoomCol, 6, 6);
     maps["Mom's room"] = new Map(Maps::momroomLayer1, Maps::momroomLayer2, Maps::momroomLayer3, 6, 6, momRoomCol, townMusics[0]);
-    FREE_TAB(momRoomCol, 6);
+    delete[] momRoomCol;
     maps["Mom's room"]->addEvent(new Events::TPEvent(alpha, alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(5, 3), sf::Vector2i(1, 11), "Player's home", Side::TO_RIGHT, SIDE_RIGHT));
 
-    TAB_TO_POINTER(Collisions::ppRoomCol, ppRoomCol, 6, 9);
+    auto ppRoomCol = array_to_pointer((char*) Collisions::ppRoomCol, 6, 9);
     maps["Player's room"] = new Map(Maps::pproomLayer1, Maps::pproomLayer2, Maps::pproomLayer3, 9, 6, ppRoomCol, townMusics[0]);
-    FREE_TAB(ppRoomCol, 6);
+    delete[] ppRoomCol;
     maps["Player's room"]->addEvent(new Events::TPEvent(alpha, alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 5), sf::Vector2i(16, 2), "Player's home", Side::TO_LEFT, SIDE_RIGHT));
     std::vector<OpString> phoE1 {OpString("pcRunLinux"), OpString::voidStr, OpString::voidStr};
     maps["Player's room"]->addEvent(new Events::TalkingEvent(alpha, alphaTab, sf::Vector2f(1, 1), phoE1, SIDE_UP));
 
 //Route 14 loading	
-    TAB_TO_POINTER(Collisions::route14Col, route14Col, 41, 74);
-    maps["Route 14"] = new Map(Maps::route14Layer1, Maps::route14Layer2, Maps::route14Layer3, 74, 41, route14Col, townMusics[0]); 
-    FREE_TAB(route14Col, 41);
+    auto route14Col = array_to_pointer((char*) Collisions::route14Col, 41, 74);
+    maps["Route 14"] = new Map(Maps::route14Layer1, Maps::route14Layer2, Maps::route14Layer3, 74, 41, route14Col, townMusics[0]);
+    delete[] route14Col;
 
 //MysteriouCity loading
     townMusics.push_back(new sf::Music());
     if(!townMusics[2]->openFromFile(getPath(RESSOURCES_PATH + "audio/music/mysterioucity.ogg"))){
       handleError("Unable to open the music mysterioucity.ogg", false);
     }
-    TAB_TO_POINTER(Collisions::myciCol, myciCol, 19, 19);
-    maps["MysteriouCity"] = new Map(Maps::myciLayer1, Maps::myciLayer2, Maps::myciLayer3, 19, 19, myciCol, townMusics[2]); 
-    FREE_TAB(myciCol, 19);
+    auto myciCol = array_to_pointer((char*) Collisions::myciCol, 19, 19);
+    maps["MysteriouCity"] = new Map(Maps::myciLayer1, Maps::myciLayer2, Maps::myciLayer3, 19, 19, myciCol, townMusics[2]);
+    delete[] myciCol;
 			       
     Main::mainframe.overworld.initVars();
 
