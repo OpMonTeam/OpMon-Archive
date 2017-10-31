@@ -14,7 +14,6 @@ http://opmon-game.ga
 #include <iostream>
 #include <fstream>
 #include "log.hpp"
-#include "../../utils/File.hpp"
 #include "../playercore/Player.hpp"
 #include <sstream>
 #include <SFML/System.hpp>

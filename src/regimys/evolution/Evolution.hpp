@@ -10,7 +10,6 @@ Contient la définition da la classe Evolution
 
 #include <iostream>
 #include "../objects/OpMon.hpp"
-#include "../../utils/Class.hpp"
 
 class Species;
 /**
