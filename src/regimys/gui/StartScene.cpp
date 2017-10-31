@@ -150,11 +150,11 @@ int StartScene::boucle1() {
 
         case sf::Event::TextEntered:
             if(Main::mainframe.events.text.unicode == 8) { //Backspace
-                if(!pName.empty())
-                    pName.pop_back();//C++11
+                if(!pName.isEmpty())
+		  pName = sf::String::fromUtf32(pName.begin(), pName.end() - 1);
             } else if(Main::mainframe.events.text.unicode == '\n' || Main::mainframe.events.text.unicode <= 32) {//Do nothing
             } else {
-                if (pName.size() < 14) {//14 = Max name length
+	      if (pName.toUtf32().size() < 14) {//14 = Max name length
                     pName += Main::mainframe.events.text.unicode;
                 }
             }
@@ -162,8 +162,8 @@ int StartScene::boucle1() {
 
         case sf::Event::KeyPressed:
             if(Main::mainframe.events.key.code == sf::Keyboard::Return) {
-                if (pName.empty()) {
-                    pName = "Doku";
+                if (pName.isEmpty()) {
+                    pName = "Default";
                 }
                 continuer = false;
             }
