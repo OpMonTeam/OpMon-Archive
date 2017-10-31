@@ -9,7 +9,7 @@ http://opmon-game.ga
 #include <iostream>
 #include <cstdarg>
 #include <vector>
-#include <SFML/System.hpp>
+#include <SFML/System/String.hpp>
 /*
 Class defining an OpString. See the OpMon documentation (http://opmon-game.ga/pages/doc) for more details
 */
@@ -19,7 +19,7 @@ private:
     std::string key;
   std::vector<sf::String*> objects;
 public:
-    OpString(std::string const& key, ...);
+  OpString(std::string const& key, ...); //To change for a vector
     OpString();
 
   sf::String getObject(int const& index) {
