@@ -24,43 +24,37 @@ Contient la définition des methodes qui permettent d'initialiser les éléments
 class Map;
 //->NoDoc
 namespace Initializer {
-extern Species *listOp[OP_NUMBER];
-  extern std::vector<std::map<int, std::string> > atkOpLvl; 
-extern Evolutions::E_Nope *ne;//ne = No Evolution
-  extern std::map<std::string, Map *> maps;
-extern std::vector<sf::Music *> townMusics;
-extern sf::Texture texturePP[4];
-extern sf::Texture walkingPP[4];
-extern sf::Texture walkingPP2[4];
-extern sf::Texture backPP;//Not init yet
-extern sf::Texture mapsFe[3];
+    extern std::map<unsigned int, Species> listOp;
+    extern std::vector<std::map<int, std::string> > atkOpLvl; 
+    extern std::map<std::string, Map *> maps;
+    extern std::vector<sf::Music *> townMusics;
+    extern sf::Texture texturePP[4];
+    extern sf::Texture walkingPP[4];
+    extern sf::Texture walkingPP2[4];
+    extern sf::Texture backPP;//Not init yet
+    extern sf::Texture mapsFe[3];
 
-  extern std::map<std::string, std::vector<sf::Texture> > charaTextures;
-  
-extern sf::Texture tileset;
-//Battle
-extern sf::Texture bActButtons[4];
-extern sf::Texture bHpBar;
-extern sf::Texture bHpBg;
-extern std::vector<sf::Texture> battleBackgrounds;
+    extern std::map<std::string, std::vector<sf::Texture> > charaTextures;
 
-extern std::vector<sf::Texture> charaFront;
+    extern sf::Texture tileset;
+    //Battle
+    extern sf::Texture bActButtons[4];
+    extern sf::Texture bHpBar;
+    extern sf::Texture bHpBg;
+    extern std::vector<sf::Texture> battleBackgrounds;
 
-extern std::vector<std::vector<sf::Texture> > doorsTextures;
-//std::string backgrounds[];
-extern std::vector<Stats> evs[OP_NUMBER];
-void initOpMons();
-void initAtkLvls();
-void initSprites();
-void initBackgrounds();
-void initKeys();
-void initMaps();
-void init();
+    extern std::vector<sf::Texture> charaFront;
 
-
-
-
-
+    extern std::vector<std::vector<sf::Texture> > doorsTextures;
+    //std::string backgrounds[];
+    extern std::vector<Stats> evs[OP_NUMBER];
+    void initOpMons();
+    void initAtkLvls();
+    void initSprites();
+    void initBackgrounds();
+    void initKeys();
+    void initMaps();
+    void init();
 };
 
 #endif // INITIALIZER_HPP

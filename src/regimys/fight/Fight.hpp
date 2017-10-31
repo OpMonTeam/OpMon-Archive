@@ -25,7 +25,7 @@ private:
 
   int oldStats[2][5];
   Type oldTypes[2][2];
-  Species* oldSpecies[2];
+  const Species* oldSpecies[2];
   std::vector<Attack*> oldAttacks[2];
 
   OpMon *op1 = nullptr;
