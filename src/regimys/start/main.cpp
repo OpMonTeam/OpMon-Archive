@@ -152,11 +152,6 @@ int quit(int const& returns) {
     */
     OptionsSave::saveParams(optSave);//Saving parameters
     oplog("Deleting resources in the memory");
-    for(std::map<std::string, Map*>::iterator map = Initializer::maps.begin(); map!=Initializer::maps.end(); ++map){
-      if(map->second != nullptr){
-	delete(map->second);
-      }
-    }
     for(sf::Music *mus : Initializer::townMusics) {//Deleting the maps' music
         delete(mus);
     }
