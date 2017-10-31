@@ -17,12 +17,12 @@ Class defining an OpString. See the OpMon documentation (http://opmon-game.ga/pa
 class OpString {
 private:
     std::string key;
-    std::vector<std::string*> objects;
+  std::vector<sf::String*> objects;
 public:
     OpString(std::string const& key, ...);
     OpString();
 
-    std::string getObject(int const& index) {
+  sf::String getObject(int const& index) {
         return *(objects[0]);
     }
     std::string getKey() {

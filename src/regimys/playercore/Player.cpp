@@ -2,7 +2,7 @@
 #include "../start/main.hpp"
 #include "../save/Save.hpp"
 
-Player::Player(std::string const& name):
+Player::Player(sf::String const& name):
   name(name), trainerID(Utils::randUI(0xFFFFFFFF)), opteam(name) {
     for(unsigned int i = 0; i < ITEM_NUMBER; i++) {
         bag[i] = 0;
@@ -73,9 +73,11 @@ bool Player::addOpToOpTeam(OpMon *toAdd) {
     }
 }
 
+#include "../start/StringKeys.hpp"
+
 void Player::save() {
     UNS
-    SOUT << this->name << endl;
+      SOUT << StringKeys::sfStringtoStdString(this->name) << endl;
     SOUT << Save::intToChar(trainerID) << endl;
     SOUT << Save::intToChar(ITEM_NUMBER) << endl;
     for(unsigned int it = 0; it < ITEM_NUMBER; it++) {

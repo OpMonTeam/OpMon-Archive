@@ -29,7 +29,7 @@ public:
 
     sf::String txtEnCours[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
 
-    std::string pName;
+  sf::String pName;
 
     long ancientTick = 0;
     int startScene();
