@@ -17,7 +17,7 @@
 UNS
 
 void Overworld::initVars() {
-    actual =  Initializer::maps["Player's room"];
+    actual = &Initializer::maps.at("Player's room");
     character = Main::player.getSprite();
     character.setTexture(Initializer::texturePP[(int) Side::TO_DOWN]);
     character.setPosition(8 CASES + 2 CASES - 16, 8 CASES + 2 CASES);
@@ -45,7 +45,7 @@ int Overworld::tp(string toTp, sf::Vector2i pos, bool scroll) {
         moving = Side::NO_MOVE;
         anim = Side::NO_MOVE;
     }
-    actual = Initializer::maps[toTp];
+    actual = &Initializer::maps.at(toTp);
     if(actual == nullptr) {
         handleError("Error changing map : actual == nullptr", true);
     }
@@ -221,8 +221,8 @@ void Overworld::left() {
 
 
 int Overworld::overworld() {
-    for(std::map<std::string, Map*>::iterator map = Initializer::maps.begin(); map!=Initializer::maps.end(); ++map) {
-        for(Event *event : map->second->getEvents()) {
+    for(auto map = Initializer::maps.begin(); map!=Initializer::maps.end(); ++map) {
+        for(Event *event : map->second.getEvents()) {
             Events::TalkingEvent *te = dynamic_cast<Events::TalkingEvent *>(event);
             if(te != nullptr) {
                 te->reloadKeys();

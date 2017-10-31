@@ -25,7 +25,7 @@ class Map;
 namespace Initializer {
     extern std::map<unsigned int, Species> listOp;
     extern std::vector<std::map<int, std::string> > atkOpLvl; 
-    extern std::map<std::string, Map *> maps;
+    extern std::map<std::string, Map> maps;
     extern std::vector<sf::Music *> townMusics;
     extern sf::Texture texturePP[4];
     extern sf::Texture walkingPP[4];
