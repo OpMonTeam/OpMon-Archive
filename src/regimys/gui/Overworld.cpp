@@ -185,7 +185,7 @@ bool Overworld::checkPass(Side direction){
     return false;
   case Side::TO_RIGHT:
     if(ppPosX + 1 < actual->getW()) {
-      if(actual->getPassArr()[(int) ppPosY][(int) (ppPosX + 1)] == 0) {
+      if(actual->getPassArr()[(int) ppPosY][(int) (ppPosX + 1)] == 0 || actual->getPassArr()[(int) ppPosY][(int) (ppPosX + 1)] == 5) {
 	std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX + 1) CASES, ppPosY CASES));
 	for(Event *nextEvent : nextEvents) {
 	  if(!nextEvent->isPassable()) {
