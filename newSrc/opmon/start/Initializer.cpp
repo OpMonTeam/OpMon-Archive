@@ -2,7 +2,8 @@
 #include "../../utils/StringKeys.hpp"
 
 namespace OpMon{
-  namespace Initializer {  
+  namespace Initializer {
+    using namespace Model;
   
     template<typename T>void pb(std::vector<T> &vect, T arr[], int sizeArr) {
       for (unsigned int i = 0; i < sizeArr; i++) {
@@ -277,7 +278,7 @@ namespace OpMon{
       //etc...
     }
 
-    using namespace Data::Ui;
+    using namespace Model::Data::Ui;
   
     void initTextures() {
   
@@ -413,113 +414,113 @@ namespace OpMon{
     }
 
 
-    void initMaps() {
+void initMaps() {
 
-      UNS
+    UNS
 
-	//Fauxbourg Euvi loading
-	townMusics.push_back(new sf::Music());
-      std::vector<std::vector<sf::Texture> > feElements;
-      std::vector<sf::Vector2f> feEPos;
-      feElements.push_back(alphaTab);
-      feElements.push_back(alphaTab);
-      feEPos.push_back(sf::Vector2f(8 *32 + 25 *32 - 8, 3 *32 + 8));
-      feEPos.push_back(sf::Vector2f(8*32+18*32, 11*32));
-      if(!townMusics[0]->openFromFile(getPath(RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg"))){
-	handleError("Unable to open the music faubourgeuvi.ogg", false);
-      }
-      for(unsigned int i = 1; i < 17; i++) {
-	ostringstream str;
-	str << RESSOURCES_PATH + getPath("animations/windturbine/blade_") << i << string(".png");
-	feElements[0].push_back(sf::Texture());
-	feElements[0][i - 1].loadFromFile(str.str());
-      }
-      for(unsigned int i = 1; i < 17; i++) {
-	ostringstream str;
-	str << RESSOURCES_PATH + getPath("animations/chimneysmoke/chimneysmoke_") << i << string(".png");
-	feElements[1].push_back(sf::Texture());
-	feElements[1][i - 1].loadFromFile(str.str());
-      }
-      auto feCol = array_to_pointer((char*) Collisions::feCol, 32, 32);
-      maps["Fauxbourg Euvi"] = new Map(Maps::feLayer1, Maps::feLayer2, Maps::feLayer3, 32, 32, feCol, townMusics[0], feElements, feEPos);
-      delete[] feCol;
-      maps["Fauxbourg Euvi"]->addEvent(new Events::TalkingEvent(alpha, alphaTab, sf::Vector2f(11, 2),  {OpString("fedesc.1"), OpString("fedesc.2"), OpString("fedesc.3")}, SIDE_UP));
-      maps["Fauxbourg Euvi"]->addEvent(new Events::TalkingEvent(alpha, alphaTab, sf::Vector2f(21, 8),  {OpString("ppHouse", Main::player.getNameP()), OpString::voidStr, OpString::voidStr}, SIDE_UP));
-      maps["Fauxbourg Euvi"]->addEvent(new Events::TalkingEvent(alpha, alphaTab, sf::Vector2f(25, 8), {OpString("rivalHouse"), OpString::voidStr, OpString::voidStr}, SIDE_UP));
-      maps["Fauxbourg Euvi"]->addEvent(new Events::TalkingEvent(alpha, alphaTab, sf::Vector2f(14, 20),  {OpString("labo"), OpString::voidStr, OpString::voidStr}, SIDE_UP));
-      maps["Fauxbourg Euvi"]->addEvent(new Events::TalkingEvent(alpha, alphaTab, sf::Vector2f(23, 20), {OpString("weirdsign.1"), OpString("weirdsign.2"), OpString::voidStr}, SIDE_UP));
-      maps["Fauxbourg Euvi"]->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(19, 8), sf::Vector2i(8, 15), "Player's home"));
-      maps["Fauxbourg Euvi"]->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(27, 8), sf::Vector2i(9, 15), "Rival's house"));
-      maps["Fauxbourg Euvi"]->addEvent(new Events::DoorEvent(Events::DoorType::SHOP, sf::Vector2f(19, 20), sf::Vector2i(16, 15), "Laboratory"));
-      /*Character 1*/
-      std::vector<Side> pathChara1;
-      for(int i = 0; i < 10; i++)
-	pathChara1.push_back(Side::TO_RIGHT);
-
-      pathChara1.push_back(Side::NO_MOVE);
-
-      for(int i = 0; i < 10; i++)
-	pathChara1.push_back(Side::TO_LEFT);
-
-      pathChara1.push_back(Side::NO_MOVE);
-
-      maps["Fauxbourg Euvi"]->addEvent(new Events::TalkingCharaEvent("kid", sf::Vector2f(17, 13),  {OpString("kid"), OpString::voidStr, OpString::voidStr}, Events::EventTrigger::PRESS, Events::MoveStyle::PREDEFINED, pathChara1));
-
-      auto ppHomeCol = array_to_pointer((char*) Collisions::ppHomeCol, 16, 16);
-      maps["Player's home"] = new Map(Maps::pphomeLayer1, Maps::pphomeLayer2, Maps::pphomeLayer3, 16, 16, ppHomeCol, townMusics[0]);
-      delete[] ppHomeCol;
-      maps["Player's home"]->addEvent(new Events::TPEvent(alpha, alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(7, 15), sf::Vector2i(20, 9), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
-      maps["Player's home"]->addEvent(new Events::TPEvent(alpha, alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(15, 2), sf::Vector2i(9, 5), "Player's room", Side::TO_LEFT, SIDE_RIGHT));
-      maps["Player's home"]->addEvent(new Events::TPEvent(alpha, alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(0, 11), sf::Vector2i(6, 3), "Mom's room", Side::TO_LEFT, SIDE_LEFT));
-
-      townMusics.push_back(new sf::Music());
-      if(!townMusics[1]->openFromFile(getPath(RESSOURCES_PATH + "audio/music/intro.ogg"))){
-	handleError("Unable to open the music intro.ogg", false);
-      }
-      auto laboCol = array_to_pointer((char*) Collisions::laboCol, 16, 32);
-      maps["Laboratory"] = new Map(Maps::laboLayer1, Maps::laboLayer2, Maps::laboLayer3, 32, 16, laboCol, townMusics[1]);
-      delete[] laboCol;
-      maps["Laboratory"]->addEvent(new Events::TPEvent(alpha, alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(15, 15), sf::Vector2i(20, 21), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
-
-      maps["Laboratory"]->addEvent(new Events::TalkingCharaEvent("kiwai", sf::Vector2f(15, 4), {OpString("prof.dialog.1"), OpString("prof.dialog.2"), OpString("prof.dialog.3")}, Events::EventTrigger::PRESS, Events::MoveStyle::NO_MOVE));
-
-      auto rivalHomeCol = array_to_pointer((char*) Collisions::rivalHomeCol, 16, 16);
-      maps["Rival's house"] = new Map(Maps::rivalhomeLayer1, Maps::rivalhomeLayer2, Maps::rivalhomeLayer3, 16, 16, rivalHomeCol, townMusics[0]);
-      delete[] rivalHomeCol;
-      maps["Rival's house"]->addEvent(new Events::TPEvent(alpha, alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 15), sf::Vector2i(28, 9), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
-
-      auto momRoomCol = array_to_pointer((char*) Collisions::momRoomCol, 6, 6);
-      maps["Mom's room"] = new Map(Maps::momroomLayer1, Maps::momroomLayer2, Maps::momroomLayer3, 6, 6, momRoomCol, townMusics[0]);
-      delete[] momRoomCol;
-      maps["Mom's room"]->addEvent(new Events::TPEvent(alpha, alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(5, 3), sf::Vector2i(1, 11), "Player's home", Side::TO_RIGHT, SIDE_RIGHT));
-
-      auto ppRoomCol = array_to_pointer((char*) Collisions::ppRoomCol, 6, 9);
-      maps["Player's room"] = new Map(Maps::pproomLayer1, Maps::pproomLayer2, Maps::pproomLayer3, 9, 6, ppRoomCol, townMusics[0]);
-      delete[] ppRoomCol;
-      maps["Player's room"]->addEvent(new Events::TPEvent(alpha, alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 5), sf::Vector2i(16, 2), "Player's home", Side::TO_LEFT, SIDE_RIGHT));
-      std::vector<OpString> phoE1 {OpString("pcRunLinux"), OpString::voidStr, OpString::voidStr};
-      maps["Player's room"]->addEvent(new Events::TalkingEvent(alpha, alphaTab, sf::Vector2f(1, 1), phoE1, SIDE_UP));
-
-      //Route 14 loading	
-      auto route14Col = array_to_pointer((char*) Collisions::route14Col, 41, 74);
-      maps["Route 14"] = new Map(Maps::route14Layer1, Maps::route14Layer2, Maps::route14Layer3, 74, 41, route14Col, townMusics[0]);
-      delete[] route14Col;
-
-      //MysteriouCity loading
-      townMusics.push_back(new sf::Music());
-      if(!townMusics[2]->openFromFile(getPath(RESSOURCES_PATH + "audio/music/mysterioucity.ogg"))){
-	handleError("Unable to open the music mysterioucity.ogg", false);
-      }
-      auto myciCol = array_to_pointer((char*) Collisions::myciCol, 19, 19);
-      maps["MysteriouCity"] = new Map(Maps::myciLayer1, Maps::myciLayer2, Maps::myciLayer3, 19, 19, myciCol, townMusics[2]);
-      delete[] myciCol;
-			       
-      Main::mainframe.overworld.initVars();
-
+    //Fauxbourg Euvi loading
+    townMusics.push_back(new sf::Music());
+    std::vector<std::vector<sf::Texture> > feElements;
+    std::vector<sf::Vector2f> feEPos;
+    feElements.push_back(alphaTab);
+    feElements.push_back(alphaTab);
+    feEPos.push_back(sf::Vector2f(8 *32 + 25 *32 - 8, 3 *32 + 8));
+    feEPos.push_back(sf::Vector2f(8*32+18*32, 11*32));
+    if(!townMusics[0]->openFromFile(getPath(RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg"))){
+      handleError("Unable to open the music faubourgeuvi.ogg", false);
     }
+    for(unsigned int i = 1; i < 17; i++) {
+        ostringstream str;
+        str << RESSOURCES_PATH + getPath("animations/windturbine/blade_") << i << string(".png");
+        feElements[0].push_back(sf::Texture());
+        feElements[0][i - 1].loadFromFile(str.str());
+    }
+    for(unsigned int i = 1; i < 17; i++) {
+        ostringstream str;
+        str << RESSOURCES_PATH + getPath("animations/chimneysmoke/chimneysmoke_") << i << string(".png");
+        feElements[1].push_back(sf::Texture());
+        feElements[1][i - 1].loadFromFile(str.str());
+    }
+    auto feCol = array_to_pointer((char*) Collisions::feCol, 32, 32);
+    Map &mapFauxbourgEuvi = maps.try_emplace("Fauxbourg Euvi", Maps::feLayer1, Maps::feLayer2, Maps::feLayer3, 32, 32, feCol, townMusics[0], feElements, feEPos).first->second;
+    delete[] feCol;
+    mapFauxbourgEuvi.addEvent(new Events::TalkingEvent(alpha, alphaTab, sf::Vector2f(11, 2),  {OpString("fedesc.1"), OpString("fedesc.2"), OpString("fedesc.3")}, SIDE_UP));
+    mapFauxbourgEuvi.addEvent(new Events::TalkingEvent(alpha, alphaTab, sf::Vector2f(21, 8),  {OpString("ppHouse", Main::player.getNameP()), OpString::voidStr, OpString::voidStr}, SIDE_UP));
+    mapFauxbourgEuvi.addEvent(new Events::TalkingEvent(alpha, alphaTab, sf::Vector2f(25, 8), {OpString("rivalHouse"), OpString::voidStr, OpString::voidStr}, SIDE_UP));
+    mapFauxbourgEuvi.addEvent(new Events::TalkingEvent(alpha, alphaTab, sf::Vector2f(14, 20),  {OpString("labo"), OpString::voidStr, OpString::voidStr}, SIDE_UP));
+    mapFauxbourgEuvi.addEvent(new Events::TalkingEvent(alpha, alphaTab, sf::Vector2f(23, 20), {OpString("weirdsign.1"), OpString("weirdsign.2"), OpString::voidStr}, SIDE_UP));
+    mapFauxbourgEuvi.addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(19, 8), sf::Vector2i(8, 15), "Player's home"));
+    mapFauxbourgEuvi.addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(27, 8), sf::Vector2i(9, 15), "Rival's house"));
+    mapFauxbourgEuvi.addEvent(new Events::DoorEvent(Events::DoorType::SHOP, sf::Vector2f(19, 20), sf::Vector2i(16, 15), "Laboratory"));
+    /*Character 1*/
+    std::vector<Side> pathChara1;
+    for(int i = 0; i < 10; i++)
+        pathChara1.push_back(Side::TO_RIGHT);
+
+    pathChara1.push_back(Side::NO_MOVE);
+
+    for(int i = 0; i < 10; i++)
+        pathChara1.push_back(Side::TO_LEFT);
+
+    pathChara1.push_back(Side::NO_MOVE);
+
+    mapFauxbourgEuvi.addEvent(new Events::TalkingCharaEvent("kid", sf::Vector2f(17, 13),  {OpString("kid"), OpString::voidStr, OpString::voidStr}, Events::EventTrigger::PRESS, Events::MoveStyle::PREDEFINED, pathChara1));
+
+    auto ppHomeCol = array_to_pointer((char*) Collisions::ppHomeCol, 16, 16);
+    Map &mapPlayersHome = maps.try_emplace("Player's home", Maps::pphomeLayer1, Maps::pphomeLayer2, Maps::pphomeLayer3, 16, 16, ppHomeCol, townMusics[0]).first->second;
+    delete[] ppHomeCol;
+    mapPlayersHome.addEvent(new Events::TPEvent(alpha, alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(7, 15), sf::Vector2i(20, 9), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
+    mapPlayersHome.addEvent(new Events::TPEvent(alpha, alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(15, 2), sf::Vector2i(9, 5), "Player's room", Side::TO_LEFT, SIDE_RIGHT));
+    mapPlayersHome.addEvent(new Events::TPEvent(alpha, alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(0, 11), sf::Vector2i(6, 3), "Mom's room", Side::TO_LEFT, SIDE_LEFT));
+
+    townMusics.push_back(new sf::Music());
+    if(!townMusics[1]->openFromFile(getPath(RESSOURCES_PATH + "audio/music/intro.ogg"))){
+      handleError("Unable to open the music intro.ogg", false);
+    }
+    auto laboCol = array_to_pointer((char*) Collisions::laboCol, 16, 32);
+    Map &mapLaboratory = maps.try_emplace("Laboratory", Maps::laboLayer1, Maps::laboLayer2, Maps::laboLayer3, 32, 16, laboCol, townMusics[1]).first->second;
+    delete[] laboCol;
+    mapLaboratory.addEvent(new Events::TPEvent(alpha, alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(15, 15), sf::Vector2i(20, 21), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
+
+    mapLaboratory.addEvent(new Events::TalkingCharaEvent("kiwai", sf::Vector2f(15, 4), {OpString("prof.dialog.1"), OpString("prof.dialog.2"), OpString("prof.dialog.3")}, Events::EventTrigger::PRESS, Events::MoveStyle::NO_MOVE));
+
+    auto rivalHomeCol = array_to_pointer((char*) Collisions::rivalHomeCol, 16, 16);
+    Map &mapRivalsHouse = maps.try_emplace("Rival's house", Maps::rivalhomeLayer1, Maps::rivalhomeLayer2, Maps::rivalhomeLayer3, 16, 16, rivalHomeCol, townMusics[0]).first->second;
+    delete[] rivalHomeCol;
+    mapRivalsHouse.addEvent(new Events::TPEvent(alpha, alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 15), sf::Vector2i(28, 9), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
+
+    auto momRoomCol = array_to_pointer((char*) Collisions::momRoomCol, 6, 6);
+    Map &mapMomsRoom = maps.try_emplace("Mom's room", Maps::momroomLayer1, Maps::momroomLayer2, Maps::momroomLayer3, 6, 6, momRoomCol, townMusics[0]).first->second;
+    delete[] momRoomCol;
+    mapMomsRoom.addEvent(new Events::TPEvent(alpha, alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(5, 3), sf::Vector2i(1, 11), "Player's home", Side::TO_RIGHT, SIDE_RIGHT));
+
+    auto ppRoomCol = array_to_pointer((char*) Collisions::ppRoomCol, 6, 9);
+    Map &mapPlayersRoom = maps.try_emplace("Player's room", Maps::pproomLayer1, Maps::pproomLayer2, Maps::pproomLayer3, 9, 6, ppRoomCol, townMusics[0]).first->second;
+    delete[] ppRoomCol;
+    mapPlayersRoom.addEvent(new Events::TPEvent(alpha, alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 5), sf::Vector2i(16, 2), "Player's home", Side::TO_LEFT, SIDE_RIGHT));
+    std::vector<OpString> phoE1 {OpString("pcRunLinux"), OpString::voidStr, OpString::voidStr};
+    mapPlayersRoom.addEvent(new Events::TalkingEvent(alpha, alphaTab, sf::Vector2f(1, 1), phoE1, SIDE_UP));
+
+//Route 14 loading	
+    auto route14Col = array_to_pointer((char*) Collisions::route14Col, 41, 74);
+    maps.try_emplace("Route 14", Maps::route14Layer1, Maps::route14Layer2, Maps::route14Layer3, 74, 41, route14Col, townMusics[0]);
+    delete[] route14Col;
+
+//MysteriouCity loading
+    townMusics.push_back(new sf::Music());
+    if(!townMusics[2]->openFromFile(getPath(RESSOURCES_PATH + "audio/music/mysterioucity.ogg"))){
+      handleError("Unable to open the music mysterioucity.ogg", false);
+    }
+    auto myciCol = array_to_pointer((char*) Collisions::myciCol, 19, 19);
+    maps.try_emplace("MysteriouCity", Maps::myciLayer1, Maps::myciLayer2, Maps::myciLayer3, 19, 19, myciCol, townMusics[2]);
+    delete[] myciCol;
+    
+    Main::mainframe.overworld.initVars();
+    
+}
 #undef PLANS_RESET
     void initBackgrounds() {
-
+      
     }
 
     void initKeys() {
