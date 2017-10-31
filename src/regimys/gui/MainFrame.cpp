@@ -27,7 +27,7 @@ void MainFrame::initAllStrings() {
     optionsmenu.initStrings();
     mainmenu.initStrings();
     startscene.initStrings();
-    for(auto map = Initializer::maps.begin(); map!=Initializer::maps.end(); ++map) {
+    for(auto map = Initializer::maps.cbegin(); map!=Initializer::maps.cend(); ++map) {
         for(Event *event : map->second.getEvents()) {
             Events::TalkingEvent *te = dynamic_cast<Events::TalkingEvent *>(event);
             if(te != nullptr) {
