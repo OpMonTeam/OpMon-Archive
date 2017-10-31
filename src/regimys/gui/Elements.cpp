@@ -101,7 +101,7 @@ Map::~Map() {
     }
 }
 
-std::vector<Event *> Map::getEvent(sf::Vector2i position) {
+std::vector<Event *> Map::getEvent(sf::Vector2i position) const {
     std::vector<Event *> toReturn;
     for(Event *event : events) {
         if(event->getPosition().x CASES  == position.x && event->getPosition().y CASES == position.y) {
