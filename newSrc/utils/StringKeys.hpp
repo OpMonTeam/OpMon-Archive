@@ -9,9 +9,7 @@ http://opmon-game.ga
 
 #include <iostream>
 #include <vector>
-#include <fstream>
-#include <SFML/System.hpp>
-#include "main.hpp"
+#include <SFML/System/String.hpp>
 
 namespace StringKeys {
 extern std::vector<std::string> keys;
