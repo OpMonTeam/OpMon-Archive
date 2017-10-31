@@ -76,7 +76,7 @@ public:
     void addEvent(Event *event) {
         events.push_back(event);
     }
-    std::vector<Event *> getEvent(sf::Vector2i position);
+    std::vector<Event *> getEvent(sf::Vector2i position) const;
     const std::vector<Event *> getEvents() const {
         return events;
     };
