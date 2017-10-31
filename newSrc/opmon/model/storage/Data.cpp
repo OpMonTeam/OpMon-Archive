@@ -9,7 +9,7 @@ namespace OpMon{
       }
 
       namespace Ui{
-	std::map<std::string, Map*> maps;
+	std::map<std::string, Map> maps;
 	std::vector<sf::Music*> townMusics;
 	std::vector<std::vector<sf::Texture> > doorsTextures;
 	sf::SoundBuffer doorSoundBuffer;
