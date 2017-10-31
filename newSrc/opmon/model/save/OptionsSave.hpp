@@ -14,46 +14,51 @@ Contient le namespace OptionsSave
 #include <vector>
 #include "../start/StringKeys.hpp"
 
-//Ces deux macros sont la pour faire apparaitre le contexte de l'utilisation de la methode addOrModifyParam dans le code (et pour faire plus court aussi ;-)  )
+/**
+   Macros to explicit the use of addOrModifParam
+*/
 #define addParam addOrModifParam
 #define modifyParam addOrModifParam
 
-/**
-Namespace permettant de sauvegarder les paramètres
-*/
-namespace OptionsSave {
-/**
-Classe définissant un paramètre
-*/
-class Param {
-private:
-    std::string paramName;
-    std::string valeur;
-public:
-    Param(std::string name, std::string valeur);
-    std::string getName() const;
-    std::string getValue() const;
-    void setValue(std::string value);
+namespace OpMon{
+  namespace Model{
+    /**
+       OptionsSave contains the functions used to save the parameters.
+    */
+    namespace OptionsSave {
+      /**
+	 Class defining a parameter
+      */
+      class Param {
+      private:
+	std::string paramName;
+	std::string value;
+      public:
+	Param(std::string name, std::string value);
+	std::string getName() const;
+	std::string getValue() const;
+	void setValue(std::string value);
 
-};
+      };
 
-extern std::vector<Param> paramList;
+      extern std::vector<Param> paramList;
 
-Param getParam(std::string const &name);
+      Param getParam(std::string const &name);
 
-void addOrModifParam(std::string const &name, std::string const &value);
+      void addOrModifParam(std::string const &name, std::string const &value);
 
-Param deleteParam(std::string const &name);
+      Param deleteParam(std::string const &name);
 
-//CPP ONLY :
-//int searchParam(string name);
+      //.CPP ONLY :
+      //int searchParam(string name);
 
-void saveParams(std::string const& file);
+      void saveParams(std::string const& file);
 
-void initParams(std::string const& file);
+      void initParams(std::string const& file);
 
-bool checkParam(std::string const &name);
+      bool checkParam(std::string const &name);
 
+    }
+  }
 }
-
 #endif // OPTIONSSAVE_HPP
