@@ -49,7 +49,9 @@ __After : ALpha 0.14__: Added the first OPMon's fight
 * [Look the ROADMAP](https://github.com/jlppc/OpMon/wiki/ROADMAP)
 * [Look the Releases changelog](https://github.com/jlppc/OpMon/wiki/Releases)
 
+### Controls
 
+See the controls of the game OpMon [here](http://opmon-game.ga/controls.html)
 # En Français<a name="enfrancais">
 
 # Bienvenue sur le Projet "OPMon Lazuli"!
@@ -64,10 +66,11 @@ __After : ALpha 0.14__: Added the first OPMon's fight
 <a href="https://github.com/jlppc/Site-OpMon">Dépôt du site web du jeu</a><br/><br/>
 <br/>Version du jeu : Alpha 0.13 | Téléchargement : <a 
 href="http://opmon-game.ga"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Resources/Other/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
-Prochaines versions :<ul>
-<li>Alpha 0.13.1 : Ajout de descriptions d'objets et ajout du nouveau système de maps</li>
-<li>Alpha 0.14 : Ajout du premier combat entre dresseurs</li>
-</ul>
+
+# Prochaines versions :
+* Alpha 0.13.1 : Ajout de descriptions d'objets et ajout du nouveau système de maps
+* Alpha 0.14 : Ajout du premier combat entre dresseurs
+
 
 * [Voir la RoadMap](https://github.com/jlppc/OpMon/wiki/ROADMAP)
 
@@ -86,6 +89,9 @@ Nous sommes plusieurs sur le projet : Jlppc, le programmeur et créateur de l'hi
 Contacts : jlppcprog@ntymail.com pour la programmation | evandib@gmail.com pour les graphismes<br/>
 Si vous avez des questions à poser, n'hésitez pas à les demander dans la section F.A.Q. du wiki ou a nous contacter par mail!<br/><br/><br/>
 
+### Les controles
+
+Vous pouvez voir les conrols du jeu OpMon [ici](http://opmon-game.ga/controls.html)
 ### Build
 
 Le systèmle de build utilise *cmake*. Voici les commandes pour compiler le jeu et l'installer (sous Linux).
