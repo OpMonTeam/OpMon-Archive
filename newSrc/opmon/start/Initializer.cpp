@@ -2,6 +2,7 @@
 #include "../../utils/StringKeys.hpp"
 
 namespace OpMon{
+
   namespace Initializer {
     using namespace Model;
   
@@ -11,6 +12,20 @@ namespace OpMon{
       }
     }
 
+    void initAnims() {
+      for(int i = 0; i < 6; i++) {
+	ostringstream oss;
+	oss << getPath(RESSOURCES_PATH + "animations/winChange/animWindowFrame") << i + 1 << ".png";
+	Data::Animations::fen[i].loadFromFile(oss.str());
+      }
+      Data::Animations::init = true;
+    }
+
+    void deleteAnims() {
+      Data::Animations::init = false;
+    }
+
+    
     void initOpMons() {
       using namespace Evolutions;
       Data::OpMons::listOp.try_emplace(0, 136, 0, 1, 1, 29, 33, "MissingNo.", Type::NORMAL, Type::VOL, 0, 80, new E_Level(0, 80), std::vector<Stats>{Stats::ATK}, 0, 0, "ERROR : MISSINGNO.", 0, 1250000, 3, 0);

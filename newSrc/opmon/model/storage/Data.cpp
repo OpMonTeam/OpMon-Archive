@@ -21,6 +21,10 @@ namespace OpMon{
 	sf::Texture walkingPP2[4];
       }
       Player player;
+      bool endGame = false;
+      namespace Animations{
+	sf::Texture fen[6];
+      }
     }
   }
 }
