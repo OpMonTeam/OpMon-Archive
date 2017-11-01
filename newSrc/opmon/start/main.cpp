@@ -26,7 +26,7 @@ namespace OpMon {
     MainFrame mainframe;
 
     int starts() {
-
+      
       oplog("Log opening OK. Welcome in OpMon Lazuli.");
       oplog("Version : " + version);
       ostringstream osslog;
@@ -47,6 +47,7 @@ namespace OpMon {
       oplog("Loading the resources.");
       Initializer::init();
       oplog("Loading completed! Opening gui.");
+      //bgtask = new std::thread(bgTask);
       mainframe.open();
       oplog("Ending the game normally.");
       return quit(0);

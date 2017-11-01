@@ -8,6 +8,11 @@
 #include <SFML/System/Clock.hpp>
 
 namespace OpMon{
+
+  enum GameStatus{
+    CONTINUE, STOP
+  };
+  
   /**Path to the options save file*/
   extern std::string optSave;
   /**
@@ -32,8 +37,11 @@ namespace OpMon{
      Function quitting the game, deleting the resources
   */
   int quit(int const& returns);
+  /*
+  void bgTask();
 
-
+  extern std::thread* bgtask;
+  */
   /*
     Useful operators for strings
   */

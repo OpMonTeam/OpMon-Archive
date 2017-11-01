@@ -39,8 +39,13 @@ namespace OpMon{
       
 	extern std::vector<std::vector<sf::Texture> > doorsTextures;
 	//std::string backgrounds[];
+
       }
       extern Player player;
+      extern bool endGame;
+      namespace Animations{
+	sf::Texture fen[6];
+      }
     }
   }
 }
