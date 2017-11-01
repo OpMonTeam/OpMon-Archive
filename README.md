@@ -69,14 +69,14 @@ See the controls of the game OpMon [here](http://opmon-game.ga/controls.html)
 <br/>Version du jeu : Alpha 0.13 | Téléchargement : <a 
 href="http://opmon-game.ga"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Resources/Other/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 
-# Prochaines versions :
+### Prochaines versions :
 * Alpha 0.13.1 : Ajout de descriptions d'objets et ajout du nouveau système de maps
 * Alpha 0.14 : Ajout du premier combat entre dresseurs
 * [Voir la RoadMap](https://github.com/jlppc/OpMon/wiki/ROADMAP)
 
 <br/>
 
-### Informations generales:
+## Informations generales:
 <br/>
 OpMon vient d'un jeu imaginé en 2012 et débuté en septembre 2016, c'est un clone de la célèbre licence Pokémon, appartenant à Nintendo. 
 Ce jeu est totalement open-source, ce qui permet aux gens de venir réaliser leurs rêves les plus fous! 
