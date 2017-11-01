@@ -59,11 +59,12 @@ See the controls of the game OpMon [here](http://opmon-game.ga/controls.html)
 ## Bienvenue sur le dépot du jeu OPMon Lazuli! Le clone libre de la célèbre license de Nintendo !
 
 <br/>
-<a href="https://github.com/jlppc/OpMon/wiki/Journal-du-développement">Journal de développement</a><br/>
-<a href="https://github.com/jlppc/OpMon/wiki/Monthly-reports---Bilans-Mensuels/">Bilans mensuels, récapitulatifs des nouveautés</a><br/>
-<a href="http://opmon-game.ga">Site web du jeu</a><br/>
-<a href="https://github.com/jlppc/OpMon/blob/master/Credits.md">Crédits</a><br/>
-<a href="https://github.com/jlppc/Site-OpMon">Dépôt du site web du jeu</a><br/><br/>
+* [Journal de développement](https://github.com/jlppc/OpMon/wiki/Journal-du-développement)
+* [Bilans mensuels, récapitulatifs des nouveautés (en anglais)](https://github.com/jlppc/OpMon/wiki/Monthly-reports)
+* [Site web du jeu](opmon-game.ga)
+* [Dépot du site web](https://github.com/jlppc/Site-OpMon)
+* [Crédits](https://github.com/jlppc/OpMon/blob/master/Credits.md)
+
 <br/>Version du jeu : Alpha 0.13 | Téléchargement : <a 
 href="http://opmon-game.ga"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Resources/Other/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 
@@ -71,11 +72,8 @@ href="http://opmon-game.ga"><img src="https://raw.githubusercontent.com/jlppc/Op
 * Alpha 0.13.1 : Ajout de descriptions d'objets et ajout du nouveau système de maps
 * Alpha 0.14 : Ajout du premier combat entre dresseurs
 
-
 * [Voir la RoadMap](https://github.com/jlppc/OpMon/wiki/ROADMAP)
 
-<br/>
-<br/>
 <br/>
 
 ### Informations generales:
