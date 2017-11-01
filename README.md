@@ -33,7 +33,7 @@ If you don't use build.sh, don't forget to copy the data folder in the game's fo
 ### Contact Us
 * jlppcprog@ntymail.com for bugs, lags or about the code
 * evandib@gmail.com for sprites, the graphics, design or graphics bugs
-* Ask a question in the "F.A.Q" section in this wiki
+* Ask a question in the "[Q&A](https://github.com/jlppc/OpMon/wiki/Q&A)" section in this wiki
 * [Discord server](https://discord.gg/XwyKFzh)
 <br>
 English is not our native language, but we do our best! If you see some errors, don't hesitate to tell us, so we won't make them again!
@@ -41,11 +41,11 @@ English is not our native language, but we do our best! If you see some errors, 
 If there are problems understanding the old commits or monthly reports that are in French, don't hesitate to ask!
 
 __The current game version is Alpha 0.13__ Download link: <a 
-href="http://opmon-game.ga/downloads"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Resources/Other/version_logo.png" alt="Logo Téléchargement"></a>
+href="http://opmon-game.ga/downloads"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Resources/Other/version_logo.png" alt="Download Link"></a>
 
-__The next game version will be Alpha 0.13.1__: Added descriptions on 
-objects, Map system recreation and code fixes
-__After : ALpha 0.14__: Added the first OPMon's fight
+__The next game version will be Alpha 0.14__: Added descriptions on 
+objects, Map system recreation and code reorganization
+__After : Alpha 0.15__: Added the first OPMon's fight
 * [Look the ROADMAP](https://github.com/jlppc/OpMon/wiki/ROADMAP)
 * [Look the Releases changelog](https://github.com/jlppc/OpMon/wiki/Releases)
 
