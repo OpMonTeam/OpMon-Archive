@@ -19,6 +19,8 @@ namespace OpMon{
     void initBackgrounds();
     void initKeys();
     void initMaps();
+    void initAnims();
+    //void deleteAnims();
     void init();
   };
 

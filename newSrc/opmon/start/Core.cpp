@@ -1,7 +1,7 @@
 #include "Core.hpp"
 
 namespace OpMon{
-
+  //std::thread bgtask = nullptr;
   /*
     Logs and save files initialization
   */
@@ -81,6 +81,12 @@ namespace OpMon{
     return returns;
   }
 
+  /*void bgTask(){
+    if(Model::Data::endGame){
+      quit(0);
+    }
+    }*/
+  
   std::string& operator<<(std::string &str, int const& nbre) {
     ostringstream oss;
     oss << str << nbre;
