@@ -59,6 +59,7 @@ See the controls of the game OpMon [here](http://opmon-game.ga/controls.html)
 ## Bienvenue sur le dépot du jeu OPMon Lazuli! Le clone libre de la célèbre license de Nintendo !
 
 <br/>
+
 * [Journal de développement](https://github.com/jlppc/OpMon/wiki/Journal-du-développement)
 * [Bilans mensuels, récapitulatifs des nouveautés (en anglais)](https://github.com/jlppc/OpMon/wiki/Monthly-reports)
 * [Site web du jeu](opmon-game.ga)
@@ -71,7 +72,6 @@ href="http://opmon-game.ga"><img src="https://raw.githubusercontent.com/jlppc/Op
 # Prochaines versions :
 * Alpha 0.13.1 : Ajout de descriptions d'objets et ajout du nouveau système de maps
 * Alpha 0.14 : Ajout du premier combat entre dresseurs
-
 * [Voir la RoadMap](https://github.com/jlppc/OpMon/wiki/ROADMAP)
 
 <br/>
@@ -85,14 +85,14 @@ Vous n'avez qu'à nous proposer vos modifications et nous les ajouterons peut-ê
 Si vous nous proposez beaucoup de bonnes modifications, et qu'elles sont acceptées, vous deviendrez peut-être collaborateur!<br/>
 Nous sommes plusieurs sur le projet : Jlppc, le programmeur et créateur de l'histoire et des personnages ; Navet56, le graphiste et correcteur ; et d'autres contributeurs, comme Imperator Dei, qui a corrigé les fautes d'orthographe sur la version française,  merci à eux !<br/>
 Contacts : jlppcprog@ntymail.com pour la programmation | evandib@gmail.com pour les graphismes<br/>
-Si vous avez des questions à poser, n'hésitez pas à les demander dans la section F.A.Q. du wiki ou a nous contacter par mail!<br/><br/><br/>
+Si vous avez des questions à poser, n'hésitez pas à les demander dans la section F.A.Q. du wiki ou a nous contacter par mail!<br/>
 
 ### Les controles
 
 Vous pouvez voir les conrols du jeu OpMon [ici](http://opmon-game.ga/controls.html)
 ### Build
 
-Le systèmle de build utilise *cmake*. Voici les commandes pour compiler le jeu et l'installer (sous Linux).
+Le système de build utilise *cmake*. Voici les commandes pour compiler le jeu et l'installer (sous Linux).
 
 ```sh
 cmake .
