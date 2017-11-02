@@ -48,7 +48,9 @@ namespace OpMon {
       Initializer::init();
       oplog("Loading completed! Opening gui.");
       //bgtask = new std::thread(bgTask);
-      mainframe.open();
+      View::open();
+      oplog("Starting game loop");
+      gameloop();
       oplog("Ending the game normally.");
       return quit(0);
     }

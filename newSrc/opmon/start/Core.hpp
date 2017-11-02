@@ -12,6 +12,12 @@ namespace OpMon{
   enum GameStatus{
     CONTINUE, STOP
   };
+
+  enum GamePart{
+    START, MENU, STARTSCENE, OPTIONS, OVERWORLD;
+  };
+
+  extern GameLoop gameloop;
   
   /**Path to the options save file*/
   extern std::string optSave;
@@ -48,6 +54,9 @@ namespace OpMon{
   std::string& operator<<(std::string &str, std::string const& thing);
   std::string& operator<<(std::string &str, int const& nbre);
   std::string& operator<<(std::string &str, char nbre[]);
+
+  sf::Vector2i vec2fTo2i(sf::Vector2f const &toTrans);
+  
 }
 
 #endif
