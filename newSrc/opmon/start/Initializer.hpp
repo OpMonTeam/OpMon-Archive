@@ -20,6 +20,18 @@ namespace OpMon{
     void initKeys();
     void initMaps();
     void initAnims();
+
+    void initPlayer();
+    
+    void initGui();
+
+    void initOverworld();
+    void initStartScene();
+    void initMenu();
+
+    void initMenuStrings();
+    void initStartSceneStrings();
+    
     //void deleteAnims();
     void init();
   };

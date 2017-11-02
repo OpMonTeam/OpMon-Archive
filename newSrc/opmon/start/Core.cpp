@@ -9,6 +9,8 @@ namespace OpMon{
 
   sf::Clock ticks;
 
+  GameLoop gameloop;
+  
   string getPath(string const& path) {
 #ifdef _WIN32
     vector<sf::String> splitted = StringKeys::split(path, '/');
@@ -25,6 +27,9 @@ namespace OpMon{
 #endif
   }
 
+  sf::Vector2i MainFrame::vec2fTo2i(sf::Vector2f const &toTrans) {
+    return sf::Vector2i(toTrans.x, toTrans.y);
+  }
 
   //The number of errors handeled in the program.
   int errors = 0;

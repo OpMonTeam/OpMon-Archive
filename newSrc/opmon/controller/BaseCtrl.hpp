@@ -3,8 +3,7 @@
 
 namespace OpMon{
   namespace Controller{
-    void checkQuit();
-    extern sf::Event events;
+
   }
 }
 
