@@ -9,6 +9,7 @@
 #include <map>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Audio/Music.hpp>
+#include <SFML/Graphics/Font.hpp>
 
 namespace OpMon{
   namespace Model{
@@ -18,8 +19,12 @@ namespace OpMon{
 	extern std::vector<std::map<int, std::string> > atkOpLvl; 
       }
 
-      namespace Ui{
+      namespace World{
 	extern std::map<std::string, Map *> maps;
+	extern sf::Texture tileset;
+      }
+      
+      namespace Ui{
 	extern std::vector<sf::Music *> townMusics;
 	extern sf::Texture texturePP[4];
 	extern sf::Texture walkingPP[4];
@@ -28,7 +33,6 @@ namespace OpMon{
     
 	extern std::map<std::string, std::vector<sf::Texture> > charaTextures;
       
-	extern sf::Texture tileset;
 	//Battle
 	extern sf::Texture bActButtons[4];
 	extern sf::Texture bHpBar;
@@ -39,10 +43,9 @@ namespace OpMon{
       
 	extern std::vector<std::vector<sf::Texture> > doorsTextures;
 	//std::string backgrounds[];
-
+	extern sf::Font font;
       }
       extern Player player;
-      extern bool endGame;
       namespace Animations{
 	sf::Texture fen[6];
       }

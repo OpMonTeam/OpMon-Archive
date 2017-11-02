@@ -19,9 +19,9 @@ namespace OpMon{
 	sf::Texture texturePP[4];
 	sf::Texture walkingPP[4];
 	sf::Texture walkingPP2[4];
+	sf::Font font;
       }
       Player player;
-      bool endGame = false;
       namespace Animations{
 	sf::Texture fen[6];
       }
