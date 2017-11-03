@@ -4,7 +4,7 @@
 
 namespace OpMon{
   namespace Model{
-
+    
     Player::Player(sf::String const& name):
       name(name), trainerID(Utils::randUI(0xFFFFFFFF)), opteam(name) {
       for(unsigned int i = 0; i < ITEM_NUMBER; i++) {
@@ -126,5 +126,10 @@ namespace OpMon{
       }
 
     }
+
+    void Player::tp(std::string mapToTp, sf::Vector2i newPos){
+      
+    }
+    
   }
 }

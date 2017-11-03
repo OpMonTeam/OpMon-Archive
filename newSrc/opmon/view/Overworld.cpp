@@ -17,190 +17,32 @@
 UNS
 
 void Overworld::initVars() {
- 
+  
 }
 
-int Overworld::tp(string toTp, sf::Vector2i pos, bool scroll) {
-    if(moving != Side::NO_MOVE|| anim != Side::NO_MOVE) {
-        moving = Side::NO_MOVE;
-        anim = Side::NO_MOVE;
-    }
-    actual = &Initializer::maps.at(toTp);
-    if(actual == nullptr) {
-        handleError("Error changing map : actual == nullptr", true);
-    }
-    scrolling = scroll;
-    character.setPosition(8 CASES + pos.x CASES - 16, 8 CASES + pos.y CASES);
-    ppPosX = pos.x - 1;
-    ppPosY = pos.y;
-    if(scrolling) {
-        camera.setCenter(character.getPosition());
-    } else {
-        camera.setCenter((actual->getW() CASES) / 2, (actual->getH() CASES) / 2);
-    }
-    if(music != actual->getBg()) {
-        music->stop();
-        music = actual->getBg();
-        music->play();
-    }
-
-    layer1 = actual->getLayer1();
-    layer2 = actual->getLayer2();
-    layer3 = actual->getLayer3();
-    // layer1->move(32, 32);
-    // layer2->move(32, 32);
-    // layer3->move(32, 32);
-    tpCount = 0;
-    justTp = true;
-    return 0;
-}
-#define UNLOCK_TP  Events::justTP = false;
-
-void Overworld::move(Side direction){
-  if(anim == Side::NO_MOVE && !movementLock){
-    ppDir = direction;
-    startFrames = frames;
-    anim = direction;
-
-    if(debugMode){
-      UNLOCK_TP
-	moving = direction;
-      switch(direction){
-      case Side::TO_UP:
-	ppPosY--;
-	break;
-      case Side::TO_DOWN:
-	ppPosY++;
-	break;
-      case Side::TO_LEFT:
-	ppPosX--;
-	break;
-      case Side::TO_RIGHT:
-	ppPosX++;
-	break;
-      }
-      std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, ppPosY CASES));
-      if(nextEvents.size() > 0) {
-	for(Event *nextEvent : nextEvents) {
-	  if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN) {
-	    nextEvent->action(Main::player);
-	  }
-	}
-      }
-      return;
-    }
-    if(checkPass(direction)){
-      UNLOCK_TP
-	moving = direction;
-      switch(direction){
-      case Side::TO_UP:
-	ppPosY--;
-	break;
-      case Side::TO_DOWN:
-	ppPosY++;
-	break;
-      case Side::TO_LEFT:
-	ppPosX--;
-	break;
-      case Side::TO_RIGHT:
-	ppPosX++;
-	break;
-      }
-      std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, ppPosY CASES));
-      if(nextEvents.size() > 0) {
-	for(Event *nextEvent : nextEvents) {
-	  if(nextEvent->getEventTrigger() == Events::EventTrigger::GO_IN && ((nextEvent->getSide() & SIDE_UP) == SIDE_UP)) {
-	    nextEvent->action(Main::player);
-	  }
-	}
-      }
-    }
-    
+void Overworld::tp(std::string toTp, sf::Vector2i pos){
+  Model::Data::player.getPosition().tp(toTp, pos);
+  actual = &Model::Data::World::maps.at(Model::Data::player.getPosition().getMapId());
+  character.setPosition(8 CASES + pos.x CASES - 16, 8 CASES + pos.y CASES);
+  if(music != actual->getBg()) {
+    music->stop();
+    music = actual->getBg();
+    music->play();
   }
-}
 
-bool Overworld::checkPass(Side direction){
-  switch(direction){
-  case Side::TO_UP:
-    if(ppPosY - 1 >= 0) {
-      if(actual->getPassArr()[(int)(ppPosY - 1)][(int)ppPosX] == 0) {
-	std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY - 1) CASES));
-	for(Event *nextEvent : nextEvents) {
-	  if(!nextEvent->isPassable()) {
-	    return false;
-	  }
-	  
-	}	
-	return true;
-      }
-    }
-    return false;
-  case Side::TO_DOWN:
-    if(ppPosY + 1 < actual->getH()) {
-      if(actual->getPassArr()[(int)(ppPosY + 1)][(int)ppPosX] == 0) {
-	std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i(ppPosX CASES, (ppPosY + 1) CASES));
-	for(Event *nextEvent : nextEvents) {
-	  if(!nextEvent->isPassable()) {
-	    return false;
-	  }
-	  
-	}
-	return true;
-      }
-    }
-    return false;
-  case Side::TO_LEFT:
-    if(ppPosX - 1 >= 0) {
-      if(actual->getPassArr()[(int) ppPosY][(int) (ppPosX - 1)] == 0) {
-	std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX - 1) CASES, ppPosY CASES));
-	for(Event *nextEvent : nextEvents) {
-	  if(!nextEvent->isPassable()) {
-	    return false;
-	  }
-
-	}
-	return true;
-      }
-    }
-    return false;
-  case Side::TO_RIGHT:
-    if(ppPosX + 1 < actual->getW()) {
-      if(actual->getPassArr()[(int) ppPosY][(int) (ppPosX + 1)] == 0 || actual->getPassArr()[(int) ppPosY][(int) (ppPosX + 1)] == 5) {
-	std::vector<Event *> nextEvents = actual->getEvent(sf::Vector2i((ppPosX + 1) CASES, ppPosY CASES));
-	for(Event *nextEvent : nextEvents) {
-	  if(!nextEvent->isPassable()) {
-	    return false;
-	  }
-	}	
-	return true;
-      }
-    }
-    return false;
-  }
-  return false;
-}
-
-void Overworld::up() {
-  move(Side::TO_UP);
-}
-
-void Overworld::down() {
-  move(Side::TO_DOWN);
-}
-
-void Overworld::right() {
-  move(Side::TO_RIGHT);
+  delete(layer1);
+  delete(layer2);
+  delete(layer3);
+  
+  layer1 = new MapLayer(actual->getLayer1());
+  layer2 = new MapLayer(actual->getLayer2());
+  layer3 = new MapLayer(actual->getLayer3());
+  tpCount = 0;
 }
 
 
-void Overworld::left() {
-  move(Side::TO_LEFT);
-}
 
-#undef UNLOCK_TP
-
-
-int Overworld::overworld() {
+GameStatus Overworld::overworld() {
     for(auto map = Initializer::maps.cbegin(); map!=Initializer::maps.cend(); ++map) {
         for(Event *event : map->second.getEvents()) {
             Events::TalkingEvent *te = dynamic_cast<Events::TalkingEvent *>(event);
@@ -211,13 +53,16 @@ int Overworld::overworld() {
     }
 
     music->play();
-    Main::mainframe.frame.setView(camera);
-    int returned = boucle();
+    Window::frame.setView(camera);
+    GameStatus returned = boucle();
     music->stop();
+    delete(layer1);
+    delete(layer2);
+    delete(layer3);
     return returned;
 }
 
-int Overworld::boucle() {
+GameStatus Overworld::boucle() {
     bool continuer = true;
     while(continuer) {
         if((GET_TICKS - ancientTick >= FPS_TICKS)) {

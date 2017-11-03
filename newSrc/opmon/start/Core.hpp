@@ -48,6 +48,9 @@ namespace OpMon{
 
   extern std::thread* bgtask;
   */
+
+  extern bool debugMode;
+  
   /*
     Useful operators for strings
   */

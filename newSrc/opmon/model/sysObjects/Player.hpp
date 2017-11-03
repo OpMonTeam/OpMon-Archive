@@ -56,50 +56,25 @@ namespace OpMon{
 
       void save();
       Player(std::ifstream &in, std::string &name);
-
-      void setMap(std::string ID) {
-        mapID = ID;
-      }
-
-      std::string getMapID(){
-	return mapID;
-      }
       
-      int &getPosX() {
-        return posX;
-      }
-      int &getPosY() {
-        return posY;
-      }
-
-      void setPosX(int pos){
-	this->posX = pos;
-      }
-      void setPosY(int pos){
-	this->posY = pos;
-      }
-
       bool isKo(){
 	return opteam.isKo();
       }
 
-      void setDir(Side dir){
-	this->dir = dir;
+      Position& getPosition(){
+	return position;
       }
-
-      Side getDir(){
-	return dir;
-      }
+            
     private:
       sf::String name;
       const unsigned int trainerID;//jusqu'a 8 chiffres (Hexadecimal) (jusqu'a 16^8 soit 4 octets soit un int)
       int bag[ITEM_NUMBER];
       std::vector<OpMon *> pc = std::vector<OpMon *>();
       OpTeam opteam;
-      Side dir;
       std::string mapID = "Player's room";
-      int posX = 2;
-      int posY = 2;
+
+      Position position;
+      
     };
   }
 }
