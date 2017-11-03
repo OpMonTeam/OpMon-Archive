@@ -1,12 +1,13 @@
 /*
-Overworld.hpp
-Author : Jlppc
-File under the license GPL-3.0
-http://opmon-game.ga
-Contient le namespace Overworld
+  Overworld.hpp
+  Author : Jlppc
+  File under the license GPL-3.0
+  http://opmon-game.ga
+  Contient le namespace Overworld
 */
 #ifndef OVERWORLD_HPP
 #define OVERWORLD_HPP
+
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "../start/main.hpp"
@@ -15,89 +16,87 @@ Contient le namespace Overworld
 #define SQUARES_SIZE 32
 #define SQUARES * SQUARES_SIZE
 
+namespace OpMon{
+  namespace View{
 
-namespace Main{
-  extern Player player;
+    class Overworld {
+    public:
+
+      sf::View& getCamera(){
+	return camera;
+      }
+  
+      std::string fps;
+      int fpsCounter;
+      sf::Text fpsPrint;
+      int oldTicksFps;
+
+      bool justTp = false;
+      int tpCount = 0;
+
+      int startFrames = 0;
+      int animsCounter = 0;
+
+      bool movementLock = false;
+
+      bool scrolling = true;
+
+      bool debugMode = false;
+      bool printlayer[3] = {true, true, true};
+
+      sf::Sprite& getCharacter(){
+	return character;
+      }
+  
+      void initVars();
+      GameStatus overworld();
+      int boucle();
+      int boucleDialog(std::vector<sf::String> const& dialogs);
+
+      GameStatus operator()(bool dialog, int frame);
+
+      void move(Side direction);
+      bool checkPass(Side direction);
+  
+      void tp(std::string toTp, sf::Vector2i pos);
+
+      sf::Music* getMusic(){
+	return music;
+      }
+
+      MapLayer* getMapLayer(int number){
+	switch(number){
+	case 1:
+	  return layer1:
+	case 2:
+	  return layer2;
+	case 3:
+	  return layer3;
+	default:
+	  return nullptr;
+	}
+      }
+
+      Dialog* getDialog(){
+	return dialog;
+      }
+  
+    private:
+      sf::View camera;
+      sf::Sprite character;
+      Map* actual = nullptr;
+      sf::Music *music = nullptr;
+      MapLayer *layer1 = nullptr;
+      MapLayer *layer2 = nullptr;
+      MapLayer *layer3 = nullptr;
+      sf::Vector2f posArrow;
+      Dialog* dialog = nullptr;
+      //Indicate the frame of the walking animation that must be used.
+      bool anims = false;
+  
+    };
+
+  }
 }
-
-/**
-Contient les Ã©lÃ©ments fonctionnels de l'overworld
-*/
-class Overworld {
-public:
-
-  sf::View& getCamera(){
-    return camera;
-  }
-  
-    std::string fps;
-    int fpsCounter;
-    sf::Text fpsPrint;
-    int oldTicksFps;
-
-    bool justTp = false;
-    int tpCount = 0;
-
-    int startFrames = 0;
-    int animsCounter = 0;
-
-    bool movementLock = false;
-
-    bool scrolling = true;
-
-    bool debugMode = false;
-    bool printlayer[3] = {true, true, true};
-
-  sf::Sprite& getCharacter(){
-    return character;
-  }
-  
-    void initVars();
-    GameStatus overworld();
-    int boucle();
-    int boucleDialog(std::vector<sf::String> const& dialogs);
-
-  GameStatus operator()(bool dialog, int frame);
-
-  void move(Side direction);
-  bool checkPass(Side direction);
-  
-  void tp(std::string toTp, sf::Vector2i pos);
-
-  sf::Music* getMusic(){
-    return music;
-  }
-
-  MapLayer* getMapLayer(int number){
-    switch(number){
-    case 1:
-      return layer1:
-    case 2:
-      return layer2;
-    case 3:
-      return layer3;
-    default:
-      return nullptr;
-    }
-  }
-
-  Dialog* getDialog(){
-    return dialog;
-  }
-  
-private:
-  sf::View camera;
-  sf::Sprite character;
-  Map* actual = nullptr;
-  sf::Music *music = nullptr;
-  MapLayer *layer1 = nullptr;
-  MapLayer *layer2 = nullptr;
-  MapLayer *layer3 = nullptr;
-  sf::Vector2f posArrow;
-  Dialog* dialog = nullptr;
-  //Indicate the frame of the walking animation that must be used.
-  bool anims = false;
-  
-};
 
 #endif // OVERWORLD_HPP
