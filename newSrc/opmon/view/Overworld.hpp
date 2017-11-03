@@ -12,8 +12,9 @@ Contient le namespace Overworld
 #include "../start/main.hpp"
 #include "Elements.hpp"
 #include "../playercore/Player.hpp"
-#define CASES * 32
-#define CASE_SIZE 32
+#define SQUARES_SIZE 32
+#define SQUARES * SQUARES_SIZE
+
 
 namespace Main{
   extern Player player;
@@ -29,16 +30,11 @@ public:
     return camera;
   }
     sf::Sprite *maps[3];
-    sf::Music *music;
 
     std::string fps;
     int fpsCounter;
     sf::Text fpsPrint;
     int oldTicksFps;
-
-    MapLayer *layer1;
-    MapLayer *layer2;
-    MapLayer *layer3;
 
     int &ppPosX = Main::player.getPosX();
     int &ppPosY = Main::player.getPosY();
@@ -70,7 +66,7 @@ public:
   }
   
     void initVars();
-    int overworld();
+    GameStatus overworld();
     int boucle();
     int boucleDialog(std::vector<sf::String> const& dialogs);
 
@@ -79,18 +75,33 @@ public:
   void move(Side direction);
   bool checkPass(Side direction);
   
-    OP_DEPRECATED void up();
-    OP_DEPRECATED void down();
-    OP_DEPRECATED void right();
-    OP_DEPRECATED void left();
+  void tp(std::string toTp, sf::Vector2i pos);
 
-  int tp(std::string toTp, sf::Vector2i pos, bool scroll = true);
+  sf::Music* getMusic(){
+    return music;
+  }
 
+  MapLayer* getMapLayer(int number){
+    switch(number){
+    case 1:
+      return layer1:
+    case 2:
+      return layer2;
+    case 3:
+      return layer3;
+    default:
+      return nullptr;
+    }
+  }
+  
 private:
   sf::View camera;
   sf::Sprite character;
   Map* actual;
-  
+  sf::Music *music;
+  MapLayer *layer1;
+  MapLayer *layer2;
+  MapLayer *layer3;
 };
 
 #endif // OVERWORLD_HPP

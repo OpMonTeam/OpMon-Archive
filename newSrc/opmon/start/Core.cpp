@@ -10,6 +10,8 @@ namespace OpMon{
   sf::Clock ticks;
 
   GameLoop gameloop;
+
+  bool debugMode = false;
   
   string getPath(string const& path) {
 #ifdef _WIN32
