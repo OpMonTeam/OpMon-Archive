@@ -135,7 +135,7 @@ namespace OpMon{
       sprite.setTexture(txture);
 
       if(fullScreen) {
-        float coef = window.getSize().y / (sprite.getGlobalBounds().height * 1.0);
+        float coef = window.getSize().y / ((float) sprite.getGlobalBounds().height);
         sprite.setScale(coef, coef);
         sprite.setPosition(((window.getSize().x / 2) - (sprite.getGlobalBounds().width / 2)), 0);
       }

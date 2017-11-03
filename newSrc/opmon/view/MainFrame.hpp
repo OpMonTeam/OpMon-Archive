@@ -48,7 +48,6 @@ Permet d'ouvrir la fenetre du jeu et de charger les ressources essensielles. Con
 #define loadTextureFromFile(path) setTexture(sf::Texture(path))
 #define loadSoundFromFile(path) setBuffer(sf::SoundBuffer(path))
 
-#define FPS_TICKS 33
 
 
 
