@@ -7,6 +7,7 @@ namespace OpMon{
     GameLoop();
     GameStatus operator()();
     GameStatus checkQuit();
+    
   private:
     sf::Event events;
     View::Overworld overworld;
@@ -15,6 +16,8 @@ namespace OpMon{
     View::OptionsMenu optionsmenu;
     GamePart gamepart = GamePart::START;
     bool endGame = false;
+
+    int frames = 0;
   }
 }
 

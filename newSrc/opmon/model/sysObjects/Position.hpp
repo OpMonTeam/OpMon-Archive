@@ -32,6 +32,15 @@ namespace OpMon{
 	return movement;
       }
 
+      void stopMove(){
+	anim = false;
+	movement = false;
+      }
+
+      void stopAnim(){
+	anim = false;
+      }
+
       void tp(std::string mapToTp, sf::Vector2i position);
 
       void move(Side dir);
