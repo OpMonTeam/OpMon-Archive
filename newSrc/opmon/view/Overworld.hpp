@@ -29,32 +29,19 @@ public:
   sf::View& getCamera(){
     return camera;
   }
-    sf::Sprite *maps[3];
-
+  
     std::string fps;
     int fpsCounter;
     sf::Text fpsPrint;
     int oldTicksFps;
 
-    int &ppPosX = Main::player.getPosX();
-    int &ppPosY = Main::player.getPosY();
-
     bool justTp = false;
     int tpCount = 0;
 
-  Side anim = Side::NO_MOVE;
-  Side moving = Side::NO_MOVE;
-    bool anims = false;
-
-    int ancientTick = 0;
-
-    int frames = 0;
     int startFrames = 0;
     int animsCounter = 0;
 
     bool movementLock = false;
-
-    bool scrollock[2] = {false, false};
 
     bool scrolling = true;
 
@@ -70,7 +57,7 @@ public:
     int boucle();
     int boucleDialog(std::vector<sf::String> const& dialogs);
 
-  GameStatus operator()(bool dialog);
+  GameStatus operator()(bool dialog, int frame);
 
   void move(Side direction);
   bool checkPass(Side direction);
@@ -93,15 +80,24 @@ public:
       return nullptr;
     }
   }
+
+  Dialog* getDialog(){
+    return dialog;
+  }
   
 private:
   sf::View camera;
   sf::Sprite character;
-  Map* actual;
-  sf::Music *music;
-  MapLayer *layer1;
-  MapLayer *layer2;
-  MapLayer *layer3;
+  Map* actual = nullptr;
+  sf::Music *music = nullptr;
+  MapLayer *layer1 = nullptr;
+  MapLayer *layer2 = nullptr;
+  MapLayer *layer3 = nullptr;
+  sf::Vector2f posArrow;
+  Dialog* dialog = nullptr;
+  //Indicate the frame of the walking animation that must be used.
+  bool anims = false;
+  
 };
 
 #endif // OVERWORLD_HPP
