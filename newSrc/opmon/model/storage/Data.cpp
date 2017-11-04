@@ -21,7 +21,6 @@ namespace OpMon{
 	sf::Texture walkingPP2[4];
 	sf::Font font;
       }
-      Player player;
       namespace Animations{
 	sf::Texture fen[6];
       }

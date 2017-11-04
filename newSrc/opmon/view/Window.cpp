@@ -50,7 +50,7 @@ namespace OpMon{
 #if 0
       window.setVerticalSyncEnabled(true);
 #endif
-      window.setFramerateLimit(180);
+      window.setFramerateLimit(30);
       if(!buf.loadFromFile(getPath(RESSOURCES_PATH + "audio/sounds/dialogChange.ogg"))) {
         handleError("Unable to open dialog sound.", false);
       }
