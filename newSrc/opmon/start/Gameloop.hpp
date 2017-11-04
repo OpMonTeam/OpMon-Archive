@@ -21,6 +21,18 @@ namespace OpMon{
     void setWait(bool wait){
       this->wait = wait;
     }
+
+    GamePart getGamePart(){
+      return gamepart;
+    }
+
+    void setGamePart(GamePart toSet){
+      gamepart = toSet;
+    }
+
+    Player& getPlayer(){
+      return player;
+    }
     
   private:
     sf::Event events;
@@ -32,7 +44,8 @@ namespace OpMon{
     bool endGame = false;
     bool wait = true;
 
-    std::vector<sf::String> actualDialog;
+    Player player;
+    
     
     int frames = 0;
     int oldticks = 0;

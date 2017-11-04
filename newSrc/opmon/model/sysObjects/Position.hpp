@@ -8,10 +8,6 @@ namespace OpMon{
       Position();
       Position(std::string mapId, sf::Vector2i position, Side dir = Side::TO_UP);
 
-      std::string getMapId(){
-	return mapId;
-      }
-
       sf::Vector2i getPosition(){
 	return sf::Vector2i(posX, posY);
       }
@@ -41,7 +37,7 @@ namespace OpMon{
 	anim = false;
       }
 
-      void tp(std::string mapToTp, sf::Vector2i position);
+      void tp(sf::Vector2i position);
 
       void move(Side dir);
       
@@ -49,7 +45,6 @@ namespace OpMon{
 
       bool checkPass(Side dir);
       
-      std::string mapId;
       int posX;
       int posY;
       Side dir;

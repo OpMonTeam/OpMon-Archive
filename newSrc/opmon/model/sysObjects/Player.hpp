@@ -64,6 +64,16 @@ namespace OpMon{
       Position& getPosition(){
 	return position;
       }
+
+      std::string getMapId(){
+	return mapID;
+      }
+
+      void setMapID(std::string mapID){
+	this->mapID = mapID;
+      }
+
+      void tp(std::string mapToTp, sf::Vector2i position);
             
     private:
       sf::String name;

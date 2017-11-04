@@ -90,6 +90,7 @@ void MainFrame::open() {
 
     frame.create(512, 512);
     window.clear(sf::Color::White);
+    window.setFramerateLimit(30);
     sf::Texture loadTexture;
     if(! loadTexture.loadFromFile(getPath(RESSOURCES_PATH + "backgrounds/loading.png"))) {
         handleError("Unable to open the loading screen.", false);
@@ -112,7 +113,6 @@ void MainFrame::open() {
 #if 0
     window.setVerticalSyncEnabled(true);
 #endif
-    window.setFramerateLimit(180);
     if(!buf.loadFromFile(getPath(RESSOURCES_PATH + "audio/sounds/dialogChange.ogg"))) {
         handleError("Unable to open dialog sound.", false);
     }

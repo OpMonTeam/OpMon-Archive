@@ -26,37 +26,12 @@ namespace OpMon{
 	return camera;
       }
   
-      std::string fps;
-      int fpsCounter;
-      sf::Text fpsPrint;
-      int oldTicksFps;
-
-      bool justTp = false;
-      int tpCount = 0;
-
-      int startFrames = 0;
-      int animsCounter = 0;
-
-      bool movementLock = false;
-
-      bool scrolling = true;
-
-      bool debugMode = false;
-      bool printlayer[3] = {true, true, true};
 
       sf::Sprite& getCharacter(){
 	return character;
       }
   
-      void initVars();
-      GameStatus overworld();
-      int boucle();
-      int boucleDialog(std::vector<sf::String> const& dialogs);
-
       GameStatus operator()(bool dialog, int frame);
-
-      void move(Side direction);
-      bool checkPass(Side direction);
   
       void tp(std::string toTp, sf::Vector2i pos);
 
@@ -80,11 +55,23 @@ namespace OpMon{
       Dialog* getDialog(){
 	return dialog;
       }
-  
+
+      void moveCamera(Side dir);
+
+      bool printlayer[3] = {true, true, true};
+
+      bool justTp = false;
+
+      bool isLaunched(){
+	return launched;
+      }
+
+      void del();
+      
     private:
       sf::View camera;
       sf::Sprite character;
-      Map* actual = nullptr;
+      Map* current = nullptr;
       sf::Music *music = nullptr;
       MapLayer *layer1 = nullptr;
       MapLayer *layer2 = nullptr;
@@ -93,7 +80,24 @@ namespace OpMon{
       Dialog* dialog = nullptr;
       //Indicate the frame of the walking animation that must be used.
       bool anims = false;
-  
+
+      std::string fps;
+      int fpsCounter;
+      sf::Text fpsPrint;
+      int oldTicksFps;
+      
+      int tpCount = 0;
+      
+      int startFrames = 0;
+      int animsCounter = 0;
+
+      bool movementLock = false;
+
+      bool scrolling = true;
+
+      bool debugMode = false;
+
+      bool launched = false;
     };
 
   }

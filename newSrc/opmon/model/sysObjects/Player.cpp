@@ -128,7 +128,8 @@ namespace OpMon{
     }
 
     void Player::tp(std::string mapToTp, sf::Vector2i newPos){
-      
+      mapID = mapToTp;
+      position.tp(newPos);
     }
     
   }

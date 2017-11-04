@@ -45,7 +45,6 @@ namespace OpMon{
 	//std::string backgrounds[];
 	extern sf::Font font;
       }
-      extern Player player;
       namespace Animations{
 	sf::Texture fen[6];
       }
