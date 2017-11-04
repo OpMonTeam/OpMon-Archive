@@ -7,12 +7,11 @@ namespace OpMon{
     Position::Position(std::string mapId, sf::Vector2i position, Side dir = Side::TO_UP)
       : mapId(mapId), posX(position.x), posY(position.y), dir(dir), anim(false), movement(false){}
 
-    void Position::tp(std::string mapToTp, sf::Vector2i position){
+    void Position::tp(sf::Vector2i position){
       if(!movement || !anim) {
         moving = false;
         anim = false;
       }
-      mapId = toTp;
 
       posX = position.x - 1;
       posY = position.y;

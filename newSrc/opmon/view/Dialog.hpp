@@ -77,6 +77,8 @@ public:
   static sf::Text dialogText[3];
   static sf::Sprite dialog;
   static sf::Sound dialogPass;
+
+  static std::vector<sf::String> actualDialog;
 };
 
 #endif //OPMON_DIALOG_CPP_HPP
