@@ -10,10 +10,6 @@ namespace OpMon{
     GameStatus operator()();
     GameStatus checkQuit();
 
-    void setActualDialog(std::vector<sf::String> newDialog){
-      actualDialog = newDialog;
-    }
-
     bool isWait(){
       return wait;
     }
