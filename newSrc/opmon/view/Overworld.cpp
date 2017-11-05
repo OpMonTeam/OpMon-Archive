@@ -124,29 +124,6 @@ namespace OpMon{
 	fpsPrint.setFont(Main::mainframe.font);
 	fpsPrint.setCharacterSize(48);
       }
-
-      if(!dialog){
-	if(moving == Side::NO_MOVE) {
-	  std::vector<Event *> nextEvents = current->getEvent(sf::Vector2i(ppPosX CASES, ppPosY CASES));
-	  for(Event *nextEvent : nextEvents) {
-	    if(nextEvent->getEventTrigger() == Events::EventTrigger::BE_IN) {
-	      bool go = false;
-	      if(((nextEvent->getSide() & SIDE_UP) == SIDE_UP) && (ppDir == Side::TO_UP)) {
-		go = true;
-	      } else if(((nextEvent->getSide() & SIDE_DOWN) == SIDE_DOWN) && (ppDir == Side::TO_DOWN)) {
-		go = true;
-	      } else if(((nextEvent->getSide() & SIDE_RIGHT) == SIDE_RIGHT) && (ppDir == Side::TO_RIGHT)) {
-		go = true;
-	      } else if(((nextEvent->getSide() & SIDE_LEFT) == SIDE_LEFT) && (ppDir == Side::TO_LEFT)) {
-		go = true;
-	      }
-	      if(go) {
-		nextEvent->action(Main::player);
-	      }
-	    }
-	  }
-	}
-      }
   
       Window::frame.clear(sf::Color::Black);
       //Drawing the two first layers
@@ -155,10 +132,6 @@ namespace OpMon{
       }
       if((debugMode ? printlayer[1] : true)) {
 	Window::frame.draw(*layer2);
-      }
-      //Updaing events
-      if(!dialog){
-	current->updateEvents(Main::player);
       }
       //Drawing event under the player
       for(Event *event : current->getEvents()) {
