@@ -25,11 +25,7 @@ GameStatus GameLoop::operator()(){
 	}
       }
       Controller::OverworldCtrl::checkEvents(events, overworld, dialog);
-      if(dialog){
-	status = overworld(true, frames, View::Dialog::actualDialog);
-      }else{
-	status = overworld(false, frames);
-      }
+      status = overworld(dialog, frames);
     }
 
     Window::winRefresh();
