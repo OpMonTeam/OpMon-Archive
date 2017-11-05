@@ -4,10 +4,9 @@
 namespace OpMon{
   namespace Controller{
     namespace OverworldCtrl{
-      void checkEvents(sf::Event const& events, View::Overworld& overworld);
-      void move(Side direction);
+      void checkEvents(sf::Event const& events, View::Overworld& overworld, Player& player);
       void checkEventsDialog(sf::Event const& events, View::Overworld& overworld);
-      void checkEventsNoDialog(View::Overworld& overworld);
+      void checkEventsNoDialog(sf::Event const& events, Player& player);
     }
   }
 }
