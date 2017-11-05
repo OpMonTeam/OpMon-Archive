@@ -84,14 +84,14 @@ namespace OpMon{
       delete(layer3);
     }
 
-    GameStatus Overworld::operator()(bool dialog, int frame, std::vector<sf::String> dialogs = std::vector<OpString>()){
+    GameStatus Overworld::operator()(bool dialog, int frame, std::vector<sf::String> const& dialogs = actualDialog){
       if(!launched){
 	init();
 	launched = true;
       }
       if(dialog){
 	// `&dialogs[0]` converts the std::vector into a regular array.
-	dialog = new Dialog(&dialogs[0], dialogs.size());
+	this->dialog = new Dialog(&dialogs[0], dialogs.size());
       }
       fpsCounter++;
       if(GET_TICKS - oldTicksFps >= 1000) {
@@ -128,22 +128,20 @@ namespace OpMon{
       if(!dialog){
 	if(moving == Side::NO_MOVE) {
 	  std::vector<Event *> nextEvents = current->getEvent(sf::Vector2i(ppPosX CASES, ppPosY CASES));
-	  if(nextEvents.size() > 0) {
-	    for(Event *nextEvent : nextEvents) {
-	      if(nextEvent->getEventTrigger() == Events::EventTrigger::BE_IN) {
-		bool go = false;
-		if(((nextEvent->getSide() & SIDE_UP) == SIDE_UP) && (ppDir == Side::TO_UP)) {
-		  go = true;
-		} else if(((nextEvent->getSide() & SIDE_DOWN) == SIDE_DOWN) && (ppDir == Side::TO_DOWN)) {
-		  go = true;
-		} else if(((nextEvent->getSide() & SIDE_RIGHT) == SIDE_RIGHT) && (ppDir == Side::TO_RIGHT)) {
-		  go = true;
-		} else if(((nextEvent->getSide() & SIDE_LEFT) == SIDE_LEFT) && (ppDir == Side::TO_LEFT)) {
-		  go = true;
-		}
-		if(go) {
-		  nextEvent->action(Main::player);
-		}
+	  for(Event *nextEvent : nextEvents) {
+	    if(nextEvent->getEventTrigger() == Events::EventTrigger::BE_IN) {
+	      bool go = false;
+	      if(((nextEvent->getSide() & SIDE_UP) == SIDE_UP) && (ppDir == Side::TO_UP)) {
+		go = true;
+	      } else if(((nextEvent->getSide() & SIDE_DOWN) == SIDE_DOWN) && (ppDir == Side::TO_DOWN)) {
+		go = true;
+	      } else if(((nextEvent->getSide() & SIDE_RIGHT) == SIDE_RIGHT) && (ppDir == Side::TO_RIGHT)) {
+		go = true;
+	      } else if(((nextEvent->getSide() & SIDE_LEFT) == SIDE_LEFT) && (ppDir == Side::TO_LEFT)) {
+		go = true;
+	      }
+	      if(go) {
+		nextEvent->action(Main::player);
 	      }
 	    }
 	  }
@@ -204,8 +202,8 @@ namespace OpMon{
       updateElements();
   
       if(dialog){
-	dialog.updateTextAnimation();
-	dialog.draw();
+	this->dialog.updateTextAnimation();
+	this->dialog.draw();
       } else if(Model::Data::player.getPosition().isAnim()){
 	if(Model::Data::player.getPosition().isMoving()){
 	  switch(Model::Data::player.getPosition().getDir()){

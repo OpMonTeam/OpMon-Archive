@@ -2,39 +2,39 @@
 
 namespace OpMon{
   namespace Controller{
-    void OverworldCtrl::checkEvents(sf::Event& events, View::Overworld& overworld, bool dialog){
+    void OverworldCtrl::checkEvents(sf::Event const& events, View::Overworld& overworld, bool dialog){
 	
-      switch(Main::mainframe.events.type) {
+      switch(events.type) {
       case sf::Event::KeyPressed:
-	if(Main::mainframe.events.key.code == sf::Keyboard::Equal) {
+	if(events.key.code == sf::Keyboard::Equal) {
 	  debugMode = !debugMode;
 	}
 	if(debugMode) {
-	  if(Main::mainframe.events.key.code == sf::Keyboard::F10) {
+	  if(events.key.code == sf::Keyboard::F10) {
 	    overworld.printlayer[0] = !overworld.printlayer[0];
 	  }
-	  if(Main::mainframe.events.key.code == sf::Keyboard::F11) {
+	  if(events.key.code == sf::Keyboard::F11) {
 	    overworld.printlayer[1] = !overworld.printlayer[1];
 	  }
-	  if(Main::mainframe.events.key.code == sf::Keyboard::F12) {
+	  if(events.key.code == sf::Keyboard::F12) {
 	    overworld.printlayer[2] = !overworld.printlayer[2];
 	  }
 
-	  if(Main::mainframe.events.key.code == sf::Keyboard::F5) {
+	  if(events.key.code == sf::Keyboard::F5) {
 	    tp("Mom's room", sf::Vector2i(0, 1), true);
-	  } else if(Main::mainframe.events.key.code == sf::Keyboard::F6) {
+	  } else if(events.key.code == sf::Keyboard::F6) {
 	    tp("Player's room", sf::Vector2i(0, 0), true);
-	  } else if(Main::mainframe.events.key.code == sf::Keyboard::F1) {
+	  } else if(events.key.code == sf::Keyboard::F1) {
 	    tp("Fauxbourg Euvi", sf::Vector2i(25, 28), true);
-	  } else if(Main::mainframe.events.key.code == sf::Keyboard::F2) {
+	  } else if(events.key.code == sf::Keyboard::F2) {
 	    tp("Player's home", sf::Vector2i(8, 14), true);
-	  } else if(Main::mainframe.events.key.code == sf::Keyboard::F3) {
+	  } else if(events.key.code == sf::Keyboard::F3) {
 	    tp("Laboratory", sf::Vector2i(15, 14), true);
-	  } else if(Main::mainframe.events.key.code == sf::Keyboard::F4) {
+	  } else if(events.key.code == sf::Keyboard::F4) {
 	    tp("Rival's house", sf::Vector2i(8, 14), true);
-	  } else if(Main::mainframe.events.key.code == sf::Keyboard::F7){
+	  } else if(events.key.code == sf::Keyboard::F7){
 	    tp("Route 14", sf::Vector2i(0, 31), true);
-	  } else if(Main::mainframe.events.key.code == sf::Keyboard::F8){
+	  } else if(events.key.code == sf::Keyboard::F8){
 	    tp("MysteriouCity", sf::Vector2i(12, 0), true);
 	  }
 	}
@@ -72,7 +72,7 @@ namespace OpMon{
       if(dialog){
 	checkEventsDialog(events, overworld);
       }else{
-	checkEventsNoDialog(events, overworld);
+	checkEventsNoDialog(overworld);
       }
       
             
@@ -90,10 +90,10 @@ namespace OpMon{
       }
     }
 
-    void Overworld::checkEventsDialog(sf::Event& events, View::Overworld& overworld){
-      switch(Main::mainframe.events.type) {	  
+    void Overworld::checkEventsDialog(sf::Event const& events, View::Overworld& overworld){
+      switch(events.type) {	  
       case sf::Event::KeyPressed:
-	if(Main::mainframe.events.key.code == sf::Keyboard::Space) {
+	if(events.key.code == sf::Keyboard::Space) {
 	  overworld.getDialog()->pass();
 	}
 	break;
@@ -102,7 +102,7 @@ namespace OpMon{
       } 
     }
 
-    void OverworldCtrl::checkEventsNoDialog(sf::Event& events, View::Overworld& overworld){
+    void OverworldCtrl::checkEventsNoDialog(View::Overworld& overworld){
       if(!gameloop.getPlayer().getPosition().isAnim()) {
 	if(isKeyPressed(sf::Keyboard::Return)) {
 	  int lx = gameloop.getPlayer().getPosition().getPosition().x;
@@ -126,22 +126,20 @@ namespace OpMon{
 	  }
 	  vector<Event *> events = Model::Data::World::map.at(gameloop.getPlayer().getMapID()).getEvent(sf::Vector2i(lx SQUARES, ly SQUARES));
 	  
-	  if(events.size() > 0) {
-	    for(unsigned int i = 0; i < events.size(); i++) {
-	      if(events[i]->getEventTrigger() == Events::EventTrigger::PRESS) {
-		bool go = false;
-		if(((events[i]->getSide() & SIDE_UP) == SIDE_UP) && ppDir == Side::TO_UP) {
-		  go = true;
-		} else if(((events[i]->getSide() & SIDE_DOWN) == SIDE_DOWN) && ppDir == Side::TO_DOWN) {
-		  go = true;
-		} else if(((events[i]->getSide() & SIDE_RIGHT) == SIDE_RIGHT) && ppDir == Side::TO_RIGHT) {
-		  go = true;
-		} else if(((events[i]->getSide() & SIDE_LEFT) == SIDE_LEFT) && ppDir == Side::TO_LEFT) {
-		  go = true;
-		}
-		if(go) {
-		  events[i]->action(Main::player);
-		}
+	  for(unsigned int i = 0; i < events.size(); i++) {
+	    if(events[i]->getEventTrigger() == Events::EventTrigger::PRESS) {
+	      bool go = false;
+	      if(((events[i]->getSide() & SIDE_UP) == SIDE_UP) && ppDir == Side::TO_UP) {
+		go = true;
+	      } else if(((events[i]->getSide() & SIDE_DOWN) == SIDE_DOWN) && ppDir == Side::TO_DOWN) {
+		go = true;
+	      } else if(((events[i]->getSide() & SIDE_RIGHT) == SIDE_RIGHT) && ppDir == Side::TO_RIGHT) {
+		go = true;
+	      } else if(((events[i]->getSide() & SIDE_LEFT) == SIDE_LEFT) && ppDir == Side::TO_LEFT) {
+		go = true;
+	      }
+	      if(go) {
+		events[i]->action(Main::player);
 	      }
 	    }
 	  }

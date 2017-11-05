@@ -67,6 +67,8 @@ namespace OpMon{
       }
 
       void del();
+
+      static std::vector<sf::String> actualDialog;
       
     private:
       sf::View camera;
