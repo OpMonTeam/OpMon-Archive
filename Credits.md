@@ -2,21 +2,11 @@
 ## Programmer, project creator : Jlppc
 ## Game and graphics designer, project co-creator : Navet56
 ## Collaborators since the very beginning : Aerzia
-## and Silvermoon who created some OpMons.
 
 ## OpFriends (People who helped the project a lot. Big thanks to them!) : <ul>
-<li><h3>BAKFR (Collaborator and advisor)</h3></li>
-<li><h3>BakomVarjeFura (advisor)</h3></li>
+<li><h3>BAKFR</h3></li>
+<li><h3>gberthou</h3></li>
 </ul>
-
-<!--## Collaborators (Push access to the repository) : <ul>
-<li><h3>BAKFR</h3></li>
-</ul>-->
-
-<!--## Advisors : <ul>
-<li><h3>BAKFR</h3></li>
-<li><h3>BakomVarjeFura</h3></li>
-</ul>-->
 
 ## Contributors : <ul>
 <li><h3>linkyFR</h3></li>
@@ -24,7 +14,9 @@
 <li><h3>dogmotion</h3></li>
 <li><h3>imZeRRkA</h3></li>
 <li><h3>atxtechcrew</h3></li>
-<li><h3>jseutter</h3></li></ul>
+<li><h3>jseutter</h3></li>
+<li><h3>Imperator Dei</h3></li>
+<li><h3>Silvermoon</h3></li></ul>
 
 ## Inspirations :
 <li><h3>Satoshi Tajiri (Pokemon creation)</h3></li>
