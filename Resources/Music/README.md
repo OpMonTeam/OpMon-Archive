@@ -1,16 +1,17 @@
-## Ces musiques sont en bêta! Il y a encore surement des imperfections! Merci de ne pas en tenir compte!
+## Warning ! The musics are in ALPHA.
 
-# Crédits :
+# Credits :
 <ul>
-<li>Mystovania : Remix de Megalovania, Composé par Toby Fox, Remixé par Jlppc</li>
-<li>Thème de l'évolution : Remix du thème de l'evolution de Pokémon, Propriété de Game Freak</li>
-<li>Plusieurs musiques sont sous licenses Creative Commons ou GPL, et viennent du site OpenGameArt.org, voici la liste :</li>
+<li>Mystovania : Megalovania Remix , Compoded by Toby Fox, Remixed by Jlppc</li>
+<li>Evolution Theme : Pokemon Evolution Theme remix, Game Freak property</li>
+<li>Many musics are in the license Creative Commons or GPL, and other musics come from  OpenGameArt.org, the list :</li>
 <li>route1.ogg : http://opengameart.org/content/adventure-begins little town - orchestra : the Garritan Personal Orchestra.</li>
 </ul>
 
-# Musiques originales:
-Les musiques originales peuvent être réutilisées sous condition de créditer l'auteur. Elles sont sous license Creative Commons Attribution Share Alike 4.0, que vous pouvez voir dans le fichier LICENSE de ce dossier.  
-Shéma : nomdefichier.extention - Thème de X (Nom de la musique) : Composé par compositeur
+# Originals musics:
+Original music can be reused provided that you credit the author. They are licensed under Creative Commons Attribution Share Alike 4.0, which you can see in the LICENSE file of this folder.  
+<!--Shéma : nomdefichier.extention - Thème de X (Nom de la musique) : Composé par compositeur-->
+(In French)
 <ul>
 <li>Faubourgeuvi.ogg - Thème de faubourg Euvi (Startostalgic) : Composé par Jlppc</li>
 <li>regimys_theme.ogg - Thème de Regimys (A Regimys) : Composé par Navet56</li>
