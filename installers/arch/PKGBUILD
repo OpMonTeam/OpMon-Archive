@@ -1,20 +1,23 @@
 # Contributor: Navet56 <evandib@gmail.com> 
 # Maintainer: Navet56 <evandib@gmail.com> 
+#NOT FUNCTIONAL NOW, PLEASE WAIT
 
 pkgname=opmon
-pkgver=0.13
-pkgrel=2 
+pkgver=0.14
+pkgrel=1
 license=('GPL') 
 arch=('x86_64') 
 pkgdesc="A open source RPG monster fighting game" 
 url="http://opmon-game.ga" 
 depends=('sfml' 'gcc' 'libstdc++5' 'smpeg') 
-makedepends=('make') 
-source=(opmon-arch.tar.gz) 
-md5sums=('325aacc7d397d127d82b631a3013bb3a') 
+makedepends=('make''cmake') 
+source=(soon) 
+md5sums=('(soon)') 
 
 build() { 
 cd $srcdir/opmon-arch
+
+cmake || return 1
 
 make || return 1
 
