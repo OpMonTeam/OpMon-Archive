@@ -5,5 +5,5 @@
 
 ## Others resources
 
-* "Statics" and "Ground" by [Kelvin Shadewing](http://www.kelvinshadewing.net/res/graphics/rpg16) 
-* "Grass, Sand, Snow" by [PastTheFuture](https://opengameart.org/users/jesse-mccarthy)
+* "Statics" and "Ground" by [Kelvin Shadewing](http://www.kelvinshadewing.net/res/graphics/rpg16) (License CC BY 3.0)
+* "Grass, Sand, Snow" by [PastTheFuture](https://opengameart.org/users/jesse-mccarthy) (License CC BY 4.0)
