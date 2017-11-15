@@ -3,7 +3,7 @@
 ## Game and graphics designer, project co-creator : Navet56
 ## Collaborators since the very beginning : Aerzia
 
-## OpFriends (People who helped the project a lot. Big thanks to them!) : <ul>
+## OpFriends (People who helped the project a lot. Big thanks to them!) : 
 <li><h3>BAKFR</h3></li>
 <li><h3>gberthou</h3></li>
 </ul>
@@ -32,10 +32,14 @@
 <li><h3>Our families, friends, and everyone who learnt us what we know today!</h3></li>
 <li><h4>And many others...</h4></li>
 </ul>
+
 ## Artists :
+
 ### Originals
+
 * Navet56
 * Aerzia
 * Silvermoon
+
 ### Others
 Look [here](https://github.com/jlppc/OpMon/blob/master/Resources/README.md)
