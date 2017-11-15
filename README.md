@@ -62,7 +62,7 @@ See the controls of the game OpMon [here](http://opmon-game.ga/controls.html)
 
 * [Journal de développement](https://github.com/jlppc/OpMon/wiki/Journal-du-développement)
 * [Bilans mensuels, récapitulatifs des nouveautés (en anglais)](https://github.com/jlppc/OpMon/wiki/Monthly-reports)
-* [Site web du jeu](opmon-game.ga)
+* [Site web du jeu](http://opmon-game.ga)
 * [Dépot du site web](https://github.com/jlppc/Site-OpMon)
 * [Crédits](https://github.com/jlppc/OpMon/blob/master/Credits.md)
 
