@@ -32,3 +32,10 @@
 <li><h3>Our families, friends, and everyone who learnt us what we know today!</h3></li>
 <li><h4>And many others...</h4></li>
 </ul>
+## Artists :
+### Originals
+* Navet56
+* Aerzia
+* Silvermoon
+### Others
+Look [here](https://github.com/jlppc/OpMon/blob/master/Resources/README.md)
