@@ -70,8 +70,8 @@ See the controls of the game OpMon [here](http://opmon-game.ga/controls.html)
 href="http://opmon-game.ga"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Resources/Other/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 
 ### Prochaines versions :
-* Alpha 0.13.1 : Ajout de descriptions d'objets et ajout du nouveau système de maps
-* Alpha 0.14 : Ajout du premier combat entre dresseurs
+* Alpha 0.14 : Ajout de descriptions d'objets et ajout du nouveau système de maps
+* Alpha 0.15 : Ajout du premier combat entre dresseurs
 * [Voir la RoadMap](https://github.com/jlppc/OpMon/wiki/ROADMAP)
 
 <br/>
