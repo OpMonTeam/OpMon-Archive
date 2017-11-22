@@ -19,7 +19,22 @@ UNS
 namespace OpMon{
   namespace View{
 
-
+    void Overworld::setMusic(std::string const& path){
+      if(path != musicPath){
+	
+      
+	musicPath = path;
+	if(music != nullptr){
+	  music->stop();
+	  delete(music);
+	}
+	music = new sf::Music();
+	music->openFromFile(path);
+	music->setLoop(true);
+      }
+    }
+						      
+    
     void Overworld::moveCamera(Side dir){
       switch(dir){
       case Side::TO_UP:
@@ -36,14 +51,24 @@ namespace OpMon{
 	break;
       }
     }
+
+    void Overworld::printElements(sf::RenderTexture& frame){
+      for(std::string const& i : current->getAnimatedElements()) {
+	Model::Data::Elements::elementsCount[i]++;
+        if(Model::Data::Elements::elementsCount[i] >= (int) Model::Data::Elements::animatedElements[i].size()) {
+	  Model::Data::Elements::elementsCount[i] = 0;
+        }
+        Model::Data::Elements::elementsSprites[i].setTexture(animatedElements[i][elementsCount[i]]);
+        frame.draw(Model::Data::Elements::elementsSprites[i]);
+      }
+    }
     
     void Overworld::tp(std::string toTp, sf::Vector2i pos){
       Model::Data::player.tp(toTp, pos);
       current = &Model::Data::World::maps.at(Model::Data::player.getMapId());
       character.setPosition(8 CASES + pos.x CASES - 16, 8 CASES + pos.y CASES);
-      if(music != current->getBg()) {
-	music->stop();
-	music = current->getBg();
+      if(musicPath != current->getBg()) {
+	setMusic(current->getBg());
 	music->play();
       }
 
@@ -51,9 +76,9 @@ namespace OpMon{
       delete(layer2);
       delete(layer3);
   
-      layer1 = new MapLayer(current->getLayer1());
-      layer2 = new MapLayer(current->getLayer2());
-      layer3 = new MapLayer(current->getLayer3());
+      layer1 = new MapLayer(current->getDimentions(), current->getLayer1());
+      layer2 = new MapLayer(current->getDimentions(), current->getLayer2());
+      layer3 = new MapLayer(current->getDimentions(), current->getLayer3());
       tpCount = 0;
     }
 
@@ -72,13 +97,16 @@ namespace OpMon{
       if(music != nullptr){
 	music->play();
       }else{
-	handleError("Error : Music = nullptr in Overworld.", false);
+	setMusic(current->getBg());
+	music->play();
+      }
       }
       Window::frame.setView(camera);
     }
 
     void del(){
       music->stop();
+      delete(music);
       delete(layer1);
       delete(layer2);
       delete(layer3);
@@ -172,7 +200,7 @@ namespace OpMon{
       }
       Window::frame.setView(Window::frame.getDefaultView());
       Window::frame.setView(camera);
-      updateElements();
+      printElements();
   
       if(dialog){
 	this->dialog.updateTextAnimation();
