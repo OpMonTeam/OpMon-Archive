@@ -68,13 +68,18 @@ namespace OpMon{
 
       void del();
 
+      void setMusic(std::string const& path);
+      
       static std::vector<sf::String> actualDialog;
       
     private:
       sf::View camera;
       sf::Sprite character;
       Map* current = nullptr;
+      
       sf::Music *music = nullptr;
+      std::string musicPath = "";
+      
       MapLayer *layer1 = nullptr;
       MapLayer *layer2 = nullptr;
       MapLayer *layer3 = nullptr;
