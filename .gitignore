@@ -14,6 +14,8 @@ exeLinux/log.txt
 exeLinux/errLog.txt
 exeLinux/logs/log.txt
 exeLinux/logs/errLog.txt
+exeLinux/logs
+exeLinux/logs/
 exeLinux/OpMon
 exeLinux/OpMon-Debug
 *vgcore*
