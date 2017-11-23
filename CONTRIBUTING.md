@@ -15,7 +15,7 @@ You can see the bugs or improvements [here](https://github.com/jlppc/OpMon/issue
 You can contact us on the [discord of the project](https://discord.gg/XwyKFzh) or by email to know exactly what to do.
 The organization of the project is done [here](https://github.com/jlppc/OpMon/projects)
 The todo list is [here](https://github.com/jlppc/OpMon/wiki/Journal-du-d%C3%A9veloppement) in French 
-and [here](https://translate.google.com/translate?act=url&depth=1&hl=fr&ie=UTF8&prev=_t&rurl=translate.google.fr&sl=fr&sp=nmt4&tl=en&u=https://github.com/jlppc/OpMon/wiki/Journal-du-d%25C3%25A9veloppement) in English.
+and [here](https://translate.google.com/translate?act=url&depth=1&hl=fr&ie=UTF8&prev=_t&rurl=translate.google.fr&sl=fr&sp=nmt4&tl=en&u=https://github.com/jlppc/OpMon/wiki/Journal-du-d%25C3%25A9veloppement) in English (Google Translated).
 You can also look the [rules](https://github.com/jlppc/OpMon/blob/master/CODE_OF_CONDUCT.md).
 
 ## How do I contribute code?
@@ -23,4 +23,4 @@ OpMon Lazuli uses the ["Fork & Pull"](https://help.github.com/articles/using-pul
 method for code contributions.
 
 ## Making a Pull Request
-**When you're ready to make a pull request, submit your pull direclty in the *master* branch.**
+**When your changes are done, you can create a pull request. If you have created a new brnch in your fork, submit your modifications to the base branch of yours. If you have directly modified the branch, submit your modifications directly in the corresponding branch of the repository.**
