@@ -71,7 +71,7 @@ namespace OpMon{
 	setMusic(current->getBg());
 	music->play();
       }
-
+      
       delete(layer1);
       delete(layer2);
       delete(layer3);
@@ -80,6 +80,12 @@ namespace OpMon{
       layer2 = new MapLayer(current->getDimentions(), current->getLayer2());
       layer3 = new MapLayer(current->getDimentions(), current->getLayer3());
       tpCount = 0;
+      
+      for(auto itor = current->getEvents().begin(); itor != current->getEvents().end(); ++itor){
+	eventsSprites.try_emplace(itor, new sf::Sprite());
+	eventsSprites[itor].setPosition(sf::Vector2f((itor->getPosition().x+8)*32, (itor->getPosition().y+8)*32));
+	eventsSprites[itor].setTexture(itor->getTexture());
+      }
     }
 
     void init(){
@@ -161,10 +167,11 @@ namespace OpMon{
       if((debugMode ? printlayer[1] : true)) {
 	Window::frame.draw(*layer2);
       }
-      //Drawing event under the player
-      for(Event *event : current->getEvents()) {
-	if(event->getPosition().y <= ppPosY) {
-	  Window::frame.draw(*event->getSprite());
+      //Drawing events under the player
+      for(auto itor = eventsSprites.begin(); itor != eventsSprites.end(); ++itor) {
+	if(itor->first->getPosition().y <= ppPosY) {
+	  itor->second.setTexture(itor->first->getTexture());
+	  Window::frame.draw(itor->second);
 	}
       }
       //Sets the character's texture.
@@ -186,9 +193,10 @@ namespace OpMon{
       //Drawing character
       Window::frame.draw(character);
       //Drawing the events above the player
-      for(Event *event : current->getEvents()) {
-	if(event->getPosition().y > ppPosY) {
-	  Window::frame.draw(*event->getSprite());
+      for(auto itor = eventsSprites.begin(); itor != eventsSprites.end(); ++itor) {
+	if(itor->first->getPosition().y > ppPosY) {
+	  itor->second.setTexture(itor->first->getTexture());
+	  Window::frame.draw(itor->second);
 	}
       }
       //Drawing the third layer

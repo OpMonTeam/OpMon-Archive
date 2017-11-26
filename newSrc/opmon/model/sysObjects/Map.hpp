@@ -54,7 +54,7 @@ namespace OpMon{
         events.push_back(event);
       }
       std::vector<Event *> getEvent(sf::Vector2i position) const;
-      const std::vector<Event *> getEvents() const {
+      std::vector<Event *> getEvents() {
         return events;
       };
       void debugInfo();
