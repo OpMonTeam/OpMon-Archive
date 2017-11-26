@@ -30,6 +30,10 @@ namespace OpMon{
       sf::Sprite& getCharacter(){
 	return character;
       }
+
+      Model::Map* getCurrent(){
+	return current;
+      }
   
       GameStatus operator()(bool dialog, int frame);
   
@@ -71,14 +75,18 @@ namespace OpMon{
       void setMusic(std::string const& path);
       
       static std::vector<sf::String> actualDialog;
+
+      
       
     private:
       sf::View camera;
       sf::Sprite character;
-      Map* current = nullptr;
+      Model::Map* current = nullptr;
       
       sf::Music *music = nullptr;
       std::string musicPath = "";
+
+      std::map<std::vector::iterator, sf::Sprite> eventsSprites;
       
       MapLayer *layer1 = nullptr;
       MapLayer *layer2 = nullptr;

@@ -60,8 +60,10 @@ namespace OpMon{
       }
     }
 
-    void EventsCtrl::updateEvent(Player& player){
-      //paste here the code in Maps::updateEvents
+    void EventsCtrl::updateEvent(std::vector<Event*>& events, Player& player){
+      for(Event* event : events) {
+        event->update(player);
+      }
     }
   }
 }

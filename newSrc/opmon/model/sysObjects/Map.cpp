@@ -53,8 +53,6 @@ std::vector<Event *> Map::getEvent(sf::Vector2i position) const {
 }
 
 void Map::updateEvents(Player &player) {
-    for(Event *event : events) {
-        event->update(player);
-    }
+
 }
 

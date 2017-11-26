@@ -8,18 +8,15 @@ UNS
 using namespace Events;
 
 Event::~Event() {
-    delete(sprite);
+    
 }
 
-Event::Event(sf::Texture &baseTexture, std::vector<sf::Texture>& otherTextures, EventTrigger eventTrigger, sf::Vector2f const& position, int sides, bool passable) :
-    baseTexture(baseTexture), otherTextures(otherTextures), eventTrigger(eventTrigger),
+Event::Event(std::vector<sf::Texture>& otherTextures, EventTrigger eventTrigger, sf::Vector2f const& position, int sides, bool passable) :
+    otherTextures(otherTextures), eventTrigger(eventTrigger),
     position(position),
     passable(passable),
-    sides(sides) {
-    sprite = new sf::Sprite();
-    sprite->setTexture(this->baseTexture);
-    sf::Vector2f posMap((position.x+8)*32, (position.y+8)*32);
-    sprite->setPosition(posMap);
+    sides(sides),
+    currentTexture(otherTextures.begin()){
 }
 
 
@@ -35,25 +32,25 @@ namespace DoorType {
 std::vector<sf::Texture> NORMAL, SHOP;
 }
 
-TPEvent::TPEvent(sf::Texture &baseTexture, std::vector<sf::Texture>& otherTextures, EventTrigger eventTrigger, sf::Vector2f const& position, sf::Vector2i const& tpPos, string const& map, Side ppDir, int sides, bool passable):
-    Event(baseTexture, otherTextures, eventTrigger, position, sides, passable), tpCoord(tpPos), map(map), ppDir(ppDir) {
+TPEvent::TPEvent(std::vector<sf::Texture>& otherTextures, EventTrigger eventTrigger, sf::Vector2f const& position, sf::Vector2i const& tpPos, string const& map, Side ppDir, int sides, bool passable):
+    Event(otherTextures, eventTrigger, position, sides, passable), tpCoord(tpPos), map(map), ppDir(ppDir) {
 
 }
 
 DoorEvent::DoorEvent(std::vector<sf::Texture> &doorType, sf::Vector2f const& position, sf::Vector2i const& tpPos, string const& map, EventTrigger eventTrigger, Side ppDir, int sides, bool passable):
-    Event(doorType[0], doorType, eventTrigger, position, sides, passable),
-    TPEvent(doorType[0], doorType, eventTrigger, position, tpPos, map, ppDir, sides, passable) {
+    Event(doorType, eventTrigger, position, sides, passable),
+    TPEvent(doorType, eventTrigger, position, tpPos, map, ppDir, sides, passable) {
     this->sprite->move(0, -6);
     if(&doorType[0] == &DoorType::SHOP[0]) {
-        this->sprite->move(-4, 0);
+        this->position.x -= 4
         this->doorType = 1;
     }else{
         this->doorType = 0;
     }
 }
 
-TalkingEvent::TalkingEvent(sf::Texture &baseTexture, std::vector<sf::Texture>& otherTextures, sf::Vector2f const& position, std::vector<OpString> const& dialogKeys, int sides, EventTrigger eventTrigger, bool passable):
-    Event(baseTexture, otherTextures, eventTrigger, position, sides, passable), dialogKeys(dialogKeys) {
+TalkingEvent::TalkingEvent(std::vector<sf::Texture>& otherTextures, sf::Vector2f const& position, std::vector<OpString> const& dialogKeys, int sides, EventTrigger eventTrigger, bool passable):
+    Event(otherTextures, eventTrigger, position, sides, passable), dialogKeys(dialogKeys) {
     this->reloadKeys();
 }
 
@@ -66,14 +63,14 @@ void TalkingEvent::reloadKeys() {
 
 LockedDoorEvent::LockedDoorEvent(std::vector<sf::Texture> &doorType, Item *needed, sf::Vector2f const& position, sf::Vector2i const& tpPos, string const& map, Side ppDir, EventTrigger eventTrigger, bool consumeItem,int sides, bool passable) :
     DoorEvent(doorType, position, tpPos, map, eventTrigger, ppDir, sides, passable),
-    Event(this->baseTexture, this->otherTextures, eventTrigger, position, sides, passable),
-    TalkingEvent(this->baseTexture, this->otherTextures, position, LockedDoorEvent::keysLock, sides, eventTrigger, passable),
+    Event(this->otherTextures, eventTrigger, position, sides, passable),
+    TalkingEvent(this->otherTextures, position, LockedDoorEvent::keysLock, sides, eventTrigger, passable),
     needed(needed), consumeItem(consumeItem) {
 
 }
 
   CharacterEvent::CharacterEvent(std::string texturesKey, sf::Vector2f const& position, MoveStyle moveStyle, EventTrigger eventTrigger, std::vector<Side> predefinedPath, bool passable, int sides):
-    Event(Initializer::charaTextures[texturesKey][0], Initializer::charaTextures[texturesKey], eventTrigger, position, sides, passable),
+    Event(Initializer::charaTextures[texturesKey], eventTrigger, position, sides, passable),
     moveStyle(moveStyle) {
     sprite->setScale(2, 2);
     sprite->setOrigin(16, 16);
@@ -84,9 +81,9 @@ LockedDoorEvent::LockedDoorEvent(std::vector<sf::Texture> &doorType, Item *neede
 }
 
   TalkingCharaEvent::TalkingCharaEvent(std::string texturesKey, sf::Vector2f const& position, std::vector<OpString> const& dialogKeys, EventTrigger eventTrigger, MoveStyle moveStyle, std::vector<Side> predefinedPath, bool passable, int sides):
-  Event(Initializer::charaTextures[texturesKey][0], Initializer::charaTextures[texturesKey], eventTrigger, position, sides, passable),
+  Event(Initializer::charaTextures[texturesKey], eventTrigger, position, sides, passable),
     CharacterEvent(texturesKey, position, moveStyle, eventTrigger, predefinedPath, passable, sides),
-    TalkingEvent(Initializer::charaTextures[texturesKey][0], Initializer::charaTextures[texturesKey], position, dialogKeys, sides, eventTrigger, passable) {
+    TalkingEvent(Initializer::charaTextures[texturesKey], position, dialogKeys, sides, eventTrigger, passable) {
 
 }
 
@@ -188,31 +185,31 @@ void CharacterEvent::update(Player &player) {
         }
     }
     if(anim >= 0 && !anims) {
-      sprite->setTexture(otherTextures[(int) (anim + 4)]);
+      currentTexture = otherTextures.begin() + ((int) anim + 4);
         animsCounter++;
         anims = animsCounter > 8;
     } else if(anim >= 0 && anims) {
-      sprite->setTexture(otherTextures[(int) (anim + 8)]);
+      currentTexture = otherTextures.begin() + ((int) anim + 8);
         animsCounter++;
         if(animsCounter > 16) {
             anims = false;
             animsCounter = 0;
         }
     } else if(anim < 0) {
-      sprite->setTexture(otherTextures[(int) charaDir]);
+      currentTexture = otherTextures.begin() + (int) charaDir;
     }
 
     switch(anim) {
     case Side::TO_UP:
         if(frames - startFrames >= 7) {
 	  if(moving == Side::TO_UP) {
-                sprite->move(0, -4);
+	    position -= sf::Vector2f(0, -4);//TODO : Find a solution about the coordinates problem (Map / Pixels)
             }
 	  anim = Side::NO_MOVE;
 	  moving = Side::NO_MOVE;
         } else {
             if(moving == Side::TO_UP) {
-                sprite->move(0, -4);
+	      position -= sf::Vector2f(0, -4);
             }
         }
         break;
@@ -221,13 +218,13 @@ void CharacterEvent::update(Player &player) {
     case Side::TO_DOWN:
         if(frames - startFrames >= 7) {
             if(moving == Side::TO_DOWN) {
-                sprite->move(0, 4);
+                position -= sf::Vector2f(0, 4);
             }
             anim = Side::NO_MOVE;
             moving = Side::NO_MOVE;
         } else {
             if(moving == Side::TO_DOWN) {
-                sprite->move(0, 4);
+                position -= sf::Vector2f(0, 4);
             }
         }
         break;
@@ -236,13 +233,13 @@ void CharacterEvent::update(Player &player) {
     case Side::TO_LEFT:
         if(frames - startFrames >= 7) {
             if(moving == Side::TO_LEFT) {
-                sprite->move(-4, 0);
+                position -= sf::Vector2f(-4, 0);
             }
             anim = Side::NO_MOVE;
             moving = Side::NO_MOVE;
         } else {
             if(moving == Side::TO_LEFT) {
-                sprite->move(-4, 0);
+                position -= sf::Vector2f(-4, 0);
             }
         }
         break;
@@ -251,13 +248,13 @@ void CharacterEvent::update(Player &player) {
     case Side::TO_RIGHT:
         if(frames - startFrames >= 7) {
             if(moving == Side::TO_RIGHT) {
-                sprite->move(4, 0);
+                position -= sf::Vector2f(4, 0);
             }
             anim = Side::NO_MOVE;
             moving = Side::NO_MOVE;
         } else {
             if(moving == Side::TO_RIGHT) {
-                sprite->move(4, 0);
+                position -= sf::Vector2f(4, 0);
             }
         }
         break;
