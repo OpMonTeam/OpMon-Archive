@@ -29,6 +29,10 @@ namespace OpMon{
     Player& getPlayer(){
       return player;
     }
+
+    View::Overworld& getOverworld(){
+      return overworld;
+    }
     
   private:
     sf::Event events;

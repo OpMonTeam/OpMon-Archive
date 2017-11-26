@@ -25,6 +25,9 @@ GameStatus GameLoop::operator()(){
 	}
       }
       Controller::OverworldCtrl::checkEvents(events, overworld, dialog, player);
+      if(overworld->getCurrent() != nullptr){
+	Controller::EventsCtrl::updateEvent(overworld->getCurrent->getEvents(), player);
+      }
       Controller::PlayerCtrl::checkMove(player, events);
       status = overworld(dialog, frames);
     }
