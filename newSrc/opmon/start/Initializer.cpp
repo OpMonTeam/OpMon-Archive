@@ -297,7 +297,7 @@ namespace OpMon{
   
     void initTextures() {
   
-      tileset.loadFromFile(getPath(RESSOURCES_PATH + "maps/tileset.png"));
+      tileset.loadFromFile(getPath(RESSOURCES_PATH + "tileset/tileset.png"));
       if(!texturePP[(int) Side::TO_DOWN].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp0.png"))){
 	handleError("Failed to load one of the PP sprites", false);
       }
