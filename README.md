@@ -16,7 +16,7 @@ OPMon is a Pokémon-inspired game project imagined in 2012 and started in septem
 
 ### Build
 
-## /!\Thank you for waiting until the end of the reorganization to build the game or plays an old version in Release
+## /!\Thank you for waiting until the end of the reorganization to build the game. Please plays an old version in Release
 
 The build system use *cmake*.
 
