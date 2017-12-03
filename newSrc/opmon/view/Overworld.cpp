@@ -83,7 +83,7 @@ namespace OpMon{
       
       for(auto itor = current->getEvents().begin(); itor != current->getEvents().end(); ++itor){
 	eventsSprites.try_emplace(itor, new sf::Sprite());
-	eventsSprites[itor].setPosition(sf::Vector2f((itor->getPosition().x+8)*32, (itor->getPosition().y+8)*32));
+	eventsSprites[itor].setPosition();
 	eventsSprites[itor].setTexture(itor->getTexture());
       }
     }

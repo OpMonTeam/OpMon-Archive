@@ -43,6 +43,7 @@ namespace OpMon{
       sf::Vector2f position;
       bool passable;
       int sides;
+      sf::Vector2f mapPos;
     public:
       Event(std::vector<sf::Texture>& otherTextures, Events::EventTrigger eventTrigger, sf::Vector2f const& position, int sides, bool passable);
       virtual ~Event();
@@ -62,6 +63,10 @@ namespace OpMon{
 
       sf::Vector2f getPosition() const {
         return position;
+      }
+
+      sf::Vector2f getPositionMap() const {
+	return mapPos;
       }
 
       bool isPassable() const {
