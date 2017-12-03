@@ -13,10 +13,12 @@ Event::~Event() {
 
 Event::Event(std::vector<sf::Texture>& otherTextures, EventTrigger eventTrigger, sf::Vector2f const& position, int sides, bool passable) :
     otherTextures(otherTextures), eventTrigger(eventTrigger),
-    position(position),
+    position(sf::Vector2f((position.x+8)*32, (position.y+8)*32)),
+    mapPos(position),
     passable(passable),
     sides(sides),
     currentTexture(otherTextures.begin()){
+  
 }
 
 
@@ -204,7 +206,7 @@ void CharacterEvent::update(Player &player) {
         if(frames - startFrames >= 7) {
 	  if(moving == Side::TO_UP) {
 	    position -= sf::Vector2f(0, -4);//TODO : Find a solution about the coordinates problem (Map / Pixels)
-            }
+          }
 	  anim = Side::NO_MOVE;
 	  moving = Side::NO_MOVE;
         } else {
