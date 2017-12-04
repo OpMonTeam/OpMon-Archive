@@ -20,15 +20,14 @@ namespace OpMon{
     class MainMenu : public Interface {
 
     public:
-      void initVars();//Must be moved
-      void verifVars();//Must be moved
-      void deleteVars();//Must be renamed
+      MainMenu();
+      void verifVars();
+      void del();
       
-      int mainMenu();//Must be moved
+      void init();
 
-      void init();//Must be completed
-      GameStatus operator()();//New name of boucle0 (Must rename things in the source)
-      void initStrings();//Must be moved
+      GameStatus operator()();
+      void initStrings();
 
       
     private:
