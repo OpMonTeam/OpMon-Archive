@@ -38,7 +38,12 @@ namespace OpMon{
       }
   
       GameStatus operator()(bool dialog, int frame);
-  
+
+      GameStatus operator()(){
+	handleError("Called the operator() of Overworld. NEVER call this.", true);
+	return GameStatus::STOP;
+      }
+      
       void tp(std::string toTp, sf::Vector2i pos);
       
       sf::Music* getMusic(){
