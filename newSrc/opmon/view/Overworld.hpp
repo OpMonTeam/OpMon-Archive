@@ -16,10 +16,12 @@
 #define SQUARES_SIZE 32
 #define SQUARES * SQUARES_SIZE
 
+#include "Interface.hpp"
+
 namespace OpMon{
   namespace View{
 
-    class Overworld {
+    class Overworld : public Interface{
     public:
 
       sf::View& getCamera(){
@@ -38,7 +40,7 @@ namespace OpMon{
       GameStatus operator()(bool dialog, int frame);
   
       void tp(std::string toTp, sf::Vector2i pos);
-
+      
       sf::Music* getMusic(){
 	return music;
       }
@@ -79,6 +81,9 @@ namespace OpMon{
       
       
     private:
+
+      void init();
+      
       sf::View camera;
       sf::Sprite character;
       Model::Map* current = nullptr;
@@ -112,7 +117,6 @@ namespace OpMon{
 
       bool debugMode = false;
 
-      bool launched = false;
     };
 
   }
