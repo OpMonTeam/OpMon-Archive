@@ -16,7 +16,7 @@ namespace OpMon{
       exit.setString(kget("title.4"));
     }
 
-    void MainMenu::initVars() {
+    void MainMenu::MainMenu() {
       sf::Text *textPos[4] = {&play, &charge, &options, &exit};
       for(int i = 0, j = 175; i < 4; i++) {
         curPos[i].x = 10;
@@ -53,27 +53,95 @@ namespace OpMon{
       //Mix_Volume(2, MIX_MAX_VOLUME / 4);
       //Mix_Volume(1, MIX_MAX_VOLUME);
       //Mix_Volume(0, MIX_MAX_VOLUME / 2);
-      Main::mainframe.optionsmenu.initVars();
 
 
 
       bgMusTitle.setLoop(true);
     }
 
-    void MainMenu::verifVars() {
-      if(bg.getTexture() == NULL) {
-        handleError("Missing menu bottom texture", true);
+
+    void MainMenu::del() {
+      bgMusTitle.stop();
+    }
+    
+    int MainMenu::operator()() {
+
+      if(!launched){
+	init();
       }
-      if(cursor.getTexture() == NULL) {
-        handleError("Missing cursor texture", true);
+      
+      Main::mainframe.window.waitEvent(Main::mainframe.events);
+      switch(Main::mainframe.events.type) {
+	RETURN_ON_CLOSE_EVENT
+
+      case sf::Event::KeyPressed:
+	if(Main::mainframe.events.key.code == sf::Keyboard::Return) {
+	  switch(curPosI) {
+	    //Traitement de l'action en fonction de la position du curseur
+	  case 0:
+	    bgMusTitle.stop();
+	    return 0;
+	  case 3:
+	    bgMusTitle.stop();
+	    return -1;
+	  case 2:
+	    if(Main::mainframe.optionsmenu.optionsMenu() == -1) {
+	      return -1;
+	    }
+	    break;
+	  case 1:
+	    bruitNope.play();
+	    break;
+	  }
+	}
+	break;
+      default:
+	break;
+
       }
+      if(isKeyPressed(sf::Keyboard::Up)) {
+	bruitArr.play();
+	curPosI--;
+	//Si en haut, retourne en bas
+	if(curPosI >= 4) {
+	  curPosI = 0;
+	} else if(curPosI < 0) {
+	  curPosI = 3;
+	}
+      } else if(isKeyPressed(sf::Keyboard::Down)) {
+	bruitArr.play();
+	curPosI++;
+	//Si en bas, retourne en haut
+	if(curPosI >= 4) {
+	  curPosI = 0;
+	} else if(curPosI < 0) {
+	  curPosI = 3;
+	}
+      } else if(isKeyPressed(sf::Keyboard::Escape)) {
+	bgMusTitle.stop();
+	return -1;
+      }
+      Main::mainframe.frame.clear(sf::Color::Black);
+
+      //Actualisation des éléments
+      Main::mainframe.frame.draw(bg);
+      Main::mainframe.frame.draw(play),
+	Main::mainframe.frame.draw(charge);
+      Main::mainframe.frame.draw(options);
+      Main::mainframe.frame.draw(exit);
+      cursor.setPosition(curPos[curPosI]);
+      Main::mainframe.frame.draw(cursor);
+
+      Main::mainframe.frame.display();
+      Main::mainframe.winRefresh();
+	
+      return GameStatus::CONTINUE;
     }
 
-    void MainMenu::deleteVars() {
-
-    }
-    int MainMenu::boucle0() {
-
+    void MainMenu::init() {
+      bgMusTitle.setVolume(50);
+      bgMusTitle.play();
+      
       oplog("Entering the menu");
       //Actualisation des éléments
       Main::mainframe.frame.draw(bg);
@@ -86,84 +154,7 @@ namespace OpMon{
 
       Main::mainframe.frame.display();
       Main::mainframe.winRefresh();
-      while(continuer) {
-        Main::mainframe.window.waitEvent(Main::mainframe.events);
-        switch(Main::mainframe.events.type) {
-	  RETURN_ON_CLOSE_EVENT
-
-        case sf::Event::KeyPressed:
-	  if(Main::mainframe.events.key.code == sf::Keyboard::Return) {
-	    switch(curPosI) {
-	      //Traitement de l'action en fonction de la position du curseur
-	    case 0:
-	      bgMusTitle.stop();
-	      return 0;
-	    case 3:
-	      bgMusTitle.stop();
-	      return -1;
-	    case 2:
-	      if(Main::mainframe.optionsmenu.optionsMenu() == -1) {
-		return -1;
-	      }
-	      break;
-	    case 1:
-	      bruitNope.play();
-	      break;
-	    }
-	  }
-	  break;
-        default:
-	  break;
-
-        }
-        if(isKeyPressed(sf::Keyboard::Up)) {
-	  bruitArr.play();
-	  curPosI--;
-	  //Si en haut, retourne en bas
-	  if(curPosI >= 4) {
-	    curPosI = 0;
-	  } else if(curPosI < 0) {
-	    curPosI = 3;
-	  }
-        } else if(isKeyPressed(sf::Keyboard::Down)) {
-	  bruitArr.play();
-	  curPosI++;
-	  //Si en bas, retourne en haut
-	  if(curPosI >= 4) {
-	    curPosI = 0;
-	  } else if(curPosI < 0) {
-	    curPosI = 3;
-	  }
-        } else if(isKeyPressed(sf::Keyboard::Escape)) {
-	  bgMusTitle.stop();
-	  return -1;
-        }
-        Main::mainframe.frame.clear(sf::Color::Black);
-
-        //Actualisation des éléments
-        Main::mainframe.frame.draw(bg);
-        Main::mainframe.frame.draw(play),
-	  Main::mainframe.frame.draw(charge);
-        Main::mainframe.frame.draw(options);
-        Main::mainframe.frame.draw(exit);
-        cursor.setPosition(curPos[curPosI]);
-        Main::mainframe.frame.draw(cursor);
-
-        Main::mainframe.frame.display();
-        Main::mainframe.winRefresh();
-      }
-      bgMusTitle.stop();
-      return 0;
-    }
-
-    int MainMenu::mainMenu() {
-      initVars();
-      verifVars();
-      //Début de la musique
-      bgMusTitle.setVolume(50);
-      bgMusTitle.play();
-      //Lancement de la boucle
-      return boucle0();
+      launched = true;
     }
   }
 }

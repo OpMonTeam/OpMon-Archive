@@ -62,7 +62,7 @@ namespace OpMon{
       Data::OpMons::listOp.try_emplace(31, 92, 87, 75, 85, 76, 90, "Bolderi", Type::POISON, Type::SOL, 0, -1, ne, evs[31], 1.3, 60, "Il controle le riz, il est capable de faire le faire voler, et même de faire des formes avec.", 194, 1059860, 45, 31);
       Data::OpMons::listOp.try_emplace(32, 57, 40, 40, 40, 50, 46, "Dragonbolderi‚", Type::POISON, Type::NOTHING, 0, 16, new E_Level(33, 16), evs[32], 0.5, 9, "Ce dragon en riz est capable d'éviter les coups en creant des trous dans son corps, mais à part cela, il peut à peine voler.", 60, 1059860, 235, 32);
       Data::OpMons::listOp.try_emplace(33, 72, 57, 55, 55, 65, 61, "Kameosan", Type::POISON, Type::NOTHING, 0, -1,new E_Item(34, Item::getItem("Pierre Lune")), evs[33], 0.9, 19.5, "Cette jarre de saké japonais a pris vie, elle peut aspirer du riz venant de l'exterieur, pour grossir encore son crâne.", 118, 1059860, 120, 33);
-    /*Data::OpMons::listOp.try_emplace(34, 102, 77, 85, 75, 85, 81, "Nidoking", Type::POISON, Type::SOL, 0, -1, ne, evs[34], 1.4, 62, "Un coup de sa puissante queue peut briser un poteau téléphonique comme une allumette.", 195, 1059860, 45, 34);
+      /*Data::OpMons::listOp.try_emplace(34, 102, 77, 85, 75, 85, 81, "Nidoking", Type::POISON, Type::SOL, 0, -1, ne, evs[34], 1.4, 62, "Un coup de sa puissante queue peut briser un poteau téléphonique comme une allumette.", 195, 1059860, 45, 34);
 	Data::OpMons::listOp.try_emplace(35, 45, 48, 60, 65, 35, 70, "Mélofée", Type::FEE, Type::NOTHING, 0, -1, new E_Item(36, Item::getItem("Pierre Lune")), evs[35], 06, 7.5, "La lumière de la lune qu'il emmagasine dans ses ailes dorsales lui permet de flotter dans les airs.", 68, 800000, 150, 35);
 	Data::OpMons::listOp.try_emplace(36, 70, 73, 95, 90, 60, 95, "Mélodelfe", Type::FEE, Type::NOTHING, 0, -1, ne, evs[36], 1.3, 40, "Il aime le calme des montagnes. Son ouà¯e exceptionnelle entendrait une aiguille tomber à  1km.", 129, 8000000, 25, 36);
 	Data::OpMons::listOp.try_emplace(37, 41, 40, 50, 65, 65, 38, "Goupix", Type::FEU, Type::NOTHING, 0, -1, new E_Item(38, Item::getItem("Pierre Feu")), evs[37], 0.6, 9.9, "Avec l'âge, la fourrure de ses six queues devient de plus en plus belle et soyeuse. Elle est chaude au toucher.",63, 1000000, 190, 37);//TROP KAWAII!!!!
@@ -429,62 +429,62 @@ namespace OpMon{
     }
 
 
-void initMaps() {
+    void initMaps() {
 
-  UNS
+      UNS
 
-  //Fauxbourg Euvi loading
-  townMusics.push_back(new sf::Music());
-  std::vector<sf::Vector2f> feEPos;
-  if(!townMusics["A new start"]->openFromFile(){
-      handleError("Unable to open the music faubourgeuvi.ogg", false);
-    }
-    Model::Data::Elements::elementsCounter["windturbine"] = 0;
-    Model::Data::Elements::elementsSprites["windturbine"] = sf::Sprite();
-    Model::Data::Elements::elementsPos["windturbine"] = sf::Vector2f(8 *32 + 25 *32 - 8, 3 *32 + 8);
-    for(unsigned int i = 1; i < 17; i++) {
-      std::ostringstream str;
-      str << RESSOURCES_PATH + getPath("animations/windturbine/blade_") << i << string(".png");
-      Model::Data::Elements::elementsTextures["windturbine"].push_back(sf::Texture());
-      Model::Data::Elements::elementsTexutres["windturbine"][i - 1].loadFromFile(str.str());
-    }
-    Model::Data::Elements::elementsCounter["smoke"] = 0;
-    Model::Data::Elements::elementsSprites["smoke"] = sf::Sprite();
-    Model::Data::Elements::elementsPos["smoke"] = sf::Vector2f(8*32+18*32, 11*32);
-    for(unsigned int i = 1; i < 17; i++) {
-      std::ostringstream str;
-      str << RESSOURCES_PATH + getPath("animations/chimneysmoke/chimneysmoke_") << i << string(".png");
-      Model::Data::Elements::elementsTextures["smoke"].push_back(sf::Texture());
-      Model::Data::Elements::elementsTextures["smoke"][i - 1].loadFromFile(str.str());
-    }
+	//Fauxbourg Euvi loading
+	townMusics.push_back(new sf::Music());
+      std::vector<sf::Vector2f> feEPos;
+      if(!townMusics["A new start"]->openFromFile(){
+	  handleError("Unable to open the music faubourgeuvi.ogg", false);
+	}
+	Model::Data::Elements::elementsCounter["windturbine"] = 0;
+	Model::Data::Elements::elementsSprites["windturbine"] = sf::Sprite();
+	Model::Data::Elements::elementsPos["windturbine"] = sf::Vector2f(8 *32 + 25 *32 - 8, 3 *32 + 8);
+	for(unsigned int i = 1; i < 17; i++) {
+	  std::ostringstream str;
+	  str << RESSOURCES_PATH + getPath("animations/windturbine/blade_") << i << string(".png");
+	  Model::Data::Elements::elementsTextures["windturbine"].push_back(sf::Texture());
+	  Model::Data::Elements::elementsTexutres["windturbine"][i - 1].loadFromFile(str.str());
+	}
+	Model::Data::Elements::elementsCounter["smoke"] = 0;
+	Model::Data::Elements::elementsSprites["smoke"] = sf::Sprite();
+	Model::Data::Elements::elementsPos["smoke"] = sf::Vector2f(8*32+18*32, 11*32);
+	for(unsigned int i = 1; i < 17; i++) {
+	  std::ostringstream str;
+	  str << RESSOURCES_PATH + getPath("animations/chimneysmoke/chimneysmoke_") << i << string(".png");
+	  Model::Data::Elements::elementsTextures["smoke"].push_back(sf::Texture());
+	  Model::Data::Elements::elementsTextures["smoke"][i - 1].loadFromFile(str.str());
+	}
     
-    auto feCol = array_to_pointer((char*) Collisions::feCol, 32, 32);
-    Map &mapFauxbourgEuvi = maps.try_emplace("Fauxbourg Euvi", Maps::feLayer1, Maps::feLayer2, Maps::feLayer3, 32, 32, feCol, getPath(RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg")), std::vector<std::string> {"windturbine", "smoke"}).first->second;
-    delete[] feCol;
-    mapFauxbourgEuvi.addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(11, 2),  {OpString("fedesc.1"), OpString("fedesc.2"), OpString("fedesc.3")}, SIDE_UP));
-    mapFauxbourgEuvi.addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(21, 8),  {OpString("ppHouse", Main::player.getNameP()), OpString::voidStr, OpString::voidStr}, SIDE_UP));
-    mapFauxbourgEuvi.addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(25, 8), {OpString("rivalHouse"), OpString::voidStr, OpString::voidStr}, SIDE_UP));
-    mapFauxbourgEuvi.addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(14, 20),  {OpString("labo"), OpString::voidStr, OpString::voidStr}, SIDE_UP));
-    mapFauxbourgEuvi.addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(23, 20), {OpString("weirdsign.1"), OpString("weirdsign.2"), OpString::voidStr}, SIDE_UP));
-    mapFauxbourgEuvi.addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(19, 8), sf::Vector2i(8, 15), "Player's home"));
-    mapFauxbourgEuvi.addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(27, 8), sf::Vector2i(9, 15), "Rival's house"));
-    mapFauxbourgEuvi.addEvent(new Events::DoorEvent(Events::DoorType::SHOP, sf::Vector2f(19, 20), sf::Vector2i(16, 15), "Laboratory"));
-    /*Character 1*/
-    std::vector<Side> pathChara1;
-    for(int i = 0; i < 10; i++)
+	auto feCol = array_to_pointer((char*) Collisions::feCol, 32, 32);
+	Map &mapFauxbourgEuvi = maps.try_emplace("Fauxbourg Euvi", Maps::feLayer1, Maps::feLayer2, Maps::feLayer3, 32, 32, feCol, getPath(RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg")), std::vector<std::string> {"windturbine", "smoke"}).first->second;
+      delete[] feCol;
+      mapFauxbourgEuvi.addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(11, 2),  {OpString("fedesc.1"), OpString("fedesc.2"), OpString("fedesc.3")}, SIDE_UP));
+      mapFauxbourgEuvi.addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(21, 8),  {OpString("ppHouse", Main::player.getNameP()), OpString::voidStr, OpString::voidStr}, SIDE_UP));
+      mapFauxbourgEuvi.addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(25, 8), {OpString("rivalHouse"), OpString::voidStr, OpString::voidStr}, SIDE_UP));
+      mapFauxbourgEuvi.addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(14, 20),  {OpString("labo"), OpString::voidStr, OpString::voidStr}, SIDE_UP));
+      mapFauxbourgEuvi.addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(23, 20), {OpString("weirdsign.1"), OpString("weirdsign.2"), OpString::voidStr}, SIDE_UP));
+      mapFauxbourgEuvi.addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(19, 8), sf::Vector2i(8, 15), "Player's home"));
+      mapFauxbourgEuvi.addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(27, 8), sf::Vector2i(9, 15), "Rival's house"));
+      mapFauxbourgEuvi.addEvent(new Events::DoorEvent(Events::DoorType::SHOP, sf::Vector2f(19, 20), sf::Vector2i(16, 15), "Laboratory"));
+      /*Character 1*/
+      std::vector<Side> pathChara1;
+      for(int i = 0; i < 10; i++)
         pathChara1.push_back(Side::TO_RIGHT);
 
-    pathChara1.push_back(Side::NO_MOVE);
+      pathChara1.push_back(Side::NO_MOVE);
 
-    for(int i = 0; i < 10; i++)
+      for(int i = 0; i < 10; i++)
         pathChara1.push_back(Side::TO_LEFT);
 
-    pathChara1.push_back(Side::NO_MOVE);
+      pathChara1.push_back(Side::NO_MOVE);
 
-    mapFauxbourgEuvi.addEvent(new Events::TalkingCharaEvent("kid", sf::Vector2f(17, 13),  {OpString("kid"), OpString::voidStr, OpString::voidStr}, Events::EventTrigger::PRESS, Events::MoveStyle::PREDEFINED, pathChara1));
+      mapFauxbourgEuvi.addEvent(new Events::TalkingCharaEvent("kid", sf::Vector2f(17, 13),  {OpString("kid"), OpString::voidStr, OpString::voidStr}, Events::EventTrigger::PRESS, Events::MoveStyle::PREDEFINED, pathChara1));
 
-    auto ppHomeCol = array_to_pointer((char*) Collisions::ppHomeCol, 16, 16);
-    Map &mapPlayersHome = maps.try_emplace("Player's home", Maps::pphomeLayer1, Maps::pphomeLayer2, Maps::pphomeLayer3, 16, 16, ppHomeCol, getPath(RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg"))).first->second;
+      auto ppHomeCol = array_to_pointer((char*) Collisions::ppHomeCol, 16, 16);
+      Map &mapPlayersHome = maps.try_emplace("Player's home", Maps::pphomeLayer1, Maps::pphomeLayer2, Maps::pphomeLayer3, 16, 16, ppHomeCol, getPath(RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg"))).first->second;
     delete[] ppHomeCol;
     mapPlayersHome.addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(7, 15), sf::Vector2i(20, 9), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
     mapPlayersHome.addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(15, 2), sf::Vector2i(9, 5), "Player's room", Side::TO_LEFT, SIDE_RIGHT));
@@ -514,51 +514,50 @@ void initMaps() {
     std::vector<OpString> phoE1 {OpString("pcRunLinux"), OpString::voidStr, OpString::voidStr};
     mapPlayersRoom.addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(1, 1), phoE1, SIDE_UP));
 
-//Route 14 loading	
+    //Route 14 loading	
     auto route14Col = array_to_pointer((char*) Collisions::route14Col, 41, 74);
     maps.try_emplace("Route 14", Maps::route14Layer1, Maps::route14Layer2, Maps::route14Layer3, 74, 41, route14Col, townMusics[0]);
     delete[] route14Col;
 
-//MysteriouCity loading
+    //MysteriouCity loading
     auto myciCol = array_to_pointer((char*) Collisions::myciCol, 19, 19);
     maps.try_emplace("MysteriouCity", Maps::myciLayer1, Maps::myciLayer2, Maps::myciLayer3, 19, 19, myciCol, getPath(RESSOURCES_PATH + "audio/music/mysterioucity.ogg"));
     delete[] myciCol;
     
     Main::mainframe.overworld.initVars();
     
-}
+  }
 #undef PLANS_RESET
-    void initBackgrounds() {
+  void initBackgrounds() {
       
-    }
+  }
 
-    void initKeys() {
-      //Sets the language to initialize in the keys
-      if(OptionsSave::getParam("lang").getValue() == "fr") {
-	StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/francais.rkeys"));
-      } else if(OptionsSave::getParam("lang").getValue() == "esp") {
-	StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/espanol.rkeys"));
-      } else {
-	StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/english.rkeys"));
-      }
+  void initKeys() {
+    //Sets the language to initialize in the keys
+    if(OptionsSave::getParam("lang").getValue() == "fr") {
+      StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/francais.rkeys"));
+    } else if(OptionsSave::getParam("lang").getValue() == "esp") {
+      StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/espanol.rkeys"));
+    } else {
+      StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/english.rkeys"));
     }
+  }
     
-    void init() {
-      oplog("Keys initialization");
-      initKeys();
-      oplog("Items initialization");
-      initItems();
-      oplog("Attaks by levels initialization");
-      initAtkLvls();
-      oplog("OPMons initialization");
-      initOpMons();
-      oplog("Objects initialization ending");
-      initSprites();
-      oplog("Player initialization");
-      initPlayer();
-      oplog("Game parts initialization");
-      initGui();
-    }
+  void init() {
+    oplog("Keys initialization");
+    initKeys();
+    oplog("Items initialization");
+    initItems();
+    oplog("Attaks by levels initialization");
+    initAtkLvls();
+    oplog("OPMons initialization");
+    initOpMons();
+    oplog("Objects initialization ending");
+    initSprites();
+    oplog("Player initialization");
+    initPlayer();
+    oplog("Game parts initialization");
+    initGui();
   }
 
   void initPlayer(){
@@ -590,7 +589,7 @@ void initMaps() {
   }
 
   void initStrings(){
-    initMenuStrings();
+    gameloop.getMenu().initStrings();
     initStartSceneStrings();
     for(auto map = Data::maps.cbegin(); map!=Data::maps.cend(); ++map) {
       for(Event *event : map->second.getEvents()) {
