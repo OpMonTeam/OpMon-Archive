@@ -63,6 +63,20 @@ namespace OpMon{
     void MainMenu::del() {
       bgMusTitle.stop();
     }
+
+    void moveArrow(bool direction){
+      bruitArr.play();
+      if(direction /* == true*/){
+	curPosI--;
+      }else{
+	curPosI++;
+      }
+      if(curPosI >= 4) {
+	curPosI = 0;
+      } else if(curPosI < 0) {
+	curPosI = 3;
+      }
+    }
     
     int MainMenu::operator()() {
 
@@ -100,23 +114,9 @@ namespace OpMon{
 
       }
       if(isKeyPressed(sf::Keyboard::Up)) {
-	bruitArr.play();
-	curPosI--;
-	//Si en haut, retourne en bas
-	if(curPosI >= 4) {
-	  curPosI = 0;
-	} else if(curPosI < 0) {
-	  curPosI = 3;
-	}
+	
       } else if(isKeyPressed(sf::Keyboard::Down)) {
-	bruitArr.play();
-	curPosI++;
-	//Si en bas, retourne en haut
-	if(curPosI >= 4) {
-	  curPosI = 0;
-	} else if(curPosI < 0) {
-	  curPosI = 3;
-	}
+	
       } else if(isKeyPressed(sf::Keyboard::Escape)) {
 	bgMusTitle.stop();
 	return -1;

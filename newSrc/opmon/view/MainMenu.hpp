@@ -29,6 +29,11 @@ namespace OpMon{
       GameStatus operator()();
       void initStrings();
 
+      void moveArrow(bool direction);
+
+      int getCursorPosition(){
+	return curPosI;
+      }
       
     private:
 
