@@ -10,7 +10,7 @@ namespace OpMon {
     //bool connected = false;
     /** Trainer names. No longer useful.*/
     //->Useless
-    string trainers[] = {"Brice", "Evan", "Mael", "Jlppc", "Red", "Blue", "Nikolai", "N", "Belladonis", "Aristote", "Giovanni", "Flora", "Silver", "Jules Cesar", "Brahim"};
+    string trainers[] = {"Brice", "Navet", "Mael", "Jlppc", "Red", "Blue", "Nikolai", "N", "Belladonis", "Aristote", "Giovanni", "Flora", "Silver", "Jules Cesar", "Brahim"};
 				
     string version = OPMON_VERSION;
     string versionS;
@@ -76,7 +76,8 @@ int main(int argc, char *argv[]) {
       string str = string(argv[i]);
       if(str == "--version") {
 	cout << "OpMon Lazuli version " << Main::versionS << endl;
-	cout << "Under GNU GPL 3.0 license" << endl;
+	cout << "Under GNU GPL v3.0 license" << endl;
+	cout << "http://opmon-game.ga" << endl;
 	return 0;
       } else if(str == "--opt") {
 	if(i + 1 == argc) {
