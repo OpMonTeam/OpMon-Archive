@@ -81,46 +81,9 @@ namespace OpMon{
     int MainMenu::operator()() {
 
       if(!launched){
-	init();
+		init();
       }
-      
-      Main::mainframe.window.waitEvent(Main::mainframe.events);
-      switch(Main::mainframe.events.type) {
-	RETURN_ON_CLOSE_EVENT
 
-      case sf::Event::KeyPressed:
-	if(Main::mainframe.events.key.code == sf::Keyboard::Return) {
-	  switch(curPosI) {
-	    //Traitement de l'action en fonction de la position du curseur
-	  case 0:
-	    bgMusTitle.stop();
-	    return 0;
-	  case 3:
-	    bgMusTitle.stop();
-	    return -1;
-	  case 2:
-	    if(Main::mainframe.optionsmenu.optionsMenu() == -1) {
-	      return -1;
-	    }
-	    break;
-	  case 1:
-	    bruitNope.play();
-	    break;
-	  }
-	}
-	break;
-      default:
-	break;
-
-      }
-      if(isKeyPressed(sf::Keyboard::Up)) {
-	
-      } else if(isKeyPressed(sf::Keyboard::Down)) {
-	
-      } else if(isKeyPressed(sf::Keyboard::Escape)) {
-	bgMusTitle.stop();
-	return -1;
-      }
       Main::mainframe.frame.clear(sf::Color::Black);
 
       //Actualisation des éléments
@@ -142,7 +105,7 @@ namespace OpMon{
       bgMusTitle.setVolume(50);
       bgMusTitle.play();
       
-      oplog("Entering the menu");
+      oplog("Initialisating the menu");
       //Actualisation des éléments
       Main::mainframe.frame.draw(bg);
       Main::mainframe.frame.draw(play),

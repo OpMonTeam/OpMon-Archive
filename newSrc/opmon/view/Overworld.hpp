@@ -39,10 +39,8 @@ namespace OpMon{
   
       GameStatus operator()(bool dialog, int frame);
 
-      GameStatus operator()(){
-	handleError("Called the operator() of Overworld. NEVER call this.", true);
-	return GameStatus::STOP;
-      }
+	  /**Undefined method because this must not be used*/
+      GameStatus operator()();
       
       void tp(std::string toTp, sf::Vector2i pos);
       
