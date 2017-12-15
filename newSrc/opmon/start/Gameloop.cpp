@@ -20,7 +20,7 @@ GameStatus GameLoop::operator()(){
     switch(gamepart){
     case GamePart::OVERWORLD:
       if(dialog){
-	if(overworld.getDialog()->isDialogOver()){
+	if(overworld->getDialog()->isDialogOver()){
 	  dialog = false;
 	}
       }
@@ -29,7 +29,22 @@ GameStatus GameLoop::operator()(){
 	Controller::EventsCtrl::updateEvent(overworld->getCurrent->getEvents(), player);
       }
       Controller::PlayerCtrl::checkMove(player, events);
-      status = overworld(dialog, frames);
+      status = (*overworld)(dialog, frames);
+      break;
+
+    case GamePart::MENU:
+      Interface* newInterface = Controller::MenuCtrl::checkEvents(events, mainmenu);
+      if(newInterface == nullptr){
+	status = GameStatus::STOP;
+      }else{
+	if(newInterface != interfaces.top()){
+	  interfaces.push(newInterface);
+	}
+      }
+
+      (*interfaces.top())();
+      break;
+      
     }
 
     Window::winRefresh();
