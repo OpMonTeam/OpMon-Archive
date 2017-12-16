@@ -10,12 +10,9 @@
 namespace OpMon{
 
   enum GameStatus{
-    CONTINUE, STOP
+    CONTINUE, STOP, NEXT, PREVIOUS
   };
 
-  enum GamePart{
-    START, MENU, STARTSCENE, OPTIONS, OVERWORLD;
-  };
 
   extern GameLoop gameloop;
   
