@@ -31,6 +31,9 @@ namespace OpMon{
 
       void moveArrow(bool direction);
 
+      void pause();
+      void play();
+
       int getCursorPosition(){
 	return curPosI;
       }

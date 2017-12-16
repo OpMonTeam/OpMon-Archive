@@ -75,7 +75,10 @@ namespace OpMon{
 	return launched;
       }
 
-      void del();
+      virtual ~Overworld();
+
+      virtual void play();
+      virtual void pause();
 
       void setMusic(std::string const& path);
       

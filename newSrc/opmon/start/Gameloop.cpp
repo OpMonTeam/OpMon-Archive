@@ -50,14 +50,27 @@ GameStatus GameLoop::operator()(){
       status = (*dynamic_cast<View::Overworld*>(interfaces.top()))(dialog, frames);
     }
 
+    if(status == GameStatus::NEXT){
+      status == GameStatus::CONTINUE;
+      interfaces.top()->pause();
+      interfaces.push(interfaces.top()->getNextPanel());
+    }else if(status == GameStatus::PREVIOUS){
+      status == GameStatus::CONTINUE;
+      interfaces.top()->del();
+      delete(interfaces.top());
+      interfaces.pop();
+      interfaces.top()->play();
+    }
+    
     Window::winRefresh();
 
     endGame = (status == GameStatus::STOP);
 
   }
 
-  if(overworld.isLaunched()){
-    overworld.del();
+  for(Interface* interface : interfaces){
+    delete(interface);
+    interfaces.pop();
   }
   
   return GameStatus::STOP;
