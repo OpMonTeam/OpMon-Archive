@@ -116,5 +116,9 @@ namespace OpMon{
     return str;
   }
 
+  template<typename T>
+  bool instanceof(auto toTest){
+    return dynamic_cast<T>(toTest) != nullptr;
+  }
   
 }

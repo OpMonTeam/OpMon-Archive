@@ -57,8 +57,11 @@ namespace OpMon{
   std::string& operator<<(std::string &str, std::string const& thing);
   std::string& operator<<(std::string &str, int const& nbre);
   std::string& operator<<(std::string &str, char nbre[]);
-
+  
   sf::Vector2i vec2fTo2i(sf::Vector2f const &toTrans);
+
+  template<typename T>
+  bool instanceof(auto toTry);
   
 }
 
