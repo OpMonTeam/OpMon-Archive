@@ -88,7 +88,26 @@ namespace OpMon{
       }
     }
 
+    void pause(){
+      music.pause();
+    }
+
+    void play(){
+      music.play();
+    }
+    
     void init(){
+      character.setTexture(Initializer::texturePP[(int) Side::TO_DOWN]);
+      character.setPosition(8 CASES + 2 CASES - 16, 8 CASES + 2 CASES);
+      camera.setCenter(gameloop.getOveworld().getCharacter().getPosition());
+      camera.setSize(sf::Vector2f(16 CASES, 16 CASES));
+      
+      setMusic(actual->getBg());
+      setLayer1(MapLayer(actual->getLayer1(), Model::Data::World::tileset));
+      setLayer2(MapLayer(actual->getLayer2(), Model::Data::World::tileset));
+      setLayer2(MapLayer(actual->getLayer3(), Model::Data::World::tileset));
+      character.setScale(2, 2);
+      character.setOrigin(16, 16);
       for(auto map = Initializer::maps.cbegin(); map!=Initializer::maps.cend(); ++map) {
 	for(Event *event : map->second.getEvents()) {
 	  Events::TalkingEvent *te = dynamic_cast<Events::TalkingEvent *>(event);
@@ -110,13 +129,13 @@ namespace OpMon{
       Window::frame.setView(camera);
     }
 
-    void del(){
-      music->stop();
-      delete(music);
-      delete(layer1);
-      delete(layer2);
-      delete(layer3);
-    }
+  ~Overworld(){
+    music->stop();
+    delete(music);
+    delete(layer1);
+    delete(layer2);
+    delete(layer3);
+  }
 
     GameStatus Overworld::operator()(bool dialog, int frame, std::vector<sf::String> const& dialogs = actualDialog){
       if(!launched){

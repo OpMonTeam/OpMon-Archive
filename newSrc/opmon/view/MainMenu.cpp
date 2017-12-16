@@ -64,6 +64,14 @@ namespace OpMon{
       bgMusTitle.stop();
     }
 
+    void MainMenu::pause(){
+      bgMusTitle.stop();
+    }
+
+    void MainMenu::play(){
+      bgMusTitle.play();
+    }
+
     void moveArrow(bool direction){
       bruitArr.play();
       if(direction /* == true*/){

@@ -5,11 +5,22 @@ namespace OpMon{
   namespace View{
     class Interface {
     public:
-      GameStatus operator()() = 0;
-      void del() = 0;
+      virtual GameStatus operator()() = 0;
+      virtual ~Interface() = 0;
+
+      virtual void initStrings() = 0;
+
+      Interface* getNextPanel(){
+	return nextPanel;
+      }
+
+      virtual void pause() = 0;
+      virtual void play() = 0;
+      
     protected:
       void init() = 0;
       bool launched = false;
+      Interface* nextPanel;
     };
   }
 }

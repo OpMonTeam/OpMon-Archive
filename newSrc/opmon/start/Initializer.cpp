@@ -556,8 +556,6 @@ namespace OpMon{
     initSprites();
     oplog("Player initialization");
     initPlayer();
-    oplog("Game parts initialization");
-    initGui();
   }
 
   void initPlayer(){
@@ -565,27 +563,6 @@ namespace OpMon{
     Model::Data::player.setPosX(((gameloop.getOveworld().getCharacter().getPosition().x - 16) / CASE_SIZE) - 8);
     Model::Data::player.setPosY((gameloop.getOveworld().getCharacter().getPosition().y / CASE_SIZE) - 8);
     Model::Data::player.setDir(Side::TO_UP);
-  }
-
-
-  void initGui(){
-    initMenu();
-    initStartScene();
-    initOverworld();
-  }
-
-  void initOverworld(){
-    gameloop.getOverworld().getCharacter().setTexture(Initializer::texturePP[(int) Side::TO_DOWN]);
-    gameloop.getOverworld().getCharacter().setPosition(8 CASES + 2 CASES - 16, 8 CASES + 2 CASES);
-    gameloop.getOverworld().getCamera().setCenter(gameloop.getOveworld().getCharacter().getPosition());
-    gameloop.getOverworld().getCamera().setSize(sf::Vector2f(16 CASES, 16 CASES));
-
-    gameloop.getOverworld().setMusic(actual->getBg());
-    gameloop.getOverworld().setLayer1(MapLayer(actual->getLayer1(), Model::Data::World::tileset));
-    gameloop.getOverworld().setLayer2(MapLayer(actual->getLayer2(), Model::Data::World::tileset));
-    gameloop.getOverworld().setLayer2(MapLayer(actual->getLayer3(), Model::Data::World::tileset));
-    gameloop.getOverworld().getCharacter().setScale(2, 2);
-    gameloop.getOverworld().getCharacter().setOrigin(16, 16);
   }
 
   void initStrings(){
