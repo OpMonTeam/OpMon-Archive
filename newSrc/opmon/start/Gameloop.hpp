@@ -30,20 +30,8 @@ namespace OpMon{
       return player;
     }
 
-    View::Overworld& getOverworld(){
-      return *overworld;
-    }
-
-    View::MainMenu& getMainMenu(){
-      return *mainmenu;
-    }
-    
   private:
     sf::Event events;
-    View::Overworld* overworld;
-    View::StartScene* startscene;
-    View::MainMenu* mainmenu;
-    View::OptionsMenu* optionsmenu;
     GamePart gamepart = GamePart::START;
     bool endGame = false;
     bool wait = true;
