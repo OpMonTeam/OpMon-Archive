@@ -17,6 +17,11 @@ namespace OpMon{
     }
 
     void MainMenu::MainMenu() {
+
+    }
+
+
+    void init(){
       sf::Text *textPos[4] = {&play, &charge, &options, &exit};
       for(int i = 0, j = 175; i < 4; i++) {
         curPos[i].x = 10;
@@ -59,7 +64,6 @@ namespace OpMon{
       bgMusTitle.setLoop(true);
     }
 
-
     void MainMenu::del() {
       bgMusTitle.stop();
     }
@@ -73,7 +77,7 @@ namespace OpMon{
     }
 
     void moveArrow(bool direction){
-      bruitArr.play();
+      Model::Data::Sounds::arrow.play();
       if(direction /* == true*/){
 	curPosI--;
       }else{
@@ -89,10 +93,10 @@ namespace OpMon{
     int MainMenu::operator()() {
 
       if(!launched){
-		init();
+	init();
       }
 
-      Main::mainframe.frame.clear(sf::Color::Black);
+      Main::mainframe.frame.clear(sf::Color::lack);
 
       //Actualisation des éléments
       Main::mainframe.frame.draw(bg);

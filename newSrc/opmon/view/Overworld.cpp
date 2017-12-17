@@ -95,6 +95,11 @@ namespace OpMon{
     void play(){
       music.play();
     }
+
+    Overworld(){
+      init();
+      
+    }
     
     void init(){
       character.setTexture(Initializer::texturePP[(int) Side::TO_DOWN]);
@@ -125,9 +130,10 @@ namespace OpMon{
 	setMusic(current->getBg());
 	music->play();
       }
-      }
-      Window::frame.setView(camera);
     }
+    Window::frame.setView(camera);
+    launched = true;
+  }
 
   ~Overworld(){
     music->stop();
@@ -140,7 +146,7 @@ namespace OpMon{
     GameStatus Overworld::operator()(bool dialog, int frame, std::vector<sf::String> const& dialogs = actualDialog){
       if(!launched){
 	init();
-	launched = true;
+	
       }
       if(dialog){
 	// `&dialogs[0]` converts the std::vector into a regular array.

@@ -30,36 +30,32 @@ GameStatus GameLoop::operator()(){
 	Controller::EventsCtrl::updateEvent(overworld->getCurrent->getEvents(), player);
       }
       Controller::PlayerCtrl::checkMove(player, events);
-      status = overworld(dialog, frames);
       
     }else if(instanceOf<View::MainMenu*>(interfaces.top())){
       View::MainMenu& mainmenu = *dynamic_cast<View::MainMenu*>(interfaces.top());
-      Interface* newInterface = Controller::MenuCtrl::checkEvents(events, mainmenu);
-      if(newInterface == nullptr){
-	status = GameStatus::STOP;
+      status = Controller::MenuCtrl::checkEvents(events, mainmenu);
+    }
+
+    if(status != GameStatus::STOP){
+    
+      if(!instanceOf<View::Overworld*>(interface.top())){
+	status = (*interfaces.top())();
       }else{
-	if(newInterface != mainmenu){
-	  interfaces.push(newInterface);
-	}
+	status = (*dynamic_cast<View::Overworld*>(interfaces.top()))(dialog, frames);
       }
-    }
 
-    if(!instanceOf<View::Overworld*>(interface.top())){
-      status = (*interfaces.top())();
-    }else{
-      status = (*dynamic_cast<View::Overworld*>(interfaces.top()))(dialog, frames);
-    }
+    
+      if(status == GameStatus::NEXT){
+	status == GameStatus::CONTINUE;
+	interfaces.top()->pause();
+	interfaces.push(interfaces.top()->getNextPanel());
+      }else if(status == GameStatus::PREVIOUS){
+	status == GameStatus::CONTINUE;
+	delete(interfaces.top());
+	interfaces.pop();
+	interfaces.top()->play();
+      }
 
-    if(status == GameStatus::NEXT){
-      status == GameStatus::CONTINUE;
-      interfaces.top()->pause();
-      interfaces.push(interfaces.top()->getNextPanel());
-    }else if(status == GameStatus::PREVIOUS){
-      status == GameStatus::CONTINUE;
-      interfaces.top()->del();
-      delete(interfaces.top());
-      interfaces.pop();
-      interfaces.top()->play();
     }
     
     Window::winRefresh();
