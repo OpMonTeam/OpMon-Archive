@@ -31,6 +31,10 @@ namespace OpMon{
       namespace Animations{
 	sf::Texture fen[6];
       }
+
+      namespace Sounds{
+	sf::Sound nope;
+      }
     }
   }
 }

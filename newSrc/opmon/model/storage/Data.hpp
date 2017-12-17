@@ -52,6 +52,12 @@ namespace OpMon{
 	//std::string backgrounds[];
 	extern sf::Font font;
       }
+
+      namespace Sounds{
+	extern sf::Sound nope;
+	extern sf::Sound arrow;
+      }
+      
       namespace Animations{
 	sf::Texture fen[6];
       }

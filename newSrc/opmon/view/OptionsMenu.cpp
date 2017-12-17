@@ -82,6 +82,10 @@ void OptionsMenu::initStrings() {
   txtCre9.setCharacterSize(13);
 }
 
+OptionsMenu(){
+  init();
+}
+
 void OptionsMenu::init() {
 
 #ifdef _WIN32
@@ -163,14 +167,13 @@ void OptionsMenu::init() {
     j+=69;
   }
 
-
+  lauched = true;
+  
 }
 
-int OptionsMenu::optionsMenu() {
 
-  verifVars();
-  //Lancement du menu
-  return boucle();
+~OptionsMenu(){
+  
 }
 
 GameStatus operator()(){
@@ -184,6 +187,35 @@ GameStatus operator()(){
   case CREDITS:
     return langCredits();
     break;
+  }
+}
+
+void moveArrow(bool move){
+  Model::Data::Sounds::arrow.play();
+  switch(currentOptions){
+  case ALL:
+    if(move){
+      curPosOptI++;
+    }else{
+      curPosOptI--;
+    }
+    if(curPosOptI >= 6){
+      curPosOptI = 0;
+    }else if(curPosOptI < 0){
+      curPosOptI = 5;
+    }
+    break;
+  case LANG:
+    if(move){
+      curPosLangI++;
+    }else{
+      curPosLangI--;
+    }
+    if(curPosLangI >= 4){
+      curPosLangI = 0;
+    }else if(curPosLangI < 0){
+      curPosLangI = 3;
+    }
   }
 }
 
@@ -267,6 +299,14 @@ GameStatus OptionsMenu::loop() {
   Window::winRefresh();
   return GameStatus::CONTINUE;
 
+}
+
+void play(){
+  
+}
+
+void pause(){
+  
 }
 
 int OptionsMenu::langLoop() {

@@ -10,10 +10,14 @@ namespace OpMon{
 
       virtual void initStrings() = 0;
 
-      Interface* getNextPanel(){
+      Interface* getNextPanel() const{
 	return nextPanel;
       }
 
+      void setNextPanel(Interface* next){
+	nextPanel = next;
+      }
+      
       virtual void pause() = 0;
       virtual void play() = 0;
       
