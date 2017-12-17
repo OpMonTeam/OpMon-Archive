@@ -26,7 +26,7 @@ namespace OpMon{
      
       int optionsMenu();
       void init();
-      void ~OptionsMenu();
+      ~OptionsMenu();
 
       GameStatus operator()();
       
@@ -38,6 +38,19 @@ namespace OpMon{
       
       void play();
       void pause();
+
+      OptionType getCurrentOption(){return currentOptions;}
+      void setCurrentOption(OptionType newOpt){currentOptions = newOpt;}
+      int cursorPosition(){
+	switch(currentOptions){
+	case ALL:
+	  return curPosOptI;
+	case LANG:
+	  return curPosLangI;
+	default:
+	  return 0;
+	}
+      }
       
     private:
 

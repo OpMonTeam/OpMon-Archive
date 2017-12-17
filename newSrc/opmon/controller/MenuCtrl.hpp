@@ -4,7 +4,10 @@
 namespace OpMon{
   namespace Controller{
     namespace MenuCtrl{
-      void checkEvents(sf::Events& event, View::MainMenu& menu);
+      GameStatus checkEvents(sf::Events& event, View::MainMenu& menu);
+      namespace Options{
+	GameStatus checkEvents(sf::Event& event, View::OptionsMenu& menu);
+      }
     }
   }
 }

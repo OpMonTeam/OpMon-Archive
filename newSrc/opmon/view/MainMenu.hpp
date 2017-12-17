@@ -50,7 +50,6 @@ namespace OpMon{
       sf::Music bgMusTitle;
       sf::Sound bruitArr;
       sf::Sound bruitPush;
-      sf::Sound bruitNope;
       sf::Texture textures[2];
       sf::SoundBuffer sounds[3];
       int curPosI = 0;

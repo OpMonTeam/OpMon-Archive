@@ -566,8 +566,11 @@ namespace OpMon{
   }
 
   void initStrings(){
-    gameloop.getMenu().initStrings();
-    initStartSceneStrings();
+
+    for(Interface* interface : gameloop.getInterfaces()){
+      interface->initStrings();
+    }
+    
     for(auto map = Data::maps.cbegin(); map!=Data::maps.cend(); ++map) {
       for(Event *event : map->second.getEvents()) {
 	Events::TalkingEvent *te = dynamic_cast<Events::TalkingEvent *>(event);
