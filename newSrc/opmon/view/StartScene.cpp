@@ -10,176 +10,187 @@
 
 UNS
 
+namespace OpMon{
+  namespace View{
 
-
-void StartScene::initStrings() {
-    unsigned int it = 0;
-    for(it = 0; it < 18; it++) {
+    void StartScene::initStrings() {
+      unsigned int it = 0;
+      for(it = 0; it < 18; it++) {
         string actual;
         actual << string("prof.dialog.start.") << it+1;
         txtP0[it] = kget(actual);
-    }
-    int ite = 1;
-    it++;
-    strName = OpString("prof.dialog.start.19", Main::player.getNameP());
-    txtP1[0] = strName.getString();
-    for(it = it; it < 27; it++) {
+      }
+      int ite = 1;
+      it++;
+      strName = OpString("prof.dialog.start.19", Main::player.getNameP());
+      txtP1[0] = strName.getString();
+      for(it = it; it < 27; it++) {
         string actual;
         actual << string("prof.dialog.start.") << it+1;
         txtP1[ite] = kget(actual);
         ite++;
+      }
+
+      textDescs[0].setString(kget("nameEntry.med"));
+      textDescs[1].setString(kget("nameEntry.top"));
+      textDescs[2].setString(kget("nameEntry.indic.1"));
+      textDescs[3].setString(kget("nameEntry.indic.2"));
     }
 
-    textDescs[0].setString(kget("nameEntry.med"));
-    textDescs[1].setString(kget("nameEntry.top"));
-    textDescs[2].setString(kget("nameEntry.indic.1"));
-    textDescs[3].setString(kget("nameEntry.indic.2"));
-}
-
-void StartScene::initVars() {
-    initStrings();
-    oplog("Initializating start scene's variables.");
-    Main::mainframe.dialog.setPosition(0, 362);
-    textDescs[1].setPosition(85, 25);
-    textDescs[0].setPosition(155, 200);
-    textDescs[2].setPosition(95, 375);
-    textDescs[3].setPosition(95, 405);
+    void StartScene::StartScene() {
+      initStrings();
+      Main::mainframe.dialog.setPosition(0, 362);
+      textDescs[1].setPosition(85, 25);
+      textDescs[0].setPosition(155, 200);
+      textDescs[2].setPosition(95, 375);
+      textDescs[3].setPosition(95, 405);
 
 
-    txtEnCours[0] = sf::String(" ");
-    txtEnCours[1] = sf::String(" ");
-    txtEnCours[2] = sf::String(" ");
+      txtEnCours[0] = sf::String(" ");
+      txtEnCours[1] = sf::String(" ");
+      txtEnCours[2] = sf::String(" ");
 
-    oplog("Initialization of the sprites");
-    textures[0].loadFromFile(getPath(RESSOURCES_PATH + "backgrounds/start/startscene.png"));
-    textures[1].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/jlppc/profkiwai.png"));
-    textures[2].loadFromFile(getPath(RESSOURCES_PATH + "backgrounds/dialog/dialog.png"));
-    textures[3].loadFromFile(getPath(RESSOURCES_PATH + "sprites/misc/arrDial.png"));
-    textures[4].loadFromFile(getPath(RESSOURCES_PATH + "backgrounds/start/nameEntry.png"));
-    bgMus.openFromFile(getPath(RESSOURCES_PATH + "audio/music/intro.ogg"));
-    bg.setTexture(textures[0]);
-    prof.setTexture(textures[1]);
-    Main::mainframe.dialog.setTexture(textures[2]);
-    Main::mainframe.arrDial.setTexture(textures[3]);
-    bgName.setTexture(textures[4]);
-    bgName.setPosition(0, 0);
-    bgMus.setLoop(true);
+      textures[0].loadFromFile(getPath(RESSOURCES_PATH + "backgrounds/start/startscene.png"));
+      textures[1].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/jlppc/profkiwai.png"));
+      textures[2].loadFromFile(getPath(RESSOURCES_PATH + "backgrounds/dialog/dialog.png"));
+      textures[3].loadFromFile(getPath(RESSOURCES_PATH + "sprites/misc/arrDial.png"));
+      textures[4].loadFromFile(getPath(RESSOURCES_PATH + "backgrounds/start/nameEntry.png"));
+      bgMus.openFromFile(getPath(RESSOURCES_PATH + "audio/music/intro.ogg"));
+      bg.setTexture(textures[0]);
+      prof.setTexture(textures[1]);
+      Main::mainframe.dialog.setTexture(textures[2]);
+      Main::mainframe.arrDial.setTexture(textures[3]);
+      bgName.setTexture(textures[4]);
+      bgName.setPosition(0, 0);
+      bgMus.setLoop(true);
 
-    bg.setPosition(0, 0);
-    prof.setPosition(205, 120);
-    prof.setScale(1.5, 1.5);
+      bg.setPosition(0, 0);
+      prof.setPosition(205, 120);
+      prof.setScale(1.5, 1.5);
 
-    oplog("End of start scene initializations");
-    for(sf::Text &cellTxt : textDescs) {
+      for(sf::Text &cellTxt : textDescs) {
         cellTxt.setCharacterSize(FONT_SIZE_DEFAULT);
         cellTxt.setColor(sf::Color::Black);
         cellTxt.setFont(Main::mainframe.font);
+      }
+
+      nameField.setFont(Main::mainframe.font);
+      nameField.setPosition(120, 300);
+
+      Main::mainframe.arrDial.setPosition(437, 482);      
     }
 
-    nameField.setFont(Main::mainframe.font);
-    nameField.setPosition(120, 300);
+    GameStatus StartScene::operator()(){
+      switch(part){
+      case 0:
+	return loop0();
+      case 1:
+	return loop1();
+      case 2:
+	return loop2();
+	
+      }
+      nextPanel = new Overworld();
+      return GameStatus::NEXT;
+    }
+    
+    GameStatus StartScene::loop0() {
+      int sizeOfTxt = 18;
+      Dialog dialog(txtP0, sizeOfTxt);
 
-    Main::mainframe.arrDial.setPosition(437, 482);
-
-}
-
-int StartScene::boucle0() {
-    int sizeOfTxt = 18;
-    Dialog dialog(txtP0, sizeOfTxt);
-
-    bool continuer = true;
-    while(continuer) {
+      bool continuer = true;
+      while(continuer) {
         if((ticks.getElapsedTime().asMilliseconds() - ancientTick) >= FPS_TICKS) {
-            ancientTick = ticks.getElapsedTime().asMilliseconds();
+	  ancientTick = ticks.getElapsedTime().asMilliseconds();
 
-            Main::mainframe.window.pollEvent(Main::mainframe.events);
+	  Main::mainframe.window.pollEvent(Main::mainframe.events);
 
-            switch (Main::mainframe.events.type) {
+	  switch (Main::mainframe.events.type) {
 
-                RETURN_ON_CLOSE_EVENT
+	    RETURN_ON_CLOSE_EVENT
 
-            case sf::Event::KeyPressed:
-                if(Main::mainframe.events.key.code == sf::Keyboard::Space) {
-                    dialog.pass();
-                }
-                break;
-            default:
-                break;
-            }
+	  case sf::Event::KeyPressed:
+	    if(Main::mainframe.events.key.code == sf::Keyboard::Space) {
+	      dialog.pass();
+	    }
+	    break;
+	  default:
+	    break;
+	  }
 
-            RETURN_ON_ECHAP_EVENT
-            else if(isKeyPressed(sf::Keyboard::P))
-                return 2;
+	  RETURN_ON_ECHAP_EVENT
+	  else if(isKeyPressed(sf::Keyboard::P))
+	    return 2;
 
-            if(!dialog.isDialogOver()) {
-                Main::mainframe.frame.clear(sf::Color::White);
-                Main::mainframe.frame.draw(bg);
-                Main::mainframe.frame.draw(prof);
+	  if(!dialog.isDialogOver()) {
+	    Main::mainframe.frame.clear(sf::Color::White);
+	    Main::mainframe.frame.draw(bg);
+	    Main::mainframe.frame.draw(prof);
 
-                dialog.updateTextAnimation();
+	    dialog.updateTextAnimation();
 
-                dialog.draw();
-                Main::mainframe.frame.display();
-                Main::mainframe.winRefresh();
-            } else {
-                continuer = false;
-            }
+	    dialog.draw();
+	    Main::mainframe.frame.display();
+	    Main::mainframe.winRefresh();
+	  } else {
+	    continuer = false;
+	  }
         } else {
-            Utils::wait(FPS_TICKS - (GET_TICKS - ancientTick));
+	  Utils::wait(FPS_TICKS - (GET_TICKS - ancientTick));
         }
+      }
+      return 0;
     }
-    return 0;
-}
 
-int StartScene::boucle1() {
-    Main::mainframe.window.setKeyRepeatEnabled(true);
-    Main::mainframe.frame.clear(sf::Color::White);
-    Main::mainframe.frame.draw(bgName);
-    for(sf::Text desc : textDescs) {
+    GameStatus StartScene::loop1() {
+      Main::mainframe.window.setKeyRepeatEnabled(true);
+      Main::mainframe.frame.clear(sf::Color::White);
+      Main::mainframe.frame.draw(bgName);
+      for(sf::Text desc : textDescs) {
         desc.setColor(sf::Color::White);
         desc.setFont(Main::mainframe.font);
         Main::mainframe.frame.draw(desc);
-    }
-    Main::mainframe.frame.display();
-    Main::mainframe.winRefresh();
-    bool continuer = true;
-    while(continuer) {
+      }
+      Main::mainframe.frame.display();
+      Main::mainframe.winRefresh();
+      bool continuer = true;
+      while(continuer) {
         Main::mainframe.window.waitEvent(Main::mainframe.events);
         switch (Main::mainframe.events.type) {
-            RETURN_ON_CLOSE_EVENT
+	  RETURN_ON_CLOSE_EVENT
 
         case sf::Event::TextEntered:
-            if(Main::mainframe.events.text.unicode == 8) { //Backspace
-                if(!pName.isEmpty())
-		  pName = sf::String::fromUtf32(pName.begin(), pName.end() - 1);
-            } else if(Main::mainframe.events.text.unicode == '\n' || Main::mainframe.events.text.unicode <= 32) {//Do nothing
-            } else {
-	      if (pName.toUtf32().size() < 14) {//14 = Max name length
-                    pName += Main::mainframe.events.text.unicode;
-                }
-            }
-            break;
+	  if(Main::mainframe.events.text.unicode == 8) { //Backspace
+	    if(!pName.isEmpty())
+	      pName = sf::String::fromUtf32(pName.begin(), pName.end() - 1);
+	  } else if(Main::mainframe.events.text.unicode == '\n' || Main::mainframe.events.text.unicode <= 32) {//Do nothing
+	  } else {
+	    if (pName.toUtf32().size() < 14) {//14 = Max name length
+	      pName += Main::mainframe.events.text.unicode;
+	    }
+	  }
+	  break;
 
         case sf::Event::KeyPressed:
-            if(Main::mainframe.events.key.code == sf::Keyboard::Return) {
-                if (pName.isEmpty()) {
-                    pName = "Default";
-                }
-                continuer = false;
-            }
-            break;
+	  if(Main::mainframe.events.key.code == sf::Keyboard::Return) {
+	    if (pName.isEmpty()) {
+	      pName = "Default";
+	    }
+	    continuer = false;
+	  }
+	  break;
         default:
-            break;
+	  break;
         }
 
         RETURN_ON_ECHAP_EVENT
 
-        Main::mainframe.frame.clear(sf::Color::White);
+	  Main::mainframe.frame.clear(sf::Color::White);
         Main::mainframe.frame.draw(bgName);
         for(sf::Text desc : textDescs) {
-            desc.setColor(sf::Color::White);
-            desc.setFont(Main::mainframe.font);
-            Main::mainframe.frame.draw(desc);
+	  desc.setColor(sf::Color::White);
+	  desc.setFont(Main::mainframe.font);
+	  Main::mainframe.frame.draw(desc);
         }
         nameField.setString(pName);
         Main::mainframe.frame.draw(nameField);
@@ -187,88 +198,84 @@ int StartScene::boucle1() {
         Main::mainframe.winRefresh();
 
 
+      }
+      Main::mainframe.window.setKeyRepeatEnabled(false);
+      Main::player.setName(pName);
+      txtP1[0] = strName.getString();
+      return 0;
+
     }
-    Main::mainframe.window.setKeyRepeatEnabled(false);
-    Main::player.setName(pName);
-    txtP1[0] = strName.getString();
-    return 0;
 
-}
+    GameStatus StartScene::loop2() {
+      int sizeOfTxt = 27 - 18;
+      Dialog dialog(txtP1, sizeOfTxt);
 
-int StartScene::boucle2() {
-    int sizeOfTxt = 27 - 18;
-    Dialog dialog(txtP1, sizeOfTxt);
-
-    bool continuer = true;
-    while(continuer) {
+      bool continuer = true;
+      while(continuer) {
         if((ticks.getElapsedTime().asMilliseconds() - ancientTick) >= FPS_TICKS) {
-            ancientTick = ticks.getElapsedTime().asMilliseconds();
+	  ancientTick = ticks.getElapsedTime().asMilliseconds();
 
-            Main::mainframe.window.pollEvent(Main::mainframe.events);
+	  Main::mainframe.window.pollEvent(Main::mainframe.events);
 
-            switch (Main::mainframe.events.type) {
+	  switch (Main::mainframe.events.type) {
 
-                RETURN_ON_CLOSE_EVENT
+	    RETURN_ON_CLOSE_EVENT
 
-            case sf::Event::KeyPressed:
-                if(Main::mainframe.events.key.code == sf::Keyboard::Space) {
-                    dialog.pass();
-                }
-                break;
+	  case sf::Event::KeyPressed:
+	    if(Main::mainframe.events.key.code == sf::Keyboard::Space) {
+	      dialog.pass();
+	    }
+	    break;
 
-            default:
-                break;
+	  default:
+	    break;
 
-            }
+	  }
 
-            RETURN_ON_ECHAP_EVENT
+	  RETURN_ON_ECHAP_EVENT
 
             if(!dialog.isDialogOver()) {
-                Main::mainframe.frame.clear(sf::Color::White);
-                Main::mainframe.frame.draw(bg);
-                Main::mainframe.frame.draw(prof);
+	      Main::mainframe.frame.clear(sf::Color::White);
+	      Main::mainframe.frame.draw(bg);
+	      Main::mainframe.frame.draw(prof);
 
-                dialog.updateTextAnimation();
+	      dialog.updateTextAnimation();
 
-                dialog.draw();
-                Main::mainframe.frame.display();
-                Main::mainframe.winRefresh();
+	      dialog.draw();
+	      Main::mainframe.frame.display();
+	      Main::mainframe.winRefresh();
             } else {
-                continuer = false;
+	      continuer = false;
             }
         } else {
-            Utils::wait(FPS_TICKS - (GET_TICKS - ancientTick));
+	  Utils::wait(FPS_TICKS - (GET_TICKS - ancientTick));
         }
-    }
-    return 0;
-}
-
-int StartScene::startScene() {
-    bgMus.play();
-
-    int result = boucle0();
-    if(result == -1 || result == 2) {
-        return result;
+      }
+      return 0;
     }
 
-    //Animation 1
-    Animations::animWinOpen(Main::mainframe.frame, bg);
+    void StartScene::init() {
+      bgMus.play();
+      
+      //Animations::animWinOpen(Main::mainframe.frame, bg);
+
+      //Animations::animWinClose(Main::mainframe.frame, bg);
+
+      launched = true;
 
 
-    if(boucle1() == -1) {
-        return -1;
     }
 
-    //Animation 2
-    Animations::animWinClose(Main::mainframe.frame, bg);
-
-    if(boucle2() == -1) {
-        return -1;
+    void StartScene::play(){
+      bgMus.play();
     }
 
-    bgMus.stop();
+    void StartScene::pause(){
+      bgMus.pause();
+    }
 
-    return 0;
-
-
+    ~StartScene::StartScene(){
+      bgMus.stop();
+    }
+  }
 }
