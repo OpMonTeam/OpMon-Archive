@@ -11,36 +11,52 @@ http://opmon-game.ga
 #include <SFML/Graphics.hpp>
 #include "../start/OpString.hpp"
 
-class StartScene {
-public:
-  sf::Sprite bg;
-  sf::Sprite prof;
-  sf::Music bgMus;
-  
-  sf::String txtP1[15];
-  sf::String txtP0[18];
-  OpString strName;
+namespace OpMon{
+  namespace View{
+   
+    class StartScene : public Interface {
+    public:
+      GameStatus operator()();
 
-  sf::Texture textures[5];
-  
-  sf::Text textDescs[4];
-  sf::Sprite bgName;
-  sf::Text nameField;
-  
-  sf::String txtEnCours[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
-  
-  sf::String pName;
-  
-  long ancientTick = 0;
-  int startScene();
-  void initVars();
-  void initStrings();
-  
-  int boucle0();
-  int boucle1();
-  int boucle2();
+      ~StartScene();
 
-};
+      void play();
+      void pause();
+      
+      void initStrings();
 
+      void init();
+      
+      GameStatus loop0();
+      GameStatus loop1();
+      GameStatus loop2();
+      
+    private:
+      sf::Sprite bg;
+      sf::Sprite prof;
+      sf::Music bgMus;
+
+      int part = 0;
+      
+      sf::String txtP1[15];
+      sf::String txtP0[18];
+      OpString strName;
+
+      sf::Texture textures[5];
+  
+      sf::Text textDescs[4];
+      sf::Sprite bgName;
+      sf::Text nameField;
+  
+      sf::String txtEnCours[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
+  
+      sf::String pName;
+  
+      long ancientTick = 0;
+
+    };
+
+  }
+}
 
 #endif // STARTSCENE_H
