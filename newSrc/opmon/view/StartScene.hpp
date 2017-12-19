@@ -42,6 +42,10 @@ namespace OpMon{
       sf::String txtP0[18];
       OpString strName;
 
+      int sizeOfTxt;
+
+      Dialog *actualDialog;
+      
       sf::Texture textures[5];
   
       sf::Text textDescs[4];
@@ -53,6 +57,10 @@ namespace OpMon{
       sf::String pName;
   
       long ancientTick = 0;
+
+      bool loop0init = false;
+      bool loop1init = false;
+      bool loop2init = false;
 
     };
 
