@@ -81,6 +81,9 @@ namespace OpMon{
     }
 
     GameStatus StartScene::operator()(){
+      if(!launched){
+	init();
+      }
       switch(part){
       case 0:
 	return loop0();
@@ -93,67 +96,88 @@ namespace OpMon{
       nextPanel = new Overworld();
       return GameStatus::NEXT;
     }
+
+    void initLoop0(){
+      sizeOfTxt = 18;
+      if(dialog != nullptr){
+	delete(dialog);
+      }
+      dialog = new Dialog(txtP0, sizeOfTxt);
+      loop0init = true;
+      loop1init = false;
+      loop2init = false;
+    }
+
+    void initLoop1(){
+      Window::window.setKeyRepeatEnabled(true);
+      Window::frame.clear(sf::Color::White);
+      Window::frame.draw(bgName);
+      for(sf::Text desc : textDescs) {
+        desc.setColor(sf::Color::White);
+        desc.setFont(Model::Data::Ui::font);
+        Window::frame.draw(desc);
+      }
+      Window::frame.display();
+      Window::winRefresh();
+      loop0init = false;
+      loop1init = true;
+      loop2init = false;
+    }
+
+    void initLoop2(){
+      int sizeOfTxt = 27 - 18;
+      if(dialog != nullptr){
+	delete(dialog);
+      }
+      dialog = new Dialog(txtP1, sizeOfTxt);
+      loop0init = false;
+      loop1init = false;
+      loop2init = true;
+    }
     
     GameStatus StartScene::loop0() {
-      int sizeOfTxt = 18;
-      Dialog dialog(txtP0, sizeOfTxt);
-
-      bool continuer = true;
-      while(continuer) {
-        if((ticks.getElapsedTime().asMilliseconds() - ancientTick) >= FPS_TICKS) {
-	  ancientTick = ticks.getElapsedTime().asMilliseconds();
-
-	  Main::mainframe.window.pollEvent(Main::mainframe.events);
-
-	  switch (Main::mainframe.events.type) {
-
-	    RETURN_ON_CLOSE_EVENT
-
-	  case sf::Event::KeyPressed:
-	    if(Main::mainframe.events.key.code == sf::Keyboard::Space) {
-	      dialog.pass();
-	    }
-	    break;
-	  default:
-	    break;
-	  }
-
-	  RETURN_ON_ECHAP_EVENT
-	  else if(isKeyPressed(sf::Keyboard::P))
-	    return 2;
-
-	  if(!dialog.isDialogOver()) {
-	    Main::mainframe.frame.clear(sf::Color::White);
-	    Main::mainframe.frame.draw(bg);
-	    Main::mainframe.frame.draw(prof);
-
-	    dialog.updateTextAnimation();
-
-	    dialog.draw();
-	    Main::mainframe.frame.display();
-	    Main::mainframe.winRefresh();
-	  } else {
-	    continuer = false;
-	  }
-        } else {
-	  Utils::wait(FPS_TICKS - (GET_TICKS - ancientTick));
-        }
+      if(!loop0init){
+	initLoop0();
       }
-      return 0;
+
+      /*	  switch (Main::mainframe.events.type) {
+
+		  RETURN_ON_CLOSE_EVENT
+
+		  case sf::Event::KeyPressed:
+		  if(Main::mainframe.events.key.code == sf::Keyboard::Space) {
+		  dialog.pass();
+		  }
+		  break;
+		  default:
+		  break;
+		  }
+
+		  RETURN_ON_ECHAP_EVENT
+		  else if(isKeyPressed(sf::Keyboard::P))
+		  return 2;
+      */
+      if(!dialog->isDialogOver()) {
+	Window::frame.clear(sf::Color::White);
+	Window::frame.draw(bg);
+	Window::frame.draw(prof);
+
+	dialog->updateTextAnimation();
+
+	dialog->draw();
+	Window::frame.display();
+	Window::winRefresh();
+	
+      } else {
+	part++;
+      }
+
+      return GameStatus::CONTINUE;
+
     }
 
     GameStatus StartScene::loop1() {
-      Main::mainframe.window.setKeyRepeatEnabled(true);
-      Main::mainframe.frame.clear(sf::Color::White);
-      Main::mainframe.frame.draw(bgName);
-      for(sf::Text desc : textDescs) {
-        desc.setColor(sf::Color::White);
-        desc.setFont(Main::mainframe.font);
-        Main::mainframe.frame.draw(desc);
-      }
-      Main::mainframe.frame.display();
-      Main::mainframe.winRefresh();
-      bool continuer = true;
+      //To do at the end, complicated part
       while(continuer) {
         Main::mainframe.window.waitEvent(Main::mainframe.events);
         switch (Main::mainframe.events.type) {
@@ -185,17 +209,17 @@ namespace OpMon{
 
         RETURN_ON_ECHAP_EVENT
 
-	  Main::mainframe.frame.clear(sf::Color::White);
-        Main::mainframe.frame.draw(bgName);
+	  Window::frame.clear(sf::Color::White);
+        Window::frame.draw(bgName);
         for(sf::Text desc : textDescs) {
 	  desc.setColor(sf::Color::White);
 	  desc.setFont(Main::mainframe.font);
-	  Main::mainframe.frame.draw(desc);
+	  Window::frame.draw(desc);
         }
         nameField.setString(pName);
-        Main::mainframe.frame.draw(nameField);
-        Main::mainframe.frame.display();
-        Main::mainframe.winRefresh();
+        Window::frame.draw(nameField);
+        Window::frame.display();
+        Window::winRefresh();
 
 
       }
@@ -207,59 +231,49 @@ namespace OpMon{
     }
 
     GameStatus StartScene::loop2() {
-      int sizeOfTxt = 27 - 18;
-      Dialog dialog(txtP1, sizeOfTxt);
 
-      bool continuer = true;
-      while(continuer) {
-        if((ticks.getElapsedTime().asMilliseconds() - ancientTick) >= FPS_TICKS) {
-	  ancientTick = ticks.getElapsedTime().asMilliseconds();
+      /*
+	switch (Main::mainframe.events.type) {
 
-	  Main::mainframe.window.pollEvent(Main::mainframe.events);
+	RETURN_ON_CLOSE_EVENT
 
-	  switch (Main::mainframe.events.type) {
+	case sf::Event::KeyPressed:
+	if(Main::mainframe.events.key.code == sf::Keyboard::Space) {
+	dialog->pass();
+	}
+	break;
 
-	    RETURN_ON_CLOSE_EVENT
+	default:
+	break;
 
-	  case sf::Event::KeyPressed:
-	    if(Main::mainframe.events.key.code == sf::Keyboard::Space) {
-	      dialog.pass();
-	    }
-	    break;
+	}
 
-	  default:
-	    break;
+	RETURN_ON_ECHAP_EVENT
+      */
+      if(!dialog->isDialogOver()) {
+	Window::frame.clear(sf::Color::White);
+	Window::frame.draw(bg);
+	Window::frame.draw(prof);
 
-	  }
+	dialog->updateTextAnimation();
 
-	  RETURN_ON_ECHAP_EVENT
-
-            if(!dialog.isDialogOver()) {
-	      Main::mainframe.frame.clear(sf::Color::White);
-	      Main::mainframe.frame.draw(bg);
-	      Main::mainframe.frame.draw(prof);
-
-	      dialog.updateTextAnimation();
-
-	      dialog.draw();
-	      Main::mainframe.frame.display();
-	      Main::mainframe.winRefresh();
-            } else {
-	      continuer = false;
-            }
-        } else {
-	  Utils::wait(FPS_TICKS - (GET_TICKS - ancientTick));
-        }
+	dialog->draw();
+	Window::frame.display();
+	Window::winRefresh();
+	return GameStatus::CONTINUE;
+      } else {
+	nextPanel = new Overworld();
+	return GameStatus::NEXT;
       }
-      return 0;
+        
     }
 
     void StartScene::init() {
       bgMus.play();
       
-      //Animations::animWinOpen(Main::mainframe.frame, bg);
+      //Animations::animWinOpen(Window::frame, bg);
 
-      //Animations::animWinClose(Main::mainframe.frame, bg);
+      //Animations::animWinClose(Window::frame, bg);
 
       launched = true;
 
