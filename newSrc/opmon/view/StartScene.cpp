@@ -124,6 +124,16 @@ namespace OpMon{
       loop2init = false;
     }
 
+    void delLoop1(){
+      Window::window.setKeyRepeatEnable(false);
+      Data::player.setName(pName);
+      txtP1[0] = strName.getString();
+      loop0init = false;
+      loop1init = false;
+      loop2init = false;
+      part++;
+    }
+
     void initLoop2(){
       int sizeOfTxt = 27 - 18;
       if(dialog != nullptr){
@@ -140,23 +150,6 @@ namespace OpMon{
 	initLoop0();
       }
 
-      /*	  switch (Main::mainframe.events.type) {
-
-		  RETURN_ON_CLOSE_EVENT
-
-		  case sf::Event::KeyPressed:
-		  if(Main::mainframe.events.key.code == sf::Keyboard::Space) {
-		  dialog.pass();
-		  }
-		  break;
-		  default:
-		  break;
-		  }
-
-		  RETURN_ON_ECHAP_EVENT
-		  else if(isKeyPressed(sf::Keyboard::P))
-		  return 2;
-      */
       if(!dialog->isDialogOver()) {
 	Window::frame.clear(sf::Color::White);
 	Window::frame.draw(bg);
@@ -177,39 +170,12 @@ namespace OpMon{
     }
 
     GameStatus StartScene::loop1() {
-      //To do at the end, complicated part
-      while(continuer) {
-        Main::mainframe.window.waitEvent(Main::mainframe.events);
-        switch (Main::mainframe.events.type) {
-	  RETURN_ON_CLOSE_EVENT
 
-        case sf::Event::TextEntered:
-	  if(Main::mainframe.events.text.unicode == 8) { //Backspace
-	    if(!pName.isEmpty())
-	      pName = sf::String::fromUtf32(pName.begin(), pName.end() - 1);
-	  } else if(Main::mainframe.events.text.unicode == '\n' || Main::mainframe.events.text.unicode <= 32) {//Do nothing
-	  } else {
-	    if (pName.toUtf32().size() < 14) {//14 = Max name length
-	      pName += Main::mainframe.events.text.unicode;
-	    }
-	  }
-	  break;
-
-        case sf::Event::KeyPressed:
-	  if(Main::mainframe.events.key.code == sf::Keyboard::Return) {
-	    if (pName.isEmpty()) {
-	      pName = "Default";
-	    }
-	    continuer = false;
-	  }
-	  break;
-        default:
-	  break;
-        }
-
-        RETURN_ON_ECHAP_EVENT
-
-	  Window::frame.clear(sf::Color::White);
+      if(!loop1init){
+	initLoop1();
+      }
+      
+      Window::frame.clear(sf::Color::White);
         Window::frame.draw(bgName);
         for(sf::Text desc : textDescs) {
 	  desc.setColor(sf::Color::White);
@@ -222,12 +188,7 @@ namespace OpMon{
         Window::winRefresh();
 
 
-      }
-      Main::mainframe.window.setKeyRepeatEnabled(false);
-      Main::player.setName(pName);
-      txtP1[0] = strName.getString();
-      return 0;
-
+	return GameStatus::CONTINUE;
     }
 
     GameStatus StartScene::loop2() {
