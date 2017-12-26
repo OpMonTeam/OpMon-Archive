@@ -34,6 +34,16 @@ namespace OpMon{
       Dialog* getDialog(){
 	return actualDialog;
       }
+
+      int getPart(){
+	return part;
+      }
+
+      sf::String& getpName(){
+	return pName;
+      }
+
+      void delLoop1();
       
     private:
       sf::Sprite bg;
