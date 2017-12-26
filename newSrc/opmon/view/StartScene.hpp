@@ -30,6 +30,10 @@ namespace OpMon{
       GameStatus loop0();
       GameStatus loop1();
       GameStatus loop2();
+
+      Dialog* getDialog(){
+	return actualDialog;
+      }
       
     private:
       sf::Sprite bg;
