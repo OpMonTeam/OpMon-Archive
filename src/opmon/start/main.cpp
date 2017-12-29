@@ -103,5 +103,5 @@ int main(int argc, char *argv[]) {
       }
     }
   }
-  return Main::starts();
+  return OpMon::Main::starts();
 }

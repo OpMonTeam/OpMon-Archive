@@ -34,14 +34,23 @@ GameStatus GameLoop::operator()(){
     }else if(instanceOf<View::MainMenu*>(interfaces.top())){
       View::MainMenu& mainmenu = *dynamic_cast<View::MainMenu*>(interfaces.top());
       status = Controller::MenuCtrl::checkEvents(events, mainmenu);
+    }else if(instanceOf<View::StartScene*>(interfaces.top())){
+      View::StartScene& startscene = *dynamic_cast<View::StartScene*>(interfaces.top());
+      status = Controller::StartSceneCtrl::checkEvents(events, startscene);
+    }else if(instanceOf<View::OptionsCtrl*>(interfaces.top())){
+      View::OptionsMenu optionsmenu = *dynamic_cast<View::OptionsMenu*>(interfaces.top());
+      status = Controller::MenuCtrl::Options::checkEvents(events, optionsmenu);
+    }else{
+      handleError("Unknown interface called in GameLoop", true);
     }
 
     if(status != GameStatus::STOP){
-    
+      Interface& current = *interfaces.top();
       if(!instanceOf<View::Overworld*>(interface.top())){
-	status = (*interfaces.top())();
+	status = current();
       }else{
-	status = (*dynamic_cast<View::Overworld*>(interfaces.top()))(dialog, frames);
+	Overworld& currentOw = dynamic_cast<Overworld&>(current);
+	status = currentOw(dialog, frames);
       }
 
     
