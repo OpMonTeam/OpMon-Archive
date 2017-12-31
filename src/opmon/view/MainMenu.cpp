@@ -17,12 +17,7 @@ namespace OpMon{
     }
 
     void MainMenu::MainMenu() {
-
-    }
-
-
-    void init(){
-      sf::Text *textPos[4] = {&play, &charge, &options, &exit};
+            sf::Text *textPos[4] = {&play, &charge, &options, &exit};
       for(int i = 0, j = 175; i < 4; i++) {
         curPos[i].x = 10;
         curPos[i].y = j;
@@ -62,7 +57,11 @@ namespace OpMon{
 
 
       bgMusTitle.setLoop(true);
+
+      wait = true;
+      
     }
+
 
     void MainMenu::del() {
       bgMusTitle.stop();

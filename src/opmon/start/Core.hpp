@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include <SFML/System/Clock.hpp>
+#include "Gameloop.hpp"
 
 namespace OpMon{
 
