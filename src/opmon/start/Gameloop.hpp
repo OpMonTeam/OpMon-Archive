@@ -22,10 +22,11 @@ namespace OpMon{
       return player;
     }
 
+    
+
   private:
     sf::Event events;
     bool endGame = false;
-    bool wait = true;
     std::Stack<View::Interface*> interfaces;
     Player player;
     

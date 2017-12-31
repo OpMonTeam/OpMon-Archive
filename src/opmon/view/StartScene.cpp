@@ -109,6 +109,7 @@ namespace OpMon{
     }
 
     void initLoop1(){
+      wait = true;
       Window::window.setKeyRepeatEnabled(true);
       Window::frame.clear(sf::Color::White);
       Window::frame.draw(bgName);
@@ -125,6 +126,7 @@ namespace OpMon{
     }
 
     void delLoop1(){
+      wait = false;
       Window::window.setKeyRepeatEnable(false);
       Data::player.setName(pName);
       txtP1[0] = strName.getString();
