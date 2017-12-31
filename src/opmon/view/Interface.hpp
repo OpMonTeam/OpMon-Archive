@@ -20,11 +20,16 @@ namespace OpMon{
       
       virtual void pause() = 0;
       virtual void play() = 0;
+
+      bool isWait(){
+	return wait;
+      }
       
     protected:
       void init() = 0;
       bool launched = false;
       Interface* nextPanel;
+      bool wait = false;
     };
   }
 }

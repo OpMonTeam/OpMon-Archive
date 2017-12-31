@@ -1,18 +1,20 @@
 #include "BaseCtrl.hpp"
 
+
 namespace OpMon{
   sf::Event events;
-  void Controller::checkQuit(){
+  void Controller::checkQuit(sf::Event& event){
     Model::Data::Ui::window.pollEvent(events);
     switch (events.type) {
     case sf::Event::Closed:
-      Model::Data::endGame = true;
+      return GameStatus::STOP;
     default:
       break;
     }
     
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
-	Model::Data::endGame = true;
+      return GameStatus::STOP;
     }
+    return GameStatus::CONTINUE;
   }
 }
