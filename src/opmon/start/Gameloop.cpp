@@ -7,12 +7,15 @@ GameStatus GameLoop::operator()(){
   while(!endGame){
     frames++;
     oldTicks = GET_TICKS;
+    if(interfaces.top() != nullptr){
+      wait = interfaces.top()->isWait();
+    }
     if(wait){
       Window::window.waitEvent(events);
     }else{
       Window::window.pollEvent(events);
     }
-    if(checkQuit() == GameStatus::STOP){
+    if(checkQuit(events) == GameStatus::STOP){
       endGame = true;
     }
     

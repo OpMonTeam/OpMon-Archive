@@ -39,7 +39,7 @@ namespace OpMon{
       }
       
     private:
-
+      
       sf::Sprite bg;
       sf::Text play;
       sf::Text charge;

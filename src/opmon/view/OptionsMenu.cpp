@@ -82,7 +82,8 @@ void OptionsMenu::initStrings() {
   txtCre9.setCharacterSize(13);
 }
 
-OptionsMenu(){
+OptionsMenu::OptionsMenu(){
+  wait = true;
   init();
 }
 
