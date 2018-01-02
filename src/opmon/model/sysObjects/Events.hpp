@@ -7,13 +7,13 @@
 */
 #ifndef EVENTS_HPP
 #define EVENTS_HPP
-#include "Elements.hpp"
-#include "MainFrame.hpp"
-#include "../enums/Enums.hpp"
-#include "../start/main.hpp"
-#include "../start/Initializer.hpp"
-#include "../objects/item/Item.hpp"
-#include "../start/OpString.hpp"
+
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/Audio/Sound.hpp>
+
+#include "Player.hpp"
+#include "../objects/Enums.hpp"
+#include "../../../utils/OpString.hpp"
 
 #define SIDE_UP 0x0001
 #define SIDE_DOWN 0x0002
@@ -38,7 +38,7 @@ namespace OpMon{
     protected:
       std::vector<sf::Texture>& otherTextures;
       //ExpectEnum->EventTrigger
-      std::vector::iterator currentTexture;
+      std::vector<sf::Texture>::iterator currentTexture;
       Events::EventTrigger eventTrigger;
       sf::Vector2f position;
       bool passable;

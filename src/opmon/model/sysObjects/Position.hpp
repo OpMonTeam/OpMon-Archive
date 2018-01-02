@@ -1,6 +1,13 @@
 #ifndef POSITION_HPP
 #define POSITION_HPP
 
+#include <SFML/System/Vector2.hpp>
+
+#include "../objects/Enums.hpp"
+
+#define SQUARES_SIZE 32
+#define SQUARES * SQUARES_SIZE
+
 namespace OpMon{
   namespace Model{
     class Position{
@@ -51,7 +58,7 @@ namespace OpMon{
       bool anim;
       bool movement;
       bool moveLock;
-    }
+    };
   }
 }
 

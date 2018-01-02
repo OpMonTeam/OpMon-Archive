@@ -3,8 +3,7 @@
 
 namespace OpMon{
   sf::Event events;
-  void Controller::checkQuit(sf::Event& event){
-    Model::Data::Ui::window.pollEvent(events);
+  GameStatus Controller::checkQuit(sf::Event& event){
     switch (events.type) {
     case sf::Event::Closed:
       return GameStatus::STOP;
