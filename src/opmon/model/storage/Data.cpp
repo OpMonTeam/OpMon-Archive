@@ -1,5 +1,8 @@
 #include "Data.hpp"
 
+#include "../sysObjects/Map.hpp"
+#include "../objects/Species.hpp"
+
 namespace OpMon{
   namespace Model{
     namespace Data{
