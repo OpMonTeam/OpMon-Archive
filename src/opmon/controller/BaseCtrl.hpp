@@ -9,7 +9,10 @@ http://opmon-game.ga
 
 
 #include <SFML/Window/Event.hpp>
+
 #include "../start/Core.hpp"
+
+
 
 namespace OpMon{
   /**

@@ -9,8 +9,8 @@ Contient la définition de la classe Attack
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUE_HPP_
 
 #include <iostream>
-#include "../../utils/Utils.hpp"
-#include "../enums/Enums.hpp"
+#include "../../../utils/Utils.hpp"
+#include "Enums.hpp"
 
 namespace OpMon{
   namespace Model{

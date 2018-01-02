@@ -11,9 +11,9 @@
 
 #include <iostream>
 #include <cmath>
-#include "../enums/Nature.hpp"
+#include "Nature.hpp"
 #include "Species.hpp"
-#include "../../utils/Utils.hpp"
+#include "../../../utils/Utils.hpp"
 #include "item/Item.hpp"
 #include "item/IOpball.hpp"
 

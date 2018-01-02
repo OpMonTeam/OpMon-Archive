@@ -9,7 +9,7 @@ Contient la définition de l'énumération ItemType et de la classe Item
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_ITEM_HPP_
 
 #include <iostream>
-#include "../../enums/Enums.hpp"
+#include "../Enums.hpp"
 #define ITEM_NUMBER 151
 
 namespace OpMon{

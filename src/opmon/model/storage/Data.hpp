@@ -9,10 +9,16 @@
 #include <map>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Audio/Music.hpp>
+#include <SFML/Audio/Sound.hpp>
 #include <SFML/Graphics/Font.hpp>
+#include <SFML/Graphics/Sprite.hpp>
 
 namespace OpMon{
   namespace Model{
+
+    class Species;
+    class Map;
+    
     namespace Data{
       namespace OpMons{
 	extern std::map<unsigned int, Species> listOp;

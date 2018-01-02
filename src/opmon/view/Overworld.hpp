@@ -13,8 +13,7 @@
 #include "../start/main.hpp"
 #include "Elements.hpp"
 #include "../playercore/Player.hpp"
-#define SQUARES_SIZE 32
-#define SQUARES * SQUARES_SIZE
+
 
 #include "Interface.hpp"
 
