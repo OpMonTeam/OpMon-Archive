@@ -3,30 +3,30 @@ Player.hpp
 Author : Jlppc
 Fichier sous licence GPL-3.0
 http://opmon-game.ga
-Contient la définition de la classe Player
+Contains the Player class.
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_PLAYERCORE_PLAYER_HPP_
 #define SRCCPP_JLPPC_REGIMYS_PLAYERCORE_PLAYER_HPP_
+
+#include "Position.hpp"
+#include "../objects/item/Item.hpp"
+#include "OpTeam.hpp"
 
 namespace OpMon{
   namespace Model{
 
     class OpMon;
-    class OpTeam;
 
-    /**
-       Classe représentant le joueur
-    */
     class Player {
     public:
       Player(sf::String const& name);
       Player();
       OpTeam *getOpTeam();
-      /**Ajoute un item au sac*/
+      
       void addItem(int itemID);
-      /**Renvoie le nombre d'exemplaires dans le sac de l'item donné en paramètres*/
+      /**Returns the number of items of the item type given in paramter*/
       int checkItem(int itemID);
-      /**Enlève un exemplaire de l'item dans le sac donné en paramètres*/
+      /**Delete an item from the player inventory. Returns false if the item was not present.*/
       bool deleteItem(int itemID);
       sf::String getName() const {
         return name;
@@ -49,9 +49,9 @@ namespace OpMon{
       OpMon *getPcOp(int ID) const {
         return pc[ID];
       }
-      /**Soigne tous les Poké*/
+      /**Heals all the player's OpMons*/
       void healOp();
-      /**Essaie d'ajouter un pokémon a l'opteam. Renvoie false si ce n'est pas possible*/
+      /**Tries to add an OpMon to the team. Returns false if the team is already full*/
       bool addOpToOpTeam(OpMon *toAdd);
 
       void save();
@@ -77,11 +77,11 @@ namespace OpMon{
             
     private:
       sf::String name;
-      const unsigned int trainerID;//jusqu'a 8 chiffres (Hexadecimal) (jusqu'a 16^8 soit 4 octets soit un int)
+      const unsigned int trainerID;//Max : 8 digits in hexadecimal
       int bag[ITEM_NUMBER];
       std::vector<OpMon *> pc = std::vector<OpMon *>();
       OpTeam opteam;
-      std::string mapID = "Player's room";
+      std::string mapID = "Player's room";//Player's room is the start room for the player
 
       Position position;
       

@@ -1,7 +1,11 @@
 #ifndef GAMELOOP_HPP
 #define GAMELOOP_HPP
-
 #define FPS_TICKS 33
+
+#include <stack>
+
+#include "Core.hpp"
+#include "../model/sysObject/Player.hpp"
 
 namespace OpMon{
   class GameLoop{
@@ -9,14 +13,6 @@ namespace OpMon{
     GameLoop();
     GameStatus operator()();
     GameStatus checkQuit();
-
-    bool isWait(){
-      return wait;
-    }
-
-    void setWait(bool wait){
-      this->wait = wait;
-    }
 
     Player& getPlayer(){
       return player;
@@ -33,7 +29,7 @@ namespace OpMon{
     
     int frames = 0;
     int oldticks = 0;
-  }
+  };
 }
 
 #endif

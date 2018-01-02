@@ -6,11 +6,12 @@
 
 #include <iostream>
 #include <SFML/System/Clock.hpp>
-#include "Gameloop.hpp"
 
 namespace OpMon{
 
-  enum GameStatus{
+  class GameLoop;
+  
+  enum class GameStatus{
     CONTINUE, STOP, NEXT, PREVIOUS
   };
 
