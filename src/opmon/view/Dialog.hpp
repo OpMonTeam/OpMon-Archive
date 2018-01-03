@@ -7,9 +7,7 @@ http://opmon-game.ga
 #ifndef OPMON_DIALOG_CPP_HPP
 #define OPMON_DIALOG_CPP_HPP
 
-#include <SFML/Graphics.hpp>
 #include <string>
-#include "MainFrame.hpp"
 
 
 class Dialog {
@@ -24,7 +22,7 @@ private:
     sf::String txtEnCours[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
 
     /** index of the first line currently displayed on screen */
-    unsigned int dialog = 0;
+    unsigned int dialogNb = 0;
 
     /**
      * If true, the dialog is fully displayed by the text animation, and the

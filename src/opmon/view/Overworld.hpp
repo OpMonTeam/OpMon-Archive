@@ -8,14 +8,12 @@
 #ifndef OVERWORLD_HPP
 #define OVERWORLD_HPP
 
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
-#include "../start/main.hpp"
 #include "Elements.hpp"
-#include "../playercore/Player.hpp"
-
-
 #include "Interface.hpp"
+#include "Dialog.hpp"
+#include "../model/sysObjects/Player.hpp"
+#include "../model/sysObjects/Map.hpp"
+#include "../model/objects/Enums.hpp"
 
 namespace OpMon{
   namespace View{
@@ -50,7 +48,7 @@ namespace OpMon{
       MapLayer* getMapLayer(int number){
 	switch(number){
 	case 1:
-	  return layer1:
+	  return layer1;
 	case 2:
 	  return layer2;
 	case 3:
@@ -64,7 +62,7 @@ namespace OpMon{
 	return dialog;
       }
 
-      void moveCamera(Side dir);
+      void moveCamera(Model::Side dir);
 
       bool printlayer[3] = {true, true, true};
 
@@ -96,7 +94,7 @@ namespace OpMon{
       sf::Music *music = nullptr;
       std::string musicPath = "";
 
-      std::map<std::vector::iterator, sf::Sprite> eventsSprites;
+      std::map<std::vector<sf::Sprite>::iterator, sf::Sprite> eventsSprites;
       
       MapLayer *layer1 = nullptr;
       MapLayer *layer2 = nullptr;

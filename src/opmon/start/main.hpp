@@ -11,24 +11,16 @@
 #error This is a C++ program!
 #endif
 
-#include "../playercore/Player.hpp"
+#include "../Player.hpp"
 #include "defines.hpp"
 
 namespace OpMon{
 
-class MainFrame;
 /**
    Namespace containing the main contents of the game
 */
 namespace Main {
-/**
-   The game's main
-*/
-void main();
-/**
-   Contains the frame, and all the elements
-*/
-extern MainFrame mainframe;
+
 }
   
 }
