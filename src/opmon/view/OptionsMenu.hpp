@@ -23,6 +23,7 @@ namespace OpMon{
     public:
       OptionsMenu();
 
+      void moveArrow(bool dir);
      
       int optionsMenu();
       void init();
@@ -43,9 +44,9 @@ namespace OpMon{
       void setCurrentOption(OptionType newOpt){currentOptions = newOpt;}
       int cursorPosition(){
 	switch(currentOptions){
-	case ALL:
+	case OptionType::ALL:
 	  return curPosOptI;
-	case LANG:
+	case OptionType::LANG:
 	  return curPosLangI;
 	default:
 	  return 0;

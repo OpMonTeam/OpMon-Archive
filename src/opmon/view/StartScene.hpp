@@ -9,7 +9,7 @@ http://opmon-game.ga
 
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-#include "../start/OpString.hpp"
+#include "../../utils/OpString.hpp"
 
 namespace OpMon{
   namespace View{

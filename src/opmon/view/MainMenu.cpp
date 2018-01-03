@@ -10,14 +10,14 @@ namespace OpMon{
   namespace View{
 
     void MainMenu::initStrings() {
-      play.setString(kget("title.1"));
+      playtx.setString(kget("title.1"));
       charge.setString(kget("title.2"));
       options.setString(kget("title.3"));
       exit.setString(kget("title.4"));
     }
 
     void MainMenu::MainMenu() {
-            sf::Text *textPos[4] = {&play, &charge, &options, &exit};
+            sf::Text *textPos[4] = {&playtx, &charge, &options, &exit};
       for(int i = 0, j = 175; i < 4; i++) {
         curPos[i].x = 10;
         curPos[i].y = j;
@@ -38,15 +38,15 @@ namespace OpMon{
       bruitNope.setBuffer(sounds[2]);
       cursor.setScale(3, 3);
       initStrings();
-      play.setColor(sf::Color::White);
+      playtx.setColor(sf::Color::White);
       charge.setColor(sf::Color::White);
       options.setColor(sf::Color::White);
       exit.setColor(sf::Color::White);
-      play.setFont(Main::mainframe.font);
+      playtx.setFont(Main::mainframe.font);
       charge.setFont(Main::mainframe.font);
       options.setFont(Main::mainframe.font);
       exit.setFont(Main::mainframe.font);
-      play.setCharacterSize(FONT_SIZE_DEFAULT);
+      playtx.setCharacterSize(FONT_SIZE_DEFAULT);
       charge.setCharacterSize(FONT_SIZE_DEFAULT);
       options.setCharacterSize(FONT_SIZE_DEFAULT);
       exit.setCharacterSize(FONT_SIZE_DEFAULT);
@@ -99,7 +99,7 @@ namespace OpMon{
 
       //Actualisation des éléments
       Main::mainframe.frame.draw(bg);
-      Main::mainframe.frame.draw(play),
+      Main::mainframe.frame.draw(playtx),
 	Main::mainframe.frame.draw(charge);
       Main::mainframe.frame.draw(options);
       Main::mainframe.frame.draw(exit);
@@ -119,7 +119,7 @@ namespace OpMon{
       oplog("Initialisating the menu");
       //Actualisation des éléments
       Main::mainframe.frame.draw(bg);
-      Main::mainframe.frame.draw(play),
+      Main::mainframe.frame.draw(playtx),
 	Main::mainframe.frame.draw(charge);
       Main::mainframe.frame.draw(options);
       Main::mainframe.frame.draw(exit);

@@ -1,6 +1,8 @@
 #ifndef MAP_HPP
 #define MAP_HPP
 
+#include "Events.hpp"
+
 namespace OpMon{
   namespace Model{
     /**
@@ -63,4 +65,4 @@ namespace OpMon{
   }
 }
 
-#endif MAP_HPP
+#endif // MAP_HPP
