@@ -7,16 +7,16 @@
 #include <iostream>
 #include <SFML/System/Clock.hpp>
 
+
+
 namespace OpMon{
 
-  class GameLoop;
   
   enum class GameStatus{
     CONTINUE, STOP, NEXT, PREVIOUS
   };
 
 
-  extern GameLoop gameloop;
   
   /**Path to the options save file*/
   extern std::string optSave;
@@ -62,6 +62,12 @@ namespace OpMon{
   template<typename T>
   bool instanceof(auto toTry);
   
+}
+
+#include "Gameloop.hpp"
+
+namespace OpMon{
+    extern GameLoop gameloop;
 }
 
 #endif
