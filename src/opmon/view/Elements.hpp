@@ -12,7 +12,7 @@ Fichier contenant des Ã©lÃ©ments utiles
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 
-#include "../playercore/Player.hpp"
+#include "../model/sysObjects/Player.hpp"
 
 namespace OpMon{
   namespace View{
