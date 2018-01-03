@@ -1,6 +1,8 @@
 #ifndef INTERFACE_HPP
 #define INTERFACE_HPP
 
+#include "../start/Core.hpp"
+
 namespace OpMon{
   namespace View{
     class Interface {

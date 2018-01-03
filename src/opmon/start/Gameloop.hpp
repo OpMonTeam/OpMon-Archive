@@ -5,16 +5,20 @@
 #include <stack>
 
 #include "Core.hpp"
-#include "../model/sysObject/Player.hpp"
+#include "../model/sysObjects/Player.hpp"
+#include "../view/Interface.hpp"
 
 namespace OpMon{
+  namespace View{
+    class Interface;
+  }
   class GameLoop{
   public:
     GameLoop();
     GameStatus operator()();
     GameStatus checkQuit();
 
-    Player& getPlayer(){
+    Model::Player& getPlayer(){
       return player;
     }
 
@@ -23,8 +27,8 @@ namespace OpMon{
   private:
     sf::Event events;
     bool endGame = false;
-    std::Stack<View::Interface*> interfaces;
-    Player player;
+    std::stack<View::Interface*> interfaces;
+    Model::Player player;
     
     
     int frames = 0;
