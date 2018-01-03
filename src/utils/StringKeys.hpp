@@ -11,6 +11,8 @@ http://opmon-game.ga
 #include <vector>
 #include <SFML/System/String.hpp>
 
+#include "defines.hpp"
+
 namespace StringKeys {
 extern std::vector<std::string> keys;
 extern std::vector<sf::String> strings;

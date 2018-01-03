@@ -1,26 +1,35 @@
 #include "MenuCtrl.hpp"
 
+#include "../view/Overworld.hpp"
+#include "../view/StartScene.hpp"
+#include "../model/save/OptionsSave.hpp"
+#include "../model/storage/Data.hpp"
+#include "../../utils/StringKeys.hpp"
+#include "../../utils/defines.hpp"
+#include "../start/Initializer.hpp"
+
 namespace OpMon{
   namespace Controller{
     namespace MenuCtrl{
-      GameStatus checkEvents(sf::Events& event, View::MainMenu& menu){
-	switch(event) {
+      GameStatus checkEvents(sf::Event& event, View::MainMenu& menu){
+	switch(event.type) {
 	  
 	case sf::Event::KeyPressed:
 	  if(event.key.code == sf::Keyboard::Return) {
-	    switch(curPosI) {
+	    switch(menu.getCursorPosition()) {
 	    case 0:
-	      bgMusTitle.stop();
-	      return (View::Interface*) new View::StartScene();
+	      
+	      menu.setNextInterface(new View::StartScene());
+	      return GameStatus::NEXT;
 	    case 3:
-	      bgMusTitle.stop();
-	      return nullptr;
+	      return GameStatus::STOP;
 	    case 2:
-	      return (View::Interface*) new View::OptionsMenu();
+	      menu.setNextInterface(new View::OptionsMenu());
+	      return GameStatus::NEXT;
 	      break;
 	    case 1:
 	      Model::Data::Sounds::nope.play();
-	      return &menu;
+	      return GameStatus::CONTINUE;
 	    }
 	  }else if(event.key.code == sf::Keyboard::Up){
 	    menu.moveArrow(true);
@@ -69,17 +78,17 @@ namespace OpMon{
 		return GameStatus::CONTINUE;
 	      case 1:
 		Model::OptionsSave::modifyParam("lang", "eng");
-		Utils::StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/english.rkeys"));
+		StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/english.rkeys"));
 		changedLang = true;
 		break;
 	      case 2:
 		Model::OptionsSave::modifyParam("lang", "esp");
-		Utils::Stringkeys::initialize(getPath(RESSOURCES_PATH + "keys/espanol.rkeys"));
+		StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/espanol.rkeys"));
 		changedLang = true;
 		break;
 	      case 3:
 		Model::OptionsSave::modifyParam("lang", "fr");
-		Utils::StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/francais.rkeys"));
+		StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/francais.rkeys"));
 		changedLang = true;
 		break;
 	      }
@@ -89,13 +98,16 @@ namespace OpMon{
 	    }else{
 	      return GameStatus::CONTINUE;
 	    }
+	    break;
+	  default:
+	    break;
 	  }
 	  if(event.key.code == sf::Keyboard::Up){
 	    menu.moveArrow(true);
 	  }else if(event.key.code == sf::Keyboard::Down){
 	    menu.moveArrow(false);
 	  }else if(event.key.code == sf::Keyboard::BackSpace){
-	    if(menu.getCurrentOption() == View::OptionsType::ALL){
+	    if(menu.getCurrentOption() == View::OptionType::ALL){
 	      return GameStatus::PREVIOUS;
 	    }else{
 	      menu.setCurrentOption(View::OptionType::ALL);

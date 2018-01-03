@@ -11,6 +11,8 @@ Contient le namespace MainMenu
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
+#include "Interface.hpp"
+
 
 namespace OpMon{
   namespace View{
@@ -41,7 +43,7 @@ namespace OpMon{
     private:
       
       sf::Sprite bg;
-      sf::Text play;
+      sf::Text playtx;
       sf::Text charge;
       sf::Text options;
       sf::Text exit;

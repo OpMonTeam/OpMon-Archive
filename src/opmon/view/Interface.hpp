@@ -10,12 +10,12 @@ namespace OpMon{
 
       virtual void initStrings() = 0;
 
-      Interface* getNextPanel() const{
-	return nextPanel;
+      Interface* getNextInterface() const{
+	return nextInterface;
       }
 
-      void setNextPanel(Interface* next){
-	nextPanel = next;
+      void setNextInterface(Interface* next){
+	nextInterface = next;
       }
       
       virtual void pause() = 0;
@@ -26,9 +26,9 @@ namespace OpMon{
       }
       
     protected:
-      void init() = 0;
+      virtual void init() = 0;
       bool launched = false;
-      Interface* nextPanel;
+      Interface* nextInterface;
       bool wait = false;
     };
   }
