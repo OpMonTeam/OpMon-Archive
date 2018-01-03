@@ -1,12 +1,18 @@
 #ifndef OVERWORLDCTRL_HPP
 #define OVERWORLDCTRL_HPP
 
+#include <SFML/Window/Event.hpp>
+
+#include "../start/Core.hpp"
+#include "../view/Overworld.hpp"
+#include "../model/sysObjects/Player.hpp"
+
 namespace OpMon{
   namespace Controller{
     namespace OverworldCtrl{
-      void checkEvents(sf::Event const& events, View::Overworld& overworld, Player& player);
-      void checkEventsDialog(sf::Event const& events, View::Overworld& overworld);
-      void checkEventsNoDialog(sf::Event const& events, Player& player);
+      GameStatus checkEvents(sf::Event const& events, View::Overworld& overworld, bool dialog, Model::Player& player);
+      GameStatus checkEventsDialog(sf::Event const& events, View::Overworld& overworld);
+      GameStatus checkEventsNoDialog(sf::Event const& events, Model::Player& player);
     }
   }
 }

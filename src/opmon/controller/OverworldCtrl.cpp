@@ -1,8 +1,11 @@
 #include "OverworldCtrl.hpp"
 
+#include "../model/storage/Data.hpp"
+#include "EventsCtrl.hpp"
+
 namespace OpMon{
   namespace Controller{
-    void OverworldCtrl::checkEvents(sf::Event const& events, View::Overworld& overworld, bool dialog, Player& player){
+    GameStatus OverworldCtrl::checkEvents(sf::Event const& events, View::Overworld& overworld, bool dialog, Model::Player& player){
       
       switch(events.type) {
       case sf::Event::KeyPressed:
@@ -26,17 +29,17 @@ namespace OpMon{
 	break;
       }	  
       if(debugMode) {
-	if(isKeyPressed(sf::Keyboard::Numpad2)) {
-	  overworld.moveCamera(Side::TO_DOWN);
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2)) {
+	  overworld.moveCamera(Model::Side::TO_DOWN);
 	}
-	if(isKeyPressed(sf::Keyboard::Numpad4)) {
-	  overworld.moveCamera(Side::TO_LEFT);
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4)) {
+	  overworld.moveCamera(Model::Side::TO_LEFT);
 	}
-	if(isKeyPressed(sf::Keyboard::Numpad8)) {
-	  overworld.moveCamera(Side::TO_UP);
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad8)) {
+	  overworld.moveCamera(Model::Side::TO_UP);
 	}
-	if(isKeyPressed(sf::Keyboard::Numpad6)) {
-	  overworld.moveCamera(Side::TO_DOWN);
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6)) {
+	  overworld.moveCamera(Model::Side::TO_DOWN);
 	}
       }
 
@@ -50,7 +53,7 @@ namespace OpMon{
     }
     
 
-    void Overworld::checkEventsDialog(sf::Event const& events, View::Overworld& overworld){
+    GameStatus OverworldCtrl::checkEventsDialog(sf::Event const& events, View::Overworld& overworld){
       switch(events.type) {	  
       case sf::Event::KeyPressed:
 	if(events.key.code == sf::Keyboard::Space) {
@@ -62,8 +65,8 @@ namespace OpMon{
       } 
     }
 
-    void OverworldCtrl::checkEventsNoDialog(sf::Event const& event, Player& player){
-      EventsCtrl::updateEvents(player.getMapID(), player);
+    GameStatus OverworldCtrl::checkEventsNoDialog(sf::Event const& event, Model::Player& player){
+      EventsCtrl::updateEvents(Model::Data::World::maps.at(player.getMapId())->getEvents(), player);
       EventsCtrl::checkAction(event, player);
     }
   }
