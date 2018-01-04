@@ -523,9 +523,7 @@ namespace OpMon{
     auto myciCol = array_to_pointer((char*) Collisions::myciCol, 19, 19);
     maps.try_emplace("MysteriouCity", Maps::myciLayer1, Maps::myciLayer2, Maps::myciLayer3, 19, 19, myciCol, getPath(RESSOURCES_PATH + "audio/music/mysterioucity.ogg"));
     delete[] myciCol;
-    
-    Main::mainframe.overworld.initVars();
-    
+
   }
 #undef PLANS_RESET
   void initBackgrounds() {
