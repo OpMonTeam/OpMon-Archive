@@ -1,5 +1,6 @@
 #include "Animations.hpp"
-#include "MainFrame.hpp"
+#include "../view/Window.hpp"
+
 UNS
 
 namespace OpMon{
@@ -33,12 +34,11 @@ namespace OpMon{
 	      return GameStatus::STOP;
 	    }
 	    anim.setTexture(fen[i]);
-            window.clear(sf::Color::White);
-            window.draw(bg);
-            window.draw(anim[i]);
-
-            window.display();
-            Main::mainframe.winRefresh();
+		  window.clear(sf::Color::White);
+		  window.draw(bg);
+		  window.draw(anim[i]);
+		  window.display();
+		  OpMon::View::winRefresh();
 	  } else {
             Utils::wait(200 - (ticks.getElapsedTime().asMilliseconds() - ancientChrono));
             i--;
@@ -68,7 +68,7 @@ namespace OpMon{
             window.draw(anim[i]);
 
             window.display();
-            Main::mainframe.winRefresh();
+		  OpMon::View::winRefresh();
 	  } else {
             Utils::wait(200 - (ticks.getElapsedTime().asMilliseconds() - ancientChrono));
             i++;
