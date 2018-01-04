@@ -7,7 +7,7 @@ Contient le namespace Save
 */
 #ifndef SAVE_HPP
 #define SAVE_HPP
-#include "../playercore/Player.hpp"
+#include "../sysObjects/Player.hpp"
 #define SOUT Save::saveOutput
 #include <fstream>
 

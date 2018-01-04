@@ -23,8 +23,6 @@ namespace OpMon {
     */
     //bool reboot = false;
 
-    MainFrame mainframe;
-
     int starts() {
       
       oplog("Log opening OK. Welcome in OpMon Lazuli.");

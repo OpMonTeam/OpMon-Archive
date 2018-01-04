@@ -1,8 +1,10 @@
 #include "Attack.hpp"
 #include "OpMon.hpp"
 #include <sstream>
-#include "../start/main.hpp"
+#include "../../start/main.hpp"
 #include "../save/Save.hpp"
+#include "../../../utils/defines.hpp"
+
 
 namespace OpMon{
   namespace Model{

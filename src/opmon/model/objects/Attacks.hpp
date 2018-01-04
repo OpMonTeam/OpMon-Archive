@@ -270,8 +270,6 @@ EAp;
 }
 }
 }
-//Permet de ne pas a devoir utiliser Attacks:: partout
-using namespace Attacks;
 
 
 #endif /* SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUES_HPP_ */
