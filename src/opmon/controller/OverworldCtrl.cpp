@@ -5,8 +5,9 @@
 
 namespace OpMon{
   namespace Controller{
-    GameStatus OverworldCtrl::checkEvents(sf::Event const& events, View::Overworld& overworld, bool dialog, Model::Player& player){
-      
+    GameStatus OverworldCtrl::checkEvents(sf::Event const& events, View::Overworld& overworld, Model::Player& player){
+      bool is_dialog_open = overworld.getDialog() && !overworld.getDialog()->isDialogOver();
+
       switch(events.type) {
       case sf::Event::KeyPressed:
 	if(events.key.code == sf::Keyboard::Equal) {
@@ -43,13 +44,12 @@ namespace OpMon{
 	}
       }
 
-      if(dialog){
-	checkEventsDialog(events, overworld);
+      if(is_dialog_open){
+        checkEventsDialog(events, overworld);
       }else{
-	checkEventsNoDialog(events, player);
+        checkEventsNoDialog(events, player);
       }
-      
-            
+
     }
     
 

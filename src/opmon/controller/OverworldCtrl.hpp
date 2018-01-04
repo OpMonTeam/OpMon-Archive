@@ -10,7 +10,7 @@
 namespace OpMon{
   namespace Controller{
     namespace OverworldCtrl{
-      GameStatus checkEvents(sf::Event const& events, View::Overworld& overworld, bool dialog, Model::Player& player);
+      GameStatus checkEvents(sf::Event const& events, View::Overworld& overworld, Model::Player& player);
       GameStatus checkEventsDialog(sf::Event const& events, View::Overworld& overworld);
       GameStatus checkEventsNoDialog(sf::Event const& events, Model::Player& player);
     }
