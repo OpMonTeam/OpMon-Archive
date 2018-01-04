@@ -1,7 +1,7 @@
 #include "Species.hpp"
-#include "../evolution/Evolution.hpp"
-#include "../evolution/evolutions.hpp"
-#include "../start/main.hpp"
+#include "./evolution/Evolution.hpp"
+#include "./evolution/evolutions.hpp"
+#include "../../start/main.hpp"
 
 namespace OpMon{
   namespace Model{

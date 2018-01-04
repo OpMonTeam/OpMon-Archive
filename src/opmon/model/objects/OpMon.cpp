@@ -7,7 +7,7 @@
 #include "item/IHeal.hpp"
 #include "Attacks.hpp"
 #include <fstream>
-#include "../../start/Initializer.hpp"
+#include "../storage/Data.hpp"
 #include "../../../utils/defines.hpp"
 #include "../../start/Core.hpp"
 #include "../../../utils/log.hpp"
@@ -1685,7 +1685,7 @@ namespace OpMon{
           in.get();
         }
         int speciesID = in.get();
-        species = &Initializer::listOp.at(speciesID);
+        species = &Data::OpMons::listOp.at(speciesID);
         in.get();
         HP = in.get();
         in.get();
