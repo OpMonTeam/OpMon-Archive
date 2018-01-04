@@ -2,7 +2,7 @@
 #include "../start/main.hpp"
 #include <iostream>
 #include "OptionsMenu.hpp"
-#include "MainFrame.hpp"
+#include "./Window.hpp"
 
 UNS
 
@@ -95,19 +95,19 @@ namespace OpMon{
 	init();
       }
 
-      Main::mainframe.frame.clear(sf::Color::lack);
+      frame.clear(sf::Color::lack);
 
       //Actualisation des éléments
-      Main::mainframe.frame.draw(bg);
-      Main::mainframe.frame.draw(playtx),
-	Main::mainframe.frame.draw(charge);
-      Main::mainframe.frame.draw(options);
-      Main::mainframe.frame.draw(exit);
+      frame.draw(bg);
+      frame.draw(playtx),
+	frame.draw(charge);
+      frame.draw(options);
+      frame.draw(exit);
       cursor.setPosition(curPos[curPosI]);
-      Main::mainframe.frame.draw(cursor);
+      frame.draw(cursor);
 
-      Main::mainframe.frame.display();
-      Main::mainframe.winRefresh();
+      frame.display();
+      winRefresh();
 	
       return GameStatus::CONTINUE;
     }
@@ -118,16 +118,16 @@ namespace OpMon{
       
       oplog("Initialisating the menu");
       //Actualisation des éléments
-      Main::mainframe.frame.draw(bg);
-      Main::mainframe.frame.draw(playtx),
-	Main::mainframe.frame.draw(charge);
-      Main::mainframe.frame.draw(options);
-      Main::mainframe.frame.draw(exit);
+      frame.draw(bg);
+      frame.draw(playtx),
+	frame.draw(charge);
+      frame.draw(options);
+      frame.draw(exit);
       cursor.setPosition(curPos[curPosI]);
-      Main::mainframe.frame.draw(cursor);
+      frame.draw(cursor);
 
-      Main::mainframe.frame.display();
-      Main::mainframe.winRefresh();
+      frame.display();
+      winRefresh();
       launched = true;
     }
   }

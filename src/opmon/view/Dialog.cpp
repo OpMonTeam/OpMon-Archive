@@ -1,4 +1,5 @@
 #include "Dialog.hpp"
+#include "./Window.hpp"
 
 
 Dialog::Dialog(const sf::String *text, unsigned int sizeOfText)
@@ -11,7 +12,7 @@ void Dialog::pass() {
       txtEnCours[2] = text[dialogNb + 2];
       
       // TODO: the print and the wait should be separated from the dialog update.
-      Main::mainframe.printText(Main::mainframe.frame, txtEnCours);
+      Main::mainframe.printText(OpMon::View::frame, txtEnCours);
       changeDialog = true;
       Utils::wait(50);
     } else if (dialogNb + 3 < sizeOfTxt) {
