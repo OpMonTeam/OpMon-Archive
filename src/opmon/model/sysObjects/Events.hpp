@@ -2,8 +2,8 @@
   Events.hpp
   Author : Jlppc
   File under the license GPL-3.0
-  http://opmon-game.ga
-  Contient le namespace Events
+  http://opmon-game.ga 
+  Contains the Events namespace 
 */
 #ifndef EVENTS_HPP
 #define EVENTS_HPP
