@@ -2,7 +2,6 @@
 #include <cstdlib>
 #include "../start/main.hpp"
 #include "../start/Initializer.hpp"
-#include "MainFrame.hpp"
 #include "../save/InternalFiles.hpp"
 #include "Overworld.hpp"
 #include "Events.hpp"

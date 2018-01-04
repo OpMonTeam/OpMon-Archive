@@ -14,7 +14,7 @@ namespace OpMon{
       void registerFiles();
       std::ostringstream *openFileOut(std::string const& name);
       std::istringstream *openFileIn(std::string const& name);
-    };
+    }
 
     namespace Collisions {
       extern char feCol[32][32];

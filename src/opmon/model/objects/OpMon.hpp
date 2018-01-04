@@ -33,7 +33,7 @@ namespace OpMon{
       int normal(int n);
       int parabolic(int n);
       int quick(int n);
-    };
+    }
 
     class Attack;
     /**
