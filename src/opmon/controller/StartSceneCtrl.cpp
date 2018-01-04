@@ -29,7 +29,7 @@ namespace OpMon{
 	      } else if(event.text.unicode == '\n' || event.text.unicode <= 32) {//Do nothing
 	      } else {
 		if (pName.toUtf32().size() < 14) {//14 = Max name length
-		  pName += Main::mainframe.events.text.unicode;
+		  pName += event.text.unicode;
 		}
 	      }
 	    }
