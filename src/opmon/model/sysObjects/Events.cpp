@@ -44,7 +44,7 @@ DoorEvent::DoorEvent(std::vector<sf::Texture> &doorType, sf::Vector2f const& pos
     TPEvent(doorType, eventTrigger, position, tpPos, map, ppDir, sides, passable) {
     this->sprite->move(0, -6);
     if(&doorType[0] == &DoorType::SHOP[0]) {
-        this->position.x -= 4
+        this->position.x -= 4;
         this->doorType = 1;
     }else{
         this->doorType = 0;
