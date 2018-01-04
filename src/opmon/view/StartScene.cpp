@@ -1,7 +1,6 @@
 #include "StartScene.hpp"
 #include "../start/main.hpp"
 #include "Animations.hpp"
-#include "MainFrame.hpp"
 #include "../start/OpString.hpp"
 #include "Dialog.hpp"
 

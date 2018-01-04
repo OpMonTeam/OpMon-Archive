@@ -1,4 +1,6 @@
 #include "Window.hpp"
+#include "../model/storage/Data.hpp"
+
 
 namespace OpMon{
   namespace View{
@@ -105,8 +107,8 @@ namespace OpMon{
 	    Main::player.setName("Céchine");
 	  }
 	  //Initializating opmons
-	  OpMon *op1 = new OpMon("", Initializer::listOp.at(4), 20, {new Attacks::Belier(), new Attacks::Charge(), nullptr, nullptr}, Nature::BOLD);
-	  OpMon *op2 = new OpMon("", Initializer::listOp.at(1), 22, {new Attacks::Belier(), new Attacks::Charge(), nullptr, nullptr}, Nature::NAIVE);
+	  OpMon *op1 = new OpMon("", Model::Data::OpMons::listOp.at(4), 20, {new Attacks::Belier(), new Attacks::Charge(), nullptr, nullptr}, Nature::BOLD);
+	  OpMon *op2 = new OpMon("", Model::Data::OpMons::listOp.at(1), 22, {new Attacks::Belier(), new Attacks::Charge(), nullptr, nullptr}, Nature::NAIVE);
 	  Main::player.addOpToOpTeam(op1);
 	  Main::player.addOpToOpTeam(op2);
 	  if(overworld.overworld() != -1) {
@@ -129,7 +131,7 @@ namespace OpMon{
       oplog("Window closed. No error detected. Goodbye.");
     }
 
-    void MainFrame::winRefresh() {
+    void winRefresh() {
       sf::Texture txture = frame.getTexture();
       sf::Sprite sprite;
       sprite.setTexture(txture);

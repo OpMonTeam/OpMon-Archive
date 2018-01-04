@@ -1,4 +1,5 @@
 #include "Data.hpp"
+#include <SFML/Audio.hpp>
 
 #include "../sysObjects/Map.hpp"
 #include "../objects/Species.hpp"

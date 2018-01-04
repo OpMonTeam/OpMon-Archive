@@ -7,7 +7,7 @@ namespace OpMon{
     }
 
     void Evolution::checkEvo() {
-      //toEvolve = Initializer::listOp[evo];
+      //toEvolve = Data::OpMons::listOp[evo];
     }
 
     Species *Evolution::getEvolution() const {
