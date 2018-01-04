@@ -34,7 +34,7 @@ namespace OpMon{
 	return current;
       }
   
-      GameStatus operator()(bool dialog, int frame);
+      GameStatus operator()(int frame);
 
 	  /**Undefined method because this must not be used*/
       GameStatus operator()();
