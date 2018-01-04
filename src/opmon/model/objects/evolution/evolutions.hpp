@@ -9,7 +9,7 @@ Contient les définitions des évolutions
 #define EVOLUTIONS_HPP_INCLUDED
 
 #include <iostream>
-#include "../objects/item/Item.hpp"
+#include "../item/Item.hpp"
 #include "Evolution.hpp"
 
 namespace OpMon{
