@@ -11,6 +11,10 @@ http://opmon-game.ga
 #include <SFML/Graphics.hpp>
 #include "../../utils/OpString.hpp"
 
+#include "../start/Core.hpp"
+#include "./Dialog.hpp"
+
+
 namespace OpMon{
   namespace View{
    

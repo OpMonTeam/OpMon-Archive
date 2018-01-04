@@ -3,6 +3,7 @@
 #define FPS_TICKS 33
 
 #include <stack>
+#include <SFML/Window.hpp>
 
 #include "Core.hpp"
 #include "../model/sysObjects/Player.hpp"
