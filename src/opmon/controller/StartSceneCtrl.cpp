@@ -1,9 +1,12 @@
+
 #include "StartSceneCtrl.hpp"
+#include "../start/main.hpp"
+
 
 namespace OpMon{
   namespace Controller{
     namespace StartSceneCtrl{
-      GameStatus checkEvents(Event& event, StartScene& startscene){
+      GameStatus checkEvents(sf::Event& event, OpMon::View::StartScene& startscene){
 	switch(event.type){
 	case sf::Event::KeyPressed:
 	  if(event.key.code == sf::Keyboard::Space){
