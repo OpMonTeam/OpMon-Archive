@@ -8,6 +8,7 @@ Contains the Player class.
 #ifndef SRCCPP_JLPPC_REGIMYS_PLAYERCORE_PLAYER_HPP_
 #define SRCCPP_JLPPC_REGIMYS_PLAYERCORE_PLAYER_HPP_
 
+#include <SFML/System.hpp>
 #include "Position.hpp"
 #include "../objects/item/Item.hpp"
 #include "OpTeam.hpp"
