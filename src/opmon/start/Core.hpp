@@ -5,7 +5,7 @@
 #define CORE_HPP
 
 #include <iostream>
-#include <SFML/System/Clock.hpp>
+#include <SFML/System.hpp>
 
 
 

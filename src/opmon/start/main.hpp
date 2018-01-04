@@ -11,8 +11,6 @@
 #error This is a C++ program!
 #endif
 
-#include "../Player.hpp"
-#include "defines.hpp"
 
 namespace OpMon{
 
