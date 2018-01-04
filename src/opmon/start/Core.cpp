@@ -29,7 +29,7 @@ namespace OpMon{
 #endif
   }
 
-  sf::Vector2i MainFrame::vec2fTo2i(sf::Vector2f const &toTrans) {
+  sf::Vector2i vec2fTo2i(sf::Vector2f const &toTrans) {
     return sf::Vector2i(toTrans.x, toTrans.y);
   }
 
@@ -58,11 +58,6 @@ namespace OpMon{
   }
 
   int quit(int const& returns) {
-    /*
-      if (Main::mainframe.init) {
-      //Nothing here anymore, was used for the SDL. I keep it because it may be useful one day.
-      }
-    */
     OptionsSave::saveParams(optSave);//Saving parameters
     oplog("Deleting resources in the memory");
     for(std::map<std::string, Map*>::iterator map = Initializer::maps.begin(); map!=Initializer::maps.end(); ++map){

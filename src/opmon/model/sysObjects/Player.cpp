@@ -1,5 +1,5 @@
 #include "Player.hpp"
-#include "../start/main.hpp"
+#include "../../start/main.hpp"
 #include "../save/Save.hpp"
 
 namespace OpMon{
@@ -76,7 +76,7 @@ namespace OpMon{
       }
     }
 
-#include "../start/StringKeys.hpp"
+#include "../../start/StringKeys.hpp"
 
     void Player::save() {
       UNS

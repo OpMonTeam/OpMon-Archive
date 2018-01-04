@@ -8,12 +8,11 @@
 #ifndef EVENTS_HPP
 #define EVENTS_HPP
 #include "Elements.hpp"
-#include "MainFrame.hpp"
 #include "../enums/Enums.hpp"
-#include "../start/main.hpp"
-#include "../start/Initializer.hpp"
+#include "../../start/main.hpp"
+#include "../../start/Initializer.hpp"
 #include "../objects/item/Item.hpp"
-#include "../start/OpString.hpp"
+#include "../../start/OpString.hpp"
 
 #define SIDE_UP 0x0001
 #define SIDE_DOWN 0x0002
