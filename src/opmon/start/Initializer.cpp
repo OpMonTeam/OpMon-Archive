@@ -397,9 +397,6 @@ namespace OpMon{
       Animations::initAnims();
       oplog("Maps initialization");
       initMaps();
-      Main::mainframe.initEnd = true;
-      //Init Sprites
-
     }
     sf::Texture alpha = sf::Texture();
     std::vector<sf::Texture> alphaTab = std::vector<sf::Texture>();

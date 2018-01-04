@@ -7,6 +7,7 @@
 //#define ppPosX (((character.getPosition().x - 16) / CASE_SIZE) - 8)
 #include "Events.hpp"
 #include "Dialog.hpp"
+#include "../../utils/log.hpp"
 					      
 #ifndef _WIN32
 
@@ -103,9 +104,9 @@ namespace OpMon{
     
     void init(){
       character.setTexture(Initializer::texturePP[(int) Side::TO_DOWN]);
-      character.setPosition(8 CASES + 2 CASES - 16, 8 CASES + 2 CASES);
+      character.setPosition(8 * CASES + 2 * CASES - 16, 8 * CASES + 2 * CASES);
       camera.setCenter(gameloop.getOveworld().getCharacter().getPosition());
-      camera.setSize(sf::Vector2f(16 CASES, 16 CASES));
+      camera.setSize(sf::Vector2f(16 *CASES, 16 * CASES));
       
       setMusic(actual->getBg());
       setLayer1(MapLayer(actual->getLayer1(), Model::Data::World::tileset));
@@ -130,12 +131,12 @@ namespace OpMon{
 	setMusic(current->getBg());
 	music->play();
       }
-    }
+
     Window::frame.setView(camera);
     launched = true;
   }
 
-  ~Overworld(){
+    Overworld::~Overworld(){
     music->stop();
     delete(music);
     delete(layer1);
@@ -143,22 +144,19 @@ namespace OpMon{
     delete(layer3);
   }
 
-    GameStatus Overworld::operator()(bool dialog, int frame, std::vector<sf::String> const& dialogs = actualDialog){
+    GameStatus Overworld::operator()(int frames){
+      bool is_in_dialog = this->dialog && !this->dialog->isDialogOver();
+
       if(!launched){
-	init();
-	
-      }
-      if(dialog){
-	// `&dialogs[0]` converts the std::vector into a regular array.
-	this->dialog = new Dialog(&dialogs[0], dialogs.size());
+	    init();
       }
       fpsCounter++;
       if(GET_TICKS - oldTicksFps >= 1000) {
-	fps = "";
-	fps << fpsCounter;
-	fpsPrint.setString(fps);
-	fpsCounter = 0;
-	oldTicksFps = GET_TICKS;
+        fps = "";
+        fps << fpsCounter;
+        fpsPrint.setString(fps);
+        fpsCounter = 0;
+        oldTicksFps = GET_TICKS;
       }
       sf::Text debugText;
       /*
@@ -166,7 +164,7 @@ namespace OpMon{
       */
       if(debugMode){
 	//cout << "[FRAME Nｰ" << frames << "]" << endl;
-	cout << "Boucle : " << dialog ? "Normale" : "Dialog" << endl;
+	cout << "Boucle : " << is_in_dialog ? "Normale" : "Dialog" << endl;
 	cout << "Tick: " << GET_TICKS << "ms" << endl;
 	cout << "PlayerPosition: " << Model::Data::player.getPosition().getPosition().x << " - " << Model::Data::player.getPosition().getPosition().y << endl;
 	cout << "PlayerPositionPx: " << character.getPosition().x << " - " << character.getPosition().y << endl;
@@ -235,9 +233,9 @@ namespace OpMon{
       Window::frame.setView(camera);
       printElements();
   
-      if(dialog){
-	this->dialog.updateTextAnimation();
-	this->dialog.draw();
+      if(is_in_dialog){
+        this->dialog.updateTextAnimation();
+        this->dialog.draw();
       } else if(Model::Data::player.getPosition().isAnim()){
 	if(Model::Data::player.getPosition().isMoving()){
 	  switch(Model::Data::player.getPosition().getDir()){
@@ -271,6 +269,20 @@ namespace OpMon{
   
     }
 
+    /**
+     * Events can call this method to start a new dialog with the player.
+     */
+    void Overworld::startDialog(std::vector<sf::String> const& dialogs) {
+      if (this->dialog){
+        if (!this->dialog.isDialogOver()){
+          oplog("WARNING: We create a new dialog ... but the last one isn't finished yet!", true);
+        }
+        delete(this->dialog);
+      }
+
+      // `&dialogs[0]` converts the std::vector into a regular array.
+      this->dialog = new Dialog(&dialogs[0], dialogs.size());
+    }
   }
 
 }

@@ -99,7 +99,7 @@ namespace OpMon{
     void initLoop0(){
       sizeOfTxt = 18;
       if(dialog != nullptr){
-	delete(dialog);
+	    delete(dialog);
       }
       dialog = new Dialog(txtP0, sizeOfTxt);
       loop0init = true;
