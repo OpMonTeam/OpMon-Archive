@@ -8,11 +8,6 @@ namespace OpMon{
     sf::RenderWindow window;
     bool fullscreen;
     GameStatus open(){
-      if(!font.loadFromFile(getPath(RESSOURCES_PATH + "fonts/Default.ttf"))) {
-        handleError("Font cannot be opened.", true);
-      }
-      oplog("Font opened");
-
       init = true;
 
 
@@ -39,7 +34,7 @@ namespace OpMon{
       sf::Text textLoad;
       textLoad.setString(StringKeys::get("load.txt"));
       textLoad.setCharacterSize(45);
-      textLoad.setFont(font);
+      textLoad.setFont(Model::Data::Ui::font);
       textLoad.setColor(sf::Color::White);
       textLoad.setPosition(30, 400);
       frame.draw(spriteLoad);

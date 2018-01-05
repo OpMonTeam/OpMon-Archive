@@ -3,6 +3,8 @@
 #include "Animations.hpp"
 #include "../start/OpString.hpp"
 #include "Dialog.hpp"
+#include "../model/storage/Data.hpp"
+
 
 #define SIZE_P0 18
 #define SIZE_P1 15
@@ -70,10 +72,10 @@ namespace OpMon{
       for(sf::Text &cellTxt : textDescs) {
         cellTxt.setCharacterSize(FONT_SIZE_DEFAULT);
         cellTxt.setColor(sf::Color::Black);
-        cellTxt.setFont(Main::mainframe.font);
+        cellTxt.setFont(Model::Data::Ui::font);
       }
 
-      nameField.setFont(Main::mainframe.font);
+      nameField.setFont(Model::Data::Ui::font);
       nameField.setPosition(120, 300);
 
       Main::mainframe.arrDial.setPosition(437, 482);      
@@ -180,7 +182,7 @@ namespace OpMon{
         Window::frame.draw(bgName);
         for(sf::Text desc : textDescs) {
 	  desc.setColor(sf::Color::White);
-	  desc.setFont(Main::mainframe.font);
+	  desc.setFont(Model::Data::Ui::font);
 	  Window::frame.draw(desc);
         }
         nameField.setString(pName);
