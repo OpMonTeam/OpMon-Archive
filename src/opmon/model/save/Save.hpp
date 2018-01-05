@@ -3,7 +3,7 @@ Save.hpp
 Author : Jlppc
 File under the license GPL-3.0
 http://opmon-game.ga
-Contient le namespace Save
+Contains the Save namspace
 */
 #ifndef SAVE_HPP
 #define SAVE_HPP

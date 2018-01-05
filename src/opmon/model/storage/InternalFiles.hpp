@@ -1,3 +1,11 @@
+/*
+  InternalFiles.hpp
+  Author : Jlppc
+  File under the license GPL-3.0
+  http://opmon-game.ga
+  Contains the InternalFiles, Maps and Collisions namespaces
+*/
+
 #ifndef INTERNALFILES_HPP
 #define INTERNALFILES_HPP
 

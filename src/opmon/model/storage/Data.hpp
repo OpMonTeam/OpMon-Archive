@@ -1,5 +1,9 @@
 /**
-   Data.hpp : Contains the global variables used in the program.
+  Data.hpp :
+  Author : Jlppc
+  File under the license GPL-3.0
+  http://opmon-game.ga
+  Contains the global variables used in the program.
 */
 #ifndef DATA_HPP
 #define DATA_HPP

@@ -1,3 +1,10 @@
+/*
+  Gameloop.hpp
+  Author : Jlppc
+  File under licence GNU GPL-3.0
+  http://opmon-game.ga
+  Contains
+*/
 #ifndef GAMELOOP_HPP
 #define GAMELOOP_HPP
 #define FPS_TICKS 33
