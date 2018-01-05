@@ -4,7 +4,10 @@
 
 
 Dialog::Dialog(const sf::String *text, unsigned int sizeOfText)
-  : text(text), sizeOfTxt(sizeOfText) {}
+  : text(text), sizeOfTxt(sizeOfText) {
+  dialogPass.setBuffer(OpMon::Model::Data::Sounds::dialogPass);
+  dialogPass.setVolume(50);
+}
 
 void Dialog::pass() {
     if (changeDialog == false) {
@@ -17,7 +20,7 @@ void Dialog::pass() {
       changeDialog = true;
       Utils::wait(50);
     } else if (dialogNb + 3 < sizeOfTxt) {
-      Main::mainframe.dialogPass.play();
+      dialogPass.play();
       line = 0;
       dialogNb+=3;
       i = 0;
@@ -79,7 +82,7 @@ void Dialog::printText(sf::RenderTexture &framee, sf::String text[]) {
     framee.draw(dialog);
     for(unsigned int itor = 0; itor < 3; itor++) {
       dialogText[itor].setString(text[itor].toUtf32());
-      dialogText[itor].setFont(Model::Data::Ui::font);
+      dialogText[itor].setFont(OpMon::Model::Data::Ui::font);
       dialogText[itor].setCharacterSize(FONT_SIZE_DEFAULT);
       dialogText[itor].setColor(sf::Color::Black);
       dialogText[itor].setPosition(framee.mapPixelToCoords(sf::Vector2i(25, framee.mapCoordsToPixel(dialog.getPosition()).y + minusPos)));
