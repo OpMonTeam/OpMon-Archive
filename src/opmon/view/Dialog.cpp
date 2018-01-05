@@ -1,5 +1,6 @@
 #include "Dialog.hpp"
 #include "./Window.hpp"
+#include "../model/storage/Data.hpp"
 
 
 Dialog::Dialog(const sf::String *text, unsigned int sizeOfText)
@@ -78,7 +79,7 @@ void Dialog::printText(sf::RenderTexture &framee, sf::String text[]) {
     framee.draw(dialog);
     for(unsigned int itor = 0; itor < 3; itor++) {
       dialogText[itor].setString(text[itor].toUtf32());
-      dialogText[itor].setFont(font);
+      dialogText[itor].setFont(Model::Data::Ui::font);
       dialogText[itor].setCharacterSize(FONT_SIZE_DEFAULT);
       dialogText[itor].setColor(sf::Color::Black);
       dialogText[itor].setPosition(framee.mapPixelToCoords(sf::Vector2i(25, framee.mapCoordsToPixel(dialog.getPosition()).y + minusPos)));
