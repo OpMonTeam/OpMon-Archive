@@ -1,10 +1,10 @@
 /*
   Initializer.hpp
   Author : Jlppc
-  Contributeurs au fichier .cpp: Navet56, Aerzia
+  Contributors: Navet56, Aerzia, BAKFR
   Fichier sous licence GPL-3.0
   http://opmon-game.ga
-  Contient la définition des methodes qui permettent d'initialiser les éléments du jeu
+  Contains the methods definitions that allows to initialize the game elements
 */
 #ifndef INITIALIZER_HPP
 #define INITIALIZER_HPP

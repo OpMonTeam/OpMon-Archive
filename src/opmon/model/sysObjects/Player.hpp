@@ -1,7 +1,7 @@
 /*
 Player.hpp
 Author : Jlppc
-Fichier sous licence GPL-3.0
+File under the GPL-3.0 license
 http://opmon-game.ga
 Contains the Player class.
 */

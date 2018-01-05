@@ -1,3 +1,11 @@
+/*
+  Map.hpp
+  Author : Jlppc
+  File under the license GPL-3.0
+  http://opmon-game.ga
+  Contains the Map class
+*/
+
 #ifndef MAP_HPP
 #define MAP_HPP
 

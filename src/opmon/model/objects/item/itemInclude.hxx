@@ -1,9 +1,9 @@
 /*
-itemInclude.hxx
-Author : Jlppc
-Fichier sous licence GPL-3.0
-http://opmon-game.ga
-Permet d'inclure tous les fichiers du dossier item
+  itemInclude.hxx
+  Author : Jlppc
+  File under the GPL-3.0 license
+  http://opmon-game.ga
+  Include all files in the item folder
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_ITEMINCLUDE_HXX_
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_ITEMINCLUDE_HXX_
