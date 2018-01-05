@@ -1,5 +1,7 @@
 #include "Initializer.hpp"
 #include "../../utils/StringKeys.hpp"
+#include "../model/storage/Data.hpp"
+
 
 namespace OpMon{
 
@@ -392,7 +394,14 @@ namespace OpMon{
       }
     }
 
-    void initSprites() {
+    void initSounds() {
+      if(!Model::Data::Sounds::dialogPass.loadFromFile(getPath(RESSOURCES_PATH + "audio/sounds/dialogChange.ogg"))) {
+        handleError("Unable to open dialog sound.", false);
+      }
+    }
+
+
+  void initSprites() {
       oplog("Textures initialization");
       initTextures();
       oplog("Backgrounds initialization");
@@ -553,6 +562,8 @@ namespace OpMon{
     initAtkLvls();
     oplog("OPMons initialization");
     initOpMons();
+    oplog("Sound initialisation");
+    initSounds();
     oplog("Objects initialization ending");
     initSprites();
     oplog("Player initialization");

@@ -37,7 +37,8 @@ namespace OpMon{
       }
 
       namespace Sounds{
-	sf::Sound nope;
+	    sf::Sound nope;
+        sf::SoundBuffer dialogPass;
       }
     }
   }

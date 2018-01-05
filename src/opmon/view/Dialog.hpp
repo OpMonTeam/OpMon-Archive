@@ -40,6 +40,7 @@ private:
 
   void printText(sf::RenderTexture &frame, sf::String text[]);
 
+  sf::Sound dialogPass;
 
 public:
   
@@ -74,7 +75,6 @@ public:
   static sf::Sprite arrDial;
   static sf::Text dialogText[3];
   static sf::Sprite dialog;
-  static sf::Sound dialogPass;
 };
 
 #endif //OPMON_DIALOG_CPP_HPP

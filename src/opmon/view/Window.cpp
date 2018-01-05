@@ -43,16 +43,11 @@ namespace OpMon{
       winRefresh();
 
       oplog("Window initialized!");
-      sf::SoundBuffer buf;
 #if 0
       window.setVerticalSyncEnabled(true);
 #endif
       window.setFramerateLimit(30);
-      if(!buf.loadFromFile(getPath(RESSOURCES_PATH + "audio/sounds/dialogChange.ogg"))) {
-        handleError("Unable to open dialog sound.", false);
-      }
       window.setKeyRepeatEnabled(false);
-      dialogPass.setBuffer(buf);
       oplog("Loading variables");
       initAll();
       frame.clear(sf::Color::White);
@@ -86,7 +81,6 @@ namespace OpMon{
       frame.display();
       winRefresh();
 
-      dialogPass.setVolume(50);
       frame.clear(sf::Color::Black);
       oplog("Launching the main menu.");
       if(mainmenu.mainMenu() != -1) {

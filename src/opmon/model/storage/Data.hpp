@@ -8,8 +8,7 @@
 #include <vector>
 #include <map>
 #include <SFML/Graphics/Texture.hpp>
-#include <SFML/Audio/Music.hpp>
-#include <SFML/Audio/Sound.hpp>
+#include <SFML/Audio.hpp>
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 
@@ -62,6 +61,7 @@ namespace OpMon{
 	  namespace Sounds{
 		extern sf::Sound nope;
 		extern sf::Sound arrow;
+        extern sf::SoundBuffer dialogPass;
 	  }
 
 	  namespace Animations{
