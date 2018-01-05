@@ -3,7 +3,7 @@ IHeal.hpp
 Author : Jlppc
 Fichier sous licence GPL-3.0
 http://opmon-game.ga
-Contient la définition de la classe I_Heal
+Contains the I_Heal class definition
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_IHEAL_HPP_
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_IHEAL_HPP_
@@ -14,7 +14,7 @@ Contient la définition de la classe I_Heal
 namespace OpMon{
   namespace Model{
     /**
-       Définit un item de soin
+       Define care item
     */
     class I_Heal: public Item {
     public:
