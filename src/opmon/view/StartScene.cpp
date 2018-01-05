@@ -40,7 +40,7 @@ namespace OpMon{
 
     void StartScene::StartScene() {
       initStrings();
-      Main::mainframe.dialog.setPosition(0, 362);
+      Dialog::dialog.setPosition(0, 362);
       textDescs[1].setPosition(85, 25);
       textDescs[0].setPosition(155, 200);
       textDescs[2].setPosition(95, 375);
@@ -59,8 +59,8 @@ namespace OpMon{
       bgMus.openFromFile(getPath(RESSOURCES_PATH + "audio/music/intro.ogg"));
       bg.setTexture(textures[0]);
       prof.setTexture(textures[1]);
-      Main::mainframe.dialog.setTexture(textures[2]);
-      Main::mainframe.arrDial.setTexture(textures[3]);
+      Dialog::dialog.setTexture(textures[2]);
+      Dialog::arrDial.setTexture(textures[3]);
       bgName.setTexture(textures[4]);
       bgName.setPosition(0, 0);
       bgMus.setLoop(true);
@@ -78,7 +78,7 @@ namespace OpMon{
       nameField.setFont(Model::Data::Ui::font);
       nameField.setPosition(120, 300);
 
-      Main::mainframe.arrDial.setPosition(437, 482);      
+      Dialog::arrDial.setPosition(437, 482);
     }
 
     GameStatus StartScene::operator()(){
@@ -202,8 +202,8 @@ namespace OpMon{
 	RETURN_ON_CLOSE_EVENT
 
 	case sf::Event::KeyPressed:
-	if(Main::mainframe.events.key.code == sf::Keyboard::Space) {
-	dialog->pass();
+	//if(Main::mainframe.events.key.code == sf::Keyboard::Space) {
+	//dialog->pass();
 	}
 	break;
 
