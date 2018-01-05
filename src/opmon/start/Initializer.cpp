@@ -386,15 +386,21 @@ namespace OpMon{
       initEnumsEvents();
     }
 
-    void initSprites() {
-      using namespace std;
+    void initFonts(){
+      if(!font.loadFromFile(getPath(RESSOURCES_PATH + "fonts/Default.ttf"))) {
+        handleError("Font cannot be opened.", true);
+      }
+    }
 
+    void initSprites() {
       oplog("Textures initialization");
       initTextures();
       oplog("Backgrounds initialization");
       initBackgrounds();
       oplog("Animations initialization");
       Animations::initAnims();
+      oplog("Font initialization");
+      initFonts();
       oplog("Maps initialization");
       initMaps();
     }

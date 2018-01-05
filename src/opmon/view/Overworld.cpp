@@ -8,7 +8,9 @@
 #include "Events.hpp"
 #include "Dialog.hpp"
 #include "../../utils/log.hpp"
-					      
+#include "../model/storage/Data.hpp"
+
+
 #ifndef _WIN32
 
 //#define DEBUG_REPORT
@@ -174,11 +176,11 @@ namespace OpMon{
     
 	debugText.setString("Debug mode");
 	debugText.setPosition(Window::frame.mapPixelToCoords(sf::Vector2i(0, 0)));
-	debugText.setFont(Main::mainframe.font);
+	debugText.setFont(Model::Data::Ui::font);
 	debugText.setColor(sf::Color(127, 127, 127));
 	debugText.setCharacterSize(40);
 	fpsPrint.setPosition(Window::frame.mapPixelToCoords(sf::Vector2i(0, 50)));
-	fpsPrint.setFont(Main::mainframe.font);
+	fpsPrint.setFont(Model::Data::Ui::font);
 	fpsPrint.setCharacterSize(48);
       }
   

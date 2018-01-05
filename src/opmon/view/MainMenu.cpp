@@ -3,6 +3,7 @@
 #include <iostream>
 #include "OptionsMenu.hpp"
 #include "./Window.hpp"
+#include "../model/storage/Data.hpp"
 
 UNS
 
@@ -42,10 +43,11 @@ namespace OpMon{
       charge.setColor(sf::Color::White);
       options.setColor(sf::Color::White);
       exit.setColor(sf::Color::White);
-      playtx.setFont(Main::mainframe.font);
-      charge.setFont(Main::mainframe.font);
-      options.setFont(Main::mainframe.font);
-      exit.setFont(Main::mainframe.font);
+
+      playtx.setFont(Model::Data::Ui::font);
+      charge.setFont(Model::Data::Ui::font);
+      options.setFont(Model::Data::Ui::font);
+      exit.setFont(Model::Data::Ui::font);
       playtx.setCharacterSize(FONT_SIZE_DEFAULT);
       charge.setCharacterSize(FONT_SIZE_DEFAULT);
       options.setCharacterSize(FONT_SIZE_DEFAULT);

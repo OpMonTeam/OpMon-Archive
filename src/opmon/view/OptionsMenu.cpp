@@ -2,83 +2,83 @@
 #include "../enums/Enums.hpp"
 #include "../start/main.hpp"
 #include "../save/OptionsSave.hpp"
-
+#include "../model/storage/Data.hpp"
 
 UNS
 
 void OptionsMenu::initStrings() {
   langFr.setString("Français");
-  langFr.setFont(Main::mainframe.font);
+  langFr.setFont(Model::Data::Ui::font);
   langFr.setCharacterSize(FONT_SIZE_DEFAULT);
   langEng.setString("English");
-  langEng.setFont(Main::mainframe.font);
+  langEng.setFont(Model::Data::Ui::font);
   langEng.setCharacterSize(FONT_SIZE_DEFAULT);
   langEsp.setString("Espa\u00F1ol");
-  langEsp.setFont(Main::mainframe.font);
+  langEsp.setFont(Model::Data::Ui::font);
   langEsp.setCharacterSize(FONT_SIZE_DEFAULT);
   txtRetour.setString(kget("options.retour"));
-  txtRetour.setFont(Main::mainframe.font);
+  txtRetour.setFont(Model::Data::Ui::font);
   txtRetour.setCharacterSize(FONT_SIZE_DEFAULT);
   txtOptions.setString(kget("options.title"));
-  txtOptions.setFont(Main::mainframe.font);
+  txtOptions.setFont(Model::Data::Ui::font);
   txtOptions.setCharacterSize(FONT_SIZE_DEFAULT);
   txtOpt1.setString(kget("options.ecran"));
-  txtOpt1.setFont(Main::mainframe.font);
+  txtOpt1.setFont(Model::Data::Ui::font);
   txtOpt1.setCharacterSize(FONT_SIZE_DEFAULT);
   txtOpt2.setString(kget("options.lang"));
-  txtOpt2.setFont(Main::mainframe.font);
+  txtOpt2.setFont(Model::Data::Ui::font);
   txtOpt2.setCharacterSize(FONT_SIZE_DEFAULT);
   txtOpt3.setString(kget("options.vol"));
-  txtOpt3.setFont(Main::mainframe.font);
+  txtOpt3.setFont(Model::Data::Ui::font);
   txtOpt3.setCharacterSize(FONT_SIZE_DEFAULT);
   txtOpt3.setColor(sf::Color::Red);
   txtOpt4.setString( kget("options.control"));
-  txtOpt4.setFont(Main::mainframe.font);
+  txtOpt4.setFont(Model::Data::Ui::font);
   txtOpt4.setCharacterSize(FONT_SIZE_DEFAULT);
   txtOpt4.setColor(sf::Color::White);
   txtOpt5.setString(kget("options.credit"));
-  txtOpt5.setFont(Main::mainframe.font);
+  txtOpt5.setFont(Model::Data::Ui::font);
   txtOpt5.setCharacterSize(FONT_SIZE_DEFAULT);
   txtOpt5.setColor(sf::Color::White);
 
   txtLang.setString(kget("options.lang.title"));
-  txtLang.setFont(Main::mainframe.font);
+  txtLang.setFont(Model::Data::Ui::font);
   txtLang.setCharacterSize(FONT_SIZE_DEFAULT);
 
   txtCred.setString(kget("options.cred.title"));
-  txtCred.setFont(Main::mainframe.font);
+  txtCred.setFont(Model::Data::Ui::font);
   txtCred.setCharacterSize(FONT_SIZE_DEFAULT);
 
 
   txtCre1.setString(kget("options.credit.1"));
-  txtCre1.setFont(Main::mainframe.font);
+  txtCre1.setFont(Model::Data::Ui::font);
   txtCre1.setCharacterSize(14);
   txtCre1.setColor(sf::Color::Black);
   txtCre2.setString(kget("options.credit.2"));
-  txtCre2.setFont(Main::mainframe.font);
+  txtCre2.setFont(Model::Data::Ui::font);
   txtCre2.setCharacterSize(14);
   txtCre2.setColor(sf::Color::Black);
   txtCre3.setString(kget("options.credit.3"));
-  txtCre3.setFont(Main::mainframe.font);
+  txtCre3.setFont(Model::Data::Ui::font);
   txtCre3.setCharacterSize(14);
   txtCre3.setColor(sf::Color::Black);
   txtCre4.setString(kget("options.credit.4"));
-  txtCre4.setFont(Main::mainframe.font);
+  txtCre4.setFont(Model::Data::Ui::font);
   txtCre4.setCharacterSize(12);
   txtCre5.setString(kget("options.credit.5"));
-  txtCre5.setFont(Main::mainframe.font);
+  txtCre5.setFont(Model::Data::Ui::font);
   txtCre5.setCharacterSize(12);
   txtCre6.setString(kget("options.credit.6"));
-  txtCre6.setFont(Main::mainframe.font);
+  txtCre6.setFont(Model::Data::Ui::font);
   txtCre6.setCharacterSize(12);
   txtCre7.setString(kget("options.credit.7"));
-  txtCre7.setFont(Main::mainframe.font);
+  txtCre7.setFont(Model::Data::Ui::font);
   txtCre7.setCharacterSize(12);
   txtCre8.setString(kget("options.credit.8"));
-  txtCre8.setFont(Main::mainframe.font);
+  txtCre8.setFont(Model::Data::Ui::font);
   txtCre8.setCharacterSize(12);
   txtCre9.setString(kget("options.credit.9"));
-  txtCre9.setFont(Main::mainframe.font);
+  txtCre9.setFont(Model::Data::Ui::font);
   txtCre9.setCharacterSize(13);
 }
 
