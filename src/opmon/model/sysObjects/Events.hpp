@@ -80,12 +80,12 @@ namespace OpMon{
     */
     namespace Events {
       /**
-	 Le son des portes
+	 Doors sound
       */
       extern sf::Sound doorSound;
       extern sf::Sound shopdoorSound;
       /**
-	 Contient les variables utiles sur le dÃ©roulement des events
+	 Contains useful variables on the running of the events
       */
       namespace EventsVars {
 
