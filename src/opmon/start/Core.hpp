@@ -1,5 +1,4 @@
 /**
-  /*
   Core.hpp
   Author : Jlppc
   File under licence GNU GPL-3.0
