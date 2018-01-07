@@ -1,7 +1,7 @@
 #include "Events.hpp"
 
 #include "../../../utils/defines.hpp"
-#include "../../start/Initializer.hpp"
+#include "../storage/Data.hpp"
 
 
 #pragma GCC diagnostic ignored "-Wreorder"
@@ -89,7 +89,7 @@ namespace OpMon{
       CharacterEvent::CharacterEvent(std::string texturesKey, sf::Vector2f const &position, MoveStyle moveStyle,
                                      EventTrigger eventTrigger, std::vector <Side> predefinedPath, bool passable,
                                      int sides) :
-        Event(Initializer::charaTextures[texturesKey], eventTrigger, position, sides, passable),
+        Event(Data::Ui::charaTextures[texturesKey], eventTrigger, position, sides, passable),
         moveStyle(moveStyle){
         sprite->setScale(2, 2);
         sprite->setOrigin(16, 16);
@@ -103,9 +103,9 @@ namespace OpMon{
                                            std::vector <OpString> const &dialogKeys, EventTrigger eventTrigger,
                                            MoveStyle moveStyle, std::vector <Side> predefinedPath, bool passable,
                                            int sides) :
-        Event(Initializer::charaTextures[texturesKey], eventTrigger, position, sides, passable),
+        Event(Data::Ui::charaTextures[texturesKey], eventTrigger, position, sides, passable),
         CharacterEvent(texturesKey, position, moveStyle, eventTrigger, predefinedPath, passable, sides),
-        TalkingEvent(Initializer::charaTextures[texturesKey], position, dialogKeys, sides, eventTrigger, passable){
+        TalkingEvent(Data::Ui::charaTextures[texturesKey], position, dialogKeys, sides, eventTrigger, passable){
 
       }
 
@@ -433,8 +433,8 @@ namespace OpMon{
     }
 
     void initEnumsEvents(){
-      Events::DoorType::NORMAL = Initializer::doorsTextures[0];
-      Events::DoorType::SHOP = Initializer::doorsTextures[1];
+      Events::DoorType::NORMAL = Data::Ui::doorsTextures[0];
+      Events::DoorType::SHOP = Data::Ui::doorsTextures[1];
     }
 
   }
