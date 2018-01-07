@@ -36,7 +36,7 @@ namespace OpMon{
     
     //void deleteAnims();
     void init();
-  };
+  }
 
 }
 #endif // INITIALIZER_HPP
