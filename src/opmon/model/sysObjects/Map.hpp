@@ -18,8 +18,8 @@ namespace OpMon{
     */
     class Map {
     private:
-      int *layer1;
-      int *layer2;
+      const int *layer1;
+      const int *layer2;
       std::string bg;
       //Event events;
       int w;
@@ -32,9 +32,9 @@ namespace OpMon{
       std::vector<Event *> events;
 
       std::vector<std::string> animatedElements;
-      //std::vector<sf::Vector2f> elementsPos;
-      //std::vector<sf::Sprite> elementsSprites;
-      //std::vector<int> elementsCount;
+      std::vector<sf::Vector2f> elementsPos;
+      std::vector<sf::Sprite> elementsSprites;
+      std::vector<int> elementsCount;
 
     public:
       Map(const int layer1[], const int layer2[], const int layer3[], int w, int h, const char* const* collisions, std::string const& bg, std::vector<std::string > const& animatedElements = std::vector<std::string >());
