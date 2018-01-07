@@ -89,7 +89,7 @@ namespace OpMon{
       /**Calcule l'efficacité des types selon les paramètres donnés, et la renvoie.
        * Les paramètres attendent une énumération du namespace Type
        */
-      const float calcEfficacite(Type atk, Type def1, Type def2);
+      float calcEfficacite(Type atk, Type def1, Type def2);
 
     }
   }
