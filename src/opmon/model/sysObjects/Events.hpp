@@ -9,6 +9,7 @@
 #define EVENTS_HPP
 
 #include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Audio/Sound.hpp>
 
 #include "Player.hpp"
@@ -37,6 +38,7 @@ namespace OpMon{
     class Event {
     protected:
       std::vector<sf::Texture>& otherTextures;
+      sf::Sprite *sprite;
       //ExpectEnum->EventTrigger
       std::vector<sf::Texture>::iterator currentTexture;
       Events::EventTrigger eventTrigger;
