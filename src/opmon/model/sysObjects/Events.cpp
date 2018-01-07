@@ -1,6 +1,8 @@
 #include "Events.hpp"
 
 #include "../../../utils/defines.hpp"
+#include "../../start/Initializer.hpp"
+
 
 #pragma GCC diagnostic ignored "-Wreorder"
 
