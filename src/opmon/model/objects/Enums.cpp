@@ -376,7 +376,7 @@ namespace OpMon{
       };
 
 
-      const float calcEfficacite(Type atk, Type def1, Type def2) {
+      float calcEfficacite(Type atk, Type def1, Type def2) {
 	int atkI((int)atk), type1I((int)def1), type2I((int)def2);
 	if (def2 == Type::NOTHING) {
 	  return arrOneType[type1I][atkI];
