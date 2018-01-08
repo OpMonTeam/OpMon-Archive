@@ -13,7 +13,7 @@ namespace OpMon{
 
     class OverworldCtrl : public AGameScreen{
     private:
-      View::Overworld &view;
+      View::Overworld view;
       Model::Player &player;
     public:
       OverworldCtrl(Model::Player &player);

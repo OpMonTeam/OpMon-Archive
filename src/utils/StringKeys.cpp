@@ -2,11 +2,12 @@
 #include <cstdio>
 #include <fstream>
 #include "./log.hpp"
+#include "./Utils.hpp"
 
 
 //TODO: remove "../opmon" refs.
 #include "../opmon/start/Core.hpp"
-using OpMon::getPath;
+using Utils::getPath;
 using OpMon::handleError;
 
 
@@ -68,8 +69,8 @@ void initialize(string keysFileS) {
                 if(strSplit.size() < 2) {
                     strings.push_back(" ");
                 } else {
-		  strings.push_back(sf::String(strSplit[1]));
-		  itore++;
+                  strings.push_back(sf::String(strSplit[1]));
+                  itore++;
                 }
             }
 

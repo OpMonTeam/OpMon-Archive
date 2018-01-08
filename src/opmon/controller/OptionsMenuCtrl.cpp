@@ -5,6 +5,7 @@
 #include "../model/save/OptionsSave.hpp"
 #include "../model/storage/Data.hpp"
 #include "../../utils/StringKeys.hpp"
+#include "../../utils/Utils.hpp"
 #include "../../utils/defines.hpp"
 #include "../start/Initializer.hpp"
 
@@ -50,17 +51,17 @@ namespace OpMon{
 		return GameStatus::CONTINUE;
 	      case 1:
 		Model::OptionsSave::modifyParam("lang", "eng");
-		StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/english.rkeys"));
+		StringKeys::initialize(Utils::getPath(RESSOURCES_PATH + "keys/english.rkeys"));
 		changedLang = true;
 		break;
 	      case 2:
 		Model::OptionsSave::modifyParam("lang", "esp");
-		StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/espanol.rkeys"));
+		StringKeys::initialize(Utils::getPath(RESSOURCES_PATH + "keys/espanol.rkeys"));
 		changedLang = true;
 		break;
 	      case 3:
 		Model::OptionsSave::modifyParam("lang", "fr");
-		StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/francais.rkeys"));
+		StringKeys::initialize(Utils::getPath(RESSOURCES_PATH + "keys/francais.rkeys"));
 		changedLang = true;
 		break;
 	      }
