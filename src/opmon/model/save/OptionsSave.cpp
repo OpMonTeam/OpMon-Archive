@@ -67,7 +67,7 @@ namespace OpMon{
       }
 
       void initParams(string const& file) {
-	oplog("Settings loading");
+	Utils::Log::oplog("Settings loading");
 	ifstream stream(file.c_str());
 	if(!stream) { //Si le fichier ne peut etre ouvert, il est crée et sera ouvert lors de la sauvegarde.
 	  ofstream strm(file.c_str());
@@ -83,8 +83,8 @@ namespace OpMon{
 	  if(!(read.substr(0, read.size() - (read.size() - 3)) == "pm|")) { //Vérifie si le préfixe pm| est bien présent, sinon arrête la boucle.
 	    break;
 	  }
-	  string noPm = StringKeys::sfStringtoStdString(StringKeys::split(read, '|', 1));//Ne prend que la partie après le pm|
-	  Param newParam = Param(StringKeys::sfStringtoStdString(StringKeys::split(noPm, '=', 0)), StringKeys::sfStringtoStdString(StringKeys::split(noPm, '=', 1)));//Splitte ensuite en deux parties, le name et la valeur du paramètre.
+	  string noPm = Utils::StringKeys::sfStringtoStdString(Utils::StringKeys::split(read, '|', 1));//Ne prend que la partie après le pm|
+	  Param newParam = Param(Utils::StringKeys::sfStringtoStdString(Utils::StringKeys::split(noPm, '=', 0)), Utils::StringKeys::sfStringtoStdString(Utils::StringKeys::split(noPm, '=', 1)));//Splitte ensuite en deux parties, le name et la valeur du paramètre.
 	  if(!checkParam(newParam.getName())) {
 	    paramList.push_back(newParam);
 	  }

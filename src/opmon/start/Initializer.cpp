@@ -1,9 +1,15 @@
+#include <src/utils/OpString.hpp>
 #include "Initializer.hpp"
 #include "../../utils/StringKeys.hpp"
-#include "../../utils/Utils.hpp"
+#include "../../utils/log.hpp"
+#include "../../utils/fs.hpp"
+#include "../../utils/OpString.hpp"
 #include "../model/storage/Data.hpp"
 
-using Utils::getPath;
+using Utils::Fs::getPath;
+using Utils::OpString;
+using Utils::StringKeys;
+using Utils::Log::oplog;
 
 
 namespace OpMon{

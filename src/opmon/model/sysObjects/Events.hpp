@@ -126,11 +126,11 @@ namespace OpMon{
 
       class TalkingEvent : public virtual Event {
       private:
-	std::vector<OpString> dialogKeys;
+	std::vector<Utils::OpString> dialogKeys;
       protected:
 	std::vector<sf::String> dialogs;
       public:
-	TalkingEvent(std::vector<sf::Texture>& otherTextures, sf::Vector2f const& position, std::vector<OpString> const& dialogKeys, int sides = SIDE_ALL, EventTrigger eventTrigger = EventTrigger::PRESS, bool passable = false);
+	TalkingEvent(std::vector<sf::Texture>& otherTextures, sf::Vector2f const& position, std::vector<Utils::OpString> const& dialogKeys, int sides = SIDE_ALL, EventTrigger eventTrigger = EventTrigger::PRESS, bool passable = false);
 	void reloadKeys();
 	virtual void update(Player &player);
 	virtual void action(Player &player);
@@ -140,7 +140,7 @@ namespace OpMon{
       protected:
 	Item *needed;
 	bool consumeItem;
-	static std::vector<OpString> keysLock;
+	static std::vector<Utils::OpString> keysLock;
       public:
 	virtual void action(Player &player);
 	virtual void update(Player &player);
@@ -183,7 +183,7 @@ namespace OpMon{
 	bool talking = false;
 
       public:
-	TalkingCharaEvent(std::string texturesKey, sf::Vector2f const& position, std::vector<OpString> const& dialogKeys, EventTrigger eventTrigger = EventTrigger::PRESS, MoveStyle moveStyle = MoveStyle::NO_MOVE, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int side = SIDE_ALL);
+	TalkingCharaEvent(std::string texturesKey, sf::Vector2f const& position, std::vector<Utils::OpString> const& dialogKeys, EventTrigger eventTrigger = EventTrigger::PRESS, MoveStyle moveStyle = MoveStyle::NO_MOVE, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int side = SIDE_ALL);
       public:
 	virtual void update(Player &player);
 	virtual void action(Player &player);

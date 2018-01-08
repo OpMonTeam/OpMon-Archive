@@ -1,6 +1,9 @@
 #include "Window.hpp"
 #include "../model/storage/Data.hpp"
-#include "../../utils/Utils.hpp"
+#include "src/utils/fs.hpp"
+#include "src/utils/log.hpp"
+
+using Utils::Log::oplog;
 
 
 namespace OpMon{
@@ -27,7 +30,7 @@ namespace OpMon{
       frame.create(512, 512);
       window.clear(sf::Color::White);
       sf::Texture loadTexture;
-      if(! loadTexture.loadFromFile(Utils::getPath(RESSOURCES_PATH + "backgrounds/loading.png"))) {
+      if(! loadTexture.loadFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "backgrounds/loading.png"))) {
         handleError("Unable to open the loading screen.", false);
       }
       sf::Sprite spriteLoad;

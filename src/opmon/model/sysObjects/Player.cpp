@@ -1,12 +1,14 @@
 #include "Player.hpp"
 #include "../../start/main.hpp"
 #include "../save/Save.hpp"
+#include "../../../utils/StringKeys.hpp"
+
 
 namespace OpMon{
   namespace Model{
     
     Player::Player(sf::String const& name):
-      name(name), trainerID(Utils::randUI(0xFFFFFFFF)), opteam(name) {
+      name(name), trainerID(Utils::Misc::randUI(0xFFFFFFFF)), opteam(name) {
       for(unsigned int i = 0; i < ITEM_NUMBER; i++) {
         bag[i] = 0;
       }
@@ -14,7 +16,7 @@ namespace OpMon{
     }
 
     Player::Player():
-      trainerID(Utils::randUI(0xFFFFFFFF)), opteam(name) {
+      trainerID(Utils::Misc::randUI(0xFFFFFFFF)), opteam(name) {
       for(unsigned int i = 0; i < ITEM_NUMBER; i++) {
         bag[i] = 0;
       }
@@ -76,11 +78,10 @@ namespace OpMon{
       }
     }
 
-#include "../../start/StringKeys.hpp"
 
     void Player::save() {
       UNS
-	SOUT << StringKeys::sfStringtoStdString(this->name) << endl;
+	SOUT << Utils::StringKeys::sfStringtoStdString(this->name) << endl;
       SOUT << Save::intToChar(trainerID) << endl;
       SOUT << Save::intToChar(ITEM_NUMBER) << endl;
       for(unsigned int it = 0; it < ITEM_NUMBER; it++) {

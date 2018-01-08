@@ -1,6 +1,7 @@
 #include "Events.hpp"
 
 #include "../../../utils/defines.hpp"
+#include "../../../utils/log.hpp"
 #include "../storage/Data.hpp"
 
 
@@ -63,7 +64,7 @@ namespace OpMon{
       }
 
       TalkingEvent::TalkingEvent(std::vector <sf::Texture> &otherTextures, sf::Vector2f const &position,
-                                 std::vector <OpString> const &dialogKeys, int sides, EventTrigger eventTrigger,
+                                 std::vector <Utils::OpString> const &dialogKeys, int sides, EventTrigger eventTrigger,
                                  bool passable) :
         Event(otherTextures, eventTrigger, position, sides, passable), dialogKeys(dialogKeys){
         this->reloadKeys();
@@ -100,7 +101,7 @@ namespace OpMon{
       }
 
       TalkingCharaEvent::TalkingCharaEvent(std::string texturesKey, sf::Vector2f const &position,
-                                           std::vector <OpString> const &dialogKeys, EventTrigger eventTrigger,
+                                           std::vector <Utils::OpString> const &dialogKeys, EventTrigger eventTrigger,
                                            MoveStyle moveStyle, std::vector <Side> predefinedPath, bool passable,
                                            int sides) :
         Event(Data::Ui::charaTextures[texturesKey], eventTrigger, position, sides, passable),
@@ -178,7 +179,7 @@ namespace OpMon{
               break;
 
             case MoveStyle::RANDOM:
-              randomMove = Utils::randUI(5) - 1;
+              randomMove = Utils::Misc::randUI(5) - 1;
               switch(randomMove){
                 case -1:
                   move(Side::NO_MOVE, player);
@@ -196,7 +197,7 @@ namespace OpMon{
                   move(Side::TO_RIGHT, player);
                   break;
                 default:
-                  oplog("[WARNING] - Random number out of bounds CharacterEvent::update");
+                  Utils::Log::oplog("[WARNING] - Random number out of bounds CharacterEvent::update");
                   move(Side::NO_MOVE, player);
               }
               break;
@@ -427,7 +428,7 @@ namespace OpMon{
 
       }
 
-      std::vector <OpString> LockedDoorEvent::keysLock = std::vector<OpString>();
+      std::vector <Utils::OpString> LockedDoorEvent::keysLock = std::vector<Utils::OpString>();
 
 
     }
