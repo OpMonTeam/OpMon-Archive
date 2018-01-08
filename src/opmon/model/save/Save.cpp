@@ -2,7 +2,6 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
-#include "../../start/main.hpp"
 #include "../../../utils/defines.hpp"
 #include "src/utils/misc.hpp"
 

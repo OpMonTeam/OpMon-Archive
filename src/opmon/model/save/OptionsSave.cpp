@@ -1,5 +1,4 @@
 #include "OptionsSave.hpp"
-#include "../../start/main.hpp"
 #include "../../start/Core.hpp"
 #include "../../../utils/log.hpp"
 
