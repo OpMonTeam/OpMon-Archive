@@ -8,6 +8,8 @@
 #include "Events.hpp"
 #include "Dialog.hpp"
 #include "../../utils/log.hpp"
+#include "../../utils/time.hpp"
+#include "../../utils/defines.hpp"
 #include "../model/storage/Data.hpp"
 
 
@@ -153,12 +155,12 @@ namespace OpMon{
 	    init();
       }
       fpsCounter++;
-      if(GET_TICKS - oldTicksFps >= 1000) {
+      if(Utils::getElapsedMilliseconds() - oldTicksFps >= 1000) {
         fps = "";
         fps << fpsCounter;
         fpsPrint.setString(fps);
         fpsCounter = 0;
-        oldTicksFps = GET_TICKS;
+        oldTicksFps = Utils::getElapsedMilliseconds();
       }
       sf::Text debugText;
       /*
@@ -167,7 +169,7 @@ namespace OpMon{
       if(debugMode){
 	//cout << "[FRAME Nｰ" << frames << "]" << endl;
 	cout << "Boucle : " << is_in_dialog ? "Normale" : "Dialog" << endl;
-	cout << "Tick: " << GET_TICKS << "ms" << endl;
+	cout << "Tick: " << Utils::getElapsedMilliseconds() << "ms" << endl;
 	cout << "PlayerPosition: " << Model::Data::player.getPosition().getPosition().x << " - " << Model::Data::player.getPosition().getPosition().y << endl;
 	cout << "PlayerPositionPx: " << character.getPosition().x << " - " << character.getPosition().y << endl;
 	cout << "Moving: " << Model::Data::player.getPosition().isMoving() ? "true" : "false" << endl;

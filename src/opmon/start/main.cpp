@@ -5,6 +5,7 @@
 #include "config.hpp"
 #include "../../utils/defines.hpp"
 #include "../../utils/log.hpp"
+#include "../../utils/time.hpp"
 #include "../model/storage/InternalFiles.hpp"
 #include "../model/save/OptionsSave.hpp"
 #include "./Gameloop.hpp"
@@ -68,7 +69,7 @@ namespace OpMon {
   }
 }
 int main(int argc, char *argv[]) {
-  ticks.restart();
+  Utils::initClock();
   if (!initLogStream()) {
     cout << "Exiting" << endl;
     return -1;

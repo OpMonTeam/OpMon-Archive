@@ -5,10 +5,6 @@
 #include <unistd.h>
 #include <SFML/System.hpp>
 
-//TODO: remove "../opmon" refs.
-#include "../opmon/start/Core.hpp"
-using OpMon::getPath;
-
 
 int Utils::randU(int limit) {
     srand(time(NULL) + rand() * rand());
@@ -21,8 +17,8 @@ unsigned int Utils::randUI(unsigned int limit) {
     return toReturn;
 }
 
-void Utils::wait(int ticks) {
-    sf::sleep(sf::milliseconds(ticks));
+void Utils::wait(int duration) {
+    sf::sleep(sf::milliseconds(duration));
 }
 
 long Utils::hash(std::string str) {
@@ -55,4 +51,20 @@ bool Utils::mkdir(const std::string &path) {
     #else
     return true;//Because mkdir in windows returns false if the directory exists$
     #endif
+}
+
+std::string Utils::getPath(std::string const& path) {
+#ifdef _WIN32
+  vector<sf::String> splitted = StringKeys::split(path, '/');
+    std::string returned = "";
+    for(unsigned int i = 0; i < splitted.size(); i++) {
+      returned += splitted[i];
+      if(i != splitted.size() - 1) {
+	      returned += "\\";
+      }
+    }
+    return returned;
+#else
+  return path;
+#endif
 }

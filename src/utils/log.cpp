@@ -1,10 +1,7 @@
 #include "log.hpp"
 #include <fstream>
 #include "Utils.hpp"
-
-//TODO: remove "../opmon" refs.
-#include "../opmon/start/Core.hpp"
-using OpMon::ticks;
+#include "time.hpp"
 
 
 /**Principal log*/
@@ -39,5 +36,5 @@ bool initLogStream() {
 void oplog(const std::string &toSay, bool error){
     std::ofstream *logStream = error ? rerrLog : rlog;
 
-    *logStream << "[T = " << ticks.getElapsedTime().asMilliseconds() << "] - " << toSay << std::endl;
+    *logStream << "[T = " << getElapsedMilliseconds() << "] - " << toSay << std::endl;
 }
