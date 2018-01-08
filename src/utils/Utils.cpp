@@ -5,6 +5,11 @@
 #include <unistd.h>
 #include <SFML/System.hpp>
 
+//TODO: remove "../opmon" refs.
+#include "../opmon/start/Core.hpp"
+using OpMon::getPath;
+
+
 int Utils::randU(int limit) {
     srand(time(NULL) + rand() * rand());
     return rand() % limit;
@@ -43,7 +48,7 @@ bool Utils::mkdir(const std::string &path) {
 
     int result = system((cmd + path2).c_str());
     if (result) {
-        cout << "creation of folder \"" << path2 << " failed: errno " << result << endl;
+        std::cout << "creation of folder \"" << path2 << " failed: errno " << result << std::endl;
     }
     #ifndef _WIN32
     return !result;
