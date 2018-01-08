@@ -1,6 +1,7 @@
 
 #include "Map.hpp"
 #include "Events.hpp"
+#include "../../start/Core.hpp"
 
 namespace OpMon{
   namespace Model{

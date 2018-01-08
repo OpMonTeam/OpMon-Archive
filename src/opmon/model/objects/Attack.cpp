@@ -30,7 +30,7 @@ namespace OpMon{
     int Attack::attack(OpMon &atk, OpMon &def) {
       pp--;
       //Fail d'attaque
-      if ((Utils::randU(100)) > (accuracy * (atk.getStatACC() / def.getStatEVA())) && rateJamais == false) {
+      if ((Utils::Misc::randU(100)) > (accuracy * (atk.getStatACC() / def.getStatEVA())) && rateJamais == false) {
         siEchoue(atk, def);
         return -2;
       }
@@ -51,10 +51,10 @@ namespace OpMon{
         float efficacite = (ArrayTypes::calcEfficacite(type, def.getType1(), def.getType2()));
         //if(efficacite)//A utiliser pour les dialogues
         hpPerdus = round(hpPerdus * efficacite);
-        if (Utils::randU(chanceDeCoups) == 1) {
+        if (Utils::Misc::randU(chanceDeCoups) == 1) {
 	  hpPerdus = round(hpPerdus * 1.5);
         }
-        hpPerdus = round(hpPerdus * (Utils::randU(100 - 85 + 1) + 85) / 100);
+        hpPerdus = round(hpPerdus * (Utils::Misc::randU(100 - 85 + 1) + 85) / 100);
         def.attacked(hpPerdus);
       }
       return effetApres(atk, def);

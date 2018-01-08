@@ -10,6 +10,7 @@
 #define POSITION_HPP
 
 #include <SFML/System/Vector2.hpp>
+#include <string>
 
 #include "../objects/Enums.hpp"
 

@@ -13,7 +13,7 @@
 #include <cmath>
 #include "Nature.hpp"
 #include "Species.hpp"
-#include "../../../utils/Utils.hpp"
+#include "src/utils/misc.hpp"
 #include "item/Item.hpp"
 #include "item/IOpball.hpp"
 
@@ -46,12 +46,12 @@ namespace OpMon{
 
     private:
       std::string nickname;
-      int atkIV = Utils::randU(32);
-      int defIV = Utils::randU(32);
-      int atkSpeIV = Utils::randU(32);
-      int defSpeIV = Utils::randU(32);
-      int speIV = Utils::randU(32);
-      int hpIV = Utils::randU(32);
+      int atkIV = Utils::Misc::randU(32);
+      int defIV = Utils::Misc::randU(32);
+      int atkSpeIV = Utils::Misc::randU(32);
+      int defSpeIV = Utils::Misc::randU(32);
+      int speIV = Utils::Misc::randU(32);
+      int hpIV = Utils::Misc::randU(32);
       int atkEV = 0;
       int defEV = 0;
       int atkSpeEV = 0;
