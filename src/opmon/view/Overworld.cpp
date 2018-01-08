@@ -107,7 +107,7 @@ namespace OpMon{
     void init(){
       character.setTexture(Initializer::texturePP[(int) Side::TO_DOWN]);
       character.setPosition(8 * CASES + 2 * CASES - 16, 8 * CASES + 2 * CASES);
-      camera.setCenter(gameloop.getOveworld().getCharacter().getPosition());
+      camera.setCenter(this->getCharacter().getPosition());
       camera.setSize(sf::Vector2f(16 *CASES, 16 * CASES));
       
       setMusic(actual->getBg());

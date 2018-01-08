@@ -1,4 +1,16 @@
+
+#include <ostream>
+#include <sstream>
 #include "Core.hpp"
+#include "../../utils/defines.hpp"
+#include "../../utils/log.hpp"
+#include "../model/save/OptionsSave.hpp"
+#include "./Initializer.hpp"
+
+using namespace OpMon::Model;
+
+UNS
+
 
 namespace OpMon{
   //std::thread bgtask = nullptr;
@@ -8,8 +20,6 @@ namespace OpMon{
   string optSave(SAVE_PATH + "optSave.oparams");
 
   sf::Clock ticks;
-
-  GameLoop gameloop;
 
   bool debugMode = false;
   
