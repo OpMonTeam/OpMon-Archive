@@ -1,6 +1,8 @@
 
+#include <SFML/Window/Event.hpp>
 #include "./Gameloop.hpp"
-#include "../view/Overworld.hpp"
+#include "../view/Window.hpp"
+#include "../controller/MainMenuCtrl.hpp"
 
 
 namespace OpMon{
@@ -9,83 +11,62 @@ namespace OpMon{
   }
 
   GameStatus GameLoop::operator()(){
-    while(!endGame){
-      frames++;
-      oldTicks = GET_TICKS;
-      if(interfaces.top() != nullptr){
-        wait = interfaces.top()->isWait();
-      }
-      if(wait){
-        Window::window.waitEvent(events);
-      }else{
-        Window::window.pollEvent(events);
-      }
-      if(checkQuit(events) == GameStatus::STOP){
-        endGame = true;
-      }
 
-      GameStatus status = GameStatus::CONTINUE;
+    // TODO: add first item outside of the Gameloop.
+    Controller::AGameScreen *first_ctrl = new Controller::MainMenuCtrl();
 
-      if(instanceOf<View::Overworld *>(interfaces.top())){
-        View::Overworld &overworld = *dynamic_cast<View::Overworld *>(interfaces.top());
-        Controller::OverworldCtrl::checkEvents(events, overworld, player);
-        if(overworld->getCurrent() != nullptr){
-          Controller::EventsCtrl::updateEvent(overworld->getCurrent->getEvents(), player);
-        }
-        Controller::PlayerCtrl::checkMove(player, events);
 
-      }else if(instanceOf<View::MainMenu *>(interfaces.top())){
-        View::MainMenu &mainmenu = *dynamic_cast<View::MainMenu *>(interfaces.top());
-        status = Controller::MenuCtrl::checkEvents(events, mainmenu);
-      }else if(instanceOf<View::StartScene *>(interfaces.top())){
-        View::StartScene &startscene = *dynamic_cast<View::StartScene *>(interfaces.top());
-        status = Controller::StartSceneCtrl::checkEvents(events, startscene);
-      }else if(instanceOf<View::OptionsCtrl *>(interfaces.top())){
-        View::OptionsMenu optionsmenu = *dynamic_cast<View::OptionsMenu *>(interfaces.top());
-        status = Controller::MenuCtrl::Options::checkEvents(events, optionsmenu);
-      }else{
-        handleError("Unknown interface called in GameLoop", true);
+    _gameScreens.push(first_ctrl);
+
+    GameStatus status = GameStatus::CONTINUE;
+    while(!status != GameStatus::STOP){
+      status = GameStatus::CONTINUE;
+
+      auto ctrl = _gameScreens.top();
+      sf::Event event;
+
+
+      //process all pending SFML events
+      while(View::window.pollEvent(event)){
+        status = _checkQuit(event);
+        if (status == GameStatus::STOP)
+          break;
+        status = ctrl->checkEvent(event);
+        if (status == GameStatus::STOP)
+          break;
       }
 
-      if(status != GameStatus::STOP){
-        Interface &current = *interfaces.top();
-        if(!instanceOf<View::Overworld *>(interface.top())){
-          status = current();
-        }else{
-          Overworld &currentOw = dynamic_cast<View::Overworld &>(current);
-          status = currentOw(frames);
-        }
+      if (status == GameStatus::STOP)
+          break;
 
+      // frame update & draw
+      status = ctrl->update();
 
-        if(status == GameStatus::NEXT){
-          status == GameStatus::CONTINUE;
-          interfaces.top()->pause();
-          interfaces.push(interfaces.top()->getNextPanel());
-        }else if(status == GameStatus::PREVIOUS){
-          status == GameStatus::CONTINUE;
-          delete (interfaces.top());
-          interfaces.pop();
-          interfaces.top()->play();
-        }
-
+      switch(status){
+        case GameStatus::NEXT:
+          ctrl->suspend();
+          _gameScreens.push(ctrl->getNextGameScreen());
+          break;
+        case GameStatus::PREVIOUS:
+          _gameScreens.pop();
+          _gameScreens.top()->resume();
+        default:
+          break;
       }
 
-      Window::winRefresh();
-
-      endGame = (status == GameStatus::STOP);
-
+      View::winRefresh();
     }
 
-    for(Interface *interface : interfaces){
-      delete (interface);
-      interfaces.pop();
+    while(auto *ctrl = _gameScreens.top()){
+      delete(ctrl);
+      _gameScreens.pop();
     }
 
     return GameStatus::STOP;
   }
 
-  GameStatus GameLoop::checkQuit(){
-    switch(events.type){
+  GameStatus GameLoop::_checkQuit(const sf::Event &event){
+    switch(event.type){
       case sf::Event::Closed:
         return GameStatus::STOP;
       default:

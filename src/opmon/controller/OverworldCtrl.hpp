@@ -6,14 +6,23 @@
 #include "../start/Core.hpp"
 #include "../view/Overworld.hpp"
 #include "../model/sysObjects/Player.hpp"
+#include "AGameScreen.hpp"
 
 namespace OpMon{
   namespace Controller{
-    namespace OverworldCtrl{
-      GameStatus checkEvents(sf::Event const& events, View::Overworld& overworld, Model::Player& player);
+
+    class OverworldCtrl : public AGameScreen{
+    private:
+      View::Overworld &view;
+      Model::Player &player;
+    public:
+      OverworldCtrl(Model::Player &player);
+      virtual GameStatus checkEvent(sf::Event const &event);
       GameStatus checkEventsDialog(sf::Event const& events, View::Overworld& overworld);
       GameStatus checkEventsNoDialog(sf::Event const& events, Model::Player& player);
-    }
+      virtual GameStatus update();
+    };
+
   }
 }
 

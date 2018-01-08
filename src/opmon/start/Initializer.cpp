@@ -571,17 +571,19 @@ namespace OpMon{
   }
 
   void initPlayer(){
+    //TODO: get Overworld
     Model::Data::player.setMap("Player's room");
-    Model::Data::player.setPosX(((gameloop.getOveworld().getCharacter().getPosition().x - 16) / CASE_SIZE) - 8);
-    Model::Data::player.setPosY((gameloop.getOveworld().getCharacter().getPosition().y / CASE_SIZE) - 8);
+    Model::Data::player.setPosX(((overworld.getCharacter().getPosition().x - 16) / CASE_SIZE) - 8);
+    Model::Data::player.setPosY((overworld.getCharacter().getPosition().y / CASE_SIZE) - 8);
     Model::Data::player.setDir(Side::TO_UP);
   }
 
   void initStrings(){
 
-    for(Interface* interface : gameloop.getInterfaces()){
-      interface->initStrings();
-    }
+    //TODO: call initStrings() for all _gameScreens. EVen when not yet created.
+    // for(Interface* interface : gameloop.getInterfaces()){
+    //   interface->initStrings();
+    // }
     
     for(auto map = Data::maps.cbegin(); map!=Data::maps.cend(); ++map) {
       for(Event *event : map->second.getEvents()) {
@@ -594,5 +596,5 @@ namespace OpMon{
   }
 
 
-
+}
 }

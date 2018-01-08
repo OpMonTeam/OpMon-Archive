@@ -11,15 +11,10 @@
 #include <iostream>
 #include <SFML/System.hpp>
 
+#include "GameStatus.hpp"
 
 
 namespace OpMon{
-
-  
-  enum class GameStatus{
-    CONTINUE, STOP, NEXT, PREVIOUS
-  };
-
 
   
   /**Path to the options save file*/
@@ -68,10 +63,5 @@ namespace OpMon{
   
 }
 
-#include "Gameloop.hpp"
-
-namespace OpMon{
-    extern GameLoop gameloop;
-}
 
 #endif
