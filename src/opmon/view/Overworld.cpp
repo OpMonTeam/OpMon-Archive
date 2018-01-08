@@ -279,7 +279,7 @@ namespace OpMon{
     void Overworld::startDialog(std::vector<sf::String> const& dialogs) {
       if (this->dialog){
         if (!this->dialog.isDialogOver()){
-          oplog("WARNING: We create a new dialog ... but the last one isn't finished yet!", true);
+          Utils::Log::oplog("WARNING: We create a new dialog ... but the last one isn't finished yet!", true);
         }
         delete(this->dialog);
       }

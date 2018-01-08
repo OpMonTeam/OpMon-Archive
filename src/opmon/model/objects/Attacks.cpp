@@ -1,4 +1,6 @@
 #include "Attacks.hpp"
+#include "../../../utils/misc.hpp"
+
 
 namespace OpMon{
   namespace Model{
@@ -55,7 +57,7 @@ namespace OpMon{
 	if (atk.getLevel() < def.getLevel()) {
 	  return 2;
 	}
-	if (Utils::randU(100) > accuracy) {
+	if (Utils::Misc::randU(100) > accuracy) {
 	  return 2;
 	} else {
 	  def.attacked(def.getHP());
@@ -73,7 +75,7 @@ namespace OpMon{
       }
 
       int Acide::effetApres(OpMon &atk, OpMon &def) {
-	if (Utils::randU(10) == 2) {
+	if (Utils::Misc::randU(10) == 2) {
 	  if (def.changeDEFSPE(-1)) {
             //Texte
 	  } else {
@@ -152,7 +154,7 @@ namespace OpMon{
       }
 
       int Blizzard::effetApres(OpMon &atk, OpMon &def) {
-	if(Utils::randU(10) == 2) {
+	if(Utils::Misc::randU(10) == 2) {
 	  //Texte
 	  def.setStatus(Status::FROZEN);
 	}
@@ -184,7 +186,7 @@ namespace OpMon{
 
 
       int BullesDo::effetApres(OpMon &atk, OpMon &def) {
-	if (Utils::randU(10) ==2) {
+	if (Utils::Misc::randU(10) ==2) {
 	  if(def.changeSPE(-1)) {
 	  } else {
 	  }
@@ -203,14 +205,14 @@ namespace OpMon{
       }
 
       int Cascade::effetApres(OpMon &atk, OpMon &def) {
-	if (Utils::randU(5) ==2) {
+	if (Utils::Misc::randU(5) ==2) {
 	  def.peur = true;
 	}
 	return 0;
       }
 
       int ChocMental::effetApres(OpMon &atk, OpMon &def) {
-	if (Utils::randU(10) ==2) {
+	if (Utils::Misc::randU(10) ==2) {
 	  def.confus = true;
 	}
 	return 0;
@@ -233,7 +235,7 @@ namespace OpMon{
 	  return 0;
 	}
 	int it = 0;
-	int coups = Utils::randU(4);
+	int coups = Utils::Misc::randU(4);
 	for(it = 0; it != coups + 1; it++) {
 	  def.attacked(hpPerdus);
 	  if(def.getHP() <= 0) {
@@ -251,7 +253,7 @@ namespace OpMon{
       }
 
       int CoupdBoule::effetApres(OpMon &atk, OpMon &def) {
-	if (Utils::randU(100) <= 30) {
+	if (Utils::Misc::randU(100) <= 30) {
 	}
 	return 0;
       }
@@ -279,7 +281,7 @@ namespace OpMon{
       }
 
       int CrocDeMort::effetApres(OpMon &atk, OpMon &def) {
-	if (Utils::randU(10) ==2) {
+	if (Utils::Misc::randU(10) ==2) {
 	}
 	return 0;
       }
@@ -293,12 +295,12 @@ namespace OpMon{
       }
 
       int CrocFeu::effetApres(OpMon &atk, OpMon &def) {
-	if(Utils::randU(10) ==5) {
+	if(Utils::Misc::randU(10) ==5) {
 	  if(def.setStatus(Status::BURNING)) {
 
 	  }
 	}
-	if(Utils::randU(10) ==7) {
+	if(Utils::Misc::randU(10) ==7) {
 	  def.peur = true;
 	}
 	return 0;
@@ -316,7 +318,7 @@ namespace OpMon{
 	  part = 1;
 	} else if(part == 1) {
 	  pp++;
-	  if(Utils::randU(1) == 0) {
+	  if(Utils::Misc::randU(1) == 0) {
             part = 2;
 	  } else {
             part = 0;
@@ -337,7 +339,7 @@ namespace OpMon{
       }
 
       int Deflagration::effetApres(OpMon &atk, OpMon &def) {
-	if(Utils::randU(10) == 5) {
+	if(Utils::Misc::randU(10) == 5) {
 	  if(def.setStatus(Status::BURNING)) {
 
 	  }
@@ -351,7 +353,7 @@ namespace OpMon{
       }
 
       int Detritus::effetApres(OpMon &atk, OpMon &def) {
-	if(Utils::randU(10) < 3) {
+	if(Utils::Misc::randU(10) < 3) {
 	  if(def.setStatus(Status::POISONED)) {
 	  }
 	}
@@ -371,12 +373,12 @@ namespace OpMon{
       }
 
       int DoubleDard::effetApres(OpMon &atk, OpMon &def) {
-	if(Utils::randU(10) < 2) {
+	if(Utils::Misc::randU(10) < 2) {
 	  def.setStatus(Status::POISONED);
 	}
 	if(def.getHP() <= 0) {
 	  def.attacked(hpPerdus);
-	  if(Utils::randU(10) < 2) {
+	  if(Utils::Misc::randU(10) < 2) {
             def.setStatus(Status::POISONED);
 	  }
 	}

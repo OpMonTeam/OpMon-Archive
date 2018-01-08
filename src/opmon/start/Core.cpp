@@ -8,6 +8,7 @@
 #include "./Initializer.hpp"
 
 using namespace OpMon::Model;
+using Utils::Log::oplog;
 
 UNS
 

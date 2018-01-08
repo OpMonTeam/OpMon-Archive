@@ -4,7 +4,8 @@
 #include "OptionsMenu.hpp"
 #include "./Window.hpp"
 #include "../model/storage/Data.hpp"
-#include "../../utils/Utils.hpp"
+#include "src/utils/fs.hpp"
+#include "src/utils/log.hpp"
 
 UNS
 
@@ -27,12 +28,12 @@ namespace OpMon{
         j+=85;
       }
       // bool ok = true;
-      textures[0].loadFromFile(Utils::getPath(RESSOURCES_PATH + "backgrounds/titlescreen.png"));
-      textures[1].loadFromFile(Utils::getPath(RESSOURCES_PATH + "sprites/misc/arrChoice.png"));
-      bgMusTitle.openFromFile(Utils::getPath(RESSOURCES_PATH + "audio/music/title.ogg"));
-      sounds[0].loadFromFile(Utils::getPath(RESSOURCES_PATH + "audio/sounds/select.ogg"));
-      sounds[1].loadFromFile(Utils::getPath(RESSOURCES_PATH + "audio/sounds/selectbuttons.ogg"));
-      sounds[2].loadFromFile(Utils::getPath(RESSOURCES_PATH + "audio/sounds/nope.ogg"));
+      textures[0].loadFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "backgrounds/titlescreen.png"));
+      textures[1].loadFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "sprites/misc/arrChoice.png"));
+      bgMusTitle.openFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "audio/music/title.ogg"));
+      sounds[0].loadFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "audio/sounds/select.ogg"));
+      sounds[1].loadFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "audio/sounds/selectbuttons.ogg"));
+      sounds[2].loadFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "audio/sounds/nope.ogg"));
       bg.setTexture(textures[0]);
       cursor.setTexture(textures[1]);
       bruitArr.setBuffer(sounds[0]);
@@ -119,7 +120,7 @@ namespace OpMon{
       bgMusTitle.setVolume(50);
       bgMusTitle.play();
       
-      oplog("Initialisating the menu");
+      Utils::Log::oplog("Initialisating the menu");
       //Actualisation des éléments
       frame.draw(bg);
       frame.draw(playtx),
