@@ -1,10 +1,10 @@
 #include "StartScene.hpp"
-#include "../start/main.hpp"
 #include "Animations.hpp"
-#include "../start/OpString.hpp"
 #include "Dialog.hpp"
 #include "../model/storage/Data.hpp"
-#include "src/utils/fs.hpp"
+#include "../../utils/fs.hpp"
+#include "../../utils/OpString.hpp"
+#include "../../utils/defines.hpp"
 
 
 #define SIZE_P0 18

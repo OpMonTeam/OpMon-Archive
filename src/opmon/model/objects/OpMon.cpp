@@ -1,5 +1,4 @@
 #include "OpMon.hpp"
-#include "../../start/main.hpp"
 #include "./evolution/Evolution.hpp"
 #include "./evolution/evolutions.hpp"
 #include "../save/Save.hpp"

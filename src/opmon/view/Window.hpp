@@ -8,7 +8,7 @@ namespace OpMon{
   namespace View{
     extern sf::RenderWindow window;
     extern sf::RenderTexture frame;
-    GameStatus open();
+    void open();
     void winRefresh();
   }
 }

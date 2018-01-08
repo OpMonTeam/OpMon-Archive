@@ -1,6 +1,9 @@
 #include "Dialog.hpp"
 #include "./Window.hpp"
 #include "../model/storage/Data.hpp"
+#include "../../utils/time.hpp"
+#include "../../utils/defines.hpp"
+
 
 
 Dialog::Dialog(const sf::String *text, unsigned int sizeOfText)
