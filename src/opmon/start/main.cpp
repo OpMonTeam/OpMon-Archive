@@ -1,8 +1,19 @@
+
+#include <string>
+#include <ostream>
 #include "main.hpp"
 #include "config.hpp"
-	
+#include "../../utils/defines.hpp"
+#include "../../utils/log.hpp"
+#include "../model/storage/InternalFiles.hpp"
+#include "../model/save/OptionsSave.hpp"
+#include "./Gameloop.hpp"
+
+using namespace OpMon::Model;
+
+
 //#define DEBUG
-UNS;
+UNS
 	
 namespace OpMon {
   namespace Main {
@@ -48,6 +59,8 @@ namespace OpMon {
       //bgtask = new std::thread(bgTask);
       View::open();
       oplog("Starting game loop");
+
+      auto gameloop = GameLoop();
       gameloop();
       oplog("Ending the game normally.");
       return quit(0);

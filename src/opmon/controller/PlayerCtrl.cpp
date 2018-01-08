@@ -29,13 +29,13 @@ namespace OpMon{
       }
       if(!overworld.justTp) {
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-	  gameloop.getPlayer().getPosition().move(Model::Side::TO_UP);
+	  player.getPosition().move(Model::Side::TO_UP);
 	} else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-	  gameloop.getPlayer().getPosition().move(Model::Side::TO_DOWN);
+	  player.getPosition().move(Model::Side::TO_DOWN);
 	} else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-	  gameloop.getPlayer().getPosition().move(Model::Side::TO_LEFT);
+	  player.getPosition().move(Model::Side::TO_LEFT);
 	} else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-	  gameloop.getPlayer().getPosition().move(Model::Side::TO_RIGHT);
+	  player.getPosition().move(Model::Side::TO_RIGHT);
 	}
       }
 
@@ -44,7 +44,7 @@ namespace OpMon{
 
     void move(Model::Side direction, Model::Player& player){
       player.getPosition().move(direction);
-      EventsCtrl::actionEvents(Model::Data::World::maps.at(player.getMapId())->getEvent(gameloop.getPlayer().getPosition().getPositionPixel()), player, Model::Events::EventTrigger::GO_IN);
+      EventsCtrl::actionEvents(Model::Data::World::maps.at(player.getMapId())->getEvent(player.getPosition().getPositionPixel()), player, Model::Events::EventTrigger::GO_IN);
 
     }
   }

@@ -45,7 +45,7 @@ include_directories(${PROJECT_BINARY_DIR})
 
 # list all .cpp files in src/
 # .hpp are handled automatically.
-file(GLOB_RECURSE SOURCE_FILES src/*.cpp)
+file(GLOB_RECURSE SOURCE_FILES src/*.[ch]pp)
 
 if (WIN32) # set the program icon
     list(APPEND SOURCE_FILES resources.rc)
