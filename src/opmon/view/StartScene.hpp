@@ -13,6 +13,7 @@ http://opmon-game.ga
 
 #include "../start/Core.hpp"
 #include "./Dialog.hpp"
+#include "./Interface.hpp"
 
 
 namespace OpMon{
