@@ -1,6 +1,15 @@
 #include "StringKeys.hpp"
 #include <cstdio>
 #include <fstream>
+#include "./log.hpp"
+
+
+//TODO: remove "../opmon" refs.
+#include "../opmon/start/Core.hpp"
+using OpMon::getPath;
+using OpMon::handleError;
+
+
 UNS
 
 namespace StringKeys {
