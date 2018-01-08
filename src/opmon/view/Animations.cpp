@@ -1,5 +1,7 @@
 #include "Animations.hpp"
 #include "../view/Window.hpp"
+#include "../../utils/defines.hpp"
+#include "../../utils/time.hpp"
 
 UNS
 
@@ -26,9 +28,9 @@ namespace OpMon{
 
 	//Frame by frame
 	for (int i = 0; i < 6; i++) {
-	  if ((ticks.getElapsedTime().asMilliseconds() - ancientChrono) >= 33) {
+	  if ((Utils::getElapsedMilliseconds() - ancientChrono) >= 33) {
             Main::mainframe.window.pollEvent(events);
-            ancientChrono = ticks.getElapsedTime().asMilliseconds();
+            ancientChrono = Utils::getElapsedMilliseconds();
 	    Controller::checkQuit();
 	    if(Model::Data::endGame){
 	      return GameStatus::STOP;
@@ -40,7 +42,7 @@ namespace OpMon{
 		  window.display();
 		  OpMon::View::winRefresh();
 	  } else {
-            Utils::wait(200 - (ticks.getElapsedTime().asMilliseconds() - ancientChrono));
+            Utils::wait(200 - (Utils::getElapsedMilliseconds() - ancientChrono));
             i--;
 	  }
 	}
@@ -54,8 +56,8 @@ namespace OpMon{
 	sf::Sprite anim;
 	int ancientChrono = 0;
 	for (int i = 5; i >= 0; i--) {
-	  if ((ticks.getElapsedTime().asMilliseconds() - ancientChrono) >= 33) {
-            ancientChrono = ticks.getElapsedTime().asMilliseconds();
+	  if ((Utils::getElapsedMilliseconds() - ancientChrono) >= 33) {
+            ancientChrono = Utils::getElapsedMilliseconds();
 	    Controller::checkQuit();
 	    if(Model::Data::endGame){
 	      return GameStatus::STOP;
@@ -70,7 +72,7 @@ namespace OpMon{
             window.display();
 		  OpMon::View::winRefresh();
 	  } else {
-            Utils::wait(200 - (ticks.getElapsedTime().asMilliseconds() - ancientChrono));
+            Utils::wait(200 - (Utils::getElapsedMilliseconds() - ancientChrono));
             i++;
 	  }
 	}

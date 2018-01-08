@@ -19,18 +19,6 @@ namespace OpMon{
   
   /**Path to the options save file*/
   extern std::string optSave;
-  /**
-     sf::Clock counting the number of milliseconds passed since the beginning of the program
-  */
-  extern sf::Clock ticks;
-  /**
-     Returns the path depending of the system.
-     By default, please use the "/" separator.
-     Then, if the os is Windows, this function will change the "/" by "\".
-     If you use the "\" separator in the path given,
-     nothing will change, on unix systems and on Windows systems.
-  */
-  std::string getPath(std::string const& path);
 
   //#define TEST
   /**
