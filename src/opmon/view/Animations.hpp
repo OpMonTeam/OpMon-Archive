@@ -9,7 +9,6 @@ Contains the namespace Animations
 #define ANIMATIONS_HPP
 
 #include <iostream>
-#include "../start/main.hpp"
 #include <SFML/Graphics.hpp>
 
 namespace OpMon{

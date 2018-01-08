@@ -1,7 +1,6 @@
 #include "OptionsMenu.hpp"
 #include "../enums/Enums.hpp"
-#include "../start/main.hpp"
-#include "../save/OptionsSave.hpp"
+#include "../model/save/OptionsSave.hpp"
 #include "../model/storage/Data.hpp"
 
 UNS

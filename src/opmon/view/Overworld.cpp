@@ -1,11 +1,10 @@
 #include "Overworld.hpp"
 #include "../start/Initializer.hpp"
-#include "../start/main.hpp"
 #define FPS_TICKS 33
 #include <cmath>
 //#define ppPosY ((character.getPosition().y / CASE_SIZE) - 8)
 //#define ppPosX (((character.getPosition().x - 16) / CASE_SIZE) - 8)
-#include "Events.hpp"
+#include "../model/sysObjects/Events.hpp"
 #include "Dialog.hpp"
 #include "../../utils/log.hpp"
 #include "../../utils/time.hpp"

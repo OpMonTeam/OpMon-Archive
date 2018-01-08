@@ -11,7 +11,7 @@ namespace OpMon{
     sf::RenderTexture frame;
     sf::RenderWindow window;
     bool fullscreen;
-    GameStatus open(){
+    void open(){
       init = true;
 
 
