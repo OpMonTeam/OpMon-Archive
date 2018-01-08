@@ -2,13 +2,15 @@
 #include <fstream>
 #include "Utils.hpp"
 
-UNS
+//TODO: remove "../opmon" refs.
+#include "../opmon/start/Core.hpp"
+using OpMon::ticks;
 
 
 /**Principal log*/
-static ofstream *rlog;
+static std::ofstream *rlog;
 /**Error log*/
-static ofstream *rerrLog;
+static std::ofstream *rerrLog;
 
 
 /* location of the log folder */
@@ -19,23 +21,23 @@ bool initLogStream() {
 
   Utils::mkdir(LOG_PATH);
 
-    rlog = new ofstream(LOG_PATH + "log.txt");
-    rerrLog = new ofstream(LOG_PATH + "errLog.txt");
+    rlog = new std::ofstream(LOG_PATH + "log.txt");
+    rerrLog = new std::ofstream(LOG_PATH + "errLog.txt");
 
     if (!*rlog) {
-        cout << "Unable to open the log." << endl;
+        std::cout << "Unable to open the log." << std::endl;
         return false;
     }
     if (!*rerrLog) {
-        cout << "Unable to open the error log" << endl;
+        std::cout << "Unable to open the error log" << std::endl;
         return false;
     }
     return true;
 }
 
 
-void oplog(const string &toSay, bool error){
+void oplog(const std::string &toSay, bool error){
     std::ofstream *logStream = error ? rerrLog : rlog;
 
-    *logStream << "[T = " << ticks.getElapsedTime().asMilliseconds() << "] - " << toSay << endl;
+    *logStream << "[T = " << ticks.getElapsedTime().asMilliseconds() << "] - " << toSay << std::endl;
 }
