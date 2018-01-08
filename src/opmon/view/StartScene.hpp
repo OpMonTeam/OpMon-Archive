@@ -59,7 +59,7 @@ namespace OpMon{
       
       sf::String txtP1[15];
       sf::String txtP0[18];
-      OpString strName;
+      Utils::OpString strName;
 
       int sizeOfTxt;
 

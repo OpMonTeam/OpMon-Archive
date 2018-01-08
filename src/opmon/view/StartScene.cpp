@@ -4,7 +4,7 @@
 #include "../start/OpString.hpp"
 #include "Dialog.hpp"
 #include "../model/storage/Data.hpp"
-#include "../../utils/Utils.hpp"
+#include "src/utils/fs.hpp"
 
 
 #define SIZE_P0 18
@@ -24,7 +24,7 @@ namespace OpMon{
       }
       int ite = 1;
       it++;
-      strName = OpString("prof.dialog.start.19", Main::player.getNameP());
+      strName = Utils::OpString("prof.dialog.start.19", Main::player.getNameP());
       txtP1[0] = strName.getString();
       for(it = it; it < 27; it++) {
         string actual;
@@ -52,12 +52,12 @@ namespace OpMon{
       txtEnCours[1] = sf::String(" ");
       txtEnCours[2] = sf::String(" ");
 
-      textures[0].loadFromFile(Utils::getPath(RESSOURCES_PATH + "backgrounds/start/startscene.png"));
-      textures[1].loadFromFile(Utils::getPath(RESSOURCES_PATH + "sprites/chara/jlppc/profkiwai.png"));
-      textures[2].loadFromFile(Utils::getPath(RESSOURCES_PATH + "backgrounds/dialog/dialog.png"));
-      textures[3].loadFromFile(Utils::getPath(RESSOURCES_PATH + "sprites/misc/arrDial.png"));
-      textures[4].loadFromFile(Utils::getPath(RESSOURCES_PATH + "backgrounds/start/nameEntry.png"));
-      bgMus.openFromFile(Utils::getPath(RESSOURCES_PATH + "audio/music/intro.ogg"));
+      textures[0].loadFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "backgrounds/start/startscene.png"));
+      textures[1].loadFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "sprites/chara/jlppc/profkiwai.png"));
+      textures[2].loadFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "backgrounds/dialog/dialog.png"));
+      textures[3].loadFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "sprites/misc/arrDial.png"));
+      textures[4].loadFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "backgrounds/start/nameEntry.png"));
+      bgMus.openFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "audio/music/intro.ogg"));
       bg.setTexture(textures[0]);
       prof.setTexture(textures[1]);
       Dialog::dialog.setTexture(textures[2]);

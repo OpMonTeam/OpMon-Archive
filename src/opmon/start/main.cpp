@@ -6,11 +6,13 @@
 #include "../../utils/defines.hpp"
 #include "../../utils/log.hpp"
 #include "../../utils/time.hpp"
+#include "../../utils/fs.hpp"
 #include "../model/storage/InternalFiles.hpp"
 #include "../model/save/OptionsSave.hpp"
 #include "./Gameloop.hpp"
 
 using namespace OpMon::Model;
+using Utils::Log::oplog;
 
 
 //#define DEBUG
@@ -77,7 +79,7 @@ int main(int argc, char *argv[]) {
 
   Main::versionS += string("Alpha ") + Main::version;
 
-  if (!Utils::mkdir(RESSOURCES_PATH) || !Utils::mkdir(SAVE_PATH)) {
+  if (!Utils::Fs::mkdir(RESSOURCES_PATH) || !Utils::Fs::mkdir(SAVE_PATH)) {
     cout << "Exiting" << endl;
     return -1;
   }

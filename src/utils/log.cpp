@@ -1,7 +1,8 @@
-#include "log.hpp"
+
 #include <fstream>
-#include "Utils.hpp"
-#include "time.hpp"
+#include "./log.hpp"
+#include "./fs.hpp"
+#include "./time.hpp"
 
 
 /**Principal log*/
@@ -13,28 +14,33 @@ static std::ofstream *rerrLog;
 /* location of the log folder */
 #define LOG_PATH std::string("logs/")
 
+namespace Utils{
+  namespace Log{
 
-bool initLogStream() {
+    bool init(){
 
-  Utils::mkdir(LOG_PATH);
+      Fs::mkdir(LOG_PATH);
 
-    rlog = new std::ofstream(LOG_PATH + "log.txt");
-    rerrLog = new std::ofstream(LOG_PATH + "errLog.txt");
+      rlog = new std::ofstream(LOG_PATH + "log.txt");
+      rerrLog = new std::ofstream(LOG_PATH + "errLog.txt");
 
-    if (!*rlog) {
+      if (!*rlog) {
         std::cout << "Unable to open the log." << std::endl;
         return false;
-    }
-    if (!*rerrLog) {
+      }
+      if (!*rerrLog) {
         std::cout << "Unable to open the error log" << std::endl;
         return false;
+      }
+      return true;
     }
-    return true;
-}
 
 
-void oplog(const std::string &toSay, bool error){
-    std::ofstream *logStream = error ? rerrLog : rlog;
+    void oplog(const std::string &toSay, bool error){
+      std::ofstream *logStream = error ? rerrLog : rlog;
 
-    *logStream << "[T = " << getElapsedMilliseconds() << "] - " << toSay << std::endl;
+      *logStream << "[T = " << Time::getElapsedMilliseconds() << "] - " << toSay << std::endl;
+    }
+
+  }
 }

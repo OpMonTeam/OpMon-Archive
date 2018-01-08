@@ -10,25 +10,31 @@ http://opmon-game.ga
 #include <cstdarg>
 #include <vector>
 #include <SFML/System/String.hpp>
-/*
-Class defining an OpString. See the OpMon documentation (http://opmon-game.ga/pages/doc) for more details
-*/
-//->NoDoc
-class OpString {
-private:
+
+
+namespace Utils{
+
+  /**
+   * Class defining an OpString. See the OpMon documentation (http://opmon-game.ga/pages/doc) for more details
+   */
+  class OpString {
+  private:
     std::string key;
-  std::vector<sf::String*> objects;
-public:
-  OpString(std::string const& key, ...); //To change for a vector
+    std::vector<sf::String*> objects;
+  public:
+    OpString(std::string const& key, ...); //To change for a vector
     OpString();
 
-  sf::String getObject(int const& index) {
-        return *(objects[0]);
+    sf::String getObject(int const& index) {
+      return *(objects[index]);
     }
     std::string getKey() {
-        return key;
+      return key;
     }
     sf::String getString();
     static OpString voidStr;
-};
+  };
+
+}
+
 #endif

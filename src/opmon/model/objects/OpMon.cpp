@@ -87,12 +87,12 @@ namespace OpMon{
 
     OpMon::OpMon(const string &nickname, const Species &species, int level, const std::vector<Attack *> &attacks,
                  Nature nature){
-      atkIV = Utils::randU(32);
-      defIV = Utils::randU(32);
-      atkSpeIV = Utils::randU(32);
-      defSpeIV = Utils::randU(32);
-      speIV = Utils::randU(32);
-      hpIV = Utils::randU(32);
+      atkIV = Utils::Misc::randU(32);
+      defIV = Utils::Misc::randU(32);
+      atkSpeIV = Utils::Misc::randU(32);
+      defSpeIV = Utils::Misc::randU(32);
+      speIV = Utils::Misc::randU(32);
+      hpIV = Utils::Misc::randU(32);
       statATK = round(
         ((((2 * species.getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100)
          + 5)
@@ -181,8 +181,8 @@ namespace OpMon{
                       (status == Status::PARALYSED || status == Status::POISONED || status == Status::BURNING ? 1.5 : (
                         status == Status::FROZEN || status == Status::SLEEPING ? 2 : 1))) / (3 * statHP)));
       int b = round((pow(2, 16) - 1) * pow(a / (pow(2, 8) - 1), 0.25));
-      int c[] = {Utils::randU(65535), Utils::randU(65535), Utils::randU(65535),
-                 Utils::randU(65535)
+      int c[] = {Utils::Misc::randU(65535), Utils::Misc::randU(65535), Utils::Misc::randU(65535),
+                 Utils::Misc::randU(65535)
       };
       int nbreOk = 0;
       int i = 0;
@@ -241,7 +241,7 @@ namespace OpMon{
           statACC = newStat;
           break;
         case Stats::NOTHING:
-          oplog("[WARNING] - Incorrect value in a switch (OpMon::setStat). Expected a stat, got Stats::NOTHING.");
+          Utils::Log::oplog("[WARNING] - Incorrect value in a switch (OpMon::setStat). Expected a stat, got Stats::NOTHING.");
           break;
       }
     }

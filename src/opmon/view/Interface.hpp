@@ -10,7 +10,7 @@ namespace OpMon{
       virtual GameStatus operator()() = 0;
       virtual ~Interface() = 0;
 
-      virtual void initStrings() = 0;
+      virtual void initStrings() {};// = 0;
 
       Interface* getNextInterface() const{
 	return nextInterface;
