@@ -1,7 +1,6 @@
 
 #include <string>
 #include <ostream>
-#include "main.hpp"
 #include "config.hpp"
 #include "../../utils/defines.hpp"
 #include "../../utils/log.hpp"

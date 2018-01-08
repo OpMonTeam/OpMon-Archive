@@ -1,6 +1,5 @@
 
 #include "StartSceneCtrl.hpp"
-#include "../start/main.hpp"
 
 
 namespace OpMon{

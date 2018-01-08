@@ -8,6 +8,9 @@ http://opmon-game.ga
 #define OPMON_DIALOG_CPP_HPP
 
 #include <string>
+#include <SFML/System.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 
 class Dialog {

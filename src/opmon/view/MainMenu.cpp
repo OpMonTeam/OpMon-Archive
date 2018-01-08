@@ -1,11 +1,11 @@
 #include "MainMenu.hpp"
-#include "../start/main.hpp"
 #include <iostream>
 #include "OptionsMenu.hpp"
 #include "./Window.hpp"
 #include "../model/storage/Data.hpp"
-#include "src/utils/fs.hpp"
-#include "src/utils/log.hpp"
+#include "../../utils/fs.hpp"
+#include "../../utils/log.hpp"
+#include "../../utils/defines.hpp"
 
 UNS
 
