@@ -13,12 +13,21 @@ Définit le namespace Utils
 Namespace contenant des fonctions utiles
 */
 namespace Utils {
-int randU(int limit);
-unsigned int randUI(unsigned int limit);
-void wait(int ticks);
-long hash(std::string str);
+  int randU(int limit);
+  unsigned int randUI(unsigned int limit);
+  void wait(int duration);
+  long hash(std::string str);
   // Create a directory (if it doesn't exist yet)
-bool mkdir(const std::string &path);
+  bool mkdir(const std::string &path);
+
+  /**
+   Returns the path depending of the system.
+   By default, please use the "/" separator.
+   Then, if the os is Windows, this function will change the "/" by "\".
+   If you use the "\" separator in the path given,
+   nothing will change, on unix systems and on Windows systems.
+  */
+  std::string getPath(std::string const& path);
 }
 
 #endif // UTILS_HPP

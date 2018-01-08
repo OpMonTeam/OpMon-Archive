@@ -10,7 +10,7 @@ namespace OpMon{
       :view(), player(player){}
 
     GameStatus OverworldCtrl::checkEvent(sf::Event const& events){
-      auto overworld = view;
+      auto &overworld = view;
 
       bool is_dialog_open = overworld.getDialog() && !overworld.getDialog()->isDialogOver();
 

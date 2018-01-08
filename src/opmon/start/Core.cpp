@@ -19,25 +19,7 @@ namespace OpMon{
   */
   string optSave(SAVE_PATH + "optSave.oparams");
 
-  sf::Clock ticks;
-
   bool debugMode = false;
-  
-  string getPath(string const& path) {
-#ifdef _WIN32
-    vector<sf::String> splitted = StringKeys::split(path, '/');
-    string returned = "";
-    for(unsigned int i = 0; i < splitted.size(); i++) {
-      returned += splitted[i];
-      if(i != splitted.size() - 1) {
-	returned += "\\";
-      }
-    }
-    return returned;
-#else
-    return path;
-#endif
-  }
 
   sf::Vector2i vec2fTo2i(sf::Vector2f const &toTrans) {
     return sf::Vector2i(toTrans.x, toTrans.y);

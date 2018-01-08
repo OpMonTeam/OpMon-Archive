@@ -1,5 +1,6 @@
 #include "Window.hpp"
 #include "../model/storage/Data.hpp"
+#include "../../utils/Utils.hpp"
 
 
 namespace OpMon{
@@ -26,7 +27,7 @@ namespace OpMon{
       frame.create(512, 512);
       window.clear(sf::Color::White);
       sf::Texture loadTexture;
-      if(! loadTexture.loadFromFile(getPath(RESSOURCES_PATH + "backgrounds/loading.png"))) {
+      if(! loadTexture.loadFromFile(Utils::getPath(RESSOURCES_PATH + "backgrounds/loading.png"))) {
         handleError("Unable to open the loading screen.", false);
       }
       sf::Sprite spriteLoad;
@@ -136,10 +137,10 @@ namespace OpMon{
       window.display();
       /*int ancientTick = 0;
 	while(window.isOpen()){
-	if(GET_TICKS - ancientTick < FPS_TICKS){
+	if(Utils::getElapsedMilliseconds() - ancientTick < FPS_TICKS){
 
 	}else{
-	Utils::wait(GET_TICKS - ancientTick);
+	Utils::wait(Utils::getElapsedMilliseconds() - ancientTick);
 	}
 	}*/
     }
