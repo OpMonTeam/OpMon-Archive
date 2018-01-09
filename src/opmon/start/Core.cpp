@@ -105,8 +105,8 @@ namespace OpMon{
   }
 
   template<typename Base, typename T>
-  bool instanceOf(const T *toTest){
-    return dynamic_cast<const Base*>(toTest) != nullptr;
+  bool instanceOf(const Base *toTest){
+    return dynamic_cast<const T*>(toTest) != nullptr;
   }
   
 }
