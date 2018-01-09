@@ -19,7 +19,7 @@ namespace OpMon{
     _gameScreens.push(first_ctrl);
 
     GameStatus status = GameStatus::CONTINUE;
-    while(!status != GameStatus::STOP){
+    while(status != GameStatus::STOP){
       status = GameStatus::CONTINUE;
 
       auto ctrl = _gameScreens.top();
