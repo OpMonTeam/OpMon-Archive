@@ -47,7 +47,7 @@ namespace OpMon{
   sf::Vector2i vec2fTo2i(sf::Vector2f const &toTrans);
 
   template<typename Base, typename T>
-  bool instanceOf(const T *toTest);
+  bool instanceOf(const Base *toTest);
   
 }
 
