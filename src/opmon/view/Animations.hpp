@@ -3,7 +3,7 @@ Animations.hpp
 Author : Jlppc
 File under the license GPL-3.0
 http://opmon-game.ga
-Contains the namespace Animations
+Contains the Animations namespace 
 */
 #ifndef ANIMATIONS_HPP
 #define ANIMATIONS_HPP

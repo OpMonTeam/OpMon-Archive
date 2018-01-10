@@ -1,9 +1,9 @@
 /*
 Enums.hpp
 Author : Jlppc
-Fichier sous licence GPL-3.0
+File under GPL-3.0 license
 http://opmon-game.ga
-Définit plusieurs énumérations
+Define lot of enumerations
 */
 #ifndef ENUMS_HPP
 #define ENUMS_HPP
@@ -20,28 +20,28 @@ namespace OpMon{
   namespace Model{
 
     /**
-       Enumère les status des Pokémons
+       Enumerate the OPMons statues
     */
     //->Enum
     enum class Status {
       BURNING, PARALYSED, SLEEPING, FROZEN, POISONED, NOTHING
     };
     /**
-       Enumère les statistiques des Pokémons
+       Enumerate the OPMons stats
     */
     //->Enum
     enum class Stats : int{
       ATK = 6, DEF = 1, ATKSPE = 2, DEFSPE = 3, SPE = 4, HP = 5, ACC = 7, EVA = 8,NOTHING = 0
     };
     /**
-       Enumère les catégories du sac
+       Enumerate the bag categories
     */
     //->Enum
     enum class BagCat {
       SOIN, OBJETS, RARES, CTS, BAIES
     };
     /**
-       Enumère les types
+       Enumerate the OPMons types
     */
     //->Enum
     enum class Type : int {
