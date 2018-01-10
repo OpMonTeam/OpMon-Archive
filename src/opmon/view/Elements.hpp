@@ -1,9 +1,9 @@
 /*
 Elements.hpp
 Author : Jlppc
-Fichier sous licence GPL-3.0
+File under GPL-3.0 license
 http://opmon-game.ga
-Fichier contenant des Ã©lÃ©ments utiles
+File contains usefull elements
 */
 #ifndef ELEMENTS_HPP
 #define ELEMENTS_HPP

@@ -1,9 +1,9 @@
 /*
   OpMon.hpp
   Author : Jlppc
-  Fichier sous licence GPL-3.0. Le nom Pok�mon appartient a Nintendo(r).
+  File under the GPL 3.0 license.
   http://opmon-game.ga
-  Contient la d�finition du namepsace CalcCourbs et de la classe OpMon
+  Contains CalCourbs namespace defintions and OpMon class
 */
 #ifndef OPMON_HPP
 #define OPMON_HPP
@@ -15,7 +15,7 @@
 #include "Species.hpp"
 #include "src/utils/misc.hpp"
 #include "item/Item.hpp"
-#include "item/IOpball.hpp"
+#include "item/IOpBox.hpp"
 
 namespace OpMon{
   namespace Model{
@@ -37,7 +37,7 @@ namespace OpMon{
 
     class Attack;
     /**
-       Classe définissant un pokémon en particulier. Pour voir la classe qui définit une species, voir Species.hpp
+        Class defining a particular OpMon. To see the class that defines a species, see Species.hpp
     */
     class OpMon {
 
@@ -86,7 +86,7 @@ namespace OpMon{
       std::vector<Attack*> attacks;
 
       const Species *species;
-      /**Attention : Cette variable contient les PV actuels du pokémon, la classe statPV contient les PV max*/
+      /**Warning: This variable contains the current PV of the OPMon, the statPV class contains the max PV*/
       int HP;
       //->ExpectEnum->Status
       Status status = Status::NOTHING;
@@ -105,7 +105,7 @@ namespace OpMon{
 
       int tauxCapture;
     public:
-      /**Permet de savoir si un pokémon est un pok�mon initialisé avec un initilialiseur par défaut*/
+      /**Lets you know if a OPMon is an OPMon that is initialized with a default initializer*/
       bool falsif = true;
 
       bool confus = false;
@@ -124,8 +124,8 @@ namespace OpMon{
 	 Si le shema est incorrect, cela génèrera des erreurs de segmentation ou des données corrompues.
       */
       OpMon(std::ifstream &in);
-      /**Renvoie true si le pokémon est bien capturé.*/
-      bool captured(I_Opball const &Opball);
+      /**Returns true if the OPMon is well captured*/
+      bool captured(I_OpBox const &OpBox);
       /**Permet de changer une stat, les possibilités d'entrées dans le paramètre stat sont "ATK" "DEF" "ATKSPE" "DEFSPE" "SPE" "PV"*/
       void setStat(Stats stat, int newStat);
       /**Methode appellée lors d'une montée de niveau*/
@@ -146,7 +146,7 @@ namespace OpMon{
       void toolEvTrade();//SPOILERS!
       /**Methode appelée lors de l'évolution*/
       void evolve();
-      /**Permet de completement changer le pokémon*/
+      /**Allows to completely change the OPMon*/
       void setStats(int stats[], Attack *attacks[], const Species &species, Type types[]);
       /**Fait perdre des pv*/
       void attacked(int hpPerdus);
@@ -175,7 +175,7 @@ namespace OpMon{
       std::string getNickname() {
         return nickname;
       }
-      /**Soigne le pokémon*/
+      /**Heal the OPMon*/
       void heal(int HP);
       int getLevel() const {
         return level;
@@ -216,7 +216,7 @@ namespace OpMon{
       const Species &getSpecies() const {
         return *species;
       }
-      //Attention! Les opérateurs == et != ne comparent pas deux pok�mons! Ils comparent si les pok�mons sont falsifs ou non (voir falsif)
+      //Warning! The == and! = operators did not compare two OPMons! They compare whether OPMons are "falsif" or not (see falsif))
       bool operator==(OpMon const &a) {
         return (falsif == a.falsif);
       }
