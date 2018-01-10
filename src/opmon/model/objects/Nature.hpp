@@ -1,9 +1,9 @@
 /*
 Nature.hpp
 Author : Jlppc
-Fichier sous licence GPL-3.0
+File under  GPL-3.0 licence
 http://opmon-game.ga
-Définit l'énumération des caractères
+Define nature enumerations
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_ENUMS_CARACTERE_HPP_
 #define SRCCPP_JLPPC_REGIMYS_ENUMS_CARACTERE_HPP_

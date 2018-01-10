@@ -3,7 +3,7 @@ MainMenu.hpp
 Author : Jlppc
 File under the license GPL-3.0
 http://opmon-game.ga
-Contient le namespace MainMenu
+Contains MainMenu namespace
 */
 #ifndef MAINMENU_HPP
 #define MAINMENU_HPP
