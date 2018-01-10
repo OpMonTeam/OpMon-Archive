@@ -1,9 +1,9 @@
 /*
 Species.hpp
 Author : Jlppc
-Fichier sous licence GPL-3.0
+File under the GPL-3.0 license
 http://opmon-game.ga
-Définit l'énumération CourbeExp et la classe Species
+Define the CourbeExp enumération and the Species class
 */
 #ifndef ESPECE_HPP
 #define ESPECE_HPP
@@ -23,7 +23,7 @@ namespace OpMon{
       ERRATIC = 0, FLUCTUATING = 1, SLOW = 2, AVERAGE = 3, PARABOLIC = 4, QUICK = 5
     };
     /**
-       Classe permettant de définir une espèce de Pokémon.
+       Class to define a species of OPMon.
     */
     //->Final
     class Species {

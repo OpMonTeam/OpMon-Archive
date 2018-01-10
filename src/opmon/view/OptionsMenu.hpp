@@ -3,7 +3,7 @@ OptionsMenu.hpp
 Author : Jlppc
 File under the license GPL-3.0
 http://opmon-game.ga
-Contient le namespace OptionsMenu
+Contains OptionsMenu namespace
 */
 #ifndef OPTIONSMENU_HPP
 #define OPTIONSMENU_HPP

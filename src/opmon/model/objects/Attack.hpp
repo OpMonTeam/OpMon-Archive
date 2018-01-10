@@ -1,9 +1,9 @@
 /*
 Attack.hpp
 Author : Jlppc
-Fichier sous licence GPL-3.0
+File under GPL-3.0 license
 http://opmon-game.ga
-Contient la définition de la classe Attack
+Contains Attack class definition
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUE_HPP_
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUE_HPP_
@@ -17,7 +17,7 @@ namespace OpMon{
 
     class OpMon;
     /**
-       Représente une attaque Pokémon
+       Represent an OpMon attack
     */
     //->PureVirtual
     class Attack {
@@ -34,7 +34,7 @@ namespace OpMon{
       Type getType() {
         return type;
       }
-      /**atk attaque le pokémon def*/
+      /**atk attack the def OpMon*/
       //->Final
       virtual int attack(OpMon &atk, OpMon &def);
       virtual void siEchoue(OpMon &atk, OpMon &def) {}

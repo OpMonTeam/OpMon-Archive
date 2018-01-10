@@ -1,9 +1,9 @@
 /*
 Attacks.hpp
 Author : Jlppc
-Fichier sous licence GPL-3.0
+File under GPL-3.0 license
 http://opmon-game.ga
-Contient les définitions des classes des attaques
+Contains the attacks classes definitions
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUES_HPP_
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUES_HPP_

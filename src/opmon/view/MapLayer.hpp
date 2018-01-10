@@ -1,3 +1,10 @@
+/*
+MapLayer.hpp
+Author : Jlppc
+File under the license GPL-3.0
+http://opmon-game.ga
+Contains MainMenu class definition
+*/
 #ifndef MAPLAYER_HPP
 #define MAPLAYER_HPP
 
