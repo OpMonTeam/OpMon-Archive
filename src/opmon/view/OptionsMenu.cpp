@@ -322,9 +322,9 @@ int OptionsMenu::langLoop() {
     case 1:
     OptionsSave::modifyParam("lang", "eng");
     #ifdef _WIN32
-    Utils::StringKeys::initialize("ressources\\keys\\english.rkeys");
+    OpMon::initStringKeys("ressources\\keys\\english.rkeys");
     #else
-    Utils::StringKeys::initialize(RESSOURCES_PATH + "keys/english.rkeys");
+    OpMon::initStringKeys(RESSOURCES_PATH + "keys/english.rkeys");
     #endif
     Window::frame.initAllStrings();
     return 0;
@@ -332,9 +332,9 @@ int OptionsMenu::langLoop() {
     case 2:
     OptionsSave::modifyParam("lang", "esp");
     #ifdef _WIN32
-    Utils::StringKeys::initialize("ressources\\keys\\espanol.rkeys");
+    OpMon::initStringKeys("ressources\\keys\\espanol.rkeys");
     #else
-    Utils::StringKeys::initialize(RESSOURCES_PATH + "keys/espanol.rkeys");
+    OpMon::initStringKeys(RESSOURCES_PATH + "keys/espanol.rkeys");
     #endif // _WIN32
     Window::frame.initAllStrings();
     return 0;
@@ -342,9 +342,9 @@ int OptionsMenu::langLoop() {
     case 3:
     OptionsSave::modifyParam("lang", "fr");
     #ifdef _WIN32
-    Utils::StringKeys::initialize("ressources\\keys\\francais.rkeys");
+    OpMon::initStringKeys("ressources\\keys\\francais.rkeys");
     #else
-    Utils::StringKeys::initialize(RESSOURCES_PATH + "keys/francais.rkeys");
+    OpMon::initStringKeys(RESSOURCES_PATH + "keys/francais.rkeys");
     #endif
     Window::frame.initAllStrings();
     return 0;
