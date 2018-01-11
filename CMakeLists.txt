@@ -45,9 +45,8 @@ include_directories(${PROJECT_BINARY_DIR})
 
 # list all .cpp files in src/
 # .hpp are handled automatically.
-file(GLOB_RECURSE SOURCE_FILES src/utils/*.[ch]pp
-        src/opmon/start/Gameloop.cpp
-        src/opmon/view/Window.cpp
+file(GLOB_RECURSE SOURCE_FILES
+        src/*.[ch]pp
         )
 
 if (WIN32) # set the program icon

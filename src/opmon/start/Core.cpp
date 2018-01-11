@@ -4,6 +4,7 @@
 #include "Core.hpp"
 #include "../../utils/defines.hpp"
 #include "../../utils/log.hpp"
+#include "../../utils/StringKeys.hpp"
 #include "../model/save/OptionsSave.hpp"
 #include "./Initializer.hpp"
 
@@ -108,5 +109,12 @@ namespace OpMon{
   bool instanceOf(const Base *toTest){
     return dynamic_cast<const T*>(toTest) != nullptr;
   }
-  
+
+
+  // NOTE: this function is here to make extract the dependency of "handleError" outside of src/utils/
+  void initStringKeys(const std::string &keysFileS){
+    if (!Utils::StringKeys::initialize(keysFileS))
+      handleError("Keys initialization error", true);
+  }
+
 }
