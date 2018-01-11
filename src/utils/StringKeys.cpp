@@ -5,10 +5,6 @@
 #include "./fs.hpp"
 
 
-//TODO: remove "../opmon" refs.
-#include "../opmon/start/Core.hpp"
-using OpMon::handleError;
-
 
 UNS
 
@@ -43,15 +39,16 @@ namespace Utils {
       return toReelReturn;
     }
 
-    void initialize(string keysFileS){
+    bool initialize(const string &keysFileS){
       //Ouverture du fichier de clées, initialisation des vectors
-      keysFileS = Fs::getPath(keysFileS);
-      ifstream keysFile(keysFileS.c_str());
+      auto sanitizedKeyFiles = Fs::getPath(keysFileS);
+      ifstream keysFile(sanitizedKeyFiles.c_str());
       keys = vector<string>();
       strings = vector<sf::String>();
       Log::oplog("Keys initialization");
-      if(!keysFile){//Si ouverture du fichier échouée.
-        handleError("Keys initialization error", true);
+      if(!keysFile){
+        // Opening of th keys file failed
+        return false;
       }
       //Récupération des clées
       int itore = 0;
@@ -77,6 +74,7 @@ namespace Utils {
         }
 
       }
+      return true;
     }
 
     sf::String voi;

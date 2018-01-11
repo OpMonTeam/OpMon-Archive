@@ -20,7 +20,12 @@ namespace Utils {
 
     sf::String &get(std::string key);
 
-    void initialize(std::string file);
+    /**
+     * Load the key file and initialize the keys list.
+     * @param file
+     * @return `true` if everything is ok; `false` if there is an error.
+     */
+    bool initialize(const std::string &file);
 
     OP_DEPRECATED sf::String split(sf::String const &str, char const &splitter, int const &part);
 
