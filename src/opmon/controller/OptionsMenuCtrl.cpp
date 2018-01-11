@@ -51,17 +51,17 @@ namespace OpMon{
 		return GameStatus::CONTINUE;
 	      case 1:
 		Model::OptionsSave::modifyParam("lang", "eng");
-		Utils::StringKeys::initialize(Utils::Fs::getPath(RESSOURCES_PATH + "keys/english.rkeys"));
+		OpMon::initStringKeys(Utils::Fs::getPath(RESSOURCES_PATH + "keys/english.rkeys"));
 		changedLang = true;
 		break;
 	      case 2:
 		Model::OptionsSave::modifyParam("lang", "esp");
-		Utils::StringKeys::initialize(Utils::Fs::getPath(RESSOURCES_PATH + "keys/espanol.rkeys"));
+		OpMon::initStringKeys(Utils::Fs::getPath(RESSOURCES_PATH + "keys/espanol.rkeys"));
 		changedLang = true;
 		break;
 	      case 3:
 		Model::OptionsSave::modifyParam("lang", "fr");
-		Utils::StringKeys::initialize(Utils::Fs::getPath(RESSOURCES_PATH + "keys/francais.rkeys"));
+		OpMon::initStringKeys(Utils::Fs::getPath(RESSOURCES_PATH + "keys/francais.rkeys"));
 		changedLang = true;
 		break;
 	      }

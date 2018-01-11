@@ -3,7 +3,7 @@
 #include "../../utils/StringKeys.hpp"
 #include "../../utils/log.hpp"
 #include "../../utils/fs.hpp"
-#include "../../utils/OpString.hpp"
+#include "../start/Core.hpp"
 #include "../model/storage/Data.hpp"
 
 using Utils::Fs::getPath;
@@ -554,11 +554,11 @@ namespace OpMon{
   void initKeys() {
     //Sets the language to initialize in the keys
     if(OptionsSave::getParam("lang").getValue() == "fr") {
-      StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/francais.rkeys"));
+      OpMon::initStringKeys(getPath(RESSOURCES_PATH + "keys/francais.rkeys"));
     } else if(OptionsSave::getParam("lang").getValue() == "esp") {
-      StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/espanol.rkeys"));
+      OpMon::initStringKeys(getPath(RESSOURCES_PATH + "keys/espanol.rkeys"));
     } else {
-      StringKeys::initialize(getPath(RESSOURCES_PATH + "keys/english.rkeys"));
+      OpMon::initStringKeys(getPath(RESSOURCES_PATH + "keys/english.rkeys"));
     }
   }
     
