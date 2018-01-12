@@ -32,8 +32,6 @@ namespace OpMon{
     void initMenuStrings();
     void initStartSceneStrings();
 
-    void initStrings();
-    
     //void deleteAnims();
     void init();
   }

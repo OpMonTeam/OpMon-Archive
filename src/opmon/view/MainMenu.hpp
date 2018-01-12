@@ -12,6 +12,7 @@ Contains MainMenu namespace
 #include <SFML/Audio.hpp>
 
 #include "Interface.hpp"
+#include "../start/i18n/ATranslatable.hpp"
 
 
 namespace OpMon{
@@ -19,7 +20,7 @@ namespace OpMon{
     /**
        Namespace contenant les éléments du menu principal
     */
-    class MainMenu : public Interface {
+    class MainMenu : public Interface, I18n::ATranslatable {
 
     public:
       MainMenu();
@@ -30,6 +31,7 @@ namespace OpMon{
 
       GameStatus operator()();
       void initStrings();
+      void onLangChanged() override;
 
       void moveArrow(bool direction);
 

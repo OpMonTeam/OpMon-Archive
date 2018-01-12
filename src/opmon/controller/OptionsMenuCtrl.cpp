@@ -8,6 +8,8 @@
 #include "src/utils/fs.hpp"
 #include "../../utils/defines.hpp"
 #include "../start/Initializer.hpp"
+#include "../start/i18n/Translator.hpp"
+
 
 namespace OpMon{
   namespace Controller{
@@ -44,29 +46,24 @@ namespace OpMon{
 		break;
 	      }
 	    }else if(menu.getCurrentOption() == View::OptionType::LANG){
-	      bool changedLang = false;
+
+        auto &tr = OpMon::I18n::Translator::getInstance();
 	      switch(menu.cursorPosition()){
-	      case 0:
-		menu.setCurrentOption(View::OptionType::ALL);
-		return GameStatus::CONTINUE;
-	      case 1:
-		Model::OptionsSave::modifyParam("lang", "eng");
-		OpMon::initStringKeys(Utils::Fs::getPath(RESSOURCES_PATH + "keys/english.rkeys"));
-		changedLang = true;
-		break;
-	      case 2:
-		Model::OptionsSave::modifyParam("lang", "esp");
-		OpMon::initStringKeys(Utils::Fs::getPath(RESSOURCES_PATH + "keys/espanol.rkeys"));
-		changedLang = true;
-		break;
-	      case 3:
-		Model::OptionsSave::modifyParam("lang", "fr");
-		OpMon::initStringKeys(Utils::Fs::getPath(RESSOURCES_PATH + "keys/francais.rkeys"));
-		changedLang = true;
-		break;
-	      }
-	      if(changedLang){
-		Initializer::initStrings();
+					case 0:
+						menu.setCurrentOption(View::OptionType::ALL);
+						return GameStatus::CONTINUE;
+					case 1:
+						Model::OptionsSave::modifyParam("lang", "en");
+            tr.setLang("en");
+						break;
+					case 2:
+						Model::OptionsSave::modifyParam("lang", "es");
+            tr.setLang("es");
+						break;
+					case 3:
+						Model::OptionsSave::modifyParam("lang", "fr");
+            tr.setLang("fr");
+						break;
 	      }
 	    }else{
 	      return GameStatus::CONTINUE;
