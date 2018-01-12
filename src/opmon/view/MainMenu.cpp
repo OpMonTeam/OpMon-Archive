@@ -66,6 +66,9 @@ namespace OpMon{
       
     }
 
+    void MainMenu::onLangChanged(){
+      initStrings();
+    }
 
     void MainMenu::del() {
       bgMusTitle.stop();

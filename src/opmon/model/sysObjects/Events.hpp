@@ -15,6 +15,8 @@
 #include "Player.hpp"
 #include "../objects/Enums.hpp"
 #include "../../../utils/OpString.hpp"
+#include "../../start/i18n/ATranslatable.hpp"
+
 
 #define SIDE_UP 0x0001
 #define SIDE_DOWN 0x0002
@@ -124,16 +126,16 @@ namespace OpMon{
 	virtual void update(Player &player);
       };
 
-      class TalkingEvent : public virtual Event {
+      class TalkingEvent : public virtual Event, I18n::ATranslatable {
       private:
-	std::vector<Utils::OpString> dialogKeys;
+				std::vector<Utils::OpString> dialogKeys;
       protected:
-	std::vector<sf::String> dialogs;
+				std::vector<sf::String> dialogs;
       public:
-	TalkingEvent(std::vector<sf::Texture>& otherTextures, sf::Vector2f const& position, std::vector<Utils::OpString> const& dialogKeys, int sides = SIDE_ALL, EventTrigger eventTrigger = EventTrigger::PRESS, bool passable = false);
-	void reloadKeys();
-	virtual void update(Player &player);
-	virtual void action(Player &player);
+				TalkingEvent(std::vector<sf::Texture>& otherTextures, sf::Vector2f const& position, std::vector<Utils::OpString> const& dialogKeys, int sides = SIDE_ALL, EventTrigger eventTrigger = EventTrigger::PRESS, bool passable = false);
+				void onLangChanged() override;
+				virtual void update(Player &player);
+				virtual void action(Player &player);
       };
 
       class LockedDoorEvent : public DoorEvent, TalkingEvent {

@@ -82,6 +82,10 @@ namespace OpMon{
       Dialog::arrDial.setPosition(437, 482);
     }
 
+    void StartScene::onLangChanged(){
+      initStrings();
+    }
+
     GameStatus StartScene::operator()(){
       if(!launched){
 	init();

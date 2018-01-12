@@ -5,6 +5,8 @@
 #include "../../utils/fs.hpp"
 #include "../start/Core.hpp"
 #include "../model/storage/Data.hpp"
+#include "../start/i18n/Translator.hpp"
+
 
 using Utils::Fs::getPath;
 using Utils::OpString;
@@ -553,13 +555,14 @@ namespace OpMon{
 
   void initKeys() {
     //Sets the language to initialize in the keys
-    if(OptionsSave::getParam("lang").getValue() == "fr") {
-      OpMon::initStringKeys(getPath(RESSOURCES_PATH + "keys/francais.rkeys"));
-    } else if(OptionsSave::getParam("lang").getValue() == "esp") {
-      OpMon::initStringKeys(getPath(RESSOURCES_PATH + "keys/espanol.rkeys"));
-    } else {
-      OpMon::initStringKeys(getPath(RESSOURCES_PATH + "keys/english.rkeys"));
+
+    const char *lang = OptionsSave::getParam("lang").getValue();
+    auto &tr = OpMon::I18n::Translator.getInstance();
+
+    if (!tr.getAvailableLanguages().count(lang)){
+      lang = "en"; // The lang isn't available. Default to english.
     }
+    tr.set_lang(lang);
   }
     
   void init() {
@@ -586,24 +589,6 @@ namespace OpMon{
     Model::Data::player.setPosY((overworld.getCharacter().getPosition().y / CASE_SIZE) - 8);
     Model::Data::player.setDir(Side::TO_UP);
   }
-
-  void initStrings(){
-
-    //TODO: call initStrings() for all _gameScreens. EVen when not yet created.
-    // for(Interface* interface : gameloop.getInterfaces()){
-    //   interface->initStrings();
-    // }
-    
-    for(auto map = Data::maps.cbegin(); map!=Data::maps.cend(); ++map) {
-      for(Event *event : map->second.getEvents()) {
-	Events::TalkingEvent *te = dynamic_cast<Events::TalkingEvent *>(event);
-	if(te != nullptr) {
-	  te->reloadKeys();
-	}
-      }
-    }
-  }
-
 
 }
 }

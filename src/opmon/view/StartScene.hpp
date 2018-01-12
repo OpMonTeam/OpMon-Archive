@@ -13,6 +13,7 @@ Contains StartScene class
 #include "../../utils/OpString.hpp"
 
 #include "../start/Core.hpp"
+#include "../start/i18n/ATranslatable.hpp"
 #include "./Dialog.hpp"
 #include "./Interface.hpp"
 
@@ -20,7 +21,7 @@ Contains StartScene class
 namespace OpMon{
   namespace View{
    
-    class StartScene : public Interface {
+    class StartScene : public Interface, I18n::ATranslatable {
     public:
       GameStatus operator()();
 
@@ -30,6 +31,7 @@ namespace OpMon{
       void pause();
       
       void initStrings();
+      void onLangChanged() override;
 
       void init();
       
