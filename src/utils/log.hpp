@@ -23,5 +23,6 @@ namespace Utils{
      */
     void oplog(const std::string &toSay, bool error = false);
 
+    void warn(const std::string &toSay);
   }
 }
