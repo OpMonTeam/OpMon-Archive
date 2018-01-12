@@ -34,7 +34,7 @@ namespace OpMon{
 	  }
 
 	  namespace Elements{
-		extern std::map<std::string, sf::Vector2i> elementPos;
+		extern std::map<std::string, sf::Vector2i> elementsPos;
 		extern std::map<std::string, int> elementsCounter;
 		extern std::map<std::string, std::vector<sf::Texture> > elementsTextures;
 		extern std::map<std::string, sf::Sprite> elementsSprites;

@@ -29,11 +29,6 @@ namespace OpMon{
      Function quitting the game, deleting the resources
   */
   int quit(int const& returns);
-  /*
-  void bgTask();
-
-  extern std::thread* bgtask;
-  */
 
   extern bool debugMode;
   
@@ -44,7 +39,6 @@ namespace OpMon{
   std::string& operator<<(std::string &str, int const& nbre);
   std::string& operator<<(std::string &str, char nbre[]);
   
-  sf::Vector2i vec2fTo2i(sf::Vector2f const &toTrans);
 
   template<typename Base, typename T>
   bool instanceOf(const Base *toTest);

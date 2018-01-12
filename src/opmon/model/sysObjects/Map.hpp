@@ -20,11 +20,13 @@ namespace OpMon{
     private:
       const int *layer1;
       const int *layer2;
+      const int *layer3;
+
       std::string bg;
       //Event events;
       int w;
       int h;
-      int *layer3;
+
       char **passArr;
       /**The copy constructor must not be used.*/
       Map(Map const &toCopy) = delete;

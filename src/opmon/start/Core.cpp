@@ -1,5 +1,6 @@
 
 #include <ostream>
+#include <map>
 #include <sstream>
 #include "Core.hpp"
 #include "../../utils/defines.hpp"
@@ -7,6 +8,8 @@
 #include "../../utils/StringKeys.hpp"
 #include "../model/save/OptionsSave.hpp"
 #include "./Initializer.hpp"
+#include "../model/storage/Data.hpp"
+
 
 using namespace OpMon::Model;
 using Utils::Log::oplog;
@@ -15,17 +18,12 @@ UNS
 
 
 namespace OpMon{
-  //std::thread bgtask = nullptr;
   /*
     Logs and save files initialization
   */
   string optSave(SAVE_PATH + "optSave.oparams");
 
   bool debugMode = false;
-
-  sf::Vector2i vec2fTo2i(sf::Vector2f const &toTrans) {
-    return sf::Vector2i(toTrans.x, toTrans.y);
-  }
 
   //The number of errors handeled in the program.
   int errors = 0;
@@ -54,19 +52,18 @@ namespace OpMon{
   int quit(int const& returns) {
     OptionsSave::saveParams(optSave);//Saving parameters
     oplog("Deleting resources in the memory");
-    for(std::map<std::string, Map*>::iterator map = Initializer::maps.begin(); map!=Initializer::maps.end(); ++map){
-      if(map->second != nullptr){
-	delete(map->second);
-      }
+    for(auto &map: Data::World::maps){
+      delete(map.second);
     }
-    for(sf::Music *mus : Initializer::townMusics) {//Deleting the maps' music
+    for(sf::Music *mus: Data::Ui::townMusics) {//Deleting the maps' music
       delete(mus);
     }
-    for(unsigned short i = 0; i < 6; i++){
-      if(Main::player.getOp(i) != nullptr){
-	delete(Main::player.getOp(i));
-      }
-    }
+
+    // TODO: delet the player's OpMons !
+    // for(unsigned short i = 0; i < 6; i++){
+	  //  delete(Main::player.getOp(i));
+    // }
+
     ostringstream osslog;
     osslog << "End of the program. Return " << returns;
     oplog(osslog.str());
@@ -74,15 +71,8 @@ namespace OpMon{
       oplog("There is a problem. Create an issue on github!");
     }
     exit(returns);
-    return returns;
   }
 
-  /*void bgTask(){
-    if(Model::Data::endGame){
-      quit(0);
-    }
-    }*/
-  
   std::string& operator<<(std::string &str, int const& nbre) {
     ostringstream oss;
     oss << str << nbre;
