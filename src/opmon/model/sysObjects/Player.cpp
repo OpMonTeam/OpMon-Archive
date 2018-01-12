@@ -1,6 +1,7 @@
 #include "Player.hpp"
 #include "../save/Save.hpp"
 #include "../../../utils/StringKeys.hpp"
+#include "../../start/Core.hpp"
 
 
 namespace OpMon{
