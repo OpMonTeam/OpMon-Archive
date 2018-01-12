@@ -10,7 +10,7 @@
 #define INITIALIZER_HPP
 
 namespace OpMon{
-  class Map;
+
   //->NoDoc
   namespace Initializer {
     void initOpMons();

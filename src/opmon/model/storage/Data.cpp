@@ -13,7 +13,7 @@ namespace OpMon{
       }
 
       namespace Elements{
-	std::map<std::string, sf::Vector2i> elementPos;
+	std::map<std::string, sf::Vector2i> elementsPos;
 	std::map<std::string, int> elementsCounter;
 	std::map<std::string, std::vector<sf::Texture> > elementsTextures;
 	std::map<std::string, sf::Sprite> elementsSprites;
