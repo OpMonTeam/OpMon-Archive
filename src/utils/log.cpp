@@ -42,5 +42,9 @@ namespace Utils{
       *logStream << "[T = " << Time::getElapsedMilliseconds() << "] - " << toSay << std::endl;
     }
 
+    void warn(const std::string &toSay){
+      oplog("[WARN] " + toSay);
+    }
+
   }
 }
