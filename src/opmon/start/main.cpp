@@ -6,9 +6,13 @@
 #include "../../utils/log.hpp"
 #include "../../utils/time.hpp"
 #include "../../utils/fs.hpp"
+#include "../model/objects/Enums.hpp"
 #include "../model/storage/InternalFiles.hpp"
 #include "../model/save/OptionsSave.hpp"
+#include "../view/Window.hpp"
+#include "./Core.hpp"
 #include "./Gameloop.hpp"
+#include "./Initializer.hpp"
 
 using namespace OpMon::Model;
 using Utils::Log::oplog;
@@ -70,13 +74,13 @@ namespace OpMon {
   }
 }
 int main(int argc, char *argv[]) {
-  Utils::initClock();
-  if (!initLogStream()) {
+  Utils::Time::initClock();
+  if (!Utils::Log::init()) {
     cout << "Exiting" << endl;
     return -1;
   }
 
-  Main::versionS += string("Alpha ") + Main::version;
+  auto versionS = string("Alpha ") + OPMON_VERSION;
 
   if (!Utils::Fs::mkdir(RESSOURCES_PATH) || !Utils::Fs::mkdir(SAVE_PATH)) {
     cout << "Exiting" << endl;
@@ -88,7 +92,7 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < argc; i++) {
       string str = string(argv[i]);
       if(str == "--version") {
-	cout << "OpMon Lazuli version " << Main::versionS << endl;
+	cout << "OpMon Lazuli version " << versionS << endl;
 	cout << "Under GNU GPL v3.0 license" << endl;
 	cout << "http://opmon-game.ga" << endl;
 	return 0;
@@ -96,7 +100,7 @@ int main(int argc, char *argv[]) {
 	if(i + 1 == argc) {
 	  return 2;
 	} else {
-	  optSave = string(argv[i + 1]);
+	  OpMon::optSave = string(argv[i + 1]);
 	}
       } else if(str == "--help") {
 	cout << "--version : Prints the version and quit." << endl;
