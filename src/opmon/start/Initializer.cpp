@@ -1,16 +1,21 @@
-#include <src/utils/OpString.hpp>
+
+#include <sstream>
 #include "Initializer.hpp"
+#include "../../utils/OpString.hpp"
 #include "../../utils/StringKeys.hpp"
 #include "../../utils/log.hpp"
 #include "../../utils/fs.hpp"
-#include "../start/Core.hpp"
 #include "../model/storage/Data.hpp"
-#include "../start/i18n/Translator.hpp"
+#include "../model/storage/InternalFiles.hpp"
+#include "../model/objects/Enums.hpp"
+#include "../model/objects/evolution/evolutions.hpp"
+#include "../model/sysObjects/Events.hpp"
+#include "./i18n/Translator.hpp"
+#include "./Core.hpp"
 
 
 using Utils::Fs::getPath;
 using Utils::OpString;
-using Utils::StringKeys;
 using Utils::Log::oplog;
 
 
@@ -27,7 +32,7 @@ namespace OpMon{
 
     void initAnims() {
       for(int i = 0; i < 6; i++) {
-	ostringstream oss;
+	std::ostringstream oss;
 	oss << getPath(RESSOURCES_PATH + "animations/winChange/animWindowFrame") << i + 1 << ".png";
 	Data::Animations::fen[i].loadFromFile(oss.str());
       }
@@ -302,15 +307,15 @@ namespace OpMon{
       Data::OpMons::atkOpLvl[0][0] = "Charge";
       Data::OpMons::atkOpLvl[0][3] = "Rugissement";
       Data::OpMons::atkOpLvl[0][7] = "Vampigraine";
-      Data::OpMons::atkOpLvly[0][9] = "FoutetLianes";
+      Data::OpMons::atkOpLvl[0][9] = "FoutetLianes";
       //etc...
     }
 
     using namespace Model::Data::Ui;
   
     void initTextures() {
-  
-      tileset.loadFromFile(getPath(RESSOURCES_PATH + "tileset/tileset.png"));
+
+      Data::World::tileset.loadFromFile(getPath(RESSOURCES_PATH + "tileset/tileset.png"));
       if(!texturePP[(int) Side::TO_DOWN].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp0.png"))){
 	handleError("Failed to load one of the PP sprites", false);
       }
@@ -459,7 +464,7 @@ namespace OpMon{
 	//Fauxbourg Euvi loading
 	townMusics.push_back(new sf::Music());
       std::vector<sf::Vector2f> feEPos;
-      if(!townMusics["A new start"]->openFromFile(){
+      if(!townMusics["A new start"]->openFromFile()){
 	  handleError("Unable to open the music faubourgeuvi.ogg", false);
 	}
 	Model::Data::Elements::elementsCounter["windturbine"] = 0;
@@ -548,7 +553,7 @@ namespace OpMon{
     delete[] myciCol;
 
   }
-#undef PLANS_RESET
+
   void initBackgrounds() {
       
   }
