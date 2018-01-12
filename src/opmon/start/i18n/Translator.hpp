@@ -6,47 +6,47 @@
 #include <unordered_set>
 
 
-namespace Opmon{
-  namespace Start{
-    namespace I18n {
+namespace OpMon{
+  namespace I18n {
 
-      class ATranslatable;
+    class ATranslatable;
 
-      /**
-       * Class in charge of the lang setting.
-       * It load (and reload) language file.
-       *
-       * On lang changes, it informs all `Translatable` instances.
-       *
-       * Note: This class should not be instanced, except the `translation` instance below.
-       */
-      class Translator{
-      public:
+    /**
+     * Class in charge of the lang setting. It load (and reload) language file.
+     *
+     * When the lang changes, it informs all `Translatable` instances registered with `subscribe()`.
+     *
+     * Note: This class is a singleton. It can only be acceded by using `getInstance()`.
+     */
+    class Translator{
+    public:
 
-        /**
-         * Set the language. It MUST be called at start to set the first language.
-         *
-         * @param lang_code should be "en", "es" or "fr".
-         */
-        void setLang(const std::string &lang_code);
+      //Ensure Singleton can't be copied.
+      Translator(Translator const&) = delete;
+      void operator=(Translator const&) = delete;
 
-        const std::string &getLang();
-
-        const std::map<const std::string, const std::string> getAvailableLanguages();
-
-        void subscribe(ATranslatable *listener);
-        void unsubscribe(ATranslatable *listener);
-      private:
-        std::string _currentLang;
-        std::unordered_set<ATranslatable *> _listeners;
-      };
+      static Translator &getInstance();
 
 
       /**
-       * Only instance of Translator.
+       * Set the language. It MUST be called at start to set the first language.
+       *
+       * @param lang_code should be "en", "es" or "fr".
        */
-      extern Translator translator;
+      void setLang(const std::string &lang_code);
 
-    }
+      const std::string &getLang();
+
+      const std::map<const std::string, const std::string> getAvailableLanguages();
+
+      void subscribe(ATranslatable *listener);
+      void unsubscribe(ATranslatable *listener);
+    private:
+      Translator() = default;
+
+      std::string _currentLang;
+      std::unordered_set<ATranslatable *> _listeners;
+    };
+
   }
 }

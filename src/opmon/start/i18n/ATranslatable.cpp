@@ -3,18 +3,16 @@
 #include "./Translator.hpp"
 
 
-namespace Opmon{
-  namespace Start{
-    namespace I18n {
+namespace OpMon{
+  namespace I18n {
 
-      ATranslatable::ATranslatable(){
-        translator.subscribe(this);
-      }
-
-      ATranslatable::~ATranslatable(){
-        translator.unsubscribe(this);
-      }
-
+    ATranslatable::ATranslatable(){
+      Translator.getInstance().subscribe(this);
     }
+
+    ATranslatable::~ATranslatable(){
+      Translator.getInstance().unsubscribe(this);
+    }
+
   }
 }

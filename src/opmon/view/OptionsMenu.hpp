@@ -12,6 +12,7 @@ Contains OptionsMenu namespace
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "Elements.hpp"
+#include "../start/i18n/ATranslatable.hpp"
 
 
 namespace OpMon{
@@ -19,7 +20,7 @@ namespace OpMon{
 
     enum class OptionType{ALL, LANG, CREDITS};
     
-    class OptionsMenu : public Interface {
+    class OptionsMenu : public Interface, I18n::ATranslatable {
     public:
       OptionsMenu();
 
@@ -36,6 +37,7 @@ namespace OpMon{
       GameStatus creditsLoop();
       
       void initStrings();
+			void onLangChanged() override;
       
       void play();
       void pause();

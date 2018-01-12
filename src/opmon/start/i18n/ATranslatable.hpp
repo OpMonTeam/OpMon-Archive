@@ -1,25 +1,23 @@
 
 #pragma once
 
-namespace Opmon {
-  namespace Start {
-    namespace I18n {
+namespace OpMon {
+  namespace I18n {
 
+    /**
+     * Base class for any element requiring to reload when the lang changes.
+     */
+    class ATranslatable{
+    protected:
+      ATranslatable();
+      virtual ~ATranslatable();
+
+    public:
       /**
-       * Base class for any element requiring to reload when the lang changes.
+       * Method called after the lang has been changed.
        */
-      class ATranslatable{
-      protected:
-        ATranslatable();
-        virtual ~ATranslatable();
+      virtual void onLangChanged() = 0;
+    };
 
-      public:
-        /**
-         * Method called after the lang has been changed.
-         */
-        virtual void onLangChanged() = 0;
-      };
-
-    }
   }
 }
