@@ -67,10 +67,10 @@ namespace OpMon{
                                  std::vector <Utils::OpString> const &dialogKeys, int sides, EventTrigger eventTrigger,
                                  bool passable) :
         Event(otherTextures, eventTrigger, position, sides, passable), dialogKeys(dialogKeys){
-        this->reloadKeys();
+        this->onLangChanged();
       }
 
-      void TalkingEvent::reloadKeys(){
+      void TalkingEvent::onLangChanged(){
         dialogs.clear();
         for(auto &currentObj: this->dialogKeys){
           dialogs.push_back(currentObj.getString());
