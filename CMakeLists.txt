@@ -47,6 +47,37 @@ include_directories(${PROJECT_BINARY_DIR})
 # .hpp are handled automatically.
 file(GLOB_RECURSE SOURCE_FILES
         src/*.[ch]pp
+
+        src/opmon/controller/*.[hc]pp
+
+        src/opmon/model/objects/*.[hc]pp
+        src/opmon/model/save/*.[hc]pp
+        src/opmon/model/storage/*.[hc]pp
+        #src/opmon/model/sysObjects/Events.[hc]pp
+        #src/opmon/model/sysObjects/Map.[hc]pp
+        src/opmon/model/sysObjects/OpTeam.[hc]pp
+        #src/opmon/model/sysObjects/Player.[hc]pp
+        #src/opmon/model/sysObjects/Position.[hc]pp
+
+        src/opmon/start/i18n/*.[ch]pp
+        src/opmon/start/GameStatus.hpp
+        src/opmon/start/Gameloop.[ch]pp
+        src/opmon/start/Core.cpp
+        src/opmon/start/main.cpp
+        #src/opmon/start/Initializer.[hc]pp
+
+        #src/opmon/view/Animations.[hc]pp
+        #src/opmon/view/Dialog.[hc]pp
+        src/opmon/view/Elements.[hc]pp
+        src/opmon/view/Interface.hpp
+        src/opmon/view/MainMenu.[ch]pp
+        #src/opmon/view/MapLayer.hpp
+        #src/opmon/view/OptionsMenu.[ch]pp
+        #src/opmon/view/Overworld.[ch]pp
+        #src/opmon/view/StartScene.[ch]pp
+        #src/opmon/view/Window.[ch]pp
+
+        src/utils/*.[ch]pp
         )
 
 if (WIN32) # set the program icon

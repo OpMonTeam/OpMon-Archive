@@ -257,7 +257,7 @@ namespace OpMon{
       bgMus.pause();
     }
 
-    ~StartScene::StartScene(){
+    StartScene::~StartScene(){
       bgMus.stop();
     }
   }

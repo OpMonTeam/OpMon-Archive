@@ -42,9 +42,9 @@ namespace OpMon{
       
     }
 
-    void move(Model::Side direction, Model::Player& player){
+    void move(Model::Side direction, Model::Player& player, View::Overworld& overworld){
       player.getPosition().move(direction);
-      EventsCtrl::actionEvents(Model::Data::World::maps.at(player.getMapId())->getEvent(player.getPosition().getPositionPixel()), player, Model::Events::EventTrigger::GO_IN);
+      EventsCtrl::actionEvents(Model::Data::World::maps.at(player.getMapId())->getEvent(player.getPosition().getPositionPixel()), player, Model::Events::EventTrigger::GO_IN, overworld);
 
     }
   }

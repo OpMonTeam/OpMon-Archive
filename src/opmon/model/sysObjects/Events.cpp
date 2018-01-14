@@ -3,6 +3,7 @@
 #include "../../../utils/defines.hpp"
 #include "../../../utils/log.hpp"
 #include "../storage/Data.hpp"
+#include "../../view/Overworld.hpp"
 
 
 #pragma GCC diagnostic ignored "-Wreorder"
@@ -116,7 +117,7 @@ namespace OpMon{
         if(!justTP){
           overworld.tp(map, tpCoord);
           if(this->ppDir != -1){
-            Main::player.setppDir(this->ppDir);
+            player.setppDir(this->ppDir);
           }
           justTP = true;
         }
@@ -146,7 +147,7 @@ namespace OpMon{
           if(animStarted < 8 && (animStarted / 2) * 2 == animStarted){
             sprite->setTexture(otherTextures[animStarted / 2]);
           }else if(animStarted > 10){
-            TPEvent::action(player);
+            TPEvent::action(player, overworld);
             animStarted = -1;
             sprite->setTexture(otherTextures[0]);
           }
@@ -155,7 +156,7 @@ namespace OpMon{
       }
 
       void TalkingEvent::action(Model::Player &player, View::Overworld& overworld){
-        overworld.boucleDialog(this->dialogs);
+        overworld.startDialog(this->dialogs);
       }
 
       void TalkingEvent::update(Model::Player &player, View::Overworld& overworld){
@@ -172,7 +173,7 @@ namespace OpMon{
               if(predefinedCounter >= movements.size()){
                 predefinedCounter = 0;
               }
-              move(movements[predefinedCounter], player);
+              move(movements[predefinedCounter], player, overworld);
               break;
 
             case MoveStyle::NO_MOVE:
@@ -182,23 +183,23 @@ namespace OpMon{
               randomMove = Utils::Misc::randUI(5) - 1;
               switch(randomMove){
                 case -1:
-                  move(Side::NO_MOVE, player);
+                  move(Side::NO_MOVE, player, overworld);
                   break;
                 case 0:
-                  move(Side::TO_UP, player);
+                  move(Side::TO_UP, player, overworld);
                   break;
                 case 1:
-                  move(Side::TO_DOWN, player);
+                  move(Side::TO_DOWN, player, overworld);
                   break;
                 case 2:
-                  move(Side::TO_LEFT, player);
+                  move(Side::TO_LEFT, player, overworld);
                   break;
                 case 3:
-                  move(Side::TO_RIGHT, player);
+                  move(Side::TO_RIGHT, player, overworld);
                   break;
                 default:
                   Utils::Log::oplog("[WARNING] - Random number out of bounds CharacterEvent::update");
-                  move(Side::NO_MOVE, player);
+                  move(Side::NO_MOVE, player, overworld);
               }
               break;
 
@@ -412,9 +413,9 @@ namespace OpMon{
           }
           overworld.movementLock = false;
           talking = false;
-          overworld.boucleDialog(this->dialogs);
+          overworld.startDialog(this->dialogs);
         }
-        CharacterEvent::update(player);
+        CharacterEvent::update(player, overworld);
       }
 
       void CharacterEvent::setPredefinedMove(std::vector <Side> moves){

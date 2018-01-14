@@ -180,7 +180,7 @@ namespace OpMon{
 	virtual void update(Model::Player &player, View::Overworld& overworld);
 	virtual void action(Model::Player &player, View::Overworld& overworld) {};
 	void setPredefinedMove(std::vector<Side> movement);
-	void move(Side direction, Model::Player& player);
+	void move(Side direction, Model::Player& player, View::Overworld& overworld);
       };
 
 
