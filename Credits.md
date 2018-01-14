@@ -5,7 +5,7 @@
 
 ## OpFriends (People who helped the project a lot. Big thanks to them!) : 
 <li><h3>BAKFR</h3></li>
-<li><h3>gberthou</h3></li>
+<li><h3>gberthou (aka BarkomVarjeFura on Discord)</h3></li>
 </ul>
 
 ## Contributors : <ul>
@@ -17,7 +17,9 @@
 <li><h3>atxtechcrew</h3></li>
 <li><h3>jseutter</h3></li>
 <li><h3>Imperator Dei</h3></li>
-<li><h3>Silvermoon</h3></li></ul>
+<li><h3>Silvermoon</h3></li>
+<li><h3>Stelyus</h3></li>
+</ul>
 
 ## Inspirations :
 <li><h3>Satoshi Tajiri (Pokemon creation)</h3></li>
