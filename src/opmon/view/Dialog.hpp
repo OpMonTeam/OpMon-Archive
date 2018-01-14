@@ -41,7 +41,7 @@ private:
     /** Set to `true` when the entire dialog has been displayed. */
     bool is_dialog_over = false;
 
-  void printText(sf::RenderTexture &frame, sf::String text[]);
+  void printText(sf::RenderTarget &frame, sf::String text[]);
 
   sf::Sound dialogPass;
 
@@ -68,7 +68,7 @@ public:
     /**
      * Draw the dialog on the main frame.
      */
-    void draw();
+    void draw(sf::RenderTarget &frame);
 
     /**
      * @return `true` is the entire dialog has been displayed; `false` otherwise.

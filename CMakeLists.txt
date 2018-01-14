@@ -67,7 +67,7 @@ file(GLOB_RECURSE SOURCE_FILES
         #src/opmon/start/Initializer.[hc]pp
 
         #src/opmon/view/Animations.[hc]pp
-        #src/opmon/view/Dialog.[hc]pp
+        src/opmon/view/Dialog.[hc]pp
         src/opmon/view/Elements.[hc]pp
         src/opmon/view/Interface.hpp
         src/opmon/view/MainMenu.[ch]pp

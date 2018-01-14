@@ -12,7 +12,12 @@ namespace OpMon{
 	std::vector<std::map<int, std::string> > atkOpLvl;
       }
 
-      namespace Elements{
+			namespace World{
+				std::map<std::string, Map *> maps;
+				sf::Texture tileset;
+			}
+
+			namespace Elements{
 	std::map<std::string, sf::Vector2i> elementsPos;
 	std::map<std::string, int> elementsCounter;
 	std::map<std::string, std::vector<sf::Texture> > elementsTextures;
@@ -33,12 +38,13 @@ namespace OpMon{
 	sf::Font font;
       }
       namespace Animations{
-	sf::Texture fen[6];
+				sf::Texture fen[6];
       }
 
       namespace Sounds{
-	    sf::Sound nope;
-        sf::SoundBuffer dialogPass;
+	    	sf::Sound nope;
+				sf::Sound arrow;
+				sf::SoundBuffer dialogPass;
       }
     }
   }
