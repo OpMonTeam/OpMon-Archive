@@ -13,9 +13,9 @@
 #include <cmath>
 #include "Nature.hpp"
 #include "Species.hpp"
-#include "src/utils/misc.hpp"
 #include "item/Item.hpp"
 #include "item/IOpBox.hpp"
+#include "../../../utils/misc.hpp"
 
 namespace OpMon{
   namespace Model{
