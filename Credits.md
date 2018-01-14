@@ -1,5 +1,5 @@
 # Project credits
-## Programmer, project creator : Jlppc
+## Programmer, project creator : Cyrion
 ## Game and graphics designer, project co-creator : Navet56
 ## Collaborators since the very beginning : Aerzia
 
