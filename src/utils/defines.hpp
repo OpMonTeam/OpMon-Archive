@@ -32,4 +32,7 @@ Linux only. If defined, the program will search for the resources on the local d
 #define SAVE_PATH std::string("saves/")
 
 
+#define FONT_SIZE_DEFAULT 25
+
+
 #endif
