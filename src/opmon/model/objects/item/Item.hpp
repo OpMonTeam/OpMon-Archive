@@ -19,7 +19,7 @@ namespace OpMon{
        Namespace énumérant les types de classes d'item
     */
     enum class ItemType : int{
-      Unknown = 0, IHeal = 1, IOpball = 2, ICT = 3
+      Unknown = 0, IHeal = 1, IOpBox = 2, ICT = 3
     };
     /**
        Enumarions containing the items ids
