@@ -1,4 +1,4 @@
-![Regimys LOGO](https://raw.githubusercontent.com/jlppc/OpMon/master/Resources/Other/opmon_title.png)<br>
+![Regimys LOGO](https://raw.githubusercontent.com/cyrioncentori/OpMon/master/Resources/Other/opmon_title.png)<br>
 
 [Voir En Français](#enfrancais)
 
@@ -8,10 +8,10 @@ OPMon is a Pokémon-inspired game project imagined in 2012 and started in septem
 
 ### Links
 * [Opmon Lazuli's website](http://opmon-game.ga)
-* [Development news](https://translate.google.com/translate?act=url&depth=1&hl=fr&ie=UTF8&prev=_t&rurl=translate.google.fr&sl=fr&sp=nmt4&tl=en&u=https://github.com/jlppc/OpMon/wiki/Journal-du-d%25C3%25A9veloppement)
-* [Monthly Reports](https://github.com/jlppc/OpMon/wiki/Monthly-reports)
-* [Credits](https://github.com/jlppc/OpMon/blob/master/Credits.md)
-* [Github repo for the game website, opmon-game.ga](https://github.com/jlppc/Site-OpMon)
+* [Development news](https://translate.google.com/translate?act=url&depth=1&hl=fr&ie=UTF8&prev=_t&rurl=translate.google.fr&sl=fr&sp=nmt4&tl=en&u=https://github.com/cyrioncentori/OpMon/wiki/Journal-du-d%25C3%25A9veloppement)
+* [Monthly Reports](https://github.com/cyrioncentori/OpMon/wiki/Monthly-reports)
+* [Credits](https://github.com/cyrioncentori/OpMon/blob/master/Credits.md)
+* [Github repo for the game website, opmon-game.ga](https://github.com/cyrioncentori/Site-OpMon)
 * [Documentation](http://opmon-game.ga/pages/doc)
 
 ### Build
@@ -35,7 +35,7 @@ If you don't use build.sh, don't forget to copy the data folder in the game's fo
 ### Contact Us
 * jlppcprog@ntymail.com for bugs, lags or about the code
 * evandib@gmail.com for sprites, the graphics, design or graphics bugs
-* Ask a question in the "[Q&A](https://github.com/jlppc/OpMon/wiki/Q&A)" section in this wiki
+* Ask a question in the "[Q&A](https://github.com/cyrioncentori/OpMon/wiki/Q&A)" section in this wiki
 * [Discord server](https://discord.gg/XwyKFzh)
 <br>
 English is not our native language, but we do our best! If you see some errors, don't hesitate to tell us, so we won't make them again!
@@ -43,13 +43,13 @@ English is not our native language, but we do our best! If you see some errors, 
 If there are problems understanding the old commits or monthly reports that are in French, don't hesitate to ask!
 
 __The current game version is Alpha 0.13__ Download link: <a 
-href="http://opmon-game.ga/downloads"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Resources/Other/version_logo.png" alt="Download Link"></a>
+href="http://opmon-game.ga/downloads"><img src="https://raw.githubusercontent.com/cyrioncentori/OpMon/master/Resources/Other/version_logo.png" alt="Download Link"></a>
 
 __The next game version will be Alpha 0.14__: Added descriptions on 
 objects, Map system recreation and code reorganization
 __After : Alpha 0.15__: Added the first OPMon's fight
-* [Look the ROADMAP](https://github.com/jlppc/OpMon/wiki/ROADMAP)
-* [Look the Releases changelog](https://github.com/jlppc/OpMon/wiki/Releases)
+* [Look the ROADMAP](https://github.com/cyrioncentori/OpMon/wiki/ROADMAP)
+* [Look the Releases changelog](https://github.com/cyrioncentori/OpMon/wiki/Releases)
 
 ### Controls
 
@@ -62,19 +62,19 @@ See the controls of the game OpMon [here](http://opmon-game.ga/controls.html)
 
 <br/>
 
-* [Journal de développement](https://github.com/jlppc/OpMon/wiki/Journal-du-développement)
-* [Bilans mensuels, récapitulatifs des nouveautés (en anglais)](https://github.com/jlppc/OpMon/wiki/Monthly-reports)
+* [Journal de développement](https://github.com/cyrioncentori/OpMon/wiki/Journal-du-développement)
+* [Bilans mensuels, récapitulatifs des nouveautés (en anglais)](https://github.com/cyrioncentori/OpMon/wiki/Monthly-reports)
 * [Site web du jeu](http://opmon-game.ga)
-* [Dépot du site web](https://github.com/jlppc/Site-OpMon)
-* [Crédits](https://github.com/jlppc/OpMon/blob/master/Credits.md)
+* [Dépot du site web](https://github.com/cyrioncentori/Site-OpMon)
+* [Crédits](https://github.com/cyrioncentori/OpMon/blob/master/Credits.md)
 
 <br/>Version du jeu : Alpha 0.13 | Téléchargement : <a 
-href="http://opmon-game.ga"><img src="https://raw.githubusercontent.com/jlppc/OpMon/master/Resources/Other/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
+href="http://opmon-game.ga"><img src="https://raw.githubusercontent.com/cyrioncentori/OpMon/master/Resources/Other/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 
 ### Prochaines versions :
 * Alpha 0.14 : Ajout de descriptions d'objets et ajout du nouveau système de maps
 * Alpha 0.15 : Ajout du premier combat entre dresseurs
-* [Voir la RoadMap](https://github.com/jlppc/OpMon/wiki/ROADMAP)
+* [Voir la RoadMap](https://github.com/cyrioncentori/OpMon/wiki/ROADMAP)
 
 <br/>
 
@@ -110,11 +110,11 @@ Si vous voulez modifier l'emplacement des dossiers, vous pouvez aller dans src/r
 Si vous n'utilisez pas le build.sh, n'oubliez pas de copier le dossier data dans le dossier du jeu ou a l'emplacement que vous avez configuré!
 
 ## Changelog des versions
-[Voir le changelog de toutes les versions du jeu](http://github.com/jlppc/OpMon/wiki/Releases)
+[Voir le changelog de toutes les versions du jeu](http://github.com/cyrioncentori/OpMon/wiki/Releases)
 <br/>
 
 ## Screenshot : 
 
-![Screenshot](https://raw.githubusercontent.com/jlppc/OpMon/master/Resources/Other/screenshot_2.png)
+![Screenshot](https://raw.githubusercontent.com/cyrioncentori/OpMon/master/Resources/Other/screenshot_2.png)
 
 
