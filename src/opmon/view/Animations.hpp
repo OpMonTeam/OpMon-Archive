@@ -11,23 +11,25 @@ Contains the Animations namespace
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-namespace OpMon{
-  namespace View{
+namespace OpMon {
+  namespace View {
     /**
        Contains the functions used for the major animations
     */
     namespace Animations {
 
       /**
-	 Initialize the animations
+	      Initialize the animations
       */
       void initAnims();
+
       /**
-	 Delete the animations's resources
+	      Delete the animations's resources
       */
       void deleteAnims();
 
       GameStatus animWinOpen(sf::RenderTexture &window, sf::Sprite const &bg);
+
       GameStatus animWinClose(sf::RenderTexture &window, sf::Sprite const &bg);
 
     }

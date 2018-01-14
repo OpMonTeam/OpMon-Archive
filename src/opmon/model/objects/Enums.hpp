@@ -16,8 +16,8 @@ Define lot of enumerations
 #define VE 2   //Very efficient
 #define SE 4   //Super efficient
 
-namespace OpMon{
-  namespace Model{
+namespace OpMon {
+  namespace Model {
 
     /**
        Enumerate the OPMons statues
@@ -30,8 +30,8 @@ namespace OpMon{
        Enumerate the OPMons stats
     */
     //->Enum
-    enum class Stats : int{
-      ATK = 6, DEF = 1, ATKSPE = 2, DEFSPE = 3, SPE = 4, HP = 5, ACC = 7, EVA = 8,NOTHING = 0
+    enum class Stats : int {
+      ATK = 6, DEF = 1, ATKSPE = 2, DEFSPE = 3, SPE = 4, HP = 5, ACC = 7, EVA = 8, NOTHING = 0
     };
     /**
        Enumerate the bag categories
@@ -45,7 +45,25 @@ namespace OpMon{
     */
     //->Enum
     enum class Type : int {
-      EAU = 3, FEU = 6, PLANTE = 10, ELECTRIQUE = 4, PSY = 12, TENEBRES = 16, DRAGON = 2, COMBAT = 1, ROCHE = 13, SOL = 14, NORMAL = 9, FEE = 5, SPECTRE = 15, POISON = 11, ACIER = 0, INSECTE = 8, VOL = 17, GLACE = 7, NOTHING = -1
+      EAU = 3,
+      FEU = 6,
+      PLANTE = 10,
+      ELECTRIQUE = 4,
+      PSY = 12,
+      TENEBRES = 16,
+      DRAGON = 2,
+      COMBAT = 1,
+      ROCHE = 13,
+      SOL = 14,
+      NORMAL = 9,
+      FEE = 5,
+      SPECTRE = 15,
+      POISON = 11,
+      ACIER = 0,
+      INSECTE = 8,
+      VOL = 17,
+      GLACE = 7,
+      NOTHING = -1
     };
     /**
        Enumère les types de contacts entre un evènement et le joueur.
@@ -58,7 +76,7 @@ namespace OpMon{
        Enumère les directions des sprites.
     */
     //->Enum
-    enum class Side : int{
+    enum class Side : int {
       TO_DOWN = 0, TO_RIGHT = 1, TO_LEFT = 2, TO_UP = 3, NO_MOVE = -1, STAY = -2
     };
 
@@ -71,19 +89,26 @@ namespace OpMon{
     };
 
     bool operator==(Side side, int integer);
+
     bool operator!=(Side side, int integer);
+
     bool operator>=(Side, int);
+
     bool operator>(Side, int);
+
     bool operator<=(Side, int);
+
     bool operator<(Side, int);
+
     int operator+(Side, int);
+
     int operator-(Side, int);
+
     Side getSide(int);
     /**
        Gère la table des types
     */
     namespace ArrayTypes {
-
 
 
       /**Calcule l'efficacité des types selon les paramètres donnés, et la renvoie.

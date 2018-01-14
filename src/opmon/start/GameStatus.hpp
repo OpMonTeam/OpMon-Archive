@@ -2,10 +2,7 @@
 #pragma once
 
 namespace OpMon {
-
-
-  enum class GameStatus{
+  enum class GameStatus {
     CONTINUE, STOP, NEXT, PREVIOUS
   };
-
 }

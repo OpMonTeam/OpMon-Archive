@@ -5,8 +5,8 @@
 #include "./fs.hpp"
 
 
-namespace Utils{
-  namespace Fs{
+namespace Utils {
+  namespace Fs {
 
 
     bool mkdir(const std::string &path) {
@@ -30,7 +30,7 @@ namespace Utils{
 #endif
     }
 
-    std::string getPath(std::string const& path) {
+    std::string getPath(std::string const &path) {
 #ifdef _WIN32
       std::string result(path);
       return std::replace(result.begin(), result.end(), '/', '\\');

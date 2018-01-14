@@ -11,9 +11,9 @@ Contient la définition da la classe Evolution
 #include <iostream>
 #include "../OpMon.hpp"
 
-namespace OpMon{
-  namespace Model{
-    
+namespace OpMon {
+  namespace Model {
+
 
     class Species;
     /**
@@ -23,18 +23,25 @@ namespace OpMon{
     class Evolution {
     public:
       virtual ~Evolution() {}
+
       Evolution() {
         evo = -1;
       }
+
       Evolution(int evo);
+
       /**Permet de vérifier si le pokémon évolue. Renvoie true si il peut evoluer*/
       virtual bool checkEvolve(OpMon const &toCheck) const = 0;
+
       Species *getEvolution() const;
+
       /**Check evo permet de récuperer l'species d'évolution. Ne pas confondre avec checkEvolve*/
       void checkEvo();
+
       virtual int getEvolID() const {
         return evolID;
       }
+
       //->JustUse->E_Item
       virtual bool itemEvolve(Item *tem) const {
         return false;

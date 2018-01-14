@@ -6,31 +6,33 @@
 using Utils::Log::oplog;
 
 
-namespace OpMon{
-  namespace View{
+namespace OpMon {
+  namespace View {
     sf::RenderTexture frame;
     sf::RenderWindow window;
     bool fullscreen;
-    void open(){
+
+    void open() {
       init = true;
 
 
       sf::ContextSettings settings;
       //settings.antialiasingLevel = 8;
-      if(!OptionsSave::checkParam("fullscreen")) {
+      if (!OptionsSave::checkParam("fullscreen")) {
         OptionsSave::addOrModifParam("fullscreen", "false");
       }
-      if(OptionsSave::getParam("fullscreen").getValue() == "true") {
+      if (OptionsSave::getParam("fullscreen").getValue() == "true") {
         fullScreen = true;
         window.create(sf::VideoMode::getFullscreenModes().at(0), "OpMon Lazuli", sf::Style::Fullscreen, settings);
       } else {
-        window.create(sf::VideoMode(512, 512), "OpMon Lazuli", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize, settings);
+        window.create(sf::VideoMode(512, 512), "OpMon Lazuli",
+                      sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize, settings);
       }
 
       frame.create(512, 512);
       window.clear(sf::Color::White);
       sf::Texture loadTexture;
-      if(! loadTexture.loadFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "backgrounds/loading.png"))) {
+      if (!loadTexture.loadFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "backgrounds/loading.png"))) {
         handleError("Unable to open the loading screen.", false);
       }
       sf::Sprite spriteLoad;
@@ -87,29 +89,31 @@ namespace OpMon{
 
       frame.clear(sf::Color::Black);
       oplog("Launching the main menu.");
-      if(mainmenu.mainMenu() != -1) {
+      if (mainmenu.mainMenu() != -1) {
         mainmenu.bruitPush.play();
         mainmenu.bgMusTitle.stop();
-        if(startscene.startScene() != -1) {
-	  startscene.bgMus.stop();
-	  frame.draw(spriteLoad);
-	  frame.draw(textLoad);
-	  frame.display();
-	  winRefresh();
-	  if(Main::player.getName().isEmpty()){
-	    Main::player.setName("Céchine");
-	  }
-	  //Initializating opmons
-	  OpMon *op1 = new OpMon("", Model::Data::OpMons::listOp.at(4), 20, {new Attacks::Belier(), new Attacks::Charge(), nullptr, nullptr}, Nature::BOLD);
-	  OpMon *op2 = new OpMon("", Model::Data::OpMons::listOp.at(1), 22, {new Attacks::Belier(), new Attacks::Charge(), nullptr, nullptr}, Nature::NAIVE);
-	  Main::player.addOpToOpTeam(op1);
-	  Main::player.addOpToOpTeam(op2);
-	  if(overworld.overworld() != -1) {
-	    if(overworld.overworld() == 2) {
+        if (startscene.startScene() != -1) {
+          startscene.bgMus.stop();
+          frame.draw(spriteLoad);
+          frame.draw(textLoad);
+          frame.display();
+          winRefresh();
+          if (Main::player.getName().isEmpty()) {
+            Main::player.setName("Céchine");
+          }
+          //Initializating opmons
+          OpMon *op1 = new OpMon("", Model::Data::OpMons::listOp.at(4), 20,
+                                 {new Attacks::Belier(), new Attacks::Charge(), nullptr, nullptr}, Nature::BOLD);
+          OpMon *op2 = new OpMon("", Model::Data::OpMons::listOp.at(1), 22,
+                                 {new Attacks::Belier(), new Attacks::Charge(), nullptr, nullptr}, Nature::NAIVE);
+          Main::player.addOpToOpTeam(op1);
+          Main::player.addOpToOpTeam(op2);
+          if (overworld.overworld() != -1) {
+            if (overworld.overworld() == 2) {
 
 
-	    }
-	  }
+            }
+          }
         }
       } else {
         mainmenu.bruitPush.play();
@@ -120,7 +124,7 @@ namespace OpMon{
       oplog("Closing the window...");
       window.close();
       init = false;
-      delete(windowRefresh);
+      delete (windowRefresh);
       oplog("Window closed. No error detected. Goodbye.");
     }
 
@@ -129,12 +133,12 @@ namespace OpMon{
       sf::Sprite sprite;
       sprite.setTexture(txture);
 
-      if(fullScreen) {
+      if (fullScreen) {
         float coef = window.getSize().y / ((float) sprite.getGlobalBounds().height);
         sprite.setScale(coef, coef);
         sprite.setPosition(((window.getSize().x / 2) - (sprite.getGlobalBounds().width / 2)), 0);
       }
-      
+
       window.clear(sf::Color::Black);
       window.draw(sprite);
       window.display();

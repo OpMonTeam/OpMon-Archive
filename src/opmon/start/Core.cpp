@@ -17,7 +17,7 @@ using Utils::Log::oplog;
 UNS
 
 
-namespace OpMon{
+namespace OpMon {
   /*
     Logs and save files initialization
   */
@@ -28,15 +28,16 @@ namespace OpMon{
   //The number of errors handeled in the program.
   int errors = 0;
 
-  void handleError(string const& errorName, bool fatal) {
+  void handleError(string const &errorName, bool fatal) {
     errors++;
     ostringstream osslog;
     osslog << string("Error  n°") << errors << (string(" : ") + errorName);
     oplog(osslog.str(), true);
     cerr << "Error n°" << errors << " : " << errorName << endl;
-    if(errors > 20) { //If the program gets more than 20 errors, it stops.
+    if (errors > 20) { //If the program gets more than 20 errors, it stops.
       cerr << "Too many errors. Closing program. Please verify your installation." << endl;
-      oplog("Too many errors. Closing program. Please verify your installation. If the problems persists, warn us.", true);
+      oplog("Too many errors. Closing program. Please verify your installation. If the problems persists, warn us.",
+            true);
       fatal = true;
     }
     if (fatal) {
@@ -49,45 +50,45 @@ namespace OpMon{
     }
   }
 
-  int quit(int const& returns) {
+  int quit(int const &returns) {
     OptionsSave::saveParams(optSave);//Saving parameters
     oplog("Deleting resources in the memory");
-    for(auto &map: Data::World::maps){
-      delete(map.second);
+    for (auto &map: Data::World::maps) {
+      delete (map.second);
     }
-    for(sf::Music *mus: Data::Ui::townMusics) {//Deleting the maps' music
-      delete(mus);
+    for (sf::Music *mus: Data::Ui::townMusics) {//Deleting the maps' music
+      delete (mus);
     }
 
     // TODO: delet the player's OpMons !
     // for(unsigned short i = 0; i < 6; i++){
-	  //  delete(Main::player.getOp(i));
+    //  delete(Main::player.getOp(i));
     // }
 
     ostringstream osslog;
     osslog << "End of the program. Return " << returns;
     oplog(osslog.str());
-    if(returns != 0) {
+    if (returns != 0) {
       oplog("There is a problem. Create an issue on github!");
     }
     exit(returns);
   }
 
-  std::string& operator<<(std::string &str, int const& nbre) {
+  std::string &operator<<(std::string &str, int const &nbre) {
     ostringstream oss;
     oss << str << nbre;
     str = oss.str();
     return str;
   }
 
-  std::string& operator<<(std::string &str, std::string const& thing) {
+  std::string &operator<<(std::string &str, std::string const &thing) {
     ostringstream oss;
     oss << str << thing;
     str = oss.str();
     return str;
   }
 
-  std::string& operator<<(std::string &str, char thing[]) {
+  std::string &operator<<(std::string &str, char thing[]) {
     string strThing(thing);
     ostringstream oss;
     oss << str << strThing;
@@ -96,13 +97,13 @@ namespace OpMon{
   }
 
   template<typename Base, typename T>
-  bool instanceOf(const Base *toTest){
-    return dynamic_cast<const T*>(toTest) != nullptr;
+  bool instanceOf(const Base *toTest) {
+    return dynamic_cast<const T *>(toTest) != nullptr;
   }
 
 
   // NOTE: this function is here to make extract the dependency of "handleError" outside of src/utils/
-  void initStringKeys(const std::string &keysFileS){
+  void initStringKeys(const std::string &keysFileS) {
     if (!Utils::StringKeys::initialize(keysFileS))
       handleError("Keys initialization error", true);
   }

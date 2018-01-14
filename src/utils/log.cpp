@@ -14,10 +14,10 @@ static std::ofstream *rerrLog;
 /* location of the log folder */
 #define LOG_PATH std::string("logs/")
 
-namespace Utils{
-  namespace Log{
+namespace Utils {
+  namespace Log {
 
-    bool init(){
+    bool init() {
 
       Fs::mkdir(LOG_PATH);
 
@@ -36,13 +36,13 @@ namespace Utils{
     }
 
 
-    void oplog(const std::string &toSay, bool error){
+    void oplog(const std::string &toSay, bool error) {
       std::ofstream *logStream = error ? rerrLog : rlog;
 
       *logStream << "[T = " << Time::getElapsedMilliseconds() << "] - " << toSay << std::endl;
     }
 
-    void warn(const std::string &toSay){
+    void warn(const std::string &toSay) {
       oplog("[WARN] " + toSay);
     }
 

@@ -7,9 +7,10 @@ namespace OpMon {
     /**
      * Base class for any element requiring to reload when the lang changes.
      */
-    class ATranslatable{
+    class ATranslatable {
     protected:
       ATranslatable();
+
       virtual ~ATranslatable();
 
     public:

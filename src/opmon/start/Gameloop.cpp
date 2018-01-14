@@ -5,12 +5,12 @@
 #include "../controller/MainMenuCtrl.hpp"
 
 
-namespace OpMon{
+namespace OpMon {
 
-  GameLoop::GameLoop(){
+  GameLoop::GameLoop() {
   }
 
-  GameStatus GameLoop::operator()(){
+  GameStatus GameLoop::operator()() {
 
     // TODO: add first item outside of the Gameloop.
     Controller::AGameScreen *first_ctrl = new Controller::MainMenuCtrl();
@@ -19,7 +19,7 @@ namespace OpMon{
     _gameScreens.push(first_ctrl);
 
     GameStatus status = GameStatus::CONTINUE;
-    while(status != GameStatus::STOP){
+    while (status != GameStatus::STOP) {
       status = GameStatus::CONTINUE;
 
       auto ctrl = _gameScreens.top();
@@ -27,7 +27,7 @@ namespace OpMon{
 
 
       //process all pending SFML events
-      while(View::window.pollEvent(event)){
+      while (View::window.pollEvent(event)) {
         status = _checkQuit(event);
         if (status == GameStatus::STOP)
           break;
@@ -37,12 +37,12 @@ namespace OpMon{
       }
 
       if (status == GameStatus::STOP)
-          break;
+        break;
 
       // frame update & draw
       status = ctrl->update();
 
-      switch(status){
+      switch (status) {
         case GameStatus::NEXT:
           ctrl->suspend();
           _gameScreens.push(ctrl->getNextGameScreen());
@@ -57,23 +57,23 @@ namespace OpMon{
       View::winRefresh();
     }
 
-    while(auto *ctrl = _gameScreens.top()){
-      delete(ctrl);
+    while (auto *ctrl = _gameScreens.top()) {
+      delete (ctrl);
       _gameScreens.pop();
     }
 
     return GameStatus::STOP;
   }
 
-  GameStatus GameLoop::_checkQuit(const sf::Event &event){
-    switch(event.type){
+  GameStatus GameLoop::_checkQuit(const sf::Event &event) {
+    switch (event.type) {
       case sf::Event::Closed:
         return GameStatus::STOP;
       default:
         break;
     }
 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
       return GameStatus::STOP;
     }
 

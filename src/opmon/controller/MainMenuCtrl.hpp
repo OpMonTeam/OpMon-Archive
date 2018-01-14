@@ -8,15 +8,17 @@
 #include "AGameScreen.hpp"
 
 
-namespace OpMon{
-  namespace Controller{
+namespace OpMon {
+  namespace Controller {
 
-    class MainMenuCtrl : public AGameScreen{
+    class MainMenuCtrl : public AGameScreen {
     private:
       View::MainMenu view;
     public:
       MainMenuCtrl();
-      virtual GameStatus checkEvent(sf::Event& event);
+
+      virtual GameStatus checkEvent(sf::Event &event);
+
       virtual GameStatus update();
     };
 

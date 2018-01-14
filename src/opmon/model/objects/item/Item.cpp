@@ -6,11 +6,10 @@
 
 UNS
 
-namespace OpMon{
-  namespace Model{
+namespace OpMon {
+  namespace Model {
 
     Item *Item::itemsLst[ITEM_NUMBER] = {0};
-
 
 
     void initItems() {
@@ -55,7 +54,7 @@ namespace OpMon{
 
 
     Item::Item(string name, bool usable, bool usableInFight, bool givable, BagCat categorie, int id) :
-      name(name) {
+            name(name) {
       this->usable = usable;
       this->usableInFight = usableInFight;
       this->id = id;
@@ -63,19 +62,19 @@ namespace OpMon{
       this->categorie = categorie;
     }
 
-    Item *Item::getItem(string const &name)  {
+    Item *Item::getItem(string const &name) {
       for (unsigned int i = 0; i < ITEM_NUMBER; i++) {
-        if(itemsLst[i] != nullptr) {
-	  if (itemsLst[i]->getName() == name) {
-	    return itemsLst[i];
-	  }
+        if (itemsLst[i] != nullptr) {
+          if (itemsLst[i]->getName() == name) {
+            return itemsLst[i];
+          }
         }
 
       }
       return itemsLst[0];//Default
     }
 
-    Item *Item::getItem(int id2)  {
+    Item *Item::getItem(int id2) {
       unsigned int id = id2;
       if (!(id < 0 || id > ITEM_NUMBER || itemsLst[id] != nullptr)) {
         return itemsLst[id];
@@ -84,10 +83,10 @@ namespace OpMon{
       }
     }
 
-    int Item::searchItem(Item *toSearch)  {
+    int Item::searchItem(Item *toSearch) {
       for (unsigned int i = 0; i < ITEM_NUMBER; i++) {
         if (toSearch == itemsLst[i]) {
-	  return i;
+          return i;
         }
       }
       return -1;

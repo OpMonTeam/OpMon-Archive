@@ -12,8 +12,8 @@ Contains Attack class definition
 #include "src/utils/misc.hpp"
 #include "Enums.hpp"
 
-namespace OpMon{
-  namespace Model{
+namespace OpMon {
+  namespace Model {
 
     class OpMon;
     /**
@@ -23,31 +23,43 @@ namespace OpMon{
     class Attack {
     public:
       virtual ~Attack() {}
-      Attack(std::string nom, int puissance, Type type, int accuracy, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite, std::string className);
+
+      Attack(std::string nom, int puissance, Type type, int accuracy, bool special, bool status, int chanceDeCoups,
+             bool rateJamais, int ppMax, int priorite, std::string className);
+
       //->PureVirtual
       virtual int effetAvant(OpMon &atk, OpMon &def) = 0;
+
       //->PureVirtual
       virtual int effetApres(OpMon &atk, OpMon &def) = 0;
+
       void healPP() {
         pp = ppMax;
       }
+
       Type getType() {
         return type;
       }
       /**atk attack the def OpMon*/
       //->Final
       virtual int attack(OpMon &atk, OpMon &def);
+
       virtual void siEchoue(OpMon &atk, OpMon &def) {}
+
       virtual std::string getClassName() {
         return className;
       }
+
       virtual std::string save();
+
       void setPP(int PP) {
         this->pp = PP;
       }
+
       void setPPMax(int PPMax) {
         this->ppMax = PPMax;
       }
+
     protected:
       std::string className;
       std::string nom;

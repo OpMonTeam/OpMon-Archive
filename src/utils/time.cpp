@@ -12,15 +12,15 @@ static sf::Clock ticks;
 namespace Utils {
   namespace Time {
 
-    void initClock(){
+    void initClock() {
       ticks.restart();
     }
 
-    int getElapsedMilliseconds(){
+    int getElapsedMilliseconds() {
       return ticks.getElapsedTime().asMilliseconds();
     }
 
-    void wait(int duration){
+    void wait(int duration) {
       sf::sleep(sf::milliseconds(duration));
     }
 

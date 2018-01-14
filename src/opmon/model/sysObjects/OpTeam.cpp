@@ -1,18 +1,18 @@
 #include "OpTeam.hpp"
 
-namespace OpMon{
-  namespace Model{
+namespace OpMon {
+  namespace Model {
 
-    OpTeam::OpTeam(std::string const& name) {
+    OpTeam::OpTeam(std::string const &name) {
       this->name = name;
     }
 
     void OpTeam::heal() {
       for (int i = 0; i < nbreOfOp; i++) {
         if (opteam[i] != nullptr) {
-	  opteam[i]->heal(opteam[i]->getStatHP());
-	  opteam[i]->confus = false;
-	  opteam[i]->setStatus(Status::NOTHING);
+          opteam[i]->heal(opteam[i]->getStatHP());
+          opteam[i]->confus = false;
+          opteam[i]->setStatus(Status::NOTHING);
         }
       }
     }
@@ -20,25 +20,25 @@ namespace OpMon{
     bool OpTeam::addOpMon(OpMon *toAdd) {
       for (int i = 0; i < nbreOfOp; i++) {
         if (opteam[i] == nullptr) {
-	  opteam[i] = toAdd;
-	  return true;
+          opteam[i] = toAdd;
+          return true;
         }
       }
       return false;
     }
 
-    OpMon* OpTeam::removeOp(int number) {
+    OpMon *OpTeam::removeOp(int number) {
       if (nbreOfOp == 1) {//If there is only one OpMon, return nullptr
         return nullptr;
       }
-      OpMon* toReturn = opteam[number];
+      OpMon *toReturn = opteam[number];
       opteam[number] = nullptr;
       for (int i = number; i < nbreOfOp; i++) {
-	if (i != 5) {
-	  opteam[i] = opteam[i + 1];
-	} else {
-	  opteam[5] = nullptr;
-	}
+        if (i != 5) {
+          opteam[i] = opteam[i + 1];
+        } else {
+          opteam[5] = nullptr;
+        }
       }
       return toReturn;
     }
@@ -51,9 +51,9 @@ namespace OpMon{
       int ko = 0;
       for (int i = 0; i < nbreOfOp; i++) {
         if (opteam[i] == nullptr) {
-	  ko++;
+          ko++;
         } else if (opteam[i]->getHP() <= 0) {
-	  ko++;
+          ko++;
         }
       }
       return (ko == 6);

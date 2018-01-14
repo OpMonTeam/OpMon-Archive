@@ -20,8 +20,8 @@ Contains the OptionsSave namespace
 #define addParam addOrModifParam
 #define modifyParam addOrModifParam
 
-namespace OpMon{
-  namespace Model{
+namespace OpMon {
+  namespace Model {
     /**
        OptionsSave contains the functions used to save the parameters.
     */
@@ -31,13 +31,16 @@ namespace OpMon{
       */
       class Param {
       private:
-	std::string paramName;
-	std::string value;
+        std::string paramName;
+        std::string value;
       public:
-	Param(std::string name, std::string value);
-	std::string getName() const;
-	std::string getValue() const;
-	void setValue(std::string value);
+        Param(std::string name, std::string value);
+
+        std::string getName() const;
+
+        std::string getValue() const;
+
+        void setValue(std::string value);
 
       };
 
@@ -52,9 +55,9 @@ namespace OpMon{
       //.CPP ONLY :
       //int searchParam(string name);
 
-      void saveParams(std::string const& file);
+      void saveParams(std::string const &file);
 
-      void initParams(std::string const& file);
+      void initParams(std::string const &file);
 
       bool checkParam(std::string const &name);
 
