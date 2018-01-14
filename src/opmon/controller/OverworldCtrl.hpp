@@ -17,10 +17,10 @@ namespace OpMon{
       Model::Player &player;
     public:
       OverworldCtrl(Model::Player &player);
-      virtual GameStatus checkEvent(sf::Event const &event);
+      GameStatus checkEvent(sf::Event const &event) override;
       GameStatus checkEventsDialog(sf::Event const& events, View::Overworld& overworld);
       GameStatus checkEventsNoDialog(sf::Event const& events, Model::Player& player);
-      virtual GameStatus update();
+      GameStatus update() override;
     };
 
   }
