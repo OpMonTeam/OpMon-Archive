@@ -13,7 +13,7 @@ Contains OptionsMenu namespace
 #include <SFML/Audio.hpp>
 #include "Elements.hpp"
 #include "../start/i18n/ATranslatable.hpp"
-
+#include "Interface.hpp"
 
 namespace OpMon{
   namespace View{

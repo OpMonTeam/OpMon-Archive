@@ -41,7 +41,7 @@ namespace OpMon{
 
       AGameScreen *getNextGameScreen() { return _next_gs; };
 
-      virtual ~AGameScreen() = 0;
+      virtual ~AGameScreen() = default;
 
     protected:
       AGameScreen *_next_gs;
