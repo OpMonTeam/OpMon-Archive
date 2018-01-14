@@ -12,6 +12,7 @@
 #include "../../utils/time.hpp"
 #include "../../utils/defines.hpp"
 #include "../model/storage/Data.hpp"
+#include "Window.hpp"
 
 
 #ifndef _WIN32
@@ -240,8 +241,8 @@ namespace OpMon{
       printElements();
   
       if(is_in_dialog){
-        this->dialog.updateTextAnimation();
-        this->dialog.draw();
+        this->dialog->updateTextAnimation();
+        this->dialog->draw(View::frame);
       } else if(Model::Data::player.getPosition().isAnim()){
 	if(Model::Data::player.getPosition().isMoving()){
 	  switch(Model::Data::player.getPosition().getDir()){
