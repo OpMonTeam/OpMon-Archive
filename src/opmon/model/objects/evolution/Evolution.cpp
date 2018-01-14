@@ -1,7 +1,7 @@
 #include "Evolution.hpp"
 
-namespace OpMon{
-  namespace Model{
+namespace OpMon {
+  namespace Model {
 
     Evolution::Evolution(int evo) : evo(evo) {
     }

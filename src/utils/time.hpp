@@ -2,11 +2,11 @@
 #pragma once
 
 
-namespace Utils{
+namespace Utils {
   /**
    * Utilities for everything time-related.
    */
-  namespace Time{
+  namespace Time {
 
     /**
      * Set (or reset) the reference clock to zero.

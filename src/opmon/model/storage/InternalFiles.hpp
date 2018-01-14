@@ -13,15 +13,18 @@
 #include <sstream>
 #include <vector>
 
-namespace OpMon{
-  namespace Model{
-  
+namespace OpMon {
+  namespace Model {
+
     namespace InternalFiles {
       extern std::vector<std::string> filesNames;
       extern std::vector<std::string> files;
+
       void registerFiles();
-      std::ostringstream *openFileOut(std::string const& name);
-      std::istringstream *openFileIn(std::string const& name);
+
+      std::ostringstream *openFileOut(std::string const &name);
+
+      std::istringstream *openFileIn(std::string const &name);
     }
 
     namespace Collisions {
@@ -61,7 +64,7 @@ namespace OpMon{
       extern int myciLayer1[1225];
       extern int myciLayer2[1225];
       extern int myciLayer3[1225];
-    }  
+    }
   }
 }
 #endif // INTERNALFILES_HPP

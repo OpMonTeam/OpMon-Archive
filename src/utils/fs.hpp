@@ -1,8 +1,8 @@
 
 #pragma once
 
-namespace Utils{
-  namespace Fs{
+namespace Utils {
+  namespace Fs {
 
     /**
      * Make a new directory (if it does not exist yet).
@@ -19,6 +19,6 @@ namespace Utils{
      If you use the "\" separator in the path given,
      nothing will change, on unix systems and on Windows systems.
     */
-    std::string getPath(std::string const& path);
+    std::string getPath(std::string const &path);
   }
 }

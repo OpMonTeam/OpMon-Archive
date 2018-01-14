@@ -9,8 +9,8 @@
 
 UNS
 
-namespace OpMon{
-  namespace View{
+namespace OpMon {
+  namespace View {
 
     void MainMenu::initStrings() {
       playtx.setString(kget("title.1"));
@@ -20,12 +20,12 @@ namespace OpMon{
     }
 
     void MainMenu::MainMenu() {
-            sf::Text *textPos[4] = {&playtx, &charge, &options, &exit};
-      for(int i = 0, j = 175; i < 4; i++) {
+      sf::Text *textPos[4] = {&playtx, &charge, &options, &exit};
+      for (int i = 0, j = 175; i < 4; i++) {
         curPos[i].x = 10;
         curPos[i].y = j;
         textPos[i]->setPosition(sf::Vector2f(60, j));
-        j+=85;
+        j += 85;
       }
       // bool ok = true;
       textures[0].loadFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "backgrounds/titlescreen.png"));
@@ -63,10 +63,10 @@ namespace OpMon{
       bgMusTitle.setLoop(true);
 
       wait = true;
-      
+
     }
 
-    void MainMenu::onLangChanged(){
+    void MainMenu::onLangChanged() {
       initStrings();
     }
 
@@ -74,32 +74,32 @@ namespace OpMon{
       bgMusTitle.stop();
     }
 
-    void MainMenu::pause(){
+    void MainMenu::pause() {
       bgMusTitle.stop();
     }
 
-    void MainMenu::play(){
+    void MainMenu::play() {
       bgMusTitle.play();
     }
 
-    void moveArrow(bool direction){
+    void moveArrow(bool direction) {
       Model::Data::Sounds::arrow.play();
-      if(direction /* == true*/){
-	curPosI--;
-      }else{
-	curPosI++;
+      if (direction /* == true*/) {
+        curPosI--;
+      } else {
+        curPosI++;
       }
-      if(curPosI >= 4) {
-	curPosI = 0;
-      } else if(curPosI < 0) {
-	curPosI = 3;
+      if (curPosI >= 4) {
+        curPosI = 0;
+      } else if (curPosI < 0) {
+        curPosI = 3;
       }
     }
-    
+
     int MainMenu::operator()() {
 
-      if(!launched){
-	init();
+      if (!launched) {
+        init();
       }
 
       frame.clear(sf::Color::lack);
@@ -107,7 +107,7 @@ namespace OpMon{
       //Actualisation des éléments
       frame.draw(bg);
       frame.draw(playtx),
-	frame.draw(charge);
+              frame.draw(charge);
       frame.draw(options);
       frame.draw(exit);
       cursor.setPosition(curPos[curPosI]);
@@ -115,19 +115,19 @@ namespace OpMon{
 
       frame.display();
       winRefresh();
-	
+
       return GameStatus::CONTINUE;
     }
 
     void MainMenu::init() {
       bgMusTitle.setVolume(50);
       bgMusTitle.play();
-      
+
       Utils::Log::oplog("Initialisating the menu");
       //Actualisation des éléments
       frame.draw(bg);
       frame.draw(playtx),
-	frame.draw(charge);
+              frame.draw(charge);
       frame.draw(options);
       frame.draw(exit);
       cursor.setPosition(curPos[curPosI]);

@@ -11,32 +11,43 @@ Contains the I_Heal class definition
 #include "Item.hpp"
 #include <iostream>
 
-namespace OpMon{
-  namespace Model{
+namespace OpMon {
+  namespace Model {
     /**
        Define care item
     */
-    class I_Heal: public Item {
+    class I_Heal : public Item {
     public:
       /**Construit un item de heal (prevaue) polyvalent*/
-      I_Heal(std::string &name, bool usable, bool usableInFight, bool givable, BagCat categorie, int hpHeal, Status heal, bool healAllStatus, int ID);
+      I_Heal(std::string &name, bool usable, bool usableInFight, bool givable, BagCat categorie, int hpHeal,
+             Status heal, bool healAllStatus, int ID);
+
       /**Construit un item de heal de PP*/
-      I_Heal(std::string &name, bool usable, bool usableInFight, bool givable, BagCat categorie, int ppHeal, bool allAttacksHeal, int ID);
+      I_Heal(std::string &name, bool usable, bool usableInFight, bool givable, BagCat categorie, int ppHeal,
+             bool allAttacksHeal, int ID);
+
       /**Construit un item de heal de pv*/
       I_Heal(std::string &name, bool usable, bool usableInFight, bool givable, BagCat categorie, int hpHeal, int ID);
+
       /**Construit un item de heal de status*/
-      I_Heal(std::string &name, bool usable, bool usableInFight, bool givable, BagCat categorie, Status heal, bool healAllStatus, int ID, bool status);//De toutes facons meme si status est false ce sera quand meme du status
+      I_Heal(std::string &name, bool usable, bool usableInFight, bool givable, BagCat categorie, Status heal,
+             bool healAllStatus, int ID,
+             bool status);//De toutes facons meme si status est false ce sera quand meme du status
       /**Construit un stat+*/
       I_Heal(std::string &name, Stats statAdd, int ID);
+
       bool isHealAll() const {
         return healAll;
       }
+
       bool getHpHeal() const {
         return hpHeal;
       }
+
       Status getStatusHeald() const {
         return healed;
       }
+
       ItemType itemTypeID = ItemType::IHeal;
     private:
       int hpHeal;

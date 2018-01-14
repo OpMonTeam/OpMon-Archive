@@ -4,8 +4,8 @@
 #include <iostream>
 
 
-namespace Utils{
-  namespace Log{
+namespace Utils {
+  namespace Log {
     /**
      * Initialize the log streams.
      *

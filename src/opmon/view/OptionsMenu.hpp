@@ -15,50 +15,60 @@ Contains OptionsMenu namespace
 #include "../start/i18n/ATranslatable.hpp"
 
 
-namespace OpMon{
-  namespace View{
+namespace OpMon {
+  namespace View {
 
-    enum class OptionType{ALL, LANG, CREDITS};
-    
+    enum class OptionType {
+      ALL, LANG, CREDITS
+    };
+
     class OptionsMenu : public Interface, I18n::ATranslatable {
     public:
       OptionsMenu();
 
       void moveArrow(bool dir);
-     
+
       int optionsMenu();
+
       void init();
+
       ~OptionsMenu();
 
       GameStatus operator()();
-      
+
       GameStatus loop();
+
       GameStatus langLoop();
+
       GameStatus creditsLoop();
-      
+
       void initStrings();
-			void onLangChanged() override;
-      
+
+      void onLangChanged() override;
+
       void play();
+
       void pause();
 
-      OptionType getCurrentOption(){return currentOptions;}
-      void setCurrentOption(OptionType newOpt){currentOptions = newOpt;}
-      int cursorPosition(){
-	switch(currentOptions){
-	case OptionType::ALL:
-	  return curPosOptI;
-	case OptionType::LANG:
-	  return curPosLangI;
-	default:
-	  return 0;
-	}
+      OptionType getCurrentOption() { return currentOptions; }
+
+      void setCurrentOption(OptionType newOpt) { currentOptions = newOpt; }
+
+      int cursorPosition() {
+        switch (currentOptions) {
+          case OptionType::ALL:
+            return curPosOptI;
+          case OptionType::LANG:
+            return curPosLangI;
+          default:
+            return 0;
+        }
       }
-      
+
     private:
 
       OptionType currentOptions;
-      
+
       sf::Sprite bgCredits;
       sf::Sprite bgOpt;
       sf::Text langFr;

@@ -7,6 +7,7 @@ File contains usefull elements
 */
 #ifndef ELEMENTS_HPP
 #define ELEMENTS_HPP
+
 #include <iostream>
 #include <vector>
 #include <SFML/Audio.hpp>
@@ -14,14 +15,15 @@ File contains usefull elements
 
 #include "../model/sysObjects/Player.hpp"
 
-namespace OpMon{
-  namespace View{
+namespace OpMon {
+  namespace View {
 
     class Event;
 
-    class MapLayer : public sf::Drawable, public sf::Transformable{
+    class MapLayer : public sf::Drawable, public sf::Transformable {
     private:
       virtual void draw(sf::RenderTarget &target, sf::RenderStates stats) const;
+
       sf::VertexArray tiles;
     public:
       MapLayer(sf::Vector2i size, const int tilesCode[]);

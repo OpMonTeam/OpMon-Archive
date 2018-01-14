@@ -8,20 +8,20 @@
 #include "../../utils/defines.hpp"
 
 
-namespace OpMon{
-  namespace Controller{
+namespace OpMon {
+  namespace Controller {
 
-    MainMenuCtrl::MainMenuCtrl():
-      view() {
+    MainMenuCtrl::MainMenuCtrl() :
+            view() {
     }
 
-    GameStatus MainMenuCtrl::checkEvent(sf::Event& event){
+    GameStatus MainMenuCtrl::checkEvent(sf::Event &event) {
       auto &menu = view;
 
-      switch(event.type) {
+      switch (event.type) {
         case sf::Event::KeyPressed:
-          if(event.key.code == sf::Keyboard::Return) {
-            switch(menu.getCursorPosition()) {
+          if (event.key.code == sf::Keyboard::Return) {
+            switch (menu.getCursorPosition()) {
               case 0:
 
                 menu.setNextInterface(new View::StartScene());
@@ -36,9 +36,9 @@ namespace OpMon{
                 Model::Data::Sounds::nope.play();
                 return GameStatus::CONTINUE;
             }
-          }else if(event.key.code == sf::Keyboard::Up){
+          } else if (event.key.code == sf::Keyboard::Up) {
             menu.moveArrow(true);
-          }else if(event.key.code == sf::Keyboard::Down){
+          } else if (event.key.code == sf::Keyboard::Down) {
             menu.moveArrow(false);
           }
           break;
@@ -48,7 +48,7 @@ namespace OpMon{
       return GameStatus::CONTINUE;
     }
 
-    GameStatus MainMenuCtrl::update(){
+    GameStatus MainMenuCtrl::update() {
       return view();
     }
 

@@ -8,7 +8,7 @@ UNS
 namespace OpMon {
   namespace View {
 
-    void OptionsMenu::initStrings(){
+    void OptionsMenu::initStrings() {
       langFr.setString("Français");
       langFr.setFont(Model::Data::Ui::font);
       langFr.setCharacterSize(FONT_SIZE_DEFAULT);
@@ -84,16 +84,16 @@ namespace OpMon {
       txtCre9.setCharacterSize(13);
     }
 
-    OptionsMenu::OptionsMenu(){
+    OptionsMenu::OptionsMenu() {
       wait = true;
       init();
     }
 
-    void OptionsMenu::onLangChanged(){
+    void OptionsMenu::onLangChanged() {
       initStrings();
     }
 
-    void OptionsMenu::init(){
+    void OptionsMenu::init() {
 
 #ifdef _WIN32
       textures2[0].loadFromFile("ressources\\backgrounds\\options.png");
@@ -158,7 +158,7 @@ namespace OpMon {
       curSizeLang[0].x = 134 / rectSurb.getGlobalBounds().width;
       curSizeLang[0].y = 49 / rectSurb.getGlobalBounds().height;
 
-      for(int i = 1, j = 86; i < 6; i++){
+      for (int i = 1, j = 86; i < 6; i++) {
         curPosOpt[i].x = 23;
         curPosOpt[i].y = j;
         curSizeOpt[i].x = 464 / rectSurb.getGlobalBounds().width;
@@ -166,7 +166,7 @@ namespace OpMon {
         j += 69;
       }
 
-      for(int i = 1, j = 86; i < 4; i++){
+      for (int i = 1, j = 86; i < 4; i++) {
         curPosLang[i].x = 23;
         curPosLang[i].y = j;
         curSizeLang[i].x = 464 / rectSurb.getGlobalBounds().width;
@@ -179,12 +179,12 @@ namespace OpMon {
     }
 
 
-    ~OptionsMenu(){
+    ~OptionsMenu() {
 
     }
 
-    GameStatus operator()(){
-      switch(currentOptions){
+    GameStatus operator()() {
+      switch (currentOptions) {
         case ALL:
           return loop();
           break;
@@ -197,36 +197,36 @@ namespace OpMon {
       }
     }
 
-    void moveArrow(bool move){
+    void moveArrow(bool move) {
       Model::Data::Sounds::arrow.play();
-      switch(currentOptions){
+      switch (currentOptions) {
         case ALL:
-          if(move){
+          if (move) {
             curPosOptI++;
-          }else{
+          } else {
             curPosOptI--;
           }
-          if(curPosOptI >= 6){
+          if (curPosOptI >= 6) {
             curPosOptI = 0;
-          }else if(curPosOptI < 0){
+          } else if (curPosOptI < 0) {
             curPosOptI = 5;
           }
           break;
         case LANG:
-          if(move){
+          if (move) {
             curPosLangI++;
-          }else{
+          } else {
             curPosLangI--;
           }
-          if(curPosLangI >= 4){
+          if (curPosLangI >= 4) {
             curPosLangI = 0;
-          }else if(curPosLangI < 0){
+          } else if (curPosLangI < 0) {
             curPosLangI = 3;
           }
       }
     }
 
-    GameStatus OptionsMenu::loop(){
+    GameStatus OptionsMenu::loop() {
 
       /*Main::mainframe.window.waitEvent(Main::mainframe.events);
         switch(Main::mainframe.events.type) {
@@ -295,7 +295,7 @@ namespace OpMon {
       Window::frame.frame.draw(txtOpt5);
       Window::frame.frame.draw(txtRetour);
       Window::frame.frame.draw(txtOptions);
-      if(OptionsSave::getParam("fullscreen").getValue() == "true"){
+      if (OptionsSave::getParam("fullscreen").getValue() == "true") {
         Window::frame.frame.draw(coche);
       }
       rectSurb.setPosition(curPosOpt[curPosOptI]);
@@ -308,15 +308,15 @@ namespace OpMon {
 
     }
 
-    void play(){
+    void play() {
 
     }
 
-    void pause(){
+    void pause() {
 
     }
 
-    int OptionsMenu::langLoop(){
+    int OptionsMenu::langLoop() {
       /*Window::frame.window.waitEvent(Window::frame.events);
         switch(Window::frame.events.type) {
         RETURN_ON_CLOSE_EVENT
@@ -402,7 +402,7 @@ namespace OpMon {
       return 0;
     }
 
-    int OptionsMenu::boucleCredits(){
+    int OptionsMenu::boucleCredits() {
       /*        Window::frame.window.waitEvent(Window::frame.events);
           switch(Window::frame.events.type) {
                 RETURN_ON_CLOSE_EVENT

@@ -9,20 +9,20 @@
 
 UNS
 
-namespace OpMon{
+namespace OpMon {
   namespace View {
 
-    MapLayer::MapLayer(sf::Vector2i size, const int tilesCodes[]){
+    MapLayer::MapLayer(sf::Vector2i size, const int tilesCodes[]) {
       sf::Texture &tileset = Initializer::tileset;
       tiles.setPrimitiveType(sf::Quads);
       tiles.resize(size.x * size.y * 4);
 
-      for(unsigned int i = 0; i < size.y; i++){
-        for(unsigned int j = 0; j < size.x; j++){
+      for (unsigned int i = 0; i < size.y; i++) {
+        for (unsigned int j = 0; j < size.x; j++) {
 
           int tileNumber = tilesCodes[(i * size.x) + j] - 1;
 
-          if(tileNumber == -1){
+          if (tileNumber == -1) {
             tileNumber = 257;//Void tile
           }
 
@@ -47,7 +47,7 @@ namespace OpMon{
 
     }
 
-    void MapLayer::draw(sf::RenderTarget &target, sf::RenderStates states) const{
+    void MapLayer::draw(sf::RenderTarget &target, sf::RenderStates states) const {
       states.transform *= getTransform();
 
       states.texture = &Initializer::tileset;

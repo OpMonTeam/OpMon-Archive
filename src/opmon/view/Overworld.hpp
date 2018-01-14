@@ -15,51 +15,51 @@
 #include "../model/sysObjects/Map.hpp"
 #include "../model/objects/Enums.hpp"
 
-namespace OpMon{
-  namespace View{
+namespace OpMon {
+  namespace View {
 
-    class Overworld : public Interface{
+    class Overworld : public Interface {
     public:
 
-      sf::View& getCamera(){
-	return camera;
-      }
-  
-
-      sf::Sprite& getCharacter(){
-	return character;
+      sf::View &getCamera() {
+        return camera;
       }
 
-      Model::Map* getCurrent(){
-	return current;
+
+      sf::Sprite &getCharacter() {
+        return character;
       }
-  
+
+      Model::Map *getCurrent() {
+        return current;
+      }
+
       GameStatus operator()(int frame);
 
-	  /**Undefined method because this must not be used*/
+      /**Undefined method because this must not be used*/
       GameStatus operator()();
-      
+
       void tp(std::string toTp, sf::Vector2i pos);
-      
-      sf::Music* getMusic(){
-	return music;
+
+      sf::Music *getMusic() {
+        return music;
       }
 
-      MapLayer* getMapLayer(int number){
-	switch(number){
-	case 1:
-	  return layer1;
-	case 2:
-	  return layer2;
-	case 3:
-	  return layer3;
-	default:
-	  return nullptr;
-	}
+      MapLayer *getMapLayer(int number) {
+        switch (number) {
+          case 1:
+            return layer1;
+          case 2:
+            return layer2;
+          case 3:
+            return layer3;
+          default:
+            return nullptr;
+        }
       }
 
-      Dialog* getDialog(){
-	return dialog;
+      Dialog *getDialog() {
+        return dialog;
       }
 
       void moveCamera(Model::Side dir);
@@ -68,39 +68,39 @@ namespace OpMon{
 
       bool justTp = false;
 
-      bool isLaunched(){
-	return launched;
+      bool isLaunched() {
+        return launched;
       }
 
       virtual ~Overworld();
 
       virtual void play();
+
       virtual void pause();
 
-      void setMusic(std::string const& path);
-      
+      void setMusic(std::string const &path);
+
       static std::vector<sf::String> actualDialog;
 
-      
-      
+
     private:
 
       void init();
-      
+
       sf::View camera;
       sf::Sprite character;
-      Model::Map* current = nullptr;
-      
+      Model::Map *current = nullptr;
+
       sf::Music *music = nullptr;
       std::string musicPath = "";
 
       std::map<std::vector<sf::Sprite>::iterator, sf::Sprite> eventsSprites;
-      
+
       MapLayer *layer1 = nullptr;
       MapLayer *layer2 = nullptr;
       MapLayer *layer3 = nullptr;
       sf::Vector2f posArrow;
-      Dialog* dialog = nullptr;
+      Dialog *dialog = nullptr;
       //Indicate the frame of the walking animation that must be used.
       bool anims = false;
 
@@ -108,9 +108,9 @@ namespace OpMon{
       int fpsCounter;
       sf::Text fpsPrint;
       int oldTicksFps;
-      
+
       int tpCount = 0;
-      
+
       int startFrames = 0;
       int animsCounter = 0;
 

@@ -377,72 +377,72 @@ namespace OpMon{
 
 
       float calcEfficacite(Type atk, Type def1, Type def2) {
-	int atkI((int)atk), type1I((int)def1), type2I((int)def2);
-	if (def2 == Type::NOTHING) {
-	  return arrOneType[type1I][atkI];
-	} else {
-	  return arrTwoTypes[type1I][type2I][atkI];
-	}
+        int atkI((int) atk), type1I((int) def1), type2I((int) def2);
+        if (def2 == Type::NOTHING) {
+          return arrOneType[type1I][atkI];
+        } else {
+          return arrTwoTypes[type1I][type2I][atkI];
+        }
       }
     }
 
-    bool operator==(Side side, int integer){
-      if(((int) side) == integer){
-	return true;
-      }else{
-	return false;
+    bool operator==(Side side, int integer) {
+      if (((int) side) == integer) {
+        return true;
+      } else {
+        return false;
       }
     }
 
-    bool operator!=(Side side, int integer){
+    bool operator!=(Side side, int integer) {
       return !(side == integer);
     }
 
-    bool operator>=(Side side, int integer){
+    bool operator>=(Side side, int integer) {
       int sideInt = (int) side;
       return sideInt >= integer;
     }
 
-    bool operator>(Side side, int integer){
+    bool operator>(Side side, int integer) {
       int sideInt = (int) side;
       return sideInt > integer;
     }
 
-    bool operator<(Side side, int integer){
+    bool operator<(Side side, int integer) {
       int sideInt = (int) side;
       return sideInt < integer;
     }
 
-    bool operator<=(Side side, int integer){
+    bool operator<=(Side side, int integer) {
       int sideInt = (int) side;
       return sideInt <= integer;
     }
 
-    int operator+(Side side, int integer){
+    int operator+(Side side, int integer) {
       return ((int) side) + integer;
     }
 
-    Side getSide(int id){
-      switch(id){
-      case -1:
-	return Side::NO_MOVE;
-      case 0:
-	return Side::TO_DOWN;
-      case 1:
-	return Side::TO_RIGHT;
-      case 2:
-	return Side::TO_LEFT;
-      case 3:
-	return Side::TO_UP;
-      case -2:
-	return Side::STAY;
-      default:
-	return Side::NO_MOVE;
+    Side getSide(int id) {
+      switch (id) {
+        case -1:
+          return Side::NO_MOVE;
+        case 0:
+          return Side::TO_DOWN;
+        case 1:
+          return Side::TO_RIGHT;
+        case 2:
+          return Side::TO_LEFT;
+        case 3:
+          return Side::TO_UP;
+        case -2:
+          return Side::STAY;
+        default:
+          return Side::NO_MOVE;
       }
     }
 
-    int operator-(Side side, int integer){
-      return ((int)side) - integer;
+    int operator-(Side side, int integer) {
+      return ((int) side) - integer;
     }
 
   }

@@ -6,7 +6,7 @@
 #include <unordered_set>
 
 
-namespace OpMon{
+namespace OpMon {
   namespace I18n {
 
     class ATranslatable;
@@ -18,12 +18,13 @@ namespace OpMon{
      *
      * Note: This class is a singleton. It can only be acceded by using `getInstance()`.
      */
-    class Translator{
+    class Translator {
     public:
 
       //Ensure Singleton can't be copied.
-      Translator(Translator const&) = delete;
-      void operator=(Translator const&) = delete;
+      Translator(Translator const &) = delete;
+
+      void operator=(Translator const &) = delete;
 
       static Translator &getInstance();
 
@@ -40,7 +41,9 @@ namespace OpMon{
       const std::map<const std::string, const std::string> getAvailableLanguages();
 
       void subscribe(ATranslatable *listener);
+
       void unsubscribe(ATranslatable *listener);
+
     private:
       Translator() = default;
 

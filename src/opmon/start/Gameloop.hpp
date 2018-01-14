@@ -15,22 +15,22 @@
 
 namespace OpMon {
 
-    class GameLoop {
-    public:
-        GameLoop();
+  class GameLoop {
+  public:
+    GameLoop();
 
-        GameStatus operator()();
+    GameStatus operator()();
 
-        /**
-         * Checks the event to know if the game must be stopped.
-         * Returns GameStatus::STOP if escape is pressed or if the game is closed.
-         * Returns GameStatus::CONTINUE if the game must continue.
-         */
-        GameStatus _checkQuit(const sf::Event &event);
+    /**
+     * Checks the event to know if the game must be stopped.
+     * Returns GameStatus::STOP if escape is pressed or if the game is closed.
+     * Returns GameStatus::CONTINUE if the game must continue.
+     */
+    GameStatus _checkQuit(const sf::Event &event);
 
 
-    private:
-        std::stack<Controller::AGameScreen *> _gameScreens;
-    };
+  private:
+    std::stack<Controller::AGameScreen *> _gameScreens;
+  };
 
 }

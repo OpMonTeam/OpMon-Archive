@@ -12,23 +12,23 @@
 
 UNS
 
-namespace OpMon{
-  namespace View{
+namespace OpMon {
+  namespace View {
 
     void StartScene::initStrings() {
       unsigned int it = 0;
-      for(it = 0; it < 18; it++) {
+      for (it = 0; it < 18; it++) {
         string actual;
-        actual << string("prof.dialog.start.") << it+1;
+        actual << string("prof.dialog.start.") << it + 1;
         txtP0[it] = kget(actual);
       }
       int ite = 1;
       it++;
       strName = Utils::OpString("prof.dialog.start.19", Main::player.getNameP());
       txtP1[0] = strName.getString();
-      for(it = it; it < 27; it++) {
+      for (it = it; it < 27; it++) {
         string actual;
-        actual << string("prof.dialog.start.") << it+1;
+        actual << string("prof.dialog.start.") << it + 1;
         txtP1[ite] = kget(actual);
         ite++;
       }
@@ -70,7 +70,7 @@ namespace OpMon{
       prof.setPosition(205, 120);
       prof.setScale(1.5, 1.5);
 
-      for(sf::Text &cellTxt : textDescs) {
+      for (sf::Text &cellTxt : textDescs) {
         cellTxt.setCharacterSize(FONT_SIZE_DEFAULT);
         cellTxt.setColor(sf::Color::Black);
         cellTxt.setFont(Model::Data::Ui::font);
@@ -82,31 +82,31 @@ namespace OpMon{
       Dialog::arrDial.setPosition(437, 482);
     }
 
-    void StartScene::onLangChanged(){
+    void StartScene::onLangChanged() {
       initStrings();
     }
 
-    GameStatus StartScene::operator()(){
-      if(!launched){
-	init();
+    GameStatus StartScene::operator()() {
+      if (!launched) {
+        init();
       }
-      switch(part){
-      case 0:
-	return loop0();
-      case 1:
-	return loop1();
-      case 2:
-	return loop2();
-	
+      switch (part) {
+        case 0:
+          return loop0();
+        case 1:
+          return loop1();
+        case 2:
+          return loop2();
+
       }
       nextPanel = new Overworld();
       return GameStatus::NEXT;
     }
 
-    void initLoop0(){
+    void initLoop0() {
       sizeOfTxt = 18;
-      if(dialog != nullptr){
-	    delete(dialog);
+      if (dialog != nullptr) {
+        delete (dialog);
       }
       dialog = new Dialog(txtP0, sizeOfTxt);
       loop0init = true;
@@ -114,12 +114,12 @@ namespace OpMon{
       loop2init = false;
     }
 
-    void initLoop1(){
+    void initLoop1() {
       wait = true;
       Window::window.setKeyRepeatEnabled(true);
       Window::frame.clear(sf::Color::White);
       Window::frame.draw(bgName);
-      for(sf::Text desc : textDescs) {
+      for (sf::Text desc : textDescs) {
         desc.setColor(sf::Color::White);
         desc.setFont(Model::Data::Ui::font);
         Window::frame.draw(desc);
@@ -131,7 +131,7 @@ namespace OpMon{
       loop2init = false;
     }
 
-    void delLoop1(){
+    void delLoop1() {
       wait = false;
       Window::window.setKeyRepeatEnable(false);
       Data::player.setName(pName);
@@ -142,35 +142,35 @@ namespace OpMon{
       part++;
     }
 
-    void initLoop2(){
+    void initLoop2() {
       int sizeOfTxt = 27 - 18;
-      if(dialog != nullptr){
-	delete(dialog);
+      if (dialog != nullptr) {
+        delete (dialog);
       }
       dialog = new Dialog(txtP1, sizeOfTxt);
       loop0init = false;
       loop1init = false;
       loop2init = true;
     }
-    
+
     GameStatus StartScene::loop0() {
-      if(!loop0init){
-	initLoop0();
+      if (!loop0init) {
+        initLoop0();
       }
 
-      if(!dialog->isDialogOver()) {
-	Window::frame.clear(sf::Color::White);
-	Window::frame.draw(bg);
-	Window::frame.draw(prof);
+      if (!dialog->isDialogOver()) {
+        Window::frame.clear(sf::Color::White);
+        Window::frame.draw(bg);
+        Window::frame.draw(prof);
 
-	dialog->updateTextAnimation();
+        dialog->updateTextAnimation();
 
-	dialog->draw();
-	Window::frame.display();
-	Window::winRefresh();
-	
+        dialog->draw();
+        Window::frame.display();
+        Window::winRefresh();
+
       } else {
-	part++;
+        part++;
       }
 
       return GameStatus::CONTINUE;
@@ -179,24 +179,24 @@ namespace OpMon{
 
     GameStatus StartScene::loop1() {
 
-      if(!loop1init){
-	initLoop1();
+      if (!loop1init) {
+        initLoop1();
       }
-      
+
       Window::frame.clear(sf::Color::White);
-        Window::frame.draw(bgName);
-        for(sf::Text desc : textDescs) {
-	  desc.setColor(sf::Color::White);
-	  desc.setFont(Model::Data::Ui::font);
-	  Window::frame.draw(desc);
-        }
-        nameField.setString(pName);
-        Window::frame.draw(nameField);
-        Window::frame.display();
-        Window::winRefresh();
+      Window::frame.draw(bgName);
+      for (sf::Text desc : textDescs) {
+        desc.setColor(sf::Color::White);
+        desc.setFont(Model::Data::Ui::font);
+        Window::frame.draw(desc);
+      }
+      nameField.setString(pName);
+      Window::frame.draw(nameField);
+      Window::frame.display();
+      Window::winRefresh();
 
 
-	return GameStatus::CONTINUE;
+      return GameStatus::CONTINUE;
     }
 
     GameStatus StartScene::loop2() {
@@ -219,27 +219,27 @@ namespace OpMon{
 
 	RETURN_ON_ECHAP_EVENT
       */
-      if(!dialog->isDialogOver()) {
-	Window::frame.clear(sf::Color::White);
-	Window::frame.draw(bg);
-	Window::frame.draw(prof);
+      if (!dialog->isDialogOver()) {
+        Window::frame.clear(sf::Color::White);
+        Window::frame.draw(bg);
+        Window::frame.draw(prof);
 
-	dialog->updateTextAnimation();
+        dialog->updateTextAnimation();
 
-	dialog->draw();
-	Window::frame.display();
-	Window::winRefresh();
-	return GameStatus::CONTINUE;
+        dialog->draw();
+        Window::frame.display();
+        Window::winRefresh();
+        return GameStatus::CONTINUE;
       } else {
-	nextPanel = new Overworld();
-	return GameStatus::NEXT;
+        nextPanel = new Overworld();
+        return GameStatus::NEXT;
       }
-        
+
     }
 
     void StartScene::init() {
       bgMus.play();
-      
+
       //Animations::animWinOpen(Window::frame, bg);
 
       //Animations::animWinClose(Window::frame, bg);
@@ -249,15 +249,15 @@ namespace OpMon{
 
     }
 
-    void StartScene::play(){
+    void StartScene::play() {
       bgMus.play();
     }
 
-    void StartScene::pause(){
+    void StartScene::pause() {
       bgMus.pause();
     }
 
-    ~StartScene::StartScene(){
+    ~StartScene::StartScene() {
       bgMus.stop();
     }
   }

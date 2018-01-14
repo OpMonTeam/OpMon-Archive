@@ -15,8 +15,8 @@ Contains MainMenu namespace
 #include "../start/i18n/ATranslatable.hpp"
 
 
-namespace OpMon{
-  namespace View{
+namespace OpMon {
+  namespace View {
     /**
        Namespace contenant les éléments du menu principal
     */
@@ -24,26 +24,31 @@ namespace OpMon{
 
     public:
       MainMenu();
+
       void verifVars();
+
       void del();
-      
+
       void init();
 
       GameStatus operator()();
+
       void initStrings();
+
       void onLangChanged() override;
 
       void moveArrow(bool direction);
 
       void pause();
+
       void play();
 
-      int getCursorPosition(){
-	return curPosI;
+      int getCursorPosition() {
+        return curPosI;
       }
-      
+
     private:
-      
+
       sf::Sprite bg;
       sf::Text playtx;
       sf::Text charge;

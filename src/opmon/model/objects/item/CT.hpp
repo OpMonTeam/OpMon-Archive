@@ -11,8 +11,8 @@ Contains the CT class definition
 #include "Item.hpp"
 #include "../Attack.hpp"
 
-namespace OpMon{
-  namespace Model{
+namespace OpMon {
+  namespace Model {
     /**
        Définit un item de type CT
     */
@@ -21,8 +21,11 @@ namespace OpMon{
       std::string getAtk() const {
         return atk;
       }
+
       int itemTypeID = 3;
+
       CT(std::string atk, int ctNumber, int ID);
+
     private:
       /**Contient la classe de l'attaque de la CT*/
       std::string atk;

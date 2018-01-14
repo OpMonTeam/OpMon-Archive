@@ -3,64 +3,64 @@
 #include "../model/storage/Data.hpp"
 #include "EventsCtrl.hpp"
 
-namespace OpMon{
-  namespace Controller{
+namespace OpMon {
+  namespace Controller {
 
     OverworldCtrl::OverworldCtrl(Model::Player &player)
-      :view(), player(player){}
+            : view(), player(player) {}
 
-    GameStatus OverworldCtrl::checkEvent(sf::Event const& events){
+    GameStatus OverworldCtrl::checkEvent(sf::Event const &events) {
       auto &overworld = view;
 
       bool is_dialog_open = overworld.getDialog() && !overworld.getDialog()->isDialogOver();
 
-      switch(events.type) {
+      switch (events.type) {
         case sf::Event::KeyPressed:
-          if(events.key.code == sf::Keyboard::Equal) {
+          if (events.key.code == sf::Keyboard::Equal) {
             debugMode = !debugMode;
           }
-          if(debugMode) {
-            if(events.key.code == sf::Keyboard::F10) {
+          if (debugMode) {
+            if (events.key.code == sf::Keyboard::F10) {
               overworld.printlayer[0] = !overworld.printlayer[0];
             }
-            if(events.key.code == sf::Keyboard::F11) {
+            if (events.key.code == sf::Keyboard::F11) {
               overworld.printlayer[1] = !overworld.printlayer[1];
             }
-            if(events.key.code == sf::Keyboard::F12) {
+            if (events.key.code == sf::Keyboard::F12) {
               overworld.printlayer[2] = !overworld.printlayer[2];
             }
           }
         default:
           break;
       }
-      if(debugMode) {
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2)) {
+      if (debugMode) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2)) {
           overworld.moveCamera(Model::Side::TO_DOWN);
         }
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4)) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4)) {
           overworld.moveCamera(Model::Side::TO_LEFT);
         }
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad8)) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad8)) {
           overworld.moveCamera(Model::Side::TO_UP);
         }
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6)) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6)) {
           overworld.moveCamera(Model::Side::TO_DOWN);
         }
       }
 
-      if(is_dialog_open){
+      if (is_dialog_open) {
         return checkEventsDialog(events, overworld);
-      }else{
+      } else {
         return checkEventsNoDialog(events, player);
       }
 
     }
 
 
-    GameStatus OverworldCtrl::checkEventsDialog(sf::Event const& events, View::Overworld& overworld){
-      switch(events.type) {
+    GameStatus OverworldCtrl::checkEventsDialog(sf::Event const &events, View::Overworld &overworld) {
+      switch (events.type) {
         case sf::Event::KeyPressed:
-          if(events.key.code == sf::Keyboard::Space) {
+          if (events.key.code == sf::Keyboard::Space) {
             overworld.getDialog()->pass();
           }
           break;
@@ -70,13 +70,13 @@ namespace OpMon{
       return GameStatus::CONTINUE;
     }
 
-    GameStatus OverworldCtrl::checkEventsNoDialog(sf::Event const& event, Model::Player& player){
+    GameStatus OverworldCtrl::checkEventsNoDialog(sf::Event const &event, Model::Player &player) {
       EventsCtrl::updateEvents(Model::Data::World::maps.at(player.getMapId())->getEvents(), player);
       EventsCtrl::checkAction(event, player);
       return GameStatus::CONTINUE;
     }
 
-    GameStatus OverworldCtrl::update(){
+    GameStatus OverworldCtrl::update() {
       return view();
       /* TODO
       if(overworld->getCurrent() != nullptr){

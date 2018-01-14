@@ -1,8 +1,8 @@
 
 #pragma once
 
-namespace Utils{
-  namespace Path{
+namespace Utils {
+  namespace Path {
 
     /**
      * Get the root path of resource files.

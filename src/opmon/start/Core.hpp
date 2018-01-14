@@ -14,9 +14,9 @@
 #include "GameStatus.hpp"
 
 
-namespace OpMon{
+namespace OpMon {
 
-  
+
   /**Path to the options save file*/
   extern std::string optSave;
 
@@ -24,21 +24,24 @@ namespace OpMon{
   /**
      Function that handles errors on the program
   */
-  void handleError(std::string const& errorName, bool fatal);
+  void handleError(std::string const &errorName, bool fatal);
+
   /**
      Function quitting the game, deleting the resources
   */
-  int quit(int const& returns);
+  int quit(int const &returns);
 
   extern bool debugMode;
-  
+
   /*
     Useful operators for strings
   */
-  std::string& operator<<(std::string &str, std::string const& thing);
-  std::string& operator<<(std::string &str, int const& nbre);
-  std::string& operator<<(std::string &str, char nbre[]);
-  
+  std::string &operator<<(std::string &str, std::string const &thing);
+
+  std::string &operator<<(std::string &str, int const &nbre);
+
+  std::string &operator<<(std::string &str, char nbre[]);
+
 
   template<typename Base, typename T>
   bool instanceOf(const Base *toTest);

@@ -11,11 +11,11 @@
 
 #include "Events.hpp"
 
-namespace OpMon{
-  namespace Model{
+namespace OpMon {
+  namespace Model {
 
     class Event;
-    
+
     /**
        Class defining a specific place
     */
@@ -31,6 +31,7 @@ namespace OpMon{
       int h;
 
       char **passArr;
+
       /**The copy constructor must not be used.*/
       Map(Map const &toCopy) = delete;
 
@@ -42,37 +43,51 @@ namespace OpMon{
       std::vector<int> elementsCount;
 
     public:
-      Map(const int layer1[], const int layer2[], const int layer3[], int w, int h, const char* const* collisions, std::string const& bg, std::vector<std::string > const& animatedElements = std::vector<std::string >());
+      Map(const int layer1[], const int layer2[], const int layer3[], int w, int h, const char *const *collisions,
+          std::string const &bg, std::vector<std::string> const &animatedElements = std::vector<std::string>());
+
       ~Map();
+
       int getH() const {
-	return h;
+        return h;
       }
+
       int getW() const {
-	return w;
+        return w;
       }
+
       char **getPassArr() const {
-	return passArr;
+        return passArr;
       }
+
       const int *getLayer1() const {
-	return layer1;
+        return layer1;
       }
+
       const int *getLayer2() const {
         return layer2;
       }
+
       const int *getLayer3() const {
         return layer3;
       }
+
       std::string getBg() const {
         return bg;
       }
+
       void addEvent(Event *event) {
         events.push_back(event);
       }
-      std::vector<Event *>& getEvent(sf::Vector2i position) const;
-      std::vector<Event *>& getEvents() {
+
+      std::vector<Event *> &getEvent(sf::Vector2i position) const;
+
+      std::vector<Event *> &getEvents() {
         return events;
       };
+
       void debugInfo();
+
       void updateElements(sf::RenderTexture &frame);
     };
   }
