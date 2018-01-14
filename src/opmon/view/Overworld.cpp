@@ -1,5 +1,7 @@
 #include "Overworld.hpp"
 #include "../start/Initializer.hpp"
+#include "../model/objects/Enums.hpp"
+
 #define FPS_TICKS 33
 #include <cmath>
 //#define ppPosY ((character.getPosition().y / CASE_SIZE) - 8)
@@ -19,6 +21,7 @@
 #endif
 
 UNS
+using OpMon::Model::Side;
 
 namespace OpMon{
   namespace View{
@@ -70,7 +73,7 @@ namespace OpMon{
     void Overworld::tp(std::string toTp, sf::Vector2i pos){
       Model::Data::player.tp(toTp, pos);
       current = &Model::Data::World::maps.at(Model::Data::player.getMapId());
-      character.setPosition(8 CASES + pos.x CASES - 16, 8 CASES + pos.y CASES);
+      character.setPosition(8 SQUARES + pos.x SQUARES - 16, 8 SQUARES + pos.y SQUARES);
       if(musicPath != current->getBg()) {
 	setMusic(current->getBg());
 	music->play();
@@ -107,9 +110,9 @@ namespace OpMon{
     
     void init(){
       character.setTexture(Initializer::texturePP[(int) Side::TO_DOWN]);
-      character.setPosition(8 * CASES + 2 * CASES - 16, 8 * CASES + 2 * CASES);
+      character.setPosition(8 SQUARES + 2 SQUARES - 16, 8 SQUARES + 2 SQUARES);
       camera.setCenter(this->getCharacter().getPosition());
-      camera.setSize(sf::Vector2f(16 *CASES, 16 * CASES));
+      camera.setSize(sf::Vector2f(16 SQUARES, 16 SQUARES));
       
       setMusic(actual->getBg());
       setLayer1(MapLayer(actual->getLayer1(), Model::Data::World::tileset));

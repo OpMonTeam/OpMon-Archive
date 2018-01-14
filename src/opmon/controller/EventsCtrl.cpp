@@ -8,7 +8,7 @@
 
 namespace OpMon{
   namespace Controller{
-    void EventsCtrl::checkAction(sf::Event const& event, Model::Player& player){
+    void EventsCtrl::checkAction(sf::Event const& event, Model::Player& player, View::Overworld& overworld){
       if(!player.getPosition().isAnim()) {
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
 	  int lx = player.getPosition().getPosition().x;
@@ -29,7 +29,7 @@ namespace OpMon{
 	  default:
 	    break;
 	  }
-	  actionEvents(Model::Data::World::maps.at(player.getMapId())->getEvent(sf::Vector2i(lx SQUARES, ly SQUARES)), player, Model::Events::EventTrigger::PRESS);
+	  actionEvents(Model::Data::World::maps.at(player.getMapId())->getEvent(sf::Vector2i(lx SQUARES, ly SQUARES)), player, Model::Events::EventTrigger::PRESS, overworld);
 	  
 	  
 	}
@@ -38,14 +38,14 @@ namespace OpMon{
 
       
       if(!player.getPosition().isMoving()) {
-	actionEvents(Model::Data::World::maps.at(player.getMapId())->getEvent(player.getPosition().getPositionPixel()), player, Model::Events::EventTrigger::BE_IN);
+	actionEvents(Model::Data::World::maps.at(player.getMapId())->getEvent(player.getPosition().getPositionPixel()), player, Model::Events::EventTrigger::BE_IN, overworld);
       }
 
       
       
     }
 
-    void EventsCtrl::actionEvents(std::vector<Model::Event*>& events, Model::Player& player, Model::Events::EventTrigger toTrigger){
+    void EventsCtrl::actionEvents(std::vector<Model::Event*>& events, Model::Player& player, Model::Events::EventTrigger toTrigger, View::Overworld& overworld){
       Model::Side ppDir = player.getPosition().getDir();
       for(unsigned int i = 0; i < events.size(); i++) {
 	if(events[i]->getEventTrigger() == toTrigger) {
@@ -60,15 +60,15 @@ namespace OpMon{
 	    go = true;
 	  }
 	  if(go) {
-	    events[i]->action(player);
+	    events[i]->action(player, overworld);
 	  }
 	}
       }
     }
 
-    void EventsCtrl::updateEvents(std::vector<Model::Event*>& events, Model::Player& player){
+    void EventsCtrl::updateEvents(std::vector<Model::Event*>& events, Model::Player& player, View::Overworld& overworld){
       for(Model::Event* event : events) {
-        event->update(player);
+        event->update(player, overworld);
       }
     }
   }

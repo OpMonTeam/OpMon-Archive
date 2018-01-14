@@ -71,8 +71,8 @@ namespace OpMon{
     }
 
     GameStatus OverworldCtrl::checkEventsNoDialog(sf::Event const& event, Model::Player& player){
-      EventsCtrl::updateEvents(Model::Data::World::maps.at(player.getMapId())->getEvents(), player);
-      EventsCtrl::checkAction(event, player);
+      EventsCtrl::updateEvents(Model::Data::World::maps.at(player.getMapId())->getEvents(), player, view);
+      EventsCtrl::checkAction(event, player, view);
       return GameStatus::CONTINUE;
     }
 
