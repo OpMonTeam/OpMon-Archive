@@ -68,6 +68,7 @@ namespace OpMon {
             bool anim;
             bool movement;
             bool moveLock;
+	  bool event;
         };
     }
 }
