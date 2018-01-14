@@ -17,58 +17,59 @@
 #define SQUARES_SIZE 32
 #define SQUARES * SQUARES_SIZE
 
-namespace OpMon{
-  namespace Model{
-    class Position{
-    public:
-      Position();
-      Position(std::string mapId, sf::Vector2i position, Side dir = Side::TO_UP);
+namespace OpMon {
+    namespace Model {
+        class Position {
+        public:
+            Position();
 
-      sf::Vector2i getPosition(){
-	return sf::Vector2i(posX, posY);
-      }
+            Position(std::string mapId, sf::Vector2i position, Side dir = Side::TO_UP);
 
-      sf::Vector2i getPositionPixel(){
-	return sf::Vector2i(posX SQUARES, posY SQUARES);
-      }
+            sf::Vector2i getPosition() {
+              return sf::Vector2i(posX, posY);
+            }
 
-      Side getDir(){
-	return dir;
-      }
+            sf::Vector2i getPositionPixel() {
+              return sf::Vector2i(posX SQUARES, posY SQUARES);
+            }
 
-      bool isAnim(){
-	return anim;
-      }
+            Side getDir() {
+              return dir;
+            }
 
-      bool isMoving(){
-	return movement;
-      }
+            bool isAnim() {
+              return anim;
+            }
 
-      void stopMove(){
-	anim = false;
-	movement = false;
-      }
+            bool isMoving() {
+              return movement;
+            }
 
-      void stopAnim(){
-	anim = false;
-      }
+            void stopMove() {
+              anim = false;
+              movement = false;
+            }
 
-      void tp(sf::Vector2i position);
+            void stopAnim() {
+              anim = false;
+            }
 
-      void move(Side dir);
-      
-    private:
+            void tp(sf::Vector2i position);
 
-      bool checkPass(Side dir);
-      
-      int posX;
-      int posY;
-      Side dir;
-      bool anim;
-      bool movement;
-      bool moveLock;
-    };
-  }
+            void move(Side dir);
+
+        private:
+
+            bool checkPass(Side dir);
+
+            int posX;
+            int posY;
+            Side dir;
+            bool anim;
+            bool movement;
+            bool moveLock;
+        };
+    }
 }
 
 #endif
