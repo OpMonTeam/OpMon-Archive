@@ -112,9 +112,9 @@ namespace OpMon{
 
 //Actions
 
-      void TPEvent::action(Player &player){
+      void TPEvent::action(Model::Player &player, View::Overworld& overworld){
         if(!justTP){
-          Main::mainframe.overworld.tp(map, tpCoord);
+          overworld.tp(map, tpCoord);
           if(this->ppDir != -1){
             Main::player.setppDir(this->ppDir);
           }
@@ -123,11 +123,11 @@ namespace OpMon{
 
       }
 
-      void TPEvent::update(Player &player){
+      void TPEvent::update(Model::Player &player, View::Overworld& overworld){
 
       }
 
-      void DoorEvent::action(Player &player){
+      void DoorEvent::action(Model::Player &player, View::Overworld& overworld){
         animStarted = 0;
         if(doorType == 0){
           doorSound.setVolume(100);
@@ -139,7 +139,7 @@ namespace OpMon{
 
       }
 
-      void DoorEvent::update(Player &player){
+      void DoorEvent::update(Model::Player &player, View::Overworld& overworld){
         if(animStarted != -1){
           animStarted++;
 
@@ -154,15 +154,15 @@ namespace OpMon{
         }
       }
 
-      void TalkingEvent::action(Player &player){
-        Main::mainframe.overworld.boucleDialog(this->dialogs);
+      void TalkingEvent::action(Model::Player &player, View::Overworld& overworld){
+        overworld.boucleDialog(this->dialogs);
       }
 
-      void TalkingEvent::update(Player &player){
+      void TalkingEvent::update(Model::Player &player, View::Overworld& overworld){
 
       }
 
-      void CharacterEvent::update(Player &player){
+      void CharacterEvent::update(Model::Player &player, View::Overworld& overworld){
         frames++;
         if(anim == Side::NO_MOVE){
           int randomMove;
@@ -291,7 +291,7 @@ namespace OpMon{
 
       }
 
-      void CharacterEvent::move(Side direction, Player &player){
+      void CharacterEvent::move(Side direction, Model::Player &player, View::Overworld& overworld){
         startFrames = frames;
         if(anim == Side::NO_MOVE && direction == Side::NO_MOVE){
           anim = Side::STAY;
@@ -303,9 +303,9 @@ namespace OpMon{
           switch(direction){
             case Side::TO_UP:
               if(position.y - 1 >= 0){
-                if(Main::mainframe.overworld.actual->getPassArr()[(int) position.y - 1][(int) position.x] == 0){
+                if(overworld.current->getPassArr()[(int) position.y - 1][(int) position.x] == 0){
                   if(!(position.y - 1 == player.getPosY() && position.x == player.getPosX())){
-                    for(Event *nextEvent : Main::mainframe.overworld.actual->getEvent(
+                    for(Event *nextEvent : overworld.current->getEvent(
                       sf::Vector2i(position.x, position.y - 1))){
                       if(!nextEvent->isPassable()){
                         return;
@@ -321,10 +321,10 @@ namespace OpMon{
               }
               break;
             case Side::TO_DOWN:
-              if(position.y + 1 < Main::mainframe.overworld.actual->getH()){
-                if(Main::mainframe.overworld.actual->getPassArr()[(int) position.y + 1][(int) position.x] == 0){
+              if(position.y + 1 < overworld.current->getH()){
+                if(overworld.current->getPassArr()[(int) position.y + 1][(int) position.x] == 0){
                   if(!(position.y + 1 == player.getPosY() && position.x == player.getPosX())){
-                    for(Event *nextEvent : Main::mainframe.overworld.actual->getEvent(
+                    for(Event *nextEvent : overworld.current->getEvent(
                       sf::Vector2i(position.x, position.y + 1))){
                       if(!nextEvent->isPassable()){
                         return;
@@ -341,10 +341,10 @@ namespace OpMon{
               break;
 
             case Side::TO_RIGHT:
-              if(position.x + 1 < Main::mainframe.overworld.actual->getW()){
-                if(Main::mainframe.overworld.actual->getPassArr()[(int) position.y][(int) position.x + 1] == 0){
+              if(position.x + 1 < overworld.current->getW()){
+                if(overworld.current->getPassArr()[(int) position.y][(int) position.x + 1] == 0){
                   if(!(position.x + 1 == player.getPosX() && position.y == player.getPosY())){
-                    for(Event *nextEvent : Main::mainframe.overworld.actual->getEvent(
+                    for(Event *nextEvent : overworld.current->getEvent(
                       sf::Vector2i(position.x + 1, position.y))){
                       if(!nextEvent->isPassable()){
                         return;
@@ -362,9 +362,9 @@ namespace OpMon{
 
             case Side::TO_LEFT:
               if(position.x - 1 >= 0){
-                if(Main::mainframe.overworld.actual->getPassArr()[(int) position.y][(int) position.x - 1] == 0){
+                if(overworld.current->getPassArr()[(int) position.y][(int) position.x - 1] == 0){
                   if(!(position.x - 1 == player.getPosX() && position.y == player.getPosY())){
-                    for(Event *nextEvent : Main::mainframe.overworld.actual->getEvent(
+                    for(Event *nextEvent : overworld.current->getEvent(
                       sf::Vector2i(position.x - 1, position.y))){
                       if(!nextEvent->isPassable()){
                         return;
@@ -387,14 +387,15 @@ namespace OpMon{
         }
       }
 
-      void TalkingCharaEvent::action(Player &player){
-        Main::mainframe.overworld.movementLock = true;
+      void TalkingCharaEvent::action(Model::Player &player, View::Overworld& overworld){
+        overworld.movementLock = true;
         talking = true;
 
       }
 
-      void TalkingCharaEvent::update(Player &player){
-        if(Main::mainframe.overworld.movementLock && talking && !player.getPosition().isAnim()){
+      void TalkingCharaEvent::update(Model::Player &player, View::Overworld& overworld){
+	
+        if(overworld.movementLock && talking && !player.getPosition().isAnim()){
           switch(player.getPosition().getDir()){
             case Side::TO_UP:
               sprite->setTexture(otherTextures[(int) Side::TO_DOWN]);
@@ -409,9 +410,9 @@ namespace OpMon{
               sprite->setTexture(otherTextures[(int) Side::TO_LEFT]);
               break;
           }
-          Main::mainframe.overworld.movementLock = false;
+          overworld.movementLock = false;
           talking = false;
-          Main::mainframe.overworld.boucleDialog(this->dialogs);
+          overworld.boucleDialog(this->dialogs);
         }
         CharacterEvent::update(player);
       }
@@ -420,11 +421,11 @@ namespace OpMon{
         this->movements = moves;
       }
 
-      void LockedDoorEvent::action(Player &player){
+      void LockedDoorEvent::action(Model::Player &player, View::Overworld& overworld){
 
       }
 
-      void LockedDoorEvent::update(Player &player){
+      void LockedDoorEvent::update(Model::Player &player, View::Overworld& overworld){
 
       }
 

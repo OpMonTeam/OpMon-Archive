@@ -52,9 +52,9 @@ namespace OpMon{
       Event(std::vector<sf::Texture>& otherTextures, Events::EventTrigger eventTrigger, sf::Vector2f const& position, int sides, bool passable);
       virtual ~Event();
       /**This method is called in each frame*/
-      virtual void update(Player &player) = 0;
+      virtual void update(Model::Player &player, View::Overworld& overworld) = 0;
       /**This method is called when the players interacts with the event*/
-      virtual void action(Player &player) = 0;
+      virtual void action(Model::Player &player, View::Overworld& overworld) = 0;
       int getSide() const {
         return sides;
       }
@@ -107,8 +107,8 @@ namespace OpMon{
 	Side ppDir;
       public:
 	TPEvent(std::vector<sf::Texture>& otherTextures, EventTrigger eventTrigger, sf::Vector2f const& position, sf::Vector2i const& tpPos, std::string const& map, Side ppDir = Side::NO_MOVE, int sides = SIDE_ALL, bool passable = true);
-	virtual void update(Player &player);
-	virtual void action(Player &player);
+	virtual void update(Model::Player &player, View::Overworld& overworld);
+	virtual void action(Model::Player &player, View::Overworld& overworld);
       };
   
       namespace DoorType {
@@ -122,8 +122,8 @@ namespace OpMon{
 	int animStarted = -1;
       public:
 	DoorEvent(std::vector<sf::Texture> &doorType, sf::Vector2f const& position, sf::Vector2i const& tpPos, std::string const& map, EventTrigger eventTrigger = EventTrigger::GO_IN, Side ppDir = Side::NO_MOVE, int sides = SIDE_ALL, bool passable = true);
-	virtual void action(Player &player);
-	virtual void update(Player &player);
+	virtual void action(Model::Player &player, View::Overworld& overworld);
+	virtual void update(Model::Player &player, View::Overworld& overworld);
       };
 
       class TalkingEvent : public virtual Event, I18n::ATranslatable {
@@ -134,8 +134,8 @@ namespace OpMon{
       public:
 				TalkingEvent(std::vector<sf::Texture>& otherTextures, sf::Vector2f const& position, std::vector<Utils::OpString> const& dialogKeys, int sides = SIDE_ALL, EventTrigger eventTrigger = EventTrigger::PRESS, bool passable = false);
 				void onLangChanged() override;
-				virtual void update(Player &player);
-				virtual void action(Player &player);
+				virtual void update(Model::Player &player, View::Overworld& overworld);
+				virtual void action(Model::Player &player, View::Overworld& overworld);
       };
 
       class LockedDoorEvent : public DoorEvent, TalkingEvent {
@@ -144,8 +144,8 @@ namespace OpMon{
 	bool consumeItem;
 	static std::vector<Utils::OpString> keysLock;
       public:
-	virtual void action(Player &player);
-	virtual void update(Player &player);
+	virtual void action(Model::Player &player, View::Overworld& overworld);
+	virtual void update(Model::Player &player, View::Overworld& overworld);
 	LockedDoorEvent(std::vector<sf::Texture> &doorType, Item *needed, sf::Vector2f const& position, sf::Vector2i const& tpPos, std::string const& map, Side ppDir = Side::NO_MOVE, EventTrigger eventTrigger = EventTrigger::PRESS, bool consumeItem = false,int sides = SIDE_ALL, bool passable = false);
       };
 
@@ -172,10 +172,10 @@ namespace OpMon{
 
       public:
 	CharacterEvent(std::string texturesKey, sf::Vector2f const& position, MoveStyle moveStyle = MoveStyle::NO_MOVE, EventTrigger eventTrigger = EventTrigger::PRESS, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int sides = SIDE_ALL);
-	virtual void update(Player &player);
-	virtual void action(Player &player) {};
+	virtual void update(Model::Player &player, View::Overworld& overworld);
+	virtual void action(Model::Player &player, View::Overworld& overworld) {};
 	void setPredefinedMove(std::vector<Side> movement);
-	void move(Side direction, Player& player);
+	void move(Side direction, Model::Player& player);
       };
 
 
@@ -187,8 +187,8 @@ namespace OpMon{
       public:
 	TalkingCharaEvent(std::string texturesKey, sf::Vector2f const& position, std::vector<Utils::OpString> const& dialogKeys, EventTrigger eventTrigger = EventTrigger::PRESS, MoveStyle moveStyle = MoveStyle::NO_MOVE, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int side = SIDE_ALL);
       public:
-	virtual void update(Player &player);
-	virtual void action(Player &player);
+	virtual void update(Model::Player &player, View::Overworld& overworld);
+	virtual void action(Model::Player &player, View::Overworld& overworld);
       };
     }
 

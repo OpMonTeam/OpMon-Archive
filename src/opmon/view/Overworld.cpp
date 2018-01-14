@@ -193,6 +193,10 @@ namespace OpMon{
       if((debugMode ? printlayer[1] : true)) {
 	Window::frame.draw(*layer2);
       }
+      //Updating event's sprite position
+      for(auto itor = eventSprites.begin(): itor != eventSprites.end(); ++itor) {
+	itor->second.setPosition(itor->first->getSpritePos());
+      }
       //Drawing events under the player
       for(auto itor = eventsSprites.begin(); itor != eventsSprites.end(); ++itor) {
 	if(itor->first->getPosition().y <= ppPosY) {
