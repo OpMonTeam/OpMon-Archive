@@ -7,11 +7,11 @@ namespace OpMon{
   namespace I18n {
 
     ATranslatable::ATranslatable(){
-      Translator.getInstance().subscribe(this);
+      Translator::getInstance().subscribe(this);
     }
 
     ATranslatable::~ATranslatable(){
-      Translator.getInstance().unsubscribe(this);
+      Translator::getInstance().unsubscribe(this);
     }
 
   }

@@ -1,11 +1,9 @@
+#include <src/opmon/view/Window.hpp>
 #include "./MainMenuCtrl.hpp"
 
-#include "../view/Overworld.hpp"
-#include "../view/StartScene.hpp"
-#include "../view/OptionsMenu.hpp"
-#include "../model/save/OptionsSave.hpp"
 #include "../model/storage/Data.hpp"
-#include "../../utils/defines.hpp"
+#include "./StartSceneCtrl.hpp"
+#include "./OptionsMenuCtrl.hpp"
 
 
 namespace OpMon{
@@ -16,40 +14,39 @@ namespace OpMon{
     }
 
     GameStatus MainMenuCtrl::checkEvent(sf::Event& event){
-      auto &menu = view;
-
-      switch(event.type) {
-        case sf::Event::KeyPressed:
-          if(event.key.code == sf::Keyboard::Return) {
-            switch(menu.getCursorPosition()) {
+      if(event.type == sf::Event::KeyPressed) {
+        switch (event.key.code){
+          case sf::Keyboard::Return:
+            switch(view.getCursorPosition()) {
               case 0:
-
-                menu.setNextInterface(new View::StartScene());
+                _next_gs = new StartSceneCtrl();
                 return GameStatus::NEXT;
-              case 3:
-                return GameStatus::STOP;
-              case 2:
-                menu.setNextInterface(new View::OptionsMenu());
-                return GameStatus::NEXT;
-                break;
               case 1:
                 Model::Data::Sounds::nope.play();
                 return GameStatus::CONTINUE;
+              case 2:
+                _next_gs = new OptionsMenuCtrl();
+                return GameStatus::NEXT;
+              case 3:
+                return GameStatus::STOP;
             }
-          }else if(event.key.code == sf::Keyboard::Up){
-            menu.moveArrow(true);
-          }else if(event.key.code == sf::Keyboard::Down){
-            menu.moveArrow(false);
-          }
-          break;
-        default:
-          break;
+            break;
+          case sf::Keyboard::Up:
+            view.moveArrow(true);
+            break;
+          case sf::Keyboard::Down:
+            view.moveArrow(false);
+            break;
+          default:
+            break;
+        }
       }
       return GameStatus::CONTINUE;
     }
 
     GameStatus MainMenuCtrl::update(){
-      return view();
+      view.draw(OpMon::View::frame);
+      return GameStatus::CONTINUE;
     }
 
   }

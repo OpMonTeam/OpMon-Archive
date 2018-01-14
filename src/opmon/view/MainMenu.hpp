@@ -11,35 +11,37 @@ Contains MainMenu namespace
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
-#include "Interface.hpp"
 #include "../start/i18n/ATranslatable.hpp"
 
 
 namespace OpMon{
   namespace View{
+
     /**
-       Namespace contenant les éléments du menu principal
-    */
-    class MainMenu : public Interface, I18n::ATranslatable {
+     * View of the main menu (displayed when the game starts).
+     */
+    class MainMenu : public I18n::ATranslatable {
 
     public:
       MainMenu();
-      void verifVars();
-      void del();
-      
-      void init();
+      ~MainMenu() override;
 
-      GameStatus operator()();
       void initStrings();
       void onLangChanged() override;
 
+      /**
+       * Move the cursor to select another menu entry.
+       * @param `true` moves the cursor up; `false` moves it down.
+       */
       void moveArrow(bool direction);
 
       void pause();
       void play();
 
+      void draw(sf::RenderTexture &frame);
+
       int getCursorPosition(){
-	return curPosI;
+	      return curPosI;
       }
       
     private:
@@ -57,8 +59,6 @@ namespace OpMon{
       sf::Texture textures[2];
       sf::SoundBuffer sounds[3];
       int curPosI = 0;
-
-      bool continuer = true;
 
     };
   }
