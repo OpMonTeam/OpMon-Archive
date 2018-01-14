@@ -13,7 +13,7 @@ namespace OpMon{
       view() {
     }
 
-    GameStatus MainMenuCtrl::checkEvent(sf::Event& event){
+    GameStatus MainMenuCtrl::checkEvent(sf::Event const& event){
       if(event.type == sf::Event::KeyPressed) {
         switch (event.key.code){
           case sf::Keyboard::Return:

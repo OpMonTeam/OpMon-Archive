@@ -7,6 +7,9 @@
 namespace OpMon{
   namespace Model{
     namespace Data{
+
+			Player player;
+
       namespace OpMons{
 	std::map<unsigned int, Species> listOp;
 	std::vector<std::map<int, std::string> > atkOpLvl;

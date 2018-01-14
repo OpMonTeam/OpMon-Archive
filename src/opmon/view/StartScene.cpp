@@ -4,7 +4,10 @@
 #include "../model/storage/Data.hpp"
 #include "../../utils/fs.hpp"
 #include "../../utils/OpString.hpp"
+#include "../../utils/StringKeys.hpp"
 #include "../../utils/defines.hpp"
+#include "../model/storage/Data.hpp"
+#include "../model/sysObjects/Player.hpp"
 #include "./Window.hpp"
 
 
@@ -17,6 +20,8 @@ namespace OpMon{
   namespace View{
 
     void StartScene::initStrings() {
+      auto kget = Utils::StringKeys::get;
+
       unsigned int it = 0;
       for(it = 0; it < 18; it++) {
         string actual;
@@ -25,7 +30,7 @@ namespace OpMon{
       }
       int ite = 1;
       it++;
-      strName = Utils::OpString("prof.dialog.start.19", Main::player.getNameP());
+      strName = Utils::OpString("prof.dialog.start.19", Model::Data::player.getNameP());
       txtP1[0] = strName.getString();
       for(it = it; it < 27; it++) {
         string actual;
@@ -40,7 +45,7 @@ namespace OpMon{
       textDescs[3].setString(kget("nameEntry.indic.2"));
     }
 
-    void StartScene::StartScene() {
+    StartScene::StartScene() {
       initStrings();
       Dialog::dialog.setPosition(0, 362);
       textDescs[1].setPosition(85, 25);
@@ -81,173 +86,91 @@ namespace OpMon{
       nameField.setPosition(120, 300);
 
       Dialog::arrDial.setPosition(437, 482);
+
+      bgMus.play();
+
+      //TODO: animations
+      //Animations::animWinOpen(Window::frame, bg);
+      //Animations::animWinClose(Window::frame, bg);
+
+      // Init loop 0
+      unsigned int sizeOfTxt = 18;
+      dialog = new Dialog(txtP0, sizeOfTxt);
     }
 
     void StartScene::onLangChanged(){
       initStrings();
     }
 
-    GameStatus StartScene::operator()(){
-      if(!launched){
-	init();
-      }
+    void StartScene::operator()(){
       switch(part){
-      case 0:
-	return loop0();
-      case 1:
-	return loop1();
-      case 2:
-	return loop2();
-	
+        case 0:
+          if(!dialog->isDialogOver()) {
+            dialog->updateTextAnimation();
+          } else {
+            // Init loop 1
+            delete(dialog);
+            dialog = nullptr;
+            window.setKeyRepeatEnabled(true);
+            part++;
+          }
+          break;
+
+        case 1:
+          return; // Everything is handled by Ctrl
+
+        case 2:
+          if(!dialog->isDialogOver()) {
+            dialog->updateTextAnimation();
+          } else{
+            part++;
+          }
+          break;
+
+        default:
+          ; // TODO: LOG
       }
-      nextPanel = new Overworld();
-      return GameStatus::NEXT;
     }
 
-    void initLoop0(){
-      sizeOfTxt = 18;
-      if(dialog != nullptr){
-	    delete(dialog);
-      }
-      dialog = new Dialog(txtP0, sizeOfTxt);
-      loop0init = true;
-      loop1init = false;
-      loop2init = false;
-    }
-
-    void initLoop1(){
-      wait = true;
-      Window::window.setKeyRepeatEnabled(true);
-      Window::frame.clear(sf::Color::White);
-      Window::frame.draw(bgName);
-      for(sf::Text desc : textDescs) {
-        desc.setColor(sf::Color::White);
-        desc.setFont(Model::Data::Ui::font);
-        Window::frame.draw(desc);
-      }
-      Window::frame.display();
-      Window::winRefresh();
-      loop0init = false;
-      loop1init = true;
-      loop2init = false;
-    }
-
-    void delLoop1(){
-      wait = false;
-      Window::window.setKeyRepeatEnable(false);
-      Data::player.setName(pName);
+    void StartScene::delLoop1(){
+      window.setKeyRepeatEnabled(false);
+      Model::Data::player.setName(pName);
       txtP1[0] = strName.getString();
-      loop0init = false;
-      loop1init = false;
-      loop2init = false;
       part++;
-    }
 
-    void initLoop2(){
-      int sizeOfTxt = 27 - 18;
-      if(dialog != nullptr){
-	delete(dialog);
-      }
+      // Init loop 2
+      unsigned int sizeOfTxt = 27 - 18;
       dialog = new Dialog(txtP1, sizeOfTxt);
-      loop0init = false;
-      loop1init = false;
-      loop2init = true;
-    }
-    
-    GameStatus StartScene::loop0() {
-      if(!loop0init){
-	initLoop0();
-      }
-
-      if(!dialog->isDialogOver()) {
-	Window::frame.clear(sf::Color::White);
-	Window::frame.draw(bg);
-	Window::frame.draw(prof);
-
-	dialog->updateTextAnimation();
-
-	dialog->draw(Window::frame);
-	Window::frame.display();
-	Window::winRefresh();
-	
-      } else {
-	part++;
-      }
-
-      return GameStatus::CONTINUE;
-
     }
 
-    GameStatus StartScene::loop1() {
+    void StartScene::draw(sf::RenderTarget &frame){
+      switch(part){
+        case 0:
+        case 2:
+          if(!dialog->isDialogOver()){
+            frame.clear(sf::Color::White);
+            frame.draw(bg);
+            frame.draw(prof);
 
-      if(!loop1init){
-	initLoop1();
+            dialog->draw(frame);
+          }
+          break;
+
+        case 1:
+          frame.clear(sf::Color::White);
+          frame.draw(bgName);
+          for(sf::Text desc : textDescs){
+            desc.setColor(sf::Color::White);
+            desc.setFont(Model::Data::Ui::font);
+            frame.draw(desc);
+          }
+          nameField.setString(pName);
+          frame.draw(nameField);
+          break;
+
+        default:
+          ;// TODO: log something !
       }
-      
-      Window::frame.clear(sf::Color::White);
-        Window::frame.draw(bgName);
-        for(sf::Text desc : textDescs) {
-	  desc.setColor(sf::Color::White);
-	  desc.setFont(Model::Data::Ui::font);
-	  Window::frame.draw(desc);
-        }
-        nameField.setString(pName);
-        Window::frame.draw(nameField);
-        Window::frame.display();
-        Window::winRefresh();
-
-
-	return GameStatus::CONTINUE;
-    }
-
-    GameStatus StartScene::loop2() {
-
-      /*
-	switch (Main::mainframe.events.type) {
-
-	RETURN_ON_CLOSE_EVENT
-
-	case sf::Event::KeyPressed:
-	//if(Main::mainframe.events.key.code == sf::Keyboard::Space) {
-	//dialog->pass();
-	}
-	break;
-
-	default:
-	break;
-
-	}
-
-	RETURN_ON_ECHAP_EVENT
-      */
-      if(!dialog->isDialogOver()) {
-	Window::frame.clear(sf::Color::White);
-	Window::frame.draw(bg);
-	Window::frame.draw(prof);
-
-	dialog->updateTextAnimation();
-
-	dialog->draw(Window::frame);
-	Window::frame.display();
-	Window::winRefresh();
-	return GameStatus::CONTINUE;
-      } else {
-	nextPanel = new Overworld();
-	return GameStatus::NEXT;
-      }
-        
-    }
-
-    void StartScene::init() {
-      bgMus.play();
-      
-      //Animations::animWinOpen(Window::frame, bg);
-
-      //Animations::animWinClose(Window::frame, bg);
-
-      launched = true;
-
-
     }
 
     void StartScene::play(){
@@ -260,6 +183,7 @@ namespace OpMon{
 
     StartScene::~StartScene(){
       bgMus.stop();
+      delete(dialog);
     }
   }
 }
