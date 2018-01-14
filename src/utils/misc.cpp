@@ -1,10 +1,4 @@
 #include "misc.hpp"
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
-#include <unistd.h>
-#include <SFML/System.hpp>
-
 
 namespace Utils {
   namespace Misc {
