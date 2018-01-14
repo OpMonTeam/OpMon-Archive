@@ -394,8 +394,8 @@ namespace OpMon{
       }
 
       void TalkingCharaEvent::update(Player &player){
-        if(Main::mainframe.overworld.movementLock && talking && anim == -1){
-          switch(player.getppDir()){
+        if(Main::mainframe.overworld.movementLock && talking && !player.getPosition().isAnim()){
+          switch(player.getPosition().getDir()){
             case Side::TO_UP:
               sprite->setTexture(otherTextures[(int) Side::TO_DOWN]);
               break;
