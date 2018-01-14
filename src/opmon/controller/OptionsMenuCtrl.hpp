@@ -17,8 +17,8 @@ namespace OpMon{
       View::OptionsMenu view;
     public:
       OptionsMenuCtrl();
-      virtual GameStatus checkEvent(sf::Event& event);
-      virtual GameStatus update();
+      GameStatus checkEvent(sf::Event const& event) override;
+      GameStatus update() override;
     };
 
   }

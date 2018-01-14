@@ -16,7 +16,7 @@ namespace OpMon{
       View::MainMenu view;
     public:
       MainMenuCtrl();
-      GameStatus checkEvent(sf::Event& event) override;
+      GameStatus checkEvent(sf::Event const& event) override;
       GameStatus update() override;
     };
 
