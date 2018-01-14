@@ -21,7 +21,7 @@ namespace OpMon {
     namespace Model {
         class Position {
         public:
-            Position();
+            Position(bool event = false);
 
             Position(std::string mapId, sf::Vector2i position, Side dir = Side::TO_UP);
 

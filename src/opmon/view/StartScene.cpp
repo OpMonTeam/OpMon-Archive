@@ -5,6 +5,7 @@
 #include "../../utils/fs.hpp"
 #include "../../utils/OpString.hpp"
 #include "../../utils/defines.hpp"
+#include "./Window.hpp"
 
 
 #define SIZE_P0 18
@@ -165,7 +166,7 @@ namespace OpMon{
 
 	dialog->updateTextAnimation();
 
-	dialog->draw();
+	dialog->draw(Window::frame);
 	Window::frame.display();
 	Window::winRefresh();
 	
@@ -226,7 +227,7 @@ namespace OpMon{
 
 	dialog->updateTextAnimation();
 
-	dialog->draw();
+	dialog->draw(Window::frame);
 	Window::frame.display();
 	Window::winRefresh();
 	return GameStatus::CONTINUE;
