@@ -76,6 +76,14 @@ namespace OpMon {
               return opteam.isKo();
             }
 
+            int getPosX() {
+              return position.getPosition().x;
+            }
+
+            int getPosY() {
+              return position.getPosition().y;
+            }
+
             Position &getPosition() {
               return position;
             }
