@@ -25,6 +25,11 @@
 #define SIDE_ALL (SIDE_UP | SIDE_DOWN | SIDE_RIGHT | SIDE_LEFT)
 
 namespace OpMon{
+
+	namespace View {
+		class Overworld;
+	}
+
   namespace Model{
 
     namespace Events{

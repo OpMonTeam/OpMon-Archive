@@ -13,6 +13,9 @@
 
 namespace OpMon{
   namespace Model{
+
+    class Event;
+    
     /**
        Class defining a specific place
     */
