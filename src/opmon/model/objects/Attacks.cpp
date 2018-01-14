@@ -386,7 +386,7 @@ namespace OpMon{
       }
 
 
-    };
+    }
 
   }
 }

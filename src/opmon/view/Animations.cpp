@@ -2,6 +2,7 @@
 #include "../view/Window.hpp"
 #include "../../utils/defines.hpp"
 #include "../../utils/time.hpp"
+#include "../start/Core.hpp"
 
 UNS
 
@@ -28,9 +29,9 @@ namespace OpMon{
 
 	//Frame by frame
 	for (int i = 0; i < 6; i++) {
-	  if ((Utils::getElapsedMilliseconds() - ancientChrono) >= 33) {
+	  if ((Utils::Time::getElapsedMilliseconds() - ancientChrono) >= 33) {
             Main::mainframe.window.pollEvent(events);
-            ancientChrono = Utils::getElapsedMilliseconds();
+            ancientChrono = Utils::Time::getElapsedMilliseconds();
 	    Controller::checkQuit();
 	    if(Model::Data::endGame){
 	      return GameStatus::STOP;
@@ -42,7 +43,7 @@ namespace OpMon{
 		  window.display();
 		  OpMon::View::winRefresh();
 	  } else {
-            Utils::wait(200 - (Utils::getElapsedMilliseconds() - ancientChrono));
+            Utils::wait(200 - (Utils::Time::getElapsedMilliseconds() - ancientChrono));
             i--;
 	  }
 	}

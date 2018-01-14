@@ -81,6 +81,10 @@ namespace OpMon{
       
       static std::vector<sf::String> actualDialog;
 
+			/**
+			 * Events can call this method to start a new dialog with the player.
+			 */
+			void startDialog(std::vector<sf::String> const& dialogs);
       
       
     private:

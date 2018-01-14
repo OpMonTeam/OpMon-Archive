@@ -1,11 +1,6 @@
 #include "Elements.hpp"
-#include <cstdlib>
-#include "../start/Initializer.hpp"
-#include "../model/storage/InternalFiles.hpp"
-#include "Overworld.hpp"
-#include "../model/sysObjects/Events.hpp"
 #include "../../utils/defines.hpp"
-
+#include "../model/storage/Data.hpp"
 
 UNS
 
@@ -13,7 +8,7 @@ namespace OpMon{
   namespace View {
 
     MapLayer::MapLayer(sf::Vector2i size, const int tilesCodes[]){
-      sf::Texture &tileset = Initializer::tileset;
+      sf::Texture &tileset = Model::Data::World::tileset;
       tiles.setPrimitiveType(sf::Quads);
       tiles.resize(size.x * size.y * 4);
 
@@ -50,7 +45,7 @@ namespace OpMon{
     void MapLayer::draw(sf::RenderTarget &target, sf::RenderStates states) const{
       states.transform *= getTransform();
 
-      states.texture = &Initializer::tileset;
+      states.texture = &Model::Data::World::tileset;
 
       target.draw(tiles, states);
     }

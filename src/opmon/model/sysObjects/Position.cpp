@@ -1,7 +1,10 @@
-#include <tclDecls.h>
+
 #include "Position.hpp"
 #include "../../start/Core.hpp"
 #include "Events.hpp"
+#include "Map.hpp"
+#include "../storage/Data.hpp"
+
 
 namespace OpMon {
     namespace Model {
@@ -34,10 +37,10 @@ namespace OpMon {
             //startFrames = frames;
             anim = true;
 
-            if (debugMode || checkPass(direction)) {
+            if (debugMode || checkPass(dir)) {
               UNLOCK_TP
               movement = true;
-              switch (direction) {
+              switch (dir) {
                 case Side::TO_UP:
                   posY--;
                   break;
@@ -57,7 +60,7 @@ namespace OpMon {
 
         }
 
-        bool Position::checkPass(Side dir) {
+        bool Position::checkPass(Side direction) {
           bool colPass = false;
           std::vector<Event *> nextEvents;
           Map &map = Data::World::maps.at(mapId);
