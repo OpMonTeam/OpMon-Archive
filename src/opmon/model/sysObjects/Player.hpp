@@ -13,81 +13,103 @@ Contains the Player class.
 #include "../objects/item/Item.hpp"
 #include "OpTeam.hpp"
 
-namespace OpMon{
-  namespace Model{
+namespace OpMon {
+    namespace Model {
 
-    class OpMon;
+        class OpMon;
 
-    class Player {
-    public:
-      Player(sf::String const& name);
-      Player();
-      OpTeam *getOpTeam();
-      
-      void addItem(int itemID);
-      /**Returns the number of items of the item type given in paramter*/
-      int checkItem(int itemID);
-      /**Delete an item from the player inventory. Returns false if the item was not present.*/
-      bool deleteItem(int itemID);
-      sf::String getName() const {
-        return name;
-      }
-      const sf::String* getNameP() const {
-        return &name;
-      }
-      void setName(sf::String const &name) {
-        this->name = name;
-      }
-      int getTrainerID() const {
-        return trainerID;
-      }
-      void addOpMonToPC(OpMon *toAdd) {
-        pc.push_back(toAdd);
-      }
-      OpMon *getOp(int ID) const {
-        return opteam[ID];
-      }
-      OpMon *getPcOp(int ID) const {
-        return pc[ID];
-      }
-      /**Heals all the player's OpMons*/
-      void healOp();
-      /**Tries to add an OpMon to the team. Returns false if the team is already full*/
-      bool addOpToOpTeam(OpMon *toAdd);
+        class Player {
+        public:
+            Player(sf::String const &name);
 
-      void save();
-      Player(std::ifstream &in, std::string &name);
-      
-      bool isKo(){
-	return opteam.isKo();
-      }
+            Player();
 
-      Position& getPosition(){
-	return position;
-      }
+            OpTeam *getOpTeam();
 
-      std::string getMapId(){
-	return mapID;
-      }
+            void addItem(int itemID);
 
-      void setMapID(std::string mapID){
-	this->mapID = mapID;
-      }
+            /**Returns the number of items of the item type given in paramter*/
+            int checkItem(int itemID);
 
-      void tp(std::string mapToTp, sf::Vector2i position);
-            
-    private:
-      sf::String name;
-      const unsigned int trainerID;//Max : 8 digits in hexadecimal
-      int bag[ITEM_NUMBER];
-      std::vector<OpMon *> pc = std::vector<OpMon *>();
-      OpTeam opteam;
-      std::string mapID = "Player's room";//Player's room is the start room for the player
+            /**Delete an item from the player inventory. Returns false if the item was not present.*/
+            bool deleteItem(int itemID);
 
-      Position position;
-      
-    };
-  }
+            sf::String getName() const {
+              return name;
+            }
+
+            const sf::String *getNameP() const {
+              return &name;
+            }
+
+            void setName(sf::String const &name) {
+              this->name = name;
+            }
+
+            int getTrainerID() const {
+              return trainerID;
+            }
+
+            void addOpMonToPC(OpMon *toAdd) {
+              pc.push_back(toAdd);
+            }
+
+            OpMon *getOp(int ID) const {
+              return opteam[ID];
+            }
+
+            OpMon *getPcOp(int ID) const {
+              return pc[ID];
+            }
+
+            /**Heals all the player's OpMons*/
+            void healOp();
+
+            /**Tries to add an OpMon to the team. Returns false if the team is already full*/
+            bool addOpToOpTeam(OpMon *toAdd);
+
+            void save();
+
+            Player(std::ifstream &in, std::string &name);
+
+            bool isKo() {
+              return opteam.isKo();
+            }
+
+            int getPosX() {
+              return position.getPosition().x;
+            }
+
+            int getPosY() {
+              return position.getPosition().y;
+            }
+
+            Position &getPosition() {
+              return position;
+            }
+
+            std::string getMapId() {
+              return mapID;
+            }
+
+            void setMapID(std::string mapID) {
+              this->mapID = mapID;
+            }
+
+            void tp(std::string mapToTp, sf::Vector2i position);
+
+        private:
+            sf::String name;
+            const unsigned int trainerID;//Max : 8 digits in hexadecimal
+            int bag[ITEM_NUMBER];
+            std::vector<OpMon *> pc = std::vector<OpMon *>();
+            OpTeam opteam;
+            std::string mapID = "Player's room";//Player's room is the start room for the player
+
+            Position position;
+
+        };
+    }
 }
 
 #endif /* SRCCPP_JLPPC_REGIMYS_PLAYERCORE_PLAYER_HPP_ */
