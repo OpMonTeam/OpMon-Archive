@@ -15,17 +15,19 @@ Contains StartScene class
 #include "../start/Core.hpp"
 #include "../start/i18n/ATranslatable.hpp"
 #include "./Dialog.hpp"
-#include "./Interface.hpp"
 
 
 namespace OpMon{
   namespace View{
    
-    class StartScene : public Interface, I18n::ATranslatable {
+    class StartScene : public I18n::ATranslatable {
     public:
-      GameStatus operator()();
+      StartScene();
+      ~StartScene() override;
 
-      ~StartScene();
+      void operator()();
+      void draw(sf::RenderTarget &frame);
+
 
       void play();
       void pause();
@@ -33,22 +35,16 @@ namespace OpMon{
       void initStrings();
       void onLangChanged() override;
 
-      void init();
-      
-      GameStatus loop0();
-      GameStatus loop1();
-      GameStatus loop2();
-
       Dialog* getDialog(){
-	return actualDialog;
+	      return dialog;
       }
 
       int getPart(){
-	return part;
+	      return part;
       }
 
       sf::String& getpName(){
-	return pName;
+	      return pName;
       }
 
       void delLoop1();
@@ -64,9 +60,7 @@ namespace OpMon{
       sf::String txtP0[18];
       Utils::OpString strName;
 
-      int sizeOfTxt;
-
-      Dialog *actualDialog;
+      Dialog *dialog;
       
       sf::Texture textures[5];
   
@@ -77,13 +71,6 @@ namespace OpMon{
       sf::String txtEnCours[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
   
       sf::String pName;
-  
-      long ancientTick = 0;
-
-      bool loop0init = false;
-      bool loop1init = false;
-      bool loop2init = false;
-
     };
 
   }

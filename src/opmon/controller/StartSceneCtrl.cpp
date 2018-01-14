@@ -1,5 +1,7 @@
 
+#include <src/opmon/model/storage/Data.hpp>
 #include "StartSceneCtrl.hpp"
+#include "./OverworldCtrl.hpp"
 
 
 namespace OpMon{
@@ -8,7 +10,7 @@ namespace OpMon{
     StartSceneCtrl::StartSceneCtrl()
     :view(){}
 
-    GameStatus StartSceneCtrl::checkEvent(sf::Event& event){
+    GameStatus StartSceneCtrl::checkEvent(sf::Event const& event){
       auto &startscene = view;
 
       switch(event.type){
@@ -39,10 +41,21 @@ namespace OpMon{
             }
           }
       }
+
+      if (view.getPart() > 2){
+        _next_gs = new OverworldCtrl(Model::Data::player);
+        return GameStatus::NEXT;
+      }
+      return GameStatus::CONTINUE;
     }
 
     GameStatus StartSceneCtrl::update(){
-      return view();
+      view();
+      if (view.getPart() > 2){
+        _next_gs = new OverworldCtrl(Model::Data::player);
+        return GameStatus::NEXT;
+      }
+      return GameStatus::CONTINUE;
     }
 
   }

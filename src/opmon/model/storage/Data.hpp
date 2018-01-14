@@ -21,8 +21,12 @@ namespace OpMon{
 
 	class Species;
 	class Map;
+	class Player;
 
 	namespace Data{
+
+		extern Player player;
+
 	  namespace OpMons{
 		extern std::map<unsigned int, Species> listOp;
 		extern std::vector<std::map<int, std::string> > atkOpLvl;
