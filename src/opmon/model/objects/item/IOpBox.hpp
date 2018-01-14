@@ -31,4 +31,4 @@ namespace OpMon{
   }
 }
     
-#endif /* SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_IOpball_HPP_ */
+#endif /* SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_IOPBOX_HPP_ */
