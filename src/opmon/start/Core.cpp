@@ -9,6 +9,7 @@
 #include "../model/save/OptionsSave.hpp"
 #include "./Initializer.hpp"
 #include "../model/storage/Data.hpp"
+#include "../model/sysObjects/Map.hpp"
 
 
 using namespace OpMon::Model;

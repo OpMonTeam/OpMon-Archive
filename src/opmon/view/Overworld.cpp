@@ -70,10 +70,10 @@ namespace OpMon{
         frame.draw(Model::Data::Elements::elementsSprites[i]);
       }
     }
-    
+
     void Overworld::tp(std::string toTp, sf::Vector2i pos){
       Model::Data::player.tp(toTp, pos);
-      current = &Model::Data::World::maps.at(Model::Data::player.getMapId());
+      current = Model::Data::World::maps.at(Model::Data::player.getMapId());
       character.setPosition(8 SQUARES + pos.x SQUARES - 16, 8 SQUARES + pos.y SQUARES);
       if(musicPath != current->getBg()) {
 	setMusic(current->getBg());
@@ -84,9 +84,9 @@ namespace OpMon{
       delete(layer2);
       delete(layer3);
   
-      layer1 = new MapLayer(current->getDimentions(), current->getLayer1());
-      layer2 = new MapLayer(current->getDimentions(), current->getLayer2());
-      layer3 = new MapLayer(current->getDimentions(), current->getLayer3());
+      layer1 = new MapLayer(current->getDimensions(), current->getLayer1());
+      layer2 = new MapLayer(current->getDimensions(), current->getLayer2());
+      layer3 = new MapLayer(current->getDimensions(), current->getLayer3());
       tpCount = 0;
       
       for(auto itor = current->getEvents().begin(); itor != current->getEvents().end(); ++itor){
@@ -96,40 +96,39 @@ namespace OpMon{
       }
     }
 
-    void pause(){
-      music.pause();
+    void Overworld::pause(){
+      if (music)
+        music->pause();
     }
 
-    void play(){
-      music.play();
+    void Overworld::play(){
+      if (music)
+        music->play();
     }
 
-    Overworld(){
-      init();
-      
-    }
-    
-    void init(){
-      character.setTexture(Initializer::texturePP[(int) Side::TO_DOWN]);
+    Overworld::Overworld(){
+      character.setTexture(Model::Data::Ui::texturePP[(int) Side::TO_DOWN]);
       character.setPosition(8 SQUARES + 2 SQUARES - 16, 8 SQUARES + 2 SQUARES);
       camera.setCenter(this->getCharacter().getPosition());
       camera.setSize(sf::Vector2f(16 SQUARES, 16 SQUARES));
       
-      setMusic(actual->getBg());
-      setLayer1(MapLayer(actual->getLayer1(), Model::Data::World::tileset));
-      setLayer2(MapLayer(actual->getLayer2(), Model::Data::World::tileset));
-      setLayer2(MapLayer(actual->getLayer3(), Model::Data::World::tileset));
+      setMusic(current->getBg());
+      layer1 = new MapLayer(current->getDimensions(), current->getLayer1());
+      layer2 = new MapLayer(current->getDimensions(), current->getLayer2());
+      layer3 = new MapLayer(current->getDimensions(), current->getLayer3());
       character.setScale(2, 2);
       character.setOrigin(16, 16);
-      for(auto map = Initializer::maps.cbegin(); map!=Initializer::maps.cend(); ++map) {
-	for(Event *event : map->second.getEvents()) {
-	  Events::TalkingEvent *te = dynamic_cast<Events::TalkingEvent *>(event);
+      for(auto map = Model::Data::World::maps.cbegin(); map != Model::Data::World::maps.cend(); ++map) {
+
+    //This should be done in event constructor
+	for(Model::Event *event : map->second->getEvents()) {
+	  Model::Events::TalkingEvent *te = dynamic_cast<Model::Events::TalkingEvent *>(event);
 	  if(te != nullptr) {
-	    te->reloadKeys();
+	    te->onLangChanged();
 	  }
 	}
       }
-      posArrow = Window::frame.mapPixelToCoords(sf::Vector2i(512-75, 512-30));
+      posArrow = View::frame.mapPixelToCoords(sf::Vector2i(512-75, 512-30));
       Dialog::arrDial.setPosition(posArrow);
 
       if(music != nullptr){
@@ -139,8 +138,7 @@ namespace OpMon{
 	music->play();
       }
 
-    Window::frame.setView(camera);
-    launched = true;
+    View::frame.setView(camera);
   }
 
     Overworld::~Overworld(){
@@ -154,16 +152,13 @@ namespace OpMon{
     GameStatus Overworld::operator()(int frames){
       bool is_in_dialog = this->dialog && !this->dialog->isDialogOver();
 
-      if(!launched){
-	    init();
-      }
       fpsCounter++;
-      if(Utils::getElapsedMilliseconds() - oldTicksFps >= 1000) {
+      if(Utils::Time::getElapsedMilliseconds() - oldTicksFps >= 1000) {
         fps = "";
         fps << fpsCounter;
         fpsPrint.setString(fps);
         fpsCounter = 0;
-        oldTicksFps = Utils::getElapsedMilliseconds();
+        oldTicksFps = Utils::Time::getElapsedMilliseconds();
       }
       sf::Text debugText;
       /*
@@ -171,37 +166,37 @@ namespace OpMon{
       */
       if(debugMode){
 	//cout << "[FRAME Nｰ" << frames << "]" << endl;
-	cout << "Boucle : " << is_in_dialog ? "Normale" : "Dialog" << endl;
-	cout << "Tick: " << Utils::getElapsedMilliseconds() << "ms" << endl;
+	cout << "Boucle : " << (is_in_dialog ? "Normale" : "Dialog") << endl;
+	cout << "Tick: " << Utils::Time::getElapsedMilliseconds() << "ms" << endl;
 	cout << "PlayerPosition: " << Model::Data::player.getPosition().getPosition().x << " - " << Model::Data::player.getPosition().getPosition().y << endl;
 	cout << "PlayerPositionPx: " << character.getPosition().x << " - " << character.getPosition().y << endl;
-	cout << "Moving: " << Model::Data::player.getPosition().isMoving() ? "true" : "false" << endl;
-	cout << "Anim: " << Model::Data::player.getPosition().isAnim() ? "true" : "false" << endl;
-	cout << "PlayerDirection: " << (int) ppDir << endl;
+	cout << "Moving: " << (Model::Data::player.getPosition().isMoving() ? "true" : "false") << endl;
+	cout << "Anim: " << (Model::Data::player.getPosition().isAnim() ? "true" : "false") << endl;
+	cout << "PlayerDirection: " << (int) Model::Data::player.getPosition().getDir() << endl;
     
 	debugText.setString("Debug mode");
-	debugText.setPosition(Window::frame.mapPixelToCoords(sf::Vector2i(0, 0)));
+	debugText.setPosition(View::frame.mapPixelToCoords(sf::Vector2i(0, 0)));
 	debugText.setFont(Model::Data::Ui::font);
 	debugText.setColor(sf::Color(127, 127, 127));
 	debugText.setCharacterSize(40);
-	fpsPrint.setPosition(Window::frame.mapPixelToCoords(sf::Vector2i(0, 50)));
+	fpsPrint.setPosition(View::frame.mapPixelToCoords(sf::Vector2i(0, 50)));
 	fpsPrint.setFont(Model::Data::Ui::font);
 	fpsPrint.setCharacterSize(48);
       }
-  
-      Window::frame.clear(sf::Color::Black);
+
+      View::frame.clear(sf::Color::Black);
       //Drawing the two first layers
       if((debugMode ? printlayer[0] : true)) {
-	Window::frame.draw(*layer1);
+        View::frame.draw(*layer1);
       }
       if((debugMode ? printlayer[1] : true)) {
-	Window::frame.draw(*layer2);
+        View::frame.draw(*layer2);
       }
       //Drawing events under the player
       for(auto itor = eventsSprites.begin(); itor != eventsSprites.end(); ++itor) {
 	if(itor->first->getPosition().y <= ppPosY) {
-	  itor->second.setTexture(itor->first->getTexture());
-	  Window::frame.draw(itor->second);
+	  itor->second.setTexture(*itor->first->getTexture());
+    View::frame.draw(itor->second);
 	}
       }
       //Sets the character's texture.
@@ -221,24 +216,24 @@ namespace OpMon{
 	character.setTexture(Model::Data::Ui::texturePP[(int) ppDir]);
       }
       //Drawing character
-      Window::frame.draw(character);
+      View::frame.draw(character);
       //Drawing the events above the player
       for(auto itor = eventsSprites.begin(); itor != eventsSprites.end(); ++itor) {
 	if(itor->first->getPosition().y > ppPosY) {
-	  itor->second.setTexture(itor->first->getTexture());
-	  Window::frame.draw(itor->second);
+	  itor->second.setTexture(*itor->first->getTexture());
+    View::frame.draw(itor->second);
 	}
       }
       //Drawing the third layer
       if((debugMode ? printlayer[2] : true)) {
-	Window::frame.draw(*layer3);
+        View::frame.draw(*layer3);
       }
       if(scrolling){
 	camera.setCenter(character.getPosition().x + 16, character.getPosition().y + 16);
       }
-      Window::frame.setView(Window::frame.getDefaultView());
-      Window::frame.setView(camera);
-      printElements();
+      View::frame.setView(View::frame.getDefaultView());
+      View::frame.setView(camera);
+      printElements(View::frame);
   
       if(is_in_dialog){
         this->dialog->updateTextAnimation();
@@ -266,14 +261,14 @@ namespace OpMon{
       }
 
       if(debugMode){
-	Window::frame.draw(debugText);
-	Window::frame.draws(fpsPrint);
+        View::frame.draw(debugText);
+        View::frame.draw(fpsPrint);
       }
 
       //Refresh to do in GameLoop
 
-      return endGame ? GameStatus::CONTINUE : GameStatus::STOP;
-  
+      //return endGame ? GameStatus::CONTINUE : GameStatus::STOP;
+      return GameStatus::CONTINUE;
     }
 
     /**
@@ -281,7 +276,7 @@ namespace OpMon{
      */
     void Overworld::startDialog(std::vector<sf::String> const& dialogs) {
       if (this->dialog){
-        if (!this->dialog.isDialogOver()){
+        if (!this->dialog->isDialogOver()){
           Utils::Log::oplog("WARNING: We create a new dialog ... but the last one isn't finished yet!", true);
         }
         delete(this->dialog);
