@@ -11,7 +11,7 @@
 namespace OpMon{
   namespace Controller{
     namespace PlayerCtrl{
-      void checkMove(Model::Player& player, sf::Event const& events, View::Overworld const& overworld);
+      void checkMove(Model::Player& player, sf::Event const& events, View::Overworld & overworld);
       void move(Model::Side direction, Model::Player& player);
     }
   }
