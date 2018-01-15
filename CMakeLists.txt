@@ -46,7 +46,7 @@ include_directories(${PROJECT_BINARY_DIR})
 # list all .cpp files in src/
 # .hpp are handled automatically.
 file(GLOB_RECURSE SOURCE_FILES
-        #src/*.[ch]pp
+        src/*.[ch]pp
 
         src/opmon/controller/*.[hc]pp
 
