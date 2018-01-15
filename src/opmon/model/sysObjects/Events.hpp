@@ -40,19 +40,21 @@ namespace OpMon{
     }
 
     /**
-       Defines a event
+       Defines an event
     */
     class Event {
     protected:
       std::vector<sf::Texture>& otherTextures;
-      sf::Sprite *sprite;
       //ExpectEnum->EventTrigger
+	 
+			sf::Sprite sprite;
+	    
       std::vector<sf::Texture>::iterator currentTexture;
       Events::EventTrigger eventTrigger;
-      sf::Vector2f position;
+      sf::Vector2f position;//Sprite's position
       bool passable;
       int sides;
-      sf::Vector2f mapPos;
+      Position mapPos;
     public:
       Event(std::vector<sf::Texture>& otherTextures, Events::EventTrigger eventTrigger, sf::Vector2f const& position, int sides, bool passable);
       virtual ~Event();
@@ -74,7 +76,7 @@ namespace OpMon{
         return position;
       }
 
-      sf::Vector2f getPositionMap() const {
+      Position getPositionMap() const {
 	return mapPos;
       }
 
@@ -161,10 +163,6 @@ namespace OpMon{
       class CharacterEvent : public virtual Event {
       protected:
 	MoveStyle moveStyle;
-  
-	Side charaDir = Side::TO_DOWN;
-	Side anim = Side::NO_MOVE;
-	Side moving = Side::NO_MOVE;
 
 	unsigned int predefinedCounter = 0;
 	int animsCounter = 0;
@@ -180,7 +178,8 @@ namespace OpMon{
 	virtual void update(Model::Player &player, View::Overworld& overworld);
 	virtual void action(Model::Player &player, View::Overworld& overworld) {};
 	void setPredefinedMove(std::vector<Side> movement);
-	void move(Side direction, Model::Player& player, View::Overworld& overworld);
+	OP_DEPRECATED void move(Side direction, Model::Player& player, View::Overworld& overworld);
+				void move(Side direction);
       };
 
 
