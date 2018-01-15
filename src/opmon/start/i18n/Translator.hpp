@@ -1,4 +1,9 @@
-
+/**
+  Translator.hpp
+  Author : BAKfr
+  File under licence GNU GPL-3.0
+  http://opmon-game.ga
+*/
 #pragma once
 
 #include <map>
