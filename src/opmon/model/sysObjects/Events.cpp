@@ -111,7 +111,7 @@ namespace OpMon{
 
       }
 
-//Actions
+      //Actions
 
       void TPEvent::action(Model::Player &player, View::Overworld& overworld){
         if(!justTP){
@@ -168,44 +168,44 @@ namespace OpMon{
         if(!mapPos.isAnim()){
           int randomMove;
           switch(moveStyle){
-            case MoveStyle::PREDEFINED:
-              predefinedCounter++;
-              if(predefinedCounter >= movements.size()){
-                predefinedCounter = 0;
-              }
-              move(movements[predefinedCounter], player, overworld);
-              break;
+	  case MoveStyle::PREDEFINED:
+	    predefinedCounter++;
+	    if(predefinedCounter >= movements.size()){
+	      predefinedCounter = 0;
+	    }
+	    move(movements[predefinedCounter], player, overworld);
+	    break;
 
-            case MoveStyle::NO_MOVE:
-              break;
+	  case MoveStyle::NO_MOVE:
+	    break;
 
-            case MoveStyle::RANDOM:
-              randomMove = Utils::Misc::randUI(5) - 1;
-              switch(randomMove){
-                case -1:
-                  move(Side::NO_MOVE, player, overworld);
-                  break;
-                case 0:
-                  move(Side::TO_UP, player, overworld);
-                  break;
-                case 1:
-                  move(Side::TO_DOWN, player, overworld);
-                  break;
-                case 2:
-                  move(Side::TO_LEFT, player, overworld);
-                  break;
-                case 3:
-                  move(Side::TO_RIGHT, player, overworld);
-                  break;
-                default:
-                  Utils::Log::oplog("[WARNING] - Random number out of bounds CharacterEvent::update");
-                  move(Side::NO_MOVE, player, overworld);
-              }
-              break;
+	  case MoveStyle::RANDOM:
+	    randomMove = Utils::Misc::randUI(5) - 1;
+	    switch(randomMove){
+	    case -1:
+	      move(Side::NO_MOVE, player, overworld);
+	      break;
+	    case 0:
+	      move(Side::TO_UP, player, overworld);
+	      break;
+	    case 1:
+	      move(Side::TO_DOWN, player, overworld);
+	      break;
+	    case 2:
+	      move(Side::TO_LEFT, player, overworld);
+	      break;
+	    case 3:
+	      move(Side::TO_RIGHT, player, overworld);
+	      break;
+	    default:
+	      Utils::Log::oplog("[WARNING] - Random number out of bounds CharacterEvent::update");
+	      move(Side::NO_MOVE, player, overworld);
+	    }
+	    break;
 
-            case MoveStyle::FOLLOWING:
-              //TODO
-              break;
+	  case MoveStyle::FOLLOWING:
+	    //TODO
+	    break;
           }
         }
         if(mapPos.isAnim() && !anims){
@@ -224,61 +224,61 @@ namespace OpMon{
         }
 
         switch(mapPos.getDir()){
-          case Side::TO_UP:
-            if(frames - startFrames >= 7){
-              position -= sf::Vector2f(0, -4);
-              mapPos.stopMove();
-            }else{
-              if(moving == Side::TO_UP){
-                position -= sf::Vector2f(0, -4);
-              }
-            }
-            break;
+	case Side::TO_UP:
+	  if(frames - startFrames >= 7){
+	    position -= sf::Vector2f(0, -4);
+	    mapPos.stopMove();
+	  }else{
+	    if(moving == Side::TO_UP){
+	      position -= sf::Vector2f(0, -4);
+	    }
+	  }
+	  break;
 
 
-          case Side::TO_DOWN:
-            if(frames - startFrames >= 7){
-              position -= sf::Vector2f(0, 4);
-              mapPos.stopMove();
-            }else{
-              position -= sf::Vector2f(0, 4);
-            }
-            break;
+	case Side::TO_DOWN:
+	  if(frames - startFrames >= 7){
+	    position -= sf::Vector2f(0, 4);
+	    mapPos.stopMove();
+	  }else{
+	    position -= sf::Vector2f(0, 4);
+	  }
+	  break;
 
 
-          case Side::TO_LEFT:
-            if(frames - startFrames >= 7){
-              position -= sf::Vector2f(-4, 0);
-              mapPos.stopMove();
-            }else{
-              position -= sf::Vector2f(-4, 0);
-            }
-            break;
+	case Side::TO_LEFT:
+	  if(frames - startFrames >= 7){
+	    position -= sf::Vector2f(-4, 0);
+	    mapPos.stopMove();
+	  }else{
+	    position -= sf::Vector2f(-4, 0);
+	  }
+	  break;
 
 
-          case Side::TO_RIGHT:
-            if(frames - startFrames >= 7){
-              position -= sf::Vector2f(4, 0);
-              mapPos.stopMove();
-            }else{
-              position -= sf::Vector2f(4, 0);
-            }
-            break;
+	case Side::TO_RIGHT:
+	  if(frames - startFrames >= 7){
+	    position -= sf::Vector2f(4, 0);
+	    mapPos.stopMove();
+	  }else{
+	    position -= sf::Vector2f(4, 0);
+	  }
+	  break;
 
-          case Side::STAY:
-            if(frames - startFrames >= 7){
-              mapPos.stopMove();
-            }
+	case Side::STAY:
+	  if(frames - startFrames >= 7){
+	    mapPos.stopMove();
+	  }
         };
 
 
       }
 	
 	
-	void CharacterEvent::move(Side direction){
-          startFrames = frames;
-          mapPos.move(direction);
-	}
+      void CharacterEvent::move(Side direction){
+	startFrames = frames;
+	mapPos.move(direction);
+      }
 	
       void CharacterEvent::move(Side direction, Model::Player &player, View::Overworld& overworld){
 	move(direction);
@@ -287,27 +287,26 @@ namespace OpMon{
       void TalkingCharaEvent::action(Model::Player &player, View::Overworld& overworld){
         mapPos.lockMove();
         talking = true;
-
       }
 
       void TalkingCharaEvent::update(Model::Player &player, View::Overworld& overworld){
 	
-        if(mapPos.isLocked() && talking && !player.getPosition().isAnim()){
-          switch(player.getPosition().getDir()){
-            case Side::TO_UP:
-              sprite->setTexture(otherTextures[(int) Side::TO_DOWN]);
-              break;
-            case Side::TO_DOWN:
-              sprite->setTexture(otherTextures[(int) Side::TO_UP]);
-              break;
-            case Side::TO_LEFT:
-              sprite->setTexture(otherTextures[(int) Side::TO_RIGHT]);
-              break;
-            case Side::TO_RIGHT:
-              sprite->setTexture(otherTextures[(int) Side::TO_LEFT]);
-              break;
+        if(mapPos.isLocked() && talking && !mapPos.isAnim()){
+          switch(mapPos.getDir()){
+	  case Side::TO_UP:
+	    sprite->setTexture(otherTextures[(int) Side::TO_DOWN]);
+	    break;
+	  case Side::TO_DOWN:
+	    sprite->setTexture(otherTextures[(int) Side::TO_UP]);
+	    break;
+	  case Side::TO_LEFT:
+	    sprite->setTexture(otherTextures[(int) Side::TO_RIGHT]);
+	    break;
+	  case Side::TO_RIGHT:
+	    sprite->setTexture(otherTextures[(int) Side::TO_LEFT]);
+	    break;
           }
-          overworld.movementLock = false;
+          mapPos.unlockMove();
           talking = false;
           overworld.startDialog(this->dialogs);
         }
