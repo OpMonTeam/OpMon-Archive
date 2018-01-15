@@ -37,7 +37,7 @@ namespace OpMon {
             //startFrames = frames;
             anim = true;
 
-            if (debugMode || checkPass(dir)) {
+            if ((!event && debugMode) || checkPass(dir)) {
               UNLOCK_TP
               movement = true;
               switch (dir) {
@@ -53,6 +53,11 @@ namespace OpMon {
                 case Side::TO_RIGHT:
                   posX++;
                   break;
+		      			case Side::NO_MOVE:
+									this->dir = Side::STAY;
+			    		  	break;
+								case Side::STAY:
+				  				break;
               }
               return;
             }
