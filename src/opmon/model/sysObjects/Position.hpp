@@ -23,7 +23,7 @@ namespace OpMon {
         public:
             Position(bool event = false);
 
-            Position(sf::Vector2i position, Side dir = Side::TO_UP);
+            Position(sf::Vector2i position, Side dir = Side::TO_UP, bool event = false);
 
             sf::Vector2i getPosition() {
               return sf::Vector2i(posX, posY);
