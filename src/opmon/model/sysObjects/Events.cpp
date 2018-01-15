@@ -25,7 +25,7 @@ namespace OpMon{
                  int sides, bool passable) :
       otherTextures(otherTextures), eventTrigger(eventTrigger),
       position(sf::Vector2f((position.x + 8) * 32, (position.y + 8) * 32)),
-      mapPos(position),
+      mapPos(position, true),
       passable(passable),
       sides(sides),
       currentTexture(otherTextures.begin()){
@@ -165,7 +165,7 @@ namespace OpMon{
 
       void CharacterEvent::update(Model::Player &player, View::Overworld& overworld){
         frames++;
-        if(anim == Side::NO_MOVE){
+        if(!mapPos.isAnim()){
           int randomMove;
           switch(moveStyle){
             case MoveStyle::PREDEFINED:
@@ -208,29 +208,26 @@ namespace OpMon{
               break;
           }
         }
-        if(anim >= 0 && !anims){
-          currentTexture = otherTextures.begin() + ((int) anim + 4);
+        if(mapPos.isAnim() && !anims){
+          currentTexture = otherTextures.begin() + ((int) mapPos.getDir() + 4);
           animsCounter++;
           anims = animsCounter > 8;
-        }else if(anim >= 0 && anims){
-          currentTexture = otherTextures.begin() + ((int) anim + 8);
+        }else if(mapPos.isAnim() && anims){
+          currentTexture = otherTextures.begin() + ((int) mapPos.getDir() + 8);
           animsCounter++;
           if(animsCounter > 16){
             anims = false;
             animsCounter = 0;
           }
-        }else if(anim < 0){
-          currentTexture = otherTextures.begin() + (int) charaDir;
+        }else if(!mapPos.isAnim()){
+          currentTexture = otherTextures.begin() + (int) mapPos.getDir();
         }
 
-        switch(anim){
+        switch(mapPos.getDir()){
           case Side::TO_UP:
             if(frames - startFrames >= 7){
-              if(moving == Side::TO_UP){
-                position -= sf::Vector2f(0, -4);//TODO : Find a solution about the coordinates problem (Map / Pixels)
-              }
-              anim = Side::NO_MOVE;
-              moving = Side::NO_MOVE;
+              position -= sf::Vector2f(0, -4);
+              mapPos.stopMove();
             }else{
               if(moving == Side::TO_UP){
                 position -= sf::Vector2f(0, -4);
@@ -241,162 +238,61 @@ namespace OpMon{
 
           case Side::TO_DOWN:
             if(frames - startFrames >= 7){
-              if(moving == Side::TO_DOWN){
-                position -= sf::Vector2f(0, 4);
-              }
-              anim = Side::NO_MOVE;
-              moving = Side::NO_MOVE;
+              position -= sf::Vector2f(0, 4);
+              mapPos.stopMove();
             }else{
-              if(moving == Side::TO_DOWN){
-                position -= sf::Vector2f(0, 4);
-              }
+              position -= sf::Vector2f(0, 4);
             }
             break;
 
 
           case Side::TO_LEFT:
             if(frames - startFrames >= 7){
-              if(moving == Side::TO_LEFT){
-                position -= sf::Vector2f(-4, 0);
-              }
-              anim = Side::NO_MOVE;
-              moving = Side::NO_MOVE;
+              position -= sf::Vector2f(-4, 0);
+              mapPos.stopMove();
             }else{
-              if(moving == Side::TO_LEFT){
-                position -= sf::Vector2f(-4, 0);
-              }
+              position -= sf::Vector2f(-4, 0);
             }
             break;
 
 
           case Side::TO_RIGHT:
             if(frames - startFrames >= 7){
-              if(moving == Side::TO_RIGHT){
-                position -= sf::Vector2f(4, 0);
-              }
-              anim = Side::NO_MOVE;
-              moving = Side::NO_MOVE;
+              position -= sf::Vector2f(4, 0);
+              mapPos.stopMove();
             }else{
-              if(moving == Side::TO_RIGHT){
-                position -= sf::Vector2f(4, 0);
-              }
+              position -= sf::Vector2f(4, 0);
             }
             break;
 
           case Side::STAY:
             if(frames - startFrames >= 7){
-              anim = Side::NO_MOVE;
+              mapPos.stopMove();
             }
         };
 
 
       }
-
+	
+	
+	void CharacterEvent::move(Side direction){
+          startFrames = frames;
+          mapPos.move(direction);
+	}
+	
       void CharacterEvent::move(Side direction, Model::Player &player, View::Overworld& overworld){
-        startFrames = frames;
-        if(anim == Side::NO_MOVE && direction == Side::NO_MOVE){
-          anim = Side::STAY;
-          return;
-        }
-        if(anim == Side::NO_MOVE && direction != Side::NO_MOVE){
-          anim = direction;
-          charaDir = direction;
-          switch(direction){
-            case Side::TO_UP:
-              if(position.y - 1 >= 0){
-                if(overworld.current->getPassArr()[(int) position.y - 1][(int) position.x] == 0){
-                  if(!(position.y - 1 == player.getPosY() && position.x == player.getPosX())){
-                    for(Event *nextEvent : overworld.current->getEvent(
-                      sf::Vector2i(position.x, position.y - 1))){
-                      if(!nextEvent->isPassable()){
-                        return;
-                      }
-                    }
-                    moving = Side::TO_UP;
-                    position.y--;
-                  }else if(moveStyle == MoveStyle::PREDEFINED){
-                    predefinedCounter--;
-                  }
-
-                }
-              }
-              break;
-            case Side::TO_DOWN:
-              if(position.y + 1 < overworld.current->getH()){
-                if(overworld.current->getPassArr()[(int) position.y + 1][(int) position.x] == 0){
-                  if(!(position.y + 1 == player.getPosY() && position.x == player.getPosX())){
-                    for(Event *nextEvent : overworld.current->getEvent(
-                      sf::Vector2i(position.x, position.y + 1))){
-                      if(!nextEvent->isPassable()){
-                        return;
-                      }
-                    }
-                    moving = Side::TO_DOWN;
-                    position.y++;
-                  }else if(moveStyle == MoveStyle::PREDEFINED){
-                    predefinedCounter--;
-                  }
-
-                }
-              }
-              break;
-
-            case Side::TO_RIGHT:
-              if(position.x + 1 < overworld.current->getW()){
-                if(overworld.current->getPassArr()[(int) position.y][(int) position.x + 1] == 0){
-                  if(!(position.x + 1 == player.getPosX() && position.y == player.getPosY())){
-                    for(Event *nextEvent : overworld.current->getEvent(
-                      sf::Vector2i(position.x + 1, position.y))){
-                      if(!nextEvent->isPassable()){
-                        return;
-                      }
-                    }
-                    moving = Side::TO_RIGHT;
-                    position.x++;
-                  }else if(moveStyle == MoveStyle::PREDEFINED){
-                    predefinedCounter--;
-                  }
-
-                }
-              }
-              break;
-
-            case Side::TO_LEFT:
-              if(position.x - 1 >= 0){
-                if(overworld.current->getPassArr()[(int) position.y][(int) position.x - 1] == 0){
-                  if(!(position.x - 1 == player.getPosX() && position.y == player.getPosY())){
-                    for(Event *nextEvent : overworld.current->getEvent(
-                      sf::Vector2i(position.x - 1, position.y))){
-                      if(!nextEvent->isPassable()){
-                        return;
-                      }
-                    }
-                    moving = Side::TO_LEFT;
-                    position.x--;
-                  }else if(moveStyle == MoveStyle::PREDEFINED){
-                    predefinedCounter--;
-                  }
-
-                }
-              }
-              break;
-            default:
-              break;
-          }
-
-
-        }
+	move(direction);
       }
 
       void TalkingCharaEvent::action(Model::Player &player, View::Overworld& overworld){
-        overworld.movementLock = true;
+        mapPos.lockMove();
         talking = true;
 
       }
 
       void TalkingCharaEvent::update(Model::Player &player, View::Overworld& overworld){
 	
-        if(overworld.movementLock && talking && !player.getPosition().isAnim()){
+        if(mapPos.isLocked() && talking && !player.getPosition().isAnim()){
           switch(player.getPosition().getDir()){
             case Side::TO_UP:
               sprite->setTexture(otherTextures[(int) Side::TO_DOWN]);
