@@ -27,7 +27,7 @@ namespace OpMon {
         //bool connected = false;
         /** Trainer names. No longer useful.*/
         //->Useless
-        string trainers[] = {"Brice", "Navet", "Mael", "Jlppc", "Red", "Blue", "Nikolai", "N", "Belladonis", "Aristote",
+        string trainers[] = {"Brice", "Navet", "Mael", "Cyrion", "Red", "Blue", "Nikolai", "N", "Belladonis", "Aristote",
                              "Giovanni", "Flora", "Silver", "Jules Cesar", "Brahim"};
 
         string version = OPMON_VERSION;
