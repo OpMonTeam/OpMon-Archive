@@ -1,7 +1,7 @@
 /**
   Data.hpp :
   Author : Jlppc
-  File under the license GPL-3.0
+  File under the GPL-3.0 license
   http://opmon-game.ga
   Contains the global variables used in the program.
 */
