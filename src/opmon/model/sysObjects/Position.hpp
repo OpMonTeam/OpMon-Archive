@@ -62,7 +62,7 @@ namespace OpMon {
 		moveLock = false;
 	    }
 		
-	    bool isLocked(){return locked;}
+	    bool isLocked(){return moveLock;}
 
             void tp(sf::Vector2i position);
 
