@@ -69,9 +69,8 @@ file(GLOB_RECURSE SOURCE_FILES
         #src/opmon/view/Animations.[hc]pp
         src/opmon/view/Dialog.[hc]pp
         src/opmon/view/Elements.[hc]pp
-        src/opmon/view/Interface.hpp
         src/opmon/view/MainMenu.[ch]pp
-        #src/opmon/view/MapLayer.hpp
+        src/opmon/view/MapLayer.hpp
         src/opmon/view/OptionsMenu.[ch]pp
         #src/opmon/view/Overworld.[ch]pp
         src/opmon/view/StartScene.[ch]pp
