@@ -3,7 +3,7 @@
   Author : Jlppc
   File under licence GNU GPL-3.0
   http://opmon-game.ga
-  Contains
+  Contains the main game loop
 */
 
 #pragma once

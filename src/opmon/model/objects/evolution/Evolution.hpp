@@ -1,9 +1,9 @@
 /*
-Evolution.hpp
-Author : Jlppc
-Fichier sous licence GPL-3.0
-http://opmon-game.ga
-Contient la définition da la classe Evolution
+    Evolution.hpp
+    Author : Jlppc
+    File under the GPL-3.0 license
+    http://opmon-game.ga
+    Contains the Evolution class definition
 */
 #ifndef EVOLUTION_HPP
 #define EVOLUTION_HPP
