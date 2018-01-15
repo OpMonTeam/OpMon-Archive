@@ -68,6 +68,9 @@ namespace OpMon{
       std::string getBg() const {
         return bg;
       }
+      const std::vector<std::string> &getAnimatedElements() const {
+        return animatedElements;
+      }
       void addEvent(Event *event) {
         events.push_back(event);
       }

@@ -72,7 +72,7 @@ file(GLOB_RECURSE SOURCE_FILES
         src/opmon/view/MainMenu.[ch]pp
         src/opmon/view/MapLayer.hpp
         src/opmon/view/OptionsMenu.[ch]pp
-        #src/opmon/view/Overworld.[ch]pp
+        src/opmon/view/Overworld.[ch]pp
         src/opmon/view/StartScene.[ch]pp
         #src/opmon/view/Window.[ch]pp
 
