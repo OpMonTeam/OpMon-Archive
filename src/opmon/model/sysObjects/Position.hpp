@@ -53,6 +53,14 @@ namespace OpMon {
             void stopAnim() {
               anim = false;
             }
+		
+	    void lockMove(){
+		moveLock = true;
+	    }
+		
+	    void unlockMove(){
+		moveLock = false;
+	    }
 
             void tp(sf::Vector2i position);
 
