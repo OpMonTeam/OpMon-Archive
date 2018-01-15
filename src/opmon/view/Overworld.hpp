@@ -92,8 +92,6 @@ namespace OpMon{
       sf::Music *music = nullptr;
       std::string musicPath = "";
 
-      std::map<std::vector<sf::Sprite>::iterator, sf::Sprite> eventsSprites;
-      
       MapLayer *layer1 = nullptr;
       MapLayer *layer2 = nullptr;
       MapLayer *layer3 = nullptr;
@@ -102,7 +100,6 @@ namespace OpMon{
       //Indicate the frame of the walking animation that must be used.
       bool anims = false;
 
-      std::string fps;
       int fpsCounter;
       sf::Text fpsPrint;
       int oldTicksFps;
