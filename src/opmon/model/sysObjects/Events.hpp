@@ -15,6 +15,7 @@
 #include "Player.hpp"
 #include "../objects/Enums.hpp"
 #include "../../../utils/OpString.hpp"
+#include "../../../utils/defines.hpp"
 #include "../../start/i18n/ATranslatable.hpp"
 
 
@@ -47,7 +48,7 @@ namespace OpMon{
       std::vector<sf::Texture>& otherTextures;
       //ExpectEnum->EventTrigger
 	 
-			sf::Sprite sprite;
+      sf::Sprite* sprite;
 	    
       std::vector<sf::Texture>::iterator currentTexture;
       Events::EventTrigger eventTrigger;

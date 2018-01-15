@@ -117,7 +117,7 @@ namespace OpMon{
         if(!justTP){
           overworld.tp(map, tpCoord);
           if(this->ppDir != -1){
-            player.setppDir(this->ppDir);
+            player.getPosition().setDir(this->ppDir);
           }
           justTP = true;
         }
@@ -229,9 +229,7 @@ namespace OpMon{
 	    position -= sf::Vector2f(0, -4);
 	    mapPos.stopMove();
 	  }else{
-	    if(moving == Side::TO_UP){
 	      position -= sf::Vector2f(0, -4);
-	    }
 	  }
 	  break;
 

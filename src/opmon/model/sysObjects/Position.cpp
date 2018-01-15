@@ -10,9 +10,12 @@ namespace OpMon {
     Position::Position(bool event = false)
       : mapId("Player's room"), posX(0), posY(0), dir(Side::TO_UP), anim(false), movement(false), event(event) {}
 
-    Position::Position(sf::Vector2i position, Side dir = Side::TO_UP, bool event = false)
+    Position::Position(sf::Vector2i position, bool event = false, Side dir = Side::TO_UP)
       : posX(position.x), posY(position.y), dir(dir), anim(false), movement(false), event(event) {}
 
+    Position::Position(sf::Vector2f position, bool event = false, Side dir = Side::TO_UP)
+      : posX(position.x), posT(position.y), dir(dirà, anim(false), movement(false), event(event) {}
+    
     void Position::tp(sf::Vector2i position) {
       if (!movement || !anim) {
 	moving = false;
