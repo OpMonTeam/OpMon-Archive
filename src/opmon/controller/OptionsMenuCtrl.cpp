@@ -1,3 +1,4 @@
+#include <src/opmon/view/Window.hpp>
 #include "OptionsMenuCtrl.hpp"
 
 #include "../view/Overworld.hpp"
@@ -90,7 +91,8 @@ namespace OpMon{
       }
 
     GameStatus OptionsMenuCtrl::update(){
-      return view();
+      view.draw(View::frame);
+			return GameStatus::CONTINUE;
     }
 
   }
