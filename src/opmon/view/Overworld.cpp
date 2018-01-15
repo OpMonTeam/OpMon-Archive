@@ -4,7 +4,7 @@
 
 #define FPS_TICKS 33
 #include <cmath>
-//#define ppPosY ((character.getPosition().y / CASE_SIZE) - 8)
+#define ppPosY ((  Model::Data::player.getPosY() / SQUARES_SIZE) - 8)
 //#define ppPosX (((character.getPosition().x - 16) / CASE_SIZE) - 8)
 #include "../model/sysObjects/Events.hpp"
 #include "Dialog.hpp"
@@ -12,6 +12,7 @@
 #include "../../utils/time.hpp"
 #include "../../utils/defines.hpp"
 #include "../model/storage/Data.hpp"
+#include "../start/Core.hpp"
 #include "Window.hpp"
 
 
@@ -62,11 +63,11 @@ namespace OpMon{
 
     void Overworld::printElements(sf::RenderTexture& frame){
       for(std::string const& i : current->getAnimatedElements()) {
-	Model::Data::Elements::elementsCount[i]++;
-        if(Model::Data::Elements::elementsCount[i] >= (int) Model::Data::Elements::animatedElements[i].size()) {
-	  Model::Data::Elements::elementsCount[i] = 0;
+	Model::Data::Elements::elementsCounter[i]++;
+        if(Model::Data::Elements::elementsCounter[i] >= (int) Model::Data::Elements::elementsTextures[i].size()) {
+	  Model::Data::Elements::elementsCounter[i] = 0;
         }
-        Model::Data::Elements::elementsSprites[i].setTexture(animatedElements[i][elementsCount[i]]);
+        Model::Data::Elements::elementsSprites[i].setTexture(Model::Data::Elements::elementsTextures[i][Model::Data::Elements::elementsCounter[i]]);
         frame.draw(Model::Data::Elements::elementsSprites[i]);
       }
     }
@@ -88,12 +89,14 @@ namespace OpMon{
       layer2 = new MapLayer(current->getDimensions(), current->getLayer2());
       layer3 = new MapLayer(current->getDimensions(), current->getLayer3());
       tpCount = 0;
-      
+
+      /*
       for(auto itor = current->getEvents().begin(); itor != current->getEvents().end(); ++itor){
-	eventsSprites.try_emplace(itor, new sf::Sprite());
-	eventsSprites[itor].setPosition();
-	eventsSprites[itor].setTexture(itor->getTexture());
+        eventsSprites.try_emplace(itor, new sf::Sprite());
+        eventsSprites[itor].setPosition();
+        eventsSprites[itor].setTexture(itor->getTexture());
       }
+       */
     }
 
     void Overworld::pause(){
@@ -154,9 +157,7 @@ namespace OpMon{
 
       fpsCounter++;
       if(Utils::Time::getElapsedMilliseconds() - oldTicksFps >= 1000) {
-        fps = "";
-        fps << fpsCounter;
-        fpsPrint.setString(fps);
+        fpsPrint.setString(std::to_string(fpsCounter));
         fpsCounter = 0;
         oldTicksFps = Utils::Time::getElapsedMilliseconds();
       }
@@ -193,12 +194,13 @@ namespace OpMon{
         View::frame.draw(*layer2);
       }
       //Drawing events under the player
-      for(auto itor = eventsSprites.begin(); itor != eventsSprites.end(); ++itor) {
-	if(itor->first->getPosition().y <= ppPosY) {
-	  itor->second.setTexture(*itor->first->getTexture());
-    View::frame.draw(itor->second);
-	}
+      for (auto &event: current->getEvents()){
+        auto sprite = event->getSprite();
+        if (sprite->getPosition().y <= ppPosY){
+          View::frame.draw(*sprite);
+        }
       }
+
       //Sets the character's texture.
       if(Model::Data::player.getPosition().isAnim() && !anims) {
 	character.setTexture(Model::Data::Ui::walkingPP[(int) Model::Data::player.getPosition().getDir()]);
@@ -206,24 +208,26 @@ namespace OpMon{
 	anims = animsCounter > 8;
 
       } else if(Model::Data::player.getPosition().isAnim() && anims) {
-	character.setTexture(Model::Data::Ui::walkingPP2[(int) anim]);
+	character.setTexture(Model::Data::Ui::walkingPP2[(int) animsCounter]);
 	animsCounter++;
 	if(animsCounter > 16) {
 	  anims = false;
 	  animsCounter = 0;
 	}
       } else if(Model::Data::player.getPosition().isAnim()) {
-	character.setTexture(Model::Data::Ui::texturePP[(int) ppDir]);
+        //TODO: Bug in code: this case never happens.
+	      //character.setTexture(Model::Data::Ui::texturePP[(int) ppDir]);
       }
       //Drawing character
       View::frame.draw(character);
       //Drawing the events above the player
-      for(auto itor = eventsSprites.begin(); itor != eventsSprites.end(); ++itor) {
-	if(itor->first->getPosition().y > ppPosY) {
-	  itor->second.setTexture(*itor->first->getTexture());
-    View::frame.draw(itor->second);
-	}
+      for (auto &event: current->getEvents()){
+        auto sprite = event->getSprite();
+        if (sprite->getPosition().y > ppPosY){
+          View::frame.draw(*sprite);
+        }
       }
+
       //Drawing the third layer
       if((debugMode ? printlayer[2] : true)) {
         View::frame.draw(*layer3);
