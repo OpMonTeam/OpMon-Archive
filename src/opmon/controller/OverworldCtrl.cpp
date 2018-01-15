@@ -77,7 +77,7 @@ namespace OpMon{
     }
 
     GameStatus OverworldCtrl::update(){
-      return view();
+      return view(0);
       /* TODO
       if(overworld->getCurrent() != nullptr){
         Controller::EventsCtrl::updateEvent(overworld->getCurrent->getEvents(), player);
