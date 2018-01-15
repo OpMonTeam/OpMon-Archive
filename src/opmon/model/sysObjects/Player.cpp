@@ -1,3 +1,4 @@
+#include <sstream>
 #include "Player.hpp"
 #include "../save/Save.hpp"
 #include "../../../utils/StringKeys.hpp"
