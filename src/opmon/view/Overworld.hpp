@@ -9,11 +9,12 @@
 #define OVERWORLD_HPP
 
 #include "Elements.hpp"
-#include "Interface.hpp"
 #include "Dialog.hpp"
 #include "../model/sysObjects/Player.hpp"
 #include "../model/sysObjects/Map.hpp"
 #include "../model/objects/Enums.hpp"
+#include "../start/GameStatus.hpp"
+
 
 namespace OpMon{
   namespace View{
@@ -38,9 +39,6 @@ namespace OpMon{
   
       GameStatus operator()(int frame);
 
-	  /**Undefined method because this must not be used*/
-      GameStatus operator()();
-      
       void tp(std::string toTp, sf::Vector2i pos);
       
       sf::Music* getMusic(){
