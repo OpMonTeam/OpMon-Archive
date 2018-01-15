@@ -23,7 +23,8 @@ namespace OpMon {
         public:
             Position(bool event = false);
 
-            Position(sf::Vector2i position, Side dir = Side::TO_UP, bool event = false);
+	  Position(sf::Vector2i position, bool event = false, Side dir = Side::TO_UP);
+	  Position(sf::Vector2f position, bool event = false, Side dir = Side::TO_UP);
 
             sf::Vector2i getPosition() {
               return sf::Vector2i(posX, posY);
@@ -33,6 +34,10 @@ namespace OpMon {
               return sf::Vector2i(posX SQUARES, posY SQUARES);
             }
 
+	  void setDir(Side dir){
+	    this->dir = dir;
+	  }
+	  
             Side getDir() {
               return dir;
             }
