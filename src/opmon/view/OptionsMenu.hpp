@@ -13,34 +13,27 @@ Contains OptionsMenu namespace
 #include <SFML/Audio.hpp>
 #include "Elements.hpp"
 #include "../start/i18n/ATranslatable.hpp"
-#include "Interface.hpp"
+
 
 namespace OpMon{
   namespace View{
 
     enum class OptionType{ALL, LANG, CREDITS};
     
-    class OptionsMenu : public Interface, I18n::ATranslatable {
+    class OptionsMenu : I18n::ATranslatable {
     public:
       OptionsMenu();
 
       void moveArrow(bool dir);
      
-      int optionsMenu();
-      void init();
-      ~OptionsMenu();
-
-      GameStatus operator()();
+      void draw(sf::RenderTarget &frame);
       
-      GameStatus loop();
-      GameStatus langLoop();
-      GameStatus creditsLoop();
+      void loop(sf::RenderTarget &frame);
+      void langLoop(sf::RenderTarget &frame);
+      void creditsLoop(sf::RenderTarget &frame);
       
       void initStrings();
 			void onLangChanged() override;
-      
-      void play();
-      void pause();
 
       OptionType getCurrentOption(){return currentOptions;}
       void setCurrentOption(OptionType newOpt){currentOptions = newOpt;}

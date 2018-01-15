@@ -1,6 +1,7 @@
 #include "OptionsMenu.hpp"
 #include "../model/save/OptionsSave.hpp"
 #include "../model/storage/Data.hpp"
+#include "../../utils/fs.hpp"
 
 UNS
 
@@ -8,6 +9,8 @@ namespace OpMon {
   namespace View {
 
     void OptionsMenu::initStrings(){
+      auto kget = Utils::StringKeys::get;
+
       langFr.setString("Français");
       langFr.setFont(Model::Data::Ui::font);
       langFr.setCharacterSize(FONT_SIZE_DEFAULT);
@@ -83,33 +86,19 @@ namespace OpMon {
       txtCre9.setCharacterSize(13);
     }
 
-    OptionsMenu::OptionsMenu(){
-      wait = true;
-      init();
-    }
-
     void OptionsMenu::onLangChanged(){
       initStrings();
     }
 
-    void OptionsMenu::init(){
+    OptionsMenu::OptionsMenu() : currentOptions(OptionType::ALL) {
 
-#ifdef _WIN32
-      textures2[0].loadFromFile("ressources\\backgrounds\\options.png");
-      textures2[1].loadFromFile("ressources\\sprites\\misc\\selectBar.png");
-      textures2[2].loadFromFile("ressources\\backgrounds\\lang.png");
-      textures2[3].loadFromFile(RESSOURCES_PATH + "sprites\\misc\\yes.png");
-      textures2[4].loadFromFile(RESSOURCES_PATH + "backgrounds\\credits.png");
-
-#else
-      textures2[0].loadFromFile(RESSOURCES_PATH + "backgrounds/options.png");
-      textures2[1].loadFromFile(RESSOURCES_PATH + "sprites/misc/selectBar.png");
-      textures2[2].loadFromFile(RESSOURCES_PATH + "backgrounds/lang.png");
-      textures2[3].loadFromFile(RESSOURCES_PATH + "sprites/misc/yes.png");
-      textures2[4].loadFromFile(RESSOURCES_PATH + "backgrounds/credits.png");
+      textures2[0].loadFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "backgrounds/options.png"));
+      textures2[1].loadFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "sprites/misc/selectBar.png"));
+      textures2[2].loadFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "backgrounds/lang.png"));
+      textures2[3].loadFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "sprites/misc/yes.png"));
+      textures2[4].loadFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "backgrounds/credits.png"));
 
 
-#endif // _WIN32
       bgOpt.setTexture(textures2[0]);
       rectSurb.setTexture(textures2[1]);
       bgLangues.setTexture(textures2[2]);
@@ -172,34 +161,23 @@ namespace OpMon {
         curSizeLang[i].y = 57 / rectSurb.getGlobalBounds().height;
         j += 69;
       }
-
-      lauched = true;
-
     }
 
-
-    ~OptionsMenu(){
-
-    }
-
-    GameStatus operator()(){
+    void OptionsMenu::draw(sf::RenderTarget &frame){
       switch(currentOptions){
-        case ALL:
-          return loop();
-          break;
-        case LANG:
-          return langLoop();
-          break;
-        case CREDITS:
-          return langCredits();
-          break;
+        case OptionType::ALL:
+          return loop(frame);
+        case OptionType::LANG:
+          return langLoop(frame);
+        case OptionType::CREDITS:
+          return creditsLoop(frame);
       }
     }
 
-    void moveArrow(bool move){
+    void OptionsMenu::moveArrow(bool move){
       Model::Data::Sounds::arrow.play();
       switch(currentOptions){
-        case ALL:
+        case OptionType::ALL:
           if(move){
             curPosOptI++;
           }else{
@@ -211,7 +189,7 @@ namespace OpMon {
             curPosOptI = 5;
           }
           break;
-        case LANG:
+        case OptionType::LANG:
           if(move){
             curPosLangI++;
           }else{
@@ -225,243 +203,54 @@ namespace OpMon {
       }
     }
 
-    GameStatus OptionsMenu::loop(){
+    void OptionsMenu::loop(sf::RenderTarget &frame){
+      frame.clear(sf::Color::White);
 
-      /*Main::mainframe.window.waitEvent(Main::mainframe.events);
-        switch(Main::mainframe.events.type) {
-        RETURN_ON_CLOSE_EVENT
-        case sf::Event::KeyPressed:
-        if(Main::mainframe.events.key.code == sf::Keyboard::Return) {
-        switch(curPosOptI) {
-        case 0:
-        return 0;
-        case 1:
-        if(OptionsSave::getParam("fullscreen").getValue() == "true") {
-        OptionsSave::addOrModifParam("fullscreen", "false");
-        } else {
-        OptionsSave::addOrModifParam("fullscreen", "true");
-        }
-
-        break;
-        case 2:
-        boucleLang();
-        break;
-        case 3:
-        Main::mainframe.mainmenu.bruitNope.play();//Non disponible
-        break;
-        case 4:
-        boucleCredits();
-        break;
-        }
-        }
-        break;
-
-        default:
-        break;
-        }
-
-        RETURN_ON_ECHAP_EVENT
-        if(isKeyPressed(sf::Keyboard::Return)) {
-
-        } else if(isKeyPressed(sf::Keyboard::Up)) {
-        Main::mainframe.mainmenu.bruitArr.play();
-        curPosOptI--;
-        if(curPosOptI >= 6) {
-        curPosOptI = 0;
-        } else if(curPosOptI < 0) {
-        curPosOptI = 5;
-        }
-        } else if(isKeyPressed(sf::Keyboard::Down)) {
-        Main::mainframe.mainmenu.bruitArr.play();
-        curPosOptI++;
-        if(curPosOptI >= 6) {
-        curPosOptI = 0;
-        } else if(curPosOptI < 0) {
-        curPosOptI = 5;
-        }
-        } else if(isKeyPressed(sf::Keyboard::BackSpace)) {
-        return 0;
-        }
-      */
-
-      Window::frame.frame.clear(sf::Color::White);
-
-      Window::frame.frame.draw(bgOpt);
-      Window::frame.frame.draw(txtOpt1);
-      Window::frame.frame.draw(txtOpt2);
-      Window::frame.frame.draw(txtOpt3);
-      Window::frame.frame.draw(txtOpt4);
-      Window::frame.frame.draw(txtOpt5);
-      Window::frame.frame.draw(txtRetour);
-      Window::frame.frame.draw(txtOptions);
-      if(OptionsSave::getParam("fullscreen").getValue() == "true"){
-        Window::frame.frame.draw(coche);
+      frame.draw(bgOpt);
+      frame.draw(txtOpt1);
+      frame.draw(txtOpt2);
+      frame.draw(txtOpt3);
+      frame.draw(txtOpt4);
+      frame.draw(txtOpt5);
+      frame.draw(txtRetour);
+      frame.draw(txtOptions);
+      if(Model::OptionsSave::getParam("fullscreen").getValue() == "true"){
+        frame.draw(coche);
       }
       rectSurb.setPosition(curPosOpt[curPosOptI]);
       rectSurb.setScale(curSizeOpt[curPosOptI]);
-      Window::frame.frame.draw(rectSurb);
-
-      Window::frame.frame.display();
-      Window::winRefresh();
-      return GameStatus::CONTINUE;
-
+      frame.draw(rectSurb);
     }
 
-    void play(){
+    void OptionsMenu::langLoop(sf::RenderTarget &frame){
+      frame.clear(sf::Color::White);
 
-    }
-
-    void pause(){
-
-    }
-
-    int OptionsMenu::langLoop(){
-      /*Window::frame.window.waitEvent(Window::frame.events);
-        switch(Window::frame.events.type) {
-        RETURN_ON_CLOSE_EVENT
-
-        case sf::Event::KeyPressed:
-        if(Window::frame.events.key.code == sf::Keyboard::Return) {
-        switch(curPosOptI) {//CLanguage choice
-        case 0://Back button
-        return 0;
-        case 1:
-        OptionsSave::modifyParam("lang", "eng");
-        #ifdef _WIN32
-        OpMon::initStringKeys("ressources\\keys\\english.rkeys");
-        #else
-        OpMon::initStringKeys(RESSOURCES_PATH + "keys/english.rkeys");
-        #endif
-        Window::frame.initAllStrings();
-        return 0;
-        break;
-        case 2:
-        OptionsSave::modifyParam("lang", "esp");
-        #ifdef _WIN32
-        OpMon::initStringKeys("ressources\\keys\\espanol.rkeys");
-        #else
-        OpMon::initStringKeys(RESSOURCES_PATH + "keys/espanol.rkeys");
-        #endif // _WIN32
-        Window::frame.initAllStrings();
-        return 0;
-        break;
-        case 3:
-        OptionsSave::modifyParam("lang", "fr");
-        #ifdef _WIN32
-        OpMon::initStringKeys("ressources\\keys\\francais.rkeys");
-        #else
-        OpMon::initStringKeys(RESSOURCES_PATH + "keys/francais.rkeys");
-        #endif
-        Window::frame.initAllStrings();
-        return 0;
-        break;
-        }
-        }
-        break;
-        default:
-        break;
-
-        }
-        RETURN_ON_ECHAP_EVENT
-        if(isKeyPressed(sf::Keyboard::Up)) {
-        Window::frame.mainmenu.bruitArr.play();
-        curPosOptI--;
-        if(curPosOptI >= 4) {
-        curPosOptI = 0;
-        } else if(curPosOptI < 0) {
-        curPosOptI = 3;
-        }
-        } else if(isKeyPressed(sf::Keyboard::Down)) {
-        Window::frame.mainmenu.bruitArr.play();
-        curPosOptI++;
-        if(curPosOptI >= 4) {
-        curPosOptI = 0;
-        } else if(curPosOptI < 0) {
-        curPosOptI = 3;
-        }
-        } else if(isKeyPressed(sf::Keyboard::BackSpace)) {
-        return 0;
-        }
-      */
-      Window::frame.frame.clear(sf::Color::White);
-
-      Window::frame.frame.draw(bgLangues);
-      Window::frame.frame.draw(langEng);
-      Window::frame.frame.draw(langEsp);
-      Window::frame.frame.draw(langFr);
-      Window::frame.frame.draw(txtRetour);
-      Window::frame.frame.draw(txtLang);
+      frame.draw(bgLangues);
+      frame.draw(langEng);
+      frame.draw(langEsp);
+      frame.draw(langFr);
+      frame.draw(txtRetour);
+      frame.draw(txtLang);
       rectSurb.setPosition(curPosOpt[curPosOptI]);
       rectSurb.setScale(curSizeLang[curPosOptI]);
-      Window::frame.frame.draw(rectSurb);
-
-      Window::frame.frame.display();
-      Window::winRefresh();
-
-      return 0;
+      frame.draw(rectSurb);
     }
 
-    int OptionsMenu::boucleCredits(){
-      /*        Window::frame.window.waitEvent(Window::frame.events);
-          switch(Window::frame.events.type) {
-                RETURN_ON_CLOSE_EVENT
+    void OptionsMenu::creditsLoop(sf::RenderTarget &frame){
+      frame.clear(sf::Color::White);
 
-          case sf::Event::KeyPressed:
-                if(Window::frame.events.key.code == sf::Keyboard::Return) {
-          switch(curPosOptI) {
-          case 0://Bouton Retour
-          Window::frame.initAllStrings();
-          return 0;
-
-          break;
-          }
-                }
-                break;
-          default:
-                break;
-
-          }
-          RETURN_ON_ECHAP_EVENT
-          if(isKeyPressed(sf::Keyboard::Up)) {
-                Window::frame.mainmenu.bruitArr.play();
-                curPosOptI--;
-                if(curPosOptI >= 4) {
-          curPosOptI = 0;
-                } else if(curPosOptI < 0) {
-          curPosOptI = 3;
-                }
-          } else if(isKeyPressed(sf::Keyboard::Down)) {
-                Window::frame.mainmenu.bruitArr.play();
-                curPosOptI++;
-                if(curPosOptI >= 4) {
-          curPosOptI = 0;
-                } else if(curPosOptI < 0) {
-          curPosOptI = 3;
-                }
-          } else if(isKeyPressed(sf::Keyboard::BackSpace)) {
-                return 0;
-          }
-      */
-      Window::frame.frame.clear(sf::Color::White);
-
-      Window::frame.frame.draw(bgCredits);
-      Window::frame.frame.draw(txtCre1);
-      Window::frame.frame.draw(txtCre2);
-      Window::frame.frame.draw(txtCre3);
-      Window::frame.frame.draw(txtCre4);
-      Window::frame.frame.draw(txtCre5);
-      Window::frame.frame.draw(txtCre6);
-      Window::frame.frame.draw(txtCre7);
-      Window::frame.frame.draw(txtCre8);
-      Window::frame.frame.draw(txtCre9);
-      Window::frame.frame.draw(txtRetour);
-      Window::frame.frame.draw(txtCred);
-
-      Window::frame.frame.display();
-      Window::winRefresh();
-
-
-      return GameStatus::CONTINUE;
+      frame.draw(bgCredits);
+      frame.draw(txtCre1);
+      frame.draw(txtCre2);
+      frame.draw(txtCre3);
+      frame.draw(txtCre4);
+      frame.draw(txtCre5);
+      frame.draw(txtCre6);
+      frame.draw(txtCre7);
+      frame.draw(txtCre8);
+      frame.draw(txtCre9);
+      frame.draw(txtRetour);
+      frame.draw(txtCred);
     }
 
   }
