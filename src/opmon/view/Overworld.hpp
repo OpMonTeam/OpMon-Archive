@@ -18,8 +18,10 @@
 namespace OpMon{
   namespace View{
 
-    class Overworld : public Interface{
+    class Overworld {
     public:
+
+			Overworld();
 
       sf::View& getCamera(){
 	return camera;
@@ -68,10 +70,6 @@ namespace OpMon{
 
       bool justTp = false;
 
-      bool isLaunched(){
-	return launched;
-      }
-
       virtual ~Overworld();
 
       virtual void play();
@@ -79,8 +77,6 @@ namespace OpMon{
 
       void setMusic(std::string const& path);
       
-      static std::vector<sf::String> actualDialog;
-
 			/**
 			 * Events can call this method to start a new dialog with the player.
 			 */
@@ -89,8 +85,8 @@ namespace OpMon{
       
     private:
 
-      void init();
-      
+      void printElements(sf::RenderTexture& frame);
+
       sf::View camera;
       sf::Sprite character;
       Model::Map* current = nullptr;

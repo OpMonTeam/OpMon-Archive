@@ -17,8 +17,6 @@ File contains usefull elements
 namespace OpMon{
   namespace View{
 
-    class Event;
-
     class MapLayer : public sf::Drawable, public sf::Transformable{
     private:
       virtual void draw(sf::RenderTarget &target, sf::RenderStates stats) const;

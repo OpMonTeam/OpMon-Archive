@@ -46,7 +46,7 @@ include_directories(${PROJECT_BINARY_DIR})
 # list all .cpp files in src/
 # .hpp are handled automatically.
 file(GLOB_RECURSE SOURCE_FILES
-        src/*.[ch]pp
+        #src/*.[ch]pp
 
         src/opmon/controller/*.[hc]pp
 
@@ -56,7 +56,7 @@ file(GLOB_RECURSE SOURCE_FILES
         src/opmon/model/sysObjects/Events.[hc]pp
         #src/opmon/model/sysObjects/Map.[hc]pp
         src/opmon/model/sysObjects/OpTeam.[hc]pp
-        #src/opmon/model/sysObjects/Player.[hc]pp
+        src/opmon/model/sysObjects/Player.[hc]pp
         src/opmon/model/sysObjects/Position.[hc]pp
 
         src/opmon/start/i18n/*.[ch]pp

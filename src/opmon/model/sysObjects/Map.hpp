@@ -50,6 +50,9 @@ namespace OpMon{
       int getW() const {
 	return w;
       }
+      sf::Vector2i getDimensions() const {
+        return sf::Vector2i(w, h);
+      }
       char **getPassArr() const {
 	return passArr;
       }
