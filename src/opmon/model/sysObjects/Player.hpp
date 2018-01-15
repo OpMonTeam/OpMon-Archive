@@ -88,7 +88,7 @@ namespace OpMon {
               return position;
             }
 
-            std::string getMapId() {
+            const std::string &getMapId() {
               return mapID;
             }
 
@@ -96,6 +96,11 @@ namespace OpMon {
               this->mapID = mapID;
             }
 
+          /**
+           * Teleport the player.
+           *
+           * NOTE: it will NOT move the Camera. You should call Overworld.tp() instead.
+           */
             void tp(std::string mapToTp, sf::Vector2i position);
 
         private:

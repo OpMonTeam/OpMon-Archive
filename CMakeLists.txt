@@ -53,11 +53,11 @@ file(GLOB_RECURSE SOURCE_FILES
         src/opmon/model/objects/*.[hc]pp
         src/opmon/model/save/*.[hc]pp
         src/opmon/model/storage/*.[hc]pp
-        #src/opmon/model/sysObjects/Events.[hc]pp
+        src/opmon/model/sysObjects/Events.[hc]pp
         #src/opmon/model/sysObjects/Map.[hc]pp
         src/opmon/model/sysObjects/OpTeam.[hc]pp
         #src/opmon/model/sysObjects/Player.[hc]pp
-        #src/opmon/model/sysObjects/Position.[hc]pp
+        src/opmon/model/sysObjects/Position.[hc]pp
 
         src/opmon/start/i18n/*.[ch]pp
         src/opmon/start/GameStatus.hpp
