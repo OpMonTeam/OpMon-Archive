@@ -66,6 +66,8 @@ namespace OpMon{
 		extern std::vector<sf::Texture> charaFront;
 
 		extern std::vector<std::vector<sf::Texture> > doorsTextures;
+		extern sf::SoundBuffer doorSoundBuffer;
+		extern sf::SoundBuffer shopDoorSoundBuffer;
 		//std::string backgrounds[];
 		extern sf::Font font;
 	  }
