@@ -123,14 +123,6 @@ namespace OpMon{
       character.setOrigin(16, 16);
       for(auto map = Model::Data::World::maps.cbegin(); map != Model::Data::World::maps.cend(); ++map) {
 
-    //This should be done in event constructor
-	for(Model::Event *event : map->second->getEvents()) {
-	  Model::Events::TalkingEvent *te = dynamic_cast<Model::Events::TalkingEvent *>(event);
-	  if(te != nullptr) {
-	    te->onLangChanged();
-	  }
-	}
-      }
       posArrow = View::frame.mapPixelToCoords(sf::Vector2i(512-75, 512-30));
       Dialog::arrDial.setPosition(posArrow);
 
@@ -194,8 +186,8 @@ namespace OpMon{
         View::frame.draw(*layer2);
       }
       //Drawing events under the player
-      for (auto &event: current->getEvents()){
-        auto sprite = event->getSprite();
+      for (Model::Event &event: current->getEvents()){
+	sf::Sprite* sprite = event->getSprite();
         if (sprite->getPosition().y <= ppPosY){
           View::frame.draw(*sprite);
         }
@@ -221,8 +213,8 @@ namespace OpMon{
       //Drawing character
       View::frame.draw(character);
       //Drawing the events above the player
-      for (auto &event: current->getEvents()){
-        auto sprite = event->getSprite();
+      for (Model::Event &event: current->getEvents()){
+	sf::Sprite* sprite = event->getSprite();
         if (sprite->getPosition().y > ppPosY){
           View::frame.draw(*sprite);
         }
@@ -271,7 +263,6 @@ namespace OpMon{
 
       //Refresh to do in GameLoop
 
-      //return endGame ? GameStatus::CONTINUE : GameStatus::STOP;
       return GameStatus::CONTINUE;
     }
 
