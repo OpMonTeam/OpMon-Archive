@@ -15,6 +15,9 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/Sprite.hpp>
+#include "../../../utils/defines.hpp"
+#include "../objects/Enums.hpp"
+
 
 namespace OpMon{
   namespace Model{
@@ -30,6 +33,7 @@ namespace OpMon{
 	  namespace OpMons{
 		extern std::map<unsigned int, Species> listOp;
 		extern std::vector<std::map<int, std::string> > atkOpLvl;
+	    OP_DEPRECATED extern std::vector<Stats> evs;
 	  }
 
 	  namespace World{
@@ -38,7 +42,7 @@ namespace OpMon{
 	  }
 
 	  namespace Elements{
-		extern std::map<std::string, sf::Vector2i> elementsPos;
+		extern std::map<std::string, sf::Vector2f> elementsPos;
 		extern std::map<std::string, int> elementsCounter;
 		extern std::map<std::string, std::vector<sf::Texture> > elementsTextures;
 		extern std::map<std::string, sf::Sprite> elementsSprites;

@@ -8,20 +8,21 @@ namespace OpMon{
   namespace Model{
     namespace Data{
 
-			Player player;
+      Player player;
 
       namespace OpMons{
 	std::map<unsigned int, Species> listOp;
 	std::vector<std::map<int, std::string> > atkOpLvl;
+	std::vector<Stats> evs;
       }
 
-			namespace World{
-				std::map<std::string, Map *> maps;
-				sf::Texture tileset;
-			}
+      namespace World{
+	std::map<std::string, Map *> maps;
+	sf::Texture tileset;
+      }
 
-			namespace Elements{
-	std::map<std::string, sf::Vector2i> elementsPos;
+      namespace Elements{
+	std::map<std::string, sf::Vector2f> elementsPos;
 	std::map<std::string, int> elementsCounter;
 	std::map<std::string, std::vector<sf::Texture> > elementsTextures;
 	std::map<std::string, sf::Sprite> elementsSprites;
@@ -41,13 +42,13 @@ namespace OpMon{
 	sf::Font font;
       }
       namespace Animations{
-				sf::Texture fen[6];
+	sf::Texture fen[6];
       }
 
       namespace Sounds{
-	    	sf::Sound nope;
-				sf::Sound arrow;
-				sf::SoundBuffer dialogPass;
+	sf::Sound nope;
+	sf::Sound arrow;
+	sf::SoundBuffer dialogPass;
       }
     }
   }
