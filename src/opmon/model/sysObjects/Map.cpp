@@ -19,7 +19,6 @@ namespace OpMon{
         elementsCount.push_back(0);
         elementsSprites.push_back(sf::Sprite());
         elementsSprites[i].setTexture(Data::Elements::elementsTextures[animatedElements[i]][0]);
-	//TODO : Check if Data::Elements::elemntsPos contains map coordinates or pixel coordinates
         elementsSprites[i].setPosition(Data::Elements::elementsPos[animatedElements[i]]);
       }
       this->w = w;

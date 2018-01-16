@@ -69,6 +69,8 @@ namespace OpMon {
 		
 	    bool isLocked(){return moveLock;}
 
+	  void setPosition(int x, int y);
+	  
             void tp(sf::Vector2i position);
 
             void move(Side dir);

@@ -24,6 +24,11 @@ namespace OpMon {
       posY = position.y;
     }
 
+    void Position::setPosition(int x, int y){
+      posX = x;
+      posY = y;
+    }
+     
 #define UNLOCK_TP  Events::justTP = false;
 
     void Position::move(Side dir) {
