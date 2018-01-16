@@ -547,7 +547,7 @@ namespace OpMon{
 
     //Route 14 loading
     auto route14Col = array_to_pointer((char*) Collisions::route14Col, 41, 74);
-    maps.try_emplace("Route 14", new Map(Maps::route14Layer1, Maps::route14Layer2, Maps::route14Layer3, 74, 41, route14Col, getPath(RESSOURCES_PATH + "audio/music/faubourgeuvi.ogg"));
+    maps.try_emplace("Route 14", new Map(Maps::route14Layer1, Maps::route14Layer2, Maps::route14Layer3, 74, 41, route14Col, getPath(RESSOURCES_PATH + "audio/music/faubourgeuvi.ogg")));
     delete[] route14Col;
 
     //MysteriouCity loading
