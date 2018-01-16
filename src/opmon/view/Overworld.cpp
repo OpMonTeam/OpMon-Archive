@@ -121,7 +121,6 @@ namespace OpMon{
       layer3 = new MapLayer(current->getDimensions(), current->getLayer3());
       character.setScale(2, 2);
       character.setOrigin(16, 16);
-      for(auto map = Model::Data::World::maps.cbegin(); map != Model::Data::World::maps.cend(); ++map) {
 
       posArrow = View::frame.mapPixelToCoords(sf::Vector2i(512-75, 512-30));
       Dialog::arrDial.setPosition(posArrow);
@@ -186,8 +185,8 @@ namespace OpMon{
         View::frame.draw(*layer2);
       }
       //Drawing events under the player
-      for (Model::Event &event: current->getEvents()){
-	sf::Sprite* sprite = event->getSprite();
+      for (Model::Event *event: current->getEvents()){
+	      const sf::Sprite *sprite = event->getSprite();
         if (sprite->getPosition().y <= ppPosY){
           View::frame.draw(*sprite);
         }
@@ -213,8 +212,8 @@ namespace OpMon{
       //Drawing character
       View::frame.draw(character);
       //Drawing the events above the player
-      for (Model::Event &event: current->getEvents()){
-	sf::Sprite* sprite = event->getSprite();
+      for (Model::Event *event: current->getEvents()){
+	      const sf::Sprite* sprite = event->getSprite();
         if (sprite->getPosition().y > ppPosY){
           View::frame.draw(*sprite);
         }
