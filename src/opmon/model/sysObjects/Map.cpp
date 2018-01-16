@@ -2,6 +2,7 @@
 #include "Map.hpp"
 #include "Events.hpp"
 #include "../../start/Core.hpp"
+#include "../storage/Data.hpp"
 
 namespace OpMon{
   namespace Model{
@@ -17,8 +18,9 @@ namespace OpMon{
       for(unsigned int i = 0; i < animatedElements.size(); i++) {
         elementsCount.push_back(0);
         elementsSprites.push_back(sf::Sprite());
-        elementsSprites[i].setTexture(animatedElements[i][0]);
-        elementsSprites[i].setPosition(elementsPos[i]);
+        elementsSprites[i].setTexture(Data::Elements::elementsTextures[animatedElements[i]][0]);
+	//TODO : Check if Data::Elements::elemntsPos contains map coordinates or pixel coordinates
+        elementsSprites[i].setPosition(Data::Elements::elementsPos[animatedElements[i]]);
       }
       this->w = w;
       this->h = h;
@@ -58,9 +60,6 @@ namespace OpMon{
       return toReturn;
     }
 
-    void Map::updateEvents(Player &player) {
-
-    }
 
   }
 }
