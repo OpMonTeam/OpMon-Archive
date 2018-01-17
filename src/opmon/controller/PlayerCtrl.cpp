@@ -44,8 +44,10 @@ namespace OpMon{
 
     void move(Model::Side direction, Model::Player& player, View::Overworld& overworld){
       player.getPosition().move(direction);
-      EventsCtrl::actionEvents(Model::Data::World::maps.at(player.getMapId())->getEvent(player.getPosition().getPositionPixel()), player, Model::Events::EventTrigger::GO_IN, overworld);
 
+			Model::Map *map = Model::Data::World::maps.at(player.getMapId());
+      auto eventList = map->getEvent(player.getPosition().getPositionPixel());
+      EventsCtrl::actionEvents(eventList, player, Model::Events::EventTrigger::GO_IN, overworld);
     }
   }
 }
