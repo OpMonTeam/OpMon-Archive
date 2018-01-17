@@ -27,7 +27,7 @@ namespace OpMon{
       /**
        * process a new SFML Input (keyboard, mouse, ...).
        */
-      virtual GameStatus checkEvent(sf::Event const& event) {return GameStatus::CONTINUE;}
+      virtual GameStatus checkEvent(sf::Event const&) {return GameStatus::CONTINUE;}
 
       /**
        * Update and draw the game.
