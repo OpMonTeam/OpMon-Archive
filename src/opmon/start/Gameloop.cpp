@@ -52,6 +52,7 @@ namespace OpMon{
           _gameScreens.push(ctrl->getNextGameScreen());
           break;
         case GameStatus::PREVIOUS:
+          delete(ctrl);
           _gameScreens.pop();
           _gameScreens.top()->resume();
         default:
