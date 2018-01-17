@@ -78,7 +78,7 @@ namespace OpMon{
 
       for(sf::Text &cellTxt : textDescs) {
         cellTxt.setCharacterSize(FONT_SIZE_DEFAULT);
-        cellTxt.setColor(sf::Color::Black);
+        cellTxt.setFillColor(sf::Color::Black);
         cellTxt.setFont(Model::Data::Ui::font);
       }
 
@@ -121,11 +121,13 @@ namespace OpMon{
             dialog->updateTextAnimation();
           } else{
             part++;
+            return GameStatus::NEXT;
           }
           break;
 
         default:
           ; // TODO: LOG
+          return GameStatus::CONTINUE;
       }
     }
 
@@ -157,7 +159,7 @@ namespace OpMon{
           frame.clear(sf::Color::White);
           frame.draw(bgName);
           for(sf::Text desc : textDescs){
-            desc.setColor(sf::Color::White);
+            desc.setFillColor(sf::Color::White);
             desc.setFont(Model::Data::Ui::font);
             frame.draw(desc);
           }
