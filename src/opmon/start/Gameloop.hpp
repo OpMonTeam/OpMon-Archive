@@ -18,6 +18,7 @@ namespace OpMon {
   class GameLoop {
     public:
         GameLoop();
+        ~GameLoop();
 
         GameStatus operator()();
 
