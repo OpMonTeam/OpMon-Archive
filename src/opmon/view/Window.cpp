@@ -46,7 +46,7 @@ namespace OpMon{
       textLoad.setString(Utils::StringKeys::get("load.txt"));
       textLoad.setCharacterSize(45);
       textLoad.setFont(Model::Data::Ui::font);
-      textLoad.setColor(sf::Color::White);
+      textLoad.setFillColor(sf::Color::White);
       textLoad.setPosition(30, 400);
       frame.draw(spriteLoad);
       frame.draw(textLoad);
@@ -105,12 +105,10 @@ namespace OpMon{
     }
 
     void winRefresh() {
-      sf::Texture txture = frame.getTexture();
-      sf::Sprite sprite;
-      sprite.setTexture(txture);
+      sf::Sprite sprite(frame.getTexture());
 
       if(fullScreen) {
-        float coef = window.getSize().y / ((float) sprite.getGlobalBounds().height);
+        float coef = window.getSize().y / (sprite.getGlobalBounds().height);
         sprite.setScale(coef, coef);
         sprite.setPosition(((window.getSize().x / 2) - (sprite.getGlobalBounds().width / 2)), 0);
       }
@@ -118,14 +116,6 @@ namespace OpMon{
       window.clear(sf::Color::Black);
       window.draw(sprite);
       window.display();
-      /*int ancientTick = 0;
-	while(window.isOpen()){
-	if(Utils::getElapsedMilliseconds() - ancientTick < FPS_TICKS){
-
-	}else{
-	Utils::wait(Utils::getElapsedMilliseconds() - ancientTick);
-	}
-	}*/
     }
 
 
