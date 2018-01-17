@@ -11,16 +11,6 @@ namespace OpMon{
       : layer1(layer1), layer2(layer2), layer3(layer3), bg(bg), animatedElements(animatedElements){
 
 
-      if(animatedElements.size() != elementsPos.size()) {
-        handleError("Error: Map() - elementsPos size is not equal to animatedElements.", true);
-      }
-
-      for(unsigned int i = 0; i < animatedElements.size(); i++) {
-        elementsCount.push_back(0);
-        elementsSprites.push_back(sf::Sprite());
-        elementsSprites[i].setTexture(Data::Elements::elementsTextures[animatedElements[i]][0]);
-        elementsSprites[i].setPosition(Data::Elements::elementsPos[animatedElements[i]]);
-      }
       this->w = w;
       this->h = h;
 
