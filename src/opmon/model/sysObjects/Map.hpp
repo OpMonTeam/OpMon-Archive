@@ -71,7 +71,7 @@ namespace OpMon{
       void addEvent(Event *event) {
         events.push_back(event);
       }
-      std::vector<Event *>& getEvent(sf::Vector2i position) const;
+      std::vector<Event *> getEvent(sf::Vector2i position) const;
       std::vector<Event *>& getEvents() {
         return events;
       };
