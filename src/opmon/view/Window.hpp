@@ -17,7 +17,8 @@ namespace OpMon{
     extern sf::RenderWindow window;
     extern sf::RenderTexture frame;
     extern bool init;
-    extern bool fullscreen;
+    extern bool fullScreen;
+    void close();
     void open();
     void winRefresh();
   }

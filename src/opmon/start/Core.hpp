@@ -8,11 +8,7 @@
 #ifndef CORE_HPP
 #define CORE_HPP
 
-#include <iostream>
-#include <SFML/System.hpp>
-
 #include "GameStatus.hpp"
-
 
 namespace OpMon{
 

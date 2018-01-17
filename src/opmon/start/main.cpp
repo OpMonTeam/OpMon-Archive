@@ -69,6 +69,10 @@ namespace OpMon {
 
           auto gameloop = GameLoop();
           gameloop();
+
+	  oplog("Game finished");
+	  View::close();
+	  
           oplog("Ending the game normally.");
           return quit(0);
         }
