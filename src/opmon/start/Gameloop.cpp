@@ -10,6 +10,13 @@ namespace OpMon{
   GameLoop::GameLoop(){
   }
 
+  GameLoop::~GameLoop(){
+    while(!_gameScreens.empty()){
+      delete(_gameScreens.top());
+      _gameScreens.pop();
+    }
+  }
+
   GameStatus GameLoop::operator()(){
 
     // TODO: add first item outside of the Gameloop.
@@ -55,11 +62,6 @@ namespace OpMon{
       }
 
       View::winRefresh();
-    }
-
-    while(auto *ctrl = _gameScreens.top()){
-      delete(ctrl);
-      _gameScreens.pop();
     }
 
     return GameStatus::STOP;
