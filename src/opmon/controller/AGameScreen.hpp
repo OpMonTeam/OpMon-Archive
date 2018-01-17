@@ -19,7 +19,7 @@ namespace OpMon{
      * In addition, suspend() and resume() are called when respectively the controller loose the focus (another
      * controller is added on top) and regain the focus.
      */
-    class AGameScreen{
+    class AGameScreen {
     public:
 
       AGameScreen() : _next_gs(nullptr) {}
@@ -27,7 +27,7 @@ namespace OpMon{
       /**
        * process a new SFML Input (keyboard, mouse, ...).
        */
-      virtual GameStatus checkEvent(sf::Event const& event) = 0;
+      virtual GameStatus checkEvent(sf::Event const& event) {return GameStatus::CONTINUE;}
 
       /**
        * Update and draw the game.
