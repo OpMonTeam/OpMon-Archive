@@ -2,6 +2,8 @@
 
 #include "../model/storage/Data.hpp"
 #include "EventsCtrl.hpp"
+#include "PlayerCtrl.hpp"
+
 
 namespace OpMon{
   namespace Controller{
@@ -71,20 +73,16 @@ namespace OpMon{
     }
 
     GameStatus OverworldCtrl::checkEventsNoDialog(sf::Event const& event, Model::Player& player){
-      EventsCtrl::updateEvents(Model::Data::World::maps.at(player.getMapId())->getEvents(), player, view);
       EventsCtrl::checkAction(event, player, view);
+      Controller::PlayerCtrl::checkMove(player, event, view);
       return GameStatus::CONTINUE;
     }
 
     GameStatus OverworldCtrl::update(){
-      return view(0);
-      /* TODO
-      if(overworld->getCurrent() != nullptr){
-        Controller::EventsCtrl::updateEvent(overworld->getCurrent->getEvents(), player);
-      }
-      Controller::PlayerCtrl::checkMove(player, events);
-      */
+      EventsCtrl::updateEvents(Model::Data::World::maps.at(player.getMapId())->getEvents(), player, view);
 
+      //TODO: pass frame
+      return view(0);
     }
 
   }
