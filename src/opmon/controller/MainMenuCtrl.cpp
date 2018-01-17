@@ -49,5 +49,13 @@ namespace OpMon{
       return GameStatus::CONTINUE;
     }
 
+    void MainMenuCtrl::suspend(){
+      view.pause();
+    }
+
+    void MainMenuCtrl::resume(){
+      view.play();
+    }
+
   }
 }
