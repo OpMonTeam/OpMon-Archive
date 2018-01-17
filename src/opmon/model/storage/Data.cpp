@@ -13,7 +13,7 @@ namespace OpMon{
       namespace OpMons{
 	std::map<unsigned int, Species> listOp;
 	std::vector<std::map<int, std::string> > atkOpLvl;
-	std::vector<Stats> evs;
+	std::vector<std::vector<Stats> > evs;
       }
 
       namespace World{
