@@ -49,7 +49,7 @@ namespace OpMon{
     void initOpMons() {
       using namespace Evolutions;
       Data::OpMons::listOp.try_emplace(0, 136, 0, 1, 1, 29, 33, "MissingNo.", Type::NORMAL, Type::VOL, 0, 80, new E_Level(0, 80), std::vector<Stats>{Stats::ATK}, 0, 0, "ERROR : MISSINGNO.", 0, 1250000, 3, 0);
-      Data::OpMons::listOp.try_emplace(1, 49, 49, 65, 65, 45, 45, "Rosarin", Type::PLANTE, Type::NOTHING, 0, 16, new E_Level(2, 16), Model::Data::OpMons::evs[1], 0.7, 6.9, "L'amour de cet OpMon est incroyable, il ne demande que d'affection.", 64, 1059860, 45, 1);
+      /* Data::OpMons::listOp.try_emplace(1, 49, 49, 65, 65, 45, 45, "Rosarin", Type::PLANTE, Type::NOTHING, 0, 16, new E_Level(2, 16), Model::Data::OpMons::evs[1], 0.7, 6.9, "L'amour de cet OpMon est incroyable, il ne demande que d'affection.", 64, 1059860, 45, 1);
       Data::OpMons::listOp.try_emplace(2, 62, 63, 80, 80, 60, 60, "Toxiris",Type::PLANTE, Type::POISON, 0, 32, new E_Level(3, 32), Model::Data::OpMons::evs[2], 1, 13, "Cet OpMon est extrememnt puissant, il empoisonne de façon violente tout ce qui passe sur son chemin.", 141, 1059860, 45, 2);
       Data::OpMons::listOp.try_emplace(3, 82, 83, 100, 100, 80, 80, "Ninjasmine", Type::PLANTE, Type::POISON, 0, -1, nullptr, Model::Data::OpMons::evs[3], 2, 100, "Cet OpMon empoisonne ses adversaires rapidement grâce à ses 2 épées de poisons", 236, 1059860, 45, 3);
       Data::OpMons::listOp.try_emplace(4, 52, 43, 60, 50, 65, 39, "Titbraise", Type::FEU, Type::NOTHING, 0, 16, new E_Level(5, 16), Model::Data::OpMons::evs[4], 0.2, 2.3, "C'est l'un des plus petit monstres de ce monde, il est assez inssignifiant mais il fait très mal quand il le veut", 65, 1059860, 45, 4);
@@ -100,7 +100,9 @@ namespace OpMon{
 	Data::OpMons::listOp.try_emplace(49, 65, 60, 90, 75, 90, 70, "Aéromite", Type::INSECTE, Type::POISON,0, -1, new E_Nope(), Model::Data::OpMons::evs[49], 1.5, 12.5, "Les écailles qu'il sème ont le pouvoir de paralyser totalement un ennemi.", 138, 1000000, 75, 49);
 	Data::OpMons::listOp.try_emplace(50, 55, 25, 35, 45, 95, 10, "Taupiqueur", Type::SOL, Type::NOTHING, 0, 26, new E_Level(51, 26), Model::Data::OpMons::evs[50], 0.2, 0., "Son épiderme est très fin. S'il est exposé au soleil, son sang se réchauffe, ce qui l'affaiblit.", 81, 1000000, 255, 50);
 	Data::OpMons::listOp.try_emplace(51, 80, 50, 50, 70, 120, 35, "Triopikeur", Type::SOL, Type::NOTHING, 0, -1, new E_Nope(), Model::Data::OpMons::evs[51], 0.7, 33.3, "Terriblement puissants, ils peuvent creuser un tunnel dans tout type de sol et jusqu'à  100 km de profondeur.", 153, 1000000, 50, 51);
-      */Data::OpMons::listOp.try_emplace(52, 45, 35, 40, 40, 90, 40, "Chagnon", Type::NORMAL, Type::PSY, 0, 28, new E_Level(53, 28), Model::Data::OpMons::evs[52], 0.4, 4.2, "Les Chagnons adorent dormir près des arbres, en esperant qu'un Verpomme tombe pour pouvoir le manger", 69, 1000000, 10, 52);
+________________________________________________
+      Data::OpMons::listOp.try_emplace(52, 45, 35, 40, 40, 90, 40, "Chagnon", Type::NORMAL, Type::PSY, 0, 28, new E_Level(53, 28), Model::Data::OpMons::evs[52], 0.4, 4.2, "Les Chagnons adorent dormir près des arbres, en esperant qu'un Verpomme tombe pour pouvoir le manger", 69, 1000000, 10, 52);
+_______________________________________________
       /*Data::OpMons::listOp.try_emplace(53, 70, 60, 65, 65, 115, 65, "Persian", Type::NORMAL, Type::NOTHING, 0, -1, new E_Nope(), Model::Data::OpMons::evs[53], 1, 32, "Un Pokémon très snob. La taille du joyau qui orne son front alimente bien des débats parmi ses fans.", 148, 1000000, 90, 53);
 	Data::OpMons::listOp.try_emplace(54, 52, 48, 65, 50, 55, 50, "Psykokwak", Type::EAU, Type::NOTHING, 0, 33, new E_Level(55, 33), Model::Data::OpMons::evs[54], 0., 19.6, "Il ne se souvient pas qu'il a des pouvoirs psy. C'est pour cela qu'il a l'air si confus.", 80, 1000000, 190, 54);
 	Data::OpMons::listOp.try_emplace(55, 82, 78, 95, 80, 85, 80, "Akwakwak", Type::EAU, Type::NOTHING, 0, -1, new E_Nope(), Model::Data::OpMons::evs[55], 1.7, 76.6, "Il apparaà®t dans les étendues d'eau au crépuscule. Si son front brille, il se sert de sa télékinésie.", 174, 1000000, 75, 55);
@@ -120,9 +122,13 @@ namespace OpMon{
 	Data::OpMons::listOp.try_emplace(69, 75, 35, 70, 30, 40, 50, "Chétiflor", Type::PLANTE, Type::POISON, 0, 21, new E_Level(70, 21), Model::Data::OpMons::evs[69], 0.7, 4, "Son bourgeon ressemble à  un visage humain. Selon la légende, Chétiflor serait un type de mandragore légendaire.", 84, 1059860, 255, 69);
 	Data::OpMons::listOp.try_emplace(70, 90, 50, 85, 45, 55, 65, "Boustiflor", Type::PLANTE, Type::POISON, 0, -1, new E_Item(71, Item::getItem("Pierre Plante")), Model::Data::OpMons::evs[70], 1, 6.4, "Il crache de la Poudre Toxik pour immobiliser sa proie et il l'achève avec de l'Acide.", 151, 1059860, 120, 70);
 	Data::OpMons::listOp.try_emplace(71, 105, 65, 100, 70, 70, 80, "Empiflor", Type::PLANTE, Type::POISON, 0, -1, new E_Nope(), Model::Data::OpMons::evs[71], 1.7, 15.5, "Tout corps ingéré par ce Pokémon est systématiquement dissout en bouillie.", 191, 1059860, 45, 71);
-      */Data::OpMons::listOp.try_emplace(72, 40, 35, 50, 100, 70, 40, "Coassdethé", Type::EAU, Type::POISON, 0, 30, new E_Level(73, 30),Model::Data::OpMons::evs[72], 0.4, 4, "La tasse dans laquelle il vit est comme une carapace. Lorsqu'il s'énerve, celle ci dégage une vapeur brulante.", 105, 1250000, 190, 72);
+      
+___________________________________
+	
+Data::OpMons::listOp.try_emplace(72, 40, 35, 50, 100, 70, 40, "Coassdethé", Type::EAU, Type::POISON, 0, 30, new E_Level(73, 30),Model::Data::OpMons::evs[72], 0.4, 4, "La tasse dans laquelle il vit est comme une carapace. Lorsqu'il s'énerve, celle ci dégage une vapeur brulante.", 105, 1250000, 190, 72);
       Data::OpMons::listOp.try_emplace(73, 70, 65, 80, 120, 100, 80, "Ebouillanthé", Type::EAU, Type::FEU, 0, -1, new E_Nope(), Model::Data::OpMons::evs[73], 1.6, 55, "Il vit dans les sources d'eau chaude. Les tâches rouges sur son corps dégagent constamment de la vapeur brulante, son dos a le même effet qu'un grill.", 205, 1250000, 60, 73);
-      /*Data::OpMons::listOp.try_emplace(74, 80, 100, 30, 30, 20, 40, "Racaillou", Type::ROCHE, Type::SOL, 0, 25, new E_Level(75, 25),Model::Data::OpMons::evs[74], 0.4, 20, "Il vit dans les plaines ou les montagnes. On le confond souvent avec un petit caillou.", 73, 1059860, 255, 74);
+___________________________________
+ /*Data::OpMons::listOp.try_emplace(74, 80, 100, 30, 30, 20, 40, "Racaillou", Type::ROCHE, Type::SOL, 0, 25, new E_Level(75, 25),Model::Data::OpMons::evs[74], 0.4, 20, "Il vit dans les plaines ou les montagnes. On le confond souvent avec un petit caillou.", 73, 1059860, 255, 74);
 	Data::OpMons::listOp.try_emplace(75, 95, 115, 45, 45, 35, 55, "Gravalanch", Type::ROCHE, Type::SOL, 0, -1, new E_Trade(76), Model::Data::OpMons::evs[75], 1, 105, "D'une nature téméraire, il se moque de perdre des parties de son corps quand il dévale les pentes.", 134, 1059860, 120, 75);
 	Data::OpMons::listOp.try_emplace(76, 120, 130, 55, 65, 45, 80, "Grolem", Type::ROCHE, Type::SOL, 0, -1, new E_Nope(), Model::Data::OpMons::evs[76], 1.4, 300, "Aucun explosif ne pourrait entamer sa carapace de pierre. Il mue une fois par an.", 177, 1059860, 45, 76);
 	Data::OpMons::listOp.try_emplace(77, 85, 55, 65, 65, 90, 50, "Ponyta", Type::FEU, Type::NOTHING, 0, 40, new E_Level(48, 40),Model::Data::OpMons::evs[77], 1, 30, "    Chancelantes à  la naissance, ses pattes deviennent très vite sà»res et solides à  force de galoper.", 152, 1000000, 190, 77);
@@ -138,7 +144,9 @@ namespace OpMon{
 	Data::OpMons::listOp.try_emplace(87, 70, 80, 70, 95, 70, 90, "Lamantine", Type::EAU, Type::GLACE, 0, -1, new E_Nope(), {Stats.DEFSPE, Stats.DEFSPE}, 1.7, 120, "Son corps hydrodynamique glisse dans l'eau. Plus l'eau est froide plus il se sent à  l'aise.", 176, 1000000, 75, 87);
 	Data::OpMons::listOp.try_emplace(88, 80, 50, 40, 50, 25, 80, "Tadmorv", Type::POISON, Type::NOTHING, 0, 38, new E_Level(38, 89), {Stats.HP}, 0.9, 30, "Vivant dans des tas d'ordures, il se nourrit des déchets polluants rejetés par les usines.", 90, 1000000, 190, 88);
 	Data::OpMons::listOp.try_emplace(89, 105, 75, 65, 100, 50, 105, "Grotadmorv", Type::POISON, Type::NOTHING, 0, -1, new E_Nope(), {Stats.HP, Stats.ATK}, 1.2, 30, "Son corps exsude un fluide toxique qui tue instantanément les plantes et les arbres au contact.", 157, 1000000, 75, 89);
-      */Data::OpMons::listOp.try_emplace(90, 65, 100, 45, 25, 40, 30, "Tétaflore", Type::EAU, Type::PLANTE, 0, -1, new E_Nope(), std::vector<Stats>{Stats::DEF}, 0.3, 4, "Si vous le regardez dans les yeux, vous serez entourés de d'eau et de fleurs instantanement, le temps qu'ils vous tuent.", 97, 1250000, 190, 90);
+_______________________________
+      Data::OpMons::listOp.try_emplace(90, 65, 100, 45, 25, 40, 30, "Tétaflore", Type::EAU, Type::PLANTE, 0, -1, new E_Nope(), std::vector<Stats>{Stats::DEF}, 0.3, 4, "Si vous le regardez dans les yeux, vous serez entourés de d'eau et de fleurs instantanement, le temps qu'ils vous tuent.", 97, 1250000, 190, 90);
+_______________________________
 	/*Data::OpMons::listOp.try_emplace(91, 95, 180, 85, 45, 70, 50, "Crustabri", Type::EAU, Type::GLACE, 0, -1, new E_Nope(), {Stats.DEF, Stats.DEF}, 1.5, 132.5, "Sa coquille est extrÃªmement résistante. Rien ne peut la détruire, pas mÃªme une bombe. Il ne l'ouvre que lorsqu'il attaque.", 203, 1250000, 60, 91);
 	Data::OpMons::listOp.try_emplace(92, 35, 30, 100, 35, 80, 30, "Fantominus", Type::SPECTRE, Type::POISON, 0, 25,new E_Level(93, 25), {Stats.ATKSPE}, 1.3, 0.1, "Son corps composé de gaz toxique pourrait asphyxier n'importe qui en quelques secondes.", 95, 1059860, 190, 92);
 	Data::OpMons::listOp.try_emplace(93, 50, 45, 115, 55, 95, 45, "Spectrum", Type::SPECTRE, Type::POISON, 0, -1, new E_Trade(94), {Stats.ATK, Stats.ATK}, 1.6, 0.2, "Il vole l'énergie vitale de l'ennemi d'un coup de langue gazeuse. Il aime chasser dans l'ombre.", 126, 1059860, 90, 93);
@@ -154,7 +162,9 @@ namespace OpMon{
 	Data::OpMons::listOp.try_emplace(103, 95, 85, 125, 65, 55, 95, "Noadkoko", Type::PLANTE, Type::PSY, 0, -1, new E_Nope(), {Stats.DEF}, 2, 120, "Il stocke tellement d'énergie dans son corps qu'une simple secousse peut le faire exploser.", 215, 1250000, 45, 103);
 	Data::OpMons::listOp.try_emplace(104, 50, 95, 40, 50, 35, 50, "Osselait", Type::SOL, Type::NOTHING, 0, 28,new E_Level(105, 28), {Stats.DEF}, 0.4, 6.5, "Il porte constamment le crâne de sa mère. Personne ne sait à  quoi il ressemble sans ce crâne.", 87, 1000000, 190, 104);
 	Data::OpMons::listOp.try_emplace(105, 80, 110, 50, 80, 45, 60, "Ossatueur", Type::SOL, Type::NOTHING, 0, -1, new E_Nope(), {Stats.DEF, Stats.DEF}, 1, 45, "Il porte constamment le crâne de sa mère. Personne ne sait à  quoi il ressemble sans ce crâne.", 124, 1000000, 75, 105);
-	*/Data::OpMons::listOp.try_emplace(106, 120, 53, 35, 110, 87, 50, "Philynx", Type::COMBAT, Type::PLANTE, 0, -1, new E_Nope(), std::vector<Stats>{Stats::ATK, Stats::ATK}, 1.4, 49, "Ils sont toujours là, mais on ne les voient jamais, surtout la nuit, à moins d'avoir l'oeil de Lynx", 139, 1000000, 45, 106);
+__________________________________________
+	Data::OpMons::listOp.try_emplace(106, 120, 53, 35, 110, 87, 50, "Philynx", Type::COMBAT, Type::PLANTE, 0, -1, new E_Nope(), std::vector<Stats>{Stats::ATK, Stats::ATK}, 1.4, 49, "Ils sont toujours là, mais on ne les voient jamais, surtout la nuit, à moins d'avoir l'oeil de Lynx", 139, 1000000, 45, 106);
+__________________________________________
 	/*Data::OpMons::listOp.try_emplace(107, 105, 79, 35, 110, 76, 50, "Tygnon", Type::COMBAT, Type::NOTHING, 0, -1, new E_Nope(), {Stats.DEFSPE, Stats.DEFSPE}, 1.4, 50.2, "MÃªme le béton cède sous ses poings dévastateurs. Au combat, il s'essouffle au bout de 3 minutes.", 140, 1000000, 45, 107);
 	Data::OpMons::listOp.try_emplace(108, 55, 75, 60, 75, 30, 90, "Excelangue", Type::NORMAL, Type::NOTHING, 0, -1, new E_Nope(), {Stats.HP, Stats.HP}, 1.2, 65.5, "Chaque fois qu'Excelangue découvre quelque chose de nouveau, il le lèche. Sa mémoire est basée sur le goà»t et la texture des objets. Il n'aime pas les choses acides.", 127, 1000000, 45, 108);
 	Data::OpMons::listOp.try_emplace(109, 65, 95, 60, 45, 35, 40, "Smogo", Type::POISON, Type::NOTHING, 0, 35,new E_Level(110, 35), {Stats.DEF}, 0.6, 1, "Son corps très fin en forme de ballon est rempli d'un horrible gaz toxique. L'air est nauséabond à  proximité de ce Pokémon.", 114, 1000000, 190, 109);
@@ -467,9 +477,7 @@ namespace OpMon{
 	//Fauxbourg Euvi loading
 	townMusics.push_back(new sf::Music());
       std::vector<sf::Vector2f> feEPos;
-      if(!townMusics[0]->openFromFile("audio/music/faubourgeuvi.ogg")){
-	  handleError("Unable to open the music faubourgeuvi.ogg", false);
-      }
+      
 	Model::Data::Elements::elementsCounter["windturbine"] = 0;
 	Model::Data::Elements::elementsSprites["windturbine"] = sf::Sprite();
 	Model::Data::Elements::elementsPos["windturbine"] = sf::Vector2f(8 *32 + 25 *32 - 8, 3 *32 + 8);

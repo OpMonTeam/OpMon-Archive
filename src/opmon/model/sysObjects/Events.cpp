@@ -28,6 +28,7 @@ namespace OpMon{
       mapPos(position, true),
       passable(passable),
       sides(sides),
+      sprite(new sf::Sprite()),
       currentTexture(otherTextures.begin()){
 
     }
