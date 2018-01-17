@@ -17,6 +17,8 @@ namespace OpMon{
       StartSceneCtrl();
       GameStatus checkEvent(sf::Event const& event) override;
       GameStatus update() override;
+      void suspend() override;
+      void resume() override;
     };
 
   }

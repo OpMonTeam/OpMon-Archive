@@ -73,5 +73,13 @@ namespace OpMon{
       return toReturn;
     }
 
+    void StartSceneCtrl::suspend(){
+      view.pause();
+    }
+
+    void StartSceneCtrl::resume(){
+      view.play();
+    }
+
   }
 }
