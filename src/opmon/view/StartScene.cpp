@@ -45,7 +45,7 @@ namespace OpMon{
       textDescs[3].setString(kget("nameEntry.indic.2"));
     }
 
-    StartScene::StartScene() {
+    StartScene::StartScene() : dialog(nullptr) {
       initStrings();
       Dialog::dialog.setPosition(0, 362);
       textDescs[1].setPosition(85, 25);
