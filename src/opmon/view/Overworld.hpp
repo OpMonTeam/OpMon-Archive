@@ -22,7 +22,7 @@ namespace OpMon{
     class Overworld {
     public:
 
-			Overworld();
+      Overworld();
 
       sf::View& getCamera(){
 	return camera;
