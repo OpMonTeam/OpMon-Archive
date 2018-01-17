@@ -19,7 +19,7 @@ namespace OpMon{
       view() {}
 
     GameStatus OptionsMenuCtrl::checkEvent(sf::Event const& event){
-        auto menu = view;
+        auto &menu = view;
 	switch(event.type){
 	case sf::Event::KeyPressed:
 	  if(event.key.code == sf::Keyboard::Return){
