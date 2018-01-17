@@ -43,7 +43,7 @@ namespace OpMon{
 		  window.display();
 		  OpMon::View::winRefresh();
 	  } else {
-            Utils::wait(200 - (Utils::Time::getElapsedMilliseconds() - ancientChrono));
+            Utils::Time::wait(200 - (Utils::Time::getElapsedMilliseconds() - ancientChrono));
             i--;
 	  }
 	}
@@ -57,8 +57,8 @@ namespace OpMon{
 	sf::Sprite anim;
 	int ancientChrono = 0;
 	for (int i = 5; i >= 0; i--) {
-	  if ((Utils::getElapsedMilliseconds() - ancientChrono) >= 33) {
-            ancientChrono = Utils::getElapsedMilliseconds();
+	  if ((Utils::Time::getElapsedMilliseconds() - ancientChrono) >= 33) {
+            ancientChrono = Utils::Time::getElapsedMilliseconds();
 	    Controller::checkQuit();
 	    if(Model::Data::endGame){
 	      return GameStatus::STOP;
@@ -73,7 +73,7 @@ namespace OpMon{
             window.display();
 		  OpMon::View::winRefresh();
 	  } else {
-            Utils::wait(200 - (Utils::getElapsedMilliseconds() - ancientChrono));
+            Utils::Time::wait(200 - (Utils::Time::getElapsedMilliseconds() - ancientChrono));
             i++;
 	  }
 	}
