@@ -15,7 +15,7 @@
 
 namespace OpMon {
 
-    class GameLoop {
+  class GameLoop {
     public:
         GameLoop();
 

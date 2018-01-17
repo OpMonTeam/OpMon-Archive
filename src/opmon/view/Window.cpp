@@ -3,6 +3,10 @@
 #include "src/utils/fs.hpp"
 #include "src/utils/log.hpp"
 #include "../model/save/OptionsSave.hpp"
+#include "../start/Core.hpp"
+#include "../../utils/StringKeys.hpp"
+
+#include <SFML/Graphics/Text.hpp>
 
 
 using Utils::Log::oplog;
@@ -13,17 +17,17 @@ namespace OpMon{
     sf::RenderTexture frame;
     sf::RenderWindow window;
     bool init;
-    bool fullscreen;
+    bool fullScreen;
     void open(){
       init = true;
 
 
       sf::ContextSettings settings;
       //settings.antialiasingLevel = 8;
-      if(!OptionsSave::checkParam("fullscreen")) {
-        OptionsSave::addOrModifParam("fullscreen", "false");
+      if(!Model::OptionsSave::checkParam("fullscreen")) {
+        Model::OptionsSave::addOrModifParam("fullscreen", "false");
       }
-      if(OptionsSave::getParam("fullscreen").getValue() == "true") {
+      if(Model::OptionsSave::getParam("fullscreen").getValue() == "true") {
         fullScreen = true;
         window.create(sf::VideoMode::getFullscreenModes().at(0), "OpMon Lazuli", sf::Style::Fullscreen, settings);
       } else {
@@ -39,7 +43,7 @@ namespace OpMon{
       sf::Sprite spriteLoad;
       spriteLoad.setTexture(loadTexture);
       sf::Text textLoad;
-      textLoad.setString(StringKeys::get("load.txt"));
+      textLoad.setString(Utils::StringKeys::get("load.txt"));
       textLoad.setCharacterSize(45);
       textLoad.setFont(Model::Data::Ui::font);
       textLoad.setColor(sf::Color::White);
@@ -55,8 +59,6 @@ namespace OpMon{
 #endif
       window.setFramerateLimit(30);
       window.setKeyRepeatEnabled(false);
-      oplog("Loading variables");
-      initAll();
       frame.clear(sf::Color::White);
       //#define TEST
 #ifdef TEST
@@ -89,41 +91,16 @@ namespace OpMon{
       winRefresh();
 
       frame.clear(sf::Color::Black);
-      oplog("Launching the main menu.");
-      if(mainmenu.mainMenu() != -1) {
-        mainmenu.bruitPush.play();
-        mainmenu.bgMusTitle.stop();
-        if(startscene.startScene() != -1) {
-	  startscene.bgMus.stop();
-	  frame.draw(spriteLoad);
-	  frame.draw(textLoad);
-	  frame.display();
-	  winRefresh();
-	  if(Main::player.getName().isEmpty()){
-	    Main::player.setName("Céchine");
-	  }
-	  //Initializating opmons
-	  OpMon *op1 = new OpMon("", Model::Data::OpMons::listOp.at(4), 20, {new Attacks::Belier(), new Attacks::Charge(), nullptr, nullptr}, Nature::BOLD);
-	  OpMon *op2 = new OpMon("", Model::Data::OpMons::listOp.at(1), 22, {new Attacks::Belier(), new Attacks::Charge(), nullptr, nullptr}, Nature::NAIVE);
-	  Main::player.addOpToOpTeam(op1);
-	  Main::player.addOpToOpTeam(op2);
-	  if(overworld.overworld() != -1) {
-	    if(overworld.overworld() == 2) {
+      
 
+    }
 
-	    }
-	  }
-        }
-      } else {
-        mainmenu.bruitPush.play();
-      }
-
-      oplog("Deleting the variables...");
-      destroyAll();
+    void close(){
+      /*oplog("Deleting the variables...");
+	destroyAll();*/
       oplog("Closing the window...");
       window.close();
       init = false;
-      delete(windowRefresh);
       oplog("Window closed. No error detected. Goodbye.");
     }
 
