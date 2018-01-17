@@ -107,5 +107,5 @@ namespace OpMon{
     if (!Utils::StringKeys::initialize(keysFileS))
       handleError("Keys initialization error", true);
   }
-
+  
 }
