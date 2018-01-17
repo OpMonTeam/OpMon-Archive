@@ -31,9 +31,13 @@ namespace OpMon{
         free(passArr[i]);
       }
       free(passArr);
+      /*
+      NOTE: layers are (for now) static objects in Data
+
       delete(layer1);
       delete(layer2);
       delete(layer3);
+       */
       for(Event *event : events) {
         delete(event);
       }
