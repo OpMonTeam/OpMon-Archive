@@ -1,5 +1,6 @@
 
 #include <src/opmon/model/storage/Data.hpp>
+#include <src/opmon/view/Window.hpp>
 #include "StartSceneCtrl.hpp"
 #include "./OverworldCtrl.hpp"
 #include "AnimationCtrl.hpp"
@@ -53,6 +54,8 @@ namespace OpMon{
 
     GameStatus StartSceneCtrl::update(){
       GameStatus toReturn = view();
+      view.draw(View::frame);
+
       if(toReturn == GameStatus::NEXT){	
 	switch(view.getPart()){
 	case 1:
