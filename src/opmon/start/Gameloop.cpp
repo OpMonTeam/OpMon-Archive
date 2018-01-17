@@ -34,20 +34,17 @@ namespace OpMon{
 
 
       //process all pending SFML events
-      while(View::window.pollEvent(event)){
+      while(status == GameStatus::CONTINUE && View::window.pollEvent(event)){
         status = _checkQuit(event);
         if (status == GameStatus::STOP)
           break;
         status = ctrl->checkEvent(event);
-        if (status == GameStatus::STOP)
-          break;
       }
 
-      if (status == GameStatus::STOP)
-          break;
-
-      // frame update & draw
-      status = ctrl->update();
+      if (status == GameStatus::CONTINUE){
+        // frame update & draw
+        status = ctrl->update();
+      }
 
       switch(status){
         case GameStatus::NEXT:
