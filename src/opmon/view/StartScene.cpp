@@ -89,10 +89,6 @@ namespace OpMon{
 
       bgMus.play();
 
-      //TODO: animations
-      //Animations::animWinOpen(Window::frame, bg);
-      //Animations::animWinClose(Window::frame, bg);
-
       // Init loop 0
       unsigned int sizeOfTxt = 18;
       dialog = new Dialog(txtP0, sizeOfTxt);
@@ -102,7 +98,7 @@ namespace OpMon{
       initStrings();
     }
 
-    void StartScene::operator()(){
+    GameStatus StartScene::operator()(){
       switch(part){
         case 0:
           if(!dialog->isDialogOver()) {
@@ -113,11 +109,12 @@ namespace OpMon{
             dialog = nullptr;
             window.setKeyRepeatEnabled(true);
             part++;
+	    return GameStatus::NEXT;
           }
           break;
 
         case 1:
-          return; // Everything is handled by Ctrl
+          return GameStatus::CONTINUE; // Everything is handled by Ctrl
 
         case 2:
           if(!dialog->isDialogOver()) {

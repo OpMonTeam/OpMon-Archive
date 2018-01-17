@@ -2,7 +2,7 @@
 #include <src/opmon/model/storage/Data.hpp>
 #include "StartSceneCtrl.hpp"
 #include "./OverworldCtrl.hpp"
-
+#include "AnimationCtrl.hpp"
 
 namespace OpMon{
   namespace Controller{
@@ -24,6 +24,8 @@ namespace OpMon{
               pName = "Player";
             }
             startscene.delLoop1();
+	    _next_gs = new AnimationCtrl(new View::Animations::WinAnim(false));
+	    return GameStatus::NEXT;
           }
           break;
         case sf::Event::TextEntered:
@@ -50,12 +52,22 @@ namespace OpMon{
     }
 
     GameStatus StartSceneCtrl::update(){
-      view();
-      if (view.getPart() > 2){
-        _next_gs = new OverworldCtrl(Model::Data::player);
-        return GameStatus::NEXT;
+      GameStatus toReturn = view();
+      if(toReturn == GameStatus::NEXT){	
+	switch(view.getPart()){
+	case 1:
+	  _next_gs = new AnimationCtrl(new View::Animations::WinAnim(true));
+	  break;
+	case 3:
+	  _next_gs = new OverworldCtrl(Model::Data::player);
+	  break;
+	default:
+	  handleError("Internal error, unknown part in StartSceneCtrl::update", true);
+	  break;
+	}
       }
-      return GameStatus::CONTINUE;
+
+      return toReturn;
     }
 
   }
