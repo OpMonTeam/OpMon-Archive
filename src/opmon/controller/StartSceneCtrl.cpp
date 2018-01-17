@@ -25,24 +25,25 @@ namespace OpMon{
               pName = "Player";
             }
             startscene.delLoop1();
-	    _next_gs = new AnimationCtrl(new View::Animations::WinAnim(false));
-	    return GameStatus::NEXT;
+            _next_gs = new AnimationCtrl(new View::Animations::WinAnim(false));
+            return GameStatus::NEXT;
           }
           break;
         case sf::Event::TextEntered:
           if(startscene.getPart() == 1){
+            sf::String& pName = startscene.getpName();
             if(event.text.unicode == 8) { //Backspace
-              sf::String& pName = startscene.getpName();
               if(!pName.isEmpty()){
                 pName = sf::String::fromUtf32(pName.begin(), pName.end() - 1);
-              } else if(event.text.unicode == '\n' || event.text.unicode <= 32) {//Do nothing
-              } else {
-                if (pName.toUtf32().size() < 14) {//14 = Max name length
-                  pName += event.text.unicode;
-                }
+              }
+            } else if (event.text.unicode > 32){
+              if (pName.toUtf32().size() < 14) {//14 = Max name length
+                pName += event.text.unicode;
               }
             }
           }
+        default:
+          break;
       }
 
       if (view.getPart() > 2){
