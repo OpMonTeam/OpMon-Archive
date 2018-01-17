@@ -25,7 +25,7 @@ namespace OpMon{
       StartScene();
       ~StartScene() override;
 
-      void operator()();
+      GameStatus operator()();
       void draw(sf::RenderTarget &frame);
 
 

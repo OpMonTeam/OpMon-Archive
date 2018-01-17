@@ -2,6 +2,8 @@
 #include "../model/storage/Data.hpp"
 #include "src/utils/fs.hpp"
 #include "src/utils/log.hpp"
+#include "../model/save/OptionsSave.hpp"
+
 
 using Utils::Log::oplog;
 
@@ -10,6 +12,7 @@ namespace OpMon{
   namespace View{
     sf::RenderTexture frame;
     sf::RenderWindow window;
+    bool init;
     bool fullscreen;
     void open(){
       init = true;
