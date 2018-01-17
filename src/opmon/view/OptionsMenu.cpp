@@ -179,9 +179,9 @@ namespace OpMon {
       switch(currentOptions){
         case OptionType::ALL:
           if(move){
-            curPosOptI++;
-          }else{
             curPosOptI--;
+          }else{
+            curPosOptI++;
           }
           if(curPosOptI >= 6){
             curPosOptI = 0;
@@ -191,9 +191,9 @@ namespace OpMon {
           break;
         case OptionType::LANG:
           if(move){
-            curPosLangI++;
-          }else{
             curPosLangI--;
+          }else{
+            curPosLangI++;
           }
           if(curPosLangI >= 4){
             curPosLangI = 0;
