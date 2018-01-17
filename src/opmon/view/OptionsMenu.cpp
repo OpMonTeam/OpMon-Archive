@@ -231,8 +231,8 @@ namespace OpMon {
       frame.draw(langFr);
       frame.draw(txtRetour);
       frame.draw(txtLang);
-      rectSurb.setPosition(curPosOpt[curPosOptI]);
-      rectSurb.setScale(curSizeLang[curPosOptI]);
+      rectSurb.setPosition(curPosOpt[curPosLangI]);
+      rectSurb.setScale(curSizeLang[curPosLangI]);
       frame.draw(rectSurb);
     }
 
