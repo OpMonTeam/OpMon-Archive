@@ -109,7 +109,8 @@ namespace OpMon{
         music->play();
     }
 
-    Overworld::Overworld(){
+    Overworld::Overworld(const std::string &mapId){
+      current = Model::Data::World::maps[mapId];
       character.setTexture(Model::Data::Ui::texturePP[(int) Side::TO_DOWN]);
       character.setPosition(8 SQUARES + 2 SQUARES - 16, 8 SQUARES + 2 SQUARES);
       camera.setCenter(this->getCharacter().getPosition());

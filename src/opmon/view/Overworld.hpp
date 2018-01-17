@@ -22,7 +22,7 @@ namespace OpMon{
     class Overworld {
     public:
 
-      Overworld();
+      Overworld(const std::string &mapId);
 
       sf::View& getCamera(){
 	return camera;

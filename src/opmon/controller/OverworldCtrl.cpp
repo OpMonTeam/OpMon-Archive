@@ -7,7 +7,7 @@ namespace OpMon{
   namespace Controller{
 
     OverworldCtrl::OverworldCtrl(Model::Player &player)
-      :view(), player(player){}
+      :view("Player's home"), player(player){}
 
     GameStatus OverworldCtrl::checkEvent(sf::Event const& events){
       auto &overworld = view;
