@@ -16,8 +16,6 @@ OPMon is a Pokémon-inspired game project imagined in 2012 and started in septem
 
 ### Build
 
-## /!\Thank you for waiting until the end of the reorganization to build the game. Please plays an old version in Release
-
 The build system use *cmake*.
 
 ```sh
@@ -93,8 +91,6 @@ Si vous avez des questions à poser, n'hésitez pas à les demander dans la sect
 
 Vous pouvez voir les conrols du jeu OpMon [ici](http://opmon-game.ga/controls.html)
 ### Build
-
-## /!\ Merci d'atttendre avant de build, le code actuel ne compile pas. Veuillez jouer à une ancienne version dans Release
 
 Le système de build utilise *cmake*. Voici les commandes pour compiler le jeu et l'installer (sous Linux).
 
