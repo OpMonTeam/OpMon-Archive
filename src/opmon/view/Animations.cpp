@@ -13,15 +13,16 @@ namespace OpMon{
     namespace Animations {
 
       
-      Animation::Animation() {}
+      Animation::Animation(sf::Texture bgTxt)
+	: bgTxt(bgTxt) {}
 
-      WinAnim::WinAnim(bool order)
-	: order(order) {}
+      WinAnim::WinAnim(sf::Texture bgTxt, bool order)
+	: Animation(bgTxt), order(order) {}
       
       
-      GameStatus WinAnim::operator()(sf::Texture const &bg) {
+      GameStatus WinAnim::operator()() {
 
-	bgSpr.setTexture(bg);
+	bgSpr.setTexture(bgTxt);
 	anim.setTexture(Model::Data::Animations::fen[order ? counter : (frames - counter)]);
 	window.clear(sf::Color::Black);
 	window.draw(bgSpr);

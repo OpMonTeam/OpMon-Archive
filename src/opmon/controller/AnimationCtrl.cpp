@@ -12,7 +12,7 @@ namespace OpMon{
     }
     
     GameStatus AnimationCtrl::update(){
-      return (*view)(View::frame.getTexture());
+      return (*view)();
     }
   }
 }
