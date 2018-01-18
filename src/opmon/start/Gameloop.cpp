@@ -58,7 +58,8 @@ namespace OpMon{
         default:
           break;
       }
-
+      
+      View::frame.display();
       View::winRefresh();
     }
 
