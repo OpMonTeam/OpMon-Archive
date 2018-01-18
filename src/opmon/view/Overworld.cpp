@@ -84,7 +84,6 @@ namespace OpMon{
       delete(layer1);
       delete(layer2);
       delete(layer3);
-  
       layer1 = new MapLayer(current->getDimensions(), current->getLayer1());
       layer2 = new MapLayer(current->getDimensions(), current->getLayer2());
       layer3 = new MapLayer(current->getDimensions(), current->getLayer3());
