@@ -8,10 +8,11 @@ sf::Text Dialog::dialogText[3];
 sf::Sprite Dialog::dialog;
 
 
-Dialog::Dialog(const sf::String *text, unsigned int sizeOfText)
+Dialog::Dialog(const sf::String *text, size_t sizeOfText)
   : text(text), sizeOfTxt(sizeOfText) {
   dialogPass.setBuffer(OpMon::Model::Data::Sounds::dialogPass);
   dialogPass.setVolume(50);
+
 }
 
 void Dialog::pass() {
@@ -67,7 +68,7 @@ void Dialog::draw(sf::RenderTarget &frame) {
   sf::Vector2f posArrow = frame.mapPixelToCoords(sf::Vector2i(512-75, 512-30));
   arrDial.move(0, 1);
   if (arrDial.getPosition().y - posArrow.y > 5) {	
-    arrDial.move(0, -6);				
+    arrDial.move(0, -6);
   }
   frame.draw(arrDial);
 }
@@ -85,7 +86,7 @@ void Dialog::printText(sf::RenderTarget &frame, sf::String text[]) {
       dialogText[itor].setString(text[itor].toUtf32());
       dialogText[itor].setFont(OpMon::Model::Data::Ui::font);
       dialogText[itor].setCharacterSize(FONT_SIZE_DEFAULT);
-      dialogText[itor].setColor(sf::Color::Black);
+      dialogText[itor].setFillColor(sf::Color::Black);
       dialogText[itor].setPosition(frame.mapPixelToCoords(sf::Vector2i(25, frame.mapCoordsToPixel(dialog.getPosition()).y + minusPos)));
       minusPos+=32;
       

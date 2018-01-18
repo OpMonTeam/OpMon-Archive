@@ -110,6 +110,8 @@ namespace OpMon {
 	    }
 	  }
 	}
+        default:
+          break;
       }
       if (colPass) {
 	for (Event *nextEvent : nextEvents) {

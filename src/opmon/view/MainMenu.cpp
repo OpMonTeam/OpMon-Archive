@@ -46,7 +46,7 @@ namespace OpMon{
       initStrings();
 
       for (auto *text: {&playtx, &charge, &options, &exit}){
-        text->setColor(sf::Color::White);
+        text->setFillColor(sf::Color::White);
         text->setFont(Model::Data::Ui::font);
         text->setCharacterSize(FONT_SIZE_DEFAULT);
       }
