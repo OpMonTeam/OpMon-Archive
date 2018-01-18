@@ -4,6 +4,7 @@
 #include "StartSceneCtrl.hpp"
 #include "./OverworldCtrl.hpp"
 #include "AnimationCtrl.hpp"
+#include "../../utils/log.hpp"
 
 namespace OpMon{
   namespace Controller{
@@ -25,8 +26,9 @@ namespace OpMon{
               pName = "Player";
             }
             startscene.delLoop1();
-            _next_gs = new AnimationCtrl(new View::Animations::WinAnim(View::frame.getTexture(), false));
-            return GameStatus::NEXT;
+	    view.draw(View::frame);
+	    _next_gs = new AnimationCtrl(new View::Animations::WinAnim(View::frame.getTexture(), false));
+	    return GameStatus::NEXT;
           }
           break;
         case sf::Event::TextEntered:
@@ -55,7 +57,9 @@ namespace OpMon{
 
     GameStatus StartSceneCtrl::update(){
       GameStatus toReturn = view();
-      view.draw(View::frame);
+      if(toReturn == GameStatus::CONTINUE){
+	view.draw(View::frame);
+      }
 
       if(toReturn == GameStatus::NEXT){	
 	switch(view.getPart()){
