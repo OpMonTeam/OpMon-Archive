@@ -19,7 +19,7 @@ private:
     const sf::String *text;
 
     /** number of lines in `text`. */
-    unsigned int sizeOfTxt;
+    size_t sizeOfTxt;
 
     /** The 3 lines currently displayed. */
     sf::String txtEnCours[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
@@ -47,7 +47,7 @@ private:
 
 public:
   
-    Dialog(const sf::String *text, unsigned int size);
+    Dialog(const sf::String *text, size_t size);
 
     /**
      * Move forward in a dialog, in response to an event like a space key pressed.

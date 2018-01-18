@@ -35,15 +35,15 @@ namespace OpMon {
       txtOpt3.setString(kget("options.vol"));
       txtOpt3.setFont(Model::Data::Ui::font);
       txtOpt3.setCharacterSize(FONT_SIZE_DEFAULT);
-      txtOpt3.setColor(sf::Color::Red);
+      txtOpt3.setFillColor(sf::Color::Red);
       txtOpt4.setString(kget("options.control"));
       txtOpt4.setFont(Model::Data::Ui::font);
       txtOpt4.setCharacterSize(FONT_SIZE_DEFAULT);
-      txtOpt4.setColor(sf::Color::White);
+      txtOpt4.setFillColor(sf::Color::White);
       txtOpt5.setString(kget("options.credit"));
       txtOpt5.setFont(Model::Data::Ui::font);
       txtOpt5.setCharacterSize(FONT_SIZE_DEFAULT);
-      txtOpt5.setColor(sf::Color::White);
+      txtOpt5.setFillColor(sf::Color::White);
 
       txtLang.setString(kget("options.lang.title"));
       txtLang.setFont(Model::Data::Ui::font);
@@ -57,15 +57,15 @@ namespace OpMon {
       txtCre1.setString(kget("options.credit.1"));
       txtCre1.setFont(Model::Data::Ui::font);
       txtCre1.setCharacterSize(14);
-      txtCre1.setColor(sf::Color::Black);
+      txtCre1.setFillColor(sf::Color::Black);
       txtCre2.setString(kget("options.credit.2"));
       txtCre2.setFont(Model::Data::Ui::font);
       txtCre2.setCharacterSize(14);
-      txtCre2.setColor(sf::Color::Black);
+      txtCre2.setFillColor(sf::Color::Black);
       txtCre3.setString(kget("options.credit.3"));
       txtCre3.setFont(Model::Data::Ui::font);
       txtCre3.setCharacterSize(14);
-      txtCre3.setColor(sf::Color::Black);
+      txtCre3.setFillColor(sf::Color::Black);
       txtCre4.setString(kget("options.credit.4"));
       txtCre4.setFont(Model::Data::Ui::font);
       txtCre4.setCharacterSize(12);
@@ -200,6 +200,8 @@ namespace OpMon {
           }else if(curPosLangI < 0){
             curPosLangI = 3;
           }
+        default:
+          break;
       }
     }
 

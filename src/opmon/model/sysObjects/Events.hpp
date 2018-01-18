@@ -180,7 +180,7 @@ namespace OpMon{
       public:
 	CharacterEvent(std::string texturesKey, sf::Vector2f const& position, MoveStyle moveStyle = MoveStyle::NO_MOVE, EventTrigger eventTrigger = EventTrigger::PRESS, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int sides = SIDE_ALL);
 	virtual void update(Model::Player &player, View::Overworld& overworld);
-	virtual void action(Model::Player &player, View::Overworld& overworld) {};
+	virtual void action(Model::Player &, View::Overworld&) {};
 	void setPredefinedMove(std::vector<Side> movement);
 	OP_DEPRECATED void move(Side direction, Model::Player& player, View::Overworld& overworld);
 				void move(Side direction);

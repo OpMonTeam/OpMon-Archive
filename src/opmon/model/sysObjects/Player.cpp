@@ -32,8 +32,7 @@ namespace OpMon {
         }
 
         int Player::checkItem(int itemID) {
-          unsigned int itemID2 = itemID;
-          if (itemID2 > ITEM_NUMBER || itemID2 < 0) {
+          if (itemID > ITEM_NUMBER || itemID < 0) {
             handleError("Player : itemID invalide", true);
           }
           return bag[itemID];
