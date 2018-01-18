@@ -109,7 +109,7 @@ namespace OpMon{
             dialog = nullptr;
             window.setKeyRepeatEnabled(true);
             part++;
-	          return GameStatus::NEXT;
+	    return GameStatus::NEXT;
           }
           break;
 
