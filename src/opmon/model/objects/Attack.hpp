@@ -37,7 +37,7 @@ namespace OpMon{
       /**atk attack the def OpMon*/
       //->Final
       virtual int attack(OpMon &atk, OpMon &def);
-      virtual void siEchoue(OpMon &atk, OpMon &def) {}
+      virtual void siEchoue(OpMon&, OpMon&) {}
       virtual std::string getClassName() {
         return className;
       }

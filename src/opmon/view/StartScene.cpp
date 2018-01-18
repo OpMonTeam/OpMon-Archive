@@ -127,8 +127,8 @@ namespace OpMon{
 
         default:
           ; // TODO: LOG
-          return GameStatus::CONTINUE;
       }
+      return GameStatus::CONTINUE;
     }
 
     void StartScene::delLoop1(){
