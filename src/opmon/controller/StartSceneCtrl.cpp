@@ -25,7 +25,7 @@ namespace OpMon{
               pName = "Player";
             }
             startscene.delLoop1();
-            _next_gs = new AnimationCtrl(new View::Animations::WinAnim(false));
+            _next_gs = new AnimationCtrl(new View::Animations::WinAnim(View::frame.getTexture(), false));
             return GameStatus::NEXT;
           }
           break;
@@ -60,7 +60,7 @@ namespace OpMon{
       if(toReturn == GameStatus::NEXT){	
 	switch(view.getPart()){
 	case 1:
-	  _next_gs = new AnimationCtrl(new View::Animations::WinAnim(true));
+	  _next_gs = new AnimationCtrl(new View::Animations::WinAnim(View::frame.getTexture(), true));
 	  break;
 	case 3:
 	  _next_gs = new OverworldCtrl(Model::Data::player);

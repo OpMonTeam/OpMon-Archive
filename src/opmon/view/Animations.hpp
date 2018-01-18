@@ -25,9 +25,10 @@ namespace OpMon{
 	int counter = 0;
 	sf::Sprite anim;
 	sf::Sprite bgSpr;
+	sf::Texture bgTxt;
       public:
-	Animation();
-	virtual GameStatus operator()(sf::Texture const &bg) = 0;
+	Animation(sf::Texture bgTxt);
+	virtual GameStatus operator()() = 0;
       };
 
       class WinAnim : public Animation {
@@ -38,8 +39,8 @@ namespace OpMon{
 	*/
 	bool order;
       public:
-	WinAnim(bool order);
-	GameStatus operator()(sf::Texture const& bg);
+	WinAnim(sf::Texture bgTxt, bool order);
+	GameStatus operator()();
       };
 
       
