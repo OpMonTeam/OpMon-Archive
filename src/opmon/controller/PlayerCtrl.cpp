@@ -6,8 +6,7 @@
 namespace OpMon{
   namespace Controller{
     void PlayerCtrl::checkMove(Model::Player& player, sf::Event const& events, View::Overworld & overworld){
-      switch(events.type){
-      case sf::Event::KeyPressed:
+      if(events.type == sf::Event::KeyPressed){
 	if(events.key.code == sf::Keyboard::F5) {
 	  overworld.tp("Mom's room", sf::Vector2i(0, 1));
 	} else if(events.key.code == sf::Keyboard::F6) {
@@ -25,8 +24,8 @@ namespace OpMon{
 	} else if(events.key.code == sf::Keyboard::F8){
 	  overworld.tp("MysteriouCity", sf::Vector2i(12, 0));
 	}
-	break;
       }
+
       if(!overworld.justTp) {
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 	  player.getPosition().move(Model::Side::TO_UP);

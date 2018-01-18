@@ -58,6 +58,8 @@ namespace OpMon{
       case Side::TO_RIGHT:
 	camera.move(4, 0);
 	break;
+      default:
+        break;
       }
     }
 
@@ -169,7 +171,7 @@ namespace OpMon{
 	debugText.setString("Debug mode");
 	debugText.setPosition(View::frame.mapPixelToCoords(sf::Vector2i(0, 0)));
 	debugText.setFont(Model::Data::Ui::font);
-	debugText.setColor(sf::Color(127, 127, 127));
+	debugText.setFillColor(sf::Color(127, 127, 127));
 	debugText.setCharacterSize(40);
 	fpsPrint.setPosition(View::frame.mapPixelToCoords(sf::Vector2i(0, 50)));
 	fpsPrint.setFont(Model::Data::Ui::font);
@@ -248,6 +250,8 @@ namespace OpMon{
 	  case Side::TO_RIGHT:
 	    character.move(4, 0);
 	    break;
+    default:
+      break;
 	  }
 	}
 	if(frames - startFrames >= 7){
@@ -278,6 +282,7 @@ namespace OpMon{
 
       // `&dialogs[0]` converts the std::vector into a regular array.
       this->dialog = new Dialog(&dialogs[0], dialogs.size());
+
     }
   }
 
