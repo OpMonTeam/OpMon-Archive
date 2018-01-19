@@ -68,22 +68,29 @@ namespace OpMon {
       txtCre3.setFillColor(sf::Color::Black);
       txtCre4.setString(kget("options.credit.4"));
       txtCre4.setFont(Model::Data::Ui::font);
-      txtCre4.setCharacterSize(12);
+      txtCre4.setCharacterSize(14);
+      txtCre4.setFillColor(sf::Color::Black);
       txtCre5.setString(kget("options.credit.5"));
       txtCre5.setFont(Model::Data::Ui::font);
-      txtCre5.setCharacterSize(12);
+      txtCre5.setCharacterSize(14);
+      txtCre5.setFillColor(sf::Color::Black);
       txtCre6.setString(kget("options.credit.6"));
       txtCre6.setFont(Model::Data::Ui::font);
-      txtCre6.setCharacterSize(12);
+      txtCre6.setCharacterSize(22);
+      txtCre6.setFillColor(sf::Color::Black);
       txtCre7.setString(kget("options.credit.7"));
       txtCre7.setFont(Model::Data::Ui::font);
-      txtCre7.setCharacterSize(12);
+      txtCre7.setCharacterSize(18);
+      txtCre7.setFillColor(sf::Color::Black);
       txtCre8.setString(kget("options.credit.8"));
       txtCre8.setFont(Model::Data::Ui::font);
-      txtCre8.setCharacterSize(12);
+      txtCre8.setCharacterSize(15);
       txtCre9.setString(kget("options.credit.9"));
       txtCre9.setFont(Model::Data::Ui::font);
       txtCre9.setCharacterSize(13);
+      /*txtCre10.setString(kget("options.credit.10"));
+      txtCre10.setFont(Model::Data::Ui::font);
+      txtCre10.setCharacterSize(13); */
     }
 
     void OptionsMenu::onLangChanged(){
@@ -126,15 +133,16 @@ namespace OpMon {
       txtOptions.setPosition(230, 25);
       txtCred.setPosition(250, 25);
 
-      txtCre1.setPosition(105, 220);
-      txtCre2.setPosition(283, 220);
-      txtCre3.setPosition(283, 280);
-      txtCre4.setPosition(172, 347);
-      txtCre5.setPosition(140, 372);
-      txtCre6.setPosition(165, 395);
-      txtCre7.setPosition(172, 422);
-      txtCre8.setPosition(60, 457);
+      txtCre1.setPosition(200, 128);
+      txtCre2.setPosition(200, 148);
+      txtCre3.setPosition(200, 168);
+      txtCre4.setPosition(400, 128);
+      txtCre5.setPosition(400, 148);
+      txtCre6.setPosition(30, 270);
+      txtCre7.setPosition(201, 274);
+      txtCre8.setPosition(30, 368);
       txtCre9.setPosition(385, 488);
+      //txtCre10.setPosition(385, 488);
 
       curPosOpt[0].x = 23;
       curPosOpt[0].y = 17;
@@ -251,6 +259,7 @@ namespace OpMon {
       frame.draw(txtCre7);
       frame.draw(txtCre8);
       frame.draw(txtCre9);
+      //frame.draw(txtCre10);
       frame.draw(txtRetour);
       frame.draw(txtCred);
     }
