@@ -22,43 +22,27 @@ namespace OpMon{
 
       class Animation {
       protected:
-	int counter = 0;
-	sf::Sprite anim;
-	sf::Sprite bgSpr;
-	sf::Texture bgTxt;
+				int counter = 0;
+				sf::Sprite anim;
+				sf::Sprite bgSpr;
+				sf::Texture bgTxt;
       public:
-	Animation(sf::Texture bgTxt);
-	virtual GameStatus operator()() = 0;
+				Animation(sf::Texture bgTxt);
+				virtual ~Animation() = default;
+				virtual GameStatus operator()() = 0;
       };
 
       class WinAnim : public Animation {
       private:
-	int frames = 5;
-	/*
-	  If true : Open | If false : Close
-	*/
-	bool order;
-      public:
-	WinAnim(sf::Texture bgTxt, bool order);
-	GameStatus operator()();
+				int frames = 5;
+				/*
+					If true : Open | If false : Close
+				*/
+				bool order;
+						public:
+				WinAnim(sf::Texture bgTxt, bool order);
+				GameStatus operator()();
       };
-
-      
-      /*
-      
-      /**
-	 Initialize the animations
-      *
-      void initAnims();
-      /**
-	 Delete the animations's resources
-      *
-      void deleteAnims();
-
-      GameStatus animWinOpen(sf::RenderTexture &window, sf::Sprite const &bg);
-      GameStatus animWinClose(sf::RenderTexture &window, sf::Sprite const &bg);
-
-      */
 
     }
 

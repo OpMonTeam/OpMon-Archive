@@ -17,20 +17,19 @@ namespace OpMon{
 	: bgTxt(bgTxt) {}
 
       WinAnim::WinAnim(sf::Texture bgTxt, bool order)
-	: Animation(bgTxt), order(order) {}
+	: Animation(bgTxt), order(order) {
+      }
       
       
       GameStatus WinAnim::operator()() {
+        bgSpr.setTexture(bgTxt);
+        anim.setTexture(Model::Data::Animations::fen[(order ? counter : (frames - counter))]);
 
-	bgSpr.setTexture(bgTxt);
-	anim.setTexture(Model::Data::Animations::fen[order ? counter : (frames - counter)]);
-	window.clear(sf::Color::Black);
-	window.draw(bgSpr);
-	window.draw(anim);
-	window.display();
-	
-	counter++;
-	return (counter > frames) ? GameStatus::PREVIOUS : GameStatus::CONTINUE;
+        frame.draw(bgSpr);
+        frame.draw(anim);
+
+        counter++;
+        return (counter > frames) ? GameStatus::PREVIOUS : GameStatus::CONTINUE;
       }
 
 
