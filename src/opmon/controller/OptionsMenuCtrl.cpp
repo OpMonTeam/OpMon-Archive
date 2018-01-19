@@ -5,10 +5,7 @@
 #include "../view/StartScene.hpp"
 #include "../model/save/OptionsSave.hpp"
 #include "../model/storage/Data.hpp"
-#include "../../utils/StringKeys.hpp"
-#include "src/utils/fs.hpp"
 #include "../../utils/defines.hpp"
-#include "../start/Initializer.hpp"
 #include "../start/i18n/Translator.hpp"
 
 

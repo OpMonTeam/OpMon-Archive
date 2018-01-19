@@ -4,7 +4,6 @@
 #include "../../utils/OpString.hpp"
 #include "../../utils/StringKeys.hpp"
 #include "../../utils/log.hpp"
-#include "../../utils/fs.hpp"
 #include "../model/save/OptionsSave.hpp"
 #include "../model/storage/Data.hpp"
 #include "../model/storage/InternalFiles.hpp"
@@ -16,7 +15,6 @@
 #include "Core.hpp"
 #include "../model/objects/OpMon.hpp"
 
-using Utils::Fs::getPath;
 using Utils::OpString;
 using Utils::Log::oplog;
 
@@ -34,9 +32,8 @@ namespace OpMon{
 
     void initAnims() {
       for(int i = 0; i < 6; i++) {
-	std::ostringstream oss;
-	oss << getPath(RESSOURCES_PATH + "animations/winChange/animWindowFrame") << i + 1 << ".png";
-	Data::Animations::fen[i].loadFromFile(oss.str());
+        std::string path = RESSOURCES_PATH + "animations/winChange/animWindowFrame" + std::to_string(i + 1) + ".png";
+	      Data::Animations::fen[i].loadFromFile(path);
       }
       //Data::Animations::init = true;
     }
@@ -327,48 +324,48 @@ __________________________________________
   
     void initTextures() {
 
-      Data::World::tileset.loadFromFile(getPath(RESSOURCES_PATH + "tileset/tileset.png"));
-      if(!texturePP[(int) Side::TO_DOWN].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp0.png"))){
+      Data::World::tileset.loadFromFile(RESSOURCES_PATH + "tileset/tileset.png");
+      if(!texturePP[(int) Side::TO_DOWN].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp0.png")){
 	handleError("Failed to load one of the PP sprites", false);
       }
-      if(!texturePP[(int) Side::TO_RIGHT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp1.png"))){
+      if(!texturePP[(int) Side::TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp1.png")){
 	handleError("Failed to load one of the PP sprites", false);
       }
-      if(!texturePP[(int) Side::TO_LEFT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp2.png"))){
+      if(!texturePP[(int) Side::TO_LEFT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp2.png")){
 	handleError("Failed to load one of the PP sprites", false);
       }
-      if(!texturePP[(int) Side::TO_UP].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/pp3.png"))){
+      if(!texturePP[(int) Side::TO_UP].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp3.png")){
 	handleError("Failed to load one of the PP sprites", false);
       }
-      if(!walkingPP[(int) Side::TO_DOWN].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp0.png"))){
+      if(!walkingPP[(int) Side::TO_DOWN].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp0.png")){
 	handleError("Failed to load one of the PP sprites", false);
       }
-      if(!walkingPP[(int) Side::TO_RIGHT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp1.png"))){
+      if(!walkingPP[(int) Side::TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp1.png")){
 	handleError("Failed to load one of the PP sprites", false);
       }
-      if(!walkingPP[(int) Side::TO_LEFT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp2.png"))){
+      if(!walkingPP[(int) Side::TO_LEFT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp2.png")){
 	handleError("Failed to load one of the PP sprites", false);
       }
-      if(!walkingPP[(int) Side::TO_UP].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp3.png"))){
+      if(!walkingPP[(int) Side::TO_UP].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp3.png")){
 	handleError("Failed to load one of the PP sprites", false);
       }
-      if(!walkingPP2[(int) Side::TO_DOWN].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp20.png"))){
+      if(!walkingPP2[(int) Side::TO_DOWN].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp20.png")){
 	handleError("Failed to load one of the PP sprites", false);
       }
-      if(!walkingPP2[(int) Side::TO_RIGHT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp21.png"))){
+      if(!walkingPP2[(int) Side::TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp21.png")){
 	handleError("Failed to load one of the PP sprites", false);
       }
-      if(!walkingPP2[(int) Side::TO_LEFT].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp22.png"))){
+      if(!walkingPP2[(int) Side::TO_LEFT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp22.png")){
 	handleError("Failed to load one of the PP sprites", false);
       }
-      if(!walkingPP2[(int) Side::TO_UP].loadFromFile(getPath(RESSOURCES_PATH + "sprites/chara/pp/mpp23.png"))){
+      if(!walkingPP2[(int) Side::TO_UP].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp23.png")){
 	handleError("Failed to load one of the PP sprites", false);
       }
 
       std::vector<sf::Texture> basicDoor;
       for(unsigned int i = 0; i < 4; i++) {
 	std::ostringstream oss;
-	oss << RESSOURCES_PATH << getPath("animations/basicdoor/basic_door") << i + 1 << ".png";
+	oss << RESSOURCES_PATH << "animations/basicdoor/basic_door" << i + 1 << ".png";
 	sf::Texture txtr;
 	if(!txtr.loadFromFile(oss.str())){
 	  handleError("Failed to load one of the basic door sprites", false);
@@ -376,10 +373,10 @@ __________________________________________
 	basicDoor.push_back(txtr);
       }
       doorsTextures.push_back(basicDoor);
-      if(!Model::Data::Ui::doorSoundBuffer.loadFromFile(getPath(RESSOURCES_PATH + "audio/sounds/door.ogg"))){
+      if(!Model::Data::Ui::doorSoundBuffer.loadFromFile(RESSOURCES_PATH + "audio/sounds/door.ogg")){
 	handleError("Failed to load the door sound.", false);
       }
-      if(!Model::Data::Ui::shopDoorSoundBuffer.loadFromFile(getPath(RESSOURCES_PATH + "audio/sounds/shopdoor.ogg"))){
+      if(!Model::Data::Ui::shopDoorSoundBuffer.loadFromFile(RESSOURCES_PATH + "audio/sounds/shopdoor.ogg")){
 	handleError("Failed to load the shop door sound.", false);
       }
       Events::doorSound.setBuffer(Model::Data::Ui::doorSoundBuffer);
@@ -387,7 +384,7 @@ __________________________________________
       std::vector<sf::Texture> shopDoor;
       for(unsigned int i = 0; i < 4; i++) {
 	std::ostringstream oss;
-	oss << RESSOURCES_PATH << getPath("animations/shopdoor/shop_door") << i + 1 << std::string(".png");
+	oss << RESSOURCES_PATH << "animations/shopdoor/shop_door" << i + 1 << std::string(".png");
 	sf::Texture txtr;
 	if(!txtr.loadFromFile(oss.str())){
 	  handleError("Failed to load the shop door sprite.", false);
@@ -397,7 +394,7 @@ __________________________________________
       doorsTextures.push_back(shopDoor);
       for(unsigned int i = 0; i < 12; i++) {
 	std::string str;
-	str << RESSOURCES_PATH << getPath("sprites/chara/kid/kid") << i << std::string(".png");
+	str << RESSOURCES_PATH << "sprites/chara/kid/kid" << i << std::string(".png");
 	charaTextures["kid"].push_back(sf::Texture());
 	if(!charaTextures["kid"][i].loadFromFile(str)){
 	  handleError("Failed to load one of the kid sprites", false);
@@ -406,7 +403,7 @@ __________________________________________
 
       for(unsigned int i = 0; i < 12; i++) {
 	std::string str;
-	str << RESSOURCES_PATH << getPath("sprites/chara/prof/prof") << i << std::string(".png");
+	str << RESSOURCES_PATH << "sprites/chara/prof/prof" << i << std::string(".png");
 	charaTextures["kiwai"].push_back(sf::Texture());
 	if(!charaTextures["kiwai"][i].loadFromFile(str)){
 	  handleError("Failed to load one of the prof sprites", false);
@@ -417,13 +414,13 @@ __________________________________________
     }
 
     void initFonts(){
-      if(!font.loadFromFile(getPath(RESSOURCES_PATH + "fonts/Default.ttf"))) {
+      if(!font.loadFromFile(RESSOURCES_PATH + "fonts/Default.ttf")) {
         handleError("Font cannot be opened.", true);
       }
     }
 
     void initSounds() {
-      if(!Model::Data::Sounds::dialogPass.loadFromFile(getPath(RESSOURCES_PATH + "audio/sounds/dialogChange.ogg"))) {
+      if(!Model::Data::Sounds::dialogPass.loadFromFile(RESSOURCES_PATH + "audio/sounds/dialogChange.ogg")) {
         handleError("Unable to open dialog sound.", false);
       }
     }
@@ -483,7 +480,7 @@ __________________________________________
 	Model::Data::Elements::elementsPos["windturbine"] = sf::Vector2f(8 *32 + 25 *32 - 8, 3 *32 + 8);
 	for(unsigned int i = 1; i < 17; i++) {
 	  std::ostringstream str;
-	  str << RESSOURCES_PATH + getPath("animations/windturbine/blade_") << i << string(".png");
+	  str << RESSOURCES_PATH + "animations/windturbine/blade_" << i << string(".png");
 	  Model::Data::Elements::elementsTextures["windturbine"].push_back(sf::Texture());
 	  Model::Data::Elements::elementsTextures["windturbine"][i - 1].loadFromFile(str.str());
 	}
@@ -492,13 +489,13 @@ __________________________________________
 	Model::Data::Elements::elementsPos["smoke"] = sf::Vector2f(8*32+18*32, 11*32);
 	for(unsigned int i = 1; i < 17; i++) {
 	  std::ostringstream str;
-	  str << RESSOURCES_PATH + getPath("animations/chimneysmoke/chimneysmoke_") << i << string(".png");
+	  str << RESSOURCES_PATH + "animations/chimneysmoke/chimneysmoke_" << i << string(".png");
 	  Model::Data::Elements::elementsTextures["smoke"].push_back(sf::Texture());
 	  Model::Data::Elements::elementsTextures["smoke"][i - 1].loadFromFile(str.str());
 	}
     
 	auto feCol = array_to_pointer((char*) Collisions::feCol, 32, 32);
-	Map *mapFauxbourgEuvi = maps.try_emplace("Fauxbourg Euvi", new Map(Maps::feLayer1, Maps::feLayer2, Maps::feLayer3, 32, 32, feCol, getPath(RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg"), std::vector<std::string> {"windturbine", "smoke"})).first->second;
+	Map *mapFauxbourgEuvi = maps.try_emplace("Fauxbourg Euvi", new Map(Maps::feLayer1, Maps::feLayer2, Maps::feLayer3, 32, 32, feCol, RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg", std::vector<std::string> {"windturbine", "smoke"})).first->second;
       delete[] feCol;
       mapFauxbourgEuvi->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(11, 2),  {OpString("fedesc.1"), OpString("fedesc.2"), OpString("fedesc.3")}, SIDE_UP));
       mapFauxbourgEuvi->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(21, 8),  {OpString("ppHouse", Data::player.getNameP()), OpString::voidStr, OpString::voidStr}, SIDE_UP));
@@ -523,31 +520,31 @@ __________________________________________
       mapFauxbourgEuvi->addEvent(new Events::TalkingCharaEvent("kid", sf::Vector2f(17, 13),  {OpString("kid"), OpString::voidStr, OpString::voidStr}, Events::EventTrigger::PRESS, Events::MoveStyle::PREDEFINED, pathChara1));
 
       auto ppHomeCol = array_to_pointer((char*) Collisions::ppHomeCol, 16, 16);
-      Map *mapPlayersHome = maps.try_emplace("Player's home", new Map(Maps::pphomeLayer1, Maps::pphomeLayer2, Maps::pphomeLayer3, 16, 16, ppHomeCol, getPath(RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg"))).first->second;
+      Map *mapPlayersHome = maps.try_emplace("Player's home", new Map(Maps::pphomeLayer1, Maps::pphomeLayer2, Maps::pphomeLayer3, 16, 16, ppHomeCol, RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg")).first->second;
     delete[] ppHomeCol;
     mapPlayersHome->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(7, 15), sf::Vector2i(20, 9), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
     mapPlayersHome->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(15, 2), sf::Vector2i(9, 5), "Player's room", Side::TO_LEFT, SIDE_RIGHT));
     mapPlayersHome->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(0, 11), sf::Vector2i(6, 3), "Mom's room", Side::TO_LEFT, SIDE_LEFT));
 
     auto laboCol = array_to_pointer((char*) Collisions::laboCol, 16, 32);
-    Map *mapLaboratory = maps.try_emplace("Laboratory", new Map(Maps::laboLayer1, Maps::laboLayer2, Maps::laboLayer3, 32, 16, laboCol, getPath(RESSOURCES_PATH + "audio/music/intro.ogg"))).first->second;
+    Map *mapLaboratory = maps.try_emplace("Laboratory", new Map(Maps::laboLayer1, Maps::laboLayer2, Maps::laboLayer3, 32, 16, laboCol, RESSOURCES_PATH + "audio/music/intro.ogg")).first->second;
     delete[] laboCol;
     mapLaboratory->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(15, 15), sf::Vector2i(20, 21), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
 
     mapLaboratory->addEvent(new Events::TalkingCharaEvent("kiwai", sf::Vector2f(15, 4), {OpString("prof.dialog.1"), OpString("prof.dialog.2"), OpString("prof.dialog.3")}, Events::EventTrigger::PRESS, Events::MoveStyle::NO_MOVE));
 
     auto rivalHomeCol = array_to_pointer((char*) Collisions::rivalHomeCol, 16, 16);
-    Map *mapRivalsHouse = maps.try_emplace("Rival's house", new Map(Maps::rivalhomeLayer1, Maps::rivalhomeLayer2, Maps::rivalhomeLayer3, 16, 16, rivalHomeCol, getPath(RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg"))).first->second;
+    Map *mapRivalsHouse = maps.try_emplace("Rival's house", new Map(Maps::rivalhomeLayer1, Maps::rivalhomeLayer2, Maps::rivalhomeLayer3, 16, 16, rivalHomeCol, RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg")).first->second;
     delete[] rivalHomeCol;
     mapRivalsHouse->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 15), sf::Vector2i(28, 9), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
 
     auto momRoomCol = array_to_pointer((char*) Collisions::momRoomCol, 6, 6);
-    Map *mapMomsRoom = maps.try_emplace("Mom's room", new Map(Maps::momroomLayer1, Maps::momroomLayer2, Maps::momroomLayer3, 6, 6, momRoomCol, getPath(RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg"))).first->second;
+    Map *mapMomsRoom = maps.try_emplace("Mom's room", new Map(Maps::momroomLayer1, Maps::momroomLayer2, Maps::momroomLayer3, 6, 6, momRoomCol, RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg")).first->second;
     delete[] momRoomCol;
     mapMomsRoom->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(5, 3), sf::Vector2i(1, 11), "Player's home", Side::TO_RIGHT, SIDE_RIGHT));
 
     auto ppRoomCol = array_to_pointer((char*) Collisions::ppRoomCol, 6, 9);
-    Map *mapPlayersRoom = maps.try_emplace("Player's room", new Map(Maps::pproomLayer1, Maps::pproomLayer2, Maps::pproomLayer3, 9, 6, ppRoomCol, getPath(RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg"))).first->second;
+    Map *mapPlayersRoom = maps.try_emplace("Player's room", new Map(Maps::pproomLayer1, Maps::pproomLayer2, Maps::pproomLayer3, 9, 6, ppRoomCol, RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg")).first->second;
     delete[] ppRoomCol;
     mapPlayersRoom->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 5), sf::Vector2i(16, 2), "Player's home", Side::TO_LEFT, SIDE_RIGHT));
     std::vector<OpString> phoE1 {OpString("pcRunLinux"), OpString::voidStr, OpString::voidStr};
@@ -555,12 +552,12 @@ __________________________________________
 
     //Route 14 loading
     auto route14Col = array_to_pointer((char*) Collisions::route14Col, 41, 74);
-    maps.try_emplace("Route 14", new Map(Maps::route14Layer1, Maps::route14Layer2, Maps::route14Layer3, 74, 41, route14Col, getPath(RESSOURCES_PATH + "audio/music/faubourgeuvi.ogg")));
+    maps.try_emplace("Route 14", new Map(Maps::route14Layer1, Maps::route14Layer2, Maps::route14Layer3, 74, 41, route14Col, RESSOURCES_PATH + "audio/music/faubourgeuvi.ogg"));
     delete[] route14Col;
 
     //MysteriouCity loading
     auto myciCol = array_to_pointer((char*) Collisions::myciCol, 19, 19);
-    maps.try_emplace("MysteriouCity", new Map(Maps::myciLayer1, Maps::myciLayer2, Maps::myciLayer3, 19, 19, myciCol, getPath(RESSOURCES_PATH + "audio/music/mysterioucity.ogg")));
+    maps.try_emplace("MysteriouCity", new Map(Maps::myciLayer1, Maps::myciLayer2, Maps::myciLayer3, 19, 19, myciCol, RESSOURCES_PATH + "audio/music/mysterioucity.ogg"));
     delete[] myciCol;
 
   }
