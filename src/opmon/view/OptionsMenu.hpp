@@ -1,9 +1,9 @@
 /*
-OptionsMenu.hpp
-Author : Jlppc
-File under the license GPL-3.0
-http://opmon-game.ga
-Contains OptionsMenu namespace
+  OptionsMenu.hpp
+  Author : Cyrion
+  File under the GPL-3.0  license
+  http://opmon-game.ga
+  Contains OptionsMenu namespace
 */
 #ifndef OPTIONSMENU_HPP
 #define OPTIONSMENU_HPP
@@ -68,6 +68,7 @@ namespace OpMon{
       sf::Text txtCre7;
       sf::Text txtCre8;
       sf::Text txtCre9;
+      //sf::Text txtCre10;
       sf::Text txtOpt1;
       sf::Text txtOpt2;
       sf::Text txtOpt3;
