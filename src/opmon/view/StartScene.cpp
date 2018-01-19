@@ -2,7 +2,6 @@
 #include "Animations.hpp"
 #include "Dialog.hpp"
 #include "../model/storage/Data.hpp"
-#include "../../utils/fs.hpp"
 #include "../../utils/OpString.hpp"
 #include "../../utils/StringKeys.hpp"
 #include "../../utils/defines.hpp"
@@ -58,12 +57,12 @@ namespace OpMon{
       txtEnCours[1] = sf::String(" ");
       txtEnCours[2] = sf::String(" ");
 
-      textures[0].loadFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "backgrounds/start/startscene.png"));
-      textures[1].loadFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "sprites/chara/jlppc/profkiwai.png"));
-      textures[2].loadFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "backgrounds/dialog/dialog.png"));
-      textures[3].loadFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "sprites/misc/arrDial.png"));
-      textures[4].loadFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "backgrounds/start/nameEntry.png"));
-      bgMus.openFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "audio/music/intro.ogg"));
+      textures[0].loadFromFile(RESSOURCES_PATH + "backgrounds/start/startscene.png");
+      textures[1].loadFromFile(RESSOURCES_PATH + "sprites/chara/jlppc/profkiwai.png");
+      textures[2].loadFromFile(RESSOURCES_PATH + "backgrounds/dialog/dialog.png");
+      textures[3].loadFromFile(RESSOURCES_PATH + "sprites/misc/arrDial.png");
+      textures[4].loadFromFile(RESSOURCES_PATH + "backgrounds/start/nameEntry.png");
+      bgMus.openFromFile(RESSOURCES_PATH + "audio/music/intro.ogg");
       bg.setTexture(textures[0]);
       prof.setTexture(textures[1]);
       Dialog::dialog.setTexture(textures[2]);
