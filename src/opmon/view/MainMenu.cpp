@@ -2,7 +2,6 @@
 #include <iostream>
 #include "OptionsMenu.hpp"
 #include "../model/storage/Data.hpp"
-#include "../../utils/fs.hpp"
 #include "../../utils/log.hpp"
 #include "../../utils/defines.hpp"
 #include "../../utils/StringKeys.hpp"
@@ -31,12 +30,12 @@ namespace OpMon{
         j+=85;
       }
 
-      textures[0].loadFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "backgrounds/titlescreen.png"));
-      textures[1].loadFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "sprites/misc/arrChoice.png"));
-      bgMusTitle.openFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "audio/music/title.ogg"));
-      sounds[0].loadFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "audio/sounds/select.ogg"));
-      sounds[1].loadFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "audio/sounds/selectbuttons.ogg"));
-      //sounds[2].loadFromFile(Utils::Fs::getPath(RESSOURCES_PATH + "audio/sounds/nope.ogg"));
+      textures[0].loadFromFile(RESSOURCES_PATH + "backgrounds/titlescreen.png");
+      textures[1].loadFromFile(RESSOURCES_PATH + "sprites/misc/arrChoice.png");
+      bgMusTitle.openFromFile(RESSOURCES_PATH + "audio/music/title.ogg");
+      sounds[0].loadFromFile(RESSOURCES_PATH + "audio/sounds/select.ogg");
+      sounds[1].loadFromFile(RESSOURCES_PATH + "audio/sounds/selectbuttons.ogg");
+      //sounds[2].loadFromFile(RESSOURCES_PATH + "audio/sounds/nope.ogg");
       bg.setTexture(textures[0]);
       cursor.setTexture(textures[1]);
       bruitArr.setBuffer(sounds[0]);
