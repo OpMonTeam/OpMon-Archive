@@ -22,7 +22,7 @@ Linux only. If defined, the program will search for the resources on the local d
 /**
  * Location of the resource folder
  */
-#if defined(LOCAL_TEST) && !defined(_WIN32)
+#if defined(LOCAL_TEST) || defined(_WIN32)
 #define RESSOURCES_PATH std::string("data/")
 #else
 #define RESSOURCES_PATH std::string("/usr/share/OpMon/")
