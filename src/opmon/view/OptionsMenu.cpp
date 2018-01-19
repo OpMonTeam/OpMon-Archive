@@ -10,13 +10,13 @@ namespace OpMon {
     void OptionsMenu::initStrings(){
       auto kget = Utils::StringKeys::get;
 
-      langFr.setString("Français");
+      langFr.setString(L"Français");
       langFr.setFont(Model::Data::Ui::font);
       langFr.setCharacterSize(FONT_SIZE_DEFAULT);
       langEng.setString("English");
       langEng.setFont(Model::Data::Ui::font);
       langEng.setCharacterSize(FONT_SIZE_DEFAULT);
-      langEsp.setString("Espa\u00F1ol");
+      langEsp.setString(L"Espa\u00F1ol");
       langEsp.setFont(Model::Data::Ui::font);
       langEsp.setCharacterSize(FONT_SIZE_DEFAULT);
       txtRetour.setString(kget("options.retour"));
