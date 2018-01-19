@@ -2,7 +2,6 @@
 #include <cstdio>
 #include <fstream>
 #include "./log.hpp"
-#include "./fs.hpp"
 
 
 
@@ -41,8 +40,7 @@ namespace Utils {
 
     bool initialize(const string &keysFileS){
       //Ouverture du fichier de clées, initialisation des vectors
-      auto sanitizedKeyFiles = Fs::getPath(keysFileS);
-      ifstream keysFile(sanitizedKeyFiles.c_str());
+      ifstream keysFile(keysFileS.c_str());
       keys = vector<string>();
       strings = vector<sf::String>();
       Log::oplog("Keys initialization");
