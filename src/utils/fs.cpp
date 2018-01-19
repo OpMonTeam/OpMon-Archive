@@ -33,7 +33,8 @@ namespace Utils{
     std::string getPath(std::string const& path) {
 #ifdef _WIN32
       std::string result(path);
-      return std::replace(result.begin(), result.end(), '/', '\\');
+      std::replace(result.begin(), result.end(), '/', '\\');
+      return result;
 #else
       return path;
 #endif
