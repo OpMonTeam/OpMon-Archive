@@ -52,7 +52,6 @@ namespace OpMon{
     private:
       sf::Sprite bg;
       sf::Sprite prof;
-      sf::Music bgMus;
 
       int part = 0;
       

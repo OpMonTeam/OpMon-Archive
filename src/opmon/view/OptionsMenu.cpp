@@ -1,6 +1,7 @@
 #include "OptionsMenu.hpp"
 #include "../model/save/OptionsSave.hpp"
 #include "../model/storage/Data.hpp"
+#include "Window.hpp"
 
 UNS
 
@@ -97,7 +98,7 @@ namespace OpMon {
     }
 
     OptionsMenu::OptionsMenu() : currentOptions(OptionType::ALL) {
-
+      
       textures2[0].loadFromFile(RESSOURCES_PATH + "backgrounds/options.png");
       textures2[1].loadFromFile(RESSOURCES_PATH + "sprites/misc/selectBar.png");
       textures2[2].loadFromFile(RESSOURCES_PATH + "backgrounds/lang.png");
@@ -143,6 +144,8 @@ namespace OpMon {
       txtCre9.setPosition(385, 488);
       //txtCre10.setPosition(385, 488);
 
+      jukebox.play("Title");
+      
       curPosOpt[0].x = 23;
       curPosOpt[0].y = 17;
       curSizeOpt[0].x = 134 / rectSurb.getGlobalBounds().width;
@@ -160,7 +163,7 @@ namespace OpMon {
         curSizeOpt[i].y = 57 / rectSurb.getGlobalBounds().height;
         j += 69;
       }
-
+      
       for(int i = 1, j = 86; i < 4; i++){
         curPosLang[i].x = 23;
         curPosLang[i].y = j;
@@ -170,6 +173,8 @@ namespace OpMon {
       }
     }
 
+    
+    
     void OptionsMenu::draw(sf::RenderTarget &frame){
       switch(currentOptions){
         case OptionType::ALL:
@@ -245,6 +250,20 @@ namespace OpMon {
       frame.draw(rectSurb);
     }
 
+    
+    void OptionsMenu::pause(){
+      jukebox.pause("Title");
+    }
+
+    void OptionsMenu::play(){
+      jukebox.play("Title");
+    }
+
+    OptionsMenu::~OptionsMenu(){
+      jukebox.stop("Title");
+    }
+
+    
     void OptionsMenu::creditsLoop(sf::RenderTarget &frame){
       frame.clear(sf::Color::White);
 

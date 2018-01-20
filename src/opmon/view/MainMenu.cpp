@@ -5,6 +5,7 @@
 #include "../../utils/log.hpp"
 #include "../../utils/defines.hpp"
 #include "../../utils/StringKeys.hpp"
+#include "Window.hpp"
 
 
 UNS
@@ -32,7 +33,6 @@ namespace OpMon{
 
       textures[0].loadFromFile(RESSOURCES_PATH + "backgrounds/titlescreen.png");
       textures[1].loadFromFile(RESSOURCES_PATH + "sprites/misc/arrChoice.png");
-      bgMusTitle.openFromFile(RESSOURCES_PATH + "audio/music/title.ogg");
       sounds[0].loadFromFile(RESSOURCES_PATH + "audio/sounds/select.ogg");
       sounds[1].loadFromFile(RESSOURCES_PATH + "audio/sounds/selectbuttons.ogg");
       //sounds[2].loadFromFile(RESSOURCES_PATH + "audio/sounds/nope.ogg");
@@ -54,13 +54,12 @@ namespace OpMon{
       //Mix_Volume(1, MIX_MAX_VOLUME);
       //Mix_Volume(0, MIX_MAX_VOLUME / 2);
 
-      bgMusTitle.setLoop(true);
-      bgMusTitle.setVolume(50);
-      bgMusTitle.play();
+      jukebox.play("Title");
+      
     }
 
     MainMenu::~MainMenu(){
-      bgMusTitle.stop();
+      jukebox.stop("Title");
     }
 
     void MainMenu::onLangChanged(){
@@ -68,23 +67,23 @@ namespace OpMon{
     }
 
     void MainMenu::pause(){
-      bgMusTitle.stop();
+      jukebox.pause("Title");
     }
 
     void MainMenu::play(){
-      bgMusTitle.play();
+      jukebox.play("Title");
     }
 
     void MainMenu::moveArrow(bool direction){
       Model::Data::Sounds::arrow.play();
       if(direction /* == true*/){
-	      curPosI--;
+	curPosI--;
       }else{
-	      curPosI++;
+	curPosI++;
       }
 
       if(curPosI >= 4) {
-	      curPosI = 0;
+	curPosI = 0;
       } else if(curPosI < 0) {
         curPosI = 3;
       }
@@ -94,7 +93,7 @@ namespace OpMon{
       frame.clear(sf::Color::Black);
       frame.draw(bg);
       frame.draw(playtx),
-      frame.draw(charge);
+	frame.draw(charge);
       frame.draw(options);
       frame.draw(exit);
       cursor.setPosition(curPos[curPosI]);

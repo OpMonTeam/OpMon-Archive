@@ -12,10 +12,13 @@ Contains Window namespace
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/RenderTexture.hpp>
 
+#include "Jukebox.hpp"
+
 namespace OpMon{
   namespace View{
     extern sf::RenderWindow window;
     extern sf::RenderTexture frame;
+    extern Jukebox jukebox;
     extern bool init;
     extern bool fullScreen;
     void close();

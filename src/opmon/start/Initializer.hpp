@@ -25,6 +25,8 @@ namespace OpMon{
     
     void initGui();
 
+    void initMusics();
+    
     void initOverworld();
     void initStartScene();
     void initMenu();
