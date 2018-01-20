@@ -252,7 +252,6 @@ namespace OpMon {
 
     
     void OptionsMenu::pause(){
-      jukebox.pause("Title");
     }
 
     void OptionsMenu::play(){
@@ -260,7 +259,6 @@ namespace OpMon {
     }
 
     OptionsMenu::~OptionsMenu(){
-      jukebox.stop("Title");
     }
 
     

@@ -174,11 +174,9 @@ namespace OpMon{
     }
 
     void StartScene::pause(){
-      jukebox.pause("Start");
     }
 
     StartScene::~StartScene(){
-      jukebox.stop("Start");
       delete(dialog);
     }
   }
