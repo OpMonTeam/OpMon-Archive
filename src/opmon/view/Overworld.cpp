@@ -28,19 +28,8 @@ using OpMon::Model::Side;
 namespace OpMon{
   namespace View{
 
-    void Overworld::setMusic(std::string const& path){
-      if(path != musicPath){
-	
-      
-	musicPath = path;
-	if(music != nullptr){
-	  music->stop();
-	  delete(music);
-	}
-	music = new sf::Music();
-	music->openFromFile(path);
-	music->setLoop(true);
-      }
+    void Overworld::setMusic(std::string const& mus){
+      jukebox.play(mus);
     }
 						      
     
@@ -80,7 +69,6 @@ namespace OpMon{
       character.setPosition(8 SQUARES + pos.x SQUARES - 16, 8 SQUARES + pos.y SQUARES);
       if(musicPath != current->getBg()) {
 	setMusic(current->getBg());
-	music->play();
       }
       
       delete(layer1);
@@ -101,13 +89,11 @@ namespace OpMon{
     }
 
     void Overworld::pause(){
-      if (music)
-        music->pause();
+      jukebox.pause(current->getBg());
     }
-
+    
     void Overworld::play(){
-      if (music)
-        music->play();
+      jukebox.play(current->getBg());
     }
 
     Overworld::Overworld(const std::string &mapId){
@@ -127,23 +113,17 @@ namespace OpMon{
       posArrow = View::frame.mapPixelToCoords(sf::Vector2i(512-75, 512-30));
       Dialog::arrDial.setPosition(posArrow);
 
-      if(music != nullptr){
-	music->play();
-      }else{
-	setMusic(current->getBg());
-	music->play();
-      }
+      jukebox.play(current->getBg());
 
     View::frame.setView(camera);
   }
 
     Overworld::~Overworld(){
-    music->stop();
-    delete(music);
-    delete(layer1);
-    delete(layer2);
-    delete(layer3);
-  }
+      jukebox.stop(current->getBg());
+      delete(layer1);
+      delete(layer2);
+      delete(layer3);
+    }
 
     GameStatus Overworld::operator()(int frames){
       bool is_in_dialog = this->dialog && !this->dialog->isDialogOver();

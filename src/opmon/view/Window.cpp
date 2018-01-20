@@ -15,6 +15,7 @@ namespace OpMon{
   namespace View{
     sf::RenderTexture frame;
     sf::RenderWindow window;
+    Jukebox jukebox;
     bool init;
     bool fullScreen;
     void open(){
