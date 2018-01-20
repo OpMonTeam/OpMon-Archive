@@ -67,7 +67,6 @@ namespace OpMon{
     }
 
     void MainMenu::pause(){
-      jukebox.pause("Title");
     }
 
     void MainMenu::play(){
