@@ -393,18 +393,16 @@ __________________________________________
       Events::shopdoorSound.setBuffer(Model::Data::Ui::shopDoorSoundBuffer);
       std::vector<sf::Texture> shopDoor;
       for(unsigned int i = 0; i < 4; i++) {
-	std::ostringstream oss;
-	oss << RESSOURCES_PATH << "animations/shopdoor/shop_door" << i + 1 << std::string(".png");
+	      std::string path = RESSOURCES_PATH + "animations/shopdoor/shop_door" + std::to_string(i + 1) + ".png";
 	sf::Texture txtr;
-	if(!txtr.loadFromFile(oss.str())){
+	if(!txtr.loadFromFile(path)){
 	  handleError("Failed to load the shop door sprite.", false);
 	}
 	shopDoor.push_back(txtr);
       }
       doorsTextures.push_back(shopDoor);
       for(unsigned int i = 0; i < 12; i++) {
-	std::string str;
-	str << RESSOURCES_PATH << "sprites/chara/kid/kid" << i << std::string(".png");
+	std::string str = RESSOURCES_PATH + "sprites/chara/kid/kid" + std::to_string(i) + ".png";
 	charaTextures["kid"].push_back(sf::Texture());
 	if(!charaTextures["kid"][i].loadFromFile(str)){
 	  handleError("Failed to load one of the kid sprites", false);
@@ -412,8 +410,7 @@ __________________________________________
       }
 
       for(unsigned int i = 0; i < 12; i++) {
-	std::string str;
-	str << RESSOURCES_PATH << "sprites/chara/prof/prof" << i << std::string(".png");
+	      std::string str = RESSOURCES_PATH + "sprites/chara/prof/prof" + std::to_string(i) + ".png";
 	charaTextures["kiwai"].push_back(sf::Texture());
 	if(!charaTextures["kiwai"][i].loadFromFile(str)){
 	  handleError("Failed to load one of the prof sprites", false);
@@ -503,6 +500,7 @@ __________________________________________
 	  Model::Data::Elements::elementsTextures["smoke"].push_back(sf::Texture());
 	  Model::Data::Elements::elementsTextures["smoke"][i - 1].loadFromFile(str.str());
 	}
+
     
 	auto feCol = array_to_pointer((char*) Collisions::feCol, 32, 32);
 	Map *mapFauxbourgEuvi = maps.try_emplace("Fauxbourg Euvi", new Map(Maps::feLayer1, Maps::feLayer2, Maps::feLayer3, 32, 32, feCol, "Fauxbourg", std::vector<std::string> {"windturbine", "smoke"})).first->second;
