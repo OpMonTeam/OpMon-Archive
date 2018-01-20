@@ -25,9 +25,9 @@ namespace OpMon{
       virtual ~Attack() {}
       Attack(std::string nom, int puissance, Type type, int accuracy, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite, std::string className);
       //->PureVirtual
-      virtual int effetAvant(OpMon &atk, OpMon &def) = 0;
+      virtual int effetAvant(OpMon &/*atk*/, OpMon &/*def*/) { return 0; }
       //->PureVirtual
-      virtual int effetApres(OpMon &atk, OpMon &def) = 0;
+      virtual int effetApres(OpMon &/*atk*/, OpMon &/*def*/) { return 0; }
       void healPP() {
         pp = ppMax;
       }
