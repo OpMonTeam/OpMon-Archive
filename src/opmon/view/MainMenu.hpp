@@ -43,7 +43,7 @@ namespace OpMon{
       int getCursorPosition(){
 	      return curPosI;
       }
-      
+
     private:
       
       sf::Sprite bg;
@@ -53,7 +53,6 @@ namespace OpMon{
       sf::Text exit;
       sf::Sprite cursor;
       sf::Vector2f curPos[4];
-      sf::Music bgMusTitle;
       sf::Sound bruitArr;
       sf::Sound bruitPush;
       sf::Texture textures[2];

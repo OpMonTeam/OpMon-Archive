@@ -19,6 +19,9 @@ namespace OpMon{
       OptionsMenuCtrl();
       GameStatus checkEvent(sf::Event const& event) override;
       GameStatus update() override;
+
+      void resume();
+      void suspend();
     };
 
   }

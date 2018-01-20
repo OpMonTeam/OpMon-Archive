@@ -2,10 +2,8 @@
 
 # Credits :
 <ul>
-<li>Mystovania : Megalovania Remix , Compoded by Toby Fox, Remixed by Cyrion</li>
 <li>Evolution Theme : Pokemon Evolution Theme remix, Game Freak property</li>
 <li>Many musics are in the license Creative Commons or GPL, and other musics come from  OpenGameArt.org, the list :</li>
-<li>route1.ogg : http://opengameart.org/content/adventure-begins little town - orchestra : the Garritan Personal Orchestra.</li>
 </ul>
 
 # Originals musics:

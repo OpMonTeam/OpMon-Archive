@@ -24,6 +24,8 @@ namespace OpMon{
     public:
       OptionsMenu();
 
+      ~OptionsMenu();
+      
       void moveArrow(bool dir);
      
       void draw(sf::RenderTarget &frame);
@@ -47,6 +49,9 @@ namespace OpMon{
 	  return 0;
 	}
       }
+      
+      void play();
+      void pause();
       
     private:
 
@@ -81,6 +86,7 @@ namespace OpMon{
       int curPosOptI = 0;
       int curPosLangI = 0;
 
+      
       sf::Text txtLang;
       sf::Text txtCred;
       sf::Sprite bgLangues;

@@ -40,10 +40,6 @@ namespace OpMon{
       GameStatus operator()(int frame);
 
       void tp(std::string toTp, sf::Vector2i pos);
-      
-      sf::Music* getMusic(){
-	return music;
-      }
 
       MapLayer* getMapLayer(int number){
 	switch(number){
@@ -75,10 +71,10 @@ namespace OpMon{
 
       void setMusic(std::string const& path);
       
-			/**
-			 * Events can call this method to start a new dialog with the player.
-			 */
-			void startDialog(std::vector<sf::String> const& dialogs);
+      /**
+       * Events can call this method to start a new dialog with the player.
+       */
+      void startDialog(std::vector<sf::String> const& dialogs);
       
       
     private:
@@ -89,7 +85,6 @@ namespace OpMon{
       sf::Sprite character;
       Model::Map* current = nullptr;
       
-      sf::Music *music = nullptr;
       std::string musicPath = "";
 
       MapLayer *layer1 = nullptr;

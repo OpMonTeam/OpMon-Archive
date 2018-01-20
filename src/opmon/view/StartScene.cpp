@@ -62,14 +62,12 @@ namespace OpMon{
       textures[2].loadFromFile(RESSOURCES_PATH + "backgrounds/dialog/dialog.png");
       textures[3].loadFromFile(RESSOURCES_PATH + "sprites/misc/arrDial.png");
       textures[4].loadFromFile(RESSOURCES_PATH + "backgrounds/start/nameEntry.png");
-      bgMus.openFromFile(RESSOURCES_PATH + "audio/music/intro.ogg");
       bg.setTexture(textures[0]);
       prof.setTexture(textures[1]);
       Dialog::dialog.setTexture(textures[2]);
       Dialog::arrDial.setTexture(textures[3]);
       bgName.setTexture(textures[4]);
       bgName.setPosition(0, 0);
-      bgMus.setLoop(true);
 
       bg.setPosition(0, 0);
       prof.setPosition(205, 120);
@@ -86,8 +84,8 @@ namespace OpMon{
 
       Dialog::arrDial.setPosition(437, 482);
 
-      bgMus.play();
-
+      jukebox.play("Start");
+      
       // Init loop 0
       unsigned int sizeOfTxt = 18;
       dialog = new Dialog(txtP0, sizeOfTxt);
@@ -172,15 +170,15 @@ namespace OpMon{
     }
 
     void StartScene::play(){
-      bgMus.play();
+      jukebox.play("Start");
     }
 
     void StartScene::pause(){
-      bgMus.pause();
+      jukebox.pause("Start");
     }
 
     StartScene::~StartScene(){
-      bgMus.stop();
+      jukebox.stop("Start");
       delete(dialog);
     }
   }
