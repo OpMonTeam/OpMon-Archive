@@ -9,6 +9,8 @@
 #define OP_DEPRECATED
 #endif
 
+#include <string>
+
 /**
 Shortcuts
 */
