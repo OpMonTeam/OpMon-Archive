@@ -15,6 +15,8 @@
 #include "Core.hpp"
 #include "../model/objects/OpMon.hpp"
 #include "../view/Window.hpp"
+#include "../model/storage/ResourceLoader.hpp"
+
 
 using Utils::OpString;
 using Utils::Log::oplog;
@@ -32,10 +34,7 @@ namespace OpMon{
     }
 
     void initAnims() {
-      for(int i = 0; i < 6; i++) {
-        std::string path = RESSOURCES_PATH + "animations/winChange/animWindowFrame" + std::to_string(i + 1) + ".png";
-	      Data::Animations::fen[i].loadFromFile(path);
-      }
+      ResourceLoader::loadTextureArray(Data::Animations::fen, "animations/winChange/animWindowFrame%d.png", 6, 1);
       //Data::Animations::init = true;
     }
 
@@ -334,102 +333,48 @@ __________________________________________
   
     void initTextures() {
 
-      Data::World::tileset.loadFromFile(RESSOURCES_PATH + "tileset/tileset.png");
-      if(!texturePP[(int) Side::TO_DOWN].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp0.png")){
-	handleError("Failed to load one of the PP sprites", false);
-      }
-      if(!texturePP[(int) Side::TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp1.png")){
-	handleError("Failed to load one of the PP sprites", false);
-      }
-      if(!texturePP[(int) Side::TO_LEFT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp2.png")){
-	handleError("Failed to load one of the PP sprites", false);
-      }
-      if(!texturePP[(int) Side::TO_UP].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/pp3.png")){
-	handleError("Failed to load one of the PP sprites", false);
-      }
-      if(!walkingPP[(int) Side::TO_DOWN].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp0.png")){
-	handleError("Failed to load one of the PP sprites", false);
-      }
-      if(!walkingPP[(int) Side::TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp1.png")){
-	handleError("Failed to load one of the PP sprites", false);
-      }
-      if(!walkingPP[(int) Side::TO_LEFT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp2.png")){
-	handleError("Failed to load one of the PP sprites", false);
-      }
-      if(!walkingPP[(int) Side::TO_UP].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp3.png")){
-	handleError("Failed to load one of the PP sprites", false);
-      }
-      if(!walkingPP2[(int) Side::TO_DOWN].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp20.png")){
-	handleError("Failed to load one of the PP sprites", false);
-      }
-      if(!walkingPP2[(int) Side::TO_RIGHT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp21.png")){
-	handleError("Failed to load one of the PP sprites", false);
-      }
-      if(!walkingPP2[(int) Side::TO_LEFT].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp22.png")){
-	handleError("Failed to load one of the PP sprites", false);
-      }
-      if(!walkingPP2[(int) Side::TO_UP].loadFromFile(RESSOURCES_PATH + "sprites/chara/pp/mpp23.png")){
-	handleError("Failed to load one of the PP sprites", false);
-      }
+      ResourceLoader::load(Data::World::tileset, "tileset/tileset.png");
+      ResourceLoader::load(texturePP[(int) Side::TO_DOWN], "sprites/chara/pp/pp0.png");
+      ResourceLoader::load(texturePP[(int) Side::TO_RIGHT], "sprites/chara/pp/pp1.png");
+      ResourceLoader::load(texturePP[(int) Side::TO_LEFT], "sprites/chara/pp/pp2.png");
+      ResourceLoader::load(texturePP[(int) Side::TO_UP], "sprites/chara/pp/pp3.png");
+      ResourceLoader::load(walkingPP[(int) Side::TO_DOWN], "sprites/chara/pp/mpp0.png");
+      ResourceLoader::load(walkingPP[(int) Side::TO_RIGHT], "sprites/chara/pp/mpp1.png");
+      ResourceLoader::load(walkingPP[(int) Side::TO_LEFT], "sprites/chara/pp/mpp2.png");
+      ResourceLoader::load(walkingPP[(int) Side::TO_UP], "sprites/chara/pp/mpp3.png");
+      ResourceLoader::load(walkingPP2[(int) Side::TO_DOWN], "sprites/chara/pp/mpp20.png");
+      ResourceLoader::load(walkingPP2[(int) Side::TO_RIGHT], "sprites/chara/pp/mpp21.png");
+      ResourceLoader::load(walkingPP2[(int) Side::TO_LEFT], "sprites/chara/pp/mpp22.png");
+      ResourceLoader::load(walkingPP2[(int) Side::TO_UP], "sprites/chara/pp/mpp23.png");
+
 
       std::vector<sf::Texture> basicDoor;
-      for(unsigned int i = 0; i < 4; i++) {
-	std::ostringstream oss;
-	oss << RESSOURCES_PATH << "animations/basicdoor/basic_door" << i + 1 << ".png";
-	sf::Texture txtr;
-	if(!txtr.loadFromFile(oss.str())){
-	  handleError("Failed to load one of the basic door sprites", false);
-	}
-	basicDoor.push_back(txtr);
-      }
+      ResourceLoader::loadTextureArray(basicDoor, "animations/basicdoor/basic_door%d.png", 4, 1);
       doorsTextures.push_back(basicDoor);
-      if(!Model::Data::Ui::doorSoundBuffer.loadFromFile(RESSOURCES_PATH + "audio/sounds/door.ogg")){
-	handleError("Failed to load the door sound.", false);
-      }
-      if(!Model::Data::Ui::shopDoorSoundBuffer.loadFromFile(RESSOURCES_PATH + "audio/sounds/shopdoor.ogg")){
-	handleError("Failed to load the shop door sound.", false);
-      }
+
+      ResourceLoader::load(Model::Data::Ui::doorSoundBuffer, "audio/sounds/door.ogg");
+      ResourceLoader::load(Model::Data::Ui::shopDoorSoundBuffer, "audio/sounds/shopdoor.ogg");
+
       Events::doorSound.setBuffer(Model::Data::Ui::doorSoundBuffer);
       Events::shopdoorSound.setBuffer(Model::Data::Ui::shopDoorSoundBuffer);
-      std::vector<sf::Texture> shopDoor;
-      for(unsigned int i = 0; i < 4; i++) {
-	      std::string path = RESSOURCES_PATH + "animations/shopdoor/shop_door" + std::to_string(i + 1) + ".png";
-	sf::Texture txtr;
-	if(!txtr.loadFromFile(path)){
-	  handleError("Failed to load the shop door sprite.", false);
-	}
-	shopDoor.push_back(txtr);
-      }
-      doorsTextures.push_back(shopDoor);
-      for(unsigned int i = 0; i < 12; i++) {
-	std::string str = RESSOURCES_PATH + "sprites/chara/kid/kid" + std::to_string(i) + ".png";
-	charaTextures["kid"].push_back(sf::Texture());
-	if(!charaTextures["kid"][i].loadFromFile(str)){
-	  handleError("Failed to load one of the kid sprites", false);
-	}
-      }
 
-      for(unsigned int i = 0; i < 12; i++) {
-	      std::string str = RESSOURCES_PATH + "sprites/chara/prof/prof" + std::to_string(i) + ".png";
-	charaTextures["kiwai"].push_back(sf::Texture());
-	if(!charaTextures["kiwai"][i].loadFromFile(str)){
-	  handleError("Failed to load one of the prof sprites", false);
-	}
-      }
+      std::vector<sf::Texture> shopDoor;
+      ResourceLoader::loadTextureArray(shopDoor, "animations/shopdoor/shop_door%d.png", 4, 1);
+      doorsTextures.push_back(shopDoor);
+
+      ResourceLoader::loadTextureArray(charaTextures["kid"], "sprites/chara/kid/kid%d.png", 12);
+
+      ResourceLoader::loadTextureArray(charaTextures["kiwai"], "sprites/chara/prof/prof%d.png", 12);
 
       initEnumsEvents();
     }
 
     void initFonts(){
-      if(!font.loadFromFile(RESSOURCES_PATH + "fonts/Default.ttf")) {
-        handleError("Font cannot be opened.", true);
-      }
+      ResourceLoader::load(font, "fonts/Default.ttf", true);
     }
 
     void initSounds() {
-      if(!Model::Data::Sounds::dialogPass.loadFromFile(RESSOURCES_PATH + "audio/sounds/dialogChange.ogg")) {
-        handleError("Unable to open dialog sound.", false);
-      }
+      ResourceLoader::load(Model::Data::Sounds::dialogPass, "audio/sounds/dialogChange.ogg");
     }
 
 
@@ -485,21 +430,14 @@ __________________________________________
 	Model::Data::Elements::elementsCounter["windturbine"] = 0;
 	Model::Data::Elements::elementsSprites["windturbine"] = sf::Sprite();
 	Model::Data::Elements::elementsPos["windturbine"] = sf::Vector2f(8 *32 + 25 *32 - 8, 3 *32 + 8);
-	for(unsigned int i = 1; i < 17; i++) {
-	  std::ostringstream str;
-	  str << RESSOURCES_PATH + "animations/windturbine/blade_" << i << string(".png");
-	  Model::Data::Elements::elementsTextures["windturbine"].push_back(sf::Texture());
-	  Model::Data::Elements::elementsTextures["windturbine"][i - 1].loadFromFile(str.str());
-	}
+
+      ResourceLoader::loadTextureArray(Model::Data::Elements::elementsTextures["windturbine"], "animations/windturbine/blade_%d.png", 16, 1);
+
 	Model::Data::Elements::elementsCounter["smoke"] = 0;
 	Model::Data::Elements::elementsSprites["smoke"] = sf::Sprite();
 	Model::Data::Elements::elementsPos["smoke"] = sf::Vector2f(8*32+18*32, 11*32);
-	for(unsigned int i = 1; i < 17; i++) {
-	  std::ostringstream str;
-	  str << RESSOURCES_PATH + "animations/chimneysmoke/chimneysmoke_" << i << string(".png");
-	  Model::Data::Elements::elementsTextures["smoke"].push_back(sf::Texture());
-	  Model::Data::Elements::elementsTextures["smoke"][i - 1].loadFromFile(str.str());
-	}
+
+      ResourceLoader::loadTextureArray(Model::Data::Elements::elementsTextures["smoke"], "animations/chimneysmoke/chimneysmoke_%d.png", 16, 1);
 
     
 	auto feCol = array_to_pointer((char*) Collisions::feCol, 32, 32);
