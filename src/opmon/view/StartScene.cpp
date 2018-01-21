@@ -6,9 +6,9 @@
 #include "../../utils/StringKeys.hpp"
 #include "../../utils/defines.hpp"
 #include "../model/storage/Data.hpp"
+#include "../model/storage/ResourceLoader.hpp"
 #include "../model/sysObjects/Player.hpp"
 #include "./Window.hpp"
-
 
 #define SIZE_P0 18
 #define SIZE_P1 15
@@ -57,11 +57,11 @@ namespace OpMon{
       txtEnCours[1] = sf::String(" ");
       txtEnCours[2] = sf::String(" ");
 
-      textures[0].loadFromFile(RESSOURCES_PATH + "backgrounds/start/startscene.png");
-      textures[1].loadFromFile(RESSOURCES_PATH + "sprites/chara/jlppc/profkiwai.png");
-      textures[2].loadFromFile(RESSOURCES_PATH + "backgrounds/dialog/dialog.png");
-      textures[3].loadFromFile(RESSOURCES_PATH + "sprites/misc/arrDial.png");
-      textures[4].loadFromFile(RESSOURCES_PATH + "backgrounds/start/nameEntry.png");
+      Model::ResourceLoader::load(textures[0], "backgrounds/start/startscene.png");
+      Model::ResourceLoader::load(textures[1], "sprites/chara/jlppc/profkiwai.png");
+      Model::ResourceLoader::load(textures[2], "backgrounds/dialog/dialog.png");
+      Model::ResourceLoader::load(textures[3], "sprites/misc/arrDial.png");
+      Model::ResourceLoader::load(textures[4], "backgrounds/start/nameEntry.png");
       bg.setTexture(textures[0]);
       prof.setTexture(textures[1]);
       Dialog::dialog.setTexture(textures[2]);

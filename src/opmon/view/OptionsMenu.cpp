@@ -1,6 +1,7 @@
 #include "OptionsMenu.hpp"
 #include "../model/save/OptionsSave.hpp"
 #include "../model/storage/Data.hpp"
+#include "../model/storage/ResourceLoader.hpp"
 #include "Window.hpp"
 
 UNS
@@ -98,12 +99,12 @@ namespace OpMon {
     }
 
     OptionsMenu::OptionsMenu() : currentOptions(OptionType::ALL) {
-      
-      textures2[0].loadFromFile(RESSOURCES_PATH + "backgrounds/options.png");
-      textures2[1].loadFromFile(RESSOURCES_PATH + "sprites/misc/selectBar.png");
-      textures2[2].loadFromFile(RESSOURCES_PATH + "backgrounds/lang.png");
-      textures2[3].loadFromFile(RESSOURCES_PATH + "sprites/misc/yes.png");
-      textures2[4].loadFromFile(RESSOURCES_PATH + "backgrounds/credits.png");
+
+      Model::ResourceLoader::load(textures2[0], "backgrounds/options.png");
+      Model::ResourceLoader::load(textures2[1], "sprites/misc/selectBar.png");
+      Model::ResourceLoader::load(textures2[2], "backgrounds/lang.png");
+      Model::ResourceLoader::load(textures2[3], "sprites/misc/yes.png");
+      Model::ResourceLoader::load(textures2[4], "backgrounds/credits.png");
 
 
       bgOpt.setTexture(textures2[0]);
