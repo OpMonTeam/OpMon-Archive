@@ -30,6 +30,10 @@ namespace OpMon{
 	    _next_gs = new AnimationCtrl(new View::Animations::WinAnim(View::frame.getTexture(), false));
 	    return GameStatus::NEXT;
           }
+	  if(event.key.code == sf::Keyboard::P && startscene.getPart() != 1){
+	    _next_gs = new OverworldCtrl(Model::Data::player);
+	    return GameStatus::NEXT;
+	  }
           break;
         case sf::Event::TextEntered:
           if(startscene.getPart() == 1){
