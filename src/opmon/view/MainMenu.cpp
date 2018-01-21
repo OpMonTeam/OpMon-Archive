@@ -2,6 +2,7 @@
 #include <iostream>
 #include "OptionsMenu.hpp"
 #include "../model/storage/Data.hpp"
+#include "../model/storage/ResourceLoader.hpp"
 #include "../../utils/log.hpp"
 #include "../../utils/defines.hpp"
 #include "../../utils/StringKeys.hpp"
@@ -31,10 +32,10 @@ namespace OpMon{
         j+=85;
       }
 
-      textures[0].loadFromFile(RESSOURCES_PATH + "backgrounds/titlescreen.png");
-      textures[1].loadFromFile(RESSOURCES_PATH + "sprites/misc/arrChoice.png");
-      sounds[0].loadFromFile(RESSOURCES_PATH + "audio/sounds/select.ogg");
-      sounds[1].loadFromFile(RESSOURCES_PATH + "audio/sounds/selectbuttons.ogg");
+      Model::ResourceLoader::load(textures[0], "backgrounds/titlescreen.png");
+      Model::ResourceLoader::load(textures[1], "sprites/misc/arrChoice.png");
+      Model::ResourceLoader::load(sounds[0], "audio/sounds/select.ogg");
+      Model::ResourceLoader::load(sounds[1], "audio/sounds/selectbuttons.ogg");
       //sounds[2].loadFromFile(RESSOURCES_PATH + "audio/sounds/nope.ogg");
       bg.setTexture(textures[0]);
       cursor.setTexture(textures[1]);
