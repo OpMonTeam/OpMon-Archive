@@ -38,8 +38,6 @@ namespace OpMon{
 
   template<typename Base, typename T>
   bool instanceOf(const Base *toTest);
-
-  void initStringKeys(const std::string &keysFileS);
 }
 
 
