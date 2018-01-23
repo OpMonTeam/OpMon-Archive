@@ -6,7 +6,7 @@
 #include "../start/Core.hpp"
 #include "../../utils/StringKeys.hpp"
 
-#include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics.hpp>
 
 
 using Utils::Log::oplog;
@@ -34,6 +34,10 @@ namespace OpMon{
       } else {
         window.create(sf::VideoMode(512, 512), "OpMon Lazuli", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize, settings);
       }
+
+      sf::Image icon;
+      Model::ResourceLoader::load(icon, "opmon.png");
+      window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
       frame.create(512, 512);
       window.clear(sf::Color::White);
