@@ -8,6 +8,7 @@
 #include "../../utils/fs.hpp"
 #include "../model/objects/Enums.hpp"
 #include "../model/storage/InternalFiles.hpp"
+#include "../model/storage/ResourceLoader.hpp"
 #include "../model/save/OptionsSave.hpp"
 #include "../view/Window.hpp"
 #include "./Core.hpp"
@@ -88,7 +89,7 @@ int main(int argc, char *argv[]) {
 
   auto versionS = string("Alpha ") + OPMON_VERSION;
 
-  if (!Utils::Fs::mkdir(RESSOURCES_PATH) || !Utils::Fs::mkdir(SAVE_PATH)) {
+  if (!ResourceLoader::checkResourceFolderExists() || !Utils::Fs::mkdir(SAVE_PATH)) {
     cout << "Exiting" << endl;
     return -1;
   }
