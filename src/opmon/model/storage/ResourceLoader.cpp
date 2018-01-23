@@ -2,15 +2,22 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include "ResourceLoader.hpp"
+#include "../../../utils/path.hpp"
 
 
 namespace OpMon{
   namespace Model{
 
+    const std::string &ResourceLoader::getResourcePath(){
+      static const std::string &path =  Utils::Path::getResourcePath();
+
+      return path;
+    }
+
     bool ResourceLoader::checkResourceFolderExists(){
       struct stat info;
 
-      if(stat(RESSOURCES_PATH.c_str(), &info) != 0){
+      if(stat(getResourcePath().c_str(), &info) != 0){
         return false; // Can't access to folder
       }
       if(!(info.st_mode & S_IFDIR)){
@@ -42,14 +49,14 @@ namespace OpMon{
 
     sf::Music *ResourceLoader::loadMusic(const char *path){
       auto *music = new sf::Music();
-      if(!music->openFromFile(RESSOURCES_PATH + path)){
+      if(!music->openFromFile(getResourcePath() + path)){
         handleError(std::string("Failed to load music: ") + path, false);
       }
       return music;
     }
 
     std::ifstream ResourceLoader::loadKeysFile(const char *path){
-      std::ifstream file(RESSOURCES_PATH + path);
+      std::ifstream file(getResourcePath() + path);
       if(!file){
         handleError(std::string("Keys initialization error: ") + path, true);
       }
