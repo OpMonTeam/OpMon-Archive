@@ -40,5 +40,13 @@ namespace OpMon{
       }
     }
 
+    sf::Music *ResourceLoader::loadMusic(const char *path){
+      auto *music = new sf::Music();
+      if(!music->openFromFile(RESSOURCES_PATH + path)){
+        handleError(std::string("Failed to load music: ") + path, false);
+      }
+      return music;
+    }
+
   }
 }
