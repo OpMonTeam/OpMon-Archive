@@ -2,6 +2,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "../../../utils/defines.hpp"
 #include "../../start/Core.hpp"
 
@@ -48,6 +49,8 @@ namespace OpMon {
        */
       static void
       loadTextureArray(std::vector<sf::Texture> &container, const char *path, size_t nb_frame, size_t path_offset = 0);
+
+      static sf::Music *loadMusic(const char *path);
     };
 
 
