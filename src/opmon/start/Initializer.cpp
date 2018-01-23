@@ -312,11 +312,11 @@ __________________________________________
 
 
     void initMusics(){
-      View::jukebox.addMusic("Title", RESSOURCES_PATH + "audio/music/title.ogg", 50);
-      View::jukebox.addMusic("Start", RESSOURCES_PATH + "audio/music/intro.ogg");
-      View::jukebox.addMusic("Fauxbourg", RESSOURCES_PATH +"audio/music/faubourgeuvi.ogg");
-      View::jukebox.addMusic("Route 14", RESSOURCES_PATH + "audio/music/route14.ogg");
-      View::jukebox.addMusic("Ms", RESSOURCES_PATH + "audio/music/mysterioucity.ogg");
+      View::jukebox.addMusic("Title", "audio/music/title.ogg", 50);
+      View::jukebox.addMusic("Start", "audio/music/intro.ogg");
+      View::jukebox.addMusic("Fauxbourg", "audio/music/faubourgeuvi.ogg");
+      View::jukebox.addMusic("Route 14", "audio/music/route14.ogg");
+      View::jukebox.addMusic("Ms", "audio/music/mysterioucity.ogg");
     }
     
     void initAtkLvls() {
