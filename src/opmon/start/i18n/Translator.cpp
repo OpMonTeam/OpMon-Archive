@@ -2,8 +2,7 @@
 #include "Translator.hpp"
 #include "ATranslatable.hpp"
 #include "../../../utils/log.hpp"
-#include "../../../utils/defines.hpp"
-#include "../Core.hpp"
+#include "../../../utils/StringKeys.hpp"
 
 
 namespace OpMon{
@@ -26,8 +25,7 @@ namespace OpMon{
       if (langCode == _currentLang)
         return; // Nothing to do
 
-
-      OpMon::initStringKeys(langMap[langCode]);
+      Utils::StringKeys::initialize(langMap[langCode]);
 
       _currentLang = langCode;
       for(auto &listener: _listeners){
