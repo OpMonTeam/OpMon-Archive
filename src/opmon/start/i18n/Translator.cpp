@@ -27,7 +27,7 @@ namespace OpMon{
         return; // Nothing to do
 
 
-      OpMon::initStringKeys(RESSOURCES_PATH + langMap[langCode]);
+      OpMon::initStringKeys(langMap[langCode]);
 
       _currentLang = langCode;
       for(auto &listener: _listeners){

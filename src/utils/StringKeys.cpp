@@ -1,6 +1,7 @@
 #include "StringKeys.hpp"
 #include <cstdio>
 #include <fstream>
+#include "../opmon/model/storage/ResourceLoader.hpp"
 #include "./log.hpp"
 
 
@@ -40,7 +41,7 @@ namespace Utils {
 
     bool initialize(const string &keysFileS){
       //Ouverture du fichier de clées, initialisation des vectors
-      ifstream keysFile(keysFileS.c_str());
+      ifstream keysFile = OpMon::Model::ResourceLoader::loadKeysFile(keysFileS.c_str());
       keys = vector<string>();
       strings = vector<sf::String>();
       Log::oplog("Keys initialization");
