@@ -2138,8 +2138,17 @@ namespace OpMon {
 	0, 0
       };
     }
+    
     namespace Collisions {
       //Indication : The collisions are : 0 for "Ok, you can go!", 1 for "You shall not pass.", 2 for "Bring your swimming suit (Water titles)", 3 for "Random encounters on roads", 4 for "Grotto", 5 for the specials collisions objects.
+
+#define FILL_BLANK 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      
+      int colSquare[2048] = {
+	0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, FILL_BLANK,
+	
+      };
+      
       char feCol[32][32] = {
 	{1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 	{2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
