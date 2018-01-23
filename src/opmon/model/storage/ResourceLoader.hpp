@@ -13,6 +13,12 @@ namespace OpMon {
     public:
 
       /**
+       * Verify that the resource folder exists.
+       * @return `true` if it exists; `false` otherwise.
+       */
+      static bool checkResourceFolderExists();
+
+      /**
        * Load an arbitrary SFML resource
        *
        * @tparam T - the method T::loadFromFile() must exists.
