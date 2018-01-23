@@ -33,6 +33,8 @@ namespace OpMon{
       extern char laboCol[16][32];
       extern char route14Col[41][74];
       extern char myciCol[19][19];
+
+      extern int colSquare[4096];
     }
 
 
