@@ -1,6 +1,7 @@
 
 #pragma once
 
+#include <fstream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "../../../utils/defines.hpp"
@@ -51,6 +52,8 @@ namespace OpMon {
       loadTextureArray(std::vector<sf::Texture> &container, const char *path, size_t nb_frame, size_t path_offset = 0);
 
       static sf::Music *loadMusic(const char *path);
+
+      static std::ifstream loadKeysFile(const char *path);
     };
 
 
