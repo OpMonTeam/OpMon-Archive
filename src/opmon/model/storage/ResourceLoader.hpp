@@ -14,6 +14,8 @@ namespace OpMon {
     class ResourceLoader{
     public:
 
+      static const std::string &getResourcePath();
+
       /**
        * Verify that the resource folder exists.
        * @return `true` if it exists; `false` otherwise.
@@ -60,7 +62,7 @@ namespace OpMon {
     template<typename T>
     void ResourceLoader::load(T &resource, const char *path, bool fatal){
 
-      if(!resource.loadFromFile(RESSOURCES_PATH + path)){
+      if(!resource.loadFromFile(getResourcePath() + path)){
         handleError(std::string("Failed to load resource: ") + path, fatal);
       }
 
