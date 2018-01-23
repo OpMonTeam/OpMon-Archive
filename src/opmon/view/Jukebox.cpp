@@ -1,4 +1,6 @@
 #include "Jukebox.hpp"
+#include "../model/storage/ResourceLoader.hpp"
+
 
 namespace OpMon{
   namespace View{
@@ -8,8 +10,7 @@ namespace OpMon{
       if(volume == -15){
 	volume = globalVolume;
       }
-      sf::Music* music = new sf::Music();
-      music->openFromFile(path);
+      sf::Music* music = Model::ResourceLoader::loadMusic(path.c_str());
       music->setVolume(volume);
       music->setLoop(loop);
       musList[name] = music;
