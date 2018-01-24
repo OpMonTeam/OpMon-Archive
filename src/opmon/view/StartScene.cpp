@@ -75,7 +75,7 @@ namespace OpMon{
 
       for(sf::Text &cellTxt : textDescs) {
         cellTxt.setCharacterSize(FONT_SIZE_DEFAULT);
-        cellTxt.setFillColor(sf::Color::Black);
+        cellTxt.setColor(sf::Color::Black);
         cellTxt.setFont(Model::Data::Ui::font);
       }
 
@@ -156,7 +156,7 @@ namespace OpMon{
           frame.clear(sf::Color::White);
           frame.draw(bgName);
           for(sf::Text desc : textDescs){
-            desc.setFillColor(sf::Color::White);
+            desc.setColor(sf::Color::White);
             desc.setFont(Model::Data::Ui::font);
             frame.draw(desc);
           }

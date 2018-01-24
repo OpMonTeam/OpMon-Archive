@@ -86,7 +86,7 @@ void Dialog::printText(sf::RenderTarget &frame, sf::String text[]) {
       dialogText[itor].setString(text[itor].toUtf32());
       dialogText[itor].setFont(OpMon::Model::Data::Ui::font);
       dialogText[itor].setCharacterSize(FONT_SIZE_DEFAULT);
-      dialogText[itor].setFillColor(sf::Color::Black);
+      dialogText[itor].setColor(sf::Color::Black);
       dialogText[itor].setPosition(frame.mapPixelToCoords(sf::Vector2i(25, frame.mapCoordsToPixel(dialog.getPosition()).y + minusPos)));
       minusPos+=32;
       
