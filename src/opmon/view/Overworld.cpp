@@ -151,7 +151,7 @@ namespace OpMon{
 	debugText.setString("Debug mode");
 	debugText.setPosition(View::frame.mapPixelToCoords(sf::Vector2i(0, 0)));
 	debugText.setFont(Model::Data::Ui::font);
-	debugText.setFillColor(sf::Color(127, 127, 127));
+	debugText.setColor(sf::Color(127, 127, 127));
 	debugText.setCharacterSize(40);
 	fpsPrint.setPosition(View::frame.mapPixelToCoords(sf::Vector2i(0, 50)));
 	fpsPrint.setFont(Model::Data::Ui::font);
