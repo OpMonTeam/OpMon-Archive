@@ -49,7 +49,7 @@ namespace OpMon{
       textLoad.setString(Utils::StringKeys::get("load.txt"));
       textLoad.setCharacterSize(45);
       textLoad.setFont(Model::Data::Ui::font);
-      textLoad.setFillColor(sf::Color::White);
+      textLoad.setColor(sf::Color::White);
       textLoad.setPosition(30, 400);
       frame.draw(spriteLoad);
       frame.draw(textLoad);
