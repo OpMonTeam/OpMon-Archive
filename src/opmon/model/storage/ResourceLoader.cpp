@@ -1,6 +1,4 @@
 
-#include <sys/types.h>
-#include <sys/stat.h>
 #include "ResourceLoader.hpp"
 #include "../../../utils/path.hpp"
 
@@ -15,15 +13,8 @@ namespace OpMon{
     }
 
     bool ResourceLoader::checkResourceFolderExists(){
-      struct stat info;
-
-      if(stat(getResourcePath().c_str(), &info) != 0){
-        return false; // Can't access to folder
-      }
-      if(!(info.st_mode & S_IFDIR)){
-        return false; // Is not a folder
-      }
-      return true;
+      //getResourcePath() already check if the folder exists.
+      return !getResourcePath().empty();
     }
 
     void ResourceLoader::loadTextureArray(sf::Texture container[], const char *path, size_t nb_frame, size_t path_offset){
