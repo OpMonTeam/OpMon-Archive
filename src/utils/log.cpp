@@ -21,8 +21,8 @@ namespace Utils{
 
       Fs::mkdir(LOG_PATH);
 
-      rlog = new std::ofstream(LOG_PATH + "log.txt");
-      rerrLog = new std::ofstream(LOG_PATH + "errLog.txt");
+      rlog = new std::ofstream(std::string(LOG_PATH + "log.txt"));
+      rerrLog = new std::ofstream(std::string(LOG_PATH + "errLog.txt"));
 
       if (!*rlog) {
         std::cout << "Unable to open the log." << std::endl;
