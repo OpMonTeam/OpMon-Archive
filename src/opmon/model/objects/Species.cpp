@@ -5,13 +5,35 @@
 namespace OpMon{
   namespace Model{
 
+    Species::Species(Species&& other) noexcept {
+      name = other.name;
+      numeroOpdex = other.numeroOpdex;
+      evolution = other.evolution;
+      niveauEvolution = other.niveauEvolution;
+      evolType = other.evolType;
+      type1 = other.type1;
+      type2 = other.type2;
+      entreeOpdex = other.entreeOpdex;
+      height = other.height;
+      weight = other.weight;
+      baseAtk = other.baseAtk;
+      baseDef = other.baseDef;
+      baseAtkSpe = other.baseAtkSpe;
+      baseDefSpe = other.baseDefSpe;
+      baseVit = other.baseVit;
+      baseHP = other.baseHP;
+      curve = other.curve;
+      expMax = other.expMax;
+      EVgiven = other.EVgiven;
+      expGiven = other.expGiven;
+      tauxDeCapture = other.tauxDeCapture;
+      evSize = other.evSize;
+
+      other.evolType = nullptr;
+    }
+
     Species::~Species() {
-      if(evolType != nullptr) {
-
-        delete(evolType);
-      }
-
-
+      delete(evolType);
     }
 
     Species::Species(unsigned int atk, unsigned int def, unsigned int atkSpe, unsigned int defSpe, unsigned int spe, unsigned int hp, std::string name, Type type1, Type type2, int maniereEvolution/*En fait faut mettre 0, il est la pour un souci de compatibilit�*/, int niveauEvolution, Evolution *evolType, std::vector<Stats> EVGiven, float height, float weight, std::string entreeOpdex, unsigned int expGiven, int expMax, int tauxDeCapture, int numeroOpdex) {
