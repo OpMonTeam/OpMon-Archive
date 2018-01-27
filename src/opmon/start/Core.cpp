@@ -24,7 +24,7 @@ namespace OpMon{
   */
   string optSave(SAVE_PATH + "optSave.oparams");
 
-  bool debugMode = false;
+  bool debugMode = true;
 
   //The number of errors handeled in the program.
   int errors = 0;

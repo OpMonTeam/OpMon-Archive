@@ -41,28 +41,39 @@ namespace OpMon{
       return toReturn;
     }
 
-    int Map::getCurrentTileCode(sf::Vector2i const& pos, int layer){
+    int Map::getCurrentTileCode(sf::Vector2i const& pos, int layer) const{
       switch(layer){
       case 1:
         return layer1[pos.x + pos.y * w];
-	break;
       case 2:
 	return layer2[pos.x + pos.y * w];
-	break;
       case 3:
 	return layer3[pos.x + pos.y * w];
-	break;
       default:
+        //TODO: Log error
 	return 0;
       }
-
-      return 0;
-      
     }
 
-    int Map::getTileCollision(int tile){
+    int Map::getTileCollision(int tile) const{
       return Collisions::colTile[tile];
     }
-    
+
+    int Map::getCollision(sf::Vector2i const &pos) const{
+      int collisionLayer1 = getTileCollision(getCurrentTileCode(pos, 1));
+      int collisionLayer2 = getTileCollision(getCurrentTileCode(pos, 2));
+
+      if(collisionLayer1 == 0){
+        return collisionLayer2;
+      }
+      if(collisionLayer2 == 0){
+        return collisionLayer1;
+      }
+      if(collisionLayer1 == 1 || collisionLayer2 == 1){
+        return 1;
+      }
+      // TODO: it may have a conflict between collisions from layer1 and layer2.
+      return collisionLayer1;
+    }
   }
 }

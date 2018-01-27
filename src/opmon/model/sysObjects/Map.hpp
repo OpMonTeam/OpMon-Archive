@@ -74,9 +74,11 @@ namespace OpMon{
       void debugInfo();
       void updateElements(sf::RenderTexture &frame);
 
-      int getCurrentTileCode(sf::Vector2i const& pos, int layer);
+      int getCurrentTileCode(sf::Vector2i const& pos, int layer) const;
 
-      int getTileCollision(int tile);
+      int getTileCollision(int tile) const;
+
+      int getCollision(sf::Vector2i const &pos) const;
     };
   }
 }
