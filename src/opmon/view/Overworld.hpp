@@ -61,6 +61,7 @@ namespace OpMon{
       void moveCamera(Model::Side dir);
 
       bool printlayer[3] = {true, true, true};
+      bool printCollisions = false;
 
       bool justTp = false;
 
@@ -80,6 +81,8 @@ namespace OpMon{
     private:
 
       void printElements(sf::RenderTexture& frame);
+
+	  void printCollisionLayer(sf::RenderTarget& frame);
 
       sf::View camera;
       sf::Sprite character;
