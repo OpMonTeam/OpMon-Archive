@@ -98,27 +98,18 @@ namespace OpMon{
 	Data::OpMons::listOp.emplace(50, Species(55, 25, 35, 45, 95, 10, "Taupiqueur", Type::SOL, Type::NOTHING, 0, 26, new E_Level(51, 26), Model::Data::OpMons::evs[50], 0.2, 0., "Son épiderme est très fin. S'il est exposé au soleil, son sang se réchauffe, ce qui l'affaiblit.", 81, 1000000, 255, 50));
 	Data::OpMons::listOp.emplace(51, Species(80, 50, 50, 70, 120, 35, "Triopikeur", Type::SOL, Type::NOTHING, 0, -1, new E_Nope(), Model::Data::OpMons::evs[51], 0.7, 33.3, "Terriblement puissants, ils peuvent creuser un tunnel dans tout type de sol et jusqu'à  100 km de profondeur.", 153, 1000000, 50, 51));
 ________________________________________________
-      Data::OpMons::listOp.emplace(52, Species(45, 35, 40, 40, 90, 40, "Chagnon", Type::NORMAL, Type::PSY, 0, 28, new E_Level(53, 28), Model::Data::OpMons::evs[52], 0.4, 4.2, "Les Chagnons adorent dormir près des arbres, en esperant qu'un Verpomme tombe pour pouvoir le manger", 69, 1000000, 10, 52));
+      Data::OpMons::listOp.emplace(52, Species(45, 35, 40, 40, 90, 40, "Chagnon", Type::NORMAL, Type::PSY, 0, 28, new E_Level(53, 28),  std::vector<Stats>{Stats::HP}, 0.4, 4.2, "Les Chagnons adorent dormir près des arbres, en esperant qu'un Verpomme tombe pour pouvoir le manger", 69, 1000000, 10, 52));
 _______________________________________________
       /*Data::OpMons::listOp.emplace(53, Species(70, 60, 65, 65, 115, 65, "Persian", Type::NORMAL, Type::NOTHING, 0, -1, new E_Nope(), Model::Data::OpMons::evs[53], 1, 32, "Un Pokémon très snob. La taille du joyau qui orne son front alimente bien des débats parmi ses fans.", 148, 1000000, 90, 53));
 	Data::OpMons::listOp.emplace(54, Species(52, 48, 65, 50, 55, 50, "Psykokwak", Type::EAU, Type::NOTHING, 0, 33, new E_Level(55, 33), Model::Data::OpMons::evs[54], 0., 19.6, "Il ne se souvient pas qu'il a des pouvoirs psy. C'est pour cela qu'il a l'air si confus.", 80, 1000000, 190, 54));
 	Data::OpMons::listOp.emplace(55, Species(82, 78, 95, 80, 85, 80, "Akwakwak", Type::EAU, Type::NOTHING, 0, -1, new E_Nope(), Model::Data::OpMons::evs[55], 1.7, 76.6, "Il apparaà®t dans les étendues d'eau au crépuscule. Si son front brille, il se sert de sa télékinésie.", 174, 1000000, 75, 55));
-	*/
 
+_____________________________________________________
+Data::OpMons::listOp.emplace(56, Species(80, 35, 35, 45, 70, 40, "Poigno", Type::COMBAT, Type::NOTHING, 0, 28, new E_Level(57, 28), std::vector<Stats>{Stats::ATK}, 0.7, 18, "Il ne peut dissocier ses amis de ses ennemis et a tendance à  enrager lorsqu'on l'approche.", 74, 1000000, 190, 56));
 
-
-
-      
-      /*Data::OpMons::listOp.emplace(56, Species(80, 35, 35, 45, 70, 40, "Poigno", Type::COMBAT, Type::NOTHING, 0, 28, new E_Level(57, 28),Model::Data::OpMons::evs[56], 0.5, 2, "Il ne peut dissocier ses amis de ses ennemis et a tendance à  enrager lorsqu'on l'approche.", 74, 1000000, 190, 56));
-	Data::OpMons::listOp.emplace(57, Species(85, 55, 92, 38, 66, 68, "Boxali", Type::COMBAT, Type::NOTHING, 0, -1, new E_Nope(), Model::Data::OpMons::evs[57], 1.89, 72, "Boxali peut utiliser sa cape bleue pour planer quelques secondes au dessus du sol et pouvoir faire des figures et des coups aériens.", 149, 1000000, 75, 57));
-      */
-
-
-
-
-
-      
-	/*Data::OpMons::listOp.emplace(58, Species(70, 45, 70, 50, 60, 55, "Caninos", Type::FEU, Type::NOTHING, 0, -1, new E_Item(59, Item::getItem("Pierre Feu")),Model::Data::OpMons::evs[58], 0.7, 19, "Il est courageux et fier. Il se dresse vaillamment devant ses ennemis mÃªme s'ils sont plus _puissants.", 91, 1250000, 190, 58));
+	Data::OpMons::listOp.emplace(57, Species(85, 55, 92, 38, 66, 68, "Boxali", Type::COMBAT, Type::NOTHING, 0, -1, new E_Nope(),  std::vector<Stats>{Stats::ATK, Stats::ATK, Stats::ATK}, 1.89, 72, "Boxali peut utiliser sa cape bleue pour planer quelques secondes au dessus du sol et pouvoir faire des figures et des coups aériens.", 149, 1000000, 75, 57));
+________________________________________________________
+Data::OpMons::listOp.emplace(58, Species(70, 45, 70, 50, 60, 55, "Caninos", Type::FEU, Type::NOTHING, 0, -1, new E_Item(59, Item::getItem("Pierre Feu")),Model::Data::OpMons::evs[58], 0.7, 19, "Il est courageux et fier. Il se dresse vaillamment devant ses ennemis mÃªme s'ils sont plus _puissants.", 91, 1250000, 190, 58));
 	Data::OpMons::listOp.emplace(59, Species(110, 80, 100, 80 , 95, 90, "Arcanin", Type::FEU, Type::NOTHING, 0, -1, new E_Nope(),Model::Data::OpMons::evs[59], 1.9, 155, "Son aboiement est tout simplement majestueux. On ne peut que ramper à  ses pieds après l'avoir entendu.", 213, 1250000, 75, 59));
 	Data::OpMons::listOp.emplace(60, Species(50, 40, 40, 40, 90, 40, "Ptitard", Type::EAU, Type::NOTHING, 0, 25, new E_Level(61, 25), Model::Data::OpMons::evs[60], 0.6, 12.4, "Sa peau est si mince qu'on voit ses organes internes. Il tient à  peine sur ses nouveaux pieds.", 77, 1059860, 255, 60));
 	Data::OpMons::listOp.emplace(61, Species(65, 65, 50, 50, 90, 65, "TÃªtarte", Type::EAU, Type::NOTHING, 0, -1, new E_Item(62, Item::getItem("Pierre Eau")), Model::Data::OpMons::evs[61], 1, 20, " Ce Pokémon amphibie transpire continuellement quand il est hors de l'eau afin d'hydrater son corps.", 131, 1059860, 120, 61));
@@ -319,7 +310,9 @@ __________________________________________
 	Data::OpMons::listOp.emplace(248, Species(134, 110, 95, 100, 61, 100, "Tyranocif", Type::ROCHE, Type::TENEBRES, 0, -1, new E_Nope(), {Stats.ATK, Stats.ATK, Stats.ATK}, 2, 202, "Lorsqu'il est en colère, il abat des montagnes et enterre des fleuves. On doit alors modifier les cartes.", 218, 1250000, 45, 248));
 	Data::OpMons::listOp.emplace(249, Species(90, 130, 90, 154, 110, 106, "Lugia", Type::PSY, Type::VOL, 0, -1, new E_Nope(), {Stats.DEFSPE, Stats.DEFSPE, Stats.DEFSPE}, 5.2, 216, "Il dort dans une faille des grands fonds. Ses battements d'ailes génèrent une tempête de 40 jours.", 220, 1250000, 3, 249));
 	Data::OpMons::listOp.emplace(250, Species(130, 90, 110, 154, 90, 106, "Ho-Oh", Type::FEU, Type::VOL, 0, -1, new E_Nope(), {Stats.DEFSPE, Stats.DEFSPE, Stats.DEFSPE}, 3., 199, "Une légende raconte que son corps brille de sept couleurs. Un arc-en-ciel se forme derrière lui quand il vole.", 211, 1250000, 3, 250));
-	Data::OpMons::listOp.emplace(?, Species(90, 90, 90, 90, 90, 90, "Clair de Lune", Type::LUMIERE, Type::TENEBRES, 0, -1, new E_Nope(), {Stats.ATKSPE, Stats.DEFSPE, Stats.}, 0.4, 5, "Ce chat adorait contempler la lune chaques soirs, mais un jour, la lune a eu raison de lui", 300, 1250000, 3, ?));
+	___________________________________________________________
+Data::OpMons::listOp.emplace(?, Species(90, 90, 90, 90, 90, 90, "Clair de Lune", Type::LUMIERE, Type::TENEBRES, 0, -1, new E_Nope(), {Stats.ATKSPE, Stats.DEFSPE, Stats.}, 0.4, 5, "Ce chat adorait contempler la lune chaques soirs, mais un jour, la lune a eu raison de lui", 300, 1250000, 3, ?));
+_______________________________________________________________
       */
     }
 
