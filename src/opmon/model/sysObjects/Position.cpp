@@ -68,61 +68,54 @@ namespace OpMon {
 
     bool Position::checkPass(Side direction) {
       auto &player = Data::player;
-      bool colPass = false;
       std::vector<Event *> nextEvents;
       Map *map = Data::World::maps.at(player.getMapId());
-      auto passArr = map->getPassArr();
 
+      sf::Vector2i nextPos;
+      sf::Vector2i nextPosPix;
+      int exclusiveCol = 0;
+      
       switch (direction) {
       case Side::TO_UP:
-	if (posY - 1 >= 0) {
-	  if (passArr[(posY - 1)][posX] == 0) {
-	    if(event ? !(posY - 1 == player.getPosition().getPosition().y && posX == player.getPosition().getPosition().x) : true){
-	      nextEvents = map->getEvent(sf::Vector2i(posX SQUARES, (posY - 1) SQUARES));
-	      colPass = true;
-	    }
-	  }
-	}
+	nextPos = sf::Vector2i(posX, posY - 1);
+	exclusiveCol = 8;
+	break;
       case Side::TO_DOWN:
-	if (posY + 1 < map->getH()) {
-	  if (passArr[(posY + 1)][posX] == 0) {
-	    if(event ? !(posY + 1 == player.getPosition().getPosition().y && posX == player.getPosition().getPosition().x) : true){
-	      nextEvents = map->getEvent(sf::Vector2i(posX SQUARES, (posY + 1) SQUARES));
-	      colPass = true;
-	    }
-	  }
-	}
+	nextPos = sf::Vector2i(posX, posY + 1);
+	exclusiveCol = 7;
+	break;
       case Side::TO_LEFT:
-	if (posX - 1 >= 0) {
-	  if (passArr[posY][(posX - 1)] == 0) {
-	    if(event ? !(posY == player.getPosition().getPosition().y && posX - 1 == player.getPosition().getPosition().x) : true){
-	      nextEvents = map->getEvent(sf::Vector2i((posX - 1) SQUARES, posY SQUARES));
-	      colPass = true;
-	    }
-	  }
-	}
+	nextPos = sf::Vector2i(posX - 1, posY);
+	exclusiveCol = 6;
+	break;
       case Side::TO_RIGHT:
-	if (posX + 1 < map->getW()) {
-	  if (passArr[posY][(posX + 1)] == 0 || passArr[posY][(posX + 1)] == 5) {
-	    if(event ? !(posY == player.getPosition().getPosition().y && posX - 1 == player.getPosition().getPosition().x) : true){
-	      nextEvents = map->getEvent(sf::Vector2i((posX + 1) SQUARES, posY SQUARES));
-	      colPass = true;
+	nextPos = sf::Vector2i(posX + 1, posY);
+	exclusiveCol = 5;
+	break;
+      default:
+	break;
+      }
+      
+      nextPosPix = nextPos SQUARES;
+      
+      if(nextPos.x > 0 && nextPos.x < map->getW() && nextPos.y > 0 && nextPos.x < map->getH()){
+	int colLayer1 = map->getTileCollision(map->getCurrentTileCode(nextPos, 1));
+	int colLayer2 = map->getTileCollision(map->getCurrentTileCode(nextPos, 2));
+	if((colLayer1 == 0 || colLayer1 == exclusiveCol) && (colLayer2 == 0 || colLayer2 == exclusiveCol)){
+	  if(event ? !(nextPos.y == player.getPosition().getPosition().y && nextPos.x == player.getPosition().getPosition().x) : true){
+	      nextEvents = map->getEvent(nextPos);
+	      for (Event *nextEvent : nextEvents) {
+		if (!nextEvent->isPassable()) {
+		  return false;
+		}
+	      }
+	      return true;
 	    }
 	  }
-	}
-        default:
-          break;
       }
-      if (colPass) {
-	for (Event *nextEvent : nextEvents) {
-	  if (!nextEvent->isPassable()) {
-	    return false;
-	  }
-	}
-	return true;
-      } else {
-	return false;
-      }
+
+      return false;
+      
     }
 
   }
