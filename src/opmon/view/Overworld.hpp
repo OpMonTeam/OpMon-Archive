@@ -107,9 +107,6 @@ namespace OpMon{
       bool movementLock = false;
 
       bool scrolling = true;
-
-      bool debugMode = false;
-
     };
 
   }

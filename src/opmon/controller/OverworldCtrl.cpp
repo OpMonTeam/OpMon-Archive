@@ -46,7 +46,7 @@ namespace OpMon{
           overworld.moveCamera(Model::Side::TO_UP);
         }
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6)) {
-          overworld.moveCamera(Model::Side::TO_DOWN);
+          overworld.moveCamera(Model::Side::TO_RIGHT);
         }
       }
 
