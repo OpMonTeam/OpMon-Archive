@@ -34,7 +34,7 @@ namespace OpMon{
       extern char route14Col[41][74];
       extern char myciCol[19][19];
 
-      extern int colSquare[4096];
+      extern int colTile[4096];
     }
 
 

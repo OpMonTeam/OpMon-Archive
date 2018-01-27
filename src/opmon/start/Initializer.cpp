@@ -103,8 +103,21 @@ _______________________________________________
       /*Data::OpMons::listOp.emplace(53, Species(70, 60, 65, 65, 115, 65, "Persian", Type::NORMAL, Type::NOTHING, 0, -1, new E_Nope(), Model::Data::OpMons::evs[53], 1, 32, "Un Pokémon très snob. La taille du joyau qui orne son front alimente bien des débats parmi ses fans.", 148, 1000000, 90, 53));
 	Data::OpMons::listOp.emplace(54, Species(52, 48, 65, 50, 55, 50, "Psykokwak", Type::EAU, Type::NOTHING, 0, 33, new E_Level(55, 33), Model::Data::OpMons::evs[54], 0., 19.6, "Il ne se souvient pas qu'il a des pouvoirs psy. C'est pour cela qu'il a l'air si confus.", 80, 1000000, 190, 54));
 	Data::OpMons::listOp.emplace(55, Species(82, 78, 95, 80, 85, 80, "Akwakwak", Type::EAU, Type::NOTHING, 0, -1, new E_Nope(), Model::Data::OpMons::evs[55], 1.7, 76.6, "Il apparaà®t dans les étendues d'eau au crépuscule. Si son front brille, il se sert de sa télékinésie.", 174, 1000000, 75, 55));
-	*/Data::OpMons::listOp.emplace(56, Species(80, 35, 35, 45, 70, 40, "Poigno", Type::COMBAT, Type::NOTHING, 0, 28, new E_Level(57, 28),Model::Data::OpMons::evs[56], 0.5, 2, "Il ne peut dissocier ses amis de ses ennemis et a tendance à  enrager lorsqu'on l'approche.", 74, 1000000, 190, 56));
+	*/
+
+
+
+
+      
+      /*Data::OpMons::listOp.emplace(56, Species(80, 35, 35, 45, 70, 40, "Poigno", Type::COMBAT, Type::NOTHING, 0, 28, new E_Level(57, 28),Model::Data::OpMons::evs[56], 0.5, 2, "Il ne peut dissocier ses amis de ses ennemis et a tendance à  enrager lorsqu'on l'approche.", 74, 1000000, 190, 56));
 	Data::OpMons::listOp.emplace(57, Species(85, 55, 92, 38, 66, 68, "Boxali", Type::COMBAT, Type::NOTHING, 0, -1, new E_Nope(), Model::Data::OpMons::evs[57], 1.89, 72, "Boxali peut utiliser sa cape bleue pour planer quelques secondes au dessus du sol et pouvoir faire des figures et des coups aériens.", 149, 1000000, 75, 57));
+      */
+
+
+
+
+
+      
 	/*Data::OpMons::listOp.emplace(58, Species(70, 45, 70, 50, 60, 55, "Caninos", Type::FEU, Type::NOTHING, 0, -1, new E_Item(59, Item::getItem("Pierre Feu")),Model::Data::OpMons::evs[58], 0.7, 19, "Il est courageux et fier. Il se dresse vaillamment devant ses ennemis mÃªme s'ils sont plus _puissants.", 91, 1250000, 190, 58));
 	Data::OpMons::listOp.emplace(59, Species(110, 80, 100, 80 , 95, 90, "Arcanin", Type::FEU, Type::NOTHING, 0, -1, new E_Nope(),Model::Data::OpMons::evs[59], 1.9, 155, "Son aboiement est tout simplement majestueux. On ne peut que ramper à  ses pieds après l'avoir entendu.", 213, 1250000, 75, 59));
 	Data::OpMons::listOp.emplace(60, Species(50, 40, 40, 40, 90, 40, "Ptitard", Type::EAU, Type::NOTHING, 0, 25, new E_Level(61, 25), Model::Data::OpMons::evs[60], 0.6, 12.4, "Sa peau est si mince qu'on voit ses organes internes. Il tient à  peine sur ses nouveaux pieds.", 77, 1059860, 255, 60));
@@ -393,31 +406,6 @@ __________________________________________
     sf::Texture alpha = sf::Texture();
     std::vector<sf::Texture> alphaTab = std::vector<sf::Texture>();
 
-    /**
-     * Convert a 2d array into an array of pointer.
-     *
-     * The 2d array must be cast into a "char *", as it's an unsafe operation.
-     * Also, the array of pointer itself is dynamically allocated, and should be freed by the caller after use.
-     *
-     * @example
-     *  char array[10][20];
-     *  char **ptr = array_to_pointer((char *)array, 10, 20);
-     *  delete[] ptr;
-     *
-     * @param src 2d source array
-     * @param sizeY first level size
-     * @param sizeX second level size
-     * @return the new pointer.
-     */
-    char **array_to_pointer(char *src, size_t sizeY, size_t sizeX) {
-      auto pointer = new char*[sizeY];
-
-      for (size_t i = 0; i < sizeY; ++i)
-	pointer[i] = &src[i * sizeX];
-      return pointer;
-    }
-
-
     void initMaps() {
       auto &maps = Data::World::maps;
 
@@ -440,9 +428,7 @@ __________________________________________
       ResourceLoader::loadTextureArray(Model::Data::Elements::elementsTextures["smoke"], "animations/chimneysmoke/chimneysmoke_%d.png", 16, 1);
 
 
-	auto feCol = array_to_pointer((char*) Collisions::feCol, 32, 32);
-	Map *mapFauxbourgEuvi = maps.emplace("Fauxbourg Euvi", new Map(Maps::feLayer1, Maps::feLayer2, Maps::feLayer3, 32, 32, feCol, "Fauxbourg", std::vector<std::string> {"windturbine", "smoke"})).first->second;
-      delete[] feCol;
+	Map *mapFauxbourgEuvi = maps.emplace("Fauxbourg Euvi", new Map(Maps::feLayer1, Maps::feLayer2, Maps::feLayer3, 32, 32,  "Fauxbourg", std::vector<std::string> {"windturbine", "smoke"})).first->second;
       mapFauxbourgEuvi->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(11, 2),  {OpString("fedesc.1"), OpString("fedesc.2"), OpString("fedesc.3")}, SIDE_UP));
       mapFauxbourgEuvi->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(21, 8),  {OpString("ppHouse", Data::player.getNameP()), OpString::voidStr, OpString::voidStr}, SIDE_UP));
       mapFauxbourgEuvi->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(25, 8), {OpString("rivalHouse"), OpString::voidStr, OpString::voidStr}, SIDE_UP));
@@ -465,46 +451,32 @@ __________________________________________
 
       mapFauxbourgEuvi->addEvent(new Events::TalkingCharaEvent("kid", sf::Vector2f(17, 13),  {OpString("kid"), OpString::voidStr, OpString::voidStr}, Events::EventTrigger::PRESS, Events::MoveStyle::PREDEFINED, pathChara1));
 
-      auto ppHomeCol = array_to_pointer((char*) Collisions::ppHomeCol, 16, 16);
-      Map *mapPlayersHome = maps.emplace("Player's home", new Map(Maps::pphomeLayer1, Maps::pphomeLayer2, Maps::pphomeLayer3, 16, 16, ppHomeCol, "Fauxbourg")).first->second;
-    delete[] ppHomeCol;
+      Map *mapPlayersHome = maps.emplace("Player's home", new Map(Maps::pphomeLayer1, Maps::pphomeLayer2, Maps::pphomeLayer3, 32, 32, "Fauxbourg")).first->second;
     mapPlayersHome->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(7, 15), sf::Vector2i(20, 9), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
     mapPlayersHome->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(15, 2), sf::Vector2i(9, 5), "Player's room", Side::TO_LEFT, SIDE_RIGHT));
     mapPlayersHome->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(0, 11), sf::Vector2i(6, 3), "Mom's room", Side::TO_LEFT, SIDE_LEFT));
 
-    auto laboCol = array_to_pointer((char*) Collisions::laboCol, 16, 32);
-    Map *mapLaboratory = maps.emplace("Laboratory", new Map(Maps::laboLayer1, Maps::laboLayer2, Maps::laboLayer3, 32, 16, laboCol, "Start")).first->second;
-    delete[] laboCol;
+    Map *mapLaboratory = maps.emplace("Laboratory", new Map(Maps::laboLayer1, Maps::laboLayer2, Maps::laboLayer3, 48, 32, "Start")).first->second;
     mapLaboratory->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(15, 15), sf::Vector2i(20, 21), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
 
     mapLaboratory->addEvent(new Events::TalkingCharaEvent("kiwai", sf::Vector2f(15, 4), {OpString("prof.dialog.1"), OpString("prof.dialog.2"), OpString("prof.dialog.3")}, Events::EventTrigger::PRESS, Events::MoveStyle::NO_MOVE));
 
-    auto rivalHomeCol = array_to_pointer((char*) Collisions::rivalHomeCol, 16, 16);
-    Map *mapRivalsHouse = maps.emplace("Rival's house", new Map(Maps::rivalhomeLayer1, Maps::rivalhomeLayer2, Maps::rivalhomeLayer3, 16, 16, rivalHomeCol, "Fauxbourg")).first->second;
-    delete[] rivalHomeCol;
+    Map *mapRivalsHouse = maps.emplace("Rival's house", new Map(Maps::rivalhomeLayer1, Maps::rivalhomeLayer2, Maps::rivalhomeLayer3, 32, 32, "Fauxbourg")).first->second;
     mapRivalsHouse->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 15), sf::Vector2i(28, 9), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
 
-    auto momRoomCol = array_to_pointer((char*) Collisions::momRoomCol, 6, 6);
-    Map *mapMomsRoom = maps.emplace("Mom's room", new Map(Maps::momroomLayer1, Maps::momroomLayer2, Maps::momroomLayer3, 6, 6, momRoomCol, "Fauxbourg")).first->second;
-    delete[] momRoomCol;
+    Map *mapMomsRoom = maps.emplace("Mom's room", new Map(Maps::momroomLayer1, Maps::momroomLayer2, Maps::momroomLayer3, 6, 6,  "Fauxbourg")).first->second;
     mapMomsRoom->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(5, 3), sf::Vector2i(1, 11), "Player's home", Side::TO_RIGHT, SIDE_RIGHT));
 
-    auto ppRoomCol = array_to_pointer((char*) Collisions::ppRoomCol, 6, 9);
-    Map *mapPlayersRoom = maps.emplace("Player's room", new Map(Maps::pproomLayer1, Maps::pproomLayer2, Maps::pproomLayer3, 9, 6, ppRoomCol, "Fauxbourg")).first->second;
-    delete[] ppRoomCol;
+    Map *mapPlayersRoom = maps.emplace("Player's room", new Map(Maps::pproomLayer1, Maps::pproomLayer2, Maps::pproomLayer3, 9, 6, "Fauxbourg")).first->second;
     mapPlayersRoom->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 5), sf::Vector2i(16, 2), "Player's home", Side::TO_LEFT, SIDE_RIGHT));
     std::vector<OpString> phoE1 {OpString("pcRunLinux"), OpString::voidStr, OpString::voidStr};
     mapPlayersRoom->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(1, 1), phoE1, SIDE_UP));
 
     //Route 14 loading
-    auto route14Col = array_to_pointer((char*) Collisions::route14Col, 41, 74);
-    maps.emplace("Route 14", new Map(Maps::route14Layer1, Maps::route14Layer2, Maps::route14Layer3, 74, 41, route14Col, "Fauxbourg"));
-    delete[] route14Col;
+    maps.emplace("Route 14", new Map(Maps::route14Layer1, Maps::route14Layer2, Maps::route14Layer3, 74, 41, "Fauxbourg"));
 
     //MysteriouCity loading
-    auto myciCol = array_to_pointer((char*) Collisions::myciCol, 19, 19);
-    maps.emplace("MysteriouCity", new Map(Maps::myciLayer1, Maps::myciLayer2, Maps::myciLayer3, 19, 19, myciCol, "Ms"));
-    delete[] myciCol;
+    maps.emplace("MysteriouCity", new Map(Maps::myciLayer1, Maps::myciLayer2, Maps::myciLayer3, 19, 19, "Ms"));
 
   }
 
