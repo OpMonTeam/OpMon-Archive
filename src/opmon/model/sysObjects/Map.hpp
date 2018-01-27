@@ -30,7 +30,6 @@ namespace OpMon{
       int w;
       int h;
 
-      char **passArr;
       /**The copy constructor must not be used.*/
       Map(Map const &toCopy) = delete;
 
@@ -39,7 +38,7 @@ namespace OpMon{
       std::vector<std::string> animatedElements;
 
     public:
-      Map(const int layer1[], const int layer2[], const int layer3[], int w, int h, const char* const* collisions, std::string const& bg, std::vector<std::string > const& animatedElements = std::vector<std::string >());
+      Map(const int layer1[], const int layer2[], const int layer3[], int w, int h, std::string const& bg, std::vector<std::string > const& animatedElements = std::vector<std::string >());
       ~Map();
       int getH() const {
 	return h;
@@ -49,9 +48,6 @@ namespace OpMon{
       }
       sf::Vector2i getDimensions() const {
         return sf::Vector2i(w, h);
-      }
-      char **getPassArr() const {
-	return passArr;
       }
       const int *getLayer1() const {
 	return layer1;
@@ -77,6 +73,10 @@ namespace OpMon{
       };
       void debugInfo();
       void updateElements(sf::RenderTexture &frame);
+
+      int getCurrentTileCode(sf::Vector2i const& pos, int layer);
+
+      int getTileCollision(int tile);
     };
   }
 }
