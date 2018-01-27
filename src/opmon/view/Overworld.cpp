@@ -115,7 +115,9 @@ namespace OpMon{
 
       jukebox.play(current->getBg());
 
-    View::frame.setView(camera);
+      View::frame.setView(camera);
+      window.setKeyRepeatEnabled(true);
+
   }
 
     Overworld::~Overworld(){
@@ -205,7 +207,7 @@ namespace OpMon{
       if((debugMode ? printlayer[2] : true)) {
         View::frame.draw(*layer3);
       }
-      if(scrolling){
+      if(scrolling && !debugMode){
 	camera.setCenter(character.getPosition().x + 16, character.getPosition().y + 16);
       }
       View::frame.setView(View::frame.getDefaultView());
