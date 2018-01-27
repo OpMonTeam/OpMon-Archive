@@ -4,6 +4,7 @@
 
 #define FPS_TICKS 33
 #include <cmath>
+#include <map>
 #define ppPosY ((  Model::Data::player.getPosY() / SQUARES_SIZE) - 8)
 //#define ppPosX (((character.getPosition().x - 16) / CASE_SIZE) - 8)
 #include "../model/sysObjects/Events.hpp"
@@ -242,6 +243,9 @@ namespace OpMon{
       }
 
       if(debugMode){
+        if(printCollisions){
+          printCollisionLayer(View::frame);
+        }
         View::frame.draw(debugText);
         View::frame.draw(fpsPrint);
       }
@@ -250,6 +254,33 @@ namespace OpMon{
 
       return GameStatus::CONTINUE;
     }
+
+    void Overworld::printCollisionLayer(sf::RenderTarget& frame){
+      sf::Vector2i pos;
+      sf::RectangleShape tile({32, 32});
+      std::map<int, sf::Color> collision2Color {
+        {1, sf::Color(255, 0, 0, 128)},
+        {2, sf::Color(0, 0, 255, 128)},
+        {3, sf::Color(255, 255, 0, 128)},
+        {4, sf::Color(255, 0, 255, 128)},
+        {5, sf::Color(255, 255, 255, 128)},
+        {5, sf::Color(255, 255, 255, 128)},
+        {5, sf::Color(255, 255, 255, 128)},
+        {5, sf::Color(255, 255, 255, 128)}
+      };
+
+      for(pos.x = 0; pos.x < current->getW(); ++pos.x){
+        for(pos.y = 0; pos.y < current->getH(); ++pos.y){
+          int collision = current->getCollision(pos);
+          if (collision != 0){
+            tile.setFillColor(collision2Color[collision]);
+            tile.setPosition(pos.x SQUARES, pos.y SQUARES);
+            frame.draw(tile);
+          }
+        }
+      }
+    }
+
 
     /**
      * Events can call this method to start a new dialog with the player.

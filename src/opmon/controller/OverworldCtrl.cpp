@@ -31,6 +31,9 @@ namespace OpMon{
             if(events.key.code == sf::Keyboard::F12) {
               overworld.printlayer[2] = !overworld.printlayer[2];
             }
+            if(events.key.code == sf::Keyboard::C) {
+              overworld.printCollisions = !overworld.printCollisions;
+            }
           }
         default:
           break;
