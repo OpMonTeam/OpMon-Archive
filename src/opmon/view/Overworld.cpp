@@ -131,6 +131,11 @@ namespace OpMon{
     GameStatus Overworld::operator()(int frames){
       bool is_in_dialog = this->dialog && !this->dialog->isDialogOver();
 
+      if(recordFrames){
+	recordFrames = false;
+	startFrames = frames;
+      }
+      
       fpsCounter++;
       if(Utils::Time::getElapsedMilliseconds() - oldTicksFps >= 1000) {
         fpsPrint.setString(std::to_string(fpsCounter));
@@ -142,7 +147,7 @@ namespace OpMon{
 	In the bloc, every commented line must be moved in GameLoop
       */
       if(debugMode){
-	//cout << "[FRAME Nｰ" << frames << "]" << endl;
+	cout << "[FRAME Nｰ" << frames << "]" << endl;
 	cout << "Boucle : " << (is_in_dialog ? "Normale" : "Dialog") << endl;
 	cout << "Tick: " << Utils::Time::getElapsedMilliseconds() << "ms" << endl;
 	cout << "PlayerPosition: " << Model::Data::player.getPosition().getPosition().x << " - " << Model::Data::player.getPosition().getPosition().y << endl;
@@ -150,7 +155,9 @@ namespace OpMon{
 	cout << "Moving: " << (Model::Data::player.getPosition().isMoving() ? "true" : "false") << endl;
 	cout << "Anim: " << (Model::Data::player.getPosition().isAnim() ? "true" : "false") << endl;
 	cout << "PlayerDirection: " << (int) Model::Data::player.getPosition().getDir() << endl;
-    
+	cout << "Start Frames : " << startFrames << endl;
+	
+	
 	debugText.setString("Debug mode");
 	debugText.setPosition(View::frame.mapPixelToCoords(sf::Vector2i(0, 0)));
 	debugText.setFont(Model::Data::Ui::font);

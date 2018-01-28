@@ -34,6 +34,10 @@ namespace OpMon{
   std::string& operator<<(std::string &str, std::string const& thing);
   std::string& operator<<(std::string &str, int const& nbre);
   std::string& operator<<(std::string &str, char nbre[]);
+
+  extern int* frames;
+
+  int getFrames();
   
 
   template<typename Base, typename T>

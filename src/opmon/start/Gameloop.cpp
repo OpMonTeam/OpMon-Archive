@@ -7,7 +7,8 @@
 
 namespace OpMon{
 
-  GameLoop::GameLoop(){
+  GameLoop::GameLoop()
+    : frames(0){
   }
 
   GameLoop::~GameLoop(){
@@ -17,6 +18,10 @@ namespace OpMon{
     }
   }
 
+  int* GameLoop::getFrames(){
+    return &this->frames;
+  }
+  
   GameStatus GameLoop::operator()(){
 
     // TODO: add first item outside of the Gameloop.
@@ -29,6 +34,8 @@ namespace OpMon{
     while(status != GameStatus::STOP){
       status = GameStatus::CONTINUE;
 
+      frames++;
+      
       auto ctrl = _gameScreens.top();
       sf::Event event;
 
