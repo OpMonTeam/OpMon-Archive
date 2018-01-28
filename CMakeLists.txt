@@ -5,8 +5,9 @@ set(EXECUTABLE_NAME OpMon)
 
 
 set(OPMON_VERSION_MAJOR 0)
-set(OPMON_VERSION_MINOR 13)
+set(OPMON_VERSION_MINOR 14)
 set(OPMON_VERSION_PATCH 0)
+
 set(OPMON_CONTACT "jlppc <jlppcprog@ntymail.com>")
 set(OPMON_DESCRIPTION_SUMMARY "An open source RPG monster fighting game")
 

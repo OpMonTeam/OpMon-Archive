@@ -32,6 +32,10 @@ namespace OpMon {
                              "Giovanni", "Flora", "Silver", "Jules Cesar", "Brahim"};
 
         string version = OPMON_VERSION;
+
+      string pre = "1";
+      
+      
         string versionS;
         /*
           #ifdef _WIN32
@@ -45,7 +49,7 @@ namespace OpMon {
         int starts() {
 
           oplog("Log opening OK. Welcome in OpMon Lazuli.");
-          oplog("Version : " + version);
+          oplog("Version : Alpha " + version + ((pre == "0") ? "" : ("-pre_" + pre)));
           ostringstream osslog;
           osslog << "Date in seconds : " << time(NULL);
           oplog(osslog.str());
