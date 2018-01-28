@@ -1,4 +1,4 @@
-#include <src/opmon/view/Window.hpp>
+#include "../view/Window.hpp"
 #include "OptionsMenuCtrl.hpp"
 
 #include "../view/Overworld.hpp"
