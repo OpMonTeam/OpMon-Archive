@@ -85,7 +85,7 @@ namespace OpMon{
       EventsCtrl::updateEvents(Model::Data::World::maps.at(player.getMapId())->getEvents(), player, view);
 
       //TODO: pass frame
-      return view(0);
+      return view(getFrames());
     }
 
   }
