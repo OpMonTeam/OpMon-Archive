@@ -1,4 +1,4 @@
-#include <src/opmon/view/Window.hpp>
+#include "../view/Window.hpp"
 #include "./MainMenuCtrl.hpp"
 
 #include "../model/storage/Data.hpp"
