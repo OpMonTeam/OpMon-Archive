@@ -1,7 +1,7 @@
 #include "Window.hpp"
 #include "../model/storage/Data.hpp"
 #include "../model/storage/ResourceLoader.hpp"
-#include "src/utils/log.hpp"
+#include "../../utils/log.hpp"
 #include "../model/save/OptionsSave.hpp"
 #include "../start/Core.hpp"
 #include "../../utils/StringKeys.hpp"

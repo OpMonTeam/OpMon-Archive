@@ -1,6 +1,6 @@
 
-#include <src/opmon/model/storage/Data.hpp>
-#include <src/opmon/view/Window.hpp>
+#include "../model/storage/Data.hpp"
+#include "../view/Window.hpp"
 #include "StartSceneCtrl.hpp"
 #include "./OverworldCtrl.hpp"
 #include "AnimationCtrl.hpp"
