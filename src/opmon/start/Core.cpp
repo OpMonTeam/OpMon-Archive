@@ -80,7 +80,7 @@ namespace OpMon{
     return *frames;
   }
   
-  std::string& operator<<(std::string &str, int const& nbre) {
+  std::string& operator<<(std::string &str, int nbre) {
     ostringstream oss;
     oss << str << nbre;
     str = oss.str();
@@ -108,3 +108,4 @@ namespace OpMon{
   }
 
 }
+

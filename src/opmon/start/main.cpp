@@ -30,8 +30,8 @@ namespace OpMon {
         //->Useless
         string trainers[] = {"Brice", "Navet", "Mael", "Cyrion", "Red", "Blue", "Nikolai", "N", "Belladonis", "Aristote",
                              "Giovanni", "Flora", "Silver", "Jules Cesar", "Brahim"};
-
-        string version = OPMON_VERSION;
+      
+      string version = OPMON_VERSION;
 
       string pre = "1";
       
@@ -76,7 +76,10 @@ namespace OpMon {
 	  frames = gameloop.getFrames();
           gameloop();
 
-	  oplog("Game finished");
+	  std::string logEntry;
+	  logEntry << "Game ended after " << getFrames() << "frames";
+	  
+	  oplog(logEntry);
 	  View::close();
 	  
           oplog("Ending the game normally.");

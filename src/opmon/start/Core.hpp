@@ -32,7 +32,7 @@ namespace OpMon{
     Useful operators for strings
   */
   std::string& operator<<(std::string &str, std::string const& thing);
-  std::string& operator<<(std::string &str, int const& nbre);
+  std::string& operator<<(std::string &str, int nbre);
   std::string& operator<<(std::string &str, char nbre[]);
 
   extern int* frames;
