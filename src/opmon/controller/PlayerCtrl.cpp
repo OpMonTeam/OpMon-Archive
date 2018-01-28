@@ -19,14 +19,14 @@ namespace OpMon{
 	  overworld.tp("Laboratory", sf::Vector2i(15, 14));
 	} else if(events.key.code == sf::Keyboard::F4) {
 	  overworld.tp("Rival's house", sf::Vector2i(8, 14));
-	} else if(events.key.code == sf::Keyboard::F7){
+	} else if(events.key.code == sf::Keyboard::F7) {
 	  overworld.tp("Route 14", sf::Vector2i(0, 31));
-	} else if(events.key.code == sf::Keyboard::F8){
+	} else if(events.key.code == sf::Keyboard::F8) {
 	  overworld.tp("MysteriouCity", sf::Vector2i(12, 0));
 	}
       }
 
-      if(!overworld.justTp) {
+      if(!overworld.justTp && !player.getPosition().isAnim()) {
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 	  overworld.setStartFrames();
 	  player.getPosition().move(Model::Side::TO_UP);
