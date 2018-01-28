@@ -42,9 +42,9 @@ namespace OpMon{
       extern int feLayer1[2304];
       extern int feLayer2[2304];
       extern int feLayer3[2304];
-      extern int laboLayer1[1536];
-      extern int laboLayer2[1536];
-      extern int laboLayer3[1536];
+      extern int laboLayer1[512];
+      extern int laboLayer2[512];
+      extern int laboLayer3[512];
       extern int pproomLayer1[550];
       extern int pproomLayer2[550];
       extern int pproomLayer3[550];
