@@ -76,13 +76,16 @@ namespace OpMon{
        * Events can call this method to start a new dialog with the player.
        */
       void startDialog(std::vector<sf::String> const& dialogs);
-      
+
+      void setStartFrames(){
+	recordFrames = true;
+      }
       
     private:
 
       void printElements(sf::RenderTexture& frame);
 
-	  void printCollisionLayer(sf::RenderTarget& frame);
+      void printCollisionLayer(sf::RenderTarget& frame);
 
       sf::View camera;
       sf::Sprite character;
@@ -106,6 +109,7 @@ namespace OpMon{
       
       int startFrames = 0;
       int animsCounter = 0;
+      bool recordFrames = false;
 
       bool movementLock = false;
 
