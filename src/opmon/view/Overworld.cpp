@@ -5,8 +5,6 @@
 #define FPS_TICKS 33
 #include <cmath>
 #include <map>
-#define ppPosY ((  Model::Data::player.getPosY() / SQUARES_SIZE) - 8)
-//#define ppPosX (((character.getPosition().x - 16) / CASE_SIZE) - 8)
 #include "../model/sysObjects/Events.hpp"
 #include "Dialog.hpp"
 #include "../../utils/log.hpp"
@@ -67,7 +65,7 @@ namespace OpMon{
     void Overworld::tp(std::string toTp, sf::Vector2i pos){
       Model::Data::player.tp(toTp, pos);
       current = Model::Data::World::maps.at(Model::Data::player.getMapId());
-      character.setPosition(8 SQUARES + pos.x SQUARES - 16, 8 SQUARES + pos.y SQUARES);
+      character.setPosition(pos.x SQUARES - 16, pos.y SQUARES);
       if(musicPath != current->getBg()) {
 	setMusic(current->getBg());
       }
@@ -100,7 +98,7 @@ namespace OpMon{
     Overworld::Overworld(const std::string &mapId){
       current = Model::Data::World::maps[mapId];
       character.setTexture(Model::Data::Ui::texturePP[(int) Side::TO_DOWN]);
-      character.setPosition(8 SQUARES + 2 SQUARES - 16, 8 SQUARES + 2 SQUARES);
+      character.setPosition(2 SQUARES - 16, 2 SQUARES);
       camera.setCenter(this->getCharacter().getPosition());
       camera.setSize(sf::Vector2f(16 SQUARES, 16 SQUARES));
       
@@ -178,8 +176,8 @@ namespace OpMon{
       }
       //Drawing events under the player
       for (Model::Event *event: current->getEvents()){
-	      const sf::Sprite *sprite = event->getSprite();
-        if (sprite->getPosition().y <= ppPosY){
+	const sf::Sprite *sprite = event->getSprite();
+	if (sprite->getPosition().y <= Model::Data::player.getPosition().getPosition().y){
           View::frame.draw(*sprite);
         }
       }
@@ -206,7 +204,7 @@ namespace OpMon{
       //Drawing the events above the player
       for (Model::Event *event: current->getEvents()){
 	      const sf::Sprite* sprite = event->getSprite();
-        if (sprite->getPosition().y > ppPosY){
+        if (sprite->getPosition().y > Model::Data::player.getPosition().getPosition().y){
           View::frame.draw(*sprite);
         }
       }
