@@ -203,7 +203,7 @@ namespace OpMon{
       View::frame.draw(character);
       //Drawing the events above the player
       for (Model::Event *event: current->getEvents()){
-	      const sf::Sprite* sprite = event->getSprite();
+	const sf::Sprite* sprite = event->getSprite();
         if (sprite->getPosition().y > Model::Data::player.getPosition().getPosition().y){
           View::frame.draw(*sprite);
         }

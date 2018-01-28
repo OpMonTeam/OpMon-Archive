@@ -98,7 +98,7 @@ namespace OpMon {
       
       nextPosPix = nextPos SQUARES;
       
-      if(nextPos.x > 0 && nextPos.x < map->getW() && nextPos.y > 0 && nextPos.x < map->getH()){
+      if(nextPos.x >= 0 && nextPos.x < map->getW() && nextPos.y >= 0 && nextPos.x < map->getH()){
 	int colLayer1 = map->getTileCollision(map->getCurrentTileCode(nextPos, 1));
 	int colLayer2 = map->getTileCollision(map->getCurrentTileCode(nextPos, 2));
 	if((colLayer1 == 0 || colLayer1 == exclusiveCol) && (colLayer2 == 0 || colLayer2 == exclusiveCol)){
