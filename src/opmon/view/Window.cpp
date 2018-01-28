@@ -38,7 +38,7 @@ namespace OpMon{
       sf::Image icon;
       Model::ResourceLoader::load(icon, "opmon.png");
       window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
-
+      
       frame.create(512, 512);
       window.clear(sf::Color::White);
       sf::Texture loadTexture;

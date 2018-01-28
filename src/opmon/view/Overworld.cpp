@@ -190,15 +190,14 @@ namespace OpMon{
 	anims = animsCounter > 8;
 
       } else if(Model::Data::player.getPosition().isAnim() && anims) {
-	character.setTexture(Model::Data::Ui::walkingPP2[(int) animsCounter]);
+	character.setTexture(Model::Data::Ui::walkingPP2[(int) Model::Data::player.getPosition().getDir()]);
 	animsCounter++;
 	if(animsCounter > 16) {
 	  anims = false;
 	  animsCounter = 0;
 	}
-      } else if(Model::Data::player.getPosition().isAnim()) {
-        //TODO: Bug in code: this case never happens.
-	      //character.setTexture(Model::Data::Ui::texturePP[(int) ppDir]);
+      } else if(!Model::Data::player.getPosition().isAnim()) {
+	character.setTexture(Model::Data::Ui::texturePP[(int) Model::Data::player.getPosition().getDir()]);
       }
       //Drawing character
       View::frame.draw(character);
