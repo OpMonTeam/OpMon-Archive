@@ -69,6 +69,7 @@ namespace OpMon {
           oplog("Starting game loop");
 
           auto gameloop = GameLoop();
+	  frames = gameloop.getFrames();
           gameloop();
 
 	  oplog("Game finished");
