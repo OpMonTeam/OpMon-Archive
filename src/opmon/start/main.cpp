@@ -19,6 +19,22 @@ using namespace OpMon::Model;
 using Utils::Log::oplog;
 
 
+// MSC uses WinMain() instead of main().
+#ifdef _MSC_VER
+
+#include <windows.h>
+int main(int argc, char *argv[]);
+
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
+  int argc;
+  char **argv;
+  /* BuildArgVector() uses the Win32 function GetCommandLine() to populate argc and argv */
+  BuildArgVector(&argc, &argv);
+  return main(argc, argv);
+}
+#endif
+
+
 //#define DEBUG
 UNS
 
