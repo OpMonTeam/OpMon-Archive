@@ -20,17 +20,22 @@ namespace OpMon{
     Event::~Event(){
 
     }
-
+    
     Event::Event(std::vector <sf::Texture> &otherTextures, EventTrigger eventTrigger, sf::Vector2f const &position,
                  int sides, bool passable) :
       otherTextures(otherTextures), eventTrigger(eventTrigger),
-      position(sf::Vector2f((position.x + 8) * 32, (position.y + 8) * 32)),
+      position(sf::Vector2f((position.x) * 32, (position.y) * 32)),
       mapPos(position, true),
       passable(passable),
       sides(sides),
       sprite(new sf::Sprite()),
       currentTexture(otherTextures.begin()){
+      
+    }
 
+    void Event::updateTexture(){
+      this->sprite->setPosition(position);
+      this->sprite->setTexture(*currentTexture);
     }
 
 
@@ -56,7 +61,7 @@ namespace OpMon{
                            string const &map, EventTrigger eventTrigger, Side ppDir, int sides, bool passable) :
         Event(doorType, eventTrigger, position, sides, passable),
         TPEvent(doorType, eventTrigger, position, tpPos, map, ppDir, sides, passable){
-        this->sprite->move(0, -6);
+	this->position += sf::Vector2f(0, -6);
         if(&doorType[0] == &DoorType::SHOP[0]){
           this->position.x -= 4;
           this->doorType = 1;
@@ -96,7 +101,7 @@ namespace OpMon{
         moveStyle(moveStyle){
         sprite->setScale(2, 2);
         sprite->setOrigin(16, 16);
-        sf::Vector2f posMap(((position.x + 8) * 32) + 16, (position.y + 8) * 32);
+        sf::Vector2f posMap(((position.x) * 32) + 16, (position.y) * 32);
         sprite->setPosition(posMap);
         setPredefinedMove(predefinedPath);
 
