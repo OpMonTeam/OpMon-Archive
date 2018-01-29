@@ -30,18 +30,18 @@ namespace OpMon{
 	    break;
 	  }
 
-		std::vector<Model::Event*> eventList = Model::Data::World::maps.at(player.getMapId())->getEvent(sf::Vector2i(lx SQUARES, ly SQUARES));
+	  std::vector<Model::Event*> eventList = Model::Data::World::maps.at(player.getMapId())->getEvent(sf::Vector2i(lx, ly));
 	  actionEvents(eventList, player, Model::Events::EventTrigger::PRESS, overworld);
 	  
 	  
 	}
       }
-
-
+      
+      
       
       if(!player.getPosition().isMoving()) {
-				std::vector<Model::Event*> eventList = Model::Data::World::maps.at(player.getMapId())->getEvent(player.getPosition().getPositionPixel());
-				actionEvents(eventList, player, Model::Events::EventTrigger::BE_IN, overworld);
+	std::vector<Model::Event*> eventList = Model::Data::World::maps.at(player.getMapId())->getEvent(player.getPosition().getPosition());
+	actionEvents(eventList, player, Model::Events::EventTrigger::BE_IN, overworld);
       }
 
       

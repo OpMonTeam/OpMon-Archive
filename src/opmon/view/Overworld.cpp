@@ -178,7 +178,7 @@ namespace OpMon{
       //Drawing events under the player
       for (Model::Event *event: current->getEvents()){
 	const sf::Sprite *sprite = event->getSprite();
-	if (sprite->getPosition().y <= Model::Data::player.getPosition().getPosition().y){
+	if (sprite->getPosition().y <= Model::Data::player.getPosition().getPositionPixel().y){
           View::frame.draw(*sprite);
         }
       }
@@ -204,7 +204,7 @@ namespace OpMon{
       //Drawing the events above the player
       for (Model::Event *event: current->getEvents()){
 	const sf::Sprite* sprite = event->getSprite();
-        if (sprite->getPosition().y > Model::Data::player.getPosition().getPosition().y){
+        if (sprite->getPosition().y > Model::Data::player.getPosition().getPositionPixel().y ){
           View::frame.draw(*sprite);
         }
       }
