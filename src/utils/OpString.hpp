@@ -22,7 +22,7 @@ namespace Utils{
     std::string key;
     std::vector<sf::String*> objects;
   public:
-    OpString(std::string const& key, ...); //To change for a vector
+    OpString(std::string key, ...); //To change for a vector
     OpString();
 
     sf::String getObject(int const& index) {
