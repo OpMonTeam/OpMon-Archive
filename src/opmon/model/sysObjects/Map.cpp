@@ -32,12 +32,14 @@ namespace OpMon{
 
     std::vector<Event *> Map::getEvent(sf::Vector2i position) const {
       std::vector<Event *> toReturn;
-
+      
       for(Event *event : events) {
-        if(event->getPosition().x SQUARES == position.x && event->getPosition().y SQUARES == position.y) {
+	//cout << "Event coordinates : " << event->getPosition().x
+        if(event->getPositionMap().getPosition().x  == position.x && event->getPositionMap().getPosition().y  == position.y) {
           toReturn.push_back(event);
         }
       }
+      std::cout << "List events size : " << toReturn.size() << std::endl;
       return toReturn;
     }
 

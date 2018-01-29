@@ -422,12 +422,12 @@ _______________________________________________________________
 
 
 	Map *mapFauxbourgEuvi = maps.emplace("Fauxbourg Euvi", new Map(Maps::feLayer1, Maps::feLayer2, Maps::feLayer3, 48, 48,  "Fauxbourg", std::vector<std::string> {"windturbine", "smoke"})).first->second;
-      mapFauxbourgEuvi->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(11, 2),  {OpString("fedesc.1"), OpString("fedesc.2"), OpString("fedesc.3")}, SIDE_UP));
+      mapFauxbourgEuvi->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(11 + 8, 2 + 8),  {OpString("fedesc.1"), OpString("fedesc.2"), OpString("fedesc.3")}, SIDE_UP));
       mapFauxbourgEuvi->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(21, 8),  {OpString("ppHouse", Data::player.getNameP()), OpString::voidStr, OpString::voidStr}, SIDE_UP));
       mapFauxbourgEuvi->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(25, 8), {OpString("rivalHouse"), OpString::voidStr, OpString::voidStr}, SIDE_UP));
       mapFauxbourgEuvi->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(14, 20),  {OpString("labo"), OpString::voidStr, OpString::voidStr}, SIDE_UP));
       mapFauxbourgEuvi->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(23, 20), {OpString("weirdsign.1"), OpString("weirdsign.2"), OpString::voidStr}, SIDE_UP));
-      mapFauxbourgEuvi->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(19, 8), sf::Vector2i(8, 15), "Player's home"));
+      mapFauxbourgEuvi->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(19 + 8, 8 + 8), sf::Vector2i(8, 15), "Player's home"));
       mapFauxbourgEuvi->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(27, 8), sf::Vector2i(9, 15), "Rival's house"));
       mapFauxbourgEuvi->addEvent(new Events::DoorEvent(Events::DoorType::SHOP, sf::Vector2f(19, 20), sf::Vector2i(16, 15), "Laboratory"));
       /*Character 1*/
@@ -442,7 +442,7 @@ _______________________________________________________________
 
       pathChara1.push_back(Side::NO_MOVE);
 
-      mapFauxbourgEuvi->addEvent(new Events::TalkingCharaEvent("kid", sf::Vector2f(17, 13),  {OpString("kid"), OpString::voidStr, OpString::voidStr}, Events::EventTrigger::PRESS, Events::MoveStyle::PREDEFINED, pathChara1));
+      mapFauxbourgEuvi->addEvent(new Events::TalkingCharaEvent("kid", sf::Vector2f(17 + 8, 13 + 8),  {OpString("kid"), OpString::voidStr, OpString::voidStr}, Events::EventTrigger::PRESS, Events::MoveStyle::PREDEFINED, pathChara1));
 
       Map *mapPlayersHome = maps.emplace("Player's home", new Map(Maps::pphomeLayer1, Maps::pphomeLayer2, Maps::pphomeLayer3, 16, 16, "Fauxbourg")).first->second;
     mapPlayersHome->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(7, 15), sf::Vector2i(20, 9), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
