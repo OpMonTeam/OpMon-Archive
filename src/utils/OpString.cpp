@@ -9,7 +9,7 @@ OpString containing nothing
 */
   OpString OpString::voidStr = OpString("void");
 
-  OpString::OpString(string const &key,
+  OpString::OpString(string key,
                      ...){//If you have other solutions to have an undefined number of arguments (Except arrays), please tell me!
     va_list ap;
     this->key = key;

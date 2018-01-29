@@ -3,6 +3,11 @@
 #include <cstdlib>
 #include <string>
 
+// MSVC doesn't define S_ISDIR.
+#if !defined(S_ISDIR) && defined(S_IFMT) && defined(S_IFDIR)
+#define S_ISDIR(m) (((m) & S_IFMT) == S_IFDIR)
+#endif
+
 
 namespace Utils {
   namespace Path {

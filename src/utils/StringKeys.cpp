@@ -106,7 +106,7 @@ namespace Utils {
           instances++;
         }
       }
-      sf::String toReturn[instances + 1];//Crée un tableau contenant tous les splits
+      std::vector<sf::String> toReturn(instances + 1);//Crée un tableau contenant tous les splits
       for(unsigned int i = 0, enCours = 0; i < str.toUtf32().size(); i++){//Parcours la chaine pour la séparer
         if((char) str.toUtf32()[i] == splitter){
           enCours++;
