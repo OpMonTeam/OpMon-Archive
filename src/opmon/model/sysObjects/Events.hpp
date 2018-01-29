@@ -84,9 +84,9 @@ namespace OpMon{
       bool isPassable() const {
         return passable;
       }
-			const sf::Sprite *getSprite() const{
-				return sprite;
-			}
+      const sf::Sprite *getSprite() const{
+	return sprite;
+      }
     };
 
     void initEnumsEvents();
