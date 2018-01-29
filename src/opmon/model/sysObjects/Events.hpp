@@ -63,6 +63,9 @@ namespace OpMon{
       virtual void update(Model::Player &player, View::Overworld& overworld) = 0;
       /**This method is called when the players interacts with the event*/
       virtual void action(Model::Player &player, View::Overworld& overworld) = 0;
+
+      void updateTexture();
+      
       int getSide() const {
         return sides;
       }

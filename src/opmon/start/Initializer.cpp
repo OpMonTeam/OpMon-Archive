@@ -397,7 +397,7 @@ _______________________________________________________________
       initMaps();
     }
     sf::Texture alpha = sf::Texture();
-    std::vector<sf::Texture> alphaTab = std::vector<sf::Texture>();
+    std::vector<sf::Texture> alphaTab = std::vector<sf::Texture>(1);
 
     void initMaps() {
       auto &maps = Data::World::maps;
