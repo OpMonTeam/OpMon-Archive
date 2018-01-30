@@ -85,13 +85,14 @@ namespace OpMon {
       txtCre7.setColor(sf::Color::Black);
       txtCre8.setString(kget("options.credit.8"));
       txtCre8.setFont(Model::Data::Ui::font);
-      txtCre8.setCharacterSize(15);
+      txtCre8.setCharacterSize(15);      
+      txtCre81.setString(kget("options.credit.81"));
+      txtCre81.setFont(Model::Data::Ui::font);
+      txtCre81.setCharacterSize(15);
       txtCre9.setString(kget("options.credit.9"));
       txtCre9.setFont(Model::Data::Ui::font);
       txtCre9.setCharacterSize(13);
-      /*txtCre10.setString(kget("options.credit.10"));
-      txtCre10.setFont(Model::Data::Ui::font);
-      txtCre10.setCharacterSize(13); */
+
     }
 
     void OptionsMenu::onLangChanged(){
@@ -142,8 +143,9 @@ namespace OpMon {
       txtCre6.setPosition(30, 270);
       txtCre7.setPosition(201, 274);
       txtCre8.setPosition(30, 368);
+      txtCre81.setPosition(30, 200);
       txtCre9.setPosition(385, 488);
-      //txtCre10.setPosition(385, 488);
+
 
       jukebox.play("Title");
       
@@ -275,8 +277,9 @@ namespace OpMon {
       frame.draw(txtCre6);
       frame.draw(txtCre7);
       frame.draw(txtCre8);
+      frame.draw(txtCre81);
       frame.draw(txtCre9);
-      //frame.draw(txtCre10);
+
       frame.draw(txtRetour);
       frame.draw(txtCred);
     }
