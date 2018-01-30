@@ -143,7 +143,7 @@ namespace OpMon {
       txtCre6.setPosition(30, 270);
       txtCre7.setPosition(201, 274);
       txtCre8.setPosition(30, 368);
-      txtCre81.setPosition(30, 200);
+      txtCre81.setPosition(30, 385);
       txtCre9.setPosition(385, 488);
 
 
