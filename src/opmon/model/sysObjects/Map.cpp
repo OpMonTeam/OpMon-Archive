@@ -39,7 +39,6 @@ namespace OpMon{
           toReturn.push_back(event);
         }
       }
-      std::cout << "List events size : " << toReturn.size() << std::endl;
       return toReturn;
     }
 
