@@ -10,5 +10,5 @@ GenericName=OpMon
 Terminal=false
 Icon=/usr/share/OpMon/opmon.png
 Type=Application
-Exec=opmon
+Exec=OpMon
 Categories=Game;
