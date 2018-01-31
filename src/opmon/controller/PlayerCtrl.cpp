@@ -29,23 +29,23 @@ namespace OpMon{
       if(!overworld.justTp && !player.getPosition().isAnim()) {
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 	  overworld.setStartFrames();
-	  player.getPosition().move(Model::Side::TO_UP);
+	  move(Model::Side::TO_UP, player, overworld);
 	} else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
 	  overworld.setStartFrames();
-	  player.getPosition().move(Model::Side::TO_DOWN);
+	  move(Model::Side::TO_DOWN, player, overworld);
 	} else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
 	  overworld.setStartFrames();
-	  player.getPosition().move(Model::Side::TO_LEFT);
+	  move(Model::Side::TO_LEFT, player, overworld);
 	} else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
 	  overworld.setStartFrames();
-	  player.getPosition().move(Model::Side::TO_RIGHT);
+	  move(Model::Side::TO_RIGHT, player, overworld);
 	}
       }
 
       
     }
 
-    void move(Model::Side direction, Model::Player& player, View::Overworld& overworld){
+    void PlayerCtrl::move(Model::Side direction, Model::Player& player, View::Overworld& overworld){
       player.getPosition().move(direction);
       
       Model::Map *map = Model::Data::World::maps.at(player.getMapId());
