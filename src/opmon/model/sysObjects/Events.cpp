@@ -146,10 +146,9 @@ namespace OpMon{
 
       }
 
-      void DoorEvent::update(Model::Player &player, View::Overworld& overworld){
+      void DoorEvent::update(Model::Player &player, View::Overworld& overworld){ 
         if(animStarted != -1){
           animStarted++;
-
           if(animStarted < 8 && (animStarted / 2) * 2 == animStarted){
             sprite->setTexture(otherTextures[animStarted / 2]);
           }else if(animStarted > 10){
