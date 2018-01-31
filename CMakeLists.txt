@@ -12,7 +12,14 @@ set(OPMON_CONTACT "jlppc <jlppcprog@ntymail.com>")
 set(OPMON_DESCRIPTION_SUMMARY "An open source RPG monster fighting game")
 set(OPMON_HOMEPAGE "http://http://opmon-game.ga/")
 
-set(OPMON_DEBIAN_DEPENDS "libsfml (>= 2.3.2+dfsg-1)")
+# libsfml is splited in many packages on debian:
+# libsfml-xxx2 (until 2.4), then libsfml-xxx2.4
+foreach(ARG system audio window graphics)
+    list(APPEND OPMON_DEBIAN_DEPENDS "libsfml-${ARG}2 (>= 2.3.2+dfsg-1)|libsfml-${ARG}2.4")
+endforeach()
+string(REPLACE ";" ", " OPMON_DEBIAN_DEPENDS "${OPMON_DEBIAN_DEPENDS}")
+
+
 set(OPMON_DEBIAN_CATEGORY games)
 
 set(OPMON_VERSION "${OPMON_VERSION_MAJOR}.${OPMON_VERSION_MINOR}.${OPMON_VERSION_PATCH}")
