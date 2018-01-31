@@ -1,6 +1,0 @@
-#!/bin/bash
-rm -rf /usr/bin/opmon
-rm -rf /usr/bin/opmon-dbg
-rm -rf /usr/share/OpMon/saves
-rm -rf /usr/src/opmon/obj
-rm -rf /usr/src/opmon/exeLinux

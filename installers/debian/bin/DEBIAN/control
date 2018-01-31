@@ -1,9 +1,0 @@
-Package: opmon
-Version: 0.12.1a
-Section: games
-Priority: optional
-Architecture: amd64
-Depends: libsfml-dev (= 2.3.2+dfsg-1)
-Maintainer: jlppc <jlppcprog@gmail.com>
-Description: OpMon installation package! Thanks for downloading!
-Homepage: http://opmon-game.ga
