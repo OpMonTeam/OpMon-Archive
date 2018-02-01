@@ -4,40 +4,30 @@
 #include <iostream>
 #include "./fs.hpp"
 
+#ifndef _WIN32
+#include <sys/stat.h>
+#else
+#include <direct.h>
+#endif
+
 
 namespace Utils{
   namespace Fs{
 
-
     bool mkdir(const std::string &path) {
-      // Path in the local system format
-      std::string path2 = getPath(path);
 
-#ifndef _WIN32
-      const char *cmd = "mkdir -p ";
-#else
-      const char *cmd = "mkdir ";
-#endif
+      #ifndef _WIN32 // Linux only
+      int result = ::mkdir(path.c_str(), 0711);
+      #else
+      std::string path2(path);
+      std::replace(path2.begin(), path2.end(), '/', '\\');
+      int result = ::_mkdir(path.c_str());
+      #endif
+      if (result == 0 || errno == EEXIST)
+        return true;
 
-      int result = system((cmd + path2).c_str());
-      if (result) {
-        std::cout << "creation of folder \"" << path2 << " failed: errno " << result << std::endl;
-      }
-#ifndef _WIN32
-      return !result;
-#else
-      return true; // mkdir in windows returns false if the directory exists
-#endif
-    }
-
-    std::string getPath(std::string const& path) {
-#ifdef _WIN32
-      std::string result(path);
-      std::replace(result.begin(), result.end(), '/', '\\');
-      return result;
-#else
-      return path;
-#endif
+      std::cout << "creation of folder \"" << path << "\" failed: errno " << errno << std::endl;
+      return false;
     }
 
   }
