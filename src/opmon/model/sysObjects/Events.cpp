@@ -136,6 +136,7 @@ namespace OpMon{
 
       void DoorEvent::action(Model::Player &player, View::Overworld& overworld){
         animStarted = 0;
+	player.getPosition().lockMove();
         if(doorType == 0){
           doorSound.setVolume(100);
           doorSound.play();
@@ -150,11 +151,12 @@ namespace OpMon{
         if(animStarted != -1){
           animStarted++;
           if(animStarted < 8 && (animStarted / 2) * 2 == animStarted){
-            sprite->setTexture(otherTextures[animStarted / 2]);
+	    currentTexture = otherTextures.begin() + (animStarted / 2);
           }else if(animStarted > 10){
+	    player.getPosition().unlockMove();
             TPEvent::action(player, overworld);
             animStarted = -1;
-            sprite->setTexture(otherTextures[0]);
+            currentTexture = otherTextures.begin();
           }
 
         }
