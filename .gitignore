@@ -31,6 +31,7 @@ installers/Debian/*.deb
 *.o
 *.res
 /bin/
+/_CPack_Packages/
 /include/
 /lib/
 OpMon_build_log.html
@@ -45,6 +46,7 @@ Makefile
 build/
 #CMake
 CMakeFiles/*
+_CPack_Packages/*
 CMakeCache.txt
 CPackConfig.cmake
 CPackSourceConfig.cmake
