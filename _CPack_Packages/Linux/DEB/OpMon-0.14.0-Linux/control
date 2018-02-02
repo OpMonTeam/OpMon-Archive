@@ -1,0 +1,11 @@
+Package: opmon
+Version: 0.14.0
+Section: games
+Priority: optional
+Architecture: amd64
+Depends: libsfml-system2 (>= 2.3.2+dfsg-1)|libsfml-system2.4, libsfml-audio2 (>= 2.3.2+dfsg-1)|libsfml-audio2.4, libsfml-window2 (>= 2.3.2+dfsg-1)|libsfml-window2.4, libsfml-graphics2 (>= 2.3.2+dfsg-1)|libsfml-graphics2.4
+Homepage: http://http://opmon-game.ga/
+Installed-Size: 16725
+Maintainer: Cyrion <jlppcprog@ntymail.com>
+Description: An open source RPG monster fighting game
+
