@@ -26,7 +26,7 @@ namespace OpMon{
 	}
       }
 
-      if(!overworld.justTp && !player.getPosition().isAnim()) {
+      if(!overworld.justTp && !player.getPosition().isAnim() && !player.getPosition().isLocked()) {
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 	  overworld.setStartFrames();
 	  move(Model::Side::TO_UP, player, overworld);
