@@ -54,9 +54,9 @@ namespace OpMon{
        extern int momroomLayer1[42];
        extern int momroomLayer2[42];
        extern int momroomLayer3[42];
-       extern int rivalhomeLayer1[1024];
-       extern int rivalhomeLayer2[1024];
-       extern int rivalhomeLayer3[1024];
+       extern int rivalhomeLayer1[256];
+       extern int rivalhomeLayer2[256];
+       extern int rivalhomeLayer3[256];
        extern int route14Layer1[5130];
        extern int route14Layer2[5130];
        extern int route14Layer3[5130];
