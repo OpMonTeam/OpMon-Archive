@@ -123,7 +123,7 @@ namespace OpMon{
         if(!justTP){
           overworld.tp(map, tpCoord);
           if(this->ppDir != -1){
-            player.getPosition().setDir(this->ppDir);
+	    player.getPosition().setDir(this->ppDir);
           }
           justTP = true;
         }
