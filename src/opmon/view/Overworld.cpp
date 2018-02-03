@@ -5,6 +5,7 @@
 #define FPS_TICKS 33
 #include <cmath>
 #include <map>
+#include <sstream>
 #include "../model/sysObjects/Events.hpp"
 #include "Dialog.hpp"
 #include "../../utils/log.hpp"
@@ -164,7 +165,16 @@ namespace OpMon{
 	debugText.setCharacterSize(40);
 	fpsPrint.setPosition(View::frame.mapPixelToCoords(sf::Vector2i(0, 50)));
 	fpsPrint.setFont(Model::Data::Ui::font);
+	//fpsPrint.setColor(sf::Color(127, 127, 127));
 	fpsPrint.setCharacterSize(48);
+	std::ostringstream oss;
+	oss << "Position : "  << Model::Data::player.getPosition().getPosition().x << " - " << Model::Data::player.getPosition().getPosition().y << endl << "PxPosition : "  << character.getPosition().x << " - " << character.getPosition().y << endl;
+	coordPrint.setString(oss.str());
+	coordPrint.setFont(Model::Data::Ui::font);
+	coordPrint.setPosition(View::frame.mapPixelToCoords(sf::Vector2i(0, 100)));
+	coordPrint.setColor(sf::Color(127, 127, 127));
+	coordPrint.setCharacterSize(30);
+	
       }
 
       View::frame.clear(sf::Color::Black);
@@ -215,7 +225,7 @@ namespace OpMon{
       if((debugMode ? printlayer[2] : true)) {
         View::frame.draw(*layer3);
       }
-      if(scrolling && !debugMode){
+      if(scrolling && !camUnlock){
 	camera.setCenter(character.getPosition().x + 16, character.getPosition().y + 16);
       }
       View::frame.setView(View::frame.getDefaultView());
@@ -255,6 +265,7 @@ namespace OpMon{
         }
         View::frame.draw(debugText);
         View::frame.draw(fpsPrint);
+	View::frame.draw(coordPrint);
       }
 
       //Refresh to do in GameLoop

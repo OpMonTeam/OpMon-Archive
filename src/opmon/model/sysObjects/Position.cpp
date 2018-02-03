@@ -38,7 +38,7 @@ namespace OpMon {
 	//startFrames = frames;
 	anim = true;
 
-	if ((!event && debugMode) || checkPass(dir)) {
+	if ((!event && debugCol) || checkPass(dir)) {
 	  UNLOCK_TP
 	    movement = true;
 	  switch (dir) {
