@@ -25,7 +25,9 @@ namespace OpMon{
   string optSave(SAVE_PATH + "optSave.oparams");
 
   bool debugMode = false;
-
+  bool debugCol = false;
+  bool camUnlock = false;
+  
   //The number of errors handeled in the program.
   int errors = 0;
 
@@ -74,6 +76,8 @@ namespace OpMon{
     exit(returns);
   }
 
+
+  
   int* frames;
   
   int getFrames(){

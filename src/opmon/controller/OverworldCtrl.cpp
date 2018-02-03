@@ -20,6 +20,10 @@ namespace OpMon{
         case sf::Event::KeyPressed:
           if(events.key.code == sf::Keyboard::Equal) {
             debugMode = !debugMode;
+	    if(!debugMode){
+	      debugCol = false;
+	      camUnlock = false;
+	    }
           }
           if(debugMode) {
             if(events.key.code == sf::Keyboard::F10) {
@@ -34,11 +38,17 @@ namespace OpMon{
             if(events.key.code == sf::Keyboard::C) {
               overworld.printCollisions = !overworld.printCollisions;
             }
+	    if(events.key.code == sf::Keyboard::N) {
+	      debugCol = !debugCol;
+	    }
+	    if(events.key.code == sf::Keyboard::Numpad5) {
+	      camUnlock = !camUnlock;
+	    }
           }
         default:
           break;
       }
-      if(debugMode) {
+      if(camUnlock) {
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2)) {
           overworld.moveCamera(Model::Side::TO_DOWN);
         }

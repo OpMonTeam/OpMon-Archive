@@ -103,6 +103,7 @@ namespace OpMon{
 
       int fpsCounter;
       sf::Text fpsPrint;
+      sf::Text coordPrint;
       int oldTicksFps;
       
       int tpCount = 0;
@@ -114,6 +115,8 @@ namespace OpMon{
       bool movementLock = false;
 
       bool scrolling = true;
+
+      
     };
 
   }
