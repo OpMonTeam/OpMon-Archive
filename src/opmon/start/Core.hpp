@@ -27,6 +27,8 @@ namespace OpMon{
   int quit(int const& returns);
 
   extern bool debugMode;
+  extern bool debugCol;
+  extern bool camUnlock;
   
   /*
     Useful operators for strings
