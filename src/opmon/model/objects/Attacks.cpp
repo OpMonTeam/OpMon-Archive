@@ -52,7 +52,7 @@ namespace OpMon{
 
       }
 
-      int Abime::effetAvant(OpMon &atk, OpMon &def) {
+      int Abime::effectBefore(OpMon &atk, OpMon &def) {
 	accuracy = ((atk.getLevel() - def.getLevel()) + 30);
 	if (atk.getLevel() < def.getLevel()) {
 	  return 2;
@@ -65,7 +65,7 @@ namespace OpMon{
 	}
       }
 
-      int Acidarmure::effetApres(OpMon &atk, OpMon &def) {
+      int Acidarmure::effectAfter(OpMon &atk, OpMon &def) {
 	if (atk.changeDEF(2)) {
 	  //Texte
 	} else {
@@ -74,7 +74,7 @@ namespace OpMon{
 	return 2;
       }
 
-      int Acide::effetApres(OpMon &atk, OpMon &def) {
+      int Acide::effectAfter(OpMon &atk, OpMon &def) {
 	if (Utils::Misc::randU(10) == 2) {
 	  if (def.changeDEFSPE(-1)) {
             //Texte
@@ -85,7 +85,7 @@ namespace OpMon{
 	return 0;
       }
 
-      int Affutage::effetApres(OpMon &atk, OpMon &def) {
+      int Affutage::effectAfter(OpMon &atk, OpMon &def) {
 	if (atk.changeATK(1)) {
 	  //Texte
 	} else {
@@ -94,7 +94,7 @@ namespace OpMon{
 	return 0;
       }
 
-      int Aiguisage::effetApres(OpMon &atk, OpMon &def) {
+      int Aiguisage::effectAfter(OpMon &atk, OpMon &def) {
 	if (atk.changeATK(1)) {
 	} else {
 	}
@@ -104,7 +104,7 @@ namespace OpMon{
 	return 0;
       }
 
-      int Amnesie::effetApres(OpMon &atk, OpMon &def) {
+      int Amnesie::effectAfter(OpMon &atk, OpMon &def) {
 	if (atk.changeDEFSPE(2)) {
 
 	} else {
@@ -113,7 +113,7 @@ namespace OpMon{
 	return 0;
       }
 
-      int Armure::effetApres(OpMon &atk, OpMon &def) {
+      int Armure::effectAfter(OpMon &atk, OpMon &def) {
 	if (atk.changeDEF(1)) {
 
 	} else {
@@ -122,12 +122,12 @@ namespace OpMon{
 	return 0;
       }
 
-      int Belier::effetApres(OpMon &atk, OpMon &def) {
+      int Belier::effectAfter(OpMon &atk, OpMon &def) {
 	atk.attacked(round(hpPerdus / 4));
 	return 0;
       }
 
-      int Balayage::effetAvant(OpMon &atk, OpMon &def) {
+      int Balayage::effectBefore(OpMon &atk, OpMon &def) {
 	if (def.getSpecies().getWeight() <= 10) {
 	  puissance = 20;
 	} else if (def.getSpecies().getWeight() > 10 && def.getSpecies().getWeight() <= 25) {
@@ -144,7 +144,7 @@ namespace OpMon{
 	return 0;
       }
 
-      int Berceuse::effetApres(OpMon &atk, OpMon &def) {
+      int Berceuse::effectAfter(OpMon &atk, OpMon &def) {
 	if (def.setStatus(Status::SLEEPING)) {
 
 	} else {
@@ -153,7 +153,7 @@ namespace OpMon{
 	return 0;
       }
 
-      int Blizzard::effetApres(OpMon &atk, OpMon &def) {
+      int Blizzard::effectAfter(OpMon &atk, OpMon &def) {
 	if(Utils::Misc::randU(10) == 2) {
 	  //Texte
 	  def.setStatus(Status::FROZEN);
@@ -161,7 +161,7 @@ namespace OpMon{
 	return 0;
       }
 
-      int Bouclier::effetApres(OpMon &atk, OpMon &def) {
+      int Bouclier::effectAfter(OpMon &atk, OpMon &def) {
 	if(atk.changeDEF(2)) {
 	} else {
 	}
@@ -169,7 +169,7 @@ namespace OpMon{
 
       }
 
-      int Brouillard::effetApres(OpMon &atk, OpMon &def) {
+      int Brouillard::effectAfter(OpMon &atk, OpMon &def) {
 	if(def.changeACC(-1)) {
 	} else {
 	}
@@ -177,7 +177,7 @@ namespace OpMon{
 
       }
 
-      int BueeNoire::effetApres(OpMon &atk, OpMon &def) {
+      int BueeNoire::effectAfter(OpMon &atk, OpMon &def) {
 	// atk.setStats(Fight.oldStats[0], atk.getAttaques(), atk.getSpecies(), new Type[]{atk.getType1(), atk.getType2()});
 	//def.setStats(Fight.oldStats[1], def.getAttaques(), def.getSpecies(), new Type[]{def.getType1(), def.getType2()});
 	//TODO
@@ -185,7 +185,7 @@ namespace OpMon{
       }
 
 
-      int BullesDo::effetApres(OpMon &atk, OpMon &def) {
+      int BullesDo::effectAfter(OpMon &atk, OpMon &def) {
 	if (Utils::Misc::randU(10) ==2) {
 	  if(def.changeSPE(-1)) {
 	  } else {
@@ -194,7 +194,7 @@ namespace OpMon{
 	return 0;
       }
 
-      int CageEclair::effetApres(OpMon &atk, OpMon &def) {
+      int CageEclair::effectAfter(OpMon &atk, OpMon &def) {
 	if (def.getType1()==Type::ELECTRIQUE || def.getType2()==Type::ELECTRIQUE) {
 	} else {
 	  if(def.setStatus(Status::PARALYSED)) {
@@ -204,33 +204,33 @@ namespace OpMon{
 	return 0;
       }
 
-      int Cascade::effetApres(OpMon &atk, OpMon &def) {
+      int Cascade::effectAfter(OpMon &atk, OpMon &def) {
 	if (Utils::Misc::randU(5) ==2) {
 	  def.peur = true;
 	}
 	return 0;
       }
 
-      int ChocMental::effetApres(OpMon &atk, OpMon &def) {
+      int ChocMental::effectAfter(OpMon &atk, OpMon &def) {
 	if (Utils::Misc::randU(10) ==2) {
 	  def.confus = true;
 	}
 	return 0;
       }
 
-      int ChocPsy::effetAvant(OpMon &atk, OpMon &def) {
+      int ChocPsy::effectBefore(OpMon &atk, OpMon &def) {
 	this->def = def.getStatDEF();
 	this->defspe = def.getStatDEFSPE();
 	def.setStat(Stats::DEFSPE, this->def);
 	return 0;
       }
 
-      int ChocPsy::effetApres(OpMon &atk, OpMon &def) {
+      int ChocPsy::effectAfter(OpMon &atk, OpMon &def) {
 	def.setStat(Stats::DEFSPE, this->defspe);
 	return 0;
       }
 
-      int ComboGriffe::effetApres(OpMon &atk, OpMon &def) {
+      int ComboGriffe::effectAfter(OpMon &atk, OpMon &def) {
 	if(def.getHP() <= 0) {
 	  return 0;
 	}
@@ -245,19 +245,19 @@ namespace OpMon{
 	return 0;
       }
 
-      int Conversion::effetApres(OpMon &atk, OpMon &def) {
+      int Conversion::effectAfter(OpMon &atk, OpMon &def) {
 	std::vector<Attack*> arr = atk.getAttacks();
 	atk.setType1(arr[0]->getType());
 	atk.setType2(Type::NOTHING);
 	return 0;
       }
 
-      int CoupdBoule::effetApres(OpMon &atk, OpMon &def) {
+      int CoupdBoule::effectAfter(OpMon &atk, OpMon &def) {
 	if (Utils::Misc::randU(100) <= 30) {
 	}
 	return 0;
       }
-      int CoudKrane::effetAvant(OpMon &atk, OpMon &def) {
+      int CoudKrane::effectBefore(OpMon &atk, OpMon &def) {
 	if (part==0) {
 	  def.changeDEF(1);
 	  part = 1;
@@ -268,7 +268,7 @@ namespace OpMon{
 	  return 0;
 	}
       }
-      int CoupeVent::effetAvant(OpMon &atk, OpMon &def) {
+      int CoupeVent::effectBefore(OpMon &atk, OpMon &def) {
 	if(part == 0) {
 	  part = 1;
 	  return 1;
@@ -280,12 +280,12 @@ namespace OpMon{
 
       }
 
-      int CrocDeMort::effetApres(OpMon &atk, OpMon &def) {
+      int CrocDeMort::effectAfter(OpMon &atk, OpMon &def) {
 	if (Utils::Misc::randU(10) ==2) {
 	}
 	return 0;
       }
-      int CrocFatal::effetAvant(OpMon &atk, OpMon &def) {
+      int CrocFatal::effectBefore(OpMon &atk, OpMon &def) {
 	if(def.getHP() != 1) {
 	  def.attacked(def.getHP() / 2);
 	} else {
@@ -294,7 +294,7 @@ namespace OpMon{
 	return 2;
       }
 
-      int CrocFeu::effetApres(OpMon &atk, OpMon &def) {
+      int CrocFeu::effectAfter(OpMon &atk, OpMon &def) {
 	if(Utils::Misc::randU(10) ==5) {
 	  if(def.setStatus(Status::BURNING)) {
 
@@ -307,13 +307,13 @@ namespace OpMon{
 
       }
 
-      int Damocles::effetApres(OpMon &atk, OpMon &def) {
+      int Damocles::effectAfter(OpMon &atk, OpMon &def) {
 	atk.attacked(hpPerdus / 3);
 	return 0;
       }
 
 
-      int DanseFleur::effetApres(OpMon &atk, OpMon &def) {
+      int DanseFleur::effectAfter(OpMon &atk, OpMon &def) {
 	if(part == 0) {
 	  part = 1;
 	} else if(part == 1) {
@@ -332,13 +332,13 @@ namespace OpMon{
 	}
 	return 0;
       }
-      int DanseLames::effetApres(OpMon &atk, OpMon &def) {
+      int DanseLames::effectAfter(OpMon &atk, OpMon &def) {
 	if(atk.changeATK(2)) {
 	}
 	return 0;
       }
 
-      int Deflagration::effetApres(OpMon &atk, OpMon &def) {
+      int Deflagration::effectAfter(OpMon &atk, OpMon &def) {
 	if(Utils::Misc::randU(10) == 5) {
 	  if(def.setStatus(Status::BURNING)) {
 
@@ -347,12 +347,12 @@ namespace OpMon{
 	return 0;
       }
 
-      int Destruction::effetApres(OpMon &atk, OpMon &def) {
+      int Destruction::effectAfter(OpMon &atk, OpMon &def) {
 	atk.attacked(atk.getHP());
 	return 0;
       }
 
-      int Detritus::effetApres(OpMon &atk, OpMon &def) {
+      int Detritus::effectAfter(OpMon &atk, OpMon &def) {
 	if(Utils::Misc::randU(10) < 3) {
 	  if(def.setStatus(Status::POISONED)) {
 	  }
@@ -360,19 +360,19 @@ namespace OpMon{
 	return 0;
       }
 
-      int Devoreve::effetAvant(OpMon &atk, OpMon &def) {
+      int Devoreve::effectBefore(OpMon &atk, OpMon &def) {
 	if(!(def.getStatus() == Status::SLEEPING)) {
 
 	}
 	return 0;
       }
 
-      int Devoreve::effetApres(OpMon &atk, OpMon &def) {
+      int Devoreve::effectAfter(OpMon &atk, OpMon &def) {
 	atk.heal(hpPerdus / 2);
 	return 0;
       }
 
-      int DoubleDard::effetApres(OpMon &atk, OpMon &def) {
+      int DoubleDard::effectAfter(OpMon &atk, OpMon &def) {
 	if(Utils::Misc::randU(10) < 2) {
 	  def.setStatus(Status::POISONED);
 	}
