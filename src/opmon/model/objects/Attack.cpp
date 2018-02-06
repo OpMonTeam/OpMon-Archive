@@ -9,17 +9,17 @@
 namespace OpMon{
   namespace Model{
 
-    Attack::Attack(std::string nom, int puissance, Type type, int accuracy, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite, std::string className) :
-      className(className), nom(nom) {
-      this->puissance = puissance;
+    Attack::Attack(std::string name, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::string className) :
+      className(className), name(name) {
+      this->power = power;
       this->type = type;
       this->accuracy = accuracy;
       this->special = special;
       this->status = status;
-      this->chanceDeCoups = chanceDeCoups;
-      this->rateJamais = rateJamais;
+      this->criticalRate = criticalRate;
+      this->neverFails = neverFails;
       this->pp = this->ppMax = ppMax;
-      this->priorite = priorite;
+      this->priority = priority;
     }
 
     /* Return 1 : Inform to do the same attack at the next turn.
@@ -30,32 +30,32 @@ namespace OpMon{
     int Attack::attack(OpMon &atk, OpMon &def) {
       pp--;
       //Fail d'attaque
-      if ((Utils::Misc::randU(100)) > (accuracy * (atk.getStatACC() / def.getStatEVA())) && rateJamais == false) {
+      if ((Utils::Misc::randU(100)) > (accuracy * (atk.getStatACC() / def.getStatEVA())) && neverFails == false) {
         siEchoue(atk, def);
         return -2;
       }
-      int effetAv = effectBefore(atk, def);
-      if (effetAv == 1 || effetAv == 2) {//Si renvoi spécial, arrêt de l'attaque.
-        return effetAv;
+      int effectBf = effectBefore(atk, def);
+      if (effectBf == 1 || effectBf == 2) {//Si renvoi spécial, arrêt de l'attaque.
+        return effectBf;
       }
       //Fail de types
-      if (ArrayTypes::calcEfficacite(type, def.getType1(), def.getType2()) == 0 && (rateJamais == false || status == false)) {
+      if (ArrayTypes::calcEfficacite(type, def.getType1(), def.getType2()) == 0 && (neverFails == false || status == false)) {
         siEchoue(atk, def);
         return -1;
       }
       if (!status) {//Attack de PV si ce n'est pas une attaque de status
-        hpPerdus = (((atk.getLevel() * 0.4 + 2) * (special ? atk.getStatATKSPE() : atk.getStatATK()) * puissance) / ((special ? def.getStatDEFSPE() : def.getStatDEF()) * 50) + 2);
+        hpLost = (((atk.getLevel() * 0.4 + 2) * (special ? atk.getStatATKSPE() : atk.getStatATK()) * power) / ((special ? def.getStatDEFSPE() : def.getStatDEF()) * 50) + 2);
         if (type == atk.getType1() || type == atk.getType2()) {
-	  hpPerdus = round(hpPerdus * 1.5);
+	  hpLost = round(hpLost * 1.5);
         }
         float efficacite = (ArrayTypes::calcEfficacite(type, def.getType1(), def.getType2()));
         //if(efficacite)//A utiliser pour les dialogues
-        hpPerdus = round(hpPerdus * efficacite);
-        if (Utils::Misc::randU(chanceDeCoups) == 1) {
-	  hpPerdus = round(hpPerdus * 1.5);
+        hpLost = round(hpLost * efficacite);
+        if (Utils::Misc::randU(criticalRate) == 1) {
+	  hpLost = round(hpLost * 1.5);
         }
-        hpPerdus = round(hpPerdus * (Utils::Misc::randU(100 - 85 + 1) + 85) / 100);
-        def.attacked(hpPerdus);
+        hpLost = round(hpLost * (Utils::Misc::randU(100 - 85 + 1) + 85) / 100);
+        def.attacked(hpLost);
       }
       return effectAfter(atk, def);
     }

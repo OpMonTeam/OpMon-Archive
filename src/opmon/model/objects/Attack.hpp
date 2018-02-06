@@ -23,7 +23,7 @@ namespace OpMon{
     class Attack {
     public:
       virtual ~Attack() {}
-      Attack(std::string nom, int puissance, Type type, int accuracy, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite, std::string className);
+      Attack(std::string name, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::string className);
       virtual int effectBefore(OpMon &/*atk*/, OpMon &/*def*/) { return 0; }
       virtual int effectAfter(OpMon &/*atk*/, OpMon &/*def*/) { return 0; }
       void healPP() {
@@ -48,9 +48,9 @@ namespace OpMon{
       }
     protected:
       std::string className;
-      std::string nom;
-      int puissance;
-      int priorite;
+      std::string name;
+      int power;
+      int priority;
       int accuracy;
       Type type;
       bool special;
@@ -58,11 +58,11 @@ namespace OpMon{
       int part = 0;
       int pp;
       int ppMax;
-      /**La chance de coups critiques, en 1/nombre (Par défaut, 16)*/
-      int chanceDeCoups;
-      bool rateJamais;
-      /**Variable utilisée dans effetAvant et effetAprès*/
-      int hpPerdus = 0;
+      /**The critical hit rate is 1/criticalRate*/
+      int criticalRate;
+      bool neverFails;
+      /**Variables used in effectBefore and effetAfter*/
+      int hpLost = 0;
     };
 
   }
