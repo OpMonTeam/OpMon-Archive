@@ -4,6 +4,7 @@
 #include "../save/Save.hpp"
 #include "../../../utils/defines.hpp"
 
+//TODO : Translate this file in english
 
 namespace OpMon{
   namespace Model{
@@ -33,7 +34,7 @@ namespace OpMon{
         siEchoue(atk, def);
         return -2;
       }
-      int effetAv = effetAvant(atk, def);
+      int effetAv = effectBefore(atk, def);
       if (effetAv == 1 || effetAv == 2) {//Si renvoi spécial, arrêt de l'attaque.
         return effetAv;
       }
@@ -56,7 +57,7 @@ namespace OpMon{
         hpPerdus = round(hpPerdus * (Utils::Misc::randU(100 - 85 + 1) + 85) / 100);
         def.attacked(hpPerdus);
       }
-      return effetApres(atk, def);
+      return effectAfter(atk, def);
     }
     std::string Attack::save() {
       UNS

@@ -24,20 +24,18 @@ namespace OpMon{
     public:
       virtual ~Attack() {}
       Attack(std::string nom, int puissance, Type type, int accuracy, bool special, bool status, int chanceDeCoups, bool rateJamais, int ppMax, int priorite, std::string className);
-      //->PureVirtual
-      virtual int effetAvant(OpMon &/*atk*/, OpMon &/*def*/) { return 0; }
-      //->PureVirtual
-      virtual int effetApres(OpMon &/*atk*/, OpMon &/*def*/) { return 0; }
+      virtual int effectBefore(OpMon &/*atk*/, OpMon &/*def*/) { return 0; }
+      virtual int effectAfter(OpMon &/*atk*/, OpMon &/*def*/) { return 0; }
       void healPP() {
         pp = ppMax;
       }
       Type getType() {
         return type;
       }
-      /**atk attack the def OpMon*/
+      /**atk attacks the def OpMon*/
       //->Final
-      virtual int attack(OpMon &atk, OpMon &def);
-      virtual void siEchoue(OpMon&, OpMon&) {}
+      int attack(OpMon &atk, OpMon &def);
+      virtual void ifFails(OpMon&, OpMon&) {}
       virtual std::string getClassName() {
         return className;
       }
