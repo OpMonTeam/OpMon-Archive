@@ -31,7 +31,7 @@ namespace OpMon{
       pp--;
       //Fail d'attaque
       if ((Utils::Misc::randU(100)) > (accuracy * (atk.getStatACC() / def.getStatEVA())) && neverFails == false) {
-        siEchoue(atk, def);
+        ifFails(atk, def);
         return -2;
       }
       int effectBf = effectBefore(atk, def);
@@ -40,7 +40,7 @@ namespace OpMon{
       }
       //Fail de types
       if (ArrayTypes::calcEfficacite(type, def.getType1(), def.getType2()) == 0 && (neverFails == false || status == false)) {
-        siEchoue(atk, def);
+        ifFails(atk, def);
         return -1;
       }
       if (!status) {//Attack de PV si ce n'est pas une attaque de status

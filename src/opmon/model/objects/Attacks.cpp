@@ -123,23 +123,23 @@ namespace OpMon{
       }
 
       int Belier::effectAfter(OpMon &atk, OpMon &def) {
-	atk.attacked(round(hpPerdus / 4));
+	atk.attacked(round(hpLost / 4));
 	return 0;
       }
 
       int Balayage::effectBefore(OpMon &atk, OpMon &def) {
 	if (def.getSpecies().getWeight() <= 10) {
-	  puissance = 20;
+	  power = 20;
 	} else if (def.getSpecies().getWeight() > 10 && def.getSpecies().getWeight() <= 25) {
-	  puissance = 40;
+	  power = 40;
 	} else if (def.getSpecies().getWeight() > 25 && def.getSpecies().getWeight() <= 50) {
-	  puissance = 60;
+	  power = 60;
 	} else if (def.getSpecies().getWeight() > 50 && def.getSpecies().getWeight() <= 100) {
-	  puissance = 80;
+	  power = 80;
 	} else if (def.getSpecies().getWeight() > 100 && def.getSpecies().getWeight() <= 200) {
-	  puissance = 100;
+	  power = 100;
 	} else {
-	  puissance = 120;
+	  power = 120;
 	}
 	return 0;
       }
@@ -237,7 +237,7 @@ namespace OpMon{
 	int it = 0;
 	int coups = Utils::Misc::randU(4);
 	for(it = 0; it != coups + 1; it++) {
-	  def.attacked(hpPerdus);
+	  def.attacked(hpLost);
 	  if(def.getHP() <= 0) {
             return 0;
 	  }
@@ -308,7 +308,7 @@ namespace OpMon{
       }
 
       int Damocles::effectAfter(OpMon &atk, OpMon &def) {
-	atk.attacked(hpPerdus / 3);
+	atk.attacked(hpLost / 3);
 	return 0;
       }
 
@@ -368,7 +368,7 @@ namespace OpMon{
       }
 
       int Devoreve::effectAfter(OpMon &atk, OpMon &def) {
-	atk.heal(hpPerdus / 2);
+	atk.heal(hpLost / 2);
 	return 0;
       }
 
@@ -377,7 +377,7 @@ namespace OpMon{
 	  def.setStatus(Status::POISONED);
 	}
 	if(def.getHP() <= 0) {
-	  def.attacked(hpPerdus);
+	  def.attacked(hpLost);
 	  if(Utils::Misc::randU(10) < 2) {
             def.setStatus(Status::POISONED);
 	  }
