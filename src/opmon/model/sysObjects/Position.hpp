@@ -15,79 +15,78 @@
 #include "../objects/Enums.hpp"
 
 #define SQUARES_SIZE 32
-#define SQUARES * SQUARES_SIZE
+#define SQUARES *SQUARES_SIZE
 
 namespace OpMon {
-    namespace Model {
-        class Position {
-        public:
-            Position(bool event = false);
+	namespace Model {
+		class Position {
+		public:
+			Position(bool event = false);
 
-            Position(sf::Vector2i position, bool event = false, Side dir = Side::TO_UP);
-            Position(sf::Vector2f position, bool event = false, Side dir = Side::TO_UP);
+			Position(sf::Vector2i position, bool event = false, Side dir = Side::TO_UP);
+			Position(sf::Vector2f position, bool event = false, Side dir = Side::TO_UP);
 
-            sf::Vector2i getPosition() {
-              return sf::Vector2i(posX, posY);
-            }
+			sf::Vector2i getPosition() {
+				return sf::Vector2i(posX, posY);
+			}
 
-            sf::Vector2i getPositionPixel() {
-              return sf::Vector2i(posX SQUARES, posY SQUARES);
-            }
+			sf::Vector2i getPositionPixel() {
+				return sf::Vector2i(posX SQUARES, posY SQUARES);
+			}
 
-	  void setDir(Side dir){
-	    this->dir = dir;
-	  }
-	  
-            Side getDir() {
-              return dir;
-            }
+			void setDir(Side dir) {
+				this->dir = dir;
+			}
 
-            bool isAnim() {
-              return anim;
-            }
+			Side getDir() {
+				return dir;
+			}
 
-            bool isMoving() {
-              return movement;
-            }
+			bool isAnim() {
+				return anim;
+			}
 
-            void stopMove() {
-              anim = false;
-              movement = false;
-            }
+			bool isMoving() {
+				return movement;
+			}
 
-            void stopAnim() {
-              anim = false;
-            }
-		
-	    void lockMove(){
-		moveLock = true;
-	    }
-		
-	    void unlockMove(){
-		moveLock = false;
-	    }
-		
-	    bool isLocked(){return moveLock;}
+			void stopMove() {
+				anim = false;
+				movement = false;
+			}
 
-	  void setPosition(int x, int y);
-	  
-            void tp(sf::Vector2i position);
+			void stopAnim() {
+				anim = false;
+			}
 
-            void move(Side dir);
+			void lockMove() {
+				moveLock = true;
+			}
 
-        private:
+			void unlockMove() {
+				moveLock = false;
+			}
 
-            bool checkPass(Side dir);
+			bool isLocked() { return moveLock; }
 
-            int posX;
-            int posY;
-            Side dir;
-            bool anim;
-            bool movement;
-            bool moveLock;
-	  bool event;
-        };
-    }
-}
+			void setPosition(int x, int y);
+
+			void tp(sf::Vector2i position);
+
+			void move(Side dir);
+
+		private:
+			bool checkPass(Side dir);
+
+			int posX;
+			int posY;
+			Side dir;
+			bool anim;
+			bool movement;
+			bool moveLock;
+			bool event;
+		};
+	} // namespace Model
+} // namespace OpMon
 
 #endif

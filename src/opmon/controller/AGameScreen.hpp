@@ -1,15 +1,13 @@
 
 #pragma once
 
-
-#include <SFML/Window/Event.hpp>
 #include "../start/GameStatus.hpp"
+#include <SFML/Window/Event.hpp>
 
+namespace OpMon {
+	namespace Controller {
 
-namespace OpMon{
-  namespace Controller{
-
-    /**
+		/**
      * Interface of all first-level controllers.
      *
      * A game screen is handled by the GameLoop.
@@ -19,33 +17,33 @@ namespace OpMon{
      * In addition, suspend() and resume() are called when respectively the controller loose the focus (another
      * controller is added on top) and regain the focus.
      */
-    class AGameScreen {
-    public:
+		class AGameScreen {
+		public:
+			AGameScreen()
+			  : _next_gs(nullptr) {}
 
-      AGameScreen() : _next_gs(nullptr) {}
-
-      /**
+			/**
        * process a new SFML Input (keyboard, mouse, ...).
        */
-      virtual GameStatus checkEvent(sf::Event const&) {return GameStatus::CONTINUE;}
+			virtual GameStatus checkEvent(sf::Event const &) { return GameStatus::CONTINUE; }
 
-      /**
+			/**
        * Update and draw the game.
        *
        * This method is called once per frame.
        */
-      virtual GameStatus update() = 0;
+			virtual GameStatus update() = 0;
 
-      virtual void suspend() {};
-      virtual void resume() {};
+			virtual void suspend(){};
+			virtual void resume(){};
 
-      AGameScreen *getNextGameScreen() { return _next_gs; };
+			AGameScreen *getNextGameScreen() { return _next_gs; };
 
-      virtual ~AGameScreen() = default;
+			virtual ~AGameScreen() = default;
 
-    protected:
-      AGameScreen *_next_gs;
-    };
+		protected:
+			AGameScreen *_next_gs;
+		};
 
-  }
-}
+	} // namespace Controller
+} // namespace OpMon
