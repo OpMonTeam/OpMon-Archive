@@ -1,13 +1,13 @@
 
 #pragma once
 
-namespace Utils{
-  namespace Path{
+namespace Utils {
+	namespace Path {
 
-    /**
+		/**
      * Get the root path of resource files.
      */
-    const std::string getResourcePath();
+		const std::string getResourcePath();
 
-  }
-}
+	} // namespace Path
+} // namespace Utils

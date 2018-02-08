@@ -4,33 +4,32 @@
 
 #include <SFML/Audio/Music.hpp>
 
-namespace OpMon{
-  namespace View{
-    
-    class Jukebox{
-    private:
-      std::map<std::string, sf::Music*> musList;
-      std::string playingID;
-      int globalVolume;
-    public:
-      Jukebox();
+namespace OpMon {
+	namespace View {
 
-      ~Jukebox();
+		class Jukebox {
+		private:
+			std::map<std::string, sf::Music *> musList;
+			std::string playingID;
+			int globalVolume;
 
-      void addMusic(std::string name, std::string path, int volume = -15, bool loop = true);
+		public:
+			Jukebox();
 
-      void play(std::string music);
+			~Jukebox();
 
-      void pause(std::string music);
+			void addMusic(std::string name, std::string path, int volume = -15, bool loop = true);
 
-      void stop(std::string music);
+			void play(std::string music);
 
-      void setGlobalVolume(int globalVolume);
+			void pause(std::string music);
 
-      int getGlobalVolume();
+			void stop(std::string music);
 
-      
-    };
-    
-  }
-}
+			void setGlobalVolume(int globalVolume);
+
+			int getGlobalVolume();
+		};
+
+	} // namespace View
+} // namespace OpMon

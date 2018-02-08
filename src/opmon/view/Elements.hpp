@@ -7,26 +7,26 @@ File contains usefull elements
 */
 #ifndef ELEMENTS_HPP
 #define ELEMENTS_HPP
-#include <iostream>
-#include <vector>
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include <vector>
 
 #include "../model/sysObjects/Player.hpp"
 
-namespace OpMon{
-  namespace View{
+namespace OpMon {
+	namespace View {
 
-    class MapLayer : public sf::Drawable, public sf::Transformable{
-    private:
-      virtual void draw(sf::RenderTarget &target, sf::RenderStates stats) const;
-      sf::VertexArray tiles;
-    public:
-      MapLayer(sf::Vector2i size, const int tilesCode[]);
-    };
+		class MapLayer : public sf::Drawable, public sf::Transformable {
+		private:
+			virtual void draw(sf::RenderTarget &target, sf::RenderStates stats) const;
+			sf::VertexArray tiles;
 
-  }
-}
+		public:
+			MapLayer(sf::Vector2i size, const int tilesCode[]);
+		};
 
+	} // namespace View
+} // namespace OpMon
 
 #endif // ELEMENTS_HPP

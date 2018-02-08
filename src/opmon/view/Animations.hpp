@@ -8,44 +8,46 @@ Contains the Animations namespace
 #ifndef ANIMATIONS_HPP
 #define ANIMATIONS_HPP
 
-#include <iostream>
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 #include "../start/GameStatus.hpp"
 
-namespace OpMon{
-  namespace View{
-    /**
+namespace OpMon {
+	namespace View {
+		/**
        Contains the functions used for the major animations
     */
-    namespace Animations {
+		namespace Animations {
 
-      class Animation {
-      protected:
+			class Animation {
+			protected:
 				int counter = 0;
 				sf::Sprite anim;
 				sf::Sprite bgSpr;
 				sf::Texture bgTxt;
-      public:
+
+			public:
 				Animation(sf::Texture bgTxt);
 				virtual ~Animation() = default;
 				virtual GameStatus operator()() = 0;
-      };
+			};
 
-      class WinAnim : public Animation {
-      private:
+			class WinAnim : public Animation {
+			private:
 				int frames = 5;
 				/*
 					If true : Open | If false : Close
 				*/
 				bool order;
-						public:
+
+			public:
 				WinAnim(sf::Texture bgTxt, bool order);
 				GameStatus operator()();
-      };
+			};
 
-    }
+		} // namespace Animations
 
-  }
-}
+	} // namespace View
+} // namespace OpMon
 #endif // ANIMATIONS_HPP
