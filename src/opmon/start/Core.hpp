@@ -9,42 +9,40 @@
 #define CORE_HPP
 
 #include "GameStatus.hpp"
+#include <string>
 
-namespace OpMon{
+namespace OpMon {
 
-  
-  /**Path to the options save file*/
-  extern std::string optSave;
+	/**Path to the options save file*/
+	extern std::string optSave;
 
-  //#define TEST
-  /**
+	//#define TEST
+	/**
      Function that handles errors on the program
   */
-  void handleError(std::string const& errorName, bool fatal);
-  /**
+	void handleError(std::string const &errorName, bool fatal);
+	/**
      Function quitting the game, deleting the resources
   */
-  int quit(int const& returns);
+	int quit(int const &returns);
 
-  extern bool debugMode;
-  extern bool debugCol;
-  extern bool camUnlock;
-  
-  /*
+	extern bool debugMode;
+	extern bool debugCol;
+	extern bool camUnlock;
+
+	/*
     Useful operators for strings
   */
-  std::string& operator<<(std::string &str, std::string const& thing);
-  std::string& operator<<(std::string &str, int nbre);
-  std::string& operator<<(std::string &str, char nbre[]);
+	std::string &operator<<(std::string &str, std::string const &thing);
+	std::string &operator<<(std::string &str, int nbre);
+	std::string &operator<<(std::string &str, char nbre[]);
 
-  extern int* frames;
+	extern int *frames;
 
-  int getFrames();
-  
+	int getFrames();
 
-  template<typename Base, typename T>
-  bool instanceOf(const Base *toTest);
-}
-
+	template <typename Base, typename T>
+	bool instanceOf(const Base *toTest);
+} // namespace OpMon
 
 #endif

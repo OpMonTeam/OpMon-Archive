@@ -1,10 +1,12 @@
 #include "CT.hpp"
 
-namespace OpMon{
-  namespace Model{
+namespace OpMon {
+	namespace Model {
 
-    CT::CT(std::string atk, int ctNumber, int ID) : Item(("CT" + ctNumber + atk), true, false, false, BagCat::CTS, ID),atk(atk) {
-    }
+		CT::CT(std::string atk, int ctNumber, int ID)
+		  : Item(("CT" + ctNumber + atk), true, false, false, BagCat::CTS, ID)
+		  , atk(atk) {
+		}
 
-  }
-}
+	} // namespace Model
+} // namespace OpMon

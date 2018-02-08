@@ -9,34 +9,34 @@
 #ifndef INITIALIZER_HPP
 #define INITIALIZER_HPP
 
-namespace OpMon{
+namespace OpMon {
 
-  //->NoDoc
-  namespace Initializer {
-    void initOpMons();
-    void initAtkLvls();
-    void initSprites();
-    void initBackgrounds();
-    void initKeys();
-    void initMaps();
-    void initAnims();
+	//->NoDoc
+	namespace Initializer {
+		void initOpMons();
+		void initAtkLvls();
+		void initSprites();
+		void initBackgrounds();
+		void initKeys();
+		void initMaps();
+		void initAnims();
 
-    void initPlayer();
-    
-    void initGui();
+		void initPlayer();
 
-    void initMusics();
-    
-    void initOverworld();
-    void initStartScene();
-    void initMenu();
+		void initGui();
 
-    void initMenuStrings();
-    void initStartSceneStrings();
+		void initMusics();
 
-    //void deleteAnims();
-    void init();
-  }
+		void initOverworld();
+		void initStartScene();
+		void initMenu();
 
-}
+		void initMenuStrings();
+		void initStartSceneStrings();
+
+		//void deleteAnims();
+		void init();
+	} // namespace Initializer
+
+} // namespace OpMon
 #endif // INITIALIZER_HPP

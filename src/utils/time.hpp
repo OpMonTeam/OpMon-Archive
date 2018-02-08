@@ -1,28 +1,27 @@
 
 #pragma once
 
-
-namespace Utils{
-  /**
+namespace Utils {
+	/**
    * Utilities for everything time-related.
    */
-  namespace Time{
+	namespace Time {
 
-    /**
+		/**
      * Set (or reset) the reference clock to zero.
      */
-    void initClock();
+		void initClock();
 
-    /**
+		/**
      * Return the number of elapsed milliseconds since the beginning of the program
      */
-    int getElapsedMilliseconds();
+		int getElapsedMilliseconds();
 
-    /**
+		/**
      * Sleep for determined duration.
      * @param duration - time to wait, in milliseconds
      */
-    void wait(int duration);
+		void wait(int duration);
 
-  }
-}
+	} // namespace Time
+} // namespace Utils

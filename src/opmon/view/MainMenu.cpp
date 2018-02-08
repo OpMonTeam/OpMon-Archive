@@ -1,104 +1,102 @@
 #include "MainMenu.hpp"
-#include <iostream>
-#include "OptionsMenu.hpp"
+#include "../../utils/StringKeys.hpp"
+#include "../../utils/defines.hpp"
+#include "../../utils/log.hpp"
 #include "../model/storage/Data.hpp"
 #include "../model/storage/ResourceLoader.hpp"
-#include "../../utils/log.hpp"
-#include "../../utils/defines.hpp"
-#include "../../utils/StringKeys.hpp"
+#include "OptionsMenu.hpp"
 #include "Window.hpp"
-
+#include <iostream>
 
 UNS
 
-namespace OpMon{
-  namespace View{
+  namespace OpMon {
+	namespace View {
 
-    void MainMenu::initStrings() {
-      auto kget = Utils::StringKeys::get;
+		void MainMenu::initStrings() {
+			auto kget = Utils::StringKeys::get;
 
-      playtx.setString(kget("title.1"));
-      charge.setString(kget("title.2"));
-      options.setString(kget("title.3"));
-      exit.setString(kget("title.4"));
-    }
+			playtx.setString(kget("title.1"));
+			charge.setString(kget("title.2"));
+			options.setString(kget("title.3"));
+			exit.setString(kget("title.4"));
+		}
 
-    MainMenu::MainMenu() {
-      sf::Text *textPos[4] = {&playtx, &charge, &options, &exit};
-      for(int i = 0, j = 175; i < 4; i++) {
-        curPos[i].x = 10;
-        curPos[i].y = j;
-        textPos[i]->setPosition(sf::Vector2f(60, j));
-        j+=85;
-      }
+		MainMenu::MainMenu() {
+			sf::Text *textPos[4] = {&playtx, &charge, &options, &exit};
+			for(int i = 0, j = 175; i < 4; i++) {
+				curPos[i].x = 10;
+				curPos[i].y = j;
+				textPos[i]->setPosition(sf::Vector2f(60, j));
+				j += 85;
+			}
 
-      Model::ResourceLoader::load(textures[0], "backgrounds/titlescreen.png");
-      Model::ResourceLoader::load(textures[1], "sprites/misc/arrChoice.png");
-      Model::ResourceLoader::load(sounds[0], "audio/sounds/select.ogg");
-      Model::ResourceLoader::load(sounds[1], "audio/sounds/selectbuttons.ogg");
-      //sounds[2].loadFromFile(RESSOURCES_PATH + "audio/sounds/nope.ogg");
-      bg.setTexture(textures[0]);
-      cursor.setTexture(textures[1]);
-      bruitArr.setBuffer(sounds[0]);
-      bruitPush.setBuffer(sounds[1]);
-      //bruitNope.setBuffer(sounds[2]);
-      cursor.setScale(3, 3);
-      initStrings();
+			Model::ResourceLoader::load(textures[0], "backgrounds/titlescreen.png");
+			Model::ResourceLoader::load(textures[1], "sprites/misc/arrChoice.png");
+			Model::ResourceLoader::load(sounds[0], "audio/sounds/select.ogg");
+			Model::ResourceLoader::load(sounds[1], "audio/sounds/selectbuttons.ogg");
+			//sounds[2].loadFromFile(RESSOURCES_PATH + "audio/sounds/nope.ogg");
+			bg.setTexture(textures[0]);
+			cursor.setTexture(textures[1]);
+			bruitArr.setBuffer(sounds[0]);
+			bruitPush.setBuffer(sounds[1]);
+			//bruitNope.setBuffer(sounds[2]);
+			cursor.setScale(3, 3);
+			initStrings();
 
-      for (auto *text: {&playtx, &charge, &options, &exit}){
-        text->setColor(sf::Color::White);
-        text->setFont(Model::Data::Ui::font);
-        text->setCharacterSize(FONT_SIZE_DEFAULT);
-      }
+			for(auto *text : {&playtx, &charge, &options, &exit}) {
+				text->setColor(sf::Color::White);
+				text->setFont(Model::Data::Ui::font);
+				text->setCharacterSize(FONT_SIZE_DEFAULT);
+			}
 
-      //Mix_Volume(2, MIX_MAX_VOLUME / 4);
-      //Mix_Volume(1, MIX_MAX_VOLUME);
-      //Mix_Volume(0, MIX_MAX_VOLUME / 2);
+			//Mix_Volume(2, MIX_MAX_VOLUME / 4);
+			//Mix_Volume(1, MIX_MAX_VOLUME);
+			//Mix_Volume(0, MIX_MAX_VOLUME / 2);
 
-      jukebox.play("Title");
-      
-    }
+			jukebox.play("Title");
+		}
 
-    MainMenu::~MainMenu(){
-      jukebox.stop("Title");
-    }
+		MainMenu::~MainMenu() {
+			jukebox.stop("Title");
+		}
 
-    void MainMenu::onLangChanged(){
-      initStrings();
-    }
+		void MainMenu::onLangChanged() {
+			initStrings();
+		}
 
-    void MainMenu::pause(){
-    }
+		void MainMenu::pause() {
+		}
 
-    void MainMenu::play(){
-      jukebox.play("Title");
-    }
+		void MainMenu::play() {
+			jukebox.play("Title");
+		}
 
-    void MainMenu::moveArrow(bool direction){
-      Model::Data::Sounds::arrow.play();
-      if(direction /* == true*/){
-	curPosI--;
-      }else{
-	curPosI++;
-      }
+		void MainMenu::moveArrow(bool direction) {
+			Model::Data::Sounds::arrow.play();
+			if(direction /* == true*/) {
+				curPosI--;
+			} else {
+				curPosI++;
+			}
 
-      if(curPosI >= 4) {
-	curPosI = 0;
-      } else if(curPosI < 0) {
-        curPosI = 3;
-      }
-    }
+			if(curPosI >= 4) {
+				curPosI = 0;
+			} else if(curPosI < 0) {
+				curPosI = 3;
+			}
+		}
 
-    void MainMenu::draw(sf::RenderTexture &frame){
-      frame.clear(sf::Color::Black);
-      frame.draw(bg);
-      frame.draw(playtx),
-	frame.draw(charge);
-      frame.draw(options);
-      frame.draw(exit);
-      cursor.setPosition(curPos[curPosI]);
-      frame.draw(cursor);
-    }
+		void MainMenu::draw(sf::RenderTexture &frame) {
+			frame.clear(sf::Color::Black);
+			frame.draw(bg);
+			frame.draw(playtx),
+			  frame.draw(charge);
+			frame.draw(options);
+			frame.draw(exit);
+			cursor.setPosition(curPos[curPosI]);
+			frame.draw(cursor);
+		}
 
-  }
+	} // namespace View
 }
