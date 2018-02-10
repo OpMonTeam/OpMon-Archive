@@ -1,9 +1,9 @@
 /*
-Dialog.hpp
-Author : BAKFR
-File under GNU GPL 3.0 licence
-http://opmon-game.ga
- */
+  Dialog.hpp
+  Author : BAKFR
+  File under GNU GPL 3.0 licence
+  http://opmon-game.ga
+*/
 #ifndef OPMON_DIALOG_CPP_HPP
 #define OPMON_DIALOG_CPP_HPP
 
@@ -12,70 +12,74 @@ http://opmon-game.ga
 #include <SFML/System.hpp>
 #include <string>
 
-class Dialog {
-  private:
-    /** array of all lines composing the dialog. */
-    const sf::String *text;
+namespace OpMon{
+  namespace View{
 
-    /** number of lines in `text`. */
-    size_t sizeOfTxt;
+    class Dialog {
+    private:
+      /** array of all lines composing the dialog. */
+      const sf::String *text;
 
-    /** The 3 lines currently displayed. */
-    sf::String txtEnCours[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
+      /** number of lines in `text`. */
+      size_t sizeOfTxt;
 
-    /** index of the first line currently displayed on screen */
-    unsigned int dialogNb = 0;
+      /** The 3 lines currently displayed. */
+      sf::String txtEnCours[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
 
-    /**
-     * If true, the dialog is fully displayed by the text animation, and the
-     * next step (on user action) would be to display the next lines.
-     */
-    bool changeDialog = false;
+      /** index of the first line currently displayed on screen */
+      unsigned int dialogNb = 0;
 
-    /** index of line being displayed by the text animation. */
-    unsigned int line = 0;
-    /** index of the next character to display by the text animation. */
-    unsigned int i = 0;
+      /**
+       * If true, the dialog is fully displayed by the text animation, and the
+       * next step (on user action) would be to display the next lines.
+       */
+      bool changeDialog = false;
 
-    /** Set to `true` when the entire dialog has been displayed. */
-    bool is_dialog_over = false;
+      /** index of line being displayed by the text animation. */
+      unsigned int line = 0;
+      /** index of the next character to display by the text animation. */
+      unsigned int i = 0;
 
-    void printText(sf::RenderTarget &frame, sf::String text[]);
+      /** Set to `true` when the entire dialog has been displayed. */
+      bool is_dialog_over = false;
 
-    sf::Sound dialogPass;
+      void printText(sf::RenderTarget &frame, sf::String text[]);
 
-  public:
-    Dialog(const sf::String *text, size_t size);
+      sf::Sound dialogPass;
 
-    /**
-     * Move forward in a dialog, in response to an event like a space key pressed.
-     *
-     * If the current dialog lines aren't fully displayed (text animation
-     * ongoing), terminate the animation, wait 50ms, then ask for a dialog change.
-     * If the animation is over, and there still remaining lines to display,
-     * play a sound (dialogPass) then pass to the next lines.
-     * If there is no more line to display, the dialog is over.
-     */
-    void pass();
+    public:
+      Dialog(const sf::String *text, size_t size);
 
-    /**
-     * Display the dialog character by character until the 3 lines are fully displayed.
-     */
-    void updateTextAnimation();
+      /**
+       * Move forward in a dialog, in response to an event like a space key pressed.
+       *
+       * If the current dialog lines aren't fully displayed (text animation
+       * ongoing), terminate the animation, wait 50ms, then ask for a dialog change.
+       * If the animation is over, and there still remaining lines to display,
+       * play a sound (dialogPass) then pass to the next lines.
+       * If there is no more line to display, the dialog is over.
+       */
+      void pass();
 
-    /**
-     * Draw the dialog on the main frame.
-     */
-    void draw(sf::RenderTarget &frame);
+      /**
+       * Display the dialog character by character until the 3 lines are fully displayed.
+       */
+      void updateTextAnimation();
 
-    /**
-     * @return `true` is the entire dialog has been displayed; `false` otherwise.
-     */
-    bool isDialogOver();
+      /**
+       * Draw the dialog on the main frame.
+       */
+      void draw(sf::RenderTarget &frame);
 
-    static sf::Sprite arrDial;
-    static sf::Text dialogText[3];
-    static sf::Sprite dialog;
-};
+      /**
+       * @return `true` is the entire dialog has been displayed; `false` otherwise.
+       */
+      bool isDialogOver();
 
+      static sf::Sprite arrDial;
+      static sf::Text dialogText[3];
+      static sf::Sprite dialog;
+    };
+  }
+}
 #endif //OPMON_DIALOG_CPP_HPP
