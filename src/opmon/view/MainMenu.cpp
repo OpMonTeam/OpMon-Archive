@@ -73,7 +73,6 @@ UNS
         }
 
         void MainMenu::moveArrow(bool direction) {
-            Model::Data::Sounds::arrow.play();
             if(direction /* == true*/) {
                 curPosI--;
             } else {

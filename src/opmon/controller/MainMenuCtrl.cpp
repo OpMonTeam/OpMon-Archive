@@ -10,6 +10,9 @@ namespace OpMon {
 
         MainMenuCtrl::MainMenuCtrl()
           : view() {
+	  nope.setBuffer(Model::Data::Sounds::nope);
+	  arrow.setBuffer(Model::Data::Sounds::arrow);
+	  push.setBuffer(Model::Data::Sounds::push);
         }
 
         GameStatus MainMenuCtrl::checkEvent(sf::Event const &event) {
@@ -19,22 +22,27 @@ namespace OpMon {
                     switch(view.getCursorPosition()) {
                     case 0:
                         _next_gs = new StartSceneCtrl();
+			push.play();
                         return GameStatus::NEXT;
                     case 1:
-                        Model::Data::Sounds::nope.play();
-                        return GameStatus::CONTINUE;
+		      nope.play();
+		      return GameStatus::CONTINUE;
                     case 2:
                         _next_gs = new OptionsMenuCtrl();
+			push.play();
                         return GameStatus::NEXT;
                     case 3:
+		      push.play();
                         return GameStatus::STOP;
                     }
                     break;
                 case sf::Keyboard::Up:
                     view.moveArrow(true);
+		    arrow.play();
                     break;
                 case sf::Keyboard::Down:
                     view.moveArrow(false);
+		    arrow.play();
                     break;
                 default:
                     break;

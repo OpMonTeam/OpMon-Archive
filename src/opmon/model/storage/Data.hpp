@@ -72,9 +72,10 @@ namespace OpMon {
             } // namespace Ui
 
             namespace Sounds {
-                extern sf::Sound nope;
-                extern sf::Sound arrow;
+                extern sf::SoundBuffer nope;
+                extern sf::SoundBuffer arrow;
                 extern sf::SoundBuffer dialogPass;
+	      extern sf::SoundBuffer push;
             } // namespace Sounds
 
             namespace Animations {
