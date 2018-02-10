@@ -106,7 +106,7 @@ namespace OpMon {
                 exclusiveCol = 5;
                 break;
             default:
-	      return true;
+                return true;
                 break;
             }
 
