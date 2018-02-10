@@ -13,47 +13,47 @@ Contains the attacks classes definitions
 #include <cmath>
 #include <iostream>
 
-#define ATK_CLASS(name)        \
-	class name : public Attack { \
-	public:
+#define ATK_CLASS(name)          \
+    class name : public Attack { \
+      public:
 
 #define EB int effectBefore(OpMon &atk, OpMon &def)
 #define EA int effectAfter(OpMon &atk, OpMon &def)
-#define IF_ATK(NAME)   \
-	if(name == #NAME) {  \
-		return new NAME(); \
-	}
+#define IF_ATK(NAME)       \
+    if(name == #NAME) {    \
+        return new NAME(); \
+    }
 
 namespace OpMon {
-	namespace Model {
-		/**
+    namespace Model {
+        /**
 Namespace containing attacks' definitions
 */
-		//->NoDoc
-		namespace Attacks {
+        //->NoDoc
+        namespace Attacks {
 
-			/**
+            /**
      TODO : Put the attacks' names in english, put all the attacks' names in the rkeys files for translation. 
    */
 
-			Attack *newAtk(std::string name);
+            Attack *newAtk(std::string name);
 
-			ATK_CLASS(Abime)
-			Abime()
-			  : Attack("Abime", 99999, Type::SOL, 30, false, false, -1, false, 5, 0, "Abime") {}
-			EB;
-		}; // namespace Attacks
+            ATK_CLASS(Abime)
+            Abime()
+              : Attack("Abime", 99999, Type::SOL, 30, false, false, -1, false, 5, 0, "Abime") {}
+            EB;
+        }; // namespace Attacks
 
-		ATK_CLASS(Acidarmure)
-		Acidarmure()
-		  : Attack("Acidarmure", 0, Type::POISON, 100, false, true, -1, true, 20, 0, "Acidarmure") {}
-		EA;
-	}; // namespace Model
+        ATK_CLASS(Acidarmure)
+        Acidarmure()
+          : Attack("Acidarmure", 0, Type::POISON, 100, false, true, -1, true, 20, 0, "Acidarmure") {}
+        EA;
+    }; // namespace Model
 
-	ATK_CLASS(Acide)
-	Acide()
-	  : Attack("Acide", 40, Type::POISON, 100, true, false, 16, false, 30, 0, "Acide") {}
-	EA;
+    ATK_CLASS(Acide)
+    Acide()
+      : Attack("Acide", 40, Type::POISON, 100, true, false, 16, false, 30, 0, "Acide") {}
+    EA;
 }; // namespace OpMon
 
 ATK_CLASS(Affutage)

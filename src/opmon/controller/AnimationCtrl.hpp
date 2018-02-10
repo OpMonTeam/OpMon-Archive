@@ -4,15 +4,15 @@
 #include "AGameScreen.hpp"
 
 namespace OpMon {
-	namespace Controller {
-		class AnimationCtrl : public AGameScreen {
-		private:
-			View::Animations::Animation *view;
+    namespace Controller {
+        class AnimationCtrl : public AGameScreen {
+          private:
+            View::Animations::Animation *view;
 
-		public:
-			AnimationCtrl(View::Animations::Animation *view);
-			~AnimationCtrl();
-			GameStatus update() override;
-		};
-	} // namespace Controller
+          public:
+            AnimationCtrl(View::Animations::Animation *view);
+            ~AnimationCtrl();
+            GameStatus update() override;
+        };
+    } // namespace Controller
 } // namespace OpMon

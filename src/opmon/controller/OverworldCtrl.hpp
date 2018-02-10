@@ -9,22 +9,22 @@
 #include "AGameScreen.hpp"
 
 namespace OpMon {
-	namespace Controller {
+    namespace Controller {
 
-		class OverworldCtrl : public AGameScreen {
-		private:
-			View::Overworld view;
-			Model::Player &player;
+        class OverworldCtrl : public AGameScreen {
+          private:
+            View::Overworld view;
+            Model::Player &player;
 
-		public:
-			OverworldCtrl(Model::Player &player);
-			GameStatus checkEvent(sf::Event const &event) override;
-			GameStatus checkEventsDialog(sf::Event const &events, View::Overworld &overworld);
-			GameStatus checkEventsNoDialog(sf::Event const &events, Model::Player &player);
-			GameStatus update() override;
-		};
+          public:
+            OverworldCtrl(Model::Player &player);
+            GameStatus checkEvent(sf::Event const &event) override;
+            GameStatus checkEventsDialog(sf::Event const &events, View::Overworld &overworld);
+            GameStatus checkEventsNoDialog(sf::Event const &events, Model::Player &player);
+            GameStatus update() override;
+        };
 
-	} // namespace Controller
+    } // namespace Controller
 } // namespace OpMon
 
 #endif

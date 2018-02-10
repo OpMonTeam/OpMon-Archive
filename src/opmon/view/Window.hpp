@@ -15,16 +15,16 @@ Contains Window namespace
 #include "Jukebox.hpp"
 
 namespace OpMon {
-	namespace View {
-		extern sf::RenderWindow window;
-		extern sf::RenderTexture frame;
-		extern Jukebox jukebox;
-		extern bool init;
-		extern bool fullScreen;
-		void close();
-		void open();
-		void winRefresh();
-	} // namespace View
+    namespace View {
+        extern sf::RenderWindow window;
+        extern sf::RenderTexture frame;
+        extern Jukebox jukebox;
+        extern bool init;
+        extern bool fullScreen;
+        void close();
+        void open();
+        void winRefresh();
+    } // namespace View
 } // namespace OpMon
 
 #endif

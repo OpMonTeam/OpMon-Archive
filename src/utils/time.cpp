@@ -8,19 +8,19 @@
 static sf::Clock ticks;
 
 namespace Utils {
-	namespace Time {
+    namespace Time {
 
-		void initClock() {
-			ticks.restart();
-		}
+        void initClock() {
+            ticks.restart();
+        }
 
-		int getElapsedMilliseconds() {
-			return ticks.getElapsedTime().asMilliseconds();
-		}
+        int getElapsedMilliseconds() {
+            return ticks.getElapsedTime().asMilliseconds();
+        }
 
-		void wait(int duration) {
-			sf::sleep(sf::milliseconds(duration));
-		}
+        void wait(int duration) {
+            sf::sleep(sf::milliseconds(duration));
+        }
 
-	} // namespace Time
+    } // namespace Time
 } // namespace Utils

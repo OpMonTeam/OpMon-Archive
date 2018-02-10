@@ -65,7 +65,7 @@ IncludeCategories:
     Priority:        1
 IncludeIsMainRegex: '(Test)?$'
 IndentCaseLabels: false
-IndentWidth:     2
+IndentWidth:     4
 IndentWrappedFunctionNames: false
 JavaScriptQuotes: Leave
 JavaScriptWrapImports: true
@@ -101,6 +101,5 @@ SpacesInParentheses: false
 SpacesInSquareBrackets: false
 Standard:        Cpp11
 TabWidth:        2
-UseTab:          ForIndentation
 ...
 

@@ -2,16 +2,16 @@
 #include "../view/Window.hpp"
 
 namespace OpMon {
-	namespace Controller {
-		AnimationCtrl::AnimationCtrl(View::Animations::Animation *view)
-		  : view(view) {}
+    namespace Controller {
+        AnimationCtrl::AnimationCtrl(View::Animations::Animation *view)
+          : view(view) {}
 
-		AnimationCtrl::~AnimationCtrl() {
-			delete(view);
-		}
+        AnimationCtrl::~AnimationCtrl() {
+            delete(view);
+        }
 
-		GameStatus AnimationCtrl::update() {
-			return (*view)();
-		}
-	} // namespace Controller
+        GameStatus AnimationCtrl::update() {
+            return (*view)();
+        }
+    } // namespace Controller
 } // namespace OpMon

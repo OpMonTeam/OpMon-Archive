@@ -11,13 +11,13 @@ Définit le namespace Utils
 #include <iostream>
 
 namespace Utils {
-	namespace Misc {
-		int randU(int limit);
+    namespace Misc {
+        int randU(int limit);
 
-		unsigned int randUI(unsigned int limit);
+        unsigned int randUI(unsigned int limit);
 
-		long hash(const std::string &str);
-	} // namespace Misc
+        long hash(const std::string &str);
+    } // namespace Misc
 } // namespace Utils
 
 #endif // UTILS_HPP

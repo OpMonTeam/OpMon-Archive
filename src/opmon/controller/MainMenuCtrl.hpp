@@ -8,19 +8,19 @@
 #include "AGameScreen.hpp"
 
 namespace OpMon {
-	namespace Controller {
+    namespace Controller {
 
-		class MainMenuCtrl : public AGameScreen {
-		private:
-			View::MainMenu view;
+        class MainMenuCtrl : public AGameScreen {
+          private:
+            View::MainMenu view;
 
-		public:
-			MainMenuCtrl();
-			GameStatus checkEvent(sf::Event const &event) override;
-			GameStatus update() override;
-			void suspend() override;
-			void resume() override;
-		};
+          public:
+            MainMenuCtrl();
+            GameStatus checkEvent(sf::Event const &event) override;
+            GameStatus update() override;
+            void suspend() override;
+            void resume() override;
+        };
 
-	} // namespace Controller
+    } // namespace Controller
 } // namespace OpMon

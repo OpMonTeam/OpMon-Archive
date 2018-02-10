@@ -8,29 +8,29 @@
 UNS
 
   namespace OpMon {
-	namespace View {
+    namespace View {
 
-		namespace Animations {
+        namespace Animations {
 
-			Animation::Animation(sf::Texture bgTxt)
-			  : bgTxt(bgTxt) {}
+            Animation::Animation(sf::Texture bgTxt)
+              : bgTxt(bgTxt) {}
 
-			WinAnim::WinAnim(sf::Texture bgTxt, bool order)
-			  : Animation(bgTxt)
-			  , order(order) {
-			}
+            WinAnim::WinAnim(sf::Texture bgTxt, bool order)
+              : Animation(bgTxt)
+              , order(order) {
+            }
 
-			GameStatus WinAnim::operator()() {
-				bgSpr.setTexture(bgTxt);
-				anim.setTexture(Model::Data::Animations::fen[(order ? counter : (frames - counter))]);
+            GameStatus WinAnim::operator()() {
+                bgSpr.setTexture(bgTxt);
+                anim.setTexture(Model::Data::Animations::fen[(order ? counter : (frames - counter))]);
 
-				frame.draw(bgSpr);
-				frame.draw(anim);
+                frame.draw(bgSpr);
+                frame.draw(anim);
 
-				counter++;
-				return (counter > frames) ? GameStatus::PREVIOUS : GameStatus::CONTINUE;
-			}
+                counter++;
+                return (counter > frames) ? GameStatus::PREVIOUS : GameStatus::CONTINUE;
+            }
 
-		} // namespace Animations
-	}   // namespace View
+        } // namespace Animations
+    }     // namespace View
 }
