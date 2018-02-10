@@ -13,27 +13,27 @@ http://opmon-game.ga
 
 namespace Utils {
 
-	/**
+    /**
    * Class defining an OpString. See the OpMon documentation (http://opmon-game.ga/pages/doc) for more details
    */
-	class OpString {
-	private:
-		std::string key;
-		std::vector<sf::String *> objects;
+    class OpString {
+      private:
+        std::string key;
+        std::vector<sf::String *> objects;
 
-	public:
-		OpString(std::string key, ...); //To change for a vector
-		OpString();
+      public:
+        OpString(std::string key, ...); //To change for a vector
+        OpString();
 
-		sf::String getObject(int const &index) {
-			return *(objects[index]);
-		}
-		std::string getKey() {
-			return key;
-		}
-		sf::String getString();
-		static OpString voidStr;
-	};
+        sf::String getObject(int const &index) {
+            return *(objects[index]);
+        }
+        std::string getKey() {
+            return key;
+        }
+        sf::String getString();
+        static OpString voidStr;
+    };
 
 } // namespace Utils
 

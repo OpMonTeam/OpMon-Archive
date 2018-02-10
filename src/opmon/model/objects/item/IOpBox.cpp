@@ -1,12 +1,12 @@
 #include "IOpBox.hpp"
 
 namespace OpMon {
-	namespace Model {
+    namespace Model {
 
-		I_OpBox::I_OpBox(std::string &name, float tauxCapture, int ID)
-		  : Item(name, false, true, true, BagCat::OBJETS, ID) {
-			this->tauxCapture = tauxCapture;
-		}
+        I_OpBox::I_OpBox(std::string &name, float tauxCapture, int ID)
+          : Item(name, false, true, true, BagCat::OBJETS, ID) {
+            this->tauxCapture = tauxCapture;
+        }
 
-	} // namespace Model
+    } // namespace Model
 } // namespace OpMon

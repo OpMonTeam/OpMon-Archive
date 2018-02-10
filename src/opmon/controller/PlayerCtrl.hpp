@@ -8,12 +8,12 @@
 #include "../view/Overworld.hpp"
 
 namespace OpMon {
-	namespace Controller {
-		namespace PlayerCtrl {
-			void checkMove(Model::Player &player, sf::Event const &events, View::Overworld &overworld);
-			void move(Model::Side direction, Model::Player &player, View::Overworld &overworld);
-		} // namespace PlayerCtrl
-	}   // namespace Controller
+    namespace Controller {
+        namespace PlayerCtrl {
+            void checkMove(Model::Player &player, sf::Event const &events, View::Overworld &overworld);
+            void move(Model::Side direction, Model::Player &player, View::Overworld &overworld);
+        } // namespace PlayerCtrl
+    }     // namespace Controller
 } // namespace OpMon
 
 #endif

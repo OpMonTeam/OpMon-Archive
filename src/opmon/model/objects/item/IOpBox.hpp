@@ -12,24 +12,24 @@
 #include <iostream>
 
 namespace OpMon {
-	namespace Model {
+    namespace Model {
 
-		/**
+        /**
        Défine OpBox item type
     */
-		class I_OpBox : public Item {
-		public:
-			I_OpBox(std::string &name, float tauxCapture, int ID);
-			float getTauxCapture() const {
-				return tauxCapture;
-			}
-			int itemTypeID = 2;
+        class I_OpBox : public Item {
+          public:
+            I_OpBox(std::string &name, float tauxCapture, int ID);
+            float getTauxCapture() const {
+                return tauxCapture;
+            }
+            int itemTypeID = 2;
 
-		private:
-			float tauxCapture;
-		};
+          private:
+            float tauxCapture;
+        };
 
-	} // namespace Model
+    } // namespace Model
 } // namespace OpMon
 
 #endif /* SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_IOPBOX_HPP_ */

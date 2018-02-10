@@ -9,10 +9,10 @@
 
 namespace OpMon {
 
-	enum class GameStatus {
-		CONTINUE,
-		STOP,
-		NEXT,
-		PREVIOUS
-	};
+    enum class GameStatus {
+        CONTINUE,
+        STOP,
+        NEXT,
+        PREVIOUS
+    };
 }

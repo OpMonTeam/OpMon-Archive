@@ -7,13 +7,13 @@
 UNS
 
   namespace OpMon {
-	namespace Model {
+    namespace Model {
 
-		Item *Item::itemsLst[ITEM_NUMBER] = {0};
+        Item *Item::itemsLst[ITEM_NUMBER] = {0};
 
-		void initItems() {
-			//For each item, add an enumeration entry in Items
-			/*Item::itemsLst[0] = new I_Heal("Baie Oran", true, true, true, BagCat::BAIES, 10, Status::NOTHING, false, 0);
+        void initItems() {
+            //For each item, add an enumeration entry in Items
+            /*Item::itemsLst[0] = new I_Heal("Baie Oran", true, true, true, BagCat::BAIES, 10, Status::NOTHING, false, 0);
 	Item::itemsLst[1] = new I_Heal("Baie Sitrus", true, true, true, BagCat::BAIES, 30, Status::NOTHING, false, 1);
 	Item::itemsLst[2] = new I_Heal("Baie Mepo", true, true, true, BagCat::BAIES, 10, false, 2);
 	Item::itemsLst[3] = new I_Heal("Baie Prine", true, true, true, BagCat::BAIES, 0, Status::POISONED, true, 3);
@@ -49,67 +49,67 @@ UNS
 	Item::itemsLst[150] = new Item("Croc Rasoir", false, false, true, BagCat::OBJETS, 3);//En fait 3 c'est ???
 	//Jusqu'aux ct : Item a tenir
 	//Après: CT*/ //NINTENDO(c)
-		}
+        }
 
-		Item::Item(string name, bool usable, bool usableInFight, bool givable, BagCat categorie, int id)
-		  : name(name) {
-			this->usable = usable;
-			this->usableInFight = usableInFight;
-			this->id = id;
-			this->givable = givable;
-			this->categorie = categorie;
-		}
+        Item::Item(string name, bool usable, bool usableInFight, bool givable, BagCat categorie, int id)
+          : name(name) {
+            this->usable = usable;
+            this->usableInFight = usableInFight;
+            this->id = id;
+            this->givable = givable;
+            this->categorie = categorie;
+        }
 
-		Item *Item::getItem(string const &name) {
-			for(unsigned int i = 0; i < ITEM_NUMBER; i++) {
-				if(itemsLst[i] != nullptr) {
-					if(itemsLst[i]->getName() == name) {
-						return itemsLst[i];
-					}
-				}
-			}
-			return itemsLst[0]; //Default
-		}
+        Item *Item::getItem(string const &name) {
+            for(unsigned int i = 0; i < ITEM_NUMBER; i++) {
+                if(itemsLst[i] != nullptr) {
+                    if(itemsLst[i]->getName() == name) {
+                        return itemsLst[i];
+                    }
+                }
+            }
+            return itemsLst[0]; //Default
+        }
 
-		Item *Item::getItem(int id2) {
-			unsigned int id = id2;
-			if(!(id < 0 || id > ITEM_NUMBER || itemsLst[id] != nullptr)) {
-				return itemsLst[id];
-			} else {
-				return itemsLst[0];
-			}
-		}
+        Item *Item::getItem(int id2) {
+            unsigned int id = id2;
+            if(!(id < 0 || id > ITEM_NUMBER || itemsLst[id] != nullptr)) {
+                return itemsLst[id];
+            } else {
+                return itemsLst[0];
+            }
+        }
 
-		int Item::searchItem(Item *toSearch) {
-			for(unsigned int i = 0; i < ITEM_NUMBER; i++) {
-				if(toSearch == itemsLst[i]) {
-					return i;
-				}
-			}
-			return -1;
-		}
+        int Item::searchItem(Item *toSearch) {
+            for(unsigned int i = 0; i < ITEM_NUMBER; i++) {
+                if(toSearch == itemsLst[i]) {
+                    return i;
+                }
+            }
+            return -1;
+        }
 
-		bool Item::operator==(Item const &b) const {
-			if(categorie != b.categorie) {
-				return false;
-			}
-			if(givable != b.givable) {
-				return false;
-			}
-			if(!(name == b.name)) {
-				return false;
-			}
-			if(usable != b.usable) {
-				return false;
-			}
-			if(usableInFight != b.usableInFight) {
-				return false;
-			}
-			if(id != b.id) {
-				return false;
-			}
-			return true;
-		}
+        bool Item::operator==(Item const &b) const {
+            if(categorie != b.categorie) {
+                return false;
+            }
+            if(givable != b.givable) {
+                return false;
+            }
+            if(!(name == b.name)) {
+                return false;
+            }
+            if(usable != b.usable) {
+                return false;
+            }
+            if(usableInFight != b.usableInFight) {
+                return false;
+            }
+            if(id != b.id) {
+                return false;
+            }
+            return true;
+        }
 
-	} // namespace Model
+    } // namespace Model
 }

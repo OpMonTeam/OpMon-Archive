@@ -15,18 +15,18 @@ File contains usefull elements
 #include "../model/sysObjects/Player.hpp"
 
 namespace OpMon {
-	namespace View {
+    namespace View {
 
-		class MapLayer : public sf::Drawable, public sf::Transformable {
-		private:
-			virtual void draw(sf::RenderTarget &target, sf::RenderStates stats) const;
-			sf::VertexArray tiles;
+        class MapLayer : public sf::Drawable, public sf::Transformable {
+          private:
+            virtual void draw(sf::RenderTarget &target, sf::RenderStates stats) const;
+            sf::VertexArray tiles;
 
-		public:
-			MapLayer(sf::Vector2i size, const int tilesCode[]);
-		};
+          public:
+            MapLayer(sf::Vector2i size, const int tilesCode[]);
+        };
 
-	} // namespace View
+    } // namespace View
 } // namespace OpMon
 
 #endif // ELEMENTS_HPP

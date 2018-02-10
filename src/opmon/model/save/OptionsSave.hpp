@@ -21,44 +21,44 @@ Contains the OptionsSave namespace
 #define modifyParam addOrModifParam
 
 namespace OpMon {
-	namespace Model {
-		/**
+    namespace Model {
+        /**
        OptionsSave contains the functions used to save the parameters.
     */
-		namespace OptionsSave {
-			/**
+        namespace OptionsSave {
+            /**
 	 Class defining a parameter
       */
-			class Param {
-			private:
-				std::string paramName;
-				std::string value;
+            class Param {
+              private:
+                std::string paramName;
+                std::string value;
 
-			public:
-				Param(std::string name, std::string value);
-				std::string getName() const;
-				std::string getValue() const;
-				void setValue(std::string value);
-			};
+              public:
+                Param(std::string name, std::string value);
+                std::string getName() const;
+                std::string getValue() const;
+                void setValue(std::string value);
+            };
 
-			extern std::vector<Param> paramList;
+            extern std::vector<Param> paramList;
 
-			Param getParam(std::string const &name);
+            Param getParam(std::string const &name);
 
-			void addOrModifParam(std::string const &name, std::string const &value);
+            void addOrModifParam(std::string const &name, std::string const &value);
 
-			Param deleteParam(std::string const &name);
+            Param deleteParam(std::string const &name);
 
-			//.CPP ONLY :
-			//int searchParam(string name);
+            //.CPP ONLY :
+            //int searchParam(string name);
 
-			void saveParams(std::string const &file);
+            void saveParams(std::string const &file);
 
-			void initParams(std::string const &file);
+            void initParams(std::string const &file);
 
-			bool checkParam(std::string const &name);
+            bool checkParam(std::string const &name);
 
-		} // namespace OptionsSave
-	}   // namespace Model
+        } // namespace OptionsSave
+    }     // namespace Model
 } // namespace OpMon
 #endif // OPTIONSSAVE_HPP
