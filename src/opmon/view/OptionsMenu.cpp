@@ -184,7 +184,6 @@ UNS
         }
 
         void OptionsMenu::moveArrow(bool move) {
-            Model::Data::Sounds::arrow.play();
             switch(currentOptions) {
             case OptionType::ALL:
                 if(move) {

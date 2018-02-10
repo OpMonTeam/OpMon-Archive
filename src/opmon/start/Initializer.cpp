@@ -377,6 +377,9 @@ _______________________________________________________________
 
         void initSounds() {
             ResourceLoader::load(Model::Data::Sounds::dialogPass, "audio/sounds/dialogChange.ogg");
+	    ResourceLoader::load(Model::Data::Sounds::nope, "audio/sounds/nope.ogg");
+	    ResourceLoader::load(Model::Data::Sounds::arrow, "audio/sounds/select.ogg");
+	    ResourceLoader::load(Model::Data::Sounds::push, "audio/sounds/selectbuttons.ogg");
         }
 
         void initSprites() {
