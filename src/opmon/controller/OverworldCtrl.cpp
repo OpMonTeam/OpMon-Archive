@@ -90,8 +90,10 @@ namespace OpMon {
         }
 
         GameStatus OverworldCtrl::update() {
+	  bool is_dialog_open = view.getDialog() && !view.getDialog()->isDialogOver();
+	  if(!is_dialog_open){
             EventsCtrl::updateEvents(Model::Data::World::maps.at(player.getMapId())->getEvents(), player, view);
-
+	  }
             //TODO: pass frame
             return view(getFrames());
         }
