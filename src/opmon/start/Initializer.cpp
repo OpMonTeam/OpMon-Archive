@@ -406,7 +406,7 @@ _______________________________________________________________
             Model::Data::Elements::elementsCounter["windturbine"] = 0;
             Model::Data::Elements::elementsSprites["windturbine"] = sf::Sprite();
             Model::Data::Elements::elementsPos["windturbine"] = sf::Vector2f(8 * 32 + 25 * 32 - 8, 3 * 32 + 8);
-
+	    
             ResourceLoader::loadTextureArray(Model::Data::Elements::elementsTextures["windturbine"], "animations/windturbine/blade_%d.png", 16, 1);
 
             Model::Data::Elements::elementsCounter["smoke"] = 0;

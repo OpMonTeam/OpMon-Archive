@@ -56,6 +56,7 @@ namespace OpMon {
                     Model::Data::Elements::elementsCounter[i] = 0;
                 }
                 Model::Data::Elements::elementsSprites[i].setTexture(Model::Data::Elements::elementsTextures[i][Model::Data::Elements::elementsCounter[i]]);
+		Model::Data::Elements::elementsSprites[i].setPosition(Model::Data::Elements::elementsPos[i]);
                 frame.draw(Model::Data::Elements::elementsSprites[i]);
             }
         }
