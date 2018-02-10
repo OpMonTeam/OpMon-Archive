@@ -11,32 +11,32 @@
 
 namespace OpMon {
 
-	//->NoDoc
-	namespace Initializer {
-		void initOpMons();
-		void initAtkLvls();
-		void initSprites();
-		void initBackgrounds();
-		void initKeys();
-		void initMaps();
-		void initAnims();
+    //->NoDoc
+    namespace Initializer {
+        void initOpMons();
+        void initAtkLvls();
+        void initSprites();
+        void initBackgrounds();
+        void initKeys();
+        void initMaps();
+        void initAnims();
 
-		void initPlayer();
+        void initPlayer();
 
-		void initGui();
+        void initGui();
 
-		void initMusics();
+        void initMusics();
 
-		void initOverworld();
-		void initStartScene();
-		void initMenu();
+        void initOverworld();
+        void initStartScene();
+        void initMenu();
 
-		void initMenuStrings();
-		void initStartSceneStrings();
+        void initMenuStrings();
+        void initStartSceneStrings();
 
-		//void deleteAnims();
-		void init();
-	} // namespace Initializer
+        //void deleteAnims();
+        void init();
+    } // namespace Initializer
 
 } // namespace OpMon
 #endif // INITIALIZER_HPP

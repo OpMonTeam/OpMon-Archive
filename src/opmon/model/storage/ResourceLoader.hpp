@@ -8,19 +8,19 @@
 #include <fstream>
 
 namespace OpMon {
-	namespace Model {
+    namespace Model {
 
-		class ResourceLoader {
-		public:
-			static const std::string &getResourcePath();
+        class ResourceLoader {
+          public:
+            static const std::string &getResourcePath();
 
-			/**
+            /**
        * Verify that the resource folder exists.
        * @return `true` if it exists; `false` otherwise.
        */
-			static bool checkResourceFolderExists();
+            static bool checkResourceFolderExists();
 
-			/**
+            /**
        * Load an arbitrary SFML resource
        *
        * @tparam T - the method T::loadFromFile() must exists.
@@ -28,10 +28,10 @@ namespace OpMon {
        * @param path - path of the resource, relative to the resource folder.
        * @param fatal - if true, the program quit if there is an error.
        */
-			template <typename T>
-			static void load(T &resource, const char *path, bool fatal = false);
+            template <typename T>
+            static void load(T &resource, const char *path, bool fatal = false);
 
-			/**
+            /**
        * Load an array of textures (multiple frames of the same animation).
        *
        * @param container
@@ -41,28 +41,28 @@ namespace OpMon {
        * @param path_offset - by default, the first frame number is 0. If set, the first frame number will be the
        *    offset.
        */
-			static void loadTextureArray(sf::Texture container[], const char *path, size_t nb_frame, size_t path_offset = 0);
+            static void loadTextureArray(sf::Texture container[], const char *path, size_t nb_frame, size_t path_offset = 0);
 
-			/**
+            /**
        * Load an array of textures (multiple frames of the same animation). See above.
        *
        * The container must be empty.
        */
-			static void
-			loadTextureArray(std::vector<sf::Texture> &container, const char *path, size_t nb_frame, size_t path_offset = 0);
+            static void
+            loadTextureArray(std::vector<sf::Texture> &container, const char *path, size_t nb_frame, size_t path_offset = 0);
 
-			static sf::Music *loadMusic(const char *path);
+            static sf::Music *loadMusic(const char *path);
 
-			static std::ifstream loadKeysFile(const char *path);
-		};
+            static std::ifstream loadKeysFile(const char *path);
+        };
 
-		template <typename T>
-		void ResourceLoader::load(T &resource, const char *path, bool fatal) {
+        template <typename T>
+        void ResourceLoader::load(T &resource, const char *path, bool fatal) {
 
-			if(!resource.loadFromFile(getResourcePath() + path)) {
-				handleError(std::string("Failed to load resource: ") + path, fatal);
-			}
-		}
+            if(!resource.loadFromFile(getResourcePath() + path)) {
+                handleError(std::string("Failed to load resource: ") + path, fatal);
+            }
+        }
 
-	} // namespace Model
+    } // namespace Model
 } // namespace OpMon

@@ -26,191 +26,191 @@
 
 namespace OpMon {
 
-	namespace View {
-		class Overworld;
-	}
+    namespace View {
+        class Overworld;
+    }
 
-	namespace Model {
+    namespace Model {
 
-		namespace Events {
-			enum class EventTrigger {
-				PRESS = 0,
-				GO_IN = 1,
-				ZONE = 2,
-				BE_IN = 3
-			};
-		}
+        namespace Events {
+            enum class EventTrigger {
+                PRESS = 0,
+                GO_IN = 1,
+                ZONE = 2,
+                BE_IN = 3
+            };
+        }
 
-		/**
+        /**
        Defines an event
     */
-		class Event {
-		protected:
-			std::vector<sf::Texture> &otherTextures;
-			//ExpectEnum->EventTrigger
+        class Event {
+          protected:
+            std::vector<sf::Texture> &otherTextures;
+            //ExpectEnum->EventTrigger
 
-			sf::Sprite *sprite;
+            sf::Sprite *sprite;
 
-			std::vector<sf::Texture>::iterator currentTexture;
-			Events::EventTrigger eventTrigger;
-			sf::Vector2f position; //Sprite's position
-			bool passable;
-			int sides;
-			Position mapPos;
+            std::vector<sf::Texture>::iterator currentTexture;
+            Events::EventTrigger eventTrigger;
+            sf::Vector2f position; //Sprite's position
+            bool passable;
+            int sides;
+            Position mapPos;
 
-		public:
-			Event(std::vector<sf::Texture> &otherTextures, Events::EventTrigger eventTrigger, sf::Vector2f const &position, int sides, bool passable);
-			virtual ~Event();
-			/**This method is called in each frame*/
-			virtual void update(Model::Player &player, View::Overworld &overworld) = 0;
-			/**This method is called when the players interacts with the event*/
-			virtual void action(Model::Player &player, View::Overworld &overworld) = 0;
+          public:
+            Event(std::vector<sf::Texture> &otherTextures, Events::EventTrigger eventTrigger, sf::Vector2f const &position, int sides, bool passable);
+            virtual ~Event();
+            /**This method is called in each frame*/
+            virtual void update(Model::Player &player, View::Overworld &overworld) = 0;
+            /**This method is called when the players interacts with the event*/
+            virtual void action(Model::Player &player, View::Overworld &overworld) = 0;
 
-			void updateTexture();
+            void updateTexture();
 
-			int getSide() const {
-				return sides;
-			}
-			const sf::Texture &getTexture() {
-				return *currentTexture;
-			}
-			Events::EventTrigger getEventTrigger() const {
-				return eventTrigger;
-			}
+            int getSide() const {
+                return sides;
+            }
+            const sf::Texture &getTexture() {
+                return *currentTexture;
+            }
+            Events::EventTrigger getEventTrigger() const {
+                return eventTrigger;
+            }
 
-			sf::Vector2f getPosition() const {
-				return position;
-			}
+            sf::Vector2f getPosition() const {
+                return position;
+            }
 
-			Position getPositionMap() const {
-				return mapPos;
-			}
+            Position getPositionMap() const {
+                return mapPos;
+            }
 
-			bool isPassable() const {
-				return passable;
-			}
-			const sf::Sprite *getSprite() const {
-				return sprite;
-			}
-		};
+            bool isPassable() const {
+                return passable;
+            }
+            const sf::Sprite *getSprite() const {
+                return sprite;
+            }
+        };
 
-		void initEnumsEvents();
-		/**
+        void initEnumsEvents();
+        /**
        Contient tout ce qui est en rapport avec les evenements
     */
-		namespace Events {
-			/**
+        namespace Events {
+            /**
 	 Doors sound
       */
-			extern sf::Sound doorSound;
-			extern sf::Sound shopdoorSound;
-			/**
+            extern sf::Sound doorSound;
+            extern sf::Sound shopdoorSound;
+            /**
 	 Contains useful variables on the running of the events
       */
-			namespace EventsVars {
-			}
+            namespace EventsVars {
+            }
 
-			extern bool justTP;
+            extern bool justTP;
 
-			class TPEvent : public virtual Event {
-			private:
-				int frames = -1;
+            class TPEvent : public virtual Event {
+              private:
+                int frames = -1;
 
-			protected:
-				sf::Vector2i tpCoord;
-				std::string map;
-				Side ppDir;
+              protected:
+                sf::Vector2i tpCoord;
+                std::string map;
+                Side ppDir;
 
-			public:
-				TPEvent(std::vector<sf::Texture> &otherTextures, EventTrigger eventTrigger, sf::Vector2f const &position, sf::Vector2i const &tpPos, std::string const &map, Side ppDir = Side::NO_MOVE, int sides = SIDE_ALL, bool passable = true);
-				virtual void update(Model::Player &player, View::Overworld &overworld);
-				virtual void action(Model::Player &player, View::Overworld &overworld);
-			};
+              public:
+                TPEvent(std::vector<sf::Texture> &otherTextures, EventTrigger eventTrigger, sf::Vector2f const &position, sf::Vector2i const &tpPos, std::string const &map, Side ppDir = Side::NO_MOVE, int sides = SIDE_ALL, bool passable = true);
+                virtual void update(Model::Player &player, View::Overworld &overworld);
+                virtual void action(Model::Player &player, View::Overworld &overworld);
+            };
 
-			namespace DoorType {
-				extern std::vector<sf::Texture> NORMAL, SHOP;
-			}
+            namespace DoorType {
+                extern std::vector<sf::Texture> NORMAL, SHOP;
+            }
 
-			class DoorEvent : public TPEvent {
-			protected:
-				int doorType;
-				sf::Texture &selectDoorType(int doorType);
-				int animStarted = -1;
+            class DoorEvent : public TPEvent {
+              protected:
+                int doorType;
+                sf::Texture &selectDoorType(int doorType);
+                int animStarted = -1;
 
-			public:
-				DoorEvent(std::vector<sf::Texture> &doorType, sf::Vector2f const &position, sf::Vector2i const &tpPos, std::string const &map, EventTrigger eventTrigger = EventTrigger::GO_IN, Side ppDir = Side::NO_MOVE, int sides = SIDE_ALL, bool passable = true);
-				virtual void action(Model::Player &player, View::Overworld &overworld);
-				virtual void update(Model::Player &player, View::Overworld &overworld);
-			};
+              public:
+                DoorEvent(std::vector<sf::Texture> &doorType, sf::Vector2f const &position, sf::Vector2i const &tpPos, std::string const &map, EventTrigger eventTrigger = EventTrigger::GO_IN, Side ppDir = Side::NO_MOVE, int sides = SIDE_ALL, bool passable = true);
+                virtual void action(Model::Player &player, View::Overworld &overworld);
+                virtual void update(Model::Player &player, View::Overworld &overworld);
+            };
 
-			class TalkingEvent : public virtual Event, I18n::ATranslatable {
-			private:
-				std::vector<Utils::OpString> dialogKeys;
+            class TalkingEvent : public virtual Event, I18n::ATranslatable {
+              private:
+                std::vector<Utils::OpString> dialogKeys;
 
-			protected:
-				std::vector<sf::String> dialogs;
+              protected:
+                std::vector<sf::String> dialogs;
 
-			public:
-				TalkingEvent(std::vector<sf::Texture> &otherTextures, sf::Vector2f const &position, std::vector<Utils::OpString> const &dialogKeys, int sides = SIDE_ALL, EventTrigger eventTrigger = EventTrigger::PRESS, bool passable = false);
-				void onLangChanged() override;
-				virtual void update(Model::Player &player, View::Overworld &overworld);
-				virtual void action(Model::Player &player, View::Overworld &overworld);
-			};
+              public:
+                TalkingEvent(std::vector<sf::Texture> &otherTextures, sf::Vector2f const &position, std::vector<Utils::OpString> const &dialogKeys, int sides = SIDE_ALL, EventTrigger eventTrigger = EventTrigger::PRESS, bool passable = false);
+                void onLangChanged() override;
+                virtual void update(Model::Player &player, View::Overworld &overworld);
+                virtual void action(Model::Player &player, View::Overworld &overworld);
+            };
 
-			class LockedDoorEvent : public DoorEvent, TalkingEvent {
-			protected:
-				Item *needed;
-				bool consumeItem;
-				static std::vector<Utils::OpString> keysLock;
+            class LockedDoorEvent : public DoorEvent, TalkingEvent {
+              protected:
+                Item *needed;
+                bool consumeItem;
+                static std::vector<Utils::OpString> keysLock;
 
-			public:
-				virtual void action(Model::Player &player, View::Overworld &overworld);
-				virtual void update(Model::Player &player, View::Overworld &overworld);
-				LockedDoorEvent(std::vector<sf::Texture> &doorType, Item *needed, sf::Vector2f const &position, sf::Vector2i const &tpPos, std::string const &map, Side ppDir = Side::NO_MOVE, EventTrigger eventTrigger = EventTrigger::PRESS, bool consumeItem = false, int sides = SIDE_ALL, bool passable = false);
-			};
+              public:
+                virtual void action(Model::Player &player, View::Overworld &overworld);
+                virtual void update(Model::Player &player, View::Overworld &overworld);
+                LockedDoorEvent(std::vector<sf::Texture> &doorType, Item *needed, sf::Vector2f const &position, sf::Vector2i const &tpPos, std::string const &map, Side ppDir = Side::NO_MOVE, EventTrigger eventTrigger = EventTrigger::PRESS, bool consumeItem = false, int sides = SIDE_ALL, bool passable = false);
+            };
 
-			enum class MoveStyle : int {
-				NO_MOVE = 0,
-				PREDEFINED = 1,
-				RANDOM = 2,
-				FOLLOWING = 3
-			};
+            enum class MoveStyle : int {
+                NO_MOVE = 0,
+                PREDEFINED = 1,
+                RANDOM = 2,
+                FOLLOWING = 3
+            };
 
-			class CharacterEvent : public virtual Event {
-			protected:
-				MoveStyle moveStyle;
+            class CharacterEvent : public virtual Event {
+              protected:
+                MoveStyle moveStyle;
 
-				unsigned int predefinedCounter = 0;
-				int animsCounter = 0;
+                unsigned int predefinedCounter = 0;
+                int animsCounter = 0;
 
-				std::vector<Side> movements;
+                std::vector<Side> movements;
 
-				int startFrames = 0;
-				bool anims = false;
-				int frames = 0;
+                int startFrames = 0;
+                bool anims = false;
+                int frames = 0;
 
-			public:
-				CharacterEvent(std::string texturesKey, sf::Vector2f const &position, MoveStyle moveStyle = MoveStyle::NO_MOVE, EventTrigger eventTrigger = EventTrigger::PRESS, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int sides = SIDE_ALL);
-				virtual void update(Model::Player &player, View::Overworld &overworld);
-				virtual void action(Model::Player &, View::Overworld &){};
-				void setPredefinedMove(std::vector<Side> movement);
-				OP_DEPRECATED void move(Side direction, Model::Player &player, View::Overworld &overworld);
-				void move(Side direction);
-			};
+              public:
+                CharacterEvent(std::string texturesKey, sf::Vector2f const &position, MoveStyle moveStyle = MoveStyle::NO_MOVE, EventTrigger eventTrigger = EventTrigger::PRESS, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int sides = SIDE_ALL);
+                virtual void update(Model::Player &player, View::Overworld &overworld);
+                virtual void action(Model::Player &, View::Overworld &){};
+                void setPredefinedMove(std::vector<Side> movement);
+                OP_DEPRECATED void move(Side direction, Model::Player &player, View::Overworld &overworld);
+                void move(Side direction);
+            };
 
-			class TalkingCharaEvent : public CharacterEvent, TalkingEvent {
+            class TalkingCharaEvent : public CharacterEvent, TalkingEvent {
 
-				bool talking = false;
+                bool talking = false;
 
-			public:
-				TalkingCharaEvent(std::string texturesKey, sf::Vector2f const &position, std::vector<Utils::OpString> const &dialogKeys, EventTrigger eventTrigger = EventTrigger::PRESS, MoveStyle moveStyle = MoveStyle::NO_MOVE, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int side = SIDE_ALL);
+              public:
+                TalkingCharaEvent(std::string texturesKey, sf::Vector2f const &position, std::vector<Utils::OpString> const &dialogKeys, EventTrigger eventTrigger = EventTrigger::PRESS, MoveStyle moveStyle = MoveStyle::NO_MOVE, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int side = SIDE_ALL);
 
-			public:
-				virtual void update(Model::Player &player, View::Overworld &overworld);
-				virtual void action(Model::Player &player, View::Overworld &overworld);
-			};
-		} // namespace Events
+              public:
+                virtual void update(Model::Player &player, View::Overworld &overworld);
+                virtual void action(Model::Player &player, View::Overworld &overworld);
+            };
+        } // namespace Events
 
-	} // namespace Model
+    } // namespace Model
 } // namespace OpMon
 #endif // EVENTS_HPP
