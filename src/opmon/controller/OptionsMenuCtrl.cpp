@@ -74,7 +74,11 @@ namespace OpMon {
                             tr.setLang("fr");
                             break;
                         }
-                    } else {
+                    } else if(menu.getCurrentOption() == View::OptionType::CREDITS) {
+		      push.play();
+		      menu.setCurrentOption(View::OptionType::ALL);
+		      return GameStatus::CONTINUE;
+		    } else {
                         return GameStatus::CONTINUE;
                     }
                     break;

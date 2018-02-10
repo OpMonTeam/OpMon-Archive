@@ -271,6 +271,10 @@ UNS
             frame.draw(txtCre81);
             frame.draw(txtCre9);
 
+	    rectSurb.setPosition(curPosOpt[0]);
+	    rectSurb.setScale(curSizeLang[0]);
+	    frame.draw(rectSurb);
+	    
             frame.draw(txtRetour);
             frame.draw(txtCred);
         }
