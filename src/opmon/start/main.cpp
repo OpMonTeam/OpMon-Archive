@@ -108,7 +108,7 @@ int main(int argc, char *argv[]) {
         return -1;
     }
 
-    auto versionS = string("Alpha ") + OPMON_VERSION;
+    auto versionS = "Version : Alpha " + OpMon::Main::version + ((OpMon::Main::pre == "0") ? "" : ("-pre_" + OpMon::Main::pre));
 
     if(!ResourceLoader::checkResourceFolderExists() || !Utils::Fs::mkdir(SAVE_PATH)) {
         cout << "Exiting" << endl;

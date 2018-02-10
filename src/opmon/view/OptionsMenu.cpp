@@ -141,7 +141,7 @@ UNS
             txtCre7.setPosition(201, 274);
             txtCre8.setPosition(30, 368);
             txtCre81.setPosition(30, 385);
-            txtCre9.setPosition(385, 488);
+            txtCre9.setPosition(375, 488);
 
             jukebox.play("Title");
 
