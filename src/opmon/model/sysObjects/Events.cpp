@@ -99,8 +99,7 @@ UNS
               , moveStyle(moveStyle) {
                 sprite->setScale(2, 2);
                 sprite->setOrigin(16, 16);
-                sf::Vector2f posMap(((position.x) * 32) + 16, (position.y) * 32);
-                sprite->setPosition(posMap);
+                this->position += sf::Vector2f(16, 0);
                 setPredefinedMove(predefinedPath);
             }
 
@@ -163,11 +162,6 @@ UNS
 
             void CharacterEvent::update(Model::Player &player, View::Overworld &overworld) {
                 frames++;
-                std::cout << "PositionEvent : " << mapPos.getPosition().x << " | " << mapPos.getPosition().y << std::endl;
-                std::cout << "PosPixEvent : " << position.x << " | " << position.y << std::endl;
-                std::cout << "PosPixToMapEvent : " << position.x / 32.0 << " | " << position.y / 32.0 << std::endl;
-                std::cout << "Anim : " << mapPos.isAnim() << std::endl;
-                std::cout << "Moving : " << mapPos.isMoving() << std::endl;
                 if(!mapPos.isAnim()) {
                     int randomMove;
                     switch(moveStyle) {
@@ -298,31 +292,36 @@ UNS
             void TalkingCharaEvent::action(Model::Player &player, View::Overworld &overworld) {
                 mapPos.lockMove();
                 talking = true;
+
             }
 
-            void TalkingCharaEvent::update(Model::Player &player, View::Overworld &overworld) {
-
-                if(mapPos.isLocked() && talking && !mapPos.isAnim()) {
-                    switch(mapPos.getDir()) {
-                    case Side::TO_UP:
-                        sprite->setTexture(otherTextures[(int)Side::TO_DOWN]);
-                        break;
-                    case Side::TO_DOWN:
-                        sprite->setTexture(otherTextures[(int)Side::TO_UP]);
-                        break;
-                    case Side::TO_LEFT:
-                        sprite->setTexture(otherTextures[(int)Side::TO_RIGHT]);
-                        break;
-                    case Side::TO_RIGHT:
-                        sprite->setTexture(otherTextures[(int)Side::TO_LEFT]);
-                        break;
-                    }
-                    mapPos.unlockMove();
-                    talking = false;
-                    overworld.startDialog(this->dialogs);
-                }
-                CharacterEvent::update(player, overworld);
-            }
+	  void TalkingCharaEvent::update(Model::Player &player, View::Overworld &overworld) {
+	    CharacterEvent::update(player, overworld);
+	    if(talking && !mapPos.isAnim()) {
+	      switch(player.getPosition().getDir()){
+	      case Side::TO_DOWN:
+		mapPos.setDir(Side::TO_UP);
+		break;
+	      case Side::TO_UP:
+		mapPos.setDir(Side::TO_DOWN);
+		break;
+	      case Side::TO_LEFT:
+		mapPos.setDir(Side::TO_RIGHT);
+		break;
+	      case Side::TO_RIGHT:
+		mapPos.setDir(Side::TO_LEFT);
+		break;
+	      default:
+		break;
+	      }
+	      currentTexture = otherTextures.begin() + (int)mapPos.getDir();
+	      updateTexture();
+	      mapPos.unlockMove();
+	      talking = false;
+	      overworld.startDialog(this->dialogs);
+	    }
+	    
+	  }
 
             void CharacterEvent::setPredefinedMove(std::vector<Side> moves) {
                 this->movements = moves;
