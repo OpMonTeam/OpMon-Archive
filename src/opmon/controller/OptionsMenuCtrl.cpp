@@ -12,7 +12,11 @@ namespace OpMon {
     namespace Controller {
 
         OptionsMenuCtrl::OptionsMenuCtrl()
-          : view() {}
+          : view() {
+	  nope.setBuffer(Model::Data::Sounds::nope);
+	  arrow.setBuffer(Model::Data::Sounds::arrow);
+	  push.setBuffer(Model::Data::Sounds::push);
+	}
 
         GameStatus OptionsMenuCtrl::checkEvent(sf::Event const &event) {
             auto &menu = view;
@@ -22,22 +26,26 @@ namespace OpMon {
                     if(menu.getCurrentOption() == View::OptionType::ALL) {
                         switch(menu.cursorPosition()) {
                         case 0:
+			  push.play();
                             return GameStatus::PREVIOUS;
                         case 1:
-                            if(Model::OptionsSave::getParam("fullscreen").getValue() == "true") {
+			  push.play();
+			  if(Model::OptionsSave::getParam("fullscreen").getValue() == "true") {
                                 Model::OptionsSave::addOrModifParam("fullscreen", "false");
                             } else {
                                 Model::OptionsSave::addOrModifParam("fullscreen", "true");
                             }
                             break;
                         case 2:
+			  push.play();
                             menu.setCurrentOption(View::OptionType::LANG);
                             return GameStatus::CONTINUE;
                             break;
                         case 3:
-                            Model::Data::Sounds::nope.play();
+                            nope.play();
                             break;
                         case 4:
+			  push.play();
                             menu.setCurrentOption(View::OptionType::CREDITS);
                             return GameStatus::CONTINUE;
                             break;
@@ -47,17 +55,21 @@ namespace OpMon {
                         auto &tr = OpMon::I18n::Translator::getInstance();
                         switch(menu.cursorPosition()) {
                         case 0:
+			  push.play();
                             menu.setCurrentOption(View::OptionType::ALL);
                             return GameStatus::CONTINUE;
                         case 1:
+			  push.play();
                             Model::OptionsSave::modifyParam("lang", "en");
                             tr.setLang("en");
                             break;
                         case 2:
+			  push.play();
                             Model::OptionsSave::modifyParam("lang", "es");
                             tr.setLang("es");
                             break;
                         case 3:
+			  push.play();
                             Model::OptionsSave::modifyParam("lang", "fr");
                             tr.setLang("fr");
                             break;
@@ -71,9 +83,12 @@ namespace OpMon {
                 }
                 if(event.key.code == sf::Keyboard::Up) {
                     menu.moveArrow(true);
+		    arrow.play();
                 } else if(event.key.code == sf::Keyboard::Down) {
                     menu.moveArrow(false);
+		    arrow.play();
                 } else if(event.key.code == sf::Keyboard::BackSpace) {
+		  push.play();
                     if(menu.getCurrentOption() == View::OptionType::ALL) {
                         return GameStatus::PREVIOUS;
                     } else {

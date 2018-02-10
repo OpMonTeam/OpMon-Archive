@@ -46,9 +46,10 @@ namespace OpMon {
             }
 
             namespace Sounds {
-                sf::Sound nope;
-                sf::Sound arrow;
+                sf::SoundBuffer nope;
+                sf::SoundBuffer arrow;
                 sf::SoundBuffer dialogPass;
+	      sf::SoundBuffer push;
             } // namespace Sounds
         }     // namespace Data
     }         // namespace Model
