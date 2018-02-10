@@ -163,9 +163,13 @@ UNS
 
             void CharacterEvent::update(Model::Player &player, View::Overworld &overworld) {
                 frames++;
+                std::cout << "PositionEvent : " << mapPos.getPosition().x << " | " << mapPos.getPosition().y << std::endl;
+                std::cout << "PosPixEvent : " << position.x << " | " << position.y << std::endl;
+                std::cout << "PosPixToMapEvent : " << position.x / 32.0 << " | " << position.y / 32.0 << std::endl;
+                std::cout << "Anim : " << mapPos.isAnim() << std::endl;
+                std::cout << "Moving : " << mapPos.isMoving() << std::endl;
                 if(!mapPos.isAnim()) {
                     int randomMove;
-		    std::cout << "New move!" << std::endl;
                     switch(moveStyle) {
                     case MoveStyle::PREDEFINED:
                         predefinedCounter++;
@@ -173,6 +177,12 @@ UNS
                             predefinedCounter = 0;
                         }
                         move(movements[predefinedCounter], player, overworld);
+                        if(!mapPos.isMoving()) {
+                            predefinedCounter--;
+                            if(predefinedCounter < 0) {
+                                predefinedCounter = movements.size() - 1;
+                            }
+                        }
                         break;
 
                     case MoveStyle::NO_MOVE:
@@ -221,48 +231,54 @@ UNS
                 } else if(!mapPos.isAnim()) {
                     currentTexture = otherTextures.begin() + (int)mapPos.getDir();
                 }
-		
+
                 if(mapPos.isAnim()) {
-		    std::cout << "I am moving." << std::endl;
                     switch(mapPos.getDir()) {
                     case Side::TO_UP:
                         if(frames - startFrames >= 7) {
-                            position -= sf::Vector2f(0, -4);
+                            if(mapPos.isMoving())
+                                position -= sf::Vector2f(0, -4);
                             mapPos.stopMove();
                         } else {
-                            position -= sf::Vector2f(0, -4);
+                            if(mapPos.isMoving())
+                                position -= sf::Vector2f(0, -4);
                         }
                         break;
 
                     case Side::TO_DOWN:
                         if(frames - startFrames >= 7) {
-                            position -= sf::Vector2f(0, 4);
+                            if(mapPos.isMoving())
+                                position -= sf::Vector2f(0, 4);
                             mapPos.stopMove();
                         } else {
-                            position -= sf::Vector2f(0, 4);
+                            if(mapPos.isMoving())
+                                position -= sf::Vector2f(0, 4);
                         }
                         break;
 
                     case Side::TO_LEFT:
                         if(frames - startFrames >= 7) {
-                            position -= sf::Vector2f(-4, 0);
+                            if(mapPos.isMoving())
+                                position -= sf::Vector2f(4, 0);
                             mapPos.stopMove();
                         } else {
-                            position -= sf::Vector2f(-4, 0);
+                            if(mapPos.isMoving())
+                                position -= sf::Vector2f(4, 0);
                         }
                         break;
 
                     case Side::TO_RIGHT:
                         if(frames - startFrames >= 7) {
-                            position -= sf::Vector2f(4, 0);
+                            if(mapPos.isMoving())
+                                position -= sf::Vector2f(-4, 0);
                             mapPos.stopMove();
                         } else {
-                            position -= sf::Vector2f(4, 0);
+                            if(mapPos.isMoving())
+                                position -= sf::Vector2f(-4, 0);
                         }
                         break;
 
                     case Side::STAY:
-			std::cout << "or not." << std::endl;
                         if(frames - startFrames >= 7) {
                             mapPos.stopMove();
                         }
