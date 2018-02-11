@@ -31,10 +31,13 @@ namespace OpMon {
                         case 1:
 			  push.play();
 			  if(Model::OptionsSave::getParam("fullscreen").getValue() == "true") {
-                                Model::OptionsSave::addOrModifParam("fullscreen", "false");
-                            } else {
+			    Model::OptionsSave::addOrModifParam("fullscreen", "false");
+			    reboot = true;
+			  } else {
                                 Model::OptionsSave::addOrModifParam("fullscreen", "true");
+				reboot = true;
                             }
+			  return GameStatus::STOP;
                             break;
                         case 2:
 			  push.play();
