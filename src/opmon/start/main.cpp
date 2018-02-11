@@ -82,19 +82,24 @@ UNS
             Initializer::init();
             oplog("Loading completed! Opening gui.");
             //bgtask = new std::thread(bgTask);
-            View::open();
-            oplog("Starting game loop");
+	    do{
+	      reboot = false;
+	      View::open();
+	      oplog("Starting game loop");
 
-            auto gameloop = GameLoop();
-            frames = gameloop.getFrames();
-            gameloop();
+	      auto gameloop = GameLoop();
+	      frames = gameloop.getFrames();
+	      gameloop();
 
-            std::string logEntry;
-            logEntry << "Game ended after " << getFrames() << "frames";
+	      std::string logEntry;
+	      logEntry << "Game ended after " << getFrames() << "frames";
 
-            oplog(logEntry);
-            View::close();
-
+	      oplog(logEntry);
+	      View::close();
+	      if(reboot){
+		oplog("Restarting the game.");
+	      }
+	    }while(reboot);
             oplog("Ending the game normally.");
             return quit(0);
         }
