@@ -25,6 +25,10 @@ namespace OpMon {
                         camUnlock = false;
                     }
                 }
+								if(events.key.code == sf::Keyboard::M) {
+									reboot = true;
+									return GameStatus::STOP;
+								}
                 if(debugMode) {
                     if(events.key.code == sf::Keyboard::F10) {
                         overworld.printlayer[0] = !overworld.printlayer[0];
