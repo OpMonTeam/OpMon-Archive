@@ -10,7 +10,7 @@ namespace OpMon {
     namespace Controller {
         void EventsCtrl::checkAction(sf::Event const &event, Model::Player &player, View::Overworld &overworld) {
             if(!player.getPosition().isAnim()) {
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
                     int lx = player.getPosition().getPosition().x;
                     int ly = player.getPosition().getPosition().y;
                     switch(player.getPosition().getDir()) {
