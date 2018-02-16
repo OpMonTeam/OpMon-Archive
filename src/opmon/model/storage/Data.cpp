@@ -51,6 +51,15 @@ namespace OpMon {
                 sf::SoundBuffer dialogPass;
 	      sf::SoundBuffer push;
             } // namespace Sounds
+
+	  namespace Controls{
+	     sf::Keyboard::Key up;
+	     sf::Keyboard::Key down;
+	     sf::Keyboard::Key left;
+	     sf::Keyboard::Key right;
+	     sf::Keyboard::Key interact;
+	     sf::Keyboard::Key talk;
+	  }
         }     // namespace Data
     }         // namespace Model
 } // namespace OpMon

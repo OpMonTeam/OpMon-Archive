@@ -14,6 +14,7 @@
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Texture.hpp>
+#include <SFML/Window/Keyboard.hpp>
 #include <iostream>
 #include <map>
 #include <vector>
@@ -81,6 +82,15 @@ namespace OpMon {
             namespace Animations {
                 extern sf::Texture fen[6];
             }
+
+	  namespace Controls {
+	    extern sf::Keyboard::Key up;
+	    extern sf::Keyboard::Key down;
+	    extern sf::Keyboard::Key left;
+	    extern sf::Keyboard::Key right;
+	    extern sf::Keyboard::Key interact;
+	    extern sf::Keyboard::Key talk;
+	  }
         } // namespace Data
     }     // namespace Model
 } // namespace OpMon
