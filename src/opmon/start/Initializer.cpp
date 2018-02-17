@@ -582,36 +582,36 @@ _______________________________________________________________
 
 	std::string keyUp = OptionsSave::getParam("control.up").getValue();
 	if(keyUp == "NULL"){
-	  OptionsSave::addParam("control.up", "W");
-	  Model::Data::Controls::up = sf::Keyboard::W;
+	  OptionsSave::addParam("control.up", "Up");
+	  Model::Data::Controls::up = sf::Keyboard::Up;
 	}else{
 	  Model::Data::Controls::up = keysMap[keyUp];
 	}
 	std::string keyDown = OptionsSave::getParam("control.down").getValue();
 	if(keyDown == "NULL"){
-	  OptionsSave::addParam("control.down", "S");
-	  Model::Data::Controls::down = sf::Keyboard::S;
+	  OptionsSave::addParam("control.down", "Down");
+	  Model::Data::Controls::down = sf::Keyboard::Down;
 	}else{
 	  Model::Data::Controls::down = keysMap[keyDown];
 	}
 	std::string keyLeft = OptionsSave::getParam("control.left").getValue();
 	if(keyLeft == "NULL"){
-	  OptionsSave::addParam("control.left", "A");
-	  Model::Data::Controls::left = sf::Keyboard::A;
+	  OptionsSave::addParam("control.left", "Left");
+	  Model::Data::Controls::left = sf::Keyboard::Left;
 	}else{
 	  Model::Data::Controls::left = keysMap[keyLeft];
 	}
 	std::string keyRight = OptionsSave::getParam("control.right").getValue();
 	if(keyRight == "NULL"){
-	  OptionsSave::addParam("control.right", "D");
-	  Model::Data::Controls::right = sf::Keyboard::D;
+	  OptionsSave::addParam("control.right", "Right");
+	  Model::Data::Controls::right = sf::Keyboard::Right;
 	}else{
 	  Model::Data::Controls::right = keysMap[keyRight];
 	}
 	std::string keyTalk = OptionsSave::getParam("control.talk").getValue();
 	if(keyTalk == "NULL"){
-	  OptionsSave::addParam("control.talk", "E");
-	  Model::Data::Controls::talk = sf::Keyboard::E;
+	  OptionsSave::addParam("control.talk", "Enter");
+	  Model::Data::Controls::talk = sf::Keyboard::Return;
 	}else{
 	  Model::Data::Controls::talk = keysMap[keyTalk];
 	}
