@@ -20,8 +20,10 @@ namespace OpMon {
               {"es", "keys/espanol.rkeys"},
               {"fr", "keys/francais.rkeys"}};
 
-            if(langCode == _currentLang)
-                return; // Nothing to do
+	    /*            if(langCode == _currentLang)
+	      return; // Nothing to do
+	      Desactivated : if we need to reload the keys
+*/
 
             Utils::StringKeys::initialize(langMap[langCode]);
 

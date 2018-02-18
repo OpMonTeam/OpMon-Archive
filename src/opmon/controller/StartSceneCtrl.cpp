@@ -25,6 +25,7 @@ namespace OpMon {
                     if(pName.isEmpty()) {
                         pName = "Player";
                     }
+		    Model::Data::player.setName(pName);
                     startscene.delLoop1();
                     view.draw(View::frame);
                     _next_gs = new AnimationCtrl(new View::Animations::WinAnim(View::frame.getTexture(), false));

@@ -9,6 +9,7 @@
 #include "../model/storage/Data.hpp"
 #include "../model/sysObjects/Events.hpp"
 #include "../start/Core.hpp"
+#include "../start/i18n/Translator.hpp"
 #include "Dialog.hpp"
 #include "Window.hpp"
 #include <cmath>
@@ -116,6 +117,9 @@ namespace OpMon {
 
             View::frame.setView(camera);
             window.setKeyRepeatEnabled(true);
+
+	    OpMon::I18n::Translator::getInstance().setLang(OpMon::I18n::Translator::getInstance().getLang());
+	    
         }
 
         Overworld::~Overworld() {
