@@ -617,7 +617,7 @@ _______________________________________________________________
 	}
 	std::string keyInteract = OptionsSave::getParam("control.interact").getValue();
 	if(keyInteract == "NULL"){
-	  OptionsSave::addParam("control.interact", "Enter");
+	  OptionsSave::addParam("control.interact", "Return");
 	  Model::Data::Controls::interact = sf::Keyboard::Return;
 	}else{
 	  Model::Data::Controls::interact = keysMap[keyInteract];
