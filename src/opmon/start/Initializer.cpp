@@ -610,15 +610,15 @@ _______________________________________________________________
 	}
 	std::string keyTalk = OptionsSave::getParam("control.talk").getValue();
 	if(keyTalk == "NULL"){
-	  OptionsSave::addParam("control.talk", "Enter");
-	  Model::Data::Controls::talk = sf::Keyboard::Return;
+	  OptionsSave::addParam("control.talk", "Space");
+	  Model::Data::Controls::talk = sf::Keyboard::Space;
 	}else{
 	  Model::Data::Controls::talk = keysMap[keyTalk];
 	}
 	std::string keyInteract = OptionsSave::getParam("control.interact").getValue();
 	if(keyInteract == "NULL"){
-	  OptionsSave::addParam("control.interact", "Space");
-	  Model::Data::Controls::interact = sf::Keyboard::Space;
+	  OptionsSave::addParam("control.interact", "Enter");
+	  Model::Data::Controls::interact = sf::Keyboard::Return;
 	}else{
 	  Model::Data::Controls::interact = keysMap[keyInteract];
 	}
