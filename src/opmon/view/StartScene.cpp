@@ -128,7 +128,7 @@ UNS
 
         void StartScene::delLoop1() {
             window.setKeyRepeatEnabled(false);
-            Model::Data::player.setName(pName);
+            
             txtP1[0] = strName.getString();
             part++;
 
