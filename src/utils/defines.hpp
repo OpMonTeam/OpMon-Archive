@@ -17,7 +17,7 @@ Shortcuts
 #define UNS using namespace std;
 
 /* location of the save folder */
-#define SAVE_PATH std::string("saves/")
+#define SAVE_PATH Utils::Path::getSavePath()
 
 #define FONT_SIZE_DEFAULT 25
 
