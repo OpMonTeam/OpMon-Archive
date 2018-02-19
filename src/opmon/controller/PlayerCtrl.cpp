@@ -8,21 +8,21 @@ namespace OpMon {
         void PlayerCtrl::checkMove(Model::Player &player, sf::Event const &events, View::Overworld &overworld) {
             if(events.type == sf::Event::KeyPressed) {
                 if(events.key.code == sf::Keyboard::F5) {
-                    overworld.tp("Mom's room", sf::Vector2i(0, 1));
+                    overworld.tp("Mom's room", sf::Vector2i(4, 4));
                 } else if(events.key.code == sf::Keyboard::F6) {
-                    overworld.tp("Player's room", sf::Vector2i(0, 0));
+                    overworld.tp("Player's room", sf::Vector2i(2, 4));
                 } else if(events.key.code == sf::Keyboard::F1) {
-                    overworld.tp("Fauxbourg Euvi", sf::Vector2i(25, 28));
+                    overworld.tp("Fauxbourg Euvi", sf::Vector2i(26, 29));
                 } else if(events.key.code == sf::Keyboard::F2) {
-                    overworld.tp("Player's home", sf::Vector2i(8, 14));
+                    overworld.tp("Player's home", sf::Vector2i(10, 15));
                 } else if(events.key.code == sf::Keyboard::F3) {
                     overworld.tp("Laboratory", sf::Vector2i(15, 14));
                 } else if(events.key.code == sf::Keyboard::F4) {
                     overworld.tp("Rival's house", sf::Vector2i(8, 14));
                 } else if(events.key.code == sf::Keyboard::F7) {
-                    overworld.tp("Route 14", sf::Vector2i(0, 31));
+                    overworld.tp("Route 14", sf::Vector2i(9, 40));
                 } else if(events.key.code == sf::Keyboard::F8) {
-                    overworld.tp("MysteriouCity", sf::Vector2i(12, 0));
+                    overworld.tp("MysteriouCity", sf::Vector2i(15, 15));
                 }
             }
 
