@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <string>
 #include <sys/stat.h>
+#include "fs.hpp"
 
 // MSVC doesn't define S_ISDIR.
 #if !defined(S_ISDIR) && defined(S_IFMT) && defined(S_IFDIR)
@@ -15,7 +16,56 @@ namespace Utils {
             return (!stat(path.c_str(), &st) && S_ISDIR(st.st_mode));
         }
 
-        const std::string getResourcePath() {
+      const std::string getSavePath(){
+	#ifdef _WIN32
+	return "./saves";
+	#endif
+	{ // search in $XDG_CONFIG_HOME
+                const char *xdg_config_home = std::getenv("XDG_CONFIG_HOME");
+                std::string config_dir = xdg_config_home ? xdg_config_home : "";
+
+                if(config_dir.empty()) {
+                    const char *home = std::getenv("HOME");
+                    if(home && home[0] != '\n') {
+                        config_dir = home;
+                        config_dir += "/.config";
+                    }
+                }
+                if(!config_dir.empty()){
+		  Fs::mkdir(config_dir + "/OpMon");
+		  Fs::mkdir(config_dir + "/OpMon/saves"); 
+		  return config_dir + "/OpMon/saves/";
+		}
+	}
+            return nullptr;
+      }
+
+      const std::string getLogPath(){
+	#ifdef _WIN32
+	return "./log"
+	#endif
+	
+	{ // search in $XDG_CONFIG_HOME
+                const char *xdg_config_home = std::getenv("XDG_CONFIG_HOME");
+                std::string config_dir = xdg_config_home ? xdg_config_home : "";
+
+                if(config_dir.empty()) {
+                    const char *home = std::getenv("HOME");
+                    if(home && home[0] != '\n') {
+                        config_dir = home;
+                        config_dir += "/.config";
+                    }
+                }
+                if(!config_dir.empty()){
+		  Fs::mkdir(config_dir + "/OpMon");
+		  Fs::mkdir(config_dir + "/OpMon/log"); 
+		  return config_dir + "/OpMon/log/";
+		}
+	}
+            return nullptr;
+      }
+      
+      const std::string getResourcePath() {
             if(_isFolder("./data"))
                 return "./data/";
 
