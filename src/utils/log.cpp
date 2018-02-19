@@ -2,6 +2,7 @@
 #include "./log.hpp"
 #include "./fs.hpp"
 #include "./time.hpp"
+#include "path.hpp"
 #include <fstream>
 
 /**Principal log*/
@@ -10,7 +11,7 @@ static std::ofstream *rlog;
 static std::ofstream *rerrLog;
 
 /* location of the log folder */
-#define LOG_PATH std::string("logs/")
+#define LOG_PATH Path::getLogPath()
 
 namespace Utils {
     namespace Log {

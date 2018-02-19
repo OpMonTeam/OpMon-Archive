@@ -3,6 +3,7 @@
 #include "../../utils/fs.hpp"
 #include "../../utils/log.hpp"
 #include "../../utils/time.hpp"
+#include "../../utils/path.hpp"
 #include "../model/objects/Enums.hpp"
 #include "../model/save/OptionsSave.hpp"
 #include "../model/storage/InternalFiles.hpp"
@@ -14,6 +15,7 @@
 #include "config.hpp"
 #include <ostream>
 #include <string>
+
 
 using namespace OpMon::Model;
 using Utils::Log::oplog;
