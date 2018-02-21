@@ -1,8 +1,8 @@
 
+#include "fs.hpp"
 #include <cstdlib>
 #include <string>
 #include <sys/stat.h>
-#include "fs.hpp"
 
 // MSVC doesn't define S_ISDIR.
 #if !defined(S_ISDIR) && defined(S_IFMT) && defined(S_IFDIR)
@@ -16,11 +16,11 @@ namespace Utils {
             return (!stat(path.c_str(), &st) && S_ISDIR(st.st_mode));
         }
 
-      const std::string getSavePath(){
-	#ifdef _WIN32
-	return "./saves";
-	#endif
-	{ // search in $XDG_CONFIG_HOME
+        const std::string getSavePath() {
+#ifdef _WIN32
+            return "./saves";
+#endif
+            { // search in $XDG_CONFIG_HOME
                 const char *xdg_config_home = std::getenv("XDG_CONFIG_HOME");
                 std::string config_dir = xdg_config_home ? xdg_config_home : "";
 
@@ -31,21 +31,21 @@ namespace Utils {
                         config_dir += "/.config";
                     }
                 }
-                if(!config_dir.empty()){
-		  Fs::mkdir(config_dir + "/OpMon");
-		  Fs::mkdir(config_dir + "/OpMon/saves"); 
-		  return config_dir + "/OpMon/saves/";
-		}
-	}
+                if(!config_dir.empty()) {
+                    Fs::mkdir(config_dir + "/OpMon");
+                    Fs::mkdir(config_dir + "/OpMon/saves");
+                    return config_dir + "/OpMon/saves/";
+                }
+            }
             return nullptr;
-      }
+        }
 
-      const std::string getLogPath(){
-	#ifdef _WIN32
-	return "./log"
-	#endif
-	
-	{ // search in $XDG_CONFIG_HOME
+        const std::string getLogPath() {
+#ifdef _WIN32
+            return "./log"
+#endif
+
+            { // search in $XDG_CONFIG_HOME
                 const char *xdg_config_home = std::getenv("XDG_CONFIG_HOME");
                 std::string config_dir = xdg_config_home ? xdg_config_home : "";
 
@@ -56,16 +56,16 @@ namespace Utils {
                         config_dir += "/.config";
                     }
                 }
-                if(!config_dir.empty()){
-		  Fs::mkdir(config_dir + "/OpMon");
-		  Fs::mkdir(config_dir + "/OpMon/log"); 
-		  return config_dir + "/OpMon/log/";
-		}
-	}
+                if(!config_dir.empty()) {
+                    Fs::mkdir(config_dir + "/OpMon");
+                    Fs::mkdir(config_dir + "/OpMon/log");
+                    return config_dir + "/OpMon/log/";
+                }
+            }
             return nullptr;
-      }
-      
-      const std::string getResourcePath() {
+        }
+
+        const std::string getResourcePath() {
             if(_isFolder("./data"))
                 return "./data/";
 
@@ -73,13 +73,13 @@ namespace Utils {
                 const char *xdg_data_home = std::getenv("XDG_DATA_HOME");
                 std::string data_dir = xdg_data_home ? xdg_data_home : "";
 
-                if(data_dir.empty()) {
-                    const char *home = std::getenv("HOME");
-                    if(home && home[0] != '\n') {
-                        data_dir = home;
-                        data_dir += "/.local/share";
-                    }
-                }
+                /*if(data_dir.empty()) {
+		  //const char *home = std::getenv("HOME");
+		  //if(home && home[0] != '\n') {
+		  //    data_dir = home;
+		  data_dir += "/usr/local/share";
+			//}
+			}*/
                 if(!data_dir.empty() && _isFolder(data_dir + "/OpMon"))
                     return data_dir + "/OpMon/";
             }
@@ -95,8 +95,11 @@ namespace Utils {
                 while(next_delimiter != std::string::npos) {
                     next_delimiter = data_dir_list.find(':');
                     std::string data_dir = data_dir_list.substr(0, next_delimiter);
-                    if(!data_dir.empty() && _isFolder(data_dir + "/OpMon"))
-                        return data_dir + "/OpMon/";
+                    if(!data_dir.empty() && _isFolder(data_dir + "/OpMon")){
+		      return data_dir + "/OpMon/";
+		    }else{
+		      return "/usr/local/share/OpMon/";
+		    }
                     data_dir_list.erase(0, next_delimiter + 1);
                 }
             }

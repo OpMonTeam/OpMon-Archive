@@ -30,8 +30,8 @@ namespace OpMon {
     extern bool debugCol;
     extern bool camUnlock;
 
-  extern bool reboot;
-  
+    extern bool reboot;
+
     /*
     Useful operators for strings
   */

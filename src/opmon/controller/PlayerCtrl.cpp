@@ -27,16 +27,16 @@ namespace OpMon {
             }
 
             if(!overworld.justTp && !player.getPosition().isAnim() && !player.getPosition().isLocked()) {
-	      if(sf::Keyboard::isKeyPressed(Model::Data::Controls::up)) {
+                if(sf::Keyboard::isKeyPressed(Model::Data::Controls::up)) {
                     overworld.setStartFrames();
                     move(Model::Side::TO_UP, player, overworld);
-	      } else if(sf::Keyboard::isKeyPressed(Model::Data::Controls::down)) {
+                } else if(sf::Keyboard::isKeyPressed(Model::Data::Controls::down)) {
                     overworld.setStartFrames();
                     move(Model::Side::TO_DOWN, player, overworld);
-	      } else if(sf::Keyboard::isKeyPressed(Model::Data::Controls::left)) {
+                } else if(sf::Keyboard::isKeyPressed(Model::Data::Controls::left)) {
                     overworld.setStartFrames();
                     move(Model::Side::TO_LEFT, player, overworld);
-	      } else if(sf::Keyboard::isKeyPressed(Model::Data::Controls::right)) {
+                } else if(sf::Keyboard::isKeyPressed(Model::Data::Controls::right)) {
                     overworld.setStartFrames();
                     move(Model::Side::TO_RIGHT, player, overworld);
                 }

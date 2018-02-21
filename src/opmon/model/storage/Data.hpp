@@ -76,23 +76,23 @@ namespace OpMon {
                 extern sf::SoundBuffer nope;
                 extern sf::SoundBuffer arrow;
                 extern sf::SoundBuffer dialogPass;
-	      extern sf::SoundBuffer push;
+                extern sf::SoundBuffer push;
             } // namespace Sounds
 
             namespace Animations {
                 extern sf::Texture fen[6];
             }
 
-	  namespace Controls {
-	    extern sf::Keyboard::Key up;
-	    extern sf::Keyboard::Key down;
-	    extern sf::Keyboard::Key left;
-	    extern sf::Keyboard::Key right;
-	    extern sf::Keyboard::Key interact;
-	    extern sf::Keyboard::Key talk;
-	  }
-        } // namespace Data
-    }     // namespace Model
+            namespace Controls {
+                extern sf::Keyboard::Key up;
+                extern sf::Keyboard::Key down;
+                extern sf::Keyboard::Key left;
+                extern sf::Keyboard::Key right;
+                extern sf::Keyboard::Key interact;
+                extern sf::Keyboard::Key talk;
+            } // namespace Controls
+        }     // namespace Data
+    }         // namespace Model
 } // namespace OpMon
 
 #endif
