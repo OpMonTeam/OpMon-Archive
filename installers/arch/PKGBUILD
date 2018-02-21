@@ -10,14 +10,14 @@ arch=('x86_64')
 pkgdesc="A open source RPG monster fighting game" 
 url="http://opmon-game.ga" 
 depends=('sfml' 'gcc' 'libstdc++5' 'smpeg') 
-makedepends=('make''cmake') 
-source=(soon) 
-md5sums=('(soon)') 
+makedepends=('make' 'cmake') 
+source=("git+git://github.com/cyrioncentori/OpMon.git#tag=alpha-v${pkgver}") 
+md5sums=('SKIP') 
 
 build() { 
-cd $srcdir/opmon-arch
+cd $srcdir/OpMon
 
-cmake || return 1
+cmake  . -DCMAKE_BUILD_TYPE=Release || return 1
 
 make || return 1
 
@@ -27,16 +27,17 @@ package()
 {
 
 mkdir "${pkgdir}/usr"
+mkdir "${pkgdir}/usr/bin"
+mkdir "${pkgdir}/usr/local"
 mkdir "${pkgdir}/usr/share"
-mkdir "${pkgdir}/usr/share/OpMon"
+mkdir "${pkgdir}/usr/local/share"
+mkdir "${pkgdir}/usr/local/share/OpMon"
 mkdir "${pkgdir}/usr/share/applications"
 
-cp -r "${srcdir}/opmon-arch/arch_install/bin/usr/bin" "${pkgdir}/usr/"
-cp -r "${srcdir}/opmon-arch/arch_install/bin/usr/share/OpMon" "${pkgdir}/usr/share/"
-cp "${srcdir}/opmon-arch/arch_install/bin/usr/share/applications/OPMon.desktop" "${pkgdir}/usr/share/applications/"
+cp ${srcdir}/OpMon/bin/Release/opmon ${pkgdir}/usr/bin/opmon
+cp -r ${srcdir}/OpMon/data/* ${pkgdir}/usr/local/share/OpMon
+cp ${srcdir}/OpMon/data/OPMon.desktop ${pkgdir}/usr/share/applications/
 
-cd "${srcdir}/opmon-arch"
-make DESTIDIR="${pkgdir}" || return 1
+cd "${srcdir}/OpMon"
 
-chmod -R 777 "${pkgdir}/usr/share/OpMon"
 }
