@@ -25,12 +25,12 @@ namespace OpMon {
                         camUnlock = false;
                     }
                 }
-		if(events.key.code == sf::Keyboard::M) {
-		  reboot = true;
-		  return GameStatus::STOP;
-		}
+                if(events.key.code == sf::Keyboard::M) {
+                    reboot = true;
+                    return GameStatus::STOP;
+                }
                 if(debugMode) {
-		  if(events.key.code == sf::Keyboard::F10) {
+                    if(events.key.code == sf::Keyboard::F10) {
                         overworld.printlayer[0] = !overworld.printlayer[0];
                     }
                     if(events.key.code == sf::Keyboard::F11) {
@@ -77,10 +77,10 @@ namespace OpMon {
         GameStatus OverworldCtrl::checkEventsDialog(sf::Event const &events, View::Overworld &overworld) {
             switch(events.type) {
             case sf::Event::KeyPressed:
-	      if(events.key.code == Model::Data::Controls::talk) {
-		overworld.getDialog()->pass();
-	      }
-	      break;
+                if(events.key.code == Model::Data::Controls::talk) {
+                    overworld.getDialog()->pass();
+                }
+                break;
             default:
                 break;
             }
@@ -94,10 +94,10 @@ namespace OpMon {
         }
 
         GameStatus OverworldCtrl::update() {
-	  bool is_dialog_open = view.getDialog() && !view.getDialog()->isDialogOver();
-	  if(!is_dialog_open){
-            EventsCtrl::updateEvents(Model::Data::World::maps.at(player.getMapId())->getEvents(), player, view);
-	  }
+            bool is_dialog_open = view.getDialog() && !view.getDialog()->isDialogOver();
+            if(!is_dialog_open) {
+                EventsCtrl::updateEvents(Model::Data::World::maps.at(player.getMapId())->getEvents(), player, view);
+            }
             //TODO: pass frame
             return view(getFrames());
         }

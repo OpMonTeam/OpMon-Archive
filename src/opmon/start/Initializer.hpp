@@ -34,8 +34,8 @@ namespace OpMon {
         void initMenuStrings();
         void initStartSceneStrings();
 
-      void initControls();
-      
+        void initControls();
+
         //void deleteAnims();
         void init();
     } // namespace Initializer

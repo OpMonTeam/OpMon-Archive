@@ -57,7 +57,7 @@ namespace OpMon {
                     Model::Data::Elements::elementsCounter[i] = 0;
                 }
                 Model::Data::Elements::elementsSprites[i].setTexture(Model::Data::Elements::elementsTextures[i][Model::Data::Elements::elementsCounter[i]]);
-		Model::Data::Elements::elementsSprites[i].setPosition(Model::Data::Elements::elementsPos[i]);
+                Model::Data::Elements::elementsSprites[i].setPosition(Model::Data::Elements::elementsPos[i]);
                 frame.draw(Model::Data::Elements::elementsSprites[i]);
             }
         }
@@ -118,8 +118,7 @@ namespace OpMon {
             View::frame.setView(camera);
             window.setKeyRepeatEnabled(true);
 
-	    OpMon::I18n::Translator::getInstance().setLang(OpMon::I18n::Translator::getInstance().getLang());
-	    
+            OpMon::I18n::Translator::getInstance().setLang(OpMon::I18n::Translator::getInstance().getLang());
         }
 
         Overworld::~Overworld() {

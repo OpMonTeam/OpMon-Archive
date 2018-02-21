@@ -1,6 +1,8 @@
 
 #include "./Gameloop.hpp"
 #include "../controller/MainMenuCtrl.hpp"
+#include "../model/storage/Data.hpp"
+#include "../model/sysObjects/Player.hpp"
 #include "../view/Window.hpp"
 #include <SFML/Window/Event.hpp>
 
@@ -29,6 +31,7 @@ namespace OpMon {
         _gameScreens.push(first_ctrl);
 
         GameStatus status = GameStatus::CONTINUE;
+        Model::Data::player.getPosition().setPosition(1, 4);
         while(status != GameStatus::STOP) {
             status = GameStatus::CONTINUE;
 

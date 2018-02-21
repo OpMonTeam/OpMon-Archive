@@ -292,36 +292,34 @@ UNS
             void TalkingCharaEvent::action(Model::Player &player, View::Overworld &overworld) {
                 mapPos.lockMove();
                 talking = true;
-
             }
 
-	  void TalkingCharaEvent::update(Model::Player &player, View::Overworld &overworld) {
-	    CharacterEvent::update(player, overworld);
-	    if(talking && !mapPos.isAnim()) {
-	      switch(player.getPosition().getDir()){
-	      case Side::TO_DOWN:
-		mapPos.setDir(Side::TO_UP);
-		break;
-	      case Side::TO_UP:
-		mapPos.setDir(Side::TO_DOWN);
-		break;
-	      case Side::TO_LEFT:
-		mapPos.setDir(Side::TO_RIGHT);
-		break;
-	      case Side::TO_RIGHT:
-		mapPos.setDir(Side::TO_LEFT);
-		break;
-	      default:
-		break;
-	      }
-	      currentTexture = otherTextures.begin() + (int)mapPos.getDir();
-	      updateTexture();
-	      mapPos.unlockMove();
-	      talking = false;
-	      overworld.startDialog(this->dialogs);
-	    }
-	    
-	  }
+            void TalkingCharaEvent::update(Model::Player &player, View::Overworld &overworld) {
+                CharacterEvent::update(player, overworld);
+                if(talking && !mapPos.isAnim()) {
+                    switch(player.getPosition().getDir()) {
+                    case Side::TO_DOWN:
+                        mapPos.setDir(Side::TO_UP);
+                        break;
+                    case Side::TO_UP:
+                        mapPos.setDir(Side::TO_DOWN);
+                        break;
+                    case Side::TO_LEFT:
+                        mapPos.setDir(Side::TO_RIGHT);
+                        break;
+                    case Side::TO_RIGHT:
+                        mapPos.setDir(Side::TO_LEFT);
+                        break;
+                    default:
+                        break;
+                    }
+                    currentTexture = otherTextures.begin() + (int)mapPos.getDir();
+                    updateTexture();
+                    mapPos.unlockMove();
+                    talking = false;
+                    overworld.startDialog(this->dialogs);
+                }
+            }
 
             void CharacterEvent::setPredefinedMove(std::vector<Side> moves) {
                 this->movements = moves;

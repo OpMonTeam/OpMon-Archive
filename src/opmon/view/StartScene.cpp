@@ -128,7 +128,7 @@ UNS
 
         void StartScene::delLoop1() {
             window.setKeyRepeatEnabled(false);
-            
+
             txtP1[0] = strName.getString();
             part++;
 

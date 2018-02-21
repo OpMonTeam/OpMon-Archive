@@ -17,7 +17,7 @@ namespace OpMon {
 
             switch(event.type) {
             case sf::Event::KeyPressed:
-	      if(event.key.code == Model::Data::Controls::talk && startscene.getDialog() != nullptr) {
+                if(event.key.code == Model::Data::Controls::talk && startscene.getDialog() != nullptr) {
                     startscene.getDialog()->pass();
                 }
                 if(event.key.code == sf::Keyboard::Return && startscene.getPart() == 1) {
@@ -25,7 +25,7 @@ namespace OpMon {
                     if(pName.isEmpty()) {
                         pName = "Player";
                     }
-		    Model::Data::player.setName(pName);
+                    Model::Data::player.setName(pName);
                     startscene.delLoop1();
                     view.draw(View::frame);
                     _next_gs = new AnimationCtrl(new View::Animations::WinAnim(View::frame.getTexture(), false));

@@ -14,9 +14,10 @@ namespace OpMon {
         class OptionsMenuCtrl : public AGameScreen {
           private:
             View::OptionsMenu view;
-	  sf::Sound nope;
-	  sf::Sound arrow;
-	  sf::Sound push;
+            sf::Sound nope;
+            sf::Sound arrow;
+            sf::Sound push;
+
           public:
             OptionsMenuCtrl();
             GameStatus checkEvent(sf::Event const &event) override;
