@@ -15,7 +15,7 @@ set(OPMON_HOMEPAGE "http://http://opmon-game.ga/")
 # libsfml is splited in many packages on debian:
 # libsfml-xxx2 (until 2.4), then libsfml-xxx2.4
 foreach(ARG system audio window graphics)
-    list(APPEND OPMON_DEBIAN_DEPENDS "libsfml-${ARG}2 (>= 2.3.2+dfsg-1)|libsfml-${ARG}2.4")
+    list(APPEND OPMON_DEBIAN_DEPENDS "libsfml-${ARG}2 (>= 2.3.2+dfsg-1) | libsfml-${ARG}2.4 | libsfml-dev (>= 2.3.2+dfsg-1)")
 endforeach()
 string(REPLACE ";" ", " OPMON_DEBIAN_DEPENDS "${OPMON_DEBIAN_DEPENDS}")
 
@@ -110,7 +110,7 @@ if (UNIX)
 
     # TODO: put resource files in the correct folder
     # Note: trailing slash "bin/" is important.
-    install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/data/ DESTINATION share/OpMon)
+    install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/data/ DESTINATION local/share/OpMon)
 else()
     install(TARGETS ${EXECUTABLE_NAME} DESTINATION .)
     install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/data DESTINATION .)

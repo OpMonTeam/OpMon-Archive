@@ -98,8 +98,8 @@ namespace OpMon {
         Overworld::Overworld(const std::string &mapId) {
             current = Model::Data::World::maps[mapId];
             character.setTexture(Model::Data::Ui::texturePP[(int)Side::TO_DOWN]);
-            Model::Data::player.tp(mapId, sf::Vector2i(2, 2));
-            character.setPosition(2 SQUARES - 16, 2 SQUARES);
+            Model::Data::player.tp(mapId, sf::Vector2i(2, 4));
+            character.setPosition(2 SQUARES - 16, 4 SQUARES);
             camera.setCenter(this->getCharacter().getPosition());
             camera.setSize(sf::Vector2f(16 SQUARES, 16 SQUARES));
 

@@ -31,7 +31,6 @@ namespace OpMon {
         _gameScreens.push(first_ctrl);
 
         GameStatus status = GameStatus::CONTINUE;
-        Model::Data::player.getPosition().setPosition(1, 4);
         while(status != GameStatus::STOP) {
             status = GameStatus::CONTINUE;
 

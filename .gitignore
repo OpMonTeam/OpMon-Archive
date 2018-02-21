@@ -51,5 +51,9 @@ CMakeCache.txt
 CPackConfig.cmake
 CPackSourceConfig.cmake
 cmake_install.cmake
+*.deb
+*.tar.gz
+install_manifest.txt
 *#
+.#*
 config.hpp
