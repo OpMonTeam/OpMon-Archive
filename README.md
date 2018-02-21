@@ -21,7 +21,6 @@ The build system use *cmake*.
 ```sh
 cmake .             #If you want to build in Debug, use -DCMAKE_BUILD_TYPE=Debug
 make
-# The next two commands are not completely configured. They might be unfunctional. Try if you want!
 sudo make install   # install the game into your system
 make package        # generate both .deb package and .tar.gz package
 ```
@@ -40,12 +39,11 @@ English is not our native language, but we do our best! If you see some errors, 
 
 If there are problems understanding the old commits or monthly reports that are in French, don't hesitate to ask!
 
-__The current game version is Alpha 0.13__ Download link: <a 
+__The current game version is Alpha 0.14__ Download link: <a 
 href="http://opmon-game.ga/downloads"><img src="https://raw.githubusercontent.com/cyrioncentori/OpMon/master/Resources/Other/version_logo.png" alt="Download Link"></a>
 
-__The next game version will be Alpha 0.14__: Added descriptions on 
-objects, Map system recreation and code reorganization
-__After : Alpha 0.15__: Added the first OPMon's fight
+__The next game version will be Alpha 0.15__: Added the first OPMon's fight
+__After : Alpha 0.16__:Fight system update and OpMons improvements
 * [Look the ROADMAP](https://github.com/cyrioncentori/OpMon/wiki/ROADMAP)
 * [Look the Releases changelog](https://github.com/cyrioncentori/OpMon/wiki/Releases)
 
@@ -66,12 +64,12 @@ See the controls of the game OpMon [here](http://opmon-game.ga/controls.html)
 * [Dépot du site web](https://github.com/cyrioncentori/Site-OpMon)
 * [Crédits](https://github.com/cyrioncentori/OpMon/blob/master/Credits.md)
 
-<br/>Version du jeu : Alpha 0.13 | Téléchargement : <a 
+<br/>Version du jeu : Alpha 0.14 | Téléchargement : <a 
 href="http://opmon-game.ga"><img src="https://raw.githubusercontent.com/cyrioncentori/OpMon/master/Resources/Other/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
 
 ### Prochaines versions :
-* Alpha 0.14 : Ajout de descriptions d'objets et ajout du nouveau système de maps
 * Alpha 0.15 : Ajout du premier combat entre dresseurs
+* Alpha 0.16 : Amelioration du système de combat et ameliorations des OpMOns et de leurs stats
 * [Voir la RoadMap](https://github.com/cyrioncentori/OpMon/wiki/ROADMAP)
 
 <br/>
