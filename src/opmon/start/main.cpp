@@ -2,8 +2,8 @@
 #include "../../utils/defines.hpp"
 #include "../../utils/fs.hpp"
 #include "../../utils/log.hpp"
-#include "../../utils/time.hpp"
 #include "../../utils/path.hpp"
+#include "../../utils/time.hpp"
 #include "../model/objects/Enums.hpp"
 #include "../model/save/OptionsSave.hpp"
 #include "../model/storage/InternalFiles.hpp"
@@ -15,7 +15,6 @@
 #include "config.hpp"
 #include <ostream>
 #include <string>
-
 
 using namespace OpMon::Model;
 using Utils::Log::oplog;
@@ -49,7 +48,7 @@ UNS
 
         string version = OPMON_VERSION;
 
-        string pre = "1";
+        string pre = "0";
 
         string versionS;
         /*
@@ -84,24 +83,24 @@ UNS
             Initializer::init();
             oplog("Loading completed! Opening gui.");
             //bgtask = new std::thread(bgTask);
-	    do{
-	      reboot = false;
-	      View::open();
-	      oplog("Starting game loop");
+            do {
+                reboot = false;
+                View::open();
+                oplog("Starting game loop");
 
-	      auto gameloop = GameLoop();
-	      frames = gameloop.getFrames();
-	      gameloop();
+                auto gameloop = GameLoop();
+                frames = gameloop.getFrames();
+                gameloop();
 
-	      std::string logEntry;
-	      logEntry << "Game ended after " << getFrames() << "frames";
+                std::string logEntry;
+                logEntry << "Game ended after " << getFrames() << "frames";
 
-	      oplog(logEntry);
-	      View::close();
-	      if(reboot){
-		oplog("Restarting the game.");
-	      }
-	    }while(reboot);
+                oplog(logEntry);
+                View::close();
+                if(reboot) {
+                    oplog("Restarting the game.");
+                }
+            } while(reboot);
             oplog("Ending the game normally.");
             return quit(0);
         }

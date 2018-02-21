@@ -28,7 +28,7 @@ UNS
     bool camUnlock = false;
 
     bool reboot = false;
-    
+
     //The number of errors handeled in the program.
     int errors = 0;
 

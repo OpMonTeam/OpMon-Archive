@@ -20,7 +20,7 @@ namespace OpMon {
               {"es", "keys/espanol.rkeys"},
               {"fr", "keys/francais.rkeys"}};
 
-	    /*            if(langCode == _currentLang)
+            /*            if(langCode == _currentLang)
 	      return; // Nothing to do
 	      Desactivated : if we need to reload the keys
 */

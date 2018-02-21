@@ -49,17 +49,17 @@ namespace OpMon {
                 sf::SoundBuffer nope;
                 sf::SoundBuffer arrow;
                 sf::SoundBuffer dialogPass;
-	      sf::SoundBuffer push;
+                sf::SoundBuffer push;
             } // namespace Sounds
 
-	  namespace Controls{
-	     sf::Keyboard::Key up;
-	     sf::Keyboard::Key down;
-	     sf::Keyboard::Key left;
-	     sf::Keyboard::Key right;
-	     sf::Keyboard::Key interact;
-	     sf::Keyboard::Key talk;
-	  }
+            namespace Controls {
+                sf::Keyboard::Key up;
+                sf::Keyboard::Key down;
+                sf::Keyboard::Key left;
+                sf::Keyboard::Key right;
+                sf::Keyboard::Key interact;
+                sf::Keyboard::Key talk;
+            } // namespace Controls
         }     // namespace Data
     }         // namespace Model
 } // namespace OpMon
