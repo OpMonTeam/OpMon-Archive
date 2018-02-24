@@ -473,6 +473,9 @@ _______________________________________________________________
             Events::EventTrigger::PRESS, Events::MoveStyle::NO_MOVE));
             //MysteriouCity loading
             maps.emplace("MysteriouCity", new Map(Maps::myciLayer1, Maps::myciLayer2, Maps::myciLayer3, 35, 35, "Ms"));
+            //OpMon Center loading
+            maps.emplace("OpCenter", new Map(Maps::opcenterLayer1, Maps::opcenterLayer2, Maps::opcenterLayer3, 18, 18, "OpCenter"));
+
         }
 
         void initBackgrounds() {

@@ -53,6 +53,9 @@ namespace OpMon {
             extern int myciLayer1[1225];
             extern int myciLayer2[1225];
             extern int myciLayer3[1225];
+            extern int opcenterLayer1[324];
+            extern int opcenterLayer2[324];
+            extern int opcenterLayer3[324];
         } // namespace Maps
     }     // namespace Model
 } // namespace OpMon
