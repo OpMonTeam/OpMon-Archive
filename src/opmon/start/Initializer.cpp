@@ -365,8 +365,8 @@ _______________________________________________________________
             doorsTextures.push_back(shopDoor);
 
             ResourceLoader::loadTextureArray(charaTextures["kid"], "sprites/chara/kid/kid%d.png", 12);
-
             ResourceLoader::loadTextureArray(charaTextures["kiwai"], "sprites/chara/prof/prof%d.png", 12);
+            ResourceLoader::loadTextureArray(charaTextures["playermom"], "sprites/chara/mom/mom%d.png", 12);
 
             initEnumsEvents();
         }
@@ -448,7 +448,8 @@ _______________________________________________________________
             std::vector<OpString> phomE1{OpString("playerhome.tv.1"), OpString("playerhome.tv.2"), OpString("playerhome.tv.3")};
             mapPlayersHome->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(3, 8), phomE1, SIDE_UP));
             mapPlayersHome->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(2, 8), phomE1, SIDE_UP));
-
+            mapPlayersHome->addEvent(new Events::TalkingCharaEvent("playermom", sf::Vector2f(9, 9), {OpString("playermom.dialog.1"), OpString("playermom.dialog.2"), OpString("playermom.dialog.3")},                  
+            Events::EventTrigger::PRESS, Events::MoveStyle::NO_MOVE));
             Map *mapLaboratory = maps.emplace("Laboratory", new Map(Maps::laboLayer1, Maps::laboLayer2, Maps::laboLayer3, 32, 16, "Start")).first->second;
             mapLaboratory->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(15, 15), sf::Vector2i(28, 29), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
 
