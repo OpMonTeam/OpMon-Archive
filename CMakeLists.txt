@@ -5,12 +5,12 @@ set(EXECUTABLE_NAME opmon)
 
 
 set(OPMON_VERSION_MAJOR 0)
-set(OPMON_VERSION_MINOR 14)
+set(OPMON_VERSION_MINOR 15)
 set(OPMON_VERSION_PATCH 0)
 
 set(OPMON_CONTACT "Cyrion <jlppcprog@ntymail.com>")
 set(OPMON_DESCRIPTION_SUMMARY "An open source RPG monster fighting game")
-set(OPMON_HOMEPAGE "http://http://opmon-game.ga/")
+set(OPMON_HOMEPAGE "http://opmon-game.ga/")
 
 # libsfml is splited in many packages on debian:
 # libsfml-xxx2 (until 2.4), then libsfml-xxx2.4
