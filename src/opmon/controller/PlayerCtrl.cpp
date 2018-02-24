@@ -23,6 +23,8 @@ namespace OpMon {
                     overworld.tp("Route 14", sf::Vector2i(9, 40));
                 } else if(events.key.code == sf::Keyboard::F8) {
                     overworld.tp("MysteriouCity", sf::Vector2i(15, 15));
+                } else if(events.key.code == sf::Keyboard::F9) {
+                    overworld.tp("OpCenter", sf::Vector2i(9, 17));
                 }
             }
 
