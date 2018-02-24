@@ -7,5 +7,5 @@ rm -r data
 cd ../../
 cp -r data bin/Release/
 cd bin/Release
-./OpMon
+./opmon
 
