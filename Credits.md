@@ -20,6 +20,7 @@
 <li><h3>Silvermoon</h3></li>
 <li><h3>Stelyus</h3></li>
 <li><h3>Rixem</h3></li>
+<li><h3>Bircoum</h3></li>
 </ul>
 
 ## Inspirations :
@@ -28,7 +29,8 @@
 <li><h3>Linus Torvalds (Creation of Linux, Git and so much more...)</h3></li>
 </ul>
 
-## Special thanks : <ul>
+## Special thanks : 
+<ul>
 <li><h3>GlueBie</h3></li>
 <li><h3>Lebordelic</h3></li>
 <li><h3>Sythos</h3></li>
