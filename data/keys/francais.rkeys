@@ -73,7 +73,17 @@ key.playerhome.tv.3=l'air très heureux...
 key.playermom.dialog.1=Tu vas bien mon cheri ?
 key.playermom.dialog.2=...
 key.playermom.dialog.3=Ça n'a pas l'air d'aller
-key.sk.dialog.1=Qui es-tu !
-key.sk.dialog.2=Tu ne devrais pas
-key.sk.dialog.3=être ici...
+key.rt14.sk.1=Qui es-tu !
+key.rt14.sk.2=Tu ne devrais pas
+key.rt14.sk.3=être ici...
+key.fe.fisherman.1=Pécheur : Oh ! Tu m'as surpris !
+key.fe.fisherman.2=J'adore venir ici pour me
+key.fe.fisherman.3=reposer, tout est calme
+key.fe.fisherman.4=tout est simple ...
+key.fe.fisherman.5=Même si je l'avoue,
+key.fe.fisherman.6=il n'y a pas beaucoup
+key.fe.fisherman.7=de poissons dans les parages !
+key.fe.fisherman.8=... Mais je ne t'ai
+key.fe.fisherman.9=jamais vu toi ? Tu es nouveau ?
+
 end
