@@ -469,7 +469,7 @@ _______________________________________________________________
 
             //Route 14 loading
             Map *mapRoute14 = maps.emplace("Route 14", new Map(Maps::route14Layer1, Maps::route14Layer2, Maps::route14Layer3, 90, 57, "Route14")).first->second;
-            mapRoute14->addEvent(new Events::TalkingCharaEvent("sk", sf::Vector2f(15, 30), {OpString("sk.dialog.1"), OpString("sk.dialog.2"), OpString("sk.dialog.3")},                  
+            mapRoute14->addEvent(new Events::TalkingCharaEvent("sk", sf::Vector2f(15, 30), {OpString("rt14.sk.1"), OpString("rt14.sk.2"), OpString("rt14.sk.3")},                  
             Events::EventTrigger::PRESS, Events::MoveStyle::NO_MOVE));
             //MysteriouCity loading
             maps.emplace("MysteriouCity", new Map(Maps::myciLayer1, Maps::myciLayer2, Maps::myciLayer3, 35, 35, "Ms"));
