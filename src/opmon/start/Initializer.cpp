@@ -364,6 +364,7 @@ _______________________________________________________________
             ResourceLoader::loadTextureArray(shopDoor, "animations/shopdoor/shop_door%d.png", 4, 1);
             doorsTextures.push_back(shopDoor);
 
+	    ResourceLoader::loadTextureArray(charaTextures["kid"], "sprites/chara/kid/kid%d.png", 12);
             ResourceLoader::loadTextureArray(charaTextures["fisherman"], "sprites/chara/fisherman/fisherman%d.png", 12);
             ResourceLoader::loadTextureArray(charaTextures["kiwai"], "sprites/chara/prof/prof%d.png", 12);
             ResourceLoader::loadTextureArray(charaTextures["playermom"], "sprites/chara/mom/mom%d.png", 12);
@@ -429,7 +430,7 @@ _______________________________________________________________
             mapFauxbourgEuvi->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(35, 16), sf::Vector2i(9, 15), "Rival's house"));
             mapFauxbourgEuvi->addEvent(new Events::DoorEvent(Events::DoorType::SHOP, sf::Vector2f(27, 28), sf::Vector2i(16, 15), "Laboratory"));
             /*Character 1*/
-            /*std::vector<Side> pathChara1;
+            std::vector<Side> pathChara1;
             for(int i = 0; i < 10; i++)
                 pathChara1.push_back(Side::TO_RIGHT);
 
@@ -438,9 +439,11 @@ _______________________________________________________________
             for(int i = 0; i < 10; i++)
                 pathChara1.push_back(Side::TO_LEFT);
 
-            pathChara1.push_back(Side::NO_MOVE);*/
+            pathChara1.push_back(Side::NO_MOVE);
 
-            mapFauxbourgEuvi->addEvent(new Events::TalkingCharaEvent("fisherman", sf::Vector2f(16, 16), {OpString("fe.fisherman.1"), OpString("fe.fisherman.2"), OpString("fe.fisherman.3"), OpString("fe.fisherman.4"), OpString("fe.fisherman.5"), OpString("fe.fisherman.6"), OpString("fe.fisherman.7"), OpString("fe.fisherman.8"), OpString("fe.fisherman.9")}, Events::EventTrigger::PRESS,Events::MoveStyle::NO_MOVE));
+	    mapFauxbourgEuvi->addEvent(new Events::TalkingCharaEvent("kid", sf::Vector2f(25, 21), {OpString("kid"), OpString::voidStr, OpString::voidStr}, Side::TO_RIGHT, Events::EventTrigger::PRESS, Events::MoveStyle::PREDEFINED, pathChara1));
+	    
+            mapFauxbourgEuvi->addEvent(new Events::TalkingCharaEvent("fisherman", sf::Vector2f(16, 16), {OpString("fe.fisherman.1"), OpString("fe.fisherman.2"), OpString("fe.fisherman.3"), OpString("fe.fisherman.4"), OpString("fe.fisherman.5"), OpString("fe.fisherman.6"), OpString("fe.fisherman.7"), OpString("fe.fisherman.8"), OpString("fe.fisherman.9")}, Side::TO_LEFT));
 
             Map *mapPlayersHome = maps.emplace("Player's home", new Map(Maps::pphomeLayer1, Maps::pphomeLayer2, Maps::pphomeLayer3, 16, 16, "Fauxbourg")).first->second;
             mapPlayersHome->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(7, 15), sf::Vector2i(28, 17), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
@@ -449,12 +452,11 @@ _______________________________________________________________
             std::vector<OpString> phomE1{OpString("playerhome.tv.1"), OpString("playerhome.tv.2"), OpString("playerhome.tv.3")};
             mapPlayersHome->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(3, 8), phomE1, SIDE_UP));
             mapPlayersHome->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(2, 8), phomE1, SIDE_UP));
-            mapPlayersHome->addEvent(new Events::TalkingCharaEvent("playermom", sf::Vector2f(9, 9), {OpString("playermom.dialog.1"), OpString("playermom.dialog.2"), OpString("playermom.dialog.3")},                  
-            Events::EventTrigger::PRESS, Events::MoveStyle::NO_MOVE));
+            mapPlayersHome->addEvent(new Events::TalkingCharaEvent("playermom", sf::Vector2f(9, 9), {OpString("playermom.dialog.1"), OpString("playermom.dialog.2"), OpString("playermom.dialog.3")}, Side::TO_DOWN));
             Map *mapLaboratory = maps.emplace("Laboratory", new Map(Maps::laboLayer1, Maps::laboLayer2, Maps::laboLayer3, 32, 16, "Start")).first->second;
             mapLaboratory->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(15, 15), sf::Vector2i(28, 29), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
 
-            mapLaboratory->addEvent(new Events::TalkingCharaEvent("kiwai", sf::Vector2f(15, 4), {OpString("prof.dialog.1"), OpString("prof.dialog.2"), OpString("prof.dialog.3")}, Events::EventTrigger::PRESS, Events::MoveStyle::NO_MOVE));
+            mapLaboratory->addEvent(new Events::TalkingCharaEvent("kiwai", sf::Vector2f(15, 4), {OpString("prof.dialog.1"), OpString("prof.dialog.2"), OpString("prof.dialog.3")}, Side::TO_DOWN));
 
             Map *mapRivalsHouse = maps.emplace("Rival's house", new Map(Maps::rivalhomeLayer1, Maps::rivalhomeLayer2, Maps::rivalhomeLayer3, 16, 16, "Fauxbourg")).first->second;
             mapRivalsHouse->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 15), sf::Vector2i(36, 17), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
@@ -469,8 +471,7 @@ _______________________________________________________________
 
             //Route 14 loading
             Map *mapRoute14 = maps.emplace("Route 14", new Map(Maps::route14Layer1, Maps::route14Layer2, Maps::route14Layer3, 90, 57, "Route14")).first->second;
-            mapRoute14->addEvent(new Events::TalkingCharaEvent("sk", sf::Vector2f(15, 30), {OpString("rt14.sk.1"), OpString("rt14.sk.2"), OpString("rt14.sk.3")},                  
-            Events::EventTrigger::PRESS, Events::MoveStyle::NO_MOVE));
+            mapRoute14->addEvent(new Events::TalkingCharaEvent("sk", sf::Vector2f(15, 30), {OpString("rt14.sk.1"), OpString("rt14.sk.2"), OpString("rt14.sk.3")}, Side::TO_LEFT));
             //MysteriouCity loading
             maps.emplace("MysteriouCity", new Map(Maps::myciLayer1, Maps::myciLayer2, Maps::myciLayer3, 35, 35, "Ms"));
             //OpMon Center loading

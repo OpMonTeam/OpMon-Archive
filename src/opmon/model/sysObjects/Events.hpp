@@ -190,7 +190,7 @@ namespace OpMon {
                 int frames = 0;
 
               public:
-                CharacterEvent(std::string texturesKey, sf::Vector2f const &position, MoveStyle moveStyle = MoveStyle::NO_MOVE, EventTrigger eventTrigger = EventTrigger::PRESS, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int sides = SIDE_ALL);
+	      CharacterEvent(std::string texturesKey, sf::Vector2f const &position, Side posDir = Side::TO_UP, MoveStyle moveStyle = MoveStyle::NO_MOVE, EventTrigger eventTrigger = EventTrigger::PRESS, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int sides = SIDE_ALL);
                 virtual void update(Model::Player &player, View::Overworld &overworld);
                 virtual void action(Model::Player &, View::Overworld &){};
                 void setPredefinedMove(std::vector<Side> movement);
@@ -203,7 +203,7 @@ namespace OpMon {
                 bool talking = false;
 
               public:
-                TalkingCharaEvent(std::string texturesKey, sf::Vector2f const &position, std::vector<Utils::OpString> const &dialogKeys, EventTrigger eventTrigger = EventTrigger::PRESS, MoveStyle moveStyle = MoveStyle::NO_MOVE, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int side = SIDE_ALL);
+                TalkingCharaEvent(std::string texturesKey, sf::Vector2f const &position, std::vector<Utils::OpString> const &dialogKeys, Side posDir = Side::TO_UP, EventTrigger eventTrigger = EventTrigger::PRESS, MoveStyle moveStyle = MoveStyle::NO_MOVE, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int side = SIDE_ALL);
 
               public:
                 virtual void update(Model::Player &player, View::Overworld &overworld);
