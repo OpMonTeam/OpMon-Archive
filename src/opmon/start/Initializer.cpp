@@ -369,6 +369,7 @@ _______________________________________________________________
             ResourceLoader::loadTextureArray(charaTextures["kiwai"], "sprites/chara/prof/prof%d.png", 12);
             ResourceLoader::loadTextureArray(charaTextures["playermom"], "sprites/chara/mom/mom%d.png", 12);
             ResourceLoader::loadTextureArray(charaTextures["sk"], "sprites/chara/rival/sk%d.png", 12);
+            ResourceLoader::loadTextureArray(charaTextures["sk"], "sprites/chara/inferm/inferm%d.png", 12);
 
             initEnumsEvents();
         }
@@ -473,9 +474,10 @@ _______________________________________________________________
             Map *mapRoute14 = maps.emplace("Route 14", new Map(Maps::route14Layer1, Maps::route14Layer2, Maps::route14Layer3, 90, 57, "Route14")).first->second;
             mapRoute14->addEvent(new Events::TalkingCharaEvent("sk", sf::Vector2f(15, 30), {OpString("rt14.sk.1"), OpString("rt14.sk.2"), OpString("rt14.sk.3")}, Side::TO_LEFT));
             //MysteriouCity loading
-            maps.emplace("MysteriouCity", new Map(Maps::myciLayer1, Maps::myciLayer2, Maps::myciLayer3, 35, 35, "Ms"));
+            maps.emplace("MysteriouCity", new Map(Maps::myciLayer1, Maps::myciLayer2, Maps::myciLayer3, 35, 35, "Ms")).first->second;
             //OpMon Center loading
-            maps.emplace("OpCenter", new Map(Maps::opcenterLayer1, Maps::opcenterLayer2, Maps::opcenterLayer3, 18, 18, "OpCenter"));
+            maps.emplace("OpCenter", new Map(Maps::opcenterLayer1, Maps::opcenterLayer2, Maps::opcenterLayer3, 18, 18, "OpCenter")).first->second;
+            mapPlayersHome->addEvent(new Events::TalkingCharaEvent("inferm", sf::Vector2f(9, 9), {OpString("inferm.dialog.1"), OpString("inferm.dialog.2"), OpString("inferm.dialog.3")}, Side::TO_DOWN));
 
         }
 
