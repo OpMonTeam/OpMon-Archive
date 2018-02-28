@@ -431,6 +431,10 @@ _______________________________________________________________
             mapFauxbourgEuvi->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(27, 16), sf::Vector2i(8, 15), "Player's home"));
             mapFauxbourgEuvi->addEvent(new Events::DoorEvent(Events::DoorType::NORMAL, sf::Vector2f(35, 16), sf::Vector2i(9, 15), "Rival's house"));
             mapFauxbourgEuvi->addEvent(new Events::DoorEvent(Events::DoorType::SHOP, sf::Vector2f(27, 28), sf::Vector2i(16, 15), "Laboratory"));
+            mapFauxbourgEuvi->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(39, 17), sf::Vector2i(8, 38), "Route 14", Side::TO_RIGHT, SIDE_RIGHT));
+            mapFauxbourgEuvi->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(39, 18), sf::Vector2i(8, 39), "Route 14", Side::TO_RIGHT, SIDE_RIGHT));
+            mapFauxbourgEuvi->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(39, 19), sf::Vector2i(8, 40), "Route 14", Side::TO_RIGHT, SIDE_RIGHT));
+            mapFauxbourgEuvi->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(39, 20), sf::Vector2i(8, 41), "Route 14", Side::TO_RIGHT, SIDE_RIGHT));
             /*Character 1*/
             std::vector<Side> pathChara1;
             for(int i = 0; i < 10; i++)
@@ -474,6 +478,10 @@ _______________________________________________________________
             //Route 14 loading
             Map *mapRoute14 = maps.emplace("Route 14", new Map(Maps::route14Layer1, Maps::route14Layer2, Maps::route14Layer3, 90, 57, "Route14")).first->second;
             mapRoute14->addEvent(new Events::TalkingCharaEvent("sk", sf::Vector2f(15, 30), {OpString("rt14.sk.1"), OpString("rt14.sk.2"), OpString("rt14.sk.3")}, Side::TO_LEFT));
+            mapRoute14->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 38), sf::Vector2i(39, 17), "Fauxbourg Euvi", Side::TO_LEFT, SIDE_LEFT));
+            mapRoute14->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 39), sf::Vector2i(39, 18), "Fauxbourg Euvi", Side::TO_LEFT, SIDE_LEFT));
+            mapRoute14->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 40), sf::Vector2i(39, 19), "Fauxbourg Euvi", Side::TO_LEFT, SIDE_LEFT));
+            mapRoute14->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 41), sf::Vector2i(39, 20), "Fauxbourg Euvi", Side::TO_LEFT, SIDE_LEFT));
             //MysteriouCity loading
             maps.emplace("MysteriouCity", new Map(Maps::myciLayer1, Maps::myciLayer2, Maps::myciLayer3, 35, 35, "Ms")).first->second;
             //OpMon Center loading
