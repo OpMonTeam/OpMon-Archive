@@ -1,9 +1,12 @@
+# OpMon english translation
 key.void= 
 key.load.txt=Loading...
+
 key.title.1=New Game
 key.title.2=Load Game
 key.title.3=Options
 key.title.4=Quit
+
 key.options.retour=Back
 key.options.title=Options
 key.options.ecran=Fullscreen
@@ -22,10 +25,12 @@ key.options.credit.8=Contributors : imZERKKA, Mat, Jseutter, Stelyus, Ezaron, rj
 key.options.credit.81=Rixem, Jo, Imperator Dei, Léo, LinkyFR, Bircoum
 key.options.credit.9=                   v0.15dev
 key.options.cred.title=Credits
+
 key.nameEntry.top=What is your character's name?
 key.nameEntry.med=Enter a name
 key.nameEntry.indic.1=Press Enter when you
 key.nameEntry.indic.2=have finished
+
 key.prof.dialog.start.1=Hello and welcome to Regimys
 key.prof.dialog.start.2=I hope you are fine!
 key.prof.dialog.start.3= 
@@ -53,28 +58,39 @@ key.prof.dialog.start.24=Have you already been here?
 key.prof.dialog.start.25=Well, I suppose that I will
 key.prof.dialog.start.26=let you discover it by yourself.
 key.prof.dialog.start.27=See you soon!
+
 key.fedesc.1=Euvi-Town
 key.fedesc.2=This little town is calm
 key.fedesc.3=and relaxing.
+
 key.ppHouse=~'s house.
+
 key.rivalHouse=Skullk's house.
+
 key.labo=Professor Kiwaï's laboratory.
+
 key.weirdsign.1=Please do not get close
 key.weirdsign.2=4th wall under reconstruction.
 key.kid=I like shorts!
+
 key.prof.dialog.1=Hi ! Your trip went well?
 key.prof.dialog.2=Shulk is currently outdoor, sorry!
 key.prof.dialog.3=Come back for the next update !
+
 key.pcRunLinux=This computer runs on Linux !
+
 key.playerhome.tv.1=We can see a reality show
 key.playerhome.tv.2=with OpMons, but they don't
 key.playerhome.tv.3=look very happy ...
+
 key.playermom.dialog.1=Are you alright darling?
 key.playermom.dialog.2=...
-key.playermom.dialog.3=You don't seem to be well
+key.playermom.dialog.3=You don't seem to be okay.
+
 key.rt14.sk.1=Who are you !
 key.rt14.sk.2=You should not
 key.rt14.sk.3=be here...
+
 key.fe.fisherman.1=Fisherman : Oh ! You surprised me !
 key.fe.fisherman.2=I love coming here to rest
 key.fe.fisherman.3=Everything is calm and simple
@@ -84,4 +100,5 @@ key.fe.fisherman.6=in the area !
 key.fe.fisherman.7=...
 key.fe.fisherman.8=Wait, I've never seen you here ? 
 key.fe.fisherman.9=You are new ?
+
 end

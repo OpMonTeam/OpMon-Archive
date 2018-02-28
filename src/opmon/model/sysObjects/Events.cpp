@@ -92,7 +92,7 @@ UNS
               , consumeItem(consumeItem) {
             }
 
-            CharacterEvent::CharacterEvent(std::string texturesKey, sf::Vector2f const &position, MoveStyle moveStyle,
+            CharacterEvent::CharacterEvent(std::string texturesKey, sf::Vector2f const &position, Side posDir, MoveStyle moveStyle,
                                            EventTrigger eventTrigger, std::vector<Side> predefinedPath, bool passable,
                                            int sides)
               : Event(Data::Ui::charaTextures[texturesKey], eventTrigger, position, sides, passable)
@@ -101,14 +101,15 @@ UNS
                 sprite->setOrigin(16, 16);
                 this->position += sf::Vector2f(16, 0);
                 setPredefinedMove(predefinedPath);
+		mapPos.setDir(posDir);
             }
 
             TalkingCharaEvent::TalkingCharaEvent(std::string texturesKey, sf::Vector2f const &position,
-                                                 std::vector<Utils::OpString> const &dialogKeys, EventTrigger eventTrigger,
+                                                 std::vector<Utils::OpString> const &dialogKeys, Side posDir, EventTrigger eventTrigger,
                                                  MoveStyle moveStyle, std::vector<Side> predefinedPath, bool passable,
                                                  int sides)
               : Event(Data::Ui::charaTextures[texturesKey], eventTrigger, position, sides, passable)
-              , CharacterEvent(texturesKey, position, moveStyle, eventTrigger, predefinedPath, passable, sides)
+              , CharacterEvent(texturesKey, position, posDir, moveStyle, eventTrigger, predefinedPath, passable, sides)
               , TalkingEvent(Data::Ui::charaTextures[texturesKey], position, dialogKeys, sides, eventTrigger, passable) {
             }
 

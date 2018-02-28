@@ -1,9 +1,12 @@
+# OpMon french translation
 key.void= 
 key.load.txt=Chargement...
+
 key.title.1=Nouvelle partie
 key.title.2=Charger une partie
 key.title.3=Options
 key.title.4=Quitter
+
 key.options.retour=Retour
 key.options.title=Options
 key.options.ecran=Plein écran
@@ -19,14 +22,17 @@ key.options.credit.7=Aerzia, BAKfr, gberthou
 key.options.credit.8=Contributeurs : imZERKKA, Mat, Jseutter, Stelyus, Ezaron, rjphares
 key.options.credit.81=Rixem, Jo, Imperator Dei, Léo, LinkyFR, Bircoum
 key.options.credit.9=                   v0.15dev
+
 key.options.vol=Contrôles
 key.options.control=Crédits
 key.options.lang.title=Langues
 key.options.cred.title=Crédits
+
 key.nameEntry.top=Quel est son nom ?
 key.nameEntry.med=Entre un nom
 key.nameEntry.indic.1=Appuie sur Entrée lorsque
 key.nameEntry.indic.2=tu as terminé
+
 key.prof.dialog.start.1=Bonjour et bienvenue dans la région 
 key.prof.dialog.start.2=de Regimys. J'imagine que le voyage
 key.prof.dialog.start.3=s'est bien passé !
@@ -54,36 +60,48 @@ key.prof.dialog.start.24=quelque chose non?
 key.prof.dialog.start.25=Bon alors je te laisse découvrir tout
 key.prof.dialog.start.26=cela par toi même...
 key.prof.dialog.start.27=A bientôt !
+
 key.fedesc.1=Fauxbourg Euvi
 key.fedesc.2=Ce petit village est calme et relaxant.
-key.fedesc.3= 
+key.fedesc.3=
+
 key.ppHouse=Maison de ~.
+
 key.rivalHouse=Maison de Skullk.
+
 key.labo=Laboratoire du professeur Kiwaï.
+
 key.weirdsign.1=Ne pas toucher.
 key.weirdsign.2=4ème mur en reconstruction.
+
 key.kid=J'aime les shorts!
+
 key.prof.dialog.1=Alors le voyage s'est bien passé ?
 key.prof.dialog.2=Shulk est parti se promener
 key.prof.dialog.3=Reviens à la prochaine mise à jour !
+
 key.pcRunLinux=Ce PC tourne sous GNU/Linux !
+
 key.playerhome.tv.1=Il y a une émission de télérealité
 key.playerhome.tv.2=avec des OpMons mais ils n'ont pas
 key.playerhome.tv.3=l'air très heureux...
+
 key.playermom.dialog.1=Tu vas bien mon cheri ?
 key.playermom.dialog.2=...
 key.playermom.dialog.3=Ça n'a pas l'air d'aller
+
 key.rt14.sk.1=Qui es-tu !
 key.rt14.sk.2=Tu ne devrais pas
 key.rt14.sk.3=être ici...
+
 key.fe.fisherman.1=Pécheur : Oh ! Tu m'as surpris !
-key.fe.fisherman.2=J'adore venir ici pour me
-key.fe.fisherman.3=reposer, tout est calme
+key.fe.fisherman.2=J'adore venir ici pour me reposer,
+key.fe.fisherman.3=tout est calme...
 key.fe.fisherman.4=tout est simple ...
-key.fe.fisherman.5=Même si je l'avoue,
-key.fe.fisherman.6=il n'y a pas beaucoup
-key.fe.fisherman.7=de poissons dans les parages !
-key.fe.fisherman.8=... Mais je ne t'ai
-key.fe.fisherman.9=jamais vu toi ? Tu es nouveau ?
+key.fe.fisherman.5=Même si je l'avoue, il n'y a pas
+key.fe.fisherman.6=beaucoup de poissons par ici.
+key.fe.fisherman.7=...
+key.fe.fisherman.8=Mais je ne t'ai jamais vu toi ? 
+key.fe.fisherman.9=Tu es nouveau ?
 
 end

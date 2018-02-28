@@ -1,9 +1,12 @@
+# OpMon spanish translation
 key.void= 
 key.load.txt=Cargando...
+
 key.title.1=Nuevo partido
 key.title.2=Cargar una partida
 key.title.3=Parámetros 
 key.title.4=Salir
+
 key.options.retour=Volver
 key.options.title=Parámetros 
 key.options.ecran=Plena pantalla 
@@ -23,10 +26,12 @@ key.options.vol=Controles
 key.options.control=Creditos
 key.options.lang.title=Idiomas
 key.options.cred.title=Creditos
+
 key.nameEntry.top=Cual es su nombre
 key.nameEntry.med=Escribe un nombre
 key.nameEntry.indic.1=Pulse Enter cuando
 key.nameEntry.indic.2=terminaste
+
 key.prof.dialog.start.1=Buenos días y bienvenidos 
 key.prof.dialog.start.2=de Regimys.¡Me imagino que haz echo
 key.prof.dialog.start.3=un buen viaje!
@@ -54,35 +59,48 @@ key.prof.dialog.start.24=algo no?
 key.prof.dialog.start.25=Buenos entonces te dejo descubrir 
 key.prof.dialog.start.26=esto por tí mismo...
 key.prof.dialog.start.27=¡Hasta luego!
+
 key.fedesc.1=Fauxbourg Euvi
 key.fesesc.2=Es un pueblito tranquilo 
-key.fedesc.3= 
+key.fedesc.3=
+
 key.ppHouse=Casa de ~.
+
 key.rivalHouse=Casa de Skullk.
+
 key.labo=Laboratorio del profesor Kiwaï.
+
 key.weirdsign.1=Ne tocar.
 key.weirdsign.2=Cuarta pare un reconstrucción.
+
 key.kid=Me gustan los shorts!
+
 key.prof.dialog.1=¿Haz echo buen viaje?
 key.prof.dialog.2=Shulk se fue à pasiar
 key.prof.dialog.3=¡Vuelve à la próxima puesta al día!
+
 key.pcRunLinux=¡Esta PC se ejecuta en GNU/Linux!
+
 key.playerhome.tv.1=We can see a reality show
 key.playerhome.tv.2=with OpMons, but they don't
 key.playerhome.tv.3=look very happy ...
+
 key.playermom.dialog.1=Como esta ?
 key.playermom.dialog.2=...
 key.playermom.dialog.3=Esta bien ?
+
 key.rt14.sk.1=Who are you !
 key.rt14.sk.2=You should not
 key.rt14.sk.3=be here...
+
 key.fe.fisherman.1=Fisherman : Oh ! You surprised me !
 key.fe.fisherman.2=I love coming here to rest
 key.fe.fisherman.3=Everything is calm and simple
-key.fe.fisherman.4=Although it is true that
-key.fe.fisherman.5=there are not many fish
-key.fe.fisherman.6=in the area !
+key.fe.fisherman.4=Although it is true that there are
+key.fe.fisherman.5=not many fish in the area !
+key.fe.fisherman.6= 
 key.fe.fisherman.7=...
-key.fe.fisherman.8=Wait, I've never seen you here ? 
-key.fe.fisherman.9=You are new ?
+key.fe.fisherman.8=Wait, I've never seen you here.
+key.fe.fisherman.9=Are you new ?
+
 end
