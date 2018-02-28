@@ -319,7 +319,7 @@ _______________________________________________________________
             View::jukebox.addMusic("Start", "audio/music/intro.ogg");
             View::jukebox.addMusic("Fauxbourg", "audio/music/faubourgeuvi.ogg");
             View::jukebox.addMusic("Route 14", "audio/music/route14.ogg");
-            View::jukebox.addMusic("OpCenter", "audio/music/opcenter.ogg");
+            //View::jukebox.addMusic("OpCenter", "audio/music/opcenter.ogg");
             View::jukebox.addMusic("Ms", "audio/music/mysterioucity.ogg");
         }
 
@@ -370,7 +370,7 @@ _______________________________________________________________
             ResourceLoader::loadTextureArray(charaTextures["kiwai"], "sprites/chara/prof/prof%d.png", 12);
             ResourceLoader::loadTextureArray(charaTextures["playermom"], "sprites/chara/mom/mom%d.png", 12);
             ResourceLoader::loadTextureArray(charaTextures["sk"], "sprites/chara/rival/sk%d.png", 12);
-            ResourceLoader::loadTextureArray(charaTextures["sk"], "sprites/chara/inferm/inferm%d.png", 12);
+            ResourceLoader::loadTextureArray(charaTextures["inferm"], "sprites/chara/inferm/inferm%d.png", 12);
 
             initEnumsEvents();
         }
@@ -477,8 +477,8 @@ _______________________________________________________________
             //MysteriouCity loading
             maps.emplace("MysteriouCity", new Map(Maps::myciLayer1, Maps::myciLayer2, Maps::myciLayer3, 35, 35, "Ms")).first->second;
             //OpMon Center loading
-            Map *mapOpCenter = maps.emplace("OpCenter", new Map(Maps::opcenterLayer1, Maps::opcenterLayer2, Maps::opcenterLayer3, 18, 18, "OpCenter")).first->second;
-            mapOpCenter->addEvent(new Events::TalkingCharaEvent("inferm", sf::Vector2f(9, 9), {OpString("inferm.dialog.1"), OpString("inferm.dialog.2"), OpString("inferm.dialog.3")}, Side::TO_DOWN));
+            Map *mapOpCenter = maps.emplace("OpCenter", new Map(Maps::opcenterLayer1, Maps::opcenterLayer2, Maps::opcenterLayer3, 18, 18, "Start")).first->second;
+            mapOpCenter->addEvent(new Events::TalkingCharaEvent("inferm", sf::Vector2f(9, 11), {OpString("inferm.dialog.1"), OpString("inferm.dialog.2"), OpString("inferm.dialog.3")}, Side::TO_DOWN));
 
         }
 
