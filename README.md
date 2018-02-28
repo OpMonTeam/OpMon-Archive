@@ -28,7 +28,7 @@ make package        # generate both .deb package and .tar.gz package
 If you want to edit the data files' location, edit the macros containing the resources, log and saves path in `src/opmon/start/main.hpp`.<br/>
 If you want to play to the game quickly, use build-and-run.sh. The game will be built in bin/Release, and the data will be pasted in this repertory. The game will launch after building.<br/>
 If you don't use build-and-run.sh, don't forget to copy the data folder in the game's folder of in the path you have set.
-
+If you want to compile OPMon from A to Z, it's [here](https://github.com/cyrioncentori/OpMon/wiki/Compilation):
 ### Contact Us
 * jlppcprog@ntymail.com for bugs, lags or about the code
 * evandib@gmail.com for sprites, the graphics, design or graphics bugs
@@ -102,7 +102,7 @@ make package        # génère deux paquets: un fichier générique .tar.gz et u
 Vous pouvez aussi utiliser le build-and-run.sh pour compiler et jouer au jeu rapidement. Le jeu se trouvera alors dans le dossier bin/Release, avec le dossier data copié dedans. Il se lancera dès la fin de la compilation.<br/>
 Si vous voulez modifier l'emplacement des dossiers, vous pouvez aller dans `src/opmon/start/main.hpp` et modifier les macros correspondantes.<br/>
 Si vous n'utilisez pas le build-and-run.sh, n'oubliez pas de copier le dossier data dans le dossier du jeu ou à l'emplacement que vous avez configuré!
-
+Si vous voulez compiler de A à Z OpMon c'est [ici](https://github.com/cyrioncentori/OpMon/wiki/Compilation)(en anglais)
 ## Changelog des versions
 [Voir le changelog de toutes les versions du jeu](http://github.com/cyrioncentori/OpMon/wiki/Releases)
 <br/>
