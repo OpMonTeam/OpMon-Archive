@@ -104,4 +104,8 @@ key.fe.fisherman.7=...
 key.fe.fisherman.8=Mais je ne t'ai jamais vu toi ? 
 key.fe.fisherman.9=Tu es nouveau ?
 
+key.inferm.dialog.1=Bonjour !
+key.inferm.dialog.2=Voulez-vous soigner vos OpMons ?
+key.inferm.dialog.3=... Mais ? vous en n'avez pas.
+
 end

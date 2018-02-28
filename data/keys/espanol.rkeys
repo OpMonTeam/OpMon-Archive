@@ -103,4 +103,8 @@ key.fe.fisherman.7=...
 key.fe.fisherman.8=Wait, I've never seen you here.
 key.fe.fisherman.9=Are you new ?
 
+key.inferm.dialog.1=Welcome !
+key.inferm.dialog.1=Do you want to heal your OpMons ?
+key.inferm.dialog.1=... But ? You don't have OpMons.
+
 end
