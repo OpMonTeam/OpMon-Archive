@@ -44,8 +44,11 @@ namespace OpMon{
       oldTypes[1][0] = def->getType1();
       oldTypes[1][1] = def->getType2();
 
-      oldSpecies[0] = atk->getSpecies();
-      oldSpecies[1] = atk->getSpecies();
+      const Model::Species& atkSpecies = atk->getSpecies();
+      const Model::Species& defSpecies = def->getSpecies();
+      
+      oldSpecies[0] = &atkSpecies;
+      oldSpecies[1] = &defSpecies;
 
       oldAttacks[0] = atk->getAttacks();
       oldAttacks[1] = def->getAttacks();
@@ -61,9 +64,54 @@ namespace OpMon{
     }
     
     bool BattleCtrl::turn(){
+      bool atkDone = false;
+      bool defDone = false;
+
+      bool atkFirst = true;
+      if(atkTurn->type != View::TurnType::ATTACK){
+	//Actions
+	atkDone = true;
+      }
+      if(defTurn->type != View::TurnType::ATTACK){
+	//Actions
+	defDone = true;
+      }
+      if(defTurn->type == View::TurnType::ATTACK && atkTurn->type == View::TurnType::ATTACK){
+	atkFirst = ((atk->getStatSPE() > def->getStatSPE()) || (atkTurn->attackUsed->getPriority() > defTurn->attackUsed->getPriority()));
+      }else{
+	atkFirst = !atkDone;
+      }
+      
+      if(!atkDone || !defDone){
+	if(atkFirst){
+	  if(!atkDone){
+	    atkTurnFunc();
+	  }
+	  if(!defDone){
+	    defTurnFunc();
+	  }
+	}else{
+	  if(!defDone){
+	    defTurnFunc();
+	}
+	  if(!atkDone){
+	    atkTurnFunc();
+	  }
+	}
+      }
+      
+      
       
       return false;
       //Modify atkTurn and defTurn, and calculate the turn of each opmon
+    }
+
+    void BattleCtrl::atkTurnFunc(){
+      
+    }
+
+    void BattleCtrl::defTurnFunc(){
+      
     }
   }
 }

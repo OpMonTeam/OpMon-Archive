@@ -14,30 +14,29 @@ namespace OpMon{
     };
 
     /* Stay in Battle or go to BattleCtrl? */
-    class Turn{
-    public:
-      const Model::OpMon* opmon;
-      const Model::Attack* attackUsed;
-      const Model::Item* itemUsed;
-      const TurnType type;
-      const bool runSuccessful;
-      const Model::OpMon* newOpmon;
-      const int hpLost;
-
-      Turn(Model::OpMon* opmon, Model::Attack* attackUsed, int hpLost);
-      Turn(Model::OpMon* opmon, Model::Item* itemUsed);
-      Turn(Model::OpMon* opmon, bool runSuccessful);
-      Turn(Model::OpMon* opmon, Model::OpMon* newOpmon);
-      
-      
+    struct Turn{
+      Model::OpMon* opmon;
+      Model::Attack* attackUsed;
+      Model::Item* itemUsed;
+      TurnType type;
+      bool runSuccessful;
+      Model::OpMon* newOpmon;
+      int hpLost;
     };
+
+    void newTurn(Turn* toNew);
+    
+    typedef struct Turn Turn;
     
     class Battle {
     private:
       sf::Sprite atk;
       sf::Sprite def;
+
+      bool turnLaunched = false;
     public:
-      GameStatus operator()(Turn atk, Turn def);
+      GameStatus operator()(Turn atk, Turn def);//Sets turnLaunched to true
+      GameStatus operator()(Turn* atkTurn);
     };
 
   }
