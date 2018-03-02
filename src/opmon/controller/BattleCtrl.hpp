@@ -58,8 +58,7 @@ namespace OpMon{
       void initBattle(int opId, int opId2);
       View::Turn* turnIA(int level);
 
-      void atkTurnFunc();
-      void defTurnFunc();
+      bool canAttack(Model::OpMon* opmon, View::Turn* opTurn);
       
     public:
       BattleCtrl(Model::OpTeam* one, Model::OpTeam *two);

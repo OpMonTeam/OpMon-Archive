@@ -85,17 +85,25 @@ namespace OpMon{
       if(!atkDone || !defDone){
 	if(atkFirst){
 	  if(!atkDone){
-	    atkTurnFunc();
+	    if(canAttack(atk, atkTurn)){
+	      atkTurn->attackUsed->attack(*atk, *def);
+	    }
 	  }
 	  if(!defDone){
-	    defTurnFunc();
+	    if(canAttack(def, defTurn)){
+	      defTurn->attackUsed->attack(*def, *atk);
+	    }
 	  }
 	}else{
 	  if(!defDone){
-	    defTurnFunc();
-	}
+	    if(canAttack(def, defTurn)){
+	      defTurn->attackUsed->attack(*def, *atk);
+	    }
+	  }
 	  if(!atkDone){
-	    atkTurnFunc();
+	    if(canAttack(atk, atkTurn)){
+	      atkTurn->attackUsed->attack(*atk, *def);
+	    }
 	  }
 	}
       }
@@ -106,12 +114,8 @@ namespace OpMon{
       //Modify atkTurn and defTurn, and calculate the turn of each opmon
     }
 
-    void BattleCtrl::atkTurnFunc(){
-      
-    }
-
-    void BattleCtrl::defTurnFunc(){
-      
+    bool BattleCtrl::canAttack(Model::OpMon* opmon, View::Turn* opTurn){
+      //TODO
     }
   }
 }

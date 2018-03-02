@@ -5,6 +5,8 @@
 #include "../model/objects/item/Item.hpp"
 #include "../start/Core.hpp"
 #include <SFML/Graphics/Sprite.hpp>
+#include <SFML/System/String.hpp>
+#include <map>
 
 namespace OpMon{
   namespace View{
@@ -22,6 +24,9 @@ namespace OpMon{
       bool runSuccessful;
       Model::OpMon* newOpmon;
       int hpLost;
+      std::vector<sf::String> toPrintBefore;
+      std::vector<sf::String> toPrintAfter;
+      std::map<Model::Stats, int> increasedStats;
     };
 
     void newTurn(Turn* toNew);
