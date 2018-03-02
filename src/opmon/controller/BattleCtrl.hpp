@@ -29,7 +29,7 @@ namespace OpMon{
 
       int oldStats[2][5];
       Model::Type oldTypes[2][2];
-      Model::Speces oldSpecies[2];
+      const Model::Species* oldSpecies[2];
       std::vector<Model::Attack *> oldAttacks[2];
       
       int trainerOpCount = 0;
@@ -55,9 +55,11 @@ namespace OpMon{
       
 
       bool turn();
-      void initBattle();
+      void initBattle(int opId, int opId2);
       View::Turn* turnIA(int level);
 
+      void atkTurnFunc();
+      void defTurnFunc();
       
     public:
       BattleCtrl(Model::OpTeam* one, Model::OpTeam *two);

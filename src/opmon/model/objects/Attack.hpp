@@ -46,6 +46,9 @@ namespace OpMon {
             void setPPMax(int PPMax) {
                 this->ppMax = PPMax;
             }
+	  int getPriority(){
+	    return this->priority;
+	  }
 
           protected:
             std::string className;
