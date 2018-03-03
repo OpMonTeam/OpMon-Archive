@@ -48,6 +48,9 @@ namespace OpMon {
                             nope.play();
                             break;
                         case 4:
+                            nope.play();
+                            break;
+                        case 5:
                             push.play();
                             menu.setCurrentOption(View::OptionType::CREDITS);
                             return GameStatus::CONTINUE;

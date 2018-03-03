@@ -7,10 +7,6 @@ key.title.2=Charger une partie
 key.title.3=Options
 key.title.4=Quitter
 
-key.options.retour=Retour
-key.options.title=Options
-key.options.ecran=Plein écran
-key.options.ecran.2=Redémarrer pour activer le Plein Ecran
 key.options.lang=Langues
 key.options.credit.1=Fondateur et
 key.options.credit.2=programmeur
@@ -23,9 +19,12 @@ key.options.credit.8=Contributeurs : imZERKKA, Mat, Jseutter, Stelyus, Ezaron, r
 key.options.credit.81=Rixem, Jo, Imperator Dei, Léo, LinkyFR, Bircoum
 key.options.credit.9=                   v0.15dev
 
-key.options.vol=Contrôles
-key.options.control=Crédits
+key.options.retour=Retour
+key.options.title=Options
+key.options.ecran=Plein écran
 key.options.lang.title=Langues
+key.options.control=Crédits
+key.options.vol=Contrôles
 key.options.cred.title=Crédits
 
 key.nameEntry.top=Quel est son nom ?
