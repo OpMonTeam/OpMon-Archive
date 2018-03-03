@@ -39,18 +39,6 @@ namespace OpMon{
       /** Counters and triggers for the fight*/
       bool sameAtk = false;
       bool sameDef = false;
-      bool atkCanAttack = true;
-      bool defCanAttack = true;
-      int atkSleepCD = 0;
-      bool atkSleep = false;
-      int defSleepCD = 0;
-      bool defSleep = false;
-      int atkConfusedCD = 0;
-      bool atkConfued = false;
-      int defConfusedCD = 0;
-      bool defConfused;
-      int atkAttack = 0;
-      int defAttack = 0;
       bool captured = false;
       
 

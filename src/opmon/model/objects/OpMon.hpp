@@ -109,16 +109,19 @@ namespace OpMon {
 
             int tauxCapture;
 
+	  unsigned int confusedCD = 0;
+	  unsigned int sleepingCD = 0;
+	  
           public:
             /**Lets you know if a OPMon is an OPMon that is initialized with a default initializer*/
             bool falsif = true;
 
-            bool confus = false;
-            bool peur = false;
-            bool amour = false;
+            bool confused = false;
+            bool afraid = false;
+            bool inLove = false;
             bool vampigraine = false;
-            bool malediction = false;
-
+            bool malediction = false; 
+	  
             virtual ~OpMon();
 
             OpMon(const std::string &nickname, const Species &species, int level, const std::vector<Attack *> &attacks,
@@ -126,35 +129,55 @@ namespace OpMon {
 
             /**
          Merci d'utiliser ce constructeur dans le cadre du chargement et UNIQUEMENT dans ce cas, sinon cela pourrait
-         conduire a des bugs. Explication : Ce constructeur est concu pour marcher dans un shema bien particulier.
-         Si le shema est incorrect, cela génèrera des erreurs de segmentation ou des données corrompues.
+         conduire a des bugs. Explication : Ce constructeur est concu pour marcher dans un schema bien particulier.
+         Si le schema est incorrect, cela génèrera des erreurs de segmentation ou des données corrompues.
             */
             OpMon(std::ifstream &in);
 
+	  int getConfusedCD(){
+	    return confusedCD;
+	  }
+
+	  int getSleepingCD(){
+	    return sleepingCD;
+	  }
+
+	  void passCD(bool sleep);
+
+	  void goToSleep(){
+	    sleepingCD = Utils::rand(3);
+	    setStatus(Status::SLEEP);
+	  }
+
+	  void drinkTooMuch(){
+	    confused = true;
+	    confusedCD = Utils::rand(4);
+	  }
+	  
             /**Returns true if the OPMon is well captured*/
             bool captured(I_OpBox const &OpBox);
 
-            /**Permet de changer une stat, les possibilités d'entrées dans le paramètre stat sont "ATK" "DEF" "ATKSPE" "DEFSPE" "SPE" "PV"*/
+            /** Set the stat given*/
             void setStat(Stats stat, int newStat);
 
-            /**Methode appellée lors d'une montée de niveau*/
+            /**Method called when leveling up*/
             void levelUp();
 
             bool isHoldingItem() const {
                 return (held == nullptr);
             }
 
-            /**Methode appelée lors d'une victoire*/
+            /**Method called when the Opmon wins*/
             int win(OpMon const &vaincu);
 
-            /**Recalcule les stats*/
+            /**Recalculates the stats*/
             void calcStats();
 
-            /**Methode appelée lors de l'utilisation d'un item. Renvoie true si l'item est a supprimer*/
+            /**Methode called when an item is used. Returns true if the item must be deleted from the player's inventory*/
             bool itemUsed(Item *used);
 
-            Item *hold(Item *item); //Cette est un setteur, en gros.
-            /**Methode appelée lors d'un échange*/
+            Item *hold(Item *item);
+            /**Methode called during an exchange*/
             void traded();
 
             /**SPOILERSµµµ*/
