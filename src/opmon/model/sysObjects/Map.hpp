@@ -2,7 +2,7 @@
   Map.hpp
   Author : Jlppc
   File under the license GPL-3.0
-  http://opmon-game.ga
+  http://opmon.ga
   Contains the Map class
 */
 

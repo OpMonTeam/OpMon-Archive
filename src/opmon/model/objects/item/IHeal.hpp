@@ -2,7 +2,7 @@
 IHeal.hpp
 Author : Jlppc
 Fichier sous licence GPL-3.0
-http://opmon-game.ga
+http://opmon.ga
 Contains the I_Heal class definition
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_IHEAL_HPP_
