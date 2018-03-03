@@ -119,8 +119,8 @@ UNS
             txtOpt1.setPosition(120, 100);
             txtOpt2.setPosition(120, 170);
             txtOpt3.setPosition(120, 240);
-            txtOpt4.setPosition(120, 310);
-            txtOpt5.setPosition(120, 380);
+            txtOpt5.setPosition(120, 310);
+            txtOpt4.setPosition(120, 380);
 
             langEsp.setPosition(45, 170);
             langEng.setPosition(45, 100);
