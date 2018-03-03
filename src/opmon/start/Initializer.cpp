@@ -321,6 +321,7 @@ _______________________________________________________________
             View::jukebox.addMusic("Route 14", "audio/music/route14.ogg");
             //View::jukebox.addMusic("OpCenter", "audio/music/opcenter.ogg");
             View::jukebox.addMusic("Ms", "audio/music/mysterioucity.ogg");
+	    View::jukebox.addMusic("Labo", "audio/music/labo.ogg");
         }
 
         void initAtkLvls() {
@@ -371,7 +372,7 @@ _______________________________________________________________
             ResourceLoader::loadTextureArray(charaTextures["playermom"], "sprites/chara/mom/mom%d.png", 12);
             ResourceLoader::loadTextureArray(charaTextures["sk"], "sprites/chara/rival/sk%d.png", 12);
             ResourceLoader::loadTextureArray(charaTextures["inferm"], "sprites/chara/inferm/inferm%d.png", 12);
-            ResourceLoader::loadTextureArray(charaTextures["|_| |-| -|- |= |_| |\|"], "sprites/chara/beta/alphabeta/otheon%d.png", 12);
+            ResourceLoader::loadTextureArray(charaTextures["|_| -|- |-| |= |_| |\|"], "sprites/chara/beta/alphabeta/otheon%d.png", 12);
 
             initEnumsEvents();
         }
@@ -460,7 +461,7 @@ _______________________________________________________________
             mapPlayersHome->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(3, 8), phomE1, SIDE_UP));
             mapPlayersHome->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(2, 8), phomE1, SIDE_UP));
             mapPlayersHome->addEvent(new Events::TalkingCharaEvent("playermom", sf::Vector2f(9, 9), {OpString("playermom.dialog.1"), OpString("playermom.dialog.2"), OpString("playermom.dialog.3")}, Side::TO_DOWN));
-            Map *mapLaboratory = maps.emplace("Laboratory", new Map(Maps::laboLayer1, Maps::laboLayer2, Maps::laboLayer3, 32, 16, "Start")).first->second;
+            Map *mapLaboratory = maps.emplace("Laboratory", new Map(Maps::laboLayer1, Maps::laboLayer2, Maps::laboLayer3, 32, 16, "Labo")).first->second;
             mapLaboratory->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(15, 15), sf::Vector2i(28, 29), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
 
             mapLaboratory->addEvent(new Events::TalkingCharaEvent("kiwai", sf::Vector2f(15, 4), {OpString("prof.dialog.1"), OpString("prof.dialog.2"), OpString("prof.dialog.3")}, Side::TO_DOWN));
