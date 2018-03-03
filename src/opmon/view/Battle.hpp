@@ -24,9 +24,10 @@ namespace OpMon{
       bool runSuccessful;
       Model::OpMon* newOpmon;
       int hpLost;
-      std::vector<sf::String> toPrintBefore;
-      std::vector<sf::String> toPrintAfter;
+      std::vector<Utils::OpString> toPrintBefore;
+      std::vector<Utils::OpString> toPrintAfter;
       std::map<Model::Stats, int> increasedStats;
+      bool confusedHurt;
     };
 
     void newTurn(Turn* toNew);

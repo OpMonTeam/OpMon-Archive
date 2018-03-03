@@ -114,8 +114,55 @@ namespace OpMon{
       //Modify atkTurn and defTurn, and calculate the turn of each opmon
     }
 
+    //TODO : add messages to opTurn->toPrintBefore
     bool BattleCtrl::canAttack(Model::OpMon* opmon, View::Turn* opTurn){
-      //TODO
+      bool canAttack = true;
+      if(opmon->getStatus() == Model::Status::GEL){
+	if(Utils::rand(5) == 2){
+	  //TODO message
+	  opmon->setStatus(Model::Status::NOTHING);
+	}else{
+	  //TODO message
+	  canAttack = false;
+	}
+      }else if(opmon->getStatus() == Model::Status::SLEEP){
+	if(opmon->getSleepingCD() <= 0){
+	  //TODO message
+	  opmon->setStatus(Status::NOTHING);
+	}else{
+	  //TODO message
+	  canAttack = false;
+	  opmon->passCD(true);
+	}
+      }else if(opmon->getStatus() == Model::Status::PARALYSED){
+	if(Utils::rand(4) == 2){
+	  //TODO message
+	  canAttack = false;
+	}else{
+	  //TODO message
+	}
+      }
+      if(opmon->confused){
+	if(opmon->getConfusedCD() <= 0){
+	  opmon->confused = false;
+	  //TODO message
+	}else{
+	  opmon->passCD(false);
+	  if(Utils::rand(2) == 1){
+	    //TODO message
+	    opmon->attacked(opmon->getStatPV() / 8);
+	    opTurn->confusedHurt = true;
+	  }else{
+	    //TODO message
+	  }
+	}
+      }
+      if(opmon->afraid){
+	//TODO message
+	opmon->afraid = false;
+	canAttack = false;
+      }
+      return canAttack;
     }
   }
 }

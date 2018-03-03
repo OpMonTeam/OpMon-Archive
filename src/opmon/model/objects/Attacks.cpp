@@ -204,7 +204,7 @@ namespace OpMon {
 
             int ChocMental::effectAfter(OpMon &atk, OpMon &def) {
                 if(Utils::Misc::randU(10) == 2) {
-                    def.confus = true;
+                    def.confused = true;
                 }
                 return 0;
             }
@@ -309,12 +309,12 @@ namespace OpMon {
                         part = 2;
                     } else {
                         part = 0;
-                        atk.confus = true;
+                        atk.confused = true;
                     }
                 } else {
                     pp++;
                     part = 0;
-                    atk.confus = true;
+                    atk.confused = true;
                 }
                 return 0;
             }

@@ -99,7 +99,7 @@ ________________________________________________
       Data::OpMons::listOp.emplace(52, Species(45, 35, 40, 40, 90, 40, "Chagnon", Type::NORMAL, Type::PSY, 0, 28, new E_Level(53, 28),  std::vector<Stats>{Stats::HP}, 0.4, 4.2, "Les Chagnons adorent dormir près des arbres, en esperant qu'un Verpomme tombe pour pouvoir le manger", 69, 1000000, 10, 52));
 _______________________________________________
       /*Data::OpMons::listOp.emplace(53, Species(70, 60, 65, 65, 115, 65, "Persian", Type::NORMAL, Type::NOTHING, 0, -1, new E_Nope(), Model::Data::OpMons::evs[53], 1, 32, "Un Pokémon très snob. La taille du joyau qui orne son front alimente bien des débats parmi ses fans.", 148, 1000000, 90, 53));
-	Data::OpMons::listOp.emplace(54, Species(52, 48, 65, 50, 55, 50, "Psykokwak", Type::EAU, Type::NOTHING, 0, 33, new E_Level(55, 33), Model::Data::OpMons::evs[54], 0., 19.6, "Il ne se souvient pas qu'il a des pouvoirs psy. C'est pour cela qu'il a l'air si confus.", 80, 1000000, 190, 54));
+	Data::OpMons::listOp.emplace(54, Species(52, 48, 65, 50, 55, 50, "Psykokwak", Type::EAU, Type::NOTHING, 0, 33, new E_Level(55, 33), Model::Data::OpMons::evs[54], 0., 19.6, "Il ne se souvient pas qu'il a des pouvoirs psy. C'est pour cela qu'il a l'air si confused.", 80, 1000000, 190, 54));
 	Data::OpMons::listOp.emplace(55, Species(82, 78, 95, 80, 85, 80, "Akwakwak", Type::EAU, Type::NOTHING, 0, -1, new E_Nope(), Model::Data::OpMons::evs[55], 1.7, 76.6, "Il apparaà®t dans les étendues d'eau au crépuscule. Si son front brille, il se sert de sa télékinésie.", 174, 1000000, 75, 55));
 
 _____________________________________________________
