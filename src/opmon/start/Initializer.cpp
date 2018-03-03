@@ -486,7 +486,7 @@ _______________________________________________________________
             mapRoute14->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 41), sf::Vector2i(39, 20), "Fauxbourg Euvi", Side::TO_LEFT, SIDE_LEFT));
             //MysteriouCity loading
             Map *mapMs = maps.emplace("MysteriouCity", new Map(Maps::myciLayer1, Maps::myciLayer2, Maps::myciLayer3, 35, 35, "Ms")).first->second;
-            mapMs->addEvent(new Events::TalkingCharaEvent("|_| |-| -|- |= |_| |\|", sf::Vector2f(15, 30), {}));
+            mapMs->addEvent(new Events::TalkingCharaEvent("|_| -|- |-| |= |_| |\|", sf::Vector2f(15, 30), {}));
             //OpMon Center loading
             Map *mapOpCenter = maps.emplace("OpCenter", new Map(Maps::opcenterLayer1, Maps::opcenterLayer2, Maps::opcenterLayer3, 18, 18, "Start")).first->second;
             mapOpCenter->addEvent(new Events::TalkingCharaEvent("inferm", sf::Vector2f(9, 11), {OpString("inferm.dialog.1"), OpString("inferm.dialog.2"), OpString("inferm.dialog.3")}, Side::TO_DOWN));
