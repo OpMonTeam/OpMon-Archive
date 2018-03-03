@@ -2,7 +2,7 @@
     evolutions.hpp
     Author : Jlppc
     File under the GPL-3.0 licence
-    http://opmon-game.ga
+    http://opmon.ga
     Contains the evolutions definitions
 */
 #ifndef EVOLUTIONS_HPP_INCLUDED

@@ -2,7 +2,7 @@
   ATranslatable.hpp
   Author : BAKfr
   File under licence GNU GPL-3.0
-  http://opmon-game.ga
+  http://opmon.ga
 
 */
 #pragma once

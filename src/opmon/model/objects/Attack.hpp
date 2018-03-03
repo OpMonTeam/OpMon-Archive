@@ -2,7 +2,7 @@
 Attack.hpp
 Author : Jlppc
 File under GPL-3.0 license
-http://opmon-game.ga
+http://opmon.ga
 Contains Attack class definition
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUE_HPP_

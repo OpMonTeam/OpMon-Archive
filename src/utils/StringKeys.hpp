@@ -2,7 +2,7 @@
 StringKeys.hpp
 Author : Jlppc
 File under GNU GPL 3.0 licence
-http://opmon-game.ga
+http://opmon.ga
 */
 #ifndef STRINGKEYS_HPP
 #define STRINGKEYS_HPP

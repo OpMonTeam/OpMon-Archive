@@ -2,7 +2,7 @@
   Dialog.hpp
   Author : BAKFR
   File under GNU GPL 3.0 licence
-  http://opmon-game.ga
+  http://opmon.ga
 */
 #ifndef OPMON_DIALOG_CPP_HPP
 #define OPMON_DIALOG_CPP_HPP
