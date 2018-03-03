@@ -2,7 +2,7 @@
 Nature.hpp
 Author : Jlppc
 File under  GPL-3.0 licence
-http://opmon-game.ga
+http://opmon.ga
 Define nature enumerations
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_ENUMS_CARACTERE_HPP_

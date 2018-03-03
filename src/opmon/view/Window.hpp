@@ -2,7 +2,7 @@
 Window.hpp
 Author : Jlppc
 File under the license GPL-3.0
-http://opmon-game.ga
+http://opmon.ga
 Contains Window namespace
 */
 

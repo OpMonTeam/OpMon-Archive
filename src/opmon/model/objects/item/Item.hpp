@@ -2,7 +2,7 @@
   Item.hpp
   Author : Jlppc
   File under the licence GPL-3.0
-  http://opmon-game.ga
+  http://opmon.ga
   Contains the definition of ItemType enumeration and Item class
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_ITEM_HPP_
