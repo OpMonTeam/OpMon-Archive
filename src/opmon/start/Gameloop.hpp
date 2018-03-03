@@ -2,7 +2,7 @@
   Gameloop.hpp
   Author : Jlppc
   File under licence GNU GPL-3.0
-  http://opmon-game.ga
+  http://opmon.ga
   Contains the main game loop
 */
 
