@@ -1,25 +1,29 @@
 ## Warning ! The musics are in ALPHA.
 
 # Credits :
-<ul>
-<li>Evolution Theme : Pokemon Evolution Theme remix, Game Freak property</li>
-<li>Many musics are in the license Creative Commons or GPL, and other musics come from  OpenGameArt.org, the list :</li>
-</ul>
+
+* Evolution Theme : Pokemon Evolution Theme remix, Game Freak property
+* Many musics are in the license Creative Commons or GPL, and other musics come from  OpenGameArt.org, the list : 
+(there are only original music for now)
+
 
 # Originals musics:
 Original music can be reused provided that you credit the author. They are licensed under Creative Commons Attribution Share Alike 4.0, which you can see in the LICENSE file of this folder.  
-<!--Shéma : nomdefichier.extention - Thème de X (Nom de la musique) : Composed by compositeur-->
-<ul>
-<li>Faubourgeuvi.ogg - Fauxbourg Euvi's theme (Startostalgic) : Composed by Cyrion</li>
-<li>regimys_theme.ogg - Regimys Theme (A Regimys) : Composed by Navet56</li>
-<li>regimys_theme-suspense.ogg - Regimys Theme 2 (A other Regimys) : Composed by Navet56</li>
-<li>intro2.ogg - Intro theme (Starting Blocks) : Composed by Navet56</li>
-<li>Astra.ogg - Astra Theme (Take a break) : Composed by Cyrion</li>
-<li>Team Mystare QG Theme.ogg et Team Mystare Fight Theme.ogg - Mystare HQ theme (Mysterious Place) et Mystare Fight (Mysterious People) : Composed by Navet56</li>
-<li>error.ogg - Error theme (It doesn't want to work) : Composed by Navet56</li>
-<li>legendarycave.ogg - Legendary cave theme (Legendary Confrontation) : Composed by Navet56</li>
-<li>grotte-01.ogg - Legendary cave theme (Legendary Confrontation) : Composed by Navet56</li>
-<li>OPMon Mysterioucity.ogg - Easter egg theme : Composed by Navet56</li>
-<li>FightThemeRival.ogg - Fight against the rival theme : Composed by Navet56</li>
-</ul>
+<!--Path : |filename|.extention - |Where the music is located| (|Music name|) : Composed by |creator|-->
+
+* faubourgeuvi.ogg - Fauxbourg Euvi's theme (Startostalgic) : Composed by Cyrion
+* regimys_theme.ogg - Regimys Theme (A Regimys) : Composed by Navet56
+* regimys_theme-suspense.ogg - Regimys Theme 2 (An other Regimys) : Composed by Navet56
+* intro.ogg - Intro theme (Starting Blocks) : Composed by Navet56
+* astra.ogg - Astra Theme (Take a break) : Composed by Cyrion
+* tm_hq_theme.ogg and tm_battle_theme.ogg - Mystare HQ theme (Mysterious Place) et Mystare Fight (Mysterious People) : Composed by Navet56
+* error.ogg - Error theme (It doesn't want to work) : Composed by Navet56
+* legendarycave.ogg - Legendary cave theme (Legendary Confrontation) : Composed by Navet56
+* cave-01.ogg - Cave theme (The adventure of the night) : Composed by Navet56
+* mscity_theme.ogg - Easter egg theme : Composed by Navet56
+* rival_battle_theme.ogg - (Fight against the rival): Composed by Navet56
+* route14.ogg - (May the exploration begin !) : Composed by Navet56
+* labo.ogg - Kiwaï Laboratory theme (Which one to choose ?) : Composed by Cyrion
+* battle.ogg - (The wild duel) : Composed by Navet56
+* arenabattle.ogg () : Composed by Navet56
 
