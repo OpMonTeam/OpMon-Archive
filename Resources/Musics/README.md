@@ -26,4 +26,7 @@ Original music can be reused provided that you credit the author. They are licen
 * labo.ogg - Kiwaï Laboratory theme (Which one to choose ?) : Composed by Cyrion
 * battle.ogg - (The wild duel) : Composed by Navet56
 * arenabattle.ogg () : Composed by Navet56
+* battle.ogg - () : Composed by Navet56
+* norie.ogg - Norie theme () : Composed by Cyrion 
+* trialbattle.ogg - Regimys trial theme (Towards the trophy of this city) : Composed by Navet56
 
