@@ -13,9 +13,10 @@ namespace OpMon{
       toNew->runSuccessful = false;
       toNew->newOpmon = nullptr;
       toNew->hpLost = 0;
-      toNew->toPrintBefore = std::vector<sf::String>(3);
-      toNew->toPrintAfter = std::vector<sf::String>(3);
+      toNew->toPrintBefore = std::vector<Utils::OpString>();
+      toNew->toPrintAfter = std::vector<Utils::OpString>();
       toNew->increasedStats = std::map<Model::Stats, int>();
+      toNew->confusedHurt = false;
     }
     
   }

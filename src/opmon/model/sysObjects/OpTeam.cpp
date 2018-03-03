@@ -11,7 +11,7 @@ namespace OpMon {
             for(int i = 0; i < nbreOfOp; i++) {
                 if(opteam[i] != nullptr) {
                     opteam[i]->heal(opteam[i]->getStatHP());
-                    opteam[i]->confus = false;
+                    opteam[i]->confused = false;
                     opteam[i]->setStatus(Status::NOTHING);
                 }
             }
