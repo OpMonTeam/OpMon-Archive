@@ -23,34 +23,36 @@ namespace OpMon {
             this->priority = priority;
         }
 
-        /* Return 1 : Inform to do the same attack at the next turn.
+      /* Return 1 : Inform to do the same attack at the next turn.
      * Return 2 : End the attack
+       Return -2 : Inform that the attack failed
+       Return -1 : Inform that the attack was ineffective against the target
      * In effectAfter : Return any number except 1 act like return 2.
      * If 1 is returned, it will do the same attack at the next turn.
      */
-        int Attack::attack(OpMon &atk, OpMon &def) {
+      int Attack::attack(OpMon &atk, OpMon &def, View::Turn& attackTurn) {
             pp--;
-            //Fail d'attaque
+            //Attack fail
             if((Utils::Misc::randU(100)) > (accuracy * (atk.getStatACC() / def.getStatEVA())) && neverFails == false) {
                 ifFails(atk, def);
                 return -2;
             }
             int effectBf = effectBefore(atk, def);
-            if(effectBf == 1 || effectBf == 2) { //Si renvoi spécial, arrêt de l'attaque.
+            if(effectBf == 1 || effectBf == 2) { //If special return, the attack ends.
                 return effectBf;
             }
-            //Fail de types
+            //If type unefficiency
             if(ArrayTypes::calcEfficacite(type, def.getType1(), def.getType2()) == 0 && (neverFails == false || status == false)) {
                 ifFails(atk, def);
                 return -1;
             }
-            if(!status) { //Attack de PV si ce n'est pas une attaque de status
+            if(!status) { //Check if it isn't a status attack to calculate the hp lost
                 hpLost = (((atk.getLevel() * 0.4 + 2) * (special ? atk.getStatATKSPE() : atk.getStatATK()) * power) / ((special ? def.getStatDEFSPE() : def.getStatDEF()) * 50) + 2);
                 if(type == atk.getType1() || type == atk.getType2()) {
                     hpLost = round(hpLost * 1.5);
                 }
                 float efficacite = (ArrayTypes::calcEfficacite(type, def.getType1(), def.getType2()));
-                //if(efficacite)//A utiliser pour les dialogues
+                //if(efficacite)//Set efficiency dialogs here
                 hpLost = round(hpLost * efficacite);
                 if(Utils::Misc::randU(criticalRate) == 1) {
                     hpLost = round(hpLost * 1.5);
