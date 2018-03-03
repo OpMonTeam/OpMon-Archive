@@ -14,7 +14,7 @@ Original music can be reused provided that you credit the author. They are licen
 * faubourgeuvi.ogg - Fauxbourg Euvi's theme (Startostalgic) : Composed by Cyrion
 * regimys_theme.ogg - Regimys Theme (A Regimys) : Composed by Navet56
 * regimys_theme-suspense.ogg - Regimys Theme 2 (An other Regimys) : Composed by Navet56
-* intro.ogg - Intro theme (Starting Blocks) : Composed by Navet56
+* intro.ogg - Intro theme (Starting Blocks) : Original (labo.ogg) by Navet56, cover by Cyrion
 * astra.ogg - Astra Theme (Take a break) : Composed by Cyrion
 * tm_hq_theme.ogg and tm_battle_theme.ogg - Mystare HQ theme (Mysterious Place) et Mystare Fight (Mysterious People) : Composed by Navet56
 * error.ogg - Error theme (It doesn't want to work) : Composed by Navet56
@@ -23,10 +23,11 @@ Original music can be reused provided that you credit the author. They are licen
 * mscity_theme.ogg - Easter egg theme : Composed by Navet56
 * rival_battle_theme.ogg - (Fight against the rival): Composed by Navet56
 * route14.ogg - (May the exploration begin !) : Composed by Navet56
-* labo.ogg - Kiwaï Laboratory theme (Which one to choose ?) : Composed by Cyrion
+* labo.ogg - Kiwaï Laboratory theme (Which one to choose ?) : Composed by Navet56
 * battle.ogg - (The wild duel) : Composed by Navet56
 * arenabattle.ogg () : Composed by Navet56
 * battle.ogg - () : Composed by Navet56
 * norie.ogg - Norie theme () : Composed by Cyrion 
 * trialbattle.ogg - Regimys trial theme (Towards the trophy of this city) : Composed by Navet56
+* Glanial.ogg (Unique snow) : Composed by Cyrion
 
