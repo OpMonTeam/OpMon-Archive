@@ -110,7 +110,7 @@ if (UNIX)
 
     # TODO: put resource files in the correct folder
     # Note: trailing slash "bin/" is important.
-    install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/data/ DESTINATION local/share/OpMon)
+    install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/data/ DESTINATION share/OpMon)
 else()
     install(TARGETS ${EXECUTABLE_NAME} DESTINATION .)
     install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/data DESTINATION .)
