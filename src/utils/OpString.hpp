@@ -9,7 +9,7 @@ http://opmon-game.ga
 #include <SFML/System/String.hpp>
 #include <cstdarg>
 #include <iostream>
-#include <vector>
+#include <list>
 
 namespace Utils {
 
@@ -22,8 +22,9 @@ namespace Utils {
         std::vector<sf::String *> objects;
 
       public:
-        OpString(std::string key, ...); //To change for a vector
+      OpString(std::string key, std::list<sf::String*> objects); //To change for a vector
         OpString();
+      ~OpString();
 
         sf::String getObject(int const &index) {
             return *(objects[index]);

@@ -117,48 +117,50 @@ namespace OpMon{
     //TODO : add messages to opTurn->toPrintBefore
     bool BattleCtrl::canAttack(Model::OpMon* opmon, View::Turn* opTurn){
       bool canAttack = true;
-      if(opmon->getStatus() == Model::Status::GEL){
+      if(opmon->getStatus() == Model::Status::FROZEN){
 	if(Utils::rand(5) == 2){
-	  //TODO message
+	  opTurn->toPrintBefore.push_back(OpString("battle.status.frozen.out", {opmon->getNickname()}));
 	  opmon->setStatus(Model::Status::NOTHING);
 	}else{
-	  //TODO message
+	  opTurn->toPrintBefore.push_back(OpString("battle.status.frozen.attack", {opmon->getNickname()}));
 	  canAttack = false;
 	}
       }else if(opmon->getStatus() == Model::Status::SLEEP){
 	if(opmon->getSleepingCD() <= 0){
-	  //TODO message
+	  opTurn->toPrintBefore.push_back(OpString("battle.status.sleep.out", {opmon->getNickname()}));
 	  opmon->setStatus(Status::NOTHING);
 	}else{
-	  //TODO message
+	  opTurn->toPrintBefore.push_back(OpString("battle.status.sleep.attack", {opmon->getNickname()}));
 	  canAttack = false;
 	  opmon->passCD(true);
 	}
       }else if(opmon->getStatus() == Model::Status::PARALYSED){
 	if(Utils::rand(4) == 2){
-	  //TODO message
+	  opTurn->toPrintBefore.push_back(OpString("battle.status.paralysed.attack.fail", {opmon->getNickname()}));
 	  canAttack = false;
 	}else{
-	  //TODO message
+	  opTurn->toPrintBefore.push_back(OpString("battle.status.paralysed.attack.success.1", std::vector<sf::String>()));
+	  opTurn->toPrintBefore.push_back(OpString("battle.status.paralysed.attack.success.2", {opmon->getNickname()}));
 	}
       }
       if(opmon->confused){
 	if(opmon->getConfusedCD() <= 0){
 	  opmon->confused = false;
-	  //TODO message
+	  opTurn->toPrintBefore.push_back(OpString("battle.status.confused.out", {opmon->getNickname()}));
 	}else{
 	  opmon->passCD(false);
 	  if(Utils::rand(2) == 1){
-	    //TODO message
+	    opTurn->toPrintBefore.push_back(OpString("battle.status.confused.attack.fail", {opmon->getNickname()}));
 	    opmon->attacked(opmon->getStatPV() / 8);
 	    opTurn->confusedHurt = true;
 	  }else{
-	    //TODO message
+	    opTurn->toPrintBefore.push_back(OpString("battle.status.confused.attack.success.1", {opmon->getNickname()}));
+	    opTurn->toPrintBefore.push_back(OpString("battle.status.confused.attack.success.2", std::vector<sf::String>()));
 	  }
 	}
       }
       if(opmon->afraid){
-	//TODO message
+	opTurn->toPrintBefore.push_back(OpString("battle.status.afraid", {opmon->getNickname()}));
 	opmon->afraid = false;
 	canAttack = false;
       }
