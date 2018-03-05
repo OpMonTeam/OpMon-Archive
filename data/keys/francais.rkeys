@@ -76,4 +76,28 @@ key.playermom.dialog.3=Ça n'a pas l'air d'aller
 key.sk.dialog.1=Qui es-tu !
 key.sk.dialog.2=Tu ne devrais pas
 key.sk.dialog.3=être ici...
+
+key.battle.status.frozen.out=~ n'est plus gelé!
+key.battle.status.frozen.in=~ est gelé!
+key.battle.status.frozen.attack=~ est gelé et ne peut pas attaquer!
+
+key.battle.status.sleep.out=~ se réveille!
+key.battle.status.sleep.in=~ s'endort profondément!
+key.battle.status.sleep.attack=~ dort profondément.
+
+key.battle.status.paralysed.out=~ n'est plus paralysé!
+key.battle.status.paralysed.in=~ est paralysé!
+key.battle.status.paralysed.attack.success.1=Malgré sa paralysie,
+key.battle.status.paralysed.attack.success.2=~ réussit à attaquer!
+key.battle.status.paralysed.attack.fail=~ est paralysé !
+
+key.battle.status.confused.out=~ n'est plus confus!
+key.battle.status.confused.in=~ devient confus!
+key.battle.status.confused.attack.success.1=Malgré sa confusion, ~
+key.battle.status.confused.attack.success.2=parvient à attaquer!
+key.battle.status.confused.attack.fail=~ est confus.
+key.battle.status.confused.hplost=~ perd ~ pv.
+
+key.battle.status.afraid=~ est trop effrayé pour attaquer!
+
 end
