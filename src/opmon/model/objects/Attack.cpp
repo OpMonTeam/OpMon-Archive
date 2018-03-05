@@ -34,10 +34,10 @@ namespace OpMon {
             pp--;
             //Attack fail
             if((Utils::Misc::randU(100)) > (accuracy * (atk.getStatACC() / def.getStatEVA())) && neverFails == false) {
-                ifFails(atk, def);
+	      ifFails(atk, def, attackTurn);
                 return -2;
             }
-            int effectBf = effectBefore(atk, def);
+            int effectBf = effectBefore(atk, def, attackTurn);
             if(effectBf == 1 || effectBf == 2) { //If special return, the attack ends.
                 return effectBf;
             }
@@ -60,8 +60,9 @@ namespace OpMon {
                 hpLost = round(hpLost * (Utils::Misc::randU(100 - 85 + 1) + 85) / 100);
                 def.attacked(hpLost);
             }
-            return effectAfter(atk, def);
+            return effectAfter(atk, def, attackTurn);
         }
+      
         std::string Attack::save() {
             UNS
               ostringstream oss;

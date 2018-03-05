@@ -36,7 +36,7 @@ namespace OpMon {
             /**atk attacks the def OpMon*/
             //->Final
 	  int attack(OpMon &atk, OpMon &def, View::Turn& atkTurn);
-            virtual void ifFails(OpMon &, OpMon &) {}
+	  virtual void ifFails(OpMon &, OpMon &, View::Turn& atkTurn) {}
             virtual std::string getClassName() {
                 return className;
             }
