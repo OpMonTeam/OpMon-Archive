@@ -32,7 +32,6 @@ If you want to compile OPMon from A to Z, it's [here](https://github.com/cyrionc
 ### Contact Us
 * jlppcprog@ntymail.com for bugs, lags or about the code
 * evandib@gmail.com for sprites, the graphics, design or graphics bugs
-* Ask a question in the "[Q&A](https://github.com/cyrioncentori/OpMon/wiki/Q&A)" section in this wiki
 * [Discord server](https://discord.gg/XwyKFzh)
 <br>
 English is not our native language, but we do our best! If you see some errors, don't hesitate to tell us, so we won't make them again!
@@ -85,9 +84,9 @@ Nous sommes plusieurs sur le projet : Cyrion, le programmeur et créateur de l'h
 Contacts : jlppcprog@ntymail.com pour la programmation | evandib@gmail.com pour les graphismes<br/>
 Si vous avez des questions à poser, n'hésitez pas à les demander dans la section F.A.Q. du wiki ou à nous contacter par mail!<br/>
 
-### Les controles
+### Les contrôles
 
-Vous pouvez voir les controles du jeu OpMon [ici](http://opmon.ga/controls.html)
+Vous pouvez voir les contrôles du jeu OpMon [ici](http://opmon.ga/controls.html)
 ### Build
 
 Le système de build utilise *cmake*. Voici les commandes pour compiler le jeu et l'installer (sous Linux).
