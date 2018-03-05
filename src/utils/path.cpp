@@ -42,7 +42,7 @@ namespace Utils {
 
         const std::string getLogPath() {
 #ifdef _WIN32
-            return "./log"
+            return "./log";
 #endif
 
             { // search in $XDG_CONFIG_HOME
