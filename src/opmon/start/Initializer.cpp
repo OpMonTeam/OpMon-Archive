@@ -487,13 +487,14 @@ _______________________________________________________________
             //MysteriouCity loading
             Map *mapMs = maps.emplace("MysteriouCity", new Map(Maps::myciLayer1, Maps::myciLayer2, Maps::myciLayer3, 35, 35, "Ms")).first->second;
             mapMs->addEvent(new Events::TalkingCharaEvent("|_| -|- |-| |= |_| |\|", sf::Vector2f(15, 30), {}));
+            mapMs->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(15, 12), sf::Vector2i(9, 17), "OpCenter", Side::TO_UP, SIDE_UP));
             //OpMon Center loading
             Map *mapOpCenter = maps.emplace("OpCenter", new Map(Maps::opcenterLayer1, Maps::opcenterLayer2, Maps::opcenterLayer3, 18, 18, "Start")).first->second;
             mapOpCenter->addEvent(new Events::TalkingCharaEvent("inferm", sf::Vector2f(9, 10), {OpString("inferm.dialog.1"), OpString("inferm.dialog.2"), OpString("inferm.dialog.3")}, Side::TO_DOWN));
             std::vector<OpString> opcE1{OpString("inferm.dialog.1"), OpString("inferm.dialog.2"), OpString("inferm.dialog.3")};
             mapOpCenter->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(9, 11), opcE1, SIDE_UP));
-            mapOpCenter->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(9, 1), sf::Vector2i(15, 15), "Ms", Side::TO_DOWN, SIDE_DOWN));
-            mapOpCenter->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 1), sf::Vector2i(15, 15), "Ms", Side::TO_DOWN, SIDE_DOWN));
+            mapOpCenter->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(9, 17), sf::Vector2i(15, 13), "Ms", Side::TO_DOWN, SIDE_DOWN));
+            mapOpCenter->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 17), sf::Vector2i(15, 13), "Ms", Side::TO_DOWN, SIDE_DOWN));
 
         }
 
