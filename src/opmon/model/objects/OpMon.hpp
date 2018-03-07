@@ -192,19 +192,19 @@ namespace OpMon {
             void attacked(int hpPerdus);
 
             /**Les methode suivantes modifient les stats en fonction des niveaux. Cela ne modifie pas directement la stat*/
-            bool changeATK(int power);
+            int changeATK(int power);
 
-            bool changeACC(int power);
+            int changeACC(int power);
 
-            bool changeEVA(int power);
+            int changeEVA(int power);
 
-            bool changeDEF(int power);
+            int changeDEF(int power);
 
-            bool changeATKSPE(int power);
+            int changeATKSPE(int power);
 
-            bool changeDEFSPE(int power);
+            int changeDEFSPE(int power);
 
-            bool changeSPE(int power);
+            int changeSPE(int power);
 
             Status getStatus() {
                 return status;

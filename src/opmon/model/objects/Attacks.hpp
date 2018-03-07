@@ -224,6 +224,7 @@ namespace OpMon {
 	EA;
       }
       ;
+      /*
       ATK_CLASS(CrocFatal){
 	CrocFatal()
 	  : Attack("Croc Fatal", 0, Type::NORMAL, 90, false, true, -1, false, 10, 0, "CrocFatal") {}
@@ -290,6 +291,7 @@ namespace OpMon {
 	EA;
       }
       ;
+      */
     }
   }
 }
