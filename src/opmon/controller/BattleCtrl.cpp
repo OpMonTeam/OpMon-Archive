@@ -4,6 +4,28 @@ namespace OpMon{
   namespace Controller{
     using namespace Model;
     
+    void newTurn(Turn* toNew){
+      toNew->opmon = nullptr;
+      toNew->attackUsed = nullptr;
+      toNew->itemUsed = nullptr;
+      toNew->type = TurnType::ATTACK;
+      toNew->runSuccessful = false;
+      toNew->newOpmon = nullptr;
+      toNew->hpLost = 0;
+      toNew->toPrintBefore = std::vector<Utils::OpString>();
+      toNew->toPrintAfter = std::vector<Utils::OpString>();
+      toNew->changedStatsAtk = std::map<Model::Stats, int>();
+      toNew->changedStatsDef = std::map<Model::Stats, int>();
+      toNew->confusedHurt = false;
+      toNew->attackFailed = false;
+      toNew->attackMissed = false;
+      toNew->attackEnd = false;
+      toNew->OHKO = false;
+      toNew->attackHurt = 0;
+    }
+    
+
+    
     BattleCtrl::BattleCtrl(OpTeam *one, OpTeam *two)
       : playerTeam(one), trainerTeam(two), atk(one->getOp(0)), def(two->getOp(0)){
       
@@ -60,14 +82,14 @@ namespace OpMon{
       def->setStat(Model::Stats::EVA, 100);
       def->setStat(Model::Stats::ACC, 100);
 
-      View::newTurn(atkTurn);
-      View::newTurn(defTurn);
+      Model::newTurn(atkTurn);
+      Model::newTurn(defTurn);
 
       atkTurn->opmon = atk;
       defTurn->opmon = def;
     }
 
-    View::Turn* BattleCtrl::turnIA(int level){
+    Model::Turn* BattleCtrl::turnIA(int level){
       
     }
     
@@ -76,15 +98,15 @@ namespace OpMon{
       bool defDone = false;
 
       bool atkFirst = true;
-      if(atkTurn->type != View::TurnType::ATTACK){
+      if(atkTurn->type != TurnType::ATTACK){
 	//Actions
 	atkDone = true;
       }
-      if(defTurn->type != View::TurnType::ATTACK){
+      if(defTurn->type != TurnType::ATTACK){
 	//Actions
 	defDone = true;
       }
-      if(defTurn->type == View::TurnType::ATTACK && atkTurn->type == View::TurnType::ATTACK){
+      if(defTurn->type == TurnType::ATTACK && atkTurn->type == TurnType::ATTACK){
 	atkFirst = ((atk->getStatSPE() > def->getStatSPE()) || (atkTurn->attackUsed->getPriority() > defTurn->attackUsed->getPriority()));
       }else{
 	atkFirst = !atkDone;
@@ -122,7 +144,7 @@ namespace OpMon{
     }
 
     //TODO : add messages to opTurn->toPrintBefore
-    bool BattleCtrl::canAttack(Model::OpMon* opmon, View::Turn* opTurn){
+    bool BattleCtrl::canAttack(Model::OpMon* opmon, Model::Turn* opTurn){
       bool canAttack = true;
       if(opmon->getStatus() == Model::Status::FROZEN){
 	if(Utils::rand(5) == 2){

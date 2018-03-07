@@ -16,8 +16,8 @@
 #define ATK_CLASS(name)				\
   class name : public Attack 
 
-#define EB int effectBefore(OpMon &atk, OpMon &def, View::Turn& atkTurn)
-#define EA int effectAfter(OpMon &atk, OpMon &def, View::Turn& atkTurn)
+#define EB int effectBefore(OpMon &atk, OpMon &def, Turn& atkTurn)
+#define EA int effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn)
 #define IF_ATK(NAME)				\
   if(name == #NAME) {				\
     return new NAME();				\
