@@ -26,8 +26,8 @@ namespace OpMon{
       
       View::Battle view;
 
-      Model::Turn* atkModel::Turn;
-      Model::Turn* defModel::Turn;
+      Model::Turn* atkTurn;
+      Model::Turn* defTurn;
 
       int oldStats[2][5];
       Model::Type oldTypes[2][2];

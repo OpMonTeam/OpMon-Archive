@@ -145,13 +145,13 @@ namespace OpMon {
 	  void passCD(bool sleep);
 
 	  void goToSleep(){
-	    sleepingCD = Utils::rand(3);
-	    setStatus(Status::SLEEP);
+	    sleepingCD = Utils::Misc::randU(3);
+	    setStatus(Status::SLEEPING);
 	  }
 
 	  void drinkTooMuch(){
 	    confused = true;
-	    confusedCD = Utils::rand(4);
+	    confusedCD = Utils::Misc::randU(4);
 	  }
 	  
             /**Returns true if the OPMon is well captured*/

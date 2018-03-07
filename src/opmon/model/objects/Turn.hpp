@@ -1,24 +1,28 @@
 #pragma once
 
-#include "../model/objects/OpMon.hpp"
-#include "../model/objects/Attack.hpp"
-#include "../model/objects/item/Item.hpp"
+
+#include "item/Item.hpp"
+#include "../../../utils/OpString.hpp"
+#include <map>
 
 namespace OpMon{
   namespace Model{
 
+    class OpMon;
+    class Attack;
+    
     enum class TurnType {
       ATTACK, ITEM, RUN, CHANGE
     };   
 
     
      struct Turn{
-      Model::OpMon* opmon;
-      Model::Attack* attackUsed;
-      Model::Item* itemUsed;
+      OpMon* opmon;
+      Attack* attackUsed;
+      Item* itemUsed;
       TurnType type;
       bool runSuccessful;
-      Model::OpMon* newOpmon;
+      OpMon* newOpmon;
       int hpLost;
       std::vector<Utils::OpString> toPrintBefore;
       std::vector<Utils::OpString> toPrintAfter;
@@ -28,7 +32,7 @@ namespace OpMon{
       bool attackMissed;
       bool attackFailed;
       bool atkEnd;
-      bool0 OHKO;
+      bool OHKO;
       int attackHurt;
     };
 
