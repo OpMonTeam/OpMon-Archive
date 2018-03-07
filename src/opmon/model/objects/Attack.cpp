@@ -34,15 +34,18 @@ namespace OpMon {
             pp--;
             //Attack fail
             if((Utils::Misc::randU(100)) > (accuracy * (atk.getStatACC() / def.getStatEVA())) && neverFails == false) {
+	      attackMissed = true;
 	      ifFails(atk, def, attackTurn);
                 return -2;
             }
             int effectBf = effectBefore(atk, def, attackTurn);
             if(effectBf == 1 || effectBf == 2) { //If special return, the attack ends.
+	      attackTurn.atkEnd = true;
                 return effectBf;
             }
             //If type unefficiency
             if(ArrayTypes::calcEfficacite(type, def.getType1(), def.getType2()) == 0 && (neverFails == false || status == false)) {
+	      attackFailed = true;
                 ifFails(atk, def);
                 return -1;
             }
@@ -51,13 +54,14 @@ namespace OpMon {
                 if(type == atk.getType1() || type == atk.getType2()) {
                     hpLost = round(hpLost * 1.5);
                 }
-                float efficacite = (ArrayTypes::calcEfficacite(type, def.getType1(), def.getType2()));
-                //if(efficacite)//Set efficiency dialogs here
-                hpLost = round(hpLost * efficacite);
+                float effectiveness = (ArrayTypes::calcEffectiveness(type, def.getType1(), def.getType2()));
+                //if(effectiveness)//Set effectiveness dialogs here
+                hpLost = round(hpLost * effectiveness);
                 if(Utils::Misc::randU(criticalRate) == 1) {
                     hpLost = round(hpLost * 1.5);
                 }
                 hpLost = round(hpLost * (Utils::Misc::randU(100 - 85 + 1) + 85) / 100);
+		attackTurn->hpLost = hpLost;
                 def.attacked(hpLost);
             }
             return effectAfter(atk, def, attackTurn);

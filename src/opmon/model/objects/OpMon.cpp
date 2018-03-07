@@ -435,7 +435,7 @@ UNS
                 for(int i = 0; i > power; i--) {
                     switch(atkChange) {
                     case -6:
-                        return false;
+                        return -7;
                     case -5:
 
                         statATK = round(statATK / 1.16);
@@ -565,14 +565,14 @@ UNS
                         atkChange++;
                         break;
                     case 6:
-                        return false;
+                        return 7;
                     default:
                         break;
                     }
                 }
             }
 
-            return true;
+            return power;
         }
 
         bool OpMon::changeACC(int power) {
@@ -580,7 +580,7 @@ UNS
                 for(int i = 0; i > power; i--) {
                     switch(accChange) {
                     case -6:
-                        return false;
+                        return -7;
                     case -5:
 
                         statACC = round(statACC * 0.888);
@@ -710,14 +710,14 @@ UNS
                         accChange++;
                         break;
                     case 6:
-                        return false;
+                        return 7;
                     default:
                         break;
                     }
                 }
             }
 
-            return true;
+            return power;
         }
 
         bool OpMon::changeEVA(int power) {
@@ -725,7 +725,7 @@ UNS
                 for(int i = 0; i > power; i--) {
                     switch(evaChange) {
                     case -6:
-                        return false;
+                        return -7;
                     case -5:
 
                         statEVA = round(statEVA / 1.16);
@@ -855,14 +855,14 @@ UNS
                         evaChange++;
                         break;
                     case 6:
-                        return false;
+                        return 7;
                     default:
                         break;
                     }
                 }
             }
 
-            return true;
+            return power;
         }
 
         bool OpMon::changeDEF(int power) {
@@ -870,7 +870,7 @@ UNS
                 for(int i = 0; i > power; i--) {
                     switch(defChange) {
                     case -6:
-                        return false;
+                        return -7;
                     case -5:
 
                         statDEF = round(statDEF / 1.16);
@@ -1000,14 +1000,14 @@ UNS
                         defChange++;
                         break;
                     case 6:
-                        return false;
+                        return 7;
 
                     default:
                         break;
                     }
                 }
             }
-            return true;
+            return power;
         }
 
         bool OpMon::changeATKSPE(int power) {
@@ -1015,7 +1015,7 @@ UNS
                 for(int i = 0; i > power; i--) {
                     switch(atkSpeChange) {
                     case -6:
-                        return false;
+                        return -7;
                     case -5:
 
                         statATKSPE = round(statATKSPE / 1.16);
@@ -1145,13 +1145,13 @@ UNS
                         atkSpeChange++;
                         break;
                     case 6:
-                        return false;
+                        return 7;
                     default:
                         break;
                     }
                 }
             }
-            return true;
+            return power;
         }
 
         bool OpMon::changeDEFSPE(int power) {
@@ -1159,7 +1159,7 @@ UNS
                 for(int i = 0; i > power; i--) {
                     switch(defSpeChange) {
                     case -6:
-                        return false;
+                        return -7;
                     case -5:
 
                         statDEFSPE = round(statDEFSPE / 1.16);
@@ -1289,13 +1289,13 @@ UNS
                         defSpeChange++;
                         break;
                     case 6:
-                        return false;
+                        return 7;
                     default:
                         break;
                     }
                 }
             }
-            return true;
+            return power;
         }
 
         bool OpMon::changeSPE(int power) {
@@ -1303,7 +1303,7 @@ UNS
                 for(int i = 0; i > power; i--) {
                     switch(speChange) {
                     case -6:
-                        return false;
+                        return -7;
                     case -5:
 
                         statSPE = round(statSPE / 1.16);
@@ -1434,13 +1434,13 @@ UNS
                         speChange++;
                         break;
                     case 6:
-                        return false;
+                        return 7;
                     default:
                         break;
                     }
                 }
             }
-            return true;
+            return power;
         }
 
         bool OpMon::setStatus(Status status) {
