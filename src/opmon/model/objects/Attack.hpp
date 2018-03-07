@@ -11,6 +11,7 @@ Contains Attack class definition
 #include "../../../utils/misc.hpp"
 #include "Enums.hpp"
 #include <iostream>
+#include "Turn.hpp"
 #include "../../view/Battle.hpp"
 
 namespace OpMon {
@@ -25,8 +26,8 @@ namespace OpMon {
           public:
             virtual ~Attack() {}
             Attack(std::string name, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::string className);
-	  virtual int effectBefore(OpMon & /*atk*/, OpMon & /*def*/, View::Turn& atkTurn) { return 0; }
-	  virtual int effectAfter(OpMon & /*atk*/, OpMon & /*def*/, View::Turn& atkTurn) { return 0; }
+	  virtual int effectBefore(OpMon & /*atk*/, OpMon & /*def*/, Turn& atkTurn) { return 0; }
+	  virtual int effectAfter(OpMon & /*atk*/, OpMon & /*def*/, Turn& atkTurn) { return 0; }
             void healPP() {
                 pp = ppMax;
             }
@@ -35,8 +36,8 @@ namespace OpMon {
             }
             /**atk attacks the def OpMon*/
             //->Final
-	  int attack(OpMon &atk, OpMon &def, View::Turn& atkTurn);
-	  virtual void ifFails(OpMon &, OpMon &, View::Turn& atkTurn) {}
+	  int attack(OpMon &atk, OpMon &def, Turn& atkTurn);
+	  virtual void ifFails(OpMon &, OpMon &, Turn& atkTurn) {}
             virtual std::string getClassName() {
                 return className;
             }

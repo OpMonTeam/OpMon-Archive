@@ -30,7 +30,7 @@ namespace OpMon {
      * In effectAfter : Return any number except 1 act like return 2.
      * If 1 is returned, it will do the same attack at the next turn.
      */
-      int Attack::attack(OpMon &atk, OpMon &def, View::Turn& attackTurn) {
+      int Attack::attack(OpMon &atk, OpMon &def, Turn& attackTurn) {
             pp--;
             //Attack fail
             if((Utils::Misc::randU(100)) > (accuracy * (atk.getStatACC() / def.getStatEVA())) && neverFails == false) {
