@@ -17,6 +17,7 @@ OPMon is a Pokémon-inspired game project imagined in 2012 and started in septem
 ### Build
 
 The build system use *cmake*.
+Command for GNU/Linux systems :
 
 ```sh
 cmake .             #If you want to build in Debug, use -DCMAKE_BUILD_TYPE=Debug
@@ -24,11 +25,11 @@ make
 sudo make install   # install the game into your system
 make package        # generate both .deb package and .tar.gz package
 ```
-
-If you want to edit the data files' location, edit the macros containing the resources, log and saves path in `src/opmon/start/main.hpp`.<br/>
+You can see the dependancies for GNU/Linux systems [here](https://github.com/cyrioncentori/OpMon/wiki/Dependencies).
+If you want to edit the *data* folder location, edit the macros containing the resources, log and saves path in `src/opmon/start/main.hpp`.<br/>
 If you want to play to the game quickly, use build-and-run.sh. The game will be built in bin/Release, and the data will be pasted in this repertory. The game will launch after building.<br/>
 If you don't use build-and-run.sh, don't forget to copy the data folder in the game's folder of in the path you have set.
-If you want to compile OPMon from A to Z, it's [here](https://github.com/cyrioncentori/OpMon/wiki/Compilation):
+If you want to compile OPMon from A to Zfor Windows, Mac OS or other, it's [here](https://github.com/cyrioncentori/OpMon/wiki/Compilation)
 ### Contact Us
 * jlppcprog@ntymail.com for bugs, lags or about the code
 * evandib@gmail.com for sprites, the graphics, design or graphics bugs
@@ -87,9 +88,10 @@ Si vous avez des questions à poser, n'hésitez pas à les demander dans la sect
 ### Les contrôles
 
 Vous pouvez voir les contrôles du jeu OpMon [ici](http://opmon.ga/controls.html)
+
 ### Build
 
-Le système de build utilise *cmake*. Voici les commandes pour compiler le jeu et l'installer (sous Linux).
+Le système de build utilise *cmake*. Voici les commandes pour compiler le jeu et l'installer (sous GNU/Linux).
 
 ```sh
 cmake .
@@ -100,8 +102,8 @@ make package        # génère deux paquets: un fichier générique .tar.gz et u
 
 Vous pouvez aussi utiliser le build-and-run.sh pour compiler et jouer au jeu rapidement. Le jeu se trouvera alors dans le dossier bin/Release, avec le dossier data copié dedans. Il se lancera dès la fin de la compilation.<br/>
 Si vous voulez modifier l'emplacement des dossiers, vous pouvez aller dans `src/opmon/start/main.hpp` et modifier les macros correspondantes.<br/>
-Si vous n'utilisez pas le build-and-run.sh, n'oubliez pas de copier le dossier data dans le dossier du jeu ou à l'emplacement que vous avez configuré!
-Si vous voulez compiler de A à Z OpMon c'est [ici](https://github.com/cyrioncentori/OpMon/wiki/Compilation)(en anglais)
+Si vous n'utilisez pas le `build-and-run.sh`, n'oubliez pas de copier le dossier data dans le dossier du jeu ou à l'emplacement que vous avez configuré !
+Si vous voulez compiler de A à Z OpMon pour Windows, Mac OS ou autres, c'est [ici](https://github.com/cyrioncentori/OpMon/wiki/Compilation)(en anglais)
 ## Changelog des versions
 [Voir le changelog de toutes les versions du jeu](http://github.com/cyrioncentori/OpMon/wiki/Releases)
 <br/>
