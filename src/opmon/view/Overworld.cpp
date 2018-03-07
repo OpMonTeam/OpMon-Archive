@@ -281,9 +281,9 @@ namespace OpMon {
               {3, sf::Color(255, 255, 0, 128)},
               {4, sf::Color(255, 0, 255, 128)},
               {5, sf::Color(255, 255, 255, 128)},
-              {5, sf::Color(255, 255, 255, 128)},
-              {5, sf::Color(255, 255, 255, 128)},
-              {5, sf::Color(255, 255, 255, 128)}};
+              {6, sf::Color(255, 50, 0, 128)},
+              {7, sf::Color(255, 50, 0, 128)},
+              {8, sf::Color(255, 50, 0, 128)}};
 
             for(pos.x = 0; pos.x < current->getW(); ++pos.x) {
                 for(pos.y = 0; pos.y < current->getH(); ++pos.y) {
