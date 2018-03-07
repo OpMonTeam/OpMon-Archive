@@ -9,7 +9,7 @@ OpString containing nothing
 */
     OpString OpString::voidStr = OpString("void");
 
-    OpString::OpString(string const& key, std::vector<sf::String> const& objects) {
+    OpString::OpString(string const& key, std::vector<sf::String*> const& objects) {
         this->key = key;
         int instances = StringKeys::countInstances(StringKeys::get(key), '~');
         this->objects = objects;

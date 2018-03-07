@@ -15,8 +15,14 @@ namespace OpMon{
       toNew->hpLost = 0;
       toNew->toPrintBefore = std::vector<Utils::OpString>();
       toNew->toPrintAfter = std::vector<Utils::OpString>();
-      toNew->increasedStats = std::map<Model::Stats, int>();
+      toNew->changedStatsAtk = std::map<Model::Stats, int>();
+      toNew->changedStatsDef = std::map<Model::Stats, int>();
       toNew->confusedHurt = false;
+      toNew->attackFailed = false;
+      toNew->attackMissed = false;
+      toNew->attackEnd = false;
+      toNew->OHKO = false;
+      toNew->attackHurt = 0;
     }
     
   }

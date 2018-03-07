@@ -12,6 +12,8 @@ namespace OpMon{
     GameStatus BattleCtrl::update() {
       if(turnActivated){
 	turn();
+      }else{
+	
       }
       return GameStatus::CONTINUE;//TEMP
     }
@@ -57,6 +59,12 @@ namespace OpMon{
       atk->setStat(Model::Stats::ACC, 100);
       def->setStat(Model::Stats::EVA, 100);
       def->setStat(Model::Stats::ACC, 100);
+
+      View::newTurn(atkTurn);
+      View::newTurn(defTurn);
+
+      atkTurn->opmon = atk;
+      defTurn->opmon = def;
     }
 
     View::Turn* BattleCtrl::turnIA(int level){
@@ -111,7 +119,6 @@ namespace OpMon{
       
       
       return false;
-      //Modify atkTurn and defTurn, and calculate the turn of each opmon
     }
 
     //TODO : add messages to opTurn->toPrintBefore
