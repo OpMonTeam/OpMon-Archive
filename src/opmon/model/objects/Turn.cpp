@@ -1,4 +1,6 @@
 #include "Turn.hpp"
+#include "OpMon.hpp"
+#include "Attack.hpp"
 
 namespace OpMon{
   namespace Model{

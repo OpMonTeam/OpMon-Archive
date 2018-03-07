@@ -8,7 +8,7 @@ http://opmon-game.ga
 #define OPSTRING_PROTECTED
 #include <SFML/System/String.hpp>
 #include <iostream>
-#include <list>
+#include <vector>
 
 namespace Utils {
 
