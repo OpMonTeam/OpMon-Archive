@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../model/objects/OpMon.hpp"
+#include "../model/objects/Turn.hpp"
 #include "../view/Battle.hpp"
 #include "../model/sysObjects/OpTeam.hpp"
 #include "AGameScreen.hpp"
@@ -12,6 +13,7 @@
 namespace OpMon{
   namespace Controller{
 
+    
     class BattleCtrl : public AGameScreen {
     private:
       /*The player's current OpMon*/
@@ -24,8 +26,8 @@ namespace OpMon{
       
       View::Battle view;
 
-      View::Turn* atkTurn;
-      View::Turn* defTurn;
+      Model::Turn* atkModel::Turn;
+      Model::Turn* defModel::Turn;
 
       int oldStats[2][5];
       Model::Type oldTypes[2][2];
@@ -44,9 +46,9 @@ namespace OpMon{
 
       bool turn();
       void initBattle(int opId, int opId2);
-      View::Turn* turnIA(int level);
+      Model::Turn* turnIA(int level);
 
-      bool canAttack(Model::OpMon* opmon, View::Turn* opTurn);
+      bool canAttack(Model::OpMon* opmon, Model::Turn* opTurn);
       
     public:
       BattleCtrl(Model::OpTeam* one, Model::OpTeam *two);
