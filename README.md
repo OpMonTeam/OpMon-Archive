@@ -65,7 +65,7 @@ See the controls of the game OpMon [here](http://opmon.ga/controls.html)
 * [Crédits](https://github.com/cyrioncentori/OpMon/blob/master/Credits.md)
 
 <br/>Version du jeu : Alpha 0.14 | Téléchargement : <a 
-href="http://opmon.ga"><img src="https://raw.githubusercontent.com/cyrioncentori/OpMon/master/Resources/Other/version_logo.png" alt="Logo Téléchargement"></a><br/><br/>
+href="http://opmon.ga"><img src="https://img.shields.io/badge/download-v0.14-red.svg" alt="Logo Téléchargement"></a><br/><br/>
 
 ### Prochaines versions :
 * Alpha 0.15 : Ajout du premier combat entre dresseurs
