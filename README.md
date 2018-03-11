@@ -40,7 +40,7 @@ English is not our native language, but we do our best! If you see some errors, 
 If there are problems understanding the old commits or monthly reports that are in French, don't hesitate to ask!
 
 __The current game version is Alpha 0.14__ Download link: <a 
-href="http://opmon.ga/downloads"><img src="https://raw.githubusercontent.com/cyrioncentori/OpMon/master/Resources/Other/version_logo.png" alt="Download Link"></a>
+href="http://opmon.ga/downloads"><img src="https://img.shields.io/badge/download-v0.14-red.svg" alt="Download Link"></a>
 
 __The next game version will be Alpha 0.15__: Added the first OPMon's fight
 __After : Alpha 0.16__:Fight system update and OpMons improvements
