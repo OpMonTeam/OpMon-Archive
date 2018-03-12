@@ -20,7 +20,7 @@ namespace OpMon{
       Model::OpMon* atk;
       /*The opposite trainer's current OpMon*/
       Model::OpMon* def;
-
+      
       Model::OpTeam* playerTeam;
       Model::OpTeam* trainerTeam;
       
@@ -29,13 +29,14 @@ namespace OpMon{
       Model::Turn* atkTurn;
       Model::Turn* defTurn;
 
+      //These variables are used to restore the OpMon's stats after the battle
       int oldStats[2][5];
       Model::Type oldTypes[2][2];
       const Model::Species* oldSpecies[2];
       std::vector<Model::Attack *> oldAttacks[2];
       
       int trainerOpCount = 0;
-
+      
       bool turnActivated = false;
       
       /** Counters and triggers for the fight*/
@@ -43,11 +44,14 @@ namespace OpMon{
       bool sameDef = false;
       bool captured = false;
       
-
+      /* Used to calculate a turn */
       bool turn();
+      /* Initialize a battle between two OpMons. The opId are for the OpMon's number in the team */
       void initBattle(int opId, int opId2);
+      //TODO
       Model::Turn* turnIA(int level);
 
+      //check if the opmon can attack
       bool canAttack(Model::OpMon* opmon, Model::Turn* opTurn);
       
     public:
