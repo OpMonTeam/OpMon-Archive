@@ -18,12 +18,31 @@ OpString containing nothing
 	}
     }
 
+    OpString::OpString(string const& key, std::vector<std::string*> const& objects) {
+        this->key = key;
+        int instances = StringKeys::countInstances(StringKeys::get(key), '~');
+	if(objects.size() >= instances){
+	  for(unsigned int i = 0; i < instances; i++){
+	    this->objects.push_back(new sf::String(objects[i]));
+	  }
+	}else{
+	  key = "";
+	}
+	created = true;
+    }
+
+    OpString(std::string const& key, std::string const& object)
+      : OpString(key, std::vector<std::string*>(new std::string(object)))
+    {}
+    
     OpString::OpString() {
     }
 
     OpString::~OpString(){
-      for(sf::String *object : objects){
-	delete(object);
+      if(created){
+	for(sf::String *object : objects){
+	  delete(object);
+	}
       }
     }
     

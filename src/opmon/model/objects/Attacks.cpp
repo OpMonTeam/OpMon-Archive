@@ -6,6 +6,8 @@ namespace OpMon {
 
         namespace Attacks {
 
+	  using namespace Utils;
+	  
             Attack *newAtk(std::string name) {
                 IF_ATK(Abime)
                 IF_ATK(Acidarmure)
@@ -34,7 +36,7 @@ namespace OpMon {
                 IF_ATK(CoupdBoule)
                 IF_ATK(CoudKrane)
                 IF_ATK(CoupeVent)
-                IF_ATK(CrocDeMort)
+		  /*IF_ATK(CrocDeMort)
                 IF_ATK(CrocFatal)
                 IF_ATK(CrocFeu)
                 IF_ATK(CruAiles)
@@ -45,7 +47,7 @@ namespace OpMon {
                 IF_ATK(Destruction)
                 IF_ATK(Detritus)
                 IF_ATK(Devoreve)
-                IF_ATK(DoubleDard)
+                IF_ATK(DoubleDard)*/
                 return nullptr;
             }
 
@@ -123,7 +125,7 @@ namespace OpMon {
 
             int Berceuse::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
 	      if(def.setStatus(Status::SLEEPING)){
-		atkTurn.toPrintAfter.push_back(OpString("battle.status.sleep.in"), {def.getNickname()});
+		atkTurn.toPrintAfter.push_back(OpString("battle.status.sleep.in", def.getNickname()));
 	      }else{
 		atkTurn.attackFailed = true;
 	      }
@@ -133,7 +135,7 @@ namespace OpMon {
             int Blizzard::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
                 if(Utils::Misc::randU(10) == 2) {
 		  if(def.setStatus(Status::FROZEN)){
-		    atkTurn.toPrintAfter.push_back(OpString("battle.status.frozen.in", {def.getNickname()}));
+		    atkTurn.toPrintAfter.push_back(OpString("battle.status.frozen.in", def.getNickname()));
 		  }
                 }
                 return 0;
@@ -165,12 +167,12 @@ namespace OpMon {
 
             int CageEclair::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
                 if(def.getType1() == Type::ELECTRIQUE || def.getType2() == Type::ELECTRIQUE) {
-		  atkFailed = true;
+		  atkTurn.attackFailed = true;
                 } else {
                     if(def.setStatus(Status::PARALYSED)) {
-		      atkTurn.toPrintAfter.push_back(OpString("battle.status.paralysed.in", {def.getNickname()}));
+		      atkTurn.toPrintAfter.push_back(OpString("battle.status.paralysed.in", def.getNickname()));
                      } else {
-		      atkTurn.atkFailed = true;
+		      atkTurn.attackFailed = true;
                     }
 		    
                 }
@@ -179,8 +181,8 @@ namespace OpMon {
 
             int Cascade::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
                 if(Utils::Misc::randU(5) == 2) {
-                    def.peur = true;
-		    atkTurn.toPrintAfter.push_back(OpString("battle.status.afraid", {def.getNickname()}));
+                    def.afraid = true;
+		    atkTurn.toPrintAfter.push_back(OpString("battle.status.afraid", def.getNickname()));
                 }
                 return 0;
             }
@@ -188,7 +190,7 @@ namespace OpMon {
             int ChocMental::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
                 if(Utils::Misc::randU(10) == 2) {
                     def.confused = true;
-		    atkTurn.toPrintAfter.push_back(OpString("battle.status.confused.in", {def.getNickname()}));
+		    atkTurn.toPrintAfter.push_back(OpString("battle.status.confused.in", def.getNickname()));
                 }
                 return 0;
             }
@@ -269,7 +271,7 @@ namespace OpMon {
             int CrocDeMort::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
                 if(Utils::Misc::randU(10) == 2) {
 		  def.afraid = true;
-		  atkTurn.toPrintAfter.push_back(OpString("battle.status.afraid"), {def.getNickname()});
+		  atkTurn.toPrintAfter.push_back(OpString("battle.status.afraid", def.getNickname()));
                 }
                 return 0;
 	    }
