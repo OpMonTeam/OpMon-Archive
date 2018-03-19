@@ -38,24 +38,28 @@ namespace OpMon {
       Attack *newAtk(std::string name);
 
       ATK_CLASS(Abime){
+      public:
 	Abime()
 	  : Attack("Abime", 99999, Type::SOL, 30, false, false, -1, false, 5, 0, "Abime") {}
 	EB;
       }; // namespace Attacks
 
       ATK_CLASS(Acidarmure){
+      public:
 	Acidarmure()
 	  : Attack("Acidarmure", 0, Type::POISON, 100, false, true, -1, true, 20, 0, "Acidarmure") {}
 	EA;
       }; // namespace Model
 
       ATK_CLASS(Acide){
+      public:
 	Acide()
 	  : Attack("Acide", 40, Type::POISON, 100, true, false, 16, false, 30, 0, "Acide") {}
 	EA;
       }; // namespace OpMon
 
       ATK_CLASS(Affutage){
+      public:
 	Affutage()
 	  : Attack("Affutage", 0, Type::NORMAL, 100, false, true, -1, true, 30, 0, "Affutage") {}
 	EA;
@@ -63,12 +67,14 @@ namespace OpMon {
       ;
 
       ATK_CLASS(Aiguisage){
+      public:
 	Aiguisage()
 	  : Attack("Aiguisage", 0, Type::NORMAL, 100, false, true, -1, true, 15, 0, "Aiguisage") {}
 	EA;
       }
       ;
       ATK_CLASS(Amnesie){
+      public:
 	Amnesie()
 	  : Attack("Amnésie", 0, Type::PSY, 100, false, true, -1, true, 20, 0, "Amnesie") {}
 	EA;
@@ -76,6 +82,7 @@ namespace OpMon {
       ;
 
       ATK_CLASS(Armure){
+      public:
 	Armure()
 	  : Attack("Armure", 0, Type::NORMAL, 100, false, true, -1, true, 30, 0, "Armure") {}
 	EA;
@@ -83,6 +90,7 @@ namespace OpMon {
       ;
 
       ATK_CLASS(Belier){
+      public:
 	Belier()
 	  : Attack("Bélier", 90, Type::NORMAL, 85, false, false, 16, false, 20, 0, "Belier") {}
 	EA;
@@ -90,94 +98,96 @@ namespace OpMon {
       ;
 
       ATK_CLASS(Balayage){
+      public:
 	Balayage()
 	  : Attack("Balayage", 0, Type::COMBAT, 100, false, false, 16, false, 20, 0, "Balayage") {}
 	EB;
       }
       ;
       ATK_CLASS(BecVrille){
+      public:
 	BecVrille()
 	  : Attack("Bec Vrille", 80, Type::VOL, 100, false, false, 16, false, 20, 0, "BecVrille") {}
       }
       ;
 
-      ATK_CLASS(Berceuse){
+      ATK_CLASS(Berceuse){ public:
 	Berceuse()
 	  : Attack("Berceuse", 0, Type::NORMAL, 55, false, true, -1, false, 15, 0, "Berceuse") {}
 	EA;
       }
       ;
 
-      ATK_CLASS(Blizzard){
+      ATK_CLASS(Blizzard){ public:
 	Blizzard()
 	  : Attack("Blizzard", 110, Type::GLACE, 70, true, false, 16, false, 5, 0, "Blizzard") {}
 	EA;
       }
       ;
 
-      ATK_CLASS(BombOeuf){
+      ATK_CLASS(BombOeuf){ public:
 	BombOeuf()
 	  : Attack("Bomb'\u0152uf", 100, Type::NORMAL, 75, false, false, 16, false, 10, 0, "BombOeuf") {}
       }
       ;
-      ATK_CLASS(Bouclier){
+      ATK_CLASS(Bouclier){ public:
 	Bouclier()
 	  : Attack("Bouclier", 0, Type::PSY, 100, false, true, -1, true, 20, 0, "Bouclier") {}
 	EA;
       }
       ;
-      ATK_CLASS(Brouillard){
+      ATK_CLASS(Brouillard){ public:
 	Brouillard()
 	  : Attack("Brouillard", 0, Type::NORMAL, 100, false, true, -1, false, 20, 0, "Brouillard") {}
 	EA;
       }
       ;
-      ATK_CLASS(BueeNoire){
+      ATK_CLASS(BueeNoire){ public:
 	BueeNoire()
 	  : Attack("Buée Noire", 0, Type::GLACE, 100, false, true, -1, true, 35, 0, "BueeNoire") {}
 	EA;
       }
       ;
-      ATK_CLASS(BullesDo){
+      ATK_CLASS(BullesDo){ public:
 	BullesDo()
 	  : Attack("Bulles d'O", 65, Type::EAU, 100, true, false, 16, false, 20, 0, "BullesDo") {}
 	EA;
       }
       ;
-      ATK_CLASS(CageEclair){
+      ATK_CLASS(CageEclair){ public:
 	CageEclair()
 	  : Attack("Cage Eclair", 0, Type::ELECTRIQUE, 100, false, true, -1, false, 20, 0, "CageEclair") {}
 	EA;
       }
       ;
 
-      ATK_CLASS(CanonGraine){
+      ATK_CLASS(CanonGraine){ public:
 	CanonGraine()
 	  : Attack("Canon Graine", 80, Type::PLANTE, 100, false, false, 16, false, 15, 0, "CanonGraine") {}
       }
       ;
 
-      ATK_CLASS(Cascade){
+      ATK_CLASS(Cascade){ public:
 	Cascade()
 	  : Attack("Cascade", 80, Type::EAU, 100, false, false, 16, false, 15, 0, "Cascade") {}
 	EA;
       }
       ;
 
-      ATK_CLASS(Charge){
+      ATK_CLASS(Charge){ public:
 	Charge()
 	  : Attack("Charge", 50, Type::NORMAL, 100, false, false, 16, false, 35, 0, "Charge") {}
       }
       ;
 
-      ATK_CLASS(ChocMental){
+      ATK_CLASS(ChocMental){ public:
 	ChocMental()
 	  : Attack("Choc Mental", 50, Type::PSY, 100, true, false, 16, false, 25, 0, "ChocMental") {}
 	EA;
       }
       ;
 
-      ATK_CLASS(ChocPsy){
+      ATK_CLASS(ChocPsy){ public:
 	int def, defspe;
 	ChocPsy()
 	  : Attack("Choc Psy", 80, Type::PSY, 100, true, false, 16, false, 10, 0, "ChocPsy") {}
@@ -186,39 +196,42 @@ namespace OpMon {
       }
       ;
 
-      ATK_CLASS(ComboGriffe){
+      ATK_CLASS(ComboGriffe){ public:
 	ComboGriffe()
 	  : Attack("Combo-Griffe", 18, Type::NORMAL, 80, false, false, 16, false, 15, 0, "ComboGriffe") {}
 	EA;
       }
       ;
-      ATK_CLASS(Conversion){
+      ATK_CLASS(Conversion){ public:
 	Conversion()
 	  : Attack("Conversion", 0, Type::NORMAL, 100, false, true, -1, true, 30, 0, "ComboGriffe") {}
 	EA;
       }
       ;
 
-      ATK_CLASS(CoupdBoule){
+      ATK_CLASS(CoupdBoule){ public:
 	CoupdBoule()
 	  : Attack("Coup d'Boule", 70, Type::NORMAL, 100, false, false, 16, false, 15, 0, "CoupdBoule") {}
 	EA;
       }
       ;
 
-      ATK_CLASS(CoudKrane){
+      ATK_CLASS(CoudKrane){ 
+	public:
 	CoudKrane()
 	  : Attack("Coud'Krâne", 130, Type::NORMAL, 100, false, false, 16, false, 10, 0, "CoudKrane") {}
 	EB;
       }
       ;
-      ATK_CLASS(CoupeVent){
+      ATK_CLASS(CoupeVent){ 
+	public:
 	CoupeVent()
 	  : Attack("Coupe-Vent", 80, Type::NORMAL, 100, true, false, 8, false, 10, 0, "CoupeVent") {}
 	EB;
       }
       ;
       ATK_CLASS(CrocDeMort){
+      public:
 	CrocDeMort()
 	  : Attack("Croc de Mort", 80, Type::NORMAL, 90, false, false, 16, false, 15, 0, "CrocDeMort") {}
 	EA;

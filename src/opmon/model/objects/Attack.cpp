@@ -34,7 +34,7 @@ namespace OpMon {
             pp--;
             //Attack fail
             if((Utils::Misc::randU(100)) > (accuracy * (atk.getStatACC() / def.getStatEVA())) && neverFails == false) {
-	      attackMissed = true;
+	      attackTurn.attackMissed = true;
 	      ifFails(atk, def, attackTurn);
                 return -2;
             }
@@ -44,9 +44,9 @@ namespace OpMon {
                 return effectBf;
             }
             //If type unefficiency
-            if(ArrayTypes::calcEfficacite(type, def.getType1(), def.getType2()) == 0 && (neverFails == false || status == false)) {
-	      attackFailed = true;
-                ifFails(atk, def);
+            if(ArrayTypes::calcEffectiveness(type, def.getType1(), def.getType2()) == 0 && (neverFails == false || status == false)) {
+	      attackTurn.attackFailed = true;
+	      ifFails(atk, def, attackTurn);
                 return -1;
             }
             if(!status) { //Check if it isn't a status attack to calculate the hp lost
@@ -61,7 +61,7 @@ namespace OpMon {
                     hpLost = round(hpLost * 1.5);
                 }
                 hpLost = round(hpLost * (Utils::Misc::randU(100 - 85 + 1) + 85) / 100);
-		attackTurn->hpLost = hpLost;
+		attackTurn.hpLost = hpLost;
                 def.attacked(hpLost);
             }
             return effectAfter(atk, def, attackTurn);

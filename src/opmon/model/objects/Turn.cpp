@@ -19,7 +19,7 @@ namespace OpMon{
       toNew->confusedHurt = false;
       toNew->attackFailed = false;
       toNew->attackMissed = false;
-      toNew->attackEnd = false;
+      toNew->atkEnd = false;
       toNew->OHKO = false;
       toNew->attackHurt = 0;
     }
