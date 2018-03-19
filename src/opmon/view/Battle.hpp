@@ -25,7 +25,7 @@ namespace OpMon{
       bool turnLaunched = false;
     public:
       //Used to print the turn
-      GameStatus operator()(Model::Turn atk, Model::Turn def);//Sets turnLaunched to true
+      GameStatus operator()(Model::Turn const& atk, Model::Turn const& def);//Sets turnLaunched to true
       //Used to print the choices
       GameStatus operator()(Model::Turn* atkTurn);
       //Moves the cursor

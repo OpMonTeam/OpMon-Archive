@@ -19,9 +19,11 @@ namespace Utils {
       private:
         std::string key;
         std::vector<sf::String *> objects;
-
+      bool created = false;
       public:
       OpString(std::string const& key, std::vector<sf::String*> const& objects = std::vector<sf::String*>());
+      OpString(std::string const& key, std::vector<std::string*> const& objects = std::vector<std::string*>());
+      OpString(std::string const& key, std::string const& object);
         OpString();
       ~OpString();
 

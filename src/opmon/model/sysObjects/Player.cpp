@@ -57,9 +57,9 @@ namespace OpMon {
             for(int i = 0; i < opteam.getSize(); i++) {
                 OpMon *pkmn = opteam[i];
 
-                pkmn->amour = false;
-                pkmn->malediction = false;
-                pkmn->vampigraine = false;
+                //pkmn->love = false;
+                //pkmn-> = false;
+                //pkmn->vampigraine = false;
                 for(int j = 0; j < 4; j++) {
                     Attack *atk = (pkmn->getAttacks())[j];
                     atk->healPP();

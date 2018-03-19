@@ -14,9 +14,11 @@ namespace OpMon{
     GameStatus BattleCtrl::update() {
       if(turnActivated){
 	turn();
+	view(*atkTurn, *defTurn);
       }else{
-	
+	view(atkTurn);
       }
+      
       return GameStatus::CONTINUE;//TEMP
     }
 
@@ -70,7 +72,8 @@ namespace OpMon{
     }
 
     Model::Turn* BattleCtrl::turnIA(int level){
-      
+      defTurn->attackUsed = def->getAttacks()[0];
+      defTurn->type = TurnType::ATTACK;
     }
     
     bool BattleCtrl::turn(){
@@ -127,24 +130,26 @@ namespace OpMon{
     //TODO : add messages to opTurn->toPrintBefore
     bool BattleCtrl::canAttack(Model::OpMon* opmon, Model::Turn* opTurn){
       bool canAttack = true;
+      std::vector<std::string*> opName(1);
+      opName[0] = new std::string(opmon->getNickname());
       //Checks if frozen
       if(opmon->getStatus() == Model::Status::FROZEN){
 	//The OpMon have one chance out of 5 to be able to move again.
 	if(Utils::Misc::randU(5) == 2){
-	  opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.frozen.out", std::vector<sf::String*>{opmon->getNickname()}));
+	  opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.frozen.out", opName));
 	  opmon->setStatus(Model::Status::NOTHING);
 	}else{
-	  opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.frozen.attack", std::vector<sf::String*>{opmon->getNickname()}));
+	  opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.frozen.attack", opName));
 	  canAttack = false;
 	}
 	//Checks if sleeping
       }else if(opmon->getStatus() == Model::Status::SLEEPING){
 	//Checks the sleep counter.
 	if(opmon->getSleepingCD() <= 0){
-	  opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.sleep.out", std::vector<sf::String*>{opmon->getNickname()}));
+	  opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.sleep.out", opName));
 	  opmon->setStatus(Status::NOTHING);
 	}else{
-	  opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.sleep.attack", std::vector<sf::String*>{opmon->getNickname()}));
+	  opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.sleep.attack", opName));
 	  canAttack = false;
 	  opmon->passCD(true);
 	}
@@ -152,11 +157,11 @@ namespace OpMon{
       }else if(opmon->getStatus() == Model::Status::PARALYSED){
 	//The opmon have one chance out of three to can't attack when paralysed
 	if(Utils::Misc::randU(4) == 2){
-	  opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.paralysed.attack.fail", std::vector<sf::String*>{opmon->getNickname()}));
+	  opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.paralysed.attack.fail", opName));
 	  canAttack = false;
 	}else{
-	  opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.paralysed.attack.success.1", std::vector<sf::String>()));
-	  opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.paralysed.attack.success.2", std::vector<sf::String*>{opmon->getNickname()}));
+	  opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.paralysed.attack.success.1", std::vector<std::string*>()));
+	  opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.paralysed.attack.success.2", opName));
 	}
       }
       //Checks if confused
@@ -164,23 +169,23 @@ namespace OpMon{
 	//Checks the confused counter
 	if(opmon->getConfusedCD() <= 0){
 	  opmon->confused = false;
-	  opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.confused.out", std::vector<sf::String*>{opmon->getNickname()}));
+	  opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.confused.out", opName));
 	}else{
 	  opmon->passCD(false);
 	  //The OpMon have one chance out of two of failing their attack.
 	  if(Utils::Misc::randU(2) == 1){
-	    opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.confused.attack.fail", std::vector<sf::String*>{opmon->getNickname()}));
-	    opmon->attacked(opmon->getStatPV() / 8);
+	    opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.confused.attack.fail", opName));
+	    opmon->attacked(opmon->getStatHP() / 8);
 	    opTurn->confusedHurt = true;
 	  }else{
-	    opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.confused.attack.success.1", std::vector<sf::String*>{opmon->getNickname()}));
-	    opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.confused.attack.success.2", std::vector<sf::String>()));
+	    opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.confused.attack.success.1", opName));
+	    opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.confused.attack.success.2", std::vector<std::string*>()));
 	  }
 	}
       }
       //Checks if afraid
       if(opmon->afraid){
-	opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.afraid", std::vector<sf::String*>{opmon->getNickname()}));
+	opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.afraid", opName));
 	opmon->afraid = false;
 	canAttack = false;
       }

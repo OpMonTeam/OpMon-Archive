@@ -430,7 +430,7 @@ UNS
             HP = (HP < 0) ? 0 : HP;
         }
 
-        bool OpMon::changeATK(int power) {
+        int OpMon::changeATK(int power) {
             if(power < 0) {
                 for(int i = 0; i > power; i--) {
                     switch(atkChange) {
@@ -575,7 +575,7 @@ UNS
             return power;
         }
 
-        bool OpMon::changeACC(int power) {
+        int OpMon::changeACC(int power) {
             if(power < 0) {
                 for(int i = 0; i > power; i--) {
                     switch(accChange) {
@@ -720,7 +720,7 @@ UNS
             return power;
         }
 
-        bool OpMon::changeEVA(int power) {
+        int OpMon::changeEVA(int power) {
             if(power < 0) {
                 for(int i = 0; i > power; i--) {
                     switch(evaChange) {
@@ -865,7 +865,7 @@ UNS
             return power;
         }
 
-        bool OpMon::changeDEF(int power) {
+        int OpMon::changeDEF(int power) {
             if(power < 0) {
                 for(int i = 0; i > power; i--) {
                     switch(defChange) {
@@ -1010,7 +1010,7 @@ UNS
             return power;
         }
 
-        bool OpMon::changeATKSPE(int power) {
+        int OpMon::changeATKSPE(int power) {
             if(power < 0) {
                 for(int i = 0; i > power; i--) {
                     switch(atkSpeChange) {
@@ -1154,7 +1154,7 @@ UNS
             return power;
         }
 
-        bool OpMon::changeDEFSPE(int power) {
+        int OpMon::changeDEFSPE(int power) {
             if(power < 0) {
                 for(int i = 0; i > power; i--) {
                     switch(defSpeChange) {
@@ -1298,7 +1298,7 @@ UNS
             return power;
         }
 
-        bool OpMon::changeSPE(int power) {
+        int OpMon::changeSPE(int power) {
             if(power < 0) {
                 for(int i = 0; i > power; i--) {
                     switch(speChange) {
