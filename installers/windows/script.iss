@@ -4,7 +4,7 @@
 #define MyAppName "OPMon Lazuli"
 #define MyAppVersion "Alpha 0.13"
 #define MyAppPublisher "OPMon Team"
-#define MyAppURL "http://opmon.ga"
+#define MyAppURL "http://opmon-game.ga"
 #define MyAppExeName "OpMon.exe"
 
 [Setup]

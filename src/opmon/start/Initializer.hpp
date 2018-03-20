@@ -3,7 +3,7 @@
   Author : Jlppc
   Contributors: Navet56, Aerzia, BAKFR
   Fichier sous licence GPL-3.0
-  http://opmon.ga
+  http://opmon-game.ga
   Contains the methods definitions that allows to initialize the game elements
 */
 #ifndef INITIALIZER_HPP

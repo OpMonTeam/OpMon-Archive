@@ -2,7 +2,7 @@
 Elements.hpp
 Author : Jlppc
 File under GPL-3.0 license
-http://opmon.ga
+http://opmon-game.ga
 File contains usefull elements
 */
 #ifndef ELEMENTS_HPP

@@ -2,7 +2,7 @@
 OptionsSave.hpp
 Author : Jlppc
 File under the license GPL-3.0
-http://opmon.ga
+http://opmon-game.ga
 Contains the OptionsSave namespace
 */
 #ifndef OPTIONSSAVE_HPP

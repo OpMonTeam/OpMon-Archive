@@ -8,7 +8,7 @@ pkgrel=1
 license=('GPL') 
 arch=('x86_64') 
 pkgdesc="A open source RPG monster fighting game" 
-url="http://opmon.ga" 
+url="http://opmon-game.ga" 
 depends=('sfml' 'gcc' 'libstdc++5' 'smpeg') 
 makedepends=('make' 'cmake') 
 source=("git+git://github.com/cyrioncentori/OpMon.git#tag=alpha-v${pkgver}") 

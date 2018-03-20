@@ -2,7 +2,7 @@
 CT.hpp
 Author : Jlppc
 File under the licence GPL-3.0
-http://opmon.ga
+http://opmon-game.ga
 Contains the CT class definition
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_CT_HPP_

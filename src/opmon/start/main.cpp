@@ -129,7 +129,7 @@ int main(int argc, char *argv[]) {
             if(str == "--version") {
                 cout << "OpMon Lazuli version " << versionS << endl;
                 cout << "Under GNU GPL v3.0 license" << endl;
-                cout << "http://opmon.ga" << endl;
+                cout << "http://opmon-game.ga" << endl;
                 return 0;
             } else if(str == "--opt") {
                 if(i + 1 == argc) {

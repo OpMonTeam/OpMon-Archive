@@ -2,7 +2,7 @@
 Enums.hpp
 Author : Jlppc
 File under GPL-3.0 license
-http://opmon.ga
+http://opmon-game.ga
 Define lot of enumerations
 */
 #ifndef ENUMS_HPP
