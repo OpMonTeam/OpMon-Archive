@@ -2,7 +2,7 @@
   Jukebox.hpp
   Author : Cyrion
   File under licence GNU GPL-3.0
-  http://opmon.ga
+  http://opmon-game.ga
 */
 #pragma once
 

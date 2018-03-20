@@ -2,7 +2,7 @@
 Species.hpp
 Author : Jlppc
 File under the GPL-3.0 license
-http://opmon.ga
+http://opmon-game.ga
 Define the CourbeExp enumération and the Species class
 */
 #ifndef ESPECE_HPP

@@ -2,7 +2,7 @@
 OpString.hpp
 Author : Jlppc
 File under license GNU GPL-3.0
-http://opmon.ga
+http://opmon-game.ga
 */
 #ifndef OPSTRING_PROTECTED
 #define OPSTRING_PROTECTED
@@ -14,7 +14,7 @@ http://opmon.ga
 namespace Utils {
 
     /**
-   * Class defining an OpString. See the OpMon documentation (http://opmon.ga/pages/doc) for more details
+   * Class defining an OpString. See the OpMon documentation (http://opmon-game.ga/pages/doc) for more details
    */
     class OpString {
       private:

@@ -2,7 +2,7 @@
 OpTeam.hpp
 Author : Jlppc
 File under GPL-3.0 license
-http://opmon.ga
+http://opmon-game.ga
 Contains the OpTeam class
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_PLAYERCORE_EQUIPE_HPP_

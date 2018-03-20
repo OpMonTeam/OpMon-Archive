@@ -7,12 +7,12 @@
 OPMon is a Pokémon-inspired game project imagined in 2012 and started in september 2016. This game is totally open source, allowing the fans to come realize their dreams! You can add OpMons, attacks, items, and many other things! You just have to submit your modifications and maybe we will add them to the game! And if you submit a lot of good changes, you can become a collaborator!<br/><br/>
 
 ### Links
-* [Opmon Lazuli's website](http://opmon.ga)
+* [Opmon Lazuli's website](http://opmon-game.ga)
 * [Development news](https://translate.google.com/translate?act=url&depth=1&hl=fr&ie=UTF8&prev=_t&rurl=translate.google.fr&sl=fr&sp=nmt4&tl=en&u=https://github.com/cyrioncentori/OpMon/wiki/Journal-du-d%25C3%25A9veloppement)
 * [Monthly Reports](https://github.com/cyrioncentori/OpMon/wiki/Monthly-reports)
 * [Credits](https://github.com/cyrioncentori/OpMon/blob/master/Credits.md)
-* [Github repo for the game website, opmon.ga](https://github.com/cyrioncentori/Site-OpMon)
-* [Documentation](http://opmon.ga/pages/doc)
+* [Github repo for the game website, opmon-game.ga](https://github.com/cyrioncentori/Site-OpMon)
+* [Documentation](http://opmon-game.ga/pages/doc)
 
 ### Build
 
@@ -40,7 +40,7 @@ English is not our native language, but we do our best! If you see some errors, 
 If there are problems understanding the old commits or monthly reports that are in French, don't hesitate to ask!
 
 __The current game version is Alpha 0.14__ Download link: <a 
-href="http://opmon.ga/downloads"><img src="https://img.shields.io/badge/download-v0.14-red.svg" alt="Download Link"></a>
+href="http://opmon-game.ga/downloads"><img src="https://img.shields.io/badge/download-v0.14-red.svg" alt="Download Link"></a>
 
 __The next game version will be Alpha 0.15__: Added the first OPMon's fight
 __After : Alpha 0.16__:Fight system update and OpMons improvements
@@ -49,7 +49,7 @@ __After : Alpha 0.16__:Fight system update and OpMons improvements
 
 ### Controls
 
-See the controls of the game OpMon [here](http://opmon.ga/controls.html)
+See the controls of the game OpMon [here](http://opmon-game.ga/controls.html)
 # En Français<a name="enfrancais">
 
 # Bienvenue sur le Projet "OPMon Lazuli"!
@@ -60,12 +60,12 @@ See the controls of the game OpMon [here](http://opmon.ga/controls.html)
 
 * [Journal de développement](https://github.com/cyrioncentori/OpMon/wiki/Journal-du-développement)
 * [Bilans mensuels, récapitulatifs des nouveautés (en anglais)](https://github.com/cyrioncentori/OpMon/wiki/Monthly-reports)
-* [Site web du jeu](http://opmon.ga)
+* [Site web du jeu](http://opmon-game.ga)
 * [Dépot du site web](https://github.com/cyrioncentori/Site-OpMon)
 * [Crédits](https://github.com/cyrioncentori/OpMon/blob/master/Credits.md)
 
 <br/>Version du jeu : Alpha 0.14 | Téléchargement : <a 
-href="http://opmon.ga"><img src="https://img.shields.io/badge/download-v0.14-red.svg" alt="Logo Téléchargement"></a><br/><br/>
+href="http://opmon-game.ga"><img src="https://img.shields.io/badge/download-v0.14-red.svg" alt="Logo Téléchargement"></a><br/><br/>
 
 ### Prochaines versions :
 * Alpha 0.15 : Ajout du premier combat entre dresseurs
@@ -87,7 +87,7 @@ Si vous avez des questions à poser, n'hésitez pas à les demander dans la sect
 
 ### Les contrôles
 
-Vous pouvez voir les contrôles du jeu OpMon [ici](http://opmon.ga/controls.html)
+Vous pouvez voir les contrôles du jeu OpMon [ici](http://opmon-game.ga/controls.html)
 
 ### Build
 

@@ -2,7 +2,7 @@
 StartScene.hpp
 Author : Jlppc
 File under the GPL-3.0 license
-http://opmon.ga
+http://opmon-game.ga
 Contains StartScene class
 */
 #ifndef STARTSCENE_HPP
