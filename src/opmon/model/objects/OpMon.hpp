@@ -2,7 +2,7 @@
   OpMon.hpp
   Author : Jlppc
   File under the GPL 3.0 license.
-  http://opmon.ga
+  http://opmon-game.ga
   Contains CalCourbs namespace defintions and OpMon class
 */
 #ifndef OPMON_HPP

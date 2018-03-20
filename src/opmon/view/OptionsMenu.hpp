@@ -2,7 +2,7 @@
   OptionsMenu.hpp
   Author : Cyrion
   File under the GPL-3.0  license
-  http://opmon.ga
+  http://opmon-game.ga
   Contains OptionsMenu namespace
 */
 #ifndef OPTIONSMENU_HPP
