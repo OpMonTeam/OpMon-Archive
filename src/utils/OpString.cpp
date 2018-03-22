@@ -1,5 +1,6 @@
 #include "OpString.hpp"
 #include "StringKeys.hpp"
+#include <cstdargs>
 
 UNS
 
@@ -9,33 +10,32 @@ OpString containing nothing
 */
     OpString OpString::voidStr = OpString("void");
 
-    OpString::OpString(string const& key, std::vector<sf::String*> const& objects) {
+    OpString::OpString(string const& key, ...) {
+      va_list ap;
         this->key = key;
+	va_start(ap, key);
         int instances = StringKeys::countInstances(StringKeys::get(key), '~');
-        this->objects = objects;
-	while(this->objects.size() != instances){
-	  objects.pop_back();
+	for(int i = 0; i < instances; i++){
+	  sf::String *current = va_arg(ap, sf::String*);
+	  objects.push_back(current);
 	}
+	va_end(ap);
     }
 
-    OpString::OpString(string const& key, std::vector<std::string*> const& objects) {
-        this->key = key;
-        int instances = StringKeys::countInstances(StringKeys::get(key), '~');
-	if(objects.size() >= instances){
-	  for(unsigned int i = 0; i < instances; i++){
-	    this->objects.push_back(new sf::String(objects[i]));
-	  }
-	}else{
-	  key = "";
-	}
-	created = true;
+    OpString::OpString(string const& key, vector<sf::String*> obj){
+      this->key = key;
+      int instances = StringKeys::countInstances(StringKeys::get(key), '~');
+      this->objects = obj;
+      while(objects.size() > instances){
+	objects.pop_back();
+      }
+      while(objects.size() < instances){
+	objects.push_back("~");
+      }
     }
 
-    OpString(std::string const& key, std::string const& object)
-      : OpString(key, std::vector<std::string*>(new std::string(object)))
-    {}
-    
     OpString::OpString() {
+      
     }
 
     OpString::~OpString(){
@@ -47,15 +47,15 @@ OpString containing nothing
     }
     
     sf::String OpString::getString() {
-        if(this->key.empty()) { //If empty, don't do execute the algorithm. It would be useless.
+        if(this->key.empty()) { //If empty, it doesn't execute the algorithm. That would be useless.
             return sf::String();
         }
-        if(objects.size() == 0) { //If there is not object, idem. Just return the string.
+        if(objects.size() == 0) { //If there is not object, it just returns the string.
             return StringKeys::get(key);
         }
         //Ok, so there is some things to do
         vector<sf::String> splitted = StringKeys::split(StringKeys::get(key), '~'); //Split every ~
-        /* Add a space after if the last character is a ~, to avoid being out of the array.
+        /* Adds a space after if the last character is a ~, to avoid being out of the array.
        This can happen because the program adds the next text after adding a text to complete.
     */
         if(StringKeys::get(key).toUtf32()[StringKeys::get(key).toUtf32().size() - 1] == '~') {
@@ -64,7 +64,7 @@ OpString containing nothing
         /*Let's complete!*/
         unsigned int i = 0;
         sf::String toReturn;
-        /*If the first character isn't a ~, don't add the completion first. Don't swap text chunks.*/
+        /*If the first character isn't a ~, it doesn't add the completion first, to not swap text chunks.*/
         if(StringKeys::get(key).toUtf32()[0] != '~') {
             toReturn += splitted[0];
         }
@@ -73,7 +73,7 @@ OpString containing nothing
             toReturn += *objects[i];
             toReturn += splitted[i + ((StringKeys::get(key).toUtf32()[0] != '~') ? 1 : 0)];
         }
-        /*If the first characters is a ~, complete the string, because we have started a bit in advance.*/
+        /*If the first characters is a ~, complete the string.*/
         if(StringKeys::get(key).toUtf32()[0] == '~') {
             toReturn += splitted[splitted.size() - 1];
         }
