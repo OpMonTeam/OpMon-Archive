@@ -1,6 +1,6 @@
 ### The resources of this game are partly original but others come from various projects.
 
-## The original work is under license CC BY SA and created by Navet56 for the most part
+## The original work is under CC BY SA license  and created by Navet56 for the most part
 ( look the [Licence](https://raw.githubusercontent.com/jlppc/OpMon/master/Resources/LICENSE) )
 
 ## Others resources
