@@ -22,7 +22,7 @@ namespace Utils {
       bool created = false;
       public:
       OpString(std::string const& key, ...);
-      OpString(std::string const& key, std::vector<sf::String*> obj = std::vector<sf::String*>());
+      OpString(std::string const& key, std::vector<sf::String*> obj);
       OpString();
       ~OpString();
 

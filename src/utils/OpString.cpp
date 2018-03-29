@@ -1,15 +1,15 @@
 #include "OpString.hpp"
 #include "StringKeys.hpp"
-#include <cstdargs>
+#include <cstdarg>
 
 UNS
 
-  namespace Utils {
-    /**
-OpString containing nothing
-*/
-    OpString OpString::voidStr = OpString("void");
-
+namespace Utils {
+  /**
+     OpString containing nothing
+  */
+  OpString OpString::voidStr = OpString("void");
+  
     OpString::OpString(string const& key, ...) {
       va_list ap;
         this->key = key;
@@ -30,7 +30,7 @@ OpString containing nothing
 	objects.pop_back();
       }
       while(objects.size() < instances){
-	objects.push_back("~");
+	objects.push_back(new sf::String(std::string("~")));
       }
     }
 
