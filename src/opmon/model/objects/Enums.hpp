@@ -9,12 +9,12 @@ Define lot of enumerations
 #define ENUMS_HPP
 
 /**Defines permettant de rendre plus pratique l'écriture des tables des types*/
-#define NE 0.5  //Not efficient
-#define NM 1    //Normal
-#define IN 0    //Inefficient
-#define VL 0.25 //Very little (Efficiency)
-#define VE 2    //Very efficient
-#define SE 4    //Super efficient
+#define NOT 0			//Not effective at all
+#define VLO 0.25	//Very low effectiveness
+#define LO_ 0.5		//Low effectiveness
+#define AVG 1			//Average effectiveness
+#define HI_ 2			//High effectiveness
+#define VHI 4			//Very High effectiveness
 
 namespace OpMon {
     namespace Model {
