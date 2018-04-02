@@ -88,6 +88,9 @@ UNS
             txtCre81.setString(kget("options.credit.81"));
             txtCre81.setFont(Model::Data::Ui::font);
             txtCre81.setCharacterSize(15);
+            txtCre82.setString(kget("options.credit.82"));
+            txtCre82.setFont(Model::Data::Ui::font);
+            txtCre82.setCharacterSize(15);
             txtCre9.setString(kget("options.credit.9"));
             txtCre9.setFont(Model::Data::Ui::font);
             txtCre9.setCharacterSize(13);
@@ -141,6 +144,7 @@ UNS
             txtCre7.setPosition(201, 274);
             txtCre8.setPosition(30, 368);
             txtCre81.setPosition(30, 385);
+            txtCre82.setPosition(30, 402);
             txtCre9.setPosition(375, 488);
 
             jukebox.play("Title");
@@ -269,6 +273,7 @@ UNS
             frame.draw(txtCre7);
             frame.draw(txtCre8);
             frame.draw(txtCre81);
+            frame.draw(txtCre82);
             frame.draw(txtCre9);
 
             rectSurb.setPosition(curPosOpt[0]);
