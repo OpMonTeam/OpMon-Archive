@@ -73,6 +73,7 @@ namespace OpMon {
             sf::Text txtCre7;
             sf::Text txtCre8;
             sf::Text txtCre81;
+            sf::Text txtCre82;
             sf::Text txtCre9;
             sf::Text txtOpt1;
             sf::Text txtOpt2;
