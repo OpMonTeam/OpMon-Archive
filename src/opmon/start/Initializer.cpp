@@ -334,6 +334,24 @@ _______________________________________________________________
 
         using namespace Model::Data::Ui;
 
+
+      void initOpTextures(){
+	//I will use a "for" loop later, I don't use it now to avoir loading errors.
+	std::vector<std::vector<sf::Texture> > &opSprites = Model::Data::OpMons::opSprites;
+	opSprites.push_back(std::vector<sf::Texture>());
+	opSprites.push_back(std::vector<sf::Texture>());
+	ResourceLoader::loadTextureArray(opSprites[1], "sprites/opmons/1-%d", 2);
+	opSprites.push_back(std::vector<sf::Texture>());
+	ResourceLoader::loadTextureArray(opSprites[2], "sprites/opmons/2-%d", 2);
+	opSprites.push_back(std::vector<sf::Texture>());
+	opSprites.push_back(std::vector<sf::Texture>());
+	ResourceLoader::loadTextureArray(opSprites[4], "sprites/opmons/4-%d", 2);
+	opSprites.push_back(std::vector<sf::Texture>());
+	opSprites.push_back(std::vector<sf::Texture>());
+	opSprites.push_back(std::vector<sf::Texture>());
+	ResourceLoader::loadTextureArray(opSprites[7], "sprites/opmons/7-%d", 2);
+      }
+      
         void initTextures() {
 
             ResourceLoader::load(Data::World::tileset, "tileset/tileset.png");
@@ -368,6 +386,18 @@ _______________________________________________________________
             ResourceLoader::loadTextureArray(charaTextures["kiwai"], "sprites/chara/prof/prof%d.png", 12);
             ResourceLoader::loadTextureArray(charaTextures["playermom"], "sprites/chara/mom/mom%d.png", 12);
             ResourceLoader::loadTextureArray(charaTextures["sk"], "sprites/chara/rival/sk%d.png", 12);
+
+
+	    ResourceLoader::load(Model::Data::Battle::backgrounds["grass"], "backgrounds/battle_bkg/background_grass.png");
+	    ResourceLoader::load(Model::Data::Battle::dialog, "backgrounds/dialog/dialog.png");
+	    //ResourceLoader::load(Model::Data::Battle::attackDial, "");
+	    ResourceLoader::load(Model::Data::Battle::cursor, "sprites/misc/arrChoice.png");
+	    //Temps
+	    ResourceLoader::load(Model::Data::Battle::charaBattleTextures["player"][0], "sprites/chara/pp/pp_fight.png");
+	    ResourceLoader::load(Model::Data::Battle::charaBattleTextures["cyrion"][0], "sprites/chara/cyrion/cyrion.png");
+	    Model::Data::Battle::battlePlayerAnim.push_back(Model::Data::Battle::charaBattleTextures["player"][0]);
+
+	    initOpTextures();
 
             initEnumsEvents();
         }
