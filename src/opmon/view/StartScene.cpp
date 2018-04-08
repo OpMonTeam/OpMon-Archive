@@ -57,7 +57,7 @@ UNS
             txtEnCours[2] = sf::String(" ");
 
             Model::ResourceLoader::load(textures[0], "backgrounds/start/startscene.png");
-            Model::ResourceLoader::load(textures[1], "sprites/chara/jlppc/profkiwai.png");
+            Model::ResourceLoader::load(textures[1], "sprites/chara/prof/profkiwai.png");
             Model::ResourceLoader::load(textures[2], "backgrounds/dialog/dialog.png");
             Model::ResourceLoader::load(textures[3], "sprites/misc/arrDial.png");
             Model::ResourceLoader::load(textures[4], "backgrounds/start/nameEntry.png");
