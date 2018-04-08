@@ -340,16 +340,16 @@ _______________________________________________________________
 	std::vector<std::vector<sf::Texture> > &opSprites = Model::Data::OpMons::opSprites;
 	opSprites.push_back(std::vector<sf::Texture>());
 	opSprites.push_back(std::vector<sf::Texture>());
-	ResourceLoader::loadTextureArray(opSprites[1], "sprites/opmons/1-%d", 2);
+	ResourceLoader::loadTextureArray(opSprites[1], "sprites/opmons/1-%d.png", 2);
 	opSprites.push_back(std::vector<sf::Texture>());
-	ResourceLoader::loadTextureArray(opSprites[2], "sprites/opmons/2-%d", 2);
-	opSprites.push_back(std::vector<sf::Texture>());
-	opSprites.push_back(std::vector<sf::Texture>());
-	ResourceLoader::loadTextureArray(opSprites[4], "sprites/opmons/4-%d", 2);
+	ResourceLoader::loadTextureArray(opSprites[2], "sprites/opmons/2-%d.png", 2);
 	opSprites.push_back(std::vector<sf::Texture>());
 	opSprites.push_back(std::vector<sf::Texture>());
+	ResourceLoader::loadTextureArray(opSprites[4], "sprites/opmons/4-%d.png", 2);
 	opSprites.push_back(std::vector<sf::Texture>());
-	ResourceLoader::loadTextureArray(opSprites[7], "sprites/opmons/7-%d", 2);
+	opSprites.push_back(std::vector<sf::Texture>());
+	opSprites.push_back(std::vector<sf::Texture>());
+	ResourceLoader::loadTextureArray(opSprites[7], "sprites/opmons/7-%d.png", 2);
       }
       
         void initTextures() {
@@ -393,7 +393,9 @@ _______________________________________________________________
 	    //ResourceLoader::load(Model::Data::Battle::attackDial, "");
 	    ResourceLoader::load(Model::Data::Battle::cursor, "sprites/misc/arrChoice.png");
 	    //Temps
+	    Model::Data::Battle::charaBattleTextures["player"].push_back(sf::Texture());
 	    ResourceLoader::load(Model::Data::Battle::charaBattleTextures["player"][0], "sprites/chara/pp/pp_fight.png");
+	    Model::Data::Battle::charaBattleTextures["cyrion"].push_back(sf::Texture());
 	    ResourceLoader::load(Model::Data::Battle::charaBattleTextures["cyrion"][0], "sprites/chara/cyrion/cyrion.png");
 	    Model::Data::Battle::battlePlayerAnim.push_back(Model::Data::Battle::charaBattleTextures["player"][0]);
 
