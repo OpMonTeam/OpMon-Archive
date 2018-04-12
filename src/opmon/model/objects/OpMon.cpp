@@ -103,7 +103,7 @@ UNS
               round(
                 ((((2 * species.getBaseDefSpe() + defSpeIV + (defSpeEV / 4)) * level) / 100) + 5) * ((natures[(int)nature].bonus == Stats::DEFSPE) ? 1.1 : ((natures[(int)nature].malus == Stats::DEFSPE) ? 0.9 : 1)));
             statSPE = round(
-              ((((2 * species.getBaseVit() + speIV + (speEV / 4)) * level) / 100) + 5) * ((natures[(int)nature].bonus == Stats::SPE) ? 1.1 : ((natures[(int)nature].malus == Stats::SPE) ? 0.9 : 1)));
+              ((((2 * species.getBaseSpe() + speIV + (speEV / 4)) * level) / 100) + 5) * ((natures[(int)nature].bonus == Stats::SPE) ? 1.1 : ((natures[(int)nature].malus == Stats::SPE) ? 0.9 : 1)));
             statHP = round(((2 * species.getBaseHP() + hpIV + (hpEV / 4)) * level) / 100) + level + 10;
             this->species = &species;
             this->level = level;
@@ -118,7 +118,7 @@ UNS
                 this->nickname = nickname;
             }
 
-            tauxCapture = species.getTauxDeCapture();
+            tauxCapture = species.getCaptureRate();
             HP = statHP;
             type1 = species.getType1();
             type2 = species.getType2();
@@ -336,7 +336,7 @@ UNS
               round(
                 ((((2 * species->getBaseDefSpe() + defSpeIV + (defSpeEV / 4)) * level) / 100) + 5) * ((natures[(int)nature].bonus == Stats::DEFSPE) ? 1.1 : ((natures[(int)nature].malus == Stats::DEFSPE) ? 0.9 : 1)));
             statSPE = round(
-              ((((2 * species->getBaseVit() + speIV + (speEV / 4)) * level) / 100) + 5) * ((natures[(int)nature].bonus == Stats::SPE) ? 1.1 : ((natures[(int)nature].malus == Stats::SPE) ? 0.9 : 1)));
+              ((((2 * species->getBaseSpe() + speIV + (speEV / 4)) * level) / 100) + 5) * ((natures[(int)nature].bonus == Stats::SPE) ? 1.1 : ((natures[(int)nature].malus == Stats::SPE) ? 0.9 : 1)));
             statHP = round(((2 * species->getBaseHP() + hpIV + (hpEV / 4)) * level) / 100) + level + 10;
         }
 
