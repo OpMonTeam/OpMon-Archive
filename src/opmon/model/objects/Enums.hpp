@@ -51,35 +51,34 @@ namespace OpMon {
     */
         //->Enum
         enum class BagCat {
-            SOIN,
-            OBJETS,
+            HEAL,
+            OBJECTS,
             RARES,
-            CTS,
-            BAIES
+            HMS
         };
         /**
        Enumerate the OPMons types
     */
         //->Enum
         enum class Type : int {
-            EAU = 3,
-            FEU = 6,
-            PLANTE = 10,
-            ELECTRIQUE = 4,
-            PSY = 12,
-            TENEBRES = 16,
+            WATER = 3,
+            BURNING = 6,
+            VEGETAL = 10,
+            ELECTRON = 4,
+            MENTAL = 12,
+            BAD = 16,
             DRAGON = 2,
-            COMBAT = 1,
-            ROCHE = 13,
-            SOL = 14,
-            NORMAL = 9,
-            FEE = 5,
-            SPECTRE = 15,
-            POISON = 11,
-            ACIER = 0,
-            INSECTE = 8,
-            VOL = 17,
-            GLACE = 7,
+            FIGHT = 1,
+            MINERAL = 13,
+            GROUND = 14,
+            NEUTRAL = 9,
+            MAGIC = 5,
+            GHOST = 15,
+            TOXIC = 11,
+            METAL = 0,
+            BUG = 8,
+            SKY = 17,
+            COLD = 7,
             NOTHING = -1
         };
         /**
@@ -124,14 +123,11 @@ namespace OpMon {
         int operator+(Side, int);
         int operator-(Side, int);
         Side getSide(int);
-        /**
-       Gère la table des types
-    */
+
+      
         namespace ArrayTypes {
 
-            /**Calcule l'efficacité des types selon les paramètres donnés, et la renvoie.
-	   * Les paramètres attendent une énumération du namespace Type
-	   */
+            
             float calcEfficacite(Type atk, Type def1, Type def2);
 
         } // namespace ArrayTypes

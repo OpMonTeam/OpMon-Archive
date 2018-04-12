@@ -7,26 +7,26 @@ namespace OpMon {
 
         Species::Species(Species &&other) noexcept {
             name = other.name;
-            numeroOpdex = other.numeroOpdex;
+            opdexNumber = other.opdexNumber;
             evolution = other.evolution;
             niveauEvolution = other.niveauEvolution;
             evolType = other.evolType;
             type1 = other.type1;
             type2 = other.type2;
-            entreeOpdex = other.entreeOpdex;
+            opdexEntry = other.opdexEntry;
             height = other.height;
             weight = other.weight;
             baseAtk = other.baseAtk;
             baseDef = other.baseDef;
             baseAtkSpe = other.baseAtkSpe;
             baseDefSpe = other.baseDefSpe;
-            baseVit = other.baseVit;
+            baseSpe = other.baseSpe;
             baseHP = other.baseHP;
             curve = other.curve;
             expMax = other.expMax;
             EVgiven = other.EVgiven;
             expGiven = other.expGiven;
-            tauxDeCapture = other.tauxDeCapture;
+            captureRate = other.captureRate;
             evSize = other.evSize;
 
             other.evolType = nullptr;
@@ -36,17 +36,17 @@ namespace OpMon {
             delete(evolType);
         }
 
-        Species::Species(unsigned int atk, unsigned int def, unsigned int atkSpe, unsigned int defSpe, unsigned int spe, unsigned int hp, std::string name, Type type1, Type type2, int maniereEvolution /*En fait faut mettre 0, il est la pour un souci de compatibilit�*/, int niveauEvolution, Evolution *evolType, std::vector<Stats> EVGiven, float height, float weight, std::string entreeOpdex, unsigned int expGiven, int expMax, int tauxDeCapture, int numeroOpdex) {
+        Species::Species(unsigned int atk, unsigned int def, unsigned int atkSpe, unsigned int defSpe, unsigned int spe, unsigned int hp, std::string name, Type type1, Type type2, int maniereEvolution /*En fait faut mettre 0, il est la pour un souci de compatibilit�*/, int niveauEvolution, Evolution *evolType, std::vector<Stats> EVGiven, float height, float weight, std::string opdexEntry, unsigned int expGiven, int expMax, int captureRate, int opdexNumber) {
             if(evolType == nullptr) {
                 evolType = new E_Nope();
             }
-            this->numeroOpdex = numeroOpdex;
-            this->tauxDeCapture = tauxDeCapture;
+            this->opdexNumber = opdexNumber;
+            this->captureRate = captureRate;
             this->baseAtk = atk;
             this->baseDef = def;
             this->baseAtkSpe = atkSpe;
             this->baseDefSpe = defSpe;
-            this->baseVit = spe;
+            this->baseSpe = spe;
             this->name = name;
             this->baseHP = hp;
             this->type1 = type1;
@@ -56,7 +56,7 @@ namespace OpMon {
             this->evolution = this->evolType->getEvolution();
             this->weight = weight;
             this->height = height;
-            this->entreeOpdex = entreeOpdex;
+            this->opdexEntry = opdexEntry;
             this->expGiven = expGiven;
             this->EVgiven = EVGiven;
             //Mise en place des curves d'exp
@@ -83,7 +83,7 @@ namespace OpMon {
             default:
                 curve = CurveExp::AVERAGE;
             }
-            this->numeroOpdex = numeroOpdex;
+            this->opdexNumber = opdexNumber;
         }
 
         void Species::checkEvol() {
