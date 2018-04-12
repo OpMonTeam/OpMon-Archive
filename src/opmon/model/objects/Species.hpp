@@ -36,14 +36,14 @@ namespace OpMon {
           protected:
           private:
             std::string name;
-            int numeroOpdex;
+            int opdexNumber;
             Species *evolution;
             int niveauEvolution;
             Evolution *evolType;
             Type type1;
             Type type2;
             //NumberedArray atksByLevels[];
-            std::string entreeOpdex;
+            std::string opdexEntry;
             float height;
             float weight;
             //CT ctCompatibles[];
@@ -51,7 +51,7 @@ namespace OpMon {
             unsigned int baseDef;
             unsigned int baseAtkSpe;
             unsigned int baseDefSpe;
-            unsigned int baseVit;
+            unsigned int baseSpe;
             unsigned int baseHP;
             /**La courbe d'experience*/
             CurveExp curve;
@@ -61,15 +61,15 @@ namespace OpMon {
             std::vector<Stats> EVgiven;
             //Variables de sprites a inserer ICI
             unsigned int expGiven;
-            int tauxDeCapture;
-            /**La taille du tableau d'ev*/
+            int captureRate;
+            /**La height du tableau d'ev*/
             int evSize;
 
           public:
             Species(Species &&other) noexcept;
 
             virtual ~Species();
-            Species(unsigned int atk, unsigned int def, unsigned int atkSpe, unsigned int defSpe, unsigned int spe, unsigned int hp, std::string name, Type type1, Type type2, int maniereEvolution, int niveauEvolution, Evolution *evolType, std::vector<Stats> EVGiven, float taille, float poids, std::string entreeOpdex, unsigned int expGiven, int expMax, int tauxDeCapture, int numeroOpdex);
+            Species(unsigned int atk, unsigned int def, unsigned int atkSpe, unsigned int defSpe, unsigned int spe, unsigned int hp, std::string name, Type type1, Type type2, int maniereEvolution, int niveauEvolution, Evolution *evolType, std::vector<Stats> EVGiven, float height, float weight, std::string opdexEntry, unsigned int expGiven, int expMax, int captureRate, int opdexNumber);
             /**Methode permettant de récuperer l'espèce d'évolution, car le mode d'initialisation des espèces ne permet pas de le faire dans le constructeur*/
             void checkEvol();
             /**Methode ayant la même fonction que checkEvol mais pour les attaques par niveau*/
@@ -86,8 +86,8 @@ namespace OpMon {
             unsigned int getBaseDefSpe() const {
                 return baseDefSpe;
             }
-            unsigned int getBaseVit() const {
-                return baseVit;
+            unsigned int getBaseSpe() const {
+                return baseSpe;
             }
             unsigned int getBaseHP() const {
                 return baseHP;
@@ -95,8 +95,8 @@ namespace OpMon {
             std::string getName() const {
                 return name;
             }
-            int getTauxDeCapture() const {
-                return tauxDeCapture;
+            int getCaptureRate() const {
+                return captureRate;
             }
             Type getType1() const {
                 return type1;
@@ -129,7 +129,7 @@ namespace OpMon {
                 return evSize;
             }
             int getOpdexNumber() const {
-                return this->numeroOpdex;
+                return this->opdexNumber;
             }
         };
     } // namespace Model

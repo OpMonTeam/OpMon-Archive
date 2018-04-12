@@ -186,7 +186,7 @@ namespace OpMon {
             }
 
             int CageEclair::effectAfter(OpMon &atk, OpMon &def) {
-                if(def.getType1() == Type::ELECTRIQUE || def.getType2() == Type::ELECTRIQUE) {
+                if(def.getType1() == Type::ELECTRON || def.getType2() == Type::ELECTRON) {
                 } else {
                     if(def.setStatus(Status::PARALYSED)) {
                     } else {
