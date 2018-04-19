@@ -76,6 +76,11 @@ key.sk.dialog.1=Who are you !
 key.sk.dialog.2=You should not
 key.sk.dialog.3=be here...
 
+key.battle.attack=Attack
+key.battle.bag=Bag
+key.battle.run=Run
+key.battle.opmon=OpMon
+
 key.battle.status.frozen.out=~ isn't frozen anymore!
 key.battle.status.frozen.in=~ is frozen!
 key.battle.status.frozen.attack=~ is frozen and can't attack!
