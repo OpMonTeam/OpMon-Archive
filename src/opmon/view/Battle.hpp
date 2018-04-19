@@ -26,8 +26,6 @@ namespace OpMon{
       
       //The cursor's position for the choices
       int cursorPos;
-      //The list of cursor's positions in pixel, depending of the situation
-      std::map<std::string, std::vector<sf::Vector2f> > cursorsList;
       //True if the turn have been calculated
       bool turnLaunched = false;
 
@@ -35,7 +33,8 @@ namespace OpMon{
       sf::Sprite playerSpr;
       sf::Sprite trainerSpr;
       sf::Sprite dialogSpr;
-      sf::Sprite choicesSpr[4];
+      sf::Text choicesTxt[4];
+      sf::Vector2f posChoices[4];
       sf::Sprite cursor;
     public:
 

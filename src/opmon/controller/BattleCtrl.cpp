@@ -8,18 +8,19 @@ namespace OpMon{
     
     BattleCtrl::BattleCtrl(OpTeam *one, OpTeam *two)
       : playerTeam(one), trainerTeam(two), atk(one->getOp(0)), def(two->getOp(0)){
-      
+      initBattle(0, 0);
     }
 
     GameStatus BattleCtrl::update() {
+      GameStatus returned;
       if(turnActivated){
 	turn();
-	view(*atkTurn, *defTurn);
+	returned = view(*atkTurn, *defTurn);
       }else{
-	view(atkTurn);
+	returned = view(atkTurn);
       }
       
-      return GameStatus::CONTINUE;//TEMP
+      return returned;
     }
 
     GameStatus BattleCtrl::checkEvent(sf::Event const & event){
