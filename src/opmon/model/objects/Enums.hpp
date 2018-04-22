@@ -61,7 +61,7 @@ namespace OpMon {
     */
         //->Enum
         enum class Type : int {
-            WATER = 3,
+            LIQUID = 3,
             BURNING = 6,
             VEGETAL = 10,
             ELECTRON = 4,
@@ -127,8 +127,7 @@ namespace OpMon {
       
         namespace ArrayTypes {
 
-            
-            float calcEfficacite(Type atk, Type def1, Type def2);
+            float calcEffectiveness(Type atk, Type def1, Type def2);
 
         } // namespace ArrayTypes
     }     // namespace Model

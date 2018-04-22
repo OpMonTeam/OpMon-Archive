@@ -25,7 +25,7 @@ namespace OpMon {
             std::string getName() const {
                 return name;
             }
-            OpMon **getOpTeam() {
+	  std::vector<OpMon*> getOpTeam() {
                 return opteam;
             }
             /**Heals all the team*/
@@ -57,7 +57,7 @@ namespace OpMon {
           private:
             //->Useless
             int nbreOfOp = 6;
-            OpMon *opteam[6] = {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr};
+	  std::vector<OpMon*> opteam;
             std::string name;
         };
 

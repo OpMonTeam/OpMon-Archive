@@ -7,23 +7,24 @@ http://opmon-game.ga
 #ifndef OPSTRING_PROTECTED
 #define OPSTRING_PROTECTED
 #include <SFML/System/String.hpp>
-#include <cstdarg>
 #include <iostream>
 #include <vector>
 
 namespace Utils {
 
     /**
-   * Class defining an OpString. See the OpMon documentation (http://opmon-game.ga/pages/doc) for more details
+   * Class defining an OpString. See the OpMon documentation (http://opmon.ga/pages/doc) for more details
    */
     class OpString {
       private:
         std::string key;
         std::vector<sf::String *> objects;
-
+      bool created = false;
       public:
-        OpString(std::string key, ...); //To change for a vector
-        OpString();
+      OpString(std::string const& key, ...);
+      OpString(std::string const& key, std::vector<sf::String*> obj);
+      OpString();
+      ~OpString();
 
         sf::String getObject(int const &index) {
             return *(objects[index]);
