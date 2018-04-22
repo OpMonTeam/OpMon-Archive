@@ -13,6 +13,7 @@
 #include "Species.hpp"
 #include "item/IOpBox.hpp"
 #include "item/Item.hpp"
+#include "../storage/Data.hpp"
 #include <cmath>
 #include <iostream>
 
@@ -133,6 +134,11 @@ namespace OpMon {
          Si le schema est incorrect, cela génèrera des erreurs de segmentation ou des données corrompues.
             */
             OpMon(std::ifstream &in);
+
+	  OpMon(){
+	    falsif = true;
+	    //species = Data::OpMons::listOp[0];
+	  }
 
 	  int getConfusedCD(){
 	    return confusedCD;

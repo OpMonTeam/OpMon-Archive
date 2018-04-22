@@ -26,8 +26,8 @@ namespace OpMon{
       
       View::Battle view;
 
-      Model::Turn* atkTurn;
-      Model::Turn* defTurn;
+      Model::Turn atkTurn;
+      Model::Turn defTurn;
 
       //These variables are used to restore the OpMon's stats after the battle
       int oldStats[2][5];
@@ -55,7 +55,7 @@ namespace OpMon{
       bool canAttack(Model::OpMon* opmon, Model::Turn* opTurn);
       
     public:
-      BattleCtrl(Model::OpTeam *one, Model::OpTeam two);
+      BattleCtrl(Model::OpTeam *one, Model::OpTeam *two);
       GameStatus checkEvent(sf::Event const &) override;
       GameStatus update() override;
     };

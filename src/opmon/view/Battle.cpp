@@ -3,10 +3,12 @@
 #include "../model/storage/Data.hpp"
 #include "../../utils/StringKeys.hpp"
 #include "Window.hpp"
+#include <iostream>
 
 namespace OpMon{
   namespace View{
     GameStatus Battle::operator()(Model::Turn* atkTurn){
+      std::cout << "Screen update" << std::endl;
       frame.draw(background);
       frame.draw(playerSpr);
       frame.draw(trainerSpr);
@@ -27,7 +29,7 @@ namespace OpMon{
       this->background.setTexture(Model::Data::Battle::backgrounds[background]);
       playerSpr.setTexture(Model::Data::Battle::charaBattleTextures["player"][0]);
       playerSpr.setPosition(250, 20);
-      trainerSpr.setTexture(Model::Data::Battle::charaBattleTextures["trainerClass"][0]);
+      trainerSpr.setTexture(Model::Data::Battle::charaBattleTextures[trainerClass][0]);
       trainerSpr.setPosition(70, 350);
       choicesTxt[0].setString(Utils::StringKeys::get("battle.attack"));
       choicesTxt[1].setString(Utils::StringKeys::get("battle.bag"));
@@ -50,6 +52,7 @@ namespace OpMon{
       dialogSpr.setPosition(0, 300);
       cursor.setTexture(Model::Data::Battle::cursor);
       cursor.setPosition(posChoices[0] - sf::Vector2f(20, 0));
+      frame.setView(frame.getDefaultView());
     }
   }
 }
