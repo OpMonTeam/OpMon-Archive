@@ -4,7 +4,7 @@
 
 namespace OpMon{
   namespace Model{
-    void newTurn(Turn* toNew){
+    void newTurn(Turn *toNew){
       toNew->opmon = nullptr;
       toNew->attackUsed = nullptr;
       toNew->itemUsed = nullptr;

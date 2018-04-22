@@ -1,23 +1,29 @@
 #include "BattleCtrl.hpp"
 #include "../../utils/OpString.hpp"
+#include <iostream>
 
 namespace OpMon{
   namespace Controller{
     using namespace Model;
 
     
-    BattleCtrl::BattleCtrl(OpTeam *one, OpTeam two)
-      : playerTeam(one), trainerTeam(new OpTeam(two)), atk(one->getOp(0)), def(trainerTeam->getOp(0)){
+    BattleCtrl::BattleCtrl(OpTeam *one, OpTeam *two)
+      : playerTeam(one),
+	trainerTeam(two),
+	atk(one->getOp(0)),
+	def(two->getOp(0)),
+	view(one, two, "cyrion", "grass"){
       initBattle(0, 0);
     }
 
     GameStatus BattleCtrl::update() {
+      std::cout << "Update" << std::endl;
       GameStatus returned;
       if(turnActivated){
 	turn();
-	returned = view(*atkTurn, *defTurn);
+	returned = view(atkTurn, defTurn);
       }else{
-	returned = view(atkTurn);
+	returned = view(&atkTurn);
       }
       
       return returned;
@@ -65,16 +71,17 @@ namespace OpMon{
       def->setStat(Model::Stats::EVA, 100);
       def->setStat(Model::Stats::ACC, 100);
       //Clear the turns
-      Model::newTurn(atkTurn);
-      Model::newTurn(defTurn);
+      Model::newTurn(&atkTurn);
+      Model::newTurn(&defTurn);
       //Register the opmons' addresses in the Turns
-      atkTurn->opmon = atk;
-      defTurn->opmon = def;
+      atkTurn.opmon = atk;
+      defTurn.opmon = def;
     }
 
     Model::Turn* BattleCtrl::turnIA(int level){
-      defTurn->attackUsed = def->getAttacks()[0];
-      defTurn->type = TurnType::ATTACK;
+      defTurn.attackUsed = def->getAttacks()[0];
+      defTurn.type = TurnType::ATTACK;
+      return &defTurn;
     }
     
     bool BattleCtrl::turn(){
@@ -82,17 +89,17 @@ namespace OpMon{
       bool defDone = false;
 
       bool atkFirst = true;
-      if(atkTurn->type != TurnType::ATTACK){
+      if(atkTurn.type != TurnType::ATTACK){
 	//Actions
 	atkDone = true;
       }
-      if(defTurn->type != TurnType::ATTACK){
+      if(defTurn.type != TurnType::ATTACK){
 	//Actions
 	defDone = true;
       }
       //If the two of them will attack, then the priority must be calculated. Else, the only attacking OpMon will attack, obviously.
-      if(defTurn->type == TurnType::ATTACK && atkTurn->type == TurnType::ATTACK){
-	atkFirst = ((atk->getStatSPE() > def->getStatSPE()) || (atkTurn->attackUsed->getPriority() > defTurn->attackUsed->getPriority()));
+      if(defTurn.type == TurnType::ATTACK && atkTurn.type == TurnType::ATTACK){
+	atkFirst = ((atk->getStatSPE() > def->getStatSPE()) || (atkTurn.attackUsed->getPriority() > defTurn.attackUsed->getPriority()));
       }else{
 	atkFirst = !atkDone;
       }
@@ -100,24 +107,24 @@ namespace OpMon{
       if(!atkDone || !defDone){
 	if(atkFirst){
 	  if(!atkDone){
-	    if(canAttack(atk, atkTurn)){
-	      atkTurn->attackUsed->attack(*atk, *def, *atkTurn);
+	    if(canAttack(atk, &atkTurn)){
+	      atkTurn.attackUsed->attack(*atk, *def, atkTurn);
 	    }
 	  }
 	  if(!defDone){
-	    if(canAttack(def, defTurn)){
-	      defTurn->attackUsed->attack(*def, *atk, *defTurn);
+	    if(canAttack(def, &defTurn)){
+	      defTurn.attackUsed->attack(*def, *atk, defTurn);
 	    }
 	  }
 	}else{
 	  if(!defDone){
-	    if(canAttack(def, defTurn)){
-	      defTurn->attackUsed->attack(*def, *atk, *defTurn);
+	    if(canAttack(def, &defTurn)){
+	      defTurn.attackUsed->attack(*def, *atk, defTurn);
 	    }
 	  }
 	  if(!atkDone){
-	    if(canAttack(atk, atkTurn)){
-	      atkTurn->attackUsed->attack(*atk, *def, *atkTurn);
+	    if(canAttack(atk, &atkTurn)){
+	      atkTurn.attackUsed->attack(*atk, *def, atkTurn);
 	    }
 	  }
 	}

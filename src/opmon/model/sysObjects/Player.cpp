@@ -69,10 +69,10 @@ namespace OpMon {
 
         bool Player::addOpToOpTeam(OpMon *toAdd) {
             if(opteam.addOpMon(toAdd)) {
-                return true;
+	      return true;
             } else {
-                addOpMonToPC(toAdd);
-                return false;
+	      addOpMonToPC(toAdd);
+	      return false;
             }
         }
 
