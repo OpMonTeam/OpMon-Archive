@@ -28,30 +28,32 @@ namespace OpMon{
       : atkTeam(atkTeam), defTeam(defTeam){
       this->background.setTexture(Model::Data::Battle::backgrounds[background]);
       playerSpr.setTexture(Model::Data::Battle::charaBattleTextures["player"][0]);
-      playerSpr.setPosition(250, 20);
+      playerSpr.setPosition(0, 40);
+      playerSpr.setScale(2, 2);
       trainerSpr.setTexture(Model::Data::Battle::charaBattleTextures[trainerClass][0]);
-      trainerSpr.setPosition(70, 350);
+      trainerSpr.setPosition(400, 20);
       choicesTxt[0].setString(Utils::StringKeys::get("battle.attack"));
       choicesTxt[1].setString(Utils::StringKeys::get("battle.bag"));
       choicesTxt[2].setString(Utils::StringKeys::get("battle.opmon"));
       choicesTxt[3].setString(Utils::StringKeys::get("battle.run"));
-      posChoices[0].x = 300;
-      posChoices[0].y = 350;
+      posChoices[0].x = 250;
+      posChoices[0].y = 375;
       posChoices[1].x = 400;
-      posChoices[1].y = 350;
-      posChoices[2].x = 300;
-      posChoices[2].y = 450;
+      posChoices[1].y = 375;
+      posChoices[2].x = 250;
+      posChoices[2].y = 425;
       posChoices[3].x = 400;
-      posChoices[3].y = 450;
+      posChoices[3].y = 425;
       for(unsigned int i = 0; i < 4; i++){
 	choicesTxt[i].setFont(Model::Data::Ui::font);
 	choicesTxt[i].setCharacterSize(28);
 	choicesTxt[i].setPosition(posChoices[i]);
+	choicesTxt[i].setColor(sf::Color::Black);
       }
       dialogSpr.setTexture(Model::Data::Battle::dialog);
-      dialogSpr.setPosition(0, 300);
+      dialogSpr.setPosition(0, 350);
       cursor.setTexture(Model::Data::Battle::cursor);
-      cursor.setPosition(posChoices[0] - sf::Vector2f(20, 0));
+      cursor.setPosition(posChoices[0] - sf::Vector2f(20, -15));
       frame.setView(frame.getDefaultView());
     }
   }
