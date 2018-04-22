@@ -11,7 +11,7 @@ namespace OpMon {
 	  Player player;
 	  
             namespace OpMons {
-                std::map<unsigned int, Species> listOp;
+                std::map<unsigned int, Species*> listOp;
                 std::vector<std::map<int, std::string>> atkOpLvl;
                 std::vector<std::vector<Stats>> evs;
 	      std::vector<std::vector<sf::Texture> > opSprites;

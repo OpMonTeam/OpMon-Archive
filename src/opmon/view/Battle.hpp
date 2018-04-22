@@ -5,6 +5,8 @@
 #include "../start/Core.hpp"
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/System/String.hpp>
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/System/Vector2.hpp>
 #include <map>
 
 namespace OpMon{
