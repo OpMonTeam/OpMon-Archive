@@ -1,5 +1,8 @@
 #include "Battle.hpp"
 #include "../model/sysObjects/OpTeam.hpp"
+#include "../model/storage/Data.hpp"
+#include "../../utils/StringKeys.hpp"
+#include "Window.hpp"
 
 namespace OpMon{
   namespace View{
@@ -21,15 +24,15 @@ namespace OpMon{
 
     Battle::Battle(const Model::OpTeam* atkTeam, const Model::OpTeam* defTeam, std::string trainerClass, std::string background)
       : atkTeam(atkTeam), defTeam(defTeam){
-      background.setTexture(Model::Data::Battle::backgrounds[background]);
+      this->background.setTexture(Model::Data::Battle::backgrounds[background]);
       playerSpr.setTexture(Model::Data::Battle::charaBattleTextures["player"][0]);
       playerSpr.setPosition(250, 20);
       trainerSpr.setTexture(Model::Data::Battle::charaBattleTextures["trainerClass"][0]);
       trainerSpr.setPosition(70, 350);
-      choicesTxt[0].setText(Utils::StringKeys::get("battle.attack"));
-      choicesTxt[1].setText(Utils::StringKeys::get("battle.bag"));
-      choicesTxt[2].setText(Utils::StringKeys::get("battle.opmon"));
-      choicesTxt[3].setText(Utils::StringKeys::get("battle.run"));
+      choicesTxt[0].setString(Utils::StringKeys::get("battle.attack"));
+      choicesTxt[1].setString(Utils::StringKeys::get("battle.bag"));
+      choicesTxt[2].setString(Utils::StringKeys::get("battle.opmon"));
+      choicesTxt[3].setString(Utils::StringKeys::get("battle.run"));
       posChoices[0].x = 300;
       posChoices[0].y = 350;
       posChoices[1].x = 400;

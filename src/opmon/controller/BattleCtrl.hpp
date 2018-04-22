@@ -55,7 +55,7 @@ namespace OpMon{
       bool canAttack(Model::OpMon* opmon, Model::Turn* opTurn);
       
     public:
-      BattleCtrl(Model::OpTeam* one, Model::OpTeam *two);
+      BattleCtrl(Model::OpTeam *one, Model::OpTeam two);
       GameStatus checkEvent(sf::Event const &) override;
       GameStatus update() override;
     };

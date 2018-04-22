@@ -5,6 +5,7 @@
 #include "./OptionsMenuCtrl.hpp"
 #include "./StartSceneCtrl.hpp"
 
+
 namespace OpMon {
     namespace Controller {
 
@@ -44,9 +45,7 @@ namespace OpMon {
                     view.moveArrow(false);
                     arrow.play();
                     break;
-		case sf::Keyboard::B:
-		  _next_gs = new BattleCtrl();
-		  return GameStatus::NEXT;
+		
                 default:
                     break;
                 }
