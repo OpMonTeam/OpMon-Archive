@@ -8,12 +8,13 @@ namespace OpMon {
     namespace Model {
         namespace Data {
 
-            Player player;
-
+	  Player player;
+	  
             namespace OpMons {
-                std::map<unsigned int, Species> listOp;
+                std::map<unsigned int, Species*> listOp;
                 std::vector<std::map<int, std::string>> atkOpLvl;
                 std::vector<std::vector<Stats>> evs;
+	      std::vector<std::vector<sf::Texture> > opSprites;
             } // namespace OpMons
 
             namespace World {
@@ -21,6 +22,16 @@ namespace OpMon {
                 sf::Texture tileset;
             } // namespace World
 
+	  namespace Battle {
+	    std::map<std::string, sf::Texture> backgrounds;
+	    sf::Texture dialog;
+	    sf::Texture attackDial;
+	    sf::Texture cursor;
+	    std::vector<sf::Texture> choices;
+	    std::map<std::string, std::vector<sf::Texture> > charaBattleTextures;
+	    std::list<sf::Texture> battlePlayerAnim;
+	  }
+	  
             namespace Elements {
                 std::map<std::string, sf::Vector2f> elementsPos;
                 std::map<std::string, int> elementsCounter;

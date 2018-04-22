@@ -86,9 +86,8 @@ key.playerhome.tv.3=look very happy ...
 
 key.playermom.dialog.1=Are you alright darling?
 key.playermom.dialog.2=...
-key.playermom.dialog.3=You don't seem to be okay.
 
-key.rt14.sk.1=Who are you !
+key.rt14.sk.1=Who are you ?
 key.rt14.sk.2=You should not
 key.rt14.sk.3=be here...
 
@@ -105,5 +104,31 @@ key.fe.fisherman.9=You are new ?
 key.inferm.dialog.1=Welcome !
 key.inferm.dialog.1=Do you want to heal your OpMons ?
 key.inferm.dialog.1=... But ? You don't have OpMons.
+
+key.battle.attack=Attack
+key.battle.bag=Bag
+key.battle.run=Run
+key.battle.opmon=OpMon
+
+key.battle.status.frozen.out=~ isn't frozen anymore!
+key.battle.status.frozen.in=~ is frozen!
+key.battle.status.frozen.attack=~ is frozen and can't attack!
+
+key.battle.status.sleep.out=~ woke up!
+key.battle.status.sleep.in=~ fells in a deep sleep!
+key.battle.status.sleep.attack=~ sleeps deeply.
+
+key.battle.status.paralysed.out=~ is not paralysed anymore!
+key.battle.status.paralysed.in=~ is paralysed!
+key.battle.status.paralysed.attack.success.1=Despite the paralysis,
+key.battle.status.paralysed.attack.success.2=~ manages to attack!
+key.battle.status.paralysed.attack.fail=~ is paralysed and can't attack!
+
+key.battle.status.confused.out=~ is not confused anymore!
+key.battle.status.confused.in=~ becomes confused!
+key.battle.status.confused.attack.success.1=Despite the confusion, ~
+key.battle.status.confused.attack.success.2=manages to attack!
+key.battle.status.confused.attack.fail=~ is confused.
+key.battle.status.confused.hplost=~ lost ~ hp.
 
 end
