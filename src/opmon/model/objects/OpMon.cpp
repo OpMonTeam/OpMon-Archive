@@ -105,7 +105,7 @@ UNS
             statSPE = round(
               ((((2 * species->getBaseSpe() + speIV + (speEV / 4)) * level) / 100) + 5) * ((natures[(int)nature].bonus == Stats::SPE) ? 1.1 : ((natures[(int)nature].malus == Stats::SPE) ? 0.9 : 1)));
             statHP = round(((2 * species->getBaseHP() + hpIV + (hpEV / 4)) * level) / 100) + level + 10;
-            this->species = &species;
+            this->species = species;
             this->level = level;
 
             this->attacks = attacks;

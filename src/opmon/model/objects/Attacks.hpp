@@ -307,7 +307,6 @@ namespace OpMon {
       */
     }
   }
-//>>>>>>> 1ab787a9c1203700040cf69f490523b6609e72e6
 }
 
 #endif /* SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUES_HPP_ */
