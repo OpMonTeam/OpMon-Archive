@@ -62,6 +62,9 @@ UNS
         for(sf::Music *mus : Data::Ui::townMusics) { //Deleting the maps' music
             delete(mus);
         }
+	for(auto spe : Data::OpMons::listOp){
+	  delete(spe.second);
+	}
 
         // TODO: delet the player's OpMons !
         // for(unsigned short i = 0; i < 6; i++){

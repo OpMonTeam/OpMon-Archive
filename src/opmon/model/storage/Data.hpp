@@ -33,7 +33,7 @@ namespace OpMon {
 
 	  
             namespace OpMons {
-                extern std::map<unsigned int, Species> listOp;
+                extern std::map<unsigned int, Species*> listOp;
                 extern std::vector<std::map<int, std::string>> atkOpLvl;
                 OP_DEPRECATED extern std::vector<std::vector<Stats>> evs;
 	      extern std::vector<std::vector<sf::Texture> > opSprites;

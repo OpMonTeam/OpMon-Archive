@@ -6,8 +6,8 @@ namespace OpMon{
     using namespace Model;
 
     
-    BattleCtrl::BattleCtrl(OpTeam *one, OpTeam *two)
-      : playerTeam(one), trainerTeam(two), atk(one->getOp(0)), def(two->getOp(0)){
+    BattleCtrl::BattleCtrl(OpTeam *one, OpTeam two)
+      : playerTeam(one), trainerTeam(new OpTeam(two)), atk(one->getOp(0)), def(trainerTeam->getOp(0)){
       initBattle(0, 0);
     }
 

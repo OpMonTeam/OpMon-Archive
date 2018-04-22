@@ -124,7 +124,7 @@ namespace OpMon {
 	  
             virtual ~OpMon();
 
-            OpMon(const std::string &nickname, const Species &species, int level, const std::vector<Attack *> &attacks,
+            OpMon(const std::string &nickname, const Species *species, int level, const std::vector<Attack *> &attacks,
                   Nature nature);
 
             /**
