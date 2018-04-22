@@ -77,10 +77,10 @@ key.sk.dialog.1=Qui es-tu !
 key.sk.dialog.2=Tu ne devrais pas
 key.sk.dialog.3=être ici...
 
-key.battle.attack=Attaque
+key.battle.attack=Attaques
 key.battle.bag=Sac
 key.battle.run=Fuite
-key.battle.opmon=OpMon
+key.battle.opmon=OpMons
 
 key.battle.status.frozen.out=~ n'est plus gelé!
 key.battle.status.frozen.in=~ est gelé!
