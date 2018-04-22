@@ -51,7 +51,7 @@ UNS
         }
 
         I_Heal::I_Heal(string &name, Stats statAdd, int ID)
-          : Item(name, true, true, true, BagCat::SOIN, ID) {
+          : Item(name, true, true, true, BagCat::HEAL, ID) {
             hpHeal = 0;
             healed = Status::NOTHING;
             healAll = false;
