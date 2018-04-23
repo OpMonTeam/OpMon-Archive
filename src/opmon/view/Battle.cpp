@@ -28,8 +28,8 @@ namespace OpMon{
       : atkTeam(atkTeam), defTeam(defTeam){
       this->background.setTexture(Model::Data::Battle::backgrounds[background]);
       playerSpr.setTexture(Model::Data::Battle::charaBattleTextures["player"][0]);
-      playerSpr.setPosition(0, 193);
-      playerSpr.setScale(1, 1);
+      playerSpr.setPosition(20, 206);
+      playerSpr.setScale(2, 2);
       trainerSpr.setTexture(Model::Data::Battle::charaBattleTextures[trainerClass][0]);
       trainerSpr.setPosition(400, 20);
       choicesTxt[0].setString(Utils::StringKeys::get("battle.attack"));
