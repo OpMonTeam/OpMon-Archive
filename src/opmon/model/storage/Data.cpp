@@ -30,7 +30,8 @@ namespace OpMon {
 	    std::vector<sf::Texture> choices;
 	    std::map<std::string, std::vector<sf::Texture> > charaBattleTextures;
 	    std::list<sf::Texture> battlePlayerAnim;
-	    sf::Texture infoBox;
+	    sf::Texture infoboxPlayer;
+	    sf::Texture infoboxTrainer;
 	    sf::Texture healthbar1;
 	    sf::Texture healthbar2;
 	  }
