@@ -13,6 +13,7 @@
 #include <cmath>
 #include <iostream>
 
+/** Macro replacing an attack class declaration. I created it by pure laziness. */
 #define ATK_CLASS(name)				\
   class name : public Attack 
 
@@ -36,7 +37,7 @@ namespace OpMon {
       */
 
       Attack *newAtk(std::string name);
-
+      
       ATK_CLASS(Abime){
       public:
 	Abime()

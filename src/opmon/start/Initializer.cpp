@@ -384,7 +384,7 @@ _______________________________________________________________
             ResourceLoader::loadTextureArray(shopDoor, "animations/shopdoor/shop_door%d.png", 4, 1);
             doorsTextures.push_back(shopDoor);
 
-	        ResourceLoader::loadTextureArray(charaTextures["kid"], "sprites/chara/kid/kid%d.png", 12);
+	    ResourceLoader::loadTextureArray(charaTextures["kid"], "sprites/chara/kid/kid%d.png", 12);
             ResourceLoader::loadTextureArray(charaTextures["fisherman"], "sprites/chara/fisherman/fisherman%d.png", 12);
             ResourceLoader::loadTextureArray(charaTextures["kiwai"], "sprites/chara/prof/prof%d.png", 12);
             ResourceLoader::loadTextureArray(charaTextures["playermom"], "sprites/chara/mom/mom%d.png", 12);
@@ -394,7 +394,7 @@ _______________________________________________________________
 
 
 	    ResourceLoader::load(Model::Data::Battle::backgrounds["grass"], "backgrounds/battle_bkg/background_grass.png");
-	    ResourceLoader::load(Model::Data::Battle::dialog, "backgrounds/dialog/dialog.png");
+	    ResourceLoader::load(Model::Data::Battle::dialog, "backgrounds/dialog/battle_dialog.png");
 	    //ResourceLoader::load(Model::Data::Battle::attackDial, "");
 	    ResourceLoader::load(Model::Data::Battle::cursor, "sprites/misc/arrChoice.png");
 	    //Temps
