@@ -22,18 +22,20 @@ namespace OpMon {
                 sf::Texture tileset;
             } // namespace World
 
-	  namespace Battle {
-	    std::map<std::string, sf::Texture> backgrounds;
-	    sf::Texture dialog;
-	    sf::Texture attackDial;
-	    sf::Texture cursor;
-	    std::vector<sf::Texture> choices;
-	    std::map<std::string, std::vector<sf::Texture> > charaBattleTextures;
-	    std::list<sf::Texture> battlePlayerAnim;
-	    sf::Texture infoboxPlayer;
-	    sf::Texture infoboxTrainer;
-	    sf::Texture healthbar1;
-	    sf::Texture healthbar2;
+	       namespace Battle {
+	            std::map<std::string, sf::Texture> backgrounds;
+	            sf::Texture dialog;
+	            sf::Texture attackDial;
+	            sf::Texture cursor;
+	            std::vector<sf::Texture> choices;
+	            std::map<std::string, std::vector<sf::Texture> > charaBattleTextures;
+	            std::list<sf::Texture> battlePlayerAnim;
+	            sf::Texture infoboxPlayer;
+	            sf::Texture infoboxTrainer;
+	            sf::Texture healthbar1;
+	            sf::Texture healthbar2;
+	            sf::Texture shadowPlayer;
+	            sf::Texture shadowTrainer;
 	  }
 	  
             namespace Elements {

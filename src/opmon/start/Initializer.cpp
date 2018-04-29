@@ -407,6 +407,8 @@ _______________________________________________________________
 	    ResourceLoader::load(Model::Data::Battle::infoboxTrainer, "sprites/battle/square_2.png");
 	    ResourceLoader::load(Model::Data::Battle::healthbar1, "sprites/battle/health_bar.png");
 	    ResourceLoader::load(Model::Data::Battle::healthbar2, "sprites/battle/health_jauge.png");
+	    ResourceLoader::load(Model::Data::Battle::shadowPlayer, "sprites/battle/shadow_2.png");
+	    ResourceLoader::load(Model::Data::Battle::shadowTrainer, "sprites/battle/shadow_1.png");
 
 	    initOpTextures();
 

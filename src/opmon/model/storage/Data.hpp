@@ -54,6 +54,8 @@ namespace OpMon {
 	    extern std::list<sf::Texture> battlePlayerAnim;
 	    extern sf::Texture infoboxPlayer;
 	    extern sf::Texture infoboxTrainer;
+	    extern sf::Texture shadowPlayer;
+	    extern sf::Texture shadowTrainer;
 	    extern sf::Texture healthbar1;
 	    extern sf::Texture healthbar2;
 	  }
