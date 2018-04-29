@@ -8,7 +8,6 @@
 namespace OpMon{
   namespace View{
     GameStatus Battle::operator()(Model::Turn* atkTurn){
-      std::cout << "Screen update" << std::endl;
       frame.draw(background);
       frame.draw(playerSpr);
       frame.draw(trainerSpr);
@@ -16,6 +15,7 @@ namespace OpMon{
       for(sf::Text &txt : choicesTxt){
 	frame.draw(txt);
       }
+      cursor.setPosition(posChoices[curPos] - sf::Vector2f(30, -8));
       frame.draw(cursor);
       return GameStatus::CONTINUE;
     }
@@ -36,25 +36,49 @@ namespace OpMon{
       choicesTxt[1].setString(Utils::StringKeys::get("battle.bag"));
       choicesTxt[2].setString(Utils::StringKeys::get("battle.opmon"));
       choicesTxt[3].setString(Utils::StringKeys::get("battle.run"));
-      posChoices[0].x = 280;
+      posChoices[0].x = 80;
       posChoices[0].y = 385;
-      posChoices[1].x = 420;
+      posChoices[1].x = 220;
       posChoices[1].y = 385;
-      posChoices[2].x = 280;
+      posChoices[2].x = 80;
       posChoices[2].y = 435;
-      posChoices[3].x = 420;
+      posChoices[3].x = 220;
       posChoices[3].y = 435;
       for(unsigned int i = 0; i < 4; i++){
 	choicesTxt[i].setFont(Model::Data::Ui::font);
-	choicesTxt[i].setCharacterSize(21);
+	choicesTxt[i].setCharacterSize(26);
 	choicesTxt[i].setPosition(posChoices[i]);
 	choicesTxt[i].setColor(sf::Color::Black);
       }
       dialogSpr.setTexture(Model::Data::Battle::dialog);
       dialogSpr.setPosition(0, 350);
       cursor.setTexture(Model::Data::Battle::cursor);
-      cursor.setPosition(posChoices[0] - sf::Vector2f(20, -15));
+      cursor.setPosition(posChoices[0] - sf::Vector2f(30, -8));
+      curPos = 0;
+      cursor.setScale(2, 2);
       frame.setView(frame.getDefaultView());
+    }
+
+    void Battle::moveCur(Model::Side where){
+      int cur = curPos;
+      switch(where){
+      case Model::Side::TO_LEFT:
+	cur -= 1;
+	break;
+      case Model::Side::TO_RIGHT:
+	cur += 1;
+	break;
+      case Model::Side::TO_UP:
+	cur -= 2;
+	break;
+      case Model::Side::TO_DOWN:
+	cur += 2;
+	break;
+      }
+      
+      if(cur >= 0 && cur < 4){
+	curPos = cur;
+      }
     }
   }
 }

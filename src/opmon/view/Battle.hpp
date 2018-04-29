@@ -38,6 +38,7 @@ namespace OpMon{
       sf::Text choicesTxt[4];
       sf::Vector2f posChoices[4];
       sf::Sprite cursor;
+      int curPos;
     public:
 
       Battle(const Model::OpTeam* atkTeam, const Model::OpTeam* defTeam, std::string trainerClass, std::string background);
