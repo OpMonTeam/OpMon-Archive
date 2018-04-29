@@ -28,7 +28,7 @@ namespace OpMon {
 	  debugMode = !debugMode;
 	  if(!debugMode) {
 	    debugCol = false;
-	    camUnlock = false;
+	    overworld.setCameraLock(false);
 	  }
 	}
 	if(events.key.code == sf::Keyboard::M) {
@@ -59,13 +59,13 @@ namespace OpMon {
 	    return GameStatus::NEXT;
 	  }
 	  if(events.key.code == sf::Keyboard::Numpad5) {
-	    camUnlock = !camUnlock;
+	    overworld.setCameraLock(!overworld.isCameraLocked());
 	  }
 	}
       default:
 	break;
       }
-      if(camUnlock) {
+      if(overworld.isCameraLocked()) {
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2)) {
 	  overworld.moveCamera(Model::Side::TO_DOWN);
 	}

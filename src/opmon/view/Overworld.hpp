@@ -78,10 +78,17 @@ namespace OpMon {
                 recordFrames = true;
             }
 
+            bool isCameraLocked() { return cameraLock; }
+            void setCameraLock(bool locked) {
+              cameraLock = locked;
+            }
+
           private:
             void printElements(sf::RenderTexture &frame);
 
             void printCollisionLayer(sf::RenderTarget &frame);
+
+            void updateCamera();
 
             sf::View camera;
             sf::Sprite character;
@@ -108,9 +115,7 @@ namespace OpMon {
             int animsCounter = 0;
             bool recordFrames = false;
 
-            bool movementLock = false;
-
-            bool scrolling = true;
+            bool cameraLock = false;
         };
 
     } // namespace View

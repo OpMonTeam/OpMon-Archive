@@ -25,7 +25,6 @@ UNS
 
     bool debugMode = false;
     bool debugCol = false;
-    bool camUnlock = false;
 
     bool reboot = false;
 
