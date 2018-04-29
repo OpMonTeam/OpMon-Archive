@@ -46,6 +46,8 @@ namespace OpMon{
       sf::Sprite healthbar2[2];
       sf::Sprite infoboxPlayer;
       sf::Sprite infoboxTrainer;
+      sf::Sprite shadowTrainer;
+      sf::Sprite shadowPlayer;
       
       int curPos;
     public:

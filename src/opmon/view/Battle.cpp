@@ -10,6 +10,8 @@ namespace OpMon{
   namespace View{
     GameStatus Battle::operator()(Model::Turn* atkTurn, Model::Turn *def){
       frame.draw(background);
+      frame.draw(shadowPlayer);
+	  frame.draw(shadowTrainer);
       frame.draw(playerSpr);
       frame.draw(trainerSpr);
       atk.setTexture(Model::Data::OpMons::opSprites[atkTurn->opmon->getSpecies().getOpdexNumber()][0]);
@@ -18,6 +20,7 @@ namespace OpMon{
       frame.draw(this->def);
 	  frame.draw(infoboxPlayer);
 	  frame.draw(infoboxTrainer);
+
 
       for(unsigned int i = 0; i < 2; i++){
 	frame.draw(healthbar1[i]);
@@ -38,7 +41,7 @@ namespace OpMon{
       frame.draw(opName[1]);
       frame.draw(opLevel[0]);
       frame.draw(opLevel[1]);
-      
+
       frame.draw(dialogSpr);
       for(sf::Text &txt : choicesTxt){
 	frame.draw(txt);
@@ -94,6 +97,10 @@ namespace OpMon{
       infoboxPlayer.setPosition(321, 277);
 	  infoboxTrainer.setTexture(Model::Data::Battle::infoboxTrainer);
       infoboxTrainer.setPosition(17, 148);
+      shadowPlayer.setTexture(Model::Data::Battle::shadowPlayer);
+      shadowPlayer.setPosition(130, 281);
+      shadowTrainer.setTexture(Model::Data::Battle::shadowTrainer);
+      shadowTrainer.setPosition(320, 175);
       for(unsigned int i = 0; i < 2; i++){
 
 	healthbar1[i].setTexture(Model::Data::Battle::healthbar1);
