@@ -21,13 +21,17 @@ namespace OpMon {
         /**
        Represent an OpMon attack
     */
-        //->PureVirtual
-        class Attack {
+
+
+      class AttackEffect {
+      public:
+        virtual int apply(Attack &/*attack*/, OpMon & /*attacker*/, OpMon & /*defender*/, Turn& /* atkTurn */) { return 0; }
+      };
+
+       class Attack {
           public:
-            virtual ~Attack() {}
-            Attack(std::string name, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::string className);
-	  virtual int effectBefore(OpMon & /*atk*/, OpMon & /*def*/, Turn& atkTurn) { return 0; }
-	  virtual int effectAfter(OpMon & /*atk*/, OpMon & /*def*/, Turn& atkTurn) { return 0; }
+            virtual ~Attack();
+            Attack(std::string name, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::string className, AttackEffect *preEffect = NULL, AttackEffect *postEffect = NULL);
             void healPP() {
                 pp = ppMax;
             }
@@ -37,7 +41,7 @@ namespace OpMon {
             /**atk attacks the def OpMon*/
             //->Final
 	  int attack(OpMon &atk, OpMon &def, Turn& atkTurn);
-	  virtual void ifFails(OpMon &, OpMon &, Turn& atkTurn) {}
+	  virtual void ifFails(OpMon &, OpMon &, Turn& /*atkTurn*/) {}
             virtual std::string getClassName() {
                 return className;
             }
@@ -51,6 +55,15 @@ namespace OpMon {
 	  int getPriority(){
 	    return this->priority;
 	  }
+         // methods used by pre and post Effects
+         void setPower(int power) { this->power = power; }
+         int getAccuracy() { return this->accuracy; }
+         void setAccuracy(int accuracy) { this->accuracy = accuracy; }
+         int getPart() { return part; }
+         void setPart(int part) { this->part = part; }
+         int getHpLost() { return this->hpLost; }
+         int getSavedDefSpe() { return this->savedDefSpe; }
+         void setSavedDefSpe(int defSpe) { this->savedDefSpe = defSpe; }
 
           protected:
             std::string className;
@@ -67,8 +80,12 @@ namespace OpMon {
             /**The critical hit rate is 1/criticalRate*/
             int criticalRate;
             bool neverFails;
-            /**Variables used in effectBefore and effetAfter*/
+
+            AttackEffect *preEffect;
+            AttackEffect *postEffect;
+            /**Variables used in preEffect and postEffect*/
             int hpLost = 0;
+            int savedDefSpe = 0; // used by ChocPsy
         };
 
     } // namespace Model
