@@ -338,7 +338,7 @@ _______________________________________________________________
 
 
       void initOpTextures(){
-	//I will use a "for" loop later, I don't use it now to avoir loading errors.
+	//I will use a "for" loop later, I don't use it now to avoid loading errors.
 	std::vector<std::vector<sf::Texture> > &opSprites = Model::Data::OpMons::opSprites;
 	opSprites.push_back(std::vector<sf::Texture>());
 	opSprites.push_back(std::vector<sf::Texture>());
