@@ -73,7 +73,7 @@ namespace OpMon{
       posChoices[3].y = 435;
       for(unsigned int i = 0; i < 4; i++){
 	choicesTxt[i].setFont(Model::Data::Ui::font);
-	choicesTxt[i].setCharacterSize(26);
+	choicesTxt[i].setCharacterSize(20);
 	choicesTxt[i].setPosition(posChoices[i]);
 	choicesTxt[i].setColor(sf::Color::Black);
       }
