@@ -76,7 +76,7 @@ namespace OpMon{
 	choicesTxt[i].setFont(Model::Data::Ui::font);
 	choicesTxt[i].setCharacterSize(20);
 	choicesTxt[i].setPosition(posChoices[i]);
-	choicesTxt[i].setColor(sf::Color::Black);
+	choicesTxt[i].setColor(sf::Color::White);
       }
       dialogSpr.setTexture(Model::Data::Battle::dialog);
       dialogSpr.setPosition(0, 350);
