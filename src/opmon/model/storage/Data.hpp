@@ -52,7 +52,8 @@ namespace OpMon {
 	    //extern std::vector<sf::Texture> choices;
 	    extern std::map<std::string, std::vector<sf::Texture> > charaBattleTextures;
 	    extern std::list<sf::Texture> battlePlayerAnim;
-	    extern sf::Texture infoBox;
+	    extern sf::Texture infoboxPlayer;
+	    extern sf::Texture infoboxTrainer;
 	    extern sf::Texture healthbar1;
 	    extern sf::Texture healthbar2;
 	  }

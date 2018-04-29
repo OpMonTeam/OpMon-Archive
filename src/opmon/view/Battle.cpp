@@ -16,9 +16,10 @@ namespace OpMon{
       this->def.setTexture(Model::Data::OpMons::opSprites[def->opmon->getSpecies().getOpdexNumber()][1]);
       frame.draw(atk);
       frame.draw(this->def);
+	  frame.draw(infoboxPlayer);
+	  frame.draw(infoboxTrainer);
 
       for(unsigned int i = 0; i < 2; i++){
-	frame.draw(infobox[i]);
 	frame.draw(healthbar1[i]);
 	frame.draw(healthbar2[i]);
       }
@@ -89,25 +90,28 @@ namespace OpMon{
       def.setPosition(305, 120);
       atk.setScale(2, 2);
 
-
+	  infoboxPlayer.setTexture(Model::Data::Battle::infoboxPlayer);
+      infoboxPlayer.setPosition(321, 277);
+	  infoboxTrainer.setTexture(Model::Data::Battle::infoboxTrainer);
+      infoboxTrainer.setPosition(17, 148);
       for(unsigned int i = 0; i < 2; i++){
-	infobox[i].setTexture(Model::Data::Battle::infoBox);
+
 	healthbar1[i].setTexture(Model::Data::Battle::healthbar1);
 	healthbar2[i].setTexture(Model::Data::Battle::healthbar2);
       }
 
-      infobox[0].setPosition(17, 148);
+      infoboxTrainer.setPosition(17, 148);
       healthbar1[0].setPosition(30, 130);
       healthbar2[0].setPosition(30, 130);
 
-      infobox[1].setPosition(321, 277);
+      infoboxPlayer.setPosition(321, 277);
       healthbar1[1].setPosition(335, 257);
       healthbar2[1].setPosition(335, 257);
 
-      opName[0].setPosition(22, 160);
-      opLevel[0].setPosition(22, 185);
-      opName[1].setPosition(332, 289);
-      opLevel[1].setPosition(332, 314);
+      opName[0].setPosition(332, 289);
+      opLevel[0].setPosition(332, 314);
+      opName[1].setPosition(22, 160);
+      opLevel[1].setPosition(22, 185);
 
       for(unsigned int i = 0; i < 2; i++){
 	opName[i].setFont(Model::Data::Ui::font);
