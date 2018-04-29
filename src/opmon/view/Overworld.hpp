@@ -22,10 +22,6 @@ namespace OpMon {
           public:
             Overworld(const std::string &mapId);
 
-            sf::View &getCamera() {
-                return camera;
-            }
-
             sf::Sprite &getCharacter() {
                 return character;
             }
@@ -56,6 +52,8 @@ namespace OpMon {
             }
 
             void moveCamera(Model::Side dir);
+            bool isCameraLocked();
+            void setCameraLock(bool locked);
 
             bool printlayer[3] = {true, true, true};
             bool printCollisions = false;
@@ -78,17 +76,16 @@ namespace OpMon {
                 recordFrames = true;
             }
 
-            bool isCameraLocked() { return cameraLock; }
-            void setCameraLock(bool locked) {
-              cameraLock = locked;
-            }
-
           private:
             void printElements(sf::RenderTexture &frame);
 
             void printCollisionLayer(sf::RenderTarget &frame);
 
+            /* Move the camera to follow the player's moves. */
             void updateCamera();
+
+            /* Center the camera on the player. */
+            void resetCamera();
 
             sf::View camera;
             sf::Sprite character;
