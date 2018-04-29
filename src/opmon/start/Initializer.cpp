@@ -403,6 +403,9 @@ _______________________________________________________________
 	    Model::Data::Battle::charaBattleTextures["cyrion"].push_back(sf::Texture());
 	    ResourceLoader::load(Model::Data::Battle::charaBattleTextures["cyrion"][0], "sprites/chara/cyrion/cyrion.png");
 	    Model::Data::Battle::battlePlayerAnim.push_back(Model::Data::Battle::charaBattleTextures["player"][0]);
+	    ResourceLoader::load(Model::Data::Battle::infoBox, "sprites/battle/square_1.png");
+	    ResourceLoader::load(Model::Data::Battle::healthbar1, "sprites/battle/health_bar.png");
+	    ResourceLoader::load(Model::Data::Battle::healthbar2, "sprites/battle/health_jauge.png");
 
 	    initOpTextures();
 

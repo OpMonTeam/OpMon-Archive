@@ -38,6 +38,14 @@ namespace OpMon{
       sf::Text choicesTxt[4];
       sf::Vector2f posChoices[4];
       sf::Sprite cursor;
+
+      sf::Text opName[2];
+      sf::Text opLevel[2];
+
+      sf::Sprite healthbar1[2];
+      sf::Sprite healthbar2[2];
+      sf::Sprite infobox[2];
+      
       int curPos;
     public:
 
