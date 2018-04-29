@@ -22,7 +22,7 @@ namespace OpMon{
 	turn();
 	returned = view(atkTurn, defTurn);
       }else{
-	returned = view(&atkTurn);
+	returned = view(&atkTurn, &defTurn);
       }
       
       return returned;
@@ -52,7 +52,7 @@ namespace OpMon{
 
     void BattleCtrl::initBattle(int opId, int opId2){
       atk = playerTeam->getOp(opId);
-      def = playerTeam->getOp(opId);
+      def = trainerTeam->getOp(opId2);
       oldStats[0][0] = atk->getStatATK();
       oldStats[0][1] = atk->getStatDEF();
       oldStats[0][2] = atk->getStatATKSPE();

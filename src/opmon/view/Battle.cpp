@@ -7,10 +7,14 @@
 
 namespace OpMon{
   namespace View{
-    GameStatus Battle::operator()(Model::Turn* atkTurn){
+    GameStatus Battle::operator()(Model::Turn* atkTurn, Model::Turn *def){
       frame.draw(background);
       frame.draw(playerSpr);
       frame.draw(trainerSpr);
+      atk.setTexture(Model::Data::OpMons::opSprites[atkTurn->opmon->getSpecies().getOpdexNumber()][0]);
+      this->def.setTexture(Model::Data::OpMons::opSprites[def->opmon->getSpecies().getOpdexNumber()][1]);
+      frame.draw(atk);
+      frame.draw(this->def);
       frame.draw(dialogSpr);
       for(sf::Text &txt : choicesTxt){
 	frame.draw(txt);
@@ -57,6 +61,10 @@ namespace OpMon{
       curPos = 0;
       cursor.setScale(2, 2);
       frame.setView(frame.getDefaultView());
+      atk.setPosition(110, 160);
+      def.setPosition(305, 120);
+      atk.setScale(2, 2);
+
     }
 
     void Battle::moveCur(Model::Side where){
