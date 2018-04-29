@@ -17,7 +17,6 @@ namespace OpMon{
     }
 
     GameStatus BattleCtrl::update() {
-      std::cout << "Update" << std::endl;
       GameStatus returned;
       if(turnActivated){
 	turn();
@@ -31,8 +30,22 @@ namespace OpMon{
 
     GameStatus BattleCtrl::checkEvent(sf::Event const & event){
 
-      //events check
-      //Events stock all the turn data into atkTurn.
+      switch(event.type){
+      case sf::Event::KeyPressed:
+	switch(event.key.code){
+	case sf::Keyboard::Left:
+	  view.moveCur(Model::Side::TO_LEFT);
+	  break;
+	case sf::Keyboard::Right:
+	  view.moveCur(Model::Side::TO_RIGHT);
+	  break;
+	case sf::Keyboard::Up:
+	  view.moveCur(Model::Side::TO_UP);
+	  break;
+	case sf::Keyboard::Down:
+	  view.moveCur(Model::Side::TO_DOWN);
+	}
+      }
       
       return GameStatus::CONTINUE;
     }
