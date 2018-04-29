@@ -224,9 +224,9 @@ namespace OpMon {
             if((debugMode ? printlayer[2] : true)) {
                 View::frame.draw(*layer3);
             }
-            if(scrolling && !camUnlock) {
-                camera.setCenter(character.getPosition().x + 16, character.getPosition().y + 16);
-            }
+
+            updateCamera();
+
             View::frame.setView(View::frame.getDefaultView());
             View::frame.setView(camera);
             printElements(View::frame);
@@ -270,6 +270,14 @@ namespace OpMon {
             //Refresh to do in GameLoop
 
             return GameStatus::CONTINUE;
+        }
+
+        void Overworld::updateCamera() {
+          if (cameraLock)
+            return;
+
+          // Note: character is already center.
+          camera.setCenter(character.getPosition().x, character.getPosition().y);
         }
 
         void Overworld::printCollisionLayer(sf::RenderTarget &frame) {
