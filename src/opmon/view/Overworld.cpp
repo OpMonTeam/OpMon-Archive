@@ -1,3 +1,5 @@
+
+#include <algorithm>
 #include "Overworld.hpp"
 #include "../model/objects/Enums.hpp"
 #include "../start/Initializer.hpp"
@@ -31,6 +33,15 @@ namespace OpMon {
             jukebox.play(mus);
         }
 
+
+        bool Overworld::isCameraLocked() {
+            return cameraLock;
+        }
+
+        void Overworld::setCameraLock(bool locked) {
+            cameraLock = locked;
+        }
+
         void Overworld::moveCamera(Side dir) {
             switch(dir) {
             case Side::TO_UP:
@@ -50,6 +61,32 @@ namespace OpMon {
             }
         }
 
+        void Overworld::updateCamera() {
+            if (cameraLock)
+                return;
+
+            // Note: character is already center on itself:
+            // character.getPosition() returns the center of the player's sprite
+            const sf::Vector2f &playerPos = character.getPosition();
+            const sf::Vector2f &cameraSize = camera.getSize();
+            sf::Vector2f center = camera.getCenter();
+
+            // Only move the camera when the player moves away from the center. "coef" determines the liberty given to
+            // the player. a coefficient of 0 means the camera is always centered on the player. a coefficient of 1
+            // allows the player to reach the screen borders.
+            float coef = 0.5;
+            center.x = std::max(center.x, playerPos.x - (cameraSize.x * coef / 2.f));
+            center.x = std::min(center.x, playerPos.x + (cameraSize.x * coef / 2.f));
+            center.y = std::max(center.y, playerPos.y - (cameraSize.y * coef / 2.f));
+            center.y = std::min(center.y, playerPos.y + (cameraSize.y * coef / 2.f));
+
+            camera.setCenter(center);
+        }
+
+        void Overworld::resetCamera() {
+            camera.setCenter(character.getPosition());
+        }
+
         void Overworld::printElements(sf::RenderTexture &frame) {
             for(std::string const &i : current->getAnimatedElements()) {
                 Model::Data::Elements::elementsCounter[i]++;
@@ -66,6 +103,7 @@ namespace OpMon {
             Model::Data::player.tp(toTp, pos);
             current = Model::Data::World::maps.at(Model::Data::player.getMapId());
             character.setPosition(pos.x SQUARES - 16, pos.y SQUARES);
+            resetCamera();
             if(musicPath != current->getBg()) {
                 setMusic(current->getBg());
             }
@@ -100,8 +138,8 @@ namespace OpMon {
             character.setTexture(Model::Data::Ui::texturePP[(int)Side::TO_DOWN]);
             Model::Data::player.tp(mapId, sf::Vector2i(2, 4));
             character.setPosition(2 SQUARES - 16, 4 SQUARES);
-            camera.setCenter(this->getCharacter().getPosition());
             camera.setSize(sf::Vector2f(16 SQUARES, 16 SQUARES));
+            resetCamera();
 
             setMusic(current->getBg());
             layer1 = new MapLayer(current->getDimensions(), current->getLayer1());
@@ -270,14 +308,6 @@ namespace OpMon {
             //Refresh to do in GameLoop
 
             return GameStatus::CONTINUE;
-        }
-
-        void Overworld::updateCamera() {
-          if (cameraLock)
-            return;
-
-          // Note: character is already center.
-          camera.setCenter(character.getPosition().x, character.getPosition().y);
         }
 
         void Overworld::printCollisionLayer(sf::RenderTarget &frame) {
