@@ -43,7 +43,7 @@ namespace OpMon{
 	frame.draw(txt);
       }
 
-      cursor.setPosition(posChoices[curPos] + sf::Vector2f(30, 25));
+      cursor.setPosition(posChoices[curPos] + sf::Vector2f((choicesTxt[curPos].getGlobalBounds().width / 2) - 10, 25));
       frame.draw(cursor);
       return GameStatus::CONTINUE;
     }
@@ -81,9 +81,9 @@ namespace OpMon{
       dialogSpr.setTexture(Model::Data::Battle::dialog);
       dialogSpr.setPosition(0, 350);
       cursor.setTexture(Model::Data::Battle::cursor);
-      cursor.setPosition(posChoices[0] + sf::Vector2f(30, 25));
+      cursor.setPosition(posChoices[0] + sf::Vector2f((choicesTxt[0].getGlobalBounds().width / 2) - 10, 25));
       curPos = 0;
-      cursor.setScale(1, 1);
+      cursor.setScale(2, 2);
       frame.setView(frame.getDefaultView());
       atk.setPosition(110, 160);
       def.setPosition(305, 120);

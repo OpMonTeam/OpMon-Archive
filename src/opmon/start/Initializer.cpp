@@ -396,7 +396,7 @@ _______________________________________________________________
 	    ResourceLoader::load(Model::Data::Battle::backgrounds["grass"], "backgrounds/battle_bkg/background_grass.png");
 	    ResourceLoader::load(Model::Data::Battle::dialog, "backgrounds/dialog/battle_dialog.png");
 	    //ResourceLoader::load(Model::Data::Battle::attackDial, "");
-	    ResourceLoader::load(Model::Data::Battle::cursor, "sprites/misc/arrChoice.png");
+	    ResourceLoader::load(Model::Data::Battle::cursor, "sprites/misc/arrBattle.png");
 	    //Temps
 	    Model::Data::Battle::charaBattleTextures["player"].push_back(sf::Texture());
 	    ResourceLoader::load(Model::Data::Battle::charaBattleTextures["player"][0], "sprites/chara/pp/pp_fight.png");
