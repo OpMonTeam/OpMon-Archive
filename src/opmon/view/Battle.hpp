@@ -45,7 +45,7 @@ namespace OpMon{
       //Used to print the turn
       GameStatus operator()(Model::Turn const& atk, Model::Turn const& def);//Sets turnLaunched to true
       //Used to print the choices
-      GameStatus operator()(Model::Turn* atkTurn);
+      GameStatus operator()(Model::Turn* atkTurn, Model::Turn *def);
       //Moves the cursor
       void moveCur(Model::Side where);
 
