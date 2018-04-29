@@ -4,60 +4,130 @@
 namespace OpMon {
     namespace Model {
 
-        namespace Attacks {
+      namespace Attacks {
 
 	  using namespace Utils;
 	  
             Attack *newAtk(std::string name) {
-                IF_ATK(Abime)
-                IF_ATK(Acidarmure)
-                IF_ATK(Acide)
-                IF_ATK(Affutage)
-                IF_ATK(Aiguisage)
-                IF_ATK(Amnesie)
-                IF_ATK(Armure)
-                IF_ATK(Belier)
-                IF_ATK(Balayage)
-                IF_ATK(BecVrille)
-                IF_ATK(Berceuse)
-                IF_ATK(BombOeuf)
-                IF_ATK(Bouclier)
-                IF_ATK(Brouillard)
-                IF_ATK(BueeNoire)
-                IF_ATK(BullesDo)
-                IF_ATK(CageEclair)
-                IF_ATK(CanonGraine)
-                IF_ATK(Cascade)
-                IF_ATK(Charge)
-                IF_ATK(ChocMental)
-                IF_ATK(ChocPsy)
-                IF_ATK(ComboGriffe)
-                IF_ATK(Conversion)
-                IF_ATK(CoupdBoule)
-                IF_ATK(CoudKrane)
-                IF_ATK(CoupeVent)
-		  /*IF_ATK(CrocDeMort)
-                IF_ATK(CrocFatal)
-                IF_ATK(CrocFeu)
-                IF_ATK(CruAiles)
-                IF_ATK(Damocles)
-                IF_ATK(DanseFleur)
-                IF_ATK(DanseLames)
-                IF_ATK(Deflagration)
-                IF_ATK(Destruction)
-                IF_ATK(Detritus)
-                IF_ATK(Devoreve)
-                IF_ATK(DoubleDard)*/
-                return nullptr;
+
+              IF_ATK(Abime, Attack("Abime", 99999, Type::GROUND, 30, false, false, -1, false, 5, 0, "Abime",
+                                   new AbimeBeforeEffect()))
+              IF_ATK(Acidarmure, Attack("Acidarmure", 0, Type::TOXIC, 100, false, true, -1, true, 20, 0, "Acidarmure",
+                                          nullptr, new ChangeStatEffect(ChangeStatEffect::ATTACKER, Stats::DEF, 2)))
+              IF_ATK(Acide, Attack("Acide", 40, Type::TOXIC, 100, true, false, 16, false, 30, 0, "Acide",
+                                   nullptr, new AcideAfterEffect()))
+              IF_ATK(Affutage, Attack("Affutage", 0, Type::NEUTRAL, 100, false, true, -1, true, 30, 0, "Affutage",
+                                      nullptr, new ChangeStatEffect(ChangeStatEffect::ATTACKER, Stats::ATK, 1)))
+              IF_ATK(Aiguisage, Attack("Aiguisage", 0, Type::NEUTRAL, 100, false, true, -1, true, 15, 0, "Aiguisage",
+                                       nullptr, new AiguisageAfterEffect()))
+              IF_ATK(Amnesie, Attack("Amnésie", 0, Type::MENTAL, 100, false, true, -1, true, 20, 0, "Amnesie",
+                                     nullptr, new ChangeStatEffect(ChangeStatEffect::ATTACKER, Stats::DEFSPE, 2)))
+              IF_ATK(Armure, Attack("Armure", 0, Type::NEUTRAL, 100, false, true, -1, true, 30, 0, "Armure",
+                                    nullptr, new ChangeStatEffect(ChangeStatEffect::ATTACKER, Stats::DEF, 1)))
+              IF_ATK(Belier, Attack("Bélier", 90, Type::NEUTRAL, 85, false, false, 16, false, 20, 0, "Belier",
+                                    nullptr, new BelierAfterEffect()))
+              IF_ATK(Balayage, Attack("Balayage", 0, Type::FIGHT, 100, false, false, 16, false, 20, 0, "Balayage",
+                                      new BalayageBeforeEffect()))
+              IF_ATK(BecVrille, Attack("Bec Vrille", 80, Type::SKY, 100, false, false, 16, false, 20, 0, "BecVrille"))
+              IF_ATK(Berceuse, Attack("Berceuse", 0, Type::NEUTRAL, 55, false, true, -1, false, 15, 0, "Berceuse",
+                                      nullptr, new BerceuseAfterEffect()))
+              IF_ATK(Blizzard, Attack("Blizzard", 110, Type::COLD, 70, true, false, 16, false, 5, 0, "Blizzard",
+                                      nullptr, new BlizzardAfterEffect()))
+              IF_ATK(BombOeuf, Attack("Bomb'\u0152uf", 100, Type::NEUTRAL, 75, false, false, 16, false, 10, 0, "BombOeuf"))
+              IF_ATK(Bouclier, Attack("Bouclier", 0, Type::MENTAL, 100, false, true, -1, true, 20, 0, "Bouclier",
+                                      nullptr, new ChangeStatEffect(ChangeStatEffect::ATTACKER, Stats::DEF, 2)))
+              IF_ATK(Brouillard, Attack("Brouillard", 0, Type::NEUTRAL, 100, false, true, -1, false, 20, 0, "Brouillard",
+                                        nullptr, new ChangeStatEffect(ChangeStatEffect::DEFENDER, Stats::ACC, -1)))
+              IF_ATK(BueeNoire, Attack("Buée Noire", 0, Type::COLD, 100, false, true, -1, true, 35, 0, "BueeNoire",
+                                       nullptr, new BueeNoireAfterEffect()))
+              IF_ATK(BullesDo, Attack("Bulles d'O", 65, Type::LIQUID, 100, true, false, 16, false, 20, 0, "BullesDo",
+                                      nullptr, new BullesDoAfterEffect()))
+              IF_ATK(CageEclair, Attack("Cage Eclair", 0, Type::ELECTRON, 100, false, true, -1, false, 20, 0, "CageEclair",
+                                        nullptr, new CageEclairAfterEffect()))
+              IF_ATK(CanonGraine, Attack("Canon Graine", 80, Type::VEGETAL, 100, false, false, 16, false, 15, 0, "CanonGraine"))
+              IF_ATK(Cascade, Attack("Cascade", 80, Type::LIQUID, 100, false, false, 16, false, 15, 0, "Cascade",
+                                     nullptr, new CascadeAfterEffect()))
+              IF_ATK(Charge, Attack("Charge", 50, Type::NEUTRAL, 100, false, false, 16, false, 35, 0, "Charge"))
+              IF_ATK(ChocMental, Attack("Choc Mental", 50, Type::MENTAL, 100, true, false, 16, false, 25, 0, "ChocMental",
+                                        nullptr, new ChocMentalAfterEffect()))
+              IF_ATK(ChocPsy, Attack("Choc Psy", 80, Type::MENTAL, 100, true, false, 16, false, 10, 0, "ChocPsy",
+                                     new ChocPsyBeforeEffect(), new ChocPsyAfterEffect()))
+              IF_ATK(ComboGriffe, Attack("Combo-Griffe", 18, Type::NEUTRAL, 80, false, false, 16, false, 15, 0, "ComboGriffe",
+                                         nullptr, new ComboGriffeAfterEffect()))
+              IF_ATK(Conversion, Attack("Conversion", 0, Type::NEUTRAL, 100, false, true, -1, true, 30, 0, "Conversion",
+                                        nullptr, new ConversionAfterEffect()))
+              IF_ATK(CoupdBoule, Attack("Coup d'Boule", 70, Type::NEUTRAL, 100, false, false, 16, false, 15, 0, "CoupdBoule",
+                                        nullptr, new CoupdBouleAfterEffect()))
+              IF_ATK(CoudKrane, Attack("Coud'Krâne", 130, Type::NEUTRAL, 100, false, false, 16, false, 10, 0, "CoudKrane",
+                                       new CoudKraneBeforeEffect()))
+              IF_ATK(CoupeVent, Attack("Coupe-Vent", 80, Type::NEUTRAL, 100, true, false, 8, false, 10, 0, "CoupeVent",
+                                       new CoupeVentBeforeEffect()))
+              IF_ATK(CrocDeMort, Attack("Croc de Mort", 80, Type::NEUTRAL, 90, false, false, 16, false, 15, 0, "CrocDeMort",
+                                        nullptr, new CrocDeMortAfterEffect()))
+
+
+              /*
+
+              IF_ATK(CrocFatal, Attack("Croc Fatal", 0, Type::NEUTRAL, 90, false, true, -1, false, 10, 0, "CrocFatal",
+                                       new CrocFatalBeforeEffect()))
+              IF_ATK(CrocFeu, Attack("Crocs Feu", 65, Type::BURNING, 95, false, false, 16, false, 15, 0, "CrocFeu",
+                                     nullptr, new CrocFeuAfterEffect()))
+              IF_ATK(CruAiles, Attack("Cru-Ailes", 60, Type::SKY, 100, false, false, 16, false, 35, 0, "CruAiles"))
+              IF_ATK(Damocles, Attack("Damoclès", 120, Type::NEUTRAL, 100, false, false, 16, false, 15, 0, "Damocles",
+                                      nullptr, new DamoclesAfterEffect()))
+              IF_ATK(DanseFleur, Attack("Danse-Fleur", 120, Type::VEGETAL, 100, true, false, 16, false, 10, 0, "DanseFleur",
+                                        nullptr, new DanseFleurAfterEffect()))
+              IF_ATK(DanseLames, Attack("Danse-Lames", 0, Type::NEUTRAL, 100, false, true, -1, true, 20, 0, "DanseLames",
+                                        nullptr, new DanseLamesAfterEffect()))
+              IF_ATK(Deflagration, Attack("Déflagration", 110, Type::BURNING, 85, true, false, 16, false, 5, 0, "Deflagration",
+                                          nullptr, new DeflagrationAfterEffect()))
+              IF_ATK(Destruction, Attack("Destruction", 200, Type::NEUTRAL, 100, false, false, 16, false, 5, 0, "Destruction",
+                                         nullptr, new DestructionAfterEffect()))
+              IF_ATK(Detritus, Attack("Détritus", 65, Type::TOXIC, 100, true, false, 16, false, 20, 0, "Detritus",
+                                      nullptr, new DetritusAfterEffect()))
+              IF_ATK(Devoreve, Attack("Dévorêve", 100, Type::MENTAL, 100, true, false, 16, false, 15, 0, "Devoreve",
+                                      new DevoreveBeforeEffect(), new DevoreveAfterEffect()))
+              IF_ATK(DoubleDard, Attack("Double-Dard", 25, Type::BUG, 100, false, false, 16, false, 20, 0, "DoubleDard",
+                                        nullptr, new DoubleDardAfterEffect()))
+
+              */
+              return nullptr;
             }
 
-            int Abime::effectBefore(OpMon &atk, OpMon &def, Turn& atkTurn) {
-                accuracy = ((atk.getLevel() - def.getLevel()) + 30);
+
+        ChangeStatEffect::ChangeStatEffect(Target target, Model::Stats stat, int coef)
+          : target(target), stat(stat), coef(coef) {}
+
+        int ChangeStatEffect::apply(Attack&, OpMon &attacker, OpMon &defender, Turn& atkTurn) {
+          std::map<Stats, int (OpMon::*)(int)> stat_to_method = {
+            {Stats::ACC, &OpMon::changeACC},
+            {Stats::ATK, &OpMon::changeATK},
+            {Stats::ATKSPE, &OpMon::changeATKSPE},
+            {Stats::DEF, &OpMon::changeDEF},
+            {Stats::DEFSPE, &OpMon::changeDEFSPE},
+            {Stats::EVA, &OpMon::changeEVA},
+            {Stats::SPE, &OpMon::changeSPE},
+          };
+          auto change_method = stat_to_method[stat];
+
+          if (target == Target::ATTACKER){
+            int diff_value = (attacker.*change_method)(coef);  // diff_value = attacker.changeXXX(coef)
+            atkTurn.changedStatsAtk.emplace(stat, diff_value);
+          } else {
+            int diff_value = (defender.*change_method)(coef); // diff_value = defender.changeXXX(coef)
+            atkTurn.changedStatsDef.emplace(stat, diff_value);
+          }
+          return 0;
+        }
+
+
+        int AbimeBeforeEffect::apply(Attack& attack, OpMon &atk, OpMon &def, Turn& atkTurn) {
+              attack.setAccuracy((atk.getLevel() - def.getLevel()) + 30);
                 if(atk.getLevel() < def.getLevel()) {
 		  atkTurn.attackFailed = true;
                     return 2;
                 }
-                if(Utils::Misc::randU(100) > accuracy) {
+                if(Utils::Misc::randU(100) > attack.getAccuracy()) {
 		  atkTurn.attackFailed = true;
                     return 2;
                 } else {
@@ -67,63 +137,43 @@ namespace OpMon {
                 }
             }
 
-            int Acidarmure::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
-		atkTurn.changedStatsAtk.emplace(Stats::DEF, atk.changeDEF(2));
-                return 2;
-            }
-
-            int Acide::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
+            int AcideAfterEffect::apply(Attack &, OpMon &, OpMon &def, Turn& atkTurn) {
                 if(Utils::Misc::randU(10) == 2) {
 		    atkTurn.changedStatsDef.emplace(Stats::DEFSPE, def.changeDEFSPE(-1));
                 }
                 return 0;
             }
 
-            int Affutage::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
-		atkTurn.changedStatsAtk.emplace(Stats::ATK, atk.changeATK(1));
-                return 0;
-            }
-
-            int Aiguisage::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
+            int AiguisageAfterEffect::apply(Attack &, OpMon &atk, OpMon &, Turn& atkTurn) {
 		atkTurn.changedStatsAtk.emplace(Stats::ATK, atk.changeATK(1));
 		atkTurn.changedStatsAtk.emplace(Stats::ACC, atk.changeACC(1));
                 return 0;
             }
 
-            int Amnesie::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
-		atkTurn.changedStatsAtk.emplace(Stats::DEFSPE, atk.changeDEFSPE(2));
+            int BelierAfterEffect::apply(Attack& attack, OpMon &atk, OpMon &, Turn& atkTurn) {
+                atk.attacked(round(attack.getHpLost() / 4));
+		atkTurn.attackHurt = round(attack.getHpLost() / 4);
                 return 0;
             }
 
-            int Armure::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
-		atkTurn.changedStatsAtk.emplace(Stats::DEF, atk.changeDEF(1));
-                return 0;
-            }
-
-            int Belier::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
-                atk.attacked(round(hpLost / 4));
-		atkTurn.attackHurt = round(hpLost / 4);
-                return 0;
-            }
-
-            int Balayage::effectBefore(OpMon &atk, OpMon &def, Turn& atkTurn) {
+            int BalayageBeforeEffect::apply(Attack& attack, OpMon&, OpMon &def, Turn&) {
                 if(def.getSpecies().getWeight() <= 10) {
-                    power = 20;
+                  attack.setPower(20);
                 } else if(def.getSpecies().getWeight() > 10 && def.getSpecies().getWeight() <= 25) {
-                    power = 40;
+                  attack.setPower(40);
                 } else if(def.getSpecies().getWeight() > 25 && def.getSpecies().getWeight() <= 50) {
-                    power = 60;
+                  attack.setPower(60);
                 } else if(def.getSpecies().getWeight() > 50 && def.getSpecies().getWeight() <= 100) {
-                    power = 80;
+                  attack.setPower(80);
                 } else if(def.getSpecies().getWeight() > 100 && def.getSpecies().getWeight() <= 200) {
-                    power = 100;
+                  attack.setPower(100);
                 } else {
-                    power = 120;
+                  attack.setPower(120);
                 }
                 return 0;
             }
 
-            int Berceuse::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
+            int BerceuseAfterEffect::apply(Attack& /*attack*/, OpMon&, OpMon &def, Turn& atkTurn) {
 	      if(def.setStatus(Status::SLEEPING)){
 		atkTurn.toPrintAfter.push_back(OpString("battle.status.sleep.in", def.getNickname()));
 	      }else{
@@ -132,7 +182,7 @@ namespace OpMon {
                 return 0;
             }
 
-            int Blizzard::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
+            int BlizzardAfterEffect::apply(Attack& /*attack*/, OpMon &, OpMon &def, Turn& atkTurn) {
                 if(Utils::Misc::randU(10) == 2) {
 		  if(def.setStatus(Status::FROZEN)){
 		    atkTurn.toPrintAfter.push_back(OpString("battle.status.frozen.in", def.getNickname()));
@@ -141,24 +191,14 @@ namespace OpMon {
                 return 0;
             }
 
-            int Bouclier::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
-		atkTurn.changedStatsAtk.emplace(Stats::DEF, atk.changeDEF(2));
-                return 0;
-            }
-
-            int Brouillard::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
-		atkTurn.changedStatsDef.emplace(Stats::ACC, def.changeACC(-1));
-                return 0;
-            }
-
-            int BueeNoire::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
+            int BueeNoireAfterEffect::apply(Attack& /*attack*/, OpMon &atk, OpMon &def, Turn& atkTurn) {
                 // atk.setStats(Fight.oldStats[0], atk.getAttaques(), atk.getSpecies(), new Type[]{atk.getType1(), atk.getType2()});
                 //def.setStats(Fight.oldStats[1], def.getAttaques(), def.getSpecies(), new Type[]{def.getType1(), def.getType2()});
                 //TODO
                 return 0;
             }
 
-            int BullesDo::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
+            int BullesDoAfterEffect::apply(Attack& /*attack*/, OpMon &atk, OpMon &def, Turn& atkTurn) {
                 if(Utils::Misc::randU(10) == 2) {
 		    atkTurn.changedStatsDef.emplace(Stats::SPE, def.changeSPE(-1));
                 }
@@ -166,7 +206,7 @@ namespace OpMon {
             }
 
 
-            int CageEclair::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
+            int CageEclairAfterEffect::apply(Attack& /*attack*/, OpMon &atk, OpMon &def, Turn& atkTurn) {
                 if(def.getType1() == Type::ELECTRON || def.getType2() == Type::ELECTRON) {
 		  atkTurn.attackFailed = true;
                 } else {
@@ -180,7 +220,7 @@ namespace OpMon {
                 return 0;
             }
 
-            int Cascade::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
+            int CascadeAfterEffect::apply(Attack& /*attack*/, OpMon &atk, OpMon &def, Turn& atkTurn) {
                 if(Utils::Misc::randU(5) == 2) {
                     def.afraid = true;
 		    atkTurn.toPrintAfter.push_back(OpString("battle.status.afraid", def.getNickname()));
@@ -188,7 +228,7 @@ namespace OpMon {
                 return 0;
             }
 
-            int ChocMental::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
+            int ChocMentalAfterEffect::apply(Attack& /*attack*/, OpMon &atk, OpMon &def, Turn& atkTurn) {
                 if(Utils::Misc::randU(10) == 2) {
                     def.confused = true;
 		    atkTurn.toPrintAfter.push_back(OpString("battle.status.confused.in", def.getNickname()));
@@ -196,19 +236,18 @@ namespace OpMon {
                 return 0;
             }
 
-            int ChocPsy::effectBefore(OpMon &atk, OpMon &def, Turn& atkTurn) {
-                this->def = def.getStatDEF();
-                this->defspe = def.getStatDEFSPE();
-                def.setStat(Stats::DEFSPE, this->def);
+            int ChocPsyBeforeEffect::apply(Attack& attack, OpMon &atk, OpMon &def, Turn& atkTurn) {
+                attack.setSavedDefSpe(def.getStatDEFSPE());
+                def.setStat(Stats::DEFSPE, def.getStatDEF());
                 return 0;
             }
 
-            int ChocPsy::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
-                def.setStat(Stats::DEFSPE, this->defspe);
+            int ChocPsyAfterEffect::apply(Attack& attack, OpMon &atk, OpMon &def, Turn& atkTurn) {
+                def.setStat(Stats::DEFSPE, attack.getSavedDefSpe());
                 return 0;
             }
 
-            int ComboGriffe::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
+            int ComboGriffeAfterEffect::apply(Attack& /*attack*/, OpMon &/*atk*/, OpMon &/*def*/, Turn& /*atkTurn*/) {
 	      //TODO later
 	      /*
                 if(def.getHP() <= 0) {
@@ -227,7 +266,7 @@ namespace OpMon {
 	      
             }
 
-            int Conversion::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
+            int ConversionAfterEffect::apply(Attack& /*attack*/, OpMon &, OpMon &, Turn& ) {
 	      //TODO later
 	      /*
                 std::vector<Attack *> arr = atk.getAttacks();
@@ -237,39 +276,39 @@ namespace OpMon {
                 return 0;
             }
 
-            int CoupdBoule::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
+            int CoupdBouleAfterEffect::apply(Attack& /*attack*/, OpMon &, OpMon &, Turn& /*atkTurn*/) {
                 if(Utils::Misc::randU(100) <= 30) {
 		  //?
                 }
                 return 0;
             }
-            int CoudKrane::effectBefore(OpMon &atk, OpMon &def, Turn& atkTurn) {
-                if(part == 0) {
+            int CoudKraneBeforeEffect::apply(Attack& attack, OpMon &, OpMon &def, Turn& /*atkTurn*/) {
+                if(attack.getPart() == 0) {
                     def.changeDEF(1);
 		    //atkTurn.toPrintBefore.push_back(OpString("battle.*coudkrane?(To change)*.charge"), {atk.getNickname()});
 		    //TODO add the string
-                    part = 1;
+                  attack.setPart(1);
                     return 1;
                 } else {
-                    part = 0;
+                  attack.setPart(0);
                     def.changeDEF(-1);
                     return 0;
                 }
             }
-            int CoupeVent::effectBefore(OpMon &atk, OpMon &def, Turn& atkTurn) {
-                if(part == 0) {
+            int CoupeVentBeforeEffect::apply(Attack& attack, OpMon &/*atk*/, OpMon &/*def*/, Turn& /*atkTurn*/) {
+                if(attack.getPart() == 0) {
 		  //atkTurn.toPrintBefore.push_back(OpString("battle.*coupevent?(To change)*.charge"), {atk.getNickname()});
 		  //TODO add the string
-                    part = 1;
+                    attack.setPart(1);
                     return 1;
                 } else {
-                    part = 0;
+                    attack.setPart(0);
                 }
 
                 return 0;
             }
 
-            int CrocDeMort::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
+            int CrocDeMortAfterEffect::apply(Attack& /*attack*/, OpMon &/*atk*/, OpMon &def, Turn& atkTurn) {
                 if(Utils::Misc::randU(10) == 2) {
 		  def.afraid = true;
 		  atkTurn.toPrintAfter.push_back(OpString("battle.status.afraid", def.getNickname()));
@@ -278,7 +317,7 @@ namespace OpMon {
 	    }
 	  //TODO theses attacks (Not important for the 0.15)
 	  /*
-            int CrocFatal::effectBefore(OpMon &atk, OpMon &def, Turn& atkTurn) {
+            int CrocFatalBeforeEffect::apply(Attack& attack, OpMon &atk, OpMon &def, Turn& atkTurn) {
                 if(def.getHP() != 1) {
                     def.attacked(def.getHP() / 2);
                 } else {
@@ -287,7 +326,7 @@ namespace OpMon {
                 return 2;
             }
 
-            int CrocFeu::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
+            int CrocFeuAfterEffect::apply(Attack& attack, OpMon &atk, OpMon &def, Turn& atkTurn) {
                 if(Utils::Misc::randU(10) == 5) {
                     if(def.setStatus(Status::BURNING)) {
                     }
@@ -298,12 +337,12 @@ namespace OpMon {
                 return 0;
             }
 
-            int Damocles::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
+            int DamoclesAfterEffect::apply(Attack& attack, OpMon &atk, OpMon &def, Turn& atkTurn) {
                 atk.attacked(hpLost / 3);
                 return 0;
             }
 
-            int DanseFleur::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
+            int DanseFleurAfterEffect::apply(Attack& attack, OpMon &atk, OpMon &def, Turn& atkTurn) {
                 if(part == 0) {
                     part = 1;
                 } else if(part == 1) {
@@ -321,13 +360,13 @@ namespace OpMon {
                 }
                 return 0;
             }
-            int DanseLames::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
+            int DanseLamesAfterEffect::apply(Attack& attack, OpMon &atk, OpMon &def, Turn& atkTurn) {
                 if(atk.changeATK(2)) {
                 }
                 return 0;
             }
 
-            int Deflagration::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
+            int DeflagrationAfterEffect::apply(Attack& attack, OpMon &atk, OpMon &def, Turn& atkTurn) {
                 if(Utils::Misc::randU(10) == 5) {
                     if(def.setStatus(Status::BURNING)) {
                     }
@@ -335,12 +374,12 @@ namespace OpMon {
                 return 0;
             }
 
-            int Destruction::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
+            int DestructionAfterEffect::apply(Attack& attack, OpMon &atk, OpMon &def, Turn& atkTurn) {
                 atk.attacked(atk.getHP());
                 return 0;
             }
 
-            int Detritus::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
+            int DetritusAfterEffect::apply(Attack& attack, OpMon &atk, OpMon &def, Turn& atkTurn) {
                 if(Utils::Misc::randU(10) < 3) {
                     if(def.setStatus(Status::POISONED)) {
                     }
@@ -348,18 +387,18 @@ namespace OpMon {
                 return 0;
             }
 
-            int Devoreve::effectBefore(OpMon &atk, OpMon &def, Turn& atkTurn) {
+            int DevoreveBeforeEffect::apply(Attack& attack, OpMon &atk, OpMon &def, Turn& atkTurn) {
                 if(!(def.getStatus() == Status::SLEEPING)) {
                 }
                 return 0;
             }
 
-            int Devoreve::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
+            int DevoreveAfterEffect::apply(Attack& attack, OpMon &atk, OpMon &def, Turn& atkTurn) {
                 atk.heal(hpLost / 2);
                 return 0;
             }
 
-            int DoubleDard::effectAfter(OpMon &atk, OpMon &def, Turn& atkTurn) {
+            int DoubleDardAfterEffect::apply(Attack& attack, OpMon &atk, OpMon &def, Turn& atkTurn) {
                 if(Utils::Misc::randU(10) < 2) {
                     def.setStatus(Status::POISONED);
                 }

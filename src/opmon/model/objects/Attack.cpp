@@ -9,9 +9,9 @@
 namespace OpMon {
     namespace Model {
 
-        Attack::Attack(std::string name, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::string className)
-          : className(className)
-          , name(name) {
+        Attack::Attack(std::string name, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::string className,
+                       AttackEffect *preEffect, AttackEffect *postEffect)
+          : className(className), name(name), preEffect(preEffect), postEffect(postEffect) {
             this->power = power;
             this->type = type;
             this->accuracy = accuracy;
@@ -22,6 +22,11 @@ namespace OpMon {
             this->pp = this->ppMax = ppMax;
             this->priority = priority;
         }
+
+      Attack::~Attack() {
+        delete(this->preEffect);
+        delete(this->postEffect);
+      }
 
       /* Return 1 : Inform to do the same attack at the next turn.
      * Return 2 : End the attack
@@ -38,7 +43,7 @@ namespace OpMon {
 	      ifFails(atk, def, attackTurn);
                 return -2;
             }
-            int effectBf = effectBefore(atk, def, attackTurn);
+            int effectBf = preEffect ? preEffect->apply(*this, atk, def, attackTurn) : 0;
             if(effectBf == 1 || effectBf == 2) { //If special return, the attack ends.
 	      attackTurn.atkEnd = true;
                 return effectBf;
@@ -64,7 +69,7 @@ namespace OpMon {
 		attackTurn.hpLost = hpLost;
                 def.attacked(hpLost);
             }
-            return effectAfter(atk, def, attackTurn);
+            return postEffect ? postEffect->apply(*this, atk, def, attackTurn) : 0;
         }
       
         std::string Attack::save() {
