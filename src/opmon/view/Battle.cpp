@@ -63,13 +63,13 @@ namespace OpMon{
       choicesTxt[1].setString(Utils::StringKeys::get("battle.bag"));
       choicesTxt[2].setString(Utils::StringKeys::get("battle.opmon"));
       choicesTxt[3].setString(Utils::StringKeys::get("battle.run"));
-      posChoices[0].x = 60;
+      posChoices[0].x = 330;
       posChoices[0].y = 385;
-      posChoices[1].x = 220;
+      posChoices[1].x = 430;
       posChoices[1].y = 385;
-      posChoices[2].x = 60;
+      posChoices[2].x = 330;
       posChoices[2].y = 435;
-      posChoices[3].x = 220;
+      posChoices[3].x = 430;
       posChoices[3].y = 435;
       for(unsigned int i = 0; i < 4; i++){
 	choicesTxt[i].setFont(Model::Data::Ui::font);
