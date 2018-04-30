@@ -74,7 +74,7 @@ namespace OpMon {
             // Only move the camera when the player moves away from the center. "coef" determines the liberty given to
             // the player. a coefficient of 0 means the camera is always centered on the player. a coefficient of 1
             // allows the player to reach the screen borders.
-            float coef = 0.5;
+            float coef = 0.25;
             center.x = std::max(center.x, playerPos.x - (cameraSize.x * coef / 2.f));
             center.x = std::min(center.x, playerPos.x + (cameraSize.x * coef / 2.f));
             center.y = std::max(center.y, playerPos.y - (cameraSize.y * coef / 2.f));
