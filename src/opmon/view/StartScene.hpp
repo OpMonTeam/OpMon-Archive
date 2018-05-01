@@ -65,8 +65,6 @@ namespace OpMon {
             sf::Sprite bgName;
             sf::Text nameField;
 
-            sf::String txtEnCours[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
-
             sf::String pName;
         };
 

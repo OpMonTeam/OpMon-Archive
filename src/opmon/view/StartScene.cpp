@@ -6,11 +6,8 @@
 #include "../model/storage/ResourceLoader.hpp"
 #include "../model/sysObjects/Player.hpp"
 #include "./Window.hpp"
-#include "Animations.hpp"
 #include "Dialog.hpp"
 
-#define SIZE_P0 18
-#define SIZE_P1 15
 
 UNS
 
@@ -52,10 +49,6 @@ UNS
             textDescs[2].setPosition(95, 375);
             textDescs[3].setPosition(95, 405);
 
-            txtEnCours[0] = sf::String(" ");
-            txtEnCours[1] = sf::String(" ");
-            txtEnCours[2] = sf::String(" ");
-
             Model::ResourceLoader::load(textures[0], "backgrounds/start/startscene.png");
             Model::ResourceLoader::load(textures[1], "sprites/chara/prof/profkiwai.png");
             Model::ResourceLoader::load(textures[2], "backgrounds/dialog/dialog.png");
@@ -74,7 +67,7 @@ UNS
 
             for(sf::Text &cellTxt : textDescs) {
                 cellTxt.setCharacterSize(FONT_SIZE_DEFAULT);
-                cellTxt.setColor(sf::Color::Black);
+                cellTxt.setColor(sf::Color::White);
                 cellTxt.setFont(Model::Data::Ui::font);
             }
 
@@ -138,24 +131,17 @@ UNS
         }
 
         void StartScene::draw(sf::RenderTarget &frame) {
+            frame.clear(sf::Color::White);
             switch(part) {
             case 0:
             case 2:
-                if(!dialog->isDialogOver()) {
-                    frame.clear(sf::Color::White);
-                    frame.draw(bg);
-                    frame.draw(prof);
-
-                    dialog->draw(frame);
-                }
+                frame.draw(bg);
+                frame.draw(prof);
+                dialog->draw(frame);
                 break;
-
             case 1:
-                frame.clear(sf::Color::White);
                 frame.draw(bgName);
-                for(sf::Text desc : textDescs) {
-                    desc.setColor(sf::Color::White);
-                    desc.setFont(Model::Data::Ui::font);
+                for(const sf::Text &desc : textDescs) {
                     frame.draw(desc);
                 }
                 nameField.setString(pName);
