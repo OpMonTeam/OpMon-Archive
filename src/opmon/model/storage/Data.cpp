@@ -57,6 +57,8 @@ namespace OpMon {
                 sf::Texture walkingPP[4];
                 sf::Texture walkingPP2[4];
                 sf::Font font;
+							  sf::Texture dialogBackground;
+							  sf::Texture dialogArrow;
             } // namespace Ui
             namespace Animations {
                 sf::Texture fen[6];

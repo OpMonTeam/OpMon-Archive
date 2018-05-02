@@ -61,7 +61,7 @@ namespace OpMon {
             }
         }
 
-        void Overworld::updateCamera() {
+        void Overworld::updateCamera(sf::RenderTarget &frame) {
             if (cameraLock)
                 return;
 
@@ -81,6 +81,7 @@ namespace OpMon {
             center.y = std::min(center.y, playerPos.y + (cameraSize.y * coef / 2.f));
 
             camera.setCenter(center);
+            frame.setView(camera);
         }
 
         void Overworld::resetCamera() {
@@ -147,9 +148,6 @@ namespace OpMon {
             layer3 = new MapLayer(current->getDimensions(), current->getLayer3());
             character.setScale(2, 2);
             character.setOrigin(16, 16);
-
-            posArrow = View::frame.mapPixelToCoords(sf::Vector2i(512 - 75, 512 - 30));
-            Dialog::arrDial.setPosition(posArrow);
 
             jukebox.play(current->getBg());
 
@@ -263,15 +261,15 @@ namespace OpMon {
                 View::frame.draw(*layer3);
             }
 
-            updateCamera();
+            updateCamera(View::frame);
 
-            View::frame.setView(View::frame.getDefaultView());
-            View::frame.setView(camera);
             printElements(View::frame);
 
             if(is_in_dialog) {
                 this->dialog->updateTextAnimation();
-                this->dialog->draw(View::frame);
+              frame.setView(frame.getDefaultView());
+              this->dialog->draw(View::frame);
+              View::frame.setView(camera);
             } else if(Model::Data::player.getPosition().isAnim()) {
                 if(Model::Data::player.getPosition().isMoving()) {
                     switch(Model::Data::player.getPosition().getDir()) {
@@ -346,8 +344,7 @@ namespace OpMon {
                 delete(this->dialog);
             }
 
-            // `&dialogs[0]` converts the std::vector into a regular array.
-            this->dialog = new Dialog(&dialogs[0], dialogs.size());
+            this->dialog = new Dialog(dialogs);
         }
     } // namespace View
 

@@ -21,17 +21,15 @@ UNS
             for(it = 0; it < 18; it++) {
                 string actual;
                 actual << string("prof.dialog.start.") << it + 1;
-                txtP0[it] = kget(actual);
+                txtP0.push_back(kget(actual));
             }
-            int ite = 1;
             it++;
             strName = Utils::OpString("prof.dialog.start.19", Model::Data::player.getNameP());
-            txtP1[0] = strName.getString();
+            txtP1.emplace_back();   // empty space replaced later by OpString 'strName'
             for(it = it; it < 27; it++) {
                 string actual;
                 actual << string("prof.dialog.start.") << it + 1;
-                txtP1[ite] = kget(actual);
-                ite++;
+                txtP1.push_back(kget(actual));
             }
 
             textDescs[0].setString(kget("nameEntry.med"));
@@ -43,7 +41,6 @@ UNS
         StartScene::StartScene()
           : dialog(nullptr) {
             initStrings();
-            Dialog::dialog.setPosition(0, 362);
             textDescs[1].setPosition(85, 25);
             textDescs[0].setPosition(155, 200);
             textDescs[2].setPosition(95, 375);
@@ -51,14 +48,10 @@ UNS
 
             Model::ResourceLoader::load(textures[0], "backgrounds/start/startscene.png");
             Model::ResourceLoader::load(textures[1], "sprites/chara/prof/profkiwai.png");
-            Model::ResourceLoader::load(textures[2], "backgrounds/dialog/dialog.png");
-            Model::ResourceLoader::load(textures[3], "sprites/misc/arrDial.png");
-            Model::ResourceLoader::load(textures[4], "backgrounds/start/nameEntry.png");
+            Model::ResourceLoader::load(textures[2], "backgrounds/start/nameEntry.png");
             bg.setTexture(textures[0]);
             prof.setTexture(textures[1]);
-            Dialog::dialog.setTexture(textures[2]);
-            Dialog::arrDial.setTexture(textures[3]);
-            bgName.setTexture(textures[4]);
+            bgName.setTexture(textures[2]);
             bgName.setPosition(0, 0);
 
             bg.setPosition(0, 0);
@@ -74,13 +67,10 @@ UNS
             nameField.setFont(Model::Data::Ui::font);
             nameField.setPosition(120, 300);
 
-            Dialog::arrDial.setPosition(437, 482);
-
             jukebox.play("Start");
 
             // Init loop 0
-            unsigned int sizeOfTxt = 18;
-            dialog = new Dialog(txtP0, sizeOfTxt);
+            dialog = new Dialog(txtP0);
         }
 
         void StartScene::onLangChanged() {
@@ -126,8 +116,7 @@ UNS
             part++;
 
             // Init loop 2
-            unsigned int sizeOfTxt = 27 - 18;
-            dialog = new Dialog(txtP1, sizeOfTxt);
+            dialog = new Dialog(txtP1);
         }
 
         void StartScene::draw(sf::RenderTarget &frame) {

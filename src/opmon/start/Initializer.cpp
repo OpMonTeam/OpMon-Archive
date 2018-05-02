@@ -383,7 +383,7 @@ _______________________________________________________________
             ResourceLoader::loadTextureArray(shopDoor, "animations/shopdoor/shop_door%d.png", 4, 1);
             doorsTextures.push_back(shopDoor);
 
-	        ResourceLoader::loadTextureArray(charaTextures["kid"], "sprites/chara/kid/kid%d.png", 12);
+	          ResourceLoader::loadTextureArray(charaTextures["kid"], "sprites/chara/kid/kid%d.png", 12);
             ResourceLoader::loadTextureArray(charaTextures["fisherman"], "sprites/chara/fisherman/fisherman%d.png", 12);
             ResourceLoader::loadTextureArray(charaTextures["kiwai"], "sprites/chara/prof/prof%d.png", 12);
             ResourceLoader::loadTextureArray(charaTextures["playermom"], "sprites/chara/mom/mom%d.png", 12);
@@ -409,7 +409,10 @@ _______________________________________________________________
 	    ResourceLoader::load(Model::Data::Battle::shadowPlayer, "sprites/battle/shadow_2.png");
 	    ResourceLoader::load(Model::Data::Battle::shadowTrainer, "sprites/battle/shadow_1.png");
 
-	    initOpTextures();
+            ResourceLoader::load(Model::Data::Ui::dialogBackground, "backgrounds/dialog/dialog.png");
+            ResourceLoader::load(Model::Data::Ui::dialogArrow, "sprites/misc/arrDial.png");
+
+            initOpTextures();
 
             initEnumsEvents();
         }
