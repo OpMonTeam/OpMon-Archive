@@ -240,28 +240,6 @@ namespace OpMon {
 
             if(is_in_dialog) {
                 this->dialog->updateTextAnimation();
-            } else if(Model::Data::player.getPosition().isAnim()) {
-                if(Model::Data::player.getPosition().isMoving()) {
-                    switch(Model::Data::player.getPosition().getDir()) {
-                    case Side::TO_UP:
-                        character.move(0, -4);
-                        break;
-                    case Side::TO_DOWN:
-                          character.move(0, 4);
-                          break;
-                    case Side::TO_LEFT:
-                        character.move(-4, 0);
-                        break;
-                    case Side::TO_RIGHT:
-                        character.move(4, 0);
-                        break;
-                    default:
-                        break;
-                    }
-                }
-                if(frames - startFrames >= 7) {
-                    Model::Data::player.getPosition().stopMove();
-                }
             }
 
 
@@ -302,6 +280,31 @@ namespace OpMon {
             } else if(!Model::Data::player.getPosition().isAnim()) {
                 character.setTexture(Model::Data::Ui::texturePP[(int)Model::Data::player.getPosition().getDir()]);
             }
+
+            if(!is_in_dialog && Model::Data::player.getPosition().isAnim()) {
+                if(Model::Data::player.getPosition().isMoving()) {
+                    switch(Model::Data::player.getPosition().getDir()) {
+                    case Side::TO_UP:
+                        character.move(0, -4);
+                        break;
+                    case Side::TO_DOWN:
+                        character.move(0, 4);
+                        break;
+                    case Side::TO_LEFT:
+                        character.move(-4, 0);
+                        break;
+                    case Side::TO_RIGHT:
+                        character.move(4, 0);
+                        break;
+                    default:
+                        break;
+                    }
+                }
+                if(frames - startFrames >= 7) {
+                    Model::Data::player.getPosition().stopMove();
+                }
+            }
+
             //Drawing character
             View::frame.draw(character);
             //Drawing the events above the player
@@ -314,7 +317,7 @@ namespace OpMon {
             }
 
             if (debugMode && printCollisions){
-              printCollisionLayer(View::frame);
+                printCollisionLayer(View::frame);
             }
 
             //Drawing the third layer
