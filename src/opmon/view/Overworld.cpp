@@ -62,6 +62,7 @@ namespace OpMon {
         }
 
         void Overworld::updateCamera(sf::RenderTarget &frame) {
+            frame.setView(camera);
             if (cameraLock)
                 return;
 
@@ -81,11 +82,11 @@ namespace OpMon {
             center.y = std::min(center.y, playerPos.y + (cameraSize.y * coef / 2.f));
 
             camera.setCenter(center);
-            frame.setView(camera);
         }
 
         void Overworld::resetCamera() {
             camera.setCenter(character.getPosition());
+            frame.setView(camera);
         }
 
         void Overworld::printElements(sf::RenderTexture &frame) {
@@ -151,7 +152,6 @@ namespace OpMon {
 
             jukebox.play(current->getBg());
 
-            View::frame.setView(camera);
             window.setKeyRepeatEnabled(true);
 
             OpMon::I18n::Translator::getInstance().setLang(OpMon::I18n::Translator::getInstance().getLang());
@@ -178,10 +178,8 @@ namespace OpMon {
                 fpsCounter = 0;
                 oldTicksFps = Utils::Time::getElapsedMilliseconds();
             }
+
             sf::Text debugText;
-            /*
-	In the bloc, every commented line must be moved in GameLoop
-      */
             if(debugMode) {
                 cout << "[FRAME Nｰ" << frames << "]" << endl;
                 cout << "Boucle : " << (is_in_dialog ? "Normale" : "Dialog") << endl;
@@ -194,11 +192,11 @@ namespace OpMon {
                 cout << "Start Frames : " << startFrames << endl;
 
                 debugText.setString("Debug mode");
-                debugText.setPosition(View::frame.mapPixelToCoords(sf::Vector2i(0, 0)));
+                debugText.setPosition(0, 0);
                 debugText.setFont(Model::Data::Ui::font);
                 debugText.setColor(sf::Color(127, 127, 127));
                 debugText.setCharacterSize(40);
-                fpsPrint.setPosition(View::frame.mapPixelToCoords(sf::Vector2i(0, 50)));
+                fpsPrint.setPosition(0, 50);
                 fpsPrint.setFont(Model::Data::Ui::font);
                 //fpsPrint.setColor(sf::Color(127, 127, 127));
                 fpsPrint.setCharacterSize(48);
@@ -207,12 +205,43 @@ namespace OpMon {
                     << "PxPosition : " << character.getPosition().x << " - " << character.getPosition().y << endl;
                 coordPrint.setString(oss.str());
                 coordPrint.setFont(Model::Data::Ui::font);
-                coordPrint.setPosition(View::frame.mapPixelToCoords(sf::Vector2i(0, 100)));
+                coordPrint.setPosition(0, 100);
                 coordPrint.setColor(sf::Color(127, 127, 127));
                 coordPrint.setCharacterSize(30);
             }
 
+            if(is_in_dialog) {
+                this->dialog->updateTextAnimation();
+            } else if(Model::Data::player.getPosition().isAnim()) {
+                if(Model::Data::player.getPosition().isMoving()) {
+                    switch(Model::Data::player.getPosition().getDir()) {
+                    case Side::TO_UP:
+                        character.move(0, -4);
+                        break;
+                    case Side::TO_DOWN:
+                          character.move(0, 4);
+                          break;
+                    case Side::TO_LEFT:
+                        character.move(-4, 0);
+                        break;
+                    case Side::TO_RIGHT:
+                        character.move(4, 0);
+                        break;
+                    default:
+                        break;
+                    }
+                }
+                if(frames - startFrames >= 7) {
+                    Model::Data::player.getPosition().stopMove();
+                }
+            }
+
+
+            /**** draw ****/
+
+            updateCamera(View::frame);
             View::frame.clear(sf::Color::Black);
+
             //Drawing the two first layers
             if((debugMode ? printlayer[0] : true)) {
                 View::frame.draw(*layer1);
@@ -256,54 +285,30 @@ namespace OpMon {
                 }
             }
 
+            if (debugMode && printCollisions){
+              printCollisionLayer(View::frame);
+            }
+
             //Drawing the third layer
             if((debugMode ? printlayer[2] : true)) {
                 View::frame.draw(*layer3);
             }
 
-            updateCamera(View::frame);
-
             printElements(View::frame);
 
+
+            /***** draw GUI *****/
+            frame.setView(frame.getDefaultView());
+
             if(is_in_dialog) {
-                this->dialog->updateTextAnimation();
-              frame.setView(frame.getDefaultView());
               this->dialog->draw(View::frame);
-              View::frame.setView(camera);
-            } else if(Model::Data::player.getPosition().isAnim()) {
-                if(Model::Data::player.getPosition().isMoving()) {
-                    switch(Model::Data::player.getPosition().getDir()) {
-                    case Side::TO_UP:
-                        character.move(0, -4);
-                        break;
-                    case Side::TO_DOWN:
-                        character.move(0, 4);
-                        break;
-                    case Side::TO_LEFT:
-                        character.move(-4, 0);
-                        break;
-                    case Side::TO_RIGHT:
-                        character.move(4, 0);
-                        break;
-                    default:
-                        break;
-                    }
-                }
-                if(frames - startFrames >= 7) {
-                    Model::Data::player.getPosition().stopMove();
-                }
             }
 
             if(debugMode) {
-                if(printCollisions) {
-                    printCollisionLayer(View::frame);
-                }
                 View::frame.draw(debugText);
                 View::frame.draw(fpsPrint);
                 View::frame.draw(coordPrint);
             }
-
-            //Refresh to do in GameLoop
 
             return GameStatus::CONTINUE;
         }
