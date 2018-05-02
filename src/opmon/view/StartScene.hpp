@@ -53,13 +53,13 @@ namespace OpMon {
 
             int part = 0;
 
-            sf::String txtP1[15];
-            sf::String txtP0[18];
+            std::vector<sf::String> txtP1;
+            std::vector<sf::String> txtP0;
             Utils::OpString strName;
 
             Dialog *dialog;
 
-            sf::Texture textures[5];
+            sf::Texture textures[3];
 
             sf::Text textDescs[4];
             sf::Sprite bgName;

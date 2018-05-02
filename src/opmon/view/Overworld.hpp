@@ -82,7 +82,7 @@ namespace OpMon {
             void printCollisionLayer(sf::RenderTarget &frame);
 
             /* Move the camera to follow the player's moves. */
-            void updateCamera();
+            void updateCamera(sf::RenderTarget &frame);
 
             /* Center the camera on the player. */
             void resetCamera();
@@ -96,7 +96,6 @@ namespace OpMon {
             MapLayer *layer1 = nullptr;
             MapLayer *layer2 = nullptr;
             MapLayer *layer3 = nullptr;
-            sf::Vector2f posArrow;
             Dialog *dialog = nullptr;
             //Indicate the frame of the walking animation that must be used.
             bool anims = false;
