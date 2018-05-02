@@ -70,23 +70,51 @@ namespace OpMon {
             // character.getPosition() returns the center of the player's sprite
             const sf::Vector2f &playerPos = character.getPosition();
             const sf::Vector2f &cameraSize = camera.getSize();
+            const sf::Vector2i mapSize = current->getDimensions() * 32;
+
             sf::Vector2f center = camera.getCenter();
 
             // Only move the camera when the player moves away from the center. "coef" determines the liberty given to
             // the player. a coefficient of 0 means the camera is always centered on the player. a coefficient of 1
             // allows the player to reach the screen borders.
             float coef = 0.25;
-            center.x = std::max(center.x, playerPos.x - (cameraSize.x * coef / 2.f));
-            center.x = std::min(center.x, playerPos.x + (cameraSize.x * coef / 2.f));
-            center.y = std::max(center.y, playerPos.y - (cameraSize.y * coef / 2.f));
-            center.y = std::min(center.y, playerPos.y + (cameraSize.y * coef / 2.f));
 
+            if (cameraSize.x * 0.9 > mapSize.x) {
+                center.x = (float)mapSize.x / 2;
+            } else {
+                center.x = std::max(center.x, playerPos.x - (cameraSize.x * coef / 2.f));
+                center.x = std::min(center.x, playerPos.x + (cameraSize.x * coef / 2.f));
+            }
+            if (cameraSize.y * 0.9 > mapSize.y) {
+                center.y = (float)mapSize.y / 2;
+            } else {
+                center.y = std::max(center.y, playerPos.y - (cameraSize.y * coef / 2.f));
+                center.y = std::min(center.y, playerPos.y + (cameraSize.y * coef / 2.f));
+            }
             camera.setCenter(center);
         }
 
         void Overworld::resetCamera() {
-            camera.setCenter(character.getPosition());
-            frame.setView(camera);
+            sf::Vector2f center = character.getPosition();
+            const sf::Vector2i mapSize = current->getDimensions() * 32;
+            const sf::Vector2f &cameraSize = camera.getSize();
+
+            // Try to display as few "black" as possible.
+            if (cameraSize.x * 0.9 < mapSize.x){
+                center.x = std::max(center.x, cameraSize.x / 2);
+                center.x = std::min(center.x, (float)mapSize.x - cameraSize.x / 2);
+            } else {
+               center.x = (float)mapSize.x / 2;
+            }
+            if (cameraSize.x * 0.9 < mapSize.x){
+                center.y = std::max(center.y, cameraSize.y / 2);
+                center.y = std::min(center.y, (float)mapSize.y - cameraSize.y / 2);
+            } else {
+                center.y = (float)mapSize.y / 2;
+            }
+
+            camera.setCenter(center);
+            updateCamera(frame);  // fix the camera if we're not centered enough on the player.
         }
 
         void Overworld::printElements(sf::RenderTexture &frame) {
