@@ -88,6 +88,9 @@ namespace OpMon {
                 extern sf::SoundBuffer shopDoorSoundBuffer;
                 //std::string backgrounds[];
                 extern sf::Font font;
+
+							  extern sf::Texture dialogBackground;
+							  extern sf::Texture dialogArrow;
             } // namespace Ui
 
             namespace Sounds {
