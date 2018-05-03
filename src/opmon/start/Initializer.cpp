@@ -412,6 +412,8 @@ _______________________________________________________________
             ResourceLoader::load(Model::Data::Ui::dialogBackground, "backgrounds/dialog/dialog.png");
             ResourceLoader::load(Model::Data::Ui::dialogArrow, "sprites/misc/arrDial.png");
 
+	    ResourceLoader::load(Model::Data::Battle::attackDialog, "backgrounds/dialog/attacks_dialog.png");
+	    
             initOpTextures();
 
             initEnumsEvents();
