@@ -52,9 +52,9 @@ namespace OpMon {
 	    debugCol = !debugCol;
 	  }
 	  if(events.key.code == sf::Keyboard::B) {
-	    Model::Data::player.addOpToOpTeam(new Model::OpMon("", Model::Data::OpMons::listOp[1], 5, {Model::Attacks::newAtk("Charge"), Model::Attacks::newAtk("Brouillard"), nullptr, nullptr}, Model::Nature::QUIET));
+	    Model::Data::player.addOpToOpTeam(new Model::OpMon("", Model::Data::OpMons::listOp[4], 5, {Model::Attacks::newAtk("Charge"), Model::Attacks::newAtk("Brouillard"), nullptr, nullptr}, Model::Nature::QUIET));
 	    Model::OpTeam *opTeam = new Model::OpTeam("Unknown trainer");
-	    opTeam->addOpMon(new Model::OpMon("", Model::Data::OpMons::listOp[4], 5, {Model::Attacks::newAtk("Charge"), Model::Attacks::newAtk("Brouillard"), nullptr, nullptr}, Model::Nature::QUIET));
+	    opTeam->addOpMon(new Model::OpMon("", Model::Data::OpMons::listOp[1], 5, {Model::Attacks::newAtk("Charge"), Model::Attacks::newAtk("Brouillard"), nullptr, nullptr}, Model::Nature::QUIET));
 	    _next_gs = new BattleCtrl(Model::Data::player.getOpTeam(), opTeam);
 	    return GameStatus::NEXT;
 	  }

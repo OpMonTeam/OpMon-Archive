@@ -38,6 +38,7 @@ namespace OpMon{
       sf::Text choicesTxt[4];
       sf::Vector2f posChoices[4];
       sf::Sprite cursor;
+      sf::Text waitText;
 
       sf::Text opName[2];
       sf::Text opLevel[2];
@@ -48,10 +49,16 @@ namespace OpMon{
       sf::Sprite infoboxTrainer;
       sf::Sprite shadowTrainer;
       sf::Sprite shadowPlayer;
-      
+            
       int curPos;
-    public:
 
+      /* If true, the attack selection dialog is printed. If false, the action selection dialog is printed. */
+      bool attackChoice = false;
+      
+      sf::Text attacks[4];
+      
+    public:
+      
       Battle(const Model::OpTeam* atkTeam, const Model::OpTeam* defTeam, std::string trainerClass, std::string background);
       //Used to print the turn
       GameStatus operator()(Model::Turn const& atk, Model::Turn const& def);//Sets turnLaunched to true
@@ -59,9 +66,11 @@ namespace OpMon{
       GameStatus operator()(Model::Turn* atkTurn, Model::Turn *def);
       //Moves the cursor
       void moveCur(Model::Side where);
+      //Returns the cursor's position
+      int getCurPos() {return curPos;}
+      //Tooggle the interface printed, the action or attack selection
+      void toggleAttackChoice();
 
-      Battle(){}//TEMP
-      
     };
 
   }
