@@ -133,6 +133,9 @@ key.battle.status.confused.attack.success.1=Despite the confusion, ~
 key.battle.status.confused.attack.success.2=manages to attack!
 key.battle.status.confused.attack.fail=~ is confused.
 key.battle.status.confused.hplost=~ lost ~ hp.
->>>>>>> 1ab787a9c1203700040cf69f490523b6609e72e6
+
+key.battle.wait=What does ~ have to do?
+
+key.battle.wait=Qué haces? 
 
 end

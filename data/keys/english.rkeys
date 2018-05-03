@@ -131,4 +131,6 @@ key.battle.status.confused.attack.success.2=manages to attack!
 key.battle.status.confused.attack.fail=~ is confused.
 key.battle.status.confused.hplost=~ lost ~ hp.
 
+key.battle.wait=What to do?
+
 end

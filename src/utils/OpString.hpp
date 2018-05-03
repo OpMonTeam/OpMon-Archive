@@ -21,7 +21,8 @@ namespace Utils {
         std::vector<sf::String *> objects;
       bool created = false;
       public:
-      OpString(std::string const& key, ...);
+      /* Waits sf::String pointers to update the string with the pointed variable's value at each getString() call.*/
+      OpString(std::string const& key, .../*Waiting sf::String pointer*/);
       OpString(std::string const& key, std::vector<sf::String*> obj);
       OpString();
       ~OpString();
@@ -33,7 +34,11 @@ namespace Utils {
             return key;
         }
         sf::String getString();
+      /* A empty OpString */
         static OpString voidStr;
+
+      /** Create an OpString and returns the result of getString. Quick version to have a string because it uses std::string instead of sf::String pointers. */
+      static sf::String quickString(std::string const& key, .../* Waiting std::string pointers*/);
     };
 
 } // namespace Utils
