@@ -45,7 +45,30 @@ namespace Utils {
 	}
       }
     }
+
+  sf::String OpString::quickString(std::string const& key,.../* Waiting std::string pointers*/){
+    va_list ap;
+    va_start(ap, key);
+    int instances = StringKeys::countInstances(StringKeys::get(key), '~');
+    std::vector<sf::String*> vect;
+    for(int i = 0; i < instances; i++){
+      std::string* ptr = va_arg(ap, std::string*);
+      if(ptr != NULL && ptr != nullptr){
+	vect.push_back(new sf::String(*ptr));
+	delete(ptr);
+      }
+    }
+    va_end(ap);
+    OpString op = OpString(key, vect);
+    sf::String str = op.getString();
     
+    for(sf::String* sfstr : vect){
+      delete(sfstr);
+    }
+
+    return str;
+  }
+  
     sf::String OpString::getString() {
         if(this->key.empty()) { //If empty, it doesn't execute the algorithm. That would be useless.
             return sf::String();

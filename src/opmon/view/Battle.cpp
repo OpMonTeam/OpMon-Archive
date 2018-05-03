@@ -11,15 +11,15 @@ namespace OpMon{
     GameStatus Battle::operator()(Model::Turn* atkTurn, Model::Turn *def){
       frame.draw(background);
       frame.draw(shadowPlayer);
-	  frame.draw(shadowTrainer);
+      frame.draw(shadowTrainer);
       frame.draw(playerSpr);
       frame.draw(trainerSpr);
       atk.setTexture(Model::Data::OpMons::opSprites[atkTurn->opmon->getSpecies().getOpdexNumber()][0]);
       this->def.setTexture(Model::Data::OpMons::opSprites[def->opmon->getSpecies().getOpdexNumber()][1]);
       frame.draw(atk);
       frame.draw(this->def);
-	  frame.draw(infoboxPlayer);
-	  frame.draw(infoboxTrainer);
+      frame.draw(infoboxPlayer);
+      frame.draw(infoboxTrainer);
 
 
       for(unsigned int i = 0; i < 2; i++){
@@ -41,11 +41,14 @@ namespace OpMon{
       frame.draw(opName[1]);
       frame.draw(opLevel[0]);
       frame.draw(opLevel[1]);
-
+      
       frame.draw(dialogSpr);
       for(sf::Text &txt : choicesTxt){
 	frame.draw(txt);
       }
+
+      waitText.setString(Utils::StringKeys::get("battle.wait"));
+      frame.draw(waitText);
 
       cursor.setPosition(posChoices[curPos] + sf::Vector2f((choicesTxt[curPos].getGlobalBounds().width / 2) - 10, 25));
       frame.draw(cursor);
@@ -128,6 +131,11 @@ namespace OpMon{
 	opName[i].setColor(sf::Color::Black);
 	opLevel[i].setColor(sf::Color::Black);
       }
+
+      waitText.setFont(Model::Data::Ui::font);
+      waitText.setCharacterSize(22);
+      waitText.setColor(sf::Color::Black);
+      waitText.setPosition(25, 410);
       
     }
 
