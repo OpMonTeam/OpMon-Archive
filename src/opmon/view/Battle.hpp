@@ -56,6 +56,8 @@ namespace OpMon{
       bool attackChoice = false;
       
       sf::Text attacks[4];
+      sf::Text ppTxt;
+      sf::Sprite type;
       
     public:
       

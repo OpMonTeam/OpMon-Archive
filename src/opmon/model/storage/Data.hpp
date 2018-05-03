@@ -47,7 +47,7 @@ namespace OpMon {
 	  namespace Battle {
 	    extern std::map<std::string, sf::Texture> backgrounds;
 	    extern sf::Texture dialog;
-	    extern sf::Texture attackDial;
+	    extern sf::Texture attackDialog;
 	    extern sf::Texture cursor;
 	    //extern std::vector<sf::Texture> choices;
 	    extern std::map<std::string, std::vector<sf::Texture> > charaBattleTextures;
