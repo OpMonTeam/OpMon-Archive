@@ -10,8 +10,8 @@ namespace OpMon{
   namespace View{
     GameStatus Battle::operator()(Model::Turn* atkTurn, Model::Turn *def){
       frame.draw(background);
-      frame.draw(shadowPlayer);
-      frame.draw(shadowTrainer);
+      /*frame.draw(shadowPlayer);
+	frame.draw(shadowTrainer);*/
       frame.draw(playerSpr);
       frame.draw(trainerSpr);
       atk.setTexture(Model::Data::OpMons::opSprites[atkTurn->opmon->getSpecies().getOpdexNumber()][0]);
@@ -20,7 +20,7 @@ namespace OpMon{
       frame.draw(this->def);
       frame.draw(infoboxPlayer);
       frame.draw(infoboxTrainer);
-
+      
 
       for(unsigned int i = 0; i < 2; i++){
 	frame.draw(healthbar1[i]);
@@ -41,20 +41,45 @@ namespace OpMon{
       frame.draw(opName[1]);
       frame.draw(opLevel[0]);
       frame.draw(opLevel[1]);
-      
-      frame.draw(dialogSpr);
-      for(sf::Text &txt : choicesTxt){
-	frame.draw(txt);
+
+      if(!attackChoice){
+	frame.draw(dialogSpr);
+	for(sf::Text &txt : choicesTxt){
+	  frame.draw(txt);
+	}
+
+	waitText.setString(Utils::StringKeys::get("battle.wait"));
+	frame.draw(waitText);
+
+	cursor.setPosition(posChoices[curPos] + sf::Vector2f((choicesTxt[curPos].getGlobalBounds().width / 2) - 10, 25));
+	frame.draw(cursor);
+      }else{
+	
       }
-
-      waitText.setString(Utils::StringKeys::get("battle.wait"));
-      frame.draw(waitText);
-
-      cursor.setPosition(posChoices[curPos] + sf::Vector2f((choicesTxt[curPos].getGlobalBounds().width / 2) - 10, 25));
-      frame.draw(cursor);
       return GameStatus::CONTINUE;
     }
 
+    void Battle::toggleAttackChoice(){
+      attackChoice = !attackChoice;
+      if(attackChoice){
+	dialogSpr.setTexture(Model::Data::Battle::attackDialog);
+	posChoices[0].x = 40;
+	posChoices[0].y = 380;
+	posChoices[1].x = 140;
+	posChoices[1].y = 380;
+	posChoices[2].x = 40;
+	posChoices[2].y = 445;
+	posChoices[3].x = 140;
+	posChoices[3].y = 445;
+	for(unsigned int i = 0; i < 4; i++){
+	  choicesTxt[i].setPosition(posChoices[i]);
+	}
+      }else{
+	
+      }
+      
+    }
+    
     GameStatus Battle::operator()(Model::Turn const& atk, Model::Turn const& def){
       return GameStatus::CONTINUE;
     }
@@ -67,6 +92,7 @@ namespace OpMon{
       playerSpr.setScale(2, 2);
       trainerSpr.setTexture(Model::Data::Battle::charaBattleTextures[trainerClass][0]);
       trainerSpr.setPosition(400, 20);
+      
       choicesTxt[0].setString(Utils::StringKeys::get("battle.attack"));
       choicesTxt[1].setString(Utils::StringKeys::get("battle.bag"));
       choicesTxt[2].setString(Utils::StringKeys::get("battle.opmon"));
@@ -85,6 +111,9 @@ namespace OpMon{
 	choicesTxt[i].setPosition(posChoices[i]);
 	choicesTxt[i].setColor(sf::Color::White);
       }
+
+      //ppText.setPosition(326, 380);
+      
       dialogSpr.setTexture(Model::Data::Battle::dialog);
       dialogSpr.setPosition(0, 350);
       cursor.setTexture(Model::Data::Battle::cursor);
@@ -96,9 +125,9 @@ namespace OpMon{
       def.setPosition(305, 120);
       atk.setScale(2, 2);
 
-	  infoboxPlayer.setTexture(Model::Data::Battle::infoboxPlayer);
+      infoboxPlayer.setTexture(Model::Data::Battle::infoboxPlayer);
       infoboxPlayer.setPosition(321, 277);
-	  infoboxTrainer.setTexture(Model::Data::Battle::infoboxTrainer);
+      infoboxTrainer.setTexture(Model::Data::Battle::infoboxTrainer);
       infoboxTrainer.setPosition(17, 148);
       shadowPlayer.setTexture(Model::Data::Battle::shadowPlayer);
       shadowPlayer.setPosition(130, 281);
