@@ -136,6 +136,6 @@ key.battle.status.confused.hplost=~ perd ~ pv.
 
 key.battle.status.afraid=~ est trop effrayé pour attaquer!
 
-key.battle.wait=Que faire?
+key.battle.wait=Que voulez vous faire ?
 
 end
