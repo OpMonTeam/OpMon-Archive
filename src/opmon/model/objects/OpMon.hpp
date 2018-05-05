@@ -115,7 +115,7 @@ namespace OpMon {
 	  
           public:
             /**Lets you know if a OPMon is an OPMon that is initialized with a default initializer*/
-            bool falsif = true;
+            bool initialized = true;
 
             bool confused = false;
             bool afraid = false;
@@ -136,7 +136,7 @@ namespace OpMon {
             OpMon(std::ifstream &in);
 
 	  OpMon(){
-	    falsif = true;
+	    initialized = true;
 	    //species = Data::OpMons::listOp[0];
 	  }
 
@@ -292,13 +292,13 @@ namespace OpMon {
                 return *species;
             }
 
-            //Warning! The == and! = operators did not compare two OPMons! They compare whether OPMons are "falsif" or not (see falsif))
+            //Warning! The == and! = operators did not compare two OPMons! They compare whether OPMons are "initialized" or not (see initialized))
             bool operator==(OpMon const &a) {
-                return (falsif == a.falsif);
+                return (initialized == a.initialized);
             }
 
             bool operator!=(OpMon const &a) {
-                return !(falsif == a.falsif);
+                return !(initialized == a.initialized);
             }
 
             Item *itemHeld() const {
