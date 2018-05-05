@@ -153,7 +153,7 @@ UNS
             statLove = 100;
             statACC = 100;
             statEVA = 100;
-            falsif = false;
+            initialized = false;
         }
 
         bool OpMon::captured(I_OpBox const &OpBox) {
@@ -1496,7 +1496,7 @@ UNS
         }
 
         string OpMon::save() {
-            if(!falsif) {
+            if(!initialized) {
 
                 ostringstream oss;
                 oss << nickname << endl;
@@ -1659,9 +1659,9 @@ UNS
                 type2 = species->getType2();
                 statACC = 100;
                 statEVA = 100;
-                falsif = false;
+                initialized = false;
             } else {
-                falsif = true;
+                initialized = true;
             }
         }
 
