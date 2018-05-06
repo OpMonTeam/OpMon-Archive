@@ -466,7 +466,7 @@ _______________________________________________________________
 
             ResourceLoader::loadTextureArray(Model::Data::Elements::elementsTextures["smoke"], "animations/chimneysmoke/chimneysmoke_%d.png", 16, 1);
 
-            Map *mapFauxbourgEuvi = maps.emplace("Fauxbourg Euvi", new Map(Maps::feLayer1, Maps::feLayer2, Maps::feLayer3, 48, 48, "Fauxbourg", std::vector<std::string>{"windturbine", "smoke"})).first->second;
+            Map *mapFauxbourgEuvi = maps.emplace("Fauxbourg Euvi", new Map(Maps::feLayer1, Maps::feLayer2, Maps::feLayer3, 48, 48, false, "Fauxbourg", std::vector<std::string>{"windturbine", "smoke"})).first->second;
             mapFauxbourgEuvi->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(19, 10), {OpString("fedesc.1"), OpString("fedesc.2"), OpString("fedesc.3")}, SIDE_UP));
             mapFauxbourgEuvi->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(29, 16), {OpString("ppHouse", Data::player.getNameP()), OpString::voidStr, OpString::voidStr}, SIDE_UP));
             mapFauxbourgEuvi->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(33, 16), {OpString("rivalHouse"), OpString::voidStr, OpString::voidStr}, SIDE_UP));
@@ -495,7 +495,7 @@ _______________________________________________________________
 	    
             mapFauxbourgEuvi->addEvent(new Events::TalkingCharaEvent("fisherman", sf::Vector2f(16, 16), {OpString("fe.fisherman.1"), OpString("fe.fisherman.2"), OpString("fe.fisherman.3"), OpString("fe.fisherman.4"), OpString("fe.fisherman.5"), OpString("fe.fisherman.6"), OpString("fe.fisherman.7"), OpString("fe.fisherman.8"), OpString("fe.fisherman.9")}, Side::TO_LEFT));
 
-            Map *mapPlayersHome = maps.emplace("Player's home", new Map(Maps::pphomeLayer1, Maps::pphomeLayer2, Maps::pphomeLayer3, 16, 16, "Fauxbourg")).first->second;
+            Map *mapPlayersHome = maps.emplace("Player's home", new Map(Maps::pphomeLayer1, Maps::pphomeLayer2, Maps::pphomeLayer3, 16, 16, true, "Fauxbourg")).first->second;
             mapPlayersHome->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(7, 15), sf::Vector2i(28, 17), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
             mapPlayersHome->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(15, 2), sf::Vector2i(9, 7), "Player's room", Side::TO_LEFT, SIDE_RIGHT));
             mapPlayersHome->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(0, 11), sf::Vector2i(6, 3), "Mom's room", Side::TO_LEFT, SIDE_LEFT));
@@ -503,35 +503,35 @@ _______________________________________________________________
             mapPlayersHome->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(3, 8), phomE1, SIDE_UP));
             mapPlayersHome->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(2, 8), phomE1, SIDE_UP));
             mapPlayersHome->addEvent(new Events::TalkingCharaEvent("playermom", sf::Vector2f(9, 9), {OpString("playermom.dialog.1"), OpString("playermom.dialog.2"), OpString("playermom.dialog.3")}, Side::TO_DOWN));
-            Map *mapLaboratory = maps.emplace("Laboratory", new Map(Maps::laboLayer1, Maps::laboLayer2, Maps::laboLayer3, 32, 16, "Labo")).first->second;
+            Map *mapLaboratory = maps.emplace("Laboratory", new Map(Maps::laboLayer1, Maps::laboLayer2, Maps::laboLayer3, 32, 16, true, "Labo")).first->second;
             mapLaboratory->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(15, 15), sf::Vector2i(28, 29), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
 
             mapLaboratory->addEvent(new Events::TalkingCharaEvent("kiwai", sf::Vector2f(15, 4), {OpString("prof.dialog.1"), OpString("prof.dialog.2"), OpString("prof.dialog.3")}, Side::TO_DOWN));
 
-            Map *mapRivalsHouse = maps.emplace("Rival's house", new Map(Maps::rivalhomeLayer1, Maps::rivalhomeLayer2, Maps::rivalhomeLayer3, 16, 16, "Fauxbourg")).first->second;
+            Map *mapRivalsHouse = maps.emplace("Rival's house", new Map(Maps::rivalhomeLayer1, Maps::rivalhomeLayer2, Maps::rivalhomeLayer3, 16, 16, true, "Fauxbourg")).first->second;
             mapRivalsHouse->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 15), sf::Vector2i(36, 17), "Fauxbourg Euvi", Side::TO_DOWN, SIDE_DOWN));
 
-            Map *mapMomsRoom = maps.emplace("Mom's room", new Map(Maps::momroomLayer1, Maps::momroomLayer2, Maps::momroomLayer3, 6, 6, "Fauxbourg")).first->second;
+            Map *mapMomsRoom = maps.emplace("Mom's room", new Map(Maps::momroomLayer1, Maps::momroomLayer2, Maps::momroomLayer3, 6, 6, true, "Fauxbourg")).first->second;
             mapMomsRoom->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(5, 3), sf::Vector2i(1, 11), "Player's home", Side::TO_RIGHT, SIDE_RIGHT));
 
-            Map *mapPlayersRoom = maps.emplace("Player's room", new Map(Maps::pproomLayer1, Maps::pproomLayer2, Maps::pproomLayer3, 9, 8, "Fauxbourg")).first->second;
+            Map *mapPlayersRoom = maps.emplace("Player's room", new Map(Maps::pproomLayer1, Maps::pproomLayer2, Maps::pproomLayer3, 9, 8, true, "Fauxbourg")).first->second;
             mapPlayersRoom->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 7), sf::Vector2i(16, 2), "Player's home", Side::TO_LEFT, SIDE_RIGHT));
             std::vector<OpString> phoE1{OpString("pcRunLinux"), OpString::voidStr, OpString::voidStr};
             mapPlayersRoom->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(1, 3), phoE1, SIDE_UP));
 
             //Route 14 loading
-            Map *mapRoute14 = maps.emplace("Route 14", new Map(Maps::route14Layer1, Maps::route14Layer2, Maps::route14Layer3, 90, 57, "Route 14")).first->second;
+            Map *mapRoute14 = maps.emplace("Route 14", new Map(Maps::route14Layer1, Maps::route14Layer2, Maps::route14Layer3, 90, 57, false, "Route 14")).first->second;
             mapRoute14->addEvent(new Events::TalkingCharaEvent("sk", sf::Vector2f(15, 30), {OpString("rt14.sk.1"), OpString("rt14.sk.2"), OpString("rt14.sk.3")}, Side::TO_LEFT));
             mapRoute14->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 38), sf::Vector2i(39, 17), "Fauxbourg Euvi", Side::TO_LEFT, SIDE_LEFT));
             mapRoute14->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 39), sf::Vector2i(39, 18), "Fauxbourg Euvi", Side::TO_LEFT, SIDE_LEFT));
             mapRoute14->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 40), sf::Vector2i(39, 19), "Fauxbourg Euvi", Side::TO_LEFT, SIDE_LEFT));
             mapRoute14->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 41), sf::Vector2i(39, 20), "Fauxbourg Euvi", Side::TO_LEFT, SIDE_LEFT));
             //MysteriouCity loading
-            Map *mapMs = maps.emplace("MysteriouCity", new Map(Maps::myciLayer1, Maps::myciLayer2, Maps::myciLayer3, 35, 35, "Ms")).first->second;
+            Map *mapMs = maps.emplace("MysteriouCity", new Map(Maps::myciLayer1, Maps::myciLayer2, Maps::myciLayer3, 35, 35, false, "Ms")).first->second;
             mapMs->addEvent(new Events::TalkingCharaEvent("|_| -|- |-| |= |_| |\|", sf::Vector2f(15, 30), {}));
             mapMs->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(15, 12), sf::Vector2i(9, 17), "OpCenter", Side::TO_UP, SIDE_UP));
             //OpMon Center loading
-            Map *mapOpCenter = maps.emplace("OpCenter", new Map(Maps::opcenterLayer1, Maps::opcenterLayer2, Maps::opcenterLayer3, 18, 18, "Start")).first->second;
+            Map *mapOpCenter = maps.emplace("OpCenter", new Map(Maps::opcenterLayer1, Maps::opcenterLayer2, Maps::opcenterLayer3, 18, 18, true, "Start")).first->second;
             mapOpCenter->addEvent(new Events::TalkingCharaEvent("inferm", sf::Vector2f(9, 10), {OpString("inferm.dialog.1"), OpString("inferm.dialog.2"), OpString("inferm.dialog.3")}, Side::TO_DOWN));
             std::vector<OpString> opcE1{OpString("inferm.dialog.1"), OpString("inferm.dialog.2"), OpString("inferm.dialog.3")};
             mapOpCenter->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(9, 11), opcE1, SIDE_UP));

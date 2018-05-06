@@ -82,7 +82,7 @@ namespace OpMon {
             // Prevent the camera to display too much void outside the map dimensions. 0 has no restriction; 1 means
             // the camera never display any black zone. A value of 0.7 means the camera can't display more than 30% of
             // out-of-map zone.
-            float nearBorderCoef = 0.7;
+            float nearBorderCoef = current->isIndoor() ? 0.7f : 1;
 
             if (cameraSize.x * 0.9 > mapSize.x) {
                 center.x = (float)mapSize.x / 2;

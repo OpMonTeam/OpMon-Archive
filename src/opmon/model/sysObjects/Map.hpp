@@ -30,6 +30,8 @@ namespace OpMon {
             int w;
             int h;
 
+            bool indoor;
+
             /**The copy constructor must not be used.*/
             Map(Map const &toCopy) = delete;
 
@@ -38,13 +40,16 @@ namespace OpMon {
             std::vector<std::string> animatedElements;
 
           public:
-            Map(const int layer1[], const int layer2[], const int layer3[], int w, int h, std::string const &bg, std::vector<std::string> const &animatedElements = std::vector<std::string>());
+            Map(const int layer1[], const int layer2[], const int layer3[], int w, int h, bool indoor, std::string const &bg, std::vector<std::string> const &animatedElements = std::vector<std::string>());
             ~Map();
             int getH() const {
                 return h;
             }
             int getW() const {
                 return w;
+            }
+            bool isIndoor() const {
+                return indoor;
             }
             sf::Vector2i getDimensions() const {
                 return sf::Vector2i(w, h);
