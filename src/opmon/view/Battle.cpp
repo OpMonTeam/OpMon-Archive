@@ -76,13 +76,19 @@ namespace OpMon{
 	    ppTxt.setColor(sf::Color::Black);
 	  }
 	  ppTxt.setString(oss3.str());
+	  type.setTexture(Model::Data::OpMons::typesTextures[atkTurn->opmon->getAttacks()[curPos]->getType()]);
+	  frame.draw(type);
 	}else{
 	  ppTxt.setColor(sf::Color::Red);
 	  ppTxt.setString("0 / 0");
+	 
 	}
+
+	
 	frame.draw(ppTxt);
 	frame.draw(ppStrTxt);
-
+	
+	
 	cursor.setPosition(posChoices[curPos] + sf::Vector2f((attacks[curPos].getGlobalBounds().width / 2) - 10, 30));
 	
       }
@@ -211,7 +217,8 @@ namespace OpMon{
       ppTxt.setCharacterSize(26);
       ppStrTxt.setColor(sf::Color::Black);
       ppTxt.setColor(sf::Color::Black);
-      
+
+      type.setPosition(326, 440);
     }
 
     void Battle::moveCur(Model::Side where){
