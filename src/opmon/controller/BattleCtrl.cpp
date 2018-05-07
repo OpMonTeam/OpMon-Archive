@@ -44,6 +44,18 @@ namespace OpMon{
 	  break;
 	case sf::Keyboard::Down:
 	  view.moveCur(Model::Side::TO_DOWN);
+	  break;
+	case sf::Keyboard::Return:
+	  if(!view.isAttackChoice()){
+	    switch(view.getCurPos()){
+	    case 0:
+	      view.toggleAttackChoice();
+	      break;
+	    default:
+	      break;
+	    }
+	  }
+	  break;
 	}
       }
       

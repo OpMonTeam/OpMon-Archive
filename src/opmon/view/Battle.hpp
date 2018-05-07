@@ -56,7 +56,10 @@ namespace OpMon{
       bool attackChoice = false;
       
       sf::Text attacks[4];
+      //Prints the pp count
       sf::Text ppTxt;
+      //Just prints the text "PP:"
+      sf::Text ppStrTxt;
       sf::Sprite type;
       
     public:
@@ -72,6 +75,8 @@ namespace OpMon{
       int getCurPos() {return curPos;}
       //Tooggle the interface printed, the action or attack selection
       void toggleAttackChoice();
+
+      bool isAttackChoice() {return attackChoice;}
 
     };
 
