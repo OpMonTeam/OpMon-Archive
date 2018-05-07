@@ -56,6 +56,11 @@ namespace OpMon{
 	    }
 	  }
 	  break;
+	case sf::Keyboard::BackSpace:
+	  if(view.isAttackChoice()){
+	    view.toggleAttackChoice();
+	  }
+	  break;
 	}
       }
       
