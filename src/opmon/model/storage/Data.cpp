@@ -15,6 +15,7 @@ namespace OpMon {
                 std::vector<std::map<int, std::string>> atkOpLvl;
                 std::vector<std::vector<Stats>> evs;
 	      std::vector<std::vector<sf::Texture> > opSprites;
+	      std::map<Type, sf::Texture> typesTextures;
             } // namespace OpMons
 
             namespace World {

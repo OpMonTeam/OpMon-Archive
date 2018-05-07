@@ -413,6 +413,32 @@ _______________________________________________________________
             ResourceLoader::load(Model::Data::Ui::dialogArrow, "sprites/misc/arrDial.png");
 
 	    ResourceLoader::load(Model::Data::Battle::attackDialog, "backgrounds/dialog/attacks_dialog.png");
+
+	    /* Loads a type's texture into the types' textures map in Model::Data::OpMons */
+#define LOAD_TYPE(type) ResourceLoader::load(tempTx, (std::string("sprites/battle/types/") + #type + ".png").c_str()); \
+	  Model::Data::OpMons::typesTextures.emplace(Model::Type::type, sf::Texture(tempTx))
+	    
+	    sf::Texture tempTx;
+	    LOAD_TYPE(BAD);
+	    LOAD_TYPE(BUG);
+	    LOAD_TYPE(BURNING);
+	    LOAD_TYPE(COLD);
+	    LOAD_TYPE(DRAGON);
+	    LOAD_TYPE(ELECTRON);
+	    LOAD_TYPE(FIGHT);
+	    LOAD_TYPE(GHOST);
+	    LOAD_TYPE(GROUND);
+	    LOAD_TYPE(LIQUID);
+	    LOAD_TYPE(MAGIC);
+	    LOAD_TYPE(MENTAL);
+	    LOAD_TYPE(METAL);
+	    LOAD_TYPE(MINERAL);
+	    LOAD_TYPE(NEUTRAL);
+	    LOAD_TYPE(SKY);
+	    LOAD_TYPE(TOXIC);
+	    LOAD_TYPE(VEGETAL);
+
+#undef LOAD_TYPE
 	    
             initOpTextures();
 
