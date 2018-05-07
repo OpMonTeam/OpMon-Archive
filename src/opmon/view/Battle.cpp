@@ -41,9 +41,9 @@ namespace OpMon{
       frame.draw(opName[1]);
       frame.draw(opLevel[0]);
       frame.draw(opLevel[1]);
-
+      frame.draw(dialogSpr);
       if(!attackChoice){
-	frame.draw(dialogSpr);
+	
 	for(sf::Text &txt : choicesTxt){
 	  frame.draw(txt);
 	}
@@ -52,10 +52,42 @@ namespace OpMon{
 	frame.draw(waitText);
 
 	cursor.setPosition(posChoices[curPos] + sf::Vector2f((choicesTxt[curPos].getGlobalBounds().width / 2) - 10, 25));
-	frame.draw(cursor);
+
       }else{
 	
+	for(unsigned int i = 0; i < 4; i++){
+	  if(atkTurn->opmon->getAttacks()[i] != nullptr){
+	    attacks[i].setString(atkTurn->opmon->getAttacks()[i]->getName());
+	  }else{
+	    attacks[i].setString("----");
+	  }
+	  frame.draw(attacks[i]);
+	}
+
+	if(atkTurn->opmon->getAttacks()[curPos] != nullptr){
+	  
+	  std::ostringstream oss3;
+	  oss3 << atkTurn->opmon->getAttacks()[curPos]->getPP() << " / " << atkTurn->opmon->getAttacks()[curPos]->getPPMax();
+	  if(atkTurn->opmon->getAttacks()[curPos]->getPP() <= (atkTurn->opmon->getAttacks()[curPos]->getPPMax() / 5) && atkTurn->opmon->getAttacks()[curPos]->getPP() > 0){
+	    ppTxt.setColor(sf::Color::Yellow);
+	  }else if(atkTurn->opmon->getAttacks()[curPos]->getPP() == 0){
+	    ppTxt.setColor(sf::Color::Red);
+	  }else{
+	    ppTxt.setColor(sf::Color::Black);
+	  }
+	  ppTxt.setString(oss3.str());
+	}else{
+	  ppTxt.setColor(sf::Color::Red);
+	  ppTxt.setString("0 / 0");
+	}
+	frame.draw(ppTxt);
+	frame.draw(ppStrTxt);
+
+	cursor.setPosition(posChoices[curPos] + sf::Vector2f((attacks[curPos].getGlobalBounds().width / 2) - 10, 30));
+	
       }
+      
+      frame.draw(cursor);
       return GameStatus::CONTINUE;
     }
 
@@ -64,16 +96,20 @@ namespace OpMon{
       if(attackChoice){
 	dialogSpr.setTexture(Model::Data::Battle::attackDialog);
 	posChoices[0].x = 40;
-	posChoices[0].y = 380;
+	posChoices[0].y = 370;
 	posChoices[1].x = 140;
-	posChoices[1].y = 380;
+	posChoices[1].y = 370;
 	posChoices[2].x = 40;
-	posChoices[2].y = 445;
+	posChoices[2].y = 425;
 	posChoices[3].x = 140;
-	posChoices[3].y = 445;
+	posChoices[3].y = 425;
 	for(unsigned int i = 0; i < 4; i++){
-	  choicesTxt[i].setPosition(posChoices[i]);
+	  attacks[i].setPosition(posChoices[i]);
+	  attacks[i].setFont(Model::Data::Ui::font);
+	  attacks[i].setCharacterSize(26);
+	  attacks[i].setColor(sf::Color::Black);
 	}
+
       }else{
 	
       }
@@ -165,6 +201,16 @@ namespace OpMon{
       waitText.setCharacterSize(22);
       waitText.setColor(sf::Color::Black);
       waitText.setPosition(25, 410);
+
+      ppStrTxt.setPosition(326, 380);
+      ppStrTxt.setString("PP :");
+      ppTxt.setPosition(326, 400);
+      ppStrTxt.setFont(Model::Data::Ui::font);
+      ppTxt.setFont(Model::Data::Ui::font);
+      ppStrTxt.setCharacterSize(26);
+      ppTxt.setCharacterSize(26);
+      ppStrTxt.setColor(sf::Color::Black);
+      ppTxt.setColor(sf::Color::Black);
       
     }
 

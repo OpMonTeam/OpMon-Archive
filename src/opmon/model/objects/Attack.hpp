@@ -19,8 +19,8 @@ namespace OpMon {
 
         class OpMon;
         /**
-       Represent an OpMon attack
-    */
+       Represents an OpMon attack
+	*/
 
 
       class AttackEffect {
@@ -32,29 +32,50 @@ namespace OpMon {
           public:
             virtual ~Attack();
             Attack(std::string name, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::string className, AttackEffect *preEffect = NULL, AttackEffect *postEffect = NULL);
+	 
             void healPP() {
                 pp = ppMax;
             }
+	 
             Type getType() {
                 return type;
             }
+
+	 int getPP(){
+	   return pp;
+	 }
+
+	 int getPPMax(){
+	   return ppMax;
+	 }
+	 
             /**atk attacks the def OpMon*/
             //->Final
 	  int attack(OpMon &atk, OpMon &def, Turn& atkTurn);
-	  virtual void ifFails(OpMon &, OpMon &, Turn& /*atkTurn*/) {}
-            virtual std::string getClassName() {
+	 void ifFails(OpMon &, OpMon &, Turn& /*atkTurn*/) {}
+	 
+            std::string getClassName() {
                 return className;
             }
-            virtual std::string save();
+	 
+            std::string save();
+	 
             void setPP(int PP) {
                 this->pp = PP;
             }
+	 
             void setPPMax(int PPMax) {
-                this->ppMax = PPMax;
+	      this->ppMax = PPMax;
             }
-	  int getPriority(){
-	    return this->priority;
-	  }
+	 
+	 int getPriority(){
+	   return this->priority;
+	 }
+
+	 std::string getName(){
+	   return name;
+	 }
+	 
          // methods used by pre and post Effects
          void setPower(int power) { this->power = power; }
          int getAccuracy() { return this->accuracy; }
@@ -77,7 +98,7 @@ namespace OpMon {
             int part = 0;
             int pp;
             int ppMax;
-            /**The critical hit rate is 1/criticalRate*/
+            /** The critical hit rate is 1/criticalRate */
             int criticalRate;
             bool neverFails;
 
