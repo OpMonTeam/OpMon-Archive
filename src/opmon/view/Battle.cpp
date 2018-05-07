@@ -117,7 +117,15 @@ namespace OpMon{
 	}
 
       }else{
-	
+	posChoices[0].x = 326;
+	posChoices[0].y = 380;
+	posChoices[1].x = 430;
+	posChoices[1].y = 380;
+	posChoices[2].x = 330;
+	posChoices[2].y = 445;
+	posChoices[3].x = 430;
+	posChoices[3].y = 445;
+	dialogSpr.setTexture(Model::Data::Battle::dialog);
       }
       
     }
