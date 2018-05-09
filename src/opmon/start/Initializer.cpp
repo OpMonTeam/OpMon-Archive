@@ -490,7 +490,7 @@ _______________________________________________________________
             Model::Data::Elements::elementsSprites["smoke"] = sf::Sprite();
             Model::Data::Elements::elementsPos["smoke"] = sf::Vector2f(8 * 32 + 18 * 32, 11 * 32);
 
-            ResourceLoader::loadTextureArray(Model::Data::Elements::elementsTextures["smoke"], "animations/chimneysmoke/chimneysmoke_%d.png", 16, 1);
+            ResourceLoader::loadTextureArray(Model::Data::Elements::elementsTextures["smoke"], "animations/chimneysmoke/chimneysmoke_%d.png", 32, 1);
 
             Map *mapFauxbourgEuvi = maps.emplace("Fauxbourg Euvi", new Map(Maps::feLayer1, Maps::feLayer2, Maps::feLayer3, 48, 48, false, "Fauxbourg", std::vector<std::string>{"windturbine", "smoke"})).first->second;
             mapFauxbourgEuvi->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(19, 10), {OpString("fedesc.1"), OpString("fedesc.2"), OpString("fedesc.3")}, SIDE_UP));
