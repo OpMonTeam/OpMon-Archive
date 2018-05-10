@@ -17,14 +17,15 @@ namespace OpMon{
     }
 
     GameStatus BattleCtrl::update() {
-      GameStatus returned;
+      GameStatus returned = view(atkTurn, defTurn, &turnActivated);
       if(turnActivated){
-	turn();
-	returned = view(atkTurn, defTurn);
-      }else{
-	returned = view(&atkTurn, &defTurn);
+	if(atk->getHP() <= 0 || def->getHP() <= 0){
+	  /*if(playerTeam->isKo() || trainerTeam->isKo()){
+	    return GameStatus::PREVIOUS;
+	    }*/
+	  returned =  GameStatus::PREVIOUS;
+	}
       }
-      
       return returned;
     }
 
@@ -54,6 +55,12 @@ namespace OpMon{
 	    default:
 	      break;
 	    }
+	  }else{
+	    atkTurn.attackUsed = atk->getAttacks()[view.getCurPos()];
+	    atkTurn.type = Model::TurnType::ATTACK;
+	    turn();
+	    view.toggleAttackChoice();
+	    turnActivated = true;
 	  }
 	  break;
 	case sf::Keyboard::BackSpace:
@@ -118,6 +125,8 @@ namespace OpMon{
       bool atkDone = false;
       bool defDone = false;
 
+      turnIA(0);
+      
       bool atkFirst = true;
       if(atkTurn.type != TurnType::ATTACK){
 	//Actions

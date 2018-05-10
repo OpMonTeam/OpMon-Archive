@@ -56,14 +56,17 @@ namespace OpMon {
             opteam.heal();
             for(int i = 0; i < opteam.getSize(); i++) {
                 OpMon *pkmn = opteam[i];
-
-                //pkmn->love = false;
-                //pkmn-> = false;
-                //pkmn->vampigraine = false;
-                for(int j = 0; j < 4; j++) {
+		if(pkmn != nullptr){
+		  //pkmn->love = false;
+		  //pkmn-> = false;
+		  //pkmn->vampigraine = false;
+		  for(int j = 0; j < 4; j++) {
                     Attack *atk = (pkmn->getAttacks())[j];
-                    atk->healPP();
-                }
+		    if(atk != nullptr){
+		      atk->healPP();
+		    }
+		  }
+		}
             }
         }
 
