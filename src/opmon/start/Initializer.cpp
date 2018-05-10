@@ -561,8 +561,8 @@ _______________________________________________________________
             mapOpCenter->addEvent(new Events::TalkingCharaEvent("inferm", sf::Vector2f(9, 10), {OpString("inferm.dialog.1"), OpString("inferm.dialog.2"), OpString("inferm.dialog.3")}, Side::TO_DOWN));
             std::vector<OpString> opcE1{OpString("inferm.dialog.1"), OpString("inferm.dialog.2"), OpString("inferm.dialog.3")};
             mapOpCenter->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(9, 11), opcE1, SIDE_UP));
-            mapOpCenter->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(9, 17), sf::Vector2i(15, 13), "Ms", Side::TO_DOWN, SIDE_DOWN));
-            mapOpCenter->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 17), sf::Vector2i(15, 13), "Ms", Side::TO_DOWN, SIDE_DOWN));
+            mapOpCenter->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(9, 17), sf::Vector2i(15, 13), "MysteriouCity", Side::TO_DOWN, SIDE_DOWN));
+            mapOpCenter->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 17), sf::Vector2i(15, 13), "MysteriouCity", Side::TO_DOWN, SIDE_DOWN));
 
         }
 
