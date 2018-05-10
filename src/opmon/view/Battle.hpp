@@ -65,10 +65,8 @@ namespace OpMon{
     public:
       
       Battle(const Model::OpTeam* atkTeam, const Model::OpTeam* defTeam, std::string trainerClass, std::string background);
-      //Used to print the turn
-      GameStatus operator()(Model::Turn const& atk, Model::Turn const& def);//Sets turnLaunched to true
-      //Used to print the choices
-      GameStatus operator()(Model::Turn* atkTurn, Model::Turn *def);
+      
+      GameStatus operator()(Model::Turn const& atk, Model::Turn const& def, bool *turnActivated);
       //Moves the cursor
       void moveCur(Model::Side where);
       //Returns the cursor's position

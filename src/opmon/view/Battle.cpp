@@ -5,37 +5,42 @@
 #include "Window.hpp"
 #include <iostream>
 #include <sstream>
+#include <SFML/Graphics/Rect.hpp>
 
 namespace OpMon{
   namespace View{
-    GameStatus Battle::operator()(Model::Turn* atkTurn, Model::Turn *def){
+    GameStatus Battle::operator()(Model::Turn const& atkTurn, Model::Turn const& defTurn, bool *turnActivated){
       frame.draw(background);
       /*frame.draw(shadowPlayer);
 	frame.draw(shadowTrainer);*/
       frame.draw(playerSpr);
       frame.draw(trainerSpr);
-      atk.setTexture(Model::Data::OpMons::opSprites[atkTurn->opmon->getSpecies().getOpdexNumber()][0]);
-      this->def.setTexture(Model::Data::OpMons::opSprites[def->opmon->getSpecies().getOpdexNumber()][1]);
+      atk.setTexture(Model::Data::OpMons::opSprites[atkTurn.opmon->getSpecies().getOpdexNumber()][0]);
+      this->def.setTexture(Model::Data::OpMons::opSprites[defTurn.opmon->getSpecies().getOpdexNumber()][1]);
       frame.draw(atk);
       frame.draw(this->def);
       frame.draw(infoboxPlayer);
       frame.draw(infoboxTrainer);
       
 
+      healthbar2[0].setTextureRect(sf::IntRect(0, 0, (defTurn.opmon->getHP() * Model::Data::Battle::healthbar2.getSize().x) / defTurn.opmon->getStatHP(), Model::Data::Battle::healthbar2.getSize().y));
+      healthbar2[1].setTextureRect(sf::IntRect(0, 0, (atkTurn.opmon->getHP() * Model::Data::Battle::healthbar2.getSize().x) / atkTurn.opmon->getStatHP(), Model::Data::Battle::healthbar2.getSize().y));
+
+      
       for(unsigned int i = 0; i < 2; i++){
 	frame.draw(healthbar1[i]);
 	frame.draw(healthbar2[i]);
       }
 
       std::ostringstream oss;
-      oss << "Lv. " << atkTurn->opmon->getLevel();
+      oss << "Lv. " << atkTurn.opmon->getLevel();
       opLevel[0].setString(oss.str());
       std::ostringstream oss2;
-      oss2 << "Lv. " << def->opmon->getLevel();
+      oss2 << "Lv. " << defTurn.opmon->getLevel();
       opLevel[1].setString(oss2.str());
 
-      opName[0].setString(atkTurn->opmon->getNickname());
-      opName[1].setString(def->opmon->getNickname());
+      opName[0].setString(atkTurn.opmon->getNickname());
+      opName[1].setString(defTurn.opmon->getNickname());
 
       frame.draw(opName[0]);
       frame.draw(opName[1]);
@@ -56,27 +61,27 @@ namespace OpMon{
       }else{
 	
 	for(unsigned int i = 0; i < 4; i++){
-	  if(atkTurn->opmon->getAttacks()[i] != nullptr){
-	    attacks[i].setString(atkTurn->opmon->getAttacks()[i]->getName());
+	  if(atkTurn.opmon->getAttacks()[i] != nullptr){
+	    attacks[i].setString(atkTurn.opmon->getAttacks()[i]->getName());
 	  }else{
 	    attacks[i].setString("----");
 	  }
 	  frame.draw(attacks[i]);
 	}
 
-	if(atkTurn->opmon->getAttacks()[curPos] != nullptr){
+	if(atkTurn.opmon->getAttacks()[curPos] != nullptr){
 	  
 	  std::ostringstream oss3;
-	  oss3 << atkTurn->opmon->getAttacks()[curPos]->getPP() << " / " << atkTurn->opmon->getAttacks()[curPos]->getPPMax();
-	  if(atkTurn->opmon->getAttacks()[curPos]->getPP() <= (atkTurn->opmon->getAttacks()[curPos]->getPPMax() / 5) && atkTurn->opmon->getAttacks()[curPos]->getPP() > 0){
+	  oss3 << atkTurn.opmon->getAttacks()[curPos]->getPP() << " / " << atkTurn.opmon->getAttacks()[curPos]->getPPMax();
+	  if(atkTurn.opmon->getAttacks()[curPos]->getPP() <= (atkTurn.opmon->getAttacks()[curPos]->getPPMax() / 5) && atkTurn.opmon->getAttacks()[curPos]->getPP() > 0){
 	    ppTxt.setColor(sf::Color::Yellow);
-	  }else if(atkTurn->opmon->getAttacks()[curPos]->getPP() == 0){
+	  }else if(atkTurn.opmon->getAttacks()[curPos]->getPP() == 0){
 	    ppTxt.setColor(sf::Color::Red);
 	  }else{
 	    ppTxt.setColor(sf::Color::Black);
 	  }
 	  ppTxt.setString(oss3.str());
-	  type.setTexture(Model::Data::OpMons::typesTextures[atkTurn->opmon->getAttacks()[curPos]->getType()]);
+	  type.setTexture(Model::Data::OpMons::typesTextures[atkTurn.opmon->getAttacks()[curPos]->getType()]);
 	  frame.draw(type);
 	}else{
 	  ppTxt.setColor(sf::Color::Red);
@@ -90,6 +95,7 @@ namespace OpMon{
 	
 	
 	cursor.setPosition(posChoices[curPos] + sf::Vector2f((attacks[curPos].getGlobalBounds().width / 2) - 10, 30));
+
 	
       }
       
@@ -130,10 +136,6 @@ namespace OpMon{
       
     }
     
-    GameStatus Battle::operator()(Model::Turn const& atk, Model::Turn const& def){
-      return GameStatus::CONTINUE;
-    }
-
     Battle::Battle(const Model::OpTeam* atkTeam, const Model::OpTeam* defTeam, std::string trainerClass, std::string background)
       : atkTeam(atkTeam), defTeam(defTeam){
       this->background.setTexture(Model::Data::Battle::backgrounds[background]);

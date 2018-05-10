@@ -56,6 +56,7 @@ namespace OpMon {
 	    Model::OpTeam *opTeam = new Model::OpTeam("Unknown trainer");
 	    opTeam->addOpMon(new Model::OpMon("", Model::Data::OpMons::listOp[1], 5, {Model::Attacks::newAtk("Charge"), Model::Attacks::newAtk("Brouillard"), nullptr, nullptr}, Model::Nature::QUIET));
 	    _next_gs = new BattleCtrl(Model::Data::player.getOpTeam(), opTeam);
+	    Model::Data::player.healOp();
 	    return GameStatus::NEXT;
 	  }
 	  if(events.key.code == sf::Keyboard::Numpad5) {
