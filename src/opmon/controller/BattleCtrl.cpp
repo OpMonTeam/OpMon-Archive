@@ -57,10 +57,16 @@ namespace OpMon{
 	    }
 	  }else{
 	    atkTurn.attackUsed = atk->getAttacks()[view.getCurPos()];
-	    atkTurn.type = Model::TurnType::ATTACK;
-	    turn();
-	    view.toggleAttackChoice();
-	    turnActivated = true;
+	    if(atkTurn.attackUsed != nullptr){
+	      if(atkTurn.attackUsed->getPP() > 0){
+		atkTurn.type = Model::TurnType::ATTACK;
+		turn();
+		view.toggleAttackChoice();
+		turnActivated = true;
+	      }
+	    }else{
+	      //Play "nope"
+	    }
 	  }
 	  break;
 	case sf::Keyboard::BackSpace:
