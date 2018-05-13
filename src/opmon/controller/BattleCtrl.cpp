@@ -52,6 +52,8 @@ namespace OpMon{
 	    case 0:
 	      view.toggleAttackChoice();
 	      break;
+	    case 3:
+	      return GameStatus::PREVIOUS;//Run
 	    default:
 	      break;
 	    }
