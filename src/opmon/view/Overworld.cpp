@@ -207,7 +207,7 @@ namespace OpMon {
             sf::Text debugText;
             if(debugMode) {
                 cout << "[FRAME Nｰ" << frames << "]" << endl;
-                cout << "Boucle : " << (is_in_dialog ? "Normale" : "Dialog") << endl;
+                cout << "Boucle : " << (is_in_dialog ? "Dialog" : "Normal") << endl;
                 cout << "Tick: " << Utils::Time::getElapsedMilliseconds() << "ms" << endl;
                 cout << "PlayerPosition: " << Model::Data::player.getPosition().getPosition().x << " - " << Model::Data::player.getPosition().getPosition().y << endl;
                 cout << "PlayerPositionPx: " << character.getPosition().x << " - " << character.getPosition().y << endl;
