@@ -17,6 +17,9 @@ namespace OpMon {
             sf::Sound nope;
             sf::Sound arrow;
             sf::Sound push;
+            void toggleVolume();
+            void raiseVolume();
+            void lowerVolume();
 
           public:
             OptionsMenuCtrl();

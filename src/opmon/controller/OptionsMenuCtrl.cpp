@@ -8,6 +8,12 @@
 #include "../view/Overworld.hpp"
 #include "../view/StartScene.hpp"
 
+#include <math.h>
+
+using namespace std;
+
+enum MenuOption {BACK = 0, FULLSCREEN = 1, LANGUAGE = 2, CONTROLS = 3, VOLUME = 4, CREDITS = 5};
+
 namespace OpMon {
     namespace Controller {
 
@@ -25,10 +31,10 @@ namespace OpMon {
                 if(event.key.code == sf::Keyboard::Return) {
                     if(menu.getCurrentOption() == View::OptionType::ALL) {
                         switch(menu.cursorPosition()) {
-                        case 0:
+                        case BACK:
                             push.play();
                             return GameStatus::PREVIOUS;
-                        case 1:
+                        case FULLSCREEN:
                             push.play();
                             if(Model::OptionsSave::getParam("fullscreen").getValue() == "true") {
                                 Model::OptionsSave::addOrModifParam("fullscreen", "false");
@@ -39,18 +45,18 @@ namespace OpMon {
                             }
                             return GameStatus::STOP;
                             break;
-                        case 2:
+                        case LANGUAGE:
                             push.play();
                             menu.setCurrentOption(View::OptionType::LANG);
                             return GameStatus::CONTINUE;
                             break;
-                        case 3:
-                            nope.play();
+                        case CONTROLS:
                             break;
-                        case 4:
-                            nope.play();
+                        case VOLUME:
+                            push.play();
+                            toggleVolume();
                             break;
-                        case 5:
+                        case CREDITS:
                             push.play();
                             menu.setCurrentOption(View::OptionType::CREDITS);
                             return GameStatus::CONTINUE;
@@ -105,6 +111,10 @@ namespace OpMon {
                         menu.setCurrentOption(View::OptionType::ALL);
                         return GameStatus::CONTINUE;
                     }
+                } else if (event.key.code == sf::Keyboard::Left) {
+                    lowerVolume();
+                } else if (event.key.code == sf::Keyboard::Right) {
+                    raiseVolume();
                 }
             }
             return GameStatus::CONTINUE;
@@ -121,6 +131,24 @@ namespace OpMon {
         GameStatus OptionsMenuCtrl::update() {
             view.draw(View::frame);
             return GameStatus::CONTINUE;
+        }
+
+        void OptionsMenuCtrl::toggleVolume() {
+            if (View::jukebox.getGlobalVolume() > 1) {
+                View::jukebox.setGlobalVolume(1);
+            } else {
+                View::jukebox.setGlobalVolume(100);
+            }
+        }
+
+        void OptionsMenuCtrl::raiseVolume() {
+            const int newVolume = min(100, View::jukebox.getGlobalVolume() + 10);
+            View::jukebox.setGlobalVolume(newVolume);
+        }
+
+        void OptionsMenuCtrl::lowerVolume() {
+            const int newVolume = max(1, View::jukebox.getGlobalVolume() - 10);
+            View::jukebox.setGlobalVolume(newVolume);
         }
 
     } // namespace Controller
