@@ -18,13 +18,14 @@ namespace OpMon {
             std::map<std::string, sf::Music *> musList;
             std::string playingID;
             int globalVolume;
+            static const int DEFAULT_VOLUME = -15;
 
           public:
             Jukebox();
 
             ~Jukebox();
 
-            void addMusic(std::string name, std::string path, int volume = -15, bool loop = true);
+            void addMusic(std::string name, std::string path, int volume = DEFAULT_VOLUME, bool loop = true);
 
             void play(std::string music);
 
