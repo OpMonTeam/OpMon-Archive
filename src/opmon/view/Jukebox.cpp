@@ -7,7 +7,7 @@ namespace OpMon {
           : globalVolume(100) {}
 
         void Jukebox::addMusic(std::string name, std::string path, int volume, bool loop) {
-            if(volume == -15) {
+            if(volume == DEFAULT_VOLUME) {
                 volume = globalVolume;
             }
             sf::Music *music = Model::ResourceLoader::loadMusic(path.c_str());
@@ -30,9 +30,11 @@ namespace OpMon {
             if(!playingID.empty()) {
                 musList.at(playingID)->stop();
             }
-	    if(musList[music] == nullptr){
-	      return;
-	    }
+
+            if(musList[music] == nullptr){
+                return;
+            }
+
             musList.at(music)->play();
             playingID = music;
         }
