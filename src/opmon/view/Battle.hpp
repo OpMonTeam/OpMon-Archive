@@ -61,6 +61,9 @@ namespace OpMon{
       //Just prints the text "PP:"
       sf::Text ppStrTxt;
       sf::Sprite type;
+
+      sf::Text turnTxt[3];
+      sf::Sprite dialogArrow;
       
     public:
       
