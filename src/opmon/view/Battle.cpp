@@ -46,8 +46,19 @@ namespace OpMon{
       frame.draw(opName[1]);
       frame.draw(opLevel[0]);
       frame.draw(opLevel[1]);
+      if(!turnLaunched && *turnActivated){
+	dialogSpr.setTexture(Model::Data::Ui::dialogBackground);
+	turnLaunched = true;
+      }else if(turnLaunched && !*turnActivated){
+	dialogSpr.setTexture(Model::Data::Battle::dialog);
+	turnLaunched = false;
+      }
       frame.draw(dialogSpr);
-      if(!attackChoice){
+      //TODO the little arrow
+      
+      if(*turnActivated){
+	//TODO animations and dialogs
+      }else if(!attackChoice){
 	
 	for(sf::Text &txt : choicesTxt){
 	  frame.draw(txt);
@@ -144,6 +155,8 @@ namespace OpMon{
       playerSpr.setScale(2, 2);
       trainerSpr.setTexture(Model::Data::Battle::charaBattleTextures[trainerClass][0]);
       trainerSpr.setPosition(400, 20);
+
+      dialogArrow.setTexture(Model::Data::Ui::dialogArrow);
       
       choicesTxt[0].setString(Utils::StringKeys::get("battle.attack"));
       choicesTxt[1].setString(Utils::StringKeys::get("battle.bag"));
