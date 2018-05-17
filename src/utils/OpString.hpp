@@ -22,7 +22,7 @@ namespace Utils {
       bool created = false;
       public:
       /* Waits sf::String pointers to update the string with the pointed variable's value at each getString() call.*/
-      OpString(std::string const& key, .../*Waiting sf::String pointer*/);
+      OpString(std::string key, .../*Waiting sf::String pointer*/);
       OpString(std::string const& key, std::vector<sf::String*> obj);
       OpString();
       ~OpString();

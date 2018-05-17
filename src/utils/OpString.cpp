@@ -10,7 +10,7 @@ namespace Utils {
   */
   OpString OpString::voidStr = OpString("void");
   
-    OpString::OpString(string const& key, ...) {
+    OpString::OpString(string key, ...) {
       va_list ap;
         this->key = key;
 	va_start(ap, key);
