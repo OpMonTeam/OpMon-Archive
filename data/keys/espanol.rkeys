@@ -113,7 +113,7 @@ key.battle.bag=Bag
 key.battle.run=Run
 key.battle.opmon=OpMon
 
-key.battle.dialog.attack=~ use % !
+key.battle.dialog.attack=~ use ~ !
 key.battle.status.frozen.out=~ isn't frozen anymore!
 key.battle.status.frozen.in=~ is frozen!
 key.battle.status.frozen.attack=~ is frozen and can't attack!

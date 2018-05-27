@@ -113,7 +113,7 @@ key.battle.bag=Sac
 key.battle.run=Fuite
 key.battle.opmon=OpMons
 
-key.battle.dialog.attack=~ utilise % !
+key.battle.dialog.attack=~ utilise ~ !
 key.battle.status.frozen.out=~ n'est plus gelé!
 key.battle.status.frozen.in=~ est gelé!
 key.battle.status.frozen.attack=~ est gelé et ne peut pas attaquer!
