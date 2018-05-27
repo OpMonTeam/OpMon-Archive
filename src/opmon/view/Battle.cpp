@@ -9,7 +9,7 @@
 
 namespace OpMon{
   namespace View{
-    GameStatus Battle::operator()(Model::Turn const& atkTurn, Model::Turn const& defTurn, bool *turnActivated){
+    GameStatus Battle::operator()(Model::Turn const& atkTurn, Model::Turn const& defTurn, bool *turnActivated, bool atkFirst){
       frame.draw(background);
       /*frame.draw(shadowPlayer);
 	frame.draw(shadowTrainer);*/
@@ -47,9 +47,11 @@ namespace OpMon{
       frame.draw(opLevel[0]);
       frame.draw(opLevel[1]);
       if(!turnLaunched && *turnActivated){
+	phase = 1;
 	dialogSpr.setTexture(Model::Data::Ui::dialogBackground);
 	turnLaunched = true;
       }else if(turnLaunched && !*turnActivated){
+	phase = 0;
 	dialogSpr.setTexture(Model::Data::Battle::dialog);
 	turnLaunched = false;
       }
@@ -57,7 +59,32 @@ namespace OpMon{
       //TODO the little arrow
       
       if(*turnActivated){
-	//TODO animations and dialogs
+	Turn* turns[2];
+	if(atkFirst){
+	  turns[0] = &atkTurn;
+	  turns[1] = &defTurn;
+	}else{
+	  turns[0] = &defTurn;
+	  turns[1] = &atkTurn;
+	}
+	switch(phase){
+	case 1:
+	  turnText[0].setString(Utils::OpString("battle.dialog.attack", atkTurn.opmon->getNickname(), atkTurn.attackUsed->getName()).getString());
+	  break;
+	case 2:
+	  if(atkTurn.toPrintBefore.size() == 0){
+	    phase++;
+	  }else{
+	    for(unsigned int i = 0; i < atkTurn.toPrintBefore.size() && i < 3; i++){
+	      turnText[i].setString(atkTurn.toPrintBefore[i].getString());
+	    }
+	  }
+	  break;
+	case 3:
+	  break;
+	}
+	
+	
       }else if(!attackChoice){
 	
 	for(sf::Text &txt : choicesTxt){
@@ -112,6 +139,10 @@ namespace OpMon{
       
       frame.draw(cursor);
       return GameStatus::CONTINUE;
+    }
+
+    void Battle::nextTxt(){
+      
     }
 
     void Battle::toggleAttackChoice(){
