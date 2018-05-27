@@ -64,12 +64,14 @@ namespace OpMon{
 
       sf::Text turnTxt[3];
       sf::Sprite dialogArrow;
+
+      int phase = 0;
       
     public:
       
       Battle(const Model::OpTeam* atkTeam, const Model::OpTeam* defTeam, std::string trainerClass, std::string background);
       
-      GameStatus operator()(Model::Turn const& atk, Model::Turn const& def, bool *turnActivated);
+      GameStatus operator()(Model::Turn const& atk, Model::Turn const& def, bool *turnActivated, bool atkFirst = true);
       //Moves the cursor
       void moveCur(Model::Side where);
       //Returns the cursor's position
@@ -77,6 +79,8 @@ namespace OpMon{
       //Tooggle the interface printed, the action or attack selection
       void toggleAttackChoice();
 
+      int getPhase() { return phase; }
+      
       bool isAttackChoice() {return attackChoice;}
 
     };
