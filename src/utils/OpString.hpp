@@ -33,7 +33,7 @@ namespace Utils {
         std::string getKey() {
             return key;
         }
-        sf::String getString();
+        sf::String getString() const;
       /* A empty OpString */
         static OpString voidStr;
 

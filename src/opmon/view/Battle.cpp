@@ -10,6 +10,12 @@
 namespace OpMon{
   namespace View{
     GameStatus Battle::operator()(Model::Turn const& atkTurn, Model::Turn const& defTurn, bool *turnActivated, bool atkFirst){
+      if(atkHp == -1){
+	atkHp = atkTurn.opmon->getHP();
+      }
+      if(defHp == -1){
+	defHp = defTurn.opmon->getHP();
+      }
       frame.draw(background);
       /*frame.draw(shadowPlayer);
 	frame.draw(shadowTrainer);*/
@@ -23,8 +29,8 @@ namespace OpMon{
       frame.draw(infoboxTrainer);
       
 
-      healthbar2[0].setTextureRect(sf::IntRect(0, 0, (defTurn.opmon->getHP() * Model::Data::Battle::healthbar2.getSize().x) / defTurn.opmon->getStatHP(), Model::Data::Battle::healthbar2.getSize().y));
-      healthbar2[1].setTextureRect(sf::IntRect(0, 0, (atkTurn.opmon->getHP() * Model::Data::Battle::healthbar2.getSize().x) / atkTurn.opmon->getStatHP(), Model::Data::Battle::healthbar2.getSize().y));
+      healthbar2[0].setTextureRect(sf::IntRect(0, 0, (defHp * Model::Data::Battle::healthbar2.getSize().x) / defTurn.opmon->getStatHP(), Model::Data::Battle::healthbar2.getSize().y));
+      healthbar2[1].setTextureRect(sf::IntRect(0, 0, (atkHp * Model::Data::Battle::healthbar2.getSize().x) / atkTurn.opmon->getStatHP(), Model::Data::Battle::healthbar2.getSize().y));
 
       
       for(unsigned int i = 0; i < 2; i++){
@@ -59,7 +65,7 @@ namespace OpMon{
       //TODO the little arrow
       
       if(*turnActivated){
-	Turn* turns[2];
+	const Model::Turn* turns[2];
 	if(atkFirst){
 	  turns[0] = &atkTurn;
 	  turns[1] = &defTurn;
@@ -69,18 +75,34 @@ namespace OpMon{
 	}
 	switch(phase){
 	case 1:
-	  turnText[0].setString(Utils::OpString("battle.dialog.attack", atkTurn.opmon->getNickname(), atkTurn.attackUsed->getName()).getString());
+	  turnTxt[turnNber].setString(Utils::OpString("battle.dialog.attack", turns[turnNber]->opmon->getNickname(), turns[turnNber]->attackUsed->getName()).getString());
 	  break;
 	case 2:
-	  if(atkTurn.toPrintBefore.size() == 0){
+	  if(turns[turnNber]->toPrintBefore.size() == 0){
 	    phase++;
 	  }else{
-	    for(unsigned int i = 0; i < atkTurn.toPrintBefore.size() && i < 3; i++){
-	      turnText[i].setString(atkTurn.toPrintBefore[i].getString());
+	    for(unsigned int i = 0; i < turns[turnNber]->toPrintBefore.size() && i < 3; i++){
+	      turnTxt[i].setString(turns[turnNber]->toPrintBefore.at(i).getString());
 	    }
+	    break;
 	  }
-	  break;
+	  
 	case 3:
+	  atkHp = atkTurn.opmon->getHP();
+	  defHp = atkTurn.opmon->getHP();
+	  phase++;
+	  break;
+	case 4:
+	  if(turns[turnNber]->toPrintAfter.size() == 0){
+	    phase++;
+	  }else{
+	    for(unsigned int i = 0; i < turns[turnNber]->toPrintAfter.size() && i < 3; i++){
+	      turnTxt[i].setString(turns[turnNber]->toPrintAfter.at(i).getString());
+	    }
+	    break;
+	  }
+
+	case 5:
 	  break;
 	}
 	
@@ -141,8 +163,17 @@ namespace OpMon{
       return GameStatus::CONTINUE;
     }
 
-    void Battle::nextTxt(){
-      
+    bool Battle::nextTxt(){
+      if(phase >= 5){
+	phase = 0;
+	turnNber++;
+	if(turnNber > 1){
+	  return false;
+	}
+      }else{
+	phase++;
+      }
+      return true;
     }
 
     void Battle::toggleAttackChoice(){
@@ -272,6 +303,12 @@ namespace OpMon{
       ppStrTxt.setColor(sf::Color::Black);
       ppTxt.setColor(sf::Color::Black);
 
+      for(unsigned int i = 0; i < 3; i++){
+	turnTxt[i].setFont(Model::Data::Ui::font);
+	turnTxt[i].setCharacterSize(22);
+	turnTxt[i].setColor(sf::Color::Black);
+      }
+      
       type.setPosition(326, 440);
     }
 

@@ -57,7 +57,7 @@ namespace OpMon{
 	    default:
 	      break;
 	    }
-	  }else{
+	  }else if(!turnActivated){
 	    atkTurn.attackUsed = atk->getAttacks()[view.getCurPos()];
 	    if(atkTurn.attackUsed != nullptr){
 	      if(atkTurn.attackUsed->getPP() > 0){
@@ -69,13 +69,23 @@ namespace OpMon{
 	    }else{
 	      //Play "nope"
 	    }
+	  }else if(turnActivated){
+	    if(!view.nextTxt()){
+	      turnActivated = false;
+	    }
 	  }
+	    
 	  break;
 	case sf::Keyboard::BackSpace:
 	  if(view.isAttackChoice()){
 	    view.toggleAttackChoice();
 	  }
 	  break;
+
+	case sf::Keyboard::Space:
+	  if(!view.nextTxt()){
+	    turnActivated = false;
+	  }
 	}
       }
       
