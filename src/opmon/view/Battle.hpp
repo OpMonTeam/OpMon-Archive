@@ -25,6 +25,12 @@ namespace OpMon{
 
       const Model::OpTeam* atkTeam;
       const Model::OpTeam* defTeam;
+
+      //-1 means uninitalized here
+      int atkHp = -1;
+      int defHp = -1;
+
+      int turnNber = 0;
       
       //The cursor's position for the choices
       int cursorPos;
@@ -79,6 +85,8 @@ namespace OpMon{
       //Tooggle the interface printed, the action or attack selection
       void toggleAttackChoice();
 
+      bool nextTxt();
+      
       int getPhase() { return phase; }
       
       bool isAttackChoice() {return attackChoice;}
