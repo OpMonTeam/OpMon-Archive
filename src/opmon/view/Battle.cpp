@@ -105,7 +105,10 @@ namespace OpMon{
 	case 5:
 	  break;
 	}
-	
+
+	frame.draw(turnTxt[0]);
+	frame.draw(turnTxt[1]);
+	frame.draw(turnTxt[2]);
 	
       }else if(!attackChoice){
 	
@@ -307,6 +310,7 @@ namespace OpMon{
 	turnTxt[i].setFont(Model::Data::Ui::font);
 	turnTxt[i].setCharacterSize(22);
 	turnTxt[i].setColor(sf::Color::Black);
+	turnTxt[i].setPosition(25, 410 + i * 20);
       }
       
       type.setPosition(326, 440);
