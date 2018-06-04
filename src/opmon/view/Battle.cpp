@@ -256,7 +256,7 @@ namespace OpMon{
       atk.setScale(2, 2);
 
       infoboxPlayer.setTexture(Model::Data::Battle::infoboxPlayer);
-      infoboxPlayer.setPosition(321, 277);
+      infoboxPlayer.setPosition(321, 250);
       infoboxTrainer.setTexture(Model::Data::Battle::infoboxTrainer);
       infoboxTrainer.setPosition(17, 148);
       shadowPlayer.setTexture(Model::Data::Battle::shadowPlayer);
@@ -273,9 +273,9 @@ namespace OpMon{
       healthbar1[0].setPosition(30, 130);
       healthbar2[0].setPosition(30, 130);
 
-      infoboxPlayer.setPosition(321, 277);
-      healthbar1[1].setPosition(335, 257);
-      healthbar2[1].setPosition(335, 257);
+      infoboxPlayer.setPosition(321, 250);
+      healthbar1[1].setPosition(335, 230);
+      healthbar2[1].setPosition(335, 230);
 
       opName[0].setPosition(332, 289);
       opLevel[0].setPosition(332, 314);
