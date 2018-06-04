@@ -69,7 +69,7 @@ namespace Utils {
     return str;
   }
   
-    sf::String OpString::getString() {
+    sf::String OpString::getString() const{
         if(this->key.empty()) { //If empty, it doesn't execute the algorithm. That would be useless.
             return sf::String();
         }
