@@ -83,8 +83,10 @@ namespace OpMon{
 	  break;
 
 	case sf::Keyboard::Space:
-	  if(!view.nextTxt()){
-	    turnActivated = false;
+	  if(turnActivated){
+	    if(!view.nextTxt()){
+	      turnActivated = false;
+	    }
 	  }
 	}
       }

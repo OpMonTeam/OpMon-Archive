@@ -26,6 +26,7 @@ namespace Utils {
       this->key = key;
       int instances = StringKeys::countInstances(StringKeys::get(key), '~');
       this->objects = obj;
+      
       while(objects.size() > instances){
 	objects.pop_back();
       }
@@ -68,6 +69,22 @@ namespace Utils {
 
     return str;
   }
+
+  sf::String OpString::quickString(std::string const& key, std::vector<std::string> vstr){
+    std::vector<sf::String*> vect;
+    int i = 0;
+    for(std::string str : vstr){
+      vect.push_back(new sf::String(str));
+    }
+    OpString op = OpString(key, vect);
+    sf::String str = op.getString();
+
+    for(sf::String* sfstr : vect){
+      delete(sfstr);
+    }
+
+    return str;
+  }
   
     sf::String OpString::getString() const{
         if(this->key.empty()) { //If empty, it doesn't execute the algorithm. That would be useless.
@@ -87,18 +104,13 @@ namespace Utils {
         /*Let's complete!*/
         unsigned int i = 0;
         sf::String toReturn;
-        /*If the first character isn't a ~, it doesn't add the completion first, to not swap text chunks.*/
-        if(StringKeys::get(key).toUtf32()[0] != '~') {
-            toReturn += splitted[0];
-        }
+	toReturn += splitted[0]; //Add the first chunk. If the first character is ~, this chunk is a empty string
         /*Here we go. The completion.*/
         for(i = i; i < objects.size(); i++) {
             toReturn += *objects[i];
-            toReturn += splitted[i + ((StringKeys::get(key).toUtf32()[0] != '~') ? 1 : 0)];
-        }
-        /*If the first characters is a ~, complete the string.*/
-        if(StringKeys::get(key).toUtf32()[0] == '~') {
-            toReturn += splitted[splitted.size() - 1];
+	    if(i + 1 < splitted.size()){
+	      toReturn += splitted[i + 1];
+	    }
         }
         //And finally return!
         return toReturn;

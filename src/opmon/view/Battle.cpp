@@ -56,7 +56,7 @@ namespace OpMon{
 	phase = 1;
 	dialogSpr.setTexture(Model::Data::Ui::dialogBackground);
 	turnLaunched = true;
-      }else if(turnLaunched && !*turnActivated){
+      }else if(turnLaunched && !(*turnActivated)){
 	phase = 0;
 	dialogSpr.setTexture(Model::Data::Battle::dialog);
 	turnLaunched = false;
@@ -73,11 +73,13 @@ namespace OpMon{
 	  turns[0] = &defTurn;
 	  turns[1] = &atkTurn;
 	}
+	Utils::OpString str = Utils::OpString("battle.dialog.attack", new std::string("Poké1"), new std::string("atk1"));
 	switch(phase){
 	case 1:
-	  turnTxt[turnNber].setString(Utils::OpString("battle.dialog.attack", turns[turnNber]->opmon->getNickname(), turns[turnNber]->attackUsed->getName()).getString());
+	  turnTxt[0].setString(Utils::OpString::quickString("battle.dialog.attack", {turns[turnNber]->opmon->getNickname(), turns[turnNber]->attackUsed->getName()}));
 	  break;
 	case 2:
+	  turnTxt[0].setString("");
 	  if(turns[turnNber]->toPrintBefore.size() == 0){
 	    phase++;
 	  }else{
@@ -88,10 +90,12 @@ namespace OpMon{
 	  }
 	  
 	case 3:
-	  atkHp = atkTurn.opmon->getHP();
-	  defHp = atkTurn.opmon->getHP();
+	  if(atkFirst && turnNber == 0 || !atkFirst && turnNber == 2){
+	    atkHp = atkTurn.opmon->getHP();
+	  }else{
+	    defHp = defTurn.opmon->getHP();
+	  }
 	  phase++;
-	  break;
 	case 4:
 	  if(turns[turnNber]->toPrintAfter.size() == 0){
 	    phase++;
@@ -103,6 +107,13 @@ namespace OpMon{
 	  }
 
 	case 5:
+	  phase = 1;
+	  turnNber++;
+	  if(turnNber > 1){
+	    turnNber = 0;
+	    phase = 0;
+	    *turnActivated = false;
+	  }
 	  break;
 	}
 
@@ -161,14 +172,16 @@ namespace OpMon{
 
 	
       }
-      
-      frame.draw(cursor);
+
+      if(!turnLaunched){
+	frame.draw(cursor);
+      }
       return GameStatus::CONTINUE;
     }
 
     bool Battle::nextTxt(){
-      if(phase >= 5){
-	phase = 0;
+      if(phase >= 4){
+	phase = 1;
 	turnNber++;
 	if(turnNber > 1){
 	  turnNber = 0;
