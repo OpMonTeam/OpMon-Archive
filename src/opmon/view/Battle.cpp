@@ -64,7 +64,7 @@ namespace OpMon{
       frame.draw(dialogSpr);
       //TODO the little arrow
       
-      if(*turnActivated){
+      if(*turnActivated && turnNber <= 1){
 	const Model::Turn* turns[2];
 	if(atkFirst){
 	  turns[0] = &atkTurn;
@@ -171,6 +171,7 @@ namespace OpMon{
 	phase = 0;
 	turnNber++;
 	if(turnNber > 1){
+	  turnNber = 0;
 	  return false;
 	}
       }else{
