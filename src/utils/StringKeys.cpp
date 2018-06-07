@@ -129,6 +129,8 @@ UNS
                     toReturn[enCours] += str.toUtf32()[i];
                 }
             }
+
+	    
             return toReturn;
         }
 
