@@ -68,7 +68,7 @@ namespace OpMon{
       sf::Text ppStrTxt;
       sf::Sprite type;
 
-      sf::Text turnTxt[3];
+      std::vector<sf::Text> turnTxt = std::vector<sf::Text>(3);
       sf::Sprite dialogArrow;
 
       int phase = 0;
