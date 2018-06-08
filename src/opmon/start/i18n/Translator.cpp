@@ -18,7 +18,8 @@ namespace OpMon {
             std::map<const std::string, const std::string> langMap{
               {"en", "keys/english.rkeys"},
               {"es", "keys/espanol.rkeys"},
-              {"fr", "keys/francais.rkeys"}};
+              {"fr", "keys/francais.rkeys"},
+              {"de", "keys/deutsch.rkeys"}};
 
             /*            if(langCode == _currentLang)
 	      return; // Nothing to do
