@@ -9,12 +9,12 @@ Define lot of enumerations
 #define ENUMS_HPP
 
 /**Defines permettant de rendre plus pratique l'écriture des tables des types*/
-#define NOT 0			//Not effective at all
-#define VLO 0.25	//Very low effectiveness
-#define LO_ 0.5		//Low effectiveness
-#define AVG 1			//Average effectiveness
-#define HI_ 2			//High effectiveness
-#define VHI 4			//Very High effectiveness
+#define NOT 0    //Not effective at all
+#define VLO 0.25 //Very low effectiveness
+#define LO_ 0.5  //Low effectiveness
+#define AVG 1    //Average effectiveness
+#define HI_ 2    //High effectiveness
+#define VHI 4    //Very High effectiveness
 
 namespace OpMon {
     namespace Model {
@@ -124,7 +124,6 @@ namespace OpMon {
         int operator-(Side, int);
         Side getSide(int);
 
-      
         namespace ArrayTypes {
 
             float calcEffectiveness(Type atk, Type def1, Type def2);
