@@ -5,6 +5,7 @@ Version=a0.14
 Comment=Open source RPG monster-fighting 
 Comment[fr]= Le clone libre de Pokemon !
 Comment[es]= El juego inspirado de Pokemon !
+Comment[de]= Der freie Pokemon Klon !
 GenericName=OpMon
 Terminal=false
 Icon=/usr/share/OpMon/opmon.png
