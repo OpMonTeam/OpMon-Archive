@@ -5,7 +5,6 @@
 #include "./OptionsMenuCtrl.hpp"
 #include "./StartSceneCtrl.hpp"
 
-
 namespace OpMon {
     namespace Controller {
 
@@ -45,7 +44,7 @@ namespace OpMon {
                     view.moveArrow(false);
                     arrow.play();
                     break;
-		
+
                 default:
                     break;
                 }
