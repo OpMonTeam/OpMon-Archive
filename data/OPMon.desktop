@@ -11,4 +11,4 @@ Terminal=false
 Icon=/usr/share/OpMon/opmon.png
 Type=Application
 Exec=opmon
-Categories=Game;
+Categories=Game;RolePlaying;
