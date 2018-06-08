@@ -95,12 +95,12 @@ namespace Utils {
                 while(next_delimiter != std::string::npos) {
                     next_delimiter = data_dir_list.find(':');
                     std::string data_dir = data_dir_list.substr(0, next_delimiter);
-                    if(!data_dir.empty() && _isFolder(data_dir + "/OpMon")){
-		      return data_dir + "/OpMon/";
-		    }
+                    if(!data_dir.empty() && _isFolder(data_dir + "/OpMon")) {
+                        return data_dir + "/OpMon/";
+                    }
                     data_dir_list.erase(0, next_delimiter + 1);
                 }
-		        return "/usr/local/share/OpMon/";
+                return "/usr/local/share/OpMon/";
             }
             return nullptr;
         }
