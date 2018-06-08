@@ -47,7 +47,7 @@ namespace OpMon{
 	  view.moveCur(Model::Side::TO_DOWN);
 	  break;
 	case sf::Keyboard::Return:
-	  if(!view.isAttackChoice()){
+	  if(!view.isAttackChoice() && !turnActivated){
 	    switch(view.getCurPos()){
 	    case 0:
 	      view.toggleAttackChoice();
