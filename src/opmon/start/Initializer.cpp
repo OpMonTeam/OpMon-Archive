@@ -17,8 +17,8 @@
 #include "i18n/Translator.hpp"
 #include <sstream>
 
-using Utils::Log::oplog;
 using Utils::OpString;
+using Utils::Log::oplog;
 
 namespace OpMon {
 
@@ -43,14 +43,14 @@ namespace OpMon {
 
         void initOpMons() {
             using namespace Evolutions;
-             Data::OpMons::listOp.emplace(0, new Species(136, 0, 1, 1, 29, 33, "MissingNo.", Type::NEUTRAL, Type::SKY, 0, 80, new E_Level(0, 80), std::vector<Stats>{Stats::ATK}, 0, 0, "ERROR : MISSINGNO.", 0, 1250000, 3, 0));
+            Data::OpMons::listOp.emplace(0, new Species(136, 0, 1, 1, 29, 33, "MissingNo.", Type::NEUTRAL, Type::SKY, 0, 80, new E_Level(0, 80), std::vector<Stats>{Stats::ATK}, 0, 0, "ERROR : MISSINGNO.", 0, 1250000, 3, 0));
             Data::OpMons::listOp.emplace(1, new Species(49, 49, 65, 65, 45, 45, "Rosarin", Type::VEGETAL, Type::NOTHING, 0, 16, new E_Level(2, 16), std::vector<Stats>{Stats::ATKSPE}, 0.7, 6.9, "L'amour de cet OpMon est incroyable, il ne demande que d'affection.", 64, 1059860, 45, 1));
             Data::OpMons::listOp.emplace(2, new Species(62, 63, 80, 80, 60, 60, "Toxiris", Type::VEGETAL, Type::TOXIC, 0, 32, new E_Level(3, 32), std::vector<Stats>{Stats::ATKSPE, Stats::ATKSPE}, 1, 13, "Cet OpMon est extrememnt puissant, il empoisonne de façon violente tout ce qui passe sur son chemin.", 141, 1059860, 45, 2));
             Data::OpMons::listOp.emplace(3, new Species(82, 83, 100, 100, 80, 80, "Ninjasmine", Type::VEGETAL, Type::TOXIC, 0, -1, nullptr, std::vector<Stats>{Stats::ATKSPE, Stats::ATKSPE, Stats::ATKSPE}, 2, 100, "Cet OpMon empoisonne ses adversaires rapidement grâce à ses 2 épées de poisons", 236, 1059860, 45, 3));
-						Data::OpMons::listOp.emplace(4, new Species(60, 58, 30, 52, 33, 65, "Oursiflamme", Type::BURNING, Type::NOTHING, 0, 28, new E_Level(19, 28), std::vector<Stats>{Stats::ATK}, 0.5, 20, "Un si gentil ourson qui est tout feu tout flamme.", 93, 1000000, 45, 4));
+            Data::OpMons::listOp.emplace(4, new Species(60, 58, 30, 52, 33, 65, "Oursiflamme", Type::BURNING, Type::NOTHING, 0, 28, new E_Level(19, 28), std::vector<Stats>{Stats::ATK}, 0.5, 20, "Un si gentil ourson qui est tout feu tout flamme.", 93, 1000000, 45, 4));
             Data::OpMons::listOp.emplace(5, new Species(80, 75, 60, 59, 54, 78, "Boudabrun", Type::BURNING, Type::NOTHING, 0, 29, new E_Level(37, 29), std::vector<Stats>{Stats::ATK, Stats::ATK}, 1.9, 130.5, "Cet ours est colérique, un rien peut lui mettre le feu au poudre.", 122, 1000000, 60, 5));
             Data::OpMons::listOp.emplace(6, new Species(110, 96, 92, 74, 72, 84, "Calcinours", Type::BURNING, Type::FIGHT, 0, -1, nullptr, std::vector<Stats>{Stats::ATK, Stats::ATK, Stats::HP}, 2.6, 588, "Cet ours serait capable de mettre à feu et à sang n'importe quoi.", 172, 1250000, 172, 6));
-						Data::OpMons::listOp.emplace(7, new Species(25, 35, 50, 54, 73, 44, "Nanolphin", Type::LIQUID, Type::NOTHING, 0, 16, new E_Level(8, 16), std::vector<Stats>{Stats::DEF}, 0.5, 9, "Il adore nager en compagnie d'autres Nanolphins", 66, 1059860, 45, 7));
+            Data::OpMons::listOp.emplace(7, new Species(25, 35, 50, 54, 73, 44, "Nanolphin", Type::LIQUID, Type::NOTHING, 0, 16, new E_Level(8, 16), std::vector<Stats>{Stats::DEF}, 0.5, 9, "Il adore nager en compagnie d'autres Nanolphins", 66, 1059860, 45, 7));
             Data::OpMons::listOp.emplace(8, new Species(63, 80, 65, 80, 110, 59, "Deaulfin", Type::LIQUID, Type::NOTHING, 0, 36, new E_Level(9, 36), std::vector<Stats>{Stats::DEF, Stats::DEFSPE}, 1, 22.5, "Il peut cracher de l'eau grâce à sa queue, le jet est tellement puissant qu'il peut se déplacer sur terre", 143, 1059860, 45, 8));
             Data::OpMons::listOp.emplace(9, new Species(120, 80, 75, 105, 30, 109, "Roileine", Type::LIQUID, Type::NOTHING, 0, -1, nullptr, std::vector<Stats>{Stats::DEF, Stats::DEFSPE, Stats::DEFSPE}, 1.6, 85.5, "Il est le roi des océans de la région, il est capable de manger n'importe quoi, n'importe ou.", 210, 1059860, 45, 9));
             Data::OpMons::listOp.emplace(10, new Species(30, 35, 20, 20, 45, 45, "Verpomme", Type::BUG, Type::MINERAL, 0, 7, new E_Level(11, 19), std::vector<Stats>{Stats::HP}, 0.3, 2.9, "Les Verpommes adorent aller dans les arbres pour faire semblant d'être des pommes, pour manger des sautinelles.", 53, 1000000, 255, 10));
@@ -64,7 +64,7 @@ namespace OpMon {
             Data::OpMons::listOp.emplace(18, new Species(62, 67, 55, 55, 26, 90, "Calame", Type::TOXIC, Type::LIQUID, 0, -1, new E_Item(31, Item::getItem("Pierre Eau")), std::vector<Stats>{Stats::HP, Stats::HP}, 0.9, 20, "Ce mignon petit OpMon asire les âmes de ses ennemis et les recrache pour les attaquer", 117, 1059860, 120, 18));
             Data::OpMons::listOp.emplace(19, new Species(60, 30, 31, 31, 70, 40, "Cridaile", Type::NEUTRAL, Type::SKY, 0, 20, new E_Level(22, 20), std::vector<Stats>{Stats::SPE}, 0.4, 4, "Il chasse les Sautinelles dans les hautes herbes. Ses petites ailes lui permettent de voler très vite.", 58, 1000000, 255, 19));
             Data::OpMons::listOp.emplace(20, new Species(45, 48, 60, 65, 35, 70, "Chibiro", Type::MAGIC, Type::VEGETAL, 0, -1, new E_Item(21, Item::getItem("Pierre Lune")), std::vector<Stats>{Stats::HP, Stats::HP}, 0.4, 7.5, "Il puise ses ressources dans les forêts, et des fois dans les champs, car on le confond souvent avec un navet", 68, 800000, 150, 20));
-	          Data::OpMons::listOp.emplace(21, new Species(70, 73, 95, 90, 60, 95, "Fatoro", Type::MAGIC, Type::VEGETAL, 0, -1, new E_Nope(), std::vector<Stats>{Stats::HP, Stats::HP, Stats::HP}, 2.2, 340, "Il y en a un par forêt, on les considèrent des fois comme des divinités des forêts car il est très rare d'en trouver et que le seul moyen est une forêt.", 129, 8000000, 25, 21));
+            Data::OpMons::listOp.emplace(21, new Species(70, 73, 95, 90, 60, 95, "Fatoro", Type::MAGIC, Type::VEGETAL, 0, -1, new E_Nope(), std::vector<Stats>{Stats::HP, Stats::HP, Stats::HP}, 2.2, 340, "Il y en a un par forêt, on les considèrent des fois comme des divinités des forêts car il est très rare d'en trouver et que le seul moyen est une forêt.", 129, 8000000, 25, 21));
             Data::OpMons::listOp.emplace(22, new Species(160, 65, 31, 31, 10, 95, "Himondelle", Type::TOXIC, Type::SKY, 0, -1, nullptr, std::vector<Stats>{Stats::SPE, Stats::SPE}, 1.9, 190, "Cet OPMon plutôt imposant, ne peut plus voler depuis qu'il a évoluer, cela resulte d'un manque de migrations du à l'abondance d'insectes dans cette région", 162, 1000000, 90, 22));
             Data::OpMons::listOp.emplace(23, new Species(60, 44, 40, 54, 55, 35, "Serpiterre", Type::GROUND, Type::BAD, 0, 24, new E_Level(24, 22), std::vector<Stats>{Stats::SPE}, 2, 6.9, "Plus il est âgé, plus son corps est long. Il se nourrit de spectres nocturnes caché sous terre", 62, 1000000, 255, 23));
             Data::OpMons::listOp.emplace(24, new Species(85, 69, 65, 79, 80, 60, "Serpenair", Type::SKY, Type::BAD, 0, -1, nullptr, std::vector<Stats>{Stats::SPE, Stats::ATK}, 3.5, 65, "Il adore planer au dessus des ses proies, les fantomes de nuits, pour jouer avec eux, avant de les aspirer.", 147, 1000000, 90, 24));
@@ -75,7 +75,7 @@ namespace OpMon {
             Data::OpMons::listOp.emplace(31, new Species(92, 87, 75, 85, 76, 90, "Bolderi", Type::TOXIC, Type::GROUND, 0, -1, new E_Nope(), std::vector<Stats>{Stats::HP, Stats::HP, Stats::HP}, 1.3, 60, "Il controle le riz, il est capable de faire le faire voler, et même de faire des formes avec.", 194, 1059860, 45, 31));
             Data::OpMons::listOp.emplace(32, new Species(57, 40, 40, 40, 50, 46, "Dragonbolderi‚", Type::TOXIC, Type::NOTHING, 0, 16, new E_Level(33, 16), std::vector<Stats>{Stats::ATK}, 0.5, 9, "Ce dragon en riz est capable d'éviter les coups en creant des trous dans son corps, mais à part cela, il peut à peine voler.", 60, 1059860, 235, 32));
             Data::OpMons::listOp.emplace(33, new Species(72, 57, 55, 55, 65, 61, "Kameosan", Type::TOXIC, Type::NOTHING, 0, -1, new E_Item(34, Item::getItem("Pierre Lune")), std::vector<Stats>{Stats::ATK, Stats::ATK}, 0.9, 19.5, "Cette jarre de saké japonais a pris vie, elle peut aspirer du riz venant de l'exterieur, pour grossir encore son crâne.", 118, 1059860, 120, 33));
-/*Data::OpMons::listOp.emplace(34, new Species(102, 77, 85, 75, 85, 81, "Nidoking", Type::TOXIC, Type::GROUND, 0, -1, new E_Nope(), Model::Data::OpMons::evs[34], 1.4, 62, "Un coup de sa puissante queue peut briser un poteau téléphonique comme une allumette.", 195, 1059860, 45, 34));
+            /*Data::OpMons::listOp.emplace(34, new Species(102, 77, 85, 75, 85, 81, "Nidoking", Type::TOXIC, Type::GROUND, 0, -1, new E_Nope(), Model::Data::OpMons::evs[34], 1.4, 62, "Un coup de sa puissante queue peut briser un poteau téléphonique comme une allumette.", 195, 1059860, 45, 34));
 	Data::OpMons::listOp.emplace(35, new Species(45, 48, 60, 65, 35, 70, "Mélofée", Type::MAGIC, Type::NOTHING, 0, -1, new E_Item(36, Item::getItem("Pierre Lune")), Model::Data::OpMons::evs[35], 06, 7.5, "La lumière de la lune qu'il emmagasine dans ses ailes dorsales lui permet de flotter dans les airs.", 68, 800000, 150, 35));
 	Data::OpMons::listOp.emplace(36, new Species(70, 73, 95, 90, 60, 95, "Mélodelfe", Type::MAGIC, Type::NOTHING, 0, -1, new E_Nope(), Model::Data::OpMons::evs[36], 1.3, 40, "Il aime le calme des montagnes. Son ouà¯e exceptionnelle entendrait une aiguille tomber à  1km.", 129, 8000000, 25, 36));
 	Data::OpMons::listOp.emplace(37, new Species(41, 40, 50, 65, 65, 38, "Goupix", Type::BURNING, Type::NOTHING, 0, -1, new E_Item(38, Item::getItem("Pierre Feu")), Model::Data::OpMons::evs[37], 0.6, 9.9, "Avec l'âge, la fourrure de ses six queues devient de plus en plus belle et soyeuse. Elle est chaude au toucher.",63, 1000000, 190, 37));//TROP KAWAII!!!!
@@ -319,7 +319,7 @@ _______________________________________________________________
             View::jukebox.addMusic("Route 14", "audio/music/route14.ogg");
             //View::jukebox.addMusic("OpCenter", "audio/music/opcenter.ogg");
             View::jukebox.addMusic("Ms", "audio/music/mysterioucity.ogg");
-	        View::jukebox.addMusic("Labo", "audio/music/labo.ogg");
+            View::jukebox.addMusic("Labo", "audio/music/labo.ogg");
             View::jukebox.addMusic("Wild Battle", "audio/music/wildbattle.ogg");
         }
 
@@ -335,24 +335,23 @@ _______________________________________________________________
 
         using namespace Model::Data::Ui;
 
+        void initOpTextures() {
+            //I will use a "for" loop later, I don't use it now to avoid loading errors.
+            std::vector<std::vector<sf::Texture>> &opSprites = Model::Data::OpMons::opSprites;
+            opSprites.push_back(std::vector<sf::Texture>());
+            opSprites.push_back(std::vector<sf::Texture>());
+            ResourceLoader::loadTextureArray(opSprites[1], "sprites/opmons/1-%d.png", 2);
+            opSprites.push_back(std::vector<sf::Texture>());
+            ResourceLoader::loadTextureArray(opSprites[2], "sprites/opmons/2-%d.png", 2);
+            opSprites.push_back(std::vector<sf::Texture>());
+            opSprites.push_back(std::vector<sf::Texture>());
+            ResourceLoader::loadTextureArray(opSprites[4], "sprites/opmons/4-%d.png", 2);
+            opSprites.push_back(std::vector<sf::Texture>());
+            opSprites.push_back(std::vector<sf::Texture>());
+            opSprites.push_back(std::vector<sf::Texture>());
+            ResourceLoader::loadTextureArray(opSprites[7], "sprites/opmons/7-%d.png", 2);
+        }
 
-      void initOpTextures(){
-	//I will use a "for" loop later, I don't use it now to avoid loading errors.
-	std::vector<std::vector<sf::Texture> > &opSprites = Model::Data::OpMons::opSprites;
-	opSprites.push_back(std::vector<sf::Texture>());
-	opSprites.push_back(std::vector<sf::Texture>());
-	ResourceLoader::loadTextureArray(opSprites[1], "sprites/opmons/1-%d.png", 2);
-	opSprites.push_back(std::vector<sf::Texture>());
-	ResourceLoader::loadTextureArray(opSprites[2], "sprites/opmons/2-%d.png", 2);
-	opSprites.push_back(std::vector<sf::Texture>());
-	opSprites.push_back(std::vector<sf::Texture>());
-	ResourceLoader::loadTextureArray(opSprites[4], "sprites/opmons/4-%d.png", 2);
-	opSprites.push_back(std::vector<sf::Texture>());
-	opSprites.push_back(std::vector<sf::Texture>());
-	opSprites.push_back(std::vector<sf::Texture>());
-	ResourceLoader::loadTextureArray(opSprites[7], "sprites/opmons/7-%d.png", 2);
-      }
-      
         void initTextures() {
 
             ResourceLoader::load(Data::World::tileset, "tileset/tileset.png");
@@ -383,7 +382,7 @@ _______________________________________________________________
             ResourceLoader::loadTextureArray(shopDoor, "animations/shopdoor/shop_door%d.png", 4, 1);
             doorsTextures.push_back(shopDoor);
 
-	          ResourceLoader::loadTextureArray(charaTextures["kid"], "sprites/chara/kid/kid%d.png", 12);
+            ResourceLoader::loadTextureArray(charaTextures["kid"], "sprites/chara/kid/kid%d.png", 12);
             ResourceLoader::loadTextureArray(charaTextures["fisherman"], "sprites/chara/fisherman/fisherman%d.png", 12);
             ResourceLoader::loadTextureArray(charaTextures["kiwai"], "sprites/chara/prof/prof%d.png", 12);
             ResourceLoader::loadTextureArray(charaTextures["playermom"], "sprites/chara/mom/mom%d.png", 12);
@@ -391,55 +390,55 @@ _______________________________________________________________
             ResourceLoader::loadTextureArray(charaTextures["inferm"], "sprites/chara/inferm/inferm%d.png", 12);
             ResourceLoader::loadTextureArray(charaTextures["|_| -|- |-| |= |_| |\|"], "sprites/chara/beta/alphabeta/otheon%d.png", 12);
 
-
-	    ResourceLoader::load(Model::Data::Battle::backgrounds["grass"], "backgrounds/battle_bkg/background_grass.png");
-	    ResourceLoader::load(Model::Data::Battle::dialog, "backgrounds/dialog/battle_dialog.png");
-	    //ResourceLoader::load(Model::Data::Battle::attackDial, "");
-	    ResourceLoader::load(Model::Data::Battle::cursor, "sprites/misc/arrBattle.png");
-	    //Temps
-	    Model::Data::Battle::charaBattleTextures["player"].push_back(sf::Texture());
-	    ResourceLoader::load(Model::Data::Battle::charaBattleTextures["player"][0], "sprites/chara/pp/pp_fight.png");
-	    Model::Data::Battle::charaBattleTextures["cyrion"].push_back(sf::Texture());
-	    ResourceLoader::load(Model::Data::Battle::charaBattleTextures["cyrion"][0], "sprites/chara/cyrion/cyrion.png");
-	    Model::Data::Battle::battlePlayerAnim.push_back(Model::Data::Battle::charaBattleTextures["player"][0]);
-	    ResourceLoader::load(Model::Data::Battle::infoboxPlayer, "sprites/battle/square_1.png");
-	    ResourceLoader::load(Model::Data::Battle::infoboxTrainer, "sprites/battle/square_2.png");
-	    ResourceLoader::load(Model::Data::Battle::healthbar1, "sprites/battle/health_bar.png");
-	    ResourceLoader::load(Model::Data::Battle::healthbar2, "sprites/battle/health_jauge.png");
-	    ResourceLoader::load(Model::Data::Battle::shadowPlayer, "sprites/battle/shadow_2.png");
-	    ResourceLoader::load(Model::Data::Battle::shadowTrainer, "sprites/battle/shadow_1.png");
+            ResourceLoader::load(Model::Data::Battle::backgrounds["grass"], "backgrounds/battle_bkg/background_grass.png");
+            ResourceLoader::load(Model::Data::Battle::dialog, "backgrounds/dialog/battle_dialog.png");
+            //ResourceLoader::load(Model::Data::Battle::attackDial, "");
+            ResourceLoader::load(Model::Data::Battle::cursor, "sprites/misc/arrBattle.png");
+            //Temps
+            Model::Data::Battle::charaBattleTextures["player"].push_back(sf::Texture());
+            ResourceLoader::load(Model::Data::Battle::charaBattleTextures["player"][0], "sprites/chara/pp/pp_fight.png");
+            Model::Data::Battle::charaBattleTextures["cyrion"].push_back(sf::Texture());
+            ResourceLoader::load(Model::Data::Battle::charaBattleTextures["cyrion"][0], "sprites/chara/cyrion/cyrion.png");
+            Model::Data::Battle::battlePlayerAnim.push_back(Model::Data::Battle::charaBattleTextures["player"][0]);
+            ResourceLoader::load(Model::Data::Battle::infoboxPlayer, "sprites/battle/square_1.png");
+            ResourceLoader::load(Model::Data::Battle::infoboxTrainer, "sprites/battle/square_2.png");
+            ResourceLoader::load(Model::Data::Battle::healthbar1, "sprites/battle/health_bar.png");
+            ResourceLoader::load(Model::Data::Battle::healthbar2, "sprites/battle/health_jauge.png");
+            ResourceLoader::load(Model::Data::Battle::shadowPlayer, "sprites/battle/shadow_2.png");
+            ResourceLoader::load(Model::Data::Battle::shadowTrainer, "sprites/battle/shadow_1.png");
 
             ResourceLoader::load(Model::Data::Ui::dialogBackground, "backgrounds/dialog/dialog.png");
             ResourceLoader::load(Model::Data::Ui::dialogArrow, "sprites/misc/arrDial.png");
 
-	    ResourceLoader::load(Model::Data::Battle::attackDialog, "backgrounds/dialog/attacks_dialog.png");
+            ResourceLoader::load(Model::Data::Battle::attackDialog, "backgrounds/dialog/attacks_dialog.png");
 
-	    /* Loads a type's texture into the types' textures map in Model::Data::OpMons */
-#define LOAD_TYPE(type) ResourceLoader::load(tempTx, (std::string("sprites/battle/types/") + #type + ".png").c_str()); \
-	  Model::Data::OpMons::typesTextures.emplace(Model::Type::type, sf::Texture(tempTx))
-	    
-	    sf::Texture tempTx;
-	    LOAD_TYPE(BAD);
-	    LOAD_TYPE(BUG);
-	    LOAD_TYPE(BURNING);
-	    LOAD_TYPE(COLD);
-	    LOAD_TYPE(DRAGON);
-	    LOAD_TYPE(ELECTRON);
-	    LOAD_TYPE(FIGHT);
-	    LOAD_TYPE(GHOST);
-	    LOAD_TYPE(GROUND);
-	    LOAD_TYPE(LIQUID);
-	    LOAD_TYPE(MAGIC);
-	    LOAD_TYPE(MENTAL);
-	    LOAD_TYPE(METAL);
-	    LOAD_TYPE(MINERAL);
-	    LOAD_TYPE(NEUTRAL);
-	    LOAD_TYPE(SKY);
-	    LOAD_TYPE(TOXIC);
-	    LOAD_TYPE(VEGETAL);
+            /* Loads a type's texture into the types' textures map in Model::Data::OpMons */
+#define LOAD_TYPE(type)                                                                            \
+    ResourceLoader::load(tempTx, (std::string("sprites/battle/types/") + #type + ".png").c_str()); \
+    Model::Data::OpMons::typesTextures.emplace(Model::Type::type, sf::Texture(tempTx))
+
+            sf::Texture tempTx;
+            LOAD_TYPE(BAD);
+            LOAD_TYPE(BUG);
+            LOAD_TYPE(BURNING);
+            LOAD_TYPE(COLD);
+            LOAD_TYPE(DRAGON);
+            LOAD_TYPE(ELECTRON);
+            LOAD_TYPE(FIGHT);
+            LOAD_TYPE(GHOST);
+            LOAD_TYPE(GROUND);
+            LOAD_TYPE(LIQUID);
+            LOAD_TYPE(MAGIC);
+            LOAD_TYPE(MENTAL);
+            LOAD_TYPE(METAL);
+            LOAD_TYPE(MINERAL);
+            LOAD_TYPE(NEUTRAL);
+            LOAD_TYPE(SKY);
+            LOAD_TYPE(TOXIC);
+            LOAD_TYPE(VEGETAL);
 
 #undef LOAD_TYPE
-	    
+
             initOpTextures();
 
             initEnumsEvents();
@@ -517,8 +516,8 @@ _______________________________________________________________
 
             pathChara1.push_back(Side::NO_MOVE);
 
-	    mapFauxbourgEuvi->addEvent(new Events::TalkingCharaEvent("kid", sf::Vector2f(25, 21), {OpString("kid"), OpString::voidStr, OpString::voidStr}, Side::TO_RIGHT, Events::EventTrigger::PRESS, Events::MoveStyle::PREDEFINED, pathChara1));
-	    
+            mapFauxbourgEuvi->addEvent(new Events::TalkingCharaEvent("kid", sf::Vector2f(25, 21), {OpString("kid"), OpString::voidStr, OpString::voidStr}, Side::TO_RIGHT, Events::EventTrigger::PRESS, Events::MoveStyle::PREDEFINED, pathChara1));
+
             mapFauxbourgEuvi->addEvent(new Events::TalkingCharaEvent("fisherman", sf::Vector2f(16, 16), {OpString("fe.fisherman.1"), OpString("fe.fisherman.2"), OpString("fe.fisherman.3"), OpString("fe.fisherman.4"), OpString("fe.fisherman.5"), OpString("fe.fisherman.6"), OpString("fe.fisherman.7"), OpString("fe.fisherman.8"), OpString("fe.fisherman.9")}, Side::TO_LEFT));
 
             Map *mapPlayersHome = maps.emplace("Player's home", new Map(Maps::pphomeLayer1, Maps::pphomeLayer2, Maps::pphomeLayer3, 16, 16, true, "Fauxbourg")).first->second;
@@ -563,7 +562,6 @@ _______________________________________________________________
             mapOpCenter->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(9, 11), opcE1, SIDE_UP));
             mapOpCenter->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(9, 17), sf::Vector2i(16, 13), "MysteriouCity", Side::TO_DOWN, SIDE_DOWN));
             mapOpCenter->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 17), sf::Vector2i(16, 13), "MysteriouCity", Side::TO_DOWN, SIDE_DOWN));
-
         }
 
         void initBackgrounds() {

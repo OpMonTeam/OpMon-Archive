@@ -26,7 +26,6 @@ namespace OpMon {
                 dialogText[i].setPosition(25, background.getPosition().y + minusPos);
                 minusPos += 32;
             }
-
         }
 
         void Dialog::pass() {

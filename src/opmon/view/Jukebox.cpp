@@ -31,7 +31,7 @@ namespace OpMon {
                 musList.at(playingID)->stop();
             }
 
-            if(musList[music] == nullptr){
+            if(musList[music] == nullptr) {
                 return;
             }
 
