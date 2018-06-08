@@ -265,7 +265,7 @@ namespace OpMon{
       curPos = 0;
       cursor.setScale(2, 2);
       frame.setView(frame.getDefaultView());
-      atk.setPosition(110, 160);
+      atk.setPosition(107, 195);
       def.setPosition(305, 120);
       atk.setScale(2, 2);
 
