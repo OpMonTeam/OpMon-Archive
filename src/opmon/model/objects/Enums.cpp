@@ -25,7 +25,6 @@ namespace OpMon {
               {AVG, HI_, AVG, AVG, AVG, HI_, AVG, AVG, HI_, AVG, AVG, AVG, NOT, AVG, AVG, LO_, LO_, AVG},
               {AVG, LO_, AVG, AVG, HI_, AVG, AVG, HI_, LO_, AVG, LO_, AVG, AVG, HI_, NOT, AVG, AVG, AVG}};
 
-           
             float calcEffectiveness(Type atk, Type def1, Type def2) {
                 int atkI((int)atk), type1I((int)def1), type2I((int)def2);
                 if(def2 == Type::NOTHING) {

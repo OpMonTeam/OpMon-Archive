@@ -11,7 +11,10 @@ namespace OpMon {
 
         Attack::Attack(std::string name, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::string className,
                        AttackEffect *preEffect, AttackEffect *postEffect)
-          : className(className), name(name), preEffect(preEffect), postEffect(postEffect) {
+          : className(className)
+          , name(name)
+          , preEffect(preEffect)
+          , postEffect(postEffect) {
             this->power = power;
             this->type = type;
             this->accuracy = accuracy;
@@ -23,35 +26,35 @@ namespace OpMon {
             this->priority = priority;
         }
 
-      Attack::~Attack() {
-        delete(this->preEffect);
-        delete(this->postEffect);
-      }
+        Attack::~Attack() {
+            delete(this->preEffect);
+            delete(this->postEffect);
+        }
 
-      /* Return 1 : Inform to do the same attack at the next turn.
+        /* Return 1 : Inform to do the same attack at the next turn.
      * Return 2 : End the attack
        Return -2 : Inform that the attack failed
        Return -1 : Inform that the attack was ineffective against the target
      * In effectAfter : Return any number except 1 act like return 2.
      * If 1 is returned, it will do the same attack at the next turn.
      */
-      int Attack::attack(OpMon &atk, OpMon &def, Turn& attackTurn) {
+        int Attack::attack(OpMon &atk, OpMon &def, Turn &attackTurn) {
             pp--;
             //Attack fail
             if((Utils::Misc::randU(100)) > (accuracy * (atk.getStatACC() / def.getStatEVA())) && neverFails == false) {
-	      attackTurn.attackMissed = true;
-	      ifFails(atk, def, attackTurn);
+                attackTurn.attackMissed = true;
+                ifFails(atk, def, attackTurn);
                 return -2;
             }
             int effectBf = preEffect ? preEffect->apply(*this, atk, def, attackTurn) : 0;
             if(effectBf == 1 || effectBf == 2) { //If special return, the attack ends.
-	      attackTurn.atkEnd = true;
+                attackTurn.atkEnd = true;
                 return effectBf;
             }
             //If type unefficiency
             if(ArrayTypes::calcEffectiveness(type, def.getType1(), def.getType2()) == 0 && (neverFails == false || status == false)) {
-	      attackTurn.attackFailed = true;
-	      ifFails(atk, def, attackTurn);
+                attackTurn.attackFailed = true;
+                ifFails(atk, def, attackTurn);
                 return -1;
             }
             if(!status) { //Check if it isn't a status attack to calculate the hp lost
@@ -66,12 +69,12 @@ namespace OpMon {
                     hpLost = round(hpLost * 1.5);
                 }
                 hpLost = round(hpLost * (Utils::Misc::randU(100 - 85 + 1) + 85) / 100);
-		attackTurn.hpLost = hpLost;
+                attackTurn.hpLost = hpLost;
                 def.attacked(hpLost);
             }
             return postEffect ? postEffect->apply(*this, atk, def, attackTurn) : 0;
         }
-      
+
         std::string Attack::save() {
             UNS
               ostringstream oss;

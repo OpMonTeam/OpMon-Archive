@@ -1665,14 +1665,14 @@ UNS
             }
         }
 
-      void OpMon::passCD(bool sleep){
-	if(confusedCD > 0 && !sleep){
-	  confusedCD--;
-	}
-	if(sleepingCD > 0 && sleep){
-	  sleepingCD--;
-	}
-      }
+        void OpMon::passCD(bool sleep) {
+            if(confusedCD > 0 && !sleep) {
+                confusedCD--;
+            }
+            if(sleepingCD > 0 && sleep) {
+                sleepingCD--;
+            }
+        }
 
     } // namespace Model
 }
