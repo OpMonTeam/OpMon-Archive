@@ -28,7 +28,6 @@ namespace OpMon {
 
     extern bool debugMode;
     extern bool debugCol;
-    extern bool camUnlock;
 
     extern bool reboot;
 

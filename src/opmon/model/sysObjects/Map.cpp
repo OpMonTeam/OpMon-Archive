@@ -8,10 +8,11 @@
 namespace OpMon {
     namespace Model {
 
-        Map::Map(const int layer1[], const int layer2[], const int layer3[], int w, int h, std::string const &bg, std::vector<std::string> const &animatedElements)
+        Map::Map(const int layer1[], const int layer2[], const int layer3[], int w, int h, bool indoor, std::string const &bg, std::vector<std::string> const &animatedElements)
           : layer1(layer1)
           , layer2(layer2)
           , layer3(layer3)
+          , indoor(indoor)
           , bg(bg)
           , animatedElements(animatedElements) {
 

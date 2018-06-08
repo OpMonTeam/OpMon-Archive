@@ -12,7 +12,7 @@ Original music can be reused provided that you credit the author. They are licen
 <!--Path : |filename|.extention - |Where the music is located| (|Music name|) : Composed by |creator|-->
 
 * faubourgeuvi.ogg - Fauxbourg Euvi's theme (Startostalgic) : Composed by Cyrion
-* regimys_theme.ogg - Regimys Theme (A Regimys) : Composed by Navet56
+* title.ogg - Regimys Theme (A Regimys) : Composed by Navet56
 * regimys_theme-suspense.ogg - Regimys Theme 2 (An other Regimys) : Composed by Navet56
 * intro.ogg - Intro theme (Starting Blocks) : Original (labo.ogg) by Navet56, cover by Cyrion
 * astra.ogg - Astra Theme (Take a break) : Composed by Cyrion
@@ -24,7 +24,7 @@ Original music can be reused provided that you credit the author. They are licen
 * rival_battle_theme.ogg - (Fight against the rival): Composed by Navet56
 * route14.ogg - (May the exploration begin !) : Composed by Navet56
 * labo.ogg - Kiwaï Laboratory theme (Which one to choose ?) : Composed by Navet56
-* battle.ogg - (The wild duel) : Composed by Navet56
+* wildbattle.ogg - (The wild duel) : Composed by Cyron, rearranged by Navet56
 * arenabattle.ogg () : Composed by Navet56
 * battle.ogg - () : Composed by Navet56
 * norie.ogg - Norie theme () : Composed by Cyrion 

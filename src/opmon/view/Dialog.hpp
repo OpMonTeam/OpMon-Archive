@@ -18,10 +18,7 @@ namespace OpMon {
         class Dialog {
           private:
             /** array of all lines composing the dialog. */
-            const sf::String *text;
-
-            /** number of lines in `text`. */
-            size_t sizeOfTxt;
+            const std::vector<sf::String> &text;
 
             /** The 3 lines currently displayed. */
             sf::String txtEnCours[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
@@ -43,12 +40,10 @@ namespace OpMon {
             /** Set to `true` when the entire dialog has been displayed. */
             bool is_dialog_over = false;
 
-            void printText(sf::RenderTarget &frame, sf::String text[]);
-
             sf::Sound dialogPass;
 
           public:
-            Dialog(const sf::String *text, size_t size);
+            Dialog(const std::vector<sf::String> &text);
 
             /**
        * Move forward in a dialog, in response to an event like a space key pressed.
@@ -76,9 +71,9 @@ namespace OpMon {
        */
             bool isDialogOver();
 
-            static sf::Sprite arrDial;
-            static sf::Text dialogText[3];
-            static sf::Sprite dialog;
+            sf::Sprite arrDial;
+            sf::Text dialogText[3];
+            sf::Sprite background;
         };
     } // namespace View
 } // namespace OpMon

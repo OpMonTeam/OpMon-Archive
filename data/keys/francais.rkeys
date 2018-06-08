@@ -17,7 +17,7 @@ key.options.credit.6=Collaborateurs :
 key.options.credit.7=Aerzia, BAKfr, gberthou
 key.options.credit.8=Contributeurs : imZERKKA, Mat, Jseutter, Stelyus, Ezaron, rjphares
 key.options.credit.81=Rixem, Jo, Imperator Dei, Léo, LinkyFR, Bircoum, louracame
-key.options.credit.82=Samurai413x
+key.options.credit.82=Samurai413x, Silvermoon, Lebordelic, Asvirius
 key.options.credit.9=                   v0.15dev
 
 key.options.retour=Retour
@@ -107,5 +107,36 @@ key.fe.fisherman.9=Tu es nouveau ?
 key.inferm.dialog.1=Bonjour !
 key.inferm.dialog.2=Voulez-vous soigner vos OpMons ?
 key.inferm.dialog.3=... Mais ? vous en n'avez pas.
+
+key.battle.attack=Attaques
+key.battle.bag=Sac
+key.battle.run=Fuite
+key.battle.opmon=OpMons
+
+key.battle.dialog.attack=~ utilise ~ !
+key.battle.status.frozen.out=~ n'est plus gelé!
+key.battle.status.frozen.in=~ est gelé!
+key.battle.status.frozen.attack=~ est gelé et ne peut pas attaquer!
+
+key.battle.status.sleep.out=~ se réveille!
+key.battle.status.sleep.in=~ s'endort profondément!
+key.battle.status.sleep.attack=~ dort profondément.
+
+key.battle.status.paralysed.out=~ n'est plus paralysé!
+key.battle.status.paralysed.in=~ est paralysé!
+key.battle.status.paralysed.attack.success.1=Malgré sa paralysie,
+key.battle.status.paralysed.attack.success.2=~ réussit à attaquer!
+key.battle.status.paralysed.attack.fail=~ est paralysé !
+
+key.battle.status.confused.out=~ n'est plus confus!
+key.battle.status.confused.in=~ devient confus!
+key.battle.status.confused.attack.success.1=Malgré sa confusion, ~
+key.battle.status.confused.attack.success.2=parvient à attaquer!
+key.battle.status.confused.attack.fail=~ est confus.
+key.battle.status.confused.hplost=~ perd ~ pv.
+
+key.battle.status.afraid=~ est trop effrayé pour attaquer!
+
+key.battle.wait=Que voulez vous faire ?
 
 end
