@@ -8,23 +8,20 @@ namespace OpMon {
         }
 
         void OpTeam::heal() {
-            for(int i = 0; i < nbreOfOp; i++) {
-                if(opteam[i] != nullptr) {
-                    opteam[i]->heal(opteam[i]->getStatHP());
-                    opteam[i]->confus = false;
-                    opteam[i]->setStatus(Status::NOTHING);
-                }
-            }
+	  for(OpMon* opmon : opteam){
+	    opmon->heal(opmon->getStatHP());
+	    opmon->confused = false;
+	    opmon->setStatus(Status::NOTHING);
+	  }
         }
 
         bool OpTeam::addOpMon(OpMon *toAdd) {
-            for(int i = 0; i < nbreOfOp; i++) {
-                if(opteam[i] == nullptr) {
-                    opteam[i] = toAdd;
-                    return true;
-                }
-            }
+	  if(opteam.size() < 6){
+	    opteam.push_back(toAdd);
+	    return true;
+	  }else{
             return false;
+	  }
         }
 
         OpMon *OpTeam::removeOp(int number) {
@@ -32,14 +29,7 @@ namespace OpMon {
                 return nullptr;
             }
             OpMon *toReturn = opteam[number];
-            opteam[number] = nullptr;
-            for(int i = number; i < nbreOfOp; i++) {
-                if(i != 5) {
-                    opteam[i] = opteam[i + 1];
-                } else {
-                    opteam[5] = nullptr;
-                }
-            }
+            opteam.erase(opteam.begin() + number);
             return toReturn;
         }
 
@@ -49,18 +39,16 @@ namespace OpMon {
 
         bool OpTeam::isKo() const {
             int ko = 0;
-            for(int i = 0; i < nbreOfOp; i++) {
-                if(opteam[i] == nullptr) {
-                    ko++;
-                } else if(opteam[i]->getHP() <= 0) {
-                    ko++;
-                }
-            }
-            return (ko == 6);
+	    for(OpMon* opmon : opteam){
+	      if(opmon->getHP() <= 0){
+		ko++;
+	      }
+	    }
+            return (ko == opteam.size());
         }
 
         int OpTeam::getSize() const {
-            return nbreOfOp;
+	  return opteam.size();
         }
 
     } // namespace Model

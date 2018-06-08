@@ -22,10 +22,6 @@ namespace OpMon {
           public:
             Overworld(const std::string &mapId);
 
-            sf::View &getCamera() {
-                return camera;
-            }
-
             sf::Sprite &getCharacter() {
                 return character;
             }
@@ -56,6 +52,8 @@ namespace OpMon {
             }
 
             void moveCamera(Model::Side dir);
+            bool isCameraLocked();
+            void setCameraLock(bool locked);
 
             bool printlayer[3] = {true, true, true};
             bool printCollisions = false;
@@ -83,6 +81,12 @@ namespace OpMon {
 
             void printCollisionLayer(sf::RenderTarget &frame);
 
+            /* Move the camera to follow the player's moves. */
+            void updateCamera(sf::RenderTarget &frame);
+
+            /* Center the camera on the player. */
+            void resetCamera();
+
             sf::View camera;
             sf::Sprite character;
             Model::Map *current = nullptr;
@@ -92,7 +96,6 @@ namespace OpMon {
             MapLayer *layer1 = nullptr;
             MapLayer *layer2 = nullptr;
             MapLayer *layer3 = nullptr;
-            sf::Vector2f posArrow;
             Dialog *dialog = nullptr;
             //Indicate the frame of the walking animation that must be used.
             bool anims = false;
@@ -108,9 +111,7 @@ namespace OpMon {
             int animsCounter = 0;
             bool recordFrames = false;
 
-            bool movementLock = false;
-
-            bool scrolling = true;
+            bool cameraLock = false;
         };
 
     } // namespace View

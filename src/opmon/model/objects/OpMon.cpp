@@ -84,7 +84,7 @@ UNS
             return round(0.8f * pow(n, 3));
         }
 
-        OpMon::OpMon(const string &nickname, const Species &species, int level, const std::vector<Attack *> &attacks,
+        OpMon::OpMon(const string &nickname, const Species *species, int level, const std::vector<Attack *> &attacks,
                      Nature nature) {
             atkIV = Utils::Misc::randU(32);
             defIV = Utils::Misc::randU(32);
@@ -93,19 +93,19 @@ UNS
             speIV = Utils::Misc::randU(32);
             hpIV = Utils::Misc::randU(32);
             statATK = round(
-              ((((2 * species.getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100) + 5) * ((natures[(int)nature].bonus == Stats::ATK) ? 1.1 : ((natures[(int)nature].malus == Stats::ATK) ? 0.9 : 1)));
+              ((((2 * species->getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100) + 5) * ((natures[(int)nature].bonus == Stats::ATK) ? 1.1 : ((natures[(int)nature].malus == Stats::ATK) ? 0.9 : 1)));
             statDEF = round(
-              ((((2 * species.getBaseDef() + defIV + (defEV / 4)) * level) / 100) + 5) * ((natures[(int)nature].bonus == Stats::DEF) ? 1.1 : ((natures[(int)nature].malus == Stats::DEF) ? 0.9 : 1)));
+              ((((2 * species->getBaseDef() + defIV + (defEV / 4)) * level) / 100) + 5) * ((natures[(int)nature].bonus == Stats::DEF) ? 1.1 : ((natures[(int)nature].malus == Stats::DEF) ? 0.9 : 1)));
             statATKSPE =
               round(
-                ((((2 * species.getBaseAtkSpe() + atkSpeIV + (atkSpeEV / 4)) * level) / 100) + 5) * ((natures[(int)nature].bonus == Stats::ATKSPE) ? 1.1 : ((natures[(int)nature].malus == Stats::ATKSPE) ? 0.9 : 1)));
+                ((((2 * species->getBaseAtkSpe() + atkSpeIV + (atkSpeEV / 4)) * level) / 100) + 5) * ((natures[(int)nature].bonus == Stats::ATKSPE) ? 1.1 : ((natures[(int)nature].malus == Stats::ATKSPE) ? 0.9 : 1)));
             statDEFSPE =
               round(
-                ((((2 * species.getBaseDefSpe() + defSpeIV + (defSpeEV / 4)) * level) / 100) + 5) * ((natures[(int)nature].bonus == Stats::DEFSPE) ? 1.1 : ((natures[(int)nature].malus == Stats::DEFSPE) ? 0.9 : 1)));
+                ((((2 * species->getBaseDefSpe() + defSpeIV + (defSpeEV / 4)) * level) / 100) + 5) * ((natures[(int)nature].bonus == Stats::DEFSPE) ? 1.1 : ((natures[(int)nature].malus == Stats::DEFSPE) ? 0.9 : 1)));
             statSPE = round(
-              ((((2 * species.getBaseSpe() + speIV + (speEV / 4)) * level) / 100) + 5) * ((natures[(int)nature].bonus == Stats::SPE) ? 1.1 : ((natures[(int)nature].malus == Stats::SPE) ? 0.9 : 1)));
-            statHP = round(((2 * species.getBaseHP() + hpIV + (hpEV / 4)) * level) / 100) + level + 10;
-            this->species = &species;
+              ((((2 * species->getBaseSpe() + speIV + (speEV / 4)) * level) / 100) + 5) * ((natures[(int)nature].bonus == Stats::SPE) ? 1.1 : ((natures[(int)nature].malus == Stats::SPE) ? 0.9 : 1)));
+            statHP = round(((2 * species->getBaseHP() + hpIV + (hpEV / 4)) * level) / 100) + level + 10;
+            this->species = species;
             this->level = level;
 
             this->attacks = attacks;
@@ -113,15 +113,15 @@ UNS
             //TODO attaquesChoix Quand les attaques seront ok
             this->nature = nature;
             if(nickname.empty()) {
-                this->nickname = species.getName();
+                this->nickname = species->getName();
             } else {
                 this->nickname = nickname;
             }
 
-            tauxCapture = species.getCaptureRate();
+            tauxCapture = species->getCaptureRate();
             HP = statHP;
-            type1 = species.getType1();
-            type2 = species.getType2();
+            type1 = species->getType1();
+            type2 = species->getType2();
             using namespace CalcCourbs;
             switch(this->species->getCurve()) {
             case CurveExp::ERRATIC:
@@ -153,7 +153,7 @@ UNS
             statLove = 100;
             statACC = 100;
             statEVA = 100;
-            falsif = false;
+            initialized = false;
         }
 
         bool OpMon::captured(I_OpBox const &OpBox) {
@@ -430,12 +430,12 @@ UNS
             HP = (HP < 0) ? 0 : HP;
         }
 
-        bool OpMon::changeATK(int power) {
+        int OpMon::changeATK(int power) {
             if(power < 0) {
                 for(int i = 0; i > power; i--) {
                     switch(atkChange) {
                     case -6:
-                        return false;
+                        return -7;
                     case -5:
 
                         statATK = round(statATK / 1.16);
@@ -565,22 +565,22 @@ UNS
                         atkChange++;
                         break;
                     case 6:
-                        return false;
+                        return 7;
                     default:
                         break;
                     }
                 }
             }
 
-            return true;
+            return power;
         }
 
-        bool OpMon::changeACC(int power) {
+        int OpMon::changeACC(int power) {
             if(power < 0) {
                 for(int i = 0; i > power; i--) {
                     switch(accChange) {
                     case -6:
-                        return false;
+                        return -7;
                     case -5:
 
                         statACC = round(statACC * 0.888);
@@ -710,22 +710,22 @@ UNS
                         accChange++;
                         break;
                     case 6:
-                        return false;
+                        return 7;
                     default:
                         break;
                     }
                 }
             }
 
-            return true;
+            return power;
         }
 
-        bool OpMon::changeEVA(int power) {
+        int OpMon::changeEVA(int power) {
             if(power < 0) {
                 for(int i = 0; i > power; i--) {
                     switch(evaChange) {
                     case -6:
-                        return false;
+                        return -7;
                     case -5:
 
                         statEVA = round(statEVA / 1.16);
@@ -855,22 +855,22 @@ UNS
                         evaChange++;
                         break;
                     case 6:
-                        return false;
+                        return 7;
                     default:
                         break;
                     }
                 }
             }
 
-            return true;
+            return power;
         }
 
-        bool OpMon::changeDEF(int power) {
+        int OpMon::changeDEF(int power) {
             if(power < 0) {
                 for(int i = 0; i > power; i--) {
                     switch(defChange) {
                     case -6:
-                        return false;
+                        return -7;
                     case -5:
 
                         statDEF = round(statDEF / 1.16);
@@ -1000,22 +1000,22 @@ UNS
                         defChange++;
                         break;
                     case 6:
-                        return false;
+                        return 7;
 
                     default:
                         break;
                     }
                 }
             }
-            return true;
+            return power;
         }
 
-        bool OpMon::changeATKSPE(int power) {
+        int OpMon::changeATKSPE(int power) {
             if(power < 0) {
                 for(int i = 0; i > power; i--) {
                     switch(atkSpeChange) {
                     case -6:
-                        return false;
+                        return -7;
                     case -5:
 
                         statATKSPE = round(statATKSPE / 1.16);
@@ -1145,21 +1145,21 @@ UNS
                         atkSpeChange++;
                         break;
                     case 6:
-                        return false;
+                        return 7;
                     default:
                         break;
                     }
                 }
             }
-            return true;
+            return power;
         }
 
-        bool OpMon::changeDEFSPE(int power) {
+        int OpMon::changeDEFSPE(int power) {
             if(power < 0) {
                 for(int i = 0; i > power; i--) {
                     switch(defSpeChange) {
                     case -6:
-                        return false;
+                        return -7;
                     case -5:
 
                         statDEFSPE = round(statDEFSPE / 1.16);
@@ -1289,21 +1289,21 @@ UNS
                         defSpeChange++;
                         break;
                     case 6:
-                        return false;
+                        return 7;
                     default:
                         break;
                     }
                 }
             }
-            return true;
+            return power;
         }
 
-        bool OpMon::changeSPE(int power) {
+        int OpMon::changeSPE(int power) {
             if(power < 0) {
                 for(int i = 0; i > power; i--) {
                     switch(speChange) {
                     case -6:
-                        return false;
+                        return -7;
                     case -5:
 
                         statSPE = round(statSPE / 1.16);
@@ -1434,13 +1434,13 @@ UNS
                         speChange++;
                         break;
                     case 6:
-                        return false;
+                        return 7;
                     default:
                         break;
                     }
                 }
             }
-            return true;
+            return power;
         }
 
         bool OpMon::setStatus(Status status) {
@@ -1496,7 +1496,7 @@ UNS
         }
 
         string OpMon::save() {
-            if(!falsif) {
+            if(!initialized) {
 
                 ostringstream oss;
                 oss << nickname << endl;
@@ -1633,7 +1633,7 @@ UNS
                     in.get();
                 }
                 int speciesID = in.get();
-                species = &Data::OpMons::listOp.at(speciesID);
+                species = Data::OpMons::listOp.at(speciesID);
                 in.get();
                 HP = in.get();
                 in.get();
@@ -1659,11 +1659,20 @@ UNS
                 type2 = species->getType2();
                 statACC = 100;
                 statEVA = 100;
-                falsif = false;
+                initialized = false;
             } else {
-                falsif = true;
+                initialized = true;
             }
         }
+
+      void OpMon::passCD(bool sleep){
+	if(confusedCD > 0 && !sleep){
+	  confusedCD--;
+	}
+	if(sleepingCD > 0 && sleep){
+	  sleepingCD--;
+	}
+      }
 
     } // namespace Model
 }

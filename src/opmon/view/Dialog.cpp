@@ -6,18 +6,27 @@
 namespace OpMon {
     namespace View {
 
-        sf::Sprite Dialog::arrDial;
-        sf::Text Dialog::dialogText[3];
-        sf::Sprite Dialog::dialog;
-
-        Dialog::Dialog(const sf::String *text, size_t sizeOfText)
-          : text(text)
-          , sizeOfTxt(sizeOfText) {
+        Dialog::Dialog(const std::vector<sf::String> &text)
+          : text(text) {
             dialogPass.setBuffer(OpMon::Model::Data::Sounds::dialogPass);
             dialogPass.setVolume(50);
-            sf::Vector2f posArrow = frame.mapPixelToCoords(sf::Vector2i(512 - 75, 512 - 30));
 
-            arrDial.setPosition(posArrow);
+            background.setTexture(Model::Data::Ui::dialogBackground);
+            arrDial.setTexture(Model::Data::Ui::dialogArrow);
+
+            background.setPosition(0, 512 - 150);
+            arrDial.setPosition(512 - 75, 512 - 30);
+
+            int minusPos = 32;
+            for(size_t i = 0; i < 3; ++i) {
+                dialogText[i].setFont(OpMon::Model::Data::Ui::font);
+                dialogText[i].setCharacterSize(FONT_SIZE_DEFAULT);
+                dialogText[i].setColor(sf::Color::Black);
+
+                dialogText[i].setPosition(25, background.getPosition().y + minusPos);
+                minusPos += 32;
+            }
+
         }
 
         void Dialog::pass() {
@@ -27,7 +36,7 @@ namespace OpMon {
                 txtEnCours[2] = text[dialogNb + 2];
 
                 changeDialog = true;
-            } else if(dialogNb + 3 < sizeOfTxt) {
+            } else if(dialogNb + 3 < text.size()) {
                 dialogPass.play();
                 line = 0;
                 dialogNb += 3;
@@ -66,9 +75,14 @@ namespace OpMon {
         }
 
         void Dialog::draw(sf::RenderTarget &frame) {
-            printText(frame, txtEnCours);
+            frame.draw(background);
 
-            sf::Vector2f posArrow = frame.mapPixelToCoords(sf::Vector2i(512 - 75, 512 - 30));
+            for(size_t itor = 0; itor < 3; itor++) {
+                dialogText[itor].setString(txtEnCours[itor].toUtf32());
+                frame.draw(dialogText[itor]);
+            }
+
+            sf::Vector2f posArrow(512 - 75, 512 - 30);
             arrDial.move(0, 1);
             if(arrDial.getPosition().y - posArrow.y > 5) {
                 arrDial.move(0, -6);
@@ -78,22 +92,6 @@ namespace OpMon {
 
         bool Dialog::isDialogOver() {
             return is_dialog_over;
-        }
-
-        void Dialog::printText(sf::RenderTarget &frame, sf::String text[]) {
-            int minusPos = 32;
-            dialog.setPosition(frame.mapPixelToCoords(sf::Vector2i(0, 362)));
-            frame.draw(dialog);
-            for(unsigned int itor = 0; itor < 3; itor++) {
-                dialogText[itor].setString(text[itor].toUtf32());
-                dialogText[itor].setFont(OpMon::Model::Data::Ui::font);
-                dialogText[itor].setCharacterSize(FONT_SIZE_DEFAULT);
-                dialogText[itor].setColor(sf::Color::Black);
-                dialogText[itor].setPosition(frame.mapPixelToCoords(sf::Vector2i(25, frame.mapCoordsToPixel(dialog.getPosition()).y + minusPos)));
-                minusPos += 32;
-
-                frame.draw(dialogText[itor]);
-            }
         }
 
     } // namespace View

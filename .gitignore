@@ -8,6 +8,8 @@
 *.oparams
 *.osave
 *.tmp
+*.out
+*.log
 exe/log.txt
 exe/errLog.txt
 exeLinux/log.txt

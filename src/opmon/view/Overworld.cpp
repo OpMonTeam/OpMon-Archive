@@ -1,3 +1,5 @@
+
+#include <algorithm>
 #include "Overworld.hpp"
 #include "../model/objects/Enums.hpp"
 #include "../start/Initializer.hpp"
@@ -31,6 +33,15 @@ namespace OpMon {
             jukebox.play(mus);
         }
 
+
+        bool Overworld::isCameraLocked() {
+            return cameraLock;
+        }
+
+        void Overworld::setCameraLock(bool locked) {
+            cameraLock = locked;
+        }
+
         void Overworld::moveCamera(Side dir) {
             switch(dir) {
             case Side::TO_UP:
@@ -50,6 +61,59 @@ namespace OpMon {
             }
         }
 
+        void Overworld::updateCamera(sf::RenderTarget &frame) {
+            frame.setView(camera);
+            if (cameraLock)
+                return;
+
+            // Note: character is already center on itself:
+            // character.getPosition() returns the center of the player's sprite
+            const sf::Vector2f &playerPos = character.getPosition();
+            const sf::Vector2f &cameraSize = camera.getSize();
+            const sf::Vector2i mapSize = current->getDimensions() * 32;
+
+            sf::Vector2f center = camera.getCenter();
+
+            // Only move the camera when the player moves away from the center. "coef" determines the liberty given to
+            // the player. a coefficient of 0 means the camera is always centered on the player. a coefficient of 1
+            // allows the player to reach the screen borders.
+            float coef = 0.25;
+
+            // Prevent the camera to display too much void outside the map dimensions. 0 has no restriction; 1 means
+            // the camera never display any black zone. A value of 0.7 means the camera can't display more than 30% of
+            // out-of-map zone.
+            float nearBorderCoef = current->isIndoor() ? 0.7f : 1;
+
+            if (cameraSize.x * 0.9 > mapSize.x) {
+                center.x = (float)mapSize.x / 2;
+            } else {
+                // center around the player
+                center.x = std::max(center.x, playerPos.x - (cameraSize.x * coef / 2.f));
+                center.x = std::min(center.x, playerPos.x + (cameraSize.x * coef / 2.f));
+
+                // avoid displaying too much out-of-map zone.
+                center.x = std::max(center.x, cameraSize.x * nearBorderCoef / 2.f);
+                center.x = std::min(center.x, (float)mapSize.x - (cameraSize.x * nearBorderCoef / 2.f));
+            }
+            if (cameraSize.y * 0.9 > mapSize.y) {
+                center.y = (float)mapSize.y / 2;
+            } else {
+                // center around the player
+                center.y = std::max(center.y, playerPos.y - (cameraSize.y * coef / 2.f));
+                center.y = std::min(center.y, playerPos.y + (cameraSize.y * coef / 2.f));
+
+                // avoid displaying too much out-of-map zone.
+                center.y = std::max(center.y, cameraSize.y * nearBorderCoef / 2.f);
+                center.y = std::min(center.y, (float)mapSize.y - (cameraSize.y * nearBorderCoef / 2.f));
+            }
+            camera.setCenter(center);
+        }
+
+        void Overworld::resetCamera() {
+            camera.setCenter(character.getPosition());
+            updateCamera(frame);
+        }
+
         void Overworld::printElements(sf::RenderTexture &frame) {
             for(std::string const &i : current->getAnimatedElements()) {
                 Model::Data::Elements::elementsCounter[i]++;
@@ -66,6 +130,7 @@ namespace OpMon {
             Model::Data::player.tp(toTp, pos);
             current = Model::Data::World::maps.at(Model::Data::player.getMapId());
             character.setPosition(pos.x SQUARES - 16, pos.y SQUARES);
+            resetCamera();
             if(musicPath != current->getBg()) {
                 setMusic(current->getBg());
             }
@@ -100,8 +165,8 @@ namespace OpMon {
             character.setTexture(Model::Data::Ui::texturePP[(int)Side::TO_DOWN]);
             Model::Data::player.tp(mapId, sf::Vector2i(2, 4));
             character.setPosition(2 SQUARES - 16, 4 SQUARES);
-            camera.setCenter(this->getCharacter().getPosition());
             camera.setSize(sf::Vector2f(16 SQUARES, 16 SQUARES));
+            resetCamera();
 
             setMusic(current->getBg());
             layer1 = new MapLayer(current->getDimensions(), current->getLayer1());
@@ -110,12 +175,8 @@ namespace OpMon {
             character.setScale(2, 2);
             character.setOrigin(16, 16);
 
-            posArrow = View::frame.mapPixelToCoords(sf::Vector2i(512 - 75, 512 - 30));
-            Dialog::arrDial.setPosition(posArrow);
-
             jukebox.play(current->getBg());
 
-            View::frame.setView(camera);
             window.setKeyRepeatEnabled(true);
 
             OpMon::I18n::Translator::getInstance().setLang(OpMon::I18n::Translator::getInstance().getLang());
@@ -142,13 +203,11 @@ namespace OpMon {
                 fpsCounter = 0;
                 oldTicksFps = Utils::Time::getElapsedMilliseconds();
             }
+
             sf::Text debugText;
-            /*
-	In the bloc, every commented line must be moved in GameLoop
-      */
             if(debugMode) {
                 cout << "[FRAME Nｰ" << frames << "]" << endl;
-                cout << "Boucle : " << (is_in_dialog ? "Normale" : "Dialog") << endl;
+                cout << "Loop : " << (is_in_dialog ? "Dialog" : "Normal") << endl;
                 cout << "Tick: " << Utils::Time::getElapsedMilliseconds() << "ms" << endl;
                 cout << "PlayerPosition: " << Model::Data::player.getPosition().getPosition().x << " - " << Model::Data::player.getPosition().getPosition().y << endl;
                 cout << "PlayerPositionPx: " << character.getPosition().x << " - " << character.getPosition().y << endl;
@@ -158,11 +217,11 @@ namespace OpMon {
                 cout << "Start Frames : " << startFrames << endl;
 
                 debugText.setString("Debug mode");
-                debugText.setPosition(View::frame.mapPixelToCoords(sf::Vector2i(0, 0)));
+                debugText.setPosition(0, 0);
                 debugText.setFont(Model::Data::Ui::font);
                 debugText.setColor(sf::Color(127, 127, 127));
                 debugText.setCharacterSize(40);
-                fpsPrint.setPosition(View::frame.mapPixelToCoords(sf::Vector2i(0, 50)));
+                fpsPrint.setPosition(0, 50);
                 fpsPrint.setFont(Model::Data::Ui::font);
                 //fpsPrint.setColor(sf::Color(127, 127, 127));
                 fpsPrint.setCharacterSize(48);
@@ -171,12 +230,21 @@ namespace OpMon {
                     << "PxPosition : " << character.getPosition().x << " - " << character.getPosition().y << endl;
                 coordPrint.setString(oss.str());
                 coordPrint.setFont(Model::Data::Ui::font);
-                coordPrint.setPosition(View::frame.mapPixelToCoords(sf::Vector2i(0, 100)));
+                coordPrint.setPosition(0, 100);
                 coordPrint.setColor(sf::Color(127, 127, 127));
                 coordPrint.setCharacterSize(30);
             }
 
+            if(is_in_dialog) {
+                this->dialog->updateTextAnimation();
+            }
+
+
+            /**** draw ****/
+
+            updateCamera(View::frame);
             View::frame.clear(sf::Color::Black);
+
             //Drawing the two first layers
             if((debugMode ? printlayer[0] : true)) {
                 View::frame.draw(*layer1);
@@ -209,32 +277,8 @@ namespace OpMon {
             } else if(!Model::Data::player.getPosition().isAnim()) {
                 character.setTexture(Model::Data::Ui::texturePP[(int)Model::Data::player.getPosition().getDir()]);
             }
-            //Drawing character
-            View::frame.draw(character);
-            //Drawing the events above the player
-            for(Model::Event *event : current->getEvents()) {
-                const sf::Sprite *sprite = event->getSprite();
-                event->updateTexture();
-                if(sprite->getPosition().y > Model::Data::player.getPosition().getPositionPixel().y) {
-                    View::frame.draw(*sprite);
-                }
-            }
 
-            //Drawing the third layer
-            if((debugMode ? printlayer[2] : true)) {
-                View::frame.draw(*layer3);
-            }
-            if(scrolling && !camUnlock) {
-                camera.setCenter(character.getPosition().x + 16, character.getPosition().y + 16);
-            }
-            View::frame.setView(View::frame.getDefaultView());
-            View::frame.setView(camera);
-            printElements(View::frame);
-
-            if(is_in_dialog) {
-                this->dialog->updateTextAnimation();
-                this->dialog->draw(View::frame);
-            } else if(Model::Data::player.getPosition().isAnim()) {
+            if(!is_in_dialog && Model::Data::player.getPosition().isAnim()) {
                 if(Model::Data::player.getPosition().isMoving()) {
                     switch(Model::Data::player.getPosition().getDir()) {
                     case Side::TO_UP:
@@ -258,16 +302,41 @@ namespace OpMon {
                 }
             }
 
-            if(debugMode) {
-                if(printCollisions) {
-                    printCollisionLayer(View::frame);
+            //Drawing character
+            View::frame.draw(character);
+            //Drawing the events above the player
+            for(Model::Event *event : current->getEvents()) {
+                const sf::Sprite *sprite = event->getSprite();
+                event->updateTexture();
+                if(sprite->getPosition().y > Model::Data::player.getPosition().getPositionPixel().y) {
+                    View::frame.draw(*sprite);
                 }
+            }
+
+            if (debugMode && printCollisions){
+                printCollisionLayer(View::frame);
+            }
+
+            //Drawing the third layer
+            if((debugMode ? printlayer[2] : true)) {
+                View::frame.draw(*layer3);
+            }
+
+            printElements(View::frame);
+
+
+            /***** draw GUI *****/
+            frame.setView(frame.getDefaultView());
+
+            if(is_in_dialog) {
+              this->dialog->draw(View::frame);
+            }
+
+            if(debugMode) {
                 View::frame.draw(debugText);
                 View::frame.draw(fpsPrint);
                 View::frame.draw(coordPrint);
             }
-
-            //Refresh to do in GameLoop
 
             return GameStatus::CONTINUE;
         }
@@ -308,8 +377,7 @@ namespace OpMon {
                 delete(this->dialog);
             }
 
-            // `&dialogs[0]` converts the std::vector into a regular array.
-            this->dialog = new Dialog(&dialogs[0], dialogs.size());
+            this->dialog = new Dialog(dialogs);
         }
     } // namespace View
 
