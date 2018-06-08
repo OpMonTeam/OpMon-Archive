@@ -91,9 +91,9 @@ namespace OpMon{
 	  
 	case 3:
 	  if(atkFirst && turnNber == 0 || !atkFirst && turnNber == 2){
-	    atkHp = atkTurn.opmon->getHP();
-	  }else{
 	    defHp = defTurn.opmon->getHP();
+	  }else{
+	    atkHp = atkTurn.opmon->getHP();
 	  }
 	  phase++;
 	case 4:
