@@ -9,11 +9,11 @@
 #define OPMON_HPP
 
 #include "../../../utils/misc.hpp"
+#include "../storage/Data.hpp"
 #include "Nature.hpp"
 #include "Species.hpp"
 #include "item/IOpBox.hpp"
 #include "item/Item.hpp"
-#include "../storage/Data.hpp"
 #include <cmath>
 #include <iostream>
 
@@ -110,9 +110,9 @@ namespace OpMon {
 
             int tauxCapture;
 
-	  unsigned int confusedCD = 0;
-	  unsigned int sleepingCD = 0;
-	  
+            unsigned int confusedCD = 0;
+            unsigned int sleepingCD = 0;
+
           public:
             /**Lets you know if a OPMon is an OPMon that is initialized with a default initializer*/
             bool initialized = true;
@@ -121,8 +121,8 @@ namespace OpMon {
             bool afraid = false;
             bool inLove = false;
             bool vampigraine = false;
-            bool malediction = false; 
-	  
+            bool malediction = false;
+
             virtual ~OpMon();
 
             OpMon(const std::string &nickname, const Species *species, int level, const std::vector<Attack *> &attacks,
@@ -135,31 +135,31 @@ namespace OpMon {
             */
             OpMon(std::ifstream &in);
 
-	  OpMon(){
-	    initialized = true;
-	    //species = Data::OpMons::listOp[0];
-	  }
+            OpMon() {
+                initialized = true;
+                //species = Data::OpMons::listOp[0];
+            }
 
-	  int getConfusedCD(){
-	    return confusedCD;
-	  }
+            int getConfusedCD() {
+                return confusedCD;
+            }
 
-	  int getSleepingCD(){
-	    return sleepingCD;
-	  }
+            int getSleepingCD() {
+                return sleepingCD;
+            }
 
-	  void passCD(bool sleep);
+            void passCD(bool sleep);
 
-	  void goToSleep(){
-	    sleepingCD = Utils::Misc::randU(3);
-	    setStatus(Status::SLEEPING);
-	  }
+            void goToSleep() {
+                sleepingCD = Utils::Misc::randU(3);
+                setStatus(Status::SLEEPING);
+            }
 
-	  void drinkTooMuch(){
-	    confused = true;
-	    confusedCD = Utils::Misc::randU(4);
-	  }
-	  
+            void drinkTooMuch() {
+                confused = true;
+                confusedCD = Utils::Misc::randU(4);
+            }
+
             /**Returns true if the OPMon is well captured*/
             bool captured(I_OpBox const &OpBox);
 
