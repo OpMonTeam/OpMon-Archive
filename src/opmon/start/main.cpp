@@ -80,7 +80,7 @@ UNS
                 OptionsSave::addParam("lang", "eng");
             }
             oplog("Loading the resources.");
-	    oplog("Repertory : " + Utils::Path::getResourcePath());
+            oplog("Repertory : " + Utils::Path::getResourcePath());
             Initializer::init();
             oplog("Loading completed! Opening gui.");
             //bgtask = new std::thread(bgTask);

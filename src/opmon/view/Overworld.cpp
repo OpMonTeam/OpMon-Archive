@@ -1,8 +1,8 @@
 
-#include <algorithm>
 #include "Overworld.hpp"
 #include "../model/objects/Enums.hpp"
 #include "../start/Initializer.hpp"
+#include <algorithm>
 
 #define FPS_TICKS 33
 #include "../../utils/defines.hpp"
@@ -33,7 +33,6 @@ namespace OpMon {
             jukebox.play(mus);
         }
 
-
         bool Overworld::isCameraLocked() {
             return cameraLock;
         }
@@ -63,7 +62,7 @@ namespace OpMon {
 
         void Overworld::updateCamera(sf::RenderTarget &frame) {
             frame.setView(camera);
-            if (cameraLock)
+            if(cameraLock)
                 return;
 
             // Note: character is already center on itself:
@@ -84,7 +83,7 @@ namespace OpMon {
             // out-of-map zone.
             float nearBorderCoef = current->isIndoor() ? 0.7f : 1;
 
-            if (cameraSize.x * 0.9 > mapSize.x) {
+            if(cameraSize.x * 0.9 > mapSize.x) {
                 center.x = (float)mapSize.x / 2;
             } else {
                 // center around the player
@@ -95,7 +94,7 @@ namespace OpMon {
                 center.x = std::max(center.x, cameraSize.x * nearBorderCoef / 2.f);
                 center.x = std::min(center.x, (float)mapSize.x - (cameraSize.x * nearBorderCoef / 2.f));
             }
-            if (cameraSize.y * 0.9 > mapSize.y) {
+            if(cameraSize.y * 0.9 > mapSize.y) {
                 center.y = (float)mapSize.y / 2;
             } else {
                 // center around the player
@@ -239,7 +238,6 @@ namespace OpMon {
                 this->dialog->updateTextAnimation();
             }
 
-
             /**** draw ****/
 
             updateCamera(View::frame);
@@ -313,7 +311,7 @@ namespace OpMon {
                 }
             }
 
-            if (debugMode && printCollisions){
+            if(debugMode && printCollisions) {
                 printCollisionLayer(View::frame);
             }
 
@@ -324,12 +322,11 @@ namespace OpMon {
 
             printElements(View::frame);
 
-
             /***** draw GUI *****/
             frame.setView(frame.getDefaultView());
 
             if(is_in_dialog) {
-              this->dialog->draw(View::frame);
+                this->dialog->draw(View::frame);
             }
 
             if(debugMode) {

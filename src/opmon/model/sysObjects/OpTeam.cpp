@@ -8,20 +8,20 @@ namespace OpMon {
         }
 
         void OpTeam::heal() {
-	  for(OpMon* opmon : opteam){
-	    opmon->heal(opmon->getStatHP());
-	    opmon->confused = false;
-	    opmon->setStatus(Status::NOTHING);
-	  }
+            for(OpMon *opmon : opteam) {
+                opmon->heal(opmon->getStatHP());
+                opmon->confused = false;
+                opmon->setStatus(Status::NOTHING);
+            }
         }
 
         bool OpTeam::addOpMon(OpMon *toAdd) {
-	  if(opteam.size() < 6){
-	    opteam.push_back(toAdd);
-	    return true;
-	  }else{
-            return false;
-	  }
+            if(opteam.size() < 6) {
+                opteam.push_back(toAdd);
+                return true;
+            } else {
+                return false;
+            }
         }
 
         OpMon *OpTeam::removeOp(int number) {
@@ -39,16 +39,16 @@ namespace OpMon {
 
         bool OpTeam::isKo() const {
             int ko = 0;
-	    for(OpMon* opmon : opteam){
-	      if(opmon->getHP() <= 0){
-		ko++;
-	      }
-	    }
+            for(OpMon *opmon : opteam) {
+                if(opmon->getHP() <= 0) {
+                    ko++;
+                }
+            }
             return (ko == opteam.size());
         }
 
         int OpTeam::getSize() const {
-	  return opteam.size();
+            return opteam.size();
         }
 
     } // namespace Model

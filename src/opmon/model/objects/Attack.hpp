@@ -9,10 +9,10 @@ Contains Attack class definition
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUE_HPP_
 
 #include "../../../utils/misc.hpp"
-#include "Enums.hpp"
-#include <iostream>
-#include "Turn.hpp"
 #include "../../view/Battle.hpp"
+#include "Enums.hpp"
+#include "Turn.hpp"
+#include <iostream>
 
 namespace OpMon {
     namespace Model {
@@ -22,69 +22,68 @@ namespace OpMon {
        Represents an OpMon attack
 	*/
 
+        class AttackEffect {
+          public:
+            virtual int apply(Attack & /*attack*/, OpMon & /*attacker*/, OpMon & /*defender*/, Turn & /* atkTurn */) { return 0; }
+        };
 
-      class AttackEffect {
-      public:
-        virtual int apply(Attack &/*attack*/, OpMon & /*attacker*/, OpMon & /*defender*/, Turn& /* atkTurn */) { return 0; }
-      };
-
-       class Attack {
+        class Attack {
           public:
             virtual ~Attack();
             Attack(std::string name, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::string className, AttackEffect *preEffect = NULL, AttackEffect *postEffect = NULL);
-	 
+
             void healPP() {
                 pp = ppMax;
             }
-	 
+
             Type getType() {
                 return type;
             }
 
-	 int getPP(){
-	   return pp;
-	 }
+            int getPP() {
+                return pp;
+            }
 
-	 int getPPMax(){
-	   return ppMax;
-	 }
-	 
+            int getPPMax() {
+                return ppMax;
+            }
+
             /**atk attacks the def OpMon*/
             //->Final
-	  int attack(OpMon &atk, OpMon &def, Turn& atkTurn);
-	 void ifFails(OpMon &, OpMon &, Turn& /*atkTurn*/) {}
-	 
+            int attack(OpMon &atk, OpMon &def, Turn &atkTurn);
+            void ifFails(OpMon &, OpMon &, Turn & /*atkTurn*/) {}
+
             std::string getClassName() {
                 return className;
             }
-	 
+
             std::string save();
-	 
+
             void setPP(int PP) {
                 this->pp = PP;
             }
-	 
-            void setPPMax(int PPMax) {
-	      this->ppMax = PPMax;
-            }
-	 
-	 int getPriority(){
-	   return this->priority;
-	 }
 
-	 std::string getName(){
-	   return name;
-	 }
-	 
-         // methods used by pre and post Effects
-         void setPower(int power) { this->power = power; }
-         int getAccuracy() { return this->accuracy; }
-         void setAccuracy(int accuracy) { this->accuracy = accuracy; }
-         int getPart() { return part; }
-         void setPart(int part) { this->part = part; }
-         int getHpLost() { return this->hpLost; }
-         int getSavedDefSpe() { return this->savedDefSpe; }
-         void setSavedDefSpe(int defSpe) { this->savedDefSpe = defSpe; }
+            void setPPMax(int PPMax) {
+                this->ppMax = PPMax;
+            }
+
+            int getPriority() {
+                return this->priority;
+            }
+
+            std::string getName() {
+                return name;
+            }
+
+            // methods used by pre and post Effects
+            void setPower(int power) { this->power = power; }
+            int getAccuracy() { return this->accuracy; }
+            void setAccuracy(int accuracy) { this->accuracy = accuracy; }
+            int getPart() { return part; }
+            void setPart(int part) { this->part = part; }
+            int getHpLost() { return this->hpLost; }
+            int getSavedDefSpe() { return this->savedDefSpe; }
+            void setSavedDefSpe(int defSpe) { this->savedDefSpe = defSpe; }
 
           protected:
             std::string className;
