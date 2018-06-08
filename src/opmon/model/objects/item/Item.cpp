@@ -48,7 +48,8 @@ UNS
 	//Enfin, tout ce qui est Item a tenir.
 	Item::itemsLst[150] = new Item("Croc Rasoir", false, false, true, BagCat::OBJECTS, 3);//En fait 3 c'est ???
 	//Jusqu'aux ct : Item a tenir
-	//Après: CT*/ //NINTENDO(c)
+	//Après: CT*/
+            //NINTENDO(c)
         }
 
         Item::Item(string name, bool usable, bool usableInFight, bool givable, BagCat categorie, int id)

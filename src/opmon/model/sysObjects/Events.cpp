@@ -101,7 +101,7 @@ UNS
                 sprite->setOrigin(16, 16);
                 this->position += sf::Vector2f(16, 0);
                 setPredefinedMove(predefinedPath);
-		mapPos.setDir(posDir);
+                mapPos.setDir(posDir);
             }
 
             TalkingCharaEvent::TalkingCharaEvent(std::string texturesKey, sf::Vector2f const &position,

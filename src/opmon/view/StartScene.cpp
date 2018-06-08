@@ -8,7 +8,6 @@
 #include "./Window.hpp"
 #include "Dialog.hpp"
 
-
 UNS
 
   namespace OpMon {
@@ -25,7 +24,7 @@ UNS
             }
             it++;
             strName = Utils::OpString("prof.dialog.start.19", Model::Data::player.getNameP());
-            txtP1.emplace_back();   // empty space replaced later by OpString 'strName'
+            txtP1.emplace_back(); // empty space replaced later by OpString 'strName'
             for(it = it; it < 27; it++) {
                 string actual;
                 actual << string("prof.dialog.start.") << it + 1;

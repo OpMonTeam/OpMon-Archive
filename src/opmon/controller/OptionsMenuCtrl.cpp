@@ -12,7 +12,12 @@
 
 using namespace std;
 
-enum MenuOption {BACK = 0, FULLSCREEN = 1, LANGUAGE = 2, CONTROLS = 3, VOLUME = 4, CREDITS = 5};
+enum MenuOption { BACK = 0,
+                  FULLSCREEN = 1,
+                  LANGUAGE = 2,
+                  CONTROLS = 3,
+                  VOLUME = 4,
+                  CREDITS = 5 };
 
 namespace OpMon {
     namespace Controller {
@@ -111,9 +116,9 @@ namespace OpMon {
                         menu.setCurrentOption(View::OptionType::ALL);
                         return GameStatus::CONTINUE;
                     }
-                } else if (event.key.code == sf::Keyboard::Left) {
+                } else if(event.key.code == sf::Keyboard::Left) {
                     lowerVolume();
-                } else if (event.key.code == sf::Keyboard::Right) {
+                } else if(event.key.code == sf::Keyboard::Right) {
                     raiseVolume();
                 }
             }
@@ -134,7 +139,7 @@ namespace OpMon {
         }
 
         void OptionsMenuCtrl::toggleVolume() {
-            if (View::jukebox.getGlobalVolume() > 1) {
+            if(View::jukebox.getGlobalVolume() > 1) {
                 View::jukebox.setGlobalVolume(1);
             } else {
                 View::jukebox.setGlobalVolume(100);
