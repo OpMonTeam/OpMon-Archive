@@ -97,11 +97,10 @@ namespace Utils {
                     std::string data_dir = data_dir_list.substr(0, next_delimiter);
                     if(!data_dir.empty() && _isFolder(data_dir + "/OpMon")){
 		      return data_dir + "/OpMon/";
-		    }else{
-		      return "/usr/local/share/OpMon/";
 		    }
                     data_dir_list.erase(0, next_delimiter + 1);
                 }
+		        return "/usr/local/share/OpMon/";
             }
             return nullptr;
         }
