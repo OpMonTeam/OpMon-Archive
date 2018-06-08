@@ -60,7 +60,8 @@ UNS
 	  cout << "NOPE!" << endl;
 	  cout << Utils::hash(inStr) << " != " << hash << endl;
 	  return nullptr;
-	  }*/ //J'ai pas encore mis d'algorithme de hash dans le programme
+	  }*/
+                //J'ai pas encore mis d'algorithme de hash dans le programme
                 return toReturn;
             }
 
