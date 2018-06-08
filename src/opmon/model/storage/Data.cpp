@@ -8,12 +8,14 @@ namespace OpMon {
     namespace Model {
         namespace Data {
 
-            Player player;
-
+	  Player player;
+	  
             namespace OpMons {
-                std::map<unsigned int, Species> listOp;
+                std::map<unsigned int, Species*> listOp;
                 std::vector<std::map<int, std::string>> atkOpLvl;
                 std::vector<std::vector<Stats>> evs;
+	      std::vector<std::vector<sf::Texture> > opSprites;
+	      std::map<Type, sf::Texture> typesTextures;
             } // namespace OpMons
 
             namespace World {
@@ -21,6 +23,22 @@ namespace OpMon {
                 sf::Texture tileset;
             } // namespace World
 
+	       namespace Battle {
+	            std::map<std::string, sf::Texture> backgrounds;
+	            sf::Texture dialog;
+	            sf::Texture attackDialog;
+	            sf::Texture cursor;
+	            std::vector<sf::Texture> choices;
+	            std::map<std::string, std::vector<sf::Texture> > charaBattleTextures;
+	            std::list<sf::Texture> battlePlayerAnim;
+	            sf::Texture infoboxPlayer;
+	            sf::Texture infoboxTrainer;
+	            sf::Texture healthbar1;
+	            sf::Texture healthbar2;
+	            sf::Texture shadowPlayer;
+	            sf::Texture shadowTrainer;
+	  }
+	  
             namespace Elements {
                 std::map<std::string, sf::Vector2f> elementsPos;
                 std::map<std::string, int> elementsCounter;
@@ -40,6 +58,8 @@ namespace OpMon {
                 sf::Texture walkingPP[4];
                 sf::Texture walkingPP2[4];
                 sf::Font font;
+							  sf::Texture dialogBackground;
+							  sf::Texture dialogArrow;
             } // namespace Ui
             namespace Animations {
                 sf::Texture fen[6];

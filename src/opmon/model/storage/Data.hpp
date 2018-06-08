@@ -18,6 +18,7 @@
 #include <iostream>
 #include <map>
 #include <vector>
+#include <list>
 
 namespace OpMon {
     namespace Model {
@@ -30,10 +31,13 @@ namespace OpMon {
 
             extern Player player;
 
+	  
             namespace OpMons {
-                extern std::map<unsigned int, Species> listOp;
-                extern std::vector<std::map<int, std::string>> atkOpLvl;
-                OP_DEPRECATED extern std::vector<std::vector<Stats>> evs;
+	      extern std::map<unsigned int, Species*> listOp;
+	      extern std::vector<std::map<int, std::string>> atkOpLvl;
+	      OP_DEPRECATED extern std::vector<std::vector<Stats>> evs;
+	      extern std::vector<std::vector<sf::Texture> > opSprites;
+	      extern std::map<Type, sf::Texture> typesTextures;
             } // namespace OpMons
 
             namespace World {
@@ -41,6 +45,22 @@ namespace OpMon {
                 extern sf::Texture tileset;
             } // namespace World
 
+	  namespace Battle {
+	    extern std::map<std::string, sf::Texture> backgrounds;
+	    extern sf::Texture dialog;
+	    extern sf::Texture attackDialog;
+	    extern sf::Texture cursor;
+	    //extern std::vector<sf::Texture> choices;
+	    extern std::map<std::string, std::vector<sf::Texture> > charaBattleTextures;
+	    extern std::list<sf::Texture> battlePlayerAnim;
+	    extern sf::Texture infoboxPlayer;
+	    extern sf::Texture infoboxTrainer;
+	    extern sf::Texture shadowPlayer;
+	    extern sf::Texture shadowTrainer;
+	    extern sf::Texture healthbar1;
+	    extern sf::Texture healthbar2;
+	  }
+	  
             namespace Elements {
                 extern std::map<std::string, sf::Vector2f> elementsPos;
                 extern std::map<std::string, int> elementsCounter;
@@ -55,8 +75,7 @@ namespace OpMon {
                 extern sf::Texture walkingPP2[4];
                 extern sf::Texture backPP; //Not init yet
 
-                extern std::map<std::string, std::vector<sf::Texture>> charaTextures;
-
+                extern std::map<std::string, std::vector<sf::Texture> > charaTextures;
                 //Battle
                 extern sf::Texture bActButtons[4];
                 extern sf::Texture bHpBar;
@@ -70,6 +89,9 @@ namespace OpMon {
                 extern sf::SoundBuffer shopDoorSoundBuffer;
                 //std::string backgrounds[];
                 extern sf::Font font;
+
+							  extern sf::Texture dialogBackground;
+							  extern sf::Texture dialogArrow;
             } // namespace Ui
 
             namespace Sounds {
