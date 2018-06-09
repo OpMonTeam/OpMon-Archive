@@ -39,7 +39,7 @@
 <li><h3>Lebordelic</h3></li>
 <li><h3>Sythos</h3></li>
 <li><h3><a href="http://osaris.net/">Osaris</a></h3></li>
-<li><h3>Our families, friends, and everyone who learnt us what we know today!</h3></li>
+<li><h3>Our families, friends, and everyone who taught us what we know today!</h3></li>
 <li><h4>And many others...</h4></li>
 </ul>
 
@@ -52,4 +52,4 @@
 * Silvermoon
 
 ### Others
-Look [here](https://github.com/jlppc/OpMon/blob/master/Resources/README.md)
+Look [here](https://github.com/jlppc/OpMon/blob/master/Resources/README.md).
