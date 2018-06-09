@@ -1,0 +1,137 @@
+# OpMon english translation
+key.void= 
+key.load.txt=Laden...
+
+key.title.1=Neues Spiel
+key.title.2=Spiel laden
+key.title.3=Optionen
+key.title.4=Beenden
+
+key.options.retour=Zurück
+key.options.title=Optionen
+key.options.ecran=Vollbild
+key.options.lang=Sprache
+key.options.vol=Steuerung
+key.options.control=Credits
+key.options.lang.title=Sprache
+key.options.credit.1=Gründer und
+key.options.credit.2=erster
+key.options.credit.3=Programmierer
+key.options.credit.4=Spiel- und
+key.options.credit.5=Grafikdesigner
+key.options.credit.6=Mitwirkende :
+key.options.credit.7=Aerzia, BAKfr, gberthou
+key.options.credit.8=Contributors : imZERKKA, Mat, Jseutter, Stelyus, Ezaron, rjphares
+key.options.credit.81=Rixem, Jo, Imperator Dei, Léo, LinkyFR, Bircoum, louracame
+key.options.credit.82=Samurai413x, Silvermoon, Lebordelic, Asvirius, jubalh
+key.options.credit.9=                   v0.15dev
+key.options.cred.title=Credits
+
+key.nameEntry.top=Wie ist der Name deines Charakters?
+key.nameEntry.med=Gib einen Namen ein
+key.nameEntry.indic.1=Drücke Enter
+key.nameEntry.indic.2=wenn du fertig bist
+
+key.prof.dialog.start.1=Hallo und willkomen in Regimys
+key.prof.dialog.start.2=Ich hoffe dir geht's gut
+key.prof.dialog.start.3= 
+key.prof.dialog.start.4=Ich bin Professor
+key.prof.dialog.start.5=Kiwaï, der Besitzer des
+key.prof.dialog.start.6=OpMon Labors von Euvi-town
+key.prof.dialog.start.7=Vielleicht fragst du dich: 
+key.prof.dialog.start.8="Was macht er in dieser
+key.prof.dialog.start.9=kleinen Stadt?" Dies ist meine Geschichte.
+key.prof.dialog.start.10=Ich bin hier aufgewachsen
+key.prof.dialog.start.11=und habe mein erstes OpMon getroffen :
+key.prof.dialog.start.12=Oursiflamme
+key.prof.dialog.start.13=Es ist ein kleines Feuertier
+key.prof.dialog.start.14=süß und beschützerisch
+key.prof.dialog.start.15=mach dass er sich entwickelt, damit er süß bleibt
+key.prof.dialog.start.16=Tschuldigung, ich rede nur über mich selbst.
+key.prof.dialog.start.17=Also... Wie heisst du?
+key.prof.dialog.start.18=                         
+key.prof.dialog.start.19=Nun, ~, ich werde dir von
+key.prof.dialog.start.20=diesem Ort und den Kreaturen die
+key.prof.dialog.start.21=die hier leben erzählen.
+key.prof.dialog.start.22=Bist du bereit?
+key.prof.dialog.start.23=Dir scheint dieser Ort bekannt zu sein.
+key.prof.dialog.start.24=Warst du schoneinmal hier?
+key.prof.dialog.start.25=Nun, ich vermute ich werde
+key.prof.dialog.start.26=ihn dich selbst erkunden lassen.
+key.prof.dialog.start.27=Bis bald!
+
+key.fedesc.1=Euvi-Town
+key.fedesc.2=Diese kleine Stadt ist ruhig
+key.fedesc.3=und entspannend.
+
+key.ppHouse=~s Haus.
+
+key.rivalHouse=Skullks Haus.
+
+key.labo=Professor Kiwaïs Labor.
+
+key.weirdsign.1=Betreten verboten!
+key.weirdsign.2=Bauarbeiten an der vierten Wand
+key.kid=Ich mag kurze Hosen!
+
+key.prof.dialog.1=Hi ! Hattest du eine gute Reise?
+key.prof.dialog.2=Shulk ist gerade draußen, sorry!
+key.prof.dialog.3=Komm später für Neuigkeiten zurück
+
+key.pcRunLinux=Dieser Computer nutzt Linux !
+
+key.playerhome.tv.1=Wir sehen eine Reality Show
+key.playerhome.tv.2=mit OpMons aber sie sehen nicht
+key.playerhome.tv.3=sehr glücklich aus...
+
+key.playermom.dialog.1=Geht es dir gut Schätzchen?
+key.playermom.dialog.2=...
+
+key.rt14.sk.1=Wer bist du ?
+key.rt14.sk.2=Du solltest nicht
+key.rt14.sk.3=hier sein...
+
+key.fe.fisherman.1=Fisherman : Oh ! Du hast mich überrascht !
+key.fe.fisherman.2=Ich komme gerne her zum ausruhen
+key.fe.fisherman.3=Alles ist ruhig und einfach
+key.fe.fisherman.4=Obwohl es wahr ist, dass es
+key.fe.fisherman.5=nicht viele Fische in
+key.fe.fisherman.6=der Gegend gibt
+key.fe.fisherman.7=...
+key.fe.fisherman.8=Warte, Ich habe dich hier noch nie gesehen ?
+key.fe.fisherman.9=Bist du neu ?
+
+key.inferm.dialog.1=Willkommen !
+key.inferm.dialog.1=Möchtest du deine OpMons heilen ?
+key.inferm.dialog.1=... Aber ? Du hast keine OpMons.
+
+key.battle.attack=Attacke
+key.battle.bag=Tasche
+key.battle.run=Rennen
+key.battle.opmon=OpMon
+
+key.battle.dialog.attack=~ benutze ~ !
+key.battle.status.frozen.out=~ ist nicht mehr erstarrt!
+key.battle.status.frozen.in=~ ist erstarrt!
+key.battle.status.frozen.attack=~ ist erstarrt und kann nicht angreifen !
+
+key.battle.status.sleep.out=~ ist aufgewacht!
+key.battle.status.sleep.in=~ fällt in einen tiefen Schlaf!
+key.battle.status.sleep.attack=~ schläft tief.
+
+key.battle.status.paralysed.out=~ ist nicht mehr gelähmt!
+key.battle.status.paralysed.in=~ ist gelähmt!
+key.battle.status.paralysed.attack.success.1=Trotz der lähmung,
+key.battle.status.paralysed.attack.success.2=schafft ~ es anzugreifen!
+key.battle.status.paralysed.attack.fail=~ ist gelähmt und kann nicht angreifen!
+
+key.battle.status.confused.out=~ ist nicht mehr verwirrt!
+key.battle.status.confused.in=~ ist verwirrt!
+key.battle.status.confused.attack.success.1=Trotz der Verwirrung,
+key.battle.status.confused.attack.success.2=greift ~ an!
+key.battle.status.confused.attack.fail=~ ist verwirrt.
+key.battle.status.confused.hplost=~ verliert ~ hp.
+
+key.battle.wait=Was tun?
+
+end
