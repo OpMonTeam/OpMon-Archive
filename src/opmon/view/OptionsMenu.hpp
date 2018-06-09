@@ -62,6 +62,7 @@ namespace OpMon {
             sf::Text langFr;
             sf::Text langEng;
             sf::Text langEsp;
+            sf::Text langDe;
             sf::Text txtRetour;
             sf::Text txtOptions;
             sf::Text txtCre1;
@@ -91,8 +92,8 @@ namespace OpMon {
             sf::Text txtCred;
             sf::Sprite bgLangues;
             //J_Texture listeLangues[3] = {};
-            sf::Vector2f curPosLang[4] = {};
-            sf::Vector2f curSizeLang[4];
+            sf::Vector2f curPosLang[5] = {};
+            sf::Vector2f curSizeLang[5];
             sf::Texture textures2[5];
             sf::Sprite coche;
 

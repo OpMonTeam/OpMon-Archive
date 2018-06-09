@@ -42,7 +42,8 @@ namespace OpMon {
             std::map<const std::string, const std::string> languages = {
               {"en", "English"},
               {"es", "Espa\u00F1ol"},
-              {"fr", "Fran\u00E7ais"}};
+              {"fr", "Fran\u00E7ais"},
+              {"de", "Deutsch"}};
 
             return languages;
         }

@@ -21,6 +21,9 @@ UNS
             langEsp.setString(L"Espa\u00F1ol");
             langEsp.setFont(Model::Data::Ui::font);
             langEsp.setCharacterSize(FONT_SIZE_DEFAULT);
+            langDe.setString("Deutsch");
+            langDe.setFont(Model::Data::Ui::font);
+            langDe.setCharacterSize(FONT_SIZE_DEFAULT);
             txtRetour.setString(kget("options.retour"));
             txtRetour.setFont(Model::Data::Ui::font);
             txtRetour.setCharacterSize(FONT_SIZE_DEFAULT);
@@ -128,6 +131,7 @@ UNS
             langEsp.setPosition(45, 170);
             langEng.setPosition(45, 100);
             langFr.setPosition(45, 240);
+            langDe.setPosition(45, 310);
 
             txtRetour.setPosition(55, 25);
 
@@ -167,7 +171,7 @@ UNS
                 j += 69;
             }
 
-            for(int i = 1, j = 86; i < 4; i++) {
+            for(int i = 1, j = 86; i < 5; i++) {
                 curPosLang[i].x = 23;
                 curPosLang[i].y = j;
                 curSizeLang[i].x = 464 / rectSurb.getGlobalBounds().width;
@@ -207,10 +211,10 @@ UNS
                 } else {
                     curPosLangI++;
                 }
-                if(curPosLangI >= 4) {
+                if(curPosLangI >= 5) {
                     curPosLangI = 0;
                 } else if(curPosLangI < 0) {
-                    curPosLangI = 3;
+                    curPosLangI = 4;
                 }
             default:
                 break;
@@ -243,6 +247,7 @@ UNS
             frame.draw(langEng);
             frame.draw(langEsp);
             frame.draw(langFr);
+            frame.draw(langDe);
             frame.draw(txtRetour);
             frame.draw(txtLang);
             rectSurb.setPosition(curPosOpt[curPosLangI]);

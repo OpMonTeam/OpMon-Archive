@@ -90,6 +90,11 @@ namespace OpMon {
                             Model::OptionsSave::modifyParam("lang", "fr");
                             tr.setLang("fr");
                             break;
+                        case 4:
+                            push.play();
+                            Model::OptionsSave::modifyParam("lang", "de");
+                            tr.setLang("de");
+                            break;
                         }
                     } else if(menu.getCurrentOption() == View::OptionType::CREDITS) {
                         push.play();
