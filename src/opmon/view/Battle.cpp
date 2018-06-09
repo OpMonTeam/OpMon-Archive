@@ -47,7 +47,7 @@ namespace OpMon {
             opName[1].setString(defTurn.opmon->getNickname());
 
 	    std::ostringstream oss3;
-	    oss3 << atkHp << " / " << atkTurn.opmon->getStatHP() << " HP";
+	    oss3 << " HP : "<< atkHp << " / " << atkTurn.opmon->getStatHP()  ;
 	    opHp.setString(oss3.str());
 	    
             frame.draw(opName[0]);
@@ -304,7 +304,7 @@ namespace OpMon {
             }
 
 	    opHp.setFont(Model::Data::Ui::font);
-	    opHp.setCharacterSize(22);
+	    opHp.setCharacterSize(14);
 	    opHp.setColor(sf::Color::Black);
 	    opHp.setPosition(332, 264);
 
