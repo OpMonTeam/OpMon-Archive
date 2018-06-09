@@ -14,9 +14,9 @@ namespace OpMon {
         class OptionsMenuCtrl : public AGameScreen {
           private:
             View::OptionsMenu view;
-            sf::Sound nope;
-            sf::Sound arrow;
-            sf::Sound push;
+            sf::Sound nope = sf::Sound();
+            sf::Sound arrow = sf::Sound();
+            sf::Sound push = sf::Sound();
             void toggleVolume();
             void raiseVolume();
             void lowerVolume();
