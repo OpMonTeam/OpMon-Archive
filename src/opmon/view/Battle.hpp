@@ -47,6 +47,7 @@ namespace OpMon {
 
             sf::Text opName[2];
             sf::Text opLevel[2];
+	  sf::Text opHp;
 
             sf::Sprite healthbar1[2];
             sf::Sprite healthbar2[2];

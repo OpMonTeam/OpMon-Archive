@@ -46,10 +46,15 @@ namespace OpMon {
             opName[0].setString(atkTurn.opmon->getNickname());
             opName[1].setString(defTurn.opmon->getNickname());
 
+	    std::ostringstream oss3;
+	    oss3 << atkHp << " / " << atkTurn.opmon->getStatHP() << " HP";
+	    opHp.setString(oss3.str());
+	    
             frame.draw(opName[0]);
             frame.draw(opName[1]);
             frame.draw(opLevel[0]);
             frame.draw(opLevel[1]);
+	    frame.draw(opHp);
             if(!turnLaunched && *turnActivated) {
                 phase = 1;
                 dialogSpr.setTexture(Model::Data::Ui::dialogBackground);
@@ -297,6 +302,11 @@ namespace OpMon {
                 opName[i].setColor(sf::Color::Black);
                 opLevel[i].setColor(sf::Color::Black);
             }
+
+	    opHp.setFont(Model::Data::Ui::font);
+	    opHp.setCharacterSize(22);
+	    opHp.setColor(sf::Color::Black);
+	    opHp.setPosition(332, 264);
 
             waitText.setFont(Model::Data::Ui::font);
             waitText.setCharacterSize(22);
