@@ -11,7 +11,7 @@ namespace OpMon {
           , trainerTeam(two)
           , atk(one->getOp(0))
           , def(two->getOp(0))
-          , view(one, two, "cyrion", "grass") {
+          , view(one, two, "beta", "grass") {
             initBattle(0, 0);
         }
 

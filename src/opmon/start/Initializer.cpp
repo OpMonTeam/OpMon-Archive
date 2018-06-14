@@ -399,6 +399,8 @@ _______________________________________________________________
             ResourceLoader::load(Model::Data::Battle::charaBattleTextures["player"][0], "sprites/chara/pp/pp_battle.png");
             Model::Data::Battle::charaBattleTextures["cyrion"].push_back(sf::Texture());
             ResourceLoader::load(Model::Data::Battle::charaBattleTextures["cyrion"][0], "sprites/chara/cyrion/cyrion_battle.png");
+            Model::Data::Battle::charaBattleTextures["beta"].push_back(sf::Texture());
+            ResourceLoader::load(Model::Data::Battle::charaBattleTextures["beta"][0], "sprites/chara/beta/beta_battle.png");
             Model::Data::Battle::battlePlayerAnim.push_back(Model::Data::Battle::charaBattleTextures["player"][0]);
             ResourceLoader::load(Model::Data::Battle::infoboxPlayer, "sprites/battle/square_1.png");
             ResourceLoader::load(Model::Data::Battle::infoboxTrainer, "sprites/battle/square_2.png");
