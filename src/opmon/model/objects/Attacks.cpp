@@ -1,6 +1,7 @@
 #include "Attacks.hpp"
 #include "../../../utils/misc.hpp"
 
+#pragma GCC diagnostic ignored "-Wunused-parameter"
 namespace OpMon {
     namespace Model {
 
@@ -412,3 +413,4 @@ namespace OpMon {
 
     } // namespace Model
 } // namespace OpMon
+#pragma GCC diagnostic pop

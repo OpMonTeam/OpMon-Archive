@@ -77,6 +77,7 @@ namespace OpMon {
                     turns[1] = &atkTurn;
                 }
                 Utils::OpString str = Utils::OpString("battle.dialog.attack", new std::string("Poké1"), new std::string("atk1"));
+#pragma GCC diagnostic ignored "-Wimplicit-fallthrough"
                 switch(phase) {
                 case 1:
                     turnTxt[0].setString(Utils::OpString::quickString("battle.dialog.attack", {turns[turnNber]->opmon->getNickname(), turns[turnNber]->attackUsed->getName()}));
@@ -91,9 +92,9 @@ namespace OpMon {
                         }
                         break;
                     }
-
+		    
                 case 3:
-                    if(atkFirst && turnNber == 0 || !atkFirst && turnNber == 2) {
+		  if((atkFirst && turnNber == 0) || (!atkFirst && turnNber == 2)) {
                         defHp = defTurn.opmon->getHP();
                     } else {
                         atkHp = atkTurn.opmon->getHP();
@@ -119,6 +120,7 @@ namespace OpMon {
                     }
                     break;
                 }
+#pragma GCC diagnostic pop
 
                 frame.draw(turnTxt[0]);
                 frame.draw(turnTxt[1]);
@@ -348,6 +350,7 @@ namespace OpMon {
             case Model::Side::TO_DOWN:
                 cur += 2;
                 break;
+	    default: break;
             }
 
             if(cur >= 0 && cur < 4) {

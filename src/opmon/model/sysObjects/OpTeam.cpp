@@ -38,7 +38,7 @@ namespace OpMon {
         }
 
         bool OpTeam::isKo() const {
-            int ko = 0;
+            unsigned int ko = 0;
             for(OpMon *opmon : opteam) {
                 if(opmon->getHP() <= 0) {
                     ko++;
