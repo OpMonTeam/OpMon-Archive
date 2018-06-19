@@ -25,6 +25,7 @@ namespace OpMon {
         class AttackEffect {
           public:
             virtual int apply(Attack & /*attack*/, OpMon & /*attacker*/, OpMon & /*defender*/, Turn & /* atkTurn */) { return 0; }
+	  virtual ~AttackEffect(){}
         };
 
         class Attack {

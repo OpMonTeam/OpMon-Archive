@@ -11,7 +11,7 @@
 #include "../item/Item.hpp"
 #include "Evolution.hpp"
 #include <iostream>
-
+#pragma GCC diagnostic ignored "-Wunused-parameter"
 namespace OpMon {
     namespace Model {
 
@@ -37,9 +37,11 @@ namespace OpMon {
             class E_Land : public Evolution {
               public:
                 E_Land(int evo, std::string lieu);
+
                 bool checkEvolve(OpMon const &toCheck) const {
                     return false; //Il faudra tester si l'endroit ou se trouve le dresseur est le bon.
                 }
+
                 const int evolID = 6;
 
               private:
@@ -99,4 +101,5 @@ namespace OpMon {
         using namespace Evolutions;
     } // namespace Model
 } // namespace OpMon
+#pragma GCC diagnostic pop
 #endif // EVOLUTIONS_HPP_INCLUDED

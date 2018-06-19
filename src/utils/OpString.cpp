@@ -24,7 +24,7 @@ UNS
 
     OpString::OpString(string const &key, vector<sf::String *> obj) {
         this->key = key;
-        int instances = StringKeys::countInstances(StringKeys::get(key), '~');
+        unsigned int instances = StringKeys::countInstances(StringKeys::get(key), '~');
         this->objects = obj;
 
         while(objects.size() > instances) {
@@ -71,7 +71,6 @@ UNS
 
     sf::String OpString::quickString(std::string const &key, std::vector<std::string> vstr) {
         std::vector<sf::String *> vect;
-        int i = 0;
         for(std::string str : vstr) {
             vect.push_back(new sf::String(str));
         }

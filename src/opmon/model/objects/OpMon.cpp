@@ -319,6 +319,7 @@ UNS
                             speEV++;
                         }
                         break;
+		    default: break;
                     }
                 }
             }
@@ -1599,7 +1600,7 @@ UNS
 
                 level = in.get();
                 in.get();
-                int toSearch = in.get();
+                //int toSearch = in.get();
                 //nature = toSearch;
                 in.get();
                 attacks[0] = Attacks::newAtk(Save::readLine(in));

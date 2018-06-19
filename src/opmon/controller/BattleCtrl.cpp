@@ -87,7 +87,13 @@ namespace OpMon {
                             turnActivated = false;
                         }
                     }
+		    break;
+		default:
+		  break;
                 }
+	    default:
+	      break;
+	    
             }
 
             return GameStatus::CONTINUE;
@@ -134,11 +140,13 @@ namespace OpMon {
             defTurn.opmon = def;
         }
 
+#pragma GCC diagnostic ignored "-Wunused-parameter"
         Model::Turn *BattleCtrl::turnIA(int level) {
             defTurn.attackUsed = def->getAttacks()[0];
             defTurn.type = TurnType::ATTACK;
             return &defTurn;
         }
+#pragma GCC diagnostic pop
 
         bool BattleCtrl::turn() {
             bool atkDone = false;

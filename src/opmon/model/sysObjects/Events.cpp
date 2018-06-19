@@ -6,7 +6,7 @@
 #include "../storage/Data.hpp"
 
 #pragma GCC diagnostic ignored "-Wreorder"
-
+#pragma GCC diagnostic ignored "-Wunused-parameter"
 UNS
 
   namespace OpMon {
@@ -171,12 +171,12 @@ UNS
                         if(predefinedCounter >= movements.size()) {
                             predefinedCounter = 0;
                         }
-                        move(movements[predefinedCounter], player, overworld);
+                        move(movements[predefinedCounter]);
                         if(!mapPos.isMoving()) {
+			  if(predefinedCounter != 0){
                             predefinedCounter--;
-                            if(predefinedCounter < 0) {
-                                predefinedCounter = movements.size() - 1;
-                            }
+			  }
+			  predefinedCounter = movements.size() - 1;
                         }
                         break;
 
@@ -187,23 +187,23 @@ UNS
                         randomMove = Utils::Misc::randUI(5) - 1;
                         switch(randomMove) {
                         case -1:
-                            move(Side::NO_MOVE, player, overworld);
+                            move(Side::NO_MOVE);
                             break;
                         case 0:
-                            move(Side::TO_UP, player, overworld);
+                            move(Side::TO_UP);
                             break;
                         case 1:
-                            move(Side::TO_DOWN, player, overworld);
+                            move(Side::TO_DOWN);
                             break;
                         case 2:
-                            move(Side::TO_LEFT, player, overworld);
+                            move(Side::TO_LEFT);
                             break;
                         case 3:
-                            move(Side::TO_RIGHT, player, overworld);
+                            move(Side::TO_RIGHT);
                             break;
                         default:
                             Utils::Log::oplog("[WARNING] - Random number out of bounds CharacterEvent::update");
-                            move(Side::NO_MOVE, player, overworld);
+                            move(Side::NO_MOVE);
                         }
                         break;
 
@@ -277,6 +277,8 @@ UNS
                         if(frames - startFrames >= 7) {
                             mapPos.stopMove();
                         }
+			break;
+		    default: break;
                     }
                 }
             }
@@ -343,3 +345,4 @@ UNS
 
     } // namespace Model
 }
+#pragma GCC diagnostic pop

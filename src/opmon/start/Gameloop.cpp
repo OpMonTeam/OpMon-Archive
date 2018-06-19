@@ -67,9 +67,11 @@ namespace OpMon {
                 delete(ctrl);
                 _gameScreens.pop();
                 _gameScreens.top()->resume();
+		break;
             case GameStatus::CONTINUE:
                 View::frame.display();
                 View::winRefresh();
+		break;
             default:
                 break;
             }
