@@ -10,6 +10,8 @@
 
 #include "GameStatus.hpp"
 #include <string>
+#pragma GCC diagnostic ignored "-Wreorder"
+#pragma GCC diagnostic ignored "-Wcomment"
 
 namespace OpMon {
 

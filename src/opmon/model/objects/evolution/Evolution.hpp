@@ -34,10 +34,12 @@ namespace OpMon {
             virtual int getEvolID() const {
                 return evolID;
             }
-            //->JustUse->E_Item
+            //->use only in E_Item
+	  #pragma GCC diagnostic ignored "-Wunused-parameter"
             virtual bool itemEvolve(Item *tem) const {
                 return false;
             }
+	  #pragma GCC diagnostic pop
 
           protected:
             static const int evolID = 0;

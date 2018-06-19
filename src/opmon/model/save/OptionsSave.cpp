@@ -85,11 +85,10 @@ UNS
                          "pm|")) { //Vérifie si le préfixe pm| est bien présent, sinon arrête la boucle.
                         break;
                     }
-                    string noPm = Utils::StringKeys::sfStringtoStdString(
-                      Utils::StringKeys::split(read, '|', 1)); //Ne prend que la partie après le pm|
-                    Param newParam = Param(Utils::StringKeys::sfStringtoStdString(Utils::StringKeys::split(noPm, '=', 0)),
-                                           Utils::StringKeys::sfStringtoStdString(Utils::StringKeys::split(noPm, '=',
-                                                                                                           1))); //Splitte ensuite en deux parties, le name et la valeur du paramètre.
+                    string noPm = Utils::StringKeys::sfStringtoStdString(Utils::StringKeys::split(read, '|')[1]); //Ne prend que la partie après le pm|
+		    std::vector<sf::String> splitted = Utils::StringKeys::split(noPm, '=');
+                    Param newParam = Param(Utils::StringKeys::sfStringtoStdString(splitted[0]),
+                                           Utils::StringKeys::sfStringtoStdString(splitted[1])); //Splitte ensuite en deux parties, le name et la valeur du paramètre.
                     if(!checkParam(newParam.getName())) {
                         paramList.push_back(newParam);
                     }

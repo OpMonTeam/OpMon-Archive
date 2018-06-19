@@ -12,8 +12,8 @@ UNS
             tiles.setPrimitiveType(sf::Quads);
             tiles.resize(size.x * size.y * 4);
 
-            for(unsigned int i = 0; i < size.y; i++) {
-                for(unsigned int j = 0; j < size.x; j++) {
+            for(int i = 0; i < size.y; i++) {
+                for(int j = 0; j < size.x; j++) {
 
                     int tileNumber = tilesCodes[(i * size.x) + j] - 1;
 

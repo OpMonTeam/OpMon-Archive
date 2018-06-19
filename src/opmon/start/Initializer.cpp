@@ -20,6 +20,8 @@
 using Utils::OpString;
 using Utils::Log::oplog;
 
+#pragma GCC diagnostic ignored "-Wcomment"
+
 namespace OpMon {
 
     namespace Initializer {
@@ -96,7 +98,7 @@ namespace OpMon {
 ________________________________________________
       Data::OpMons::listOp.emplace(52, new Species(45, 35, 40, 40, 90, 40, "Chagnon", Type::NEUTRAL, Type::MENTAL, 0, 28, new E_Level(53, 28),  std::vector<Stats>{Stats::HP}, 0.4, 4.2, "Les Chagnons adorent dormir près des arbres, en esperant qu'un Verpomme tombe pour pouvoir le manger", 69, 1000000, 10, 52));
 _______________________________________________
-      /*Data::OpMons::listOp.emplace(53, new Species(70, 60, 65, 65, 115, 65, "Persian", Type::NEUTRAL, Type::NOTHING, 0, -1, new E_Nope(), Model::Data::OpMons::evs[53], 1, 32, "Un Pokémon très snob. La taille du joyau qui orne son front alimente bien des débats parmi ses fans.", 148, 1000000, 90, 53));
+      Data::OpMons::listOp.emplace(53, new Species(70, 60, 65, 65, 115, 65, "Persian", Type::NEUTRAL, Type::NOTHING, 0, -1, new E_Nope(), Model::Data::OpMons::evs[53], 1, 32, "Un Pokémon très snob. La taille du joyau qui orne son front alimente bien des débats parmi ses fans.", 148, 1000000, 90, 53));
 	Data::OpMons::listOp.emplace(54, new Species(52, 48, 65, 50, 55, 50, "Psykokwak", Type::LIQUID, Type::NOTHING, 0, 33, new E_Level(55, 33), Model::Data::OpMons::evs[54], 0., 19.6, "Il ne se souvient pas qu'il a des pouvoirs psy. C'est pour cela qu'il a l'air si confus.", 80, 1000000, 190, 54));
 	Data::OpMons::listOp.emplace(55, new Species(82, 78, 95, 80, 85, 80, "Akwakwak", Type::LIQUID, Type::NOTHING, 0, -1, new E_Nope(), Model::Data::OpMons::evs[55], 1.7, 76.6, "Il apparaà®t dans les étendues d'eau au crépuscule. Si son front brille, il se sert de sa télékinésie.", 174, 1000000, 75, 55));
 
@@ -125,7 +127,7 @@ ___________________________________
 Data::OpMons::listOp.emplace(72, new Species(40, 35, 50, 100, 70, 40, "Coassdethé", Type::LIQUID, Type::TOXIC, 0, 30, new E_Level(73, 30),Model::Data::OpMons::evs[72], 0.4, 4, "La tasse dans laquelle il vit est comme une carapace. Lorsqu'il s'énerve, celle ci dégage une vapeur brulante.", 105, 1250000, 190, 72));
       Data::OpMons::listOp.emplace(73, new Species(70, 65, 80, 120, 100, 80, "Ebouillanthé", Type::LIQUID, Type::BURNING, 0, -1, new E_Nope(), Model::Data::OpMons::evs[73], 1.6, 55, "Il vit dans les sources d'eau chaude. Les tâches rouges sur son corps dégagent constamment de la vapeur brulante, son dos a le même effet qu'un grill.", 205, 1250000, 60, 73));
 ___________________________________
- /*Data::OpMons::listOp.emplace(74, new Species(80, 100, 30, 30, 20, 40, "Racaillou", Type::MINERAL, Type::GROUND, 0, 25, new E_Level(75, 25),Model::Data::OpMons::evs[74], 0.4, 20, "Il vit dans les plaines ou les montagnes. On le confond souvent avec un petit caillou.", 73, 1059860, 255, 74));
+ Data::OpMons::listOp.emplace(74, new Species(80, 100, 30, 30, 20, 40, "Racaillou", Type::MINERAL, Type::GROUND, 0, 25, new E_Level(75, 25),Model::Data::OpMons::evs[74], 0.4, 20, "Il vit dans les plaines ou les montagnes. On le confond souvent avec un petit caillou.", 73, 1059860, 255, 74));
 	Data::OpMons::listOp.emplace(75, new Species(95, 115, 45, 45, 35, 55, "Gravalanch", Type::MINERAL, Type::GROUND, 0, -1, new E_Trade(76), Model::Data::OpMons::evs[75], 1, 105, "D'une nature téméraire, il se moque de perdre des parties de son corps quand il dévale les pentes.", 134, 1059860, 120, 75));
 	Data::OpMons::listOp.emplace(76, new Species(120, 130, 55, 65, 45, 80, "Grolem", Type::MINERAL, Type::GROUND, 0, -1, new E_Nope(), Model::Data::OpMons::evs[76], 1.4, 300, "Aucun explosif ne pourrait entamer sa carapace de pierre. Il mue une fois par an.", 177, 1059860, 45, 76));
 	Data::OpMons::listOp.emplace(77, new Species(85, 55, 65, 65, 90, 50, "Ponyta", Type::BURNING, Type::NOTHING, 0, 40, new E_Level(48, 40),Model::Data::OpMons::evs[77], 1, 30, "    Chancelantes à  la naissance, ses pattes deviennent très vite sà»res et solides à  force de galoper.", 152, 1000000, 190, 77));
@@ -144,7 +146,7 @@ ___________________________________
 _______________________________
       Data::OpMons::listOp.emplace(90, new Species(65, 100, 45, 25, 40, 30, "Tétaflore", Type::LIQUID, Type::VEGETAL, 0, -1, new E_Nope(), std::vector<Stats>{Stats::DEF}, 0.3, 4, "Si vous le regardez dans les yeux, vous serez entourés de d'eau et de fleurs instantanement, le temps qu'ils vous tuent.", 97, 1250000, 190, 90));
 _______________________________
-	/*Data::OpMons::listOp.emplace(91, new Species(95, 180, 85, 45, 70, 50, "Crustabri", Type::LIQUID, Type::COLD, 0, -1, new E_Nope(), {Stats.DEF, Stats.DEF}, 1.5, 132.5, "Sa coquille est extrÃªmement résistante. Rien ne peut la détruire, pas mÃªme une bombe. Il ne l'ouvre que lorsqu'il attaque.", 203, 1250000, 60, 91));
+	Data::OpMons::listOp.emplace(91, new Species(95, 180, 85, 45, 70, 50, "Crustabri", Type::LIQUID, Type::COLD, 0, -1, new E_Nope(), {Stats.DEF, Stats.DEF}, 1.5, 132.5, "Sa coquille est extrÃªmement résistante. Rien ne peut la détruire, pas mÃªme une bombe. Il ne l'ouvre que lorsqu'il attaque.", 203, 1250000, 60, 91));
 	Data::OpMons::listOp.emplace(92, new Species(35, 30, 100, 35, 80, 30, "Fantominus", Type::GHOST, Type::TOXIC, 0, 25,new E_Level(93, 25), {Stats.ATKSPE}, 1.3, 0.1, "Son corps composé de gaz toxique pourrait asphyxier n'importe qui en quelques secondes.", 95, 1059860, 190, 92));
 	Data::OpMons::listOp.emplace(93, new Species(50, 45, 115, 55, 95, 45, "Spectrum", Type::GHOST, Type::TOXIC, 0, -1, new E_Trade(94), {Stats.ATK, Stats.ATK}, 1.6, 0.2, "Il vole l'énergie vitale de l'ennemi d'un coup de langue gazeuse. Il aime chasser dans l'ombre.", 126, 1059860, 90, 93));
 	Data::OpMons::listOp.emplace(94, new Species(65, 60, 130, 75, 110, 60, "Ectoplasma", Type::GHOST, Type::TOXIC, 0, -1, new E_Nope(), {Stats.ATKSPE, Stats.ATKSPE, Stats.ATKSPE}, 1.5, 40.5, "Si vous frissonnez soudainement, c'est qu'un Ectoplasma en veut à  votre vie. Vous ne pouvez y échapper. Abandonnez toute espérance.", 190, 1059860, 45, 94));
@@ -162,7 +164,7 @@ _______________________________
 __________________________________________
 	Data::OpMons::listOp.emplace(106, new Species(120, 53, 35, 110, 87, 50, "Philynx", Type::FIGHT, Type::VEGETAL, 0, -1, new E_Nope(), std::vector<Stats>{Stats::ATK, Stats::ATK}, 1.4, 49, "Ils sont toujours là, mais on ne les voient jamais, surtout la nuit, à moins d'avoir l'oeil de Lynx", 139, 1000000, 45, 106));
 __________________________________________
-	/*Data::OpMons::listOp.emplace(107, new Species(105, 79, 35, 110, 76, 50, "Tygnon", Type::FIGHT, Type::NOTHING, 0, -1, new E_Nope(), {Stats.DEFSPE, Stats.DEFSPE}, 1.4, 50.2, "MÃªme le béton cède sous ses poings dévastateurs. Au combat, il s'essouffle au bout de 3 minutes.", 140, 1000000, 45, 107));
+	Data::OpMons::listOp.emplace(107, new Species(105, 79, 35, 110, 76, 50, "Tygnon", Type::FIGHT, Type::NOTHING, 0, -1, new E_Nope(), {Stats.DEFSPE, Stats.DEFSPE}, 1.4, 50.2, "MÃªme le béton cède sous ses poings dévastateurs. Au combat, il s'essouffle au bout de 3 minutes.", 140, 1000000, 45, 107));
 	Data::OpMons::listOp.emplace(108, new Species(55, 75, 60, 75, 30, 90, "Excelangue", Type::NEUTRAL, Type::NOTHING, 0, -1, new E_Nope(), {Stats.HP, Stats.HP}, 1.2, 65.5, "Chaque fois qu'Excelangue découvre quelque chose de nouveau, il le lèche. Sa mémoire est basée sur le goà»t et la texture des objets. Il n'aime pas les choses acides.", 127, 1000000, 45, 108));
 	Data::OpMons::listOp.emplace(109, new Species(65, 95, 60, 45, 35, 40, "Smogo", Type::TOXIC, Type::NOTHING, 0, 35,new E_Level(110, 35), {Stats.DEF}, 0.6, 1, "Son corps très fin en forme de ballon est rempli d'un horrible gaz toxique. L'air est nauséabond à  proximité de ce Pokémon.", 114, 1000000, 190, 109));
 	Data::OpMons::listOp.emplace(110, new Species(90, 120, 85, 70, 60, 65, "Smogogo", Type::TOXIC, Type::NOTHING, 0, -1, new E_Nope(), {Stats.DEF}, 1.2, 9.5, "Il peut arriver que deux Smogo mutent et s'associent pour former un Smogogo, mais c'est très rare.", 173, 1000000, 60, 110));
@@ -388,7 +390,7 @@ _______________________________________________________________
             ResourceLoader::loadTextureArray(charaTextures["playermom"], "sprites/chara/mom/mom%d.png", 12);
             ResourceLoader::loadTextureArray(charaTextures["sk"], "sprites/chara/rival/sk%d.png", 12);
             ResourceLoader::loadTextureArray(charaTextures["inferm"], "sprites/chara/inferm/inferm%d.png", 12);
-            ResourceLoader::loadTextureArray(charaTextures["|_| -|- |-| |= |_| |\|"], "sprites/chara/beta/alphabeta/otheon%d.png", 12);
+            ResourceLoader::loadTextureArray(charaTextures["|_| -|- |-| |= |_| N"], "sprites/chara/beta/alphabeta/otheon%d.png", 12);
 
             ResourceLoader::load(Model::Data::Battle::backgrounds["grass"], "backgrounds/battle_bkg/background_grass.png");
             ResourceLoader::load(Model::Data::Battle::dialog, "backgrounds/dialog/battle_dialog.png");
@@ -555,7 +557,7 @@ _______________________________________________________________
             mapRoute14->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(4, 41), sf::Vector2i(39, 20), "Fauxbourg Euvi", Side::TO_LEFT, SIDE_LEFT));
             //MysteriouCity loading
             Map *mapMs = maps.emplace("MysteriouCity", new Map(Maps::myciLayer1, Maps::myciLayer2, Maps::myciLayer3, 35, 35, false, "Ms")).first->second;
-            mapMs->addEvent(new Events::TalkingCharaEvent("|_| -|- |-| |= |_| |\|", sf::Vector2f(15, 30), {}));
+            mapMs->addEvent(new Events::TalkingCharaEvent("|_| -|- |-| |= |_| N", sf::Vector2f(15, 30), {}));
             mapMs->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(15, 12), sf::Vector2i(10, 17), "OpCenter", Side::TO_UP, SIDE_UP));
             //OpMon Center loading
             Map *mapOpCenter = maps.emplace("OpCenter", new Map(Maps::opcenterLayer1, Maps::opcenterLayer2, Maps::opcenterLayer3, 18, 18, true, "Start")).first->second;

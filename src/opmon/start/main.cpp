@@ -94,7 +94,7 @@ UNS
                 gameloop();
 
                 std::string logEntry;
-                logEntry << "Game ended after " << getFrames() << "frames";
+                logEntry << std::string("Game ended after ") << getFrames() << std::string("frames");
 
                 oplog(logEntry);
                 View::close();
