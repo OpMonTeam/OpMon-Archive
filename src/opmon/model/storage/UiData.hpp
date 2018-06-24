@@ -11,6 +11,7 @@ namespace OpMon {
       sf::Font font;
     public:
       View::Jukebox& getJukebox() { return jukebox; }
+      sf::Font const& getFont() const { return font; }
       UiData();
     };
     
