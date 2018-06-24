@@ -28,7 +28,7 @@ namespace OpMon {
                         nope.play();
                         return GameStatus::CONTINUE;
                     case 2:
-                        _next_gs = new OptionsMenuCtrl();
+		      _next_gs = new OptionsMenuCtrl(data.getUiDataPtr());
                         push.play();
                         return GameStatus::NEXT;
                     case 3:

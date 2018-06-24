@@ -30,7 +30,7 @@ namespace OpMon {
                 return current;
             }
 
-            GameStatus operator()(int frame);
+	  GameStatus operator()(int frame, sf::RenderTexture& frame);
 
             void tp(std::string toTp, sf::Vector2i pos);
 

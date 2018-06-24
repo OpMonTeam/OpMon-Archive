@@ -13,6 +13,8 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "../model/storage/OptionsMenuData.hpp"
+
 
 namespace OpMon {
     namespace View {
@@ -23,7 +25,7 @@ namespace OpMon {
 
         class OptionsMenu : I18n::ATranslatable {
           public:
-            OptionsMenu();
+	  OptionsMenu(Model::OptionsMenuData& data);
 
             ~OptionsMenu();
 
@@ -98,6 +100,8 @@ namespace OpMon {
             sf::Sprite coche;
 
             bool continuer = true;
+
+	  Model::OptionsMenuData& data;
         };
     } // namespace View
 } // namespace OpMon

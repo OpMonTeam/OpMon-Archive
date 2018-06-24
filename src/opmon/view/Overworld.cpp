@@ -17,7 +17,6 @@
 #include <cmath>
 #include <map>
 #include <sstream>
-
 #ifndef _WIN32
 
 //#define DEBUG_REPORT
@@ -187,8 +186,7 @@ namespace OpMon {
             delete(layer2);
             delete(layer3);
         }
-
-        GameStatus Overworld::operator()(int frames) {
+      GameStatus Overworld::operator()(int frames, sf::RenderTexture& frame) {
             bool is_in_dialog = this->dialog && !this->dialog->isDialogOver();
 
             if(recordFrames) {
@@ -240,22 +238,22 @@ namespace OpMon {
 
             /**** draw ****/
 
-            updateCamera(View::frame);
-            View::frame.clear(sf::Color::Black);
+            updateCamera(frame);
+            frame.clear(sf::Color::Black);
 
             //Drawing the two first layers
             if((debugMode ? printlayer[0] : true)) {
-                View::frame.draw(*layer1);
+                frame.draw(*layer1);
             }
             if((debugMode ? printlayer[1] : true)) {
-                View::frame.draw(*layer2);
+                frame.draw(*layer2);
             }
             //Drawing events under the player
             for(Model::Event *event : current->getEvents()) {
                 const sf::Sprite *sprite = event->getSprite();
                 event->updateTexture();
                 if(sprite->getPosition().y <= Model::Data::player.getPosition().getPositionPixel().y) {
-                    View::frame.draw(*sprite);
+                    frame.draw(*sprite);
                 }
             }
 
@@ -301,38 +299,38 @@ namespace OpMon {
             }
 
             //Drawing character
-            View::frame.draw(character);
+            frame.draw(character);
             //Drawing the events above the player
             for(Model::Event *event : current->getEvents()) {
                 const sf::Sprite *sprite = event->getSprite();
                 event->updateTexture();
                 if(sprite->getPosition().y > Model::Data::player.getPosition().getPositionPixel().y) {
-                    View::frame.draw(*sprite);
+                    frame.draw(*sprite);
                 }
             }
 
             if(debugMode && printCollisions) {
-                printCollisionLayer(View::frame);
+                printCollisionLayer(frame);
             }
 
             //Drawing the third layer
             if((debugMode ? printlayer[2] : true)) {
-                View::frame.draw(*layer3);
+                frame.draw(*layer3);
             }
 
-            printElements(View::frame);
+            printElements(frame);
 
             /***** draw GUI *****/
             frame.setView(frame.getDefaultView());
 
             if(is_in_dialog) {
-                this->dialog->draw(View::frame);
+                this->dialog->draw(frame);
             }
 
             if(debugMode) {
-                View::frame.draw(debugText);
-                View::frame.draw(fpsPrint);
-                View::frame.draw(coordPrint);
+                frame.draw(debugText);
+                frame.draw(fpsPrint);
+                frame.draw(coordPrint);
             }
 
             return GameStatus::CONTINUE;
