@@ -56,7 +56,7 @@ namespace OpMon {
           public:
             BattleCtrl(Model::OpTeam *one, Model::OpTeam *two);
             GameStatus checkEvent(sf::Event const &) override;
-            GameStatus update() override;
+	  GameStatus update(sf::RenderTexture& frame) override;
         };
 
     } // namespace Controller

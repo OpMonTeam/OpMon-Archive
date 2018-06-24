@@ -24,7 +24,7 @@ namespace OpMon {
           public:
             OptionsMenuCtrl();
             GameStatus checkEvent(sf::Event const &event) override;
-            GameStatus update() override;
+            GameStatus update(sf::RenderTexture& frame) override;
 
             void resume();
             void suspend();

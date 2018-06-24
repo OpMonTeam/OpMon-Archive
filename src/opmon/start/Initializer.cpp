@@ -314,7 +314,7 @@ _______________________________________________________________
       */
         }
 
-        void initMusics() {
+        void initMusics() {/*
             View::jukebox.addMusic("Title", "audio/music/title.ogg", 50);
             View::jukebox.addMusic("Start", "audio/music/intro.ogg");
             View::jukebox.addMusic("Fauxbourg", "audio/music/faubourgeuvi.ogg");
@@ -322,7 +322,7 @@ _______________________________________________________________
             //View::jukebox.addMusic("OpCenter", "audio/music/opcenter.ogg");
             View::jukebox.addMusic("Ms", "audio/music/mysterioucity.ogg");
             View::jukebox.addMusic("Labo", "audio/music/labo.ogg");
-            View::jukebox.addMusic("Wild Battle", "audio/music/wildbattle.ogg");
+            View::jukebox.addMusic("Wild Battle", "audio/music/wildbattle.ogg");*/
         }
 
         void initAtkLvls() {

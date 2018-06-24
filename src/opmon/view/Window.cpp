@@ -12,12 +12,7 @@ using Utils::Log::oplog;
 
 namespace OpMon {
     namespace View {
-        sf::RenderTexture frame;
-        sf::RenderWindow window;
-        Jukebox jukebox;
-        bool init;
-        bool fullScreen;
-        void open() {
+      void Window::open() {
             init = true;
 
             sf::ContextSettings settings;
@@ -93,7 +88,7 @@ namespace OpMon {
             frame.clear(sf::Color::Black);
         }
 
-        void close() {
+      void Window::close() {
             /*oplog("Deleting the variables...");
 	destroyAll();*/
             oplog("Closing the window...");
@@ -102,7 +97,7 @@ namespace OpMon {
             oplog("Window closed. No error detected. Goodbye.");
         }
 
-        void winRefresh() {
+      void Window::winRefresh() {
             sf::Sprite sprite(frame.getTexture());
 
             if(fullScreen) {

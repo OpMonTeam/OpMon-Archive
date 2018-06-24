@@ -25,12 +25,19 @@ namespace OpMon {
 
     GameStatus GameLoop::operator()() {
 
-        // TODO: add first item outside of the Gameloop.
-        Controller::AGameScreen *first_ctrl = new Controller::MainMenuCtrl();
+      window.open();
+
+      UiData* uidata = new UiData();
+      
+      // TODO: add first item outside of the Gameloop.
+        Controller::AGameScreen *first_ctrl = new Controller::MainMenuCtrl(uidata);
 
         _gameScreens.push(first_ctrl);
 
         GameStatus status = GameStatus::CONTINUE;
+
+	
+	
         while(status != GameStatus::STOP) {
             status = GameStatus::CONTINUE;
 
@@ -69,14 +76,18 @@ namespace OpMon {
                 _gameScreens.top()->resume();
 		break;
             case GameStatus::CONTINUE:
-                View::frame.display();
-                View::winRefresh();
+	      window.getFrame().display();
+	      window.winRefresh();
 		break;
             default:
                 break;
             }
         }
 
+	window.close();
+
+	delete(uidata);
+	
         return GameStatus::STOP;
     }
 

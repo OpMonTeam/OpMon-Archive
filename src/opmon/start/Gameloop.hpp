@@ -28,11 +28,14 @@ namespace OpMon {
      */
         GameStatus _checkQuit(const sf::Event &event);
 
+      
         int *getFrames();
 
       private:
         int frames;
 
+      View::Window window;
+      
         std::stack<Controller::AGameScreen *> _gameScreens;
     };
 
