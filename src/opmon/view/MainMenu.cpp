@@ -22,7 +22,8 @@ using namespace std;
             exit.setString(kget("title.4"));
         }
 
-      MainMenu::MainMenu(Model::MainMenuData& data) {
+      MainMenu::MainMenu(Model::MainMenuData& data)
+	: data(data){
             sf::Text *textPos[4] = {&playtx, &charge, &options, &exit};
             for(int i = 0, j = 175; i < 4; i++) {
                 curPos[i].x = 10;
@@ -43,7 +44,7 @@ using namespace std;
 
             for(auto *text : {&playtx, &charge, &options, &exit}) {
                 text->setColor(sf::Color::White);
-                text->setFont(Model::Data::Ui::font);
+                text->setFont(data.getUiDataPtr()->getFont());
                 text->setCharacterSize(FONT_SIZE_DEFAULT);
             }
 
@@ -55,7 +56,7 @@ using namespace std;
         }
 
         MainMenu::~MainMenu() {
-            jukebox.stop("Title");
+            data.getUiDataPtr()->getJukebox().stop("Title");
         }
 
         void MainMenu::onLangChanged() {
@@ -66,7 +67,7 @@ using namespace std;
         }
 
         void MainMenu::play() {
-            jukebox.play("Title");
+	  data.getUiDataPtr()->getJukebox().play("Title");
         }
 
         void MainMenu::moveArrow(bool direction) {

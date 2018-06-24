@@ -7,6 +7,7 @@
 #include "../view/MainMenu.hpp"
 #include "../view/OptionsMenu.hpp"
 #include "AGameScreen.hpp"
+#include "../model/storage/OptionsMenuData.hpp"
 
 namespace OpMon {
     namespace Controller {
@@ -21,8 +22,10 @@ namespace OpMon {
             void raiseVolume();
             void lowerVolume();
 
+	  Model::OptionsMenuData data;
+	  
           public:
-            OptionsMenuCtrl();
+            OptionsMenuCtrl(Model::UiData* data);
             GameStatus checkEvent(sf::Event const &event) override;
             GameStatus update(sf::RenderTexture& frame) override;
 

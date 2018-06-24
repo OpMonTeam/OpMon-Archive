@@ -13,89 +13,89 @@ UNS
             auto kget = Utils::StringKeys::get;
 
             langFr.setString(L"Français");
-            langFr.setFont(Model::Data::Ui::font);
+            langFr.setFont(data.getUiDataPtr()->getFont());
             langFr.setCharacterSize(FONT_SIZE_DEFAULT);
             langEng.setString("English");
-            langEng.setFont(Model::Data::Ui::font);
+            langEng.setFont(data.getUiDataPtr()->getFont());
             langEng.setCharacterSize(FONT_SIZE_DEFAULT);
             langEsp.setString(L"Espa\u00F1ol");
-            langEsp.setFont(Model::Data::Ui::font);
+            langEsp.setFont(data.getUiDataPtr()->getFont());
             langEsp.setCharacterSize(FONT_SIZE_DEFAULT);
             langDe.setString("Deutsch");
-            langDe.setFont(Model::Data::Ui::font);
+            langDe.setFont(data.getUiDataPtr()->getFont());
             langDe.setCharacterSize(FONT_SIZE_DEFAULT);
             txtRetour.setString(kget("options.retour"));
-            txtRetour.setFont(Model::Data::Ui::font);
+            txtRetour.setFont(data.getUiDataPtr()->getFont());
             txtRetour.setCharacterSize(FONT_SIZE_DEFAULT);
             txtOptions.setString(kget("options.title"));
-            txtOptions.setFont(Model::Data::Ui::font);
+            txtOptions.setFont(data.getUiDataPtr()->getFont());
             txtOptions.setCharacterSize(FONT_SIZE_DEFAULT);
             txtOpt1.setString(kget("options.ecran"));
-            txtOpt1.setFont(Model::Data::Ui::font);
+            txtOpt1.setFont(data.getUiDataPtr()->getFont());
             txtOpt1.setCharacterSize(FONT_SIZE_DEFAULT);
             txtOpt2.setString(kget("options.lang"));
-            txtOpt2.setFont(Model::Data::Ui::font);
+            txtOpt2.setFont(data.getUiDataPtr()->getFont());
             txtOpt2.setCharacterSize(FONT_SIZE_DEFAULT);
             txtOpt3.setString(kget("options.vol"));
-            txtOpt3.setFont(Model::Data::Ui::font);
+            txtOpt3.setFont(data.getUiDataPtr()->getFont());
             txtOpt3.setCharacterSize(FONT_SIZE_DEFAULT);
             txtOpt3.setColor(sf::Color::Red);
             txtOpt4.setString(kget("options.control"));
-            txtOpt4.setFont(Model::Data::Ui::font);
+            txtOpt4.setFont(data.getUiDataPtr()->getFont());
             txtOpt4.setCharacterSize(FONT_SIZE_DEFAULT);
             txtOpt4.setColor(sf::Color::White);
             txtOpt5.setString(kget("options.credit"));
-            txtOpt5.setFont(Model::Data::Ui::font);
+            txtOpt5.setFont(data.getUiDataPtr()->getFont());
             txtOpt5.setCharacterSize(FONT_SIZE_DEFAULT);
             txtOpt5.setColor(sf::Color::White);
 
             txtLang.setString(kget("options.lang.title"));
-            txtLang.setFont(Model::Data::Ui::font);
+            txtLang.setFont(data.getUiDataPtr()->getFont());
             txtLang.setCharacterSize(FONT_SIZE_DEFAULT);
 
             txtCred.setString(kget("options.cred.title"));
-            txtCred.setFont(Model::Data::Ui::font);
+            txtCred.setFont(data.getUiDataPtr()->getFont());
             txtCred.setCharacterSize(FONT_SIZE_DEFAULT);
 
             txtCre1.setString(kget("options.credit.1"));
-            txtCre1.setFont(Model::Data::Ui::font);
+            txtCre1.setFont(data.getUiDataPtr()->getFont());
             txtCre1.setCharacterSize(14);
             txtCre1.setColor(sf::Color::Black);
             txtCre2.setString(kget("options.credit.2"));
-            txtCre2.setFont(Model::Data::Ui::font);
+            txtCre2.setFont(data.getUiDataPtr()->getFont());
             txtCre2.setCharacterSize(14);
             txtCre2.setColor(sf::Color::Black);
             txtCre3.setString(kget("options.credit.3"));
-            txtCre3.setFont(Model::Data::Ui::font);
+            txtCre3.setFont(data.getUiDataPtr()->getFont());
             txtCre3.setCharacterSize(14);
             txtCre3.setColor(sf::Color::Black);
             txtCre4.setString(kget("options.credit.4"));
-            txtCre4.setFont(Model::Data::Ui::font);
+            txtCre4.setFont(data.getUiDataPtr()->getFont());
             txtCre4.setCharacterSize(14);
             txtCre4.setColor(sf::Color::Black);
             txtCre5.setString(kget("options.credit.5"));
-            txtCre5.setFont(Model::Data::Ui::font);
+            txtCre5.setFont(data.getUiDataPtr()->getFont());
             txtCre5.setCharacterSize(14);
             txtCre5.setColor(sf::Color::Black);
             txtCre6.setString(kget("options.credit.6"));
-            txtCre6.setFont(Model::Data::Ui::font);
+            txtCre6.setFont(data.getUiDataPtr()->getFont());
             txtCre6.setCharacterSize(22);
             txtCre6.setColor(sf::Color::Black);
             txtCre7.setString(kget("options.credit.7"));
-            txtCre7.setFont(Model::Data::Ui::font);
+            txtCre7.setFont(data.getUiDataPtr()->getFont());
             txtCre7.setCharacterSize(18);
             txtCre7.setColor(sf::Color::Black);
             txtCre8.setString(kget("options.credit.8"));
-            txtCre8.setFont(Model::Data::Ui::font);
+            txtCre8.setFont(data.getUiDataPtr()->getFont());
             txtCre8.setCharacterSize(15);
             txtCre81.setString(kget("options.credit.81"));
-            txtCre81.setFont(Model::Data::Ui::font);
+            txtCre81.setFont(data.getUiDataPtr()->getFont());
             txtCre81.setCharacterSize(15);
             txtCre82.setString(kget("options.credit.82"));
-            txtCre82.setFont(Model::Data::Ui::font);
+            txtCre82.setFont(data.getUiDataPtr()->getFont());
             txtCre82.setCharacterSize(15);
             txtCre9.setString(kget("options.credit.9"));
-            txtCre9.setFont(Model::Data::Ui::font);
+            txtCre9.setFont(data.getUiDataPtr()->getFont());
             txtCre9.setCharacterSize(13);
         }
 
@@ -103,23 +103,19 @@ UNS
             initStrings();
         }
 
-        OptionsMenu::OptionsMenu()
-          : currentOptions(OptionType::ALL) {
+        OptionsMenu::OptionsMenu(Model::OptionsMenuData& data)
+          : data(data), currentOptions(OptionType::ALL) {
 
-            Model::ResourceLoader::load(textures2[0], "backgrounds/options.png");
-            Model::ResourceLoader::load(textures2[1], "sprites/misc/selectBar.png");
-            Model::ResourceLoader::load(textures2[2], "backgrounds/lang.png");
-            Model::ResourceLoader::load(textures2[3], "sprites/misc/yes.png");
-            Model::ResourceLoader::load(textures2[4], "backgrounds/credits.png");
-
-            bgOpt.setTexture(textures2[0]);
-            rectSurb.setTexture(textures2[1]);
-            bgLangues.setTexture(textures2[2]);
-            coche.setTexture(textures2[3]);
-            bgCredits.setTexture(textures2[4]);
-
-            coche.setPosition(425, 88);
-
+	    
+	    
+	    bgOpt.setTexture(data.getBackground());
+	    rectSurb.setTexture(data.getSelectBar());
+	    bgLangues.setTexture(data.getLangBg());
+	    coche.setTexture(data.getCreditsBg());
+	    bgCredits.setTexture(data.getCreditsBg());
+	    
+	    coche.setPosition(425, 88);
+	    
             initStrings();
 
             txtOpt1.setPosition(120, 100);
@@ -151,7 +147,7 @@ UNS
             txtCre82.setPosition(30, 402);
             txtCre9.setPosition(375, 488);
 
-            jukebox.play("Title");
+            data.getUiDataPtr()->getJukebox().play("Title");
 
             curPosOpt[0].x = 23;
             curPosOpt[0].y = 17;
