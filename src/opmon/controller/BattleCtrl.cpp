@@ -15,7 +15,7 @@ namespace OpMon {
             initBattle(0, 0);
         }
 
-        GameStatus BattleCtrl::update() {
+      GameStatus BattleCtrl::update(sf::RenderTexture& frame) {
             GameStatus returned = view(atkTurn, defTurn, &turnActivated);
             if(turnActivated) {
                 if(atk->getHP() <= 0 || def->getHP() <= 0) {

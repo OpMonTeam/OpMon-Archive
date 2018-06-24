@@ -21,7 +21,7 @@ namespace OpMon {
             GameStatus checkEvent(sf::Event const &event) override;
             GameStatus checkEventsDialog(sf::Event const &events, View::Overworld &overworld);
             GameStatus checkEventsNoDialog(sf::Event const &events, Model::Player &player);
-            GameStatus update() override;
+            GameStatus update(sf::RenderTexture& frame) override;
         };
 
     } // namespace Controller

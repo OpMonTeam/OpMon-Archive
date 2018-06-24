@@ -86,7 +86,6 @@ UNS
             //bgtask = new std::thread(bgTask);
             do {
                 reboot = false;
-                View::open();
                 oplog("Starting game loop");
 
                 auto gameloop = GameLoop();
@@ -97,7 +96,6 @@ UNS
                 logEntry << std::string("Game ended after ") << getFrames() << std::string("frames");
 
                 oplog(logEntry);
-                View::close();
                 if(reboot) {
                     oplog("Restarting the game.");
                 }

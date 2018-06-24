@@ -105,7 +105,7 @@ namespace OpMon {
             return GameStatus::CONTINUE;
         }
 
-        GameStatus OverworldCtrl::update() {
+      GameStatus OverworldCtrl::update(sf::RenderTexture& frame) {
             bool is_dialog_open = view.getDialog() && !view.getDialog()->isDialogOver();
             if(!is_dialog_open) {
                 EventsCtrl::updateEvents(Model::Data::World::maps.at(player.getMapId())->getEvents(), player, view);
