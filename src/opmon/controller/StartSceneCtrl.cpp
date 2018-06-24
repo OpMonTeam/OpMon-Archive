@@ -60,16 +60,16 @@ namespace OpMon {
             return GameStatus::CONTINUE;
         }
 
-        GameStatus StartSceneCtrl::update() {
+      GameStatus StartSceneCtrl::update(sf::RenderTexture& frame) {
             GameStatus toReturn = view();
             if(toReturn == GameStatus::CONTINUE) {
-                view.draw(View::frame);
+                view.draw(frame);
             }
 
             if(toReturn == GameStatus::NEXT) {
                 switch(view.getPart()) {
                 case 1:
-                    _next_gs = new AnimationCtrl(new View::Animations::WinAnim(View::frame.getTexture(), true));
+                    _next_gs = new AnimationCtrl(new View::Animations::WinAnim(frame.getTexture(), true));
                     break;
                 case 3:
                     _next_gs = new OverworldCtrl(Model::Data::player);

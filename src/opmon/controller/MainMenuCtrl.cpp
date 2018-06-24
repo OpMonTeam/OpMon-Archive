@@ -8,8 +8,8 @@
 namespace OpMon {
     namespace Controller {
 
-        MainMenuCtrl::MainMenuCtrl()
-          : view() {
+      MainMenuCtrl::MainMenuCtrl(Model::UiData* data)
+          : data(Model::MainMenuData(data)), view(this->data) {
             nope.setBuffer(Model::Data::Sounds::nope);
             arrow.setBuffer(Model::Data::Sounds::arrow);
             push.setBuffer(Model::Data::Sounds::push);
@@ -52,8 +52,8 @@ namespace OpMon {
             return GameStatus::CONTINUE;
         }
 
-        GameStatus MainMenuCtrl::update() {
-            view.draw(OpMon::View::frame);
+      GameStatus MainMenuCtrl::update(sf::RenderTexture& frame) {
+            view.draw(frame);
             return GameStatus::CONTINUE;
         }
 

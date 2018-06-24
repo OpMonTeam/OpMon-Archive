@@ -12,6 +12,7 @@ Contains MainMenu namespace
 #include <SFML/Graphics.hpp>
 
 #include "../start/i18n/ATranslatable.hpp"
+#include "../model/storage/MainMenuData.hpp"
 
 namespace OpMon {
     namespace View {
@@ -22,7 +23,7 @@ namespace OpMon {
         class MainMenu : public I18n::ATranslatable {
 
           public:
-            MainMenu();
+	  MainMenu(Model::MainMenuData& data);
             ~MainMenu() override;
 
             void initStrings();
