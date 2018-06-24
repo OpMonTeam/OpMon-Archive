@@ -12,7 +12,7 @@ namespace OpMon {
         StartSceneCtrl::StartSceneCtrl()
           : view() {}
 
-        GameStatus StartSceneCtrl::checkEvent(sf::Event const &event) {
+      GameStatus StartSceneCtrl::checkEvent(sf::Event const &event) {
             auto &startscene = view;
 
             switch(event.type) {
@@ -27,9 +27,8 @@ namespace OpMon {
                     }
                     Model::Data::player.setName(pName);
                     startscene.delLoop1();
-                    view.draw(View::frame);
-                    _next_gs = new AnimationCtrl(new View::Animations::WinAnim(View::frame.getTexture(), false));
-                    return GameStatus::NEXT;
+		    animNext = true;
+                    return GameStatus::CONTINUE;
                 }
                 if(event.key.code == sf::Keyboard::P && startscene.getPart() != 1) {
                     _next_gs = new OverworldCtrl(Model::Data::player);
@@ -61,11 +60,17 @@ namespace OpMon {
         }
 
       GameStatus StartSceneCtrl::update(sf::RenderTexture& frame) {
+	if(animNext){
+	  animNext = false;
+	  view.draw(frame);
+	  _next_gs = new AnimationCtrl(new View::Animations::WinAnim(frame.getTexture(), false));
+	  return GameStatus::NEXT;
+	}
             GameStatus toReturn = view();
             if(toReturn == GameStatus::CONTINUE) {
                 view.draw(frame);
             }
-
+	    
             if(toReturn == GameStatus::NEXT) {
                 switch(view.getPart()) {
                 case 1:

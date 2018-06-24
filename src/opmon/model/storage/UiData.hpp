@@ -8,6 +8,7 @@ namespace OpMon {
     class UiData {
     private:
       View::Jukebox jukebox;
+      sf::Font font;
     public:
       View::Jukebox& getJukebox() { return jukebox; }
       UiData();

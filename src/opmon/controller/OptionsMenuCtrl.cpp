@@ -22,8 +22,8 @@ enum MenuOption { BACK = 0,
 namespace OpMon {
     namespace Controller {
 
-        OptionsMenuCtrl::OptionsMenuCtrl()
-          : view() {
+      OptionsMenuCtrl::OptionsMenuCtrl(Model::UiData* data)
+	: data(Model::OptionsMenuData(data)), view(this->data) {
             nope.setBuffer(Model::Data::Sounds::nope);
             arrow.setBuffer(Model::Data::Sounds::arrow);
             push.setBuffer(Model::Data::Sounds::push);
@@ -144,21 +144,21 @@ namespace OpMon {
         }
 
         void OptionsMenuCtrl::toggleVolume() {
-            if(View::jukebox.getGlobalVolume() > 1) {
-                View::jukebox.setGlobalVolume(1);
+            if(data.getUiDataPtr()->getJukebox().getGlobalVolume() > 1) {
+                data.getUiDataPtr()->getJukebox().setGlobalVolume(1);
             } else {
-                View::jukebox.setGlobalVolume(100);
+                data.getUiDataPtr()->getJukebox().setGlobalVolume(100);
             }
         }
 
         void OptionsMenuCtrl::raiseVolume() {
-            const int newVolume = min(100, View::jukebox.getGlobalVolume() + 10);
-            View::jukebox.setGlobalVolume(newVolume);
+	  const int newVolume = min(100, data.getUiDataPtr()->getJukebox().getGlobalVolume() + 10);
+            data.getUiDataPtr()->getJukebox().setGlobalVolume(newVolume);
         }
 
         void OptionsMenuCtrl::lowerVolume() {
-            const int newVolume = max(1, View::jukebox.getGlobalVolume() - 10);
-            View::jukebox.setGlobalVolume(newVolume);
+            const int newVolume = max(1, data.getUiDataPtr()->getJukebox().getGlobalVolume() - 10);
+            data.getUiDataPtr()->getJukebox().setGlobalVolume(newVolume);
         }
 
     } // namespace Controller

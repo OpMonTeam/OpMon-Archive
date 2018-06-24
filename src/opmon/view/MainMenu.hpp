@@ -57,6 +57,7 @@ namespace OpMon {
             sf::Texture textures[2];
             sf::SoundBuffer sounds[3];
             int curPosI = 0;
+	  Model::MainMenuData& data;
         };
     } // namespace View
 } // namespace OpMon
