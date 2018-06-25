@@ -21,7 +21,7 @@ namespace OpMon {
                 case sf::Keyboard::Return:
                     switch(view.getCursorPosition()) {
                     case 0:
-                        _next_gs = new StartSceneCtrl();
+		      _next_gs = new StartSceneCtrl(data.getUiDataPtr());
                         push.play();
                         return GameStatus::NEXT;
                     case 1:
