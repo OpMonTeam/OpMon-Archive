@@ -13,6 +13,8 @@ namespace OpMon {
       sf::Texture langBg;
       sf::Texture yesTx;
       sf::Texture creditsBg;
+
+      OptionsMenuData(OptionsMenuData const&);
     public:
       sf::Texture const& getBackground() const { return background; }
       sf::Texture const& getSelectBar() const { return selectBar; }

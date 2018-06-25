@@ -5,6 +5,7 @@
 #include "../view/StartScene.hpp"
 #include "AGameScreen.hpp"
 #include <SFML/Window.hpp>
+#include "../model/storage/StartSceneData.hpp"
 
 namespace OpMon {
     namespace Controller {
@@ -13,9 +14,11 @@ namespace OpMon {
           protected:
             View::StartScene view;
 	  bool animNext = false;
+
+	  Model::StartSceneData data;
 	  
           public:
-            StartSceneCtrl();
+	  StartSceneCtrl(Model::UiData* data);
             GameStatus checkEvent(sf::Event const &event) override;
             GameStatus update(sf::RenderTexture& frame) override;
             void suspend() override;

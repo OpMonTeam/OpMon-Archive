@@ -110,8 +110,8 @@ namespace OpMon {
             if(!is_dialog_open) {
                 EventsCtrl::updateEvents(Model::Data::World::maps.at(player.getMapId())->getEvents(), player, view);
             }
-            //TODO: pass frame
-            return view(getFrames());
+
+            return view(getFrames(), frame);
         }
 
     } // namespace Controller

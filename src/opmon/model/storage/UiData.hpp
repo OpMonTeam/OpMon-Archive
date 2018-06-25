@@ -9,10 +9,12 @@ namespace OpMon {
     private:
       View::Jukebox jukebox;
       sf::Font font;
+      UiData(UiData const& data);
     public:
       View::Jukebox& getJukebox() { return jukebox; }
       sf::Font const& getFont() const { return font; }
       UiData();
+     
     };
     
   }

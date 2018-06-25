@@ -10,6 +10,8 @@ namespace OpMon {
       sf::Texture arrChoice;
 
       UiData* uidata;
+
+      MainMenuData(MainMenuData const&);
     public:
       UiData* getUiDataPtr() const { return uidata; }
       sf::Texture const& getTitlescreen() const { return titlescreen; }
