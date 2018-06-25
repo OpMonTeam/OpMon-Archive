@@ -59,8 +59,6 @@ namespace OpMon {
 
             Dialog *dialog;
 
-            sf::Texture textures[3];
-
             sf::Text textDescs[4];
             sf::Sprite bgName;
             sf::Text nameField;

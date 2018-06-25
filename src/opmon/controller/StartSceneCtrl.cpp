@@ -9,8 +9,8 @@
 namespace OpMon {
     namespace Controller {
 
-        StartSceneCtrl::StartSceneCtrl()
-          : view() {}
+      StartSceneCtrl::StartSceneCtrl(Model::UiData* data)
+          : data(data) ,view(this->data) {}
 
       GameStatus StartSceneCtrl::checkEvent(sf::Event const &event) {
             auto &startscene = view;
