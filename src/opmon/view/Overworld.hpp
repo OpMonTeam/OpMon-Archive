@@ -11,6 +11,7 @@
 #include "../model/objects/Enums.hpp"
 #include "../model/sysObjects/Map.hpp"
 #include "../model/sysObjects/Player.hpp"
+#include "../model/storage/OverworldData.hpp"
 #include "../start/GameStatus.hpp"
 #include "Dialog.hpp"
 #include "Elements.hpp"
@@ -20,7 +21,7 @@ namespace OpMon {
 
         class Overworld {
           public:
-            Overworld(const std::string &mapId);
+	  Overworld(const std::string &mapId, Model::OverworldData& data);
 
             sf::Sprite &getCharacter() {
                 return character;
@@ -112,6 +113,10 @@ namespace OpMon {
             bool recordFrames = false;
 
             bool cameraLock = false;
+
+	  std::map<std::string, sf::Sprite> elementsSprites;
+
+	  Model::OverworldData& data;
         };
 
     } // namespace View

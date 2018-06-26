@@ -12,10 +12,13 @@ namespace OpMon {
       
       UiData* uidata;
 
+      Player* player;
 
       StartSceneData(StartSceneData const&);
     public:
 
+      Player& getPlayer() { return *player; }
+      Player* getPlayerPtr() { return player; }
       UiData* getUiDataPtr() { return uidata; }
       sf::Texture& getBackground() { return background; }
       sf::Texture& getProf() { return prof; }
