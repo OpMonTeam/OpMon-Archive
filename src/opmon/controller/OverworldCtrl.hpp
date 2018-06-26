@@ -16,8 +16,10 @@ namespace OpMon {
             View::Overworld view;
             Model::Player &player;
 
+	  Model::OverworldData data;
+	  
           public:
-            OverworldCtrl(Model::Player &player);
+	  OverworldCtrl(Model::Player &player, Model::UiData* uidata);
             GameStatus checkEvent(sf::Event const &event) override;
             GameStatus checkEventsDialog(sf::Event const &events, View::Overworld &overworld);
             GameStatus checkEventsNoDialog(sf::Event const &events, Model::Player &player);

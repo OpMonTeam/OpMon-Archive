@@ -29,7 +29,7 @@ namespace OpMon {
     namespace View {
 
         void Overworld::setMusic(std::string const &mus) {
-            jukebox.play(mus);
+            data.getUiDataPtr()->getJukebox().play(mus);
         }
 
         bool Overworld::isCameraLocked() {
@@ -114,19 +114,19 @@ namespace OpMon {
 
         void Overworld::printElements(sf::RenderTexture &frame) {
             for(std::string const &i : current->getAnimatedElements()) {
-                Model::Data::Elements::elementsCounter[i]++;
-                if(Model::Data::Elements::elementsCounter[i] >= (int)Model::Data::Elements::elementsTextures[i].size()) {
-                    Model::Data::Elements::elementsCounter[i] = 0;
-                }
-                Model::Data::Elements::elementsSprites[i].setTexture(Model::Data::Elements::elementsTextures[i][Model::Data::Elements::elementsCounter[i]]);
-                Model::Data::Elements::elementsSprites[i].setPosition(Model::Data::Elements::elementsPos[i]);
-                frame.draw(Model::Data::Elements::elementsSprites[i]);
+	      data.incrementElementCounter(i);
+	      if(data.getElementCounter(i) >= data.getElementTextures(i).size()) {
+		data.resetElementCounter(i);
+	      }
+	      elementsSprites[i].setTexture(data.getCurrentElementTexture(i));
+	      elementsSprites[i].setPosition(data.getElementPos(i));
+	      frame.draw(elementsSprites[i]);
             }
         }
 
         void Overworld::tp(std::string toTp, sf::Vector2i pos) {
-            Model::Data::player.tp(toTp, pos);
-            current = Model::Data::World::maps.at(Model::Data::player.getMapId());
+	  data.getPlayer().tp(toTp, pos);
+	  current = data.getCurrentMap();
             character.setPosition(pos.x SQUARES - 16, pos.y SQUARES);
             resetCamera();
             if(musicPath != current->getBg()) {
@@ -151,17 +151,18 @@ namespace OpMon {
         }
 
         void Overworld::pause() {
-            jukebox.pause(current->getBg());
+            data.getUiDataPtr()->getJukebox().pause(current->getBg());
         }
 
         void Overworld::play() {
-            jukebox.play(current->getBg());
+	  data.getUiDataPtr()->getJukebox().play(current->getBg());
         }
 
-        Overworld::Overworld(const std::string &mapId) {
-            current = Model::Data::World::maps[mapId];
-            character.setTexture(Model::Data::Ui::texturePP[(int)Side::TO_DOWN]);
-            Model::Data::player.tp(mapId, sf::Vector2i(2, 4));
+      Overworld::Overworld(const std::string &mapId, Model::OverworldData& data)
+	: data(data) {
+	current = data.getMap(mapId);
+	character.setTexture(data.getTexturePP((unsigned int)Side::TO_DOWN));
+	data.getPlayer().tp(mapId, sf::Vector2i(2, 4));
             character.setPosition(2 SQUARES - 16, 4 SQUARES);
             camera.setSize(sf::Vector2f(16 SQUARES, 16 SQUARES));
             resetCamera();
@@ -173,15 +174,13 @@ namespace OpMon {
             character.setScale(2, 2);
             character.setOrigin(16, 16);
 
-            jukebox.play(current->getBg());
-
-            window.setKeyRepeatEnabled(true);
+            data.getUiDataPtr()->getJukebox().play(current->getBg());
 
             OpMon::I18n::Translator::getInstance().setLang(OpMon::I18n::Translator::getInstance().getLang());
         }
 
         Overworld::~Overworld() {
-            jukebox.stop(current->getBg());
+            data.getUiDataPtr()->getJukebox().stop(current->getBg());
             delete(layer1);
             delete(layer2);
             delete(layer3);
@@ -206,27 +205,27 @@ namespace OpMon {
                 cout << "[FRAME Nｰ" << frames << "]" << endl;
                 cout << "Loop : " << (is_in_dialog ? "Dialog" : "Normal") << endl;
                 cout << "Tick: " << Utils::Time::getElapsedMilliseconds() << "ms" << endl;
-                cout << "PlayerPosition: " << Model::Data::player.getPosition().getPosition().x << " - " << Model::Data::player.getPosition().getPosition().y << endl;
+                cout << "PlayerPosition: " << data.getPlayer().getPosition().getPosition().x << " - " << data.getPlayer().getPosition().getPosition().y << endl;
                 cout << "PlayerPositionPx: " << character.getPosition().x << " - " << character.getPosition().y << endl;
-                cout << "Moving: " << (Model::Data::player.getPosition().isMoving() ? "true" : "false") << endl;
-                cout << "Anim: " << (Model::Data::player.getPosition().isAnim() ? "true" : "false") << endl;
-                cout << "PlayerDirection: " << (int)Model::Data::player.getPosition().getDir() << endl;
+                cout << "Moving: " << (data.getPlayer().getPosition().isMoving() ? "true" : "false") << endl;
+                cout << "Anim: " << (data.getPlayer().getPosition().isAnim() ? "true" : "false") << endl;
+                cout << "PlayerDirection: " << (int)data.getPlayer().getPosition().getDir() << endl;
                 cout << "Start Frames : " << startFrames << endl;
 
                 debugText.setString("Debug mode");
                 debugText.setPosition(0, 0);
-                debugText.setFont(Model::Data::Ui::font);
+                debugText.setFont(data.getUiData()->getFont());
                 debugText.setColor(sf::Color(127, 127, 127));
                 debugText.setCharacterSize(40);
                 fpsPrint.setPosition(0, 50);
-                fpsPrint.setFont(Model::Data::Ui::font);
+                fpsPrint.setFont(data.getUiData()->getFont());
                 //fpsPrint.setColor(sf::Color(127, 127, 127));
                 fpsPrint.setCharacterSize(48);
                 std::ostringstream oss;
-                oss << "Position : " << Model::Data::player.getPosition().getPosition().x << " - " << Model::Data::player.getPosition().getPosition().y << endl
+                oss << "Position : " << data.getPlayer().getPosition().getPosition().x << " - " << data.getPlayer().getPosition().getPosition().y << endl
                     << "PxPosition : " << character.getPosition().x << " - " << character.getPosition().y << endl;
                 coordPrint.setString(oss.str());
-                coordPrint.setFont(Model::Data::Ui::font);
+                coordPrint.setFont(data.getUiData()->getFont());
                 coordPrint.setPosition(0, 100);
                 coordPrint.setColor(sf::Color(127, 127, 127));
                 coordPrint.setCharacterSize(30);
@@ -252,31 +251,31 @@ namespace OpMon {
             for(Model::Event *event : current->getEvents()) {
                 const sf::Sprite *sprite = event->getSprite();
                 event->updateTexture();
-                if(sprite->getPosition().y <= Model::Data::player.getPosition().getPositionPixel().y) {
+                if(sprite->getPosition().y <= data.getPlayer().getPosition().getPositionPixel().y) {
                     frame.draw(*sprite);
                 }
             }
 
             //Sets the character's texture.
-            if(Model::Data::player.getPosition().isAnim() && !anims) {
-                character.setTexture(Model::Data::Ui::walkingPP[(int)Model::Data::player.getPosition().getDir()]);
+            if(data.getPlayer().getPosition().isAnim() && !anims) {
+	      character.setTexture(data.getWalkingPP((unsigned int)data.getPlayer().getPosition().getDir()));
                 animsCounter++;
                 anims = animsCounter > 8;
 
-            } else if(Model::Data::player.getPosition().isAnim() && anims) {
-                character.setTexture(Model::Data::Ui::walkingPP2[(int)Model::Data::player.getPosition().getDir()]);
+            } else if(data.getPlayer().getPosition().isAnim() && anims) {
+	      character.setTexture(data.getWalkingPP2((unsigned int)data.getPlayer().getPosition().getDir()));
                 animsCounter++;
                 if(animsCounter > 16) {
                     anims = false;
                     animsCounter = 0;
                 }
-            } else if(!Model::Data::player.getPosition().isAnim()) {
-                character.setTexture(Model::Data::Ui::texturePP[(int)Model::Data::player.getPosition().getDir()]);
+            } else if(!data.getPlayer().getPosition().isAnim()) {
+	      character.setTexture(data.getTexturePP((unsigned int)data.getPlayer().getPosition().getDir()));
             }
 
-            if(!is_in_dialog && Model::Data::player.getPosition().isAnim()) {
-                if(Model::Data::player.getPosition().isMoving()) {
-                    switch(Model::Data::player.getPosition().getDir()) {
+            if(!is_in_dialog && data.getPlayer().getPosition().isAnim()) {
+                if(data.getPlayer().getPosition().isMoving()) {
+                    switch(data.getPlayer().getPosition().getDir()) {
                     case Side::TO_UP:
                         character.move(0, -4);
                         break;
@@ -294,7 +293,7 @@ namespace OpMon {
                     }
                 }
                 if(frames - startFrames >= 7) {
-                    Model::Data::player.getPosition().stopMove();
+                    data.getPlayer().getPosition().stopMove();
                 }
             }
 
@@ -304,7 +303,7 @@ namespace OpMon {
             for(Model::Event *event : current->getEvents()) {
                 const sf::Sprite *sprite = event->getSprite();
                 event->updateTexture();
-                if(sprite->getPosition().y > Model::Data::player.getPosition().getPositionPixel().y) {
+                if(sprite->getPosition().y > data.getPlayer().getPosition().getPositionPixel().y) {
                     frame.draw(*sprite);
                 }
             }
