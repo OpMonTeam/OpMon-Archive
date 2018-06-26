@@ -12,6 +12,8 @@ namespace OpMon {
       jukebox.addMusic("Ms", "audio/music/mysterioucity.ogg");
       jukebox.addMusic("Labo", "audio/music/labo.ogg");
       jukebox.addMusic("Wild Battle", "audio/music/wildbattle.ogg");
+
+      ResourceLoader::load(font, "fonts/Default.ttf", true);
     }
   }
 }

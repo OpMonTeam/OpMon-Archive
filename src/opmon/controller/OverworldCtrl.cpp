@@ -11,8 +11,8 @@
 namespace OpMon {
     namespace Controller {
 
-        OverworldCtrl::OverworldCtrl(Model::Player &player)
-          : view("Player's room")
+      OverworldCtrl::OverworldCtrl(Model::Player &player, Model::UiData* uidata)
+	: data(uidata, &player), view("Player's room", this->data)
           , player(player) {}
 
         GameStatus OverworldCtrl::checkEvent(sf::Event const &events) {
@@ -50,11 +50,11 @@ namespace OpMon {
                         debugCol = !debugCol;
                     }
                     if(events.key.code == sf::Keyboard::B) {
-                        Model::Data::player.addOpToOpTeam(new Model::OpMon("", Model::Data::OpMons::listOp[4], 5, {Model::Attacks::newAtk("Charge"), Model::Attacks::newAtk("Brouillard"), nullptr, nullptr}, Model::Nature::QUIET));
+		      data.getPlayer().addOpToOpTeam(new Model::OpMon("", Model::Data::OpMons::listOp[4], 5, {Model::Attacks::newAtk("Charge"), Model::Attacks::newAtk("Brouillard"), nullptr, nullptr}, Model::Nature::QUIET));
                         Model::OpTeam *opTeam = new Model::OpTeam("Unknown trainer");
                         opTeam->addOpMon(new Model::OpMon("", Model::Data::OpMons::listOp[1], 5, {Model::Attacks::newAtk("Charge"), Model::Attacks::newAtk("Brouillard"), nullptr, nullptr}, Model::Nature::QUIET));
                         _next_gs = new BattleCtrl(Model::Data::player.getOpTeam(), opTeam);
-                        Model::Data::player.healOp();
+                        data.getPlayer().healOp();
                         return GameStatus::NEXT;
                     }
                     if(events.key.code == sf::Keyboard::Numpad5) {

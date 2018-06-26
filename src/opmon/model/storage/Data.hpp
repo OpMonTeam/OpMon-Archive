@@ -29,7 +29,6 @@ namespace OpMon {
 
         namespace Data {
 
-            extern Player player;
 
             namespace OpMons {
                 extern std::map<unsigned int, Species *> listOp;
@@ -40,7 +39,6 @@ namespace OpMon {
             } // namespace OpMons
 
             namespace World {
-                extern std::map<std::string, Map *> maps;
                 extern sf::Texture tileset;
             } // namespace World
 
