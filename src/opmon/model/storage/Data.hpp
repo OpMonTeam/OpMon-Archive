@@ -59,17 +59,12 @@ namespace OpMon {
             } // namespace Battle
 
             namespace Elements {
-                extern std::map<std::string, sf::Vector2f> elementsPos;
-                extern std::map<std::string, int> elementsCounter;
-                extern std::map<std::string, std::vector<sf::Texture>> elementsTextures;
-                extern std::map<std::string, sf::Sprite> elementsSprites;
+
             } // namespace Elements
 
             namespace Ui {
                 extern std::vector<sf::Music *> townMusics;
-                extern sf::Texture texturePP[4];
-                extern sf::Texture walkingPP[4];
-                extern sf::Texture walkingPP2[4];
+
                 extern sf::Texture backPP; //Not init yet
 
                 extern std::map<std::string, std::vector<sf::Texture>> charaTextures;

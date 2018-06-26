@@ -17,6 +17,8 @@ namespace OpMon {
             Model::Player &player;
 
 	  Model::OverworldData data;
+
+	  EventsCtrl eventsctrl;
 	  
           public:
 	  OverworldCtrl(Model::Player &player, Model::UiData* uidata);
