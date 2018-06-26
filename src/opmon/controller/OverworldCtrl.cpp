@@ -100,7 +100,7 @@ namespace OpMon {
         }
 
         GameStatus OverworldCtrl::checkEventsNoDialog(sf::Event const &event, Model::Player &player) {
-            EventsCtrl::checkAction(event, player, view);
+            eventsctrl.checkAction(event, player, view);
             Controller::PlayerCtrl::checkMove(player, event, view);
             return GameStatus::CONTINUE;
         }
@@ -108,7 +108,7 @@ namespace OpMon {
       GameStatus OverworldCtrl::update(sf::RenderTexture& frame) {
             bool is_dialog_open = view.getDialog() && !view.getDialog()->isDialogOver();
             if(!is_dialog_open) {
-                EventsCtrl::updateEvents(Model::Data::World::maps.at(player.getMapId())->getEvents(), player, view);
+                eventsctrl.updateEvents(data.getMap(player.getMapId())->getEvents(), player, view);
             }
 
             return view(getFrames(), frame);
