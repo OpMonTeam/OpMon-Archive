@@ -53,8 +53,10 @@ namespace OpMon {
             //check if the opmon can attack
             bool canAttack(Model::OpMon *opmon, Model::Turn *opTurn);
 
+	  BattleData data;
+	  
           public:
-            BattleCtrl(Model::OpTeam *one, Model::OpTeam *two);
+	  BattleCtrl(Model::OpTeam *one, Model::OpTeam *two, UiData* uidata);
             GameStatus checkEvent(sf::Event const &) override;
 	  GameStatus update(sf::RenderTexture& frame) override;
         };

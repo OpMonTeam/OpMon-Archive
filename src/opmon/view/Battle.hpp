@@ -18,7 +18,7 @@ namespace OpMon {
 
         class Battle {
           private:
-            //The OpMons' sprites (The textures IDs will be in the OpMon object)
+            //The OpMons' sprites
             sf::Sprite atk;
             sf::Sprite def;
 
@@ -71,8 +71,10 @@ namespace OpMon {
             std::vector<sf::Text> turnTxt = std::vector<sf::Text>(3);
             sf::Sprite dialogArrow;
 
-            int phase = 0;
+	  int phase = 0;
 
+	  BattleData& data;
+	  
           public:
             Battle(const Model::OpTeam *atkTeam, const Model::OpTeam *defTeam, std::string trainerClass, std::string background);
 
