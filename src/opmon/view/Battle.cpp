@@ -21,15 +21,15 @@ namespace OpMon {
 	frame.draw(shadowTrainer);*/
             frame.draw(playerSpr);
             frame.draw(trainerSpr);
-            atk.setTexture(Model::Data::OpMons::opSprites[atkTurn.opmon->getSpecies().getOpdexNumber()][0]);
-            this->def.setTexture(Model::Data::OpMons::opSprites[defTurn.opmon->getSpecies().getOpdexNumber()][1]);
+            atk.setTexture(data.getUiDataPtr()->getOpSprite(atkTurn.opmon->getSpecies().getOpdexNumber(), false));
+            this->def.setTexture(data.getUiDataPtr()->getOpSprite(defTurn.opmon->getSpecies().getOpdexNumber(), true);
             frame.draw(atk);
             frame.draw(this->def);
             frame.draw(infoboxPlayer);
             frame.draw(infoboxTrainer);
 
-            healthbar2[0].setTextureRect(sf::IntRect(0, 0, (defHp * Model::Data::Battle::healthbar2.getSize().x) / defTurn.opmon->getStatHP(), Model::Data::Battle::healthbar2.getSize().y));
-            healthbar2[1].setTextureRect(sf::IntRect(0, 0, (atkHp * Model::Data::Battle::healthbar2.getSize().x) / atkTurn.opmon->getStatHP(), Model::Data::Battle::healthbar2.getSize().y));
+				 healthbar2[0].setTextureRect(sf::IntRect(0, 0, (defHp * data.getHealthbar2().getSize().x) / defTurn.opmon->getStatHP(), data.getHealthbar2().getSize().y));
+				 healthbar2[1].setTextureRect(sf::IntRect(0, 0, (atkHp * data.getHealthbar2().getSize().x) / atkTurn.opmon->getStatHP(), data.getHealthbar2().getSize().y));
 
             for(unsigned int i = 0; i < 2; i++) {
                 frame.draw(healthbar1[i]);
@@ -57,11 +57,11 @@ namespace OpMon {
 	    frame.draw(opHp);
             if(!turnLaunched && *turnActivated) {
                 phase = 1;
-                dialogSpr.setTexture(Model::Data::Ui::dialogBackground);
+                dialogSpr.setTexture(data.getUiDataPtr()->getDialogBackground());
                 turnLaunched = true;
             } else if(turnLaunched && !(*turnActivated)) {
                 phase = 0;
-                dialogSpr.setTexture(Model::Data::Battle::dialog);
+                dialogSpr.setTexture(data.getDialog());
                 turnLaunched = false;
             }
             frame.draw(dialogSpr);
@@ -160,7 +160,7 @@ namespace OpMon {
                         ppTxt.setColor(sf::Color::Black);
                     }
                     ppTxt.setString(oss3.str());
-                    type.setTexture(Model::Data::OpMons::typesTextures[atkTurn.opmon->getAttacks()[curPos]->getType()]);
+                    type.setTexture(data.getUiDataPtr()->getTypeTexture(atkTurn.opmon->getAttacks()[curPos]->getType()));
                     frame.draw(type);
                 } else {
                     ppTxt.setColor(sf::Color::Red);
@@ -196,7 +196,7 @@ namespace OpMon {
         void Battle::toggleAttackChoice() {
             attackChoice = !attackChoice;
             if(attackChoice) {
-                dialogSpr.setTexture(Model::Data::Battle::attackDialog);
+	      dialogSpr.setTexture(data.getAttackDialog());
                 posChoices[0].x = 40;
                 posChoices[0].y = 370;
                 posChoices[1].x = 140;
@@ -207,7 +207,7 @@ namespace OpMon {
                 posChoices[3].y = 425;
                 for(unsigned int i = 0; i < 4; i++) {
                     attacks[i].setPosition(posChoices[i]);
-                    attacks[i].setFont(Model::Data::Ui::font);
+                    attacks[i].setFont(data.getUiDataPtr()->getFont());
                     attacks[i].setCharacterSize(26);
                     attacks[i].setColor(sf::Color::Black);
                 }
@@ -221,21 +221,20 @@ namespace OpMon {
                 posChoices[2].y = 445;
                 posChoices[3].x = 430;
                 posChoices[3].y = 445;
-                dialogSpr.setTexture(Model::Data::Battle::dialog);
+                dialogSpr.setTexture(data.getDialog());
             }
         }
 
-        Battle::Battle(const Model::OpTeam *atkTeam, const Model::OpTeam *defTeam, std::string trainerClass, std::string background)
-          : atkTeam(atkTeam)
-          , defTeam(defTeam) {
-            this->background.setTexture(Model::Data::Battle::backgrounds[background]);
-            playerSpr.setTexture(Model::Data::Battle::charaBattleTextures["player"][0]);
+      Battle::Battle(const Model::OpTeam *atkTeam, const Model::OpTeam *defTeam, std::string trainerClass, std::string background, BattleData& data)
+	: atkTeam(atkTeam), defTeam(defTeam), data(data){
+	this->background.setTexture(data.getBackground(background));
+	playerSpr.setTexture(data.getCharaBattleTextures("player")[0]);
             playerSpr.setPosition(20, 206);
             playerSpr.setScale(2, 2);
-            trainerSpr.setTexture(Model::Data::Battle::charaBattleTextures[trainerClass][0]);
+            trainerSpr.setTexture(data.getCharaBattleTextures(trainerClass)[0]);
             trainerSpr.setPosition(400, 20);
 
-            dialogArrow.setTexture(Model::Data::Ui::dialogArrow);
+            dialogArrow.setTexture(data.getUiDataPtr()->getDialogArrow());
 
             choicesTxt[0].setString(Utils::StringKeys::get("battle.attack"));
             choicesTxt[1].setString(Utils::StringKeys::get("battle.bag"));
@@ -250,7 +249,7 @@ namespace OpMon {
             posChoices[3].x = 430;
             posChoices[3].y = 445;
             for(unsigned int i = 0; i < 4; i++) {
-                choicesTxt[i].setFont(Model::Data::Ui::font);
+	      choicesTxt[i].setFont(data.getUiDataPtr()->getFont());
                 choicesTxt[i].setCharacterSize(20);
                 choicesTxt[i].setPosition(posChoices[i]);
                 choicesTxt[i].setColor(sf::Color::White);
@@ -258,9 +257,9 @@ namespace OpMon {
 
             //ppText.setPosition(326, 380);
 
-            dialogSpr.setTexture(Model::Data::Battle::dialog);
+            dialogSpr.setTexture(data.getDialog());
             dialogSpr.setPosition(0, 350);
-            cursor.setTexture(Model::Data::Battle::cursor);
+            cursor.setTexture(data.getCursor());
             cursor.setPosition(posChoices[0] + sf::Vector2f((choicesTxt[0].getGlobalBounds().width / 2) - 10, 25));
             curPos = 0;
             cursor.setScale(2, 2);
@@ -269,18 +268,18 @@ namespace OpMon {
             def.setPosition(305, 120);
             atk.setScale(2, 2);
 
-            infoboxPlayer.setTexture(Model::Data::Battle::infoboxPlayer);
+            infoboxPlayer.setTexture(data.getInfoboxPlayer());
             infoboxPlayer.setPosition(321, 250);
-            infoboxTrainer.setTexture(Model::Data::Battle::infoboxTrainer);
+            infoboxTrainer.setTexture(data.getInfoboxTrainer());
             infoboxTrainer.setPosition(17, 148);
-            shadowPlayer.setTexture(Model::Data::Battle::shadowPlayer);
+            shadowPlayer.setTexture(data.getShadowPlayer());
             shadowPlayer.setPosition(130, 281);
-            shadowTrainer.setTexture(Model::Data::Battle::shadowTrainer);
+            shadowTrainer.setTexture(data.getShadowTrainer());
             shadowTrainer.setPosition(320, 175);
             for(unsigned int i = 0; i < 2; i++) {
 
-                healthbar1[i].setTexture(Model::Data::Battle::healthbar1);
-                healthbar2[i].setTexture(Model::Data::Battle::healthbar2);
+	      healthbar1[i].setTexture(data.getHealthbar1());
+	      healthbar2[i].setTexture(data.getHealthbar2());
             }
 
             infoboxTrainer.setPosition(17, 148);
@@ -297,20 +296,20 @@ namespace OpMon {
             opLevel[1].setPosition(22, 185);
 
             for(unsigned int i = 0; i < 2; i++) {
-                opName[i].setFont(Model::Data::Ui::font);
-                opLevel[i].setFont(Model::Data::Ui::font);
+	      opName[i].setFont(data.getUiDataPtr()->getFont());
+	      opLevel[i].setFont(data.getUiDataPtr()->getFont());
                 opName[i].setCharacterSize(22);
                 opLevel[i].setCharacterSize(22);
                 opName[i].setColor(sf::Color::Black);
                 opLevel[i].setColor(sf::Color::Black);
             }
 
-	    opHp.setFont(Model::Data::Ui::font);
+	    opHp.setFont(data.getUiDataPtr()->getFont());
 	    opHp.setCharacterSize(14);
 	    opHp.setColor(sf::Color::Black);
 	    opHp.setPosition(332, 264);
 
-            waitText.setFont(Model::Data::Ui::font);
+            waitText.setFont(data.getUiDataPtr()->getFont());
             waitText.setCharacterSize(22);
             waitText.setColor(sf::Color::Black);
             waitText.setPosition(25, 410);
@@ -318,15 +317,15 @@ namespace OpMon {
             ppStrTxt.setPosition(326, 380);
             ppStrTxt.setString("PP :");
             ppTxt.setPosition(326, 400);
-            ppStrTxt.setFont(Model::Data::Ui::font);
-            ppTxt.setFont(Model::Data::Ui::font);
+            ppStrTxt.setFont(data.getUiDataPtr()->getFont());
+            ppTxt.setFont(data.getUiDataPtr()->getFont());
             ppStrTxt.setCharacterSize(26);
             ppTxt.setCharacterSize(26);
             ppStrTxt.setColor(sf::Color::Black);
             ppTxt.setColor(sf::Color::Black);
 
             for(unsigned int i = 0; i < 3; i++) {
-                turnTxt[i].setFont(Model::Data::Ui::font);
+                turnTxt[i].setFont(data.getUiDataPtr()->getFont());
                 turnTxt[i].setCharacterSize(22);
                 turnTxt[i].setColor(sf::Color::Black);
                 turnTxt[i].setPosition(25, 410 + i * 20);
