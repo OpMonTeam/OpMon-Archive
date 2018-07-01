@@ -79,9 +79,18 @@ UNS
             if(!OptionsSave::checkParam("lang")) { //If the "lang" setting don't exist
                 OptionsSave::addParam("lang", "eng");
             }
-            oplog("Loading the resources.");
-            oplog("Repertory : " + Utils::Path::getResourcePath());
-            Initializer::init();
+            oplog("Resources repertory : " + Utils::Path::getResourcePath());
+	    
+	    //Initializaing keys
+	    oplog("Loading strings");
+            std::string lang = OptionsSave::getParam("lang").getValue();
+            auto &tr = ::OpMon::I18n::Translator::getInstance();
+
+            if(!tr.getAvailableLanguages().count(lang)) {
+                lang = "en"; // The lang isn't available. Default to english.
+            }
+            tr.setLang(lang);
+	    
             oplog("Loading completed! Opening gui.");
             //bgtask = new std::thread(bgTask);
             do {
