@@ -60,16 +60,10 @@ namespace OpMon {
 
                 //extern std::vector<sf::Texture> charaFront;
 
-                extern sf::SoundBuffer doorSoundBuffer;
-                extern sf::SoundBuffer shopDoorSoundBuffer;
                 //std::string backgrounds[];
             } // namespace Ui
 
             namespace Sounds {
-                extern sf::SoundBuffer nope;
-                extern sf::SoundBuffer arrow;
-                extern sf::SoundBuffer dialogPass;
-                extern sf::SoundBuffer push;
             } // namespace Sounds
 
             namespace Animations {
@@ -77,12 +71,6 @@ namespace OpMon {
             }
 
             namespace Controls {
-                extern sf::Keyboard::Key up;
-                extern sf::Keyboard::Key down;
-                extern sf::Keyboard::Key left;
-                extern sf::Keyboard::Key right;
-                extern sf::Keyboard::Key interact;
-                extern sf::Keyboard::Key talk;
             } // namespace Controls
         }     // namespace Data
     }         // namespace Model

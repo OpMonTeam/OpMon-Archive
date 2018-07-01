@@ -89,7 +89,7 @@ namespace OpMon {
         GameStatus OverworldCtrl::checkEventsDialog(sf::Event const &events, View::Overworld &overworld) {
             switch(events.type) {
             case sf::Event::KeyPressed:
-                if(events.key.code == Model::Data::Controls::talk) {
+	      if(events.key.code == data.getUiDataPtr()->getKeyTalk()) {
                     overworld.getDialog()->pass();
                 }
                 break;

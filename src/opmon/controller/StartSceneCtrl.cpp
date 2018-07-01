@@ -17,7 +17,7 @@ namespace OpMon {
 
             switch(event.type) {
             case sf::Event::KeyPressed:
-                if(event.key.code == Model::Data::Controls::talk && startscene.getDialog() != nullptr) {
+	      if(event.key.code == data.getUiDataPtr()->getKeyTalk() && startscene.getDialog() != nullptr) {
                     startscene.getDialog()->pass();
                 }
                 if(event.key.code == sf::Keyboard::Return && startscene.getPart() == 1) {

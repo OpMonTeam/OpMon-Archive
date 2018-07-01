@@ -11,7 +11,7 @@ namespace OpMon {
 #pragma GCC diagnostic ignored "-Wunused-parameter"
         void EventsCtrl::checkAction(sf::Event const &event, Model::Player &player, View::Overworld &overworld) {
             if(!player.getPosition().isAnim()) {
-                if(sf::Keyboard::isKeyPressed(Model::Data::Controls::interact)) {
+	      if(sf::Keyboard::isKeyPressed(overworld.getData().getUiDataPtr()->getKeyInteract())) {
                     int lx = player.getPosition().getPosition().x;
                     int ly = player.getPosition().getPosition().y;
                     switch(player.getPosition().getDir()) {
