@@ -64,7 +64,6 @@ namespace OpMon {
 
       //Initializating OpMon Sprites
       //I will use a "for" loop later, I don't use it now to avoid loading errors. I will use it when every sprite will be loaded.
-      std::vector<std::vector<sf::Texture>> &opSprites = Model::Data::OpMons::opSprites;
       opSprites.push_back(std::vector<sf::Texture>());
       opSprites.push_back(std::vector<sf::Texture>());
       ResourceLoader::loadTextureArray(opSprites[1], "sprites/opmons/1-%d.png", 2);
@@ -106,8 +105,8 @@ namespace OpMon {
 #undef LOAD_TYPE
 
       //Loading dialogs
-      ResourceLoader::load(Model::Data::Ui::dialogBackground, "backgrounds/dialog/dialog.png");
-      ResourceLoader::load(Model::Data::Ui::dialogArrow, "sprites/misc/arrDial.png");
+      ResourceLoader::load(dialogBackground, "backgrounds/dialog/dialog.png");
+      ResourceLoader::load(dialogArrow, "sprites/misc/arrDial.png");
 
       //Loading sounds
       jukebox.addSound("door sound", "audio/sounds/door.ogg");
@@ -227,6 +226,13 @@ namespace OpMon {
 	interact = keysMap[keyInteract];
       }
       
+    }
+
+    ~UiData(){
+      for(auto spe : Data::OpMons::listOp) {
+            delete(spe.second);
+      }
+      delete(jukebox);
     }
   }
 }

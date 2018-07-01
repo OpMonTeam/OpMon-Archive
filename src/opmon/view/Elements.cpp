@@ -47,7 +47,7 @@ UNS
         void MapLayer::draw(sf::RenderTarget &target, sf::RenderStates states) const {
             states.transform *= getTransform();
 
-            states.texture = &Model::Data::World::tileset;
+            states.texture = &tileset;
 
             target.draw(tiles, states);
         }

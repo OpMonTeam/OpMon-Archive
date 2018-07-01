@@ -46,7 +46,7 @@ namespace OpMon {
         }
 
         void PlayerCtrl::move(Model::Side direction, Model::Player &player, View::Overworld &overworld) {
-            player.getPosition().move(direction);
+	  player.getPosition().move(direction, overworld.getData().getCurrentMap());
 
             Model::Map *map = overworld.getData().getCurrentMap();
             auto eventList = map->getEvent(player.getPosition().getPosition());

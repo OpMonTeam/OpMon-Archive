@@ -15,7 +15,7 @@ UNS
             Animation::Animation(sf::Texture bgTxt)
               : bgTxt(bgTxt) {
 	      if(fen[0] == sf::Texture()){
-		ResourceLoader::loadTextureArray(Data::Animations::fen, "animations/winChange/animWindowFrame%d.png", 6, 1);
+		ResourceLoader::loadTextureArray(fen, "animations/winChange/animWindowFrame%d.png", 6, 1);
 	      }
 	    }
 

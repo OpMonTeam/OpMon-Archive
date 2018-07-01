@@ -23,7 +23,7 @@ UNS
                 txtP0.push_back(kget(actual));
             }
             it++;
-            strName = Utils::OpString("prof.dialog.start.19", Model::Data::player.getNameP());
+            strName = Utils::OpString("prof.dialog.start.19", data.getPlayer().getNameP());
             txtP1.emplace_back(); // empty space replaced later by OpString 'strName'
             for(it = it; it < 27; it++) {
                 string actual;
@@ -58,7 +58,7 @@ UNS
             for(sf::Text &cellTxt : textDescs) {
                 cellTxt.setCharacterSize(FONT_SIZE_DEFAULT);
                 cellTxt.setColor(sf::Color::White);
-                cellTxt.setFont(Model::Data::Ui::font);
+                cellTxt.setFont(data.getUiDataPtr()->getFont());
             }
 
             nameField.setFont(data.getUiDataPtr()->getFont());

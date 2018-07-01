@@ -55,15 +55,7 @@ UNS
     int quit(int const &returns) {
         OptionsSave::saveParams(optSave); //Saving parameters
         oplog("Deleting resources in the memory");
-        for(auto &map : Data::World::maps) {
-            delete(map.second);
-        }
-        for(sf::Music *mus : Data::Ui::townMusics) { //Deleting the maps' music
-            delete(mus);
-        }
-        for(auto spe : Data::OpMons::listOp) {
-            delete(spe.second);
-        }
+        
 
         // TODO: delet the player's OpMons !
         // for(unsigned short i = 0; i < 6; i++){

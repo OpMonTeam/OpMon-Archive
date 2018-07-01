@@ -30,9 +30,10 @@ namespace OpMon {
             sf::Image icon;
             Model::ResourceLoader::load(icon, "opmon.png");
             window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
-
+	    
             frame.create(512, 512);
-            window.clear(sf::Color::White);
+	    
+            /*window.clear(sf::Color::White);
             sf::Texture loadTexture;
             Model::ResourceLoader::load(loadTexture, "backgrounds/loading.png");
             sf::Sprite spriteLoad;
@@ -46,41 +47,14 @@ namespace OpMon {
             frame.draw(spriteLoad);
             frame.draw(textLoad);
             frame.display();
-            winRefresh();
+            winRefresh();*/
 
             oplog("Window initialized!");
 #if 0
-      window.setVerticalSyncEnabled(true);
+	    window.setVerticalSyncEnabled(true);
 #endif
             window.setFramerateLimit(30);
             window.setKeyRepeatEnabled(false);
-            frame.clear(sf::Color::White);
-            //#define TEST
-#ifdef TEST
-            ifstream strm(RESSOURCES_PATH + "keys/francais.rkeys");
-            string read;
-            getline(strm, read);
-            getline(strm, read);
-            getline(strm, read);
-            getline(strm, read);
-            getline(strm, read);
-            getline(strm, read);
-            getline(strm, read);
-            getline(strm, read);
-            getline(strm, read);
-            getline(strm, read);
-            getline(strm, read);
-            sf::String sfstr = sf::String::fromUtf8(read.begin(), read.end());
-            sf::Text txt;
-            txt.setString(sfstr);
-            txt.setColor(sf::Color::Blue);
-            frame.clear(sf::Color::White);
-            cout << read << endl;
-            frame.draw(txt);
-            frame.display();
-            winRefresh();
-            Utils::wait(1000 * 5);
-#endif
             frame.clear(sf::Color::White);
             frame.display();
             winRefresh();
