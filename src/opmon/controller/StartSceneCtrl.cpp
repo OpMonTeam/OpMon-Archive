@@ -25,13 +25,13 @@ namespace OpMon {
                     if(pName.isEmpty()) {
                         pName = "Player";
                     }
-                    Model::Data::player.setName(pName);
+                    data.getUiDataPtr()->getPlayer().setName(pName);
                     startscene.delLoop1();
 		    animNext = true;
                     return GameStatus::CONTINUE;
                 }
                 if(event.key.code == sf::Keyboard::P && startscene.getPart() != 1) {
-                    _next_gs = new OverworldCtrl(Model::Data::player);
+		  _next_gs = new OverworldCtrl(data.getPlayerPtr(), data.getUiDataPtr());
                     return GameStatus::NEXT;
                 }
                 break;
@@ -53,7 +53,7 @@ namespace OpMon {
             }
 
             if(view.getPart() > 2) {
-                _next_gs = new OverworldCtrl(Model::Data::player);
+                _next_gs = new OverworldCtrl(data.getPlayerPtr(), data.getUiDataPtr());
                 return GameStatus::NEXT;
             }
             return GameStatus::CONTINUE;
@@ -77,7 +77,7 @@ namespace OpMon {
                     _next_gs = new AnimationCtrl(new View::Animations::WinAnim(frame.getTexture(), true));
                     break;
                 case 3:
-                    _next_gs = new OverworldCtrl(Model::Data::player);
+                    _next_gs = new OverworldCtrl(data.getPlayerPtr(), data.getUiDataPtr());
                     break;
                 default:
                     handleError("Internal error, unknown part in StartSceneCtrl::update", true);

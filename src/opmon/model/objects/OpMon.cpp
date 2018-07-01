@@ -1633,8 +1633,8 @@ UNS
                     attacks[3]->setPPMax(in.get());
                     in.get();
                 }
-                int speciesID = in.get();
-                species = Data::OpMons::listOp.at(speciesID);
+                //int speciesID = in.get();
+                //species = Data::OpMons::listOp.at(speciesID);
                 in.get();
                 HP = in.get();
                 in.get();

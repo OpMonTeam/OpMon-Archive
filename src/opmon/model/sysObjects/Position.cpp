@@ -45,14 +45,14 @@ namespace OpMon {
 
 #define UNLOCK_TP Events::justTP = false;
 
-        void Position::move(Side dir) {
+      void Position::move(Side dir, Map* map) {
             if(!anim && !moveLock) {
                 this->dir = dir;
                 //To do in overworld
                 //startFrames = frames;
                 anim = true;
 
-                if((!event && debugCol) || checkPass(dir)) {
+                if((!event && debugCol) || checkPass(dir, map)) {
                     UNLOCK_TP
                     movement = true;
                     switch(dir) {
@@ -79,10 +79,7 @@ namespace OpMon {
             }
         }
 
-        bool Position::checkPass(Side direction) {
-            auto &player = Data::player;
-            std::vector<Event *> nextEvents;
-            Map *map = Data::World::maps.at(player.getMapId());
+      bool Position::checkPass(Side direction, Map* map) {
 
             sf::Vector2i nextPos;
             sf::Vector2i nextPosPix;

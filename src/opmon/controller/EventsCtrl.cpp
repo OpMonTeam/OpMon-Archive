@@ -31,14 +31,14 @@ namespace OpMon {
                         break;
                     }
 
-                    std::vector<Model::Event *> eventList = Model::Data::World::maps.at(player.getMapId())->getEvent(sf::Vector2i(lx, ly));
+                    std::vector<Model::Event *> eventList = overworld.getData().getCurrentMap()->getEvent(sf::Vector2i(lx, ly));
                     actionEvents(eventList, player, Model::Events::EventTrigger::PRESS, overworld);
                 }
             }
 #pragma GCC diagnostic pop
 
             if(!player.getPosition().isMoving()) {
-                std::vector<Model::Event *> eventList = Model::Data::World::maps.at(player.getMapId())->getEvent(player.getPosition().getPosition());
+	      std::vector<Model::Event *> eventList = overworld.getData().getCurrentMap()->getEvent(player.getPosition().getPosition());
                 actionEvents(eventList, player, Model::Events::EventTrigger::BE_IN, overworld);
             }
         }

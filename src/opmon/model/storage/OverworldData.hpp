@@ -48,6 +48,7 @@ namespace OpMon {
       Player& getPlayer() { return *player; }
       
       OverworldData(UiData* uidata, Player* player);
+      ~OverworldData();
       
     };
     

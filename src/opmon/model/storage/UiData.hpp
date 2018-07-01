@@ -31,7 +31,7 @@ namespace OpMon {
       View::Jukebox& getJukebox() { return jukebox; }
       sf::Font const& getFont() const { return font; }
       UiData();
-
+      ~UiData();
       sf::Texture& getOpSprite(unsigned int id, bool face) { return opSprites[id][(unsigned int)face]; }
       Species* getOp(unsigned int id) { return listOp.at(id); }
       sf::Texture& getTypeTexture(Type type) { return typesTextures[type]; }

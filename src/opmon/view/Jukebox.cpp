@@ -30,8 +30,12 @@ namespace OpMon {
 
         Jukebox::~Jukebox() {
             for(auto itor = musList.begin(); itor != musList.end(); ++itor) {
-                delete(itor->second);
+	      delete(itor->second);
             }
+	    for(auto itor = soundsList.begin(); itor != soundsList.end(); ++itor) {
+	      delete(itor->second.first);
+	      delete(itor->second.second);
+	    }
         }
 
         void Jukebox::play(std::string music) {
