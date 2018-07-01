@@ -20,6 +20,10 @@ namespace OpMon {
       std::map<std::string, unsigned int> elementsCounter;
       std::map<std::string, std::vector<sf::Texture>> elementsTextures;
 
+      std::map<std::string, std::vector<sf::Texture>> charaTextures;
+
+      std::map<std::vector<sf::Texture>> doorsTextures;
+      
       OverworldData(OverworldData const&);
       
     public:
