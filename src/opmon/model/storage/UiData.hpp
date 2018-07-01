@@ -18,6 +18,14 @@ namespace OpMon {
       
       View::Jukebox jukebox;
       sf::Font font;
+
+      sf::Keyboard::Key up;
+      sf::Keyboard::Key down;
+      sf::Keyboard::Key left;
+      sf::Keyboard::Key right;
+      sf::Keyboard::Key interact;
+      sf::Keyboard::Key talk;
+      
       UiData(UiData const& data);
     public:
       View::Jukebox& getJukebox() { return jukebox; }
@@ -30,6 +38,13 @@ namespace OpMon {
       
       sf::Texture& getDialogArrow() { return dialogArrow; }
       sf::Texture& getDialogBackground() { return dialogBackground; }
+
+      sf::Keyboard::Key getKeyUp() { return up; }
+      sf::Keyboard::Key getKeyDown() { return down; }
+      sf::Keyboard::Key getKeyLeft() { return left; }
+      sf::Keyboard::Key getKeyRight() { return right; }
+      sf::Keyboard::Key getKeyInteract() { return interact; }
+      sf::Keyboard::Key getKeyTalk() { return talk; }
       
     };
     
