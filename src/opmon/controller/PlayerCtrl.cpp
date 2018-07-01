@@ -27,18 +27,18 @@ namespace OpMon {
                     overworld.tp("OpCenter", sf::Vector2i(9, 17));
                 }
             }
-
+	    
             if(!overworld.justTp && !player.getPosition().isAnim() && !player.getPosition().isLocked()) {
-                if(sf::Keyboard::isKeyPressed(Model::Data::Controls::up)) {
-                    overworld.setStartFrames();
+	      if(sf::Keyboard::isKeyPressed(overworld.getData().getUiDataPtr()->getKeyUp())) {
+		  overworld.setStartFrames();
                     move(Model::Side::TO_UP, player, overworld);
-                } else if(sf::Keyboard::isKeyPressed(Model::Data::Controls::down)) {
+                } else if(sf::Keyboard::isKeyPressed(overworld.getData().getUiDataPtr()->getKeyDown())) {
                     overworld.setStartFrames();
                     move(Model::Side::TO_DOWN, player, overworld);
-                } else if(sf::Keyboard::isKeyPressed(Model::Data::Controls::left)) {
+                } else if(sf::Keyboard::isKeyPressed(overworld.getData().getUiDataPtr()->getKeyLeft())) {
                     overworld.setStartFrames();
                     move(Model::Side::TO_LEFT, player, overworld);
-                } else if(sf::Keyboard::isKeyPressed(Model::Data::Controls::right)) {
+                } else if(sf::Keyboard::isKeyPressed(overworld.getData().getUiDataPtr()->getKeyRight())) {
                     overworld.setStartFrames();
                     move(Model::Side::TO_RIGHT, player, overworld);
                 }
@@ -48,7 +48,7 @@ namespace OpMon {
         void PlayerCtrl::move(Model::Side direction, Model::Player &player, View::Overworld &overworld) {
             player.getPosition().move(direction);
 
-            Model::Map *map = Model::Data::World::maps.at(player.getMapId());
+            Model::Map *map = overworld.getData().getCurrentMap();
             auto eventList = map->getEvent(player.getPosition().getPosition());
             EventsCtrl::actionEvents(eventList, player, Model::Events::EventTrigger::GO_IN, overworld);
         }

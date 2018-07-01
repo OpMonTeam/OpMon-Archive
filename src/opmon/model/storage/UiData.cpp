@@ -116,7 +116,116 @@ namespace OpMon {
       jukebox.addSound("nope", "audio/sounds/nope.ogg");
       jukebox.addSound("arrow", "audio/sounds/select.ogg");
       jukebox.addSound("push", "audio/sounds/selectbuttons.ogg");
-      
+
+      //Loading controls
+#define ADDMAP(key) keysMap[(#key)] = sf::Keyboard::key
+      std::map<std::string, sf::Keyboard::Key> keysMap;
+      ADDMAP(A);
+      ADDMAP(Z);
+      ADDMAP(E);
+      ADDMAP(R);
+      ADDMAP(T);
+      ADDMAP(Y);
+      ADDMAP(U);
+      ADDMAP(I);
+      ADDMAP(O);
+      ADDMAP(P);
+      ADDMAP(Q);
+      ADDMAP(S);
+      ADDMAP(D);
+      ADDMAP(F);
+      ADDMAP(G);
+      ADDMAP(H);
+      ADDMAP(J);
+      ADDMAP(K);
+      ADDMAP(L);
+      ADDMAP(M);
+      ADDMAP(W);
+      ADDMAP(X);
+      ADDMAP(C);
+      ADDMAP(V);
+      ADDMAP(B);
+      ADDMAP(N);
+      ADDMAP(Num1);
+      ADDMAP(Num2);
+      ADDMAP(Num3);
+      ADDMAP(Num4);
+      ADDMAP(Num5);
+      ADDMAP(Num6);
+      ADDMAP(Num7);
+      ADDMAP(Num8);
+      ADDMAP(Num9);
+      ADDMAP(Num0);
+      ADDMAP(LControl);
+      ADDMAP(RControl);
+      ADDMAP(LShift);
+      ADDMAP(RShift);
+      ADDMAP(LAlt);
+      ADDMAP(RAlt);
+      ADDMAP(Space);
+      ADDMAP(Return);
+      ADDMAP(BackSpace);
+      ADDMAP(Tab);
+      ADDMAP(Up);
+      ADDMAP(Left);
+      ADDMAP(Right);
+      ADDMAP(Down);
+      ADDMAP(Numpad1);
+      ADDMAP(Numpad2);
+      ADDMAP(Numpad3);
+      ADDMAP(Numpad4);
+      ADDMAP(Numpad5);
+      ADDMAP(Numpad6);
+      ADDMAP(Numpad7);
+      ADDMAP(Numpad8);
+      ADDMAP(Numpad9);
+      ADDMAP(Numpad0);
+      ADDMAP(Unknown);
+
+#undef ADDMAP
+	    
+      std::string keyUp = OptionsSave::getParam("control.up").getValue();
+      if(keyUp == "NULL") {
+	OptionsSave::addParam("control.up", "Up");
+	up = sf::Keyboard::Up;
+      } else {
+	up = keysMap[keyUp];
+      }
+      std::string keyDown = OptionsSave::getParam("control.down").getValue();
+      if(keyDown == "NULL") {
+	OptionsSave::addParam("control.down", "Down");
+	down = sf::Keyboard::Down;
+      } else {
+	down = keysMap[keyDown];
+      }
+      std::string keyLeft = OptionsSave::getParam("control.left").getValue();
+      if(keyLeft == "NULL") {
+	OptionsSave::addParam("control.left", "Left");
+	left = sf::Keyboard::Left;
+      } else {
+	left = keysMap[keyLeft];
+      }
+      std::string keyRight = OptionsSave::getParam("control.right").getValue();
+      if(keyRight == "NULL") {
+	OptionsSave::addParam("control.right", "Right");
+	right = sf::Keyboard::Right;
+      } else {
+	right = keysMap[keyRight];
+      }
+      std::string keyTalk = OptionsSave::getParam("control.talk").getValue();
+      if(keyTalk == "NULL") {
+	OptionsSave::addParam("control.talk", "Space");
+	talk = sf::Keyboard::Space;
+      } else {
+	talk = keysMap[keyTalk];
+      }
+      std::string keyInteract = OptionsSave::getParam("control.interact").getValue();
+      if(keyInteract == "NULL") {
+	OptionsSave::addParam("control.interact", "Return");
+	interact = sf::Keyboard::Return;
+      } else {
+	interact = keysMap[keyInteract];
+      }
       
     }
   }
