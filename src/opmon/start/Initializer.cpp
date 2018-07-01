@@ -75,7 +75,7 @@ namespace OpMon {
 
 
             std::vector<sf::Texture> basicDoor;
-            ResourceLoader::loadTextureArray(basicDoor, "animations/basicdoor/basic_door%d.png", 4, 1);
+            
             doorsTextures.push_back(basicDoor);
 
             ResourceLoader::load(Model::Data::Ui::doorSoundBuffer, "audio/sounds/door.ogg");
@@ -84,9 +84,7 @@ namespace OpMon {
             Events::doorSound.setBuffer(Model::Data::Ui::doorSoundBuffer);
             Events::shopdoorSound.setBuffer(Model::Data::Ui::shopDoorSoundBuffer);
 
-            std::vector<sf::Texture> shopDoor;
-            ResourceLoader::loadTextureArray(shopDoor, "animations/shopdoor/shop_door%d.png", 4, 1);
-            doorsTextures.push_back(shopDoor);
+            
 
             
 
@@ -97,7 +95,6 @@ namespace OpMon {
 
             initOpTextures();
 
-            initEnumsEvents();
         }
 
         void initFonts() {
@@ -105,10 +102,7 @@ namespace OpMon {
         }
 
         void initSounds() {
-            ResourceLoader::load(Model::Data::Sounds::dialogPass, "audio/sounds/dialogChange.ogg");
-            ResourceLoader::load(Model::Data::Sounds::nope, "audio/sounds/nope.ogg");
-            ResourceLoader::load(Model::Data::Sounds::arrow, "audio/sounds/select.ogg");
-            ResourceLoader::load(Model::Data::Sounds::push, "audio/sounds/selectbuttons.ogg");
+	  
         }
 
         void initSprites() {

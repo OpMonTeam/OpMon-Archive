@@ -42,8 +42,10 @@ namespace OpMon {
 
             sf::Sound dialogPass;
 
+	  UiData* uidata;
+	  
           public:
-            Dialog(const std::vector<sf::String> &text);
+	  Dialog(const std::vector<sf::String> &text, UiData* uidata);
 
             /**
        * Move forward in a dialog, in response to an event like a space key pressed.

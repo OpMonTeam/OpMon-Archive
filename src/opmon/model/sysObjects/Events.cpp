@@ -54,17 +54,18 @@ UNS
               , ppDir(ppDir) {
             }
 
-            DoorEvent::DoorEvent(std::vector<sf::Texture> &doorType, sf::Vector2f const &position, sf::Vector2i const &tpPos,
+	  DoorEvent::DoorEvent(std::vector<sf::Texture> &doorTextures, std::string doorType, sf::Vector2f const &position, sf::Vector2i const &tpPos,
                                  string const &map, EventTrigger eventTrigger, Side ppDir, int sides, bool passable)
-              : Event(doorType, eventTrigger, position, sides, passable)
-              , TPEvent(doorType, eventTrigger, position, tpPos, map, ppDir, sides, passable) {
+              : Event(doorTextures, eventTrigger, position, sides, passable)
+              , TPEvent(doorTextures, eventTrigger, position, tpPos, map, ppDir, sides, passable)
+	      , doorType(doorType){
                 this->position += sf::Vector2f(0, -6);
-                if(&doorType[0] == &DoorType::SHOP[0]) {
+                if(doorType == "shop door") {
                     this->position.x -= 4;
-                    this->doorType = 1;
-                } else {
-                    this->doorType = 0;
                 }
+		if(doorType != "door" && doorType != "shop door"){
+		  handleError(std::string("Warning - DoorEvent : Unknown door type \" ") + doorType + "\"");
+		}
             }
 
             TalkingEvent::TalkingEvent(std::vector<sf::Texture> &otherTextures, sf::Vector2f const &position,
@@ -82,12 +83,12 @@ UNS
                 }
             }
 
-            LockedDoorEvent::LockedDoorEvent(std::vector<sf::Texture> &doorType, Item *needed, sf::Vector2f const &position,
+	  LockedDoorEvent::LockedDoorEvent(std::vector<sf::Texture> &doorTextures, std::string doorType, Item *needed, sf::Vector2f const &position,
                                              sf::Vector2i const &tpPos, string const &map, Side ppDir,
                                              EventTrigger eventTrigger, bool consumeItem, int sides, bool passable)
-              : DoorEvent(doorType, position, tpPos, map, eventTrigger, ppDir, sides, passable)
-              , Event(this->otherTextures, eventTrigger, position, sides, passable)
-              , TalkingEvent(this->otherTextures, position, LockedDoorEvent::keysLock, sides, eventTrigger, passable)
+	    : DoorEvent(doorTextures, doorType, position, tpPos, map, eventTrigger, ppDir, sides, passable)
+              , Event(doorTextures, eventTrigger, position, sides, passable)
+              , TalkingEvent(doorTextures, position, LockedDoorEvent::keysLock, sides, eventTrigger, passable)
               , needed(needed)
               , consumeItem(consumeItem) {
             }
@@ -131,13 +132,7 @@ UNS
             void DoorEvent::action(Model::Player &player, View::Overworld &overworld) {
                 animStarted = 0;
                 player.getPosition().lockMove();
-                if(doorType == 0) {
-                    doorSound.setVolume(100);
-                    doorSound.play();
-                } else if(doorType == 1) {
-                    shopdoorSound.setVolume(300);
-                    shopdoorSound.play();
-                }
+                overworld.getData().getUiDataPtr()->getJukebox().play(doorType + " sound");
             }
 
             void DoorEvent::update(Model::Player &player, View::Overworld &overworld) {
@@ -202,7 +197,7 @@ UNS
                             move(Side::TO_RIGHT);
                             break;
                         default:
-                            Utils::Log::oplog("[WARNING] - Random number out of bounds CharacterEvent::update");
+                            handleError("[WARNING] - Random number out of bounds CharacterEvent::update");
                             move(Side::NO_MOVE);
                         }
                         break;
@@ -338,10 +333,7 @@ UNS
 
         } // namespace Events
 
-        void initEnumsEvents() {
-            Events::DoorType::NORMAL = Data::Ui::doorsTextures[0];
-            Events::DoorType::SHOP = Data::Ui::doorsTextures[1];
-        }
+        
 
     } // namespace Model
 }

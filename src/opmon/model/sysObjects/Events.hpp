@@ -133,12 +133,12 @@ namespace OpMon {
 
             class DoorEvent : public TPEvent {
               protected:
-                int doorType;
-                sf::Texture &selectDoorType(int doorType);
+	      std::string doorType;
                 int animStarted = -1;
 
               public:
-                DoorEvent(std::vector<sf::Texture> &doorType, sf::Vector2f const &position, sf::Vector2i const &tpPos, std::string const &map, EventTrigger eventTrigger = EventTrigger::GO_IN, Side ppDir = Side::NO_MOVE, int sides = SIDE_ALL, bool passable = true);
+	      /* Types of door (to put in doorType) : "door" | "shop door"*/
+	      DoorEvent(std::vector<sf::Texture> &doorTextures, std::string doorType, sf::Vector2f const &position, sf::Vector2i const &tpPos, std::string const &map, EventTrigger eventTrigger = EventTrigger::GO_IN, Side ppDir = Side::NO_MOVE, int sides = SIDE_ALL, bool passable = true);
                 virtual void action(Model::Player &player, View::Overworld &overworld);
                 virtual void update(Model::Player &player, View::Overworld &overworld);
             };
