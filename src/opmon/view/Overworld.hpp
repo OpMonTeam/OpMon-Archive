@@ -117,6 +117,9 @@ namespace OpMon {
 	  std::map<std::string, sf::Sprite> elementsSprites;
 
 	  Model::OverworldData& data;
+
+	public:
+	  Model::OverworldData& getData() { return data; }
         };
 
     } // namespace View

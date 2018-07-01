@@ -108,6 +108,15 @@ namespace OpMon {
       //Loading dialogs
       ResourceLoader::load(Model::Data::Ui::dialogBackground, "backgrounds/dialog/dialog.png");
       ResourceLoader::load(Model::Data::Ui::dialogArrow, "sprites/misc/arrDial.png");
+
+      //Loading sounds
+      jukebox.addSound("door sound", "audio/sounds/door.ogg");
+      jukebox.addSound("shop door sound", "audio/sounds/shopdoor.ogg");
+      jukebox.addSound("dialog pass", "audio/sounds/dialogChange.ogg");
+      jukebox.addSound("nope", "audio/sounds/nope.ogg");
+      jukebox.addSound("arrow", "audio/sounds/select.ogg");
+      jukebox.addSound("push", "audio/sounds/selectbuttons.ogg");
+      
       
     }
   }

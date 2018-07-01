@@ -15,9 +15,6 @@ namespace OpMon {
         class MainMenuCtrl : public AGameScreen {
           private:
             View::MainMenu view;
-            sf::Sound nope;
-            sf::Sound arrow;
-            sf::Sound push;
 	    Model::MainMenuData data;
           public:
 	    MainMenuCtrl(Model::UiData* data);
