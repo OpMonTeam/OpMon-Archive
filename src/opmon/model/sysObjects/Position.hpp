@@ -76,7 +76,7 @@ namespace OpMon {
             void move(Side dir);
 
           private:
-            bool checkPass(Side dir);
+	  bool checkPass(Side dir, Map* map);
 
             int posX;
             int posY;
