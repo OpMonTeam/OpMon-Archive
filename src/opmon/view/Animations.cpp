@@ -13,7 +13,11 @@ UNS
         namespace Animations {
 
             Animation::Animation(sf::Texture bgTxt)
-              : bgTxt(bgTxt) {}
+              : bgTxt(bgTxt) {
+	      if(fen[0] == sf::Texture()){
+		ResourceLoader::loadTextureArray(Data::Animations::fen, "animations/winChange/animWindowFrame%d.png", 6, 1);
+	      }
+	    }
 
             WinAnim::WinAnim(sf::Texture bgTxt, bool order)
               : Animation(bgTxt)
@@ -22,7 +26,7 @@ UNS
 
             GameStatus WinAnim::operator()() {
                 bgSpr.setTexture(bgTxt);
-                anim.setTexture(Model::Data::Animations::fen[(order ? counter : (frames - counter))]);
+                anim.setTexture(fen[(order ? counter : (frames - counter))]);
 
                 frame.draw(bgSpr);
                 frame.draw(anim);
