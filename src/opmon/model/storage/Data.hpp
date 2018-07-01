@@ -51,7 +51,7 @@ namespace OpMon {
 
 	      //extern sf::Texture backPP; //Not init yet
 
-                extern std::map<std::string, std::vector<sf::Texture>> charaTextures;
+                extern 
                 //Battle
                 //extern sf::Texture bActButtons[4];
                 //extern sf::Texture bHpBar;
@@ -60,7 +60,6 @@ namespace OpMon {
 
                 //extern std::vector<sf::Texture> charaFront;
 
-                extern std::vector<std::vector<sf::Texture>> doorsTextures;
                 extern sf::SoundBuffer doorSoundBuffer;
                 extern sf::SoundBuffer shopDoorSoundBuffer;
                 //std::string backgrounds[];
