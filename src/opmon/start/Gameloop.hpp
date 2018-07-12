@@ -11,6 +11,7 @@
 #include "../controller/AGameScreen.hpp"
 #include "./GameStatus.hpp"
 #include <stack>
+#include "../view/Window.hpp"
 
 namespace OpMon {
 

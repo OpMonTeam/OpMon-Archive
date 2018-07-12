@@ -1,5 +1,9 @@
 #pragma once
 
+#include "UiData.hpp"
+#include "../sysObjects/Player.hpp"
+#include <SFML/Graphics/Texture.hpp>
+
 namespace OpMon {
   namespace Model {
 

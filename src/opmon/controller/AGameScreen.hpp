@@ -3,6 +3,7 @@
 
 #include "../start/GameStatus.hpp"
 #include <SFML/Window/Event.hpp>
+#include <SFML/Graphics/RenderTexture.hpp>
 
 namespace OpMon {
     namespace Controller {

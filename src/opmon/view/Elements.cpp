@@ -1,6 +1,6 @@
 #include "Elements.hpp"
 #include "../../utils/defines.hpp"
-#include "../model/storage/Data.hpp"
+#include "../model/storage/ResourceLoader.hpp"
 
 UNS
 
@@ -8,7 +8,7 @@ UNS
     namespace View {
 
         MapLayer::MapLayer(sf::Vector2i size, const int tilesCodes[]) {
-	  if(tileset == sf::Texture()){
+	  if(tileset.getSize() == sf::Vector2u(0, 0)){
 	    Model::ResourceLoader::load(tileset, "tileset/tileset.png");
 	  }
             tiles.setPrimitiveType(sf::Quads);
@@ -53,10 +53,7 @@ UNS
         }
 
 
-}*/
+    }
 
-    /*namespace Elements {
-      }*/
 
-    } // namespace View
-}
+} 

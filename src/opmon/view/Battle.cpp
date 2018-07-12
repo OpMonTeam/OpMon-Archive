@@ -1,6 +1,6 @@
 #include "Battle.hpp"
 #include "../../utils/StringKeys.hpp"
-#include "../model/storage/Data.hpp"
+#include "../model/storage/BattleData.hpp"
 #include "../model/sysObjects/OpTeam.hpp"
 #include "Window.hpp"
 #include <SFML/Graphics/Rect.hpp>
@@ -9,8 +9,9 @@
 
 namespace OpMon {
     namespace View {
-        GameStatus Battle::operator()(Model::Turn const &atkTurn, Model::Turn const &defTurn, bool *turnActivated, bool atkFirst) {
-            if(atkHp == -1) {
+      GameStatus Battle::operator()(sf::RenderTexture& frame, Model::Turn const &atkTurn, Model::Turn const &defTurn, bool *turnActivated, bool atkFirst) {
+	frame.setView(frame.getDefaultView());
+	if(atkHp == -1) {
                 atkHp = atkTurn.opmon->getHP();
             }
             if(defHp == -1) {
@@ -22,7 +23,7 @@ namespace OpMon {
             frame.draw(playerSpr);
             frame.draw(trainerSpr);
             atk.setTexture(data.getUiDataPtr()->getOpSprite(atkTurn.opmon->getSpecies().getOpdexNumber(), false));
-            this->def.setTexture(data.getUiDataPtr()->getOpSprite(defTurn.opmon->getSpecies().getOpdexNumber(), true);
+            this->def.setTexture(data.getUiDataPtr()->getOpSprite(defTurn.opmon->getSpecies().getOpdexNumber(), true));
             frame.draw(atk);
             frame.draw(this->def);
             frame.draw(infoboxPlayer);
@@ -225,7 +226,7 @@ namespace OpMon {
             }
         }
 
-      Battle::Battle(const Model::OpTeam *atkTeam, const Model::OpTeam *defTeam, std::string trainerClass, std::string background, BattleData& data)
+	Battle::Battle(const Model::OpTeam *atkTeam, const Model::OpTeam *defTeam, std::string trainerClass, std::string background, Model::BattleData& data)
 	: atkTeam(atkTeam), defTeam(defTeam), data(data){
 	this->background.setTexture(data.getBackground(background));
 	playerSpr.setTexture(data.getCharaBattleTextures("player")[0]);
@@ -263,7 +264,6 @@ namespace OpMon {
             cursor.setPosition(posChoices[0] + sf::Vector2f((choicesTxt[0].getGlobalBounds().width / 2) - 10, 25));
             curPos = 0;
             cursor.setScale(2, 2);
-            frame.setView(frame.getDefaultView());
             atk.setPosition(107, 195);
             def.setPosition(305, 120);
             atk.setScale(2, 2);

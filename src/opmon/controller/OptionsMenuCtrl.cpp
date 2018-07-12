@@ -3,7 +3,6 @@
 
 #include "../../utils/defines.hpp"
 #include "../model/save/OptionsSave.hpp"
-#include "../model/storage/Data.hpp"
 #include "../start/i18n/Translator.hpp"
 #include "../view/Overworld.hpp"
 #include "../view/StartScene.hpp"
@@ -23,7 +22,7 @@ namespace OpMon {
     namespace Controller {
 
       OptionsMenuCtrl::OptionsMenuCtrl(Model::UiData* data)
-	: data(Model::OptionsMenuData(data)), view(this->data) {
+	: data(data), view(this->data) {
 	
         }
 

@@ -6,18 +6,18 @@ namespace OpMon {
     namespace Controller {
         using namespace Model;
 
-      BattleCtrl::BattleCtrl(OpTeam *one, OpTeam *two, UiData* uidata)
+      BattleCtrl::BattleCtrl(OpTeam *one, OpTeam *two, UiData* uidata, Player* player)
           : playerTeam(one)
           , trainerTeam(two)
           , atk(one->getOp(0))
           , def(two->getOp(0))
-	  , data(uidata)
+	  , data(uidata, player)
           , view(one, two, "beta", "grass", this->data) {
             initBattle(0, 0);
         }
 
       GameStatus BattleCtrl::update(sf::RenderTexture& frame) {
-            GameStatus returned = view(atkTurn, defTurn, &turnActivated);
+	GameStatus returned = view(frame, atkTurn, defTurn, &turnActivated);
             if(turnActivated) {
                 if(atk->getHP() <= 0 || def->getHP() <= 0) {
                     /*if(playerTeam->isKo() || trainerTeam->isKo()){

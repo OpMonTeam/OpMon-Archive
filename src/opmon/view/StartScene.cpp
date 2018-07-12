@@ -2,7 +2,6 @@
 #include "../../utils/OpString.hpp"
 #include "../../utils/StringKeys.hpp"
 #include "../../utils/defines.hpp"
-#include "../model/storage/Data.hpp"
 #include "../model/storage/ResourceLoader.hpp"
 #include "../model/sysObjects/Player.hpp"
 #include "./Window.hpp"
@@ -38,7 +37,7 @@ UNS
         }
 
       StartScene::StartScene(Model::StartSceneData& data)
-          : dialog(nullptr) {
+	: dialog(nullptr), data(data) {
             initStrings();
             textDescs[1].setPosition(85, 25);
             textDescs[0].setPosition(155, 200);
@@ -64,10 +63,10 @@ UNS
             nameField.setFont(data.getUiDataPtr()->getFont());
             nameField.setPosition(120, 300);
 
-            data.getUiDataPtr()->getJukebox.play("Start");
+            data.getUiDataPtr()->getJukebox().play("Start");
 
             // Init loop 0
-            dialog = new Dialog(txtP0);
+            dialog = new Dialog(txtP0, data.getUiDataPtr());
         }
 
         void StartScene::onLangChanged() {
@@ -111,7 +110,7 @@ UNS
             part++;
 
             // Init loop 2
-            dialog = new Dialog(txtP1);
+            dialog = new Dialog(txtP1, data.getUiDataPtr());
         }
 
         void StartScene::draw(sf::RenderTarget &frame) {
@@ -137,7 +136,7 @@ UNS
         }
 
         void StartScene::play() {
-	  data.getUIDataPtr()->getJukebox().play("Start");
+	  data.getUiDataPtr()->getJukebox().play("Start");
         }
 
         void StartScene::pause() {

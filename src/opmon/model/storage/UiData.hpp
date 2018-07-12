@@ -1,6 +1,14 @@
 #pragma once
 
 #include "../../view/Jukebox.hpp"
+#include "../objects/Enums.hpp"
+#include "../objects/Species.hpp"
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/Font.hpp>
+#include <SFML/Window/Keyboard.hpp>
+#include <map>
+#include <vector>
+#include "../../view/Window.hpp"
 
 namespace OpMon {
   namespace Model {
@@ -27,10 +35,13 @@ namespace OpMon {
       sf::Keyboard::Key talk;
       
       UiData(UiData const& data);
+
+      View::Window& win;
     public:
+      View::Window& getWindow() { return win; }
       View::Jukebox& getJukebox() { return jukebox; }
       sf::Font const& getFont() const { return font; }
-      UiData();
+      UiData(View::Window& win);
       ~UiData();
       sf::Texture& getOpSprite(unsigned int id, bool face) { return opSprites[id][(unsigned int)face]; }
       Species* getOp(unsigned int id) { return listOp.at(id); }

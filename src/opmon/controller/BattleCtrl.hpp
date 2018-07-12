@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../model/storage/BattleData.hpp"
 #include "../model/objects/Attack.hpp"
 #include "../model/objects/Enums.hpp"
 #include "../model/objects/OpMon.hpp"
@@ -53,10 +54,10 @@ namespace OpMon {
             //check if the opmon can attack
             bool canAttack(Model::OpMon *opmon, Model::Turn *opTurn);
 
-	  BattleData data;
+	  Model::BattleData data;
 	  
           public:
-	  BattleCtrl(Model::OpTeam *one, Model::OpTeam *two, UiData* uidata);
+	  BattleCtrl(Model::OpTeam *one, Model::OpTeam *two, Model::UiData* uidata, Model::Player* player);
             GameStatus checkEvent(sf::Event const &) override;
 	  GameStatus update(sf::RenderTexture& frame) override;
         };

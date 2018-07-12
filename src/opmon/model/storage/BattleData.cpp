@@ -1,9 +1,10 @@
 #include "BattleData.hpp"
+#include "ResourceLoader.hpp"
 
 namespace OpMon {
   namespace Model {
 
-    BattleData(UiData* data, Player* player)
+    BattleData::BattleData(UiData* data, Player* player)
       : uidata(data), player(player) {
       ResourceLoader::load(backgrounds["grass"], "backgrounds/battle_bkg/background_grass.png");
       ResourceLoader::load(dialog, "backgrounds/dialog/battle_dialog.png");
