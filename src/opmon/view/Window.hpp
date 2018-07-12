@@ -23,7 +23,8 @@ namespace OpMon {
         bool init;
         bool fullScreen;
       public:
-	sf::RenderTexture& getFrame() {return frame;}
+	sf::RenderTexture& getFrame() {return frame; }
+	sf::RenderWindow& getWindow() {return window;}
         void close();
         void open();
         void winRefresh();

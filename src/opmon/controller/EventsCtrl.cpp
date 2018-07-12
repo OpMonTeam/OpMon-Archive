@@ -3,8 +3,8 @@
 #include <SFML/Window/Keyboard.hpp>
 
 #include "../model/objects/Enums.hpp"
-#include "../model/storage/Data.hpp"
 #include "../model/sysObjects/Map.hpp"
+#include "../view/Overworld.hpp"
 
 namespace OpMon {
     namespace Controller {

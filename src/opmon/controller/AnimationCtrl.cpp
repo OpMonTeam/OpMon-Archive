@@ -10,8 +10,8 @@ namespace OpMon {
             delete(view);
         }
 
-      GameStatus AnimationCtrl::update(sf::RenderTexture& texture) {
-            return (*view)();
+      GameStatus AnimationCtrl::update(sf::RenderTexture& frame) {
+            return (*view)(frame);
         }
     } // namespace Controller
 } // namespace OpMon

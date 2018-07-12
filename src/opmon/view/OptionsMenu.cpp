@@ -1,6 +1,5 @@
 #include "OptionsMenu.hpp"
 #include "../model/save/OptionsSave.hpp"
-#include "../model/storage/Data.hpp"
 #include "../model/storage/ResourceLoader.hpp"
 #include "Window.hpp"
 
@@ -255,7 +254,7 @@ UNS
         }
 
         void OptionsMenu::play() {
-            jukebox.play("Title");
+	  data.getUiDataPtr()->getJukebox().play("Title");
         }
 
         OptionsMenu::~OptionsMenu() {

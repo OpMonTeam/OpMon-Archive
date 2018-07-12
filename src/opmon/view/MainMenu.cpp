@@ -2,7 +2,6 @@
 #include "../../utils/StringKeys.hpp"
 #include "../../utils/defines.hpp"
 #include "../../utils/log.hpp"
-#include "../model/storage/Data.hpp"
 #include "../model/storage/ResourceLoader.hpp"
 #include "OptionsMenu.hpp"
 #include "Window.hpp"

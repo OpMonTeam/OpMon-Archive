@@ -1,14 +1,12 @@
 
 #include "Overworld.hpp"
 #include "../model/objects/Enums.hpp"
-#include "../start/Initializer.hpp"
 #include <algorithm>
 
 #define FPS_TICKS 33
 #include "../../utils/defines.hpp"
 #include "../../utils/log.hpp"
 #include "../../utils/time.hpp"
-#include "../model/storage/Data.hpp"
 #include "../model/sysObjects/Events.hpp"
 #include "../start/Core.hpp"
 #include "../start/i18n/Translator.hpp"
@@ -109,7 +107,7 @@ namespace OpMon {
 
         void Overworld::resetCamera() {
             camera.setCenter(character.getPosition());
-            updateCamera(frame);
+            updateCamera(data.getUiDataPtr()->getWindow().getFrame());
         }
 
         void Overworld::printElements(sf::RenderTexture &frame) {
@@ -214,18 +212,18 @@ namespace OpMon {
 
                 debugText.setString("Debug mode");
                 debugText.setPosition(0, 0);
-                debugText.setFont(data.getUiData()->getFont());
+                debugText.setFont(data.getUiDataPtr()->getFont());
                 debugText.setColor(sf::Color(127, 127, 127));
                 debugText.setCharacterSize(40);
                 fpsPrint.setPosition(0, 50);
-                fpsPrint.setFont(data.getUiData()->getFont());
+                fpsPrint.setFont(data.getUiDataPtr()->getFont());
                 //fpsPrint.setColor(sf::Color(127, 127, 127));
                 fpsPrint.setCharacterSize(48);
                 std::ostringstream oss;
                 oss << "Position : " << data.getPlayer().getPosition().getPosition().x << " - " << data.getPlayer().getPosition().getPosition().y << endl
                     << "PxPosition : " << character.getPosition().x << " - " << character.getPosition().y << endl;
                 coordPrint.setString(oss.str());
-                coordPrint.setFont(data.getUiData()->getFont());
+                coordPrint.setFont(data.getUiDataPtr()->getFont());
                 coordPrint.setPosition(0, 100);
                 coordPrint.setColor(sf::Color(127, 127, 127));
                 coordPrint.setCharacterSize(30);
@@ -371,7 +369,7 @@ namespace OpMon {
                 delete(this->dialog);
             }
 
-            this->dialog = new Dialog(dialogs);
+            this->dialog = new Dialog(dialogs, data.getUiDataPtr());
         }
     } // namespace View
 

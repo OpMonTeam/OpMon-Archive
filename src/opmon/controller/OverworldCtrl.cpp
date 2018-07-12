@@ -2,7 +2,6 @@
 
 #include "../model/objects/Attacks.hpp"
 #include "../model/objects/OpMon.hpp"
-#include "../model/storage/Data.hpp"
 #include "../model/sysObjects/OpTeam.hpp"
 #include "BattleCtrl.hpp"
 #include "EventsCtrl.hpp"
@@ -53,7 +52,7 @@ namespace OpMon {
 		      data.getPlayer().addOpToOpTeam(new Model::OpMon("", data.getUiDataPtr()->getOp(4), 5, {Model::Attacks::newAtk("Charge"), Model::Attacks::newAtk("Brouillard"), nullptr, nullptr}, Model::Nature::QUIET));
                         Model::OpTeam *opTeam = new Model::OpTeam("Unknown trainer");
                         opTeam->addOpMon(new Model::OpMon("", data.getUiDataPtr()->getOp(1), 5, {Model::Attacks::newAtk("Charge"), Model::Attacks::newAtk("Brouillard"), nullptr, nullptr}, Model::Nature::QUIET));
-                        _next_gs = new BattleCtrl(data.getPlayer().getOpTeam(), opTeam, data.getUiDataPtr());
+                        _next_gs = new BattleCtrl(data.getPlayer().getOpTeam(), opTeam, data.getUiDataPtr(), data.getPlayerPtr());
                         data.getPlayer().healOp();
                         return GameStatus::NEXT;
                     }

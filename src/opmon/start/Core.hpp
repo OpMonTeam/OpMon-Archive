@@ -22,7 +22,7 @@ namespace OpMon {
     /**
      Function that handles errors on the program
   */
-    void handleError(std::string const &errorName, bool fatal);
+    void handleError(std::string const &errorName, bool fatal = false);
     /**
      Function quitting the game, deleting the resources
   */

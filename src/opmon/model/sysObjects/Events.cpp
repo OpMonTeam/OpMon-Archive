@@ -1,11 +1,11 @@
 #include "Events.hpp"
 
+#include "Position.hpp"
 #include "../../../utils/defines.hpp"
 #include "../../../utils/log.hpp"
 #include "../../view/Overworld.hpp"
-#include "../storage/Data.hpp"
+#include "../../start/Core.hpp"
 
-#pragma GCC diagnostic ignored "-Wreorder"
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 UNS
 
@@ -110,7 +110,7 @@ UNS
                                                  MoveStyle moveStyle, std::vector<Side> predefinedPath, bool passable,
                                                  int sides)
               : Event(textures, eventTrigger, position, sides, passable)
-              , CharacterEvent(texturesKey, position, posDir, moveStyle, eventTrigger, predefinedPath, passable, sides)
+              , CharacterEvent(textures, position, posDir, moveStyle, eventTrigger, predefinedPath, passable, sides)
               , TalkingEvent(textures, position, dialogKeys, sides, eventTrigger, passable) {
             }
 
@@ -166,7 +166,7 @@ UNS
                         if(predefinedCounter >= movements.size()) {
                             predefinedCounter = 0;
                         }
-                        move(movements[predefinedCounter]);
+                        move(movements[predefinedCounter], overworld.getData().getCurrentMap());
                         if(!mapPos.isMoving()) {
 			  if(predefinedCounter != 0){
                             predefinedCounter--;
@@ -182,23 +182,23 @@ UNS
                         randomMove = Utils::Misc::randUI(5) - 1;
                         switch(randomMove) {
                         case -1:
-                            move(Side::NO_MOVE);
+			  move(Side::NO_MOVE, overworld.getData().getCurrentMap());
                             break;
                         case 0:
-                            move(Side::TO_UP);
+                            move(Side::TO_UP, overworld.getData().getCurrentMap());
                             break;
                         case 1:
-                            move(Side::TO_DOWN);
+                            move(Side::TO_DOWN, overworld.getData().getCurrentMap());
                             break;
                         case 2:
-                            move(Side::TO_LEFT);
+                            move(Side::TO_LEFT, overworld.getData().getCurrentMap());
                             break;
                         case 3:
-                            move(Side::TO_RIGHT);
+                            move(Side::TO_RIGHT, overworld.getData().getCurrentMap());
                             break;
                         default:
                             handleError("[WARNING] - Random number out of bounds CharacterEvent::update");
-                            move(Side::NO_MOVE);
+                            move(Side::NO_MOVE, overworld.getData().getCurrentMap());
                         }
                         break;
 
@@ -278,13 +278,13 @@ UNS
                 }
             }
 
-            void CharacterEvent::move(Side direction) {
+	  void CharacterEvent::move(Side direction, Map* map) {
                 startFrames = frames;
-                mapPos.move(direction);
+                mapPos.move(direction, map);
             }
 
             void CharacterEvent::move(Side direction, Model::Player &player, View::Overworld &overworld) {
-                move(direction);
+	      move(direction, overworld.getData().getCurrentMap());
             }
 
             void TalkingCharaEvent::action(Model::Player &player, View::Overworld &overworld) {

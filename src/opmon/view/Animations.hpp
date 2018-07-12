@@ -29,7 +29,7 @@ namespace OpMon {
 	    public:
                 Animation(sf::Texture bgTxt);
                 virtual ~Animation() = default;
-                virtual GameStatus operator()() = 0;
+                virtual GameStatus operator()(sf::RenderTexture& frame) = 0;
             };
 
             class WinAnim : public Animation {
@@ -39,10 +39,11 @@ namespace OpMon {
 		If true : Open | If false : Close
 	      */
 	      bool order;
+	      static bool fenInit;
 	      static sf::Texture fen[6];
               public:
                 WinAnim(sf::Texture bgTxt, bool order);
-                GameStatus operator()();
+                GameStatus operator()(sf::RenderTexture& frame) override;
             };
 
         } // namespace Animations

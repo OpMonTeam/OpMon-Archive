@@ -1,4 +1,5 @@
 #include "MainMenuData.hpp"
+#include "ResourceLoader.hpp"
 
 namespace OpMon {
   namespace Model {

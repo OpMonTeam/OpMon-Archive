@@ -11,7 +11,7 @@
 #include "../view/Window.hpp"
 #include "./Core.hpp"
 #include "./Gameloop.hpp"
-#include "./Initializer.hpp"
+#include "i18n/Translator.hpp"
 #include "config.hpp"
 #include <ostream>
 #include <string>
@@ -97,7 +97,7 @@ UNS
                 reboot = false;
                 oplog("Starting game loop");
 
-                auto gameloop = GameLoop();
+                GameLoop gameloop;
                 frames = gameloop.getFrames();
                 gameloop();
 

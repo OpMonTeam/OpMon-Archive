@@ -6,6 +6,7 @@
 #include "../model/sysObjects/Player.hpp"
 #include "../start/Core.hpp"
 #include "../view/Overworld.hpp"
+#include "EventsCtrl.hpp"
 #include "AGameScreen.hpp"
 
 namespace OpMon {

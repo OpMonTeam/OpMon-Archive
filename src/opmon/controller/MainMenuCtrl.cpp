@@ -1,7 +1,6 @@
 #include "./MainMenuCtrl.hpp"
 #include "../view/Window.hpp"
 
-#include "../model/storage/Data.hpp"
 #include "./OptionsMenuCtrl.hpp"
 #include "./StartSceneCtrl.hpp"
 
@@ -9,7 +8,7 @@ namespace OpMon {
     namespace Controller {
 
       MainMenuCtrl::MainMenuCtrl(Model::UiData* data)
-          : data(Model::MainMenuData(data)), view(this->data) {
+          : data(data), view(this->data) {
 
         }
 

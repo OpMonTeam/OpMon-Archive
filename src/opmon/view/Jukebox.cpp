@@ -1,5 +1,6 @@
 #include "Jukebox.hpp"
 #include "../model/storage/ResourceLoader.hpp"
+#include "../start/Core.hpp"
 
 namespace OpMon {
     namespace View {
@@ -20,7 +21,7 @@ namespace OpMon {
 	sf::SoundBuffer *sb = new sf::SoundBuffer();
 	Model::ResourceLoader::load(*sb, path.c_str());
 	if(soundsList[name].first != nullptr) {
-	  delete(soundsList[name]);
+	  delete(soundsList[name].second);
 	}
 	soundsList[name].first = sb;
 	soundsList[name].second = new sf::Sound();
@@ -78,13 +79,13 @@ namespace OpMon {
       void Jukebox::unMute() {
 	mute = false;
 	if(playingID != std::string()){
-	  musicList.at(playingID)->play();
+	  musList.at(playingID)->play();
 	}
       }
       
         void Jukebox::setGlobalVolume(float globalVolume) {
 	  if(globalVolume > 100){
-	    handeError(std::string("Warning - Jukebox::setGlobalVolume : Volume greater than 100"));
+	    handleError(std::string("Warning - Jukebox::setGlobalVolume : Volume greater than 100"));
 	    return;
 	  }
 	  if(globalVolume == 0){
@@ -111,7 +112,7 @@ namespace OpMon {
 	}
       }
 
-      void playSound(std::string sound){
+      void Jukebox::playSound(std::string sound){
 	if(soundsList[sound].first == nullptr){
 	  handleError(std::string("Warning - Jukebox::playSound : Unknown sound \"") + sound + "\"");
 	  return;
