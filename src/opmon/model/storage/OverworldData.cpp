@@ -1,11 +1,17 @@
-#include "OverworldData.cpp"
+#include "OverworldData.hpp"
+#include "ResourceLoader.hpp"
+#include "InternalFiles.hpp"
+#include "../../../utils/OpString.hpp"
 
 namespace OpMon{
   namespace Model{
 
 
-    OverworldData::OverworldData(UiData* uidata)
-      : uidata(uidata) {
+    OverworldData::OverworldData(UiData* uidata, Player* player)
+      : uidata(uidata), player(player) {
+
+      using namespace Utils;
+      
       //PP textures loading
       ResourceLoader::load(texturePP[(unsigned int)Side::TO_DOWN], "sprites/chara/pp/pp0.png");
       ResourceLoader::load(texturePP[(unsigned int)Side::TO_RIGHT], "sprites/chara/pp/pp1.png");
@@ -51,7 +57,6 @@ namespace OpMon{
       using namespace std;
       
       //Fauxbourg Euvi loading
-      townMusics.push_back(new sf::Music());
       std::vector<sf::Vector2f> feEPos;
       
       Map *mapFauxbourgEuvi = maps.emplace("Fauxbourg Euvi", new Map(Maps::feLayer1, Maps::feLayer2, Maps::feLayer3, 48, 48, false, "Fauxbourg", std::vector<std::string>{"windturbine", "smoke"})).first->second;
@@ -60,9 +65,9 @@ namespace OpMon{
       mapFauxbourgEuvi->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(33, 16), {OpString("rivalHouse"), OpString::voidStr, OpString::voidStr}, SIDE_UP));
       mapFauxbourgEuvi->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(22, 28), {OpString("labo"), OpString::voidStr, OpString::voidStr}, SIDE_UP));
       mapFauxbourgEuvi->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(31, 28), {OpString("weirdsign.1"), OpString("weirdsign.2"), OpString::voidStr}, SIDE_UP));
-      mapFauxbourgEuvi->addEvent(new Events::DoorEvent(doorsTextures["normal"], sf::Vector2f(27, 16), sf::Vector2i(8, 15), "Player's home"));
-      mapFauxbourgEuvi->addEvent(new Events::DoorEvent(doorsTextures["normal"], sf::Vector2f(35, 16), sf::Vector2i(9, 15), "Rival's house"));
-      mapFauxbourgEuvi->addEvent(new Events::DoorEvent(doorsTextures["shop"], sf::Vector2f(27, 28), sf::Vector2i(16, 15), "Laboratory"));
+      mapFauxbourgEuvi->addEvent(new Events::DoorEvent(doorsTextures["normal"], "door", sf::Vector2f(27, 16), sf::Vector2i(8, 15), "Player's home"));
+      mapFauxbourgEuvi->addEvent(new Events::DoorEvent(doorsTextures["normal"], "door", sf::Vector2f(35, 16), sf::Vector2i(9, 15), "Rival's house"));
+      mapFauxbourgEuvi->addEvent(new Events::DoorEvent(doorsTextures["shop"], "shop door", sf::Vector2f(27, 28), sf::Vector2i(16, 15), "Laboratory"));
       mapFauxbourgEuvi->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(39, 17), sf::Vector2i(4, 38), "Route 14", Side::TO_RIGHT, SIDE_RIGHT));
       mapFauxbourgEuvi->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(39, 18), sf::Vector2i(4, 39), "Route 14", Side::TO_RIGHT, SIDE_RIGHT));
       mapFauxbourgEuvi->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(39, 19), sf::Vector2i(4, 40), "Route 14", Side::TO_RIGHT, SIDE_RIGHT));
@@ -127,7 +132,7 @@ namespace OpMon{
       mapOpCenter->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 17), sf::Vector2i(16, 13), "MysteriouCity", Side::TO_DOWN, SIDE_DOWN));
     }
 
-    ~OverworldData(){
+    OverworldData::~OverworldData(){
       for(auto &map : maps) {
 	delete(map.second);
       }

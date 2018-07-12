@@ -2,7 +2,6 @@
 #include "../../utils/StringKeys.hpp"
 #include "../../utils/log.hpp"
 #include "../model/save/OptionsSave.hpp"
-#include "../model/storage/Data.hpp"
 #include "../model/storage/ResourceLoader.hpp"
 #include "../start/Core.hpp"
 

@@ -1,4 +1,5 @@
 #include "StartSceneData.hpp"
+#include "ResourceLoader.hpp"
 
 namespace OpMon {
   namespace Model {
@@ -11,7 +12,7 @@ namespace OpMon {
 
       //Player initalization
       player->setMapID("Player's room");
-      player.getPosition().setDir(Side::TO_UP);
+      player->getPosition().setDir(Side::TO_UP);
     }
     
   }

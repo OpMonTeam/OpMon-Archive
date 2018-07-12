@@ -1,5 +1,14 @@
 #pragma once
 
+#include "UiData.hpp"
+#include "../sysObjects/Player.hpp"
+#include "../sysObjects/Map.hpp"
+#include <map>
+#include <string>
+#include <vector>
+#include <SFML/System/Vector2.hpp>
+#include <SFML/Graphics/Texture.hpp>
+
 namespace OpMon {
   namespace Model {
 
@@ -22,18 +31,18 @@ namespace OpMon {
 
       std::map<std::string, std::vector<sf::Texture>> charaTextures;
 
-      std::map<std::vector<sf::Texture>> doorsTextures;
+      std::map<std::string, std::vector<sf::Texture> > doorsTextures;
       
       OverworldData(OverworldData const&);
       
     public:
 
       void incrementElementCounter(std::string const& elementId) { elementsCounter[elementId]++; }
-      void resetElementCounter(std::string const& id) { elementsCounter[elementId] = 0; }
+      void resetElementCounter(std::string const& id) { elementsCounter[id] = 0; }
       unsigned int getElementCounter(std::string const& id) { return elementsCounter[id]; }
       std::vector<sf::Texture>& getElementTextures(std::string const& id) { return elementsTextures[id]; }
       sf::Vector2f& getElementPos(std::string const& id) { return elementsPos[id]; }
-      sf::Texture& getCurrentElementTexture(std::string const& id) { return elementsTextures[i][elementsCounter[i]]; }
+      sf::Texture& getCurrentElementTexture(std::string const& id) { return elementsTextures[id][elementsCounter[id]]; }
       
       
       Map* getMap(std::string map) { return maps[map]; }

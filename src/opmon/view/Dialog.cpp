@@ -1,12 +1,11 @@
 #include "Dialog.hpp"
 #include "../../utils/defines.hpp"
-#include "../model/storage/Data.hpp"
 #include "Window.hpp"
 
 namespace OpMon {
     namespace View {
 
-      Dialog::Dialog(const std::vector<sf::String> &text, UiData* uidata)
+      Dialog::Dialog(const std::vector<sf::String> &text, Model::UiData* uidata)
 	: text(text), uidata(uidata) {
 
 	background.setTexture(uidata->getDialogBackground());

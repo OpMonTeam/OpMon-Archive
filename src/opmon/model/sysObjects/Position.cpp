@@ -1,6 +1,5 @@
 #include "Position.hpp"
 #include "../../start/Core.hpp"
-#include "../storage/Data.hpp"
 #include "Events.hpp"
 #include "Map.hpp"
 
@@ -81,6 +80,7 @@ namespace OpMon {
 
       bool Position::checkPass(Side direction, Map* map) {
 
+	std::vector<Event*> nextEvents;
             sf::Vector2i nextPos;
             sf::Vector2i nextPosPix;
             int exclusiveCol = 0;
@@ -113,7 +113,7 @@ namespace OpMon {
                 int colLayer1 = map->getTileCollision(map->getCurrentTileCode(nextPos, 1));
                 int colLayer2 = map->getTileCollision(map->getCurrentTileCode(nextPos, 2));
                 if((colLayer1 == 0 || colLayer1 == exclusiveCol) && (colLayer2 == 0 || colLayer2 == exclusiveCol)) {
-                    if(event ? !(nextPos.y == player.getPosition().getPosition().y && nextPos.x == player.getPosition().getPosition().x) : true) {
+                    if(event ? !(nextPos.y == playerPos->getPosition().y && nextPos.x == playerPos->getPosition().x) : true) {
                         nextEvents = map->getEvent(nextPos);
                         for(Event *nextEvent : nextEvents) {
                             if(!nextEvent->isPassable()) {

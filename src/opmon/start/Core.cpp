@@ -5,9 +5,7 @@
 #include "../../utils/log.hpp"
 #include "../../utils/path.hpp"
 #include "../model/save/OptionsSave.hpp"
-#include "../model/storage/Data.hpp"
 #include "../model/sysObjects/Map.hpp"
-#include "./Initializer.hpp"
 #include <map>
 #include <ostream>
 #include <sstream>

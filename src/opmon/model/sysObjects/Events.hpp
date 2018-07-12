@@ -17,12 +17,14 @@
 #include "../../start/i18n/ATranslatable.hpp"
 #include "../objects/Enums.hpp"
 #include "Player.hpp"
+#include "Position.hpp"
 
 #define SIDE_UP 0x0001
 #define SIDE_DOWN 0x0002
 #define SIDE_LEFT 0x0010
 #define SIDE_RIGHT 0x0020
 #define SIDE_ALL (SIDE_UP | SIDE_DOWN | SIDE_RIGHT | SIDE_LEFT)
+#pragma GCC diagnostic ignored "-Wreorder"
 
 namespace OpMon {
 
@@ -31,7 +33,7 @@ namespace OpMon {
     }
 
     namespace Model {
-
+      
         namespace Events {
             enum class EventTrigger {
                 PRESS = 0,
@@ -166,7 +168,7 @@ namespace OpMon {
               public:
                 virtual void action(Model::Player &player, View::Overworld &overworld);
                 virtual void update(Model::Player &player, View::Overworld &overworld);
-                LockedDoorEvent(std::vector<sf::Texture> &doorType, Item *needed, sf::Vector2f const &position, sf::Vector2i const &tpPos, std::string const &map, Side ppDir = Side::NO_MOVE, EventTrigger eventTrigger = EventTrigger::PRESS, bool consumeItem = false, int sides = SIDE_ALL, bool passable = false);
+	      LockedDoorEvent(std::vector<sf::Texture> &doorTextures, std::string doorType, Item *needed, sf::Vector2f const &position, sf::Vector2i const &tpPos, std::string const &map, Side ppDir = Side::NO_MOVE, EventTrigger eventTrigger = EventTrigger::PRESS, bool consumeItem = false, int sides = SIDE_ALL, bool passable = false);
             };
 
             enum class MoveStyle : int {
@@ -195,7 +197,7 @@ namespace OpMon {
                 virtual void action(Model::Player &, View::Overworld &){};
                 void setPredefinedMove(std::vector<Side> movement);
                 OP_DEPRECATED void move(Side direction, Model::Player &player, View::Overworld &overworld);
-                void move(Side direction);
+	      void move(Side direction, Map* map);
             };
 
             class TalkingCharaEvent : public CharacterEvent, TalkingEvent {
