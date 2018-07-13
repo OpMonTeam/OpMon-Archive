@@ -7,6 +7,8 @@ UNS
   namespace OpMon {
     namespace View {
 
+      sf::Texture MapLayer::tileset;
+      
         MapLayer::MapLayer(sf::Vector2i size, const int tilesCodes[]) {
 	  if(tileset.getSize() == sf::Vector2u(0, 0)){
 	    Model::ResourceLoader::load(tileset, "tileset/tileset.png");

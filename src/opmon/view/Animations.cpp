@@ -12,6 +12,9 @@ UNS
 
         namespace Animations {
 
+	  bool WinAnim::fenInit = false;
+	  sf::Texture WinAnim::fen[6];
+	  
             Animation::Animation(sf::Texture bgTxt)
               : bgTxt(bgTxt) {
 	      

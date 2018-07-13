@@ -78,6 +78,16 @@ namespace OpMon {
             }
         }
 
+      Position* Position::playerPos = nullptr;
+      
+      void Position::setPlayerPos(Position* pos){
+	
+	if(playerPos == nullptr){
+	  playerPos = pos;
+	}
+	
+      }
+      
       bool Position::checkPass(Side direction, Map* map) {
 
 	std::vector<Event*> nextEvents;
