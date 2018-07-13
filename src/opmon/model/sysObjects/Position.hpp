@@ -78,11 +78,7 @@ namespace OpMon {
 
 	  void move(Side dir, Map* map);
 
-	  static void setPlayerPos(Position* pos){
-	    if(playerPos == nullptr){
-	      playerPos = pos;
-	    }
-	  }
+	  static void setPlayerPos(Position* pos);
 	  
           private:
 	  bool checkPass(Side dir, Map* map);
