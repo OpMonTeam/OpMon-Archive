@@ -108,6 +108,14 @@ key.inferm.dialog.1=Bonjour !
 key.inferm.dialog.2=Voulez-vous soigner vos OpMons ?
 key.inferm.dialog.3=... Mais ? vous en n'avez pas.
 
+key.rt14.beta.1=Bonjour ! Je suis Beta.
+key.rt14.beta.2=Je suis le PNJ qui permet de tester
+key.rt14.beta.3=les nouvelles fonctions pas
+key.rt14.beta.4=complètement implémentées.
+key.rt14.beta.5=Je peux faire un combat OpMon
+key.rt14.beta.6=contre toi si tu veux.
+key.rt14.beta.7=C'est parti !
+
 key.battle.attack=Attaques
 key.battle.bag=Sac
 key.battle.run=Fuite

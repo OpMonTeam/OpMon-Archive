@@ -108,6 +108,14 @@ key.inferm.dialog.1=Welcome !
 key.inferm.dialog.1=Do you want to heal your OpMons ?
 key.inferm.dialog.1=... But ? You don't have OpMons.
 
+key.rt14.beta.1=Hello ! I am Beta.
+key.rt14.beta.2=I am the NPC that allows to test
+key.rt14.beta.3=the new functions
+key.rt14.beta.4=not completely implemented.
+key.rt14.beta.5=I can do an OpMon battle 
+key.rt14.beta.6=against you if you want.
+key.rt14.beta.7=Let's go !
+
 key.battle.attack=Attack
 key.battle.bag=Bag
 key.battle.run=Run
