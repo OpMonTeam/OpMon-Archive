@@ -11,7 +11,7 @@ namespace OpMon {
           : data(data), view(this->data) {
 
         }
-
+      
         GameStatus MainMenuCtrl::checkEvent(sf::Event const &event) {
             if(event.type == sf::Event::KeyPressed) {
                 switch(event.key.code) {
