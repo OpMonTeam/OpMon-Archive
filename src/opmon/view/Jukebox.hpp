@@ -19,13 +19,9 @@ namespace OpMon {
           private:
             std::map<std::string, sf::Music *> musList;
 	  std::map<std::string, std::pair<sf::SoundBuffer *, sf::Sound *> > soundsList;
-            std::string playingID;
-	  bool mute = false;
+	  sf::Music* playing = nullptr;
             float globalVolume;
 #define DEFAULT_VOLUME 1
-
-	  void setMute();
-	  void unMute();
 
           public:
             Jukebox();
@@ -36,9 +32,9 @@ namespace OpMon {
 
             void play(std::string music);
 
-            void pause(std::string music);
+            void pause();
 
-            void stop(std::string music);
+            void stop();
 
             void setGlobalVolume(float globalVolume);
 
@@ -48,9 +44,7 @@ namespace OpMon {
 
 	  void addSound(std::string name, std::string path);
 
-	  void toggleMute();
 
-	  bool isMute() { return mute; }
         };
 
     } // namespace View

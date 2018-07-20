@@ -236,7 +236,6 @@ namespace OpMon {
       for(auto spe : listOp) {
             delete(spe.second);
       }
-      delete(&jukebox);
     }
   }
 }

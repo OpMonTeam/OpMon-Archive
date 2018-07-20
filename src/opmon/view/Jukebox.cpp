@@ -41,12 +41,12 @@ namespace OpMon {
         }
 
         void Jukebox::play(std::string music) {
-            if(music == playingID) {
+	  if(musList.at(music) == playing) {
                 return;
             }
 
-            if(!playingID.empty()) {
-                musList.at(playingID)->stop();
+            if(playing != nullptr) {
+	      playing->stop();
             }
 
             if(musList[music] == nullptr) {
@@ -54,35 +54,25 @@ namespace OpMon {
                 return;
             }
 
-	    if(!mute){
-	      musList.at(music)->play();
-	    }
-            playingID = music;
+	    musList.at(music)->play();
+            playing = musList.at(music);
         }
 
-        void Jukebox::pause(std::string music) {
-            musList.at(music)->pause();
-            playingID = std::string();
+        void Jukebox::pause() {
+	  if(playing != nullptr){
+	    playing->pause();
+	  }
+	  playing = nullptr;
         }
 
-        void Jukebox::stop(std::string music) {
-            musList.at(music)->stop();
-            playingID = std::string();
+        void Jukebox::stop() {
+	  if(playing != nullptr){
+	    playing->stop();
+	  }
+	  playing = nullptr;
         }
 
-      void Jukebox::setMute() {
-	mute = true;
-	if(playingID != std::string()){
-	  musList.at(playingID)->pause();
-	}
-      }
-
-      void Jukebox::unMute() {
-	mute = false;
-	if(playingID != std::string()){
-	  musList.at(playingID)->play();
-	}
-      }
+     
       
         void Jukebox::setGlobalVolume(float globalVolume) {
 	  if(globalVolume > 100){
@@ -106,23 +96,13 @@ namespace OpMon {
 	  
         }
 
-      void Jukebox::toggleMute() {
-	mute = !mute;
-	if(mute){
-	  setMute();
-	}else{
-	  unMute();
-	}
-      }
 
       void Jukebox::playSound(std::string sound){
 	if(soundsList[sound].first == nullptr){
 	  handleError(std::string("Warning - Jukebox::playSound : Unknown sound \"") + sound + "\"");
 	  return;
 	}
-	if(!mute){
-	  soundsList.at(sound).second->play();
-	}
+	soundsList.at(sound).second->play();
       }
       
         int Jukebox::getGlobalVolume() {
