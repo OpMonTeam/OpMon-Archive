@@ -12,10 +12,11 @@ namespace OpMon {
 
         class StartSceneCtrl : public AGameScreen {
           protected:
+	  Model::StartSceneData data;
+	  
             View::StartScene view;
 	  bool animNext = false;
 
-	  Model::StartSceneData data;
 	  
           public:
 	  StartSceneCtrl(Model::UiData* data);

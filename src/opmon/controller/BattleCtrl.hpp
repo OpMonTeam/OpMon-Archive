@@ -16,6 +16,8 @@ namespace OpMon {
 
         class BattleCtrl : public AGameScreen {
           private:
+	  
+	  Model::BattleData data;
             /*The player's current OpMon*/
             Model::OpMon *atk;
             /*The opposite trainer's current OpMon*/
@@ -54,7 +56,6 @@ namespace OpMon {
             //check if the opmon can attack
             bool canAttack(Model::OpMon *opmon, Model::Turn *opTurn);
 
-	  Model::BattleData data;
 	  
           public:
 	  BattleCtrl(Model::OpTeam *one, Model::OpTeam *two, Model::UiData* uidata, Model::Player* player);

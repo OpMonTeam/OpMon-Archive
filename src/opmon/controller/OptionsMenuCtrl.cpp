@@ -141,8 +141,8 @@ namespace OpMon {
         }
 
         void OptionsMenuCtrl::toggleVolume() {
-            if(data.getUiDataPtr()->getJukebox().getGlobalVolume() > 1) {
-                data.getUiDataPtr()->getJukebox().setGlobalVolume(1);
+            if(data.getUiDataPtr()->getJukebox().getGlobalVolume() > 0) {
+                data.getUiDataPtr()->getJukebox().setGlobalVolume(0);
             } else {
                 data.getUiDataPtr()->getJukebox().setGlobalVolume(100);
             }

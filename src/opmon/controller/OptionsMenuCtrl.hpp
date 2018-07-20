@@ -14,12 +14,13 @@ namespace OpMon {
 
         class OptionsMenuCtrl : public AGameScreen {
           private:
+	  Model::OptionsMenuData data;
+
             View::OptionsMenu view;
             void toggleVolume();
             void raiseVolume();
             void lowerVolume();
 
-	  Model::OptionsMenuData data;
 	  
           public:
             OptionsMenuCtrl(Model::UiData* data);

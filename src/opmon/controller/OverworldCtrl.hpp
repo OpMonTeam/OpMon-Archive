@@ -14,10 +14,11 @@ namespace OpMon {
 
         class OverworldCtrl : public AGameScreen {
           private:
+	  Model::OverworldData data;
+
             View::Overworld view;
             Model::Player &player;
 
-	  Model::OverworldData data;
 
 	  EventsCtrl eventsctrl;
 	  

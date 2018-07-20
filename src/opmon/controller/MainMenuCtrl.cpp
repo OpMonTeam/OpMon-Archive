@@ -19,27 +19,27 @@ namespace OpMon {
                     switch(view.getCursorPosition()) {
                     case 0:
 		      _next_gs = new StartSceneCtrl(data.getUiDataPtr());
-                        data.getUiDataPtr()->getJukebox().play("push");
+                        data.getUiDataPtr()->getJukebox().playSound("push");
                         return GameStatus::NEXT;
                     case 1:
-		      data.getUiDataPtr()->getJukebox().play("nope");
+		      data.getUiDataPtr()->getJukebox().playSound("nope");
                         return GameStatus::CONTINUE;
                     case 2:
 		      _next_gs = new OptionsMenuCtrl(data.getUiDataPtr());
-                        data.getUiDataPtr()->getJukebox().play("push");
+                        data.getUiDataPtr()->getJukebox().playSound("push");
                         return GameStatus::NEXT;
                     case 3:
-                        data.getUiDataPtr()->getJukebox().play("push");
+                        data.getUiDataPtr()->getJukebox().playSound("push");
                         return GameStatus::STOP;
                     }
                     break;
                 case sf::Keyboard::Up:
                     view.moveArrow(true);
-                    data.getUiDataPtr()->getJukebox().play("arrow");
+                    data.getUiDataPtr()->getJukebox().playSound("arrow");
                     break;
                 case sf::Keyboard::Down:
                     view.moveArrow(false);
-                    data.getUiDataPtr()->getJukebox().play("arrow");
+                    data.getUiDataPtr()->getJukebox().playSound("arrow");
                     break;
 
                 default:
