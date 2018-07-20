@@ -75,7 +75,7 @@ UNS
             oplog("Loading internal files.");
             InternalFiles::registerFiles();
             oplog("Loading options");
-            OptionsSave::initParams(optSave);      //Loading parameters
+            OptionsSave::initParams(Utils::Path::getSavePath() + "/optSave.oparams");      //Loading parameters
             if(!OptionsSave::checkParam("lang")) { //If the "lang" setting don't exist
                 OptionsSave::addParam("lang", "eng");
             }
@@ -138,16 +138,10 @@ int main(int argc, char *argv[]) {
                 cout << "Under GNU GPL v3.0 license" << endl;
                 cout << "http://opmon-game.ga" << endl;
                 return 0;
-            } else if(str == "--opt") {
-                if(i + 1 == argc) {
-                    return 2;
-                } else {
-                    OpMon::optSave = string(argv[i + 1]);
-                }
             } else if(str == "--help") {
                 cout << "--version : Prints the version and quit." << endl;
                 cout << "--help : Prints this message and quit." << endl;
-                cout << "--opt <path> : Changes the options save file's location." << endl;
+                //cout << "--opt <path> : Changes the options save file's location." << endl;
                 cout << "--debug : Starts the game with debug code. Changes when needed." << endl;
                 return 0;
             } else if(str == "--debug") {

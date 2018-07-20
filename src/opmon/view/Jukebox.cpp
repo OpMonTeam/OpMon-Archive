@@ -1,15 +1,16 @@
 #include "Jukebox.hpp"
 #include "../model/storage/ResourceLoader.hpp"
 #include "../start/Core.hpp"
+#include <iostream>
 
 namespace OpMon {
     namespace View {
         Jukebox::Jukebox()
           : globalVolume(100) {}
 
-        void Jukebox::addMusic(std::string name, std::string path, float volume, bool loop) {
+        void Jukebox::addMusic(std::string name, std::string path, bool loop) {
             sf::Music *music = Model::ResourceLoader::loadMusic(path.c_str());
-            music->setVolume(globalVolume * volume);
+            music->setVolume(globalVolume);
             music->setLoop(loop);
 	    if(musList[name] != nullptr){
 	      delete(musList[name]);
@@ -17,7 +18,7 @@ namespace OpMon {
             musList[name] = music;
         }
 
-      void Jukebox::addSound(std::string name, std::string path, float volume) {
+      void Jukebox::addSound(std::string name, std::string path) {
 	sf::SoundBuffer *sb = new sf::SoundBuffer();
 	Model::ResourceLoader::load(*sb, path.c_str());
 	if(soundsList[name].first != nullptr) {
@@ -26,7 +27,7 @@ namespace OpMon {
 	soundsList[name].first = sb;
 	soundsList[name].second = new sf::Sound();
 	soundsList[name].second->setBuffer(*soundsList[name].first);
-	soundsList[name].second->setVolume(globalVolume * volume);
+	soundsList[name].second->setVolume(globalVolume);
       }
 
         Jukebox::~Jukebox() {
@@ -88,19 +89,21 @@ namespace OpMon {
 	    handleError(std::string("Warning - Jukebox::setGlobalVolume : Volume greater than 100"));
 	    return;
 	  }
-	  if(globalVolume == 0){
-	    setMute();
-	  } else if(mute && globalVolume > 0){
-	    unMute();
-	  }else{
-            for(auto itor = musList.begin(); itor != musList.end(); ++itor) {
-                itor->second->setVolume((globalVolume * itor->second->getVolume()) / this->globalVolume);
-            }
-	    for(auto itor = soundsList.begin(); itor != soundsList.end(); ++itor){
-	      itor->second.second->setVolume((globalVolume * itor->second.second->getVolume()) / this->globalVolume);
-	    }
-            this->globalVolume = globalVolume;
+
+	  std::cout << "gvParam " << globalVolume << std::endl;
+	  std::cout << "gvCurrent " << this->globalVolume << std::endl;
+
+	  for(auto itor = musList.begin(); itor != musList.end(); ++itor) {
+	    itor->second->setVolume(globalVolume);
 	  }
+	  for(auto itor = soundsList.begin(); itor != soundsList.end(); ++itor){
+	    itor->second.second->setVolume(globalVolume);
+	  }
+	  this->globalVolume = globalVolume;
+	  
+
+	  std::cout << "gvEnd" << this->globalVolume << std::endl;
+	  
         }
 
       void Jukebox::toggleMute() {
