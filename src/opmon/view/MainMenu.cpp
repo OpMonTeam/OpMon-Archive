@@ -55,7 +55,7 @@ using namespace std;
         }
 
         MainMenu::~MainMenu() {
-            data.getUiDataPtr()->getJukebox().stop("Title");
+	  
         }
 
         void MainMenu::onLangChanged() {

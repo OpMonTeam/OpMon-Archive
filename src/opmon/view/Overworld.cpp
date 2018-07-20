@@ -149,7 +149,7 @@ namespace OpMon {
         }
 
         void Overworld::pause() {
-            data.getUiDataPtr()->getJukebox().pause(current->getBg());
+            data.getUiDataPtr()->getJukebox().pause();
         }
 
         void Overworld::play() {
@@ -178,7 +178,6 @@ namespace OpMon {
         }
 
         Overworld::~Overworld() {
-            data.getUiDataPtr()->getJukebox().stop(current->getBg());
             delete(layer1);
             delete(layer2);
             delete(layer3);
