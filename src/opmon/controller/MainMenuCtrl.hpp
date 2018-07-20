@@ -14,8 +14,8 @@ namespace OpMon {
 	
         class MainMenuCtrl : public AGameScreen {
           private:
-            View::MainMenu view;
-	    Model::MainMenuData data;
+	  Model::MainMenuData data;
+	  View::MainMenu view;
           public:
 	    MainMenuCtrl(Model::UiData* data);
             GameStatus checkEvent(sf::Event const &event) override;
