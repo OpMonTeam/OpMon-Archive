@@ -15,8 +15,6 @@
 
 namespace OpMon {
 
-    /**Path to the options save file*/
-    extern std::string optSave;
 
     //#define TEST
     /**

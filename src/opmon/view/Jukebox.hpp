@@ -32,7 +32,7 @@ namespace OpMon {
 
             ~Jukebox();
 
-            void addMusic(std::string name, std::string path, float volume = DEFAULT_VOLUME, bool loop = true);
+            void addMusic(std::string name, std::string path, bool loop = true);
 
             void play(std::string music);
 
@@ -46,7 +46,7 @@ namespace OpMon {
 
 	  void playSound(std::string sound);
 
-	  void addSound(std::string name, std::string path, float volume = DEFAULT_VOLUME);
+	  void addSound(std::string name, std::string path);
 
 	  void toggleMute();
 
