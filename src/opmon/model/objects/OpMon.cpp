@@ -4,7 +4,6 @@
 #include "../../../utils/misc.hpp"
 #include "../../start/Core.hpp"
 #include "../save/Save.hpp"
-#include "../storage/Data.hpp"
 #include "./evolution/Evolution.hpp"
 #include "./evolution/evolutions.hpp"
 #include "Attacks.hpp"
@@ -1633,8 +1632,8 @@ UNS
                     attacks[3]->setPPMax(in.get());
                     in.get();
                 }
-                int speciesID = in.get();
-                species = Data::OpMons::listOp.at(speciesID);
+                //int speciesID = in.get();
+                //species = Data::OpMons::listOp.at(speciesID);
                 in.get();
                 HP = in.get();
                 in.get();

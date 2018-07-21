@@ -16,14 +16,19 @@ Contains Window namespace
 
 namespace OpMon {
     namespace View {
-        extern sf::RenderWindow window;
-        extern sf::RenderTexture frame;
-        extern Jukebox jukebox;
-        extern bool init;
-        extern bool fullScreen;
+      class Window{
+      private:
+        sf::RenderWindow window;
+        sf::RenderTexture frame;
+        bool init = false;
+        bool fullScreen = false;
+      public:
+	sf::RenderTexture& getFrame() {return frame; }
+	sf::RenderWindow& getWindow() {return window;}
         void close();
         void open();
         void winRefresh();
+      };
     } // namespace View
 } // namespace OpMon
 

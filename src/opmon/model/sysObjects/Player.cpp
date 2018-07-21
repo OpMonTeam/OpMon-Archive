@@ -8,20 +8,18 @@ namespace OpMon {
     namespace Model {
 
         Player::Player(sf::String const &name)
-          : name(name)
-          , trainerID(Utils::Misc::randUI(0xFFFFFFFF))
-          , opteam(name) {
-            for(unsigned int i = 0; i < ITEM_NUMBER; i++) {
-                bag[i] = 0;
-            }
-        }
+          : Player(){
+	  this->name = name;
+	  this->opteam = OpTeam(name);
+	}
 
         Player::Player()
-          : trainerID(Utils::Misc::randUI(0xFFFFFFFF))
-          , opteam(name) {
+          : trainerID(Utils::Misc::randUI(0xFFFFFFFF)),
+	    opteam(name){
             for(unsigned int i = 0; i < ITEM_NUMBER; i++) {
                 bag[i] = 0;
             }
+	    Position::setPlayerPos(&position);
         }
 
         OpTeam *Player::getOpTeam() {

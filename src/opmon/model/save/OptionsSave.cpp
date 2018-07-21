@@ -7,7 +7,7 @@ UNS
   namespace OpMon {
     namespace Model {
         namespace OptionsSave {
-
+	  
             int searchParam(string const &name);
 
             Param::Param(string name, string value) {

@@ -1,8 +1,8 @@
 
 #include "./Gameloop.hpp"
 #include "../controller/MainMenuCtrl.hpp"
-#include "../model/storage/Data.hpp"
 #include "../model/sysObjects/Player.hpp"
+#include "../model/storage/UiData.hpp"
 #include "../view/Window.hpp"
 #include <SFML/Window/Event.hpp>
 
@@ -25,12 +25,19 @@ namespace OpMon {
 
     GameStatus GameLoop::operator()() {
 
-        // TODO: add first item outside of the Gameloop.
-        Controller::AGameScreen *first_ctrl = new Controller::MainMenuCtrl();
+      window.open();
+
+      Model::UiData* uidata = new Model::UiData(window);
+      
+      // TODO: add first item outside of the Gameloop.
+        Controller::AGameScreen *first_ctrl = new Controller::MainMenuCtrl(uidata);
 
         _gameScreens.push(first_ctrl);
 
         GameStatus status = GameStatus::CONTINUE;
+
+	
+	
         while(status != GameStatus::STOP) {
             status = GameStatus::CONTINUE;
 
@@ -41,7 +48,7 @@ namespace OpMon {
 
             //process all pending SFML events
             while(status == GameStatus::CONTINUE) {
-                bool isEvent = View::window.pollEvent(event);
+	      bool isEvent = window.getWindow().pollEvent(event);
                 if(isEvent == false)
                     event.type = sf::Event::SensorChanged;
                 status = _checkQuit(event);
@@ -55,7 +62,7 @@ namespace OpMon {
 
             if(status == GameStatus::CONTINUE) {
                 // frame update & draw
-                status = ctrl->update();
+	      status = ctrl->update(window.getFrame());
             }
 
             switch(status) {
@@ -69,14 +76,18 @@ namespace OpMon {
                 _gameScreens.top()->resume();
 		break;
             case GameStatus::CONTINUE:
-                View::frame.display();
-                View::winRefresh();
+	      window.getFrame().display();
+	      window.winRefresh();
 		break;
             default:
                 break;
             }
         }
 
+	window.close();
+
+	delete(uidata);
+	
         return GameStatus::STOP;
     }
 

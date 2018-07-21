@@ -2,13 +2,12 @@
 #include "../../utils/StringKeys.hpp"
 #include "../../utils/defines.hpp"
 #include "../../utils/log.hpp"
-#include "../model/storage/Data.hpp"
 #include "../model/storage/ResourceLoader.hpp"
 #include "OptionsMenu.hpp"
 #include "Window.hpp"
 #include <iostream>
 
-UNS
+using namespace std;
 
   namespace OpMon {
     namespace View {
@@ -22,7 +21,8 @@ UNS
             exit.setString(kget("title.4"));
         }
 
-        MainMenu::MainMenu() {
+      MainMenu::MainMenu(Model::MainMenuData& data)
+	: data(data){
             sf::Text *textPos[4] = {&playtx, &charge, &options, &exit};
             for(int i = 0, j = 175; i < 4; i++) {
                 curPos[i].x = 10;
@@ -30,14 +30,11 @@ UNS
                 textPos[i]->setPosition(sf::Vector2f(60, j));
                 j += 85;
             }
-
-            Model::ResourceLoader::load(textures[0], "backgrounds/titlescreen.png");
-            Model::ResourceLoader::load(textures[1], "sprites/misc/arrChoice.png");
             Model::ResourceLoader::load(sounds[0], "audio/sounds/select.ogg");
             Model::ResourceLoader::load(sounds[1], "audio/sounds/selectbuttons.ogg");
             //sounds[2].loadFromFile(RESSOURCES_PATH + "audio/sounds/nope.ogg");
-            bg.setTexture(textures[0]);
-            cursor.setTexture(textures[1]);
+            bg.setTexture(data.getTitlescreen());
+            cursor.setTexture(data.getArrChoice());
             bruitArr.setBuffer(sounds[0]);
             bruitPush.setBuffer(sounds[1]);
             //bruitNope.setBuffer(sounds[2]);
@@ -46,7 +43,7 @@ UNS
 
             for(auto *text : {&playtx, &charge, &options, &exit}) {
                 text->setColor(sf::Color::White);
-                text->setFont(Model::Data::Ui::font);
+                text->setFont(data.getUiDataPtr()->getFont());
                 text->setCharacterSize(FONT_SIZE_DEFAULT);
             }
 
@@ -54,11 +51,11 @@ UNS
             //Mix_Volume(1, MIX_MAX_VOLUME);
             //Mix_Volume(0, MIX_MAX_VOLUME / 2);
 
-            jukebox.play("Title");
+            data.getUiDataPtr()->getJukebox().play("Title");
         }
 
         MainMenu::~MainMenu() {
-            jukebox.stop("Title");
+	  
         }
 
         void MainMenu::onLangChanged() {
@@ -69,7 +66,7 @@ UNS
         }
 
         void MainMenu::play() {
-            jukebox.play("Title");
+	  data.getUiDataPtr()->getJukebox().play("Title");
         }
 
         void MainMenu::moveArrow(bool direction) {

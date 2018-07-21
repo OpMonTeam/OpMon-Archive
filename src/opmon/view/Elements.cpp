@@ -1,24 +1,31 @@
 #include "Elements.hpp"
 #include "../../utils/defines.hpp"
-#include "../model/storage/Data.hpp"
+#include "../model/storage/ResourceLoader.hpp"
 
 UNS
 
   namespace OpMon {
     namespace View {
 
+      sf::Texture MapLayer::tileset;
+      
         MapLayer::MapLayer(sf::Vector2i size, const int tilesCodes[]) {
-            sf::Texture &tileset = Model::Data::World::tileset;
+	  if(tileset.getSize() == sf::Vector2u(0, 0)){
+	    Model::ResourceLoader::load(tileset, "tileset/tileset.png");
+	  }
             tiles.setPrimitiveType(sf::Quads);
             tiles.resize(size.x * size.y * 4);
 
             for(int i = 0; i < size.y; i++) {
                 for(int j = 0; j < size.x; j++) {
 
+		  //The software we use (Tiled map editor) starts the first tile at 1, and leaves 0 for void. This line substracts one to every square.
+		  
                     int tileNumber = tilesCodes[(i * size.x) + j] - 1;
-
+		    
+		    //Now that every void (0) became -1, this replaces every -1 by the official void tile.
                     if(tileNumber == -1) {
-                        tileNumber = 257; //Void tile
+                        tileNumber = 257; //official void tile
                     }
 
                     int tx = tileNumber % (tileset.getSize().x / 32);
@@ -42,21 +49,13 @@ UNS
         void MapLayer::draw(sf::RenderTarget &target, sf::RenderStates states) const {
             states.transform *= getTransform();
 
-            states.texture = &Model::Data::World::tileset;
+            states.texture = &tileset;
 
             target.draw(tiles, states);
         }
 
-        /*Map::~Map(){
-    for(unsigned int i = 0; i < 32; i++){
-        for(unsigned int j = 0; j < 32; j++){
-            delete(events[i][j]);
-        }
+
     }
-}*/
 
-        namespace Elements {
-        }
 
-    } // namespace View
-}
+} 

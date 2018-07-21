@@ -42,7 +42,7 @@ namespace OpMon {
             };
 
             extern std::vector<Param> paramList;
-
+	  
             Param getParam(std::string const &name);
 
             void addOrModifParam(std::string const &name, std::string const &value);

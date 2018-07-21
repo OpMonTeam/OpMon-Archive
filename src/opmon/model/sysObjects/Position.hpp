@@ -19,6 +19,9 @@
 
 namespace OpMon {
     namespace Model {
+
+      class Map;
+      
         class Position {
           public:
             Position(bool event = false);
@@ -73,18 +76,22 @@ namespace OpMon {
 
             void tp(sf::Vector2i position);
 
-            void move(Side dir);
+	  void move(Side dir, Map* map);
 
+	  static void setPlayerPos(Position* pos);
+	  
           private:
-            bool checkPass(Side dir);
+	  bool checkPass(Side dir, Map* map);
 
-            int posX;
-            int posY;
+	  static Position* playerPos;
+	  
+            int posX = 0;
+            int posY = 0;
             Side dir;
-            bool anim;
-            bool movement;
-            bool moveLock;
-            bool event;
+            bool anim = false;
+            bool movement = false;
+            bool moveLock = false;
+            bool event = false;
         };
     } // namespace Model
 } // namespace OpMon

@@ -11,7 +11,7 @@
 #include "../view/Window.hpp"
 #include "./Core.hpp"
 #include "./Gameloop.hpp"
-#include "./Initializer.hpp"
+#include "i18n/Translator.hpp"
 #include "config.hpp"
 #include <ostream>
 #include <string>
@@ -75,21 +75,29 @@ UNS
             oplog("Loading internal files.");
             InternalFiles::registerFiles();
             oplog("Loading options");
-            OptionsSave::initParams(optSave);      //Loading parameters
+            OptionsSave::initParams(Utils::Path::getSavePath() + "/optSave.oparams");      //Loading parameters
             if(!OptionsSave::checkParam("lang")) { //If the "lang" setting don't exist
                 OptionsSave::addParam("lang", "eng");
             }
-            oplog("Loading the resources.");
-            oplog("Repertory : " + Utils::Path::getResourcePath());
-            Initializer::init();
+            oplog("Resources repertory : " + Utils::Path::getResourcePath());
+	    
+	    //Initializaing keys
+	    oplog("Loading strings");
+            std::string lang = OptionsSave::getParam("lang").getValue();
+            auto &tr = ::OpMon::I18n::Translator::getInstance();
+
+            if(!tr.getAvailableLanguages().count(lang)) {
+                lang = "en"; // The lang isn't available. Default to english.
+            }
+            tr.setLang(lang);
+	    
             oplog("Loading completed! Opening gui.");
             //bgtask = new std::thread(bgTask);
             do {
                 reboot = false;
-                View::open();
                 oplog("Starting game loop");
 
-                auto gameloop = GameLoop();
+                GameLoop gameloop;
                 frames = gameloop.getFrames();
                 gameloop();
 
@@ -97,7 +105,6 @@ UNS
                 logEntry << std::string("Game ended after ") << getFrames() << std::string("frames");
 
                 oplog(logEntry);
-                View::close();
                 if(reboot) {
                     oplog("Restarting the game.");
                 }
@@ -131,16 +138,10 @@ int main(int argc, char *argv[]) {
                 cout << "Under GNU GPL v3.0 license" << endl;
                 cout << "http://opmon-game.ga" << endl;
                 return 0;
-            } else if(str == "--opt") {
-                if(i + 1 == argc) {
-                    return 2;
-                } else {
-                    OpMon::optSave = string(argv[i + 1]);
-                }
             } else if(str == "--help") {
                 cout << "--version : Prints the version and quit." << endl;
                 cout << "--help : Prints this message and quit." << endl;
-                cout << "--opt <path> : Changes the options save file's location." << endl;
+                //cout << "--opt <path> : Changes the options save file's location." << endl;
                 cout << "--debug : Starts the game with debug code. Changes when needed." << endl;
                 return 0;
             } else if(str == "--debug") {

@@ -7,24 +7,25 @@
 #include "../view/MainMenu.hpp"
 #include "../view/OptionsMenu.hpp"
 #include "AGameScreen.hpp"
+#include "../model/storage/OptionsMenuData.hpp"
 
 namespace OpMon {
     namespace Controller {
 
         class OptionsMenuCtrl : public AGameScreen {
           private:
+	  Model::OptionsMenuData data;
+
             View::OptionsMenu view;
-            sf::Sound nope = sf::Sound();
-            sf::Sound arrow = sf::Sound();
-            sf::Sound push = sf::Sound();
             void toggleVolume();
             void raiseVolume();
             void lowerVolume();
 
+	  
           public:
-            OptionsMenuCtrl();
+            OptionsMenuCtrl(Model::UiData* data);
             GameStatus checkEvent(sf::Event const &event) override;
-            GameStatus update() override;
+            GameStatus update(sf::RenderTexture& frame) override;
 
             void resume();
             void suspend();

@@ -9,6 +9,8 @@
 #include <map>
 
 #include <SFML/Audio/Music.hpp>
+#include <SFML/Audio/SoundBuffer.hpp>
+#include <SFML/Audio/Sound.hpp>
 
 namespace OpMon {
     namespace View {
@@ -16,26 +18,33 @@ namespace OpMon {
         class Jukebox {
           private:
             std::map<std::string, sf::Music *> musList;
-            std::string playingID;
-            int globalVolume;
-            static const int DEFAULT_VOLUME = -15;
+	  std::map<std::string, std::pair<sf::SoundBuffer *, sf::Sound *> > soundsList;
+	  sf::Music* playing = nullptr;
+            float globalVolume;
+#define DEFAULT_VOLUME 1
 
           public:
             Jukebox();
 
             ~Jukebox();
 
-            void addMusic(std::string name, std::string path, int volume = DEFAULT_VOLUME, bool loop = true);
+            void addMusic(std::string name, std::string path, bool loop = true);
 
             void play(std::string music);
 
-            void pause(std::string music);
+            void pause();
 
-            void stop(std::string music);
+            void stop();
 
-            void setGlobalVolume(int globalVolume);
+            void setGlobalVolume(float globalVolume);
 
             int getGlobalVolume();
+
+	  void playSound(std::string sound);
+
+	  void addSound(std::string name, std::string path);
+
+
         };
 
     } // namespace View
