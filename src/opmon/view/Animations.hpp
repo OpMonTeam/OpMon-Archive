@@ -17,7 +17,7 @@ namespace OpMon {
     namespace View {
         /**
        Contains the functions used for the major animations
-    */
+	*/
         namespace Animations {
 
             class Animation {
@@ -26,24 +26,24 @@ namespace OpMon {
                 sf::Sprite anim;
                 sf::Sprite bgSpr;
                 sf::Texture bgTxt;
-
-              public:
+	    public:
                 Animation(sf::Texture bgTxt);
                 virtual ~Animation() = default;
-                virtual GameStatus operator()() = 0;
+                virtual GameStatus operator()(sf::RenderTexture& frame) = 0;
             };
 
             class WinAnim : public Animation {
               private:
                 int frames = 5;
-                /*
-					If true : Open | If false : Close
-				*/
-                bool order;
-
+	      /*
+		If true : Open | If false : Close
+	      */
+	      bool order;
+	      static bool fenInit;
+	      static sf::Texture fen[6];
               public:
                 WinAnim(sf::Texture bgTxt, bool order);
-                GameStatus operator()();
+                GameStatus operator()(sf::RenderTexture& frame) override;
             };
 
         } // namespace Animations

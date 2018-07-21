@@ -2,7 +2,6 @@
 
 #include "../model/objects/Attacks.hpp"
 #include "../model/objects/OpMon.hpp"
-#include "../model/storage/Data.hpp"
 #include "../model/sysObjects/OpTeam.hpp"
 #include "BattleCtrl.hpp"
 #include "EventsCtrl.hpp"
@@ -11,8 +10,8 @@
 namespace OpMon {
     namespace Controller {
 
-        OverworldCtrl::OverworldCtrl(Model::Player &player)
-          : view("Player's room")
+      OverworldCtrl::OverworldCtrl(Model::Player &player, Model::UiData* uidata)
+	: data(uidata, &player), view("Player's room", this->data)
           , player(player) {}
 
         GameStatus OverworldCtrl::checkEvent(sf::Event const &events) {
@@ -50,11 +49,11 @@ namespace OpMon {
                         debugCol = !debugCol;
                     }
                     if(events.key.code == sf::Keyboard::B) {
-                        Model::Data::player.addOpToOpTeam(new Model::OpMon("", Model::Data::OpMons::listOp[4], 5, {Model::Attacks::newAtk("Charge"), Model::Attacks::newAtk("Brouillard"), nullptr, nullptr}, Model::Nature::QUIET));
+		      data.getPlayer().addOpToOpTeam(new Model::OpMon("", data.getUiDataPtr()->getOp(4), 5, {Model::Attacks::newAtk("Charge"), Model::Attacks::newAtk("Brouillard"), nullptr, nullptr}, Model::Nature::QUIET));
                         Model::OpTeam *opTeam = new Model::OpTeam("Unknown trainer");
-                        opTeam->addOpMon(new Model::OpMon("", Model::Data::OpMons::listOp[1], 5, {Model::Attacks::newAtk("Charge"), Model::Attacks::newAtk("Brouillard"), nullptr, nullptr}, Model::Nature::QUIET));
-                        _next_gs = new BattleCtrl(Model::Data::player.getOpTeam(), opTeam);
-                        Model::Data::player.healOp();
+                        opTeam->addOpMon(new Model::OpMon("", data.getUiDataPtr()->getOp(1), 5, {Model::Attacks::newAtk("Charge"), Model::Attacks::newAtk("Brouillard"), nullptr, nullptr}, Model::Nature::QUIET));
+                        _next_gs = new BattleCtrl(data.getPlayer().getOpTeam(), opTeam, data.getUiDataPtr(), data.getPlayerPtr());
+                        data.getPlayer().healOp();
                         return GameStatus::NEXT;
                     }
                     if(events.key.code == sf::Keyboard::Numpad5) {
@@ -89,7 +88,7 @@ namespace OpMon {
         GameStatus OverworldCtrl::checkEventsDialog(sf::Event const &events, View::Overworld &overworld) {
             switch(events.type) {
             case sf::Event::KeyPressed:
-                if(events.key.code == Model::Data::Controls::talk) {
+	      if(events.key.code == data.getUiDataPtr()->getKeyTalk()) {
                     overworld.getDialog()->pass();
                 }
                 break;
@@ -100,18 +99,18 @@ namespace OpMon {
         }
 
         GameStatus OverworldCtrl::checkEventsNoDialog(sf::Event const &event, Model::Player &player) {
-            EventsCtrl::checkAction(event, player, view);
+            eventsctrl.checkAction(event, player, view);
             Controller::PlayerCtrl::checkMove(player, event, view);
             return GameStatus::CONTINUE;
         }
 
-        GameStatus OverworldCtrl::update() {
+      GameStatus OverworldCtrl::update(sf::RenderTexture& frame) {
             bool is_dialog_open = view.getDialog() && !view.getDialog()->isDialogOver();
             if(!is_dialog_open) {
-                EventsCtrl::updateEvents(Model::Data::World::maps.at(player.getMapId())->getEvents(), player, view);
+                eventsctrl.updateEvents(data.getMap(player.getMapId())->getEvents(), player, view);
             }
-            //TODO: pass frame
-            return view(getFrames());
+
+            return view(getFrames(), frame);
         }
 
     } // namespace Controller

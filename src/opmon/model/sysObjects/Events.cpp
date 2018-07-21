@@ -1,11 +1,11 @@
 #include "Events.hpp"
 
+#include "Position.hpp"
 #include "../../../utils/defines.hpp"
 #include "../../../utils/log.hpp"
 #include "../../view/Overworld.hpp"
-#include "../storage/Data.hpp"
+#include "../../start/Core.hpp"
 
-#pragma GCC diagnostic ignored "-Wreorder"
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 UNS
 
@@ -54,17 +54,18 @@ UNS
               , ppDir(ppDir) {
             }
 
-            DoorEvent::DoorEvent(std::vector<sf::Texture> &doorType, sf::Vector2f const &position, sf::Vector2i const &tpPos,
+	  DoorEvent::DoorEvent(std::vector<sf::Texture> &doorTextures, std::string doorType, sf::Vector2f const &position, sf::Vector2i const &tpPos,
                                  string const &map, EventTrigger eventTrigger, Side ppDir, int sides, bool passable)
-              : Event(doorType, eventTrigger, position, sides, passable)
-              , TPEvent(doorType, eventTrigger, position, tpPos, map, ppDir, sides, passable) {
+              : Event(doorTextures, eventTrigger, position, sides, passable)
+              , TPEvent(doorTextures, eventTrigger, position, tpPos, map, ppDir, sides, passable)
+	      , doorType(doorType){
                 this->position += sf::Vector2f(0, -6);
-                if(&doorType[0] == &DoorType::SHOP[0]) {
+                if(doorType == "shop door") {
                     this->position.x -= 4;
-                    this->doorType = 1;
-                } else {
-                    this->doorType = 0;
                 }
+		if(doorType != "door" && doorType != "shop door"){
+		  handleError(std::string("Warning - DoorEvent : Unknown door type \" ") + doorType + "\"");
+		}
             }
 
             TalkingEvent::TalkingEvent(std::vector<sf::Texture> &otherTextures, sf::Vector2f const &position,
@@ -82,20 +83,20 @@ UNS
                 }
             }
 
-            LockedDoorEvent::LockedDoorEvent(std::vector<sf::Texture> &doorType, Item *needed, sf::Vector2f const &position,
+	  LockedDoorEvent::LockedDoorEvent(std::vector<sf::Texture> &doorTextures, std::string doorType, Item *needed, sf::Vector2f const &position,
                                              sf::Vector2i const &tpPos, string const &map, Side ppDir,
                                              EventTrigger eventTrigger, bool consumeItem, int sides, bool passable)
-              : DoorEvent(doorType, position, tpPos, map, eventTrigger, ppDir, sides, passable)
-              , Event(this->otherTextures, eventTrigger, position, sides, passable)
-              , TalkingEvent(this->otherTextures, position, LockedDoorEvent::keysLock, sides, eventTrigger, passable)
+	    : DoorEvent(doorTextures, doorType, position, tpPos, map, eventTrigger, ppDir, sides, passable)
+              , Event(doorTextures, eventTrigger, position, sides, passable)
+              , TalkingEvent(doorTextures, position, LockedDoorEvent::keysLock, sides, eventTrigger, passable)
               , needed(needed)
               , consumeItem(consumeItem) {
             }
 
-            CharacterEvent::CharacterEvent(std::string texturesKey, sf::Vector2f const &position, Side posDir, MoveStyle moveStyle,
+	  CharacterEvent::CharacterEvent(std::vector<sf::Texture>& textures, sf::Vector2f const &position, Side posDir, MoveStyle moveStyle,
                                            EventTrigger eventTrigger, std::vector<Side> predefinedPath, bool passable,
                                            int sides)
-              : Event(Data::Ui::charaTextures[texturesKey], eventTrigger, position, sides, passable)
+              : Event(textures, eventTrigger, position, sides, passable)
               , moveStyle(moveStyle) {
                 sprite->setScale(2, 2);
                 sprite->setOrigin(16, 16);
@@ -104,13 +105,13 @@ UNS
                 mapPos.setDir(posDir);
             }
 
-            TalkingCharaEvent::TalkingCharaEvent(std::string texturesKey, sf::Vector2f const &position,
+	  TalkingCharaEvent::TalkingCharaEvent(std::vector<sf::Texture>& textures, sf::Vector2f const &position,
                                                  std::vector<Utils::OpString> const &dialogKeys, Side posDir, EventTrigger eventTrigger,
                                                  MoveStyle moveStyle, std::vector<Side> predefinedPath, bool passable,
                                                  int sides)
-              : Event(Data::Ui::charaTextures[texturesKey], eventTrigger, position, sides, passable)
-              , CharacterEvent(texturesKey, position, posDir, moveStyle, eventTrigger, predefinedPath, passable, sides)
-              , TalkingEvent(Data::Ui::charaTextures[texturesKey], position, dialogKeys, sides, eventTrigger, passable) {
+              : Event(textures, eventTrigger, position, sides, passable)
+              , CharacterEvent(textures, position, posDir, moveStyle, eventTrigger, predefinedPath, passable, sides)
+              , TalkingEvent(textures, position, dialogKeys, sides, eventTrigger, passable) {
             }
 
             //Actions
@@ -131,13 +132,7 @@ UNS
             void DoorEvent::action(Model::Player &player, View::Overworld &overworld) {
                 animStarted = 0;
                 player.getPosition().lockMove();
-                if(doorType == 0) {
-                    doorSound.setVolume(100);
-                    doorSound.play();
-                } else if(doorType == 1) {
-                    shopdoorSound.setVolume(300);
-                    shopdoorSound.play();
-                }
+                overworld.getData().getUiDataPtr()->getJukebox().play(doorType + " sound");
             }
 
             void DoorEvent::update(Model::Player &player, View::Overworld &overworld) {
@@ -171,7 +166,7 @@ UNS
                         if(predefinedCounter >= movements.size()) {
                             predefinedCounter = 0;
                         }
-                        move(movements[predefinedCounter]);
+                        move(movements[predefinedCounter], overworld.getData().getCurrentMap());
                         if(!mapPos.isMoving()) {
 			  if(predefinedCounter != 0){
                             predefinedCounter--;
@@ -187,23 +182,23 @@ UNS
                         randomMove = Utils::Misc::randUI(5) - 1;
                         switch(randomMove) {
                         case -1:
-                            move(Side::NO_MOVE);
+			  move(Side::NO_MOVE, overworld.getData().getCurrentMap());
                             break;
                         case 0:
-                            move(Side::TO_UP);
+                            move(Side::TO_UP, overworld.getData().getCurrentMap());
                             break;
                         case 1:
-                            move(Side::TO_DOWN);
+                            move(Side::TO_DOWN, overworld.getData().getCurrentMap());
                             break;
                         case 2:
-                            move(Side::TO_LEFT);
+                            move(Side::TO_LEFT, overworld.getData().getCurrentMap());
                             break;
                         case 3:
-                            move(Side::TO_RIGHT);
+                            move(Side::TO_RIGHT, overworld.getData().getCurrentMap());
                             break;
                         default:
-                            Utils::Log::oplog("[WARNING] - Random number out of bounds CharacterEvent::update");
-                            move(Side::NO_MOVE);
+                            handleError("[WARNING] - Random number out of bounds CharacterEvent::update");
+                            move(Side::NO_MOVE, overworld.getData().getCurrentMap());
                         }
                         break;
 
@@ -283,13 +278,13 @@ UNS
                 }
             }
 
-            void CharacterEvent::move(Side direction) {
+	  void CharacterEvent::move(Side direction, Map* map) {
                 startFrames = frames;
-                mapPos.move(direction);
+                mapPos.move(direction, map);
             }
 
             void CharacterEvent::move(Side direction, Model::Player &player, View::Overworld &overworld) {
-                move(direction);
+	      move(direction, overworld.getData().getCurrentMap());
             }
 
             void TalkingCharaEvent::action(Model::Player &player, View::Overworld &overworld) {
@@ -338,10 +333,7 @@ UNS
 
         } // namespace Events
 
-        void initEnumsEvents() {
-            Events::DoorType::NORMAL = Data::Ui::doorsTextures[0];
-            Events::DoorType::SHOP = Data::Ui::doorsTextures[1];
-        }
+        
 
     } // namespace Model
 }

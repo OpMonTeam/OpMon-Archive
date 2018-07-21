@@ -11,6 +11,7 @@
 #include "../model/objects/Enums.hpp"
 #include "../model/sysObjects/Map.hpp"
 #include "../model/sysObjects/Player.hpp"
+#include "../model/storage/OverworldData.hpp"
 #include "../start/GameStatus.hpp"
 #include "Dialog.hpp"
 #include "Elements.hpp"
@@ -20,7 +21,7 @@ namespace OpMon {
 
         class Overworld {
           public:
-            Overworld(const std::string &mapId);
+	  Overworld(const std::string &mapId, Model::OverworldData& data);
 
             sf::Sprite &getCharacter() {
                 return character;
@@ -30,7 +31,7 @@ namespace OpMon {
                 return current;
             }
 
-            GameStatus operator()(int frame);
+	  GameStatus operator()(int frames, sf::RenderTexture& frame);
 
             void tp(std::string toTp, sf::Vector2i pos);
 
@@ -100,10 +101,10 @@ namespace OpMon {
             //Indicate the frame of the walking animation that must be used.
             bool anims = false;
 
-            int fpsCounter;
+            int fpsCounter = 0;
             sf::Text fpsPrint;
             sf::Text coordPrint;
-            int oldTicksFps;
+            int oldTicksFps = 0;
 
             int tpCount = 0;
 
@@ -112,6 +113,13 @@ namespace OpMon {
             bool recordFrames = false;
 
             bool cameraLock = false;
+
+	  std::map<std::string, sf::Sprite> elementsSprites;
+
+	  Model::OverworldData& data;
+
+	public:
+	  Model::OverworldData& getData() { return data; }
         };
 
     } // namespace View

@@ -8,6 +8,7 @@ Contains StartScene class
 #ifndef STARTSCENE_HPP
 #define STARTSCENE_HPP
 
+#include "../model/storage/StartSceneData.hpp"
 #include "../../utils/OpString.hpp"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
@@ -21,7 +22,7 @@ namespace OpMon {
 
         class StartScene : public I18n::ATranslatable {
           public:
-            StartScene();
+	  StartScene(Model::StartSceneData &data);
             ~StartScene() override;
 
             GameStatus operator()();
@@ -59,13 +60,12 @@ namespace OpMon {
 
             Dialog *dialog;
 
-            sf::Texture textures[3];
-
             sf::Text textDescs[4];
             sf::Sprite bgName;
             sf::Text nameField;
 
             sf::String pName;
+	  Model::StartSceneData& data;
         };
 
     } // namespace View

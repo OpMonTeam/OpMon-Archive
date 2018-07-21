@@ -2,6 +2,7 @@
 
 #include "../model/objects/Turn.hpp"
 #include "../start/Core.hpp"
+#include "../model/storage/BattleData.hpp"
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/System/String.hpp>
@@ -12,13 +13,14 @@ namespace OpMon {
 
     namespace Model {
         class OpTeam;
+      class BattleData;
     }
 
     namespace View {
 
         class Battle {
           private:
-            //The OpMons' sprites (The textures IDs will be in the OpMon object)
+            //The OpMons' sprites
             sf::Sprite atk;
             sf::Sprite def;
 
@@ -71,12 +73,14 @@ namespace OpMon {
             std::vector<sf::Text> turnTxt = std::vector<sf::Text>(3);
             sf::Sprite dialogArrow;
 
-            int phase = 0;
+	  int phase = 0;
 
+	  Model::BattleData& data;
+	  
           public:
-            Battle(const Model::OpTeam *atkTeam, const Model::OpTeam *defTeam, std::string trainerClass, std::string background);
+	  Battle(const Model::OpTeam *atkTeam, const Model::OpTeam *defTeam, std::string trainerClass, std::string background, Model::BattleData& data);
 
-            GameStatus operator()(Model::Turn const &atk, Model::Turn const &def, bool *turnActivated, bool atkFirst = true);
+	  GameStatus operator()(sf::RenderTexture& frame, Model::Turn const &atk, Model::Turn const &def, bool *turnActivated, bool atkFirst = true);
             //Moves the cursor
             void moveCur(Model::Side where);
             //Returns the cursor's position

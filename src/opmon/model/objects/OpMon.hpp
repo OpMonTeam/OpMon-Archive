@@ -9,7 +9,6 @@
 #define OPMON_HPP
 
 #include "../../../utils/misc.hpp"
-#include "../storage/Data.hpp"
 #include "Nature.hpp"
 #include "Species.hpp"
 #include "item/IOpBox.hpp"

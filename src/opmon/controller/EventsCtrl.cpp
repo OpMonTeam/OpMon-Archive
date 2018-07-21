@@ -3,15 +3,15 @@
 #include <SFML/Window/Keyboard.hpp>
 
 #include "../model/objects/Enums.hpp"
-#include "../model/storage/Data.hpp"
 #include "../model/sysObjects/Map.hpp"
+#include "../view/Overworld.hpp"
 
 namespace OpMon {
     namespace Controller {
 #pragma GCC diagnostic ignored "-Wunused-parameter"
         void EventsCtrl::checkAction(sf::Event const &event, Model::Player &player, View::Overworld &overworld) {
             if(!player.getPosition().isAnim()) {
-                if(sf::Keyboard::isKeyPressed(Model::Data::Controls::interact)) {
+	      if(sf::Keyboard::isKeyPressed(overworld.getData().getUiDataPtr()->getKeyInteract())) {
                     int lx = player.getPosition().getPosition().x;
                     int ly = player.getPosition().getPosition().y;
                     switch(player.getPosition().getDir()) {
@@ -31,14 +31,14 @@ namespace OpMon {
                         break;
                     }
 
-                    std::vector<Model::Event *> eventList = Model::Data::World::maps.at(player.getMapId())->getEvent(sf::Vector2i(lx, ly));
+                    std::vector<Model::Event *> eventList = overworld.getData().getCurrentMap()->getEvent(sf::Vector2i(lx, ly));
                     actionEvents(eventList, player, Model::Events::EventTrigger::PRESS, overworld);
                 }
             }
 #pragma GCC diagnostic pop
 
             if(!player.getPosition().isMoving()) {
-                std::vector<Model::Event *> eventList = Model::Data::World::maps.at(player.getMapId())->getEvent(player.getPosition().getPosition());
+	      std::vector<Model::Event *> eventList = overworld.getData().getCurrentMap()->getEvent(player.getPosition().getPosition());
                 actionEvents(eventList, player, Model::Events::EventTrigger::BE_IN, overworld);
             }
         }

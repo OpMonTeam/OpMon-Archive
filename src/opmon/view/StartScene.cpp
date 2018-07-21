@@ -2,7 +2,6 @@
 #include "../../utils/OpString.hpp"
 #include "../../utils/StringKeys.hpp"
 #include "../../utils/defines.hpp"
-#include "../model/storage/Data.hpp"
 #include "../model/storage/ResourceLoader.hpp"
 #include "../model/sysObjects/Player.hpp"
 #include "./Window.hpp"
@@ -23,7 +22,7 @@ UNS
                 txtP0.push_back(kget(actual));
             }
             it++;
-            strName = Utils::OpString("prof.dialog.start.19", Model::Data::player.getNameP());
+            strName = Utils::OpString("prof.dialog.start.19", data.getPlayer().getNameP());
             txtP1.emplace_back(); // empty space replaced later by OpString 'strName'
             for(it = it; it < 27; it++) {
                 string actual;
@@ -37,20 +36,18 @@ UNS
             textDescs[3].setString(kget("nameEntry.indic.2"));
         }
 
-        StartScene::StartScene()
-          : dialog(nullptr) {
+      StartScene::StartScene(Model::StartSceneData& data)
+	: dialog(nullptr), data(data) {
             initStrings();
             textDescs[1].setPosition(85, 25);
             textDescs[0].setPosition(155, 200);
             textDescs[2].setPosition(95, 375);
             textDescs[3].setPosition(95, 405);
 
-            Model::ResourceLoader::load(textures[0], "backgrounds/start/startscene.png");
-            Model::ResourceLoader::load(textures[1], "sprites/chara/prof/profkiwai.png");
-            Model::ResourceLoader::load(textures[2], "backgrounds/start/nameEntry.png");
-            bg.setTexture(textures[0]);
-            prof.setTexture(textures[1]);
-            bgName.setTexture(textures[2]);
+
+            bg.setTexture(data.getBackground());
+            prof.setTexture(data.getProf());
+            bgName.setTexture(data.getNameBg());
             bgName.setPosition(0, 0);
 
             bg.setPosition(0, 0);
@@ -60,16 +57,16 @@ UNS
             for(sf::Text &cellTxt : textDescs) {
                 cellTxt.setCharacterSize(FONT_SIZE_DEFAULT);
                 cellTxt.setColor(sf::Color::White);
-                cellTxt.setFont(Model::Data::Ui::font);
+                cellTxt.setFont(data.getUiDataPtr()->getFont());
             }
 
-            nameField.setFont(Model::Data::Ui::font);
+            nameField.setFont(data.getUiDataPtr()->getFont());
             nameField.setPosition(120, 300);
 
-            jukebox.play("Start");
+            data.getUiDataPtr()->getJukebox().play("Start");
 
             // Init loop 0
-            dialog = new Dialog(txtP0);
+            dialog = new Dialog(txtP0, data.getUiDataPtr());
         }
 
         void StartScene::onLangChanged() {
@@ -85,7 +82,6 @@ UNS
                     // Init loop 1
                     delete(dialog);
                     dialog = nullptr;
-                    window.setKeyRepeatEnabled(true);
                     part++;
                     return GameStatus::NEXT;
                 }
@@ -109,13 +105,12 @@ UNS
         }
 
         void StartScene::delLoop1() {
-            window.setKeyRepeatEnabled(false);
 
             txtP1[0] = strName.getString();
             part++;
 
             // Init loop 2
-            dialog = new Dialog(txtP1);
+            dialog = new Dialog(txtP1, data.getUiDataPtr());
         }
 
         void StartScene::draw(sf::RenderTarget &frame) {
@@ -141,7 +136,7 @@ UNS
         }
 
         void StartScene::play() {
-            jukebox.play("Start");
+	  data.getUiDataPtr()->getJukebox().play("Start");
         }
 
         void StartScene::pause() {
