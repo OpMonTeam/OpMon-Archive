@@ -80,9 +80,6 @@ namespace OpMon {
 	    return;
 	  }
 
-	  std::cout << "gvParam " << globalVolume << std::endl;
-	  std::cout << "gvCurrent " << this->globalVolume << std::endl;
-
 	  for(auto itor = musList.begin(); itor != musList.end(); ++itor) {
 	    itor->second->setVolume(globalVolume);
 	  }
@@ -90,9 +87,6 @@ namespace OpMon {
 	    itor->second.second->setVolume(globalVolume);
 	  }
 	  this->globalVolume = globalVolume;
-	  
-
-	  std::cout << "gvEnd" << this->globalVolume << std::endl;
 	  
         }
 
