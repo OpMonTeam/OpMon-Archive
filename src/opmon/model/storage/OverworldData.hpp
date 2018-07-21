@@ -15,6 +15,9 @@ namespace OpMon {
     class OverworldData {
     private:
 
+      sf::Texture alpha = sf::Texture();
+      std::vector<sf::Texture> alphaTab = std::vector<sf::Texture>(1);
+
       std::map<std::string, Map*> maps;
       
       sf::Texture texturePP[4];

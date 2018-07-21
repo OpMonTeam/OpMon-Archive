@@ -85,13 +85,13 @@ namespace OpMon {
 
 	  static Position* playerPos;
 	  
-            int posX;
-            int posY;
+            int posX = 0;
+            int posY = 0;
             Side dir;
-            bool anim;
-            bool movement;
-            bool moveLock;
-            bool event;
+            bool anim = false;
+            bool movement = false;
+            bool moveLock = false;
+            bool event = false;
         };
     } // namespace Model
 } // namespace OpMon
