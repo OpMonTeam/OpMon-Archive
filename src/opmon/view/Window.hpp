@@ -20,8 +20,8 @@ namespace OpMon {
       private:
         sf::RenderWindow window;
         sf::RenderTexture frame;
-        bool init;
-        bool fullScreen;
+        bool init = false;
+        bool fullScreen = false;
       public:
 	sf::RenderTexture& getFrame() {return frame; }
 	sf::RenderWindow& getWindow() {return window;}

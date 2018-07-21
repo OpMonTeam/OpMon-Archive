@@ -51,9 +51,7 @@ namespace OpMon{
       ResourceLoader::loadTextureArray(elementsTextures["smoke"], "animations/chimneysmoke/chimneysmoke_%d.png", 32, 1);
 
       //Maps initialization
-      sf::Texture alpha = sf::Texture();
-      std::vector<sf::Texture> alphaTab = std::vector<sf::Texture>(1);
-      
+            
       using namespace std;
       
       //Fauxbourg Euvi loading

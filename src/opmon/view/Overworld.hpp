@@ -101,10 +101,10 @@ namespace OpMon {
             //Indicate the frame of the walking animation that must be used.
             bool anims = false;
 
-            int fpsCounter;
+            int fpsCounter = 0;
             sf::Text fpsPrint;
             sf::Text coordPrint;
-            int oldTicksFps;
+            int oldTicksFps = 0;
 
             int tpCount = 0;
 
