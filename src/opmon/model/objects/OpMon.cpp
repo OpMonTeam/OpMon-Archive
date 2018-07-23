@@ -318,7 +318,8 @@ UNS
                             speEV++;
                         }
                         break;
-		    default: break;
+                    default:
+                        break;
                     }
                 }
             }

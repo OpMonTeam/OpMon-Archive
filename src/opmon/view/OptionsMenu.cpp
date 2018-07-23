@@ -102,19 +102,18 @@ UNS
             initStrings();
         }
 
-        OptionsMenu::OptionsMenu(Model::OptionsMenuData& data)
-          : data(data), currentOptions(OptionType::ALL) {
+        OptionsMenu::OptionsMenu(Model::OptionsMenuData &data)
+          : data(data)
+          , currentOptions(OptionType::ALL) {
 
-	    
-	    
-	    bgOpt.setTexture(data.getBackground());
-	    rectSurb.setTexture(data.getSelectBar());
-	    bgLangues.setTexture(data.getLangBg());
-	    coche.setTexture(data.getCreditsBg());
-	    bgCredits.setTexture(data.getCreditsBg());
-	    
-	    coche.setPosition(425, 88);
-	    
+            bgOpt.setTexture(data.getBackground());
+            rectSurb.setTexture(data.getSelectBar());
+            bgLangues.setTexture(data.getLangBg());
+            coche.setTexture(data.getCreditsBg());
+            bgCredits.setTexture(data.getCreditsBg());
+
+            coche.setPosition(425, 88);
+
             initStrings();
 
             txtOpt1.setPosition(120, 100);
@@ -254,7 +253,7 @@ UNS
         }
 
         void OptionsMenu::play() {
-	  data.getUiDataPtr()->getJukebox().play("Title");
+            data.getUiDataPtr()->getJukebox().play("Title");
         }
 
         OptionsMenu::~OptionsMenu() {

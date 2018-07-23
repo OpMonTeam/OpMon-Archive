@@ -9,9 +9,9 @@
 #define OVERWORLD_HPP
 
 #include "../model/objects/Enums.hpp"
+#include "../model/storage/OverworldData.hpp"
 #include "../model/sysObjects/Map.hpp"
 #include "../model/sysObjects/Player.hpp"
-#include "../model/storage/OverworldData.hpp"
 #include "../start/GameStatus.hpp"
 #include "Dialog.hpp"
 #include "Elements.hpp"
@@ -21,7 +21,7 @@ namespace OpMon {
 
         class Overworld {
           public:
-	  Overworld(const std::string &mapId, Model::OverworldData& data);
+            Overworld(const std::string &mapId, Model::OverworldData &data);
 
             sf::Sprite &getCharacter() {
                 return character;
@@ -31,7 +31,7 @@ namespace OpMon {
                 return current;
             }
 
-	  GameStatus operator()(int frames, sf::RenderTexture& frame);
+            GameStatus operator()(int frames, sf::RenderTexture &frame);
 
             void tp(std::string toTp, sf::Vector2i pos);
 
@@ -114,12 +114,12 @@ namespace OpMon {
 
             bool cameraLock = false;
 
-	  std::map<std::string, sf::Sprite> elementsSprites;
+            std::map<std::string, sf::Sprite> elementsSprites;
 
-	  Model::OverworldData& data;
+            Model::OverworldData &data;
 
-	public:
-	  Model::OverworldData& getData() { return data; }
+          public:
+            Model::OverworldData &getData() { return data; }
         };
 
     } // namespace View

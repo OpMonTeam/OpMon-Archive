@@ -7,23 +7,23 @@ UNS
   namespace OpMon {
     namespace View {
 
-      sf::Texture MapLayer::tileset;
-      
+        sf::Texture MapLayer::tileset;
+
         MapLayer::MapLayer(sf::Vector2i size, const int tilesCodes[]) {
-	  if(tileset.getSize() == sf::Vector2u(0, 0)){
-	    Model::ResourceLoader::load(tileset, "tileset/tileset.png");
-	  }
+            if(tileset.getSize() == sf::Vector2u(0, 0)) {
+                Model::ResourceLoader::load(tileset, "tileset/tileset.png");
+            }
             tiles.setPrimitiveType(sf::Quads);
             tiles.resize(size.x * size.y * 4);
 
             for(int i = 0; i < size.y; i++) {
                 for(int j = 0; j < size.x; j++) {
 
-		  //The software we use (Tiled map editor) starts the first tile at 1, and leaves 0 for void. This line substracts one to every square.
-		  
+                    //The software we use (Tiled map editor) starts the first tile at 1, and leaves 0 for void. This line substracts one to every square.
+
                     int tileNumber = tilesCodes[(i * size.x) + j] - 1;
-		    
-		    //Now that every void (0) became -1, this replaces every -1 by the official void tile.
+
+                    //Now that every void (0) became -1, this replaces every -1 by the official void tile.
                     if(tileNumber == -1) {
                         tileNumber = 257; //official void tile
                     }
@@ -54,8 +54,5 @@ UNS
             target.draw(tiles, states);
         }
 
-
-    }
-
-
-} 
+    } // namespace View
+}

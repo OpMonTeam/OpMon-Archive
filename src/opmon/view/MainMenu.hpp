@@ -11,8 +11,8 @@ Contains MainMenu namespace
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 
-#include "../start/i18n/ATranslatable.hpp"
 #include "../model/storage/MainMenuData.hpp"
+#include "../start/i18n/ATranslatable.hpp"
 
 namespace OpMon {
     namespace View {
@@ -23,7 +23,7 @@ namespace OpMon {
         class MainMenu : public I18n::ATranslatable {
 
           public:
-	  MainMenu(Model::MainMenuData& data);
+            MainMenu(Model::MainMenuData &data);
             ~MainMenu() override;
 
             void initStrings();
@@ -57,7 +57,7 @@ namespace OpMon {
             sf::Texture textures[2];
             sf::SoundBuffer sounds[3];
             int curPosI = 0;
-	  Model::MainMenuData& data;
+            Model::MainMenuData &data;
         };
     } // namespace View
 } // namespace OpMon

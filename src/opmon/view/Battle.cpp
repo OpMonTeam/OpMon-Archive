@@ -9,9 +9,9 @@
 
 namespace OpMon {
     namespace View {
-      GameStatus Battle::operator()(sf::RenderTexture& frame, Model::Turn const &atkTurn, Model::Turn const &defTurn, bool *turnActivated, bool atkFirst) {
-	frame.setView(frame.getDefaultView());
-	if(atkHp == -1) {
+        GameStatus Battle::operator()(sf::RenderTexture &frame, Model::Turn const &atkTurn, Model::Turn const &defTurn, bool *turnActivated, bool atkFirst) {
+            frame.setView(frame.getDefaultView());
+            if(atkHp == -1) {
                 atkHp = atkTurn.opmon->getHP();
             }
             if(defHp == -1) {
@@ -29,8 +29,8 @@ namespace OpMon {
             frame.draw(infoboxPlayer);
             frame.draw(infoboxTrainer);
 
-				 healthbar2[0].setTextureRect(sf::IntRect(0, 0, (defHp * data.getHealthbar2().getSize().x) / defTurn.opmon->getStatHP(), data.getHealthbar2().getSize().y));
-				 healthbar2[1].setTextureRect(sf::IntRect(0, 0, (atkHp * data.getHealthbar2().getSize().x) / atkTurn.opmon->getStatHP(), data.getHealthbar2().getSize().y));
+            healthbar2[0].setTextureRect(sf::IntRect(0, 0, (defHp * data.getHealthbar2().getSize().x) / defTurn.opmon->getStatHP(), data.getHealthbar2().getSize().y));
+            healthbar2[1].setTextureRect(sf::IntRect(0, 0, (atkHp * data.getHealthbar2().getSize().x) / atkTurn.opmon->getStatHP(), data.getHealthbar2().getSize().y));
 
             for(unsigned int i = 0; i < 2; i++) {
                 frame.draw(healthbar1[i]);
@@ -47,15 +47,15 @@ namespace OpMon {
             opName[0].setString(atkTurn.opmon->getNickname());
             opName[1].setString(defTurn.opmon->getNickname());
 
-	    std::ostringstream oss3;
-	    oss3 << " HP : "<< atkHp << " / " << atkTurn.opmon->getStatHP()  ;
-	    opHp.setString(oss3.str());
-	    
+            std::ostringstream oss3;
+            oss3 << " HP : " << atkHp << " / " << atkTurn.opmon->getStatHP();
+            opHp.setString(oss3.str());
+
             frame.draw(opName[0]);
             frame.draw(opName[1]);
             frame.draw(opLevel[0]);
             frame.draw(opLevel[1]);
-	    frame.draw(opHp);
+            frame.draw(opHp);
             if(!turnLaunched && *turnActivated) {
                 phase = 1;
                 dialogSpr.setTexture(data.getUiDataPtr()->getDialogBackground());
@@ -93,9 +93,9 @@ namespace OpMon {
                         }
                         break;
                     }
-		    
+
                 case 3:
-		  if((atkFirst && turnNber == 0) || (!atkFirst && turnNber == 2)) {
+                    if((atkFirst && turnNber == 0) || (!atkFirst && turnNber == 2)) {
                         defHp = defTurn.opmon->getHP();
                     } else {
                         atkHp = atkTurn.opmon->getHP();
@@ -197,7 +197,7 @@ namespace OpMon {
         void Battle::toggleAttackChoice() {
             attackChoice = !attackChoice;
             if(attackChoice) {
-	      dialogSpr.setTexture(data.getAttackDialog());
+                dialogSpr.setTexture(data.getAttackDialog());
                 posChoices[0].x = 40;
                 posChoices[0].y = 370;
                 posChoices[1].x = 140;
@@ -226,10 +226,12 @@ namespace OpMon {
             }
         }
 
-	Battle::Battle(const Model::OpTeam *atkTeam, const Model::OpTeam *defTeam, std::string trainerClass, std::string background, Model::BattleData& data)
-	: atkTeam(atkTeam), defTeam(defTeam), data(data){
-	this->background.setTexture(data.getBackground(background));
-	playerSpr.setTexture(data.getCharaBattleTextures("player")[0]);
+        Battle::Battle(const Model::OpTeam *atkTeam, const Model::OpTeam *defTeam, std::string trainerClass, std::string background, Model::BattleData &data)
+          : atkTeam(atkTeam)
+          , defTeam(defTeam)
+          , data(data) {
+            this->background.setTexture(data.getBackground(background));
+            playerSpr.setTexture(data.getCharaBattleTextures("player")[0]);
             playerSpr.setPosition(20, 206);
             playerSpr.setScale(2, 2);
             trainerSpr.setTexture(data.getCharaBattleTextures(trainerClass)[0]);
@@ -250,7 +252,7 @@ namespace OpMon {
             posChoices[3].x = 430;
             posChoices[3].y = 445;
             for(unsigned int i = 0; i < 4; i++) {
-	      choicesTxt[i].setFont(data.getUiDataPtr()->getFont());
+                choicesTxt[i].setFont(data.getUiDataPtr()->getFont());
                 choicesTxt[i].setCharacterSize(20);
                 choicesTxt[i].setPosition(posChoices[i]);
                 choicesTxt[i].setColor(sf::Color::White);
@@ -278,8 +280,8 @@ namespace OpMon {
             shadowTrainer.setPosition(320, 175);
             for(unsigned int i = 0; i < 2; i++) {
 
-	      healthbar1[i].setTexture(data.getHealthbar1());
-	      healthbar2[i].setTexture(data.getHealthbar2());
+                healthbar1[i].setTexture(data.getHealthbar1());
+                healthbar2[i].setTexture(data.getHealthbar2());
             }
 
             infoboxTrainer.setPosition(17, 148);
@@ -296,18 +298,18 @@ namespace OpMon {
             opLevel[1].setPosition(22, 185);
 
             for(unsigned int i = 0; i < 2; i++) {
-	      opName[i].setFont(data.getUiDataPtr()->getFont());
-	      opLevel[i].setFont(data.getUiDataPtr()->getFont());
+                opName[i].setFont(data.getUiDataPtr()->getFont());
+                opLevel[i].setFont(data.getUiDataPtr()->getFont());
                 opName[i].setCharacterSize(22);
                 opLevel[i].setCharacterSize(22);
                 opName[i].setColor(sf::Color::Black);
                 opLevel[i].setColor(sf::Color::Black);
             }
 
-	    opHp.setFont(data.getUiDataPtr()->getFont());
-	    opHp.setCharacterSize(14);
-	    opHp.setColor(sf::Color::Black);
-	    opHp.setPosition(332, 264);
+            opHp.setFont(data.getUiDataPtr()->getFont());
+            opHp.setCharacterSize(14);
+            opHp.setColor(sf::Color::Black);
+            opHp.setPosition(332, 264);
 
             waitText.setFont(data.getUiDataPtr()->getFont());
             waitText.setCharacterSize(22);
@@ -349,7 +351,8 @@ namespace OpMon {
             case Model::Side::TO_DOWN:
                 cur += 2;
                 break;
-	    default: break;
+            default:
+                break;
             }
 
             if(cur >= 0 && cur < 4) {

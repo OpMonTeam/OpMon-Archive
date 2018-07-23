@@ -7,11 +7,11 @@
 #ifndef OPMON_DIALOG_CPP_HPP
 #define OPMON_DIALOG_CPP_HPP
 
+#include "../model/storage/UiData.hpp"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <string>
-#include "../model/storage/UiData.hpp"
 
 namespace OpMon {
     namespace View {
@@ -43,10 +43,10 @@ namespace OpMon {
 
             sf::Sound dialogPass;
 
-	  Model::UiData* uidata;
-	  
+            Model::UiData *uidata;
+
           public:
-	  Dialog(const std::vector<sf::String> &text, Model::UiData* uidata);
+            Dialog(const std::vector<sf::String> &text, Model::UiData *uidata);
 
             /**
        * Move forward in a dialog, in response to an event like a space key pressed.

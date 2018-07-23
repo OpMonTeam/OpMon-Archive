@@ -35,7 +35,7 @@ namespace OpMon {
         Species::~Species() {
             delete(evolType);
         }
-      #pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wunused-parameter"
         Species::Species(unsigned int atk, unsigned int def, unsigned int atkSpe, unsigned int defSpe, unsigned int spe, unsigned int hp, std::string name, Type type1, Type type2, int maniereEvolution /*En fait faut mettre 0, il est la pour un souci de compatibilit�*/, int niveauEvolution, Evolution *evolType, std::vector<Stats> EVGiven, float height, float weight, std::string opdexEntry, unsigned int expGiven, int expMax, int captureRate, int opdexNumber) {
             if(evolType == nullptr) {
                 evolType = new E_Nope();
@@ -85,7 +85,7 @@ namespace OpMon {
             }
             this->opdexNumber = opdexNumber;
         }
-      #pragma GCC diagnostic pop
+#pragma GCC diagnostic pop
 
         void Species::checkEvol() {
             evolType->checkEvo();
