@@ -16,19 +16,20 @@ Contains Window namespace
 
 namespace OpMon {
     namespace View {
-      class Window{
-      private:
-        sf::RenderWindow window;
-        sf::RenderTexture frame;
-        bool init = false;
-        bool fullScreen = false;
-      public:
-	sf::RenderTexture& getFrame() {return frame; }
-	sf::RenderWindow& getWindow() {return window;}
-        void close();
-        void open();
-        void winRefresh();
-      };
+        class Window {
+          private:
+            sf::RenderWindow window;
+            sf::RenderTexture frame;
+            bool init = false;
+            bool fullScreen = false;
+
+          public:
+            sf::RenderTexture &getFrame() { return frame; }
+            sf::RenderWindow &getWindow() { return window; }
+            void close();
+            void open();
+            void winRefresh();
+        };
     } // namespace View
 } // namespace OpMon
 

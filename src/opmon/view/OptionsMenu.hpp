@@ -8,13 +8,12 @@
 #ifndef OPTIONSMENU_HPP
 #define OPTIONSMENU_HPP
 
+#include "../model/storage/OptionsMenuData.hpp"
 #include "../start/i18n/ATranslatable.hpp"
 #include "Elements.hpp"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "../model/storage/OptionsMenuData.hpp"
-
 
 namespace OpMon {
     namespace View {
@@ -25,7 +24,7 @@ namespace OpMon {
 
         class OptionsMenu : I18n::ATranslatable {
           public:
-	  OptionsMenu(Model::OptionsMenuData& data);
+            OptionsMenu(Model::OptionsMenuData &data);
 
             ~OptionsMenu();
 
@@ -101,7 +100,7 @@ namespace OpMon {
 
             bool continuer = true;
 
-	  Model::OptionsMenuData& data;
+            Model::OptionsMenuData &data;
         };
     } // namespace View
 } // namespace OpMon

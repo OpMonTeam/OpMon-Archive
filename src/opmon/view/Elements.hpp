@@ -19,7 +19,7 @@ namespace OpMon {
 
         class MapLayer : public sf::Drawable, public sf::Transformable {
           private:
-	  static sf::Texture tileset;
+            static sf::Texture tileset;
             virtual void draw(sf::RenderTarget &target, sf::RenderStates stats) const;
             sf::VertexArray tiles;
 

@@ -11,7 +11,7 @@ using Utils::Log::oplog;
 
 namespace OpMon {
     namespace View {
-      void Window::open() {
+        void Window::open() {
             init = true;
 
             sf::ContextSettings settings;
@@ -29,9 +29,9 @@ namespace OpMon {
             sf::Image icon;
             Model::ResourceLoader::load(icon, "opmon.png");
             window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
-	    
+
             frame.create(512, 512);
-	    
+
             /*window.clear(sf::Color::White);
             sf::Texture loadTexture;
             Model::ResourceLoader::load(loadTexture, "backgrounds/loading.png");
@@ -61,7 +61,7 @@ namespace OpMon {
             frame.clear(sf::Color::Black);
         }
 
-      void Window::close() {
+        void Window::close() {
             /*oplog("Deleting the variables...");
 	destroyAll();*/
             oplog("Closing the window...");
@@ -70,7 +70,7 @@ namespace OpMon {
             oplog("Window closed. No error detected. Goodbye.");
         }
 
-      void Window::winRefresh() {
+        void Window::winRefresh() {
             sf::Sprite sprite(frame.getTexture());
 
             if(fullScreen) {

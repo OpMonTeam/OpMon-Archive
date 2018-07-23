@@ -2,8 +2,8 @@
 #pragma once
 
 #include "../start/GameStatus.hpp"
-#include <SFML/Window/Event.hpp>
 #include <SFML/Graphics/RenderTexture.hpp>
+#include <SFML/Window/Event.hpp>
 
 namespace OpMon {
     namespace Controller {
@@ -33,7 +33,7 @@ namespace OpMon {
        *
        * This method is called once per frame.
        */
-	  virtual GameStatus update(sf::RenderTexture& frame) = 0;
+            virtual GameStatus update(sf::RenderTexture &frame) = 0;
 
             virtual void suspend(){};
             virtual void resume(){};

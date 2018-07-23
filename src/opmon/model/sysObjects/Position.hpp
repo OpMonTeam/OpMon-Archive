@@ -20,8 +20,8 @@
 namespace OpMon {
     namespace Model {
 
-      class Map;
-      
+        class Map;
+
         class Position {
           public:
             Position(bool event = false);
@@ -76,15 +76,15 @@ namespace OpMon {
 
             void tp(sf::Vector2i position);
 
-	  void move(Side dir, Map* map);
+            void move(Side dir, Map *map);
 
-	  static void setPlayerPos(Position* pos);
-	  
+            static void setPlayerPos(Position *pos);
+
           private:
-	  bool checkPass(Side dir, Map* map);
+            bool checkPass(Side dir, Map *map);
 
-	  static Position* playerPos;
-	  
+            static Position *playerPos;
+
             int posX = 0;
             int posY = 0;
             Side dir;

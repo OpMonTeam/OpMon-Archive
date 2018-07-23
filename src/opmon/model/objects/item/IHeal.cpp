@@ -38,7 +38,7 @@ UNS
             ppHeal = 0;
             PPheal = false;
         }
-      #pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wunused-parameter"
         I_Heal::I_Heal(string &name, bool usable, bool usableInFight, bool givable, BagCat categorie, Status heal, bool healAllStatus, int ID, bool status)
           : Item(name, usable, usableInFight, givable, categorie, ID) {
             this->hpHeal = 0;
@@ -49,7 +49,7 @@ UNS
             ppHeal = 0;
             PPheal = false;
         }
-      #pragma GCC diagnostic pop
+#pragma GCC diagnostic pop
 
         I_Heal::I_Heal(string &name, Stats statAdd, int ID)
           : Item(name, true, true, true, BagCat::HEAL, ID) {
