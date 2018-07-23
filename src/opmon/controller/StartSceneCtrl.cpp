@@ -8,15 +8,16 @@
 namespace OpMon {
     namespace Controller {
 
-      StartSceneCtrl::StartSceneCtrl(Model::UiData* data)
-          : data(data) ,view(this->data) {}
+        StartSceneCtrl::StartSceneCtrl(Model::UiData *data)
+          : data(data)
+          , view(this->data) {}
 
-      GameStatus StartSceneCtrl::checkEvent(sf::Event const &event) {
+        GameStatus StartSceneCtrl::checkEvent(sf::Event const &event) {
             auto &startscene = view;
 
             switch(event.type) {
             case sf::Event::KeyPressed:
-	      if(event.key.code == data.getUiDataPtr()->getKeyTalk() && startscene.getDialog() != nullptr) {
+                if(event.key.code == data.getUiDataPtr()->getKeyTalk() && startscene.getDialog() != nullptr) {
                     startscene.getDialog()->pass();
                 }
                 if(event.key.code == sf::Keyboard::Return && startscene.getPart() == 1) {
@@ -26,11 +27,11 @@ namespace OpMon {
                     }
                     data.getPlayer().setName(pName);
                     startscene.delLoop1();
-		    animNext = true;
+                    animNext = true;
                     return GameStatus::CONTINUE;
                 }
                 if(event.key.code == sf::Keyboard::P && startscene.getPart() != 1) {
-		  _next_gs = new OverworldCtrl(data.getPlayer(), data.getUiDataPtr());
+                    _next_gs = new OverworldCtrl(data.getPlayer(), data.getUiDataPtr());
                     return GameStatus::NEXT;
                 }
                 break;
@@ -58,18 +59,18 @@ namespace OpMon {
             return GameStatus::CONTINUE;
         }
 
-      GameStatus StartSceneCtrl::update(sf::RenderTexture& frame) {
-	if(animNext){
-	  animNext = false;
-	  view.draw(frame);
-	  _next_gs = new AnimationCtrl(new View::Animations::WinAnim(frame.getTexture(), false));
-	  return GameStatus::NEXT;
-	}
+        GameStatus StartSceneCtrl::update(sf::RenderTexture &frame) {
+            if(animNext) {
+                animNext = false;
+                view.draw(frame);
+                _next_gs = new AnimationCtrl(new View::Animations::WinAnim(frame.getTexture(), false));
+                return GameStatus::NEXT;
+            }
             GameStatus toReturn = view();
             if(toReturn == GameStatus::CONTINUE) {
                 view.draw(frame);
             }
-	    
+
             if(toReturn == GameStatus::NEXT) {
                 switch(view.getPart()) {
                 case 1:

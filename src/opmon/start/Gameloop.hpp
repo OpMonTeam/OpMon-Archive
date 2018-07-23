@@ -9,9 +9,9 @@
 #pragma once
 
 #include "../controller/AGameScreen.hpp"
+#include "../view/Window.hpp"
 #include "./GameStatus.hpp"
 #include <stack>
-#include "../view/Window.hpp"
 
 namespace OpMon {
 
@@ -29,14 +29,13 @@ namespace OpMon {
      */
         GameStatus _checkQuit(const sf::Event &event);
 
-      
         int *getFrames();
 
       private:
         int frames;
 
-      View::Window window;
-      
+        View::Window window;
+
         std::stack<Controller::AGameScreen *> _gameScreens;
     };
 

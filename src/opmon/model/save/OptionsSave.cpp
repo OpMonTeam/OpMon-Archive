@@ -7,7 +7,7 @@ UNS
   namespace OpMon {
     namespace Model {
         namespace OptionsSave {
-	  
+
             int searchParam(string const &name);
 
             Param::Param(string name, string value) {
@@ -86,7 +86,7 @@ UNS
                         break;
                     }
                     string noPm = Utils::StringKeys::sfStringtoStdString(Utils::StringKeys::split(read, '|')[1]); //Ne prend que la partie après le pm|
-		    std::vector<sf::String> splitted = Utils::StringKeys::split(noPm, '=');
+                    std::vector<sf::String> splitted = Utils::StringKeys::split(noPm, '=');
                     Param newParam = Param(Utils::StringKeys::sfStringtoStdString(splitted[0]),
                                            Utils::StringKeys::sfStringtoStdString(splitted[1])); //Splitte ensuite en deux parties, le name et la valeur du paramètre.
                     if(!checkParam(newParam.getName())) {

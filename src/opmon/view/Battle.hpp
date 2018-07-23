@@ -1,8 +1,8 @@
 #pragma once
 
 #include "../model/objects/Turn.hpp"
-#include "../start/Core.hpp"
 #include "../model/storage/BattleData.hpp"
+#include "../start/Core.hpp"
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/System/String.hpp>
@@ -13,8 +13,8 @@ namespace OpMon {
 
     namespace Model {
         class OpTeam;
-      class BattleData;
-    }
+        class BattleData;
+    } // namespace Model
 
     namespace View {
 
@@ -49,7 +49,7 @@ namespace OpMon {
 
             sf::Text opName[2];
             sf::Text opLevel[2];
-	  sf::Text opHp;
+            sf::Text opHp;
 
             sf::Sprite healthbar1[2];
             sf::Sprite healthbar2[2];
@@ -73,14 +73,14 @@ namespace OpMon {
             std::vector<sf::Text> turnTxt = std::vector<sf::Text>(3);
             sf::Sprite dialogArrow;
 
-	  int phase = 0;
+            int phase = 0;
 
-	  Model::BattleData& data;
-	  
+            Model::BattleData &data;
+
           public:
-	  Battle(const Model::OpTeam *atkTeam, const Model::OpTeam *defTeam, std::string trainerClass, std::string background, Model::BattleData& data);
+            Battle(const Model::OpTeam *atkTeam, const Model::OpTeam *defTeam, std::string trainerClass, std::string background, Model::BattleData &data);
 
-	  GameStatus operator()(sf::RenderTexture& frame, Model::Turn const &atk, Model::Turn const &def, bool *turnActivated, bool atkFirst = true);
+            GameStatus operator()(sf::RenderTexture &frame, Model::Turn const &atk, Model::Turn const &def, bool *turnActivated, bool atkFirst = true);
             //Moves the cursor
             void moveCur(Model::Side where);
             //Returns the cursor's position

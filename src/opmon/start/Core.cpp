@@ -53,7 +53,6 @@ UNS
     int quit(int const &returns) {
         OptionsSave::saveParams(optSave); //Saving parameters
         oplog("Deleting resources in the memory");
-        
 
         // TODO: delet the player's OpMons !
         // for(unsigned short i = 0; i < 6; i++){

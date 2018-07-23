@@ -21,9 +21,9 @@ enum MenuOption { BACK = 0,
 namespace OpMon {
     namespace Controller {
 
-      OptionsMenuCtrl::OptionsMenuCtrl(Model::UiData* data)
-	: data(data), view(this->data) {
-	
+        OptionsMenuCtrl::OptionsMenuCtrl(Model::UiData *data)
+          : data(data)
+          , view(this->data) {
         }
 
         GameStatus OptionsMenuCtrl::checkEvent(sf::Event const &event) {
@@ -34,7 +34,7 @@ namespace OpMon {
                     if(menu.getCurrentOption() == View::OptionType::ALL) {
                         switch(menu.cursorPosition()) {
                         case BACK:
-			  data.getUiDataPtr()->getJukebox().playSound("push");
+                            data.getUiDataPtr()->getJukebox().playSound("push");
                             return GameStatus::PREVIOUS;
                         case FULLSCREEN:
                             data.getUiDataPtr()->getJukebox().playSound("push");
@@ -78,7 +78,7 @@ namespace OpMon {
                             tr.setLang("en");
                             break;
                         case 2:
-			  data.getUiDataPtr()->getJukebox().playSound("push");
+                            data.getUiDataPtr()->getJukebox().playSound("push");
                             Model::OptionsSave::modifyParam("lang", "es");
                             tr.setLang("es");
                             break;
@@ -135,7 +135,7 @@ namespace OpMon {
             view.play();
         }
 
-      GameStatus OptionsMenuCtrl::update(sf::RenderTexture& frame) {
+        GameStatus OptionsMenuCtrl::update(sf::RenderTexture &frame) {
             view.draw(frame);
             return GameStatus::CONTINUE;
         }
@@ -149,7 +149,7 @@ namespace OpMon {
         }
 
         void OptionsMenuCtrl::raiseVolume() {
-	  const int newVolume = min(100, data.getUiDataPtr()->getJukebox().getGlobalVolume() + 10);
+            const int newVolume = min(100, data.getUiDataPtr()->getJukebox().getGlobalVolume() + 10);
             data.getUiDataPtr()->getJukebox().setGlobalVolume(newVolume);
         }
 

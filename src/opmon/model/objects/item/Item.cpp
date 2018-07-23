@@ -73,7 +73,7 @@ UNS
         }
 
         Item *Item::getItem(int id2) {
-	  unsigned int id = ((id2 >= 0 && id2 < ITEM_NUMBER )? id2 : 0);
+            unsigned int id = ((id2 >= 0 && id2 < ITEM_NUMBER) ? id2 : 0);
             if(itemsLst[id] != nullptr) {
                 return itemsLst[id];
             } else {

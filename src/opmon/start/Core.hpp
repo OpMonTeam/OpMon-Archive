@@ -15,7 +15,6 @@
 
 namespace OpMon {
 
-
     //#define TEST
     /**
      Function that handles errors on the program

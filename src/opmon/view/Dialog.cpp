@@ -5,18 +5,19 @@
 namespace OpMon {
     namespace View {
 
-      Dialog::Dialog(const std::vector<sf::String> &text, Model::UiData* uidata)
-	: text(text), uidata(uidata) {
+        Dialog::Dialog(const std::vector<sf::String> &text, Model::UiData *uidata)
+          : text(text)
+          , uidata(uidata) {
 
-	background.setTexture(uidata->getDialogBackground());
-	arrDial.setTexture(uidata->getDialogArrow());
+            background.setTexture(uidata->getDialogBackground());
+            arrDial.setTexture(uidata->getDialogArrow());
 
             background.setPosition(0, 512 - 150);
             arrDial.setPosition(512 - 75, 512 - 30);
 
             int minusPos = 32;
             for(size_t i = 0; i < 3; ++i) {
-	      dialogText[i].setFont(uidata->getFont());
+                dialogText[i].setFont(uidata->getFont());
                 dialogText[i].setCharacterSize(FONT_SIZE_DEFAULT);
                 dialogText[i].setColor(sf::Color::Black);
 
@@ -33,7 +34,7 @@ namespace OpMon {
 
                 changeDialog = true;
             } else if(dialogNb + 3 < text.size()) {
-	      uidata->getJukebox().playSound("dialog pass");
+                uidata->getJukebox().playSound("dialog pass");
                 line = 0;
                 dialogNb += 3;
                 i = 0;

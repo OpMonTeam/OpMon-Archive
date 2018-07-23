@@ -9,12 +9,11 @@
 #ifndef MAP_HPP
 #define MAP_HPP
 
-
 #include "Events.hpp"
-#include <string>
-#include <vector>
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <SFML/System/Vector2.hpp>
+#include <string>
+#include <vector>
 
 namespace OpMon {
     namespace Model {

@@ -10,8 +10,9 @@
 namespace OpMon {
     namespace Controller {
 
-      OverworldCtrl::OverworldCtrl(Model::Player &player, Model::UiData* uidata)
-	: data(uidata, &player), view("Player's room", this->data)
+        OverworldCtrl::OverworldCtrl(Model::Player &player, Model::UiData *uidata)
+          : data(uidata, &player)
+          , view("Player's room", this->data)
           , player(player) {}
 
         GameStatus OverworldCtrl::checkEvent(sf::Event const &events) {
@@ -49,7 +50,7 @@ namespace OpMon {
                         debugCol = !debugCol;
                     }
                     if(events.key.code == sf::Keyboard::B) {
-		      data.getPlayer().addOpToOpTeam(new Model::OpMon("", data.getUiDataPtr()->getOp(4), 5, {Model::Attacks::newAtk("Charge"), Model::Attacks::newAtk("Brouillard"), nullptr, nullptr}, Model::Nature::QUIET));
+                        data.getPlayer().addOpToOpTeam(new Model::OpMon("", data.getUiDataPtr()->getOp(4), 5, {Model::Attacks::newAtk("Charge"), Model::Attacks::newAtk("Brouillard"), nullptr, nullptr}, Model::Nature::QUIET));
                         Model::OpTeam *opTeam = new Model::OpTeam("Unknown trainer");
                         opTeam->addOpMon(new Model::OpMon("", data.getUiDataPtr()->getOp(1), 5, {Model::Attacks::newAtk("Charge"), Model::Attacks::newAtk("Brouillard"), nullptr, nullptr}, Model::Nature::QUIET));
                         _next_gs = new BattleCtrl(data.getPlayer().getOpTeam(), opTeam, data.getUiDataPtr(), data.getPlayerPtr());
@@ -88,7 +89,7 @@ namespace OpMon {
         GameStatus OverworldCtrl::checkEventsDialog(sf::Event const &events, View::Overworld &overworld) {
             switch(events.type) {
             case sf::Event::KeyPressed:
-	      if(events.key.code == data.getUiDataPtr()->getKeyTalk()) {
+                if(events.key.code == data.getUiDataPtr()->getKeyTalk()) {
                     overworld.getDialog()->pass();
                 }
                 break;
@@ -104,7 +105,7 @@ namespace OpMon {
             return GameStatus::CONTINUE;
         }
 
-      GameStatus OverworldCtrl::update(sf::RenderTexture& frame) {
+        GameStatus OverworldCtrl::update(sf::RenderTexture &frame) {
             bool is_dialog_open = view.getDialog() && !view.getDialog()->isDialogOver();
             if(!is_dialog_open) {
                 eventsctrl.updateEvents(data.getMap(player.getMapId())->getEvents(), player, view);

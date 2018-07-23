@@ -1,10 +1,10 @@
 #include "Events.hpp"
 
-#include "Position.hpp"
 #include "../../../utils/defines.hpp"
 #include "../../../utils/log.hpp"
-#include "../../view/Overworld.hpp"
 #include "../../start/Core.hpp"
+#include "../../view/Overworld.hpp"
+#include "Position.hpp"
 
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 UNS
@@ -54,18 +54,18 @@ UNS
               , ppDir(ppDir) {
             }
 
-	  DoorEvent::DoorEvent(std::vector<sf::Texture> &doorTextures, std::string doorType, sf::Vector2f const &position, sf::Vector2i const &tpPos,
+            DoorEvent::DoorEvent(std::vector<sf::Texture> &doorTextures, std::string doorType, sf::Vector2f const &position, sf::Vector2i const &tpPos,
                                  string const &map, EventTrigger eventTrigger, Side ppDir, int sides, bool passable)
               : Event(doorTextures, eventTrigger, position, sides, passable)
               , TPEvent(doorTextures, eventTrigger, position, tpPos, map, ppDir, sides, passable)
-	      , doorType(doorType){
+              , doorType(doorType) {
                 this->position += sf::Vector2f(0, -6);
                 if(doorType == "shop door") {
                     this->position.x -= 4;
                 }
-		if(doorType != "door" && doorType != "shop door"){
-		  handleError(std::string("Warning - DoorEvent : Unknown door type \" ") + doorType + "\"");
-		}
+                if(doorType != "door" && doorType != "shop door") {
+                    handleError(std::string("Warning - DoorEvent : Unknown door type \" ") + doorType + "\"");
+                }
             }
 
             TalkingEvent::TalkingEvent(std::vector<sf::Texture> &otherTextures, sf::Vector2f const &position,
@@ -83,17 +83,17 @@ UNS
                 }
             }
 
-	  LockedDoorEvent::LockedDoorEvent(std::vector<sf::Texture> &doorTextures, std::string doorType, Item *needed, sf::Vector2f const &position,
+            LockedDoorEvent::LockedDoorEvent(std::vector<sf::Texture> &doorTextures, std::string doorType, Item *needed, sf::Vector2f const &position,
                                              sf::Vector2i const &tpPos, string const &map, Side ppDir,
                                              EventTrigger eventTrigger, bool consumeItem, int sides, bool passable)
-	    : DoorEvent(doorTextures, doorType, position, tpPos, map, eventTrigger, ppDir, sides, passable)
+              : DoorEvent(doorTextures, doorType, position, tpPos, map, eventTrigger, ppDir, sides, passable)
               , Event(doorTextures, eventTrigger, position, sides, passable)
               , TalkingEvent(doorTextures, position, LockedDoorEvent::keysLock, sides, eventTrigger, passable)
               , needed(needed)
               , consumeItem(consumeItem) {
             }
 
-	  CharacterEvent::CharacterEvent(std::vector<sf::Texture>& textures, sf::Vector2f const &position, Side posDir, MoveStyle moveStyle,
+            CharacterEvent::CharacterEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, Side posDir, MoveStyle moveStyle,
                                            EventTrigger eventTrigger, std::vector<Side> predefinedPath, bool passable,
                                            int sides)
               : Event(textures, eventTrigger, position, sides, passable)
@@ -105,7 +105,7 @@ UNS
                 mapPos.setDir(posDir);
             }
 
-	  TalkingCharaEvent::TalkingCharaEvent(std::vector<sf::Texture>& textures, sf::Vector2f const &position,
+            TalkingCharaEvent::TalkingCharaEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position,
                                                  std::vector<Utils::OpString> const &dialogKeys, Side posDir, EventTrigger eventTrigger,
                                                  MoveStyle moveStyle, std::vector<Side> predefinedPath, bool passable,
                                                  int sides)
@@ -168,10 +168,10 @@ UNS
                         }
                         move(movements[predefinedCounter], overworld.getData().getCurrentMap());
                         if(!mapPos.isMoving()) {
-			  if(predefinedCounter != 0){
-                            predefinedCounter--;
-			  }
-			  predefinedCounter = movements.size() - 1;
+                            if(predefinedCounter != 0) {
+                                predefinedCounter--;
+                            }
+                            predefinedCounter = movements.size() - 1;
                         }
                         break;
 
@@ -182,7 +182,7 @@ UNS
                         randomMove = Utils::Misc::randUI(5) - 1;
                         switch(randomMove) {
                         case -1:
-			  move(Side::NO_MOVE, overworld.getData().getCurrentMap());
+                            move(Side::NO_MOVE, overworld.getData().getCurrentMap());
                             break;
                         case 0:
                             move(Side::TO_UP, overworld.getData().getCurrentMap());
@@ -272,19 +272,20 @@ UNS
                         if(frames - startFrames >= 7) {
                             mapPos.stopMove();
                         }
-			break;
-		    default: break;
+                        break;
+                    default:
+                        break;
                     }
                 }
             }
 
-	  void CharacterEvent::move(Side direction, Map* map) {
+            void CharacterEvent::move(Side direction, Map *map) {
                 startFrames = frames;
                 mapPos.move(direction, map);
             }
 
             void CharacterEvent::move(Side direction, Model::Player &player, View::Overworld &overworld) {
-	      move(direction, overworld.getData().getCurrentMap());
+                move(direction, overworld.getData().getCurrentMap());
             }
 
             void TalkingCharaEvent::action(Model::Player &player, View::Overworld &overworld) {
@@ -332,8 +333,6 @@ UNS
             std::vector<Utils::OpString> LockedDoorEvent::keysLock = std::vector<Utils::OpString>();
 
         } // namespace Events
-
-        
 
     } // namespace Model
 }

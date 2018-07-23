@@ -12,7 +12,7 @@ namespace OpMon {
           public:
             AnimationCtrl(View::Animations::Animation *view);
             ~AnimationCtrl();
-	    GameStatus update(sf::RenderTexture& frame) override;
+            GameStatus update(sf::RenderTexture &frame) override;
         };
     } // namespace Controller
 } // namespace OpMon

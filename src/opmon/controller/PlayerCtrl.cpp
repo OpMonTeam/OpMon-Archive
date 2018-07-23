@@ -26,10 +26,10 @@ namespace OpMon {
                     overworld.tp("OpCenter", sf::Vector2i(9, 17));
                 }
             }
-	    
+
             if(!overworld.justTp && !player.getPosition().isAnim() && !player.getPosition().isLocked()) {
-	      if(sf::Keyboard::isKeyPressed(overworld.getData().getUiDataPtr()->getKeyUp())) {
-		  overworld.setStartFrames();
+                if(sf::Keyboard::isKeyPressed(overworld.getData().getUiDataPtr()->getKeyUp())) {
+                    overworld.setStartFrames();
                     move(Model::Side::TO_UP, player, overworld);
                 } else if(sf::Keyboard::isKeyPressed(overworld.getData().getUiDataPtr()->getKeyDown())) {
                     overworld.setStartFrames();
@@ -45,7 +45,7 @@ namespace OpMon {
         }
 
         void PlayerCtrl::move(Model::Side direction, Model::Player &player, View::Overworld &overworld) {
-	  player.getPosition().move(direction, overworld.getData().getCurrentMap());
+            player.getPosition().move(direction, overworld.getData().getCurrentMap());
 
             Model::Map *map = overworld.getData().getCurrentMap();
             auto eventList = map->getEvent(player.getPosition().getPosition());

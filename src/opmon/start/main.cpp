@@ -11,8 +11,8 @@
 #include "../view/Window.hpp"
 #include "./Core.hpp"
 #include "./Gameloop.hpp"
-#include "i18n/Translator.hpp"
 #include "config.hpp"
+#include "i18n/Translator.hpp"
 #include <ostream>
 #include <string>
 
@@ -75,14 +75,14 @@ UNS
             oplog("Loading internal files.");
             InternalFiles::registerFiles();
             oplog("Loading options");
-            OptionsSave::initParams(Utils::Path::getSavePath() + "/optSave.oparams");      //Loading parameters
-            if(!OptionsSave::checkParam("lang")) { //If the "lang" setting don't exist
+            OptionsSave::initParams(Utils::Path::getSavePath() + "/optSave.oparams"); //Loading parameters
+            if(!OptionsSave::checkParam("lang")) {                                    //If the "lang" setting don't exist
                 OptionsSave::addParam("lang", "eng");
             }
             oplog("Resources repertory : " + Utils::Path::getResourcePath());
-	    
-	    //Initializaing keys
-	    oplog("Loading strings");
+
+            //Initializaing keys
+            oplog("Loading strings");
             std::string lang = OptionsSave::getParam("lang").getValue();
             auto &tr = ::OpMon::I18n::Translator::getInstance();
 
@@ -90,7 +90,7 @@ UNS
                 lang = "en"; // The lang isn't available. Default to english.
             }
             tr.setLang(lang);
-	    
+
             oplog("Loading completed! Opening gui.");
             //bgtask = new std::thread(bgTask);
             do {

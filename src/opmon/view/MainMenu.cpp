@@ -9,7 +9,7 @@
 
 using namespace std;
 
-  namespace OpMon {
+namespace OpMon {
     namespace View {
 
         void MainMenu::initStrings() {
@@ -21,8 +21,8 @@ using namespace std;
             exit.setString(kget("title.4"));
         }
 
-      MainMenu::MainMenu(Model::MainMenuData& data)
-	: data(data){
+        MainMenu::MainMenu(Model::MainMenuData &data)
+          : data(data) {
             sf::Text *textPos[4] = {&playtx, &charge, &options, &exit};
             for(int i = 0, j = 175; i < 4; i++) {
                 curPos[i].x = 10;
@@ -55,7 +55,6 @@ using namespace std;
         }
 
         MainMenu::~MainMenu() {
-	  
         }
 
         void MainMenu::onLangChanged() {
@@ -66,7 +65,7 @@ using namespace std;
         }
 
         void MainMenu::play() {
-	  data.getUiDataPtr()->getJukebox().play("Title");
+            data.getUiDataPtr()->getJukebox().play("Title");
         }
 
         void MainMenu::moveArrow(bool direction) {
@@ -95,4 +94,4 @@ using namespace std;
         }
 
     } // namespace View
-}
+} // namespace OpMon

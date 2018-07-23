@@ -112,19 +112,19 @@ namespace OpMon {
 
         void Overworld::printElements(sf::RenderTexture &frame) {
             for(std::string const &i : current->getAnimatedElements()) {
-	      data.incrementElementCounter(i);
-	      if(data.getElementCounter(i) >= data.getElementTextures(i).size()) {
-		data.resetElementCounter(i);
-	      }
-	      elementsSprites[i].setTexture(data.getCurrentElementTexture(i));
-	      elementsSprites[i].setPosition(data.getElementPos(i));
-	      frame.draw(elementsSprites[i]);
+                data.incrementElementCounter(i);
+                if(data.getElementCounter(i) >= data.getElementTextures(i).size()) {
+                    data.resetElementCounter(i);
+                }
+                elementsSprites[i].setTexture(data.getCurrentElementTexture(i));
+                elementsSprites[i].setPosition(data.getElementPos(i));
+                frame.draw(elementsSprites[i]);
             }
         }
 
         void Overworld::tp(std::string toTp, sf::Vector2i pos) {
-	  data.getPlayer().tp(toTp, pos);
-	  current = data.getCurrentMap();
+            data.getPlayer().tp(toTp, pos);
+            current = data.getCurrentMap();
             character.setPosition(pos.x SQUARES - 16, pos.y SQUARES);
             resetCamera();
             if(musicPath != current->getBg()) {
@@ -153,14 +153,14 @@ namespace OpMon {
         }
 
         void Overworld::play() {
-	  data.getUiDataPtr()->getJukebox().play(current->getBg());
+            data.getUiDataPtr()->getJukebox().play(current->getBg());
         }
 
-      Overworld::Overworld(const std::string &mapId, Model::OverworldData& data)
-	: data(data) {
-	current = data.getMap(mapId);
-	character.setTexture(data.getTexturePP((unsigned int)Side::TO_DOWN));
-	data.getPlayer().tp(mapId, sf::Vector2i(2, 4));
+        Overworld::Overworld(const std::string &mapId, Model::OverworldData &data)
+          : data(data) {
+            current = data.getMap(mapId);
+            character.setTexture(data.getTexturePP((unsigned int)Side::TO_DOWN));
+            data.getPlayer().tp(mapId, sf::Vector2i(2, 4));
             character.setPosition(2 SQUARES - 16, 4 SQUARES);
             camera.setSize(sf::Vector2f(16 SQUARES, 16 SQUARES));
             resetCamera();
@@ -182,7 +182,7 @@ namespace OpMon {
             delete(layer2);
             delete(layer3);
         }
-      GameStatus Overworld::operator()(int frames, sf::RenderTexture& frame) {
+        GameStatus Overworld::operator()(int frames, sf::RenderTexture &frame) {
             bool is_in_dialog = this->dialog && !this->dialog->isDialogOver();
 
             if(recordFrames) {
@@ -255,19 +255,19 @@ namespace OpMon {
 
             //Sets the character's texture.
             if(data.getPlayer().getPosition().isAnim() && !anims) {
-	      character.setTexture(data.getWalkingPP((unsigned int)data.getPlayer().getPosition().getDir()));
+                character.setTexture(data.getWalkingPP((unsigned int)data.getPlayer().getPosition().getDir()));
                 animsCounter++;
                 anims = animsCounter > 8;
 
             } else if(data.getPlayer().getPosition().isAnim() && anims) {
-	      character.setTexture(data.getWalkingPP2((unsigned int)data.getPlayer().getPosition().getDir()));
+                character.setTexture(data.getWalkingPP2((unsigned int)data.getPlayer().getPosition().getDir()));
                 animsCounter++;
                 if(animsCounter > 16) {
                     anims = false;
                     animsCounter = 0;
                 }
             } else if(!data.getPlayer().getPosition().isAnim()) {
-	      character.setTexture(data.getTexturePP((unsigned int)data.getPlayer().getPosition().getDir()));
+                character.setTexture(data.getTexturePP((unsigned int)data.getPlayer().getPosition().getDir()));
             }
 
             if(!is_in_dialog && data.getPlayer().getPosition().isAnim()) {

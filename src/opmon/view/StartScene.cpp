@@ -36,14 +36,14 @@ UNS
             textDescs[3].setString(kget("nameEntry.indic.2"));
         }
 
-      StartScene::StartScene(Model::StartSceneData& data)
-	: dialog(nullptr), data(data) {
+        StartScene::StartScene(Model::StartSceneData &data)
+          : dialog(nullptr)
+          , data(data) {
             initStrings();
             textDescs[1].setPosition(85, 25);
             textDescs[0].setPosition(155, 200);
             textDescs[2].setPosition(95, 375);
             textDescs[3].setPosition(95, 405);
-
 
             bg.setTexture(data.getBackground());
             prof.setTexture(data.getProf());
@@ -136,7 +136,7 @@ UNS
         }
 
         void StartScene::play() {
-	  data.getUiDataPtr()->getJukebox().play("Start");
+            data.getUiDataPtr()->getJukebox().play("Start");
         }
 
         void StartScene::pause() {

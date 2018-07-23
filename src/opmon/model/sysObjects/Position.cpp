@@ -44,7 +44,7 @@ namespace OpMon {
 
 #define UNLOCK_TP Events::justTP = false;
 
-      void Position::move(Side dir, Map* map) {
+        void Position::move(Side dir, Map *map) {
             if(!anim && !moveLock) {
                 this->dir = dir;
                 //To do in overworld
@@ -78,19 +78,18 @@ namespace OpMon {
             }
         }
 
-      Position* Position::playerPos = nullptr;
-      
-      void Position::setPlayerPos(Position* pos){
-	
-	if(playerPos == nullptr){
-	  playerPos = pos;
-	}
-	
-      }
-      
-      bool Position::checkPass(Side direction, Map* map) {
+        Position *Position::playerPos = nullptr;
 
-	std::vector<Event*> nextEvents;
+        void Position::setPlayerPos(Position *pos) {
+
+            if(playerPos == nullptr) {
+                playerPos = pos;
+            }
+        }
+
+        bool Position::checkPass(Side direction, Map *map) {
+
+            std::vector<Event *> nextEvents;
             sf::Vector2i nextPos;
             sf::Vector2i nextPosPix;
             int exclusiveCol = 0;
