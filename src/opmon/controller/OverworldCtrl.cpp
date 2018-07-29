@@ -102,6 +102,12 @@ namespace OpMon {
         GameStatus OverworldCtrl::checkEventsNoDialog(sf::Event const &event, Model::Player &player) {
             eventsctrl.checkAction(event, player, view);
             Controller::PlayerCtrl::checkMove(player, event, view);
+
+	    if(view.getBattleDeclared() != nullptr){
+	      _next_gs = new BattleCtrl(data.getPlayer().getOpTeam(), view.getBattleDeclared()->getOpTeam(), data.getUiDataPtr(), data.getPlayerPtr());
+	      return GameStatus::NEXT;
+	    }
+	    
             return GameStatus::CONTINUE;
         }
 

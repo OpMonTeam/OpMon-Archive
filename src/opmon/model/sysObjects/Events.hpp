@@ -101,16 +101,11 @@ namespace OpMon {
        Contient tout ce qui est en rapport avec les evenements
     */
         namespace Events {
-            /**
-	 Doors sound
-      */
+	  /**
+	     Doors sound
+	  */
             extern sf::Sound doorSound;
             extern sf::Sound shopdoorSound;
-            /**
-	 Contains useful variables on the running of the events
-      */
-            namespace EventsVars {
-            }
 
             extern bool justTP;
 
@@ -150,13 +145,16 @@ namespace OpMon {
                 std::vector<Utils::OpString> dialogKeys;
 
               protected:
-                std::vector<sf::String> dialogs;
-
+	      std::vector<sf::String> dialogs;
+	      
               public:
                 TalkingEvent(std::vector<sf::Texture> &otherTextures, sf::Vector2f const &position, std::vector<Utils::OpString> const &dialogKeys, int sides = SIDE_ALL, EventTrigger eventTrigger = EventTrigger::PRESS, bool passable = false);
                 void onLangChanged() override;
                 virtual void update(Model::Player &player, View::Overworld &overworld);
                 virtual void action(Model::Player &player, View::Overworld &overworld);
+	      virtual void changeDialog(std::vector<Utils::OpString> newDialog){
+		dialogKeys = newDialog;
+	      }
             };
 
             class LockedDoorEvent : public DoorEvent, TalkingEvent {
@@ -201,16 +199,49 @@ namespace OpMon {
             };
 
             class TalkingCharaEvent : public CharacterEvent, TalkingEvent {
-
+	    protected:
                 bool talking = false;
 
               public:
                 TalkingCharaEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, std::vector<Utils::OpString> const &dialogKeys, Side posDir = Side::TO_UP, EventTrigger eventTrigger = EventTrigger::PRESS, MoveStyle moveStyle = MoveStyle::NO_MOVE, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int side = SIDE_ALL);
 
-              public:
                 virtual void update(Model::Player &player, View::Overworld &overworld);
                 virtual void action(Model::Player &player, View::Overworld &overworld);
+	       virtual void changeDialog(std::vector<Utils::OpString> newDialog) {TalkingEvent::changeDialog(newDialog);}
             };
+
+	  class TrainerEvent : public TalkingCharaEvent {
+	  private:
+	    OpTeam team;
+	    bool defeated = false;
+	    bool triggerBattle = false;
+	    bool checkTalking = false;
+	    std::vector<Utils::OpString> defeatedDialog;
+	  public:
+	    TrainerEvent(std::vector<sf::Texture> &textures, sf::Vector2f const& position, OpTeam team, std::vector<Utils::OpString> const &dialogKeys, std::vector<Utils::OpString> const &defeatedDialog, Side posDir = Side::TO_UP, EventTrigger eventTrigger = EventTrigger::PRESS, MoveStyle moveStyle = MoveStyle::NO_MOVE, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int side = SIDE_ALL);
+	    
+	    virtual void update(Model::Player &player, View::Overworld &overworld);
+
+	    OpTeam* getOpTeam(){
+	      return &team;
+	    }
+
+	    void defeat();
+	  };
+
+	  class TrainerEyesightEvent : public Event {
+	  public:
+	    TrainerEvent* trainer;
+	    bool checkTalking = false;
+	    bool triggerBattle = false;
+	  public:
+	    TrainerEyesightEvent(TrainerEvent* trainer, sf::Vector2f position);
+	    #pragma GCC diagnostic ignored "-Wunused-parameter"
+	    virtual void update(Model::Player &player, View::Overworld &overworld) {};
+	    virtual void action(Model::Player &player, View::Overworld &overworld) {};
+	    #pragma GCC diagnostic pop
+	  };
+	  
         } // namespace Events
 
     } // namespace Model
