@@ -1,5 +1,6 @@
 #include "OverworldData.hpp"
 #include "../../../utils/OpString.hpp"
+#include "../objects/Attacks.hpp"
 #include "InternalFiles.hpp"
 #include "ResourceLoader.hpp"
 
@@ -12,6 +13,8 @@ namespace OpMon {
 
             using namespace Utils;
 
+	    player->addOpToOpTeam(new Model::OpMon("", uidata->getOp(4), 5, {Model::Attacks::newAtk("Charge"), Model::Attacks::newAtk("Brouillard"), nullptr, nullptr}, Model::Nature::QUIET));
+	    
             //PP textures loading
             ResourceLoader::load(texturePP[(unsigned int)Side::TO_DOWN], "sprites/chara/pp/pp0.png");
             ResourceLoader::load(texturePP[(unsigned int)Side::TO_RIGHT], "sprites/chara/pp/pp1.png");
@@ -34,6 +37,7 @@ namespace OpMon {
             ResourceLoader::loadTextureArray(charaTextures["sk"], "sprites/chara/rival/sk%d.png", 12);
             ResourceLoader::loadTextureArray(charaTextures["inferm"], "sprites/chara/inferm/inferm%d.png", 12);
             ResourceLoader::loadTextureArray(charaTextures["|_| -|- |-| |= |_| N"], "sprites/chara/beta/alphabeta/otheon%d.png", 12);
+	    ResourceLoader::loadTextureArray(charaTextures["beta"], "sprites/chara/beta/beta%d.png", 12);
 
             //Doors' textures initialization
             ResourceLoader::loadTextureArray(doorsTextures["shop"], "animations/shopdoor/shop_door%d.png", 4, 1);
@@ -66,10 +70,10 @@ namespace OpMon {
             mapFauxbourgEuvi->addEvent(new Events::DoorEvent(doorsTextures["normal"], "door", sf::Vector2f(27, 16), sf::Vector2i(8, 15), "Player's home"));
             mapFauxbourgEuvi->addEvent(new Events::DoorEvent(doorsTextures["normal"], "door", sf::Vector2f(35, 16), sf::Vector2i(9, 15), "Rival's house"));
             mapFauxbourgEuvi->addEvent(new Events::DoorEvent(doorsTextures["shop"], "shop door", sf::Vector2f(27, 28), sf::Vector2i(16, 15), "Laboratory"));
-            mapFauxbourgEuvi->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(39, 17), sf::Vector2i(4, 38), "Route 14", Side::TO_RIGHT, SIDE_RIGHT));
-            mapFauxbourgEuvi->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(39, 18), sf::Vector2i(4, 39), "Route 14", Side::TO_RIGHT, SIDE_RIGHT));
-            mapFauxbourgEuvi->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(39, 19), sf::Vector2i(4, 40), "Route 14", Side::TO_RIGHT, SIDE_RIGHT));
-            mapFauxbourgEuvi->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(39, 20), sf::Vector2i(4, 41), "Route 14", Side::TO_RIGHT, SIDE_RIGHT));
+            mapFauxbourgEuvi->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(39, 17), sf::Vector2i(4, 38), "Road 14", Side::TO_RIGHT, SIDE_RIGHT));
+            mapFauxbourgEuvi->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(39, 18), sf::Vector2i(4, 39), "Road 14", Side::TO_RIGHT, SIDE_RIGHT));
+            mapFauxbourgEuvi->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(39, 19), sf::Vector2i(4, 40), "Road 14", Side::TO_RIGHT, SIDE_RIGHT));
+            mapFauxbourgEuvi->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(39, 20), sf::Vector2i(4, 41), "Road 14", Side::TO_RIGHT, SIDE_RIGHT));
             /*Character 1*/
             std::vector<Side> pathChara1;
             for(int i = 0; i < 10; i++)
@@ -110,13 +114,19 @@ namespace OpMon {
             std::vector<OpString> phoE1{OpString("pcRunLinux"), OpString::voidStr, OpString::voidStr};
             mapPlayersRoom->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(1, 3), phoE1, SIDE_UP));
 
-            //Route 14 loading
-            Map *mapRoute14 = maps.emplace("Route 14", new Map(Maps::route14Layer1, Maps::route14Layer2, Maps::route14Layer3, 86, 57, false, "Route 14")).first->second;
-            mapRoute14->addEvent(new Events::TalkingCharaEvent(charaTextures["sk"], sf::Vector2f(11, 30), {OpString("rt14.sk.1"), OpString("rt14.sk.2"), OpString("rt14.sk.3")}, Side::TO_LEFT));
-            mapRoute14->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(4, 38), sf::Vector2i(39, 17), "Fauxbourg Euvi", Side::TO_LEFT, SIDE_LEFT));
-            mapRoute14->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(4, 39), sf::Vector2i(39, 18), "Fauxbourg Euvi", Side::TO_LEFT, SIDE_LEFT));
-            mapRoute14->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(4, 40), sf::Vector2i(39, 19), "Fauxbourg Euvi", Side::TO_LEFT, SIDE_LEFT));
-            mapRoute14->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(4, 41), sf::Vector2i(39, 20), "Fauxbourg Euvi", Side::TO_LEFT, SIDE_LEFT));
+            //Road 14 loading
+            Map *mapRoad14 = maps.emplace("Road 14", new Map(Maps::route14Layer1, Maps::route14Layer2, Maps::route14Layer3, 86, 57, false, "Road 14")).first->second;
+            mapRoad14->addEvent(new Events::TalkingCharaEvent(charaTextures["sk"], sf::Vector2f(11, 30), {OpString("rt14.sk.1"), OpString("rt14.sk.2"), OpString("rt14.sk.3")}, Side::TO_LEFT));
+            mapRoad14->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(4, 38), sf::Vector2i(39, 17), "Fauxbourg Euvi", Side::TO_LEFT, SIDE_LEFT));
+            mapRoad14->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(4, 39), sf::Vector2i(39, 18), "Fauxbourg Euvi", Side::TO_LEFT, SIDE_LEFT));
+            mapRoad14->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(4, 40), sf::Vector2i(39, 19), "Fauxbourg Euvi", Side::TO_LEFT, SIDE_LEFT));
+            mapRoad14->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(4, 41), sf::Vector2i(39, 20), "Fauxbourg Euvi", Side::TO_LEFT, SIDE_LEFT));
+
+	    OpTeam betaTeam = Model::OpTeam("Beta");
+	    betaTeam.addOpMon(new Model::OpMon("", uidata->getOp(1), 5, {Model::Attacks::newAtk("Charge"), Model::Attacks::newAtk("Brouillard"), nullptr, nullptr}, Model::Nature::QUIET));
+	    
+	    mapRoad14->addEvent(new Events::TrainerEvent(charaTextures["beta"], sf::Vector2f(11, 32), betaTeam, {OpString("beta.prebattle.1"), OpString("beta.prebattle.2"), OpString("beta.prebattle.3")}, {OpString("beta.postbattle.1"), OpString("beta.postbattle.2"), OpString("beta.postbattle.3")}, Side::TO_LEFT));
+	    
             //MysteriouCity loading
             Map *mapMs = maps.emplace("MysteriouCity", new Map(Maps::myciLayer1, Maps::myciLayer2, Maps::myciLayer3, 35, 35, false, "Ms")).first->second;
             mapMs->addEvent(new Events::TalkingCharaEvent(charaTextures["|_| -|- |-| |= |_| N"], sf::Vector2f(15, 30), {}));

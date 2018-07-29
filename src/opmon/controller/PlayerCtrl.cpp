@@ -19,7 +19,7 @@ namespace OpMon {
                 } else if(events.key.code == sf::Keyboard::F4) {
                     overworld.tp("Rival's house", sf::Vector2i(8, 14));
                 } else if(events.key.code == sf::Keyboard::F7) {
-                    overworld.tp("Route 14", sf::Vector2i(9, 40));
+                    overworld.tp("Road 14", sf::Vector2i(9, 40));
                 } else if(events.key.code == sf::Keyboard::F8) {
                     overworld.tp("MysteriouCity", sf::Vector2i(15, 15));
                 } else if(events.key.code == sf::Keyboard::F9) {
