@@ -6,6 +6,13 @@ namespace OpMon {
     namespace Controller {
         using namespace Model;
 
+
+      BattleCtrl::BattleCtrl(OpTeam *one, Events::TrainerEvent *two, UiData *uidata, Player *player)
+	: BattleCtrl(one, two->getOpTeam(), uidata, player)
+      {
+	this->trainer = two;
+      }
+      
         BattleCtrl::BattleCtrl(OpTeam *one, OpTeam *two, UiData *uidata, Player *player)
           : playerTeam(one)
           , trainerTeam(two)
@@ -23,6 +30,9 @@ namespace OpMon {
                     /*if(playerTeam->isKo() || trainerTeam->isKo()){
 	    return GameStatus::PREVIOUS;
 	    }*/
+		  if(trainer != nullptr){
+		    trainer->defeat();
+		  }
                     returned = GameStatus::PREVIOUS;
                 }
             }
