@@ -49,14 +49,14 @@ namespace OpMon {
                     if(events.key.code == sf::Keyboard::N) {
                         debugCol = !debugCol;
                     }
-                    if(events.key.code == sf::Keyboard::B) {
+                    /*if(events.key.code == sf::Keyboard::B) {
                         data.getPlayer().addOpToOpTeam(new Model::OpMon("", data.getUiDataPtr()->getOp(4), 5, {Model::Attacks::newAtk("Charge"), Model::Attacks::newAtk("Brouillard"), nullptr, nullptr}, Model::Nature::QUIET));
                         Model::OpTeam *opTeam = new Model::OpTeam("Unknown trainer");
                         opTeam->addOpMon(new Model::OpMon("", data.getUiDataPtr()->getOp(1), 5, {Model::Attacks::newAtk("Charge"), Model::Attacks::newAtk("Brouillard"), nullptr, nullptr}, Model::Nature::QUIET));
                         _next_gs = new BattleCtrl(data.getPlayer().getOpTeam(), opTeam, data.getUiDataPtr(), data.getPlayerPtr());
                         data.getPlayer().healOp();
                         return GameStatus::NEXT;
-                    }
+			}*/
                     if(events.key.code == sf::Keyboard::Numpad5) {
                         overworld.setCameraLock(!overworld.isCameraLocked());
                     }
@@ -104,7 +104,11 @@ namespace OpMon {
             Controller::PlayerCtrl::checkMove(player, event, view);
 
 	    if(view.getBattleDeclared() != nullptr){
-	      _next_gs = new BattleCtrl(data.getPlayer().getOpTeam(), view.getBattleDeclared()->getOpTeam(), data.getUiDataPtr(), data.getPlayerPtr());
+	      if(view.getBattleDeclared()->isDefeated()){
+		view.endBattle();
+	      }else{
+		_next_gs = new BattleCtrl(data.getPlayer().getOpTeam(), view.getBattleDeclared(), data.getUiDataPtr(), data.getPlayerPtr());
+	      }
 	      return GameStatus::NEXT;
 	    }
 	    

@@ -7,6 +7,7 @@
 #include "../model/objects/Turn.hpp"
 #include "../model/storage/BattleData.hpp"
 #include "../model/sysObjects/OpTeam.hpp"
+#include "../model/sysObjects/Events.hpp"
 #include "../view/Battle.hpp"
 #include "AGameScreen.hpp"
 #include <vector>
@@ -55,8 +56,11 @@ namespace OpMon {
             //check if the opmon can attack
             bool canAttack(Model::OpMon *opmon, Model::Turn *opTurn);
 
+	  Model::Events::TrainerEvent* trainer;
+
           public:
             BattleCtrl(Model::OpTeam *one, Model::OpTeam *two, Model::UiData *uidata, Model::Player *player);
+	  BattleCtrl(Model::OpTeam *one, Model::Events::TrainerEvent *two, Model::UiData *uidata, Model::Player *player);
             GameStatus checkEvent(sf::Event const &) override;
             GameStatus update(sf::RenderTexture &frame) override;
         };
