@@ -35,7 +35,7 @@ UNS
         }
 
         namespace Events {
-
+	  std::vector<sf::Texture> alpha = std::vector<sf::Texture>(1);
             bool justTP = false;
 
             sf::Sound doorSound;
@@ -113,6 +113,21 @@ UNS
               , CharacterEvent(textures, position, posDir, moveStyle, eventTrigger, predefinedPath, passable, sides)
               , TalkingEvent(textures, position, dialogKeys, sides, eventTrigger, passable) {
             }
+
+	  TrainerEvent::TrainerEvent(std::vector<sf::Texture> &textures, sf::Vector2f const& position, OpTeam team, std::vector<Utils::OpString> const &dialogKeys, std::vector<Utils::OpString> const &defeatedDialog, Side posDir, EventTrigger eventTrigger, MoveStyle moveStyle, std::vector<Side> predefinedPath, bool passable, int side)
+	    : Event(textures, eventTrigger, position, sides, passable),
+	    TalkingCharaEvent(textures, position, dialogKeys, posDir, eventTrigger, moveStyle, predefinedPath, passable, sides), team(team), defeatedDialog(defeatedDialog){
+	    
+	  }
+
+	  TrainerEyesightEvent::TrainerEyesightEvent(TrainerEvent* trainer, sf::Vector2f position)
+	    : Event(alpha, EventTrigger::BE_IN, position, SIDE_ALL, true),
+	      trainer(trainer)
+	  {
+	    
+	  }
+
+	  
 
             //Actions
 
@@ -329,6 +344,29 @@ UNS
 
             void LockedDoorEvent::update(Model::Player &player, View::Overworld &overworld) {
             }
+
+	  void TrainerEvent::update(Model::Player &player, View::Overworld &overworld) {
+	    if(triggerBattle){
+		triggerBattle = false;
+		overworld.declareBattle(this);
+	    }
+	    TalkingCharaEvent::update(player, overworld);
+	    if(!defeated){
+	      if(talking && !checkTalking){
+		checkTalking = true;
+	      }
+	      if(!talking && checkTalking){
+		triggerBattle = true;
+	      }
+	    }
+	    
+	  }
+
+
+	  void TrainerEvent::defeat(){
+	    defeated = true;
+	    this->changeDialog(defeatedDialog);
+	  }
 
             std::vector<Utils::OpString> LockedDoorEvent::keysLock = std::vector<Utils::OpString>();
 
