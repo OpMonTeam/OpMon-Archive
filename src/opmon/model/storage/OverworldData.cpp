@@ -125,7 +125,7 @@ namespace OpMon {
 	    OpTeam betaTeam = Model::OpTeam("Beta");
 	    betaTeam.addOpMon(new Model::OpMon("", uidata->getOp(1), 5, {Model::Attacks::newAtk("Charge"), Model::Attacks::newAtk("Brouillard"), nullptr, nullptr}, Model::Nature::QUIET));
 	    
-	    mapRoad14->addEvent(new Events::TrainerEvent(charaTextures["beta"], sf::Vector2f(11, 32), betaTeam, {OpString("beta.prebattle.1"), OpString("beta.prebattle.2"), OpString("beta.prebattle.3")}, {OpString("beta.postbattle.1"), OpString("beta.postbattle.2"), OpString("beta.postbattle.3")}, Side::TO_LEFT));
+	    mapRoad14->addEvent(new Events::TrainerEvent(charaTextures["beta"], sf::Vector2f(11, 32), betaTeam, {OpString("rt14.beta.1"), OpString("rt14.beta.2"), OpString("rt14.beta.3")}, {OpString("rt14.beta.4"), OpString("rt14.beta.5"), OpString("rt14.beta.6"), OpString("rt14.beta.6"), OpString("rt14.beta.6")}, Side::TO_LEFT));
 	    
             //MysteriouCity loading
             Map *mapMs = maps.emplace("MysteriouCity", new Map(Maps::myciLayer1, Maps::myciLayer2, Maps::myciLayer3, 35, 35, false, "Ms")).first->second;
