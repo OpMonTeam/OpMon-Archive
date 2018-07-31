@@ -56,7 +56,7 @@ UNS
 
             for(sf::Text &cellTxt : textDescs) {
                 cellTxt.setCharacterSize(FONT_SIZE_DEFAULT);
-                cellTxt.setColor(sf::Color::White);
+                cellTxt.setFillColor(sf::Color::White);
                 cellTxt.setFont(data.getUiDataPtr()->getFont());
             }
 
