@@ -154,17 +154,17 @@ namespace OpMon {
                     std::ostringstream oss3;
                     oss3 << atkTurn.opmon->getAttacks()[curPos]->getPP() << " / " << atkTurn.opmon->getAttacks()[curPos]->getPPMax();
                     if(atkTurn.opmon->getAttacks()[curPos]->getPP() <= (atkTurn.opmon->getAttacks()[curPos]->getPPMax() / 5) && atkTurn.opmon->getAttacks()[curPos]->getPP() > 0) {
-                        ppTxt.setColor(sf::Color::Yellow);
+                        ppTxt.setFillColor(sf::Color::Yellow);
                     } else if(atkTurn.opmon->getAttacks()[curPos]->getPP() == 0) {
-                        ppTxt.setColor(sf::Color::Red);
+                        ppTxt.setFillColor(sf::Color::Red);
                     } else {
-                        ppTxt.setColor(sf::Color::Black);
+                        ppTxt.setFillColor(sf::Color::Black);
                     }
                     ppTxt.setString(oss3.str());
                     type.setTexture(data.getUiDataPtr()->getTypeTexture(atkTurn.opmon->getAttacks()[curPos]->getType()));
                     frame.draw(type);
                 } else {
-                    ppTxt.setColor(sf::Color::Red);
+                    ppTxt.setFillColor(sf::Color::Red);
                     ppTxt.setString("0 / 0");
                 }
 
@@ -210,7 +210,7 @@ namespace OpMon {
                     attacks[i].setPosition(posChoices[i]);
                     attacks[i].setFont(data.getUiDataPtr()->getFont());
                     attacks[i].setCharacterSize(26);
-                    attacks[i].setColor(sf::Color::Black);
+                    attacks[i].setFillColor(sf::Color::Black);
                 }
 
             } else {
@@ -255,7 +255,7 @@ namespace OpMon {
                 choicesTxt[i].setFont(data.getUiDataPtr()->getFont());
                 choicesTxt[i].setCharacterSize(20);
                 choicesTxt[i].setPosition(posChoices[i]);
-                choicesTxt[i].setColor(sf::Color::White);
+                choicesTxt[i].setFillColor(sf::Color::White);
             }
 
             //ppText.setPosition(326, 380);
@@ -302,18 +302,18 @@ namespace OpMon {
                 opLevel[i].setFont(data.getUiDataPtr()->getFont());
                 opName[i].setCharacterSize(22);
                 opLevel[i].setCharacterSize(22);
-                opName[i].setColor(sf::Color::Black);
-                opLevel[i].setColor(sf::Color::Black);
+                opName[i].setFillColor(sf::Color::Black);
+                opLevel[i].setFillColor(sf::Color::Black);
             }
 
             opHp.setFont(data.getUiDataPtr()->getFont());
             opHp.setCharacterSize(14);
-            opHp.setColor(sf::Color::Black);
+            opHp.setFillColor(sf::Color::Black);
             opHp.setPosition(332, 264);
 
             waitText.setFont(data.getUiDataPtr()->getFont());
             waitText.setCharacterSize(22);
-            waitText.setColor(sf::Color::Black);
+            waitText.setFillColor(sf::Color::Black);
             waitText.setPosition(25, 410);
 
             ppStrTxt.setPosition(326, 380);
@@ -323,13 +323,13 @@ namespace OpMon {
             ppTxt.setFont(data.getUiDataPtr()->getFont());
             ppStrTxt.setCharacterSize(26);
             ppTxt.setCharacterSize(26);
-            ppStrTxt.setColor(sf::Color::Black);
-            ppTxt.setColor(sf::Color::Black);
+            ppStrTxt.setFillColor(sf::Color::Black);
+            ppTxt.setFillColor(sf::Color::Black);
 
             for(unsigned int i = 0; i < 3; i++) {
                 turnTxt[i].setFont(data.getUiDataPtr()->getFont());
                 turnTxt[i].setCharacterSize(22);
-                turnTxt[i].setColor(sf::Color::Black);
+                turnTxt[i].setFillColor(sf::Color::Black);
                 turnTxt[i].setPosition(25, 410 + i * 20);
             }
 

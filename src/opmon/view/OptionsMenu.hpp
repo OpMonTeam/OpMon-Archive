@@ -56,6 +56,7 @@ namespace OpMon {
             void pause();
 
           private:
+            Model::OptionsMenuData &data;
             OptionType currentOptions;
 
             sf::Sprite bgCredits;
@@ -99,8 +100,6 @@ namespace OpMon {
             sf::Sprite coche;
 
             bool continuer = true;
-
-            Model::OptionsMenuData &data;
         };
     } // namespace View
 } // namespace OpMon
