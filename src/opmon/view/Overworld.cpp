@@ -212,11 +212,11 @@ namespace OpMon {
                 debugText.setString("Debug mode");
                 debugText.setPosition(0, 0);
                 debugText.setFont(data.getUiDataPtr()->getFont());
-                debugText.setColor(sf::Color(127, 127, 127));
+                debugText.setFillColor(sf::Color(127, 127, 127));
                 debugText.setCharacterSize(40);
                 fpsPrint.setPosition(0, 50);
                 fpsPrint.setFont(data.getUiDataPtr()->getFont());
-                //fpsPrint.setColor(sf::Color(127, 127, 127));
+                //fpsPrint.setFillColor(sf::Color(127, 127, 127));
                 fpsPrint.setCharacterSize(48);
                 std::ostringstream oss;
                 oss << "Position : " << data.getPlayer().getPosition().getPosition().x << " - " << data.getPlayer().getPosition().getPosition().y << endl
@@ -224,7 +224,7 @@ namespace OpMon {
                 coordPrint.setString(oss.str());
                 coordPrint.setFont(data.getUiDataPtr()->getFont());
                 coordPrint.setPosition(0, 100);
-                coordPrint.setColor(sf::Color(127, 127, 127));
+                coordPrint.setFillColor(sf::Color(127, 127, 127));
                 coordPrint.setCharacterSize(30);
             }
 
