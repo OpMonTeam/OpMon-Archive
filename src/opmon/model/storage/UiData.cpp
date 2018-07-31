@@ -120,6 +120,15 @@ namespace OpMon {
             jukebox.addSound("arrow", "audio/sounds/select.ogg");
             jukebox.addSound("push", "audio/sounds/selectbuttons.ogg");
 
+
+	    //Loading volume
+	    if(!OptionsSave::checkParam("volume")){
+	      OptionsSave::addParam("volume", "100");
+	    }
+
+	    int volume = std::stoi(OptionsSave::getParam("volume").getValue());
+	    jukebox.setGlobalVolume(volume);
+	    
             //Loading controls
 #define ADDMAP(key) keysMap[(#key)] = sf::Keyboard::key
             std::map<std::string, sf::Keyboard::Key> keysMap;

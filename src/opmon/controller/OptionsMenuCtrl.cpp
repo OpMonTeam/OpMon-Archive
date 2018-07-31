@@ -118,9 +118,9 @@ namespace OpMon {
                         menu.setCurrentOption(View::OptionType::ALL);
                         return GameStatus::CONTINUE;
                     }
-                } else if(event.key.code == sf::Keyboard::Left) {
+                } else if(event.key.code == sf::Keyboard::Left && menu.cursorPosition() == VOLUME) {
                     lowerVolume();
-                } else if(event.key.code == sf::Keyboard::Right) {
+                } else if(event.key.code == sf::Keyboard::Right && menu.cursorPosition() == VOLUME) {
                     raiseVolume();
                 }
             }
@@ -143,19 +143,24 @@ namespace OpMon {
         void OptionsMenuCtrl::toggleVolume() {
             if(data.getUiDataPtr()->getJukebox().getGlobalVolume() > 0) {
                 data.getUiDataPtr()->getJukebox().setGlobalVolume(0);
+		Model::OptionsSave::modifyParam("volume", "0");
             } else {
                 data.getUiDataPtr()->getJukebox().setGlobalVolume(100);
+		Model::OptionsSave::modifyParam("volume", "100");
             }
+	    
         }
 
         void OptionsMenuCtrl::raiseVolume() {
             const int newVolume = min(100, data.getUiDataPtr()->getJukebox().getGlobalVolume() + 10);
             data.getUiDataPtr()->getJukebox().setGlobalVolume(newVolume);
+	    Model::OptionsSave::modifyParam("volume", std::to_string(newVolume));
         }
 
         void OptionsMenuCtrl::lowerVolume() {
             const int newVolume = max(0, data.getUiDataPtr()->getJukebox().getGlobalVolume() - 10);
             data.getUiDataPtr()->getJukebox().setGlobalVolume(newVolume);
+	    Model::OptionsSave::modifyParam("volume", std::to_string(newVolume));
         }
 
     } // namespace Controller
