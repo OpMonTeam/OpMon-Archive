@@ -42,7 +42,7 @@ namespace OpMon {
             initStrings();
 
             for(auto *text : {&playtx, &charge, &options, &exit}) {
-                text->setColor(sf::Color::White);
+                text->setFillColor(sf::Color::White);
                 text->setFont(data.getUiDataPtr()->getFont());
                 text->setCharacterSize(FONT_SIZE_DEFAULT);
             }

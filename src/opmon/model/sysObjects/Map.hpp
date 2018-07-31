@@ -29,12 +29,12 @@ namespace OpMon {
             const int *layer2;
             const int *layer3;
 
+            bool indoor;
+
             std::string bg;
             //Event events;
             int w;
             int h;
-
-            bool indoor;
 
             /**The copy constructor must not be used.*/
             Map(Map const &toCopy) = delete;
