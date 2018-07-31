@@ -1,4 +1,4 @@
-# OpMon english translation
+# OpMon deutsch translation
 key.void= 
 key.load.txt=Laden...
 
@@ -113,7 +113,9 @@ key.rt14.beta.4=die nicht vollständig implementiert sind.
 key.rt14.beta.5=Ich kann einen OpMon-Kampf gegen
 key.rt14.beta.6=dich machen, wenn du willst.
 key.rt14.beta.7=Lass uns gehen !
-
+key.rt14.beta.post.1=You found it good ?
+key.rt14.beta.post.2=If you want to do it again
+key.rt14.beta.post.3=relauch the game with M !
 
 key.battle.attack=Attacke
 key.battle.bag=Tasche
