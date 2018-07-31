@@ -147,7 +147,7 @@ UNS
             void DoorEvent::action(Model::Player &player, View::Overworld &overworld) {
                 animStarted = 0;
                 player.getPosition().lockMove();
-                overworld.getData().getUiDataPtr()->getJukebox().play(doorType + " sound");
+                overworld.getData().getUiDataPtr()->getJukebox().playSound(doorType + " sound");
             }
 
             void DoorEvent::update(Model::Player &player, View::Overworld &overworld) {
