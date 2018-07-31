@@ -25,6 +25,7 @@
 <li><h3>louracame</h3></li>
 <li><h3>Samurai413x</h3></li>
 <li><h3>jubalh</h3></li>
+<li><h3>torq</h3></li>
 </ul>
 
 ## Inspirations :
