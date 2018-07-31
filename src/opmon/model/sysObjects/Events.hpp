@@ -195,7 +195,7 @@ namespace OpMon {
                 virtual void action(Model::Player &, View::Overworld &){};
                 void setPredefinedMove(std::vector<Side> movement);
                 OP_DEPRECATED void move(Side direction, Model::Player &player, View::Overworld &overworld);
-                void move(Side direction, Map *map);
+                bool move(Side direction, Map *map);
             };
 
             class TalkingCharaEvent : public CharacterEvent, TalkingEvent {

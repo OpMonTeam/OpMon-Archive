@@ -181,12 +181,13 @@ UNS
                         if(predefinedCounter >= movements.size()) {
                             predefinedCounter = 0;
                         }
-                        move(movements[predefinedCounter], overworld.getData().getCurrentMap());
-                        if(!mapPos.isMoving()) {
+                        
+                        if(!move(movements[predefinedCounter], overworld.getData().getCurrentMap())) {
                             if(predefinedCounter != 0) {
-                                predefinedCounter--;
-                            }
-                            predefinedCounter = movements.size() - 1;
+			      predefinedCounter--;
+                            }else{
+			      predefinedCounter = movements.size() - 1;
+			    }
                         }
                         break;
 
@@ -294,9 +295,9 @@ UNS
                 }
             }
 
-            void CharacterEvent::move(Side direction, Map *map) {
+            bool CharacterEvent::move(Side direction, Map *map) {
                 startFrames = frames;
-                mapPos.move(direction, map);
+                return mapPos.move(direction, map);
             }
 
             void CharacterEvent::move(Side direction, Model::Player &player, View::Overworld &overworld) {

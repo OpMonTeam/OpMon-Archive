@@ -2,12 +2,16 @@
 #include "../objects/evolution/evolutions.hpp"
 #include "../save/OptionsSave.hpp"
 #include "ResourceLoader.hpp"
+#include "../../../utils/log.hpp"
 
 namespace OpMon {
     namespace Model {
 
         UiData::UiData(View::Window &win)
           : win(win) {
+
+	  Utils::Log::oplog("Initializating UiData");
+	  
             jukebox.addMusic("Title", "audio/music/title.ogg", 50);
             jukebox.addMusic("Start", "audio/music/intro.ogg");
             jukebox.addMusic("Fauxbourg", "audio/music/faubourgeuvi.ogg");
@@ -244,6 +248,7 @@ namespace OpMon {
             for(auto spe : listOp) {
                 delete(spe.second);
             }
+	    Utils::Log::oplog("Deleted UiData");
         }
     } // namespace Model
 } // namespace OpMon
