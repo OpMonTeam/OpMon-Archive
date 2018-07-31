@@ -24,65 +24,6 @@ UNS
             }
         }
 
-        float CalcCourbs::p(int x) {
-            switch(x) {
-            case 0:
-                return 0;
-            case 1:
-                return 0.008;
-            case 2:
-                return 0.014;
-            default:
-                return 0.008;
-            }
-        }
-
-        int CalcCourbs::erratic(int n) {
-            if(0 < n && n <= 50) {
-                return round(pow(n, 3) * ((100 - n) / 50));
-            } else if(51 <= n && n <= 68) {
-                return round(pow(n, 3) * ((150 - n) / 50));
-            } else if(69 <= n && n <= 98) {
-                return round(1.274f - ((1 / 50) * (n / 3)) - p(n % 3));
-            } else if(n >= 99) {
-                return round(pow(n, 3) * ((160 - n) / 100));
-            } else {
-                handleError("Erreur dans le calcul d'experience : niveau <= 0",
-                            true);
-                return 0;
-            }
-        }
-
-        int CalcCourbs::fluctuating(int n) {
-            if(0 < n && n <= 15) {
-                return round(pow(n, 3) * ((24 + ((n + 1) / 3) / 50)));
-            } else if(16 <= n && n <= 35) {
-                return round(pow(n, 3) * ((14 + n) / 50));
-            } else if(n >= 36) {
-                return round(pow(n, 3) * ((32 + (n / 2)) / 50));
-            } else {
-                handleError("Erreur dans le calcul d'experience : niveau <= 0",
-                            true);
-                return 0;
-            }
-        }
-
-        int CalcCourbs::slow(int n) {
-            return round(1.25f * pow(n, 3));
-        }
-
-        int CalcCourbs::normal(int n) {
-            return round(pow(n, 3));
-        }
-
-        int CalcCourbs::parabolic(int n) {
-            return round(1.2f * pow(n, 3) - 15 * pow(n, 2) + (100 * n) - 140);
-        }
-
-        int CalcCourbs::quick(int n) {
-            return round(0.8f * pow(n, 3));
-        }
-
         OpMon::OpMon(const string &nickname, const Species *species, int level, const std::vector<Attack *> &attacks,
                      Nature nature) {
             atkIV = Utils::Misc::randU(32);
@@ -121,33 +62,11 @@ UNS
             HP = statHP;
             type1 = species->getType1();
             type2 = species->getType2();
-            using namespace CalcCourbs;
-            switch(this->species->getCurve()) {
-            case CurveExp::ERRATIC:
-                toNextLevel = erratic(this->level + 1);
-                exp = erratic(this->level);
-                break;
-            case CurveExp::FLUCTUATING:
-                toNextLevel = fluctuating(this->level + 1);
-                exp = fluctuating(this->level);
-                break;
-            case CurveExp::SLOW:
-                toNextLevel = slow(this->level + 1);
-                exp = slow(this->level);
-                break;
-            case CurveExp::AVERAGE:
-                toNextLevel = normal(this->level + 1);
-                exp = normal(this->level);
-                break;
-            case CurveExp::PARABOLIC:
-                toNextLevel = parabolic(this->level + 1);
-                exp = parabolic(this->level);
-                break;
-            case CurveExp::QUICK:
-                toNextLevel = quick(this->level + 1);
-                exp = quick(this->level);
-                break;
-            }
+
+            auto curve = this->species->getCurve();
+            this->toNextLevel = curve->getNeededExp(this->level + 1);
+            this->exp = curve->getNeededExp(this->level);
+
             held = nullptr;
             statLove = 100;
             statACC = 100;
@@ -228,34 +147,12 @@ UNS
         }
 
         void OpMon::levelUp() {
-            using namespace CalcCourbs;
             level++;
-            switch(this->species->getCurve()) {
-            case CurveExp::ERRATIC:
-                toNextLevel = erratic(this->level + 1);
-                exp = erratic(this->level);
-                break;
-            case CurveExp::FLUCTUATING:
-                toNextLevel = fluctuating(this->level + 1);
-                exp = fluctuating(this->level);
-                break;
-            case CurveExp::SLOW:
-                toNextLevel = slow(this->level + 1);
-                exp = slow(this->level);
-                break;
-            case CurveExp::AVERAGE:
-                toNextLevel = normal(this->level + 1);
-                exp = normal(this->level);
-                break;
-            case CurveExp::PARABOLIC:
-                toNextLevel = parabolic(this->level + 1);
-                exp = parabolic(this->level);
-                break;
-            case CurveExp::QUICK:
-                toNextLevel = quick(this->level + 1);
-                exp = quick(this->level);
-                break;
-            }
+
+            auto curve = this->species->getCurve();
+            this->toNextLevel = curve->getNeededExp(this->level + 1);
+            this->exp = curve->getNeededExp(this->level);
+
             calcStats();
             if(species->getEvolType()->checkEvolve(*this)) {
                 if((species->getEvolType()->getEvolID()) == (Evolutions::ETrade)) {

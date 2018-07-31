@@ -9,6 +9,7 @@ Define the CourbeExp enumération and the Species class
 #define ESPECE_HPP
 
 #include "item/CT.hpp"
+#include "CurveExp.hpp"
 #include <iostream>
 #include <vector>
 
@@ -16,20 +17,10 @@ namespace OpMon {
     namespace Model {
 
         class Evolution;
+
         /**
-       Enumeration of the different exp gain curves
-    */
-        enum class CurveExp : int {
-            ERRATIC = 0,
-            FLUCTUATING = 1,
-            SLOW = 2,
-            AVERAGE = 3,
-            PARABOLIC = 4,
-            QUICK = 5
-        };
-        /**
-       Class to define a species of OPMon.
-    */
+           Class to define a species of OPMon.
+        */
         //->Final
         class Species {
 
@@ -54,7 +45,7 @@ namespace OpMon {
             unsigned int baseSpe;
             unsigned int baseHP;
             /**La courbe d'experience*/
-            CurveExp curve;
+            CurveExp *curve;
             /**L'exp au niveau 100*/
             int expMax;
             /**C'est le tableau des EV donnés*/
@@ -110,7 +101,7 @@ namespace OpMon {
             Evolution *getEvolType() const {
                 return evolType;
             }
-            CurveExp getCurve() const {
+            CurveExp *getCurve() const {
                 return curve;
             }
             Species *getEvolution() const {
