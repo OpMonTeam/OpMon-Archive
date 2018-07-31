@@ -76,7 +76,7 @@ namespace OpMon {
 
             void tp(sf::Vector2i position);
 
-            void move(Side dir, Map *map);
+            bool move(Side dir, Map *map);
 
             static void setPlayerPos(Position *pos);
 
