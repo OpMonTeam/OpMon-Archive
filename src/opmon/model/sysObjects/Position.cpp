@@ -44,11 +44,10 @@ namespace OpMon {
 
 #define UNLOCK_TP Events::justTP = false;
 
-        void Position::move(Side dir, Map *map) {
+        bool Position::move(Side dir, Map *map) {
             if(!anim && !moveLock) {
                 this->dir = dir;
-                //To do in overworld
-                //startFrames = frames;
+                
                 anim = true;
 
                 if((!event && debugCol) || checkPass(dir, map)) {
@@ -73,8 +72,11 @@ namespace OpMon {
                     case Side::STAY:
                         break;
                     }
-                    return;
-                }
+                    return true;
+                }else{
+		  return false;
+		}
+		
             }
         }
 

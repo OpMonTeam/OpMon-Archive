@@ -24,7 +24,8 @@ UNS
             }
         }
 
-        OpMon::OpMon(const string &nickname, const Species *species, int level, const std::vector<Attack *> &attacks, Nature nature) {
+      OpMon::OpMon(const string &nickname, const Species *species, int level, const std::vector<Attack *> &attacks, Nature nature)
+	: species(species), level(level), attacks(attacks), nature(nature), nickname((nickname.empty()) ? species->getName() : nickname){
             atkIV = Utils::Misc::randU(32);
             defIV = Utils::Misc::randU(32);
             atkSpeIV = Utils::Misc::randU(32);
@@ -33,15 +34,7 @@ UNS
             hpIV = Utils::Misc::randU(32);
 
             calcStats();
-
-            this->species = species;
-            this->level = level;
-            this->attacks = attacks;
-
-            //TODO attaquesChoix Quand les attaques seront ok
-            this->nature = nature;
-            this->nickname = (nickname.empty()) ? species->getName() : nickname;
-
+	    
             tauxCapture = species->getCaptureRate();
             HP = statHP;
             type1 = species->getType1();
