@@ -61,27 +61,28 @@ namespace OpMon {
             this->EVgiven = EVGiven;
             //Mise en place des curves d'exp
             this->expMax = expMax;
+
             switch(this->expMax) {
             case 800000:
-                curve = CurveExp::QUICK;
+                curve = new CurveExpQuick();
                 break;
             case 1000000:
-                curve = CurveExp::AVERAGE;
+                curve = new CurveExpNormal();
                 break;
             case 1059860:
-                curve = CurveExp::PARABOLIC;
+                curve = new CurveExpParabolic();
                 break;
             case 1250000:
-                curve = CurveExp::SLOW;
+                curve = new CurveExpSlow();
                 break;
             case 600000:
-                curve = CurveExp::ERRATIC;
+                curve = new CurveExpErratic();
                 break;
             case 1640000:
-                curve = CurveExp::FLUCTUATING;
+                curve = new CurveExpFluctuating();
                 break;
             default:
-                curve = CurveExp::AVERAGE;
+                curve = new CurveExpNormal();
             }
             this->opdexNumber = opdexNumber;
         }
