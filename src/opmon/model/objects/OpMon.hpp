@@ -21,25 +21,6 @@ namespace OpMon {
 
         class Species;
 
-        /**
-           Namespace permettant de faire des calculs sur les courbes d'experience. D'ou son nom, j'ai envie de dire...
-        */
-        namespace CalcCourbs {
-            float p(int x);
-
-            int erratic(int n);
-
-            int fluctuating(int n);
-
-            int slow(int n);
-
-            int normal(int n);
-
-            int parabolic(int n);
-
-            int quick(int n);
-        } // namespace CalcCourbs
-
         class Attack;
 
         /**
@@ -291,7 +272,7 @@ namespace OpMon {
                 return *species;
             }
 
-            //Warning! The == and! = operators did not compare two OPMons! They compare whether OPMons are "initialized" or not (see initialized))
+            //Warning! The == and != operators did not compare two OPMons! They compare whether OPMons are "initialized" or not (see initialized))
             bool operator==(OpMon const &a) {
                 return (initialized == a.initialized);
             }
