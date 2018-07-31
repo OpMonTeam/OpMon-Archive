@@ -24,39 +24,23 @@ UNS
             }
         }
 
-        OpMon::OpMon(const string &nickname, const Species *species, int level, const std::vector<Attack *> &attacks,
-                     Nature nature) {
+        OpMon::OpMon(const string &nickname, const Species *species, int level, const std::vector<Attack *> &attacks, Nature nature) {
             atkIV = Utils::Misc::randU(32);
             defIV = Utils::Misc::randU(32);
             atkSpeIV = Utils::Misc::randU(32);
             defSpeIV = Utils::Misc::randU(32);
             speIV = Utils::Misc::randU(32);
             hpIV = Utils::Misc::randU(32);
-            statATK = round(
-              ((((2 * species->getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100) + 5) * ((natures[(int)nature].bonus == Stats::ATK) ? 1.1 : ((natures[(int)nature].malus == Stats::ATK) ? 0.9 : 1)));
-            statDEF = round(
-              ((((2 * species->getBaseDef() + defIV + (defEV / 4)) * level) / 100) + 5) * ((natures[(int)nature].bonus == Stats::DEF) ? 1.1 : ((natures[(int)nature].malus == Stats::DEF) ? 0.9 : 1)));
-            statATKSPE =
-              round(
-                ((((2 * species->getBaseAtkSpe() + atkSpeIV + (atkSpeEV / 4)) * level) / 100) + 5) * ((natures[(int)nature].bonus == Stats::ATKSPE) ? 1.1 : ((natures[(int)nature].malus == Stats::ATKSPE) ? 0.9 : 1)));
-            statDEFSPE =
-              round(
-                ((((2 * species->getBaseDefSpe() + defSpeIV + (defSpeEV / 4)) * level) / 100) + 5) * ((natures[(int)nature].bonus == Stats::DEFSPE) ? 1.1 : ((natures[(int)nature].malus == Stats::DEFSPE) ? 0.9 : 1)));
-            statSPE = round(
-              ((((2 * species->getBaseSpe() + speIV + (speEV / 4)) * level) / 100) + 5) * ((natures[(int)nature].bonus == Stats::SPE) ? 1.1 : ((natures[(int)nature].malus == Stats::SPE) ? 0.9 : 1)));
-            statHP = round(((2 * species->getBaseHP() + hpIV + (hpEV / 4)) * level) / 100) + level + 10;
+
+            calcStats();
+
             this->species = species;
             this->level = level;
-
             this->attacks = attacks;
 
             //TODO attaquesChoix Quand les attaques seront ok
             this->nature = nature;
-            if(nickname.empty()) {
-                this->nickname = species->getName();
-            } else {
-                this->nickname = nickname;
-            }
+            this->nickname = (nickname.empty()) ? species->getName() : nickname;
 
             tauxCapture = species->getCaptureRate();
             HP = statHP;
@@ -84,8 +68,7 @@ UNS
             int c[] = {Utils::Misc::randU(65535), Utils::Misc::randU(65535), Utils::Misc::randU(65535),
                        Utils::Misc::randU(65535)};
             int nbreOk = 0;
-            int i = 0;
-            for(i = 0; i < 4; i++) {
+            for(int i = 0; i < 4; i++) {
                 if(c[i] <= b) {
                     nbreOk++;
                 }
@@ -106,8 +89,7 @@ UNS
                     return false;
                 }
                 if(nbreOk != 4) {
-                    handleError("InternalError : OpMon.cpp : nbreOk != 4",
-                                true);
+                    handleError("InternalError : OpMon.cpp : nbreOk != 4", true);
                 }
                 return true;
             }
@@ -399,7 +381,6 @@ UNS
                     }
                 }
             } else {
-
                 for(int i = 0; i > power; i--) {
                     switch(atkChange) {
                     case -6:
@@ -1342,25 +1323,11 @@ UNS
         }
 
         bool OpMon::setStatus(Status status) {
-            if(status == Status::BURNING && this->status == Status::BURNING) {
-                //System.out.println(nickname + " est déjà  brulé!");
+            if(this->status == status) {
                 return false;
-            } else if(status == Status::SLEEPING && this->status == Status::SLEEPING) {
-                //System.out.println("Mais " + nickname + " dort déjà !");
-                return false;
-            } else if(status == Status::PARALYSED && this->status == Status::PARALYSED) {
-                //System.out.println(nickname + " est déjà  paralysé!");
-                return false;
-            } else if(status == Status::FROZEN && this->status == Status::FROZEN) {
-                //System.out.println(nickname + " est déjà  gelé!");
-                return false;
-            } else if(status == Status::POISONED && this->status == Status::POISONED) {
-                //System.out.println(nickname + " est déjà  empoisonné!");
-                return false;
-            } else if(this->status != Status::NOTHING && status != Status::NOTHING) {
-                //System.out.println("Mais " + nickname + " a déjà  un status!");
-                return false;
-            } else if(status == Status::BURNING) {
+            }
+
+            if(status == Status::BURNING) {
                 changeATK(-1);
                 atkChange++;
             } else if(status == Status::NOTHING && this->status == Status::BURNING) {
@@ -1378,11 +1345,7 @@ UNS
         }
 
         void OpMon::heal(int HP) {
-            if((HP + this->HP) > statHP) {
-                this->HP = statHP;
-            } else {
-                this->HP += HP;
-            }
+            this->HP = min(statHP, HP + this->HP);
         }
 
         void OpMon::setType1(Type type) {
@@ -1425,25 +1388,11 @@ UNS
                     oss << "nullptr" << endl;
                 }
             }*/
-                if(attacks[0] != nullptr) {
-                    oss << attacks[0]->save();
-                } else {
-                    oss << "NULL" << endl;
-                }
-                if(attacks[1] != nullptr) {
-                    oss << attacks[1]->save();
-                } else {
-                    oss << "NULL" << endl;
-                }
-                if(attacks[2] != nullptr) {
-                    oss << attacks[2]->save();
-                } else {
-                    oss << "NULL" << endl;
-                }
-                if(attacks[3] != nullptr) {
-                    oss << attacks[3]->save();
-                } else {
-                    oss << "NULL" << endl;
+                for(int i=0; i<4; i++) {
+                    if(attacks[i] != nullptr)
+                        oss << attacks[i]->save();
+                    else
+                        oss << "NULL" << endl;
                 }
                 oss << Save::intToChar(species->getOpdexNumber()) << endl;
                 oss << Save::intToChar(HP) << endl;
@@ -1500,35 +1449,15 @@ UNS
                 //int toSearch = in.get();
                 //nature = toSearch;
                 in.get();
-                attacks[0] = Attacks::newAtk(Save::readLine(in));
-                if(attacks[0] != nullptr) {
-                    attacks[0]->setPP(in.get());
-                    in.get();
-                    attacks[0]->setPPMax(in.get());
-                    in.get();
-                }
 
-                attacks[1] = Attacks::newAtk(Save::readLine(in));
-                if(attacks[1] != nullptr) {
-                    attacks[1]->setPP(in.get());
-                    in.get();
-                    attacks[1]->setPPMax(in.get());
-                    in.get();
-                }
-
-                attacks[2] = Attacks::newAtk(Save::readLine(in));
-                if(attacks[2] != nullptr) {
-                    attacks[2]->setPP(in.get());
-                    in.get();
-                    attacks[2]->setPPMax(in.get());
-                    in.get();
-                }
-                attacks[3] = Attacks::newAtk(Save::readLine(in));
-                if(attacks[3] != nullptr) {
-                    attacks[3]->setPP(in.get());
-                    in.get();
-                    attacks[3]->setPPMax(in.get());
-                    in.get();
+                for(int i=0; i<4; i++) {
+                    attacks[i] = Attacks::newAtk(Save::readLine(in));
+                    if(attacks[i] != nullptr) {
+                        attacks[i]->setPP(in.get());
+                        in.get();
+                        attacks[i]->setPPMax(in.get());
+                        in.get();
+                    }
                 }
                 //int speciesID = in.get();
                 //species = Data::OpMons::listOp.at(speciesID);
@@ -1567,7 +1496,7 @@ UNS
             if(confusedCD > 0 && !sleep) {
                 confusedCD--;
             }
-            if(sleepingCD > 0 && sleep) {
+            else if(sleepingCD > 0 && sleep) {
                 sleepingCD--;
             }
         }
