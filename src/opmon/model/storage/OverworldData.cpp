@@ -116,7 +116,7 @@ namespace OpMon {
 
             //Road 14 loading
             Map *mapRoad14 = maps.emplace("Road 14", new Map(Maps::route14Layer1, Maps::route14Layer2, Maps::route14Layer3, 86, 57, false, "Road 14")).first->second;
-            mapRoad14->addEvent(new Events::TalkingCharaEvent(charaTextures["sk"], sf::Vector2f(11, 30), {OpString("rt14.sk.1"), OpString("rt14.sk.2"), OpString("rt14.sk.3")}, Side::TO_LEFT));
+            mapRoad14->addEvent(new Events::TalkingCharaEvent(charaTextures["sk"], sf::Vector2f(16, 39), {OpString("rt14.sk.1"), OpString("rt14.sk.2"), OpString("rt14.sk.3")}, Side::TO_LEFT));
             mapRoad14->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(4, 38), sf::Vector2i(39, 17), "Fauxbourg Euvi", Side::TO_LEFT, SIDE_LEFT));
             mapRoad14->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(4, 39), sf::Vector2i(39, 18), "Fauxbourg Euvi", Side::TO_LEFT, SIDE_LEFT));
             mapRoad14->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(4, 40), sf::Vector2i(39, 19), "Fauxbourg Euvi", Side::TO_LEFT, SIDE_LEFT));
