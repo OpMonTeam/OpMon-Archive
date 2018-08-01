@@ -25,10 +25,11 @@ Original music can be reused provided that you credit the author. They are licen
 * route14.ogg - (May the exploration begin !) : Composed by Navet56
 * labo.ogg - Kiwaï Laboratory theme (Which one to choose ?) : Composed by Navet56
 * surprise.ogg - (Surprise !) : Composed by Cyrion, rearranged by Navet56
-* arenabattle.ogg () : Composed by Navet56
+* challengecave.ogg () : Composed by Cyrion, cover by Navet56
 * battle.ogg - () : Composed by Navet56
 * norie.ogg - Norie theme () : Composed by Cyrion 
 * trialbattle.ogg - Regimys trial theme (Towards the trophy of this city) : Composed by Navet56
-* Glanial.ogg (Unique snow) : Composed by Cyrion
+* glanial.ogg (Unique snow) : Composed by Cyrion
 * wildbattle.ogg (The wild duel) : Composed by Navet56
+* skullk_theme.ogg (Skeletal approach) : Composed by Navet56
 
