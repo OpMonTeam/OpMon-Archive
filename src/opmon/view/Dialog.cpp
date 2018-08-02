@@ -28,9 +28,17 @@ namespace OpMon {
 
         void Dialog::pass() {
             if(changeDialog == false) {
-                txtEnCours[0] = text[dialogNb];
-                txtEnCours[1] = text[dialogNb + 1];
-                txtEnCours[2] = text[dialogNb + 2];
+                currentTxt[0] = text[dialogNb];
+		if(dialogNb + 2 < text.size()){
+		  currentTxt[1] = text[dialogNb + 1];
+		  currentTxt[2] = text[dialogNb + 2];
+		}else if(dialogNb + 1 < text.size()){
+		  currentTxt[1] = text[dialogNb + 1];
+		  currentTxt[2] = sf::String(" ");
+		}else{
+		  currentTxt[1] = sf::String(" ");
+		  currentTxt[2] = sf::String(" ");
+		}
 
                 changeDialog = true;
             } else if(dialogNb + 3 < text.size()) {
@@ -38,9 +46,9 @@ namespace OpMon {
                 line = 0;
                 dialogNb += 3;
                 i = 0;
-                txtEnCours[0] = sf::String(" ");
-                txtEnCours[1] = sf::String(" ");
-                txtEnCours[2] = sf::String(" ");
+                currentTxt[0] = sf::String(" ");
+                currentTxt[1] = sf::String(" ");
+                currentTxt[2] = sf::String(" ");
                 changeDialog = false;
             } else {
                 is_dialog_over = true;
@@ -51,10 +59,10 @@ namespace OpMon {
             if(!changeDialog) {
                 if(i < text[line + dialogNb].toUtf32().size()) {
 
-                    if(txtEnCours[line] == sf::String(" ")) {
-                        txtEnCours[line] = text[line + dialogNb].toUtf32()[i];
+                    if(currentTxt[line] == sf::String(" ")) {
+                        currentTxt[line] = text[line + dialogNb].toUtf32()[i];
                     } else if(text[line + dialogNb].toUtf32()[i] > 10) {
-                        txtEnCours[line] += text[line + dialogNb].toUtf32()[i];
+                        currentTxt[line] += text[line + dialogNb].toUtf32()[i];
                     }
                     /*cout << (char) text[line + dialog].toUtf32()[i] << "|" << text[line + dialog].toUtf32()[i] << endl;
 	    cout << "Caractère : " << i << " - Ligne : " << line << endl;
@@ -75,7 +83,7 @@ namespace OpMon {
             frame.draw(background);
 
             for(size_t itor = 0; itor < 3; itor++) {
-                dialogText[itor].setString(txtEnCours[itor].toUtf32());
+                dialogText[itor].setString(currentTxt[itor].toUtf32());
                 frame.draw(dialogText[itor]);
             }
 

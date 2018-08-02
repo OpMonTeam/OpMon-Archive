@@ -115,8 +115,8 @@ UNS
             }
 
 	  TrainerEvent::TrainerEvent(std::vector<sf::Texture> &textures, sf::Vector2f const& position, OpTeam team, std::vector<Utils::OpString> const &dialogKeys, std::vector<Utils::OpString> const &defeatedDialog, Side posDir, EventTrigger eventTrigger, MoveStyle moveStyle, std::vector<Side> predefinedPath, bool passable, int side)
-	    : Event(textures, eventTrigger, position, sides, passable),
-	    TalkingCharaEvent(textures, position, dialogKeys, posDir, eventTrigger, moveStyle, predefinedPath, passable, sides), team(team), defeatedDialog(defeatedDialog){
+	    : Event(textures, eventTrigger, position, side, passable),
+	    TalkingCharaEvent(textures, position, dialogKeys, posDir, eventTrigger, moveStyle, predefinedPath, passable, side), team(team), defeatedDialog(defeatedDialog){
 	    
 	  }
 
