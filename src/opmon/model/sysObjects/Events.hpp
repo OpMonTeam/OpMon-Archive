@@ -154,6 +154,7 @@ namespace OpMon {
                 virtual void action(Model::Player &player, View::Overworld &overworld);
 	      virtual void changeDialog(std::vector<Utils::OpString> newDialog){
 		dialogKeys = newDialog;
+		this->onLangChanged();
 	      }
             };
 

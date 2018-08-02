@@ -7,6 +7,10 @@ namespace OpMon {
         using namespace Model;
 
 
+      BattleCtrl::~BattleCtrl(){
+	
+      }
+      
       BattleCtrl::BattleCtrl(OpTeam *one, Events::TrainerEvent *two, UiData *uidata, Player *player)
 	: BattleCtrl(one, two->getOpTeam(), uidata, player)
       {
@@ -33,7 +37,7 @@ namespace OpMon {
 		  if(trainer != nullptr){
 		    trainer->defeat();
 		  }
-                    returned = GameStatus::PREVIOUS;
+		  returned = GameStatus::PREVIOUS;
                 }
             }
             return returned;
