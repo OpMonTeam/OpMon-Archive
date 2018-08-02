@@ -351,7 +351,6 @@ UNS
 		triggerBattle = false;
 		overworld.declareBattle(this);
 	    }
-	    TalkingCharaEvent::update(player, overworld);
 	    if(!defeated){
 	      if(talking && !checkTalking){
 		checkTalking = true;
@@ -360,7 +359,7 @@ UNS
 		triggerBattle = true;
 	      }
 	    }
-	    
+	    TalkingCharaEvent::update(player, overworld);
 	  }
 
 

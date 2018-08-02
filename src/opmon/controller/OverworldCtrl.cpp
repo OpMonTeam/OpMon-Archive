@@ -108,8 +108,9 @@ namespace OpMon {
 		view.endBattle();
 	      }else{
 		_next_gs = new BattleCtrl(data.getPlayer().getOpTeam(), view.getBattleDeclared(), data.getUiDataPtr(), data.getPlayerPtr());
+		return GameStatus::NEXT;
 	      }
-	      return GameStatus::NEXT;
+	      
 	    }
 	    
             return GameStatus::CONTINUE;
