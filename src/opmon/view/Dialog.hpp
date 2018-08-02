@@ -22,7 +22,7 @@ namespace OpMon {
             const std::vector<sf::String> &text;
 
             /** The 3 lines currently displayed. */
-            sf::String txtEnCours[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
+            sf::String currentTxt[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
 
             /** index of the first line currently displayed on screen */
             unsigned int dialogNb = 0;

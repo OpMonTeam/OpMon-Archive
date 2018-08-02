@@ -56,8 +56,8 @@ namespace OpMon {
             std::vector<sf::Texture>::iterator currentTexture;
             Events::EventTrigger eventTrigger;
             sf::Vector2f position; //Sprite's position
-            bool passable;
-            int sides;
+            bool passable = false;
+            int sides = SIDE_ALL;
             Position mapPos;
 
           public:
