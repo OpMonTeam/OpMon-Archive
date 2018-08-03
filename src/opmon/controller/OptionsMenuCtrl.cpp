@@ -9,8 +9,6 @@
 
 #include <math.h>
 
-using namespace std;
-
 enum MenuOption { BACK = 0,
                   FULLSCREEN = 1,
                   LANGUAGE = 2,
@@ -148,17 +146,17 @@ namespace OpMon {
                 data.getUiDataPtr()->getJukebox().setGlobalVolume(100);
 		Model::OptionsSave::modifyParam("volume", "100");
             }
-	    
+
         }
 
         void OptionsMenuCtrl::raiseVolume() {
-            const int newVolume = min(100, data.getUiDataPtr()->getJukebox().getGlobalVolume() + 10);
+            const int newVolume = std::min(100, data.getUiDataPtr()->getJukebox().getGlobalVolume() + 10);
             data.getUiDataPtr()->getJukebox().setGlobalVolume(newVolume);
 	    Model::OptionsSave::modifyParam("volume", std::to_string(newVolume));
         }
 
         void OptionsMenuCtrl::lowerVolume() {
-            const int newVolume = max(0, data.getUiDataPtr()->getJukebox().getGlobalVolume() - 10);
+            const int newVolume = std::max(0, data.getUiDataPtr()->getJukebox().getGlobalVolume() - 10);
             data.getUiDataPtr()->getJukebox().setGlobalVolume(newVolume);
 	    Model::OptionsSave::modifyParam("volume", std::to_string(newVolume));
         }

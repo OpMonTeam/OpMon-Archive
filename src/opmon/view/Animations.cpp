@@ -5,8 +5,6 @@
 #include "../start/Core.hpp"
 #include "../view/Window.hpp"
 
-UNS
-
   namespace OpMon {
     namespace View {
 

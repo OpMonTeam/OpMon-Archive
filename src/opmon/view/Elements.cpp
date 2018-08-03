@@ -2,8 +2,6 @@
 #include "../../utils/defines.hpp"
 #include "../model/storage/ResourceLoader.hpp"
 
-UNS
-
   namespace OpMon {
     namespace View {
 

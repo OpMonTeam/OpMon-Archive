@@ -47,7 +47,7 @@ namespace OpMon {
         bool Position::move(Side dir, Map *map) {
             if(!anim && !moveLock) {
                 this->dir = dir;
-                
+
                 anim = true;
 
                 if((!event && debugCol) || checkPass(dir, map)) {
@@ -73,11 +73,10 @@ namespace OpMon {
                         break;
                     }
                     return true;
-                }else{
-		  return false;
-		}
-		
+                }
             }
+
+						return false;
         }
 
         Position *Position::playerPos = nullptr;

@@ -2,34 +2,32 @@
 #include "../../../utils/log.hpp"
 #include "../../start/Core.hpp"
 
-UNS
-
   namespace OpMon {
     namespace Model {
         namespace OptionsSave {
 
-            int searchParam(string const &name);
+            int searchParam(std::string const &name);
 
-            Param::Param(string name, string value) {
+            Param::Param(std::string name, std::string value) {
                 this->paramName = name;
                 this->value = value;
             }
 
-            string Param::getName() const {
+            std::string Param::getName() const {
                 return this->paramName;
             }
 
-            string Param::getValue() const {
+            std::string Param::getValue() const {
                 return this->value;
             }
 
-            void Param::setValue(string value) {
+            void Param::setValue(std::string value) {
                 this->value = value;
             }
 
             std::vector<Param> paramList;
 
-            Param getParam(string const &name) {
+            Param getParam(std::string const &name) {
                 if(searchParam(name) != -1) {
                     return paramList[searchParam(name)];
                 } else {
@@ -37,7 +35,7 @@ UNS
                 }
             }
 
-            void addOrModifParam(string const &name, string const &value) {
+            void addOrModifParam(std::string const &name, std::string const &value) {
                 if(searchParam(name) == -1) { //Add Param (No Exist)
                     paramList.push_back(Param(name, value));
                 } else { //Param Exist
@@ -45,7 +43,7 @@ UNS
                 }
             }
 
-            Param deleteParam(string const &name) {
+            Param deleteParam(std::string const &name) {
                 if(searchParam(name) == -1) {
                     return Param("NULL", "NULL");
                 } else {
@@ -55,7 +53,7 @@ UNS
                 }
             }
 
-            int searchParam(string const &name) {
+            int searchParam(std::string const &name) {
                 for(size_t i = 0; i < paramList.size(); ++i) {
                     if(paramList[i].getName() == name) {
                         return i;
@@ -64,18 +62,18 @@ UNS
                 return -1;
             }
 
-            void initParams(string const &file) {
+            void initParams(std::string const &file) {
                 Utils::Log::oplog("Settings loading");
-                ifstream stream(file.c_str());
+                std::ifstream stream(file.c_str());
                 if(!stream) { //Si le fichier ne peut etre ouvert, il est crée et sera ouvert lors de la sauvegarde.
-                    ofstream strm(file.c_str());
+                    std::ofstream strm(file.c_str());
                     strm.close();
-                    ifstream cpy(file.c_str());
+                    std::ifstream cpy(file.c_str());
                     handleError(
                       "Unable to open the settings file. If the file was only non-existent, it was created. It will therefore be opened correctly when rebooting.",
                       false);
                 }
-                string read;
+                std::string read;
                 int i = 0;
                 for(i = 0; i <
                            100000;
@@ -85,7 +83,7 @@ UNS
                          "pm|")) { //Vérifie si le préfixe pm| est bien présent, sinon arrête la boucle.
                         break;
                     }
-                    string noPm = Utils::StringKeys::sfStringtoStdString(Utils::StringKeys::split(read, '|')[1]); //Ne prend que la partie après le pm|
+                    std::string noPm = Utils::StringKeys::sfStringtoStdString(Utils::StringKeys::split(read, '|')[1]); //Ne prend que la partie après le pm|
                     std::vector<sf::String> splitted = Utils::StringKeys::split(noPm, '=');
                     Param newParam = Param(Utils::StringKeys::sfStringtoStdString(splitted[0]),
                                            Utils::StringKeys::sfStringtoStdString(splitted[1])); //Splitte ensuite en deux parties, le name et la valeur du paramètre.
@@ -100,21 +98,21 @@ UNS
                 stream.close();
             }
 
-            void saveParams(string const &file) {
-                ofstream stream(file.c_str());
-                string toGo;
+            void saveParams(std::string const &file) {
+                std::ofstream stream(file.c_str());
+                std::string toGo;
                 for(auto &currentObj : paramList) {
                     //cout << objActuel->getName() << endl;
                     toGo += ("pm|" + currentObj.getName() + "=" + currentObj.getValue() +
                              '\n'); //Ajoute le pm| puis écrit le paramètre dans le fichier.
                     //cout << toGo;
                     stream << toGo;
-                    toGo = string("");
+                    toGo = std::string("");
                 }
                 stream.close();
             }
 
-            bool checkParam(string const &name) {
+            bool checkParam(std::string const &name) {
                 return searchParam(name) != -1;
             }
 

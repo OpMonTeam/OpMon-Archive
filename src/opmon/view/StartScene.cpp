@@ -7,8 +7,6 @@
 #include "./Window.hpp"
 #include "Dialog.hpp"
 
-UNS
-
   namespace OpMon {
     namespace View {
 
@@ -17,16 +15,16 @@ UNS
 
             unsigned int it = 0;
             for(it = 0; it < 18; it++) {
-                string actual;
-                actual << string("prof.dialog.start.") << it + 1;
+                std::string actual;
+                actual << std::string("prof.dialog.start.") << it + 1;
                 txtP0.push_back(kget(actual));
             }
             it++;
             strName = Utils::OpString("prof.dialog.start.19", data.getPlayer().getNameP());
             txtP1.emplace_back(); // empty space replaced later by OpString 'strName'
             for(it = it; it < 27; it++) {
-                string actual;
-                actual << string("prof.dialog.start.") << it + 1;
+                std::string actual;
+                actual << std::string("prof.dialog.start.") << it + 1;
                 txtP1.push_back(kget(actual));
             }
 

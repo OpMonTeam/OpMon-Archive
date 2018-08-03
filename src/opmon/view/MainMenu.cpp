@@ -7,8 +7,6 @@
 #include "Window.hpp"
 #include <iostream>
 
-using namespace std;
-
 namespace OpMon {
     namespace View {
 
