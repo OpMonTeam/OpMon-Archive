@@ -11,11 +11,6 @@
 
 #include <string>
 
-/**
-Shortcuts
-*/
-#define UNS using namespace std;
-
 /* location of the save folder */
 #define SAVE_PATH Utils::Path::getSavePath()
 

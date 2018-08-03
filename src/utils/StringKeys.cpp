@@ -4,15 +4,13 @@
 #include <cstdio>
 #include <fstream>
 
-UNS
-
   namespace Utils {
     namespace StringKeys {
-        vector<string> keys = vector<string>();
-        vector<sf::String> strings = vector<sf::String>();
+      	std:: vector<std::string> keys = std::vector<std::string>();
+      	std::vector<sf::String> strings = std::vector<sf::String>();
 
-        sf::String readLine(ifstream &input) {
-            basic_string<unsigned char> toReturn;
+        sf::String readLine(std::ifstream &input) {
+            std::basic_string<unsigned char> toReturn;
             for(unsigned int i = 0; i < 1024; i++) {
                 int got = input.get();
                 // char traded = got;
@@ -29,19 +27,19 @@ UNS
         }
 
         std::string sfStringtoStdString(sf::String const &str) {
-            string toReelReturn;
-            basic_string<unsigned char> bs = str.toUtf8();
+            std::string toReelReturn;
+            std::basic_string<unsigned char> bs = str.toUtf8();
             for(unsigned int i = 0; i < bs.size(); i++) {
                 toReelReturn += bs.at(i);
             }
             return toReelReturn;
         }
 
-        bool initialize(const string &keysFileS) {
+        bool initialize(const std::string &keysFileS) {
             //Ouverture du fichier de clées, initialisation des vectors
-            ifstream keysFile = OpMon::Model::ResourceLoader::loadKeysFile(keysFileS.c_str());
-            keys = vector<string>();
-            strings = vector<sf::String>();
+            std::ifstream keysFile = OpMon::Model::ResourceLoader::loadKeysFile(keysFileS.c_str());
+            keys = std::vector<std::string>();
+            strings = std::vector<sf::String>();
             Log::oplog("Keys initialization");
             if(!keysFile) {
                 // Opening of th keys file failed
@@ -74,8 +72,8 @@ UNS
 
         sf::String voi;
 
-        sf::String &get(string key) {
-            key = string("key.") + key;                     //Ajout du préfixe key.
+        sf::String &get(std::string key) {
+            key = std::string("key.") + key;                     //Ajout du préfixe key.
             for(unsigned int i = 0; i < keys.size(); i++) { //Scanne les clées
                 if(keys[i] == key) {
                     return strings[i];
@@ -84,8 +82,8 @@ UNS
             return voi; //Si rien trouvé, retourne une chaine vide.
         }
 
-        int getIndex(string key) {
-            key = string("key.") + key;                     //Ajout du préfixe key.
+        int getIndex(std::string key) {
+            key = std::string("key.") + key;                     //Ajout du préfixe key.
             for(unsigned int i = 0; i < keys.size(); i++) { //Scanne les clées
                 if(keys[i] == key) {
                     return i;
