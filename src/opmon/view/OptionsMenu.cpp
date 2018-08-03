@@ -3,8 +3,6 @@
 #include "../model/storage/ResourceLoader.hpp"
 #include "Window.hpp"
 
-UNS
-
   namespace OpMon {
     namespace View {
 

@@ -13,13 +13,11 @@
 using namespace OpMon::Model;
 using Utils::Log::oplog;
 
-UNS
-
   namespace OpMon {
     /*
     Logs and save files initialization
   */
-    string optSave(SAVE_PATH + "optSave.oparams");
+    std::string optSave(SAVE_PATH + "optSave.oparams");
 
     bool debugMode = false;
     bool debugCol = false;
@@ -29,22 +27,22 @@ UNS
     //The number of errors handeled in the program.
     int errors = 0;
 
-    void handleError(string const &errorName, bool fatal) {
+    void handleError(std::string const &errorName, bool fatal) {
         errors++;
-        ostringstream osslog;
-        osslog << string("Error  n°") << errors << (string(" : ") + errorName);
+        std::ostringstream osslog;
+        osslog << std::string("Error  n°") << errors << (std::string(" : ") + errorName);
         oplog(osslog.str(), true);
-        cerr << "Error n°" << errors << " : " << errorName << endl;
+        std::cerr << "Error n°" << errors << " : " << errorName << std::endl;
         if(errors > 20) { //If the program gets more than 20 errors, it stops.
-            cerr << "Too many errors. Closing program. Please verify your installation." << endl;
+            std::cerr << "Too many errors. Closing program. Please verify your installation." << std::endl;
             oplog("Too many errors. Closing program. Please verify your installation. If the problems persists, warn us.", true);
             fatal = true;
         }
         if(fatal) {
-            ostringstream ossslog;
+            std::ostringstream ossslog;
             ossslog << "Fatal error. Total errors : " << errors;
             oplog(ossslog.str(), true);
-            cerr << "Fatal error." << endl;
+            std::cerr << "Fatal error." << std::endl;
             oplog("Crash.");
             quit(1);
         }
@@ -59,7 +57,7 @@ UNS
         //  delete(Main::player.getOp(i));
         // }
 
-        ostringstream osslog;
+        std::ostringstream osslog;
         osslog << "End of the program. Return " << returns;
         oplog(osslog.str());
         if(returns != 0) {
@@ -75,22 +73,22 @@ UNS
     }
 
     std::string &operator<<(std::string &str, int nbre) {
-        ostringstream oss;
+        std::ostringstream oss;
         oss << str << nbre;
         str = oss.str();
         return str;
     }
 
     std::string &operator<<(std::string &str, std::string const &thing) {
-        ostringstream oss;
+        std::ostringstream oss;
         oss << str << thing;
         str = oss.str();
         return str;
     }
 
     std::string &operator<<(std::string &str, char thing[]) {
-        string strThing(thing);
-        ostringstream oss;
+        std::string strThing(thing);
+        std::ostringstream oss;
         oss << str << strThing;
         str = oss.str();
         return str;

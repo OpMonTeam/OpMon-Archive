@@ -21,7 +21,7 @@
 
 #endif
 
-UNS using OpMon::Model::Side;
+using OpMon::Model::Side;
 
 namespace OpMon {
     namespace View {
@@ -199,15 +199,15 @@ namespace OpMon {
 
             sf::Text debugText;
             if(debugMode) {
-                cout << "[FRAME Nｰ" << frames << "]" << endl;
-                cout << "Loop : " << (is_in_dialog ? "Dialog" : "Normal") << endl;
-                cout << "Tick: " << Utils::Time::getElapsedMilliseconds() << "ms" << endl;
-                cout << "PlayerPosition: " << data.getPlayer().getPosition().getPosition().x << " - " << data.getPlayer().getPosition().getPosition().y << endl;
-                cout << "PlayerPositionPx: " << character.getPosition().x << " - " << character.getPosition().y << endl;
-                cout << "Moving: " << (data.getPlayer().getPosition().isMoving() ? "true" : "false") << endl;
-                cout << "Anim: " << (data.getPlayer().getPosition().isAnim() ? "true" : "false") << endl;
-                cout << "PlayerDirection: " << (int)data.getPlayer().getPosition().getDir() << endl;
-                cout << "Start Frames : " << startFrames << endl;
+                std::cout << "[FRAME Nｰ" << frames << "]" << std::endl;
+                std::cout << "Loop : " << (is_in_dialog ? "Dialog" : "Normal") << std::endl;
+                std::cout << "Tick: " << Utils::Time::getElapsedMilliseconds() << "ms" << std::endl;
+                std::cout << "PlayerPosition: " << data.getPlayer().getPosition().getPosition().x << " - " << data.getPlayer().getPosition().getPosition().y << std::endl;
+                std::cout << "PlayerPositionPx: " << character.getPosition().x << " - " << character.getPosition().y << std::endl;
+                std::cout << "Moving: " << (data.getPlayer().getPosition().isMoving() ? "true" : "false") << std::endl;
+                std::cout << "Anim: " << (data.getPlayer().getPosition().isAnim() ? "true" : "false") << std::endl;
+                std::cout << "PlayerDirection: " << (int)data.getPlayer().getPosition().getDir() << std::endl;
+                std::cout << "Start Frames : " << startFrames << std::endl;
 
                 debugText.setString("Debug mode");
                 debugText.setPosition(0, 0);
@@ -219,8 +219,8 @@ namespace OpMon {
                 //fpsPrint.setFillColor(sf::Color(127, 127, 127));
                 fpsPrint.setCharacterSize(48);
                 std::ostringstream oss;
-                oss << "Position : " << data.getPlayer().getPosition().getPosition().x << " - " << data.getPlayer().getPosition().getPosition().y << endl
-                    << "PxPosition : " << character.getPosition().x << " - " << character.getPosition().y << endl;
+                oss << "Position : " << data.getPlayer().getPosition().getPosition().x << " - " << data.getPlayer().getPosition().getPosition().y << std::endl
+                    << "PxPosition : " << character.getPosition().x << " - " << character.getPosition().y << std::endl;
                 coordPrint.setString(oss.str());
                 coordPrint.setFont(data.getUiDataPtr()->getFont());
                 coordPrint.setPosition(0, 100);

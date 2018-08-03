@@ -35,7 +35,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 #endif
 
 //#define DEBUG
-UNS
 
   namespace OpMon {
     namespace Main {
@@ -43,19 +42,19 @@ UNS
         //bool connected = false;
         /** Trainer names. No longer useful.*/
         //->Useless
-        string trainers[] = {"Brice", "Navet", "Mael", "Cyrion", "Red", "Blue", "Nikolai", "N", "Belladonis", "Aristote",
+        std::string trainers[] = {"Brice", "Navet", "Mael", "Cyrion", "Red", "Blue", "Nikolai", "N", "Belladonis", "Aristote",
                              "Giovanni", "Flora", "Silver", "Jules Cesar", "Brahim"};
 
-        string version = OPMON_VERSION;
+        std::string version = OPMON_VERSION;
 
-        string pre = "0";
+        std::string pre = "0";
 
-        string versionS;
+        std::string versionS;
         /*
           #ifdef _WIN32
-          string sep = "\\";
+          std::string sep = "\\";
           #else
-          string sep = "/";
+          std::string sep = "/";
           #endif
         */
         //bool reboot = false;
@@ -64,7 +63,7 @@ UNS
 
             oplog("Log opening OK. Welcome in OpMon Lazuli.");
             oplog("Version : Alpha " + version + ((pre == "0") ? "" : ("-pre_" + pre)));
-            ostringstream osslog;
+            std::ostringstream osslog;
             osslog << "Date in seconds : " << time(NULL);
             oplog(osslog.str());
 #ifdef _WIN32
@@ -118,41 +117,41 @@ UNS
 int main(int argc, char *argv[]) {
     Utils::Time::initClock();
     if(!Utils::Log::init()) {
-        cout << "Exiting" << endl;
+        std::cout << "Exiting" << std:: endl;
         return -1;
     }
 
     auto versionS = "Version : Alpha " + OpMon::Main::version + ((OpMon::Main::pre == "0") ? "" : ("-pre_" + OpMon::Main::pre));
 
     if(!ResourceLoader::checkResourceFolderExists() || !Utils::Fs::mkdir(SAVE_PATH)) {
-        cout << "Exiting" << endl;
+        std::cout << "Exiting" << std:: endl;
         return -1;
     }
 
     //Checking parameters
     if(argc >= 2) {
         for(int i = 0; i < argc; i++) {
-            string str = string(argv[i]);
+            std::string str = std::string(argv[i]);
             if(str == "--version") {
-                cout << "OpMon Lazuli version " << versionS << endl;
-                cout << "Under GNU GPL v3.0 license" << endl;
-                cout << "http://opmon-game.ga" << endl;
+                std::cout << "OpMon Lazuli version " << versionS << std:: endl;
+                std::cout << "Under GNU GPL v3.0 license" << std:: endl;
+                std::cout << "http://opmon-game.ga" << std:: endl;
                 return 0;
             } else if(str == "--help") {
-                cout << "--version : Prints the version and quit." << endl;
-                cout << "--help : Prints this message and quit." << endl;
-                //cout << "--opt <path> : Changes the options save file's location." << endl;
-                cout << "--debug : Starts the game with debug code. Changes when needed." << endl;
+                std::cout << "--version : Prints the version and quit." << std:: endl;
+                std::cout << "--help : Prints this message and quit." << std:: endl;
+                //std::cout << "--opt <path> : Changes the options save file's location." << std:: endl;
+                std::cout << "--debug : Starts the game with debug code. Changes when needed." << std:: endl;
                 return 0;
             } else if(str == "--debug") {
-                cout << (int)Side::TO_UP << endl;
-                cout << (int)Side::TO_DOWN << endl;
-                cout << (int)Side::TO_LEFT << endl;
-                cout << (int)Side::TO_RIGHT << endl;
-                cout << (int)(Side::TO_UP + 4) << endl;
+                std::cout << (int)Side::TO_UP << std:: endl;
+                std::cout << (int)Side::TO_DOWN << std:: endl;
+                std::cout << (int)Side::TO_LEFT << std:: endl;
+                std::cout << (int)Side::TO_RIGHT << std:: endl;
+                std::cout << (int)(Side::TO_UP + 4) << std:: endl;
                 return 0;
             } else {
-                cout << "Unknown parameters. Skipping." << endl;
+                std::cout << "Unknown parameters. Skipping." << std:: endl;
             }
         }
     }

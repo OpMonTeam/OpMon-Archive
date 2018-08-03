@@ -1,12 +1,10 @@
 #include "IHeal.hpp"
 #include "../../../../utils/defines.hpp"
 
-UNS
-
   namespace OpMon {
     namespace Model {
 
-        I_Heal::I_Heal(string &name, bool usable, bool usableInFight, bool givable, BagCat categorie, int hpHeal, Status heal, bool healAllStatus, int ID)
+        I_Heal::I_Heal(std::string &name, bool usable, bool usableInFight, bool givable, BagCat categorie, int hpHeal, Status heal, bool healAllStatus, int ID)
           : Item(name, usable, usableInFight, givable, categorie, ID) {
             this->hpHeal = hpHeal;
             this->healed = heal;
@@ -17,7 +15,7 @@ UNS
             PPheal = false;
         }
 
-        I_Heal::I_Heal(string &name, bool usable, bool usableInFight, bool givable, BagCat categorie, int ppHeal, bool allAttacksHeal, int ID)
+        I_Heal::I_Heal(std::string &name, bool usable, bool usableInFight, bool givable, BagCat categorie, int ppHeal, bool allAttacksHeal, int ID)
           : Item(name, usable, usableInFight, givable, categorie, ID) {
             this->hpHeal = 0;
             this->healed = Status::NOTHING;
@@ -28,7 +26,7 @@ UNS
             this->allAttacksHeal = allAttacksHeal;
         }
 
-        I_Heal::I_Heal(string &name, bool usable, bool usableInFight, bool givable, BagCat categorie, int hpHeal, int ID)
+        I_Heal::I_Heal(std::string &name, bool usable, bool usableInFight, bool givable, BagCat categorie, int hpHeal, int ID)
           : Item(name, usable, usableInFight, givable, categorie, ID) {
             this->hpHeal = hpHeal;
             this->healed = Status::NOTHING;
@@ -39,7 +37,7 @@ UNS
             PPheal = false;
         }
 #pragma GCC diagnostic ignored "-Wunused-parameter"
-        I_Heal::I_Heal(string &name, bool usable, bool usableInFight, bool givable, BagCat categorie, Status heal, bool healAllStatus, int ID, bool status)
+        I_Heal::I_Heal(std::string &name, bool usable, bool usableInFight, bool givable, BagCat categorie, Status heal, bool healAllStatus, int ID, bool status)
           : Item(name, usable, usableInFight, givable, categorie, ID) {
             this->hpHeal = 0;
             this->healed = heal;
@@ -51,7 +49,7 @@ UNS
         }
 #pragma GCC diagnostic pop
 
-        I_Heal::I_Heal(string &name, Stats statAdd, int ID)
+        I_Heal::I_Heal(std::string &name, Stats statAdd, int ID)
           : Item(name, true, true, true, BagCat::HEAL, ID) {
             hpHeal = 0;
             healed = Status::NOTHING;

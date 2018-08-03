@@ -7,7 +7,6 @@
 #include "Position.hpp"
 
 #pragma GCC diagnostic ignored "-Wunused-parameter"
-UNS
 
   namespace OpMon {
     namespace Model {
@@ -46,7 +45,7 @@ UNS
             }
 
             TPEvent::TPEvent(std::vector<sf::Texture> &otherTextures, EventTrigger eventTrigger,
-                             sf::Vector2f const &position, sf::Vector2i const &tpPos, string const &map, Side ppDir,
+                             sf::Vector2f const &position, sf::Vector2i const &tpPos, std::string const &map, Side ppDir,
                              int sides, bool passable)
               : Event(otherTextures, eventTrigger, position, sides, passable)
               , tpCoord(tpPos)
@@ -55,7 +54,7 @@ UNS
             }
 
             DoorEvent::DoorEvent(std::vector<sf::Texture> &doorTextures, std::string doorType, sf::Vector2f const &position, sf::Vector2i const &tpPos,
-                                 string const &map, EventTrigger eventTrigger, Side ppDir, int sides, bool passable)
+                                 std::string const &map, EventTrigger eventTrigger, Side ppDir, int sides, bool passable)
               : Event(doorTextures, eventTrigger, position, sides, passable)
               , TPEvent(doorTextures, eventTrigger, position, tpPos, map, ppDir, sides, passable)
               , doorType(doorType) {
@@ -84,7 +83,7 @@ UNS
             }
 
             LockedDoorEvent::LockedDoorEvent(std::vector<sf::Texture> &doorTextures, std::string doorType, Item *needed, sf::Vector2f const &position,
-                                             sf::Vector2i const &tpPos, string const &map, Side ppDir,
+                                             sf::Vector2i const &tpPos, std::string const &map, Side ppDir,
                                              EventTrigger eventTrigger, bool consumeItem, int sides, bool passable)
               : DoorEvent(doorTextures, doorType, position, tpPos, map, eventTrigger, ppDir, sides, passable)
               , Event(doorTextures, eventTrigger, position, sides, passable)
@@ -117,17 +116,17 @@ UNS
 	  TrainerEvent::TrainerEvent(std::vector<sf::Texture> &textures, sf::Vector2f const& position, OpTeam team, std::vector<Utils::OpString> const &dialogKeys, std::vector<Utils::OpString> const &defeatedDialog, Side posDir, EventTrigger eventTrigger, MoveStyle moveStyle, std::vector<Side> predefinedPath, bool passable, int side)
 	    : Event(textures, eventTrigger, position, side, passable),
 	    TalkingCharaEvent(textures, position, dialogKeys, posDir, eventTrigger, moveStyle, predefinedPath, passable, side), team(team), defeatedDialog(defeatedDialog){
-	    
+
 	  }
 
 	  TrainerEyesightEvent::TrainerEyesightEvent(TrainerEvent* trainer, sf::Vector2f position)
 	    : Event(alpha, EventTrigger::BE_IN, position, SIDE_ALL, true),
 	      trainer(trainer)
 	  {
-	    
+
 	  }
 
-	  
+
 
             //Actions
 
@@ -181,7 +180,7 @@ UNS
                         if(predefinedCounter >= movements.size()) {
                             predefinedCounter = 0;
                         }
-                        
+
                         if(!move(movements[predefinedCounter], overworld.getData().getCurrentMap())) {
                             if(predefinedCounter != 0) {
 			      predefinedCounter--;

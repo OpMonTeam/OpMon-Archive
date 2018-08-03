@@ -5,18 +5,16 @@
 #include <iostream>
 #include <sstream>
 
-UNS
-
   namespace OpMon {
     namespace Model {
         namespace Save {
-            ostringstream saveOutput;
-            int save(Player *toSave, string const &fileOut) {
+            std::ostringstream saveOutput;
+            int save(Player *toSave, std::string const &fileOut) {
                 //Ouverture du flux de sauvegarde
-                ofstream outStream(fileOut.c_str());
-                string outStr;
+                std::ofstream outStream(fileOut.c_str());
+                std::string outStr;
                 //Indique que c'est bien une sauvegarde de OpMon
-                saveOutput << "OP_SAVE" << endl;
+                saveOutput << "OP_SAVE" << std::endl;
                 toSave->save();
                 outStr = SOUT.str();
                 /*
@@ -33,15 +31,15 @@ UNS
 
             Player *loadPlayer(std::string const &fileIn) {
                 //Ouverture des flux de chargement
-                ifstream inStream(fileIn.c_str());
-                string inStr;
+                std::ifstream inStream(fileIn.c_str());
+                std::string inStr;
                 //char actu = '\0';
-                string verif = readLine(inStream);
+                std::string verif = readLine(inStream);
                 if(verif != "OP_SAVE") { //Vérification de la validité du fichier de sauvegarde
                     return nullptr;
                 }
                 //Lecture des objets
-                string pname = readLine(inStream);
+                std::string pname = readLine(inStream);
                 Player *toReturn = new Player(inStream, pname);
                 //int hash = inStream.get();
                 //Fermeture du flux
@@ -73,7 +71,7 @@ UNS
             }
 
             std::string readLine(std::ifstream &in) {
-                string toReturn("");
+                std::string toReturn("");
                 char actu = '\0';
                 while(true) { //Lit la chaine caractère par caractère
                     actu = in.get();
