@@ -4,8 +4,6 @@
 #include "IHeal.hpp"
 #include "IOpBox.hpp"
 
-UNS
-
   namespace OpMon {
     namespace Model {
 
@@ -52,7 +50,7 @@ UNS
             //NINTENDO(c)
         }
 
-        Item::Item(string name, bool usable, bool usableInFight, bool givable, BagCat categorie, int id)
+        Item::Item(std::string name, bool usable, bool usableInFight, bool givable, BagCat categorie, int id)
           : name(name) {
             this->usable = usable;
             this->usableInFight = usableInFight;
@@ -61,7 +59,7 @@ UNS
             this->categorie = categorie;
         }
 
-        Item *Item::getItem(string const &name) {
+        Item *Item::getItem(std::string const &name) {
             for(unsigned int i = 0; i < ITEM_NUMBER; i++) {
                 if(itemsLst[i] != nullptr) {
                     if(itemsLst[i]->getName() == name) {
@@ -91,25 +89,12 @@ UNS
         }
 
         bool Item::operator==(Item const &b) const {
-            if(categorie != b.categorie) {
-                return false;
-            }
-            if(givable != b.givable) {
-                return false;
-            }
-            if(!(name == b.name)) {
-                return false;
-            }
-            if(usable != b.usable) {
-                return false;
-            }
-            if(usableInFight != b.usableInFight) {
-                return false;
-            }
-            if(id != b.id) {
-                return false;
-            }
-            return true;
+						return (categorie == b.categorie)
+								&& (givable == b.givable)
+								&& (name == b.name)
+								&& (usable == b.usable)
+								&& (usableInFight == b.usableInFight)
+								&& (id == b.id);
         }
 
     } // namespace Model

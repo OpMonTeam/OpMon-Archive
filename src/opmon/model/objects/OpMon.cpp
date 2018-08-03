@@ -11,8 +11,6 @@
 #include <fstream>
 #include <sstream>
 
-UNS
-
   namespace OpMon {
     namespace Model {
 
@@ -24,7 +22,7 @@ UNS
             }
         }
 
-      OpMon::OpMon(const string &nickname, const Species *species, int level, const std::vector<Attack *> &attacks, Nature nature)
+      OpMon::OpMon(const std::string &nickname, const Species *species, int level, const std::vector<Attack *> &attacks, Nature nature)
 	: species(species), level(level), attacks(attacks), nature(nature), nickname((nickname.empty()) ? species->getName() : nickname){
             atkIV = Utils::Misc::randU(32);
             defIV = Utils::Misc::randU(32);
@@ -34,7 +32,7 @@ UNS
             hpIV = Utils::Misc::randU(32);
 
             calcStats();
-	    
+
             tauxCapture = species->getCaptureRate();
             HP = statHP;
             type1 = species->getType1();
@@ -151,7 +149,7 @@ UNS
 
         void OpMon::getEvs(OpMon const &vaincu) {
             if(!((atkEV + defEV + hpEV + atkSpeEV + defSpeEV + speEV) > 510)) {
-                vector<Stats> statsVaincu;
+                std::vector<Stats> statsVaincu;
                 for(int i = 0; i < vaincu.species->getEvSize(); i++) {
                     statsVaincu.push_back(vaincu.species->getEv()[i]);
                 }
@@ -1338,7 +1336,7 @@ UNS
         }
 
         void OpMon::heal(int HP) {
-            this->HP = min(statHP, HP + this->HP);
+            this->HP = std::min(statHP, HP + this->HP);
         }
 
         void OpMon::setType1(Type type) {
@@ -1349,26 +1347,26 @@ UNS
             this->type2 = type;
         }
 
-        string OpMon::save() {
+        std::string OpMon::save() {
             if(!initialized) {
 
-                ostringstream oss;
-                oss << nickname << endl;
-                oss << Save::intToChar(atkIV) << endl;
-                oss << Save::intToChar(defIV) << endl;
-                oss << Save::intToChar(atkSpeIV) << endl;
-                oss << Save::intToChar(defSpeIV) << endl;
-                oss << Save::intToChar(speIV) << endl;
-                oss << Save::intToChar(hpIV) << endl;
-                oss << Save::intToChar(atkEV) << endl;
-                oss << Save::intToChar(defEV) << endl;
-                oss << Save::intToChar(atkSpeEV) << endl;
-                oss << Save::intToChar(defSpeEV) << endl;
-                oss << Save::intToChar(speEV) << endl;
-                oss << Save::intToChar(hpEV) << endl;
-                oss << Save::intToChar(statLove) << endl;
-                oss << Save::intToChar(level) << endl;
-                oss << Save::intToChar(natures[(int)nature].id) << endl;
+                std::ostringstream oss;
+                oss << nickname << std::endl;
+                oss << Save::intToChar(atkIV) << std::endl;
+                oss << Save::intToChar(defIV) << std::endl;
+                oss << Save::intToChar(atkSpeIV) << std::endl;
+                oss << Save::intToChar(defSpeIV) << std::endl;
+                oss << Save::intToChar(speIV) << std::endl;
+                oss << Save::intToChar(hpIV) << std::endl;
+                oss << Save::intToChar(atkEV) << std::endl;
+                oss << Save::intToChar(defEV) << std::endl;
+                oss << Save::intToChar(atkSpeEV) << std::endl;
+                oss << Save::intToChar(defSpeEV) << std::endl;
+                oss << Save::intToChar(speEV) << std::endl;
+                oss << Save::intToChar(hpEV) << std::endl;
+                oss << Save::intToChar(statLove) << std::endl;
+                oss << Save::intToChar(level) << std::endl;
+                oss << Save::intToChar(natures[(int)nature].id) << std::endl;
                 /*for(unsigned int it = 0; it < 4; it++){
                 cout << "Attack : " << it << " Pointer : " << attaques[it] << endl;
                 Attack *atk = attaques[it];
@@ -1385,28 +1383,28 @@ UNS
                     if(attacks[i] != nullptr)
                         oss << attacks[i]->save();
                     else
-                        oss << "NULL" << endl;
+                        oss << "NULL" << std::endl;
                 }
-                oss << Save::intToChar(species->getOpdexNumber()) << endl;
-                oss << Save::intToChar(HP) << endl;
-                oss << Save::intToChar(exp) << endl;
-                oss << Save::intToChar(toNextLevel) << endl;
-                oss << Save::intToChar(expBoost * 10) << endl;
+                oss << Save::intToChar(species->getOpdexNumber()) << std::endl;
+                oss << Save::intToChar(HP) << std::endl;
+                oss << Save::intToChar(exp) << std::endl;
+                oss << Save::intToChar(toNextLevel) << std::endl;
+                oss << Save::intToChar(expBoost * 10) << std::endl;
                 if(held != nullptr) {
-                    oss << "Y" << endl;
-                    oss << Save::intToChar(held->getID()) << endl;
+                    oss << "Y" << std::endl;
+                    oss << Save::intToChar(held->getID()) << std::endl;
                 } else {
-                    oss << "N" << endl;
-                    oss << endl;
+                    oss << "N" << std::endl;
+                    oss << std::endl;
                 }
-                oss << Save::intToChar(tauxCapture) << endl;
+                oss << Save::intToChar(tauxCapture) << std::endl;
                 return oss.str();
             } else {
                 return "NULL\n";
             }
         }
 
-        OpMon::OpMon(ifstream &in) {
+        OpMon::OpMon(std::ifstream &in) {
             this->nickname = Save::readLine(in);
             if(nickname != "NULL") {
                 atkIV = in.get();

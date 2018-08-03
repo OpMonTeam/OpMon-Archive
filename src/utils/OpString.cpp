@@ -2,15 +2,13 @@
 #include "StringKeys.hpp"
 #include <cstdarg>
 
-UNS
-
   namespace Utils {
     /**
      OpString containing nothing
   */
     OpString OpString::voidStr = OpString("void");
 
-    OpString::OpString(string key, ...) {
+    OpString::OpString(std::string key, ...) {
         va_list ap;
         this->key = key;
         va_start(ap, key);
@@ -22,7 +20,7 @@ UNS
         va_end(ap);
     }
 
-    OpString::OpString(string const &key, vector<sf::String *> obj) {
+    OpString::OpString(std::string const &key, std::vector<sf::String *> obj) {
         this->key = key;
         unsigned int instances = StringKeys::countInstances(StringKeys::get(key), '~');
         this->objects = obj;
@@ -92,7 +90,7 @@ UNS
             return StringKeys::get(key);
         }
         //Ok, so there is some things to do
-        vector<sf::String> splitted = StringKeys::split(StringKeys::get(key), '~'); //Split every ~
+        std::vector<sf::String> splitted = StringKeys::split(StringKeys::get(key), '~'); //Split every ~
         /* Adds a space after if the last character is a ~, to avoid being out of the array.
        This can happen because the program adds the next text after adding a text to complete.
     */
