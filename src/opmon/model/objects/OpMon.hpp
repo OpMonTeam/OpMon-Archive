@@ -63,14 +63,13 @@ namespace OpMon {
             int evaChange = 0;
             int accChange = 0;
             int speChange = 0;
-
+						const Species *species;
             int level;
-
-            Nature nature;
 
             std::vector<Attack *> attacks;
 
-            const Species *species;
+            Nature nature;
+
             /**Warning: This variable contains the current PV of the OPMon, the statPV class contains the max PV*/
             int HP;
             //->ExpectEnum->Status
