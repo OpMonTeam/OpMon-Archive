@@ -78,15 +78,14 @@ namespace OpMon {
         }
 
         void Player::save() {
-            UNS
                 SOUT
-              << Utils::StringKeys::sfStringtoStdString(this->name) << endl;
-            SOUT << Save::intToChar(trainerID) << endl;
-            SOUT << Save::intToChar(ITEM_NUMBER) << endl;
+              << Utils::StringKeys::sfStringtoStdString(this->name) << std::endl;
+            SOUT << Save::intToChar(trainerID) << std::endl;
+            SOUT << Save::intToChar(ITEM_NUMBER) << std::endl;
             for(unsigned int it = 0; it < ITEM_NUMBER; it++) {
-                SOUT << Save::intToChar(bag[it]) << endl;
+                SOUT << Save::intToChar(bag[it]) << std::endl;
             }
-            SOUT << Save::intToChar(pc.size()) << endl;
+            SOUT << Save::intToChar(pc.size()) << std::endl;
             for(unsigned int it = 0; it < pc.size(); it++) {
                 SOUT << pc[it]->save();
             }
@@ -101,7 +100,6 @@ namespace OpMon {
           : name(name)
           , trainerID(in.get())
           , opteam(name) {
-            UNS
               in.get();
             int iNber = in.get();
             in.get();

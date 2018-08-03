@@ -76,11 +76,10 @@ namespace OpMon {
         }
 
         std::string Attack::save() {
-            UNS
-              ostringstream oss;
-            oss << this->className << endl;
-            oss << Save::intToChar(pp) << endl;
-            oss << Save::intToChar(ppMax) << endl;
+            std::ostringstream oss;
+            oss << this->className << std::endl;
+            oss << Save::intToChar(pp) << std::endl;
+            oss << Save::intToChar(ppMax) << std::endl;
             return oss.str();
         }
 
