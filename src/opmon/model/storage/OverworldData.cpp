@@ -45,7 +45,7 @@ namespace OpMon {
 
             //Elements initialization
             elementsCounter["windturbine"] = 0;
-            elementsPos["windturbine"] = sf::Vector2f(8 * 32 + 25 * 32 - 8, 3 * 32 + 8);
+            elementsPos["windturbine"] = sf::Vector2f(8 * 32 + 25 * 32 - 7, 3 * 32 + 15);
 
             ResourceLoader::loadTextureArray(elementsTextures["windturbine"], "animations/windturbine/blade_%d.png", 16, 1);
 
