@@ -64,6 +64,9 @@ namespace OpMon {
 	  BattleCtrl(Model::OpTeam *one, Model::Events::TrainerEvent *two, Model::UiData *uidata, Model::Player *player);
             GameStatus checkEvent(sf::Event const &) override;
             GameStatus update(sf::RenderTexture &frame) override;
+
+	  virtual void suspend();
+	  virtual void resume();
         };
 
     } // namespace Controller
