@@ -277,5 +277,13 @@ namespace OpMon {
             }
             return canAttack;
         }
+
+      void BattleCtrl::suspend(){
+	data.getUiDataPtr()->getJukebox().pause();
+      }
+
+      void BattleCtrl::resume(){
+	data.getUiDataPtr()->getJukebox().play("Wild Battle");
+      }
     } // namespace Controller
 } // namespace OpMon

@@ -17,9 +17,10 @@ namespace OpMon {
             if(defHp == -1) {
                 defHp = defTurn.opmon->getHP();
             }
+	    data.getUiDataPtr()->getJukebox().play("Wild Battle");
             frame.draw(background);
             /*frame.draw(shadowPlayer);
-	frame.draw(shadowTrainer);*/
+	      frame.draw(shadowTrainer);*/
             frame.draw(playerSpr);
             frame.draw(trainerSpr);
             atk.setTexture(data.getUiDataPtr()->getOpSprite(atkTurn.opmon->getSpecies().getOpdexNumber(), false));
