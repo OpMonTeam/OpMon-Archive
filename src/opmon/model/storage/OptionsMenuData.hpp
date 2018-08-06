@@ -13,6 +13,7 @@ namespace OpMon {
             sf::Texture langBg;
             sf::Texture yesTx;
             sf::Texture creditsBg;
+            sf::Texture volumeCur;
 
             OptionsMenuData(OptionsMenuData const &);
 
@@ -22,6 +23,7 @@ namespace OpMon {
             sf::Texture const &getLangBg() const { return langBg; }
             sf::Texture const &getYesTx() const { return yesTx; }
             sf::Texture const &getCreditsBg() const { return creditsBg; }
+            sf::Texture const &getVolumeCur() const { return volumeCur; }
             UiData *getUiDataPtr() { return uidata; }
             OptionsMenuData(UiData *data);
         };

@@ -110,6 +110,10 @@ namespace OpMon {
             coche.setTexture(data.getCreditsBg());
             bgCredits.setTexture(data.getCreditsBg());
 
+            volumeCur.setTexture(data.getVolumeCur());
+            //volumeCur.setPosition(165, 290);//0
+            //volumeCur.setPosition(460, 290);//100
+
             coche.setPosition(425, 88);
 
             initStrings();
@@ -159,7 +163,12 @@ namespace OpMon {
                 curPosOpt[i].x = 23;
                 curPosOpt[i].y = j;
                 curSizeOpt[i].x = 464 / rectSurb.getGlobalBounds().width;
-                curSizeOpt[i].y = 57 / rectSurb.getGlobalBounds().height;
+                if(i == 4) {
+                    curSizeOpt[i].y = 62 / rectSurb.getGlobalBounds().height;
+                    curPosOpt[i].y -= 5;
+                } else {
+                    curSizeOpt[i].y = 57 / rectSurb.getGlobalBounds().height;
+                }
                 j += 69;
             }
 
@@ -224,6 +233,10 @@ namespace OpMon {
             frame.draw(txtOpt5);
             frame.draw(txtRetour);
             frame.draw(txtOptions);
+
+            volumeCur.setPosition(165 + (295 * data.getUiDataPtr()->getJukebox().getGlobalVolume() / 100), 290);
+
+            frame.draw(volumeCur);
             if(Model::OptionsSave::getParam("fullscreen").getValue() == "true") {
                 frame.draw(coche);
             }

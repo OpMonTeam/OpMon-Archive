@@ -5,11 +5,12 @@ namespace OpMon {
     namespace Model {
         OptionsMenuData::OptionsMenuData(UiData *data)
           : uidata(data) {
-            Model::ResourceLoader::load(background, "backgrounds/options.png");
-            Model::ResourceLoader::load(selectBar, "sprites/misc/selectBar.png");
-            Model::ResourceLoader::load(langBg, "backgrounds/lang.png");
-            Model::ResourceLoader::load(yesTx, "sprites/misc/yes.png");
-            Model::ResourceLoader::load(creditsBg, "backgrounds/credits.png");
+            ResourceLoader::load(background, "backgrounds/options.png");
+            ResourceLoader::load(selectBar, "sprites/misc/selectBar.png");
+            ResourceLoader::load(langBg, "backgrounds/lang.png");
+            ResourceLoader::load(yesTx, "sprites/misc/yes.png");
+            ResourceLoader::load(creditsBg, "backgrounds/credits.png");
+            ResourceLoader::load(volumeCur, "sprites/misc/cursor.png");
         }
     } // namespace Model
 } // namespace OpMon
