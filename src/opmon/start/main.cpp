@@ -47,7 +47,7 @@ namespace OpMon {
 
         std::string version = OPMON_VERSION;
 
-        std::string pre = "0";
+        std::string pre = "1";
 
         std::string versionS;
         /*
@@ -151,7 +151,7 @@ int main(int argc, char *argv[]) {
                 std::cout << (int)(Side::TO_UP + 4) << std::endl;
                 return 0;
             } else {
-                std::cout << "Unknown parameters. Skipping." << std::endl;
+                //std::cout << "Unknown parameters. Skipping." << std::endl;
             }
         }
     }
