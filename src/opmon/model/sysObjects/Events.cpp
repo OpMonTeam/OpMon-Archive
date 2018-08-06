@@ -8,7 +8,7 @@
 
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 
-  namespace OpMon {
+namespace OpMon {
     namespace Model {
 
         using namespace Events;
@@ -34,7 +34,7 @@
         }
 
         namespace Events {
-	  std::vector<sf::Texture> alpha = std::vector<sf::Texture>(1);
+            std::vector<sf::Texture> alpha = std::vector<sf::Texture>(1);
             bool justTP = false;
 
             sf::Sound doorSound;
@@ -113,20 +113,17 @@
               , TalkingEvent(textures, position, dialogKeys, sides, eventTrigger, passable) {
             }
 
-	  TrainerEvent::TrainerEvent(std::vector<sf::Texture> &textures, sf::Vector2f const& position, OpTeam team, std::vector<Utils::OpString> const &dialogKeys, std::vector<Utils::OpString> const &defeatedDialog, Side posDir, EventTrigger eventTrigger, MoveStyle moveStyle, std::vector<Side> predefinedPath, bool passable, int side)
-	    : Event(textures, eventTrigger, position, side, passable),
-	    TalkingCharaEvent(textures, position, dialogKeys, posDir, eventTrigger, moveStyle, predefinedPath, passable, side), team(team), defeatedDialog(defeatedDialog){
+            TrainerEvent::TrainerEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, OpTeam team, std::vector<Utils::OpString> const &dialogKeys, std::vector<Utils::OpString> const &defeatedDialog, Side posDir, EventTrigger eventTrigger, MoveStyle moveStyle, std::vector<Side> predefinedPath, bool passable, int side)
+              : Event(textures, eventTrigger, position, side, passable)
+              , TalkingCharaEvent(textures, position, dialogKeys, posDir, eventTrigger, moveStyle, predefinedPath, passable, side)
+              , team(team)
+              , defeatedDialog(defeatedDialog) {
+            }
 
-	  }
-
-	  TrainerEyesightEvent::TrainerEyesightEvent(TrainerEvent* trainer, sf::Vector2f position)
-	    : Event(alpha, EventTrigger::BE_IN, position, SIDE_ALL, true),
-	      trainer(trainer)
-	  {
-
-	  }
-
-
+            TrainerEyesightEvent::TrainerEyesightEvent(TrainerEvent *trainer, sf::Vector2f position)
+              : Event(alpha, EventTrigger::BE_IN, position, SIDE_ALL, true)
+              , trainer(trainer) {
+            }
 
             //Actions
 
@@ -183,10 +180,10 @@
 
                         if(!move(movements[predefinedCounter], overworld.getData().getCurrentMap())) {
                             if(predefinedCounter != 0) {
-			      predefinedCounter--;
-                            }else{
-			      predefinedCounter = movements.size() - 1;
-			    }
+                                predefinedCounter--;
+                            } else {
+                                predefinedCounter = movements.size() - 1;
+                            }
                         }
                         break;
 
@@ -345,32 +342,31 @@
             void LockedDoorEvent::update(Model::Player &player, View::Overworld &overworld) {
             }
 
-	  void TrainerEvent::update(Model::Player &player, View::Overworld &overworld) {
-	    if(triggerBattle){
-		triggerBattle = false;
-		overworld.declareBattle(this);
-	    }
-	    if(!defeated){
-	      if(talking && !checkTalking){
-		checkTalking = true;
-	      }
-	      if(!talking && checkTalking){
-		triggerBattle = true;
-	      }
-	    }
-	    TalkingCharaEvent::update(player, overworld);
-	  }
+            void TrainerEvent::update(Model::Player &player, View::Overworld &overworld) {
+                if(triggerBattle) {
+                    triggerBattle = false;
+                    overworld.declareBattle(this);
+                }
+                if(!defeated) {
+                    if(talking && !checkTalking) {
+                        checkTalking = true;
+                    }
+                    if(!talking && checkTalking) {
+                        triggerBattle = true;
+                    }
+                }
+                TalkingCharaEvent::update(player, overworld);
+            }
 
-
-	  void TrainerEvent::defeat(){
-	    defeated = true;
-	    this->changeDialog(defeatedDialog);
-	  }
+            void TrainerEvent::defeat() {
+                defeated = true;
+                this->changeDialog(defeatedDialog);
+            }
 
             std::vector<Utils::OpString> LockedDoorEvent::keysLock = std::vector<Utils::OpString>();
 
         } // namespace Events
 
     } // namespace Model
-}
+} // namespace OpMon
 #pragma GCC diagnostic pop

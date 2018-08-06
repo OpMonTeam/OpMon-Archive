@@ -40,7 +40,7 @@ namespace OpMon {
             }
         }
 
-        void Jukebox::play(std::string music) {	  
+        void Jukebox::play(std::string music) {
             if(musList[music] == playing) {
                 return;
             }

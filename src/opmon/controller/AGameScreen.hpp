@@ -39,7 +39,7 @@ namespace OpMon {
             virtual void resume(){};
 
             AGameScreen *getNextGameScreen() { return _next_gs; };
-	  
+
             virtual ~AGameScreen() = default;
 
           protected:

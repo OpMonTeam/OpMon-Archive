@@ -7,7 +7,7 @@
 #include "./Window.hpp"
 #include "Dialog.hpp"
 
-  namespace OpMon {
+namespace OpMon {
     namespace View {
 
         void StartScene::initStrings() {
@@ -144,4 +144,4 @@
             delete(dialog);
         }
     } // namespace View
-}
+} // namespace OpMon

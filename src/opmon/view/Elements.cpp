@@ -2,7 +2,7 @@
 #include "../../utils/defines.hpp"
 #include "../model/storage/ResourceLoader.hpp"
 
-  namespace OpMon {
+namespace OpMon {
     namespace View {
 
         sf::Texture MapLayer::tileset;
@@ -53,4 +53,4 @@
         }
 
     } // namespace View
-}
+} // namespace OpMon

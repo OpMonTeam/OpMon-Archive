@@ -4,10 +4,10 @@
 #include <cstdio>
 #include <fstream>
 
-  namespace Utils {
+namespace Utils {
     namespace StringKeys {
-      	std:: vector<std::string> keys = std::vector<std::string>();
-      	std::vector<sf::String> strings = std::vector<sf::String>();
+        std::vector<std::string> keys = std::vector<std::string>();
+        std::vector<sf::String> strings = std::vector<sf::String>();
 
         sf::String readLine(std::ifstream &input) {
             std::basic_string<unsigned char> toReturn;
@@ -73,7 +73,7 @@
         sf::String voi;
 
         sf::String &get(std::string key) {
-            key = std::string("key.") + key;                     //Ajout du préfixe key.
+            key = std::string("key.") + key;                //Ajout du préfixe key.
             for(unsigned int i = 0; i < keys.size(); i++) { //Scanne les clées
                 if(keys[i] == key) {
                     return strings[i];
@@ -83,7 +83,7 @@
         }
 
         int getIndex(std::string key) {
-            key = std::string("key.") + key;                     //Ajout du préfixe key.
+            key = std::string("key.") + key;                //Ajout du préfixe key.
             for(unsigned int i = 0; i < keys.size(); i++) { //Scanne les clées
                 if(keys[i] == key) {
                     return i;
@@ -142,4 +142,4 @@
         }
 
     } // namespace StringKeys
-}
+} // namespace Utils

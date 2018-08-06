@@ -78,7 +78,7 @@ namespace OpMon {
         }
 
         void Player::save() {
-                SOUT
+            SOUT
               << Utils::StringKeys::sfStringtoStdString(this->name) << std::endl;
             SOUT << Save::intToChar(trainerID) << std::endl;
             SOUT << Save::intToChar(ITEM_NUMBER) << std::endl;
@@ -100,7 +100,7 @@ namespace OpMon {
           : name(name)
           , trainerID(in.get())
           , opteam(name) {
-              in.get();
+            in.get();
             int iNber = in.get();
             in.get();
             if(iNber > ITEM_NUMBER) {

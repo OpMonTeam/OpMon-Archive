@@ -5,7 +5,7 @@
 #include "../start/Core.hpp"
 #include "../view/Window.hpp"
 
-  namespace OpMon {
+namespace OpMon {
     namespace View {
 
         namespace Animations {
@@ -39,4 +39,4 @@
 
         } // namespace Animations
     }     // namespace View
-}
+} // namespace OpMon

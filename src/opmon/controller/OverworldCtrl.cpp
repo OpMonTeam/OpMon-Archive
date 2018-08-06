@@ -103,16 +103,15 @@ namespace OpMon {
             eventsctrl.checkAction(event, player, view);
             Controller::PlayerCtrl::checkMove(player, event, view);
 
-	    if(view.getBattleDeclared() != nullptr){
-	      if(view.getBattleDeclared()->isDefeated()){
-		view.endBattle();
-	      }else{
-		_next_gs = new BattleCtrl(data.getPlayer().getOpTeam(), view.getBattleDeclared(), data.getUiDataPtr(), data.getPlayerPtr());
-		return GameStatus::NEXT;
-	      }
-	      
-	    }
-	    
+            if(view.getBattleDeclared() != nullptr) {
+                if(view.getBattleDeclared()->isDefeated()) {
+                    view.endBattle();
+                } else {
+                    _next_gs = new BattleCtrl(data.getPlayer().getOpTeam(), view.getBattleDeclared(), data.getUiDataPtr(), data.getPlayerPtr());
+                    return GameStatus::NEXT;
+                }
+            }
+
             return GameStatus::CONTINUE;
         }
 
@@ -123,6 +122,14 @@ namespace OpMon {
             }
 
             return view(getFrames(), frame);
+        }
+
+        void OverworldCtrl::suspend() {
+            data.getUiDataPtr()->getJukebox().pause();
+        }
+
+        void OverworldCtrl::resume() {
+            data.getUiDataPtr()->getJukebox().play(data.getCurrentMap()->getBg());
         }
 
     } // namespace Controller

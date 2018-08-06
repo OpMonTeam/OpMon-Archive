@@ -5,7 +5,7 @@
 #include <iostream>
 #include <sstream>
 
-  namespace OpMon {
+namespace OpMon {
     namespace Model {
         namespace Save {
             std::ostringstream saveOutput;
@@ -85,4 +85,4 @@
 
         } // namespace Save
     }     // namespace Model
-}
+} // namespace OpMon

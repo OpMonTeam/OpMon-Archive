@@ -141,24 +141,23 @@ namespace OpMon {
         void OptionsMenuCtrl::toggleVolume() {
             if(data.getUiDataPtr()->getJukebox().getGlobalVolume() > 0) {
                 data.getUiDataPtr()->getJukebox().setGlobalVolume(0);
-		Model::OptionsSave::modifyParam("volume", "0");
+                Model::OptionsSave::modifyParam("volume", "0");
             } else {
                 data.getUiDataPtr()->getJukebox().setGlobalVolume(100);
-		Model::OptionsSave::modifyParam("volume", "100");
+                Model::OptionsSave::modifyParam("volume", "100");
             }
-
         }
 
         void OptionsMenuCtrl::raiseVolume() {
             const int newVolume = std::min(100, data.getUiDataPtr()->getJukebox().getGlobalVolume() + 10);
             data.getUiDataPtr()->getJukebox().setGlobalVolume(newVolume);
-	    Model::OptionsSave::modifyParam("volume", std::to_string(newVolume));
+            Model::OptionsSave::modifyParam("volume", std::to_string(newVolume));
         }
 
         void OptionsMenuCtrl::lowerVolume() {
             const int newVolume = std::max(0, data.getUiDataPtr()->getJukebox().getGlobalVolume() - 10);
             data.getUiDataPtr()->getJukebox().setGlobalVolume(newVolume);
-	    Model::OptionsSave::modifyParam("volume", std::to_string(newVolume));
+            Model::OptionsSave::modifyParam("volume", std::to_string(newVolume));
         }
 
     } // namespace Controller

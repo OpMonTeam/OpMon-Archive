@@ -8,8 +8,8 @@ Define the CourbeExp enumération and the Species class
 #ifndef ESPECE_HPP
 #define ESPECE_HPP
 
-#include "item/CT.hpp"
 #include "CurveExp.hpp"
+#include "item/CT.hpp"
 #include <iostream>
 #include <vector>
 
