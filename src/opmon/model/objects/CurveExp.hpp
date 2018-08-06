@@ -7,6 +7,7 @@ namespace OpMon {
         class CurveExp {
           public:
             virtual int getNeededExp(int) = 0;
+	    virtual ~CurveExp() {};
         };
 
         class CurveExpErratic : public CurveExp {
