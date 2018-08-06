@@ -4,7 +4,7 @@
 #include "IHeal.hpp"
 #include "IOpBox.hpp"
 
-  namespace OpMon {
+namespace OpMon {
     namespace Model {
 
         Item *Item::itemsLst[ITEM_NUMBER] = {0};
@@ -89,13 +89,8 @@
         }
 
         bool Item::operator==(Item const &b) const {
-						return (categorie == b.categorie)
-								&& (givable == b.givable)
-								&& (name == b.name)
-								&& (usable == b.usable)
-								&& (usableInFight == b.usableInFight)
-								&& (id == b.id);
+            return (categorie == b.categorie) && (givable == b.givable) && (name == b.name) && (usable == b.usable) && (usableInFight == b.usableInFight) && (id == b.id);
         }
 
     } // namespace Model
-}
+} // namespace OpMon

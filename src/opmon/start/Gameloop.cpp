@@ -40,10 +40,10 @@ namespace OpMon {
             status = GameStatus::CONTINUE;
 
             frames++;
-	    
+
             auto ctrl = _gameScreens.top();
             sf::Event event;
-	    
+
             //process all pending SFML events
             while(status == GameStatus::CONTINUE) {
                 bool isEvent = window.getWindow().pollEvent(event);
@@ -62,7 +62,7 @@ namespace OpMon {
                 // frame update & draw
                 status = ctrl->update(window.getFrame());
             }
-	    
+
             switch(status) {
             case GameStatus::NEXT:
                 ctrl->suspend();

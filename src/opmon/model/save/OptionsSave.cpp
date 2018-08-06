@@ -2,7 +2,7 @@
 #include "../../../utils/log.hpp"
 #include "../../start/Core.hpp"
 
-  namespace OpMon {
+namespace OpMon {
     namespace Model {
         namespace OptionsSave {
 
@@ -118,4 +118,4 @@
 
         } // namespace OptionsSave
     }     // namespace Model
-}
+} // namespace OpMon

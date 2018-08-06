@@ -11,7 +11,7 @@
 #include <fstream>
 #include <sstream>
 
-  namespace OpMon {
+namespace OpMon {
     namespace Model {
 
         OpMon::~OpMon() {
@@ -22,8 +22,12 @@
             }
         }
 
-      OpMon::OpMon(const std::string &nickname, const Species *species, int level, const std::vector<Attack *> &attacks, Nature nature)
-	: species(species), level(level), attacks(attacks), nature(nature), nickname((nickname.empty()) ? species->getName() : nickname){
+        OpMon::OpMon(const std::string &nickname, const Species *species, int level, const std::vector<Attack *> &attacks, Nature nature)
+          : species(species)
+          , level(level)
+          , attacks(attacks)
+          , nature(nature)
+          , nickname((nickname.empty()) ? species->getName() : nickname) {
             atkIV = Utils::Misc::randU(32);
             defIV = Utils::Misc::randU(32);
             atkSpeIV = Utils::Misc::randU(32);
@@ -1379,7 +1383,7 @@
                     oss << "nullptr" << endl;
                 }
             }*/
-                for(int i=0; i<4; i++) {
+                for(int i = 0; i < 4; i++) {
                     if(attacks[i] != nullptr)
                         oss << attacks[i]->save();
                     else
@@ -1441,7 +1445,7 @@
                 //nature = toSearch;
                 in.get();
 
-                for(int i=0; i<4; i++) {
+                for(int i = 0; i < 4; i++) {
                     attacks[i] = Attacks::newAtk(Save::readLine(in));
                     if(attacks[i] != nullptr) {
                         attacks[i]->setPP(in.get());
@@ -1486,11 +1490,10 @@
         void OpMon::passCD(bool sleep) {
             if(confusedCD > 0 && !sleep) {
                 confusedCD--;
-            }
-            else if(sleepingCD > 0 && sleep) {
+            } else if(sleepingCD > 0 && sleep) {
                 sleepingCD--;
             }
         }
 
     } // namespace Model
-}
+} // namespace OpMon

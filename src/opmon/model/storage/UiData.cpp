@@ -1,8 +1,8 @@
 #include "UiData.hpp"
+#include "../../../utils/log.hpp"
 #include "../objects/evolution/evolutions.hpp"
 #include "../save/OptionsSave.hpp"
 #include "ResourceLoader.hpp"
-#include "../../../utils/log.hpp"
 
 namespace OpMon {
     namespace Model {
@@ -10,8 +10,8 @@ namespace OpMon {
         UiData::UiData(View::Window &win)
           : win(win) {
 
-	  Utils::Log::oplog("Initializating UiData");
-	  
+            Utils::Log::oplog("Initializating UiData");
+
             jukebox.addMusic("Title", "audio/music/title.ogg", 50);
             jukebox.addMusic("Start", "audio/music/intro.ogg");
             jukebox.addMusic("Fauxbourg", "audio/music/faubourgeuvi.ogg");
@@ -20,6 +20,15 @@ namespace OpMon {
             jukebox.addMusic("Ms", "audio/music/mysterioucity.ogg");
             jukebox.addMusic("Labo", "audio/music/labo.ogg");
             jukebox.addMusic("Wild Battle", "audio/music/wildbattle.ogg");
+
+            //Loading sounds
+            jukebox.addSound("door sound", "audio/sounds/door.ogg");
+            jukebox.addSound("shop door sound", "audio/sounds/shopdoor.ogg");
+            jukebox.addSound("dialog pass", "audio/sounds/dialogChange.ogg");
+            jukebox.addSound("nope", "audio/sounds/nope.ogg");
+            jukebox.addSound("arrow", "audio/sounds/select.ogg");
+            jukebox.addSound("push", "audio/sounds/selectbuttons.ogg");
+            jukebox.addSound("hit", "audio/sounds/hit.ogg");
 
             ResourceLoader::load(font, "fonts/Default.ttf", true);
 
@@ -116,23 +125,14 @@ namespace OpMon {
             ResourceLoader::load(dialogBackground, "backgrounds/dialog/dialog.png");
             ResourceLoader::load(dialogArrow, "sprites/misc/arrDial.png");
 
-            //Loading sounds
-            jukebox.addSound("door sound", "audio/sounds/door.ogg");
-            jukebox.addSound("shop door sound", "audio/sounds/shopdoor.ogg");
-            jukebox.addSound("dialog pass", "audio/sounds/dialogChange.ogg");
-            jukebox.addSound("nope", "audio/sounds/nope.ogg");
-            jukebox.addSound("arrow", "audio/sounds/select.ogg");
-            jukebox.addSound("push", "audio/sounds/selectbuttons.ogg");
+            //Loading volume
+            if(!OptionsSave::checkParam("volume")) {
+                OptionsSave::addParam("volume", "100");
+            }
 
+            int volume = std::stoi(OptionsSave::getParam("volume").getValue());
+            jukebox.setGlobalVolume(volume);
 
-	    //Loading volume
-	    if(!OptionsSave::checkParam("volume")){
-	      OptionsSave::addParam("volume", "100");
-	    }
-
-	    int volume = std::stoi(OptionsSave::getParam("volume").getValue());
-	    jukebox.setGlobalVolume(volume);
-	    
             //Loading controls
 #define ADDMAP(key) keysMap[(#key)] = sf::Keyboard::key
             std::map<std::string, sf::Keyboard::Key> keysMap;
@@ -248,7 +248,7 @@ namespace OpMon {
             for(auto spe : listOp) {
                 delete(spe.second);
             }
-	    Utils::Log::oplog("Deleted UiData");
+            Utils::Log::oplog("Deleted UiData");
         }
     } // namespace Model
 } // namespace OpMon
