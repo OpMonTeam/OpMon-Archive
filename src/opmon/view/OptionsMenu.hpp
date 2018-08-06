@@ -59,6 +59,7 @@ namespace OpMon {
             Model::OptionsMenuData &data;
             OptionType currentOptions;
 
+            sf::Sprite volumeCur;
             sf::Sprite bgCredits;
             sf::Sprite bgOpt;
             sf::Text langFr;
