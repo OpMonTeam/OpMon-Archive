@@ -113,12 +113,16 @@ namespace OpMon {
               , TalkingEvent(textures, position, dialogKeys, sides, eventTrigger, passable) {
             }
 
-            TrainerEvent::TrainerEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, OpTeam team, std::vector<Utils::OpString> const &dialogKeys, std::vector<Utils::OpString> const &defeatedDialog, Side posDir, EventTrigger eventTrigger, MoveStyle moveStyle, std::vector<Side> predefinedPath, bool passable, int side)
+            TrainerEvent::TrainerEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, OpTeam *team, std::vector<Utils::OpString> const &dialogKeys, std::vector<Utils::OpString> const &defeatedDialog, Side posDir, EventTrigger eventTrigger, MoveStyle moveStyle, std::vector<Side> predefinedPath, bool passable, int side)
               : Event(textures, eventTrigger, position, side, passable)
               , TalkingCharaEvent(textures, position, dialogKeys, posDir, eventTrigger, moveStyle, predefinedPath, passable, side)
               , team(team)
               , defeatedDialog(defeatedDialog) {
             }
+
+	    TrainerEvent::~TrainerEvent(){
+		delete(team);
+	    }
 
             TrainerEyesightEvent::TrainerEyesightEvent(TrainerEvent *trainer, sf::Vector2f position)
               : Event(alpha, EventTrigger::BE_IN, position, SIDE_ALL, true)
