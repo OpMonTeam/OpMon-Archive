@@ -119,10 +119,10 @@ key.rt14.beta.post.1=You found it good ?
 key.rt14.beta.post.2=If you want to do it again
 key.rt14.beta.post.3=relauch the game with M !
 
-key.battle.attack=Attack
+key.battle.attack=Attacks
 key.battle.bag=Bag
 key.battle.run=Run
-key.battle.opmon=OpMon
+key.battle.opmon=OpMons
 
 key.battle.dialog.attack=~ use ~ !
 key.battle.status.frozen.out=~ isn't frozen anymore!
