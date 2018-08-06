@@ -234,7 +234,7 @@ namespace OpMon {
             frame.draw(txtRetour);
             frame.draw(txtOptions);
 
-            volumeCur.setPosition(165 + (295 * data.getUiDataPtr()->getJukebox().getGlobalVolume() / 100), 290);
+            volumeCur.setPosition(166 + (295 * data.getUiDataPtr()->getJukebox().getGlobalVolume() / 100), 298);
 
             frame.draw(volumeCur);
             if(Model::OptionsSave::getParam("fullscreen").getValue() == "true") {
