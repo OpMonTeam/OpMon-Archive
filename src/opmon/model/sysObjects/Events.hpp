@@ -213,20 +213,20 @@ namespace OpMon {
 
             class TrainerEvent : public TalkingCharaEvent {
               private:
-                OpTeam team;
+                OpTeam *team;
                 bool defeated = false;
                 bool triggerBattle = false;
                 bool checkTalking = false;
                 std::vector<Utils::OpString> defeatedDialog;
 
               public:
-                TrainerEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, OpTeam team, std::vector<Utils::OpString> const &dialogKeys, std::vector<Utils::OpString> const &defeatedDialog, Side posDir = Side::TO_UP, EventTrigger eventTrigger = EventTrigger::PRESS, MoveStyle moveStyle = MoveStyle::NO_MOVE, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int side = SIDE_ALL);
+                TrainerEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, OpTeam *team, std::vector<Utils::OpString> const &dialogKeys, std::vector<Utils::OpString> const &defeatedDialog, Side posDir = Side::TO_UP, EventTrigger eventTrigger = EventTrigger::PRESS, MoveStyle moveStyle = MoveStyle::NO_MOVE, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int side = SIDE_ALL);
 
                 virtual void update(Model::Player &player, View::Overworld &overworld);
                 virtual void action(Model::Player &player, View::Overworld &overworld) { TalkingCharaEvent::action(player, overworld); }
 
                 OpTeam *getOpTeam() {
-                    return &team;
+                    return team;
                 }
 
                 void defeat();
@@ -234,6 +234,8 @@ namespace OpMon {
                 bool isDefeated() {
                     return defeated;
                 }
+
+		virtual ~TrainerEvent();
             };
 
             class TrainerEyesightEvent : public Event {

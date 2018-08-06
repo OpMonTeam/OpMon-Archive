@@ -21,6 +21,7 @@ namespace OpMon {
     */
         class OpTeam {
           public:
+	    ~OpTeam();
             OpTeam(std::string const &name);
             std::string getName() const {
                 return name;
@@ -59,6 +60,7 @@ namespace OpMon {
             int nbreOfOp = 6;
             std::vector<OpMon *> opteam;
             std::string name;
+	    OpTeam(OpTeam const&) = delete;
         };
 
     } // namespace Model
