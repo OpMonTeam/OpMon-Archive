@@ -3,7 +3,7 @@
 #include "../model/storage/ResourceLoader.hpp"
 #include "Window.hpp"
 
-  namespace OpMon {
+namespace OpMon {
     namespace View {
 
         void OptionsMenu::initStrings() {
@@ -282,4 +282,4 @@
         }
 
     } // namespace View
-}
+} // namespace OpMon

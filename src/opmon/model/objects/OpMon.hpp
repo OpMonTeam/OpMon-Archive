@@ -63,7 +63,7 @@ namespace OpMon {
             int evaChange = 0;
             int accChange = 0;
             int speChange = 0;
-						const Species *species;
+            const Species *species;
             int level;
 
             std::vector<Attack *> attacks;

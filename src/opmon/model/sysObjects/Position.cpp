@@ -76,7 +76,7 @@ namespace OpMon {
                 }
             }
 
-						return false;
+            return false;
         }
 
         Position *Position::playerPos = nullptr;

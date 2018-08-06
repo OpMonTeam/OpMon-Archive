@@ -1,7 +1,7 @@
 #include "IHeal.hpp"
 #include "../../../../utils/defines.hpp"
 
-  namespace OpMon {
+namespace OpMon {
     namespace Model {
 
         I_Heal::I_Heal(std::string &name, bool usable, bool usableInFight, bool givable, BagCat categorie, int hpHeal, Status heal, bool healAllStatus, int ID)
@@ -61,4 +61,4 @@
         }
 
     } // namespace Model
-}
+} // namespace OpMon

@@ -17,7 +17,7 @@ namespace OpMon {
             if(defHp == -1) {
                 defHp = defTurn.opmon->getHP();
             }
-	    data.getUiDataPtr()->getJukebox().play("Wild Battle");
+            data.getUiDataPtr()->getJukebox().play("Wild Battle");
             frame.draw(background);
             /*frame.draw(shadowPlayer);
 	      frame.draw(shadowTrainer);*/
@@ -96,6 +96,7 @@ namespace OpMon {
                     }
 
                 case 3:
+                    data.getUiDataPtr()->getJukebox().playSound("hit");
                     if((atkFirst && turnNber == 0) || (!atkFirst && turnNber == 2)) {
                         defHp = defTurn.opmon->getHP();
                     } else {

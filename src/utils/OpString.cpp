@@ -2,7 +2,7 @@
 #include "StringKeys.hpp"
 #include <cstdarg>
 
-  namespace Utils {
+namespace Utils {
     /**
      OpString containing nothing
   */
@@ -111,4 +111,4 @@
         //And finally return!
         return toReturn;
     }
-}
+} // namespace Utils

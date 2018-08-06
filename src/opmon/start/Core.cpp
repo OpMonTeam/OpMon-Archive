@@ -13,7 +13,7 @@
 using namespace OpMon::Model;
 using Utils::Log::oplog;
 
-  namespace OpMon {
+namespace OpMon {
     /*
     Logs and save files initialization
   */
@@ -98,4 +98,4 @@ using Utils::Log::oplog;
     bool instanceOf(const Base *toTest) {
         return dynamic_cast<const T *>(toTest) != nullptr;
     }
-}
+} // namespace OpMon

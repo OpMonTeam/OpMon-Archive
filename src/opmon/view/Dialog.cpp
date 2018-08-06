@@ -29,16 +29,16 @@ namespace OpMon {
         void Dialog::pass() {
             if(changeDialog == false) {
                 currentTxt[0] = text[dialogNb];
-		if(dialogNb + 2 < text.size()){
-		  currentTxt[1] = text[dialogNb + 1];
-		  currentTxt[2] = text[dialogNb + 2];
-		}else if(dialogNb + 1 < text.size()){
-		  currentTxt[1] = text[dialogNb + 1];
-		  currentTxt[2] = sf::String(" ");
-		}else{
-		  currentTxt[1] = sf::String(" ");
-		  currentTxt[2] = sf::String(" ");
-		}
+                if(dialogNb + 2 < text.size()) {
+                    currentTxt[1] = text[dialogNb + 1];
+                    currentTxt[2] = text[dialogNb + 2];
+                } else if(dialogNb + 1 < text.size()) {
+                    currentTxt[1] = text[dialogNb + 1];
+                    currentTxt[2] = sf::String(" ");
+                } else {
+                    currentTxt[1] = sf::String(" ");
+                    currentTxt[2] = sf::String(" ");
+                }
 
                 changeDialog = true;
             } else if(dialogNb + 3 < text.size()) {

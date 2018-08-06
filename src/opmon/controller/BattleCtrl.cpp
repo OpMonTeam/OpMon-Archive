@@ -6,17 +6,14 @@ namespace OpMon {
     namespace Controller {
         using namespace Model;
 
+        BattleCtrl::~BattleCtrl() {
+        }
 
-      BattleCtrl::~BattleCtrl(){
-	
-      }
-      
-      BattleCtrl::BattleCtrl(OpTeam *one, Events::TrainerEvent *two, UiData *uidata, Player *player)
-	: BattleCtrl(one, two->getOpTeam(), uidata, player)
-      {
-	this->trainer = two;
-      }
-      
+        BattleCtrl::BattleCtrl(OpTeam *one, Events::TrainerEvent *two, UiData *uidata, Player *player)
+          : BattleCtrl(one, two->getOpTeam(), uidata, player) {
+            this->trainer = two;
+        }
+
         BattleCtrl::BattleCtrl(OpTeam *one, OpTeam *two, UiData *uidata, Player *player)
           : playerTeam(one)
           , trainerTeam(two)
@@ -34,10 +31,10 @@ namespace OpMon {
                     /*if(playerTeam->isKo() || trainerTeam->isKo()){
 	    return GameStatus::PREVIOUS;
 	    }*/
-		  if(trainer != nullptr){
-		    trainer->defeat();
-		  }
-		  returned = GameStatus::PREVIOUS;
+                    if(trainer != nullptr) {
+                        trainer->defeat();
+                    }
+                    returned = GameStatus::PREVIOUS;
                 }
             }
             return returned;
@@ -50,14 +47,18 @@ namespace OpMon {
                 switch(event.key.code) {
                 case sf::Keyboard::Left:
                     view.moveCur(Model::Side::TO_LEFT);
+                    data.getUiDataPtr()->getJukebox().playSound("arrow");
                     break;
                 case sf::Keyboard::Right:
+                    data.getUiDataPtr()->getJukebox().playSound("arrow");
                     view.moveCur(Model::Side::TO_RIGHT);
                     break;
                 case sf::Keyboard::Up:
+                    data.getUiDataPtr()->getJukebox().playSound("arrow");
                     view.moveCur(Model::Side::TO_UP);
                     break;
                 case sf::Keyboard::Down:
+                    data.getUiDataPtr()->getJukebox().playSound("arrow");
                     view.moveCur(Model::Side::TO_DOWN);
                     break;
                 case sf::Keyboard::Return:
@@ -66,9 +67,10 @@ namespace OpMon {
                         case 0:
                             view.toggleAttackChoice();
                             break;
-                        case 3:
-                            return GameStatus::PREVIOUS; //Run
+                            /*case 3:
+			      return GameStatus::PREVIOUS; //Run*/
                         default:
+                            data.getUiDataPtr()->getJukebox().playSound("nope");
                             break;
                         }
                     } else if(!turnActivated) {
@@ -81,7 +83,7 @@ namespace OpMon {
                                 turnActivated = true;
                             }
                         } else {
-                            //Play "nope"
+                            data.getUiDataPtr()->getJukebox().playSound("nope");
                         }
                     } else if(turnActivated) {
                         if(!view.nextTxt()) {
@@ -278,12 +280,12 @@ namespace OpMon {
             return canAttack;
         }
 
-      void BattleCtrl::suspend(){
-	data.getUiDataPtr()->getJukebox().pause();
-      }
+        void BattleCtrl::suspend() {
+            data.getUiDataPtr()->getJukebox().pause();
+        }
 
-      void BattleCtrl::resume(){
-	data.getUiDataPtr()->getJukebox().play("Wild Battle");
-      }
+        void BattleCtrl::resume() {
+            data.getUiDataPtr()->getJukebox().play("Wild Battle");
+        }
     } // namespace Controller
 } // namespace OpMon

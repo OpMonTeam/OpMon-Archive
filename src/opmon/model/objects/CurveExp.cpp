@@ -58,6 +58,5 @@ namespace OpMon {
         int CurveExpQuick::getNeededExp(int n) {
             return round(0.8f * pow(n, 3));
         }
-    }
-}
-
+    } // namespace Model
+} // namespace OpMon

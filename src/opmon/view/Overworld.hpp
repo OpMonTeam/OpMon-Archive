@@ -12,8 +12,8 @@
 #include "../model/storage/OverworldData.hpp"
 #include "../model/sysObjects/Map.hpp"
 #include "../model/sysObjects/Player.hpp"
-#include "../start/GameStatus.hpp"
 #include "../start/Core.hpp"
+#include "../start/GameStatus.hpp"
 #include "Dialog.hpp"
 #include "Elements.hpp"
 
@@ -69,24 +69,24 @@ namespace OpMon {
 
             void setMusic(std::string const &path);
 
-	  Model::Events::TrainerEvent* getBattleDeclared(){
-	    return trainerToBattle;
-	  }
+            Model::Events::TrainerEvent *getBattleDeclared() {
+                return trainerToBattle;
+            }
 
-	  void declareBattle(Model::Events::TrainerEvent* trainer){
-	    if(trainerToBattle == nullptr){
-	      trainerToBattle = trainer;
-	    }else{
-	      handleError("Trying to set up a battle, but an another is already set up. Recheck the code", true);
-	    }
-	  }
+            void declareBattle(Model::Events::TrainerEvent *trainer) {
+                if(trainerToBattle == nullptr) {
+                    trainerToBattle = trainer;
+                } else {
+                    handleError("Trying to set up a battle, but an another is already set up. Recheck the code", true);
+                }
+            }
 
-	  void endBattle(){
-	    if(trainerToBattle == nullptr){
-	      handleError("Warning : ending a battle, but there is no battle.");
-	    }
-	    trainerToBattle = nullptr;
-	  }
+            void endBattle() {
+                if(trainerToBattle == nullptr) {
+                    handleError("Warning : ending a battle, but there is no battle.");
+                }
+                trainerToBattle = nullptr;
+            }
 
             /**
        * Events can call this method to start a new dialog with the player.
@@ -108,8 +108,8 @@ namespace OpMon {
             /* Center the camera on the player. */
             void resetCamera();
 
-	  Model::Events::TrainerEvent* trainerToBattle = nullptr;
-	  
+            Model::Events::TrainerEvent *trainerToBattle = nullptr;
+
             sf::View camera;
             sf::Sprite character;
             Model::Map *current = nullptr;

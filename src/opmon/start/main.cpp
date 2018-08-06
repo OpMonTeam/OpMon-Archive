@@ -36,14 +36,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 //#define DEBUG
 
-  namespace OpMon {
+namespace OpMon {
     namespace Main {
         //Will be used for checking the internet connection
         //bool connected = false;
         /** Trainer names. No longer useful.*/
         //->Useless
         std::string trainers[] = {"Brice", "Navet", "Mael", "Cyrion", "Red", "Blue", "Nikolai", "N", "Belladonis", "Aristote",
-                             "Giovanni", "Flora", "Silver", "Jules Cesar", "Brahim"};
+                                  "Giovanni", "Flora", "Silver", "Jules Cesar", "Brahim"};
 
         std::string version = OPMON_VERSION;
 
@@ -112,19 +112,19 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
             return quit(0);
         }
     } // namespace Main
-}
+} // namespace OpMon
 
 int main(int argc, char *argv[]) {
     Utils::Time::initClock();
     if(!Utils::Log::init()) {
-        std::cout << "Exiting" << std:: endl;
+        std::cout << "Exiting" << std::endl;
         return -1;
     }
 
     auto versionS = "Version : Alpha " + OpMon::Main::version + ((OpMon::Main::pre == "0") ? "" : ("-pre_" + OpMon::Main::pre));
 
     if(!ResourceLoader::checkResourceFolderExists() || !Utils::Fs::mkdir(SAVE_PATH)) {
-        std::cout << "Exiting" << std:: endl;
+        std::cout << "Exiting" << std::endl;
         return -1;
     }
 
@@ -133,25 +133,25 @@ int main(int argc, char *argv[]) {
         for(int i = 0; i < argc; i++) {
             std::string str = std::string(argv[i]);
             if(str == "--version") {
-                std::cout << "OpMon Lazuli version " << versionS << std:: endl;
-                std::cout << "Under GNU GPL v3.0 license" << std:: endl;
-                std::cout << "http://opmon-game.ga" << std:: endl;
+                std::cout << "OpMon Lazuli version " << versionS << std::endl;
+                std::cout << "Under GNU GPL v3.0 license" << std::endl;
+                std::cout << "http://opmon-game.ga" << std::endl;
                 return 0;
             } else if(str == "--help") {
-                std::cout << "--version : Prints the version and quit." << std:: endl;
-                std::cout << "--help : Prints this message and quit." << std:: endl;
+                std::cout << "--version : Prints the version and quit." << std::endl;
+                std::cout << "--help : Prints this message and quit." << std::endl;
                 //std::cout << "--opt <path> : Changes the options save file's location." << std:: endl;
-                std::cout << "--debug : Starts the game with debug code. Changes when needed." << std:: endl;
+                std::cout << "--debug : Starts the game with debug code. Changes when needed." << std::endl;
                 return 0;
             } else if(str == "--debug") {
-                std::cout << (int)Side::TO_UP << std:: endl;
-                std::cout << (int)Side::TO_DOWN << std:: endl;
-                std::cout << (int)Side::TO_LEFT << std:: endl;
-                std::cout << (int)Side::TO_RIGHT << std:: endl;
-                std::cout << (int)(Side::TO_UP + 4) << std:: endl;
+                std::cout << (int)Side::TO_UP << std::endl;
+                std::cout << (int)Side::TO_DOWN << std::endl;
+                std::cout << (int)Side::TO_LEFT << std::endl;
+                std::cout << (int)Side::TO_RIGHT << std::endl;
+                std::cout << (int)(Side::TO_UP + 4) << std::endl;
                 return 0;
             } else {
-                std::cout << "Unknown parameters. Skipping." << std:: endl;
+                std::cout << "Unknown parameters. Skipping." << std::endl;
             }
         }
     }
