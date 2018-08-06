@@ -37,7 +37,7 @@ namespace OpMon {
                 IF_ATK(BombOeuf, Attack("Bomb'\u0152uf", 100, Type::NEUTRAL, 75, false, false, 16, false, 10, 0, "BombOeuf"))
                 IF_ATK(Bouclier, Attack("Bouclier", 0, Type::MENTAL, 100, false, true, -1, true, 20, 0, "Bouclier",
                                         nullptr, new ChangeStatEffect(ChangeStatEffect::ATTACKER, Stats::DEF, 2)))
-                IF_ATK(Brouillard, Attack("Brouillard", 0, Type::NEUTRAL, 100, false, true, -1, false, 20, 0, "Brouillard",
+                IF_ATK(Mist, Attack("Mist", 0, Type::NEUTRAL, 100, false, true, -1, false, 20, 0, "Mist",
                                           nullptr, new ChangeStatEffect(ChangeStatEffect::DEFENDER, Stats::ACC, -1)))
                 IF_ATK(BueeNoire, Attack("Buée Noire", 0, Type::COLD, 100, false, true, -1, true, 35, 0, "BueeNoire",
                                          nullptr, new BueeNoireAfterEffect()))
@@ -48,7 +48,7 @@ namespace OpMon {
                 IF_ATK(CanonGraine, Attack("Canon Graine", 80, Type::VEGETAL, 100, false, false, 16, false, 15, 0, "CanonGraine"))
                 IF_ATK(Cascade, Attack("Cascade", 80, Type::LIQUID, 100, false, false, 16, false, 15, 0, "Cascade",
                                        nullptr, new CascadeAfterEffect()))
-                IF_ATK(Charge, Attack("Charge", 50, Type::NEUTRAL, 100, false, false, 16, false, 35, 0, "Charge"))
+                IF_ATK(Tackle, Attack("Tackle", 50, Type::NEUTRAL, 100, false, false, 16, false, 35, 0, "Tackle"))
                 IF_ATK(ChocMental, Attack("Choc Mental", 50, Type::MENTAL, 100, true, false, 16, false, 25, 0, "ChocMental",
                                           nullptr, new ChocMentalAfterEffect()))
                 IF_ATK(ChocPsy, Attack("Choc Psy", 80, Type::MENTAL, 100, true, false, 16, false, 10, 0, "ChocPsy",
