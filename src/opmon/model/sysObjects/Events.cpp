@@ -14,6 +14,7 @@ namespace OpMon {
         using namespace Events;
 
         Event::~Event() {
+            delete(sprite);
         }
 
         Event::Event(std::vector<sf::Texture> &otherTextures, EventTrigger eventTrigger, sf::Vector2f const &position,
@@ -120,9 +121,9 @@ namespace OpMon {
               , defeatedDialog(defeatedDialog) {
             }
 
-	    TrainerEvent::~TrainerEvent(){
-		delete(team);
-	    }
+            TrainerEvent::~TrainerEvent() {
+                delete(team);
+            }
 
             TrainerEyesightEvent::TrainerEyesightEvent(TrainerEvent *trainer, sf::Vector2f position)
               : Event(alpha, EventTrigger::BE_IN, position, SIDE_ALL, true)
