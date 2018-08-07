@@ -13,7 +13,7 @@ namespace OpMon {
 
             using namespace Utils;
 
-            player->addOpToOpTeam(new Model::OpMon("", uidata->getOp(4), 5, {Model::Attacks::newAtk("Tackle"), Model::Attacks::newAtk("Mist"), nullptr, nullptr}, Model::Nature::QUIET));
+            player->addOpToOpTeam(new Model::OpMon("", uidata->getOp(4), 5, {Model::Attacks::newAtk("Tackle"), Model::Attacks::newAtk("Growl"), nullptr, nullptr}, Model::Nature::QUIET));
 
             //PP textures loading
             ResourceLoader::load(texturePP[(unsigned int)Side::TO_DOWN], "sprites/chara/pp/pp0.png");
