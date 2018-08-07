@@ -39,6 +39,7 @@ namespace OpMon {
                                         nullptr, new ChangeStatEffect(ChangeStatEffect::ATTACKER, Stats::DEF, 2)))
                 IF_ATK(Mist, Attack("Mist", 0, Type::NEUTRAL, 100, false, true, -1, false, 20, 0, "Mist",
                                           nullptr, new ChangeStatEffect(ChangeStatEffect::DEFENDER, Stats::ACC, -1)))
+		    IF_ATK(Growl, Attack("Growl", 0, Type::NEUTRAL, 100, false, true, -1, false, 20, 0, "Growl", nullptr, new ChangeStatEffect(ChangeStatEffect::DEFENDER, Stats::ATK, -1)))
                 IF_ATK(BueeNoire, Attack("Buée Noire", 0, Type::COLD, 100, false, true, -1, true, 35, 0, "BueeNoire",
                                          nullptr, new BueeNoireAfterEffect()))
                 IF_ATK(BullesDo, Attack("Bulles d'O", 65, Type::LIQUID, 100, true, false, 16, false, 20, 0, "BullesDo",
