@@ -3,14 +3,14 @@
 namespace OpMon {
     namespace Model {
 
-	OpTeam::~OpTeam(){
-	    for(OpMon *op : opteam){
-		if(op != nullptr){
-		    delete(op);
-		}
-	    }
-	}
-	
+        OpTeam::~OpTeam() {
+            for(OpMon *op : opteam) {
+                if(op != nullptr) {
+                    delete(op);
+                }
+            }
+        }
+
         OpTeam::OpTeam(std::string const &name) {
             this->name = name;
         }

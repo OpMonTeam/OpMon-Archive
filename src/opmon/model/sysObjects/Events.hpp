@@ -235,7 +235,7 @@ namespace OpMon {
                     return defeated;
                 }
 
-		virtual ~TrainerEvent();
+                virtual ~TrainerEvent();
             };
 
             class TrainerEyesightEvent : public Event {

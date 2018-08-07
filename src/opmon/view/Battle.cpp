@@ -78,7 +78,6 @@ namespace OpMon {
                     turns[0] = &defTurn;
                     turns[1] = &atkTurn;
                 }
-                Utils::OpString str = Utils::OpString("battle.dialog.attack", new std::string("Poké1"), new std::string("atk1"));
 #pragma GCC diagnostic ignored "-Wimplicit-fallthrough"
                 switch(phase) {
                 case 1:

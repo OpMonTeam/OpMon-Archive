@@ -142,6 +142,7 @@ namespace OpMon {
             for(auto &map : maps) {
                 delete(map.second);
             }
+            delete(player);
         }
 
     } // namespace Model

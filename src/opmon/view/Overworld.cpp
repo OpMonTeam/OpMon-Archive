@@ -181,6 +181,7 @@ namespace OpMon {
             delete(layer1);
             delete(layer2);
             delete(layer3);
+            delete(dialog);
         }
         GameStatus Overworld::operator()(int frames, sf::RenderTexture &frame) {
             bool is_in_dialog = this->dialog && !this->dialog->isDialogOver();
