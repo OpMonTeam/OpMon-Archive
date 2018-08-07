@@ -277,6 +277,7 @@ namespace OpMon {
                 opmon->afraid = false;
                 canAttack = false;
             }
+            delete(opName[0]);
             return canAttack;
         }
 
