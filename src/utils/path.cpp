@@ -37,14 +37,14 @@ namespace Utils {
 
         const std::string getSavePath() {
 #ifdef _WIN32
-            return "./saves";
+            return "./saves/";
 #endif
             return _getConfigFilesPatch("saves");
         }
 
         const std::string getLogPath() {
 #ifdef _WIN32
-            return "./log";
+            return "./log/";
 #endif
             return _getConfigFilesPatch("log");
         }
