@@ -20,7 +20,7 @@ namespace OpMon {
                 txtP0.push_back(kget(actual));
             }
             it++;
-            strName = Utils::OpString("prof.dialog.start.19", data.getPlayer().getNameP());
+            strName = Utils::OpString("prof.dialog.start.19", {data.getPlayer().getNameP()});
             txtP1.emplace_back(); // empty space replaced later by OpString 'strName'
             for(it = it; it < 27; it++) {
                 std::string actual;
