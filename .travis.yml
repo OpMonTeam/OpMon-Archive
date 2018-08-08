@@ -1,0 +1,48 @@
+language: c++
+sudo: false
+addons:
+  apt:
+    packages:
+    - cmake
+    - libxrandr-dev
+    - libudev-dev
+    - libopenal-dev
+    - libflac-dev
+    - libvorbis-dev
+    - libgtk-3-dev
+    - clang
+    sources:
+    - ubuntu-toolchain-r-test
+before_script:
+- git clone https://github.com/sfml/sfml && cd sfml
+- git checkout tags/2.5.0
+- mkdir build && cd build && cmake .. -G"$GENERATOR" $CMAKE_FLAGS
+- sudo cmake --build . --target install
+- cd ../..
+
+script:
+- mkdir build && cd build
+- cmake .. -DCMAKE_BUILD_TYPE=Release -G"$GENERATOR" $CMAKE_FLAGS
+- sudo cmake --build . --target install --config Release
+- sudo cmake --build . --target package --config Release
+
+matrix:
+  fast_finish: true
+  include:
+  - os: linux
+    compiler: gcc
+    env:
+    - GENERATOR="Unix Makefiles"
+    - CMAKE_FLAGS=""
+  - os: linux
+    compiler: clang
+    env:
+    - GENERATOR="Unix Makefiles"
+    - CMAKE_FLAGS=""
+  - os: osx
+    osx_image: xcode9
+    env:
+    - GENERATOR="Xcode"
+    - CMAKE_FLAGS="-DSFML_BUILD_FRAMEWORKS=TRUE"
+
+    
