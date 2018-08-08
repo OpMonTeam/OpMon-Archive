@@ -53,7 +53,7 @@ namespace OpMon {
 
             static sf::Music *loadMusic(const char *path);
 
-            static std::ifstream loadKeysFile(const char *path);
+            static void loadKeysFile(const char *path, std::ifstream& file);
         };
 
         template <typename T>
