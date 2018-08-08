@@ -1355,7 +1355,7 @@ namespace OpMon {
             if(!initialized) {
 
                 std::ostringstream oss;
-                oss << nickname << std::endl;
+                oss << nickname.toAnsiString() << std::endl;
                 oss << Save::intToChar(atkIV) << std::endl;
                 oss << Save::intToChar(defIV) << std::endl;
                 oss << Save::intToChar(atkSpeIV) << std::endl;

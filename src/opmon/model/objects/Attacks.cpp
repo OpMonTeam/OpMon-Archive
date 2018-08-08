@@ -176,7 +176,7 @@ namespace OpMon {
 
             int BerceuseAfterEffect::apply(Attack & /*attack*/, OpMon &, OpMon &def, Turn &atkTurn) {
                 if(def.setStatus(Status::SLEEPING)) {
-                    atkTurn.toPrintAfter.push_back(OpString("battle.status.sleep.in", def.getNickname()));
+                    atkTurn.toPrintAfter.push_back(OpString("battle.status.sleep.in", {&def.getNickname()}));
                 } else {
                     atkTurn.attackFailed = true;
                 }
@@ -186,7 +186,7 @@ namespace OpMon {
             int BlizzardAfterEffect::apply(Attack & /*attack*/, OpMon &, OpMon &def, Turn &atkTurn) {
                 if(Utils::Misc::randU(10) == 2) {
                     if(def.setStatus(Status::FROZEN)) {
-                        atkTurn.toPrintAfter.push_back(OpString("battle.status.frozen.in", def.getNickname()));
+                        atkTurn.toPrintAfter.push_back(OpString("battle.status.frozen.in", {&def.getNickname()}));
                     }
                 }
                 return 0;
@@ -211,7 +211,7 @@ namespace OpMon {
                     atkTurn.attackFailed = true;
                 } else {
                     if(def.setStatus(Status::PARALYSED)) {
-                        atkTurn.toPrintAfter.push_back(OpString("battle.status.paralysed.in", def.getNickname()));
+                        atkTurn.toPrintAfter.push_back(OpString("battle.status.paralysed.in", {&def.getNickname()}));
                     } else {
                         atkTurn.attackFailed = true;
                     }
@@ -222,7 +222,7 @@ namespace OpMon {
             int CascadeAfterEffect::apply(Attack & /*attack*/, OpMon &atk, OpMon &def, Turn &atkTurn) {
                 if(Utils::Misc::randU(5) == 2) {
                     def.afraid = true;
-                    atkTurn.toPrintAfter.push_back(OpString("battle.status.afraid", def.getNickname()));
+                    atkTurn.toPrintAfter.push_back(OpString("battle.status.afraid", {&def.getNickname()}));
                 }
                 return 0;
             }
@@ -230,7 +230,7 @@ namespace OpMon {
             int ChocMentalAfterEffect::apply(Attack & /*attack*/, OpMon &atk, OpMon &def, Turn &atkTurn) {
                 if(Utils::Misc::randU(10) == 2) {
                     def.confused = true;
-                    atkTurn.toPrintAfter.push_back(OpString("battle.status.confused.in", def.getNickname()));
+                    atkTurn.toPrintAfter.push_back(OpString("battle.status.confused.in", {&def.getNickname()}));
                 }
                 return 0;
             }
@@ -309,7 +309,7 @@ namespace OpMon {
             int CrocDeMortAfterEffect::apply(Attack & /*attack*/, OpMon & /*atk*/, OpMon &def, Turn &atkTurn) {
                 if(Utils::Misc::randU(10) == 2) {
                     def.afraid = true;
-                    atkTurn.toPrintAfter.push_back(OpString("battle.status.afraid", def.getNickname()));
+                    atkTurn.toPrintAfter.push_back(OpString("battle.status.afraid", {&def.getNickname()}));
                 }
                 return 0;
             }
