@@ -37,7 +37,8 @@ namespace Utils {
 
         bool initialize(const std::string &keysFileS) {
             //Ouverture du fichier de clées, initialisation des vectors
-            std::ifstream keysFile = OpMon::Model::ResourceLoader::loadKeysFile(keysFileS.c_str());
+            std::ifstream keysFile;
+	    OpMon::Model::ResourceLoader::loadKeysFile(keysFileS.c_str(), keysFile);
             keys = std::vector<std::string>();
             strings = std::vector<sf::String>();
             Log::oplog("Keys initialization");
