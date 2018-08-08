@@ -19,18 +19,16 @@ namespace Utils {
       private:
         std::string key;
         std::vector<sf::String *> objects;
-        bool created = false;
 
       public:
         /* Waits sf::String pointers to update the string with the pointed variable's value at each getString() call.*/
         OpString(std::string const &key, std::vector<sf::String *> obj = {});
         OpString();
-        ~OpString();
 
-        sf::String getObject(int const &index) {
+        const sf::String &getObject(int index) const {
             return *(objects[index]);
         }
-        std::string getKey() {
+        const std::string &getKey() const {
             return key;
         }
         sf::String getString() const;

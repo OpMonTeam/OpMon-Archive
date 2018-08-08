@@ -11,7 +11,7 @@ namespace Utils {
      * This function must be called before any call to `oplog()`.
      * @return `true` if everything is OK; `false` if there is an error.
      */
-        bool init();
+        void init();
 
         /**
      * Write a log message in a log file.
