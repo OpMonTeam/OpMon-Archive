@@ -218,8 +218,8 @@ namespace OpMon {
         //TODO : add messages to opTurn->toPrintBefore
         bool BattleCtrl::canAttack(Model::OpMon *opmon, Model::Turn *opTurn) {
             bool canAttack = true;
-            std::vector<std::string *> opName(1);
-            opName[0] = new std::string(opmon->getNickname());
+            std::vector<sf::String *> opName(1);
+            opName[0] = new sf::String(opmon->getNickname());
             //Checks if frozen
             if(opmon->getStatus() == Model::Status::FROZEN) {
                 //The OpMon have one chance out of 5 to be able to move again.
@@ -248,7 +248,7 @@ namespace OpMon {
                     opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.paralysed.attack.fail", opName));
                     canAttack = false;
                 } else {
-                    opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.paralysed.attack.success.1", std::vector<std::string *>()));
+                    opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.paralysed.attack.success.1", {}));
                     opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.paralysed.attack.success.2", opName));
                 }
             }
@@ -267,7 +267,7 @@ namespace OpMon {
                         opTurn->confusedHurt = true;
                     } else {
                         opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.confused.attack.success.1", opName));
-                        opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.confused.attack.success.2", std::vector<std::string *>()));
+                        opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.confused.attack.success.2", {}));
                     }
                 }
             }
