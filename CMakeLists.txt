@@ -121,7 +121,11 @@ endif()
 
 
 # CPack packaging
-set(CPACK_GENERATOR TGZ DEB) # list of packages type generated
+if (APPLE)
+    set(CPACK_GENERATOR TGZ)
+else()
+    set(CPACK_GENERATOR TGZ DEB)
+endif()
 
 #CPACK_PACKAGE_NAME
 #CPACK_PACKAGE_VENDOR
