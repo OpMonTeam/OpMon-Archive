@@ -8,18 +8,6 @@ namespace Utils {
   */
     OpString OpString::voidStr = OpString("void");
 
-    OpString::OpString(std::string key, ...) {
-        va_list ap;
-        this->key = key;
-        va_start(ap, key);
-        int instances = StringKeys::countInstances(StringKeys::get(key), '~');
-        for(int i = 0; i < instances; i++) {
-            sf::String *current = va_arg(ap, sf::String *);
-            objects.push_back(current);
-        }
-        va_end(ap);
-    }
-
     OpString::OpString(std::string const &key, std::vector<sf::String *> obj) {
         this->key = key;
         unsigned int instances = StringKeys::countInstances(StringKeys::get(key), '~');
@@ -42,29 +30,6 @@ namespace Utils {
                 delete(object);
             }
         }
-    }
-
-    sf::String OpString::quickString(std::string const &key, ... /* Waiting std::string pointers*/) {
-        va_list ap;
-        va_start(ap, key);
-        int instances = StringKeys::countInstances(StringKeys::get(key), '~');
-        std::vector<sf::String *> vect;
-        for(int i = 0; i < instances; i++) {
-            std::string *ptr = va_arg(ap, std::string *);
-            if(ptr != NULL && ptr != nullptr) {
-                vect.push_back(new sf::String(*ptr));
-                delete(ptr);
-            }
-        }
-        va_end(ap);
-        OpString op = OpString(key, vect);
-        sf::String str = op.getString();
-
-        for(sf::String *sfstr : vect) {
-            delete(sfstr);
-        }
-
-        return str;
     }
 
     sf::String OpString::quickString(std::string const &key, std::vector<std::string> vstr) {

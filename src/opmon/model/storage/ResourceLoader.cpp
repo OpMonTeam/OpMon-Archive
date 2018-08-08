@@ -44,12 +44,14 @@ namespace OpMon {
             return music;
         }
 
-        std::ifstream ResourceLoader::loadKeysFile(const char *path) {
-            std::ifstream file(getResourcePath() + path);
+        void ResourceLoader::loadKeysFile(const char *path, std::ifstream& file) {
+	    if(file.is_open()){
+		file.close();
+	    }
+            file.open(getResourcePath() + path);
             if(!file) {
                 handleError(std::string("Keys initialization error: ") + path, true);
             }
-            return file;
         }
 
     } // namespace Model

@@ -41,6 +41,10 @@ namespace OpMon {
             const sf::String *getNameP() const {
                 return &name;
             }
+            
+            sf::String *getNameP() {
+                return &name;
+            }
 
             void setName(sf::String const &name) {
                 this->name = name;
