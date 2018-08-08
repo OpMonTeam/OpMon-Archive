@@ -30,7 +30,7 @@ namespace OpMon {
 
           protected:
           private:
-            std::string nickname;
+            sf::String nickname;
             int atkIV = Utils::Misc::randU(32);
             int defIV = Utils::Misc::randU(32);
             int atkSpeIV = Utils::Misc::randU(32);
@@ -210,7 +210,7 @@ namespace OpMon {
                 return HP;
             }
 
-            std::string getNickname() {
+            sf::String& getNickname() {
                 return nickname;
             }
 
