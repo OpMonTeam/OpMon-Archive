@@ -6,9 +6,9 @@
 #include <fstream>
 
 /**Principal log*/
-static std::ofstream *rlog;
+static std::ostream *rlog = nullptr;
 /**Error log*/
-static std::ofstream *rerrLog;
+static std::ostream *rerrLog = nullptr;
 
 /* location of the log folder */
 #define LOG_PATH Path::getLogPath()
@@ -16,7 +16,9 @@ static std::ofstream *rerrLog;
 namespace Utils {
     namespace Log {
 
-        bool init() {
+        void init() {
+            if (rlog != nullptr)
+                return; // Log already initialized
 
             Fs::mkdir(LOG_PATH);
 
@@ -24,19 +26,18 @@ namespace Utils {
             rerrLog = new std::ofstream(std::string(LOG_PATH + "errLog.txt"));
 
             if(!*rlog) {
-                std::cout << "Unable to open the log." << std::endl;
-                return false;
+                rlog = &std::cout;
+                std::cerr << "Unable to open the log." << std::endl;
             }
             if(!*rerrLog) {
-                std::cout << "Unable to open the error log" << std::endl;
-                return false;
+                rerrLog = &std::cerr;
+                std::cerr << "Unable to open the error log" << std::endl;
             }
-            return true;
         }
 
         void oplog(const std::string &toSay, bool error) {
-            std::ofstream *logStream = error ? rerrLog : rlog;
-
+            init();
+            std::ostream *logStream = error ? rerrLog : rlog;
             *logStream << "[T = " << Time::getElapsedMilliseconds() << "] - " << toSay << std::endl;
         }
 

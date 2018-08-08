@@ -116,10 +116,6 @@ namespace OpMon {
 
 int main(int argc, char *argv[]) {
     Utils::Time::initClock();
-    if(!Utils::Log::init()) {
-        std::cout << "Exiting" << std::endl;
-        return -1;
-    }
 
     auto versionS = "Version : Alpha " + OpMon::Main::version + ((OpMon::Main::pre == "0") ? "" : ("-pre_" + OpMon::Main::pre));
 
