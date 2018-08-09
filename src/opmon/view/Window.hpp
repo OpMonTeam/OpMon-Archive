@@ -11,7 +11,7 @@ Contains Window namespace
 
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
-
+#include "../../utils/defines.hpp"
 #include "Jukebox.hpp"
 
 namespace OpMon {

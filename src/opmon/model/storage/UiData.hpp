@@ -9,6 +9,7 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <map>
 #include <vector>
+#include "../../../utils/defines.hpp"
 
 namespace OpMon {
     namespace Model {

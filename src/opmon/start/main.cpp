@@ -11,7 +11,6 @@
 #include "../view/Window.hpp"
 #include "./Core.hpp"
 #include "./Gameloop.hpp"
-#include "config.hpp"
 #include "i18n/Translator.hpp"
 #include <ostream>
 #include <string>

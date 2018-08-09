@@ -3,5 +3,8 @@
 #define CONFIG_HPP_IN
 
 #define OPMON_VERSION "@OPMON_VERSION@"
+#if @SFML_COMPATIBILITY@ +1 == 2
+#define SFML_COMPATIBILITY
+#endif
 
 #endif /* CONFIG_HPP_IN */

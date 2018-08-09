@@ -19,7 +19,7 @@ namespace OpMon {
             for(size_t i = 0; i < 3; ++i) {
                 dialogText[i].setFont(uidata->getFont());
                 dialogText[i].setCharacterSize(FONT_SIZE_DEFAULT);
-                dialogText[i].setFillColor(sf::Color::Black);
+                dialogText[i].setSfmlColor(sf::Color::Black);
 
                 dialogText[i].setPosition(25, background.getPosition().y + minusPos);
                 minusPos += 32;
