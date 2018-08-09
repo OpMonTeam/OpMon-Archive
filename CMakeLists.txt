@@ -19,7 +19,6 @@ foreach(ARG system audio window graphics)
 endforeach()
 string(REPLACE ";" ", " OPMON_DEBIAN_DEPENDS "${OPMON_DEBIAN_DEPENDS}")
 
-
 set(OPMON_DEBIAN_CATEGORY games)
 
 set(OPMON_VERSION "${OPMON_VERSION_MAJOR}.${OPMON_VERSION_MINOR}.${OPMON_VERSION_PATCH}")
@@ -43,7 +42,6 @@ if(NOT CMAKE_BUILD_TYPE)
             "Choose the type of build, options are: Debug Release RelWithDebInfo MinSizeRel."
             FORCE)
 endif(NOT CMAKE_BUILD_TYPE)
-
 
 # build config.hpp (insert cmake variables)
 configure_file(config.hpp.in config.hpp)

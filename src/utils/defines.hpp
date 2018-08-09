@@ -1,12 +1,20 @@
 #ifndef DEFINES_HPP
 #define DEFINES_HPP
 
+#include "config.hpp"
+
 #ifdef __GNUC__
 #define OP_DEPRECATED __attribute__((deprecated))
 #elif defined(_MSC_VER)
 #define OP_DEPRECATED __declspec(deprecated)
 #else
 #define OP_DEPRECATED
+#endif
+
+#ifdef SFML_COMPATIBILITY
+#define setSfmlColor setColor
+#else
+#define setSfmlColor setFillColor
 #endif
 
 #include <string>
