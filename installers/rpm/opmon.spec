@@ -4,7 +4,7 @@
 #
 
 Name:           opmon
-Version:        0.14
+Version:        0.15
 Release:        0
 Summary:        Free and open source Pokémon clone
 License:        GPL-3.0-or-later
