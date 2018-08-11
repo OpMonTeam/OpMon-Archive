@@ -16,18 +16,16 @@ namespace OpMon {
 
         OpMon::~OpMon() {
             for(int i = 0; i < 4; i++) {
-                if(attacks[i] != nullptr) {
-                    delete(attacks[i]);
-                }
+                delete(attacks[i]);
             }
         }
 
         OpMon::OpMon(const std::string &nickname, const Species *species, int level, const std::vector<Attack *> &attacks, Nature nature)
-          : species(species)
+          : nickname((nickname.empty()) ? species->getName() : nickname)
+          , species(species)
           , level(level)
           , attacks(attacks)
-          , nature(nature)
-          , nickname((nickname.empty()) ? species->getName() : nickname) {
+          , nature(nature) {
             atkIV = Utils::Misc::randU(32);
             defIV = Utils::Misc::randU(32);
             atkSpeIV = Utils::Misc::randU(32);
