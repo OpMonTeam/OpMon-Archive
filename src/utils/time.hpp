@@ -18,6 +18,11 @@ namespace Utils {
         int getElapsedMilliseconds();
 
         /**
+         * Return the number of elapsed seconds since the beginning of the program
+         */
+        float getElapsedSeconds();
+
+        /**
      * Sleep for determined duration.
      * @param duration - time to wait, in milliseconds
      */

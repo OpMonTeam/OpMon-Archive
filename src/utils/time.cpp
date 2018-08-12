@@ -18,6 +18,10 @@ namespace Utils {
             return ticks.getElapsedTime().asMilliseconds();
         }
 
+        float getElapsedSeconds() {
+            return ticks.getElapsedTime().asSeconds();
+        }
+
         void wait(int duration) {
             sf::sleep(sf::milliseconds(duration));
         }
