@@ -36,13 +36,10 @@ namespace OpMon {
 
             UiData(UiData const &data);
 
-            View::Window &win;
-
           public:
-            View::Window &getWindow() { return win; }
             View::Jukebox &getJukebox() { return jukebox; }
             sf::Font const &getFont() const { return font; }
-            UiData(View::Window &win);
+            UiData();
             ~UiData();
             sf::Texture &getOpSprite(unsigned int id, bool face) { return opSprites[id][(unsigned int)face]; }
             Species *getOp(unsigned int id) { return listOp.at(id); }
