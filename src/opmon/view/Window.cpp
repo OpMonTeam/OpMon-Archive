@@ -12,8 +12,6 @@ using Utils::Log::oplog;
 namespace OpMon {
     namespace View {
         void Window::open() {
-            init = true;
-
             sf::ContextSettings settings;
             //settings.antialiasingLevel = 8;
             if(!Model::OptionsSave::checkParam("fullscreen")) {
@@ -32,22 +30,6 @@ namespace OpMon {
 
             frame.create(512, 512);
 
-            /*window.clear(sf::Color::White);
-            sf::Texture loadTexture;
-            Model::ResourceLoader::load(loadTexture, "backgrounds/loading.png");
-            sf::Sprite spriteLoad;
-            spriteLoad.setTexture(loadTexture);
-            sf::Text textLoad;
-            textLoad.setString(Utils::StringKeys::get("load.txt"));
-            textLoad.setCharacterSize(45);
-            textLoad.setFont(Model::Data::Ui::font);
-            textLoad.setSfmlColor(sf::Color::White);
-            textLoad.setPosition(30, 400);
-            frame.draw(spriteLoad);
-            frame.draw(textLoad);
-            frame.display();
-            winRefresh();*/
-
             oplog("Window initialized!");
 #if 0
 	    window.setVerticalSyncEnabled(true);
@@ -55,22 +37,17 @@ namespace OpMon {
             window.setFramerateLimit(30);
             window.setKeyRepeatEnabled(false);
             frame.clear(sf::Color::White);
-            frame.display();
-            winRefresh();
-
-            frame.clear(sf::Color::Black);
+            refresh();
         }
 
         void Window::close() {
-            /*oplog("Deleting the variables...");
-	destroyAll();*/
             oplog("Closing the window...");
             window.close();
-            init = false;
             oplog("Window closed. No error detected. Goodbye.");
         }
 
-        void Window::winRefresh() {
+        void Window::refresh() {
+            frame.display();
             sf::Sprite sprite(frame.getTexture());
 
             if(fullScreen) {

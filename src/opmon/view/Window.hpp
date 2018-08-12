@@ -11,8 +11,7 @@ Contains Window namespace
 
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
-#include "../../utils/defines.hpp"
-#include "Jukebox.hpp"
+
 
 namespace OpMon {
     namespace View {
@@ -20,7 +19,6 @@ namespace OpMon {
           private:
             sf::RenderWindow window;
             sf::RenderTexture frame;
-            bool init = false;
             bool fullScreen = false;
 
           public:
@@ -28,7 +26,7 @@ namespace OpMon {
             sf::RenderWindow &getWindow() { return window; }
             void close();
             void open();
-            void winRefresh();
+            void refresh();
         };
     } // namespace View
 } // namespace OpMon

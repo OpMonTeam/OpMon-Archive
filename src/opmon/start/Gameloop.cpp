@@ -66,8 +66,7 @@ namespace OpMon {
                 _gameScreens.top()->resume();
                 break;
             case GameStatus::CONTINUE:
-                window.getFrame().display();
-                window.winRefresh();
+                window.refresh();
                 break;
             default:
                 break;
