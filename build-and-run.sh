@@ -5,7 +5,7 @@ set -e # exit on error
 cmake . -DCMAKE_BUILD_TYPE=Release
 make
 cd bin/Release
-rm -r data
+rm -rf data
 cd ../../
 cp -r data bin/Release/
 cd bin/Release

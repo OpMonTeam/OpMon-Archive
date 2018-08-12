@@ -58,9 +58,10 @@ namespace OpMon {
         }
 
         void Overworld::updateCamera(sf::RenderTarget &frame) {
-            frame.setView(camera);
-            if(cameraLock)
+            if(cameraLock){
+                frame.setView(camera);
                 return;
+            }
 
             // Note: character is already center on itself:
             // character.getPosition() returns the center of the player's sprite
@@ -103,6 +104,8 @@ namespace OpMon {
                 center.y = std::min(center.y, (float)mapSize.y - (cameraSize.y * nearBorderCoef / 2.f));
             }
             camera.setCenter(center);
+
+            frame.setView(camera); // It must be called after all camera modification
         }
 
         void Overworld::resetCamera() {
