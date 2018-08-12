@@ -32,7 +32,7 @@ namespace OpMon {
                 return current;
             }
 
-            GameStatus operator()(int frames, sf::RenderTexture &frame);
+            GameStatus operator()(sf::RenderTexture &frame);
 
             void tp(std::string toTp, sf::Vector2i pos);
 
@@ -93,8 +93,8 @@ namespace OpMon {
        */
             void startDialog(std::vector<sf::String> const &dialogs);
 
-            void setStartFrames() {
-                recordFrames = true;
+            void startPlayerAnimation() {
+                initPlayerAnimation = true;
             }
 
           private:
@@ -130,9 +130,9 @@ namespace OpMon {
 
             int tpCount = 0;
 
-            int startFrames = 0;
             int animsCounter = 0;
-            bool recordFrames = false;
+            bool initPlayerAnimation = false;
+            int startPlayerAnimationTime = 0;
 
             bool cameraLock = false;
 

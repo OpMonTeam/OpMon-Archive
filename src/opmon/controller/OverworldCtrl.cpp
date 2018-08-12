@@ -121,7 +121,7 @@ namespace OpMon {
                 eventsctrl.updateEvents(data.getMap(player.getMapId())->getEvents(), player, view);
             }
 
-            return view(getFrames(), frame);
+            return view(frame);
         }
 
         void OverworldCtrl::suspend() {
