@@ -66,12 +66,6 @@ namespace OpMon {
         exit(returns);
     }
 
-    int *frames;
-
-    int getFrames() {
-        return *frames;
-    }
-
     std::string &operator<<(std::string &str, int nbre) {
         std::ostringstream oss;
         oss << str << nbre;

@@ -183,12 +183,12 @@ namespace OpMon {
             delete(layer3);
             delete(dialog);
         }
-        GameStatus Overworld::operator()(int frames, sf::RenderTexture &frame) {
+        GameStatus Overworld::operator()(sf::RenderTexture &frame) {
             bool is_in_dialog = this->dialog && !this->dialog->isDialogOver();
 
-            if(recordFrames) {
-                recordFrames = false;
-                startFrames = frames;
+            if(initPlayerAnimation){
+                startPlayerAnimationTime = Utils::Time::getElapsedMilliseconds();
+                initPlayerAnimation = false;
             }
 
             fpsCounter++;
@@ -200,15 +200,14 @@ namespace OpMon {
 
             sf::Text debugText;
             if(debugMode) {
-                std::cout << "[FRAME Nｰ" << frames << "]" << std::endl;
+                std::cout << "Elapsed Time: " << Utils::Time::getElapsedSeconds() << "s" << std::endl;
                 std::cout << "Loop : " << (is_in_dialog ? "Dialog" : "Normal") << std::endl;
-                std::cout << "Tick: " << Utils::Time::getElapsedMilliseconds() << "ms" << std::endl;
                 std::cout << "PlayerPosition: " << data.getPlayer().getPosition().getPosition().x << " - " << data.getPlayer().getPosition().getPosition().y << std::endl;
                 std::cout << "PlayerPositionPx: " << character.getPosition().x << " - " << character.getPosition().y << std::endl;
                 std::cout << "Moving: " << (data.getPlayer().getPosition().isMoving() ? "true" : "false") << std::endl;
                 std::cout << "Anim: " << (data.getPlayer().getPosition().isAnim() ? "true" : "false") << std::endl;
                 std::cout << "PlayerDirection: " << (int)data.getPlayer().getPosition().getDir() << std::endl;
-                std::cout << "Start Frames : " << startFrames << std::endl;
+                std::cout << "Start player Animation Time: " << (double)startPlayerAnimationTime / 1000 << std::endl;
 
                 debugText.setString("Debug mode");
                 debugText.setPosition(0, 0);
@@ -290,7 +289,9 @@ namespace OpMon {
                         break;
                     }
                 }
-                if(frames - startFrames >= 7) {
+
+                const int currentTime = Utils::Time::getElapsedMilliseconds();
+                if(currentTime - startPlayerAnimationTime >= (7 * 1000 / 30)){ // assuming there is 30 frames per second.
                     data.getPlayer().getPosition().stopMove();
                 }
             }
