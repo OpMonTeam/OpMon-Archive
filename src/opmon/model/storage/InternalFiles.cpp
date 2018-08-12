@@ -1,16 +1,5 @@
 #include "InternalFiles.hpp"
 
-std::string operator/(const char str1[], std::string const &str2) {
-    return std::string(str1) + " " + str2;
-}
-
-std::string operator/(std::string const &str1, const char str2[]) {
-    return str1 + " " + std::string(str2);
-}
-
-std::string operator/(std::string const &str1, std::string const &str2) {
-    return str1 + " " + str2;
-}
 
 namespace OpMon {
     namespace Model {
