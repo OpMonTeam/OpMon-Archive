@@ -37,10 +37,6 @@ namespace OpMon {
     std::string &operator<<(std::string &str, int nbre);
     std::string &operator<<(std::string &str, char nbre[]);
 
-    extern int *frames;
-
-    int getFrames();
-
     template <typename Base, typename T>
     bool instanceOf(const Base *toTest);
 } // namespace OpMon

@@ -8,19 +8,13 @@
 
 namespace OpMon {
 
-    GameLoop::GameLoop()
-      : frames(0) {
-    }
+    GameLoop::GameLoop() {}
 
     GameLoop::~GameLoop() {
         while(!_gameScreens.empty()) {
             delete(_gameScreens.top());
             _gameScreens.pop();
         }
-    }
-
-    int *GameLoop::getFrames() {
-        return &this->frames;
     }
 
     GameStatus GameLoop::operator()() {
@@ -38,8 +32,6 @@ namespace OpMon {
 
         while(status != GameStatus::STOP) {
             status = GameStatus::CONTINUE;
-
-            frames++;
 
             auto ctrl = _gameScreens.top();
             sf::Event event;

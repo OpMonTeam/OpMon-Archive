@@ -96,11 +96,10 @@ namespace OpMon {
                 oplog("Starting game loop");
 
                 GameLoop gameloop;
-                frames = gameloop.getFrames();
                 gameloop();
 
                 std::string logEntry;
-                logEntry << std::string("Game ended after ") << getFrames() << std::string("frames");
+                logEntry << std::string("Game ended after ") << Utils::Time::getElapsedSeconds() << std::string("seconds");
 
                 oplog(logEntry);
                 if(reboot) {
