@@ -272,7 +272,7 @@ namespace OpMon {
             atk.setScale(2, 2);
 
             infoboxPlayer.setTexture(data.getInfoboxPlayer());
-            infoboxPlayer.setPosition(321, 250);
+            infoboxPlayer.setPosition(277, 252);
             infoboxTrainer.setTexture(data.getInfoboxTrainer());
             infoboxTrainer.setPosition(17, 148);
             shadowPlayer.setTexture(data.getShadowPlayer());
@@ -289,7 +289,7 @@ namespace OpMon {
             healthbar1[0].setPosition(30, 130);
             healthbar2[0].setPosition(30, 130);
 
-            infoboxPlayer.setPosition(321, 250);
+            infoboxPlayer.setPosition(277, 252);
             healthbar1[1].setPosition(335, 230);
             healthbar2[1].setPosition(335, 230);
 
