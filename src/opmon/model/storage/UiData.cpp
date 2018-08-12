@@ -7,8 +7,7 @@
 namespace OpMon {
     namespace Model {
 
-        UiData::UiData(View::Window &win)
-          : win(win) {
+        UiData::UiData(){
 
             Utils::Log::oplog("Initializating UiData");
 

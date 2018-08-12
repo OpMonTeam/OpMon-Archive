@@ -107,7 +107,6 @@ namespace OpMon {
 
         void Overworld::resetCamera() {
             camera.setCenter(character.getPosition());
-            updateCamera(data.getUiDataPtr()->getWindow().getFrame());
         }
 
         void Overworld::printElements(sf::RenderTexture &frame) {
