@@ -46,7 +46,7 @@ namespace OpMon {
 
         std::string version = OPMON_VERSION;
 
-        std::string pre = "1";
+        std::string pre = "0";
 
         std::string versionS;
         /*
