@@ -85,7 +85,24 @@ endif()
 
 
 # Note: the executable must be declared before adding libraries
-add_executable(${EXECUTABLE_NAME} WIN32 ${SOURCE_FILES})
+if (APPLE)
+    # On Apple, Create an app bundle, which includes all the game resources and dependencies
+    set_source_files_properties( ${CMAKE_SOURCE_DIR}/Resources/Other/opmon_icon.icns PROPERTIES MACOSX_PACKAGE_LOCATION Resources )
+    set_source_files_properties( ${CMAKE_SOURCE_DIR}/data PROPERTIES MACOSX_PACKAGE_LOCATION Resources )
+
+    # Need some extra code to get the correct Resource folder in an app bundle
+    list(APPEND SOURCE_FILES src/utils/ResourcePath.hpp src/utils/ResourcePath.mm)
+    add_executable(${EXECUTABLE_NAME} MACOSX_BUNDLE ${SOURCE_FILES}
+    ${CMAKE_SOURCE_DIR}/Resources/Other/opmon_icon.icns
+    ${CMAKE_SOURCE_DIR}/data)
+
+    # Set the icon
+    set_target_properties( ${EXECUTABLE_NAME} PROPERTIES MACOSX_BUNDLE_ICON_FILE opmon_icon.icns )
+
+    include (BundleUtilities)
+else()
+    add_executable(${EXECUTABLE_NAME} WIN32 ${SOURCE_FILES})
+endif()
 set(EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE})
 
 
