@@ -9,6 +9,11 @@
 #define S_ISDIR(m) (((m)&S_IFMT) == S_IFDIR)
 #endif
 
+// Apple needs special code to get the resource folder within an app bundle
+#ifdef __APPLE__
+#include "ResourcePath.hpp"
+#endif
+
 namespace Utils {
     namespace Path {
         static bool _isFolder(const std::string &path) {
@@ -50,8 +55,12 @@ namespace Utils {
         }
 
         const std::string getResourcePath() {
-            if(_isFolder("./data"))
-                return "./data/";
+            std::string resPath = "";
+#ifdef __APPLE__
+            resPath = resourcePath();
+#endif
+            if(_isFolder(resPath + "./data"))
+                return resPath + "./data/";
 
             { // search in $XDG_DATA_HOME
                 const char *xdg_data_home = std::getenv("XDG_DATA_HOME");
