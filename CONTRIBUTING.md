@@ -23,4 +23,4 @@ OpMon Lazuli uses the ["Fork & Pull"](https://help.github.com/articles/using-pul
 method for code contributions.
 
 ## Making a Pull Request
-**When your changes are done, you can create a pull request. If you have created a new brnch in your fork, submit your modifications to the base branch of yours. If you have directly modified the branch, submit your modifications directly in the corresponding branch of the repository.**
+**When your changes are done, you can create a pull request. If you have created a new branch in your fork, submit your modifications to the base branch of yours. If you have directly modified the branch, submit your modifications directly in the corresponding branch of the repository.**
