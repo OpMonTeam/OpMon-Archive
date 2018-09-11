@@ -1,4 +1,9 @@
-
+/*
+MainMenuCtrl.hpp
+Author : BAKFR
+Contributor : Cyrion
+File under GNU GPL v3.0
+*/
 #pragma once
 
 #include <SFML/Window/Event.hpp>
@@ -10,7 +15,6 @@
 
 namespace OpMon {
     namespace Controller {
-
         class MainMenuCtrl : public AGameScreen {
           private:
             Model::MainMenuData data;
