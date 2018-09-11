@@ -1,3 +1,8 @@
+/*
+AnimationCtrl.cpp
+Author : Cyrion
+File under GNU GPL 3.0 license
+*/
 #include "AnimationCtrl.hpp"
 #include "../view/Window.hpp"
 
