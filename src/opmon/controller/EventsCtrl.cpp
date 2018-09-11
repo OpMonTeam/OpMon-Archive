@@ -1,3 +1,9 @@
+/*
+EventsCtrl.cpp
+Author : Cyrion
+Contributor : BAKFR
+File under GNU GPL v3.0 license
+*/
 #include "EventsCtrl.hpp"
 
 #include <SFML/Window/Keyboard.hpp>
@@ -10,7 +16,9 @@ namespace OpMon {
     namespace Controller {
 #pragma GCC diagnostic ignored "-Wunused-parameter"
         void EventsCtrl::checkAction(sf::Event const &event, Model::Player &player, View::Overworld &overworld) {
+	  //If the player isn't moving, then this checks if the player want to activate an event.
             if(!player.getPosition().isAnim()) {
+	      //Get the event coordinates and activate it if the player interacted with it.
                 if(sf::Keyboard::isKeyPressed(overworld.getData().getUiDataPtr()->getKeyInteract())) {
                     int lx = player.getPosition().getPosition().x;
                     int ly = player.getPosition().getPosition().y;
@@ -36,7 +44,7 @@ namespace OpMon {
                 }
             }
 #pragma GCC diagnostic pop
-
+	    //Searches and activate the event which activate when the player is in the same square than the event.
             if(!player.getPosition().isMoving()) {
                 std::vector<Model::Event *> eventList = overworld.getData().getCurrentMap()->getEvent(player.getPosition().getPosition());
                 actionEvents(eventList, player, Model::Events::EventTrigger::BE_IN, overworld);
@@ -44,6 +52,7 @@ namespace OpMon {
         }
 
         void EventsCtrl::actionEvents(std::vector<Model::Event *> &events, Model::Player &player, Model::Events::EventTrigger toTrigger, View::Overworld &overworld) {
+	  //Checks if the player points at the right direction to activate the events. If yes, calls the events' action methods.
             Model::Side ppDir = player.getPosition().getDir();
             for(unsigned int i = 0; i < events.size(); i++) {
                 if(events[i]->getEventTrigger() == toTrigger) {
