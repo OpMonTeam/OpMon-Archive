@@ -1,3 +1,9 @@
+/*
+OverworldCtrl.hpp
+Author : Cyrion
+Contributor : BAKFR
+File under GNU GPL v3.0 license
+*/
 #ifndef OVERWORLDCTRL_HPP
 #define OVERWORLDCTRL_HPP
 
