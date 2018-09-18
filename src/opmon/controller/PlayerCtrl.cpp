@@ -1,11 +1,18 @@
+/*
+PlayerCtrl.cpp
+Author : Cyrion
+Contributor : BAKFR
+File under GNU GPL v3.0 license
+*/
 #include "PlayerCtrl.hpp"
 
 #include "EventsCtrl.hpp"
 
 namespace OpMon {
     namespace Controller {
-        void PlayerCtrl::checkMove(Model::Player &player, sf::Event const &events, View::Overworld &overworld) {
+      void PlayerCtrl::checkMove(Model::Player &player, sf::Event const &events, View::Overworld &overworld) {
             if(events.type == sf::Event::KeyPressed) {
+	      //TODO : Map teleportation with arrows instead of F keys.
                 if(events.key.code == sf::Keyboard::F5) {
                     overworld.tp("Mom's room", sf::Vector2i(4, 4));
                 } else if(events.key.code == sf::Keyboard::F6) {

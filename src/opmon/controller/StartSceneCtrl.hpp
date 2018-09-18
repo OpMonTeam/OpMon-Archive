@@ -1,3 +1,9 @@
+/*
+StartSceneCtrl.hpp
+Author : Cyrion
+Contributor : BAKFR
+File under GNU GPL v3.0 license
+*/
 #ifndef STARTSCENECTRL_HPP
 #define STARTSCENECTRL_HPP
 
