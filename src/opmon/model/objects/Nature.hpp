@@ -1,9 +1,8 @@
 /*
 Nature.hpp
-Author : Jlppc
-File under  GPL-3.0 licence
-http://opmon-game.ga
-Define nature enumerations
+Author : Cyrion
+Contributor : Navet56
+File under GNU GPL v3.0 license
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_ENUMS_CARACTERE_HPP_
 #define SRCCPP_JLPPC_REGIMYS_ENUMS_CARACTERE_HPP_
@@ -15,7 +14,7 @@ namespace OpMon {
 
         /**
        Defines a nature. A natures brings a malus and a bonus on a stat. Each OpMon have a nature chosen randomly.
-    */
+	*/
         class NatureClass {
           public:
             /**The bonus brought by the nature*/
