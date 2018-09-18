@@ -1,9 +1,8 @@
 /*
 Attack.hpp
-Author : Jlppc
-File under GPL-3.0 license
-http://opmon-game.ga
-Contains Attack class definition
+Author : Cyrion
+Contributors : BAKFR, Navet56
+File under GNU GPL v3.0 license
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUE_HPP_
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUE_HPP_
@@ -17,10 +16,10 @@ namespace OpMon {
     namespace Model {
 
         class OpMon;
+      
         /**
-       Represents an OpMon attack
+	   Represents an OpMon attack
 	*/
-
         class AttackEffect {
           public:
             virtual int apply(Attack & /*attack*/, OpMon & /*attacker*/, OpMon & /*defender*/, Turn & /* atkTurn */) { return 0; }
@@ -48,8 +47,7 @@ namespace OpMon {
                 return ppMax;
             }
 
-            /**atk attacks the def OpMon*/
-            //->Final
+	  //"atk" attacks the "def" OpMon
             int attack(OpMon &atk, OpMon &def, Turn &atkTurn);
             void ifFails(OpMon &, OpMon &, Turn & /*atkTurn*/) {}
 
