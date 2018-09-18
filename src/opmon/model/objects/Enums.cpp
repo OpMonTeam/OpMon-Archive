@@ -1,3 +1,9 @@
+/*
+Enums.cpp
+Author : Cyrion
+Contributor : BAKFR, Samurai413x
+File under GNU GPL v3.0 license
+*/
 #include "Enums.hpp"
 
 namespace OpMon {
@@ -35,6 +41,9 @@ namespace OpMon {
             }
         } // namespace ArrayTypes
 
+      //Utilites to do operations with sides
+
+      
         bool operator==(Side side, int integer) {
             if(((int)side) == integer) {
                 return true;
