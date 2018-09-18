@@ -1,3 +1,9 @@
+/*
+CurveExp.hpp
+Author : torq
+Contributor : Cyrion
+File under GNU GPL v3.0 license
+*/
 #ifndef COURB_EXP_HPP
 #define COURB_EXP_HPP
 

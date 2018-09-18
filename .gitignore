@@ -59,3 +59,4 @@ install_manifest.txt
 *#
 .#*
 config.hpp
+src/opmon/model/objects/AttackEffectsOld.txt
