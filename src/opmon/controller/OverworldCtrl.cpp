@@ -1,3 +1,9 @@
+/*
+OverworldCtrl.cpp
+Author : Cyrion
+Contributors : BAKFR, Navet56
+File under GNU GPL v3.0 license
+*/
 #include "OverworldCtrl.hpp"
 
 #include "../model/objects/Attacks.hpp"
@@ -22,6 +28,7 @@ namespace OpMon {
 
             switch(events.type) {
             case sf::Event::KeyPressed:
+	      //The key equals starts the debug mode
                 if(events.key.code == sf::Keyboard::Equal) {
                     debugMode = !debugMode;
                     if(!debugMode) {
@@ -29,11 +36,13 @@ namespace OpMon {
                         overworld.setCameraLock(false);
                     }
                 }
+		//M reboots the game
                 if(events.key.code == sf::Keyboard::M) {
                     reboot = true;
                     return GameStatus::STOP;
                 }
                 if(debugMode) {
+		  //Debug, chooses the layers to print
                     if(events.key.code == sf::Keyboard::F10) {
                         overworld.printlayer[0] = !overworld.printlayer[0];
                     }
@@ -43,20 +52,13 @@ namespace OpMon {
                     if(events.key.code == sf::Keyboard::F12) {
                         overworld.printlayer[2] = !overworld.printlayer[2];
                     }
+		    
                     if(events.key.code == sf::Keyboard::C) {
                         overworld.printCollisions = !overworld.printCollisions;
                     }
                     if(events.key.code == sf::Keyboard::N) {
                         debugCol = !debugCol;
                     }
-                    /*if(events.key.code == sf::Keyboard::B) {
-                        data.getPlayer().addOpToOpTeam(new Model::OpMon("", data.getUiDataPtr()->getOp(4), 5, {Model::Attacks::newAtk("Tackle"), Model::Attacks::newAtk("Mist"), nullptr, nullptr}, Model::Nature::QUIET));
-                        Model::OpTeam *opTeam = new Model::OpTeam("Unknown trainer");
-                        opTeam->addOpMon(new Model::OpMon("", data.getUiDataPtr()->getOp(1), 5, {Model::Attacks::newAtk("Tackle"), Model::Attacks::newAtk("Mist"), nullptr, nullptr}, Model::Nature::QUIET));
-                        _next_gs = new BattleCtrl(data.getPlayer().getOpTeam(), opTeam, data.getUiDataPtr(), data.getPlayerPtr());
-                        data.getPlayer().healOp();
-                        return GameStatus::NEXT;
-			}*/
                     if(events.key.code == sf::Keyboard::Numpad5) {
                         overworld.setCameraLock(!overworld.isCameraLocked());
                     }
