@@ -1,4 +1,9 @@
-
+/*
+StartSceneCtrl.cpp
+Author : Cyrion
+Contributor : BAKFR
+File under GNU GPL v3.0 license
+*/
 #include "StartSceneCtrl.hpp"
 #include "../../utils/log.hpp"
 #include "../view/Window.hpp"
@@ -20,16 +25,18 @@ namespace OpMon {
                 if(event.key.code == data.getUiDataPtr()->getKeyTalk() && startscene.getDialog() != nullptr) {
                     startscene.getDialog()->pass();
                 }
+		//Part 1 is the part where the player enters his/her name
                 if(event.key.code == sf::Keyboard::Return && startscene.getPart() == 1) {
                     sf::String &pName = startscene.getpName();
                     if(pName.isEmpty()) {
-                        pName = "Player";
+		      pName = "Player";//We will find a default name some day
                     }
                     data.getPlayer().setName(pName);
                     startscene.delLoop1();
                     animNext = true;
                     return GameStatus::CONTINUE;
                 }
+		//P is used to skip the introduction, but it must be not working when entering the name
                 if(event.key.code == sf::Keyboard::P && startscene.getPart() != 1) {
                     _next_gs = new OverworldCtrl(data.getPlayer(), data.getUiDataPtr());
                     return GameStatus::NEXT;
@@ -52,6 +59,7 @@ namespace OpMon {
                 break;
             }
 
+	    //If it's the end of the introduction, go to the overworld
             if(view.getPart() > 2) {
                 _next_gs = new OverworldCtrl(data.getPlayer(), data.getUiDataPtr());
                 return GameStatus::NEXT;
@@ -60,6 +68,7 @@ namespace OpMon {
         }
 
         GameStatus StartSceneCtrl::update(sf::RenderTexture &frame) {
+	  //If the player have finished to enter his/her name, animNext must have been set to true. This part will launch the animation.
             if(animNext) {
                 animNext = false;
                 view.draw(frame);
