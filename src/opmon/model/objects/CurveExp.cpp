@@ -1,3 +1,8 @@
+/*
+CurveExp.cpp
+Author : torq
+File under GNU GPL v3.0 license
+*/
 #include "CurveExp.hpp"
 #include "../../start/Core.hpp"
 #include "math.h"
@@ -25,7 +30,7 @@ namespace OpMon {
             } else if(n >= 99) {
                 return round(pow(n, 3) * ((160 - n) / 100));
             } else {
-                handleError("Erreur dans le calcul d'experience : niveau <= 0", true);
+                handleError("Error when calculating exp : level <= 0", true);
                 return 0;
             }
         }
@@ -38,7 +43,7 @@ namespace OpMon {
             } else if(n >= 36) {
                 return round(pow(n, 3) * ((32 + (n / 2)) / 50));
             } else {
-                handleError("Erreur dans le calcul d'experience : niveau <= 0", true);
+                handleError("Error when calculating exp : level <= 0", true);
                 return 0;
             }
         }

@@ -1,14 +1,13 @@
 /*
 Enums.hpp
-Author : Jlppc
-File under GPL-3.0 license
-http://opmon-game.ga
-Define lot of enumerations
+Author : Cyrion
+Contributor : BAKFR, Samurai413x
+File under GNU GPL v3.0 license
 */
 #ifndef ENUMS_HPP
 #define ENUMS_HPP
 
-/**Defines permettant de rendre plus pratique l'écriture des tables des types*/
+/**Macros created to make the effectivenesses table more easy to read*/
 #define NOT 0    //Not effective at all
 #define VLO 0.25 //Very low effectiveness
 #define LO_ 0.5  //Low effectiveness
@@ -19,10 +18,9 @@ Define lot of enumerations
 namespace OpMon {
     namespace Model {
 
-        /**
-       Enumerate the OPMons statues
-    */
-        //->Enum
+      /**
+	 Enumerate the OPMons status
+      */
         enum class Status {
             BURNING,
             PARALYSED,
@@ -32,9 +30,8 @@ namespace OpMon {
             NOTHING
         };
         /**
-       Enumerate the OPMons stats
-    */
-        //->Enum
+	   Enumerate the OPMons stats
+	*/
         enum class Stats : int {
             ATK = 6,
             DEF = 1,
@@ -46,20 +43,18 @@ namespace OpMon {
             EVA = 8,
             NOTHING = 0
         };
-        /**
-       Enumerate the bag categories
-    */
-        //->Enum
-        enum class BagCat {
+      /**
+	 Enumerate the bag categories
+      */
+      enum class BagCat {
             HEAL,
             OBJECTS,
             RARES,
             HMS
         };
         /**
-       Enumerate the OPMons types
-    */
-        //->Enum
+	   Enumerate the OPMons types
+	*/
         enum class Type : int {
             LIQUID = 3,
             BURNING = 6,
@@ -82,9 +77,8 @@ namespace OpMon {
             NOTHING = -1
         };
         /**
-       Enumère les types de contacts entre un evènement et le joueur.
+       Enumerates kinds of contacts between events and the player.
     */
-        //->Enum
         enum class ActionType {
             ENTER,
             TOUCH,
@@ -92,9 +86,8 @@ namespace OpMon {
             VIEW
         };
         /**
-       Enumère les directions des sprites.
-    */
-        //->Enum
+	   Enumerates sprites directions.
+	*/
         enum class Side : int {
             TO_DOWN = 0,
             TO_RIGHT = 1,
@@ -105,9 +98,8 @@ namespace OpMon {
         };
 
         /**
-       Enumère les differents encodages
-    */
-        //->Enum
+	   Enumerates differents encodings
+	*/
         enum class Encoding {
             LATIN,
             UNICODE,

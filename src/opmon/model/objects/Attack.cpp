@@ -1,10 +1,14 @@
+/*
+Attack.cpp
+Author : Cyrion
+Contributors : BAKFR, torq, Navet56
+File under GNU GPL v3.0 license
+*/
 #include "Attack.hpp"
 #include "../../../utils/defines.hpp"
 #include "../save/Save.hpp"
 #include "OpMon.hpp"
 #include <sstream>
-
-//TODO : Translate this file in english
 
 namespace OpMon {
     namespace Model {
@@ -31,13 +35,13 @@ namespace OpMon {
             delete(this->postEffect);
         }
 
-        /* Return 1 : Inform to do the same attack at the next turn.
-     * Return 2 : End the attack
-       Return -2 : Inform that the attack failed
-       Return -1 : Inform that the attack was ineffective against the target
-     * In effectAfter : Return any number except 1 act like return 2.
-     * If 1 is returned, it will do the same attack at the next turn.
-     */
+      /* Return 1 : Inform to do the same attack at the next turn.
+       * Return 2 : End the attack
+       * Return -2 : Inform that the attack failed
+       * Return -1 : Inform that the attack was ineffective against the target
+       * In effectAfter : Return any number except 1 act like return 2.
+       * If 1 is returned, it will do the same attack at the next turn.
+       */
         int Attack::attack(OpMon &atk, OpMon &def, Turn &attackTurn) {
             pp--;
             //Attack fail
