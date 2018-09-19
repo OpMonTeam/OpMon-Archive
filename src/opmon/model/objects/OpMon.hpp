@@ -44,18 +44,18 @@ namespace OpMon {
             int speEV = 0;
             int hpEV = 0;
 
-            //Les statistiques en general
+            //General stat
             int statATK;
             int statDEF;
             int statATKSPE;
             int statDEFSPE;
             int statSPE;
-            //Les autrees stats.
+            //Other stats
             int statEVA;
             float statACC;
             int statHP;
             int statLove;
-            //Les variables indiquant le niveau de changement.
+            //Variables indicating stats variation level (See changeSTAT methods (Ex : changeATK) )
             int atkChange = 0;
             int defChange = 0;
             int defSpeChange = 0;
@@ -80,20 +80,22 @@ namespace OpMon {
             Type type2;
 
             int exp;
-            /**L'experience a avoir pour le prochain niveau*/
+            /**The exp to get to reach the next level*/
             int toNextLevel;
+	  /**In some cases, like a exchange, the OpMon can get an exp boost*/
             float expBoost = 1;
 
-            /**L'item tenu*/
+            /**The item held*/
             Item *held;
 
-            int tauxCapture;
+            int captureRate;
 
             unsigned int confusedCD = 0;
             unsigned int sleepingCD = 0;
 
           public:
             /**Lets you know if a OPMon is an OPMon that is initialized with a default initializer*/
+	  //Not very useful anymore I think...
             bool initialized = true;
 
             bool confused = false;
@@ -107,16 +109,9 @@ namespace OpMon {
             OpMon(const std::string &nickname, const Species *species, int level, const std::vector<Attack *> &attacks,
                   Nature nature);
 
-            /**
-         Merci d'utiliser ce constructeur dans le cadre du chargement et UNIQUEMENT dans ce cas, sinon cela pourrait
-         conduire a des bugs. Explication : Ce constructeur est concu pour marcher dans un schema bien particulier.
-         Si le schema est incorrect, cela génèrera des erreurs de segmentation ou des données corrompues.
-            */
-            OpMon(std::ifstream &in);
 
             OpMon() {
                 initialized = true;
-                //species = Data::OpMons::listOp[0];
             }
 
             int getConfusedCD() {
@@ -158,25 +153,23 @@ namespace OpMon {
             /**Recalculates the stats*/
             void calcStats();
 
-            /**Methode called when an item is used. Returns true if the item must be deleted from the player's inventory*/
+            /**Method called when an item is used. Returns true if the item must be deleted from the player's inventory*/
             bool itemUsed(Item *used);
 
             Item *hold(Item *item);
-            /**Methode called during an exchange*/
+            /**Method called during an exchange*/
             void traded();
 
-            /**SPOILERSµµµ*/
-            void toolEvTrade(); //SPOILERS!
-            /**Methode appelée lors de l'évolution*/
+            /**Method called when the OpMon is about to evolve*/
             void evolve();
 
             /**Allows to completely change the OPMon*/
             void setStats(int stats[], Attack *attacks[], const Species &species, Type types[]);
 
-            /**Fait perdre des pv*/
+            /**Attack the OpMon (he looses HP)*/
             void attacked(int hpPerdus);
 
-            /**Les methode suivantes modifient les stats en fonction des niveaux. Cela ne modifie pas directement la stat*/
+            /**Changes the STAT depending of the power given. It doesn't edit directly the variable, it lowers or increases (Depending of the power's sign) by multiplicating it.*/
             int changeATK(int power);
 
             int changeACC(int power);
@@ -195,7 +188,7 @@ namespace OpMon {
                 return status;
             }
 
-            /**Change le status*/
+            /**Changes OpMon's status*/
             bool setStatus(Status status);
 
             int getStatHP() const {
@@ -214,7 +207,7 @@ namespace OpMon {
                 return nickname;
             }
 
-            /**Heal the OPMon*/
+            /**Heals the OPMon (Opposite of attack() )*/
             void heal(int HP);
 
             int getLevel() const {
@@ -272,6 +265,7 @@ namespace OpMon {
             }
 
             //Warning! The == and != operators did not compare two OPMons! They compare whether OPMons are "initialized" or not (see initialized))
+	  //Yup, I should change this in the future (TODO)
             bool operator==(OpMon const &a) {
                 return (initialized == a.initialized);
             }
@@ -281,7 +275,7 @@ namespace OpMon {
             }
 
             Item *itemHeld() const {
-                return held; //C'est un getteur. Y'a pas get mais je m'en fous. C'est un getteur.
+                return held; //It's a getted, even if there is no "get" before.
             }
 
             std::string save();
