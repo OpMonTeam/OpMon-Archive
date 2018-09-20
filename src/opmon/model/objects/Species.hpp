@@ -1,9 +1,8 @@
 /*
 Species.hpp
-Author : Jlppc
-File under the GPL-3.0 license
-http://opmon-game.ga
-Define the CourbeExp enumération and the Species class
+Author : Cyrion
+Contributors : Stelyus, BAKFR, Navet56, JonnyPtn
+File under GNU GPL v3.0 license
 */
 #ifndef ESPECE_HPP
 #define ESPECE_HPP
@@ -44,27 +43,21 @@ namespace OpMon {
             unsigned int baseDefSpe;
             unsigned int baseSpe;
             unsigned int baseHP;
-            /**La courbe d'experience*/
+            /**The EXP curve*/
             CurveExp *curve;
-            /**L'exp au niveau 100*/
+            /**The total EXP the OpMon can have (EXP at level 100)*/
             int expMax;
-            /**C'est le tableau des EV donnés*/
+            /**Array representing the EV given by the OpMon when defeated*/
             std::vector<Stats> EVgiven;
-            //Variables de sprites a inserer ICI
+			
             unsigned int expGiven;
             int captureRate;
-            /**La height du tableau d'ev*/
-            int evSize;
 
           public:
             Species(Species &&other) noexcept;
 
             virtual ~Species();
             Species(unsigned int atk, unsigned int def, unsigned int atkSpe, unsigned int defSpe, unsigned int spe, unsigned int hp, std::string name, Type type1, Type type2, int maniereEvolution, int niveauEvolution, Evolution *evolType, std::vector<Stats> EVGiven, float height, float weight, std::string opdexEntry, unsigned int expGiven, int expMax, int captureRate, int opdexNumber);
-            /**Methode permettant de récuperer l'espèce d'évolution, car le mode d'initialisation des espèces ne permet pas de le faire dans le constructeur*/
-            void checkEvol();
-            /**Methode ayant la même fonction que checkEvol mais pour les attaques par niveau*/
-            void checkAtkLvls();
             unsigned int getBaseAtk() const {
                 return baseAtk;
             }
@@ -115,9 +108,6 @@ namespace OpMon {
             }
             std::vector<Stats> getEv() const {
                 return EVgiven;
-            }
-            int getEvSize() const {
-                return evSize;
             }
             int getOpdexNumber() const {
                 return this->opdexNumber;
