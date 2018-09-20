@@ -1,9 +1,7 @@
 /*
-    evolutions.hpp
-    Author : Jlppc
-    File under the GPL-3.0 licence
-    http://opmon-game.ga
-    Contains the evolutions definitions
+evolutions.hpp
+Author : Cyrion
+File under GNU GPL v3.0 license
 */
 #ifndef EVOLUTIONS_HPP_INCLUDED
 #define EVOLUTIONS_HPP_INCLUDED
@@ -16,11 +14,10 @@ namespace OpMon {
     namespace Model {
 
         /**
-       Namespace contenant les définitions des évolutions et l'énumération des évolutions
-    */
-        //->NoDoc
+       Namespace containing evolution definitions
+		*/
         namespace Evolutions {
-            //->Enum
+			
             const int EItem = 7, ELand = 6, ELevel = 5, ELove = 4, ENope = 3, ETrade = 2, ETradeItem = 1;
 
             class E_Item : public Evolution {
@@ -39,13 +36,13 @@ namespace OpMon {
                 E_Land(int evo, std::string lieu);
 
                 bool checkEvolve(OpMon const &toCheck) const {
-                    return false; //Il faudra tester si l'endroit ou se trouve le dresseur est le bon.
+                    return false; //TODO : Check if the map where the player is is the good map.
                 }
 
                 const int evolID = 6;
 
               private:
-                //Map carteDuLieu;
+                //Map* place;
             };
 
             class E_Level : public Evolution {

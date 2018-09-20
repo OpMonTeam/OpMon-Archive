@@ -1,3 +1,9 @@
+/*
+Species.cpp
+Author : Cyrion
+Contributor : BAKFR
+File under GNU GPL v3.0
+*/
 #include "Species.hpp"
 #include "./evolution/Evolution.hpp"
 #include "./evolution/evolutions.hpp"
@@ -27,7 +33,6 @@ namespace OpMon {
             EVgiven = other.EVgiven;
             expGiven = other.expGiven;
             captureRate = other.captureRate;
-            evSize = other.evSize;
 
             other.evolType = nullptr;
         }
@@ -54,15 +59,18 @@ namespace OpMon {
             this->type2 = type2;
             this->niveauEvolution = niveauEvolution;
             this->evolType = evolType;
+			evolType->checkEvo();
             this->evolution = this->evolType->getEvolution();
             this->weight = weight;
             this->height = height;
             this->opdexEntry = opdexEntry;
             this->expGiven = expGiven;
             this->EVgiven = EVGiven;
-            //Mise en place des curves d'exp
             this->expMax = expMax;
-
+			
+			
+			//The curve is found according to the max OpMon's exp.
+			//TODO : Reverse this : find the max exp with the curve
             switch(this->expMax) {
             case 800000:
                 curve = new CurveExpQuick();
@@ -88,14 +96,5 @@ namespace OpMon {
             this->opdexNumber = opdexNumber;
         }
 #pragma GCC diagnostic pop
-
-        void Species::checkEvol() {
-            evolType->checkEvo();
-            this->evolution = evolType->getEvolution();
-        }
-
-        void Species::checkAtkLvls() {
-            //this->atksByLevels = Initializer::atkOpLvl[OpdexNumberInit];
-        }
     } // namespace Model
 } // namespace OpMon

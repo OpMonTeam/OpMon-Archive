@@ -1,3 +1,8 @@
+/*
+ELevel.cpp
+Author : Cyrion
+File under GNU GPL v3.0
+*/
 #include "evolutions.hpp"
 
 namespace OpMon {

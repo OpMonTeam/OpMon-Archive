@@ -1,3 +1,8 @@
+/*
+ELand.cpp
+Author : Cyrion
+File under GNU GPL v3.0
+*/
 #include "evolutions.hpp"
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 namespace OpMon {
