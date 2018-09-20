@@ -1,3 +1,8 @@
+/*
+Evolution.cpp
+Author : Cyrion
+File under GNU GPL v3.0 license
+*/
 #include "Evolution.hpp"
 
 namespace OpMon {

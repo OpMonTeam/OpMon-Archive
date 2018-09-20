@@ -1,3 +1,8 @@
+/*
+EItem.cpp
+Author : Cyrion
+File under GNU GPL v3.0
+*/
 #include "evolutions.hpp"
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 namespace OpMon {
@@ -8,7 +13,7 @@ namespace OpMon {
               : Evolution(evo)
               , forEvolve(forEvolve) {
             }
-            /* NE PAS UTILISER, inutile.*/
+            /* DO NOT USE. It's useless.*/
             bool E_Item::checkEvolve(OpMon const &toCheck) const {
                 return false;
             }
