@@ -1,9 +1,7 @@
 /*
-  Item.hpp
-  Author : Jlppc
-  File under the licence GPL-3.0
-  http://opmon-game.ga
-  Contains the definition of ItemType enumeration and Item class
+Item.hpp
+Author : Cyrion
+File under GNU GPL v3.0 license
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_ITEM_HPP_
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_ITEM_HPP_
@@ -12,12 +10,11 @@
 #include <iostream>
 #define ITEM_NUMBER 151
 
+//TODO : Redo the item system
+
 namespace OpMon {
     namespace Model {
 
-        /**
-       Namespace énumérant les types de classes d'item
-    */
         enum class ItemType : int {
             Unknown = 0,
             IHeal = 1,
@@ -26,21 +23,19 @@ namespace OpMon {
         };
         /**
        Enumarions containing the items ids
-    */
-        enum class Items : unsigned int {
+		*/
+        /*enum class Items : unsigned int {
 
-        };
-        /**
-       Classe définissant un item du jeu
-    */
+        };*/
+
         class Item {
           public:
-            /**La liste des items du jeu*/
+            /**Items list*/
             static Item *itemsLst[ITEM_NUMBER];
             Item(std::string name, bool usable, bool usableInFight, bool givable, BagCat categorie, int id);
             static Item *getItem(std::string const &name);
             static Item *getItem(int id);
-            /**Recherche un item et renvoie son ID dans itemsList*/
+            /**Searches an item and returns it's ID*/
             static int searchItem(Item *toSearch);
             bool operator==(Item const &b) const;
             std::string getName() const {
