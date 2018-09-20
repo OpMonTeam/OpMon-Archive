@@ -99,7 +99,7 @@ namespace OpMon {
         Player::Player(std::ifstream &in, std::string &name)
           : name(name)
           , trainerID(in.get())
-          , opteam(name) {
+          , opteam(name) {/*
             in.get();
             int iNber = in.get();
             in.get();
@@ -124,7 +124,7 @@ namespace OpMon {
             for(unsigned int i = 0; i < 6; i++) {
                 OpMon *op = new OpMon(in);
                 opteam.addOpMon(op);
-            }
+		}*/
         }
 
         void Player::tp(std::string mapToTp, sf::Vector2i newPos) {
