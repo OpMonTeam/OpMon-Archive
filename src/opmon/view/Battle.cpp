@@ -1,6 +1,7 @@
 #include "Battle.hpp"
 #include "../../utils/StringKeys.hpp"
 #include "../model/storage/BattleData.hpp"
+#include "../model/objects/Attack.hpp"
 #include "../model/sysObjects/OpTeam.hpp"
 #include "Window.hpp"
 #include <SFML/Graphics/Rect.hpp>
