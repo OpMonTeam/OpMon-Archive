@@ -157,7 +157,7 @@ namespace OpMon {
 	  //If the total of the EV is over 510, don't add EVs, since 510 is the maximum.
             if(!((atkEV + defEV + hpEV + atkSpeEV + defSpeEV + speEV) > 510)) {
                 std::vector<Stats> statsDefeated;
-                for(int i = 0; i < defeated.species->getEvSize(); i++) {
+                for(unsigned int i = 0; i < defeated.species->getEv().size(); i++) {
                     statsDefeated.push_back(defeated.species->getEv()[i]);
                 }
 
