@@ -1,9 +1,7 @@
 /*
-    Evolution.hpp
-    Author : Jlppc
-    File under the GPL-3.0 license
-    http://opmon-game.ga
-    Contains the Evolution class definition
+Evolution.hpp
+Author : Cyrion
+File under GNU GPL v3.0 license
 */
 #ifndef EVOLUTION_HPP
 #define EVOLUTION_HPP
@@ -11,14 +9,15 @@
 #include "../OpMon.hpp"
 #include <iostream>
 
+//TODO : Enhance the evolution system
+
 namespace OpMon {
     namespace Model {
 
         class Species;
         /**
-       Permet de définir un type d'évolution
-    */
-        //->PureVirtual
+		Defines an evolution type
+		*/
         class Evolution {
           public:
             virtual ~Evolution() {}
@@ -26,15 +25,14 @@ namespace OpMon {
                 evo = -1;
             }
             Evolution(int evo);
-            /**Permet de vérifier si le pokémon évolue. Renvoie true si il peut evoluer*/
+            /**Checks if the OpMon evolves.*/
             virtual bool checkEvolve(OpMon const &toCheck) const = 0;
             Species *getEvolution() const;
-            /**Check evo permet de récuperer l'species d'évolution. Ne pas confondre avec checkEvolve*/
+            /**Gets the Species pointer to the evolution. Can't be done in the constructor, since the evolution might not be defined yet.*/
             void checkEvo();
             virtual int getEvolID() const {
                 return evolID;
             }
-            //->use only in E_Item
 #pragma GCC diagnostic ignored "-Wunused-parameter"
             virtual bool itemEvolve(Item *tem) const {
                 return false;
