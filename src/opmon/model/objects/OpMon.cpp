@@ -59,7 +59,7 @@ namespace OpMon {
 
         bool OpMon::captured(I_OpBox const &OpBox) {
 	  //Big formulas
-            int a = round((((3 * statHP - 2 * HP) * captureRate * OpBox.getTauxCapture() * (status == Status::PARALYSED || status == Status::POISONED || status == Status::BURNING ? 1.5 : (status == Status::FROZEN || status == Status::SLEEPING ? 2 : 1))) / (3 * statHP)));
+            int a = round((((3 * statHP - 2 * HP) * captureRate * OpBox.getCaptureRate() * (status == Status::PARALYSED || status == Status::POISONED || status == Status::BURNING ? 1.5 : (status == Status::FROZEN || status == Status::SLEEPING ? 2 : 1))) / (3 * statHP)));
             int b = round((pow(2, 16) - 1) * pow(a / (pow(2, 8) - 1), 0.25));
             int c[] = {Utils::Misc::randU(65535), Utils::Misc::randU(65535), Utils::Misc::randU(65535),
                        Utils::Misc::randU(65535)};
