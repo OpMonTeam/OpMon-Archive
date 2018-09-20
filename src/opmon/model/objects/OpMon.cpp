@@ -59,7 +59,7 @@ namespace OpMon {
 
         bool OpMon::captured(I_OpBox const &OpBox) {
 	  //Big formulas
-            int a = round((((3 * statHP - 2 * HP) * tauxCapture * OpBox.getTauxCapture() * (status == Status::PARALYSED || status == Status::POISONED || status == Status::BURNING ? 1.5 : (status == Status::FROZEN || status == Status::SLEEPING ? 2 : 1))) / (3 * statHP)));
+            int a = round((((3 * statHP - 2 * HP) * captureRate * OpBox.getTauxCapture() * (status == Status::PARALYSED || status == Status::POISONED || status == Status::BURNING ? 1.5 : (status == Status::FROZEN || status == Status::SLEEPING ? 2 : 1))) / (3 * statHP)));
             int b = round((pow(2, 16) - 1) * pow(a / (pow(2, 8) - 1), 0.25));
             int c[] = {Utils::Misc::randU(65535), Utils::Misc::randU(65535), Utils::Misc::randU(65535),
                        Utils::Misc::randU(65535)};
@@ -1404,13 +1404,13 @@ namespace OpMon {
                     oss << "N" << std::endl;
                     oss << std::endl;
                 }
-                oss << Save::intToChar(tauxCapture) << std::endl;
+                oss << Save::intToChar(captureRate) << std::endl;
                 return oss.str();
             } else {
                 return "NULL\n";
             }
         }
-
+/*
         OpMon::OpMon(std::ifstream &in) {
             this->nickname = Save::readLine(in);
             if(nickname != "NULL") {
@@ -1477,7 +1477,7 @@ namespace OpMon {
                     held = nullptr;
                     in.get();
                 }
-                tauxCapture = in.get();
+                captureRate = in.get();
                 in.get();
                 calcStats();
                 type1 = species->getType1();
@@ -1489,6 +1489,7 @@ namespace OpMon {
                 initialized = true;
             }
         }
+		*/
 
         void OpMon::passCD(bool sleep) {
             if(confusedCD > 0 && !sleep) {
