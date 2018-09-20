@@ -8,6 +8,7 @@ File under GNU GPL v3.0 license
 #define ESPECE_HPP
 
 #include "CurveExp.hpp"
+#include "Enums.hpp"
 #include <iostream>
 #include <vector>
 

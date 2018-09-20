@@ -15,6 +15,7 @@
 #include "item/Item.hpp"
 #include <cmath>
 #include <iostream>
+#include <SFML/System/String.hpp>
 
 namespace OpMon {
     namespace Model {
