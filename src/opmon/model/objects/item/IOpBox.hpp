@@ -1,9 +1,7 @@
 /*
-  IOpBox.hpp
-  Author : Jlppc
-  File under the licence GPL-3.0.
-  http://opmon-game.ga
-  Contains the I_OpBox class definition
+IOpBox.hpp
+Author : Cyrion
+File under GNU GPL v3.0 license
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_IOPBOX_HPP_
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_IOPBOX_HPP_
@@ -15,7 +13,7 @@ namespace OpMon {
     namespace Model {
 
         /**
-       Défine OpBox item type
+       Defines OpBox item type
     */
         class I_OpBox : public Item {
           public:

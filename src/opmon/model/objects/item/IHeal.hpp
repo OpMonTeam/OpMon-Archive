@@ -1,9 +1,7 @@
 /*
 IHeal.hpp
-Author : Jlppc
-Fichier sous licence GPL-3.0
-http://opmon-game.ga
-Contains the I_Heal class definition
+Author : Cyrion
+File under GNU GPL v3.0 license
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_IHEAL_HPP_
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ITEM_IHEAL_HPP_
@@ -18,15 +16,15 @@ namespace OpMon {
     */
         class I_Heal : public Item {
           public:
-            /**Construit un item de heal (prevaue) polyvalent*/
+            /**Build a heal item nearly polyvalent*/
             I_Heal(std::string &name, bool usable, bool usableInFight, bool givable, BagCat categorie, int hpHeal, Status heal, bool healAllStatus, int ID);
-            /**Construit un item de heal de PP*/
+            /**Build a PP heal item*/
             I_Heal(std::string &name, bool usable, bool usableInFight, bool givable, BagCat categorie, int ppHeal, bool allAttacksHeal, int ID);
-            /**Construit un item de heal de pv*/
+            /**Build a PV heal item*/
             I_Heal(std::string &name, bool usable, bool usableInFight, bool givable, BagCat categorie, int hpHeal, int ID);
-            /**Construit un item de heal de status*/
+            /**Build a status heal item*/
             I_Heal(std::string &name, bool usable, bool usableInFight, bool givable, BagCat categorie, Status heal, bool healAllStatus, int ID, bool status); //De toutes facons meme si status est false ce sera quand meme du status
-            /**Construit un stat+*/
+            /**Build a stat+*/
             I_Heal(std::string &name, Stats statAdd, int ID);
             bool isHealAll() const {
                 return healAll;
@@ -41,15 +39,14 @@ namespace OpMon {
 
           private:
             int hpHeal;
-            /**Le status soigné*/
-            //->ExpectEnum->Status
+            /**The healed status*/
             Status healed;
-            /**Si l'item soigne tous les status*/
+            /**If the item heals every status*/
             bool healAll;
             Stats statAdd;
-            /**Si l'item soigne des PP*/
+            /**If the item heals pp*/
             bool PPheal;
-            /**Les PP soignés*/
+            /**The PP healed*/
             int ppHeal;
 
             bool allAttacksHeal;

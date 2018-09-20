@@ -8,7 +8,6 @@ File under GNU GPL v3.0 license
 #define ESPECE_HPP
 
 #include "CurveExp.hpp"
-#include "item/CT.hpp"
 #include <iostream>
 #include <vector>
 
@@ -32,11 +31,9 @@ namespace OpMon {
             Evolution *evolType;
             Type type1;
             Type type2;
-            //NumberedArray atksByLevels[];
             std::string opdexEntry;
             float height;
             float weight;
-            //CT ctCompatibles[];
             unsigned int baseAtk;
             unsigned int baseDef;
             unsigned int baseAtkSpe;
