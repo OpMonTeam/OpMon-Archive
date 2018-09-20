@@ -1,3 +1,8 @@
+/*
+Turn.hpp
+Author : Cyrion
+File under GNU GPL v3.0 license
+*/
 #pragma once
 
 #include "../../../utils/OpString.hpp"
@@ -9,7 +14,7 @@ namespace OpMon {
 
         class OpMon;
         class Attack;
-
+		
         enum class TurnType {
             ATTACK,
             ITEM,
