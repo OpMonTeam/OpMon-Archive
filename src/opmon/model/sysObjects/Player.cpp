@@ -3,6 +3,7 @@
 #include "../../start/Core.hpp"
 #include "../save/Save.hpp"
 #include <sstream>
+#include "../objects/Attack.hpp"
 
 namespace OpMon {
     namespace Model {
