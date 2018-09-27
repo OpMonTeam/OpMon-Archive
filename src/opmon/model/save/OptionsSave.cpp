@@ -1,3 +1,9 @@
+/*
+OptionsSave.cpp
+Author : Cyrion
+Contributor : Stelyus, BAKFR
+File under GNU GPL v3.0 license
+*/
 #include "OptionsSave.hpp"
 #include "../../../utils/log.hpp"
 #include "../../start/Core.hpp"
@@ -65,28 +71,23 @@ namespace OpMon {
             void initParams(std::string const &file) {
                 Utils::Log::oplog("Settings loading");
                 std::ifstream stream(file.c_str());
-                if(!stream) { //Si le fichier ne peut etre ouvert, il est crée et sera ouvert lors de la sauvegarde.
+                if(!stream) { //If the file doesn't exist, it is created and opened when saving the parameters
                     std::ofstream strm(file.c_str());
                     strm.close();
                     std::ifstream cpy(file.c_str());
-                    handleError(
-                      "Unable to open the settings file. If the file was only non-existent, it was created. It will therefore be opened correctly when rebooting.",
-                      false);
+                    handleError("Unable to open the settings file. If the file was only non-existent, it was created. It will therefore be opened correctly when rebooting.", false);
                 }
                 std::string read;
                 int i = 0;
-                for(i = 0; i <
-                           100000;
-                    i++) { //Empecher une boucle infinie (Donne du coup un maximum de 100000 paramètres, y'a de quoi faire.)
+                for(i = 0; i < 100000; i++) { //Prevents from a infinite loop (So, gives a miximum of 10000 parameters, I think there is enough room)
                     getline(stream, read);
-                    if(!(read.substr(0, read.size() - (read.size() - 3)) ==
-                         "pm|")) { //Vérifie si le préfixe pm| est bien présent, sinon arrête la boucle.
+                    if(!(read.substr(0, read.size() - (read.size() - 3)) == "pm|")) { //Checks if the pm| prefix is present, if not, stop the loop.
                         break;
                     }
-                    std::string noPm = Utils::StringKeys::sfStringtoStdString(Utils::StringKeys::split(read, '|')[1]); //Ne prend que la partie après le pm|
+                    std::string noPm = Utils::StringKeys::sfStringtoStdString(Utils::StringKeys::split(read, '|')[1]); //Only takes the part after the pm|
                     std::vector<sf::String> splitted = Utils::StringKeys::split(noPm, '=');
                     Param newParam = Param(Utils::StringKeys::sfStringtoStdString(splitted[0]),
-                                           Utils::StringKeys::sfStringtoStdString(splitted[1])); //Splitte ensuite en deux parties, le name et la valeur du paramètre.
+                                           Utils::StringKeys::sfStringtoStdString(splitted[1])); //Splits the string in two parts : the name and the value of the parameter
                     if(!checkParam(newParam.getName())) {
                         paramList.push_back(newParam);
                     }
@@ -102,10 +103,8 @@ namespace OpMon {
                 std::ofstream stream(file.c_str());
                 std::string toGo;
                 for(auto &currentObj : paramList) {
-                    //cout << objActuel->getName() << endl;
                     toGo += ("pm|" + currentObj.getName() + "=" + currentObj.getValue() +
-                             '\n'); //Ajoute le pm| puis écrit le paramètre dans le fichier.
-                    //cout << toGo;
+                             '\n'); //Adds the pm| and writes the parameter into the file
                     stream << toGo;
                     toGo = std::string("");
                 }
