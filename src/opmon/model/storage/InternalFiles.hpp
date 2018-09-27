@@ -1,9 +1,8 @@
 /*
   InternalFiles.hpp
-  Author : Jlppc
-  File under the license GPL-3.0
-  http://opmon-game.ga
-  Contains the InternalFiles, Maps and Collisions namespaces
+  Author : Cyrion
+  Contributors : Navet56, BAKFR
+  File under GNU GPL v3.0 license
 */
 
 #ifndef INTERNALFILES_HPP
@@ -28,6 +27,7 @@ namespace OpMon {
             extern int colTile[4096];
         }
 
+		//TODO : Put the maps in XML files
         namespace Maps {
             extern int feLayer1[2304];
             extern int feLayer2[2304];

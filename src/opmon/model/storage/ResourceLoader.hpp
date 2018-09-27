@@ -1,4 +1,8 @@
-
+/*
+  ResourceLoader.hpp
+  Author : BAKFR
+  File under GNU GPL v3.0 license
+*/
 #pragma once
 
 #include "../../../utils/defines.hpp"
@@ -17,7 +21,8 @@ namespace OpMon {
             /**
        * Verify that the resource folder exists.
        * @return `true` if it exists; `false` otherwise.
-       */
+       
+	   */
             static bool checkResourceFolderExists();
 
             /**
