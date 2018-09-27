@@ -1,3 +1,8 @@
+/*
+MainMenuData.cpp
+Author : Cyrion
+File under GNU GPL v3.0 license
+*/
 #include "MainMenuData.hpp"
 #include "ResourceLoader.hpp"
 

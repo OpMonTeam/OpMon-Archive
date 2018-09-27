@@ -1,3 +1,9 @@
+/*
+  InternalFiles.cpp
+  Author : Cyrion
+  Contributors : Navet56, BAKFR, Stelyus
+  File under GNU GPL v3.0 license
+*/
 #include "InternalFiles.hpp"
 
 

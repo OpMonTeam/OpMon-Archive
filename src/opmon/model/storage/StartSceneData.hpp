@@ -1,3 +1,8 @@
+/*
+  StartSceneData.hpp
+  Author : Cyrion
+  File under GNU GPL v3.0 license
+*/
 #pragma once
 
 #include "../sysObjects/Player.hpp"
