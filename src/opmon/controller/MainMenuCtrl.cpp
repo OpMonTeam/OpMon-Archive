@@ -1,3 +1,9 @@
+/*
+MainMenuCtrl.cpp
+Author : BAKFR
+Contributors : Cyrion
+File under GNU GPL v3.0 license
+*/
 #include "./MainMenuCtrl.hpp"
 #include "../view/Window.hpp"
 
@@ -6,7 +12,7 @@
 
 namespace OpMon {
     namespace Controller {
-
+      
         MainMenuCtrl::MainMenuCtrl(Model::UiData *data)
           : data(data)
           , view(this->data) {
@@ -15,6 +21,7 @@ namespace OpMon {
         GameStatus MainMenuCtrl::checkEvent(sf::Event const &event) {
             if(event.type == sf::Event::KeyPressed) {
                 switch(event.key.code) {
+		  //Activates the player's selection
                 case sf::Keyboard::Return:
                     switch(view.getCursorPosition()) {
                     case 0:
@@ -33,6 +40,7 @@ namespace OpMon {
                         return GameStatus::STOP;
                     }
                     break;
+		    //Moves the cursor
                 case sf::Keyboard::Up:
                     view.moveArrow(true);
                     data.getUiDataPtr()->getJukebox().playSound("arrow");
