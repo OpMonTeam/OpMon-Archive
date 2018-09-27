@@ -1,9 +1,8 @@
 /*
 Save.hpp
-Author : Jlppc
-File under the license GPL-3.0
-http://opmon-game.ga
-Contains the Save namspace
+Author : Cyrion
+Contributor : BAKFR
+File under GNU GPL v30 license
 */
 #ifndef SAVE_HPP
 #define SAVE_HPP
@@ -13,9 +12,7 @@ Contains the Save namspace
 
 namespace OpMon {
     namespace Model {
-        /**
-       Namespace contenant le nécessaire pour sauvegarder la partie
-    */
+
         namespace Save {
             int save(Player *toSave, std::string const &fileOut);
             Player *loadPlayer(std::string const &fileIn);

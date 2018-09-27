@@ -1,9 +1,8 @@
 /*
 OptionsSave.hpp
-Author : Jlppc
-File under the license GPL-3.0
-http://opmon-game.ga
-Contains the OptionsSave namespace
+Author : Cyrion
+Contributor : Navet56
+File under GNU GPL v3.0 license
 */
 #ifndef OPTIONSSAVE_HPP
 #define OPTIONSSAVE_HPP
@@ -15,7 +14,7 @@ Contains the OptionsSave namespace
 #include <vector>
 
 /**
-   Macros to explicit the use of addOrModifParam
+   Macros to explicit the use of addOrModifParam when calling it in the code
 */
 #define addParam addOrModifParam
 #define modifyParam addOrModifParam
@@ -23,12 +22,12 @@ Contains the OptionsSave namespace
 namespace OpMon {
     namespace Model {
         /**
-       OptionsSave contains the functions used to save the parameters.
-    */
+			OptionsSave contains the functions used to save the parameters.
+		*/
         namespace OptionsSave {
             /**
-	 Class defining a parameter
-      */
+				Class defining a parameter
+			*/
             class Param {
               private:
                 std::string paramName;
