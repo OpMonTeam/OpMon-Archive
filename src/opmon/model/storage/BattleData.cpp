@@ -1,3 +1,8 @@
+/*
+BattleData.cpp
+Author : Cyrion
+File under GNU GPL v3.0 license
+*/
 #include "BattleData.hpp"
 #include "ResourceLoader.hpp"
 
@@ -9,9 +14,9 @@ namespace OpMon {
           , player(player) {
             ResourceLoader::load(backgrounds["grass"], "backgrounds/battle_bkg/background_grass.png");
             ResourceLoader::load(dialog, "backgrounds/dialog/battle_dialog.png");
-            //ResourceLoader::load(attackDial, "");
+
             ResourceLoader::load(cursor, "sprites/misc/arrBattle.png");
-            //Temps
+
             charaBattleTextures["player"].push_back(sf::Texture());
             ResourceLoader::load(charaBattleTextures["player"][0], "sprites/chara/pp/pp_battle.png");
             charaBattleTextures["cyrion"].push_back(sf::Texture());

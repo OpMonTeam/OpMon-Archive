@@ -1,3 +1,9 @@
+/*
+  UiData.cpp
+  Author : Cyrion
+  Contributors : BAKFR, Navet56
+  File under GNU GPL v3.0 license
+*/
 #include "UiData.hpp"
 #include "../../../utils/log.hpp"
 #include "../objects/evolution/evolutions.hpp"

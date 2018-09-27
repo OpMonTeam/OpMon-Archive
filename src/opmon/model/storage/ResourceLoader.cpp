@@ -1,4 +1,8 @@
-
+/*
+  ResourceLoader.cpp
+  Author : BAKFR
+  File under GNU GPL v3.0 license
+*/
 #include "ResourceLoader.hpp"
 #include "../../../utils/path.hpp"
 
