@@ -1,3 +1,9 @@
+/*
+  UiData.hpp
+  Author : Cyrion
+  Contributors : BAKFR
+  File under GNU GPL v3.0 license
+*/
 #pragma once
 
 #include "../../view/Jukebox.hpp"

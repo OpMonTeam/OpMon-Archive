@@ -1,3 +1,8 @@
+/*
+  StartSceneData.cpp
+  Author : Cyrion
+  File under GNU GPL v3.0 license
+*/
 #include "StartSceneData.hpp"
 #include "ResourceLoader.hpp"
 
