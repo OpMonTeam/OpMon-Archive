@@ -1,3 +1,8 @@
+/*
+BattleCtrl.hpp
+Author : Cyrion
+File under GNU GPL v3.0 license
+*/
 #pragma once
 
 #include "../model/objects/Attack.hpp"
@@ -46,14 +51,14 @@ namespace OpMon {
             bool sameDef = false;
             bool captured = false;
 
-            /* Used to calculate a turn */
+            /* Used to calculate one turn (Who attacks first, and then the attacks and so) */
             bool turn();
             /* Initialize a battle between two OpMons. The opId are for the OpMon's number in the team */
             void initBattle(int opId, int opId2);
-            //TODO
+	  
             Model::Turn *turnIA(int level);
 
-            //check if the opmon can attack
+            //Checks if the opmon can attack
             bool canAttack(Model::OpMon *opmon, Model::Turn *opTurn);
 
             Model::Events::TrainerEvent *trainer;
