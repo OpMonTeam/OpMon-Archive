@@ -17,7 +17,7 @@
 <li><h3>imZeRRkA</h3></li>
 <li><h3>atxtechcrew</h3></li>
 <li><h3>jseutter</h3></li>
-<li><h3>Imperator Dei</h3></li>
+<li><h3>Imperato Dei</h3></li>
 <li><h3>Silvermoon</h3></li>
 <li><h3>Stelyus</h3></li>
 <li><h3>Rixem</h3></li>
