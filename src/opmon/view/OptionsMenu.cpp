@@ -91,6 +91,12 @@ namespace OpMon {
             txtCre82.setString(kget("options.credit.82"));
             txtCre82.setFont(data.getUiDataPtr()->getFont());
             txtCre82.setCharacterSize(15);
+            txtCre82.setString(kget("options.credit.83"));
+            txtCre82.setFont(data.getUiDataPtr()->getFont());
+            txtCre82.setCharacterSize(15);
+            txtCre82.setString(kget("options.credit.84"));
+            txtCre82.setFont(data.getUiDataPtr()->getFont());
+            txtCre82.setCharacterSize(15);
             txtCre9.setString(kget("options.credit.9"));
             txtCre9.setFont(data.getUiDataPtr()->getFont());
             txtCre9.setCharacterSize(13);
@@ -145,6 +151,8 @@ namespace OpMon {
             txtCre8.setPosition(30, 368);
             txtCre81.setPosition(30, 385);
             txtCre82.setPosition(30, 402);
+            txtCre83.setPosition(30, 420);
+            txtCre84.setPosition(30, 437);
             txtCre9.setPosition(375, 488);
 
             data.getUiDataPtr()->getJukebox().play("Title");
@@ -284,6 +292,8 @@ namespace OpMon {
             frame.draw(txtCre8);
             frame.draw(txtCre81);
             frame.draw(txtCre82);
+            frame.draw(txtCre83);
+            frame.draw(txtCre84);
             frame.draw(txtCre9);
 
             rectSurb.setPosition(curPosOpt[0]);
