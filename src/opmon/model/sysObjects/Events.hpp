@@ -1,9 +1,8 @@
 /*
   Events.hpp
-  Author : Jlppc
-  File under the license GPL-3.0
-  http://opmon-game.ga 
-  Contains the Events namespace 
+  Author : Cyrion
+  Contributors : BAKFR, Navet56
+  File under GNU GPL v3.0 license.
 */
 #ifndef EVENTS_HPP
 #define EVENTS_HPP
@@ -19,11 +18,15 @@
 #include "Player.hpp"
 #include "Position.hpp"
 
+//Macros defining constants to know the side from where the events can be triggered.
+//Inspired by SDL's system to initialize the different modules
+
 #define SIDE_UP 0x0001
 #define SIDE_DOWN 0x0002
 #define SIDE_LEFT 0x0010
 #define SIDE_RIGHT 0x0020
 #define SIDE_ALL (SIDE_UP | SIDE_DOWN | SIDE_RIGHT | SIDE_LEFT)
+//TODO : Disable it
 #pragma GCC diagnostic ignored "-Wreorder"
 
 namespace OpMon {
@@ -35,6 +38,7 @@ namespace OpMon {
     namespace Model {
 
         namespace Events {
+	  //Used to know when the event must be triggered, relatively to the player
             enum class EventTrigger {
                 PRESS = 0,
                 GO_IN = 1,
@@ -44,12 +48,11 @@ namespace OpMon {
         }
 
         /**
-       Defines an event
-    */
+          Defines an event
+        */
         class Event {
           protected:
             std::vector<sf::Texture> &otherTextures;
-            //ExpectEnum->EventTrigger
 
             sf::Sprite *sprite;
 
@@ -63,9 +66,9 @@ namespace OpMon {
           public:
             Event(std::vector<sf::Texture> &otherTextures, Events::EventTrigger eventTrigger, sf::Vector2f const &position, int sides, bool passable);
             virtual ~Event();
-            /**This method is called in each frame*/
+            /**This method is called at each frame*/
             virtual void update(Model::Player &player, View::Overworld &overworld) = 0;
-            /**This method is called when the players interacts with the event*/
+            /**This method is called when the player interacts with the event*/
             virtual void action(Model::Player &player, View::Overworld &overworld) = 0;
 
             void updateTexture();
@@ -98,15 +101,16 @@ namespace OpMon {
 
         void initEnumsEvents();
         /**
-       Contient tout ce qui est en rapport avec les evenements
-    */
+	   Contains stuff in relation with the events, mostly different types of events.
+	*/
         namespace Events {
             /**
-	     Doors sound
-	  */
+	     Doors sounds (TODO : Move them)
+	    */
             extern sf::Sound doorSound;
             extern sf::Sound shopdoorSound;
 
+	  //TODO : Move it
             extern bool justTP;
 
             class TPEvent : public virtual Event {
@@ -124,17 +128,13 @@ namespace OpMon {
                 virtual void action(Model::Player &player, View::Overworld &overworld);
             };
 
-            /*namespace DoorType {
-                extern std::vector<sf::Texture> NORMAL, SHOP;
-		}*/
-
             class DoorEvent : public TPEvent {
               protected:
                 std::string doorType;
                 int animStarted = -1;
 
               public:
-                /* Types of door (to put in doorType) : "door" | "shop door"*/
+                /* Types of door (to put in doorType (TODO)) : "door" | "shop door"*/
                 DoorEvent(std::vector<sf::Texture> &doorTextures, std::string doorType, sf::Vector2f const &position, sf::Vector2i const &tpPos, std::string const &map, EventTrigger eventTrigger = EventTrigger::GO_IN, Side ppDir = Side::NO_MOVE, int sides = SIDE_ALL, bool passable = true);
                 virtual void action(Model::Player &player, View::Overworld &overworld);
                 virtual void update(Model::Player &player, View::Overworld &overworld);
@@ -152,10 +152,7 @@ namespace OpMon {
                 void onLangChanged() override;
                 virtual void update(Model::Player &player, View::Overworld &overworld);
                 virtual void action(Model::Player &player, View::Overworld &overworld);
-                virtual void changeDialog(std::vector<Utils::OpString> newDialog) {
-                    dialogKeys = newDialog;
-                    this->onLangChanged();
-                }
+	      virtual void changeDialog(std::vector<Utils::OpString> newDialog);
             };
 
             class LockedDoorEvent : public DoorEvent, TalkingEvent {
@@ -170,6 +167,7 @@ namespace OpMon {
                 LockedDoorEvent(std::vector<sf::Texture> &doorTextures, std::string doorType, Item *needed, sf::Vector2f const &position, sf::Vector2i const &tpPos, std::string const &map, Side ppDir = Side::NO_MOVE, EventTrigger eventTrigger = EventTrigger::PRESS, bool consumeItem = false, int sides = SIDE_ALL, bool passable = false);
             };
 
+	  //Ways to move for the npcs
             enum class MoveStyle : int {
                 NO_MOVE = 0,
                 PREDEFINED = 1,
@@ -222,9 +220,9 @@ namespace OpMon {
               public:
                 TrainerEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, OpTeam *team, std::vector<Utils::OpString> const &dialogKeys, std::vector<Utils::OpString> const &defeatedDialog, Side posDir = Side::TO_UP, EventTrigger eventTrigger = EventTrigger::PRESS, MoveStyle moveStyle = MoveStyle::NO_MOVE, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int side = SIDE_ALL);
 
-                virtual void update(Model::Player &player, View::Overworld &overworld);
-                virtual void action(Model::Player &player, View::Overworld &overworld) { TalkingCharaEvent::action(player, overworld); }
-
+	      virtual void update(Model::Player &player, View::Overworld &overworld);
+	      virtual void action(Model::Player &player, View::Overworld &overworld);
+	      
                 OpTeam *getOpTeam() {
                     return team;
                 }
