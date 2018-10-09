@@ -11,11 +11,10 @@ cloned repositories, in compiled binaries, and any other ways permitted by the
 License.
 
 ## What code can I contribute?
-You can see the bugs or improvements [here](https://github.com/jlppc/OpMon/issues)
-You can contact us on the [discord of the project](https://discord.gg/XwyKFzh) or by email to know exactly what to do.
-The organization of the project is done [here](https://github.com/jlppc/OpMon/projects)
-The todo list is [here](https://github.com/jlppc/OpMon/wiki/Journal-du-d%C3%A9veloppement) in French 
-and [here](https://translate.google.com/translate?act=url&depth=1&hl=fr&ie=UTF8&prev=_t&rurl=translate.google.fr&sl=fr&sp=nmt4&tl=en&u=https://github.com/jlppc/OpMon/wiki/Journal-du-d%25C3%25A9veloppement) in English (Google Translated).
+You can see the bugs or improvements [here](https://github.com/jlppc/OpMon/issues).<br/>
+You can contact us on the [discord of the project](https://discord.gg/XwyKFzh) or by email to know exactly what to do.<br/>
+The organization of the project is done [here](https://github.com/jlppc/OpMon/projects). You can see things to do the for the next version.<br/>
+You can search for the word "TODO" in the code, it indicates places where there is things to fix. (On linux : <code>grep -r "TODO" src</code>) <br/>
 You can also look the [rules](https://github.com/jlppc/OpMon/blob/master/CODE_OF_CONDUCT.md).
 
 ## How do I contribute code?
