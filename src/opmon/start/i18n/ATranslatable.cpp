@@ -1,4 +1,8 @@
-
+/*
+ATranslatable.cpp
+Author : BAKFR
+File under GNU GPL v3.0 license
+*/
 #include "./ATranslatable.hpp"
 #include "./Translator.hpp"
 
