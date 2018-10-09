@@ -1,3 +1,9 @@
+/*
+Player.cpp
+Author : Cyrion
+Contributor : BAKFR
+File under GNU GPL v3.0 license
+*/
 #include "Player.hpp"
 #include "../../../utils/StringKeys.hpp"
 #include "../../start/Core.hpp"
@@ -56,9 +62,7 @@ namespace OpMon {
             for(int i = 0; i < opteam.getSize(); i++) {
                 OpMon *pkmn = opteam[i];
                 if(pkmn != nullptr) {
-                    //pkmn->love = false;
-                    //pkmn-> = false;
-                    //pkmn->vampigraine = false;
+		  //TODO : Reset status problems
                     for(int j = 0; j < 4; j++) {
                         Attack *atk = (pkmn->getAttacks())[j];
                         if(atk != nullptr) {
@@ -78,6 +82,8 @@ namespace OpMon {
             }
         }
 
+      
+      //TODO : Update the save system
         void Player::save() {
             SOUT
               << Utils::StringKeys::sfStringtoStdString(this->name) << std::endl;
@@ -95,7 +101,8 @@ namespace OpMon {
             }
         }
 
-#include "../objects/OpMon.hpp"
+#include "../objects/OpMon.hpp" //This will be deleted soon
+      //TODO : Update the save system
 
         Player::Player(std::ifstream &in, std::string &name)
           : name(name)
