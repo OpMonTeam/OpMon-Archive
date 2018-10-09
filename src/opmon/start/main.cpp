@@ -1,4 +1,9 @@
-
+/*
+main.cpp
+Author : Cyrion
+Contributors : Stelyus, Navet56
+File under GNU GPL v3.0 license
+*/
 #include "../../utils/defines.hpp"
 #include "../../utils/fs.hpp"
 #include "../../utils/log.hpp"
@@ -18,6 +23,7 @@
 using namespace OpMon::Model;
 using Utils::Log::oplog;
 
+//Compilation with Visual Studio
 // MSC uses WinMain() instead of main().
 #ifdef _MSC_VER
 
@@ -37,26 +43,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 namespace OpMon {
     namespace Main {
-        //Will be used for checking the internet connection
-        //bool connected = false;
-        /** Trainer names. No longer useful.*/
-        //->Useless
-        std::string trainers[] = {"Brice", "Navet", "Mael", "Cyrion", "Red", "Blue", "Nikolai", "N", "Belladonis", "Aristote",
-                                  "Giovanni", "Flora", "Silver", "Jules Cesar", "Brahim"};
-
+      
         std::string version = OPMON_VERSION;
 
         std::string pre = "0";
 
         std::string versionS;
-        /*
-          #ifdef _WIN32
-          std::string sep = "\\";
-          #else
-          std::string sep = "/";
-          #endif
-        */
-        //bool reboot = false;
 
         int starts() {
 
@@ -90,7 +82,7 @@ namespace OpMon {
             tr.setLang(lang);
 
             oplog("Loading completed! Opening gui.");
-            //bgtask = new std::thread(bgTask);
+
             do {
                 reboot = false;
                 oplog("Starting game loop");
@@ -137,14 +129,14 @@ int main(int argc, char *argv[]) {
                 //std::cout << "--opt <path> : Changes the options save file's location." << std:: endl;
                 std::cout << "--debug : Starts the game with debug code. Changes when needed." << std::endl;
                 return 0;
-            } else if(str == "--debug") {
+            } /*else if(str == "--debug") {
                 std::cout << (int)Side::TO_UP << std::endl;
                 std::cout << (int)Side::TO_DOWN << std::endl;
                 std::cout << (int)Side::TO_LEFT << std::endl;
                 std::cout << (int)Side::TO_RIGHT << std::endl;
                 std::cout << (int)(Side::TO_UP + 4) << std::endl;
                 return 0;
-            } else {
+		} */else {
                 //std::cout << "Unknown parameters. Skipping." << std::endl;
             }
         }
