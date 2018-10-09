@@ -1,9 +1,8 @@
 /*
-  Map.hpp
-  Author : Jlppc
-  File under the license GPL-3.0
-  http://opmon-game.ga
-  Contains the Map class
+Map.hpp
+Author : Cyrion
+Contributors : BAKFR
+File under GNU GPL v3.0 license
 */
 
 #ifndef MAP_HPP
@@ -21,8 +20,8 @@ namespace OpMon {
         class Event;
 
         /**
-       Class defining a specific place
-    */
+	   Class defining a specific place in a game, containing the event, the animated objects and the map layers
+	*/
         class Map {
           private:
             const int *layer1;
@@ -32,7 +31,7 @@ namespace OpMon {
             bool indoor;
 
             std::string bg;
-            //Event events;
+            
             int w;
             int h;
 
