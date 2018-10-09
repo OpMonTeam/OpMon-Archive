@@ -1,4 +1,9 @@
-
+/*
+Gameloop.cpp
+Author : Cyrion
+Contributor : BAKFR
+File under GNU GPL v3.0 license
+*/
 #include "./Gameloop.hpp"
 #include "../controller/MainMenuCtrl.hpp"
 #include "../model/storage/UiData.hpp"
@@ -33,6 +38,7 @@ namespace OpMon {
         while(status != GameStatus::STOP) {
             status = GameStatus::CONTINUE;
 
+	    //Gets the current game screen's controller
             auto ctrl = _gameScreens.top();
             sf::Event event;
 
@@ -56,11 +62,11 @@ namespace OpMon {
             }
 
             switch(status) {
-            case GameStatus::NEXT:
+            case GameStatus::NEXT://Pauses the current screen and passes to the next
                 ctrl->suspend();
                 _gameScreens.push(ctrl->getNextGameScreen());
                 break;
-            case GameStatus::PREVIOUS:
+            case GameStatus::PREVIOUS://Deletes the current screen and returns to the previous one
                 delete(ctrl);
                 _gameScreens.pop();
                 _gameScreens.top()->resume();

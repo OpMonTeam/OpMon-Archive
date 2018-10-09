@@ -1,9 +1,8 @@
 /**
   Core.hpp
-  Author : Jlppc
-  File under licence GNU GPL-3.0
-  http://opmon-game.ga
-  Core.hpp : Contains the main function and variables of the program.
+  Author : Cyrion
+  Contributor : BAKFR
+  File under GNU GPL v3.0 license
 */
 #ifndef CORE_HPP
 #define CORE_HPP
@@ -15,14 +14,13 @@
 
 namespace OpMon {
 
-    //#define TEST
     /**
      Function that handles errors on the program
-  */
+    */
     void handleError(std::string const &errorName, bool fatal = false);
     /**
-     Function quitting the game, deleting the resources
-  */
+     Function which quits the game, deleting the resources
+    */
     int quit(int const &returns);
 
     extern bool debugMode;
@@ -37,7 +35,7 @@ namespace OpMon {
     std::string &operator<<(std::string &str, int nbre);
     std::string &operator<<(std::string &str, char nbre[]);
 
-    template <typename Base, typename T>
+  OP_DEPRECATED template <typename Base, typename T>
     bool instanceOf(const Base *toTest);
 } // namespace OpMon
 

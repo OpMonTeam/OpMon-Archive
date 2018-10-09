@@ -1,4 +1,9 @@
-
+/*
+Core.cpp
+Author : Cyrion
+Contributor : BAKFR
+File under GNU GPL v3.0 license
+*/
 #include "Core.hpp"
 #include "../../utils/StringKeys.hpp"
 #include "../../utils/defines.hpp"
@@ -14,9 +19,7 @@ using namespace OpMon::Model;
 using Utils::Log::oplog;
 
 namespace OpMon {
-    /*
-    Logs and save files initialization
-  */
+    
     std::string optSave(SAVE_PATH + "optSave.oparams");
 
     bool debugMode = false;
@@ -30,9 +33,9 @@ namespace OpMon {
     void handleError(std::string const &errorName, bool fatal) {
         errors++;
         std::ostringstream osslog;
-        osslog << std::string("Error  nÂ°") << errors << (std::string(" : ") + errorName);
+        osslog << std::string("Error  n°") << errors << (std::string(" : ") + errorName);
         oplog(osslog.str(), true);
-        std::cerr << "Error nÂ°" << errors << " : " << errorName << std::endl;
+        std::cerr << "Error n°" << errors << " : " << errorName << std::endl;
         if(errors > 20) { //If the program gets more than 20 errors, it stops.
             std::cerr << "Too many errors. Closing program. Please verify your installation." << std::endl;
             oplog("Too many errors. Closing program. Please verify your installation. If the problems persists, warn us.", true);
@@ -51,11 +54,6 @@ namespace OpMon {
     int quit(int const &returns) {
         OptionsSave::saveParams(optSave); //Saving parameters
         oplog("Deleting resources in the memory");
-
-        // TODO: delet the player's OpMons !
-        // for(unsigned short i = 0; i < 6; i++){
-        //  delete(Main::player.getOp(i));
-        // }
 
         std::ostringstream osslog;
         osslog << "End of the program. Return " << returns;
