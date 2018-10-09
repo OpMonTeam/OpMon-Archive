@@ -1,9 +1,7 @@
 /**
-  GameStatues.hpp
+  GameStatus.hpp
   Author : BAKfr
-  File under licence GNU GPL-3.0
-  http://opmon-game.ga
-  
+  File under GNU GPL v3.0 license
 */
 #pragma once
 

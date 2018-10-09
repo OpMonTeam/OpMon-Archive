@@ -1,8 +1,7 @@
 /**
-  Translator.hpp
-  Author : BAKfr
-  File under licence GNU GPL-3.0
-  http://opmon-game.ga
+Translator.hpp
+Author : BAKfr
+File under GNU GPL v3.0 license
 */
 #pragma once
 
