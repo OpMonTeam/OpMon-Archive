@@ -1,9 +1,7 @@
 /*
 OpTeam.hpp
-Author : Jlppc
-File under GPL-3.0 license
-http://opmon-game.ga
-Contains the OpTeam class
+Author : Cyrion
+File under GNU GPL v3.0 license
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_PLAYERCORE_EQUIPE_HPP_
 #define SRCCPP_JLPPC_REGIMYS_PLAYERCORE_EQUIPE_HPP_
@@ -17,8 +15,8 @@ namespace OpMon {
         class OpMon;
 
         /**
-       Class defining a OpMon team, used by the player and the trainers.
-    */
+	   Class defining a OpMon team, used by the player and the trainers.
+	*/
         class OpTeam {
           public:
             ~OpTeam();
@@ -32,14 +30,14 @@ namespace OpMon {
             /**Heals all the team*/
             void heal();
             /**
-	 Adds an OpMon to the team. Returns false if the team is full and the OpMon is not added.
-      */
+	       Adds an OpMon to the team. Returns false if the team is full and the OpMon is not added.
+	    */
             bool addOpMon(OpMon *toAdd);
             /**Delete the OpMon with the index specified*/
             OpMon *removeOp(int number);
             /**
-	 Returns the OpMon in the index specified.
-      */
+	       Returns the OpMon in the index specified.
+	    */
             OpMon *operator[](int id) const;
             OpMon *getOp(int id) const {
                 return (*this)[id];
@@ -56,8 +54,6 @@ namespace OpMon {
             void save();
 
           private:
-            //->Useless
-            int nbreOfOp = 6;
             std::vector<OpMon *> opteam;
             std::string name;
             OpTeam(OpTeam const &) = delete;
