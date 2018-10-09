@@ -1,4 +1,9 @@
-
+/*
+Translator.cpp
+Author : BAKFR
+Contributors : Cyrion, jubalh 
+File under GNU GPL v3.0
+*/
 #include "Translator.hpp"
 #include "../../../utils/StringKeys.hpp"
 #include "../../../utils/log.hpp"
