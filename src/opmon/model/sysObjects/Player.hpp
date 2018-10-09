@@ -1,12 +1,11 @@
 /*
 Player.hpp
-Author : Jlppc
-File under the GPL-3.0 license
-http://opmon-game.ga
-Contains the Player class.
+Author : Cyrion
+Contributors : BAKFR, JonnyPtn, Stelyus, Navet56
+File under GNU GPL v3.0 license
 */
-#ifndef SRCCPP_JLPPC_REGIMYS_PLAYERCORE_PLAYER_HPP_
-#define SRCCPP_JLPPC_REGIMYS_PLAYERCORE_PLAYER_HPP_
+#ifndef _PLAYER_HPP_
+#define _PLAYER_HPP_
 
 #include "../objects/item/Item.hpp"
 #include "OpTeam.hpp"
@@ -109,7 +108,7 @@ namespace OpMon {
 
           private:
             sf::String name;
-            const unsigned int trainerID; //Max : 8 digits in hexadecimal
+            const unsigned int trainerID; //Max : 8 digits in hexadecimal (Unimplemented yet)
             int bag[ITEM_NUMBER];
             std::vector<OpMon *> pc = std::vector<OpMon *>();
             OpTeam opteam;
@@ -120,4 +119,4 @@ namespace OpMon {
     } // namespace Model
 } // namespace OpMon
 
-#endif /* SRCCPP_JLPPC_REGIMYS_PLAYERCORE_PLAYER_HPP_ */
+#endif /* _PLAYER_HPP_ */

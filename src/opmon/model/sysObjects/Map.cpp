@@ -1,4 +1,9 @@
-
+/*
+Map.cpp
+Author : Cyrion
+Contributor : BAKFR
+File under GNU GPL v3.0 license
+*/
 #include "Map.hpp"
 #include "../../start/Core.hpp"
 #include "../storage/InternalFiles.hpp"
@@ -20,13 +25,6 @@ namespace OpMon {
         }
 
         Map::~Map() {
-            /*
-      NOTE: layers are (for now) static objects in Data
-
-      delete(layer1);
-      delete(layer2);
-      delete(layer3);
-       */
             for(Event *event : events) {
                 delete(event);
             }
@@ -36,7 +34,6 @@ namespace OpMon {
             std::vector<Event *> toReturn;
 
             for(Event *event : events) {
-                //cout << "Event coordinates : " << event->getPosition().x
                 if(event->getPositionMap().getPosition().x == position.x && event->getPositionMap().getPosition().y == position.y) {
                     toReturn.push_back(event);
                 }
@@ -75,7 +72,7 @@ namespace OpMon {
             if(collisionLayer1 == 1 || collisionLayer2 == 1) {
                 return 1;
             }
-            // TODO: it may have a conflict between collisions from layer1 and layer2.
+            // TODO: it may have a conflict between collisions from layer1 and layer2. (Priority to layer1) TODO : Inform the programmer in the logs
             return collisionLayer1;
         }
     } // namespace Model

@@ -1,9 +1,8 @@
 /*
-  Position.hpp
-  Author : Jlppc
-  File under the license GPL-3.0
-  http://opmon-game.ga
-  Contains the Position class
+Position.hpp
+Author : Cyrion
+Contributors : Stelyus, Navet56, BAKFR
+File under GNU GPL v3.0 license
 */
 
 #ifndef POSITION_HPP
