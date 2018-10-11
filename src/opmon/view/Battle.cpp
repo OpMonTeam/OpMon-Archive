@@ -1,3 +1,9 @@
+/*
+Battle.cpp
+Author : Cyrion
+Contributors : Navet56, torq
+File under GNU GPL v3.0
+*/
 #include "Battle.hpp"
 #include "../../utils/StringKeys.hpp"
 #include "../model/storage/BattleData.hpp"
@@ -11,14 +17,20 @@
 namespace OpMon {
     namespace View {
         GameStatus Battle::operator()(sf::RenderTexture &frame, Model::Turn const &atkTurn, Model::Turn const &defTurn, bool *turnActivated, bool atkFirst) {
+	  //TODO : OPTIMIZE ! (In 0.16)
+	  //Removes camera
             frame.setView(frame.getDefaultView());
+
+	    //Initializes hp variables
             if(atkHp == -1) {
                 atkHp = atkTurn.opmon->getHP();
             }
             if(defHp == -1) {
                 defHp = defTurn.opmon->getHP();
             }
+	    
             data.getUiDataPtr()->getJukebox().play("Wild Battle");
+	    
             frame.draw(background);
             /*frame.draw(shadowPlayer);
 	      frame.draw(shadowTrainer);*/
@@ -31,6 +43,7 @@ namespace OpMon {
             frame.draw(infoboxPlayer);
             frame.draw(infoboxTrainer);
 
+	    //Resizes heath bars to print the correct colors
             healthbar2[0].setTextureRect(sf::IntRect(0, 0, (defHp * data.getHealthbar2().getSize().x) / defTurn.opmon->getStatHP(), data.getHealthbar2().getSize().y));
             healthbar2[1].setTextureRect(sf::IntRect(0, 0, (atkHp * data.getHealthbar2().getSize().x) / atkTurn.opmon->getStatHP(), data.getHealthbar2().getSize().y));
 
@@ -39,6 +52,7 @@ namespace OpMon {
                 frame.draw(healthbar2[i]);
             }
 
+	    //Prints OpMon data info (Hp, name...)
             std::ostringstream oss;
             oss << "Lv. " << atkTurn.opmon->getLevel();
             opLevel[0].setString(oss.str());
@@ -58,6 +72,15 @@ namespace OpMon {
             frame.draw(opLevel[0]);
             frame.draw(opLevel[1]);
             frame.draw(opHp);
+
+	    //Checks if the turn is launched or not
+	    /* During the battle, two phases alternate : 
+	       - Action selection (Menu with different actions)
+	       - Turn action (Attack, item and other actions)
+	       When the turn is launched, the variable turnActivated is set to true in BattleCtrl.
+	       When the turn is over, the variable turnActivated is set to false in BattleCtrl.
+	       Battle have it's own variable, allowing to know when the variable is changed, and do this code.
+	    */
             if(!turnLaunched && *turnActivated) {
                 phase = 1;
                 dialogSpr.setTexture(data.getUiDataPtr()->getDialogBackground());
@@ -70,7 +93,8 @@ namespace OpMon {
             frame.draw(dialogSpr);
             //TODO the little arrow
 
-            if(*turnActivated && turnNber <= 1) {
+            if(*turnActivated && turnNber <= 1)  { //If turn's phase 
+	      //Organizes the turns' priority
                 const Model::Turn *turns[2];
                 if(atkFirst) {
                     turns[0] = &atkTurn;
@@ -79,7 +103,10 @@ namespace OpMon {
                     turns[0] = &defTurn;
                     turns[1] = &atkTurn;
                 }
+		
 #pragma GCC diagnostic ignored "-Wimplicit-fallthrough"
+		//TODO : Change all this crap (0.16).
+		//I won't comment this code, since I will change it very soon
                 switch(phase) {
                 case 1:
                     turnTxt[0].setString(Utils::OpString::quickString("battle.dialog.attack", {turns[turnNber]->opmon->getNickname(), turns[turnNber]->attackUsed->getName()}));
@@ -129,7 +156,7 @@ namespace OpMon {
                 frame.draw(turnTxt[1]);
                 frame.draw(turnTxt[2]);
 
-            } else if(!attackChoice) {
+	} else if(!attackChoice)  { // Main battle menu
 
                 for(sf::Text &txt : choicesTxt) {
                     frame.draw(txt);
@@ -140,21 +167,23 @@ namespace OpMon {
 
                 cursor.setPosition(posChoices[curPos] + sf::Vector2f((choicesTxt[curPos].getGlobalBounds().width / 2) - 10, 25));
 
-            } else {
+	} else { //Attacks menu
 
                 for(unsigned int i = 0; i < 4; i++) {
                     if(atkTurn.opmon->getAttacks()[i] != nullptr) {
                         attacks[i].setString(atkTurn.opmon->getAttacks()[i]->getName());
                     } else {
-                        attacks[i].setString("----");
+		      attacks[i].setString("----");//Text to print if there is no attack
                     }
                     frame.draw(attacks[i]);
                 }
 
                 if(atkTurn.opmon->getAttacks()[curPos] != nullptr) {
 
+		  //Prints attack's data
                     std::ostringstream oss3;
                     oss3 << atkTurn.opmon->getAttacks()[curPos]->getPP() << " / " << atkTurn.opmon->getAttacks()[curPos]->getPPMax();
+		    //Changes the text's color according to the number of PP left
                     if(atkTurn.opmon->getAttacks()[curPos]->getPP() <= (atkTurn.opmon->getAttacks()[curPos]->getPPMax() / 5) && atkTurn.opmon->getAttacks()[curPos]->getPP() > 0) {
                         ppTxt.setSfmlColor(sf::Color::Yellow);
                     } else if(atkTurn.opmon->getAttacks()[curPos]->getPP() == 0) {
@@ -165,7 +194,7 @@ namespace OpMon {
                     ppTxt.setString(oss3.str());
                     type.setTexture(data.getUiDataPtr()->getTypeTexture(atkTurn.opmon->getAttacks()[curPos]->getType()));
                     frame.draw(type);
-                } else {
+                } else { //If there is no attack, print this
                     ppTxt.setSfmlColor(sf::Color::Red);
                     ppTxt.setString("0 / 0");
                 }
