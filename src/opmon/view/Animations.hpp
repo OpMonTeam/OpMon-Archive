@@ -1,9 +1,8 @@
 /*
 Animations.hpp
-Author : Jlppc
-File under the license GPL-3.0
-http://opmon-game.ga
-Contains the Animations namespace 
+Author : Cyrion
+Contributors : BAKFR, Navet56
+File under GNU GPL v3.0 license
 */
 #ifndef ANIMATIONS_HPP
 #define ANIMATIONS_HPP
@@ -16,7 +15,7 @@ Contains the Animations namespace
 namespace OpMon {
     namespace View {
         /**
-       Contains the functions used for the major animations
+	   Contains the functions used for the majors animations
 	*/
         namespace Animations {
 
@@ -37,10 +36,10 @@ namespace OpMon {
               private:
                 int frames = 5;
                 /*
-		If true : Open | If false : Close
-	      */
+		  If true : Opening movement | If false : Closing movement
+		*/
                 bool order;
-                static bool fenInit;
+                static bool winInit;
                 static sf::Texture fen[6];
 
               public:
