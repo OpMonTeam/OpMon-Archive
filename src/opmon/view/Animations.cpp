@@ -1,3 +1,9 @@
+/*
+Animations.cpp
+Author : Cyrion
+Contributors : BAKFR, Navet56
+File under GNU GPL v3.0 license
+*/
 #include "Animations.hpp"
 #include "../../utils/defines.hpp"
 #include "../../utils/time.hpp"
@@ -9,8 +15,10 @@ namespace OpMon {
     namespace View {
 
         namespace Animations {
-
-            bool WinAnim::fenInit = false;
+	  
+	  //While false, the "WinAnim" animation's sprites are not loaded
+            bool WinAnim::winInit = false;
+	  //Array used by "WinAnim"
             sf::Texture WinAnim::fen[6];
 
             Animation::Animation(sf::Texture bgTxt)
@@ -20,8 +28,8 @@ namespace OpMon {
             WinAnim::WinAnim(sf::Texture bgTxt, bool order)
               : Animation(bgTxt)
               , order(order) {
-                if(!fenInit) {
-                    fenInit = true;
+                if(!winInit) {
+                    winInit = true;
                     Model::ResourceLoader::loadTextureArray(fen, "animations/winChange/animWindowFrame%d.png", 6, 1);
                 }
             }
