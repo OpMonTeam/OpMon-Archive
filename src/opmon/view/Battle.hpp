@@ -1,3 +1,9 @@
+/*
+Battle.hpp
+Author : Cyrion
+Contributor : Navet56
+File under GNU GPL v3.0 license
+*/
 #pragma once
 
 #include "../model/objects/Turn.hpp"
