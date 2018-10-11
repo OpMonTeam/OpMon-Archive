@@ -1,3 +1,9 @@
+/*
+Dialog.cpp
+Author : BAKFR
+Contributor : Cyrion
+File under GNU GPL v3.0 license
+*/
 #include "Dialog.hpp"
 #include "../../utils/defines.hpp"
 #include "Window.hpp"
@@ -64,9 +70,6 @@ namespace OpMon {
                     } else if(text[line + dialogNb].toUtf32()[i] > 10) {
                         currentTxt[line] += text[line + dialogNb].toUtf32()[i];
                     }
-                    /*cout << (char) text[line + dialog].toUtf32()[i] << "|" << text[line + dialog].toUtf32()[i] << endl;
-	    cout << "Caractère : " << i << " - Ligne : " << line << endl;
-	    cout << "Taille : " << text[line + dialog].toUtf32().size() << endl;*/
                     i++;
                 } else {
                     if(line == 2) {

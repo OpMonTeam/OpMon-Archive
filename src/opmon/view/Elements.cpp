@@ -1,3 +1,9 @@
+/*
+Elements.cpp
+Author : Cyrion
+Contributor : BAKFR
+File under GNU GPL v3.0 license
+*/
 #include "Elements.hpp"
 #include "../../utils/defines.hpp"
 #include "../model/storage/ResourceLoader.hpp"
@@ -21,7 +27,7 @@ namespace OpMon {
 
                     int tileNumber = tilesCodes[(i * size.x) + j] - 1;
 
-                    //Now that every void (0) became -1, this replaces every -1 by the official void tile.
+                    //Now that every void (0) became -1, this replaces every -1 by the "official" void tile.
                     if(tileNumber == -1) {
                         tileNumber = 257; //official void tile
                     }
