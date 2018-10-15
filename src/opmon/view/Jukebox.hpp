@@ -1,8 +1,8 @@
 /**
   Jukebox.hpp
   Author : Cyrion
-  File under licence GNU GPL-3.0
-  http://opmon-game.ga
+  Contributor  : Samurai413x
+  File under GNU GPL v3.0 license
 */
 #pragma once
 

@@ -1,3 +1,9 @@
+/*
+OptionsMenu.cpp
+Author : Cyrion
+Contributors : torq, Navet56, BAKFR
+File under GNU GPL v3.0 license
+*/
 #include "OptionsMenu.hpp"
 #include "../model/save/OptionsSave.hpp"
 #include "../model/storage/ResourceLoader.hpp"
@@ -117,10 +123,11 @@ namespace OpMon {
             bgCredits.setTexture(data.getCreditsBg());
 
             volumeCur.setTexture(data.getVolumeCur());
-            //volumeCur.setPosition(165, 290);//0
-            //volumeCur.setPosition(460, 290);//100
+	    //Cursor positions :
+            //volumeCur.setPosition(165, 290);// = 0
+            //volumeCur.setPosition(460, 290);// = 100
 
-            coche.setPosition(425, 88);
+            check.setPosition(425, 88);
 
             initStrings();
 
@@ -241,12 +248,12 @@ namespace OpMon {
             frame.draw(txtOpt5);
             frame.draw(txtRetour);
             frame.draw(txtOptions);
-
+	    
             volumeCur.setPosition(166 + (295 * data.getUiDataPtr()->getJukebox().getGlobalVolume() / 100), 298);
 
             frame.draw(volumeCur);
             if(Model::OptionsSave::getParam("fullscreen").getValue() == "true") {
-                frame.draw(coche);
+                frame.draw(check);
             }
             rectSurb.setPosition(curPosOpt[curPosOptI]);
             rectSurb.setScale(curSizeOpt[curPosOptI]);
