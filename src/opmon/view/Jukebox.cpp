@@ -12,7 +12,7 @@ File under GNU GPL v3.0 license
 namespace OpMon {
     namespace View {
         Jukebox::Jukebox()
-          : globalVolume(100) {}
+          : globalVolume(50) {}
 
         void Jukebox::addMusic(std::string name, std::string path, bool loop) {
             sf::Music *music = Model::ResourceLoader::loadMusic(path.c_str());
