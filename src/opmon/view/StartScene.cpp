@@ -1,3 +1,9 @@
+/*
+StartScene.cpp
+Author : Cyrion
+Contributors : BAKFR, JonnyPtn, torq, Navet56
+File under GNU GPL v3.0 license
+*/
 #include "StartScene.hpp"
 #include "../../utils/OpString.hpp"
 #include "../../utils/StringKeys.hpp"
@@ -86,7 +92,7 @@ namespace OpMon {
                 break;
 
             case 1:
-                return GameStatus::CONTINUE; // Everything is handled by Ctrl
+                return GameStatus::CONTINUE; // Everything is handled by StartSceneCtrl
 
             case 2:
                 if(!dialog->isDialogOver()) {
