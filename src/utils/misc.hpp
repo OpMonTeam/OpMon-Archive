@@ -1,9 +1,7 @@
 /*
-Utils.hpp
-Author : Jlppc
-Fichier sous licence GPL-3.0
-http://opmon-game.ga
-Définit le namespace Utils
+misc.hpp
+Author : BAKFR
+File under GNU GPL v3.0
 */
 #ifndef UTILS_HPP
 #define UTILS_HPP
