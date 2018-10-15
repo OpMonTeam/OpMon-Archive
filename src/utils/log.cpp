@@ -1,4 +1,9 @@
-
+/*
+log.cpp
+Author : BAKFR
+Contributor : Cyrion
+File under GNU GPL v3.0
+*/
 #include "./log.hpp"
 #include "./fs.hpp"
 #include "./time.hpp"
