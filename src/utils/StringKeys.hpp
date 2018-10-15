@@ -1,8 +1,8 @@
 /*
 StringKeys.hpp
-Author : Jlppc
-File under GNU GPL 3.0 licence
-http://opmon-game.ga
+Author : Cyrion
+Contributor : BAKFR
+File under GNU GPL v3.0 license
 */
 #ifndef STRINGKEYS_HPP
 #define STRINGKEYS_HPP

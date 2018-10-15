@@ -1,4 +1,8 @@
-
+/*
+fs.cpp
+Author : BAKFR
+File under GNU GPL v3.0
+*/
 #include "./fs.hpp"
 #include <algorithm>
 #include <iostream>

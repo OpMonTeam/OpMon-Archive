@@ -1,9 +1,8 @@
 /*
 MainMenu.hpp
-Author : Jlppc
-File under the license GPL-3.0
-http://opmon-game.ga
-Contains MainMenu namespace
+Author : Cyrion
+Contributors : Navet56, BAKFR
+File under GNU GPL v3.0 license
 */
 #ifndef MAINMENU_HPP
 #define MAINMENU_HPP
@@ -18,8 +17,8 @@ namespace OpMon {
     namespace View {
 
         /**
-     * View of the main menu (displayed when the game starts).
-     */
+	 * MainMenu's view (displayed when the game starts).
+	 */
         class MainMenu : public I18n::ATranslatable {
 
           public:
@@ -29,10 +28,10 @@ namespace OpMon {
             void initStrings();
             void onLangChanged() override;
 
-            /**
-       * Move the cursor to select another menu entry.
-       * @param `true` moves the cursor up; `false` moves it down.
-       */
+	  /**
+	   * Moves the cursor to select another menu entry.
+	   * @param `true` moves the cursor up; `false` moves it down.
+	   */
             void moveArrow(bool direction);
 
             void pause();
@@ -52,10 +51,7 @@ namespace OpMon {
             sf::Text exit;
             sf::Sprite cursor;
             sf::Vector2f curPos[4];
-            sf::Sound bruitArr;
-            sf::Sound bruitPush;
             sf::Texture textures[2];
-            sf::SoundBuffer sounds[3];
             int curPosI = 0;
             Model::MainMenuData &data;
         };
