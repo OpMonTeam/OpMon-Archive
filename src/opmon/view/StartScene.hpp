@@ -1,9 +1,8 @@
 /*
 StartScene.hpp
-Author : Jlppc
-File under the GPL-3.0 license
-http://opmon-game.ga
-Contains StartScene class
+Author : Cyrion
+Contributor : BAKFR
+File under GNU GPL v3.0 license
 */
 #ifndef STARTSCENE_HPP
 #define STARTSCENE_HPP
