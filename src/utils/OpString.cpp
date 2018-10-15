@@ -1,3 +1,9 @@
+/*
+OpString.cpp
+Author : Cyrion
+Contributors : BAKFR, JonnyPtn, torq
+File under GNU GPL v3.0 license
+*/
 #include <cstdarg>
 #include "OpString.hpp"
 #include "StringKeys.hpp"
@@ -6,8 +12,8 @@
 
 namespace Utils {
     /**
-     OpString containing nothing
-  */
+       OpString containing nothing
+    */
     OpString OpString::voidStr = OpString("void");
 
     OpString::OpString(std::string const &key, std::vector<sf::String *> obj) {
@@ -16,7 +22,7 @@ namespace Utils {
         this->objects = obj;
 
         if(objects.size() != instances) {
-            Log::warn("OpString: number of '~' placeholders and arguments mismatch for key \"" + key + "\"");
+	  Log::warn("OpString: number of '~' placeholders and arguments mismatch for key \"" + key + "\"");
         }
     }
 
