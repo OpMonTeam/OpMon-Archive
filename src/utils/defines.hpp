@@ -1,3 +1,9 @@
+/*
+defines.hpp
+Author : Cyrion
+Contributor : BAKFR
+File under GNU GPL v3.0 license
+*/
 #ifndef DEFINES_HPP
 #define DEFINES_HPP
 

@@ -1,4 +1,8 @@
-
+/*
+misc.cpp
+Author : BAKFR
+File under GNU GPL v3.0
+*/
 #include "misc.hpp"
 #include <ctime>
 
