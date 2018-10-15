@@ -119,7 +119,7 @@ namespace OpMon {
             bgOpt.setTexture(data.getBackground());
             rectSurb.setTexture(data.getSelectBar());
             bgLangues.setTexture(data.getLangBg());
-            coche.setTexture(data.getYesTx());
+            check.setTexture(data.getYesTx());
             bgCredits.setTexture(data.getCreditsBg());
 
             volumeCur.setTexture(data.getVolumeCur());
