@@ -1,9 +1,8 @@
 /*
   OptionsMenu.hpp
   Author : Cyrion
-  File under the GPL-3.0  license
-  http://opmon-game.ga
-  Contains OptionsMenu namespace
+  Contributors : torq, Navet56, BAKFR
+  File under GNU GPL v3.0 license
 */
 #ifndef OPTIONSMENU_HPP
 #define OPTIONSMENU_HPP
@@ -94,11 +93,10 @@ namespace OpMon {
             sf::Text txtLang;
             sf::Text txtCred;
             sf::Sprite bgLangues;
-            //J_Texture listeLangues[3] = {};
             sf::Vector2f curPosLang[5] = {};
             sf::Vector2f curSizeLang[5];
             sf::Texture textures2[5];
-            sf::Sprite coche;
+            sf::Sprite check;
 
             bool continuer = true;
         };
