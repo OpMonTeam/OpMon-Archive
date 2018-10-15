@@ -1,9 +1,8 @@
 /*
   Overworld.hpp
-  Author : Jlppc
-  File under the license GPL-3.0
-  http://opmon-game.ga
-  Contains Overworld namespace
+  Author : Cyrion
+  Contributor : BAKFR
+  File under GNU GPL v3.0 license
 */
 #ifndef OVERWORLD_HPP
 #define OVERWORLD_HPP
@@ -89,8 +88,8 @@ namespace OpMon {
             }
 
             /**
-       * Events can call this method to start a new dialog with the player.
-       */
+	     * Events can call this method to start a new dialog with the player.
+	     */
             void startDialog(std::vector<sf::String> const &dialogs);
 
             void startPlayerAnimation() {
@@ -112,6 +111,7 @@ namespace OpMon {
 
             sf::View camera;
             sf::Sprite character;
+	  sf::Vector2f charaStartPos;
             Model::Map *current = nullptr;
 
             std::string musicPath = "";
@@ -120,7 +120,7 @@ namespace OpMon {
             MapLayer *layer2 = nullptr;
             MapLayer *layer3 = nullptr;
             Dialog *dialog = nullptr;
-            //Indicate the frame of the walking animation that must be used.
+            //Indicate the frame of the walking animation that must be used. (The animation has two frames)
             bool anims = false;
 
             int fpsCounter = 0;

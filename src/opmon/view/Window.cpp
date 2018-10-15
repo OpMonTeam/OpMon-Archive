@@ -1,3 +1,9 @@
+/*
+Window.cpp
+Author : Cyrion
+Contributors : BAKFR, torq
+File under GNU GPL v3.0 license
+*/
 #include "Window.hpp"
 #include "../../utils/StringKeys.hpp"
 #include "../../utils/log.hpp"
@@ -13,7 +19,6 @@ namespace OpMon {
     namespace View {
         void Window::open() {
             sf::ContextSettings settings;
-            //settings.antialiasingLevel = 8;
             if(!Model::OptionsSave::checkParam("fullscreen")) {
                 Model::OptionsSave::addOrModifParam("fullscreen", "false");
             }
@@ -31,9 +36,7 @@ namespace OpMon {
             frame.create(512, 512);
 
             oplog("Window initialized!");
-#if 0
-	    window.setVerticalSyncEnabled(true);
-#endif
+	    //window.setVerticalSyncEnabled(true);
             window.setFramerateLimit(30);
             window.setKeyRepeatEnabled(false);
             frame.clear(sf::Color::White);
