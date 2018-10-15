@@ -1,4 +1,8 @@
-
+/*
+time.hpp
+Author : BAKFR
+File under GNU GPL v3.0
+*/
 #pragma once
 
 namespace Utils {

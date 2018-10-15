@@ -1,8 +1,8 @@
 /*
 OpString.hpp
-Author : Jlppc
-File under license GNU GPL-3.0
-http://opmon-game.ga
+Author : Cyrion
+Contributors : JonnyPtn, BAKFR
+File under GNU GPL v3.0 license
 */
 #ifndef OPSTRING_PROTECTED
 #define OPSTRING_PROTECTED
