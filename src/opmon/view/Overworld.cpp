@@ -1,4 +1,9 @@
-
+/*
+Overworld.cpp
+Author : Cyrion
+Contributors : BAKFR, torq, Navet56
+File under GNU GPL v3.0 license
+*/
 #include "Overworld.hpp"
 #include "../model/objects/Enums.hpp"
 #include <algorithm>
@@ -113,6 +118,7 @@ namespace OpMon {
         }
 
         void Overworld::printElements(sf::RenderTexture &frame) {
+	  //"i" is the element's id
             for(std::string const &i : current->getAnimatedElements()) {
                 data.incrementElementCounter(i);
                 if(data.getElementCounter(i) >= data.getElementTextures(i).size()) {
@@ -129,10 +135,12 @@ namespace OpMon {
             current = data.getCurrentMap();
             character.setPosition(pos.x SQUARES - 16, pos.y SQUARES);
             resetCamera();
+	    //If the music is the same, the program must do nothing. Else, the music will reboot and it's ugly.
             if(musicPath != current->getBg()) {
                 setMusic(current->getBg());
             }
 
+	    //Recretes the layers
             delete(layer1);
             delete(layer2);
             delete(layer3);
@@ -141,13 +149,6 @@ namespace OpMon {
             layer3 = new MapLayer(current->getDimensions(), current->getLayer3());
             tpCount = 0;
 
-            /*
-      for(auto itor = current->getEvents().begin(); itor != current->getEvents().end(); ++itor){
-        eventsSprites.try_emplace(itor, new sf::Sprite());
-        eventsSprites[itor].setPosition();
-        eventsSprites[itor].setTexture(itor->getTexture());
-      }
-       */
         }
 
         void Overworld::pause() {
@@ -162,7 +163,7 @@ namespace OpMon {
           : data(data) {
             current = data.getMap(mapId);
             character.setTexture(data.getTexturePP((unsigned int)Side::TO_DOWN));
-            data.getPlayer().tp(mapId, sf::Vector2i(2, 4));
+            data.getPlayer().tp(mapId, sf::Vector2i(2, 4));//TODO : Add a parameter to configure the default player's position
             character.setPosition(2 SQUARES - 16, 4 SQUARES);
             camera.setSize(sf::Vector2f(16 SQUARES, 16 SQUARES));
             resetCamera();
@@ -190,6 +191,7 @@ namespace OpMon {
 
             if(initPlayerAnimation){
                 startPlayerAnimationTime = Utils::Time::getElapsedMilliseconds();
+		charaStartPos = character.getPosition();
                 initPlayerAnimation = false;
             }
 
@@ -218,11 +220,9 @@ namespace OpMon {
                 debugText.setCharacterSize(40);
                 fpsPrint.setPosition(0, 50);
                 fpsPrint.setFont(data.getUiDataPtr()->getFont());
-                //fpsPrint.setSfmlColor(sf::Color(127, 127, 127));
                 fpsPrint.setCharacterSize(48);
                 std::ostringstream oss;
-                oss << "Position : " << data.getPlayer().getPosition().getPosition().x << " - " << data.getPlayer().getPosition().getPosition().y << std::endl
-                    << "PxPosition : " << character.getPosition().x << " - " << character.getPosition().y << std::endl;
+                oss << "Position : " << data.getPlayer().getPosition().getPosition().x << " - " << data.getPlayer().getPosition().getPosition().y << std::endl << "PxPosition : " << character.getPosition().x << " - " << character.getPosition().y << std::endl;
                 coordPrint.setString(oss.str());
                 coordPrint.setFont(data.getUiDataPtr()->getFont());
                 coordPrint.setPosition(0, 100);
@@ -255,23 +255,6 @@ namespace OpMon {
                 }
             }
 
-            //Sets the character's texture.
-            if(data.getPlayer().getPosition().isAnim() && !anims) {
-                character.setTexture(data.getWalkingPP((unsigned int)data.getPlayer().getPosition().getDir()));
-                animsCounter++;
-                anims = animsCounter > 8;
-
-            } else if(data.getPlayer().getPosition().isAnim() && anims) {
-                character.setTexture(data.getWalkingPP2((unsigned int)data.getPlayer().getPosition().getDir()));
-                animsCounter++;
-                if(animsCounter > 16) {
-                    anims = false;
-                    animsCounter = 0;
-                }
-            } else if(!data.getPlayer().getPosition().isAnim()) {
-                character.setTexture(data.getTexturePP((unsigned int)data.getPlayer().getPosition().getDir()));
-            }
-
             if(!is_in_dialog && data.getPlayer().getPosition().isAnim()) {
                 if(data.getPlayer().getPosition().isMoving()) {
                     switch(data.getPlayer().getPosition().getDir()) {
@@ -291,13 +274,26 @@ namespace OpMon {
                         break;
                     }
                 }
-
-                const int currentTime = Utils::Time::getElapsedMilliseconds();
-                if(currentTime - startPlayerAnimationTime >= (7 * 1000 / 30)){ // assuming there is 30 frames per second.
-                    data.getPlayer().getPosition().stopMove();
-                }
             }
 
+            //Sets the character's texture.
+            if(data.getPlayer().getPosition().isAnim() && !anims) {
+	      character.setTexture(data.getWalkingPP((unsigned int)data.getPlayer().getPosition().getDir()));
+	      animsCounter++;
+	      anims = animsCounter > 8;
+
+            } else if(data.getPlayer().getPosition().isAnim() && anims) {
+	      character.setTexture(data.getWalkingPP2((unsigned int)data.getPlayer().getPosition().getDir()));
+	      animsCounter++;
+	      if(animsCounter > 16) {
+		data.getPlayer().getPosition().stopMove();//Stops the caracter's movement
+		anims = false;
+		animsCounter = 0;
+	      }
+            } else if(!data.getPlayer().getPosition().isAnim()) {
+	      character.setTexture(data.getTexturePP((unsigned int)data.getPlayer().getPosition().getDir()));
+            }
+	    
             //Drawing character
             frame.draw(character);
             //Drawing the events above the player
