@@ -1,3 +1,9 @@
+/*
+Jukebox.cpp
+Author : Cyrion
+Contributors : Samurai413x, BAKFR
+File under GNU GPL v3.0 license
+*/
 #include "Jukebox.hpp"
 #include "../model/storage/ResourceLoader.hpp"
 #include "../start/Core.hpp"
@@ -19,6 +25,7 @@ namespace OpMon {
         }
 
         void Jukebox::addSound(std::string name, std::string path) {
+	  //Sounds are saved in the code as a pair of sf::SoundBuffer and sf::Sound.
             sf::SoundBuffer *sb = new sf::SoundBuffer();
             Model::ResourceLoader::load(*sb, path.c_str());
             if(soundsList[name].first != nullptr) {

@@ -1,3 +1,9 @@
+/*
+MainMenu.cpp
+Author : Cyrion
+Contributors : BAKFR, torq
+File under GNU GPL v3.0 license
+*/
 #include "MainMenu.hpp"
 #include "../../utils/StringKeys.hpp"
 #include "../../utils/defines.hpp"
@@ -28,27 +34,17 @@ namespace OpMon {
                 textPos[i]->setPosition(sf::Vector2f(60, j));
                 j += 85;
             }
-            Model::ResourceLoader::load(sounds[0], "audio/sounds/select.ogg");
-            Model::ResourceLoader::load(sounds[1], "audio/sounds/selectbuttons.ogg");
-            //sounds[2].loadFromFile(RESSOURCES_PATH + "audio/sounds/nope.ogg");
             bg.setTexture(data.getTitlescreen());
             cursor.setTexture(data.getArrChoice());
-            bruitArr.setBuffer(sounds[0]);
-            bruitPush.setBuffer(sounds[1]);
-            //bruitNope.setBuffer(sounds[2]);
             cursor.setScale(3, 3);
             initStrings();
 
-            for(auto *text : {&playtx, &charge, &options, &exit}) {
+            for(auto *text : textPos) {
                 text->setSfmlColor(sf::Color::White);
                 text->setFont(data.getUiDataPtr()->getFont());
                 text->setCharacterSize(FONT_SIZE_DEFAULT);
             }
-
-            //Mix_Volume(2, MIX_MAX_VOLUME / 4);
-            //Mix_Volume(1, MIX_MAX_VOLUME);
-            //Mix_Volume(0, MIX_MAX_VOLUME / 2);
-
+	    
             data.getUiDataPtr()->getJukebox().play("Title");
         }
 
@@ -67,9 +63,9 @@ namespace OpMon {
         }
 
         void MainMenu::moveArrow(bool direction) {
-            if(direction /* == true*/) {
+	  if(direction) {//If direction is true, the cursor goes down.
                 curPosI--;
-            } else {
+	  } else {//Obviously, if direction is false, the cursor goes up.
                 curPosI++;
             }
 
