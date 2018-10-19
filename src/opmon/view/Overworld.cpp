@@ -255,6 +255,8 @@ namespace OpMon {
                 }
             }
 
+	   
+	    
             if(!is_in_dialog && data.getPlayer().getPosition().isAnim()) {
                 if(data.getPlayer().getPosition().isMoving()) {
                     switch(data.getPlayer().getPosition().getDir()) {
@@ -276,23 +278,31 @@ namespace OpMon {
                 }
             }
 
-            //Sets the character's texture.
+	     //Sets the character's texture.
             if(data.getPlayer().getPosition().isAnim() && !anims) {
 	      character.setTexture(data.getWalkingPP((unsigned int)data.getPlayer().getPosition().getDir()));
+	      anims = animsCounter >= 8;
+	      if(anims){
+		//Stops the caracter's movement every 8 frames
+		data.getPlayer().getPosition().stopMove();
+		animsCounter = 0;
+	      }
 	      animsCounter++;
-	      anims = animsCounter > 8;
 
             } else if(data.getPlayer().getPosition().isAnim() && anims) {
 	      character.setTexture(data.getWalkingPP2((unsigned int)data.getPlayer().getPosition().getDir()));
-	      animsCounter++;
-	      if(animsCounter > 16) {
-		data.getPlayer().getPosition().stopMove();//Stops the caracter's movement
+	      if(animsCounter >= 8) {
+		//Stops the caracter's movement every 8 frames
+		data.getPlayer().getPosition().stopMove();
 		anims = false;
 		animsCounter = 0;
 	      }
+	      animsCounter++;
             } else if(!data.getPlayer().getPosition().isAnim()) {
 	      character.setTexture(data.getTexturePP((unsigned int)data.getPlayer().getPosition().getDir()));
             }
+
+            
 	    
             //Drawing character
             frame.draw(character);
