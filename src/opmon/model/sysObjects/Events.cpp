@@ -198,12 +198,15 @@ namespace OpMon {
                         }
 
                         if(!move(movements[predefinedCounter], overworld.getData().getCurrentMap())) {//If the movement is impossible, decreases the counter to not ignore the movement.
+			  std::cout << "\\^o^/" << std::endl;
                             if(predefinedCounter != 0) {
                                 predefinedCounter--;
                             } else {
                                 predefinedCounter = movements.size() - 1;
                             }
-                        }
+                        }else{
+			  std::cout << "..." << std::endl;
+			}
                         break;
 
                     case MoveStyle::NO_MOVE://This is easy to do.
@@ -263,15 +266,15 @@ namespace OpMon {
 		      break;
 
                     case Side::TO_DOWN:
-		      position -= sf::Vector2f(0, 4);
+		      toMove = sf::Vector2f(0, 4);
 		      break;
 
                     case Side::TO_LEFT:
-		      position -= sf::Vector2f(4, 0);
+		      toMove = sf::Vector2f(4, 0);
 		      break;
 
                     case Side::TO_RIGHT:
-		      position -= sf::Vector2f(-4, 0);
+		      toMove = sf::Vector2f(-4, 0);
 		      break;
                     default:
 		      break;
