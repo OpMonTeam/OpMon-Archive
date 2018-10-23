@@ -33,9 +33,9 @@ namespace OpMon {
     void handleError(std::string const &errorName, bool fatal) {
         errors++;
         std::ostringstream osslog;
-        osslog << std::string("Error  n°") << errors << (std::string(" : ") + errorName);
+        osslog << std::string("Error  nÂ°") << errors << (std::string(" : ") + errorName);
         oplog(osslog.str(), true);
-        std::cerr << "Error n°" << errors << " : " << errorName << std::endl;
+        std::cerr << "Error no" << errors << " : " << errorName << std::endl;
         if(errors > 20) { //If the program gets more than 20 errors, it stops.
             std::cerr << "Too many errors. Closing program. Please verify your installation." << std::endl;
             oplog("Too many errors. Closing program. Please verify your installation. If the problems persists, warn us.", true);
