@@ -62,6 +62,14 @@ namespace OpMon {
                     if(events.key.code == sf::Keyboard::Numpad5) {
                         overworld.setCameraLock(!overworld.isCameraLocked());
                     }
+		    if(events.key.code == sf::Keyboard::PageUp){
+			data.decrementItorMap();
+			overworld.tp(data.getCurrentItorMap(), sf::Vector2i(0, 0));
+		    }
+		    if(events.key.code == sf::Keyboard::PageDown){
+			data.incrementItorMap();
+			overworld.tp(data.getCurrentItorMap(), sf::Vector2i(0, 0));
+		    }
                 }
             default:
                 break;
@@ -103,7 +111,7 @@ namespace OpMon {
 
         GameStatus OverworldCtrl::checkEventsNoDialog(sf::Event const &event, Model::Player &player) {
             eventsctrl.checkAction(event, player, view);
-            Controller::PlayerCtrl::checkMove(player, event, view);
+            Controller::PlayerCtrl::checkMove(player, view);
 
             if(view.getBattleDeclared() != nullptr) {
                 if(view.getBattleDeclared()->isDefeated()) {
