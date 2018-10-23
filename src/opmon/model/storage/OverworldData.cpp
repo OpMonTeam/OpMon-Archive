@@ -124,11 +124,11 @@ namespace OpMon {
             mapRoad14->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(4, 39), sf::Vector2i(39, 18), "Fauxbourg Euvi", Side::TO_LEFT, SIDE_LEFT));
             mapRoad14->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(4, 40), sf::Vector2i(39, 19), "Fauxbourg Euvi", Side::TO_LEFT, SIDE_LEFT));
             mapRoad14->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(4, 41), sf::Vector2i(39, 20), "Fauxbourg Euvi", Side::TO_LEFT, SIDE_LEFT));
-
+	    
             OpTeam *betaTeam = new Model::OpTeam("Beta");
             betaTeam->addOpMon(new Model::OpMon("", uidata->getOp(1), 5, {Model::Attacks::newAtk("Tackle"), Model::Attacks::newAtk("Mist"), nullptr, nullptr}, Model::Nature::QUIET));
 
-            mapRoad14->addEvent(new Events::TrainerEvent(charaTextures["beta"], sf::Vector2f(11, 32), betaTeam, {OpString("rt14.beta.pre.1"), OpString("rt14.beta.pre.2"), OpString("rt14.beta.pre.3"), OpString("rt14.beta.pre.4"), OpString("rt14.beta.pre.5"), OpString("rt14.beta.pre.6"), OpString("rt14.beta.pre.7")}, {OpString("rt14.beta.post.1"), OpString("rt14.beta.post.2"), OpString("rt14.beta.post.3")}, Side::TO_LEFT));
+            mapRoad14->addEvent(new Events::TrainerEvent(charaTextures["beta"], sf::Vector2f(11, 32), betaTeam, {OpString("rt14.beta.pre.1"), OpString("rt14.beta.pre.2"), OpString("rt14.beta.pre.3"), OpString("rt14.beta.pre.4"), OpString("rt14.beta.pre.5"), OpString("rt14.beta.pre.6"), OpString("rt14.beta.pre.7"), OpString("void"), OpString("void")}, {OpString("rt14.beta.post.1"), OpString("rt14.beta.post.2"), OpString("rt14.beta.post.3")}, Side::TO_LEFT));
 
             //MysteriouCity loading
             Map *mapMs = maps.emplace("MysteriouCity", new Map(Maps::myciLayer1, Maps::myciLayer2, Maps::myciLayer3, 35, 35, false, "Ms")).first->second;
