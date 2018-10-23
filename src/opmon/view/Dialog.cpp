@@ -7,6 +7,7 @@ File under GNU GPL v3.0 license
 #include "Dialog.hpp"
 #include "../../utils/defines.hpp"
 #include "Window.hpp"
+#include "../start/Core.hpp"
 
 namespace OpMon {
     namespace View {
@@ -15,6 +16,10 @@ namespace OpMon {
           : text(text)
           , uidata(uidata) {
 
+	    if(text.size() % 3 != 0){
+		handleError("Error : string missing in Dialog. Aborting to avoid more issues.", true);
+	    }
+	    
             background.setTexture(uidata->getDialogBackground());
             arrDial.setTexture(uidata->getDialogArrow());
 
