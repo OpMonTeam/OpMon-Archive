@@ -141,6 +141,8 @@ namespace OpMon {
             mapOpCenter->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(9, 11), opcE1, SIDE_UP));
             mapOpCenter->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(9, 17), sf::Vector2i(16, 13), "MysteriouCity", Side::TO_DOWN, SIDE_DOWN));
             mapOpCenter->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 17), sf::Vector2i(16, 13), "MysteriouCity", Side::TO_DOWN, SIDE_DOWN));
+
+	    mapsItor = maps.begin();
         }
 
         OverworldData::~OverworldData() {

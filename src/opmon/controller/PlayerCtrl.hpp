@@ -16,7 +16,7 @@ File under GNU GPL v3.0 license
 namespace OpMon {
     namespace Controller {
         namespace PlayerCtrl {
-            void checkMove(Model::Player &player, sf::Event const &events, View::Overworld &overworld);
+            void checkMove(Model::Player &player, View::Overworld &overworld);
             void move(Model::Side direction, Model::Player &player, View::Overworld &overworld);
         } // namespace PlayerCtrl
     }     // namespace Controller
