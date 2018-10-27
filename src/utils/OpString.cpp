@@ -4,11 +4,10 @@ Author : Cyrion
 Contributors : BAKFR, JonnyPtn, torq
 File under GNU GPL v3.0 license
 */
-#include <cstdarg>
 #include "OpString.hpp"
-#include "StringKeys.hpp"
 #include "./log.hpp"
-
+#include "StringKeys.hpp"
+#include <cstdarg>
 
 namespace Utils {
     /**
@@ -22,7 +21,7 @@ namespace Utils {
         this->objects = obj;
 
         if(objects.size() != instances) {
-	  Log::warn("OpString: number of '~' placeholders and arguments mismatch for key \"" + key + "\"");
+            Log::warn("OpString: number of '~' placeholders and arguments mismatch for key \"" + key + "\"");
         }
     }
 
@@ -53,18 +52,18 @@ namespace Utils {
         }
         //Ok, so there is some things to do
         std::vector<sf::String> splitted = StringKeys::split(StringKeys::get(key), '~'); //Split every ~
-        
+
         sf::String toReturn;
         for(size_t i = 0; i < splitted.size(); ++i) {
             toReturn += splitted[i];
             if(i < objects.size()) {
                 toReturn += *objects[i];
-            } else if (i != splitted.size() - 1) {
+            } else if(i != splitted.size() - 1) {
                 // This case only happens when there isn't enough objects to fill all placeholders.
                 toReturn += '~';
             }
         }
-        
+
         return toReturn;
     }
 } // namespace Utils

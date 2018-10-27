@@ -58,7 +58,7 @@ namespace OpMon {
         }
 
         bool OpMon::captured(I_OpBox const &OpBox) {
-	  //Big formulas
+            //Big formulas
             int a = round((((3 * statHP - 2 * HP) * captureRate * OpBox.getCaptureRate() * (status == Status::PARALYSED || status == Status::POISONED || status == Status::BURNING ? 1.5 : (status == Status::FROZEN || status == Status::SLEEPING ? 2 : 1))) / (3 * statHP)));
             int b = round((pow(2, 16) - 1) * pow(a / (pow(2, 8) - 1), 0.25));
             int c[] = {Utils::Misc::randU(65535), Utils::Misc::randU(65535), Utils::Misc::randU(65535),
@@ -69,11 +69,11 @@ namespace OpMon {
                     nbreOk++;
                 }
             }
-	    //nbreOk represents the number of times the OpBall wriggles
+            //nbreOk represents the number of times the OpBall wriggles
             if(nbreOk == 0) {
                 return false;
             } else {
-	      //there is multiple "if" here because the printed dialog is different. Since this method is unused for now, this isn't very problematic to leave it as it is.
+                //there is multiple "if" here because the printed dialog is different. Since this method is unused for now, this isn't very problematic to leave it as it is.
                 if(nbreOk == 1) {
                     return false;
                 }
@@ -83,7 +83,7 @@ namespace OpMon {
                 if(nbreOk == 3) {
                     return false;
                 }
-                if(nbreOk != 4) {//An OpBall can't wriggle four times
+                if(nbreOk != 4) { //An OpBall can't wriggle four times
                     handleError("InternalError : OpMon.cpp : nbreOk != 4", true);
                 }
                 return true;
@@ -125,13 +125,13 @@ namespace OpMon {
         void OpMon::levelUp() {
             level++;
 
-	    //Calcs the exp needed for the next level
+            //Calcs the exp needed for the next level
             auto curve = this->species->getCurve();
             this->toNextLevel = curve->getNeededExp(this->level + 1);
             this->exp = curve->getNeededExp(this->level);
-	    
+
             calcStats();
-	    //Check if the OpMon evolves
+            //Check if the OpMon evolves
             if(species->getEvolType()->checkEvolve(*this)) {
                 if((species->getEvolType()->getEvolID()) == (Evolutions::ETrade)) {
                     evolve();
@@ -142,7 +142,7 @@ namespace OpMon {
         int OpMon::win(OpMon const &defeated) {
             getEvs(defeated);
             exp += ((defeated.species->getExp() * defeated.level) / this->level) * expBoost;
-	    //Handles the level won. The loops allows to increase the level as long as there is exp.
+            //Handles the level won. The loops allows to increase the level as long as there is exp.
             while(exp >= toNextLevel && level < 100) {
                 if(exp < toNextLevel) {
                     break;
@@ -154,7 +154,7 @@ namespace OpMon {
         }
 
         void OpMon::getEvs(OpMon const &defeated) {
-	  //If the total of the EV is over 510, don't add EVs, since 510 is the maximum.
+            //If the total of the EV is over 510, don't add EVs, since 510 is the maximum.
             if(!((atkEV + defEV + hpEV + atkSpeEV + defSpeEV + speEV) > 510)) {
                 std::vector<Stats> statsDefeated;
                 for(unsigned int i = 0; i < defeated.species->getEv().size(); i++) {
@@ -203,7 +203,7 @@ namespace OpMon {
         }
 
         void OpMon::calcStats() {
-	  //Big annoying formulas
+            //Big annoying formulas
             statATK = round(
               ((((2 * species->getBaseAtk() + atkIV + (atkEV / 4)) * level) / 100) + 5) * ((natures[(int)nature].bonus == Stats::ATK) ? 1.1 : ((natures[(int)nature].malus == Stats::ATK) ? 0.9 : 1)));
             statDEF = round(
@@ -219,16 +219,16 @@ namespace OpMon {
             statHP = round(((2 * species->getBaseHP() + hpIV + (hpEV / 4)) * level) / 100) + level + 10;
         }
 
-      //This method will be removed in the future
+        //This method will be removed in the future
         bool OpMon::itemUsed(Item *used) {
-	  //if the OpMon evolves by using an item, check if the item used is the item to make the OpMon evolve.
+            //if the OpMon evolves by using an item, check if the item used is the item to make the OpMon evolve.
             if((species->getEvolType()->getEvolID()) == Evolutions::EItem) {
                 if(species->getEvolType()->itemEvolve(used)) {
                     evolve();
                     return true;
                 }
             }
-	    
+
             if(used->getItemTypeID() == ItemType::IHeal) {
 
                 I_Heal *usedI = dynamic_cast<I_Heal *>(used);
@@ -240,7 +240,7 @@ namespace OpMon {
 
                 } else if(usedI->getStatusHeald() != Status::NOTHING && status == usedI->getStatusHeald()) {
                     setStatus(Status::NOTHING);
-		    //Choose HERE the different dialogs to show
+                    //Choose HERE the different dialogs to show
                     switch(usedI->getStatusHeald()) {
                     case Status::NOTHING:
                         break;
@@ -298,12 +298,12 @@ namespace OpMon {
 
         void OpMon::attacked(int hpLost) {
             HP -= hpLost;
-	    //HP can't go below 0
+            //HP can't go below 0
             HP = (HP < 0) ? 0 : HP;
         }
 
-      //This is some annoying methods.
-      
+        //This is some annoying methods.
+
         int OpMon::changeATK(int power) {
             if(power < 0) {
                 for(int i = 0; i > power; i--) {
@@ -1319,10 +1319,10 @@ namespace OpMon {
         bool OpMon::setStatus(Status status) {
             if(this->status == status) {
                 return false;
-            }else if(status != Status::NOTHING) { //If the OpMon already has a special status
-	      return false;
-	    }
-	    //Some status needs to edit the stats
+            } else if(status != Status::NOTHING) { //If the OpMon already has a special status
+                return false;
+            }
+            //Some status needs to edit the stats
             if(status == Status::BURNING) {
                 changeATK(-1);
                 atkChange++;
@@ -1352,8 +1352,8 @@ namespace OpMon {
             this->type2 = type;
         }
 
-      //I'll redo this soon
-      
+        //I'll redo this soon
+
         std::string OpMon::save() {
             if(!initialized) {
 
@@ -1410,7 +1410,7 @@ namespace OpMon {
                 return "NULL\n";
             }
         }
-/*
+        /*
         OpMon::OpMon(std::ifstream &in) {
             this->nickname = Save::readLine(in);
             if(nickname != "NULL") {
