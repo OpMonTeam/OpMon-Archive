@@ -22,7 +22,7 @@ namespace Utils {
     namespace Log {
 
         void init() {
-            if (rlog != nullptr)
+            if(rlog != nullptr)
                 return; // Log already initialized
 
             Fs::mkdir(LOG_PATH);

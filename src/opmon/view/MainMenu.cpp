@@ -44,7 +44,7 @@ namespace OpMon {
                 text->setFont(data.getUiDataPtr()->getFont());
                 text->setCharacterSize(FONT_SIZE_DEFAULT);
             }
-	    
+
             data.getUiDataPtr()->getJukebox().play("Title");
         }
 
@@ -63,9 +63,9 @@ namespace OpMon {
         }
 
         void MainMenu::moveArrow(bool direction) {
-	  if(direction) {//If direction is true, the cursor goes down.
+            if(direction) { //If direction is true, the cursor goes down.
                 curPosI--;
-	  } else {//Obviously, if direction is false, the cursor goes up.
+            } else { //Obviously, if direction is false, the cursor goes up.
                 curPosI++;
             }
 

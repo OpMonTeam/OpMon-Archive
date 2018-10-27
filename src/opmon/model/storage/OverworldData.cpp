@@ -66,7 +66,7 @@ namespace OpMon {
 
             Map *mapFauxbourgEuvi = maps.emplace("Fauxbourg Euvi", new Map(Maps::feLayer1, Maps::feLayer2, Maps::feLayer3, 48, 48, false, "Fauxbourg", std::vector<std::string>{"windturbine", "smoke"})).first->second;
             mapFauxbourgEuvi->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(19, 10), {OpString("fedesc.1"), OpString("fedesc.2"), OpString("fedesc.3")}, SIDE_UP));
-              mapFauxbourgEuvi->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(29, 16), {OpString("ppHouse", {player->getNameP()}), OpString::voidStr, OpString::voidStr}, SIDE_UP));
+            mapFauxbourgEuvi->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(29, 16), {OpString("ppHouse", {player->getNameP()}), OpString::voidStr, OpString::voidStr}, SIDE_UP));
             mapFauxbourgEuvi->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(33, 16), {OpString("rivalHouse"), OpString::voidStr, OpString::voidStr}, SIDE_UP));
             mapFauxbourgEuvi->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(22, 28), {OpString("labo"), OpString::voidStr, OpString::voidStr}, SIDE_UP));
             mapFauxbourgEuvi->addEvent(new Events::TalkingEvent(alphaTab, sf::Vector2f(31, 28), {OpString("weirdsign.1"), OpString("weirdsign.2"), OpString::voidStr}, SIDE_UP));
@@ -124,7 +124,7 @@ namespace OpMon {
             mapRoad14->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(4, 39), sf::Vector2i(39, 18), "Fauxbourg Euvi", Side::TO_LEFT, SIDE_LEFT));
             mapRoad14->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(4, 40), sf::Vector2i(39, 19), "Fauxbourg Euvi", Side::TO_LEFT, SIDE_LEFT));
             mapRoad14->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(4, 41), sf::Vector2i(39, 20), "Fauxbourg Euvi", Side::TO_LEFT, SIDE_LEFT));
-	    
+
             OpTeam *betaTeam = new Model::OpTeam("Beta");
             betaTeam->addOpMon(new Model::OpMon("", uidata->getOp(1), 5, {Model::Attacks::newAtk("Tackle"), Model::Attacks::newAtk("Mist"), nullptr, nullptr}, Model::Nature::QUIET));
 
@@ -142,7 +142,7 @@ namespace OpMon {
             mapOpCenter->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(9, 17), sf::Vector2i(16, 13), "MysteriouCity", Side::TO_DOWN, SIDE_DOWN));
             mapOpCenter->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(8, 17), sf::Vector2i(16, 13), "MysteriouCity", Side::TO_DOWN, SIDE_DOWN));
 
-	    mapsItor = maps.begin();
+            mapsItor = maps.begin();
         }
 
         OverworldData::~OverworldData() {

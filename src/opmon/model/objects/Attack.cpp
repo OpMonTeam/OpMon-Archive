@@ -35,7 +35,7 @@ namespace OpMon {
             delete(this->postEffect);
         }
 
-      /* Return 1 : Inform to do the same attack at the next turn.
+        /* Return 1 : Inform to do the same attack at the next turn.
        * Return 2 : End the attack
        * Return -2 : Inform that the attack failed
        * Return -1 : Inform that the attack was ineffective against the target
