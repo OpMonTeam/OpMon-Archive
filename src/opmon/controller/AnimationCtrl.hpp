@@ -5,6 +5,7 @@ File under GNU GPL 3.0 license.
 */
 #pragma once
 
+#include <memory>
 #include "../view/Animations.hpp"
 #include "AGameScreen.hpp"
 
@@ -15,11 +16,12 @@ namespace OpMon {
       **/
         class AnimationCtrl : public AGameScreen {
           private:
-            View::Animations::Animation *view;
+            std::unique_ptr<View::Animations::Animation> view;
 
           public:
-            AnimationCtrl(View::Animations::Animation *view);
-            ~AnimationCtrl();
+            AnimationCtrl(std::unique_ptr<View::Animations::Animation> view);
+            ~AnimationCtrl() = default;
+
             GameStatus update(sf::RenderTexture &frame) override;
         };
     } // namespace Controller
