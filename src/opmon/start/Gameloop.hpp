@@ -10,6 +10,7 @@ File under GNU GPL v3.0
 #include "../controller/AGameScreen.hpp"
 #include "../view/Window.hpp"
 #include "./GameStatus.hpp"
+#include <memory>
 #include <stack>
 
 namespace OpMon {
