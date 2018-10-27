@@ -70,6 +70,9 @@ namespace OpMon {
 			data.incrementItorMap();
 			overworld.tp(data.getCurrentItorMap(), sf::Vector2i(0, 0));
 		    }
+		    if(events.key.code == sf::Keyboard::B){
+			overworld.tp("Road 14", sf::Vector2i(10, 32));
+		    }
                 }
             default:
                 break;
