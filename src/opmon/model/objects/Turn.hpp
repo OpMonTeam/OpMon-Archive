@@ -14,7 +14,7 @@ namespace OpMon {
 
         class OpMon;
         class Attack;
-		
+
         enum class TurnType {
             ATTACK,
             ITEM,

@@ -23,7 +23,7 @@ namespace OpMon {
             std::vector<sf::Texture> alphaTab = std::vector<sf::Texture>(1);
 
             std::map<std::string, Map *> maps;
-	    std::map<std::string, Map *>::iterator mapsItor; 
+            std::map<std::string, Map *>::iterator mapsItor;
 
             sf::Texture texturePP[4];
             sf::Texture walkingPP[4];
@@ -53,9 +53,20 @@ namespace OpMon {
 
             Map *getMap(std::string map) { return maps[map]; }
             Map *getCurrentMap() { return maps[player->getMapId()]; }
-	    std::string getCurrentItorMap() { return mapsItor->first; }
-	    void incrementItorMap() { mapsItor++; if(mapsItor == maps.end()) mapsItor = maps.begin(); }
-	    void decrementItorMap() { if(mapsItor != maps.begin()) mapsItor--; else{mapsItor = maps.end(); --mapsItor; } }
+            std::string getCurrentItorMap() { return mapsItor->first; }
+            void incrementItorMap() {
+                mapsItor++;
+                if(mapsItor == maps.end())
+                    mapsItor = maps.begin();
+            }
+            void decrementItorMap() {
+                if(mapsItor != maps.begin())
+                    mapsItor--;
+                else {
+                    mapsItor = maps.end();
+                    --mapsItor;
+                }
+            }
 
             sf::Texture &getTexturePP(unsigned int id) { return texturePP[((id < 4) ? id : 0)]; }
             sf::Texture &getWalkingPP(unsigned int id) { return walkingPP[((id < 4) ? id : 0)]; }

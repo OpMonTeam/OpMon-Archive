@@ -28,7 +28,7 @@ namespace OpMon {
             void initStrings();
             void onLangChanged() override;
 
-	  /**
+            /**
 	   * Moves the cursor to select another menu entry.
 	   * @param `true` moves the cursor up; `false` moves it down.
 	   */
