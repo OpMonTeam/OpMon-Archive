@@ -141,12 +141,9 @@ namespace OpMon {
             }
 
 	    //Recretes the layers
-            delete(layer1);
-            delete(layer2);
-            delete(layer3);
-            layer1 = new MapLayer(current->getDimensions(), current->getLayer1());
-            layer2 = new MapLayer(current->getDimensions(), current->getLayer2());
-            layer3 = new MapLayer(current->getDimensions(), current->getLayer3());
+            layer1 = std::make_unique<MapLayer>(current->getDimensions(), current->getLayer1());
+            layer2 = std::make_unique<MapLayer>(current->getDimensions(), current->getLayer2());
+            layer3 = std::make_unique<MapLayer>(current->getDimensions(), current->getLayer3());
             tpCount = 0;
 
         }
@@ -169,9 +166,9 @@ namespace OpMon {
             resetCamera();
 
             setMusic(current->getBg());
-            layer1 = new MapLayer(current->getDimensions(), current->getLayer1());
-            layer2 = new MapLayer(current->getDimensions(), current->getLayer2());
-            layer3 = new MapLayer(current->getDimensions(), current->getLayer3());
+            layer1 = std::make_unique<MapLayer>(current->getDimensions(), current->getLayer1());
+            layer2 = std::make_unique<MapLayer>(current->getDimensions(), current->getLayer2());
+            layer3 = std::make_unique<MapLayer>(current->getDimensions(), current->getLayer3());
             character.setScale(2, 2);
             character.setOrigin(16, 16);
 
@@ -180,12 +177,6 @@ namespace OpMon {
             OpMon::I18n::Translator::getInstance().setLang(OpMon::I18n::Translator::getInstance().getLang());
         }
 
-        Overworld::~Overworld() {
-            delete(layer1);
-            delete(layer2);
-            delete(layer3);
-            delete(dialog);
-        }
         GameStatus Overworld::operator()(sf::RenderTexture &frame) {
             bool is_in_dialog = this->dialog && !this->dialog->isDialogOver();
 
@@ -255,8 +246,8 @@ namespace OpMon {
                 }
             }
 
-	   
-	    
+
+
             if(!is_in_dialog && data.getPlayer().getPosition().isAnim()) {
                 if(data.getPlayer().getPosition().isMoving()) {
                     switch(data.getPlayer().getPosition().getDir()) {
@@ -302,8 +293,8 @@ namespace OpMon {
 	      character.setTexture(data.getTexturePP((unsigned int)data.getPlayer().getPosition().getDir()));
             }
 
-            
-	    
+
+
             //Drawing character
             frame.draw(character);
             //Drawing the events above the player
@@ -375,10 +366,10 @@ namespace OpMon {
                 if(!this->dialog->isDialogOver()) {
                     Utils::Log::oplog("WARNING: We create a new dialog ... but the last one isn't finished yet!", true);
                 }
-                delete(this->dialog);
+                this->dialog = nullptr;
             }
 
-            this->dialog = new Dialog(dialogs, data.getUiDataPtr());
+            this->dialog = std::make_unique<Dialog>(dialogs, data.getUiDataPtr());
         }
     } // namespace View
 
