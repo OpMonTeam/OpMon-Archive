@@ -61,7 +61,7 @@ namespace OpMon {
               : Event(doorTextures, eventTrigger, position, sides, passable)
               , TPEvent(doorTextures, eventTrigger, position, tpPos, map, ppDir, sides, passable)
               , doorType(doorType) {
-	      //The doors doesn't fit exactly.
+                //The doors doesn't fit exactly.
                 this->position += sf::Vector2f(0, -6);
                 if(doorType == "shop door") {
                     this->position.x -= 4;
@@ -138,7 +138,7 @@ namespace OpMon {
             void TPEvent::action(Model::Player &player, View::Overworld &overworld) {
                 if(!justTP) {
                     overworld.tp(map, tpCoord);
-		    //Sets the player's direction after the teleportation. If this->ppDir == -1, the old player position is kept
+                    //Sets the player's direction after the teleportation. If this->ppDir == -1, the old player position is kept
                     if(this->ppDir != -1) {
                         player.getPosition().setDir(this->ppDir);
                     }
@@ -150,18 +150,18 @@ namespace OpMon {
             }
 
             void DoorEvent::action(Model::Player &player, View::Overworld &overworld) {
-	      //Starts the animation. The animation itself will be done in update()
+                //Starts the animation. The animation itself will be done in update()
                 animStarted = 0;
                 player.getPosition().lockMove();
                 overworld.getData().getUiDataPtr()->getJukebox().playSound(doorType + " sound");
             }
 
             void DoorEvent::update(Model::Player &player, View::Overworld &overworld) {
-	      if(animStarted != -1) {//If true, action() have started the animation
+                if(animStarted != -1) { //If true, action() have started the animation
                     ++animStarted;
                     if(animStarted < 8 && (animStarted / 2) * 2 == animStarted) {
                         currentTexture = otherTextures.begin() + (animStarted / 2);
-                    } else if(animStarted > 10) {//End of the animation
+                    } else if(animStarted > 10) { //End of the animation
                         player.getPosition().unlockMove();
                         TPEvent::action(player, overworld);
                         animStarted = -1;
@@ -177,38 +177,38 @@ namespace OpMon {
             void TalkingEvent::update(Model::Player &player, View::Overworld &overworld) {
             }
 
-	    void TalkingEvent::changeDialog(std::vector<Utils::OpString> newDialog) {
-	       dialogKeys = newDialog;
-	       this->onLangChanged();
-	    }
+            void TalkingEvent::changeDialog(std::vector<Utils::OpString> newDialog) {
+                dialogKeys = newDialog;
+                this->onLangChanged();
+            }
 
             void CharacterEvent::update(Model::Player &player, View::Overworld &overworld) {
                 frames++;
-                if(!mapPos.isAnim()) {//Checks if not already moving
+                if(!mapPos.isAnim()) { //Checks if not already moving
                     int randomMove;
                     switch(moveStyle) {
                     case MoveStyle::PREDEFINED: //Movement predefined during the npc's initialization
                         predefinedCounter++;
-                        if(predefinedCounter >= movements.size()) {//TODO : Do the possibility of desabling the loop, for unique moves
+                        if(predefinedCounter >= movements.size()) { //TODO : Do the possibility of desabling the loop, for unique moves
                             predefinedCounter = 0;
                         }
 
-                        if(!move(movements[predefinedCounter], overworld.getData().getCurrentMap())) {//If the movement is impossible, decreases the counter to not ignore the movement.
-			  std::cout << "\\^o^/" << std::endl;
+                        if(!move(movements[predefinedCounter], overworld.getData().getCurrentMap())) { //If the movement is impossible, decreases the counter to not ignore the movement.
+                            std::cout << "\\^o^/" << std::endl;
                             if(predefinedCounter != 0) {
                                 predefinedCounter--;
                             } else {
                                 predefinedCounter = movements.size() - 1;
                             }
-                        }else{
-			  std::cout << "..." << std::endl;
-			}
+                        } else {
+                            std::cout << "..." << std::endl;
+                        }
                         break;
 
-                    case MoveStyle::NO_MOVE://This is easy to do.
+                    case MoveStyle::NO_MOVE: //This is easy to do.
                         break;
 
-                    case MoveStyle::RANDOM://I don't think I will be using this often, but I keep it here, who knows ?
+                    case MoveStyle::RANDOM: //I don't think I will be using this often, but I keep it here, who knows ?
                         randomMove = Utils::Misc::randUI(5) - 1;
                         switch(randomMove) {
                         case -1:
@@ -226,7 +226,7 @@ namespace OpMon {
                         case 3:
                             move(Side::TO_RIGHT, overworld.getData().getCurrentMap());
                             break;
-                        default://This would be weird
+                        default: //This would be weird
                             handleError("[WARNING] - Random number out of bounds CharacterEvent::update");
                             move(Side::NO_MOVE, overworld.getData().getCurrentMap());
                         }
@@ -237,48 +237,48 @@ namespace OpMon {
                         break;
                     }
                 }
-		//Changes the texture to print, handles the movement itself.
-                if(mapPos.isAnim() && !anims && mapPos.getDir() != Side::STAY) {//First part of the animation
+                //Changes the texture to print, handles the movement itself.
+                if(mapPos.isAnim() && !anims && mapPos.getDir() != Side::STAY) { //First part of the animation
                     currentTexture = otherTextures.begin() + ((int)mapPos.getDir() + 4);
                     animsCounter++;
                     anims = animsCounter > 8;
-                } else if(mapPos.isAnim() && anims && mapPos.getDir() != Side::STAY) {//Second part of the animation
+                } else if(mapPos.isAnim() && anims && mapPos.getDir() != Side::STAY) { //Second part of the animation
                     currentTexture = otherTextures.begin() + ((int)mapPos.getDir() + 8);
                     animsCounter++;
                     if(animsCounter > 16) {
                         anims = false;
                         animsCounter = 0;
                     }
-                } else if(!mapPos.isAnim()) {//The NPC is resting. With all these movements, maybe it's tired.
+                } else if(!mapPos.isAnim()) { //The NPC is resting. With all these movements, maybe it's tired.
                     currentTexture = otherTextures.begin() + (int)mapPos.getDir();
                 }
 
-		//This part moves the sprite's position
+                //This part moves the sprite's position
                 if(mapPos.isAnim()) {
-		  sf::Vector2f toMove;
+                    sf::Vector2f toMove;
                     switch(mapPos.getDir()) {
                     case Side::TO_UP:
-		      toMove = sf::Vector2f(0, -4);
-		      break;
+                        toMove = sf::Vector2f(0, -4);
+                        break;
 
                     case Side::TO_DOWN:
-		      toMove = sf::Vector2f(0, 4);
-		      break;
+                        toMove = sf::Vector2f(0, 4);
+                        break;
 
                     case Side::TO_LEFT:
-		      toMove = sf::Vector2f(4, 0);
-		      break;
+                        toMove = sf::Vector2f(4, 0);
+                        break;
 
                     case Side::TO_RIGHT:
-		      toMove = sf::Vector2f(-4, 0);
-		      break;
+                        toMove = sf::Vector2f(-4, 0);
+                        break;
                     default:
-		      break;
-		    }
-		    if(mapPos.isMoving())
-		      position -= toMove;
-		    if(frames - startFrames >= 7)
-		      mapPos.stopMove();
+                        break;
+                    }
+                    if(mapPos.isMoving())
+                        position -= toMove;
+                    if(frames - startFrames >= 7)
+                        mapPos.stopMove();
                 }
             }
 
@@ -298,8 +298,8 @@ namespace OpMon {
 
             void TalkingCharaEvent::update(Model::Player &player, View::Overworld &overworld) {
                 CharacterEvent::update(player, overworld);
-                if(talking && !mapPos.isAnim()) {//Talking is set by "action".
-		  switch(player.getPosition().getDir()) {//Put the character's face in front of the player's one
+                if(talking && !mapPos.isAnim()) {           //Talking is set by "action".
+                    switch(player.getPosition().getDir()) { //Put the character's face in front of the player's one
                     case Side::TO_DOWN:
                         mapPos.setDir(Side::TO_UP);
                         break;
@@ -315,7 +315,7 @@ namespace OpMon {
                     default:
                         break;
                     }
-		  //Put the correct texture to the NPC
+                    //Put the correct texture to the NPC
                     currentTexture = otherTextures.begin() + (int)mapPos.getDir();
                     updateTexture();
                     mapPos.unlockMove();
@@ -334,9 +334,9 @@ namespace OpMon {
             void LockedDoorEvent::update(Model::Player &player, View::Overworld &overworld) {
             }
 
-	  void TrainerEvent::action(Model::Player &player, View::Overworld &overworld) {
-	    TalkingCharaEvent::action(player, overworld);
-	  }
+            void TrainerEvent::action(Model::Player &player, View::Overworld &overworld) {
+                TalkingCharaEvent::action(player, overworld);
+            }
 
             void TrainerEvent::update(Model::Player &player, View::Overworld &overworld) {
                 if(triggerBattle) {

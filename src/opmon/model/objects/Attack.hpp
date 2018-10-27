@@ -16,7 +16,7 @@ namespace OpMon {
     namespace Model {
 
         class OpMon;
-      
+
         /**
 	   Represents an OpMon attack
 	*/
@@ -47,7 +47,7 @@ namespace OpMon {
                 return ppMax;
             }
 
-	  //"atk" attacks the "def" OpMon
+            //"atk" attacks the "def" OpMon
             int attack(OpMon &atk, OpMon &def, Turn &atkTurn);
             void ifFails(OpMon &, OpMon &, Turn & /*atkTurn*/) {}
 

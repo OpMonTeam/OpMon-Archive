@@ -47,7 +47,7 @@ namespace OpMon {
             int expMax;
             /**Array representing the EV given by the OpMon when defeated*/
             std::vector<Stats> EVgiven;
-			
+
             unsigned int expGiven;
             int captureRate;
 

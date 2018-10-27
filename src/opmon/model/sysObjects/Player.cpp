@@ -7,9 +7,9 @@ File under GNU GPL v3.0 license
 #include "Player.hpp"
 #include "../../../utils/StringKeys.hpp"
 #include "../../start/Core.hpp"
+#include "../objects/Attack.hpp"
 #include "../save/Save.hpp"
 #include <sstream>
-#include "../objects/Attack.hpp"
 
 namespace OpMon {
     namespace Model {
@@ -62,7 +62,7 @@ namespace OpMon {
             for(int i = 0; i < opteam.getSize(); i++) {
                 OpMon *pkmn = opteam[i];
                 if(pkmn != nullptr) {
-		  //TODO : Reset status problems
+                    //TODO : Reset status problems
                     for(int j = 0; j < 4; j++) {
                         Attack *atk = (pkmn->getAttacks())[j];
                         if(atk != nullptr) {
@@ -82,8 +82,7 @@ namespace OpMon {
             }
         }
 
-      
-      //TODO : Update the save system
+        //TODO : Update the save system
         void Player::save() {
             SOUT
               << Utils::StringKeys::sfStringtoStdString(this->name) << std::endl;
@@ -102,12 +101,12 @@ namespace OpMon {
         }
 
 #include "../objects/OpMon.hpp" //This will be deleted soon
-      //TODO : Update the save system
+                                //TODO : Update the save system
 
         Player::Player(std::ifstream &in, std::string &name)
           : name(name)
           , trainerID(in.get())
-          , opteam(name) {/*
+          , opteam(name) { /*
             in.get();
             int iNber = in.get();
             in.get();

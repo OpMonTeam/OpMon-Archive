@@ -19,7 +19,7 @@ using namespace OpMon::Model;
 using Utils::Log::oplog;
 
 namespace OpMon {
-    
+
     std::string optSave(SAVE_PATH + "optSave.oparams");
 
     bool debugMode = false;

@@ -27,7 +27,7 @@ namespace OpMon {
 
             switch(events.type) {
             case sf::Event::KeyPressed:
-	      //The key equals starts the debug mode
+                //The key equals starts the debug mode
                 if(events.key.code == sf::Keyboard::Equal) {
                     debugMode = !debugMode;
                     if(!debugMode) {
@@ -35,13 +35,13 @@ namespace OpMon {
                         overworld.setCameraLock(false);
                     }
                 }
-		//M reboots the game
+                //M reboots the game
                 if(events.key.code == sf::Keyboard::M) {
                     reboot = true;
                     return GameStatus::STOP;
                 }
                 if(debugMode) {
-		  //Debug, chooses the layers to print
+                    //Debug, chooses the layers to print
                     if(events.key.code == sf::Keyboard::F10) {
                         overworld.printlayer[0] = !overworld.printlayer[0];
                     }
@@ -61,17 +61,17 @@ namespace OpMon {
                     if(events.key.code == sf::Keyboard::Numpad5) {
                         overworld.setCameraLock(!overworld.isCameraLocked());
                     }
-		    if(events.key.code == sf::Keyboard::PageUp){
-			data.decrementItorMap();
-			overworld.tp(data.getCurrentItorMap(), sf::Vector2i(0, 0));
-		    }
-		    if(events.key.code == sf::Keyboard::PageDown){
-			data.incrementItorMap();
-			overworld.tp(data.getCurrentItorMap(), sf::Vector2i(0, 0));
-		    }
-		    if(events.key.code == sf::Keyboard::B){
-			overworld.tp("Road 14", sf::Vector2i(10, 32));
-		    }
+                    if(events.key.code == sf::Keyboard::PageUp) {
+                        data.decrementItorMap();
+                        overworld.tp(data.getCurrentItorMap(), sf::Vector2i(0, 0));
+                    }
+                    if(events.key.code == sf::Keyboard::PageDown) {
+                        data.incrementItorMap();
+                        overworld.tp(data.getCurrentItorMap(), sf::Vector2i(0, 0));
+                    }
+                    if(events.key.code == sf::Keyboard::B) {
+                        overworld.tp("Road 14", sf::Vector2i(10, 32));
+                    }
                 }
             default:
                 break;
@@ -91,8 +91,7 @@ namespace OpMon {
                 }
             }
 
-            if(is_dialog_open)
-            {
+            if(is_dialog_open) {
                 return checkEventsDialog(events, overworld);
             }
 

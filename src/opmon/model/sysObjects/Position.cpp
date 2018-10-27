@@ -48,7 +48,7 @@ namespace OpMon {
             posY = y;
         }
 
-      //Just lasiness TODO : Remove this when Events::justTP will be removed.
+        //Just lasiness TODO : Remove this when Events::justTP will be removed.
 #define UNLOCK_TP Events::justTP = false;
 
         bool Position::move(Side dir, Map *map) {
@@ -56,8 +56,8 @@ namespace OpMon {
                 this->dir = dir;
 
                 anim = true;
-		
-                if((!event && debugCol)/*Noclip mode in the debug*/ || checkPass(dir, map)) {
+
+                if((!event && debugCol) /*Noclip mode in the debug*/ || checkPass(dir, map)) {
                     UNLOCK_TP
                     movement = true;
                     switch(dir) {
@@ -101,7 +101,7 @@ namespace OpMon {
             sf::Vector2i nextPosPix;
             int exclusiveCol = 0;
 
-	    //Finds the next tile's position
+            //Finds the next tile's position
             switch(direction) {
             case Side::TO_UP:
                 nextPos = sf::Vector2i(posX, posY - 1);
@@ -126,14 +126,14 @@ namespace OpMon {
 
             nextPosPix = nextPos SQUARES;
 
-            if(nextPos.x >= 0 && nextPos.x < map->getW() && nextPos.y >= 0 && nextPos.y < map->getH()) {//Avoid checking in the void (Out of the map's bounds)
+            if(nextPos.x >= 0 && nextPos.x < map->getW() && nextPos.y >= 0 && nextPos.y < map->getH()) { //Avoid checking in the void (Out of the map's bounds)
                 int colLayer1 = map->getTileCollision(map->getCurrentTileCode(nextPos, 1));
                 int colLayer2 = map->getTileCollision(map->getCurrentTileCode(nextPos, 2));
-                if((colLayer1 == 0 || colLayer1 == exclusiveCol) && (colLayer2 == 0 || colLayer2 == exclusiveCol)) {//Checks if the next tile is passable
-		  if(event ? !(nextPos.y == playerPos->getPosition().y && nextPos.x == playerPos->getPosition().x) : true) {//Checks if the player is not in the way, but only if it's an event (A player can not interact with itself.)
-		    nextEvents = map->getEvent(nextPos);//Searches the events at this position
+                if((colLayer1 == 0 || colLayer1 == exclusiveCol) && (colLayer2 == 0 || colLayer2 == exclusiveCol)) {           //Checks if the next tile is passable
+                    if(event ? !(nextPos.y == playerPos->getPosition().y && nextPos.x == playerPos->getPosition().x) : true) { //Checks if the player is not in the way, but only if it's an event (A player can not interact with itself.)
+                        nextEvents = map->getEvent(nextPos);                                                                   //Searches the events at this position
                         for(Event *nextEvent : nextEvents) {
-			  if(!nextEvent->isPassable()) {//Checks if the event ahead of the player is passable
+                            if(!nextEvent->isPassable()) { //Checks if the event ahead of the player is passable
                                 return false;
                             }
                         }

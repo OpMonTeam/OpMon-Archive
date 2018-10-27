@@ -38,7 +38,7 @@ namespace OpMon {
         while(status != GameStatus::STOP) {
             status = GameStatus::CONTINUE;
 
-	    //Gets the current game screen's controller
+            //Gets the current game screen's controller
             auto ctrl = _gameScreens.top();
             sf::Event event;
 
@@ -62,11 +62,11 @@ namespace OpMon {
             }
 
             switch(status) {
-            case GameStatus::NEXT://Pauses the current screen and passes to the next
+            case GameStatus::NEXT: //Pauses the current screen and passes to the next
                 ctrl->suspend();
                 _gameScreens.push(ctrl->getNextGameScreen());
                 break;
-            case GameStatus::PREVIOUS://Deletes the current screen and returns to the previous one
+            case GameStatus::PREVIOUS: //Deletes the current screen and returns to the previous one
                 delete(ctrl);
                 _gameScreens.pop();
                 _gameScreens.top()->resume();
