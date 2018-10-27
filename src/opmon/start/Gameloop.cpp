@@ -26,10 +26,10 @@ namespace OpMon {
 
         window.open();
 
-        Model::UiData *uidata = new Model::UiData();
+        std::unique_ptr<Model::UiData> uidata = std::make_unique<Model::UiData>();
 
         // TODO: add first item outside of the Gameloop.
-        Controller::AGameScreen *first_ctrl = new Controller::MainMenuCtrl(uidata);
+        Controller::AGameScreen *first_ctrl = new Controller::MainMenuCtrl(uidata.get());
 
         _gameScreens.push(first_ctrl);
 
@@ -80,8 +80,6 @@ namespace OpMon {
         }
 
         window.close();
-
-        delete(uidata);
 
         return GameStatus::STOP;
     }
