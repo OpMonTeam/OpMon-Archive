@@ -15,10 +15,10 @@ namespace OpMon {
     namespace View {
 
         namespace Animations {
-	  
-	  //While false, the "WinAnim" animation's sprites are not loaded
+
+            //While false, the "WinAnim" animation's sprites are not loaded
             bool WinAnim::winInit = false;
-	  //Array used by "WinAnim"
+            //Array used by "WinAnim"
             sf::Texture WinAnim::fen[6];
 
             Animation::Animation(sf::Texture bgTxt)

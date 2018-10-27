@@ -10,7 +10,6 @@ File under GNU GPL v3.0 license
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 
-
 namespace OpMon {
     namespace View {
         class Window {

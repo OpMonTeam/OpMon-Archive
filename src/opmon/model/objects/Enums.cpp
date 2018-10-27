@@ -41,9 +41,8 @@ namespace OpMon {
             }
         } // namespace ArrayTypes
 
-      //Utilites to do operations with sides
+        //Utilites to do operations with sides
 
-      
         bool operator==(Side side, int integer) {
             if(((int)side) == integer) {
                 return true;

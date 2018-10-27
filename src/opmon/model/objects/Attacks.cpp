@@ -17,8 +17,8 @@ namespace OpMon {
 
             Attack *newAtk(std::string name) {
                 IF_ATK(Mist, Attack("Mist", 0, Type::NEUTRAL, 100, false, true, -1, false, 20, 0, "Mist",
-                                          nullptr, new ChangeStatEffect(ChangeStatEffect::DEFENDER, Stats::ACC, -1)))
-		    IF_ATK(Growl, Attack("Growl", 0, Type::NEUTRAL, 100, false, true, -1, false, 20, 0, "Growl", nullptr, new ChangeStatEffect(ChangeStatEffect::DEFENDER, Stats::ATK, -1)))
+                                    nullptr, new ChangeStatEffect(ChangeStatEffect::DEFENDER, Stats::ACC, -1)))
+                IF_ATK(Growl, Attack("Growl", 0, Type::NEUTRAL, 100, false, true, -1, false, 20, 0, "Growl", nullptr, new ChangeStatEffect(ChangeStatEffect::DEFENDER, Stats::ATK, -1)))
                 IF_ATK(Tackle, Attack("Tackle", 50, Type::NEUTRAL, 100, false, false, 16, false, 35, 0, "Tackle"))
                 return nullptr;
             }

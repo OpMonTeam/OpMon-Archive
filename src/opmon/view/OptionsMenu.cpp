@@ -117,7 +117,7 @@ namespace OpMon {
             bgCredits.setTexture(data.getCreditsBg());
 
             volumeCur.setTexture(data.getVolumeCur());
-	    //Cursor positions :
+            //Cursor positions :
             //volumeCur.setPosition(165, 290);// = 0
             //volumeCur.setPosition(460, 290);// = 100
 
@@ -240,7 +240,7 @@ namespace OpMon {
             frame.draw(txtOpt5);
             frame.draw(txtRetour);
             frame.draw(txtOptions);
-	    
+
             volumeCur.setPosition(166 + (295 * data.getUiDataPtr()->getJukebox().getGlobalVolume() / 100), 298);
 
             frame.draw(volumeCur);

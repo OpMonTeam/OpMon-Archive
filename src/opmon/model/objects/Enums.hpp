@@ -18,7 +18,7 @@ File under GNU GPL v3.0 license
 namespace OpMon {
     namespace Model {
 
-      /**
+        /**
 	 Enumerate the OPMons status
       */
         enum class Status {
@@ -43,10 +43,10 @@ namespace OpMon {
             EVA = 8,
             NOTHING = 0
         };
-      /**
+        /**
 	 Enumerate the bag categories
       */
-      enum class BagCat {
+        enum class BagCat {
             HEAL,
             OBJECTS,
             RARES,
