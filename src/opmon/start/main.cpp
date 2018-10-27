@@ -13,8 +13,6 @@ File under GNU GPL v3.0 license
 #include "../model/save/OptionsSave.hpp"
 #include "../model/storage/InternalFiles.hpp"
 #include "../model/storage/ResourceLoader.hpp"
-#include "../view/Window.hpp"
-#include "./Core.hpp"
 #include "./Gameloop.hpp"
 #include "i18n/Translator.hpp"
 #include <ostream>
@@ -43,7 +41,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 namespace OpMon {
     namespace Main {
-      
+
         std::string version = OPMON_VERSION;
 
         std::string pre = "0";
