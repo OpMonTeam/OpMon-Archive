@@ -19,10 +19,6 @@ namespace OpMon {
 
         using namespace Events;
 
-        Event::~Event() {
-            delete(sprite);
-        }
-
         Event::Event(std::vector<sf::Texture> &otherTextures, EventTrigger eventTrigger, sf::Vector2f const &position,
                      int sides, bool passable)
           : otherTextures(otherTextures)
@@ -31,7 +27,7 @@ namespace OpMon {
           , mapPos(position, true)
           , passable(passable)
           , sides(sides)
-          , sprite(new sf::Sprite())
+          , sprite(std::make_unique<sf::Sprite>())
           , currentTexture(otherTextures.begin()) {
         }
 
@@ -162,7 +158,7 @@ namespace OpMon {
 
             void DoorEvent::update(Model::Player &player, View::Overworld &overworld) {
 	      if(animStarted != -1) {//If true, action() have started the animation
-                    animStarted++;
+                    ++animStarted;
                     if(animStarted < 8 && (animStarted / 2) * 2 == animStarted) {
                         currentTexture = otherTextures.begin() + (animStarted / 2);
                     } else if(animStarted > 10) {//End of the animation
@@ -185,7 +181,7 @@ namespace OpMon {
 	       dialogKeys = newDialog;
 	       this->onLangChanged();
 	    }
-	    
+
             void CharacterEvent::update(Model::Player &player, View::Overworld &overworld) {
                 frames++;
                 if(!mapPos.isAnim()) {//Checks if not already moving
@@ -341,7 +337,7 @@ namespace OpMon {
 	  void TrainerEvent::action(Model::Player &player, View::Overworld &overworld) {
 	    TalkingCharaEvent::action(player, overworld);
 	  }
-	  
+
             void TrainerEvent::update(Model::Player &player, View::Overworld &overworld) {
                 if(triggerBattle) {
                     triggerBattle = false;

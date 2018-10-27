@@ -55,7 +55,7 @@ namespace OpMon {
             bool turn();
             /* Initialize a battle between two OpMons. The opId are for the OpMon's number in the team */
             void initBattle(int opId, int opId2);
-	  
+
             Model::Turn *turnIA(int level);
 
             //Checks if the opmon can attack
@@ -64,7 +64,7 @@ namespace OpMon {
             Model::Events::TrainerEvent *trainer;
 
           public:
-            virtual ~BattleCtrl();
+            virtual ~BattleCtrl() = default;
             BattleCtrl(Model::OpTeam *one, Model::OpTeam *two, Model::UiData *uidata, Model::Player *player);
             BattleCtrl(Model::OpTeam *one, Model::Events::TrainerEvent *two, Model::UiData *uidata, Model::Player *player);
             GameStatus checkEvent(sf::Event const &) override;

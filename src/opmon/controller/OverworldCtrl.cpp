@@ -52,7 +52,7 @@ namespace OpMon {
                     if(events.key.code == sf::Keyboard::F12) {
                         overworld.printlayer[2] = !overworld.printlayer[2];
                     }
-		    
+
                     if(events.key.code == sf::Keyboard::C) {
                         overworld.printCollisions = !overworld.printCollisions;
                     }
@@ -89,11 +89,12 @@ namespace OpMon {
                 }
             }
 
-            if(is_dialog_open) {
+            if(is_dialog_open)
+            {
                 return checkEventsDialog(events, overworld);
-            } else {
-                return checkEventsNoDialog(events, player);
             }
+
+            return checkEventsNoDialog(events, player);
         }
 
         GameStatus OverworldCtrl::checkEventsDialog(sf::Event const &events, View::Overworld &overworld) {
