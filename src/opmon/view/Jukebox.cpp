@@ -25,7 +25,7 @@ namespace OpMon {
         }
 
         void Jukebox::addSound(std::string name, std::string path) {
-	  //Sounds are saved in the code as a pair of sf::SoundBuffer and sf::Sound.
+            //Sounds are saved in the code as a pair of sf::SoundBuffer and sf::Sound.
             sf::SoundBuffer *sb = new sf::SoundBuffer();
             Model::ResourceLoader::load(*sb, path.c_str());
             if(soundsList[name].first != nullptr) {

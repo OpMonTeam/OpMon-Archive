@@ -40,7 +40,7 @@ namespace OpMon {
             const sf::String *getNameP() const {
                 return &name;
             }
-            
+
             sf::String *getNameP() {
                 return &name;
             }

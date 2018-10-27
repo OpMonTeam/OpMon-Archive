@@ -48,10 +48,10 @@ namespace OpMon {
             return music;
         }
 
-        void ResourceLoader::loadKeysFile(const char *path, std::ifstream& file) {
-	    if(file.is_open()){
-		file.close();
-	    }
+        void ResourceLoader::loadKeysFile(const char *path, std::ifstream &file) {
+            if(file.is_open()) {
+                file.close();
+            }
             file.open(getResourcePath() + path);
             if(!file) {
                 handleError(std::string("Keys initialization error: ") + path, true);

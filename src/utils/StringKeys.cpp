@@ -44,7 +44,7 @@ namespace Utils {
         bool initialize(const std::string &keysFileS) {
             //Ouverture du fichier de clÃ©es, initialisation des vectors
             std::ifstream keysFile;
-	    OpMon::Model::ResourceLoader::loadKeysFile(keysFileS.c_str(), keysFile);
+            OpMon::Model::ResourceLoader::loadKeysFile(keysFileS.c_str(), keysFile);
             keys = std::vector<std::string>();
             strings = std::vector<sf::String>();
             Log::oplog("Keys initialization");
@@ -52,7 +52,7 @@ namespace Utils {
                 // Opening of th keys file failed
                 return false;
             }
-	    //Keys recovering
+            //Keys recovering
             int itore = 0;
             while(true) {
                 sf::String read;
@@ -117,7 +117,7 @@ namespace Utils {
             }
             return toReturn[part];
         }
-      //TODO : Factorize code to avoid copy-pasted code
+        //TODO : Factorize code to avoid copy-pasted code
         std::vector<sf::String> split(sf::String const &str, char const &splitter) {
             int instances = 0; //Counts splitter's instances
             for(unsigned int i = 0;

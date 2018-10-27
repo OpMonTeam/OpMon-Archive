@@ -39,7 +39,7 @@ namespace OpMon {
        * This method is called once per frame.
        */
             virtual GameStatus update(sf::RenderTexture &frame) = 0;
-	  
+
             virtual void suspend(){};
             virtual void resume(){};
 

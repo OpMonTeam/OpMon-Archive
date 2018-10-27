@@ -10,7 +10,7 @@ File under GNU GPL v3.0 license
 
 namespace OpMon {
     namespace Controller {
-      void PlayerCtrl::checkMove(Model::Player &player, View::Overworld &overworld) {
+        void PlayerCtrl::checkMove(Model::Player &player, View::Overworld &overworld) {
 
             if(!overworld.justTp && !player.getPosition().isAnim() && !player.getPosition().isLocked()) {
                 if(sf::Keyboard::isKeyPressed(overworld.getData().getUiDataPtr()->getKeyUp())) {

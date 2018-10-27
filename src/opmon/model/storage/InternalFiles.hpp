@@ -27,7 +27,7 @@ namespace OpMon {
             extern int colTile[4096];
         }
 
-		//TODO : Put the maps in XML files
+        //TODO : Put the maps in XML files
         namespace Maps {
             extern int feLayer1[2304];
             extern int feLayer2[2304];
