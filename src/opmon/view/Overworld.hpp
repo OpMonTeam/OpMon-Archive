@@ -7,6 +7,8 @@
 #ifndef OVERWORLD_HPP
 #define OVERWORLD_HPP
 
+#include <memory>
+
 #include "../model/objects/Enums.hpp"
 #include "../model/storage/OverworldData.hpp"
 #include "../model/sysObjects/Map.hpp"
@@ -38,18 +40,18 @@ namespace OpMon {
             MapLayer *getMapLayer(int number) {
                 switch(number) {
                 case 1:
-                    return layer1;
+                    return layer1.get();
                 case 2:
-                    return layer2;
+                    return layer2.get();
                 case 3:
-                    return layer3;
+                    return layer3.get();
                 default:
                     return nullptr;
                 }
             }
 
             Dialog *getDialog() {
-                return dialog;
+                return dialog.get();
             }
 
             void moveCamera(Model::Side dir);
@@ -61,7 +63,7 @@ namespace OpMon {
 
             bool justTp = false;
 
-            virtual ~Overworld();
+            virtual ~Overworld() = default;
 
             virtual void play();
             virtual void pause();
@@ -116,10 +118,10 @@ namespace OpMon {
 
             std::string musicPath = "";
 
-            MapLayer *layer1 = nullptr;
-            MapLayer *layer2 = nullptr;
-            MapLayer *layer3 = nullptr;
-            Dialog *dialog = nullptr;
+            std::unique_ptr<MapLayer> layer1;
+            std::unique_ptr<MapLayer> layer2;
+            std::unique_ptr<MapLayer> layer3;
+            std::unique_ptr<Dialog> dialog;
             //Indicate the frame of the walking animation that must be used. (The animation has two frames)
             bool anims = false;
 

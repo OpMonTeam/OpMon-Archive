@@ -7,6 +7,7 @@
 #ifndef EVENTS_HPP
 #define EVENTS_HPP
 
+#include <memory>
 #include <SFML/Audio/Sound.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Texture.hpp>
@@ -54,7 +55,7 @@ namespace OpMon {
           protected:
             std::vector<sf::Texture> &otherTextures;
 
-            sf::Sprite *sprite;
+            std::unique_ptr<sf::Sprite> sprite;
 
             std::vector<sf::Texture>::iterator currentTexture;
             Events::EventTrigger eventTrigger;
@@ -65,7 +66,7 @@ namespace OpMon {
 
           public:
             Event(std::vector<sf::Texture> &otherTextures, Events::EventTrigger eventTrigger, sf::Vector2f const &position, int sides, bool passable);
-            virtual ~Event();
+            virtual ~Event() = default;
             /**This method is called at each frame*/
             virtual void update(Model::Player &player, View::Overworld &overworld) = 0;
             /**This method is called when the player interacts with the event*/
@@ -95,7 +96,7 @@ namespace OpMon {
                 return passable;
             }
             const sf::Sprite *getSprite() const {
-                return sprite;
+                return sprite.get();
             }
         };
 
@@ -222,7 +223,7 @@ namespace OpMon {
 
 	      virtual void update(Model::Player &player, View::Overworld &overworld);
 	      virtual void action(Model::Player &player, View::Overworld &overworld);
-	      
+
                 OpTeam *getOpTeam() {
                     return team;
                 }
