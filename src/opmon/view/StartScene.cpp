@@ -41,8 +41,7 @@ namespace OpMon {
         }
 
         StartScene::StartScene(Model::StartSceneData &data)
-          : dialog(nullptr)
-          , data(data) {
+          : data(data) {
             initStrings();
             textDescs[1].setPosition(85, 25);
             textDescs[0].setPosition(155, 200);
@@ -70,7 +69,7 @@ namespace OpMon {
             data.getUiDataPtr()->getJukebox().play("Start");
 
             // Init loop 0
-            dialog = new Dialog(txtP0, data.getUiDataPtr());
+            dialog = std::make_unique<Dialog>(txtP0, data.getUiDataPtr());
         }
 
         void StartScene::onLangChanged() {
@@ -84,7 +83,6 @@ namespace OpMon {
                     dialog->updateTextAnimation();
                 } else {
                     // Init loop 1
-                    delete(dialog);
                     dialog = nullptr;
                     part++;
                     return GameStatus::NEXT;
@@ -114,7 +112,7 @@ namespace OpMon {
             part++;
 
             // Init loop 2
-            dialog = new Dialog(txtP1, data.getUiDataPtr());
+            dialog = std::make_unique<Dialog>(txtP1, data.getUiDataPtr());
         }
 
         void StartScene::draw(sf::RenderTarget &frame) {
@@ -144,10 +142,6 @@ namespace OpMon {
         }
 
         void StartScene::pause() {
-        }
-
-        StartScene::~StartScene() {
-            delete(dialog);
         }
     } // namespace View
 } // namespace OpMon
