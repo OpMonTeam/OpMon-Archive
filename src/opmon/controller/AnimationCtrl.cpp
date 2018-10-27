@@ -8,12 +8,8 @@ File under GNU GPL 3.0 license
 
 namespace OpMon {
     namespace Controller {
-        AnimationCtrl::AnimationCtrl(View::Animations::Animation *view)
-          : view(view) {}
-
-        AnimationCtrl::~AnimationCtrl() {
-            delete(view);
-        }
+        AnimationCtrl::AnimationCtrl(std::unique_ptr<View::Animations::Animation> view)
+          : view(std::move(view)) {}
 
         GameStatus AnimationCtrl::update(sf::RenderTexture &frame) {
             return (*view)(frame);
