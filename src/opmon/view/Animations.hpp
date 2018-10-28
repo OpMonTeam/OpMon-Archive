@@ -34,7 +34,7 @@ namespace OpMon {
 
             class WinAnim : public Animation {
               private:
-                int frames = 5;
+                int frames{5};
                 /*
 		  If true : Opening movement | If false : Closing movement
 		*/

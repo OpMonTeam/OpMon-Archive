@@ -19,8 +19,8 @@ namespace Utils {
             return toReturn;
         }
 
-        long hash(const std::string &) {
-            return 0;
+        std::size_t hash(const std::string & str) {
+            return std::hash<std::string>{}(str);
         }
 
     } // namespace Misc
