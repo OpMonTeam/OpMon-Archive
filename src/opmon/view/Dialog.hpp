@@ -28,9 +28,9 @@ namespace OpMon {
             unsigned int dialogNb = 0;
 
             /**
-       * If true, the dialog is fully displayed by the text animation, and the
-       * next step (on user action) would be to display the next lines.
-       */
+             * If true, the dialog is fully displayed by the text animation, and the
+             * next step (on user action) would be to display the next lines.
+            */
             bool changeDialog = false;
 
             /** index of line being displayed by the text animation. */

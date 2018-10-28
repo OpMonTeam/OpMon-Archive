@@ -10,7 +10,6 @@ File under GNU GPL v3.0 license
 #include "../model/objects/OpMon.hpp"
 #include "../model/sysObjects/OpTeam.hpp"
 #include "BattleCtrl.hpp"
-#include "EventsCtrl.hpp"
 #include "PlayerCtrl.hpp"
 
 namespace OpMon {
@@ -113,7 +112,7 @@ namespace OpMon {
         }
 
         GameStatus OverworldCtrl::checkEventsNoDialog(sf::Event const &event, Model::Player &player) {
-            eventsctrl.checkAction(event, player, view);
+            EventsCtrl::checkAction(event, player, view);
             Controller::PlayerCtrl::checkMove(player, view);
 
             if(view.getBattleDeclared() != nullptr) {
@@ -131,7 +130,7 @@ namespace OpMon {
         GameStatus OverworldCtrl::update(sf::RenderTexture &frame) {
             bool is_dialog_open = view.getDialog() && !view.getDialog()->isDialogOver();
             if(!is_dialog_open) {
-                eventsctrl.updateEvents(data.getMap(player.getMapId())->getEvents(), player, view);
+                EventsCtrl::updateEvents(data.getMap(player.getMapId())->getEvents(), player, view);
             }
 
             return view(frame);
