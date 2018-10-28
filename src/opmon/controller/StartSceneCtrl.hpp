@@ -12,6 +12,7 @@ File under GNU GPL v3.0 license
 #include "../view/StartScene.hpp"
 #include "AGameScreen.hpp"
 #include <SFML/Window.hpp>
+#include <memory>
 
 namespace OpMon {
     namespace Controller {

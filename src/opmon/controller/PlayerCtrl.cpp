@@ -34,7 +34,7 @@ namespace OpMon {
 
             Model::Map *map = overworld.getData().getCurrentMap();
             auto eventList = map->getEvent(player.getPosition().getPosition());
-            EventsCtrl().actionEvents(eventList, player, Model::Events::EventTrigger::GO_IN, overworld);
+            EventsCtrl::actionEvents(eventList, player, Model::Events::EventTrigger::GO_IN, overworld);
         }
     } // namespace Controller
 } // namespace OpMon

@@ -7,6 +7,7 @@ File under GNU GPL v3.0
 #define UTILS_HPP
 
 #include <iostream>
+#include <functional>
 
 namespace Utils {
     namespace Misc {
@@ -14,7 +15,7 @@ namespace Utils {
 
         unsigned int randUI(unsigned int limit);
 
-        long hash(const std::string &str);
+        std::size_t hash(const std::string &str);
     } // namespace Misc
 } // namespace Utils
 

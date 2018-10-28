@@ -72,7 +72,7 @@ namespace OpMon {
             if(animNext) {
                 animNext = false;
                 view.draw(frame);
-                _next_gs = new AnimationCtrl(new View::Animations::WinAnim(frame.getTexture(), false));
+                _next_gs = new AnimationCtrl(std::make_unique<View::Animations::WinAnim>(frame.getTexture(), false));
                 return GameStatus::NEXT;
             }
             GameStatus toReturn = view();
@@ -83,7 +83,7 @@ namespace OpMon {
             if(toReturn == GameStatus::NEXT) {
                 switch(view.getPart()) {
                 case 1:
-                    _next_gs = new AnimationCtrl(new View::Animations::WinAnim(frame.getTexture(), true));
+                    _next_gs = new AnimationCtrl(std::make_unique<View::Animations::WinAnim>(frame.getTexture(), true));
                     break;
                 case 3:
                     _next_gs = new OverworldCtrl(data.getPlayer(), data.getUiDataPtr());
