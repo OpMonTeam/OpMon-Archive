@@ -37,6 +37,8 @@ matrix:
     - GENERATOR="Unix Makefiles"
     - CMAKE_FLAGS=""
     - MATRIX_EVAL="CC=gcc-7 && GXX=g++-7"
+    - CC="gcc-7"
+    - CXX="g++-7"
   - os: linux
     compiler: clang
     env:
