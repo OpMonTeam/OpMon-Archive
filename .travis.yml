@@ -32,7 +32,7 @@ matrix:
   fast_finish: true
   include:
   - os: linux
-    compiler: gcc      
+    compiler: gcc-7    
     env:
     - GENERATOR="Unix Makefiles"
     - CMAKE_FLAGS=""
