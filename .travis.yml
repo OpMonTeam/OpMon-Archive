@@ -3,6 +3,8 @@ sudo: false
 addons:
   apt:
     packages:
+    - g++-7
+    - clang-5.0
     - cmake
     - libxrandr-dev
     - libudev-dev
@@ -10,8 +12,6 @@ addons:
     - libflac-dev
     - libvorbis-dev
     - libgtk-3-dev
-    - clang-5.0
-    - g++-7
     sources:
     - ubuntu-toolchain-r-test
     - llvm-toolchain-trusty-5.0
@@ -32,13 +32,11 @@ matrix:
   fast_finish: true
   include:
   - os: linux
-    compiler: gcc-7    
+    compiler: g++-7    
     env:
     - GENERATOR="Unix Makefiles"
-    - CMAKE_FLAGS=""
+    - CMAKE_FLAGS="-DCMAKE_CXX_COMPILER=/usr/bin/g++-7"
     - MATRIX_EVAL="CC=gcc-7 && GXX=g++-7"
-    - CC="gcc-7"
-    - CXX="g++-7"
   - os: linux
     compiler: clang
     env:
