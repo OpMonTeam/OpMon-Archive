@@ -20,19 +20,20 @@ namespace OpMon {
 
             player->addOpToOpTeam(new Model::OpMon("", uidata->getOp(4), 5, {Model::Attacks::newAtk("Tackle"), Model::Attacks::newAtk("Growl"), nullptr, nullptr}, Model::Nature::QUIET));
 
-            //PP textures loading
-            ResourceLoader::load(texturePP[(unsigned int)Side::TO_DOWN], "sprites/chara/pp/pp0.png");
-            ResourceLoader::load(texturePP[(unsigned int)Side::TO_RIGHT], "sprites/chara/pp/pp1.png");
-            ResourceLoader::load(texturePP[(unsigned int)Side::TO_LEFT], "sprites/chara/pp/pp2.png");
-            ResourceLoader::load(texturePP[(unsigned int)Side::TO_UP], "sprites/chara/pp/pp3.png");
-            ResourceLoader::load(walkingPP[(unsigned int)Side::TO_DOWN], "sprites/chara/pp/mpp0.png");
-            ResourceLoader::load(walkingPP[(unsigned int)Side::TO_RIGHT], "sprites/chara/pp/mpp1.png");
-            ResourceLoader::load(walkingPP[(unsigned int)Side::TO_LEFT], "sprites/chara/pp/mpp2.png");
-            ResourceLoader::load(walkingPP[(unsigned int)Side::TO_UP], "sprites/chara/pp/mpp3.png");
-            ResourceLoader::load(walkingPP2[(unsigned int)Side::TO_DOWN], "sprites/chara/pp/mpp20.png");
-            ResourceLoader::load(walkingPP2[(unsigned int)Side::TO_RIGHT], "sprites/chara/pp/mpp21.png");
-            ResourceLoader::load(walkingPP2[(unsigned int)Side::TO_LEFT], "sprites/chara/pp/mpp22.png");
-            ResourceLoader::load(walkingPP2[(unsigned int)Side::TO_UP], "sprites/chara/pp/mpp23.png");
+            //PP texture and rect loading
+            ResourceLoader::load(texturePP, "sprites/chara/pp/pp_anim.png");
+            texturePPRect[(unsigned int)Side::TO_DOWN] = sf::IntRect(0, 64, 32, 32);
+            texturePPRect[(unsigned int)Side::TO_RIGHT] = sf::IntRect(32, 64, 32, 32);
+            texturePPRect[(unsigned int)Side::TO_LEFT] = sf::IntRect(64, 64, 32, 32);
+            texturePPRect[(unsigned int)Side::TO_UP] = sf::IntRect(96, 64, 32, 32);
+            walkingPPRect[(unsigned int)Side::TO_DOWN] = sf::IntRect(0, 0, 32, 32);
+            walkingPPRect[(unsigned int)Side::TO_RIGHT] = sf::IntRect(32, 0, 32, 32);
+            walkingPPRect[(unsigned int)Side::TO_LEFT] = sf::IntRect(64, 0, 32, 32);
+            walkingPPRect[(unsigned int)Side::TO_UP] = sf::IntRect(96, 0, 32, 32);
+            walkingPP2Rect[(unsigned int)Side::TO_DOWN] = sf::IntRect(0, 32, 32, 32);
+            walkingPP2Rect[(unsigned int)Side::TO_RIGHT] = sf::IntRect(32, 32, 32, 32);
+            walkingPP2Rect[(unsigned int)Side::TO_LEFT] = sf::IntRect(64, 32, 32, 32);
+            walkingPP2Rect[(unsigned int)Side::TO_UP] = sf::IntRect(96, 32, 32, 32);
 
             //Characters' textures initialization
             ResourceLoader::loadTextureArray(charaTextures["kid"], "sprites/chara/kid/kid%d.png", 12);

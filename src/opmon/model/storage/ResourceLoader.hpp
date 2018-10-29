@@ -21,7 +21,7 @@ namespace OpMon {
             /**
        * Verify that the resource folder exists.
        * @return `true` if it exists; `false` otherwise.
-       
+
 	   */
             static bool checkResourceFolderExists();
 
