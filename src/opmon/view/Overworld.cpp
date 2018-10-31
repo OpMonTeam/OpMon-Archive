@@ -158,7 +158,8 @@ namespace OpMon {
         Overworld::Overworld(const std::string &mapId, Model::OverworldData &data)
           : data(data) {
             current = data.getMap(mapId);
-            character.setTexture(data.getTexturePP((unsigned int)Side::TO_DOWN));
+            character.setTexture(data.getTexturePP());
+            character.setTextureRect(data.getTexturePPRect((unsigned int)Side::TO_DOWN));
             data.getPlayer().tp(mapId, sf::Vector2i(2, 4)); //TODO : Add a parameter to configure the default player's position
             character.setPosition(2 SQUARES - 16, 4 SQUARES);
             camera.setSize(sf::Vector2f(16 SQUARES, 16 SQUARES));
@@ -269,7 +270,7 @@ namespace OpMon {
 
             //Sets the character's texture.
             if(data.getPlayer().getPosition().isAnim() && !anims) {
-                character.setTexture(data.getWalkingPP((unsigned int)data.getPlayer().getPosition().getDir()));
+                character.setTextureRect(data.getWalkingPPRect((unsigned int)data.getPlayer().getPosition().getDir()));
                 anims = animsCounter >= 8;
                 if(anims) {
                     //Stops the caracter's movement every 8 frames
@@ -279,7 +280,7 @@ namespace OpMon {
                 animsCounter++;
 
             } else if(data.getPlayer().getPosition().isAnim() && anims) {
-                character.setTexture(data.getWalkingPP2((unsigned int)data.getPlayer().getPosition().getDir()));
+                character.setTextureRect(data.getWalkingPP2Rect((unsigned int)data.getPlayer().getPosition().getDir()));
                 if(animsCounter >= 8) {
                     //Stops the caracter's movement every 8 frames
                     data.getPlayer().getPosition().stopMove();
@@ -288,7 +289,7 @@ namespace OpMon {
                 }
                 animsCounter++;
             } else if(!data.getPlayer().getPosition().isAnim()) {
-                character.setTexture(data.getTexturePP((unsigned int)data.getPlayer().getPosition().getDir()));
+                character.setTextureRect(data.getTexturePPRect((unsigned int)data.getPlayer().getPosition().getDir()));
             }
 
             //Drawing character
