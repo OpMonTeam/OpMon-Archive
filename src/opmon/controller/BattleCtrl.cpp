@@ -18,11 +18,11 @@ namespace OpMon {
         }
 
         BattleCtrl::BattleCtrl(OpTeam *one, OpTeam *two, UiData *uidata, Player *player)
-          : playerTeam(one)
+          : data(uidata, player)
+          , playerTeam(one)
           , trainerTeam(two)
           , atk(one->getOp(0))
           , def(two->getOp(0))
-          , data(uidata, player)
           , view(one, two, "beta", "grass", this->data) {
             initBattle(0, 0);
         }

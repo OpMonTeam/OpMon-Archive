@@ -23,13 +23,14 @@ namespace OpMon {
         class BattleCtrl : public AGameScreen {
           private:
             Model::BattleData data;
+
+            Model::OpTeam *playerTeam;
+            Model::OpTeam *trainerTeam;
+
             /*The player's current OpMon*/
             Model::OpMon *atk;
             /*The opposite trainer's current OpMon*/
             Model::OpMon *def;
-
-            Model::OpTeam *playerTeam;
-            Model::OpTeam *trainerTeam;
 
             View::Battle view;
 
