@@ -5,50 +5,32 @@ Contributors : Samurai413x, BAKFR
 File under GNU GPL v3.0 license
 */
 #include "Jukebox.hpp"
-#include "../model/storage/ResourceLoader.hpp"
 #include "../start/Core.hpp"
 #include <iostream>
 
 namespace OpMon {
     namespace View {
-        Jukebox::Jukebox()
-          : globalVolume(50) {}
 
-        void Jukebox::addMusic(std::string name, std::string path, bool loop) {
-            sf::Music *music = Model::ResourceLoader::loadMusic(path.c_str());
+        void Jukebox::addMusic(const std::string& name, const std::string& path, bool loop) {
+            auto music = Model::ResourceLoader::loadMusic(path.c_str());
             music->setVolume(globalVolume);
             music->setLoop(loop);
-            if(musList[name] != nullptr) {
-                delete(musList[name]);
-            }
-            musList[name] = music;
+            musList[name] = std::move(music);
         }
 
-        void Jukebox::addSound(std::string name, std::string path) {
+        void Jukebox::addSound(const std::string& name, const std::string& path) {
             //Sounds are saved in the code as a pair of sf::SoundBuffer and sf::Sound.
-            sf::SoundBuffer *sb = new sf::SoundBuffer();
+            auto sb = std::make_unique<sf::SoundBuffer>();
             Model::ResourceLoader::load(*sb, path.c_str());
-            if(soundsList[name].first != nullptr) {
-                delete(soundsList[name].second);
-            }
-            soundsList[name].first = sb;
-            soundsList[name].second = new sf::Sound();
+
+            soundsList[name].first = std::move(sb);
+            soundsList[name].second = std::make_unique<sf::Sound>();
             soundsList[name].second->setBuffer(*soundsList[name].first);
             soundsList[name].second->setVolume(globalVolume);
         }
 
-        Jukebox::~Jukebox() {
-            for(auto itor = musList.begin(); itor != musList.end(); ++itor) {
-                delete(itor->second);
-            }
-            for(auto itor = soundsList.begin(); itor != soundsList.end(); ++itor) {
-                delete(itor->second.first);
-                delete(itor->second.second);
-            }
-        }
-
-        void Jukebox::play(std::string music) {
-            if(musList[music] == playing) {
+        void Jukebox::play(const std::string& music) {
+            if(musList[music].get() == playing) {
                 return;
             }
 
@@ -56,13 +38,13 @@ namespace OpMon {
                 playing->stop();
             }
 
-            if(musList[music] == nullptr) {
+            if(musList[music].get() == nullptr) {
                 handleError(std::string("Warning - Jukebox::play : Unknown music \"") + music + "\"");
                 return;
             }
 
             musList.at(music)->play();
-            playing = musList.at(music);
+            playing = musList.at(music).get();
         }
 
         void Jukebox::pause() {
@@ -94,15 +76,15 @@ namespace OpMon {
             this->globalVolume = globalVolume;
         }
 
-        void Jukebox::playSound(std::string sound) {
-            if(soundsList[sound].first == nullptr) {
+        void Jukebox::playSound(const std::string& sound) {
+            if(soundsList[sound].first.get() == nullptr) {
                 handleError(std::string("Warning - Jukebox::playSound : Unknown sound \"") + sound + "\"");
                 return;
             }
             soundsList.at(sound).second->play();
         }
 
-        int Jukebox::getGlobalVolume() {
+        int Jukebox::getGlobalVolume() const {
             return globalVolume;
         }
     } // namespace View
