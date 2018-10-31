@@ -25,9 +25,10 @@ namespace OpMon {
             std::map<std::string, Map *> maps;
             std::map<std::string, Map *>::iterator mapsItor;
 
-            sf::Texture texturePP[4];
-            sf::Texture walkingPP[4];
-            sf::Texture walkingPP2[4];
+            sf::Texture texturePP;
+            sf::IntRect texturePPRect[4];
+            sf::IntRect walkingPPRect[4];
+            sf::IntRect walkingPP2Rect[4];
 
             UiData *uidata;
 
@@ -68,9 +69,10 @@ namespace OpMon {
                 }
             }
 
-            sf::Texture &getTexturePP(unsigned int id) { return texturePP[((id < 4) ? id : 0)]; }
-            sf::Texture &getWalkingPP(unsigned int id) { return walkingPP[((id < 4) ? id : 0)]; }
-            sf::Texture &getWalkingPP2(unsigned int id) { return walkingPP2[((id < 4) ? id : 0)]; }
+            sf::Texture &getTexturePP() { return texturePP; }
+            sf::IntRect &getTexturePPRect(unsigned int id) { return texturePPRect[((id < 4) ? id : 0)]; }
+            sf::IntRect &getWalkingPPRect(unsigned int id) { return walkingPPRect[((id < 4) ? id : 0)]; }
+            sf::IntRect &getWalkingPP2Rect(unsigned int id) { return walkingPP2Rect[((id < 4) ? id : 0)]; }
 
             UiData *getUiDataPtr() { return uidata; }
             Player *getPlayerPtr() { return player; }
