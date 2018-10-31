@@ -9,6 +9,7 @@ File under GNU GPL v3.0 license
 #include "../start/GameStatus.hpp"
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <SFML/Window/Event.hpp>
+#include <memory>
 
 namespace OpMon {
     namespace Controller {
@@ -25,8 +26,8 @@ namespace OpMon {
      */
         class AGameScreen {
           public:
-            AGameScreen()
-              : _next_gs(nullptr) {}
+            AGameScreen() = default;
+            virtual ~AGameScreen() = default;
 
             /**
        * process a new SFML Input (keyboard, mouse, ...).
@@ -43,12 +44,10 @@ namespace OpMon {
             virtual void suspend(){};
             virtual void resume(){};
 
-            AGameScreen *getNextGameScreen() { return _next_gs; };
-
-            virtual ~AGameScreen() = default;
+            std::unique_ptr<AGameScreen> getNextGameScreen() { return std::move(_next_gs); };
 
           protected:
-            AGameScreen *_next_gs;
+            std::unique_ptr<AGameScreen> _next_gs;
         };
 
     } // namespace Controller

@@ -38,7 +38,7 @@ namespace OpMon {
                 }
                 //P is used to skip the introduction, but it must be not working when entering the name
                 if(event.key.code == sf::Keyboard::P && startscene.getPart() != 1) {
-                    _next_gs = new OverworldCtrl(data.getPlayer(), data.getUiDataPtr());
+                    _next_gs = std::make_unique<OverworldCtrl>(data.getPlayer(), data.getUiDataPtr());
                     return GameStatus::NEXT;
                 }
                 break;
@@ -61,7 +61,7 @@ namespace OpMon {
 
             //If it's the end of the introduction, go to the overworld
             if(view.getPart() > 2) {
-                _next_gs = new OverworldCtrl(data.getPlayer(), data.getUiDataPtr());
+                _next_gs = std::make_unique<OverworldCtrl>(data.getPlayer(), data.getUiDataPtr());
                 return GameStatus::NEXT;
             }
             return GameStatus::CONTINUE;
@@ -72,7 +72,7 @@ namespace OpMon {
             if(animNext) {
                 animNext = false;
                 view.draw(frame);
-                _next_gs = new AnimationCtrl(std::make_unique<View::Animations::WinAnim>(frame.getTexture(), false));
+                _next_gs = std::make_unique<AnimationCtrl>(std::make_unique<View::Animations::WinAnim>(frame.getTexture(), false));
                 return GameStatus::NEXT;
             }
             GameStatus toReturn = view();
@@ -83,10 +83,10 @@ namespace OpMon {
             if(toReturn == GameStatus::NEXT) {
                 switch(view.getPart()) {
                 case 1:
-                    _next_gs = new AnimationCtrl(std::make_unique<View::Animations::WinAnim>(frame.getTexture(), true));
+                    _next_gs = std::make_unique<AnimationCtrl>(std::make_unique<View::Animations::WinAnim>(frame.getTexture(), true));
                     break;
                 case 3:
-                    _next_gs = new OverworldCtrl(data.getPlayer(), data.getUiDataPtr());
+                    _next_gs = std::make_unique<OverworldCtrl>(data.getPlayer(), data.getUiDataPtr());
                     break;
                 default:
                     handleError("Internal error, unknown part in StartSceneCtrl::update", true);
