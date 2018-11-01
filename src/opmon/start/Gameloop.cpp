@@ -6,45 +6,36 @@ File under GNU GPL v3.0 license
 */
 #include "./Gameloop.hpp"
 #include "../controller/MainMenuCtrl.hpp"
-#include "../model/storage/UiData.hpp"
 #include "../model/sysObjects/Player.hpp"
-#include "../view/Window.hpp"
 #include <SFML/Window/Event.hpp>
 
 namespace OpMon {
 
-    GameLoop::GameLoop() {}
-
-    GameLoop::~GameLoop() {
-        while(!_gameScreens.empty()) {
-            delete(_gameScreens.top());
-            _gameScreens.pop();
-        }
+    GameLoop::GameLoop()
+        : uidata(std::make_unique<Model::UiData>()) {
+        std::unique_ptr<Controller::AGameScreen> firstCtrl = std::make_unique<Controller::MainMenuCtrl>(uidata.get());
+        _gameScreens.push(std::move(firstCtrl));
     }
 
     GameStatus GameLoop::operator()() {
 
-        window.open();
+        std::unique_ptr<View::Window, std::function<void(View::Window*)>> window(new View::Window(), [](View::Window* w) {
+            w->close();
+        });
+        window->open();
 
-        std::unique_ptr<Model::UiData> uidata = std::make_unique<Model::UiData>();
-
-        // TODO: add first item outside of the Gameloop.
-        Controller::AGameScreen *first_ctrl = new Controller::MainMenuCtrl(uidata.get());
-
-        _gameScreens.push(first_ctrl);
-
-        GameStatus status = GameStatus::CONTINUE;
+        GameStatus status{GameStatus::CONTINUE};
 
         while(status != GameStatus::STOP) {
             status = GameStatus::CONTINUE;
 
             //Gets the current game screen's controller
-            auto ctrl = _gameScreens.top();
+            auto* ctrl = _gameScreens.top().get();
             sf::Event event;
 
             //process all pending SFML events
             while(status == GameStatus::CONTINUE) {
-                bool isEvent = window.getWindow().pollEvent(event);
+                bool isEvent = window->getWindow().pollEvent(event);
                 if(isEvent == false)
                     event.type = sf::Event::SensorChanged;
                 status = _checkQuit(event);
@@ -58,41 +49,32 @@ namespace OpMon {
 
             if(status == GameStatus::CONTINUE) {
                 // frame update & draw
-                status = ctrl->update(window.getFrame());
+                status = ctrl->update(window->getFrame());
             }
 
             switch(status) {
             case GameStatus::NEXT: //Pauses the current screen and passes to the next
                 ctrl->suspend();
-                _gameScreens.push(ctrl->getNextGameScreen());
+                _gameScreens.push(std::move(ctrl->getNextGameScreen()));
                 break;
             case GameStatus::PREVIOUS: //Deletes the current screen and returns to the previous one
-                delete(ctrl);
                 _gameScreens.pop();
                 _gameScreens.top()->resume();
                 break;
             case GameStatus::CONTINUE:
-                window.refresh();
+                window->refresh();
                 break;
             default:
                 break;
             }
         }
 
-        window.close();
-
         return GameStatus::STOP;
     }
 
     GameStatus GameLoop::_checkQuit(const sf::Event &event) {
-        switch(event.type) {
-        case sf::Event::Closed:
-            return GameStatus::STOP;
-        default:
-            break;
-        }
-
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+        if(event.type == sf::Event::Closed
+           || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
             return GameStatus::STOP;
         }
 
