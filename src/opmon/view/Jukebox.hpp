@@ -6,43 +6,38 @@
 */
 #pragma once
 
-#include <map>
-
+#include <unordered_map>
+#include <memory>
 #include <SFML/Audio/Music.hpp>
 #include <SFML/Audio/Sound.hpp>
 #include <SFML/Audio/SoundBuffer.hpp>
+#include "../model/storage/ResourceLoader.hpp"
 
 namespace OpMon {
     namespace View {
 
         class Jukebox {
           private:
-            std::map<std::string, sf::Music *> musList;
-            std::map<std::string, std::pair<sf::SoundBuffer *, sf::Sound *>> soundsList;
-            sf::Music *playing = nullptr;
-            float globalVolume;
-#define DEFAULT_VOLUME 1
+            std::unordered_map<std::string, std::unique_ptr<sf::Music>> musList;
+            std::unordered_map<std::string, std::pair<std::unique_ptr<sf::SoundBuffer>, std::unique_ptr<sf::Sound>>> soundsList;
+            sf::Music *playing{nullptr};
+            float globalVolume{50.0};
 
           public:
-            Jukebox();
+            Jukebox() = default;
+            ~Jukebox() = default;
 
-            ~Jukebox();
+            void addMusic(const std::string& name, const std::string& path, bool loop = true);
 
-            void addMusic(std::string name, std::string path, bool loop = true);
-
-            void play(std::string music);
-
+            void play(const std::string& music);
             void pause();
-
             void stop();
 
             void setGlobalVolume(float globalVolume);
+            int getGlobalVolume() const;
 
-            int getGlobalVolume();
-
-            void playSound(std::string sound);
-
-            void addSound(std::string name, std::string path);
+            void playSound(const std::string& sound);
+            void addSound(const std::string& name, const std::string& path);
         };
 
     } // namespace View

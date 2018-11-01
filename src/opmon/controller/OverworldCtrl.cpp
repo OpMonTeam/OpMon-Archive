@@ -119,7 +119,7 @@ namespace OpMon {
                 if(view.getBattleDeclared()->isDefeated()) {
                     view.endBattle();
                 } else {
-                    _next_gs = new BattleCtrl(data.getPlayer().getOpTeam(), view.getBattleDeclared(), data.getUiDataPtr(), data.getPlayerPtr());
+                    _next_gs = std::make_unique<BattleCtrl>(data.getPlayer().getOpTeam(), view.getBattleDeclared(), data.getUiDataPtr(), data.getPlayerPtr());
                     return GameStatus::NEXT;
                 }
             }

@@ -25,14 +25,14 @@ namespace OpMon {
                 case sf::Keyboard::Return:
                     switch(view.getCursorPosition()) {
                     case 0:
-                        _next_gs = new StartSceneCtrl(data.getUiDataPtr());
+                        _next_gs = std::make_unique<StartSceneCtrl>(data.getUiDataPtr());
                         data.getUiDataPtr()->getJukebox().playSound("push");
                         return GameStatus::NEXT;
                     case 1:
                         data.getUiDataPtr()->getJukebox().playSound("nope");
                         return GameStatus::CONTINUE;
                     case 2:
-                        _next_gs = new OptionsMenuCtrl(data.getUiDataPtr());
+                        _next_gs = std::make_unique<OptionsMenuCtrl>(data.getUiDataPtr());
                         data.getUiDataPtr()->getJukebox().playSound("push");
                         return GameStatus::NEXT;
                     case 3:
