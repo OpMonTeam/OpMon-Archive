@@ -6,6 +6,7 @@ File under GNU GPL v3.0 license
 */
 #include "Dialog.hpp"
 #include "../../utils/defines.hpp"
+#include "../start/Core.hpp"
 #include "Window.hpp"
 
 namespace OpMon {
@@ -14,6 +15,10 @@ namespace OpMon {
         Dialog::Dialog(const std::vector<sf::String> &text, Model::UiData *uidata)
           : text(text)
           , uidata(uidata) {
+
+            if(text.size() % 3 != 0) {
+                handleError("Error : string missing in Dialog. Aborting to avoid more issues.", true);
+            }
 
             background.setTexture(uidata->getDialogBackground());
             arrDial.setTexture(uidata->getDialogArrow());

@@ -40,12 +40,12 @@ namespace OpMon {
             }
         }
 
-        sf::Music *ResourceLoader::loadMusic(const char *path) {
-            auto *music = new sf::Music();
-            if(!music->openFromFile(getResourcePath() + path)) {
+        std::unique_ptr<sf::Music> ResourceLoader::loadMusic(const char *path) {
+            auto music = std::make_unique<sf::Music>();
+            if(!music->openFromFile(ResourceLoader::getResourcePath() + path)) {
                 handleError(std::string("Failed to load music: ") + path, false);
             }
-            return music;
+            return std::move(music);
         }
 
         void ResourceLoader::loadKeysFile(const char *path, std::ifstream &file) {

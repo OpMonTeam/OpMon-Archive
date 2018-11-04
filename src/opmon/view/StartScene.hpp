@@ -11,6 +11,7 @@ File under GNU GPL v3.0 license
 #include "../model/storage/StartSceneData.hpp"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
+#include <memory>
 
 #include "../start/Core.hpp"
 #include "../start/i18n/ATranslatable.hpp"
@@ -22,7 +23,7 @@ namespace OpMon {
         class StartScene : public I18n::ATranslatable {
           public:
             StartScene(Model::StartSceneData &data);
-            ~StartScene() override;
+            ~StartScene() override = default;
 
             GameStatus operator()();
             void draw(sf::RenderTarget &frame);
@@ -34,7 +35,7 @@ namespace OpMon {
             void onLangChanged() override;
 
             Dialog *getDialog() {
-                return dialog;
+                return dialog.get();
             }
 
             int getPart() {
@@ -57,7 +58,7 @@ namespace OpMon {
             std::vector<sf::String> txtP0;
             Utils::OpString strName;
 
-            Dialog *dialog;
+            std::unique_ptr<Dialog> dialog;
 
             sf::Text textDescs[4];
             sf::Sprite bgName;

@@ -6,7 +6,7 @@ set(EXECUTABLE_NAME opmon)
 
 set(OPMON_VERSION_MAJOR 0)
 set(OPMON_VERSION_MINOR 15)
-set(OPMON_VERSION_PATCH 0)
+set(OPMON_VERSION_PATCH 1)
 
 set(OPMON_CONTACT "Cyrion <jlppcprog@ntymail.com>")
 set(OPMON_DESCRIPTION_SUMMARY "An open source RPG monster fighting game")
@@ -29,7 +29,7 @@ set(SFML_ROOT "" CACHE PATH "SFML root directory.")
 
 
 # Compiler options
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 if(NOT MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pedantic -Wextra")
 endif()

@@ -19,10 +19,9 @@ namespace OpMon {
             static const std::string &getResourcePath();
 
             /**
-       * Verify that the resource folder exists.
-       * @return `true` if it exists; `false` otherwise.
-       
-	   */
+	     * Verify that the resource folder exists.
+	     * @return `true` if it exists; `false` otherwise.
+	     */
             static bool checkResourceFolderExists();
 
             /**
@@ -56,7 +55,7 @@ namespace OpMon {
             static void
             loadTextureArray(std::vector<sf::Texture> &container, const char *path, size_t nb_frame, size_t path_offset = 0);
 
-            static sf::Music *loadMusic(const char *path);
+            static std::unique_ptr<sf::Music> loadMusic(const char *path);
 
             static void loadKeysFile(const char *path, std::ifstream &file);
         };
@@ -64,7 +63,7 @@ namespace OpMon {
         template <typename T>
         void ResourceLoader::load(T &resource, const char *path, bool fatal) {
 
-            if(!resource.loadFromFile(getResourcePath() + path)) {
+            if(!resource.loadFromFile(ResourceLoader::getResourcePath() + path)) {
                 handleError(std::string("Failed to load resource: ") + path, fatal);
             }
         }

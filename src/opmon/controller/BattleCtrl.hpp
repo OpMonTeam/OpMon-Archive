@@ -23,13 +23,14 @@ namespace OpMon {
         class BattleCtrl : public AGameScreen {
           private:
             Model::BattleData data;
+
+            Model::OpTeam *playerTeam;
+            Model::OpTeam *trainerTeam;
+
             /*The player's current OpMon*/
             Model::OpMon *atk;
             /*The opposite trainer's current OpMon*/
             Model::OpMon *def;
-
-            Model::OpTeam *playerTeam;
-            Model::OpTeam *trainerTeam;
 
             View::Battle view;
 
@@ -64,7 +65,7 @@ namespace OpMon {
             Model::Events::TrainerEvent *trainer;
 
           public:
-            virtual ~BattleCtrl();
+            virtual ~BattleCtrl() = default;
             BattleCtrl(Model::OpTeam *one, Model::OpTeam *two, Model::UiData *uidata, Model::Player *player);
             BattleCtrl(Model::OpTeam *one, Model::Events::TrainerEvent *two, Model::UiData *uidata, Model::Player *player);
             GameStatus checkEvent(sf::Event const &) override;
