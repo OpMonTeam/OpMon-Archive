@@ -12,20 +12,17 @@ namespace OpMon {
     namespace Controller {
         using namespace Model;
 
-        BattleCtrl::~BattleCtrl() {
-        }
-
         BattleCtrl::BattleCtrl(OpTeam *one, Events::TrainerEvent *two, UiData *uidata, Player *player)
           : BattleCtrl(one, two->getOpTeam(), uidata, player) {
             this->trainer = two;
         }
 
         BattleCtrl::BattleCtrl(OpTeam *one, OpTeam *two, UiData *uidata, Player *player)
-          : playerTeam(one)
+          : data(uidata, player)
+          , playerTeam(one)
           , trainerTeam(two)
           , atk(one->getOp(0))
           , def(two->getOp(0))
-          , data(uidata, player)
           , view(one, two, "beta", "grass", this->data) {
             initBattle(0, 0);
         }
@@ -207,26 +204,18 @@ namespace OpMon {
 
             if(!atkDone || !defDone) {
                 if(atkFirst) {
-                    if(!atkDone) {
-                        if(canAttack(atk, &atkTurn)) {
-                            atkTurn.attackUsed->attack(*atk, *def, atkTurn);
-                        }
+                    if(!atkDone && canAttack(atk, &atkTurn)) {
+                        atkTurn.attackUsed->attack(*atk, *def, atkTurn);
                     }
-                    if(!defDone) {
-                        if(canAttack(def, &defTurn)) {
-                            defTurn.attackUsed->attack(*def, *atk, defTurn);
-                        }
+                    if(!defDone && canAttack(def, &defTurn)) {
+                        defTurn.attackUsed->attack(*def, *atk, defTurn);
                     }
                 } else {
-                    if(!defDone) {
-                        if(canAttack(def, &defTurn)) {
-                            defTurn.attackUsed->attack(*def, *atk, defTurn);
-                        }
+                    if(!defDone && canAttack(def, &defTurn)) {
+                        defTurn.attackUsed->attack(*def, *atk, defTurn);
                     }
-                    if(!atkDone) {
-                        if(canAttack(atk, &atkTurn)) {
-                            atkTurn.attackUsed->attack(*atk, *def, atkTurn);
-                        }
+                    if(!atkDone && canAttack(atk, &atkTurn)) {
+                        atkTurn.attackUsed->attack(*atk, *def, atkTurn);
                     }
                 }
             }
@@ -243,20 +232,20 @@ namespace OpMon {
             if(opmon->getStatus() == Model::Status::FROZEN) {
                 //The OpMon have one chance out of 5 to be able to move again.
                 if(Utils::Misc::randU(5) == 2) {
-                    opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.frozen.out", opName));
+                    opTurn->toPrintBefore.emplace_back(Utils::OpString("battle.status.frozen.out", opName));
                     opmon->setStatus(Model::Status::NOTHING);
                 } else {
-                    opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.frozen.attack", opName));
+                    opTurn->toPrintBefore.emplace_back(Utils::OpString("battle.status.frozen.attack", opName));
                     canAttack = false;
                 }
                 //Checks if sleeping
             } else if(opmon->getStatus() == Model::Status::SLEEPING) {
                 //Checks the sleep counter.
                 if(opmon->getSleepingCD() <= 0) {
-                    opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.sleep.out", opName));
+                    opTurn->toPrintBefore.emplace_back(Utils::OpString("battle.status.sleep.out", opName));
                     opmon->setStatus(Status::NOTHING);
                 } else {
-                    opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.sleep.attack", opName));
+                    opTurn->toPrintBefore.emplace_back(Utils::OpString("battle.status.sleep.attack", opName));
                     canAttack = false;
                     opmon->passCD(true);
                 }
@@ -264,11 +253,11 @@ namespace OpMon {
             } else if(opmon->getStatus() == Model::Status::PARALYSED) {
                 //The opmon have one chance out of three to can't attack when paralysed
                 if(Utils::Misc::randU(4) == 2) {
-                    opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.paralysed.attack.fail", opName));
+                    opTurn->toPrintBefore.emplace_back(Utils::OpString("battle.status.paralysed.attack.fail", opName));
                     canAttack = false;
                 } else {
-                    opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.paralysed.attack.success.1", {}));
-                    opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.paralysed.attack.success.2", opName));
+                    opTurn->toPrintBefore.emplace_back(Utils::OpString("battle.status.paralysed.attack.success.1", {}));
+                    opTurn->toPrintBefore.emplace_back(Utils::OpString("battle.status.paralysed.attack.success.2", opName));
                 }
             }
             //Checks if confused

@@ -10,30 +10,7 @@ File under GNU GPL v3.0 license
 
 namespace OpMon {
     namespace Controller {
-        void PlayerCtrl::checkMove(Model::Player &player, sf::Event const &events, View::Overworld &overworld) {
-            if(events.type == sf::Event::KeyPressed) {
-                //TODO : Map teleportation with arrows instead of F keys.
-                if(events.key.code == sf::Keyboard::F5) {
-                    overworld.tp("Mom's room", sf::Vector2i(4, 4));
-                } else if(events.key.code == sf::Keyboard::F6) {
-                    overworld.tp("Player's room", sf::Vector2i(2, 4));
-                } else if(events.key.code == sf::Keyboard::F1) {
-                    overworld.tp("Fauxbourg Euvi", sf::Vector2i(26, 29));
-                } else if(events.key.code == sf::Keyboard::F2) {
-                    overworld.tp("Player's home", sf::Vector2i(10, 15));
-                } else if(events.key.code == sf::Keyboard::F3) {
-                    overworld.tp("Laboratory", sf::Vector2i(15, 14));
-                } else if(events.key.code == sf::Keyboard::F4) {
-                    overworld.tp("Rival's house", sf::Vector2i(8, 14));
-                } else if(events.key.code == sf::Keyboard::F7) {
-                    overworld.tp("Road 14", sf::Vector2i(9, 40));
-                } else if(events.key.code == sf::Keyboard::F8) {
-                    overworld.tp("MysteriouCity", sf::Vector2i(15, 15));
-                } else if(events.key.code == sf::Keyboard::F9) {
-                    overworld.tp("OpCenter", sf::Vector2i(9, 17));
-                }
-            }
-
+        void PlayerCtrl::checkMove(Model::Player &player, View::Overworld &overworld) {
             if(!overworld.justTp && !player.getPosition().isAnim() && !player.getPosition().isLocked()) {
                 if(sf::Keyboard::isKeyPressed(overworld.getData().getUiDataPtr()->getKeyUp())) {
                     overworld.startPlayerAnimation();
@@ -56,7 +33,7 @@ namespace OpMon {
 
             Model::Map *map = overworld.getData().getCurrentMap();
             auto eventList = map->getEvent(player.getPosition().getPosition());
-            EventsCtrl().actionEvents(eventList, player, Model::Events::EventTrigger::GO_IN, overworld);
+            EventsCtrl::actionEvents(eventList, player, Model::Events::EventTrigger::GO_IN, overworld);
         }
     } // namespace Controller
 } // namespace OpMon

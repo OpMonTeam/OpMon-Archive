@@ -5,21 +5,23 @@ File under GNU GPL 3.0 license.
 */
 #pragma once
 
+#include <memory>
 #include "../view/Animations.hpp"
 #include "AGameScreen.hpp"
 
 namespace OpMon {
     namespace Controller {
         /**
-	 AnimationCtrl is a special game screen which can call all types of animations.
-      **/
+	   AnimationCtrl is a special game screen which can call all types of animations.
+        **/
         class AnimationCtrl : public AGameScreen {
           private:
-            View::Animations::Animation *view;
+            std::unique_ptr<View::Animations::Animation> view;
 
           public:
-            AnimationCtrl(View::Animations::Animation *view);
-            ~AnimationCtrl();
+            AnimationCtrl(std::unique_ptr<View::Animations::Animation> view);
+            ~AnimationCtrl() = default;
+
             GameStatus update(sf::RenderTexture &frame) override;
         };
     } // namespace Controller

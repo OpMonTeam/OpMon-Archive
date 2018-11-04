@@ -22,8 +22,10 @@ namespace OpMon {
 
           public:
             MainMenuCtrl(Model::UiData *data);
+
             GameStatus checkEvent(sf::Event const &event) override;
             GameStatus update(sf::RenderTexture &frame) override;
+
             void suspend() override;
             void resume() override;
         };

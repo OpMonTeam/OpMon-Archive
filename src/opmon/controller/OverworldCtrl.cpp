@@ -10,7 +10,6 @@ File under GNU GPL v3.0 license
 #include "../model/objects/OpMon.hpp"
 #include "../model/sysObjects/OpTeam.hpp"
 #include "BattleCtrl.hpp"
-#include "EventsCtrl.hpp"
 #include "PlayerCtrl.hpp"
 
 namespace OpMon {
@@ -62,6 +61,17 @@ namespace OpMon {
                     if(events.key.code == sf::Keyboard::Numpad5) {
                         overworld.setCameraLock(!overworld.isCameraLocked());
                     }
+                    if(events.key.code == sf::Keyboard::PageUp) {
+                        data.decrementItorMap();
+                        overworld.tp(data.getCurrentItorMap(), sf::Vector2i(5, 5));
+                    }
+                    if(events.key.code == sf::Keyboard::PageDown) {
+                        data.incrementItorMap();
+                        overworld.tp(data.getCurrentItorMap(), sf::Vector2i(5, 5));
+                    }
+                    if(events.key.code == sf::Keyboard::B) {
+                        overworld.tp("Road 14", sf::Vector2i(10, 32));
+                    }
                 }
             default:
                 break;
@@ -83,9 +93,9 @@ namespace OpMon {
 
             if(is_dialog_open) {
                 return checkEventsDialog(events, overworld);
-            } else {
-                return checkEventsNoDialog(events, player);
             }
+
+            return checkEventsNoDialog(events, player);
         }
 
         GameStatus OverworldCtrl::checkEventsDialog(sf::Event const &events, View::Overworld &overworld) {
@@ -102,14 +112,14 @@ namespace OpMon {
         }
 
         GameStatus OverworldCtrl::checkEventsNoDialog(sf::Event const &event, Model::Player &player) {
-            eventsctrl.checkAction(event, player, view);
-            Controller::PlayerCtrl::checkMove(player, event, view);
+            EventsCtrl::checkAction(event, player, view);
+            Controller::PlayerCtrl::checkMove(player, view);
 
             if(view.getBattleDeclared() != nullptr) {
                 if(view.getBattleDeclared()->isDefeated()) {
                     view.endBattle();
                 } else {
-                    _next_gs = new BattleCtrl(data.getPlayer().getOpTeam(), view.getBattleDeclared(), data.getUiDataPtr(), data.getPlayerPtr());
+                    _next_gs = std::make_unique<BattleCtrl>(data.getPlayer().getOpTeam(), view.getBattleDeclared(), data.getUiDataPtr(), data.getPlayerPtr());
                     return GameStatus::NEXT;
                 }
             }
@@ -120,7 +130,7 @@ namespace OpMon {
         GameStatus OverworldCtrl::update(sf::RenderTexture &frame) {
             bool is_dialog_open = view.getDialog() && !view.getDialog()->isDialogOver();
             if(!is_dialog_open) {
-                eventsctrl.updateEvents(data.getMap(player.getMapId())->getEvents(), player, view);
+                EventsCtrl::updateEvents(data.getMap(player.getMapId())->getEvents(), player, view);
             }
 
             return view(frame);

@@ -19,10 +19,6 @@ namespace OpMon {
 
         using namespace Events;
 
-        Event::~Event() {
-            delete(sprite);
-        }
-
         Event::Event(std::vector<sf::Texture> &otherTextures, EventTrigger eventTrigger, sf::Vector2f const &position,
                      int sides, bool passable)
           : otherTextures(otherTextures)
@@ -31,7 +27,7 @@ namespace OpMon {
           , mapPos(position, true)
           , passable(passable)
           , sides(sides)
-          , sprite(new sf::Sprite())
+          , sprite(std::make_unique<sf::Sprite>())
           , currentTexture(otherTextures.begin()) {
         }
 
@@ -162,7 +158,7 @@ namespace OpMon {
 
             void DoorEvent::update(Model::Player &player, View::Overworld &overworld) {
                 if(animStarted != -1) { //If true, action() have started the animation
-                    animStarted++;
+                    ++animStarted;
                     if(animStarted < 8 && (animStarted / 2) * 2 == animStarted) {
                         currentTexture = otherTextures.begin() + (animStarted / 2);
                     } else if(animStarted > 10) { //End of the animation
@@ -263,15 +259,15 @@ namespace OpMon {
                         break;
 
                     case Side::TO_DOWN:
-                        position -= sf::Vector2f(0, 4);
+                        toMove = sf::Vector2f(0, 4);
                         break;
 
                     case Side::TO_LEFT:
-                        position -= sf::Vector2f(4, 0);
+                        toMove = sf::Vector2f(4, 0);
                         break;
 
                     case Side::TO_RIGHT:
-                        position -= sf::Vector2f(-4, 0);
+                        toMove = sf::Vector2f(-4, 0);
                         break;
                     default:
                         break;
