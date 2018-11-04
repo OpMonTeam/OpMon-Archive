@@ -33,15 +33,15 @@ namespace OpMon {
         GameStatus BattleCtrl::update(sf::RenderTexture &frame) {
             GameStatus returned = view(frame, atkTurn, defTurn, &turnActivated);
             if(turnActivated) {
-	      //If one of the OpMon have no PV left, the battle is over.
+                //If one of the OpMon have no PV left, the battle is over.
                 if(atk->getHP() <= 0 || def->getHP() <= 0) {
                     /*if(playerTeam->isKo() || trainerTeam->isKo()){
 		      return GameStatus::PREVIOUS;
 		      }*/
-		  if(trainer != nullptr) {
-		    trainer->defeat();
-		  }
-		  returned = GameStatus::PREVIOUS;
+                    if(trainer != nullptr) {
+                        trainer->defeat();
+                    }
+                    returned = GameStatus::PREVIOUS;
                 }
             }
             return returned;
@@ -52,7 +52,7 @@ namespace OpMon {
             switch(event.type) {
             case sf::Event::KeyPressed:
                 switch(event.key.code) {
-		  //Selection events
+                    //Selection events
                 case sf::Keyboard::Left:
                     view.moveCur(Model::Side::TO_LEFT);
                     data.getUiDataPtr()->getJukebox().playSound("arrow");
@@ -70,10 +70,10 @@ namespace OpMon {
                     view.moveCur(Model::Side::TO_DOWN);
                     break;
                 case sf::Keyboard::Return:
-		  //If it the attack selection screen is not the active screen, and if the turn is not activated, the battle's main menu is printed.
+                    //If it the attack selection screen is not the active screen, and if the turn is not activated, the battle's main menu is printed.
                     if(!view.isAttackChoice() && !turnActivated) {
                         switch(view.getCurPos()) {
-			  //Currently, there is only one choice avilable, the "attack" choice.
+                            //Currently, there is only one choice avilable, the "attack" choice.
                         case 0:
                             view.toggleAttackChoice();
                             break;
@@ -83,9 +83,9 @@ namespace OpMon {
                             data.getUiDataPtr()->getJukebox().playSound("nope");
                             break;
                         }
-			
+
                     } else if(!turnActivated) { //In this case, the attack selecton screen is the active screen.
-		      //Gets the selected attack, checks if it isn't a invalid attack (PP check and existence check), and then launches the turn.
+                                                //Gets the selected attack, checks if it isn't a invalid attack (PP check and existence check), and then launches the turn.
                         atkTurn.attackUsed = atk->getAttacks()[view.getCurPos()];
                         if(atkTurn.attackUsed != nullptr) {
                             if(atkTurn.attackUsed->getPP() > 0) {
@@ -94,10 +94,10 @@ namespace OpMon {
                                 view.toggleAttackChoice();
                                 turnActivated = true;
                             }
-                        } else {//The attack is invalid
+                        } else { //The attack is invalid
                             data.getUiDataPtr()->getJukebox().playSound("nope");
                         }
-			//During a turn, it passes the dialog. If nextTxt returns false, the end of the texts is reached and the turn is over.
+                        //During a turn, it passes the dialog. If nextTxt returns false, the end of the texts is reached and the turn is over.
                     } else if(turnActivated) {
                         if(!view.nextTxt()) {
                             turnActivated = false;
@@ -106,14 +106,14 @@ namespace OpMon {
 
                     break;
                 case sf::Keyboard::BackSpace:
-		  //From the attack selection screen, returns to the battle's main menu.
+                    //From the attack selection screen, returns to the battle's main menu.
                     if(view.isAttackChoice()) {
                         view.toggleAttackChoice();
                     }
                     break;
 
                 case sf::Keyboard::Space:
-		  //During the dialogs, passes to the next one.
+                    //During the dialogs, passes to the next one.
                     if(turnActivated) {
                         if(!view.nextTxt()) {
                             turnActivated = false;
@@ -131,7 +131,7 @@ namespace OpMon {
         }
 
         void BattleCtrl::initBattle(int opId, int opId2) {
-	  //Saves the OpMons' stats before the battle, to reset the stats after it.
+            //Saves the OpMons' stats before the battle, to reset the stats after it.
             atk = playerTeam->getOp(opId);
             def = trainerTeam->getOp(opId2);
             oldStats[0][0] = atk->getStatATK();
@@ -173,7 +173,7 @@ namespace OpMon {
         }
 
 #pragma GCC diagnostic ignored "-Wunused-parameter"
-      //Unfinished method, the IA will be programmed in the future.
+        //Unfinished method, the IA will be programmed in the future.
         Model::Turn *BattleCtrl::turnIA(int level) {
             defTurn.attackUsed = def->getAttacks()[0];
             defTurn.type = TurnType::ATTACK;
@@ -182,13 +182,13 @@ namespace OpMon {
 #pragma GCC diagnostic pop
 
         bool BattleCtrl::turn() {
-	  //These variables are used to check if the turn of one of the OpMons' is over.
+            //These variables are used to check if the turn of one of the OpMons' is over.
             bool atkDone = false;
             bool defDone = false;
 
             turnIA(0);
 
-	    //Item use or switching always comes before the attack. It is calculated before everything else.
+            //Item use or switching always comes before the attack. It is calculated before everything else.
             bool atkFirst = true;
             if(atkTurn.type != TurnType::ATTACK) {
                 //Actions

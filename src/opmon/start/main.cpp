@@ -43,7 +43,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 namespace OpMon {
     namespace Main {
-      
+
         std::string version = OPMON_VERSION;
 
         std::string pre = "0";
@@ -136,7 +136,8 @@ int main(int argc, char *argv[]) {
                 std::cout << (int)Side::TO_RIGHT << std::endl;
                 std::cout << (int)(Side::TO_UP + 4) << std::endl;
                 return 0;
-		} */else {
+		} */
+            else {
                 //std::cout << "Unknown parameters. Skipping." << std::endl;
             }
         }

@@ -6,7 +6,6 @@
 */
 #include "InternalFiles.hpp"
 
-
 namespace OpMon {
     namespace Model {
         namespace Maps {

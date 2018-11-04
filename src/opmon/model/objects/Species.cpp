@@ -59,7 +59,7 @@ namespace OpMon {
             this->type2 = type2;
             this->niveauEvolution = niveauEvolution;
             this->evolType = evolType;
-			evolType->checkEvo();
+            evolType->checkEvo();
             this->evolution = this->evolType->getEvolution();
             this->weight = weight;
             this->height = height;
@@ -67,10 +67,9 @@ namespace OpMon {
             this->expGiven = expGiven;
             this->EVgiven = EVGiven;
             this->expMax = expMax;
-			
-			
-			//The curve is found according to the max OpMon's exp.
-			//TODO : Reverse this : find the max exp with the curve
+
+            //The curve is found according to the max OpMon's exp.
+            //TODO : Reverse this : find the max exp with the curve
             switch(this->expMax) {
             case 800000:
                 curve = new CurveExpQuick();
