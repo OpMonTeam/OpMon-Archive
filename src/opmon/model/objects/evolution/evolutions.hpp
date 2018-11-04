@@ -17,7 +17,7 @@ namespace OpMon {
        Namespace containing evolution definitions
 		*/
         namespace Evolutions {
-			
+
             const int EItem = 7, ELand = 6, ELevel = 5, ELove = 4, ENope = 3, ETrade = 2, ETradeItem = 1;
 
             class E_Item : public Evolution {

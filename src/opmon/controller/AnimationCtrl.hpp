@@ -10,7 +10,7 @@ File under GNU GPL 3.0 license.
 
 namespace OpMon {
     namespace Controller {
-      /**
+        /**
 	 AnimationCtrl is a special game screen which can call all types of animations.
       **/
         class AnimationCtrl : public AGameScreen {

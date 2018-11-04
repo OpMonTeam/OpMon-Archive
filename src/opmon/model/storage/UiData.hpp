@@ -6,6 +6,7 @@
 */
 #pragma once
 
+#include "../../../utils/defines.hpp"
 #include "../../view/Jukebox.hpp"
 #include "../../view/Window.hpp"
 #include "../objects/Enums.hpp"
@@ -15,7 +16,6 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <map>
 #include <vector>
-#include "../../../utils/defines.hpp"
 
 namespace OpMon {
     namespace Model {

@@ -38,7 +38,7 @@ namespace OpMon {
         }
 
         OpMon *OpTeam::removeOp(int number) {
-	  if(opteam.size() == 1) { //If there is only one OpMon, return nullptr
+            if(opteam.size() == 1) { //If there is only one OpMon, return nullptr
                 return nullptr;
             }
             OpMon *toReturn = opteam[number];

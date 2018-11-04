@@ -7,9 +7,9 @@
 #ifndef CORE_HPP
 #define CORE_HPP
 
+#include "../../utils/defines.hpp"
 #include "GameStatus.hpp"
 #include <string>
-#include "../../utils/defines.hpp"
 #pragma GCC diagnostic ignored "-Wreorder"
 #pragma GCC diagnostic ignored "-Wcomment"
 
@@ -36,8 +36,8 @@ namespace OpMon {
     std::string &operator<<(std::string &str, int nbre);
     std::string &operator<<(std::string &str, char nbre[]);
 
-  template <typename Base, typename T>
-  OP_DEPRECATED bool instanceOf(const Base *toTest);
+    template <typename Base, typename T>
+    OP_DEPRECATED bool instanceOf(const Base *toTest);
 } // namespace OpMon
 
 #endif

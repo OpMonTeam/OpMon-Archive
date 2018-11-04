@@ -13,7 +13,7 @@
 namespace OpMon {
     namespace Model {
 
-        UiData::UiData(){
+        UiData::UiData() {
 
             Utils::Log::oplog("Initializating UiData");
 
@@ -69,15 +69,14 @@ namespace OpMon {
             listOp.emplace(31, new Species(92, 87, 75, 85, 76, 90, "Bolderi", Type::TOXIC, Type::GROUND, 0, -1, new E_Nope(), std::vector<Stats>{Stats::HP, Stats::HP, Stats::HP}, 1.3, 60, "Il controle le riz, il est capable de faire le faire voler, et même de faire des formes avec.", 194, 1059860, 45, 31));
             listOp.emplace(33, new Species(57, 40, 40, 40, 50, 46, "Dragonbolderi‚", Type::TOXIC, Type::NOTHING, 0, 16, new E_Level(33, 16), std::vector<Stats>{Stats::ATK}, 0.5, 9, "Ce dragon en riz est capable d'éviter les coups en creant des trous dans son corps, mais à part cela, il peut à peine voler.", 60, 1059860, 235, 33));
             listOp.emplace(33, new Species(72, 57, 55, 55, 65, 61, "Kameosan", Type::TOXIC, Type::NOTHING, 0, -1, new E_Item(34, Item::getItem("Pierre Lune")), std::vector<Stats>{Stats::ATK, Stats::ATK}, 0.9, 19.5, "Cette jarre de saké japonais a pris vie, elle peut aspirer du riz venant de l'exterieur, pour grossir encore son crâne.", 118, 1059860, 120, 33));
-	        listOp.emplace(34, new Species(80, 35, 35, 45, 70, 8, "Champoing", Type::FIGHT, Type::NOTHING, 0, 28, new E_Level(35, 23), std::vector<Stats>{Stats::ATK}, 0.7, 18, "Champoing est très fort pour envoyer des patates, moins pour se déplacer...", 74, 1000000, 190, 34));
-	        listOp.emplace(35, new Species(85, 55, 92, 38, 66, 68, "Boxali", Type::FIGHT, Type::NOTHING, 0, -1, nullptr,  std::vector<Stats>{Stats::ATK, Stats::ATK, Stats::ATK}, 1.89, 72, "Boxali peut utiliser sa cape bleue pour planer quelques secondes au dessus du sol et pouvoir faire des figures et des coups aériens.", 149, 1000000, 75, 35));
+            listOp.emplace(34, new Species(80, 35, 35, 45, 70, 8, "Champoing", Type::FIGHT, Type::NOTHING, 0, 28, new E_Level(35, 23), std::vector<Stats>{Stats::ATK}, 0.7, 18, "Champoing est très fort pour envoyer des patates, moins pour se déplacer...", 74, 1000000, 190, 34));
+            listOp.emplace(35, new Species(85, 55, 92, 38, 66, 68, "Boxali", Type::FIGHT, Type::NOTHING, 0, -1, nullptr, std::vector<Stats>{Stats::ATK, Stats::ATK, Stats::ATK}, 1.89, 72, "Boxali peut utiliser sa cape bleue pour planer quelques secondes au dessus du sol et pouvoir faire des figures et des coups aériens.", 149, 1000000, 75, 35));
             listOp.emplace(36, new Species(81, 36, 17, 89, 17, 48, "Nebulba", Type::MAGIC, Type::DRAGON, 0, 19, new E_Level(37, 19), std::vector<Stats>{Stats::ATKSPE}, 0.19, 6.8, "On ne connait pas la date d'apparition de cet OPMon, certains disent qu'il serait plus vieux que notre planète.", 57, 1059860, 30, 36));
             listOp.emplace(37, new Species(83, 40, 33, 100, 46, 127, "Draquasar", Type::MAGIC, Type::DRAGON, 0, -1, nullptr, std::vector<Stats>{Stats::ATKSPE, Stats::ATKSPE, Stats::ATKSPE}, 2.07, 180.4, "Il communique avec les planêtes, même venant d'autres systèmes.", 118, 1250000, 2, 37));
-	        listOp.emplace(44, new Species(44, 100, 45, 25, 40, 30, "Tétaflore", Type::LIQUID, Type::VEGETAL, 0, -1, nullptr, std::vector<Stats>{Stats::DEF}, 0.3, 4, "Si vous le regardez dans les yeux, vous serez entourés d'eau et de fleurs instantanement, le temps qu'ils vous tuent.", 97, 1250000, 190, 44));
-	        listOp.emplace(43, new Species(120, 53, 35, 110, 87, 50, "Philynx", Type::FIGHT, Type::VEGETAL, 0, -1, nullptr, std::vector<Stats>{Stats::ATK, Stats::ATK}, 1.4, 49, "Ils sont toujours là, mais on ne les voient jamais, surtout la nuit, à moins d'avoir l'oeil de Lynx", 139, 1000000, 45, 43));
-	        listOp.emplace(46, new Species(76, 54, 89, 48, 60, 150, "MagMortis", Type::BURNING, Type::MINERAL, 0, -1, nullptr, std::vector<Stats>{Stats::DEF, Stats::DEF}, 3.64, 532, "Cet OpMon oublié au fil du temps est à l'origine de la disparition d'une ancienne génération de monstres combattants.", 200, 1850000, 10, 46)); 
-	        listOp.emplace(50, new Species(90, 90, 90, 90, 90, 90, "Clair de Lune", Type::MAGIC, Type::BAD, 0, -1, nullptr, std::vector<Stats>{Stats::ATKSPE, Stats::DEFSPE, Stats::DEFSPE}, 0.4, 5, "Ce chat adorait contempler la lune chaques soirs, mais un soir, la lune a eu raison du chat", 300, 1250000, 3, 50));
-
+            listOp.emplace(44, new Species(44, 100, 45, 25, 40, 30, "Tétaflore", Type::LIQUID, Type::VEGETAL, 0, -1, nullptr, std::vector<Stats>{Stats::DEF}, 0.3, 4, "Si vous le regardez dans les yeux, vous serez entourés d'eau et de fleurs instantanement, le temps qu'ils vous tuent.", 97, 1250000, 190, 44));
+            listOp.emplace(43, new Species(120, 53, 35, 110, 87, 50, "Philynx", Type::FIGHT, Type::VEGETAL, 0, -1, nullptr, std::vector<Stats>{Stats::ATK, Stats::ATK}, 1.4, 49, "Ils sont toujours là, mais on ne les voient jamais, surtout la nuit, à moins d'avoir l'oeil de Lynx", 139, 1000000, 45, 43));
+            listOp.emplace(46, new Species(76, 54, 89, 48, 60, 150, "MagMortis", Type::BURNING, Type::MINERAL, 0, -1, nullptr, std::vector<Stats>{Stats::DEF, Stats::DEF}, 3.64, 532, "Cet OpMon oublié au fil du temps est à l'origine de la disparition d'une ancienne génération de monstres combattants.", 200, 1850000, 10, 46));
+            listOp.emplace(50, new Species(90, 90, 90, 90, 90, 90, "Clair de Lune", Type::MAGIC, Type::BAD, 0, -1, nullptr, std::vector<Stats>{Stats::ATKSPE, Stats::DEFSPE, Stats::DEFSPE}, 0.4, 5, "Ce chat adorait contempler la lune chaques soirs, mais un soir, la lune a eu raison du chat", 300, 1250000, 3, 50));
 
             //Initializating OpMon Sprites
             //I will use a "for" loop later, I don't use it now to avoid loading errors. I will use it when every sprite will be loaded.

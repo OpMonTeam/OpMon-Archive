@@ -15,7 +15,7 @@ File under GNU GPL v3.0 license
 
 namespace OpMon {
     namespace Controller {
-      //Class used to activate and update the events.
+        //Class used to activate and update the events.
         class EventsCtrl {
           public:
             void updateEvents(std::vector<Model::Event *> &events, Model::Player &player, View::Overworld &overworld);
