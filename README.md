@@ -41,11 +41,10 @@ English is not our native language, but we do our best! If you see some errors, 
 
 If there are problems understanding the old commits or monthly reports that are in French, don't hesitate to ask!
 
-__The current game version is Alpha 0.15__ Download link: <a 
-href="http://opmon-game.ga/downloads"><img src="https://img.shields.io/badge/download-v0.15-red.svg" alt="Download Link"></a>
+__The current game version is Alpha 0.15.1__ Download link: <a 
+href="http://opmon-game.ga/downloads"><img src="https://img.shields.io/badge/download-v0.15.1-red.svg" alt="Download Link"></a>
 
-__The next game version will be Alpha 0.15.1__: Bugs fixes, code documentation and comments for the contributors
-__After : Alpha 0.16__: Fight system update and OpMons improvements
+__The next game version will be Alpha 0.16__: Fight system update and OpMons improvements
 * [Look the ROADMAP](https://github.com/cyrioncentori/OpMon/wiki/ROADMAP)
 * [Look the Releases changelog](https://github.com/cyrioncentori/OpMon/wiki/Releases)
 
@@ -66,11 +65,10 @@ See the controls of the game OpMon [here](http://opmon-game.ga/controls.html)
 * [Dépot du site web](https://github.com/cyrioncentori/Site-OpMon)
 * [Crédits](https://github.com/cyrioncentori/OpMon/blob/master/Credits.md)
 
-<br/>Version du jeu : Alpha 0.15 | Téléchargement : <a 
-href="http://opmon-game.ga"><img src="https://img.shields.io/badge/download-v0.15-red.svg" alt="Logo Téléchargement"></a><br/><br/>
+<br/>Version du jeu : Alpha 0.15.1 | Téléchargement : <a 
+href="http://opmon-game.ga"><img src="https://img.shields.io/badge/download-v0.15.1-red.svg" alt="Logo Téléchargement"></a><br/><br/>
 
 ### Prochaines versions :
-* Alpha 0.15.1 : Documentation et commentaire du code, corrections de bugs et amélioration du code
 * Alpha 0.16 : Amelioration du système de combat et ameliorations des OpMOns et de leurs stats
 * [Voir la RoadMap](https://github.com/cyrioncentori/OpMon/wiki/ROADMAP)
 
