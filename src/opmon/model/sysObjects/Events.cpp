@@ -194,14 +194,11 @@ namespace OpMon {
                         }
 
                         if(!move(movements[predefinedCounter], overworld.getData().getCurrentMap())) { //If the movement is impossible, decreases the counter to not ignore the movement.
-                            std::cout << "\\^o^/" << std::endl;
                             if(predefinedCounter != 0) {
                                 predefinedCounter--;
                             } else {
                                 predefinedCounter = movements.size() - 1;
                             }
-                        } else {
-                            std::cout << "..." << std::endl;
                         }
                         break;
 
