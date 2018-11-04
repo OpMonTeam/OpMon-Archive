@@ -36,7 +36,7 @@ namespace OpMon {
             frame.create(512, 512);
 
             oplog("Window initialized!");
-	    //window.setVerticalSyncEnabled(true);
+            //window.setVerticalSyncEnabled(true);
             window.setFramerateLimit(30);
             window.setKeyRepeatEnabled(false);
             frame.clear(sf::Color::White);

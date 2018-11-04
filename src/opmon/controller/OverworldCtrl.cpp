@@ -28,7 +28,7 @@ namespace OpMon {
 
             switch(events.type) {
             case sf::Event::KeyPressed:
-	      //The key equals starts the debug mode
+                //The key equals starts the debug mode
                 if(events.key.code == sf::Keyboard::Equal) {
                     debugMode = !debugMode;
                     if(!debugMode) {
@@ -36,13 +36,13 @@ namespace OpMon {
                         overworld.setCameraLock(false);
                     }
                 }
-		//M reboots the game
+                //M reboots the game
                 if(events.key.code == sf::Keyboard::M) {
                     reboot = true;
                     return GameStatus::STOP;
                 }
                 if(debugMode) {
-		  //Debug, chooses the layers to print
+                    //Debug, chooses the layers to print
                     if(events.key.code == sf::Keyboard::F10) {
                         overworld.printlayer[0] = !overworld.printlayer[0];
                     }
@@ -52,7 +52,7 @@ namespace OpMon {
                     if(events.key.code == sf::Keyboard::F12) {
                         overworld.printlayer[2] = !overworld.printlayer[2];
                     }
-		    
+
                     if(events.key.code == sf::Keyboard::C) {
                         overworld.printCollisions = !overworld.printCollisions;
                     }

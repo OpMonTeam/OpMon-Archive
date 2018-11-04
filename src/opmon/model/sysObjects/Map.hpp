@@ -31,7 +31,7 @@ namespace OpMon {
             bool indoor;
 
             std::string bg;
-            
+
             int w;
             int h;
 

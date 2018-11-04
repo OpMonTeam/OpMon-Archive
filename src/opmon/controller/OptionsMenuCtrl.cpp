@@ -35,7 +35,7 @@ namespace OpMon {
             switch(event.type) {
             case sf::Event::KeyPressed:
                 if(event.key.code == sf::Keyboard::Return) {
-		  //If present on the options' main menu, checks what to do
+                    //If present on the options' main menu, checks what to do
                     if(menu.getCurrentOption() == View::OptionType::ALL) {
                         switch(menu.cursorPosition()) {
                         case BACK:
@@ -58,7 +58,7 @@ namespace OpMon {
                             return GameStatus::CONTINUE;
                             break;
                         case CONTROLS:
-			  //Not implemented yet
+                            //Not implemented yet
                             break;
                         case VOLUME:
                             data.getUiDataPtr()->getJukebox().playSound("push");
@@ -70,7 +70,7 @@ namespace OpMon {
                             return GameStatus::CONTINUE;
                             break;
                         }
-                    } else if(menu.getCurrentOption() == View::OptionType::LANG) {//Chooses language to print
+                    } else if(menu.getCurrentOption() == View::OptionType::LANG) { //Chooses language to print
 
                         auto &tr = OpMon::I18n::Translator::getInstance();
                         switch(menu.cursorPosition()) {
@@ -100,7 +100,7 @@ namespace OpMon {
                             break;
                         }
                     } else if(menu.getCurrentOption() == View::OptionType::CREDITS) {
-		      //Only one choice is avilable on the credits : back.
+                        //Only one choice is avilable on the credits : back.
                         data.getUiDataPtr()->getJukebox().playSound("push");
                         menu.setCurrentOption(View::OptionType::ALL);
                         return GameStatus::CONTINUE;
@@ -120,10 +120,10 @@ namespace OpMon {
                 } else if(event.key.code == sf::Keyboard::BackSpace) {
                     data.getUiDataPtr()->getJukebox().playSound("push");
                     if(menu.getCurrentOption() == View::OptionType::ALL) {
-		      //Returns to the previous game screen if backspace is pressed while in the options' main menu.
+                        //Returns to the previous game screen if backspace is pressed while in the options' main menu.
                         return GameStatus::PREVIOUS;
                     } else {
-		      //Returns to the options' main menu if any of the options sub-menus are currently printed.
+                        //Returns to the options' main menu if any of the options sub-menus are currently printed.
                         menu.setCurrentOption(View::OptionType::ALL);
                         return GameStatus::CONTINUE;
                     }

@@ -111,7 +111,7 @@ namespace OpMon {
 
             sf::View camera;
             sf::Sprite character;
-	  sf::Vector2f charaStartPos;
+            sf::Vector2f charaStartPos;
             Model::Map *current = nullptr;
 
             std::string musicPath = "";

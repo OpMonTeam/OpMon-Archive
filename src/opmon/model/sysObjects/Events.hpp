@@ -38,14 +38,14 @@ namespace OpMon {
     namespace Model {
 
         namespace Events {
-	  //Used to know when the event must be triggered, relatively to the player
+            //Used to know when the event must be triggered, relatively to the player
             enum class EventTrigger {
                 PRESS = 0,
                 GO_IN = 1,
                 ZONE = 2,
                 BE_IN = 3
             };
-        }
+        } // namespace Events
 
         /**
           Defines an event
@@ -110,7 +110,7 @@ namespace OpMon {
             extern sf::Sound doorSound;
             extern sf::Sound shopdoorSound;
 
-	  //TODO : Move it
+            //TODO : Move it
             extern bool justTP;
 
             class TPEvent : public virtual Event {
@@ -152,7 +152,7 @@ namespace OpMon {
                 void onLangChanged() override;
                 virtual void update(Model::Player &player, View::Overworld &overworld);
                 virtual void action(Model::Player &player, View::Overworld &overworld);
-	      virtual void changeDialog(std::vector<Utils::OpString> newDialog);
+                virtual void changeDialog(std::vector<Utils::OpString> newDialog);
             };
 
             class LockedDoorEvent : public DoorEvent, TalkingEvent {
@@ -167,7 +167,7 @@ namespace OpMon {
                 LockedDoorEvent(std::vector<sf::Texture> &doorTextures, std::string doorType, Item *needed, sf::Vector2f const &position, sf::Vector2i const &tpPos, std::string const &map, Side ppDir = Side::NO_MOVE, EventTrigger eventTrigger = EventTrigger::PRESS, bool consumeItem = false, int sides = SIDE_ALL, bool passable = false);
             };
 
-	  //Ways to move for the npcs
+            //Ways to move for the npcs
             enum class MoveStyle : int {
                 NO_MOVE = 0,
                 PREDEFINED = 1,
@@ -220,9 +220,9 @@ namespace OpMon {
               public:
                 TrainerEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, OpTeam *team, std::vector<Utils::OpString> const &dialogKeys, std::vector<Utils::OpString> const &defeatedDialog, Side posDir = Side::TO_UP, EventTrigger eventTrigger = EventTrigger::PRESS, MoveStyle moveStyle = MoveStyle::NO_MOVE, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int side = SIDE_ALL);
 
-	      virtual void update(Model::Player &player, View::Overworld &overworld);
-	      virtual void action(Model::Player &player, View::Overworld &overworld);
-	      
+                virtual void update(Model::Player &player, View::Overworld &overworld);
+                virtual void action(Model::Player &player, View::Overworld &overworld);
+
                 OpTeam *getOpTeam() {
                     return team;
                 }

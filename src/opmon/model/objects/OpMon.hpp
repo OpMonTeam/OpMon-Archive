@@ -13,9 +13,9 @@
 #include "Species.hpp"
 #include "item/IOpBox.hpp"
 #include "item/Item.hpp"
+#include <SFML/System/String.hpp>
 #include <cmath>
 #include <iostream>
-#include <SFML/System/String.hpp>
 
 namespace OpMon {
     namespace Model {
@@ -83,7 +83,7 @@ namespace OpMon {
             int exp;
             /**The exp to get to reach the next level*/
             int toNextLevel;
-	  /**In some cases, like a exchange, the OpMon can get an exp boost*/
+            /**In some cases, like a exchange, the OpMon can get an exp boost*/
             float expBoost = 1;
 
             /**The item held*/
@@ -96,7 +96,7 @@ namespace OpMon {
 
           public:
             /**Lets you know if a OPMon is an OPMon that is initialized with a default initializer*/
-	  //Not very useful anymore I think...
+            //Not very useful anymore I think...
             bool initialized = true;
 
             bool confused = false;
@@ -109,7 +109,6 @@ namespace OpMon {
 
             OpMon(const std::string &nickname, const Species *species, int level, const std::vector<Attack *> &attacks,
                   Nature nature);
-
 
             OpMon() {
                 initialized = true;
@@ -204,7 +203,7 @@ namespace OpMon {
                 return HP;
             }
 
-            sf::String& getNickname() {
+            sf::String &getNickname() {
                 return nickname;
             }
 
@@ -266,7 +265,7 @@ namespace OpMon {
             }
 
             //Warning! The == and != operators did not compare two OPMons! They compare whether OPMons are "initialized" or not (see initialized))
-	  //Yup, I should change this in the future (TODO)
+            //Yup, I should change this in the future (TODO)
             bool operator==(OpMon const &a) {
                 return (initialized == a.initialized);
             }
