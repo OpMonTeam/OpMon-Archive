@@ -6,9 +6,11 @@
 */
 #include "UiData.hpp"
 #include "../../../utils/log.hpp"
+#include "../../../nlohmann/json.hpp"
 #include "../objects/evolution/evolutions.hpp"
 #include "../save/OptionsSave.hpp"
 #include "ResourceLoader.hpp"
+#include <fstream>
 
 namespace OpMon {
     namespace Model {
@@ -78,6 +80,36 @@ namespace OpMon {
             listOp.emplace(46, new Species(76, 54, 89, 48, 60, 150, "MagMortis", Type::BURNING, Type::MINERAL, 0, -1, nullptr, std::vector<Stats>{Stats::DEF, Stats::DEF}, 3.64, 532, "Cet OpMon oublié au fil du temps est à l'origine de la disparition d'une ancienne génération de monstres combattants.", 200, 1850000, 10, 46));
             listOp.emplace(50, new Species(90, 90, 90, 90, 90, 90, "Clair de Lune", Type::MAGIC, Type::BAD, 0, -1, nullptr, std::vector<Stats>{Stats::ATKSPE, Stats::DEFSPE, Stats::DEFSPE}, 0.4, 5, "Ce chat adorait contempler la lune chaques soirs, mais un soir, la lune a eu raison du chat", 300, 1250000, 3, 50));
 
+	    /*nlohmann::json toWrite;
+	    
+	    for(auto itor = listOp.begin(); itor != listOp.end(); ++itor){
+	      Species* species = itor->second;
+	      nlohmann::json cS;
+	      cS["opDex"] = itor->first;
+	      cS["atk"] = species->getBaseAtk();
+	      cS["def"] = species->getBaseDef();
+	      cS["atkSpe"] =  species->getBaseAtkSpe();
+	      cS["defSpe"] = species->getBaseDefSpe();
+	      cS["spe"] = species->getBaseSpe();
+	      cS["HP"] = species->getBaseHP();
+	      cS["types"] =  {species->getType1(), species->getType2()};
+	      cS["evolution"] = {
+		{"type", ((species->getEvolType() == nullptr) ? "no" : "level")},
+		{"level", species->getNiveauEvolution()}
+	      };
+	      cS["evs"] = species->getEv();
+	      cS["height"] =  species->getHeight();
+	      cS["weight"] = species->getWeight();
+	      cS["expGiven"] = species->getExp();
+	      cS["curve"] = species->getExpMax();
+	      cS["captureRate"] = species->getCaptureRate();
+	      toWrite.push_back(cS);
+	      
+	      }
+
+	    std::ofstream out("opmons.json");
+	    out << toWrite;*/
+	    
             //Initializating OpMon Sprites
             //I will use a "for" loop later, I don't use it now to avoid loading errors. I will use it when every sprite will be loaded.
             opSprites.push_back(std::vector<sf::Texture>());
