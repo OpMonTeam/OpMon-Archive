@@ -133,9 +133,7 @@ namespace OpMon {
             calcStats();
             //Check if the OpMon evolves
             if(species->getEvolType()->checkEvolve(*this)) {
-                if((species->getEvolType()->getEvolID()) == (Evolutions::ETrade)) {
-                    evolve();
-                }
+	      evolve();
             }
         }
 
@@ -222,12 +220,7 @@ namespace OpMon {
         //This method will be removed in the future
         bool OpMon::itemUsed(Item *used) {
             //if the OpMon evolves by using an item, check if the item used is the item to make the OpMon evolve.
-            if((species->getEvolType()->getEvolID()) == Evolutions::EItem) {
-                if(species->getEvolType()->itemEvolve(used)) {
-                    evolve();
-                    return true;
-                }
-            }
+            //TODO ^
 
             if(used->getItemTypeID() == ItemType::IHeal) {
 

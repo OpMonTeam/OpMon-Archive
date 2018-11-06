@@ -148,5 +148,7 @@ namespace Utils {
             return instances;
         }
 
+      std::string getStd(std::string const& key)  { return sfStringtoStdString(get(key)); }
+
     } // namespace StringKeys
 } // namespace Utils
