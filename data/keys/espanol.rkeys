@@ -150,16 +150,16 @@ key.battle.status.confused.hplost=~ perdió ~ hp.
 
 key.battle.wait=Qué haces?
 
-key.opmon.name.00=MissingNo.
-key.opmon.name.01=Rosarin
-key.opmon.name.02=Toxiris
-key.opmon.name.03=Ninjasmine
-key.opmon.name.04=Oursiflamme
-key.opmon.name.05=Boudabrun
-key.opmon.name.06=Calcinours
-key.opmon.name.07=Nanolphin
-key.opmon.name.08=Dolsea
-key.opmon.name.09=Roileine
+key.opmon.name.0=MissingNo.
+key.opmon.name.1=Rosarin
+key.opmon.name.2=Toxiris
+key.opmon.name.3=Ninjasmine
+key.opmon.name.4=Oursiflamme
+key.opmon.name.5=Boudabrun
+key.opmon.name.6=Calcinours
+key.opmon.name.7=Nanolphin
+key.opmon.name.8=Dolsea
+key.opmon.name.9=Roileine
 key.opmon.name.10=Spoilurm
 key.opmon.name.11=Name
 key.opmon.name.12=Name

@@ -86,6 +86,7 @@ namespace Utils {
                     return strings[i];
                 }
             }
+	    Log::warn("Key " + key + " not found in the keys files.");
             return voi; //If nothing found, returns an empty string
         }
 
