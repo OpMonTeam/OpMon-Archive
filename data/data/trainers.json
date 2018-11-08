@@ -1,0 +1,19 @@
+{
+	"beta" : {
+		"name" : "Beta",
+		"team" : [
+			{
+				"nickname" : "null",
+				"species" : 1,
+				"level" : 5,
+				"attacks" : [
+					"Tackle",
+					"Mist",
+					"null",
+					"null",
+				]
+				"nature" : 4
+			}
+		]
+	}
+}
