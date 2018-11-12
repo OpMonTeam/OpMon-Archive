@@ -24,9 +24,9 @@ namespace OpMon {
 	*/
         class Map {
           private:
-            const int *layer1;
-            const int *layer2;
-            const int *layer3;
+            int *layer1;
+            int *layer2;
+            int *layer3;
 
             bool indoor;
 
@@ -43,7 +43,7 @@ namespace OpMon {
             std::vector<std::string> animatedElements;
 
           public:
-            Map(const int layer1[], const int layer2[], const int layer3[], int w, int h, bool indoor, std::string const &bg, std::vector<std::string> const &animatedElements = std::vector<std::string>());
+            Map(std::vector<int> const& layer1, std::vector<int> const& layer2, std::vector<int> const& layer3, int w, int h, bool indoor, std::string const &bg, std::vector<std::string> const &animatedElements = std::vector<std::string>());
             ~Map();
             int getH() const {
                 return h;
