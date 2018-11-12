@@ -66,7 +66,7 @@ namespace OpMon {
 
             ResourceLoader::loadTextureArray(elementsTextures["smoke"], "animations/chimneysmoke/chimneysmoke_%d.png", 32, 1);
 
-#define OLDMAPS
+//#define OLDMAPS
 	    
 #ifndef OLDMAPS
 	    
@@ -105,9 +105,9 @@ namespace OpMon {
 	    completions.emplace("playername", player->getNameP());
 	    
 	    for(auto itor = mapsJson.begin(); itor != mapsJson.end(); ++itor){
-		Map *currentMap = maps.emplace(itor->at("id"), new Map(itor->at("layers")[0].data(),
-								       itor->at("layers")[1].data(),
-								       itor->at("layers")[2].data(),
+		Map *currentMap = maps.emplace(itor->at("id"), new Map(itor->at("layers")[0],
+								       itor->at("layers")[1],
+								       itor->at("layers")[2],
 								       itor->at("size")[0],
 								       itor->at("size")[1],
 								       itor->at("indoor"),
