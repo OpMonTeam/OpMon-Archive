@@ -7,6 +7,11 @@ File under GNU GPL v3.0 license
 #include "./Gameloop.hpp"
 #include "../controller/MainMenuCtrl.hpp"
 #include "../model/sysObjects/Player.hpp"
+#include "../../utils/StringKeys.hpp"
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics/Sprite.hpp>
+#include "../model/storage/ResourceLoader.hpp"
 #include <SFML/Window/Event.hpp>
 
 namespace OpMon {
@@ -23,7 +28,21 @@ namespace OpMon {
             w->close();
         });
         window->open();
+		
+		sf::Texture loadTx;
+		Model::ResourceLoader::load(loadTx, "backgrounds/loading.png");
+		sf::Text loadingTxt;
+		loadingTxt.setString(Utils::StringKeys::get("load.txt"));
+		loadingTxt.setPosition(320, 440);
+		sf::Sprite loadSpr;
+		loadSpr.setTexture(loadTx);
+		loadingTxt.setFont(uidata->getFont());
+		loadingTxt.setCharacterSize(35);
 
+		window->getFrame().draw(loadSpr);
+		window->getFrame().draw(loadingTxt);
+		window->refresh();
+		
         GameStatus status{GameStatus::CONTINUE};
 
         while(status != GameStatus::STOP) {
@@ -32,7 +51,7 @@ namespace OpMon {
             //Gets the current game screen's controller
             auto* ctrl = _gameScreens.top().get();
             sf::Event event;
-
+			
             //process all pending SFML events
             while(status == GameStatus::CONTINUE) {
                 bool isEvent = window->getWindow().pollEvent(event);
@@ -51,6 +70,14 @@ namespace OpMon {
                 // frame update & draw
                 status = ctrl->update(window->getFrame());
             }
+			if(status == GameStatus::NEXT || status == GameStatus::PREVIOUS){
+				window->getFrame().draw(loadSpr);
+				window->getFrame().draw(loadingTxt);
+				window->refresh();
+				if(status == GameStatus::NEXT){
+					ctrl->loadNextScreen();
+				}
+			}
 
             switch(status) {
             case GameStatus::NEXT: //Pauses the current screen and passes to the next
