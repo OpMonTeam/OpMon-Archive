@@ -12,10 +12,6 @@ namespace OpMon {
           : evo(evo) {
         }
 
-        void Evolution::checkEvo() {
-            //toEvolve = Data::OpMons::listOp[evo];
-        }
-
         Species *Evolution::getEvolution() const {
             return toEvolve;
         }

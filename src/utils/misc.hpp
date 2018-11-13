@@ -16,6 +16,8 @@ namespace Utils {
         unsigned int randUI(unsigned int limit);
 
         std::size_t hash(const std::string &str);
+
+	template<typename T> T* vectorToArray(std::vector<T> const& vect);
     } // namespace Misc
 } // namespace Utils
 

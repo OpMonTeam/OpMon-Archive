@@ -20,12 +20,16 @@ namespace OpMon {
             Model::MainMenuData data;
             View::MainMenu view;
 
+			int loadNext = 0;
+			
           public:
             MainMenuCtrl(Model::UiData *data);
 
             GameStatus checkEvent(sf::Event const &event) override;
             GameStatus update(sf::RenderTexture &frame) override;
 
+			void loadNextScreen() override;
+			
             void suspend() override;
             void resume() override;
         };
