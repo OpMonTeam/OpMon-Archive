@@ -559,7 +559,7 @@
 		"type" : "TPEvent",
 		"textures" : "alpha",
 		"trigger" : 3,
-		"position" : [15, 15],
+		"position" : [8, 15],
 		"tp" : {
 		    "position" : [36, 17],
 		    "map" : "Fauxbourg Euvi",
