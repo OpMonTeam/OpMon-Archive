@@ -42,9 +42,9 @@ namespace OpMon {
                     animNext = true;
                     return GameStatus::CONTINUE;
                 }
-                //P is used to skip the introduction, but it must be not working when entering the name
+                //P is used to skip the introduction, but it must be disabled when entering the name
                 if(event.key.code == sf::Keyboard::P && startscene.getPart() != 1) {
-					loadNext = LOAD_OVERWORLD;
+		  loadNext = LOAD_OVERWORLD;
                     return GameStatus::NEXT;
                 }
                 break;
@@ -67,8 +67,8 @@ namespace OpMon {
 
             //If it's the end of the introduction, go to the overworld
             if(view.getPart() > 2) {
-				loadNext = LOAD_OVERWORLD;
-                return GameStatus::NEXT;
+	      loadNext = LOAD_OVERWORLD;
+	      return GameStatus::NEXT;
             }
             return GameStatus::CONTINUE;
         }
@@ -96,27 +96,28 @@ namespace OpMon {
                 animNext = false;
                 view.draw(frame);
                 loadNext = LOAD_ANIMATION_CLOSE;
-				screenTexture = frame.getTexture();
-                return GameStatus::NEXT;
+		screenTexture = frame.getTexture();
+                return GameStatus::NEXT_NLS;
             }
             GameStatus toReturn = view();
             if(toReturn == GameStatus::CONTINUE) {
                 view.draw(frame);
             }
 
-            if(toReturn == GameStatus::NEXT) {
-                switch(view.getPart()) {
+            if(toReturn == GameStatus::NEXT_NLS || toReturn == GameStatus::NEXT) {
+	      switch(view.getPart()) {
                 case 1:
-                    loadNext = LOAD_ANIMATION_OPEN;
-					screenTexture = frame.getTexture();
-                    break;
-                case 3:
-                    _next_gs = std::make_unique<OverworldCtrl>(data.getPlayer(), data.getUiDataPtr());
-                    break;
-                default:
-                    handleError("Internal error, unknown part in StartSceneCtrl::update", true);
-                    break;
-                }
+		  loadNext = LOAD_ANIMATION_OPEN;
+		  screenTexture = frame.getTexture();
+		  toReturn = GameStatus::NEXT_NLS;
+		  break;
+	      case 3:
+		loadNext = LOAD_OVERWORLD;
+		break;
+	      default:
+		handleError("Internal error, unknown part in StartSceneCtrl::update", true);
+		break;
+	      }
             }
 
             return toReturn;
