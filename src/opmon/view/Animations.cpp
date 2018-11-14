@@ -42,7 +42,7 @@ namespace OpMon {
                 frame.draw(anim);
 
                 counter++;
-                return (counter > frames) ? GameStatus::PREVIOUS : GameStatus::CONTINUE;
+                return (counter > frames) ? GameStatus::PREVIOUS_NLS : GameStatus::CONTINUE;
             }
 
         } // namespace Animations

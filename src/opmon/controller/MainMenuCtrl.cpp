@@ -10,6 +10,10 @@ File under GNU GPL v3.0 license
 #include "./OptionsMenuCtrl.hpp"
 #include "./StartSceneCtrl.hpp"
 
+//Defines created to make the code easier to read
+#define LOAD_STARTSCENE 1
+#define LOAD_OPTIONS 2
+
 namespace OpMon {
     namespace Controller {
 
@@ -25,14 +29,14 @@ namespace OpMon {
                 case sf::Keyboard::Return:
                     switch(curPosI) {
                     case 0:
-                        _next_gs = std::make_unique<StartSceneCtrl>(data.getUiDataPtr());
+                        loadNext = LOAD_STARTSCENE;
                         data.getUiDataPtr()->getJukebox().playSound("push");
                         return GameStatus::NEXT;
                     case 1:
                         data.getUiDataPtr()->getJukebox().playSound("nope");
                         return GameStatus::CONTINUE;
                     case 2:
-                        _next_gs = std::make_unique<OptionsMenuCtrl>(data.getUiDataPtr());
+                        loadNext = LOAD_OPTIONS;
                         data.getUiDataPtr()->getJukebox().playSound("push");
                         return GameStatus::NEXT;
                     case 3:
@@ -59,6 +63,19 @@ namespace OpMon {
             return GameStatus::CONTINUE;
         }
 
+		void MainMenuCtrl::loadNextScreen(){
+			switch(loadNext){
+			case LOAD_STARTSCENE:
+				_next_gs = std::make_unique<StartSceneCtrl>(data.getUiDataPtr());
+				break;
+			case LOAD_OPTIONS:
+				_next_gs = std::make_unique<OptionsMenuCtrl>(data.getUiDataPtr());
+				break;
+			default:
+				handleError("Error : Unknown view to load in MainMenuCtrl.", true);
+			}
+		}
+		
         void MainMenuCtrl::suspend() {
             view.pause();
         }
