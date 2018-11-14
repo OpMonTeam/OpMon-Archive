@@ -33,7 +33,7 @@ namespace OpMon {
 		Model::ResourceLoader::load(loadTx, "backgrounds/loading.png");
 		sf::Text loadingTxt;
 		loadingTxt.setString(Utils::StringKeys::get("load.txt"));
-		loadingTxt.setPosition(320, 440);
+		loadingTxt.setPosition(250, 440);
 		sf::Sprite loadSpr;
 		loadSpr.setTexture(loadTx);
 		loadingTxt.setFont(uidata->getFont());
@@ -70,15 +70,21 @@ namespace OpMon {
                 // frame update & draw
                 status = ctrl->update(window->getFrame());
             }
-			if(status == GameStatus::NEXT || status == GameStatus::PREVIOUS){
-				window->getFrame().draw(loadSpr);
-				window->getFrame().draw(loadingTxt);
-				window->refresh();
-				if(status == GameStatus::NEXT){
-					ctrl->loadNextScreen();
-				}
-			}
+	    
+	    if(status == GameStatus::NEXT || status == GameStatus::PREVIOUS || status == GameStatus::NEXT_NLS || status == GameStatus::PREVIOUS_NLS){
+	      if(status != GameStatus::NEXT_NLS && status != GameStatus::PREVIOUS_NLS){
+		window->getFrame().draw(loadSpr);
+		window->getFrame().draw(loadingTxt);
+		window->refresh();
+	      }else{
+		status = ((status == GameStatus::NEXT_NLS) ? GameStatus::NEXT : GameStatus::PREVIOUS);
+	      }
+	      if(status == GameStatus::NEXT){
+		ctrl->loadNextScreen();
+	      }
+	    }
 
+	    
             switch(status) {
             case GameStatus::NEXT: //Pauses the current screen and passes to the next
                 ctrl->suspend();
