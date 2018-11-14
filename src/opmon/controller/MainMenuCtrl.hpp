@@ -21,6 +21,7 @@ namespace OpMon {
             Model::MainMenuData data;
             View::MainMenu view;
 
+			int loadNext = 0;
             int curPosI{0};
 
           public:
@@ -28,6 +29,8 @@ namespace OpMon {
 
             GameStatus checkEvent(sf::Event const &event) override;
             GameStatus update(sf::RenderTexture &frame) override;
+
+			void loadNextScreen() override;
 
             void suspend() override;
             void resume() override;

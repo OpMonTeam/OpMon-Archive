@@ -22,6 +22,8 @@ namespace OpMon {
             sf::Texture alpha = sf::Texture();
             std::vector<sf::Texture> alphaTab = std::vector<sf::Texture>(1);
 
+	    std::map<std::string, OpTeam*> trainers;
+	    
             std::map<std::string, Map *> maps;
             std::map<std::string, Map *>::iterator mapsItor;
 
@@ -39,6 +41,8 @@ namespace OpMon {
             std::map<std::string, std::vector<sf::Texture>> elementsTextures;
 
             std::map<std::string, std::vector<sf::Texture>> charaTextures;
+
+	    std::map<std::string, std::vector<sf::Texture>> eventsTextures;
 
             std::map<std::string, std::vector<sf::Texture>> doorsTextures;
 
