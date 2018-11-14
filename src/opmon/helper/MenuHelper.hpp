@@ -10,6 +10,10 @@ File under GNU GPL v3.0 license
 namespace OpMon {
     namespace Helper {
 
+        /**
+         * Moves the cursor to select another menu entry.
+         * @param `true` moves the cursor up; `false` moves it down.
+         */
         static void moveArrow(bool direction, int& curPosI, int limitMax = 4) {
             if(direction) { //If direction is true, the cursor goes down.
                 --curPosI;

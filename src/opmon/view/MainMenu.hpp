@@ -22,7 +22,7 @@ namespace OpMon {
         class MainMenu : public I18n::ATranslatable {
 
           public:
-            MainMenu(Model::MainMenuData &data);
+            MainMenu(Model::MainMenuData &data, const std::size_t totalView = 4);
             ~MainMenu() override = default;
 
             void initStrings();
@@ -34,12 +34,16 @@ namespace OpMon {
             void draw(sf::RenderTexture &frame, int curPosI);
 
           private:
+            const std::size_t totalView;
             sf::Sprite bg;
-            sf::Text playtx;
-            sf::Text charge;
-            sf::Text options;
-            sf::Text exit;
-            sf::Vector2f curPos[4];
+
+            struct OptionMenu
+            {
+                sf::Text text;
+                sf::Vector2f pos;
+            };
+            std::vector<OptionMenu> optionsVec;
+
             sf::Sprite cursor;
             Model::MainMenuData &data;
         };
