@@ -17,31 +17,21 @@ namespace OpMon {
     namespace View {
 
         /**
-	 * MainMenu's view (displayed when the game starts).
-	 */
+         * MainMenu's view (displayed when the game starts).
+         */
         class MainMenu : public I18n::ATranslatable {
 
           public:
             MainMenu(Model::MainMenuData &data);
-            ~MainMenu() override;
+            ~MainMenu() override = default;
 
             void initStrings();
             void onLangChanged() override;
 
-            /**
-	   * Moves the cursor to select another menu entry.
-	   * @param `true` moves the cursor up; `false` moves it down.
-	   */
-            void moveArrow(bool direction);
-
             void pause();
             void play();
 
-            void draw(sf::RenderTexture &frame);
-
-            int getCursorPosition() {
-                return curPosI;
-            }
+            void draw(sf::RenderTexture &frame, int curPosI);
 
           private:
             sf::Sprite bg;
@@ -49,10 +39,8 @@ namespace OpMon {
             sf::Text charge;
             sf::Text options;
             sf::Text exit;
-            sf::Sprite cursor;
             sf::Vector2f curPos[4];
-            sf::Texture textures[2];
-            int curPosI = 0;
+            sf::Sprite cursor;
             Model::MainMenuData &data;
         };
     } // namespace View

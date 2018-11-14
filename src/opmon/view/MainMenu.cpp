@@ -36,7 +36,7 @@ namespace OpMon {
             }
             bg.setTexture(data.getTitlescreen());
             cursor.setTexture(data.getArrChoice());
-            cursor.setScale(3, 3);
+
             initStrings();
 
             for(auto *text : textPos) {
@@ -46,9 +46,6 @@ namespace OpMon {
             }
 
             data.getUiDataPtr()->getJukebox().play("Title");
-        }
-
-        MainMenu::~MainMenu() {
         }
 
         void MainMenu::onLangChanged() {
@@ -62,25 +59,11 @@ namespace OpMon {
             data.getUiDataPtr()->getJukebox().play("Title");
         }
 
-        void MainMenu::moveArrow(bool direction) {
-            if(direction) { //If direction is true, the cursor goes down.
-                curPosI--;
-            } else { //Obviously, if direction is false, the cursor goes up.
-                curPosI++;
-            }
-
-            if(curPosI >= 4) {
-                curPosI = 0;
-            } else if(curPosI < 0) {
-                curPosI = 3;
-            }
-        }
-
-        void MainMenu::draw(sf::RenderTexture &frame) {
+        void MainMenu::draw(sf::RenderTexture &frame, int curPosI) {
             frame.clear(sf::Color::Black);
             frame.draw(bg);
             frame.draw(playtx),
-              frame.draw(charge);
+            frame.draw(charge);
             frame.draw(options);
             frame.draw(exit);
             cursor.setPosition(curPos[curPosI]);
