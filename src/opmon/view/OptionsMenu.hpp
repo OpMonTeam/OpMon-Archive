@@ -19,13 +19,13 @@ namespace OpMon {
 
         enum class OptionType { ALL,
                                 LANG,
+                                CONTROLES,
                                 CREDITS };
 
         class OptionsMenu : I18n::ATranslatable {
           public:
             OptionsMenu(Model::OptionsMenuData &data);
-
-            ~OptionsMenu();
+            ~OptionsMenu() = default;
 
             void moveArrow(bool dir);
 
@@ -33,6 +33,7 @@ namespace OpMon {
 
             void loop(sf::RenderTarget &frame);
             void langLoop(sf::RenderTarget &frame);
+            void controlesLoop(sf::RenderTarget &frame);
             void creditsLoop(sf::RenderTarget &frame);
 
             void initStrings();
@@ -40,16 +41,20 @@ namespace OpMon {
 
             OptionType getCurrentOption() { return currentOptions; }
             void setCurrentOption(OptionType newOpt) { currentOptions = newOpt; }
-            int cursorPosition() {
+            int cursorPosition() const {
                 switch(currentOptions) {
                 case OptionType::ALL:
                     return curPosOptI;
                 case OptionType::LANG:
                     return curPosLangI;
-                default:
-                    return 0;
+                case OptionType::CONTROLES:
+                    return curPosCtrlI;
                 }
+
+                return 0;
             }
+
+            void setCurrentActionsCtrl(int currentActionsCtrl_) { currentActionsCtrl = currentActionsCtrl_; }
 
             void play();
             void pause();
@@ -61,6 +66,7 @@ namespace OpMon {
             sf::Sprite volumeCur;
             sf::Sprite bgCredits;
             sf::Sprite bgOpt;
+            sf::Sprite bgControles;
             sf::Text langFr;
             sf::Text langEng;
             sf::Text langEsp;
@@ -91,13 +97,28 @@ namespace OpMon {
             int optionSelect = -1;
             int curPosOptI = 0;
             int curPosLangI = 0;
+            int curPosCtrlI = 0;
+            int currentActionsCtrl{0};
+            sf::Text txtCtrlChange;
+            sf::Text txtCtrlUp;
+            sf::Text txtCtrlDown;
+            sf::Text txtCtrlLeft;
+            sf::Text txtCtrlRight;
+            sf::Text txtCtrlTalk;
+            sf::Text txtCtrlInteract;
+            sf::Sprite rectKeyChange;
+            sf::Vector2f posControls[7] = {
+                {-500.0, -500.0}, {108.0, 215.0}, {98.0, 348.0}, {5.0, 280.0}, {175.0, 280.0}, {255.0, 440.0}, {350.0, 395.0}
+            };
 
             sf::Text txtLang;
             sf::Text txtCred;
+            sf::Text txtCtrl;
             sf::Sprite bgLangues;
             sf::Vector2f curPosLang[5] = {};
             sf::Vector2f curSizeLang[5];
-            sf::Texture textures2[5];
+            sf::Vector2f curPosCtrl[5] = {};
+            sf::Vector2f curSizeCtrl[5];
             sf::Sprite check;
 
             bool continuer = true;
