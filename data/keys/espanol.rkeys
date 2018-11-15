@@ -29,6 +29,7 @@ key.options.vol=Controles
 key.options.control=Creditos
 key.options.lang.title=Idiomas
 key.options.cred.title=Creditos
+key.options.ctrl.change=Change configuration - todo
 
 key.nameEntry.top=Cual es su nombre
 key.nameEntry.med=Escriba un nombre

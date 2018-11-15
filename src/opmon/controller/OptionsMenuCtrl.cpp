@@ -34,6 +34,35 @@ namespace OpMon {
             auto &menu = view;
             switch(event.type) {
             case sf::Event::KeyPressed:
+                if(menu.getCurrentOption() == View::OptionType::CONTROLES && keyChangeActive) {
+                    if(currentKeyChange < controlsName.size())
+                    {
+                        const std::string keyCode = findNameKeyCode(event.key.code);
+                        if(!keyCode.empty())
+                        {
+                            Model::OptionsSave::addParam(std::string("control.") + controlsName[currentKeyChange], keyCode.c_str());
+                        }
+                        ++currentKeyChange;
+                        view.setCurrentActionsCtrl(currentKeyChange + 1);
+                    }
+
+                    if(currentKeyChange >= controlsName.size())
+                    {
+                        currentKeyChange = 0;
+                        keyChangeActive = false;
+                        view.setCurrentActionsCtrl(currentKeyChange);
+                        Model::OptionsSave::saveParams(std::string(SAVE_PATH + "optSave.oparams"));
+
+                        data.getUiDataPtr()->setKeyUp(Model::OptionsSave::getParam("control.up").getValue());
+                        data.getUiDataPtr()->setKeyDown(Model::OptionsSave::getParam("control.down").getValue());
+                        data.getUiDataPtr()->setKeyLeft(Model::OptionsSave::getParam("control.left").getValue());
+                        data.getUiDataPtr()->setKeyRight(Model::OptionsSave::getParam("control.right").getValue());
+                        data.getUiDataPtr()->setKeyTalk(Model::OptionsSave::getParam("control.talk").getValue());
+                        data.getUiDataPtr()->setKeyInteract(Model::OptionsSave::getParam("control.interact").getValue());
+                    }
+
+                    return GameStatus::CONTINUE;
+                }
                 if(event.key.code == sf::Keyboard::Return) {
                     //If present on the options' main menu, checks what to do
                     if(menu.getCurrentOption() == View::OptionType::ALL) {
@@ -58,7 +87,9 @@ namespace OpMon {
                             return GameStatus::CONTINUE;
                             break;
                         case CONTROLS:
-                            //Not implemented yet
+                            data.getUiDataPtr()->getJukebox().playSound("push");
+                            menu.setCurrentOption(View::OptionType::CONTROLES);
+                            return GameStatus::CONTINUE;
                             break;
                         case VOLUME:
                             data.getUiDataPtr()->getJukebox().playSound("push");
@@ -104,6 +135,18 @@ namespace OpMon {
                         data.getUiDataPtr()->getJukebox().playSound("push");
                         menu.setCurrentOption(View::OptionType::ALL);
                         return GameStatus::CONTINUE;
+                    } else if(menu.getCurrentOption() == View::OptionType::CONTROLES) {
+                        switch(menu.cursorPosition()) {
+                        case 0:
+                            data.getUiDataPtr()->getJukebox().playSound("push");
+                            menu.setCurrentOption(View::OptionType::ALL);
+                            return GameStatus::CONTINUE;
+                        case 1:
+                            data.getUiDataPtr()->getJukebox().playSound("push");
+                            keyChangeActive = true;
+                            view.setCurrentActionsCtrl(currentKeyChange + 1);
+                            break;
+                        }
                     } else {
                         return GameStatus::CONTINUE;
                     }
@@ -134,6 +177,18 @@ namespace OpMon {
                 }
             }
             return GameStatus::CONTINUE;
+        }
+
+        const std::string& OptionsMenuCtrl::findNameKeyCode(sf::Keyboard::Key searchKeyCode)
+        {
+            const std::map<std::string, sf::Keyboard::Key> keysMap = data.getUiDataPtr()->getKeysMap();
+            for(auto it = cbegin(keysMap); it != cend(keysMap); ++it )
+            {
+                if (it->second == searchKeyCode)
+                    return it->first;
+            }
+
+            return cbegin(keysMap)->first;
         }
 
         void OptionsMenuCtrl::suspend() {
