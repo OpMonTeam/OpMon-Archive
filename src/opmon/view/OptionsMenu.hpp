@@ -9,6 +9,7 @@
 
 #include "../model/storage/OptionsMenuData.hpp"
 #include "../start/i18n/ATranslatable.hpp"
+#include "../helper/MenuHelper.hpp"
 #include "Elements.hpp"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
@@ -67,10 +68,12 @@ namespace OpMon {
             sf::Sprite bgCredits;
             sf::Sprite bgOpt;
             sf::Sprite bgControles;
+
             sf::Text langFr;
             sf::Text langEng;
             sf::Text langEsp;
             sf::Text langDe;
+
             sf::Text txtRetour;
             sf::Text txtOptions;
             sf::Text txtCre1;
@@ -107,7 +110,7 @@ namespace OpMon {
             sf::Text txtCtrlTalk;
             sf::Text txtCtrlInteract;
             sf::Sprite rectKeyChange;
-            sf::Vector2f posControls[7] = {
+            const sf::Vector2f posControls[7] = {
                 {-500.0, -500.0}, {108.0, 215.0}, {98.0, 348.0}, {5.0, 280.0}, {175.0, 280.0}, {255.0, 440.0}, {350.0, 395.0}
             };
 
@@ -120,8 +123,6 @@ namespace OpMon {
             sf::Vector2f curPosCtrl[5] = {};
             sf::Vector2f curSizeCtrl[5];
             sf::Sprite check;
-
-            bool continuer = true;
         };
     } // namespace View
 } // namespace OpMon
