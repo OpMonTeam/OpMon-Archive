@@ -261,40 +261,13 @@ namespace OpMon {
         void OptionsMenu::moveArrow(bool move) {
             switch(currentOptions) {
             case OptionType::ALL:
-                if(move) {
-                    curPosOptI--;
-                } else {
-                    curPosOptI++;
-                }
-                if(curPosOptI >= 6) {
-                    curPosOptI = 0;
-                } else if(curPosOptI < 0) {
-                    curPosOptI = 5;
-                }
+                Helper::moveArrow(move, curPosOptI, 6);
                 break;
             case OptionType::CONTROLES:
-                if(move) {
-                    curPosCtrlI--;
-                } else {
-                    curPosCtrlI++;
-                }
-                if(curPosCtrlI > 1) {
-                    curPosCtrlI = 0;
-                } else if(curPosCtrlI < 0) {
-                    curPosCtrlI = 1;
-                }
+                Helper::moveArrow(move, curPosCtrlI, 2);
+                break;
             case OptionType::LANG:
-                if(move) {
-                    curPosLangI--;
-                } else {
-                    curPosLangI++;
-                }
-                if(curPosLangI >= 5) {
-                    curPosLangI = 0;
-                } else if(curPosLangI < 0) {
-                    curPosLangI = 4;
-                }
-            default:
+                Helper::moveArrow(move, curPosLangI, 5);
                 break;
             }
         }

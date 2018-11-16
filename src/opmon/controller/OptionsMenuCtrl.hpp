@@ -16,6 +16,7 @@ File under GNU GPL v3.0 license
 #include "../model/save/OptionsSave.hpp"
 #include "../../utils/path.hpp"
 #include "../../utils/defines.hpp"
+#include "../model/storage/KeyData.hpp"
 #include "AGameScreen.hpp"
 
 namespace OpMon {
@@ -39,7 +40,6 @@ namespace OpMon {
             GameStatus update(sf::RenderTexture &frame) override;
 
             const std::vector<std::string> controlsName{{"up", "down", "left", "right", "talk", "interact"}};
-            const std::string& findNameKeyCode(sf::Keyboard::Key searchKeyCode);
             void resume();
             void suspend();
         };

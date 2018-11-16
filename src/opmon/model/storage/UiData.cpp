@@ -175,42 +175,42 @@ namespace OpMon {
                 OptionsSave::addParam("control.up", "Up");
                 up = sf::Keyboard::Up;
             } else {
-                up = keysMap.at(keyUp);
+                up = KeyData::keysMap.at(keyUp);
             }
             std::string keyDown = OptionsSave::getParam("control.down").getValue();
             if(keyDown == "NULL") {
                 OptionsSave::addParam("control.down", "Down");
                 down = sf::Keyboard::Down;
             } else {
-                down = keysMap.at(keyDown);
+                down = KeyData::keysMap.at(keyDown);
             }
             std::string keyLeft = OptionsSave::getParam("control.left").getValue();
             if(keyLeft == "NULL") {
                 OptionsSave::addParam("control.left", "Left");
                 left = sf::Keyboard::Left;
             } else {
-                left = keysMap.at(keyLeft);
+                left = KeyData::keysMap.at(keyLeft);
             }
             std::string keyRight = OptionsSave::getParam("control.right").getValue();
             if(keyRight == "NULL") {
                 OptionsSave::addParam("control.right", "Right");
                 right = sf::Keyboard::Right;
             } else {
-                right = keysMap.at(keyRight);
+                right = KeyData::keysMap.at(keyRight);
             }
             std::string keyTalk = OptionsSave::getParam("control.talk").getValue();
             if(keyTalk == "NULL") {
                 OptionsSave::addParam("control.talk", "Space");
                 talk = sf::Keyboard::Space;
             } else {
-                talk = keysMap.at(keyTalk);
+                talk = KeyData::keysMap.at(keyTalk);
             }
             std::string keyInteract = OptionsSave::getParam("control.interact").getValue();
             if(keyInteract == "NULL") {
                 OptionsSave::addParam("control.interact", "Return");
                 interact = sf::Keyboard::Return;
             } else {
-                interact = keysMap.at(keyInteract);
+                interact = KeyData::keysMap.at(keyInteract);
             }
         }
 

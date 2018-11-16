@@ -37,7 +37,7 @@ namespace OpMon {
                 if(menu.getCurrentOption() == View::OptionType::CONTROLES && keyChangeActive) {
                     if(currentKeyChange < controlsName.size())
                     {
-                        const std::string keyCode = findNameKeyCode(event.key.code);
+                        const std::string& keyCode = Model::KeyData::findNameKeyCode(event.key.code);
                         if(!keyCode.empty())
                         {
                             Model::OptionsSave::addParam(std::string("control.") + controlsName[currentKeyChange], keyCode.c_str());
@@ -74,13 +74,11 @@ namespace OpMon {
                             data.getUiDataPtr()->getJukebox().playSound("push");
                             if(Model::OptionsSave::getParam("fullscreen").getValue() == "true") {
                                 Model::OptionsSave::addOrModifParam("fullscreen", "false");
-                                reboot = true;
                             } else {
                                 Model::OptionsSave::addOrModifParam("fullscreen", "true");
-                                reboot = true;
                             }
+                            reboot = true;
                             return GameStatus::STOP;
-                            break;
                         case LANGUAGE:
                             data.getUiDataPtr()->getJukebox().playSound("push");
                             menu.setCurrentOption(View::OptionType::LANG);
@@ -177,18 +175,6 @@ namespace OpMon {
                 }
             }
             return GameStatus::CONTINUE;
-        }
-
-        const std::string& OptionsMenuCtrl::findNameKeyCode(sf::Keyboard::Key searchKeyCode)
-        {
-            const std::map<std::string, sf::Keyboard::Key> keysMap = data.getUiDataPtr()->getKeysMap();
-            for(auto it = cbegin(keysMap); it != cend(keysMap); ++it )
-            {
-                if (it->second == searchKeyCode)
-                    return it->first;
-            }
-
-            return cbegin(keysMap)->first;
         }
 
         void OptionsMenuCtrl::suspend() {
