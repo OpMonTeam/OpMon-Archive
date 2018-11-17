@@ -12,6 +12,9 @@ File under GNU GPL v3.0 license
 #include "BattleCtrl.hpp"
 #include "PlayerCtrl.hpp"
 
+//Defines created to make the code easier to read
+#define LOAD_BATTLE 1
+
 namespace OpMon {
     namespace Controller {
 
@@ -119,7 +122,7 @@ namespace OpMon {
                 if(view.getBattleDeclared()->isDefeated()) {
                     view.endBattle();
                 } else {
-                    _next_gs = std::make_unique<BattleCtrl>(data.getPlayer().getOpTeam(), view.getBattleDeclared(), data.getUiDataPtr(), data.getPlayerPtr());
+                    loadNext = LOAD_BATTLE;
                     return GameStatus::NEXT;
                 }
             }
@@ -135,6 +138,16 @@ namespace OpMon {
 
             return view(frame);
         }
+		
+		void OverworldCtrl::loadNextScreen(){
+			switch(loadNext){
+			case LOAD_BATTLE:
+				_next_gs = std::make_unique<BattleCtrl>(data.getPlayer().getOpTeam(), view.getBattleDeclared(), data.getUiDataPtr(), data.getPlayerPtr());
+				break;
+			default:
+				handleError("Error : Unknown view to load in OverworldCtrl", true);
+			}
+		}
 
         void OverworldCtrl::suspend() {
             data.getUiDataPtr()->getJukebox().pause();
