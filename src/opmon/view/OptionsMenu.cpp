@@ -101,12 +101,12 @@ namespace OpMon {
             txtCre82.setString(kget("options.credit.82"));
             txtCre82.setFont(data.getUiDataPtr()->getFont());
             txtCre82.setCharacterSize(15);
-            txtCre82.setString(kget("options.credit.83"));
-            txtCre82.setFont(data.getUiDataPtr()->getFont());
-            txtCre82.setCharacterSize(15);
-            txtCre82.setString(kget("options.credit.84"));
-            txtCre82.setFont(data.getUiDataPtr()->getFont());
-            txtCre82.setCharacterSize(15);
+            txtCre83.setString(kget("options.credit.83"));
+            txtCre83.setFont(data.getUiDataPtr()->getFont());
+            txtCre83.setCharacterSize(15);
+            txtCre84.setString(kget("options.credit.84"));
+            txtCre84.setFont(data.getUiDataPtr()->getFont());
+            txtCre84.setCharacterSize(15);
             txtCre9.setString(kget("options.credit.9"));
             txtCre9.setFont(data.getUiDataPtr()->getFont());
             txtCre9.setCharacterSize(13);
