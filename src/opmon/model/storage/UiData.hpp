@@ -11,10 +11,12 @@
 #include "../../view/Window.hpp"
 #include "../objects/Enums.hpp"
 #include "../objects/Species.hpp"
+#include "KeyData.hpp"
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Window/Keyboard.hpp>
 #include <map>
+#include <unordered_map>
 #include <vector>
 
 namespace OpMon {
@@ -25,7 +27,7 @@ namespace OpMon {
             std::vector<std::vector<sf::Texture>> opSprites;
             std::map<unsigned int, Species *> listOp;
             std::vector<std::map<int, std::string>> atkOpLvl;
-            std::map<Type, sf::Texture> typesTextures;
+            std::unordered_map<Type, sf::Texture> typesTextures;
 
             sf::Texture dialogArrow;
             sf::Texture dialogBackground;
@@ -53,13 +55,21 @@ namespace OpMon {
 
             sf::Texture &getDialogArrow() { return dialogArrow; }
             sf::Texture &getDialogBackground() { return dialogBackground; }
+            //const std::map<std::string, sf::Keyboard::Key> &getKeysMap() { return keysMap; }
 
-            sf::Keyboard::Key getKeyUp() { return up; }
-            sf::Keyboard::Key getKeyDown() { return down; }
-            sf::Keyboard::Key getKeyLeft() { return left; }
-            sf::Keyboard::Key getKeyRight() { return right; }
-            sf::Keyboard::Key getKeyInteract() { return interact; }
-            sf::Keyboard::Key getKeyTalk() { return talk; }
+            sf::Keyboard::Key getKeyUp() const { return up; }
+            sf::Keyboard::Key getKeyDown() const { return down; }
+            sf::Keyboard::Key getKeyLeft() const { return left; }
+            sf::Keyboard::Key getKeyRight() const { return right; }
+            sf::Keyboard::Key getKeyInteract() const { return interact; }
+            sf::Keyboard::Key getKeyTalk() const { return talk; }
+
+            void setKeyUp(const std::string upName) { up = KeyData::keysMap.at(upName); }
+            void setKeyDown(const std::string  downName){ down = KeyData::keysMap.at(downName); }
+            void setKeyLeft(const std::string  leftName) { left = KeyData::keysMap.at(leftName); }
+            void setKeyRight(const std::string  rightName) { right = KeyData::keysMap.at(rightName); }
+            void setKeyInteract(const std::string  interactName) { interact = KeyData::keysMap.at(interactName); }
+            void setKeyTalk(const std::string  talkName) { talk = KeyData::keysMap.at(talkName); }
         };
 
     } // namespace Model
