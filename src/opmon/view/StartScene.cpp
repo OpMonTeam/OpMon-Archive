@@ -85,7 +85,7 @@ namespace OpMon {
                     // Init loop 1
                     dialog = nullptr;
                     part++;
-                    return GameStatus::NEXT;
+                    return GameStatus::NEXT_NLS;
                 }
                 break;
 
