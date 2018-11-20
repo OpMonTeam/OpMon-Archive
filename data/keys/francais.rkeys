@@ -257,4 +257,8 @@ key.opmon.desc.49=WIP
 key.opmon.desc.50=WIP
 key.opmon.desc.51=WIP
 
+key.attacks.Mist.name=Brume
+key.attacks.Tackle.name=Charge
+key.attacks.Growl.name=Rugissement
+
 end
