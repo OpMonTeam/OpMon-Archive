@@ -22,7 +22,9 @@ namespace OpMon {
 
             using namespace Utils;
 
-            player->addOpToOpTeam(new Model::OpMon("", uidata->getOp(4), 5, {Model::Attacks::newAtk("Tackle"), Model::Attacks::newAtk("Growl"), nullptr, nullptr}, Model::Nature::QUIET));
+	    Attack::initAttacks(Utils::Path::getResourcePath() + "data/attacks.json");
+	    
+            player->addOpToOpTeam(new Model::OpMon("", uidata->getOp(4), 5, {Model::Attack::newAtk("Tackle"), Model::Attack::newAtk("Growl"), nullptr, nullptr}, Model::Nature::QUIET));
 
             //PP texture and rect loading
             ResourceLoader::load(texturePP, "sprites/chara/pp/pp_anim.png");
@@ -91,10 +93,10 @@ namespace OpMon {
 						    uidata->getOp(opmonItor->at("species")),
 						    opmonItor->at("level"),
 						    {
-							Model::Attacks::newAtk(opmonItor->at("attacks")[0]),
-							Model::Attacks::newAtk(opmonItor->at("attacks")[1]),
-							Model::Attacks::newAtk(opmonItor->at("attacks")[2]),
-							Model::Attacks::newAtk(opmonItor->at("attacks")[3])
+							Model::Attack::newAtk(opmonItor->at("attacks")[0]),
+							Model::Attack::newAtk(opmonItor->at("attacks")[1]),
+							Model::Attack::newAtk(opmonItor->at("attacks")[2]),
+							Model::Attack::newAtk(opmonItor->at("attacks")[3])
 						    },
 						    opmonItor->at("nature")));
 		}
@@ -279,7 +281,7 @@ namespace OpMon {
             mapRoad14->addEvent(new Events::TPEvent(alphaTab, Events::EventTrigger::BE_IN, sf::Vector2f(4, 41), sf::Vector2i(39, 20), "Fauxbourg Euvi", Side::TO_LEFT, SIDE_LEFT));
 
             OpTeam *betaTeam = new Model::OpTeam("Beta");
-            betaTeam->addOpMon(new Model::OpMon("", uidata->getOp(1), 5, {Model::Attacks::newAtk("Tackle"), Model::Attacks::newAtk("Mist"), nullptr, nullptr}, Model::Nature::QUIET));
+            betaTeam->addOpMon(new Model::OpMon("", uidata->getOp(1), 5, {Model::Attack::newAtk("Tackle"), Model::Attack::newAtk("Mist"), nullptr, nullptr}, Model::Nature::QUIET));
 
             mapRoad14->addEvent(new Events::TrainerEvent(charaTextures["beta"], sf::Vector2f(11, 32), betaTeam, {OpString("rt14.beta.pre.1"), OpString("rt14.beta.pre.2"), OpString("rt14.beta.pre.3"), OpString("rt14.beta.pre.4"), OpString("rt14.beta.pre.5"), OpString("rt14.beta.pre.6"), OpString("rt14.beta.pre.7"), OpString("void"), OpString("void")}, {OpString("rt14.beta.post.1"), OpString("rt14.beta.post.2"), OpString("rt14.beta.post.3")}, Side::TO_LEFT));
 
