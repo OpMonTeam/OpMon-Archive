@@ -29,6 +29,7 @@
 <li><h3>torq</h3></li>
 <li><h3>JonnyPtn</h3></li>
 <li><h3>Bobor</h3></li>
+<li><h3>Qwam</h3></li>
 </ul>
 
 ## Inspirations :
@@ -54,6 +55,7 @@
 * Navet56
 * Aerzia
 * Silvermoon
+* Qwam
 
 ### Others
 Look [here](https://github.com/jlppc/OpMon/blob/master/Resources/README.md).
