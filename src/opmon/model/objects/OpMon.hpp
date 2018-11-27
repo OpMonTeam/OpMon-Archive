@@ -11,8 +11,6 @@
 #include "../../../utils/misc.hpp"
 #include "Nature.hpp"
 #include "Species.hpp"
-#include "item/IOpBox.hpp"
-#include "item/Item.hpp"
 #include <SFML/System/String.hpp>
 #include <cmath>
 #include <iostream>
@@ -24,6 +22,8 @@ namespace OpMon {
 
         class Attack;
 
+      class Item;
+      
         /**
             Class defining a particular OpMon. To see the class that defines a species, see Species.hpp
         */
@@ -135,7 +135,7 @@ namespace OpMon {
             }
 
             /**Returns true if the OPMon is well captured*/
-            bool captured(I_OpBox const &OpBox);
+            bool captured(Item const &OpBox);
 
             /** Set the stat given*/
             void setStat(Stats stat, int newStat);
