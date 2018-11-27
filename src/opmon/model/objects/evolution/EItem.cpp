@@ -9,7 +9,7 @@ namespace OpMon {
     namespace Model {
 
         namespace Evolutions {
-            E_Item::E_Item(int evo, int itemId)
+	  E_Item::E_Item(int evo, std::string const& itemId)
               : Evolution(evo)
               , itemID(itemId) {
             }
