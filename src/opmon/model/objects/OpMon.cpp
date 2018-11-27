@@ -13,9 +13,9 @@ File under GNU GPL v3.0 license
 #include "./evolution/Evolution.hpp"
 #include "./evolution/evolutions.hpp"
 #include "Attacks.hpp"
-#include "item/IHeal.hpp"
 #include <fstream>
 #include <sstream>
+#include "Item.hpp"
 
 namespace OpMon {
     namespace Model {
@@ -57,9 +57,9 @@ namespace OpMon {
             initialized = false;
         }
 
-        bool OpMon::captured(I_OpBox const &OpBox) {
+        bool OpMon::captured(Item const &OpBox) {
             //Big formulas
-            int a = round((((3 * statHP - 2 * HP) * captureRate * OpBox.getCaptureRate() * (status == Status::PARALYSED || status == Status::POISONED || status == Status::BURNING ? 1.5 : (status == Status::FROZEN || status == Status::SLEEPING ? 2 : 1))) / (3 * statHP)));
+	  int a = round((((3 * statHP - 2 * HP) * captureRate * /*TODO OpBox.getCaptureRate() */ (status == Status::PARALYSED || status == Status::POISONED || status == Status::BURNING ? 1.5 : (status == Status::FROZEN || status == Status::SLEEPING ? 2 : 1))) / (3 * statHP)));
             int b = round((pow(2, 16) - 1) * pow(a / (pow(2, 8) - 1), 0.25));
             int c[] = {Utils::Misc::randU(65535), Utils::Misc::randU(65535), Utils::Misc::randU(65535),
                        Utils::Misc::randU(65535)};
@@ -220,11 +220,11 @@ namespace OpMon {
         //This method will be removed in the future
         bool OpMon::itemUsed(Item *used) {
             //if the OpMon evolves by using an item, check if the item used is the item to make the OpMon evolve.
-            //TODO ^
+            //TODO : Update this method for the new item system
 
-            if(used->getItemTypeID() == ItemType::IHeal) {
+            /*if(used->getItemTypeID() == ItemType::IHeal) {
 
-                I_Heal *usedI = dynamic_cast<I_Heal *>(used);
+                I_Item *usedI = used;
                 if(usedI->getHpHeal() > 0) {
                     heal(usedI->getHpHeal());
                 }
@@ -252,7 +252,7 @@ namespace OpMon {
                     }
                 }
             }
-            return false;
+            return false;*/
         }
 
         Item *OpMon::hold(Item *item) {
@@ -1349,7 +1349,7 @@ namespace OpMon {
 
         std::string OpMon::save() {
             if(!initialized) {
-
+	      /*
                 std::ostringstream oss;
                 oss << nickname.toAnsiString() << std::endl;
                 oss << Save::intToChar(atkIV) << std::endl;
@@ -1366,7 +1366,7 @@ namespace OpMon {
                 oss << Save::intToChar(hpEV) << std::endl;
                 oss << Save::intToChar(statLove) << std::endl;
                 oss << Save::intToChar(level) << std::endl;
-                oss << Save::intToChar(natures[(int)nature].id) << std::endl;
+                oss << Save::intToChar(natures[(int)nature].id) << std::endl;*/
                 /*for(unsigned int it = 0; it < 4; it++){
                 cout << "Attack : " << it << " Pointer : " << attaques[it] << endl;
                 Attack *atk = attaques[it];
@@ -1379,7 +1379,7 @@ namespace OpMon {
                     oss << "nullptr" << endl;
                 }
             }*/
-                for(int i = 0; i < 4; i++) {
+                /*for(int i = 0; i < 4; i++) {
                     if(attacks[i] != nullptr)
                         oss << attacks[i]->save();
                     else
@@ -1398,10 +1398,10 @@ namespace OpMon {
                     oss << std::endl;
                 }
                 oss << Save::intToChar(captureRate) << std::endl;
-                return oss.str();
+                return oss.str();*/
             } else {
                 return "NULL\n";
-            }
+		}
         }
         /*
         OpMon::OpMon(std::ifstream &in) {
