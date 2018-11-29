@@ -22,7 +22,7 @@ key.options.credit.5=Graphic designer
 key.options.credit.6=Collaborators :
 key.options.credit.7=Aerzia, BAKfr, gberthou
 key.options.credit.8=Contributors : imZERKKA, Mat, Jseutter, Stelyus, Ezaron, rjphares
-key.options.credit.81=Rixem, Jo, Imperator, Léo, LinkyFR, Bircoum, louracame
+key.options.credit.81=Rixem, Jo, Imperator, LÃ©o, LinkyFR, Bircoum, louracame
 key.options.credit.82=Samurai413x, Silvermoon, Lebordelic, Asvirius, jubalh, torq
 key.options.credit.83=JonnyPtn, Cheesecake, bobor
 key.options.credit.84= 
@@ -38,7 +38,7 @@ key.prof.dialog.start.1=Hello and welcome to Regimys
 key.prof.dialog.start.2=I hope you are fine!
 key.prof.dialog.start.3= 
 key.prof.dialog.start.4=I am the professor
-key.prof.dialog.start.5=Kiwaï, I am the owner of
+key.prof.dialog.start.5=KiwaÃ¯, I am the owner of
 key.prof.dialog.start.6=the OpMon laboratory of Euvi-town
 key.prof.dialog.start.7=Maybe you are asking yourself : 
 key.prof.dialog.start.8="What is he doing in this
@@ -70,7 +70,7 @@ key.ppHouse=~'s house.
 
 key.rivalHouse=Skullk's house.
 
-key.labo=Professor Kiwaï's laboratory.
+key.labo=Professor KiwaÃ¯'s laboratory.
 
 key.weirdsign.1=Please do not get close
 key.weirdsign.2=4th wall under reconstruction.
@@ -256,5 +256,8 @@ key.opmon.desc.51=WIP
 key.attacks.Mist.name=Mist
 key.attacks.Tackle.name=Tackle
 key.attacks.Growl.name=Growl
+
+key.items.heal.fullHP=But ~'s HP are already full !
+key.items.heal.healKO=But ~ is KO.
 
 end

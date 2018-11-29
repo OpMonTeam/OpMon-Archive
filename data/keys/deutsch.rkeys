@@ -259,4 +259,7 @@ key.attacks.Mist.name=Mist
 key.attacks.Tackle.name=Tackle
 key.attacks.Growl.name=Growl
 
+key.items.heal.fullHP=But ~'s HP are already full !
+key.items.heal.healKO=But ~ is KO.
+
 end

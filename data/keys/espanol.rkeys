@@ -8,7 +8,7 @@ key.title.3=Configuaciones
 key.title.4=Salir
 
 key.options.retour=Volver
-key.options.title=Parámetros 
+key.options.title=ParÃ¡metros 
 key.options.ecran=Pantalla completa
 key.options.ecran.2=Reiniciar para activar la pantalla completa
 key.options.lang=Idiomas 
@@ -20,7 +20,7 @@ key.options.credit.5=Game designer
 key.options.credit.6=Collaboratores :
 key.options.credit.7=Aerzia, BAKfr, gberthou
 key.options.credit.8=Contribuidores : imZERKKA, Mat, Jseutter,Stelyus,Ezaron,rjphares
-key.options.credit.81=Rixem, Jo, Imperator Dei, Léo, LinkyFR, Bircoum, louracame
+key.options.credit.81=Rixem, Jo, Imperator Dei, LÃ©o, LinkyFR, Bircoum, louracame
 key.options.credit.82=Samurai413x, Silvermoon, Lebordelic, Asvirius, jubalh, torq,
 key.options.credit.83=JonnyPtn, Cheesecake,bobor
 key.options.credit.84= 
@@ -35,33 +35,33 @@ key.nameEntry.med=Escriba un nombre
 key.nameEntry.indic.1=Presione "enter"
 key.nameEntry.indic.2=al terminar
 
-key.prof.dialog.start.1=Buenos días y bienvenidos 
-key.prof.dialog.start.2=de Regimys.¡Me imagino que haz echo
+key.prof.dialog.start.1=Buenos dÃ­as y bienvenidos 
+key.prof.dialog.start.2=de Regimys.Â¡Me imagino que haz echo
 key.prof.dialog.start.3=un buen viaje!
 key.prof.dialog.start.4=Me presento soy el profesor
-key.prof.dialog.start.5=Kiwaï, soy el propietario 
+key.prof.dialog.start.5=KiwaÃ¯, soy el propietario 
 key.prof.dialog.start.6=del laboratorio OpMon de Faubourg Euvi.
 key.prof.dialog.start.7=Te preguntas seguramente 
 key.prof.dialog.start.8=lo que hago en este pueblo.
 key.prof.dialog.start.9=Esta es la historia...
 key.prof.dialog.start.10=yo creci en este lugar
-key.prof.dialog.start.11=y aqui encontré 
+key.prof.dialog.start.11=y aqui encontrÃ© 
 key.prof.dialog.start.12=mi primer OPMon : Oursiflamme
 key.prof.dialog.start.13=Es un animalito de fuego 
-key.prof.dialog.start.14=bonito y protector.¡Me negué a
+key.prof.dialog.start.14=bonito y protector.Â¡Me neguÃ© a
 key.prof.dialog.start.15= hacerlo evolucionar para que asi quede!
 key.prof.dialog.start.16=Ah! Disculpa, hablo solamente de mi
-key.prof.dialog.start.17=Entonces ¿Cual es tu nombre?
+key.prof.dialog.start.17=Entonces Â¿Cual es tu nombre?
 key.prof.dialog.start.18=                         
-key.prof.dialog.start.19=bueno, voy à hablarte de 
-key.prof.dialog.start.20=esta región y de las criaturas 
+key.prof.dialog.start.19=bueno, voy Ã  hablarte de 
+key.prof.dialog.start.20=esta regiÃ³n y de las criaturas 
 key.prof.dialog.start.21=que viven aqui
-key.prof.dialog.start.22=¿Estas listo?
-key.prof.dialog.start.23=¿Esta aventura te hace recordar
+key.prof.dialog.start.22=Â¿Estas listo?
+key.prof.dialog.start.23=Â¿Esta aventura te hace recordar
 key.prof.dialog.start.24=algo no?
 key.prof.dialog.start.25=Bueno. Entonces te dejo descubrir 
-key.prof.dialog.start.26=esto por tí mismo...
-key.prof.dialog.start.27=¡Nos vemos!
+key.prof.dialog.start.26=esto por tÃ­ mismo...
+key.prof.dialog.start.27=Â¡Nos vemos!
 
 key.fedesc.1=Fauxbourg Euvi
 key.fesesc.2=Es un pueblito tranquilo
@@ -71,28 +71,28 @@ key.ppHouse=Casa de ~.
 
 key.rivalHouse=Casa de Skullk.
 
-key.labo=Laboratorio del profesor Kiwaï.
+key.labo=Laboratorio del profesor KiwaÃ¯.
 
 key.weirdsign.1=No tocar.
-key.weirdsign.2=Cuarto muro en reconstrucción.
+key.weirdsign.2=Cuarto muro en reconstrucciÃ³n.
 
 key.kid=Me gustan los pantalones cortos!
 
-key.prof.dialog.1=¿Haz echo un buen viaje?
+key.prof.dialog.1=Â¿Haz echo un buen viaje?
 key.prof.dialog.2=Skullk salio a caminar
-key.prof.dialog.3=¡Vuelve despues de la actualisacion!
+key.prof.dialog.3=Â¡Vuelve despues de la actualisacion!
 
-key.pcRunLinux=¡Este PC se ejecuta en GNU/Linux!
+key.pcRunLinux=Â¡Este PC se ejecuta en GNU/Linux!
 
 key.playerhome.tv.1=Podemos ver un reality
 key.playerhome.tv.2=con OpMons, pero ellos no
 key.playerhome.tv.3=parecen muy felices...
 
-key.playermom.dialog.1=¿Como estas carino?
+key.playermom.dialog.1=Â¿Como estas carino?
 key.playermom.dialog.2=...
-key.playermom.dialog.3=¿Estas bien?
+key.playermom.dialog.3=Â¿Estas bien?
 
-key.rt14.sk.1=¿Quien eres tu?
+key.rt14.sk.1=Â¿Quien eres tu?
 key.rt14.sk.2=No deberia
 key.rt14.sk.3=estar aqui...
 
@@ -107,7 +107,7 @@ key.fe.fisherman.8=Espera, nunca te he visto ahi.
 key.fe.fisherman.9=Eres nuevo ?
 
 key.inferm.dialog.1=Bienvenido !
-key.inferm.dialog.1=¿ Quiere curar sus OpMons ?
+key.inferm.dialog.1=Â¿ Quiere curar sus OpMons ?
 key.inferm.dialog.1=... Pero ? Tu no tienes OpMons.
 
 key.rt14.beta.pre.1=Hola ! Yo soy Beta.
@@ -117,7 +117,7 @@ key.rt14.beta.pre.4=no completamente implementadas.
 key.rt14.beta.pre.5=Yo puedo hacer una batalla OpMon
 key.rt14.beta.pre.6=contra ti si lo deseas.
 key.rt14.beta.pre.7=Vamos ! Que empieze!
-key.rt14.beta.post.1=¿ Te gusto ?
+key.rt14.beta.post.1=Â¿ Te gusto ?
 key.rt14.beta.post.2=Si quieres hacerlo de nuevo
 key.rt14.beta.post.3=reinicia el juego con la letra M !
 
@@ -146,9 +146,9 @@ key.battle.status.confused.in=~ se esta confundiendo!
 key.battle.status.confused.attack.success.1=Incluso confundido, ~
 key.battle.status.confused.attack.success.2=se las arregla para atacar!
 key.battle.status.confused.attack.fail=~ esta confundido.
-key.battle.status.confused.hplost=~ perdió ~ hp.
+key.battle.status.confused.hplost=~ perdiÃ³ ~ hp.
 
-key.battle.wait=Qué haces?
+key.battle.wait=QuÃ© haces?
 
 key.opmon.name.0=MissingNo.
 key.opmon.name.1=Rosarin
@@ -260,5 +260,8 @@ key.opmon.desc.51=WIP
 key.attacks.Mist.name=Mist
 key.attacks.Tackle.name=Tackle
 key.attacks.Growl.name=Growl
+
+key.items.heal.fullHP=But ~'s HP are already full !
+key.items.heal.healKO=But ~ is KO.
 
 end

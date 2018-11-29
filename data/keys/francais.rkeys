@@ -261,4 +261,7 @@ key.attacks.Mist.name=Brume
 key.attacks.Tackle.name=Charge
 key.attacks.Growl.name=Rugissement
 
+key.items.heal.fullHP=Mais ~ est déjà en pleine forme !
+key.items.heal.healKO=Mais ~ est KO.
+
 end
