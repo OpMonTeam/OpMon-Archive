@@ -36,7 +36,7 @@ namespace Utils {
         static OpString voidStr;
 
         /** Create an OpString and returns the result of getString. Quick version to have a string because it uses std::string instead of sf::String pointers. */
-        static sf::String quickString(std::string const &key, std::vector<std::string> vstr);
+      static sf::String quickString(std::string const &key, std::vector<std::string> vstr = {});
     };
 
 } // namespace Utils

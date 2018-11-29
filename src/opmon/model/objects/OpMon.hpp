@@ -264,7 +264,7 @@ namespace OpMon {
                 return *species;
             }
 
-            //Warning! The == and != operators did not compare two OPMons! They compare whether OPMons are "initialized" or not (see initialized))
+            //Warning! The == and != operators do not compare two OPMons! They compare whether OPMons are "initialized" or not (see initialized))
             //Yup, I should change this in the future (TODO)
             bool operator==(OpMon const &a) {
                 return (initialized == a.initialized);

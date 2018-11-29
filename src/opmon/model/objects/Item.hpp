@@ -9,6 +9,7 @@ File under GNU GPL v3.0 license
 #include "../../../utils/OpString.hpp"
 #include "../../start/Core.hpp"
 #include <vector>
+#include <memory>
 
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 
@@ -44,7 +45,9 @@ namespace OpMon{
     
     class Item {
     public:
-      Item(Utils::OpString name, bool usable, bool onOpMon, ItemEffect* opmonEffect = nullptr, ItemEffect* playerEffect = nullptr, ItemEffect* heldEffect = nullptr);
+      Item(Utils::OpString name, bool usable, bool onOpMon, std::unique_ptr<ItemEffect> opmonEffect = nullptr, std::unique_ptr<ItemEffect> playerEffect = nullptr, std::unique_ptr<ItemEffect> heldEffect = nullptr);
+
+      ~Item() = default;
 
       std::vector<sf::String> use(OpMon* opmon, int& itemCount);
       std::vector<sf::String> use(Player* player, int& itemCount);
@@ -54,12 +57,21 @@ namespace OpMon{
       Utils::OpString name;
       bool usable;
       bool onOpMon;
-      ItemEffect* opmonEffect;
-      ItemEffect* playerEffect;
-      ItemEffect* heldEffect;
+      std::unique_ptr<ItemEffect> opmonEffect;
+      std::unique_ptr<ItemEffect> playerEffect;
+      std::unique_ptr<ItemEffect>  heldEffect;
     };
 
     namespace Items {
+
+      class HpHealEffect : ItemEffect {
+      public:
+	HpHealEffect(int hpHealed);
+
+	bool operator()(OpMon* opmon);
+      protected:
+	const int hpHealed;
+      };
       
     }
     
