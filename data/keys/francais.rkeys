@@ -261,7 +261,10 @@ key.attacks.Mist.name=Brume
 key.attacks.Tackle.name=Charge
 key.attacks.Growl.name=Rugissement
 
-key.items.heal.fullHP=Mais ~ est déjà en pleine forme !
-key.items.heal.healKO=Mais ~ est KO.
+key.items.hcandy.name=Bonbon de soin
+
+key.items.dialog.heal.fullHP=Mais ~ est déjà en pleine forme !
+key.items.dialog.heal.healKO=Mais ~ est KO.
+key.items.dialog.heal.healHP=~ vient de récupérer ~ PV !
 
 end
