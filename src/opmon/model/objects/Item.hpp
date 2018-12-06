@@ -24,7 +24,7 @@ namespace OpMon{
     
     class ItemEffect {
     public:
-      ItemEffect() {handleError("Trying to instanciate an empty ItemEffect. Why ?", true);}
+      ItemEffect() {}
       
       /** Different effects. The boolean returned is true if the item must be consumed */
       
@@ -34,12 +34,12 @@ namespace OpMon{
       bool operator()(Player* player){ return false; }
       /** Effect when held during a turn */
       bool operator()(Turn& owner, Turn& opponent){ return false; }
-      /** Dialog used when the object is used on an OpMon or on the field */
-      std::vector<sf::String> getDialog() { return dialog; }
+      /** Dialog used when the object is used on an OpMon or on the field. Can be used only one time because it moves the unique_ptr. */
+      std::unique_ptr<std::vector<sf::String> > getDialog() { return std::move(dialog); }
       
     protected:
 
-      std::vector<sf::String> dialog;
+      std::unique_ptr<std::vector<sf::String> > dialog = std::make_unique<std::vector<sf::String> >();
       
     };
     
@@ -49,8 +49,8 @@ namespace OpMon{
 
       ~Item() = default;
 
-      std::vector<sf::String> use(OpMon* opmon, int& itemCount);
-      std::vector<sf::String> use(Player* player, int& itemCount);
+      std::unique_ptr<std::vector<sf::String> > use(OpMon* opmon, int& itemCount);
+      std::unique_ptr<std::vector<sf::String> > use(Player* player, int& itemCount);
       void updateHeld(Turn& owner, Turn& opponent, int& itemCount);
       
     protected:
@@ -64,7 +64,7 @@ namespace OpMon{
 
     namespace Items {
 
-      class HpHealEffect : ItemEffect {
+      class HpHealEffect : public ItemEffect {
       public:
 	HpHealEffect(int hpHealed);
 

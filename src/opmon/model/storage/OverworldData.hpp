@@ -46,6 +46,8 @@ namespace OpMon {
 
             std::map<std::string, std::vector<sf::Texture>> doorsTextures;
 
+	  std::map<std::string, std::unique_ptr<Item> > itemsList;
+	  
             OverworldData(OverworldData const &);
 
           public:
@@ -81,6 +83,8 @@ namespace OpMon {
             UiData *getUiDataPtr() { return uidata; }
             Player *getPlayerPtr() { return player; }
             Player &getPlayer() { return *player; }
+
+	  std::unique_ptr<Item>& getItem(std::string const& str) {return itemsList[str];}
 
             OverworldData(UiData *uidata, Player *player);
             ~OverworldData();
