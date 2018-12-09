@@ -7,10 +7,11 @@ File under GNU GPL v3.0 license
 #ifndef _PLAYER_HPP_
 #define _PLAYER_HPP_
 
-#include "../objects/item/Item.hpp"
+#include "../objects/Item.hpp"
 #include "OpTeam.hpp"
 #include "Position.hpp"
 #include <SFML/System.hpp>
+#include <map>
 
 namespace OpMon {
     namespace Model {
@@ -25,13 +26,13 @@ namespace OpMon {
 
             OpTeam *getOpTeam();
 
-            void addItem(int itemID);
+	  void addItem(std::string const& itemID);
 
             /**Returns the number of items of the item type given in paramter*/
-            int checkItem(int itemID);
+	  int checkItem(std::string const&  itemID);
 
             /**Delete an item from the player inventory. Returns false if the item was not present.*/
-            bool deleteItem(int itemID);
+	  bool deleteItem(std::string const& itemID);
 
             sf::String getName() const {
                 return name;
@@ -109,7 +110,7 @@ namespace OpMon {
           private:
             sf::String name;
             const unsigned int trainerID; //Max : 8 digits in hexadecimal (Unimplemented yet)
-            int bag[ITEM_NUMBER];
+	  std::map<std::string, int> bag;
             std::vector<OpMon *> pc = std::vector<OpMon *>();
             OpTeam opteam;
             std::string mapID = "Player's room"; //Player's room is the start room for the player

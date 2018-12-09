@@ -86,6 +86,7 @@ namespace Utils {
                     return strings[i];
                 }
             }
+	    Log::warn("Key " + key + " not found in the keys files.");
             return voi; //If nothing found, returns an empty string
         }
 
@@ -147,6 +148,8 @@ namespace Utils {
             }
             return instances;
         }
+
+      std::string getStd(std::string const& key)  { return sfStringtoStdString(get(key)); }
 
     } // namespace StringKeys
 } // namespace Utils
