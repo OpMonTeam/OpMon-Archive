@@ -28,7 +28,6 @@ namespace OpMon {
             std::string name;
             int opdexNumber;
             Species *evolution;
-            int niveauEvolution;
             Evolution *evolType;
             Type type1;
             Type type2;
@@ -55,7 +54,7 @@ namespace OpMon {
             Species(Species &&other) noexcept;
 
             virtual ~Species();
-            Species(unsigned int atk, unsigned int def, unsigned int atkSpe, unsigned int defSpe, unsigned int spe, unsigned int hp, std::string name, Type type1, Type type2, int maniereEvolution, int niveauEvolution, Evolution *evolType, std::vector<Stats> EVGiven, float height, float weight, std::string opdexEntry, unsigned int expGiven, int expMax, int captureRate, int opdexNumber);
+            Species(unsigned int atk, unsigned int def, unsigned int atkSpe, unsigned int defSpe, unsigned int spe, unsigned int hp, std::string name, Type type1, Type type2, Evolution *evolType, std::vector<Stats> EVGiven, float height, float weight, std::string opdexEntry, unsigned int expGiven, int expMax, int captureRate, int opdexNumber);
             unsigned int getBaseAtk() const {
                 return baseAtk;
             }
@@ -89,6 +88,9 @@ namespace OpMon {
             unsigned int getExp() const {
                 return expGiven;
             }
+	  int getExpMax() const {
+	    return expMax;
+	  }
             Evolution *getEvolType() const {
                 return evolType;
             }

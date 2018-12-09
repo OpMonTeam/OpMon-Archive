@@ -9,18 +9,15 @@ namespace OpMon {
     namespace Model {
 
         namespace Evolutions {
-            E_Item::E_Item(int evo, Item *forEvolve)
+	  E_Item::E_Item(int evo, std::string const& itemId)
               : Evolution(evo)
-              , forEvolve(forEvolve) {
+              , itemID(itemId) {
             }
-            /* DO NOT USE. It's useless.*/
-            bool E_Item::checkEvolve(OpMon const &toCheck) const {
-                return false;
-            }
-
-            bool E_Item::itemEvolve(Item *forEvolve) const {
-                return this->forEvolve == forEvolve;
-            }
+            
+	  bool E_Item::checkEvolve(OpMon const &toCheck) const {
+	    //Temporary
+	    return false;
+	  }
         } // namespace Evolutions
 
     } // namespace Model

@@ -6,7 +6,7 @@ File under GNU GPL v3.0 license
 #pragma once
 
 #include "../../../utils/OpString.hpp"
-#include "item/Item.hpp"
+#include "Item.hpp"
 #include <map>
 
 namespace OpMon {
