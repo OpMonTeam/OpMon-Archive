@@ -1,0 +1,80 @@
+[
+    {
+	"id" : "Mist",
+	"power" : 0,
+	"type" : 9,
+	"accuracy" : 100,
+	"special" : false,
+	"status" : true,
+	"criticalRate" : -1,
+	"neverFails" : false,
+	"ppMax" : 20,
+	"priority" : 0,
+	"effects" : [
+	    {
+		"null" : true
+	    },
+	    {
+		"null" : false,
+		"type" : "ChangeStatEffect",
+		"data" : {
+		    "target" : 1,
+		    "stat" : 7,
+		    "coef" : -1
+		}
+	    },
+	    {
+		"null" : true
+	    }
+	]
+    },
+	{
+		"id" : "Growl",
+		"power" : 0,
+		"type" : 9,
+		"accuracy" : 100,
+		"special" : false,
+		"status" : true,
+		"criticalRate" : -1,
+		"neverFails" : false,
+		"ppMax" : 20,
+		"priority" : 0,
+		"effects" : [
+			{
+				"null" : true
+			},
+			{
+				"null" : false,
+				"type" : "ChangeStatEffect",
+				"data" : {
+					"target" : 0,
+					"stat" : 6,
+					"coef" : -1
+				}
+			}
+		]
+	},
+	{
+		"id" : "Tackle",
+		"power" : 50,
+		"type" : 9,
+		"accuracy" : 100,
+		"special" : false,
+		"status" : false,
+		"criticalRate" : 16,
+		"neverFails" : false,
+		"ppMax" : 35,
+		"priority" : 0,
+		"effects" : [
+			{
+				"null" : true
+			},
+			{
+				"null" : true
+			},
+			{
+				"null" : true
+			}
+		]
+	}
+]
