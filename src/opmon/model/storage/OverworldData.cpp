@@ -83,15 +83,13 @@ namespace OpMon {
 	    itemsJsonFile >> itemsJson;
 
 	    for(auto itor = itemsJson.begin(); itor != itemsJson.end(); ++itor){
-	      std::vector<std::unique_ptr<ItemEffect> > effects;//0 is opmon, 1 is player, 2 is held
-	      int i = 0;
+		std::vector<std::unique_ptr<ItemEffect> > effects;//0 is opmon, 1 is player, 2 is held
 	      for(auto eitor = itor->at("effects").begin(); eitor != itor->at("effects").end(); ++eitor){
 			if(eitor->at("type") == "HpHealEffect"){
-			  effects[i].reset(new Items::HpHealEffect(eitor->at("healed")));
+			    effects.push_back(std::make_unique<Items::HpHealEffect>(eitor->at("healed")));
 			}else{
-			  effects[i] = nullptr;
+			    effects.push_back(nullptr);
 			}
-			i++;
 		  }
 		std::string itemId = itor->at("id");
 	      itemsList.emplace(itemId, std::make_unique<Item>(Utils::OpString("items." + itemId + ".name"), itor->at("usable"), itor->at("onOpMon"), std::move(effects[0]), std::move(effects[1]), std::move(effects[2])));
