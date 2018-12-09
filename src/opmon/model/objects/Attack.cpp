@@ -6,33 +6,97 @@ File under GNU GPL v3.0 license
 */
 #include "Attack.hpp"
 #include "../../../utils/defines.hpp"
+#include "../../../utils/log.hpp"
+#include "../../../nlohmann/json.hpp"
 #include "../save/Save.hpp"
 #include "OpMon.hpp"
+#include "Attacks.hpp"
 #include <sstream>
+#include <fstream>
 
 namespace OpMon {
     namespace Model {
 
-        Attack::Attack(std::string name, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::string className,
-                       AttackEffect *preEffect, AttackEffect *postEffect)
-          : className(className)
-          , name(name)
-          , preEffect(preEffect)
-          , postEffect(postEffect) {
-            this->power = power;
-            this->type = type;
-            this->accuracy = accuracy;
-            this->special = special;
-            this->status = status;
-            this->criticalRate = criticalRate;
-            this->neverFails = neverFails;
-            this->pp = this->ppMax = ppMax;
-            this->priority = priority;
-        }
+      std::map<std::string, AttackData> Attack::attackList;
+      
+      Attack *Attack::newAtk(std::string name) {
+	try{
+	  return new Attack(attackList.at(name));
+	}catch(std::out_of_range e){
+	  Utils::Log::warn("Attack " + name + " not found.");
+	  return nullptr;
+	}
+      }
+
+      void Attack::initAttacks(std::string file){
+	std::ifstream jsonStream(file);
+	nlohmann::json json;
+	
+	jsonStream >> json;
+
+	for(auto itor = json.begin(); itor != json.end(); ++itor){
+	  std::vector<AttackEffect**> effects = {&attackList[itor->at("id")].preEffect, &attackList[itor->at("id")].postEffect, &attackList[itor->at("id")].ifFails};
+	  attackList[itor->at("id")].nameKey = std::string("attacks.") + (std::string) itor->at("id") + ".name";
+	  attackList[itor->at("id")].power = itor->at("power");
+	  attackList[itor->at("id")].type = itor->at("type");
+	  attackList[itor->at("id")].accuracy = itor->at("accuracy");
+	  attackList[itor->at("id")].special = itor->at("special");
+	  attackList[itor->at("id")].status = itor->at("status");
+	  attackList[itor->at("id")].criticalRate = itor->at("criticalRate");
+	  attackList[itor->at("id")].neverFails = itor->at("neverFails");
+	  attackList[itor->at("id")].ppMax = itor->at("ppMax");
+	  attackList[itor->at("id")].priority = itor->at("priority");
+	  int i = 0;
+	  for(auto eitor = itor->at("effects").begin(); eitor != itor->at("effects").end(); ++eitor){
+	    if(!eitor->at("null")){
+	      std::string effectType = eitor->at("type");
+	      if(effectType == "ChangeStatEffect"){
+		*(effects[i]) = new Attacks::ChangeStatEffect(eitor->at("data"));
+	      }
+	    }
+	    i++;
+	  }
+	}
+       
+      }
+      
+      
+      Attack::Attack(std::string nameKey, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, AttackEffect *preEffect, AttackEffect *postEffect, AttackEffect *fails)
+          : name(Utils::OpString(nameKey))
+	  , power(power)
+	  , priority(priority)
+	  , accuracy(accuracy)
+	  , type(type)
+	  , special(special)
+	  , status(status)
+	  , criticalRate(criticalRate)
+	  , neverFails(neverFails)
+	  , pp(ppMax)
+	  , ppMax(ppMax)
+	  , preEffect(preEffect)
+	  , postEffect(postEffect)
+	  , failEffect(fails){}
+
+      Attack::Attack(AttackData const& data)
+          : name(Utils::OpString(data.nameKey))
+	  , power(data.power)
+	  , priority(data.priority)
+	  , accuracy(data.accuracy)
+	  , type(data.type)
+	  , special(data.special)
+	  , status(data.status)
+	  , criticalRate(data.criticalRate)
+	  , neverFails(data.neverFails)
+	  , pp(data.ppMax)
+	  , ppMax(data.ppMax)
+	  , preEffect(data.preEffect)
+	  , postEffect(data.postEffect)
+	  , failEffect(data.ifFails){}
 
         Attack::~Attack() {
             delete(this->preEffect);
             delete(this->postEffect);
+	    delete(this->failEffect);
         }
 
         /* Return 1 : Inform to do the same attack at the next turn.
@@ -81,7 +145,6 @@ namespace OpMon {
 
         std::string Attack::save() {
             std::ostringstream oss;
-            oss << this->className << std::endl;
             oss << Save::intToChar(pp) << std::endl;
             oss << Save::intToChar(ppMax) << std::endl;
             return oss.str();
