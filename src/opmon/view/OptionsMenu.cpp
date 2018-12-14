@@ -15,7 +15,7 @@ namespace OpMon {
         void OptionsMenu::initStrings() {
             auto kget = Utils::StringKeys::get;
 
-            langFr.setString(L"Français");
+            langFr.setString(L"FranÃ§ais");
             langFr.setFont(data.getUiDataPtr()->getFont());
             langFr.setCharacterSize(FONT_SIZE_DEFAULT);
             langEng.setString("English");
@@ -251,7 +251,7 @@ namespace OpMon {
                 return loop(frame);
             case OptionType::LANG:
                 return langLoop(frame);
-            case OptionType::CONTROLES:
+            case OptionType::CONTROLS:
                 return controlesLoop(frame);
             case OptionType::CREDITS:
                 return creditsLoop(frame);
@@ -261,13 +261,13 @@ namespace OpMon {
         void OptionsMenu::moveArrow(bool move) {
             switch(currentOptions) {
             case OptionType::ALL:
-                Helper::moveArrow(move, curPosOptI, 6);
+                Controller::Helper::moveArrow(move, curPosOptI, 6);
                 break;
-            case OptionType::CONTROLES:
-                Helper::moveArrow(move, curPosCtrlI, 2);
+            case OptionType::CONTROLS:
+                Controller::Helper::moveArrow(move, curPosCtrlI, 2);
                 break;
             case OptionType::LANG:
-                Helper::moveArrow(move, curPosLangI, 5);
+                Controller::Helper::moveArrow(move, curPosLangI, 5);
                 break;
             }
         }
