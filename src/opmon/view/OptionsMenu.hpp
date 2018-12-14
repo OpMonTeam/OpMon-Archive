@@ -9,7 +9,7 @@
 
 #include "../model/storage/OptionsMenuData.hpp"
 #include "../start/i18n/ATranslatable.hpp"
-#include "../helper/MenuHelper.hpp"
+#include "../controller/MenuHelper.hpp"
 #include "Elements.hpp"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
@@ -20,7 +20,7 @@ namespace OpMon {
 
         enum class OptionType { ALL,
                                 LANG,
-                                CONTROLES,
+                                CONTROLS,
                                 CREDITS };
 
         class OptionsMenu : I18n::ATranslatable {
@@ -48,7 +48,7 @@ namespace OpMon {
                     return curPosOptI;
                 case OptionType::LANG:
                     return curPosLangI;
-                case OptionType::CONTROLES:
+                case OptionType::CONTROLS:
                     return curPosCtrlI;
                 }
 
