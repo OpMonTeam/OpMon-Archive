@@ -174,12 +174,12 @@ namespace OpMon {
 
             txtCtrlChange.setPosition(45.0, 100.0);
 
-            txtCtrlUp.setPosition(118.0, 235.0);
-            txtCtrlDown.setPosition(118.0, 368.0);
-            txtCtrlLeft.setPosition(25.0, 300.0);
-            txtCtrlRight.setPosition(195.0, 300.0);
-            txtCtrlTalk.setPosition(255.0, 440.0);
-            txtCtrlInteract.setPosition(370.0, 415.0);
+            txtCtrlUp.setPosition(180.0, 110.0);
+            txtCtrlDown.setPosition(180.0, 210.0);
+            txtCtrlLeft.setPosition(180.0, 310.0);
+            txtCtrlRight.setPosition(180.0, 410.0);
+            txtCtrlTalk.setPosition(429.0, 110.0);
+            txtCtrlInteract.setPosition(429.0, 210.0);
 
             txtCtrlUp.setFont(data.getUiDataPtr()->getFont());
             txtCtrlUp.setCharacterSize(FONT_SIZE_DEFAULT);
@@ -236,12 +236,16 @@ namespace OpMon {
                 j += 69;
             }
 
-            for(int i = 1, j = 86; i < 2; i++) {
-                curPosCtrl[i].x = 23;
+            for(int i = 1, j = 75, k = 169; i < 2; i++) {
+                curPosCtrl[i].x = k;
                 curPosCtrl[i].y = j;
-                curSizeCtrl[i].x = 464 / rectSurb.getGlobalBounds().width;
-                curSizeCtrl[i].y = 57 / rectSurb.getGlobalBounds().height;
-                j += 69;
+                curSizeCtrl[i].x = 83 / rectSurb.getGlobalBounds().width;
+                curSizeCtrl[i].y = 101 / rectSurb.getGlobalBounds().height;
+                j += 100;
+				if(j > 300){
+					j = 75;
+					k = 411;
+				}
             }
         }
 
