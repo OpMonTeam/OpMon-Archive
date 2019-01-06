@@ -36,7 +36,7 @@ namespace OpMon {
 
 	for(auto itor = json.begin(); itor != json.end(); ++itor){
 	  std::vector<AttackEffect**> effects = {&attackList[itor->at("id")].preEffect, &attackList[itor->at("id")].postEffect, &attackList[itor->at("id")].ifFails};
-	  attackList[itor->at("id")].nameKey = std::string("attacks.") + (std::string) itor->at("id") + ".name";
+	  attackList[itor->at("id")].nameKey = std::string("attacks.") + std::string(itor->at("id")) + ".name";
 	  attackList[itor->at("id")].power = itor->at("power");
 	  attackList[itor->at("id")].type = itor->at("type");
 	  attackList[itor->at("id")].accuracy = itor->at("accuracy");
