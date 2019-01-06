@@ -86,6 +86,9 @@ endif()
 
 # Note: the executable must be declared before adding libraries
 if (APPLE)
+    # Need Cocoa framework for Obj-C code
+    find_library(COCOA_LIBRARY Cocoa)
+
     # On Apple, Create an app bundle, which includes all the game resources and dependencies
     set_source_files_properties( ${CMAKE_SOURCE_DIR}/Resources/Other/opmon_icon.icns PROPERTIES MACOSX_PACKAGE_LOCATION Resources )
     set_source_files_properties( ${CMAKE_SOURCE_DIR}/data PROPERTIES MACOSX_PACKAGE_LOCATION Resources )
@@ -95,6 +98,9 @@ if (APPLE)
     add_executable(${EXECUTABLE_NAME} MACOSX_BUNDLE ${SOURCE_FILES}
     ${CMAKE_SOURCE_DIR}/Resources/Other/opmon_icon.icns
     ${CMAKE_SOURCE_DIR}/data)
+
+    # Add Cocoa framework to executable bundle
+    target_link_libraries(${EXECUTABLE_NAME} ${COCOA_LIBRARY})
 
     # Set the icon
     set_target_properties( ${EXECUTABLE_NAME} PROPERTIES MACOSX_BUNDLE_ICON_FILE opmon_icon.icns )
