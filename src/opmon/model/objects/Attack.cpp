@@ -35,17 +35,18 @@ namespace OpMon {
 	jsonStream >> json;
 
 	for(auto itor = json.begin(); itor != json.end(); ++itor){
-	  std::vector<AttackEffect**> effects = {&attackList[itor->at("id")].preEffect, &attackList[itor->at("id")].postEffect, &attackList[itor->at("id")].ifFails};
-	  attackList[itor->at("id")].nameKey = std::string("attacks.") + std::string(itor->at("id")) + ".name";
-	  attackList[itor->at("id")].power = itor->at("power");
-	  attackList[itor->at("id")].type = itor->at("type");
-	  attackList[itor->at("id")].accuracy = itor->at("accuracy");
-	  attackList[itor->at("id")].special = itor->at("special");
-	  attackList[itor->at("id")].status = itor->at("status");
-	  attackList[itor->at("id")].criticalRate = itor->at("criticalRate");
-	  attackList[itor->at("id")].neverFails = itor->at("neverFails");
-	  attackList[itor->at("id")].ppMax = itor->at("ppMax");
-	  attackList[itor->at("id")].priority = itor->at("priority");
+	    std::string idStr = itor->at("id");
+	  std::vector<AttackEffect**> effects = {&attackList[idStr].preEffect, &attackList[idStr].postEffect, &attackList[idStr].ifFails};
+	  attackList[idStr].nameKey = std::string("attacks.") + idStr + ".name";
+	  attackList[idStr].power = itor->at("power");
+	  attackList[idStr].type = itor->at("type");
+	  attackList[idStr].accuracy = itor->at("accuracy");
+	  attackList[idStr].special = itor->at("special");
+	  attackList[idStr].status = itor->at("status");
+	  attackList[idStr].criticalRate = itor->at("criticalRate");
+	  attackList[idStr].neverFails = itor->at("neverFails");
+	  attackList[idStr].ppMax = itor->at("ppMax");
+	  attackList[idStr].priority = itor->at("priority");
 	  int i = 0;
 	  for(auto eitor = itor->at("effects").begin(); eitor != itor->at("effects").end(); ++eitor){
 	    if(!eitor->at("null")){
