@@ -35,7 +35,7 @@ If you want to compile OPMon from A to Z for Windows, Mac OS or other, it's [her
 ### Contact Us
 * jlppcprog@ntymail.com for bugs, lags or about the code
 * evandib@gmail.com for sprites, the graphics, design or graphics bugs
-* [Discord server](https://discord.gg/XwyKFzh)
+* [Discord server](https://discord.gg/mvS67qu)
 * IRC channel on Freenode : #OpMon
 <br>
 English is not our native language, but we do our best! If you see some errors, don't hesitate to tell us, so we won't make them again!
