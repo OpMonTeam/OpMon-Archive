@@ -11,7 +11,7 @@ OPMon is a Pokémon-inspired game project imagined in 2012 and started in septem
 * [Development news](https://translate.google.com/translate?act=url&depth=1&hl=fr&ie=UTF8&prev=_t&rurl=translate.google.fr&sl=fr&sp=nmt4&tl=en&u=https://github.com/cyrioncentori/OpMon/wiki/Journal-du-d%25C3%25A9veloppement)
 * [Monthly Reports](https://github.com/cyrioncentori/OpMon/wiki/Monthly-reports)
 * [Credits](https://github.com/cyrioncentori/OpMon/blob/master/Credits.md)
-* [Github repo for the game website, opmon-game.ga](https://github.com/cyrioncentori/Site-OpMon)
+* [Github repo for the game website, opmon-game.ga](https://github.com/OpMonTeam/OpMon-Website)
 * [Documentation](http://opmon-game.ga/pages/doc)
 
 ### Build
@@ -63,14 +63,14 @@ See the controls of the game OpMon [here](http://opmon-game.ga/controls.html)
 * [Journal de développement](https://github.com/cyrioncentori/OpMon/wiki/Journal-du-développement)
 * [Bilans mensuels, récapitulatifs des nouveautés (en anglais)](https://github.com/cyrioncentori/OpMon/wiki/Monthly-reports)
 * [Site web du jeu](http://opmon-game.ga)
-* [Dépot du site web](https://github.com/cyrioncentori/Site-OpMon)
+* [Dépot du site web](https://github.com/OpMonTeam/OpMon-Website)
 * [Crédits](https://github.com/cyrioncentori/OpMon/blob/master/Credits.md)
 
 <br/>Version du jeu : Alpha 0.15.1 | Téléchargement : <a 
 href="http://opmon-game.ga"><img src="https://img.shields.io/badge/download-v0.15.1-red.svg" alt="Logo Téléchargement"></a><br/><br/>
 
 ### Prochaines versions :
-* Alpha 0.16 : Amelioration du système de combat et ameliorations des OpMOns et de leurs stats
+* Alpha 0.16 : Amelioration du système de combat et ameliorations des OpMons et de leurs stats
 * [Voir la RoadMap](https://github.com/cyrioncentori/OpMon/wiki/ROADMAP)
 
 <br/>
