@@ -18,7 +18,7 @@ namespace OpMon {
             sf::Texture langBg;
             sf::Texture yesTx;
             sf::Texture creditsBg;
-            sf::Texture controlesBg;
+            sf::Texture controlsBg;
             sf::Texture volumeCur;
             sf::Texture keyChange;
 
@@ -30,7 +30,7 @@ namespace OpMon {
             sf::Texture const &getLangBg() const { return langBg; }
             sf::Texture const &getYesTx() const { return yesTx; }
             sf::Texture const &getCreditsBg() const { return creditsBg; }
-            sf::Texture const &getControlesBg() const { return controlesBg; }
+            sf::Texture const &getControlsBg() const { return controlsBg; }
             sf::Texture const &getVolumeCur() const { return volumeCur; }
             sf::Texture const &getKeyChange() const { return keyChange; }
             UiData *getUiDataPtr() { return uidata; }

@@ -15,7 +15,7 @@ namespace OpMon {
             ResourceLoader::load(langBg, "backgrounds/lang.png");
             ResourceLoader::load(yesTx, "sprites/misc/yes.png");
             ResourceLoader::load(creditsBg, "backgrounds/credits.png");
-            ResourceLoader::load(controlesBg, "backgrounds/controles.png");
+            ResourceLoader::load(controlsBg, "backgrounds/controls.png");
             ResourceLoader::load(volumeCur, "sprites/misc/cursor.png");
             ResourceLoader::load(keyChange, "sprites/misc/keyChange.png");
         }
