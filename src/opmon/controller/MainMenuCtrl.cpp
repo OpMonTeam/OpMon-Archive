@@ -27,7 +27,7 @@ namespace OpMon {
                 switch(event.key.code) {
                     //Activates the player's selection
                 case sf::Keyboard::Return:
-                    switch(view.getCursorPosition()) {
+                    switch(curPosI) {
                     case 0:
                         loadNext = LOAD_STARTSCENE;
                         data.getUiDataPtr()->getJukebox().playSound("push");
@@ -46,15 +46,12 @@ namespace OpMon {
                     break;
                     //Moves the cursor
                 case sf::Keyboard::Up:
-                    view.moveArrow(true);
+                    Helper::moveArrow(true, curPosI);
                     data.getUiDataPtr()->getJukebox().playSound("arrow");
                     break;
                 case sf::Keyboard::Down:
-                    view.moveArrow(false);
+                    Helper::moveArrow(false, curPosI);
                     data.getUiDataPtr()->getJukebox().playSound("arrow");
-                    break;
-
-                default:
                     break;
                 }
             }
@@ -62,7 +59,7 @@ namespace OpMon {
         }
 
         GameStatus MainMenuCtrl::update(sf::RenderTexture &frame) {
-            view.draw(frame);
+            view.draw(frame, curPosI);
             return GameStatus::CONTINUE;
         }
 
