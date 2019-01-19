@@ -182,20 +182,20 @@ namespace OpMon {
             txtCtrlInteract.setPosition(417.0, 339.0);
 
             txtCtrlUp.setFont(data.getUiDataPtr()->getFont());
-            txtCtrlUp.setCharacterSize(FONT_SIZE_DEFAULT);
+            txtCtrlUp.setCharacterSize(FONT_SIZE_DEFAULT - 4);
             txtCtrlDown.setFont(data.getUiDataPtr()->getFont());
-            txtCtrlDown.setCharacterSize(FONT_SIZE_DEFAULT);
+            txtCtrlDown.setCharacterSize(FONT_SIZE_DEFAULT - 4);
             txtCtrlLeft.setFont(data.getUiDataPtr()->getFont());
-            txtCtrlLeft.setCharacterSize(FONT_SIZE_DEFAULT);
+            txtCtrlLeft.setCharacterSize(FONT_SIZE_DEFAULT - 4);
             txtCtrlRight.setFont(data.getUiDataPtr()->getFont());
-            txtCtrlRight.setCharacterSize(FONT_SIZE_DEFAULT);
+            txtCtrlRight.setCharacterSize(FONT_SIZE_DEFAULT - 4);
             txtCtrlTalk.setFont(data.getUiDataPtr()->getFont());
-            txtCtrlTalk.setCharacterSize(FONT_SIZE_DEFAULT);
+            txtCtrlTalk.setCharacterSize(FONT_SIZE_DEFAULT - 4);
             txtCtrlInteract.setFont(data.getUiDataPtr()->getFont());
-            txtCtrlInteract.setCharacterSize(FONT_SIZE_DEFAULT);
+            txtCtrlInteract.setCharacterSize(FONT_SIZE_DEFAULT - 4);
 
             rectKeyChange.setTexture(data.getKeyChange());
-	    //rectKeyChange.setScale()
+	    rectKeyChange.setScale(70 / rectKeyChange.getGlobalBounds().width, 43 / rectKeyChange.getGlobalBounds().height);
 
 
 
@@ -241,10 +241,10 @@ namespace OpMon {
                 j += 69;
             }
 
-			curPosCtrl[1].x = 23;
-			curPosCtrl[1].y = 81;
-			curSizeCtrl[1].x = 351 / rectSurb.getGlobalBounds().width;
-			curSizeCtrl[1].y = 63 / rectSurb.getGlobalBounds().height;
+	    curPosCtrl[1].x = 23;
+	    curPosCtrl[1].y = 81;
+	    curSizeCtrl[1].x = 351 / rectSurb.getGlobalBounds().width;
+	    curSizeCtrl[1].y = 63 / rectSurb.getGlobalBounds().height;
         }
 
         void OptionsMenu::draw(sf::RenderTarget &frame) {
