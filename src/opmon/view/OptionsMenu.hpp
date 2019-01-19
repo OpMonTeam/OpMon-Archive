@@ -9,7 +9,7 @@
 
 #include "../model/storage/OptionsMenuData.hpp"
 #include "../start/i18n/ATranslatable.hpp"
-#include "../helper/MenuHelper.hpp"
+#include "../controller/MenuHelper.hpp"
 #include "Elements.hpp"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
@@ -20,7 +20,7 @@ namespace OpMon {
 
         enum class OptionType { ALL,
                                 LANG,
-                                CONTROLES,
+                                CONTROLS,
                                 CREDITS };
 
         class OptionsMenu : I18n::ATranslatable {
@@ -34,7 +34,7 @@ namespace OpMon {
 
             void loop(sf::RenderTarget &frame);
             void langLoop(sf::RenderTarget &frame);
-            void controlesLoop(sf::RenderTarget &frame);
+            void controlsLoop(sf::RenderTarget &frame);
             void creditsLoop(sf::RenderTarget &frame);
 
             void initStrings();
@@ -48,7 +48,7 @@ namespace OpMon {
                     return curPosOptI;
                 case OptionType::LANG:
                     return curPosLangI;
-                case OptionType::CONTROLES:
+                case OptionType::CONTROLS:
                     return curPosCtrlI;
                 }
 
@@ -67,7 +67,7 @@ namespace OpMon {
             sf::Sprite volumeCur;
             sf::Sprite bgCredits;
             sf::Sprite bgOpt;
-            sf::Sprite bgControles;
+            sf::Sprite bgControls;
 
             sf::Text langFr;
             sf::Text langEng;
@@ -111,7 +111,7 @@ namespace OpMon {
             sf::Text txtCtrlInteract;
             sf::Sprite rectKeyChange;
             const sf::Vector2f posControls[7] = {
-                {-500.0, -500.0}, {108.0, 215.0}, {98.0, 348.0}, {5.0, 280.0}, {175.0, 280.0}, {255.0, 440.0}, {350.0, 395.0}
+                {-500.0, -500.0}, {150.0, 175.0}, {148.0, 450.0}, {9.0, 311.0}, {298.0, 310.0}, {412.0, 211.0}, {412.0, 334.0}
             };
 
             sf::Text txtLang;

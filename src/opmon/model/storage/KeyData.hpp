@@ -1,6 +1,6 @@
 /*
   KeyData.hpp
-  Author : Cyrion
+  Author : Bobor
   File under GNU GPL v3.0 license
 */
 #pragma once

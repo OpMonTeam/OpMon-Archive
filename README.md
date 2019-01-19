@@ -11,12 +11,13 @@ OPMon is a Pokémon-inspired game project imagined in 2012 and started in septem
 * [Development news](https://translate.google.com/translate?act=url&depth=1&hl=fr&ie=UTF8&prev=_t&rurl=translate.google.fr&sl=fr&sp=nmt4&tl=en&u=https://github.com/cyrioncentori/OpMon/wiki/Journal-du-d%25C3%25A9veloppement)
 * [Monthly Reports](https://github.com/cyrioncentori/OpMon/wiki/Monthly-reports)
 * [Credits](https://github.com/cyrioncentori/OpMon/blob/master/Credits.md)
-* [Github repo for the game website, opmon-game.ga](https://github.com/cyrioncentori/Site-OpMon)
+* [Github repo for the game website, opmon-game.ga](https://github.com/OpMonTeam/OpMon-Website)
 * [Documentation](http://opmon-game.ga/pages/doc)
 
 ### Build
 
-![Build](https://api.travis-ci.org/OpMonTeam/OpMon.svg?branch=master)
+Master (Last stable build) : ![Build](https://api.travis-ci.org/OpMonTeam/OpMon.svg?branch=master)  
+Develop (Development branch) : ![Build](https://api.travis-ci.org/OpMonTeam/OpMon.svg?branch=develop)
 
 The build system use *cmake*.
 Command for GNU/Linux systems :
@@ -34,7 +35,7 @@ If you want to compile OPMon from A to Z for Windows, Mac OS or other, it's [her
 ### Contact Us
 * jlppcprog@ntymail.com for bugs, lags or about the code
 * evandib@gmail.com for sprites, the graphics, design or graphics bugs
-* [Discord server](https://discord.gg/XwyKFzh)
+* [Discord server](https://discord.gg/mvS67qu)
 * IRC channel on Freenode : #OpMon
 <br>
 English is not our native language, but we do our best! If you see some errors, don't hesitate to tell us, so we won't make them again!
@@ -62,14 +63,14 @@ See the controls of the game OpMon [here](http://opmon-game.ga/controls.html)
 * [Journal de développement](https://github.com/cyrioncentori/OpMon/wiki/Journal-du-développement)
 * [Bilans mensuels, récapitulatifs des nouveautés (en anglais)](https://github.com/cyrioncentori/OpMon/wiki/Monthly-reports)
 * [Site web du jeu](http://opmon-game.ga)
-* [Dépot du site web](https://github.com/cyrioncentori/Site-OpMon)
+* [Dépot du site web](https://github.com/OpMonTeam/OpMon-Website)
 * [Crédits](https://github.com/cyrioncentori/OpMon/blob/master/Credits.md)
 
 <br/>Version du jeu : Alpha 0.15.1 | Téléchargement : <a 
 href="http://opmon-game.ga"><img src="https://img.shields.io/badge/download-v0.15.1-red.svg" alt="Logo Téléchargement"></a><br/><br/>
 
 ### Prochaines versions :
-* Alpha 0.16 : Amelioration du système de combat et ameliorations des OpMOns et de leurs stats
+* Alpha 0.16 : Amelioration du système de combat et ameliorations des OpMons et de leurs stats
 * [Voir la RoadMap](https://github.com/cyrioncentori/OpMon/wiki/ROADMAP)
 
 <br/>

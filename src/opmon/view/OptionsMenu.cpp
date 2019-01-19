@@ -129,7 +129,7 @@ namespace OpMon {
             bgLangues.setTexture(data.getLangBg());
             check.setTexture(data.getYesTx());
             bgCredits.setTexture(data.getCreditsBg());
-            bgControles.setTexture(data.getControlesBg());
+            bgControls.setTexture(data.getControlsBg());
 
             volumeCur.setTexture(data.getVolumeCur());
             //Cursor positions :
@@ -171,35 +171,36 @@ namespace OpMon {
             txtCre83.setPosition(30, 420);
             txtCre84.setPosition(30, 437);
             txtCre9.setPosition(375, 488);
+            txtCtrlChange.setPosition(33.0, 91.0);
 
-            txtCtrlChange.setPosition(45.0, 100.0);
-
-            txtCtrlUp.setPosition(118.0, 235.0);
-            txtCtrlDown.setPosition(118.0, 368.0);
-            txtCtrlLeft.setPosition(25.0, 300.0);
-            txtCtrlRight.setPosition(195.0, 300.0);
-            txtCtrlTalk.setPosition(255.0, 440.0);
-            txtCtrlInteract.setPosition(370.0, 415.0);
+            txtCtrlUp.setPosition(155.0, 180.0);
+            txtCtrlDown.setPosition(153.0, 455.0);
+            txtCtrlLeft.setPosition(14.0, 316.0);
+            txtCtrlRight.setPosition(303.0, 315.0);
+            txtCtrlTalk.setPosition(417.0, 216.0);
+            txtCtrlInteract.setPosition(417.0, 339.0);
 
             txtCtrlUp.setFont(data.getUiDataPtr()->getFont());
-            txtCtrlUp.setCharacterSize(FONT_SIZE_DEFAULT);
+            txtCtrlUp.setCharacterSize(FONT_SIZE_DEFAULT - 4);
             txtCtrlDown.setFont(data.getUiDataPtr()->getFont());
-            txtCtrlDown.setCharacterSize(FONT_SIZE_DEFAULT);
+            txtCtrlDown.setCharacterSize(FONT_SIZE_DEFAULT - 4);
             txtCtrlLeft.setFont(data.getUiDataPtr()->getFont());
-            txtCtrlLeft.setCharacterSize(FONT_SIZE_DEFAULT);
+            txtCtrlLeft.setCharacterSize(FONT_SIZE_DEFAULT - 4);
             txtCtrlRight.setFont(data.getUiDataPtr()->getFont());
-            txtCtrlRight.setCharacterSize(FONT_SIZE_DEFAULT);
+            txtCtrlRight.setCharacterSize(FONT_SIZE_DEFAULT - 4);
             txtCtrlTalk.setFont(data.getUiDataPtr()->getFont());
-            txtCtrlTalk.setCharacterSize(FONT_SIZE_DEFAULT);
+            txtCtrlTalk.setCharacterSize(FONT_SIZE_DEFAULT - 4);
             txtCtrlInteract.setFont(data.getUiDataPtr()->getFont());
-            txtCtrlInteract.setCharacterSize(FONT_SIZE_DEFAULT);
+            txtCtrlInteract.setCharacterSize(FONT_SIZE_DEFAULT - 4);
 
             rectKeyChange.setTexture(data.getKeyChange());
-
+	          rectKeyChange.setScale(70 / rectKeyChange.getGlobalBounds().width, 43 / rectKeyChange.getGlobalBounds().height);
 
 
             data.getUiDataPtr()->getJukebox().play("Title");
-
+			
+			//Return buttun positions
+			
             curPosOpt[0].x = 23;
             curPosOpt[0].y = 17;
             curSizeOpt[0].x = 134 / rectSurb.getGlobalBounds().width;
@@ -214,7 +215,8 @@ namespace OpMon {
             curPosCtrl[0].y = 17;
             curSizeCtrl[0].x = 134 / rectSurb.getGlobalBounds().width;
             curSizeCtrl[0].y = 49 / rectSurb.getGlobalBounds().height;
-
+            
+		      	//Different buttons for different menus. Since many buttons are aligned, for loops are used to make the initialization of the coordinates faster.
             for(int i = 1, j = 86; i < 6; i++) {
                 curPosOpt[i].x = 23;
                 curPosOpt[i].y = j;
@@ -236,13 +238,10 @@ namespace OpMon {
                 j += 69;
             }
 
-            for(int i = 1, j = 86; i < 2; i++) {
-                curPosCtrl[i].x = 23;
-                curPosCtrl[i].y = j;
-                curSizeCtrl[i].x = 464 / rectSurb.getGlobalBounds().width;
-                curSizeCtrl[i].y = 57 / rectSurb.getGlobalBounds().height;
-                j += 69;
-            }
+            curPosCtrl[1].x = 23;
+            curPosCtrl[1].y = 81;
+            curSizeCtrl[1].x = 351 / rectSurb.getGlobalBounds().width;
+            curSizeCtrl[1].y = 63 / rectSurb.getGlobalBounds().height;
         }
 
         void OptionsMenu::draw(sf::RenderTarget &frame) {
@@ -251,8 +250,8 @@ namespace OpMon {
                 return loop(frame);
             case OptionType::LANG:
                 return langLoop(frame);
-            case OptionType::CONTROLES:
-                return controlesLoop(frame);
+            case OptionType::CONTROLS:
+                return controlsLoop(frame);
             case OptionType::CREDITS:
                 return creditsLoop(frame);
             }
@@ -261,13 +260,13 @@ namespace OpMon {
         void OptionsMenu::moveArrow(bool move) {
             switch(currentOptions) {
             case OptionType::ALL:
-                Helper::moveArrow(move, curPosOptI, 6);
+                Controller::Helper::moveArrow(move, curPosOptI, 6);
                 break;
-            case OptionType::CONTROLES:
-                Helper::moveArrow(move, curPosCtrlI, 2);
+            case OptionType::CONTROLS:
+                Controller::Helper::moveArrow(move, curPosCtrlI, 2);
                 break;
             case OptionType::LANG:
-                Helper::moveArrow(move, curPosLangI, 5);
+                Controller::Helper::moveArrow(move, curPosLangI, 5);
                 break;
             }
         }
@@ -317,10 +316,10 @@ namespace OpMon {
             data.getUiDataPtr()->getJukebox().play("Title");
         }
 
-        void OptionsMenu::controlesLoop(sf::RenderTarget &frame) {
+        void OptionsMenu::controlsLoop(sf::RenderTarget &frame) {
             frame.clear(sf::Color::White);
 
-            frame.draw(bgControles);
+            frame.draw(bgControls);
 
             frame.draw(txtCtrlChange);
 
