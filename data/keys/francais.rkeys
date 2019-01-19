@@ -16,11 +16,11 @@ key.options.credit.5=Game-designer
 key.options.credit.6=Collaborateurs :
 key.options.credit.7=Aerzia, BAKfr, gberthou
 key.options.credit.8=Contributeurs : imZERKKA, Mat, Jseutter, Stelyus, Ezaron, rjphares
-key.options.credit.81=Rixem, Jo, Imperator, Léo, LinkyFR, Bircoum, louracame
+key.options.credit.81=Rixem, Jo, Imperator Dei, Léo, LinkyFR, Bircoum, louracame
 key.options.credit.82=Samurai413x, Silvermoon, Lebordelic, Asvirius, jubalh, torq
-key.options.credit.83=JonnyPtn, Cheesecake, bobor, Qwam
+key.options.credit.83=JonnyPtn, Cheesecake, bobor
 key.options.credit.84= 
-key.options.credit.9=                   v0.16dev
+key.options.credit.9=                   v0.15.1
 key.options.retour=Retour
 key.options.title=Options
 key.options.ecran=Plein écran
@@ -28,6 +28,7 @@ key.options.lang.title=Langues
 key.options.control=Crédits
 key.options.vol=Contrôles
 key.options.cred.title=Crédits
+key.options.ctrl.change=Change configuration
 
 key.nameEntry.top=Quel est son nom ?
 key.nameEntry.med=Entre un nom
@@ -256,15 +257,5 @@ key.opmon.desc.48=WIP
 key.opmon.desc.49=WIP
 key.opmon.desc.50=WIP
 key.opmon.desc.51=WIP
-
-key.attacks.Mist.name=Brume
-key.attacks.Tackle.name=Charge
-key.attacks.Growl.name=Rugissement
-
-key.items.hcandy.name=Bonbon de soin
-
-key.items.dialog.heal.fullHP=Mais ~ est déjà en pleine forme !
-key.items.dialog.heal.healKO=Mais ~ est KO.
-key.items.dialog.heal.healHP=~ vient de récupérer ~ PV !
 
 end

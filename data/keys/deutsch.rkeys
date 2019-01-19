@@ -22,12 +22,13 @@ key.options.credit.5=Grafikdesigner
 key.options.credit.6=Mitwirkende :
 key.options.credit.7=Aerzia, BAKfr, gberthou
 key.options.credit.8=Contributors : imZERKKA, Mat, Jseutter, Stelyus, Ezaron, rjphares
-key.options.credit.81=Rixem, Jo, Imperator, Léo, LinkyFR, Bircoum, louracame
+key.options.credit.81=Rixem, Jo, Imperator Dei, Léo, LinkyFR, Bircoum, louracame
 key.options.credit.82=Samurai413x, Silvermoon, Lebordelic, Asvirius, jubalh, torq
-key.options.credit.83=JonnyPtn, Cheesecake, bobor, Qwam
+key.options.credit.83=JonnyPtn, Cheesecake, bobor
 key.options.credit.84= 
-key.options.credit.9=                   v0.16dev
+key.options.credit.9=                   v0.15.1
 key.options.cred.title=Credits
+key.options.ctrl.change=Change configuration - todo
 
 key.nameEntry.top=Wie ist der Name deines Charakters?
 key.nameEntry.med=Gib einen Namen ein
@@ -45,7 +46,7 @@ key.prof.dialog.start.8="Was macht er in dieser
 key.prof.dialog.start.9=kleinen Stadt?" Dies ist meine Geschichte.
 key.prof.dialog.start.10=Ich bin hier aufgewachsen
 key.prof.dialog.start.11=und habe mein erstes OpMon getroffen :
-key.prof.dialog.start.12=Furnursus
+key.prof.dialog.start.12=Oursiflamme
 key.prof.dialog.start.13=Es ist ein kleines Feuertier süß
 key.prof.dialog.start.14=und beschützerisch mach dass er 
 key.prof.dialog.start.15=sich entwickelt, damit er süß bleibt
@@ -254,15 +255,5 @@ key.opmon.desc.48=WIP
 key.opmon.desc.49=WIP
 key.opmon.desc.50=WIP
 key.opmon.desc.51=WIP
-
-key.attacks.Mist.name=Mist
-key.attacks.Tackle.name=Tackle
-key.attacks.Growl.name=Growl
-
-key.items.hcandy.name=Healing Candy
-
-key.items.dialog.heal.fullHP=But ~'s HP are already full !
-key.items.dialog.heal.healKO=But ~ is KO.
-key.items.dialog.heal.healHP=~ just recovered ~ HP !
 
 end

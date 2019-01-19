@@ -9,7 +9,6 @@
 
 #include "Attack.hpp"
 #include "OpMon.hpp"
-#include "../../../nlohmann/json.hpp"
 #include <cmath>
 #include <iostream>
 
@@ -29,16 +28,23 @@
 namespace OpMon {
     namespace Model {
         /**
-	   Namespace containing attacks' definitions
-	*/
+       Namespace containing attacks' definitions
+    */
         //->NoDoc
         namespace Attacks {
+
+            /**
+	 TODO : Put the attacks' names in english, put all the attacks' names in the rkeys files for translation. 
+      */
+
+            Attack *newAtk(std::string name);
+
             class ChangeStatEffect : public AttackEffect {
               public:
-	      enum class Target : int { ATTACKER = 0,
-                              DEFENDER = 1 };
+                enum Target { ATTACKER,
+                              DEFENDER };
                 ChangeStatEffect(Target target, Model::Stats stat, int coef);
-	      ChangeStatEffect(nlohmann::json const& data);
+
                 int apply(Attack &attack, OpMon &attacker, OpMon &defender, Turn &atkTurn) override;
 
               protected:

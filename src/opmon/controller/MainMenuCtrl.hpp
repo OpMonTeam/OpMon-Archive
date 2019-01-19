@@ -12,6 +12,7 @@ File under GNU GPL v3.0
 #include "../start/Core.hpp"
 #include "../view/MainMenu.hpp"
 #include "AGameScreen.hpp"
+#include "MenuHelper.hpp"
 
 namespace OpMon {
     namespace Controller {
@@ -21,7 +22,8 @@ namespace OpMon {
             View::MainMenu view;
 
 			int loadNext = 0;
-			
+            int curPosI{0};
+
           public:
             MainMenuCtrl(Model::UiData *data);
 
@@ -29,7 +31,7 @@ namespace OpMon {
             GameStatus update(sf::RenderTexture &frame) override;
 
 			void loadNextScreen() override;
-			
+
             void suspend() override;
             void resume() override;
         };
