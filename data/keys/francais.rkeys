@@ -28,6 +28,7 @@ key.options.lang.title=Langues
 key.options.control=Crédits
 key.options.vol=Contrôles
 key.options.cred.title=Crédits
+key.options.ctrl.change=Change configuration
 
 key.nameEntry.top=Quel est son nom ?
 key.nameEntry.med=Entre un nom
