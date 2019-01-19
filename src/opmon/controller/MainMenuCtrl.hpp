@@ -12,7 +12,7 @@ File under GNU GPL v3.0
 #include "../start/Core.hpp"
 #include "../view/MainMenu.hpp"
 #include "AGameScreen.hpp"
-#include "MenuHelper.hpp"
+#include "../helper/MenuHelper.hpp"
 
 namespace OpMon {
     namespace Controller {
@@ -37,4 +37,4 @@ namespace OpMon {
         };
 
     } // namespace Controller
-} // namespace OpMon
+} // namespace OpMonon

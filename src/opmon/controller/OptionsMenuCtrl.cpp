@@ -34,7 +34,7 @@ namespace OpMon {
             auto &menu = view;
             switch(event.type) {
             case sf::Event::KeyPressed:
-                if(menu.getCurrentOption() == View::OptionType::CONTROLS && keyChangeActive) {
+                if(menu.getCurrentOption() == View::OptionType::CONTROLES && keyChangeActive) {
                     if(currentKeyChange < controlsName.size())
                     {
                         const std::string& keyCode = Model::KeyData::findNameKeyCode(event.key.code);
@@ -86,7 +86,7 @@ namespace OpMon {
                             break;
                         case CONTROLS:
                             data.getUiDataPtr()->getJukebox().playSound("push");
-                            menu.setCurrentOption(View::OptionType::CONTROLS);
+                            menu.setCurrentOption(View::OptionType::CONTROLES);
                             return GameStatus::CONTINUE;
                             break;
                         case VOLUME:
@@ -133,13 +133,13 @@ namespace OpMon {
                         data.getUiDataPtr()->getJukebox().playSound("push");
                         menu.setCurrentOption(View::OptionType::ALL);
                         return GameStatus::CONTINUE;
-                    } else if(menu.getCurrentOption() == View::OptionType::CONTROLS) {
+                    } else if(menu.getCurrentOption() == View::OptionType::CONTROLES) {
                         switch(menu.cursorPosition()) {
-                        case 0: //Back
+                        case 0:
                             data.getUiDataPtr()->getJukebox().playSound("push");
                             menu.setCurrentOption(View::OptionType::ALL);
                             return GameStatus::CONTINUE;
-                        case 1: //Set controls
+                        case 1:
                             data.getUiDataPtr()->getJukebox().playSound("push");
                             keyChangeActive = true;
                             view.setCurrentActionsCtrl(currentKeyChange + 1);
