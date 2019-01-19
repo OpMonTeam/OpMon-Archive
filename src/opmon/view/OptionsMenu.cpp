@@ -171,6 +171,7 @@ namespace OpMon {
             txtCre83.setPosition(30, 420);
             txtCre84.setPosition(30, 437);
             txtCre9.setPosition(375, 488);
+
             txtCtrlChange.setPosition(33.0, 91.0);
 
             txtCtrlUp.setPosition(155.0, 180.0);
@@ -194,7 +195,8 @@ namespace OpMon {
             txtCtrlInteract.setCharacterSize(FONT_SIZE_DEFAULT - 4);
 
             rectKeyChange.setTexture(data.getKeyChange());
-	          rectKeyChange.setScale(70 / rectKeyChange.getGlobalBounds().width, 43 / rectKeyChange.getGlobalBounds().height);
+	    rectKeyChange.setScale(70 / rectKeyChange.getGlobalBounds().width, 43 / rectKeyChange.getGlobalBounds().height);
+
 
 
             data.getUiDataPtr()->getJukebox().play("Title");
@@ -215,8 +217,9 @@ namespace OpMon {
             curPosCtrl[0].y = 17;
             curSizeCtrl[0].x = 134 / rectSurb.getGlobalBounds().width;
             curSizeCtrl[0].y = 49 / rectSurb.getGlobalBounds().height;
-            
-		      	//Different buttons for different menus. Since many buttons are aligned, for loops are used to make the initialization of the coordinates faster.
+			
+			//Different buttons for different menus. Since many buttons are aligned, for loops are used to make the initialization of the coordinates faster.
+			
             for(int i = 1, j = 86; i < 6; i++) {
                 curPosOpt[i].x = 23;
                 curPosOpt[i].y = j;
@@ -238,10 +241,10 @@ namespace OpMon {
                 j += 69;
             }
 
-            curPosCtrl[1].x = 23;
-            curPosCtrl[1].y = 81;
-            curSizeCtrl[1].x = 351 / rectSurb.getGlobalBounds().width;
-            curSizeCtrl[1].y = 63 / rectSurb.getGlobalBounds().height;
+	    curPosCtrl[1].x = 23;
+	    curPosCtrl[1].y = 81;
+	    curSizeCtrl[1].x = 351 / rectSurb.getGlobalBounds().width;
+	    curSizeCtrl[1].y = 63 / rectSurb.getGlobalBounds().height;
         }
 
         void OptionsMenu::draw(sf::RenderTarget &frame) {

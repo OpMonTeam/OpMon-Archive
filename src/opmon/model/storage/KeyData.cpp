@@ -1,6 +1,6 @@
 /*
   OptionsMenuData.cpp
-  Author : Bobor
+  Author : Cyrion
   File under GNU GPL v3.0 license
 */
 #include "KeyData.hpp"
