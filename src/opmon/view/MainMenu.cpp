@@ -11,7 +11,6 @@ File under GNU GPL v3.0 license
 #include "../model/storage/ResourceLoader.hpp"
 #include "OptionsMenu.hpp"
 #include "Window.hpp"
-#include <iostream>
 
 namespace OpMon {
     namespace View {
@@ -19,36 +18,41 @@ namespace OpMon {
         void MainMenu::initStrings() {
             auto kget = Utils::StringKeys::get;
 
-            playtx.setString(kget("title.1"));
-            charge.setString(kget("title.2"));
-            options.setString(kget("title.3"));
-            exit.setString(kget("title.4"));
+            int i{0};
+            for(auto& optionVec : optionsVec) {
+                optionVec.text.setString(kget("title." + std::to_string(i + 1)));
+                ++i;
+            }
         }
 
-        MainMenu::MainMenu(Model::MainMenuData &data)
-          : data(data) {
-            sf::Text *textPos[4] = {&playtx, &charge, &options, &exit};
-            for(int i = 0, j = 175; i < 4; i++) {
-                curPos[i].x = 10;
-                curPos[i].y = j;
-                textPos[i]->setPosition(sf::Vector2f(60, j));
-                j += 85;
+        MainMenu::MainMenu(Model::MainMenuData &data, const std::size_t totalView)
+          : data(data)
+          , totalView(totalView)
+          , optionsVec(this->totalView) {
+            int i{0};
+            float j{175.0};
+            for(auto& optionVec : optionsVec) {
+                optionVec.pos.x = 10.0;
+                optionVec.pos.y = j;
+
+                optionVec.text.setPosition(60.0, j);
+
+                j += 85.0;
+                ++i;
             }
+
             bg.setTexture(data.getTitlescreen());
             cursor.setTexture(data.getArrChoice());
-            cursor.setScale(3, 3);
+
             initStrings();
 
-            for(auto *text : textPos) {
-                text->setSfmlColor(sf::Color::White);
-                text->setFont(data.getUiDataPtr()->getFont());
-                text->setCharacterSize(FONT_SIZE_DEFAULT);
+            for(auto& optionVec : optionsVec) {
+                optionVec.text.setSfmlColor(sf::Color::White);
+                optionVec.text.setFont(data.getUiDataPtr()->getFont());
+                optionVec.text.setCharacterSize(FONT_SIZE_DEFAULT);
             }
 
             data.getUiDataPtr()->getJukebox().play("Title");
-        }
-
-        MainMenu::~MainMenu() {
         }
 
         void MainMenu::onLangChanged() {
@@ -62,28 +66,16 @@ namespace OpMon {
             data.getUiDataPtr()->getJukebox().play("Title");
         }
 
-        void MainMenu::moveArrow(bool direction) {
-            if(direction) { //If direction is true, the cursor goes down.
-                curPosI--;
-            } else { //Obviously, if direction is false, the cursor goes up.
-                curPosI++;
-            }
-
-            if(curPosI >= 4) {
-                curPosI = 0;
-            } else if(curPosI < 0) {
-                curPosI = 3;
-            }
-        }
-
-        void MainMenu::draw(sf::RenderTexture &frame) {
+        void MainMenu::draw(sf::RenderTexture &frame, int curPosI) {
             frame.clear(sf::Color::Black);
+
             frame.draw(bg);
-            frame.draw(playtx),
-              frame.draw(charge);
-            frame.draw(options);
-            frame.draw(exit);
-            cursor.setPosition(curPos[curPosI]);
+
+            for(auto& optionVec : optionsVec) {
+                frame.draw(optionVec.text);
+            }
+
+            cursor.setPosition(optionsVec[curPosI].pos);
             frame.draw(cursor);
         }
 
