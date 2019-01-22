@@ -1,6 +1,6 @@
 /*
 BattleCtrl.cpp
-Author : Cyrion
+Author : Cyriel
 Contributors : JonnyPtn, Navet56
 File under GNU GPL v3.0 license.
 */

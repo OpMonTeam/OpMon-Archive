@@ -1,7 +1,7 @@
 /*
 OptionsMenuCtrl.hpp
 Author : BAKFR
-Contributors : Cyrion, Samurai413x
+Contributors : Cyriel, Samurai413x
 File under GNU GPL v3.0 license
 */
 #pragma once

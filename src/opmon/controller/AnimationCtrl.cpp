@@ -1,6 +1,6 @@
 /*
 AnimationCtrl.cpp
-Author : Cyrion
+Author : Cyriel
 File under GNU GPL 3.0 license
 */
 #include "AnimationCtrl.hpp"

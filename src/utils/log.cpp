@@ -1,7 +1,7 @@
 /*
 log.cpp
 Author : BAKFR
-Contributor : Cyrion
+Contributor : Cyriel
 File under GNU GPL v3.0
 */
 #include "./log.hpp"

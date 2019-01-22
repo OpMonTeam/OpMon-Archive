@@ -1,6 +1,6 @@
 /*
 Species.hpp
-Author : Cyrion
+Author : Cyriel
 Contributors : Stelyus, BAKFR, Navet56, JonnyPtn
 File under GNU GPL v3.0 license
 */

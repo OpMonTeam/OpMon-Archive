@@ -1,7 +1,7 @@
 /*
   Dialog.hpp
   Author : BAKFR
-  Contributor : Cyrion
+  Contributor : Cyriel
   File under GNU GPL 3.0 licence
 */
 #ifndef OPMON_DIALOG_CPP_HPP

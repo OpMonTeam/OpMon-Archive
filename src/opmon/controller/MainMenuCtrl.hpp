@@ -1,7 +1,7 @@
 /*
 MainMenuCtrl.hpp
 Author : BAKFR
-Contributor : Cyrion
+Contributor : Cyriel
 File under GNU GPL v3.0
 */
 #pragma once

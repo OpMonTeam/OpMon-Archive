@@ -1,6 +1,6 @@
 /*
 OptionsSave.cpp
-Author : Cyrion
+Author : Cyriel
 Contributor : Stelyus, BAKFR
 File under GNU GPL v3.0 license
 */

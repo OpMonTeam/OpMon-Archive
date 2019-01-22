@@ -1,6 +1,6 @@
 /*
   InternalFiles.hpp
-  Author : Cyrion
+  Author : Cyriel
   Contributors : Navet56, BAKFR
   File under GNU GPL v3.0 license
 */

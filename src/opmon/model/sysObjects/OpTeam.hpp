@@ -1,6 +1,6 @@
 /*
 OpTeam.hpp
-Author : Cyrion
+Author : Cyriel
 File under GNU GPL v3.0 license
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_PLAYERCORE_EQUIPE_HPP_
