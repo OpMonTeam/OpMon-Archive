@@ -1,6 +1,6 @@
 /*
 OpString.hpp
-Author : Cyrion
+Author : Cyriel
 Contributors : JonnyPtn, BAKFR
 File under GNU GPL v3.0 license
 */

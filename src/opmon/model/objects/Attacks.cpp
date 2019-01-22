@@ -1,6 +1,6 @@
 /*
 Attacks.cpp
-Author : Cyrion
+Author : Cyriel
 Contributors : BAKFR, Navet56, JonnyPtn
 File under GNU GPL v3.0 license
 */

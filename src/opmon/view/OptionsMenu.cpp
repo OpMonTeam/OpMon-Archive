@@ -1,6 +1,6 @@
 /*
 OptionsMenu.cpp
-Author : Cyrion
+Author : Cyriel
 Contributors : torq, Navet56, BAKFR
 File under GNU GPL v3.0 license
 */

@@ -1,7 +1,7 @@
 /*
 AGameScreen.hpp
 Author : BAKFR
-Contributor : Cyrion
+Contributor : Cyriel
 File under GNU GPL v3.0 license
 */
 #pragma once

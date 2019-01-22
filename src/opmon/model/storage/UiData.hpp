@@ -1,6 +1,6 @@
 /*
   UiData.hpp
-  Author : Cyrion
+  Author : Cyriel
   Contributors : BAKFR
   File under GNU GPL v3.0 license
 */

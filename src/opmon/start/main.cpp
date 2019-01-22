@@ -1,6 +1,6 @@
 /*
 main.cpp
-Author : Cyrion
+Author : Cyriel
 Contributors : Stelyus, Navet56
 File under GNU GPL v3.0 license
 */

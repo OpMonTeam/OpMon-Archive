@@ -1,6 +1,6 @@
 /*
 Enums.cpp
-Author : Cyrion
+Author : Cyriel
 Contributor : BAKFR, Samurai413x
 File under GNU GPL v3.0 license
 */

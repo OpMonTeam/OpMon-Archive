@@ -1,6 +1,6 @@
 /**
   Jukebox.hpp
-  Author : Cyrion
+  Author : Cyriel
   Contributor  : Samurai413x
   File under GNU GPL v3.0 license
 */

@@ -1,7 +1,7 @@
 /*
 MainMenuCtrl.cpp
 Author : BAKFR
-Contributors : Cyrion
+Contributors : Cyriel
 File under GNU GPL v3.0 license
 */
 #include "./MainMenuCtrl.hpp"

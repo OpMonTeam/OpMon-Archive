@@ -1,6 +1,6 @@
 /*
 Player.hpp
-Author : Cyrion
+Author : Cyriel
 Contributors : BAKFR, JonnyPtn, Stelyus, Navet56
 File under GNU GPL v3.0 license
 */

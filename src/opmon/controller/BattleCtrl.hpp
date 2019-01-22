@@ -1,6 +1,6 @@
 /*
 BattleCtrl.hpp
-Author : Cyrion
+Author : Cyriel
 File under GNU GPL v3.0 license
 */
 #pragma once

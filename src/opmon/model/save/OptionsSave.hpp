@@ -1,6 +1,6 @@
 /*
 OptionsSave.hpp
-Author : Cyrion
+Author : Cyriel
 Contributor : Navet56
 File under GNU GPL v3.0 license
 */
