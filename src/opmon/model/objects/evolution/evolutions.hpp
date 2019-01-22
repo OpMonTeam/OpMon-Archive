@@ -1,6 +1,6 @@
 /*
 evolutions.hpp
-Author : Cyrion
+Author : Cyriel
 File under GNU GPL v3.0 license
 */
 #ifndef EVOLUTIONS_HPP_INCLUDED

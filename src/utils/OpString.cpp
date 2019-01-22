@@ -1,6 +1,6 @@
 /*
 OpString.cpp
-Author : Cyrion
+Author : Cyriel
 Contributors : BAKFR, JonnyPtn, torq
 File under GNU GPL v3.0 license
 */

@@ -1,5 +1,5 @@
 # Project credits
-## Programmer, project creator : Cyrion
+## Programmer, project creator : Cyriel
 ## Game and graphics designer, project co-creator : Navet56
 ## Collaborators since the very beginning : Aerzia
 

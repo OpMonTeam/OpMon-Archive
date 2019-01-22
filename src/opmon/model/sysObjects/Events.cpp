@@ -1,6 +1,6 @@
 /*
 Events.cpp
-Author : Cyrion
+Author : Cyriel
 Contributors : BAKFR, Stelyus
 File under GNU GPL v3.0 license
 */

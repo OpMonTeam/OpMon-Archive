@@ -1,6 +1,6 @@
 /*
 Position.hpp
-Author : Cyrion
+Author : Cyriel
 Contributors : Stelyus, Navet56, BAKFR
 File under GNU GPL v3.0 license
 */

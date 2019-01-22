@@ -1,6 +1,6 @@
 /*
 HelperMenu.hpp
-Author : Cyrion / Bobor-dev
+Author : Cyriel / Bobor-dev
 File under GNU GPL v3.0 license
 */
 #ifndef MENUHELPER_HPP

@@ -1,6 +1,6 @@
 /*
 Battle.cpp
-Author : Cyrion
+Author : Cyriel
 Contributors : Navet56, torq
 File under GNU GPL v3.0
 */

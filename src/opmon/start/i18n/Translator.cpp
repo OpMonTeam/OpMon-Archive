@@ -1,7 +1,7 @@
 /*
 Translator.cpp
 Author : BAKFR
-Contributors : Cyrion, jubalh 
+Contributors : Cyriel, jubalh 
 File under GNU GPL v3.0
 */
 #include "Translator.hpp"

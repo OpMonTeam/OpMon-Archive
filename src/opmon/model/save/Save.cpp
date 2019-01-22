@@ -1,6 +1,6 @@
 /*
 Save.cpp
-Author : Cyrion
+Author : Cyriel
 Contributor : BAKFR
 File under GNU GPL v30 license
 */
