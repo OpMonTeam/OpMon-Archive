@@ -8,7 +8,7 @@
 
 
 # Originals musics:
-Original music can be reused provided that you credit the author. They are licensed under Creative Commons Attribution Share Alike 4.0, which you can see in the [LICENSE file here](https://github.com/cyrioncentori/OpMon/blob/master/Resources/LICENSE).  
+Original music can be reused provided that you credit the author. They are licensed under Creative Commons Attribution Share Alike 4.0, which you can see in the [LICENSE file here](https://github.com/OpMonTeam/OpMon/blob/master/Resources/LICENSE).  
 <!--Path : |filename|.extention - |Where the music is located| (|Music name|) : Composed by |creator|-->
 
 * faubourgeuvi.ogg - Fauxbourg Euvi's theme (Startostalgic) : Composed by Cyriel
