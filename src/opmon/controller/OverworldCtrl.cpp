@@ -14,6 +14,7 @@ File under GNU GPL v3.0 license
 
 //Defines created to make the code easier to read
 #define LOAD_BATTLE 1
+#define LOAD_MENU_OPEN 2
 
 namespace OpMon {
     namespace Controller {
@@ -75,6 +76,10 @@ namespace OpMon {
                     if(events.key.code == sf::Keyboard::B) {
                         overworld.tp("Road 14", sf::Vector2i(10, 32));
                     }
+					if(events.key.code == sf::Keyboard::M){
+						loadNext = LOAD_MENU_OPEN;
+						return GameStatus::NEXT;
+					}
                 }
             default:
                 break;
@@ -131,23 +136,29 @@ namespace OpMon {
         }
 
         GameStatus OverworldCtrl::update(sf::RenderTexture &frame) {
+			
             bool is_dialog_open = view.getDialog() && !view.getDialog()->isDialogOver();
             if(!is_dialog_open) {
                 EventsCtrl::updateEvents(data.getMap(player.getMapId())->getEvents(), player, view);
             }
-
-            return view(frame);
+			
+            GameStatus toReturn = view(frame);
+			screenTexture = frame.getTexture();
+			return toReturn;
         }
 
-        void OverworldCtrl::loadNextScreen() {
-            switch(loadNext) {
-            case LOAD_BATTLE:
-                _next_gs = std::make_unique<BattleCtrl>(data.getPlayer().getOpTeam(), view.getBattleDeclared(), data.getUiDataPtr(), data.getPlayerPtr());
-                break;
-            default:
-                handleError("Error : Unknown view to load in OverworldCtrl", true);
-            }
-        }
+	void OverworldCtrl::loadNextScreen(){
+	    switch(loadNext){
+	    case LOAD_BATTLE:
+		_next_gs = std::make_unique<BattleCtrl>(data.getPlayer().getOpTeam(), view.getBattleDeclared(), data.getUiDataPtr(), data.getPlayerPtr());
+		break;
+	    case LOAD_MENU_OPEN:
+		_next_gs = std::make_unique<AnimationCtrl>(std::make_unique<Animations::WooshAnim>(screenTexture, data.getMenuTexture(), Animations::WooshSide::UP, 120));
+		break;
+	    default:
+		handleError("Error : Unknown view to load in OverworldCtrl", true);
+	    }
+	}
 
         void OverworldCtrl::suspend() {
             data.getUiDataPtr()->getJukebox().pause();
