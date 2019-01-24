@@ -77,11 +77,12 @@ namespace OpMon {
                     if(events.key.code == sf::Keyboard::B) {
                         overworld.tp("Road 14", sf::Vector2i(10, 32));
                     }
-					if(events.key.code == sf::Keyboard::M){
-						loadNext = LOAD_MENU_OPEN;
-						return GameStatus::NEXT;
-					}
+					
                 }
+		if(events.key.code == sf::Keyboard::M){
+		    loadNext = LOAD_MENU_OPEN;
+		    return GameStatus::NEXT_NLS;
+		}
             default:
                 break;
             }

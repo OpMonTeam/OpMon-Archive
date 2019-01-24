@@ -51,28 +51,27 @@ namespace OpMon {
 			   side(side),
 			   duration(duration),
 			   counter(duration){
-				   std::cout << "Woah ! Some animation !" << std::endl;
-				   initialPos[(int) WooshSide::UP] = sf::Vector2f(0, 0 - after.getSize().y);
-				   initialPos[(int) WooshSide::DOWN] = sf::Vector2f(0, 512 + after.getSize().y);
-				   initialPos[(int) WooshSide::LEFT] = sf::Vector2f(0 - after.getSize().x, 0);
-				   initialPos[(int) WooshSide::RIGHT] = sf::Vector2f(512 + after.getSize().x, 0);
+				   initialPos[(int) WooshSide::UP] = sf::Vector2f(0, -512);
+				   initialPos[(int) WooshSide::DOWN] = sf::Vector2f(0, 512);
+				   initialPos[(int) WooshSide::LEFT] = sf::Vector2f(-512, 0);
+				   initialPos[(int) WooshSide::RIGHT] = sf::Vector2f(512, 0);
 				   mvDir[(int) WooshSide::UP] = sf::Vector2f(0, 1);
 				   mvDir[(int) WooshSide::DOWN] = sf::Vector2f(0, -1);
 				   mvDir[(int) WooshSide::LEFT] = sf::Vector2f(1, 0);
 				   mvDir[(int) WooshSide::RIGHT] = sf::Vector2f(-1, 0);
 				   
-				   this->before.setPosition(0, 0);
-				   this->before.setTexture(bgTxt);
+				   this->bgSpr.setPosition(0, 0);
+				   this->bgSpr.setTexture(before);
 				   
-				   this->after.setTexture(afterTx);
-				   this->after.setPosition(initialPos[(int) side]);
+				   this->anim.setTexture(after);
+				   this->anim.setPosition(initialPos[(int) side]);
 			}
 			
 			GameStatus WooshAnim::operator()(sf::RenderTexture &frame){
-				after.move((counter == 0) ? sf::Vector2f(0, 0) : (mvDir[(int) side] * (512.0f/duration)));
-				
-				frame.draw(before);
-				frame.draw(after);
+			    anim.move((counter == 0) ? sf::Vector2f(0, 0) : (mvDir[(int) side] * (512.0f/duration)));
+			    frame.clear(sf::Color::Black);
+			    frame.draw(bgSpr);
+				frame.draw(anim);
 				
 				counter--;
 				
