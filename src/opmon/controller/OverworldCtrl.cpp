@@ -77,11 +77,12 @@ namespace OpMon {
                     if(events.key.code == sf::Keyboard::B) {
                         overworld.tp("Road 14", sf::Vector2i(10, 32));
                     }
-					if(events.key.code == sf::Keyboard::M){
-						loadNext = LOAD_MENU_OPEN;
-						return GameStatus::NEXT;
-					}
+					
                 }
+		if(events.key.code == sf::Keyboard::M){
+		    loadNext = LOAD_MENU_OPEN;
+		    return GameStatus::NEXT_NLS;
+		}
             default:
                 break;
             }
@@ -154,7 +155,7 @@ namespace OpMon {
 				_next_gs = std::make_unique<BattleCtrl>(data.getPlayer().getOpTeam(), view.getBattleDeclared(), data.getUiDataPtr(), data.getPlayerPtr());
 				break;
 			case LOAD_MENU_OPEN:
-				_next_gs = std::make_unique<AnimationCtrl>(std::make_unique<View::Animations::WooshAnim>(screenTexture, data.getMenuTexture(), View::Animations::WooshSide::UP, 120));
+				_next_gs = std::make_unique<AnimationCtrl>(std::make_unique<View::Animations::WooshAnim>(screenTexture, data.getMenuTexture(), View::Animations::WooshSide::DOWN, 30));
 				break;
 			default:
 				handleError("Error : Unknown view to load in OverworldCtrl", true);
