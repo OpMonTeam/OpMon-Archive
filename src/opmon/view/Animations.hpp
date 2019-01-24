@@ -25,7 +25,7 @@ namespace OpMon {
                 sf::Sprite anim;
                 sf::Sprite bgSpr;
                 sf::Texture bgTxt;
-				sf::Texture afterTx;
+		sf::Texture afterTx;
 
               public:
 				/* For classic animations, "before" is enough. "After" is used for transitions */
