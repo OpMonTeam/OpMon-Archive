@@ -25,9 +25,11 @@ namespace OpMon {
                 sf::Sprite anim;
                 sf::Sprite bgSpr;
                 sf::Texture bgTxt;
+				sf::Texture afterTx;
 
               public:
-                Animation(sf::Texture bgTxt);
+				/* For classic animations, "before" is enough. "After" is used for transitions */
+				Animation(sf::Texture before, sf::Texture after = sf::Texture());
                 virtual ~Animation() = default;
                 virtual GameStatus operator()(sf::RenderTexture &frame) = 0;
             };
@@ -46,6 +48,24 @@ namespace OpMon {
                 WinAnim(sf::Texture bgTxt, bool order);
                 GameStatus operator()(sf::RenderTexture &frame) override;
             };
+			
+			enum class WooshSide : int{
+				UP, DOWN, LEFT, RIGHT
+			};
+			
+			class WooshAnim : public Animation {
+				private:
+					WooshSide side;
+					int duration = 15;
+					int counter = 0;
+					sf::Sprite& before = this->bgSpr;
+					sf::Sprite& after = this->anim;
+					sf::Vector2f initialPos[4];
+					sf::Vector2f mvDir[4];
+				public:
+					WooshAnim(sf::Texture &before, sf::Texture &after, WooshSide side, int duration = 15);
+					GameStatus operator()(sf::RenderTexture &frame) override;
+			};
 
         } // namespace Animations
 
