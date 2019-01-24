@@ -47,7 +47,8 @@ namespace OpMon {
             std::map<std::string, std::vector<sf::Texture>> doorsTextures;
 
             std::map<std::string, std::unique_ptr<Item>> itemsList;
-
+	    sf::Texture menuTexture;
+	  
             OverworldData(OverworldData const &);
 
           public:
@@ -57,7 +58,9 @@ namespace OpMon {
             std::vector<sf::Texture> &getElementTextures(std::string const &id) { return elementsTextures[id]; }
             sf::Vector2f &getElementPos(std::string const &id) { return elementsPos[id]; }
             sf::Texture &getCurrentElementTexture(std::string const &id) { return elementsTextures[id][elementsCounter[id]]; }
-
+			
+			sf::Texture &getMenuTexture(){return menuTexture;}
+			
             Map *getMap(std::string map) { return maps[map]; }
             Map *getCurrentMap() { return maps[player->getMapId()]; }
             std::string getCurrentItorMap() { return mapsItor->first; }

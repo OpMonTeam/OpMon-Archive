@@ -135,7 +135,7 @@ namespace OpMon {
                                                                        itor->at("indoor"),
                                                                        itor->at("music"),
                                                                        itor->value("animations", std::vector<std::string>())))
-                                    .first->second;
+		    .first->second;
                 for(auto eitor = itor->at("events").begin(); eitor != itor->at("events").end(); ++eitor) {
                     std::string type = eitor->at("type");
 
@@ -234,7 +234,8 @@ namespace OpMon {
                 }
             }
 
-            mapsItor = maps.begin();
+	    ResourceLoader::load(menuTexture, "backgrounds/menu.png");
+	    mapsItor = maps.begin();
         }
 
         OverworldData::~OverworldData() {
