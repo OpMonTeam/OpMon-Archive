@@ -11,6 +11,7 @@ File under GNU GPL v3.0 license
 #include "../model/sysObjects/OpTeam.hpp"
 #include "BattleCtrl.hpp"
 #include "PlayerCtrl.hpp"
+#include "AnimationCtrl.hpp"
 
 //Defines created to make the code easier to read
 #define LOAD_BATTLE 1
@@ -40,10 +41,10 @@ namespace OpMon {
                     }
                 }
                 //M reboots the game
-                if(events.key.code == sf::Keyboard::M) {
+                /*if(events.key.code == sf::Keyboard::M) {
                     reboot = true;
                     return GameStatus::STOP;
-                }
+                }*/
                 if(debugMode) {
                     //Debug, chooses the layers to print
                     if(events.key.code == sf::Keyboard::F10) {
@@ -153,7 +154,7 @@ namespace OpMon {
 				_next_gs = std::make_unique<BattleCtrl>(data.getPlayer().getOpTeam(), view.getBattleDeclared(), data.getUiDataPtr(), data.getPlayerPtr());
 				break;
 			case LOAD_MENU_OPEN:
-				_next_gs = std::make_unique<AnimationCtrl>(std::make_unique<Animations::WooshAnim>(screenTexture, data.getMenuTexture(), Animations::WooshSide::UP, 120));
+				_next_gs = std::make_unique<AnimationCtrl>(std::make_unique<View::Animations::WooshAnim>(screenTexture, data.getMenuTexture(), View::Animations::WooshSide::UP, 120));
 				break;
 			default:
 				handleError("Error : Unknown view to load in OverworldCtrl", true);
