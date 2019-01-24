@@ -46,29 +46,30 @@ namespace OpMon {
                 return (counter > frames) ? GameStatus::PREVIOUS_NLS : GameStatus::CONTINUE;
             }
 			
-			WooshAnim::WooshAnim(sf::Texture before, sf::Texture after, WooshSide side, int duration)
+			WooshAnim::WooshAnim(sf::Texture &before, sf::Texture &after, WooshSide side, int duration)
 			 : Animation(before, after),
 			   side(side),
 			   duration(duration),
 			   counter(duration){
-				   initialPos[WooshSide::UP] = sf::Vector2f(0, 0 - after.getSize().y);
-				   initialPos[WooshSide::DOWN] = sf::Vector2f(0, 512 + after.getSize().y);
-				   initialPos[WooshSide::LEFT] = sf::Vector2f(0 - after.getSize().x, 0);
-				   initialPos[WooshSide::RIGHT] = sf::Vector2f(512 + after.getSize.x, 0);
-				   mvDir[WooshSide::UP] = sf::Vector2f(0, 1);
-				   mvDir[WooshSide::DOWN] = sf::Vector2f(0, -1);
-				   mvDir[WooshSide::LEFT] = sf::Vector2f(1, 0);
-				   mvDir[WooshSide::RIGHT] = sf::Vector2f(-1, 0);
+				   std::cout << "Woah ! Some animation !" << std::endl;
+				   initialPos[(int) WooshSide::UP] = sf::Vector2f(0, 0 - after.getSize().y);
+				   initialPos[(int) WooshSide::DOWN] = sf::Vector2f(0, 512 + after.getSize().y);
+				   initialPos[(int) WooshSide::LEFT] = sf::Vector2f(0 - after.getSize().x, 0);
+				   initialPos[(int) WooshSide::RIGHT] = sf::Vector2f(512 + after.getSize().x, 0);
+				   mvDir[(int) WooshSide::UP] = sf::Vector2f(0, 1);
+				   mvDir[(int) WooshSide::DOWN] = sf::Vector2f(0, -1);
+				   mvDir[(int) WooshSide::LEFT] = sf::Vector2f(1, 0);
+				   mvDir[(int) WooshSide::RIGHT] = sf::Vector2f(-1, 0);
 				   
 				   this->before.setPosition(0, 0);
 				   this->before.setTexture(bgTxt);
 				   
 				   this->after.setTexture(afterTx);
-				   this->after.setPosition(initialPos[side]);
+				   this->after.setPosition(initialPos[(int) side]);
 			}
 			
 			GameStatus WooshAnim::operator()(sf::RenderTexture &frame){
-				after.move((counter == 0) ? sf::Vector2f(0, 0) : (mvDir[side] * (512.0f/duration)));
+				after.move((counter == 0) ? sf::Vector2f(0, 0) : (mvDir[(int) side] * (512.0f/duration)));
 				
 				frame.draw(before);
 				frame.draw(after);

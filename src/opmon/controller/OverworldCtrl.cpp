@@ -11,6 +11,7 @@ File under GNU GPL v3.0 license
 #include "../model/sysObjects/OpTeam.hpp"
 #include "BattleCtrl.hpp"
 #include "PlayerCtrl.hpp"
+#include "AnimationCtrl.hpp"
 
 //Defines created to make the code easier to read
 #define LOAD_BATTLE 1
@@ -40,10 +41,10 @@ namespace OpMon {
                     }
                 }
                 //M reboots the game
-                if(events.key.code == sf::Keyboard::M) {
+                /*if(events.key.code == sf::Keyboard::M) {
                     reboot = true;
                     return GameStatus::STOP;
-                }
+                }*/
                 if(debugMode) {
                     //Debug, chooses the layers to print
                     if(events.key.code == sf::Keyboard::F10) {
