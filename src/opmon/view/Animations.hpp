@@ -49,8 +49,8 @@ namespace OpMon {
                 GameStatus operator()(sf::RenderTexture &frame) override;
             };
 			
-			enum class WooshSide : int{
-				UP, DOWN, LEFT, RIGHT
+			enum class WooshSide : int {
+				UP = 0, DOWN = 1, LEFT = 2, RIGHT = 3
 			};
 			
 			class WooshAnim : public Animation {
