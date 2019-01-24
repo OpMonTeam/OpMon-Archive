@@ -24,8 +24,9 @@ namespace OpMon {
 
             View::Overworld view;
             Model::Player &player;
-
-            int loadNext = 0;
+	    int loadNext = 0;
+			
+	    sf::Texture screenTexture;
 
           public:
             OverworldCtrl(Model::Player &player, Model::UiData *uidata);
