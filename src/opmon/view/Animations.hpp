@@ -49,24 +49,6 @@ namespace OpMon {
                 GameStatus operator()(sf::RenderTexture &frame) override;
             };
 			
-			enum class WooshSide : int {
-				UP = 0, DOWN = 1, LEFT = 2, RIGHT = 3
-			};
-			
-			class WooshAnim : public Animation {
-				private:
-					WooshSide side;
-					int duration = 15;
-					int counter = 0;
-					sf::Sprite& before = this->bgSpr;
-					sf::Sprite& after = this->anim;
-					sf::Vector2f initialPos[4];
-					sf::Vector2f mvDir[4];
-				public:
-					WooshAnim(sf::Texture &before, sf::Texture &after, WooshSide side, int duration = 15);
-					GameStatus operator()(sf::RenderTexture &frame) override;
-			};
-
             enum class WooshSide : int {
                 UP = 0,
                 DOWN = 1,
