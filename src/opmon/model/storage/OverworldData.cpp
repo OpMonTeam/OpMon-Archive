@@ -18,7 +18,8 @@ namespace OpMon {
 
         OverworldData::OverworldData(UiData *uidata, Player *player)
           : uidata(uidata)
-          , player(player) {
+	, player(player)
+	, gameMenuData(uidata, player){
 
             using namespace Utils;
 
@@ -68,7 +69,6 @@ namespace OpMon {
 
             ResourceLoader::loadTextureArray(elementsTextures["smoke"], "animations/chimneysmoke/chimneysmoke_%d.png", 32, 1);
 
-            ResourceLoader::load(menuTexture, "backgrounds/menu.png");
             //Items initialisation
 
             nlohmann::json itemsJson;
@@ -234,7 +234,6 @@ namespace OpMon {
                 }
             }
 
-	    ResourceLoader::load(menuTexture, "backgrounds/menu.png");
 	    mapsItor = maps.begin();
         }
 

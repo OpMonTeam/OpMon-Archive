@@ -8,6 +8,7 @@
 #include "../sysObjects/Map.hpp"
 #include "../sysObjects/Player.hpp"
 #include "UiData.hpp"
+#include "GameMenuData.hpp"
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <map>
@@ -48,7 +49,8 @@ namespace OpMon {
 
             std::map<std::string, std::unique_ptr<Item>> itemsList;
 
-            sf::Texture menuTexture;
+	    GameMenuData gameMenuData;
+	    
             OverworldData(OverworldData const &);
 
           public:
@@ -59,7 +61,9 @@ namespace OpMon {
             sf::Vector2f &getElementPos(std::string const &id) { return elementsPos[id]; }
             sf::Texture &getCurrentElementTexture(std::string const &id) { return elementsTextures[id][elementsCounter[id]]; }
 
-            sf::Texture &getMenuTexture() { return menuTexture; }
+	    GameMenuData& getGameMenuData() { return gameMenuData; }
+	    
+            OP_DEPRECATED sf::Texture &getMenuTexture() { return gameMenuData.getMenuTexture(); }
 
             Map *getMap(std::string map) { return maps[map]; }
             Map *getCurrentMap() { return maps[player->getMapId()]; }

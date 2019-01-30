@@ -149,26 +149,13 @@ namespace OpMon {
             return toReturn;
         }
 
-        void OverworldCtrl::loadNextScreen() {
-            switch(loadNext) {
-            case LOAD_BATTLE:
-                _next_gs = std::make_unique<BattleCtrl>(data.getPlayer().getOpTeam(), view.getBattleDeclared(), data.getUiDataPtr(), data.getPlayerPtr());
-                break;
-            case LOAD_MENU_OPEN:
-                _next_gs = std::make_unique<AnimationCtrl>(std::make_unique<View::Animations::WooshAnim>(screenTexture, data.getMenuTexture(), View::Animations::WooshSide::DOWN, 30));
-                break;
-            default:
-                handleError("Error : Unknown view to load in OverworldCtrl", true);
-            }
-        }
-
 	void OverworldCtrl::loadNextScreen(){
 	    switch(loadNext){
 	    case LOAD_BATTLE:
 		_next_gs = std::make_unique<BattleCtrl>(data.getPlayer().getOpTeam(), view.getBattleDeclared(), data.getUiDataPtr(), data.getPlayerPtr());
 		break;
 	    case LOAD_MENU_OPEN:
-		_next_gs = std::make_unique<AnimationCtrl>(std::make_unique<Animations::WooshAnim>(screenTexture, data.getMenuTexture(), Animations::WooshSide::UP, 120));
+		_next_gs = std::make_unique<AnimationCtrl>(std::make_unique<View::Animations::WooshAnim>(screenTexture, data.getMenuTexture(), View::Animations::WooshSide::UP, 120));
 		break;
 	    default:
 		handleError("Error : Unknown view to load in OverworldCtrl", true);
