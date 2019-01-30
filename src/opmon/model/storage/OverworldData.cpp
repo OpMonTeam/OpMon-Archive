@@ -68,6 +68,11 @@ namespace OpMon {
 
             ResourceLoader::loadTextureArray(elementsTextures["smoke"], "animations/chimneysmoke/chimneysmoke_%d.png", 32, 1);
 
+<<<<<<< HEAD
+=======
+            ResourceLoader::load(menuTexture, "backgrounds/menu.png");
+
+>>>>>>> Reformated cod
             //Items initialisation
 
             nlohmann::json itemsJson;
@@ -135,7 +140,11 @@ namespace OpMon {
                                                                        itor->at("indoor"),
                                                                        itor->at("music"),
                                                                        itor->value("animations", std::vector<std::string>())))
+<<<<<<< HEAD
 		    .first->second;
+=======
+                                    .first->second;
+>>>>>>> Reformated cod
                 for(auto eitor = itor->at("events").begin(); eitor != itor->at("events").end(); ++eitor) {
                     std::string type = eitor->at("type");
 
