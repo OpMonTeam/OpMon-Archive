@@ -6,8 +6,8 @@ File under GNU GPL v3.0
 #ifndef UTILS_HPP
 #define UTILS_HPP
 
-#include <iostream>
 #include <functional>
+#include <iostream>
 
 namespace Utils {
     namespace Misc {
@@ -17,7 +17,8 @@ namespace Utils {
 
         std::size_t hash(const std::string &str);
 
-	template<typename T> T* vectorToArray(std::vector<T> const& vect);
+        template <typename T>
+        T *vectorToArray(std::vector<T> const &vect);
     } // namespace Misc
 } // namespace Utils
 

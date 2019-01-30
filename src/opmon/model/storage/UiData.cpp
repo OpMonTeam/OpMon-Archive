@@ -5,9 +5,9 @@
   File under GNU GPL v3.0 license
 */
 #include "UiData.hpp"
+#include "../../../nlohmann/json.hpp"
 #include "../../../utils/log.hpp"
 #include "../../../utils/path.hpp"
-#include "../../../nlohmann/json.hpp"
 #include "../objects/evolution/evolutions.hpp"
 #include "../save/OptionsSave.hpp"
 #include "ResourceLoader.hpp"
@@ -40,51 +40,49 @@ namespace OpMon {
 
             ResourceLoader::load(font, "fonts/Default.ttf", true);
 
-	    std::ifstream opmonJsonFile(Utils::Path::getResourcePath() + "data/opmon.json");
-	    if(!opmonJsonFile){
-	      handleError("Can't open opmon data.", true);
-	    }
-	    nlohmann::json opmonJson;
-	    opmonJsonFile >> opmonJson;
+            std::ifstream opmonJsonFile(Utils::Path::getResourcePath() + "data/opmon.json");
+            if(!opmonJsonFile) {
+                handleError("Can't open opmon data.", true);
+            }
+            nlohmann::json opmonJson;
+            opmonJsonFile >> opmonJson;
 
-	    for(auto itor = opmonJson.begin(); itor != opmonJson.end(); ++itor){
-	      int opDexNumber = itor->at("opDex");
-	      std::string opDexNumberStr = std::to_string(opDexNumber);
+            for(auto itor = opmonJson.begin(); itor != opmonJson.end(); ++itor) {
+                int opDexNumber = itor->at("opDex");
+                std::string opDexNumberStr = std::to_string(opDexNumber);
 
-	      Evolution* evol = nullptr;
-	      if(itor->at("evolution").at("type") == "level"){
-		evol = new E_Level(itor->at("evolution").at("species"), itor->at("evolution").at("level"));
-	      }else if(itor->at("evolution").at("type") == "no"){
-		evol = nullptr;
-	      }
-	      std::vector<Stats> evs;
-	      for(unsigned int i = 0; i < itor->at("evs").size(); ++i){
-		evs.push_back(itor->at("evs")[i]);
-	      }
+                Evolution *evol = nullptr;
+                if(itor->at("evolution").at("type") == "level") {
+                    evol = new E_Level(itor->at("evolution").at("species"), itor->at("evolution").at("level"));
+                } else if(itor->at("evolution").at("type") == "no") {
+                    evol = nullptr;
+                }
+                std::vector<Stats> evs;
+                for(unsigned int i = 0; i < itor->at("evs").size(); ++i) {
+                    evs.push_back(itor->at("evs")[i]);
+                }
 
+                listOp.emplace(opDexNumber, new Species(itor->at("atk"),
+                                                        itor->at("def"),
+                                                        itor->at("atkSpe"),
+                                                        itor->at("defSpe"),
+                                                        itor->at("spe"),
+                                                        itor->at("HP"),
+                                                        Utils::StringKeys::getStd("opmon.name." + opDexNumberStr),
+                                                        itor->at("types")[0],
+                                                        itor->at("types")[1],
+                                                        evol,
+                                                        evs,
+                                                        itor->at("height"),
+                                                        itor->at("weight"),
+                                                        Utils::StringKeys::getStd("opmon.desc." + opDexNumberStr),
+                                                        itor->at("expGiven"),
+                                                        itor->at("curve"),
+                                                        itor->at("captureRate"),
+                                                        opDexNumber));
+            }
 
-	      listOp.emplace(opDexNumber, new Species(itor->at("atk"),
-						      itor->at("def"),
-						      itor->at("atkSpe"),
-						      itor->at("defSpe"),
-						      itor->at("spe"),
-						      itor->at("HP"),
-						      Utils::StringKeys::getStd("opmon.name." + opDexNumberStr),
-						      itor->at("types")[0],
-						      itor->at("types")[1],
-						      evol,
-						      evs,
-						      itor->at("height"),
-						      itor->at("weight"),
-						      Utils::StringKeys::getStd("opmon.desc." + opDexNumberStr),
-						      itor->at("expGiven"),
-						      itor->at("curve"),
-						      itor->at("captureRate"),
-						      opDexNumber));
-
-	    }
-
-	    /*nlohmann::json toWrite;
+            /*nlohmann::json toWrite;
 
 	    for(auto itor = listOp.begin(); itor != listOp.end(); ++itor){
 	      Species* species = itor->second;
@@ -168,7 +166,6 @@ namespace OpMon {
 
             int volume = std::stoi(OptionsSave::getParam("volume").getValue());
             jukebox.setGlobalVolume(volume);
-
 
             std::string keyUp = OptionsSave::getParam("control.up").getValue();
             if(keyUp == "NULL") {

@@ -7,9 +7,9 @@
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUES_HPP_
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUES_HPP_
 
+#include "../../../nlohmann/json.hpp"
 #include "Attack.hpp"
 #include "OpMon.hpp"
-#include "../../../nlohmann/json.hpp"
 #include <cmath>
 #include <iostream>
 
@@ -35,10 +35,10 @@ namespace OpMon {
         namespace Attacks {
             class ChangeStatEffect : public AttackEffect {
               public:
-	      enum class Target : int { ATTACKER = 0,
-                              DEFENDER = 1 };
+                enum class Target : int { ATTACKER = 0,
+                                          DEFENDER = 1 };
                 ChangeStatEffect(Target target, Model::Stats stat, int coef);
-	      ChangeStatEffect(nlohmann::json const& data);
+                ChangeStatEffect(nlohmann::json const &data);
                 int apply(Attack &attack, OpMon &attacker, OpMon &defender, Turn &atkTurn) override;
 
               protected:

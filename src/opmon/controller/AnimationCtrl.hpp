@@ -5,9 +5,9 @@ File under GNU GPL 3.0 license.
 */
 #pragma once
 
-#include <memory>
 #include "../view/Animations.hpp"
 #include "AGameScreen.hpp"
+#include <memory>
 
 namespace OpMon {
     namespace Controller {

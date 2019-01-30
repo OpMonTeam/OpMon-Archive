@@ -88,9 +88,9 @@ namespace OpMon {
             unsigned int getExp() const {
                 return expGiven;
             }
-	  int getExpMax() const {
-	    return expMax;
-	  }
+            int getExpMax() const {
+                return expMax;
+            }
             Evolution *getEvolType() const {
                 return evolType;
             }
