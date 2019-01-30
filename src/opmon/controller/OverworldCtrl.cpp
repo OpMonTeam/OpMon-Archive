@@ -9,9 +9,9 @@ File under GNU GPL v3.0 license
 #include "../model/objects/Attacks.hpp"
 #include "../model/objects/OpMon.hpp"
 #include "../model/sysObjects/OpTeam.hpp"
+#include "AnimationCtrl.hpp"
 #include "BattleCtrl.hpp"
 #include "PlayerCtrl.hpp"
-#include "AnimationCtrl.hpp"
 
 //Defines created to make the code easier to read
 #define LOAD_BATTLE 1
@@ -77,12 +77,11 @@ namespace OpMon {
                     if(events.key.code == sf::Keyboard::B) {
                         overworld.tp("Road 14", sf::Vector2i(10, 32));
                     }
-					
                 }
-		if(events.key.code == sf::Keyboard::M){
-		    loadNext = LOAD_MENU_OPEN;
-		    return GameStatus::NEXT_NLS;
-		}
+                if(events.key.code == sf::Keyboard::M) {
+                    loadNext = LOAD_MENU_OPEN;
+                    return GameStatus::NEXT_NLS;
+                }
             default:
                 break;
             }
@@ -138,15 +137,28 @@ namespace OpMon {
         }
 
         GameStatus OverworldCtrl::update(sf::RenderTexture &frame) {
-			
+
             bool is_dialog_open = view.getDialog() && !view.getDialog()->isDialogOver();
             if(!is_dialog_open) {
                 EventsCtrl::updateEvents(data.getMap(player.getMapId())->getEvents(), player, view);
             }
-			
+
             GameStatus toReturn = view(frame);
-			screenTexture = frame.getTexture();
-			return toReturn;
+            screenTexture = frame.getTexture();
+            return toReturn;
+        }
+
+        void OverworldCtrl::loadNextScreen() {
+            switch(loadNext) {
+            case LOAD_BATTLE:
+                _next_gs = std::make_unique<BattleCtrl>(data.getPlayer().getOpTeam(), view.getBattleDeclared(), data.getUiDataPtr(), data.getPlayerPtr());
+                break;
+            case LOAD_MENU_OPEN:
+                _next_gs = std::make_unique<AnimationCtrl>(std::make_unique<View::Animations::WooshAnim>(screenTexture, data.getMenuTexture(), View::Animations::WooshSide::DOWN, 30));
+                break;
+            default:
+                handleError("Error : Unknown view to load in OverworldCtrl", true);
+            }
         }
 
 	void OverworldCtrl::loadNextScreen(){
