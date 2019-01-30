@@ -13,9 +13,9 @@ File under GNU GPL v3.0 license
 #include "./evolution/Evolution.hpp"
 #include "./evolution/evolutions.hpp"
 #include "Attacks.hpp"
+#include "Item.hpp"
 #include <fstream>
 #include <sstream>
-#include "Item.hpp"
 
 namespace OpMon {
     namespace Model {
@@ -59,7 +59,7 @@ namespace OpMon {
 
         bool OpMon::captured(Item const &OpBox) {
             //Big formulas
-	  int a = round((((3 * statHP - 2 * HP) * captureRate * /*TODO OpBox.getCaptureRate() */ (status == Status::PARALYSED || status == Status::POISONED || status == Status::BURNING ? 1.5 : (status == Status::FROZEN || status == Status::SLEEPING ? 2 : 1))) / (3 * statHP)));
+            int a = round((((3 * statHP - 2 * HP) * captureRate * /*TODO OpBox.getCaptureRate() */ (status == Status::PARALYSED || status == Status::POISONED || status == Status::BURNING ? 1.5 : (status == Status::FROZEN || status == Status::SLEEPING ? 2 : 1))) / (3 * statHP)));
             int b = round((pow(2, 16) - 1) * pow(a / (pow(2, 8) - 1), 0.25));
             int c[] = {Utils::Misc::randU(65535), Utils::Misc::randU(65535), Utils::Misc::randU(65535),
                        Utils::Misc::randU(65535)};
@@ -133,7 +133,7 @@ namespace OpMon {
             calcStats();
             //Check if the OpMon evolves
             if(species->getEvolType()->checkEvolve(*this)) {
-	      evolve();
+                evolve();
             }
         }
 
@@ -1349,7 +1349,7 @@ namespace OpMon {
 
         std::string OpMon::save() {
             if(!initialized) {
-	      /*
+                /*
                 std::ostringstream oss;
                 oss << nickname.toAnsiString() << std::endl;
                 oss << Save::intToChar(atkIV) << std::endl;
@@ -1401,7 +1401,7 @@ namespace OpMon {
                 return oss.str();*/
             } else {
                 return "NULL\n";
-		}
+            }
         }
         /*
         OpMon::OpMon(std::ifstream &in) {

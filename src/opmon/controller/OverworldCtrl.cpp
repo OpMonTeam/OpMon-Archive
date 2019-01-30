@@ -138,16 +138,16 @@ namespace OpMon {
 
             return view(frame);
         }
-		
-		void OverworldCtrl::loadNextScreen(){
-			switch(loadNext){
-			case LOAD_BATTLE:
-				_next_gs = std::make_unique<BattleCtrl>(data.getPlayer().getOpTeam(), view.getBattleDeclared(), data.getUiDataPtr(), data.getPlayerPtr());
-				break;
-			default:
-				handleError("Error : Unknown view to load in OverworldCtrl", true);
-			}
-		}
+
+        void OverworldCtrl::loadNextScreen() {
+            switch(loadNext) {
+            case LOAD_BATTLE:
+                _next_gs = std::make_unique<BattleCtrl>(data.getPlayer().getOpTeam(), view.getBattleDeclared(), data.getUiDataPtr(), data.getPlayerPtr());
+                break;
+            default:
+                handleError("Error : Unknown view to load in OverworldCtrl", true);
+            }
+        }
 
         void OverworldCtrl::suspend() {
             data.getUiDataPtr()->getJukebox().pause();

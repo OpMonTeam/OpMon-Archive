@@ -63,19 +63,19 @@ namespace OpMon {
             return GameStatus::CONTINUE;
         }
 
-		void MainMenuCtrl::loadNextScreen(){
-			switch(loadNext){
-			case LOAD_STARTSCENE:
-				_next_gs = std::make_unique<StartSceneCtrl>(data.getUiDataPtr());
-				break;
-			case LOAD_OPTIONS:
-				_next_gs = std::make_unique<OptionsMenuCtrl>(data.getUiDataPtr());
-				break;
-			default:
-				handleError("Error : Unknown view to load in MainMenuCtrl.", true);
-			}
-		}
-		
+        void MainMenuCtrl::loadNextScreen() {
+            switch(loadNext) {
+            case LOAD_STARTSCENE:
+                _next_gs = std::make_unique<StartSceneCtrl>(data.getUiDataPtr());
+                break;
+            case LOAD_OPTIONS:
+                _next_gs = std::make_unique<OptionsMenuCtrl>(data.getUiDataPtr());
+                break;
+            default:
+                handleError("Error : Unknown view to load in MainMenuCtrl.", true);
+            }
+        }
+
         void MainMenuCtrl::suspend() {
             view.pause();
         }

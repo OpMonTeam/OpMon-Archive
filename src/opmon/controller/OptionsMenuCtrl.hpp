@@ -9,14 +9,14 @@ File under GNU GPL v3.0 license
 #include <SFML/Window/Event.hpp>
 #include <string>
 
+#include "../../utils/defines.hpp"
+#include "../../utils/path.hpp"
+#include "../model/save/OptionsSave.hpp"
+#include "../model/storage/KeyData.hpp"
 #include "../model/storage/OptionsMenuData.hpp"
 #include "../start/Core.hpp"
 #include "../view/MainMenu.hpp"
 #include "../view/OptionsMenu.hpp"
-#include "../model/save/OptionsSave.hpp"
-#include "../../utils/path.hpp"
-#include "../../utils/defines.hpp"
-#include "../model/storage/KeyData.hpp"
 #include "AGameScreen.hpp"
 
 namespace OpMon {

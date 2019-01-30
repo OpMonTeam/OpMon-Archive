@@ -11,8 +11,6 @@ File under GNU GPL v3.0 license
 #include "../save/Save.hpp"
 #include <sstream>
 
-
-
 namespace OpMon {
     namespace Model {
 
@@ -30,17 +28,17 @@ namespace OpMon {
 
         OpTeam *Player::getOpTeam() {
             return &opteam;
-         }
-      
-        void Player::addItem(std::string const& itemID) {
+        }
+
+        void Player::addItem(std::string const &itemID) {
             bag[itemID]++;
         }
-      
-      int Player::checkItem(std::string const& itemID) {
-	return bag[itemID];
-      }
 
-      bool Player::deleteItem(std::string const& itemID) {
+        int Player::checkItem(std::string const &itemID) {
+            return bag[itemID];
+        }
+
+        bool Player::deleteItem(std::string const &itemID) {
             if(bag[itemID] != 0) {
                 bag[itemID]--;
                 return true;
@@ -76,7 +74,7 @@ namespace OpMon {
 
         //TODO : Update the save system
         void Player::save() {
-	  /*SOUT
+            /*SOUT
               << Utils::StringKeys::sfStringtoStdString(this->name) << std::endl;
             SOUT << Save::intToChar(trainerID) << std::endl;
             SOUT << Save::intToChar(ITEM_NUMBER) << std::endl;

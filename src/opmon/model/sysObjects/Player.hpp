@@ -26,13 +26,13 @@ namespace OpMon {
 
             OpTeam *getOpTeam();
 
-	  void addItem(std::string const& itemID);
+            void addItem(std::string const &itemID);
 
             /**Returns the number of items of the item type given in paramter*/
-	  int checkItem(std::string const&  itemID);
+            int checkItem(std::string const &itemID);
 
             /**Delete an item from the player inventory. Returns false if the item was not present.*/
-	  bool deleteItem(std::string const& itemID);
+            bool deleteItem(std::string const &itemID);
 
             sf::String getName() const {
                 return name;
@@ -110,7 +110,7 @@ namespace OpMon {
           private:
             sf::String name;
             const unsigned int trainerID; //Max : 8 digits in hexadecimal (Unimplemented yet)
-	  std::map<std::string, int> bag;
+            std::map<std::string, int> bag;
             std::vector<OpMon *> pc = std::vector<OpMon *>();
             OpTeam opteam;
             std::string mapID = "Player's room"; //Player's room is the start room for the player

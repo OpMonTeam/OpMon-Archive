@@ -13,21 +13,21 @@ File under GNU GPL v3.0 license
 namespace OpMon {
     namespace Model {
 
-        Map::Map(std::vector<int> const& layer1, std::vector<int> const& layer2, std::vector<int> const& layer3, int w, int h, bool indoor, std::string const &bg, std::vector<std::string> const &animatedElements)
+        Map::Map(std::vector<int> const &layer1, std::vector<int> const &layer2, std::vector<int> const &layer3, int w, int h, bool indoor, std::string const &bg, std::vector<std::string> const &animatedElements)
           : indoor(indoor)
           , bg(bg)
           , animatedElements(animatedElements) {
-			
-			this->layer1 = (int*) malloc(sizeof(int) * w * h);
-			this->layer2 = (int*) malloc(sizeof(int) * w * h);
-			this->layer3 = (int*) malloc(sizeof(int) * w * h);
-			
-			for(unsigned int i = 0; i < ((unsigned int) w * h); i++){
-				this->layer1[i] = layer1[i];
-				this->layer2[i] = layer2[i];
-				this->layer3[i] = layer3[i];
-			}
-			
+
+            this->layer1 = (int *)malloc(sizeof(int) * w * h);
+            this->layer2 = (int *)malloc(sizeof(int) * w * h);
+            this->layer3 = (int *)malloc(sizeof(int) * w * h);
+
+            for(unsigned int i = 0; i < ((unsigned int)w * h); i++) {
+                this->layer1[i] = layer1[i];
+                this->layer2[i] = layer2[i];
+                this->layer3[i] = layer3[i];
+            }
+
             this->w = w;
             this->h = h;
         }
@@ -36,9 +36,9 @@ namespace OpMon {
             for(Event *event : events) {
                 delete(event);
             }
-			free(layer1);
-			free(layer2);
-			free(layer3);
+            free(layer1);
+            free(layer2);
+            free(layer3);
         }
 
         std::vector<Event *> Map::getEvent(sf::Vector2i position) const {

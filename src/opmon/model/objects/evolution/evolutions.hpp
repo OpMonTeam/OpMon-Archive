@@ -20,11 +20,11 @@ namespace OpMon {
 
             class E_Item : public Evolution {
               public:
-	      E_Item(int evo, std::string const& itemID);
+                E_Item(int evo, std::string const &itemID);
                 bool checkEvolve(OpMon const &toCheck) const;
 
               protected:
-	      const std::string itemID;
+                const std::string itemID;
             };
 
             class E_Level : public Evolution {

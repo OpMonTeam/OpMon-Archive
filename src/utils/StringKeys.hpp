@@ -19,7 +19,7 @@ namespace Utils {
         extern std::vector<sf::String> strings;
 
         sf::String &get(std::string key);
-      
+
         /**
      * Load the key file and initialize the keys list.
      * @param file
@@ -33,8 +33,8 @@ namespace Utils {
 
         std::string sfStringtoStdString(sf::String const &str);
 
-      std::string getStd(std::string const& key);
-      
+        std::string getStd(std::string const &key);
+
         int countInstances(sf::String const &str, char const &toSearch);
     } // namespace StringKeys
 } // namespace Utils

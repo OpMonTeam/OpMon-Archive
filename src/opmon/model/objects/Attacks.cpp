@@ -20,12 +20,11 @@ namespace OpMon {
               , stat(stat)
               , coef(coef) {}
 
-	  ChangeStatEffect::ChangeStatEffect(nlohmann::json const& data)
-	    : target(data.at("target"))
-	    , stat(data.at("stat"))
-	    , coef(data.at("coef")){
-	    
-	  }
+            ChangeStatEffect::ChangeStatEffect(nlohmann::json const &data)
+              : target(data.at("target"))
+              , stat(data.at("stat"))
+              , coef(data.at("coef")) {
+            }
 
             int ChangeStatEffect::apply(Attack &, OpMon &attacker, OpMon &defender, Turn &atkTurn) {
                 std::map<Stats, int (OpMon::*)(int)> stat_to_method = {
