@@ -12,6 +12,7 @@ File under GNU GPL v3.0 license
 #include "AnimationCtrl.hpp"
 #include "BattleCtrl.hpp"
 #include "PlayerCtrl.hpp"
+#include "AnimationCtrl.hpp"
 
 //Defines created to make the code easier to read
 #define LOAD_BATTLE 1
@@ -77,6 +78,7 @@ namespace OpMon {
                     if(events.key.code == sf::Keyboard::B) {
                         overworld.tp("Road 14", sf::Vector2i(10, 32));
                     }
+					
                 }
                 if(events.key.code == sf::Keyboard::M) {
                     loadNext = LOAD_MENU_OPEN;
@@ -137,7 +139,6 @@ namespace OpMon {
         }
 
         GameStatus OverworldCtrl::update(sf::RenderTexture &frame) {
-
             bool is_dialog_open = view.getDialog() && !view.getDialog()->isDialogOver();
             if(!is_dialog_open) {
                 EventsCtrl::updateEvents(data.getMap(player.getMapId())->getEvents(), player, view);
