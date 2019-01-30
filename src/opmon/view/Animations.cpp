@@ -45,38 +45,6 @@ namespace OpMon {
                 counter++;
                 return (counter > frames) ? GameStatus::PREVIOUS_NLS : GameStatus::CONTINUE;
             }
-			
-			WooshAnim::WooshAnim(sf::Texture &before, sf::Texture &after, WooshSide side, int duration)
-			 : Animation(before, after),
-			   side(side),
-			   duration(duration),
-			   counter(duration){
-				   initialPos[(int) WooshSide::UP] = sf::Vector2f(0, -512);
-				   initialPos[(int) WooshSide::DOWN] = sf::Vector2f(0, 512);
-				   initialPos[(int) WooshSide::LEFT] = sf::Vector2f(-512, 0);
-				   initialPos[(int) WooshSide::RIGHT] = sf::Vector2f(512, 0);
-				   mvDir[(int) WooshSide::UP] = sf::Vector2f(0, 1);
-				   mvDir[(int) WooshSide::DOWN] = sf::Vector2f(0, -1);
-				   mvDir[(int) WooshSide::LEFT] = sf::Vector2f(1, 0);
-				   mvDir[(int) WooshSide::RIGHT] = sf::Vector2f(-1, 0);
-				   
-				   this->bgSpr.setPosition(0, 0);
-				   this->bgSpr.setTexture(before);
-				   
-				   this->anim.setTexture(after);
-				   this->anim.setPosition(initialPos[(int) side]);
-			}
-			
-			GameStatus WooshAnim::operator()(sf::RenderTexture &frame){
-			    anim.move((counter == 0) ? sf::Vector2f(0, 0) : (mvDir[(int) side] * (512.0f/duration)));
-			    frame.clear(sf::Color::Black);
-			    frame.draw(bgSpr);
-				frame.draw(anim);
-				
-				counter--;
-				
-				return (counter < 0) ? GameStatus::PREVIOUS_NLS : GameStatus::CONTINUE;
-			}
 
             WooshAnim::WooshAnim(sf::Texture &before, sf::Texture &after, WooshSide side, int duration)
               : Animation(before, after)
