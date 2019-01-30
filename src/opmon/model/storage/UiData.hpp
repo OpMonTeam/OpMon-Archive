@@ -65,11 +65,11 @@ namespace OpMon {
             sf::Keyboard::Key getKeyTalk() const { return talk; }
 
             void setKeyUp(const std::string upName) { up = KeyData::keysMap.at(upName); }
-            void setKeyDown(const std::string  downName){ down = KeyData::keysMap.at(downName); }
-            void setKeyLeft(const std::string  leftName) { left = KeyData::keysMap.at(leftName); }
-            void setKeyRight(const std::string  rightName) { right = KeyData::keysMap.at(rightName); }
-            void setKeyInteract(const std::string  interactName) { interact = KeyData::keysMap.at(interactName); }
-            void setKeyTalk(const std::string  talkName) { talk = KeyData::keysMap.at(talkName); }
+            void setKeyDown(const std::string downName) { down = KeyData::keysMap.at(downName); }
+            void setKeyLeft(const std::string leftName) { left = KeyData::keysMap.at(leftName); }
+            void setKeyRight(const std::string rightName) { right = KeyData::keysMap.at(rightName); }
+            void setKeyInteract(const std::string interactName) { interact = KeyData::keysMap.at(interactName); }
+            void setKeyTalk(const std::string talkName) { talk = KeyData::keysMap.at(talkName); }
         };
 
     } // namespace Model

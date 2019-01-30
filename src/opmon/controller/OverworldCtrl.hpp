@@ -24,8 +24,8 @@ namespace OpMon {
 
             View::Overworld view;
             Model::Player &player;
-			
-			int loadNext = 0;
+
+            int loadNext = 0;
 
           public:
             OverworldCtrl(Model::Player &player, Model::UiData *uidata);
@@ -34,8 +34,8 @@ namespace OpMon {
             GameStatus checkEventsDialog(sf::Event const &events, View::Overworld &overworld);
             GameStatus checkEventsNoDialog(sf::Event const &events, Model::Player &player);
             GameStatus update(sf::RenderTexture &frame) override;
-			
-			virtual void loadNextScreen();
+
+            virtual void loadNextScreen();
             virtual void suspend();
             virtual void resume();
         };

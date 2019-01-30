@@ -22,8 +22,8 @@ namespace OpMon {
 
         class Attack;
 
-      class Item;
-      
+        class Item;
+
         /**
             Class defining a particular OpMon. To see the class that defines a species, see Species.hpp
         */

@@ -43,12 +43,12 @@ namespace OpMon {
 
             virtual void suspend(){};
             virtual void resume(){};
-			
-			/**
+
+            /**
 				Loads the next screen. 
 				Method called by Gameloop when the status returned is GameStatus::NEXT
 			*/
-			virtual void loadNextScreen(){};
+            virtual void loadNextScreen(){};
 
             std::unique_ptr<AGameScreen> getNextGameScreen() { return std::move(_next_gs); };
 

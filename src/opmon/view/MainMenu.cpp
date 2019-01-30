@@ -19,7 +19,7 @@ namespace OpMon {
             auto kget = Utils::StringKeys::get;
 
             int i{0};
-            for(auto& optionVec : optionsVec) {
+            for(auto &optionVec : optionsVec) {
                 optionVec.text.setString(kget("title." + std::to_string(i + 1)));
                 ++i;
             }
@@ -31,7 +31,7 @@ namespace OpMon {
           , optionsVec(this->totalView) {
             int i{0};
             float j{175.0};
-            for(auto& optionVec : optionsVec) {
+            for(auto &optionVec : optionsVec) {
                 optionVec.pos.x = 10.0;
                 optionVec.pos.y = j;
 
@@ -46,7 +46,7 @@ namespace OpMon {
 
             initStrings();
 
-            for(auto& optionVec : optionsVec) {
+            for(auto &optionVec : optionsVec) {
                 optionVec.text.setSfmlColor(sf::Color::White);
                 optionVec.text.setFont(data.getUiDataPtr()->getFont());
                 optionVec.text.setCharacterSize(FONT_SIZE_DEFAULT);
@@ -71,7 +71,7 @@ namespace OpMon {
 
             frame.draw(bg);
 
-            for(auto& optionVec : optionsVec) {
+            for(auto &optionVec : optionsVec) {
                 frame.draw(optionVec.text);
             }
 

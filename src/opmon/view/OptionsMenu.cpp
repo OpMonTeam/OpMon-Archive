@@ -172,7 +172,7 @@ namespace OpMon {
             txtCre84.setPosition(30, 437);
             txtCre9.setPosition(375, 488);
 
-	    txtCtrlChange.setPosition(33.0, 91.0);
+            txtCtrlChange.setPosition(33.0, 91.0);
 
             txtCtrlUp.setPosition(155.0, 180.0);
             txtCtrlDown.setPosition(153.0, 455.0);
@@ -195,8 +195,7 @@ namespace OpMon {
             txtCtrlInteract.setCharacterSize(FONT_SIZE_DEFAULT - 4);
 
             rectKeyChange.setTexture(data.getKeyChange());
-	    rectKeyChange.setScale(70 / rectKeyChange.getGlobalBounds().width, 43 / rectKeyChange.getGlobalBounds().height);
-
+            rectKeyChange.setScale(70 / rectKeyChange.getGlobalBounds().width, 43 / rectKeyChange.getGlobalBounds().height);
 
             data.getUiDataPtr()->getJukebox().play("Title");
 
@@ -237,9 +236,9 @@ namespace OpMon {
             }
 
             curPosCtrl[1].x = 23;
-	    curPosCtrl[1].y = 81;
-	    curSizeCtrl[1].x = 351 / rectSurb.getGlobalBounds().width;
-	    curSizeCtrl[1].y = 63 / rectSurb.getGlobalBounds().height;
+            curPosCtrl[1].y = 81;
+            curSizeCtrl[1].x = 351 / rectSurb.getGlobalBounds().width;
+            curSizeCtrl[1].y = 63 / rectSurb.getGlobalBounds().height;
         }
 
         void OptionsMenu::draw(sf::RenderTarget &frame) {
@@ -320,7 +319,6 @@ namespace OpMon {
             frame.draw(bgControls);
 
             frame.draw(txtCtrlChange);
-
 
             rectKeyChange.setPosition(posControls[currentActionsCtrl]);
             frame.draw(rectKeyChange);

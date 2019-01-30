@@ -46,7 +46,6 @@ namespace OpMon {
             window.close();
             oplog("Window closed. No error detected. Goodbye.");
         }
-		
 
         void Window::refresh() {
             frame.display();

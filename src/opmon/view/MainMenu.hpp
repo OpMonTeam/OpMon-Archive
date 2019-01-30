@@ -37,8 +37,7 @@ namespace OpMon {
             const std::size_t totalView;
             sf::Sprite bg;
 
-            struct OptionMenu
-            {
+            struct OptionMenu {
                 sf::Text text;
                 sf::Vector2f pos;
             };

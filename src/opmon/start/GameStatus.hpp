@@ -12,7 +12,7 @@ namespace OpMon {
         STOP,
         NEXT,
         PREVIOUS,
-	NEXT_NLS, //NLS stands for No Loading Screen
-	PREVIOUS_NLS
+        NEXT_NLS, //NLS stands for No Loading Screen
+        PREVIOUS_NLS
     };
 }

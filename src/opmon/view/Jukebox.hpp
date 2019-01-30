@@ -6,12 +6,12 @@
 */
 #pragma once
 
-#include <unordered_map>
-#include <memory>
+#include "../model/storage/ResourceLoader.hpp"
 #include <SFML/Audio/Music.hpp>
 #include <SFML/Audio/Sound.hpp>
 #include <SFML/Audio/SoundBuffer.hpp>
-#include "../model/storage/ResourceLoader.hpp"
+#include <memory>
+#include <unordered_map>
 
 namespace OpMon {
     namespace View {
@@ -27,17 +27,17 @@ namespace OpMon {
             Jukebox() = default;
             ~Jukebox() = default;
 
-            void addMusic(const std::string& name, const std::string& path, bool loop = true);
+            void addMusic(const std::string &name, const std::string &path, bool loop = true);
 
-            void play(const std::string& music);
+            void play(const std::string &music);
             void pause();
             void stop();
 
             void setGlobalVolume(float globalVolume);
             int getGlobalVolume() const;
 
-            void playSound(const std::string& sound);
-            void addSound(const std::string& name, const std::string& path);
+            void playSound(const std::string &sound);
+            void addSound(const std::string &name, const std::string &path);
         };
 
     } // namespace View

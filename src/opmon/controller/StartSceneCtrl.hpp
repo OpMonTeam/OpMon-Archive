@@ -23,17 +23,17 @@ namespace OpMon {
 
             View::StartScene view;
             bool animNext = false;
-			
-			int loadNext = 0;
-			
-			sf::Texture screenTexture;
+
+            int loadNext = 0;
+
+            sf::Texture screenTexture;
 
           public:
             StartSceneCtrl(Model::UiData *data);
             GameStatus checkEvent(sf::Event const &event) override;
             GameStatus update(sf::RenderTexture &frame) override;
-			
-			void loadNextScreen() override;
+
+            void loadNextScreen() override;
             void suspend() override;
             void resume() override;
         };

@@ -30,7 +30,7 @@ namespace OpMon {
             Species *getEvolution() const;
             /**Gets the Species pointer to the evolution. Can't be done in the constructor, since the evolution might not be defined yet.*/
             void checkEvo();
-	  
+
           protected:
             Species *toEvolve;
             int evo;

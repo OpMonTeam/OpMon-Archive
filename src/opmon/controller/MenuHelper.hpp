@@ -8,15 +8,15 @@ File under GNU GPL v3.0 license
 
 namespace OpMon {
     namespace Controller {
-      namespace Helper{
+        namespace Helper {
 
-        /**
+            /**
          * Moves the cursor to select another menu entry.
          * @param `true` moves the cursor up; `false` moves it down.
          */
-        void moveArrow(bool direction, int& curPosI, int limitMax = 4);
-      } // namespace Controller
-    } // namespace View
+            void moveArrow(bool direction, int &curPosI, int limitMax = 4);
+        } // namespace Helper
+    }     // namespace Controller
 } // namespace OpMon
 
 #endif // MENUHELPER_HPP

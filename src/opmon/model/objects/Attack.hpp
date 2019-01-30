@@ -7,9 +7,9 @@ File under GNU GPL v3.0 license
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUE_HPP_
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUE_HPP_
 
-#include "../../../utils/misc.hpp"
 #include "../../../utils/OpString.hpp"
 #include "../../../utils/defines.hpp"
+#include "../../../utils/misc.hpp"
 #include "Enums.hpp"
 #include "Turn.hpp"
 #include <iostream>
@@ -25,35 +25,34 @@ namespace OpMon {
             virtual ~AttackEffect() {}
         };
 
-      
-      struct AttackData {
-	std::string nameKey;
-	int power;
-	Type type;
-	int accuracy;
-	bool special;
-	bool status;
-	int criticalRate;
-	bool neverFails;
-	int ppMax;
-	int priority;
-	AttackEffect *preEffect = nullptr;
-	AttackEffect *postEffect = nullptr;
-	AttackEffect *ifFails = nullptr;
-      };
+        struct AttackData {
+            std::string nameKey;
+            int power;
+            Type type;
+            int accuracy;
+            bool special;
+            bool status;
+            int criticalRate;
+            bool neverFails;
+            int ppMax;
+            int priority;
+            AttackEffect *preEffect = nullptr;
+            AttackEffect *postEffect = nullptr;
+            AttackEffect *ifFails = nullptr;
+        };
 
-      typedef struct AttackData AttackData;
-      
+        typedef struct AttackData AttackData;
+
         class Attack {
           public:
             virtual ~Attack();
-	  Attack(std::string nameKey, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, AttackEffect *preEffect = nullptr, AttackEffect *postEffect = nullptr, AttackEffect *fails = nullptr);
+            Attack(std::string nameKey, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, AttackEffect *preEffect = nullptr, AttackEffect *postEffect = nullptr, AttackEffect *fails = nullptr);
 
-	  Attack(AttackData const& data);
+            Attack(AttackData const &data);
 
-	  static Attack* newAtk(std::string name);
-	  static void initAttacks(std::string file);
-	  
+            static Attack *newAtk(std::string name);
+            static void initAttacks(std::string file);
+
             void healPP() {
                 pp = ppMax;
             }
@@ -72,7 +71,7 @@ namespace OpMon {
 
             //"atk" attacks the "def" OpMon
             int attack(OpMon &atk, OpMon &def, Turn &atkTurn);
-	  OP_DEPRECATED void ifFails(OpMon &atk, OpMon &def, Turn &turn /*atkTurn*/) {failEffect->apply(*this, atk, def, turn);}
+            OP_DEPRECATED void ifFails(OpMon &atk, OpMon &def, Turn &turn /*atkTurn*/) { failEffect->apply(*this, atk, def, turn); }
 
             std::string save();
 
@@ -88,9 +87,9 @@ namespace OpMon {
                 return this->priority;
             }
 
-	  sf::String getName() {
-	    return name.getString();
-	  }
+            sf::String getName() {
+                return name.getString();
+            }
 
             // methods used by pre and post Effects
             void setPower(int power) { this->power = power; }
@@ -103,7 +102,7 @@ namespace OpMon {
             void setSavedDefSpe(int defSpe) { this->savedDefSpe = defSpe; }
 
           protected:
-	  Utils::OpString name;
+            Utils::OpString name;
             int power;
             int priority;
             int accuracy;
@@ -119,12 +118,12 @@ namespace OpMon {
 
             AttackEffect *preEffect;
             AttackEffect *postEffect;
-	  AttackEffect *failEffect;
+            AttackEffect *failEffect;
             /**Variables used in preEffect and postEffect*/
             int hpLost = 0;
             int savedDefSpe = 0; // used by ChocPsy
 
-	  static std::map<std::string, AttackData> attackList;
+            static std::map<std::string, AttackData> attackList;
         };
 
     } // namespace Model

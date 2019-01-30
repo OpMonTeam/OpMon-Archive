@@ -35,19 +35,16 @@ namespace OpMon {
             switch(event.type) {
             case sf::Event::KeyPressed:
                 if(menu.getCurrentOption() == View::OptionType::CONTROLS && keyChangeActive) {
-                    if(currentKeyChange < controlsName.size())
-                    {
-                        const std::string& keyCode = Model::KeyData::findNameKeyCode(event.key.code);
-                        if(!keyCode.empty())
-                        {
+                    if(currentKeyChange < controlsName.size()) {
+                        const std::string &keyCode = Model::KeyData::findNameKeyCode(event.key.code);
+                        if(!keyCode.empty()) {
                             Model::OptionsSave::addParam(std::string("control.") + controlsName[currentKeyChange], keyCode.c_str());
                         }
                         ++currentKeyChange;
                         view.setCurrentActionsCtrl(currentKeyChange + 1);
                     }
 
-                    if(currentKeyChange >= controlsName.size())
-                    {
+                    if(currentKeyChange >= controlsName.size()) {
                         currentKeyChange = 0;
                         keyChangeActive = false;
                         view.setCurrentActionsCtrl(currentKeyChange);
