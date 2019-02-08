@@ -13,10 +13,12 @@ File under GNU GPL v3.0 license
 #include "BattleCtrl.hpp"
 #include "PlayerCtrl.hpp"
 #include "AnimationCtrl.hpp"
+#include "GameMenuCtrl.hpp"
 
 //Defines created to make the code easier to read
 #define LOAD_BATTLE 1
 #define LOAD_MENU_OPEN 2
+#define LOAD_MENU 3
 
 namespace OpMon {
     namespace Controller {
@@ -27,6 +29,10 @@ namespace OpMon {
           , player(player) {}
 
         GameStatus OverworldCtrl::checkEvent(sf::Event const &events) {
+			if(loadNext == LOAD_MENU_OPEN){
+				loadNext = LOAD_MENU;
+				return GameStatus::NEXT_NLS;
+			}
             auto &overworld = view;
 
             bool is_dialog_open = overworld.getDialog() && !overworld.getDialog()->isDialogOver();
@@ -134,7 +140,7 @@ namespace OpMon {
                     return GameStatus::NEXT;
                 }
             }
-
+			
             return GameStatus::CONTINUE;
         }
 
@@ -152,13 +158,16 @@ namespace OpMon {
 	void OverworldCtrl::loadNextScreen(){
 	    switch(loadNext){
 	    case LOAD_BATTLE:
-		_next_gs = std::make_unique<BattleCtrl>(data.getPlayer().getOpTeam(), view.getBattleDeclared(), data.getUiDataPtr(), data.getPlayerPtr());
-		break;
+			_next_gs = std::make_unique<BattleCtrl>(data.getPlayer().getOpTeam(), view.getBattleDeclared(), data.getUiDataPtr(), data.getPlayerPtr());
+			break;
 	    case LOAD_MENU_OPEN:
-		_next_gs = std::make_unique<AnimationCtrl>(std::make_unique<View::Animations::WooshAnim>(screenTexture, data.getMenuTexture(), View::Animations::WooshSide::UP, 120));
-		break;
+			_next_gs = std::make_unique<AnimationCtrl>(std::make_unique<View::Animations::WooshAnim>(screenTexture, data.getMenuTexture(), View::Animations::WooshSide::UP, 120));
+			break;
+		case LOAD_MENU:
+			_next_gs = std::make_unique<GameMenuCtrl>(data.getGameMenuData(), player);
+			break;
 	    default:
-		handleError("Error : Unknown view to load in OverworldCtrl", true);
+			handleError("Error : Unknown view to load in OverworldCtrl", true);
 	    }
 	}
 
