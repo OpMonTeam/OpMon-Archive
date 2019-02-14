@@ -20,6 +20,8 @@ namespace OpMon {
 	    View::GameMenu view;
 	    Model::Player &player;
 
+	    int loadNext = 0;
+
 	public:
 	    ~GameMenuCtrl();
 	    

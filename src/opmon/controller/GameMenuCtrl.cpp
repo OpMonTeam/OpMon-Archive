@@ -21,6 +21,15 @@ namespace OpMon {
 	}
 
 	GameStatus GameMenuCtrl::checkEvent(sf::Event const& event) {
+	    switch(event.type) {
+	    case sf::Event::KeyPressed:
+		if(event.key.code == sf::Keyboard::M){
+		    return GameStatus::PREVIOUS_NLS;
+		}
+	    default:
+		break;
+	    }
+
 	    return GameStatus::CONTINUE;
 	}
 
@@ -29,7 +38,7 @@ namespace OpMon {
 	}
 
 	void GameMenuCtrl::loadNextScreen() {
-	    
+	   
 	}
 
 	void GameMenuCtrl::suspend() {

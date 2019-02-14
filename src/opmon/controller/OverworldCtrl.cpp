@@ -19,6 +19,7 @@ File under GNU GPL v3.0 license
 #define LOAD_BATTLE 1
 #define LOAD_MENU_OPEN 2
 #define LOAD_MENU 3
+#define LOAD_MENU_CLOSE 4
 
 namespace OpMon {
     namespace Controller {
@@ -29,10 +30,13 @@ namespace OpMon {
           , player(player) {}
 
         GameStatus OverworldCtrl::checkEvent(sf::Event const &events) {
-			if(loadNext == LOAD_MENU_OPEN){
-				loadNext = LOAD_MENU;
-				return GameStatus::NEXT_NLS;
-			}
+	    if(loadNext == LOAD_MENU_OPEN){
+		loadNext = LOAD_MENU;
+		return GameStatus::NEXT_NLS;
+	    }else if(loadNext == LOAD_MENU){
+		loadNext = LOAD_MENU_CLOSE;
+		return GameStatus::NEXT_NLS;
+	    }
             auto &overworld = view;
 
             bool is_dialog_open = overworld.getDialog() && !overworld.getDialog()->isDialogOver();
@@ -108,11 +112,7 @@ namespace OpMon {
                 }
             }
 
-            if(is_dialog_open) {
-                return checkEventsDialog(events, overworld);
-            }
-
-            return checkEventsNoDialog(events, player);
+	    return is_dialog_open ? checkEventsDialog(events, overworld) : checkEventsNoDialog(events, player);
         }
 
         GameStatus OverworldCtrl::checkEventsDialog(sf::Event const &events, View::Overworld &overworld) {
@@ -161,11 +161,14 @@ namespace OpMon {
 			_next_gs = std::make_unique<BattleCtrl>(data.getPlayer().getOpTeam(), view.getBattleDeclared(), data.getUiDataPtr(), data.getPlayerPtr());
 			break;
 	    case LOAD_MENU_OPEN:
-			_next_gs = std::make_unique<AnimationCtrl>(std::make_unique<View::Animations::WooshAnim>(screenTexture, data.getMenuTexture(), View::Animations::WooshSide::UP, 120));
+		_next_gs = std::make_unique<AnimationCtrl>(std::make_unique<View::Animations::WooshAnim>(screenTexture, data.getMenuTexture(), View::Animations::WooshSide::UP, 30, true));
 			break;
-		case LOAD_MENU:
-			_next_gs = std::make_unique<GameMenuCtrl>(data.getGameMenuData(), player);
-			break;
+	    case LOAD_MENU:
+		_next_gs = std::make_unique<GameMenuCtrl>(data.getGameMenuData(), player);
+		break;
+	    case LOAD_MENU_CLOSE:
+		_next_gs = std::make_unique<AnimationCtrl>(std::make_unique<View::Animations::WooshAnim>(screenTexture, data.getMenuTexture(), View::Animations::WooshSide::DOWN, 30, false));
+		break;
 	    default:
 			handleError("Error : Unknown view to load in OverworldCtrl", true);
 	    }
