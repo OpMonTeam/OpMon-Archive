@@ -17,6 +17,9 @@ namespace OpMon {
 	    sf::Texture menuTexture;
 	    sf::Texture background;
 
+	    sf::Texture selectionTexture[6];
+	    sf::Vector2f selectionPos[6];
+	    
 	    UiData* uidata;
 	    Player* player;
 	    
@@ -28,6 +31,9 @@ namespace OpMon {
 	    sf::Texture &getMenuTexture()  { return menuTexture; }
 	    sf::Texture &getBackground()  { return background; }
 	    void setBackground(sf::Texture const& bg) { background = bg; } 
+
+	    sf::Texture& getSelectionTexture(int index) {return selectionTexture[index];}
+	    sf::Vector2f& getSelectionPos(int index) {return selectionPos[index];}
 	    
 	    
 	    UiData* getUiDataPtr() { return uidata; }
