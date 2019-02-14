@@ -26,6 +26,19 @@ namespace OpMon {
 		if(event.key.code == sf::Keyboard::M){
 		    return GameStatus::PREVIOUS_NLS;
 		}
+		if(event.key.code == sf::Keyboard::Up){
+		    curPos -= 2;
+		}
+		if(event.key.code == sf::Keyboard::Down){
+		    curPos += 2;
+		}
+		if(event.key.code == sf::Keyboard::Left){
+		    curPos--;
+		}
+		if(event.key.code == sf::Keyboard::Right){
+		    curPos++;
+		}
+		view.setCurPos(curPos.getValue());
 	    default:
 		break;
 	    }
@@ -34,7 +47,7 @@ namespace OpMon {
 	}
 
 	GameStatus GameMenuCtrl::update(sf::RenderTexture &frame) {
-	    return GameStatus::CONTINUE;
+	    return view(frame);
 	}
 
 	void GameMenuCtrl::loadNextScreen() {
