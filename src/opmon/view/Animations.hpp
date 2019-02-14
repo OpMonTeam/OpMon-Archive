@@ -65,9 +65,10 @@ namespace OpMon {
                 sf::Sprite &after = this->anim;
                 sf::Vector2f initialPos[4];
                 sf::Vector2f mvDir[4];
+		bool outToIn;
 
               public:
-                WooshAnim(sf::Texture &before, sf::Texture &after, WooshSide side, int duration = 15);
+                WooshAnim(sf::Texture &before, sf::Texture &after, WooshSide side, int duration = 15, bool outToIn = true);
                 GameStatus operator()(sf::RenderTexture &frame) override;
             };
 
