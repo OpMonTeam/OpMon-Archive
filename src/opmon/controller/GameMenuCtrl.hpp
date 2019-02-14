@@ -9,6 +9,8 @@ File under GNU GPL v3.0 license
 #include "../model/sysObjects/Player.hpp"
 #include "../model/storage/GameMenuData.hpp"
 #include "../view/GameMenu.hpp"
+#include "../../utils/CycleCounter.hpp"
+
 
 namespace OpMon {
     namespace Controller {
@@ -21,6 +23,8 @@ namespace OpMon {
 	    Model::Player &player;
 
 	    int loadNext = 0;
+
+	    Utils::CycleCounter curPos = Utils::CycleCounter(6);
 
 	public:
 	    ~GameMenuCtrl();

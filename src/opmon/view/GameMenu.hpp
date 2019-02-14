@@ -15,10 +15,17 @@ namespace OpMon {
 	private:
 	    sf::Sprite background;
 	    sf::Sprite menuBg;
+	    sf::Sprite selections[6];
 
 	    Model::GameMenuData &data;
+
+	    int curPos = 0;
 	public:
 	    GameMenu(Model::GameMenuData &data);
+	    
+	    GameStatus operator()(sf::RenderTexture &frame);
+
+	    void setCurPos(int newCurPos);
 	};
 	
     }
