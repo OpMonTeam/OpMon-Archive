@@ -156,6 +156,7 @@ namespace OpMon {
         }
 
 	void OverworldCtrl::loadNextScreen(){
+	    data.getGameMenuData().setBackground(screenTexture);
 	    switch(loadNext){
 	    case LOAD_BATTLE:
 			_next_gs = std::make_unique<BattleCtrl>(data.getPlayer().getOpTeam(), view.getBattleDeclared(), data.getUiDataPtr(), data.getPlayerPtr());
