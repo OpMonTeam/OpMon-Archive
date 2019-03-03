@@ -72,7 +72,7 @@ namespace OpMon {
             }
 
             if(status == GameStatus::NEXT || status == GameStatus::PREVIOUS || status == GameStatus::NEXT_NLS || status == GameStatus::PREVIOUS_NLS) {
-                if(status != GameStatus::NEXT_NLS && status != GameStatus::PREVIOUS_NLS) {
+                if(status == GameStatus::NEXT) {
                     window->getFrame().draw(loadSpr);
                     window->getFrame().draw(loadingTxt);
                     window->refresh();

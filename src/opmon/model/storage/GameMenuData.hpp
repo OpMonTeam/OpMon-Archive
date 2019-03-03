@@ -30,7 +30,7 @@ namespace OpMon {
 
 	    sf::Texture &getMenuTexture()  { return menuTexture; }
 	    sf::Texture &getBackground()  { return background; }
-	    void setBackground(sf::Texture const& bg) { background = bg; } 
+	    void setBackground(sf::Texture const& bg) { background = bg; }
 
 	    sf::Texture& getSelectionTexture(int index) {return selectionTexture[index];}
 	    sf::Vector2f& getSelectionPos(int index) {return selectionPos[index];}
