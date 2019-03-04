@@ -9,11 +9,17 @@ File under GNU GPL v3.0 license
 #include "../model/objects/Attacks.hpp"
 #include "../model/objects/OpMon.hpp"
 #include "../model/sysObjects/OpTeam.hpp"
+#include "AnimationCtrl.hpp"
 #include "BattleCtrl.hpp"
 #include "PlayerCtrl.hpp"
+#include "AnimationCtrl.hpp"
+#include "GameMenuCtrl.hpp"
 
 //Defines created to make the code easier to read
 #define LOAD_BATTLE 1
+#define LOAD_MENU_OPEN 2
+#define LOAD_MENU 3
+#define LOAD_MENU_CLOSE 4
 
 namespace OpMon {
     namespace Controller {
@@ -24,6 +30,13 @@ namespace OpMon {
           , player(player) {}
 
         GameStatus OverworldCtrl::checkEvent(sf::Event const &events) {
+	    if(loadNext == LOAD_MENU_OPEN){
+		loadNext = LOAD_MENU;
+		return GameStatus::NEXT_NLS;
+	    }else if(loadNext == LOAD_MENU){
+		loadNext = LOAD_MENU_CLOSE;
+		return GameStatus::NEXT_NLS;
+	    }
             auto &overworld = view;
 
             bool is_dialog_open = overworld.getDialog() && !overworld.getDialog()->isDialogOver();
@@ -39,10 +52,10 @@ namespace OpMon {
                     }
                 }
                 //M reboots the game
-                if(events.key.code == sf::Keyboard::M) {
+                /*if(events.key.code == sf::Keyboard::M) {
                     reboot = true;
                     return GameStatus::STOP;
-                }
+                }*/
                 if(debugMode) {
                     //Debug, chooses the layers to print
                     if(events.key.code == sf::Keyboard::F10) {
@@ -75,6 +88,11 @@ namespace OpMon {
                     if(events.key.code == sf::Keyboard::B) {
                         overworld.tp("Road 14", sf::Vector2i(10, 32));
                     }
+					
+                }
+                if(events.key.code == sf::Keyboard::M) {
+                    loadNext = LOAD_MENU_OPEN;
+                    return GameStatus::NEXT_NLS;
                 }
             default:
                 break;
@@ -94,11 +112,7 @@ namespace OpMon {
                 }
             }
 
-            if(is_dialog_open) {
-                return checkEventsDialog(events, overworld);
-            }
-
-            return checkEventsNoDialog(events, player);
+	    return is_dialog_open ? checkEventsDialog(events, overworld) : checkEventsNoDialog(events, player);
         }
 
         GameStatus OverworldCtrl::checkEventsDialog(sf::Event const &events, View::Overworld &overworld) {
@@ -126,7 +140,7 @@ namespace OpMon {
                     return GameStatus::NEXT;
                 }
             }
-
+			
             return GameStatus::CONTINUE;
         }
 
@@ -136,18 +150,30 @@ namespace OpMon {
                 EventsCtrl::updateEvents(data.getMap(player.getMapId())->getEvents(), player, view);
             }
 
-            return view(frame);
+            GameStatus toReturn = view(frame);
+            screenTexture = frame.getTexture();
+            return toReturn;
         }
 
-        void OverworldCtrl::loadNextScreen() {
-            switch(loadNext) {
-            case LOAD_BATTLE:
-                _next_gs = std::make_unique<BattleCtrl>(data.getPlayer().getOpTeam(), view.getBattleDeclared(), data.getUiDataPtr(), data.getPlayerPtr());
-                break;
-            default:
-                handleError("Error : Unknown view to load in OverworldCtrl", true);
-            }
-        }
+	void OverworldCtrl::loadNextScreen(){
+	    data.getGameMenuData().setBackground(screenTexture);
+	    switch(loadNext){
+	    case LOAD_BATTLE:
+			_next_gs = std::make_unique<BattleCtrl>(data.getPlayer().getOpTeam(), view.getBattleDeclared(), data.getUiDataPtr(), data.getPlayerPtr());
+			break;
+	    case LOAD_MENU_OPEN:
+		_next_gs = std::make_unique<AnimationCtrl>(std::make_unique<View::Animations::WooshAnim>(screenTexture, data.getMenuTexture(), View::Animations::WooshSide::UP, 15, true));
+			break;
+	    case LOAD_MENU:
+		_next_gs = std::make_unique<GameMenuCtrl>(data.getGameMenuData(), player);
+		break;
+	    case LOAD_MENU_CLOSE:
+		_next_gs = std::make_unique<AnimationCtrl>(std::make_unique<View::Animations::WooshAnim>(screenTexture, data.getMenuTexture(), View::Animations::WooshSide::DOWN, 15, false));
+		break;
+	    default:
+			handleError("Error : Unknown view to load in OverworldCtrl", true);
+	    }
+	}
 
         void OverworldCtrl::suspend() {
             data.getUiDataPtr()->getJukebox().pause();
