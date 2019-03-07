@@ -26,7 +26,7 @@ namespace OpMon {
             Model::Player &player;
 
             int loadNext = 0;
-			
+
             sf::Texture screenTexture;
 
           public:

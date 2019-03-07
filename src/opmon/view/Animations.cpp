@@ -51,16 +51,16 @@ namespace OpMon {
               , side(side)
               , duration(duration)
               , counter(duration)
-	      , outToIn(outToIn){
-		if(outToIn){
-		    initialPos[(int)WooshSide::DOWN] = sf::Vector2f(0, -512);
-		    initialPos[(int)WooshSide::UP] = sf::Vector2f(0, 512);
-		    initialPos[(int)WooshSide::RIGHT] = sf::Vector2f(-512, 0);
-		    initialPos[(int)WooshSide::LEFT] = sf::Vector2f(512, 0);
-		}else{
-		    for(size_t i = 0; i < 4; i++)
-			initialPos[i] = sf::Vector2f(0, 0);
-		}
+              , outToIn(outToIn) {
+                if(outToIn) {
+                    initialPos[(int)WooshSide::DOWN] = sf::Vector2f(0, -512);
+                    initialPos[(int)WooshSide::UP] = sf::Vector2f(0, 512);
+                    initialPos[(int)WooshSide::RIGHT] = sf::Vector2f(-512, 0);
+                    initialPos[(int)WooshSide::LEFT] = sf::Vector2f(512, 0);
+                } else {
+                    for(size_t i = 0; i < 4; i++)
+                        initialPos[i] = sf::Vector2f(0, 0);
+                }
                 mvDir[(int)WooshSide::DOWN] = sf::Vector2f(0, 1);
                 mvDir[(int)WooshSide::UP] = sf::Vector2f(0, -1);
                 mvDir[(int)WooshSide::RIGHT] = sf::Vector2f(1, 0);
