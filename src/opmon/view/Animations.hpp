@@ -48,7 +48,7 @@ namespace OpMon {
                 WinAnim(sf::Texture bgTxt, bool order);
                 GameStatus operator()(sf::RenderTexture &frame) override;
             };
-			
+
             enum class WooshSide : int {
                 UP = 0,
                 DOWN = 1,
@@ -65,7 +65,7 @@ namespace OpMon {
                 sf::Sprite &after = this->anim;
                 sf::Vector2f initialPos[4];
                 sf::Vector2f mvDir[4];
-		bool outToIn;
+                bool outToIn;
 
               public:
                 WooshAnim(sf::Texture &before, sf::Texture &after, WooshSide side, int duration = 15, bool outToIn = true);

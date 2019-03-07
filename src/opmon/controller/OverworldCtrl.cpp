@@ -11,9 +11,8 @@ File under GNU GPL v3.0 license
 #include "../model/sysObjects/OpTeam.hpp"
 #include "AnimationCtrl.hpp"
 #include "BattleCtrl.hpp"
-#include "PlayerCtrl.hpp"
-#include "AnimationCtrl.hpp"
 #include "GameMenuCtrl.hpp"
+#include "PlayerCtrl.hpp"
 
 //Defines created to make the code easier to read
 #define LOAD_BATTLE 1
@@ -30,13 +29,13 @@ namespace OpMon {
           , player(player) {}
 
         GameStatus OverworldCtrl::checkEvent(sf::Event const &events) {
-	    if(loadNext == LOAD_MENU_OPEN){
-		loadNext = LOAD_MENU;
-		return GameStatus::NEXT_NLS;
-	    }else if(loadNext == LOAD_MENU){
-		loadNext = LOAD_MENU_CLOSE;
-		return GameStatus::NEXT_NLS;
-	    }
+            if(loadNext == LOAD_MENU_OPEN) {
+                loadNext = LOAD_MENU;
+                return GameStatus::NEXT_NLS;
+            } else if(loadNext == LOAD_MENU) {
+                loadNext = LOAD_MENU_CLOSE;
+                return GameStatus::NEXT_NLS;
+            }
             auto &overworld = view;
 
             bool is_dialog_open = overworld.getDialog() && !overworld.getDialog()->isDialogOver();
@@ -88,7 +87,6 @@ namespace OpMon {
                     if(events.key.code == sf::Keyboard::B) {
                         overworld.tp("Road 14", sf::Vector2i(10, 32));
                     }
-					
                 }
                 if(events.key.code == sf::Keyboard::M) {
                     loadNext = LOAD_MENU_OPEN;
@@ -112,7 +110,7 @@ namespace OpMon {
                 }
             }
 
-	    return is_dialog_open ? checkEventsDialog(events, overworld) : checkEventsNoDialog(events, player);
+            return is_dialog_open ? checkEventsDialog(events, overworld) : checkEventsNoDialog(events, player);
         }
 
         GameStatus OverworldCtrl::checkEventsDialog(sf::Event const &events, View::Overworld &overworld) {
@@ -140,7 +138,7 @@ namespace OpMon {
                     return GameStatus::NEXT;
                 }
             }
-			
+
             return GameStatus::CONTINUE;
         }
 
@@ -155,25 +153,25 @@ namespace OpMon {
             return toReturn;
         }
 
-	void OverworldCtrl::loadNextScreen(){
-	    data.getGameMenuData().setBackground(screenTexture);
-	    switch(loadNext){
-	    case LOAD_BATTLE:
-			_next_gs = std::make_unique<BattleCtrl>(data.getPlayer().getOpTeam(), view.getBattleDeclared(), data.getUiDataPtr(), data.getPlayerPtr());
-			break;
-	    case LOAD_MENU_OPEN:
-		_next_gs = std::make_unique<AnimationCtrl>(std::make_unique<View::Animations::WooshAnim>(screenTexture, data.getMenuTexture(), View::Animations::WooshSide::UP, 15, true));
-			break;
-	    case LOAD_MENU:
-		_next_gs = std::make_unique<GameMenuCtrl>(data.getGameMenuData(), player);
-		break;
-	    case LOAD_MENU_CLOSE:
-		_next_gs = std::make_unique<AnimationCtrl>(std::make_unique<View::Animations::WooshAnim>(screenTexture, data.getMenuTexture(), View::Animations::WooshSide::DOWN, 15, false));
-		break;
-	    default:
-			handleError("Error : Unknown view to load in OverworldCtrl", true);
-	    }
-	}
+        void OverworldCtrl::loadNextScreen() {
+            data.getGameMenuData().setBackground(screenTexture);
+            switch(loadNext) {
+            case LOAD_BATTLE:
+                _next_gs = std::make_unique<BattleCtrl>(data.getPlayer().getOpTeam(), view.getBattleDeclared(), data.getUiDataPtr(), data.getPlayerPtr());
+                break;
+            case LOAD_MENU_OPEN:
+                _next_gs = std::make_unique<AnimationCtrl>(std::make_unique<View::Animations::WooshAnim>(screenTexture, data.getMenuTexture(), View::Animations::WooshSide::UP, 15, true));
+                break;
+            case LOAD_MENU:
+                _next_gs = std::make_unique<GameMenuCtrl>(data.getGameMenuData(), player);
+                break;
+            case LOAD_MENU_CLOSE:
+                _next_gs = std::make_unique<AnimationCtrl>(std::make_unique<View::Animations::WooshAnim>(screenTexture, data.getMenuTexture(), View::Animations::WooshSide::DOWN, 15, false));
+                break;
+            default:
+                handleError("Error : Unknown view to load in OverworldCtrl", true);
+            }
+        }
 
         void OverworldCtrl::suspend() {
             data.getUiDataPtr()->getJukebox().pause();

@@ -18,8 +18,8 @@ namespace OpMon {
 
         OverworldData::OverworldData(UiData *uidata, Player *player)
           : uidata(uidata)
-	, player(player)
-	, gameMenuData(uidata, player){
+          , player(player)
+          , gameMenuData(uidata, player) {
 
             using namespace Utils;
 
@@ -135,7 +135,8 @@ namespace OpMon {
                                                                        itor->at("size")[1],
                                                                        itor->at("indoor"),
                                                                        itor->at("music"),
-                                                                       itor->value("animations", std::vector<std::string>()))).first->second;
+                                                                       itor->value("animations", std::vector<std::string>())))
+                                    .first->second;
                 for(auto eitor = itor->at("events").begin(); eitor != itor->at("events").end(); ++eitor) {
                     std::string type = eitor->at("type");
 
@@ -234,7 +235,7 @@ namespace OpMon {
                 }
             }
 
-	    mapsItor = maps.begin();
+            mapsItor = maps.begin();
         }
 
         OverworldData::~OverworldData() {
