@@ -14,6 +14,8 @@ File under GNU GPL v3.0 license
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Window/Event.hpp>
 
+#include <functional>
+
 namespace OpMon {
 
     GameLoop::GameLoop()
