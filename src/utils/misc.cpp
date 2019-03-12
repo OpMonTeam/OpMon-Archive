@@ -4,33 +4,37 @@ Author : BAKFR
 File under GNU GPL v3.0
 */
 #include "misc.hpp"
-#include <ctime>
 
-namespace Utils {
-    namespace Misc {
-        int randU(int limit) {
-            srand(time(NULL) + rand() * rand());
-            return rand() % limit;
-        }
+#include <algorithm>  //std::generate
+#include <array>      //std::array
+#include <functional> //std::ref
+#include <random>     //std::mt19937, std::seed_seq, std::random_device
 
-        unsigned int randUI(unsigned int limit) {
-            srand(time(NULL) + rand() * rand());
-            unsigned int toReturn = rand() % limit;
-            return toReturn;
-        }
+namespace Utils::Misc {
 
-        std::size_t hash(const std::string &str) {
-            return std::hash<std::string>{}(str);
-        }
+    std::mt19937& getRNGEngine() {
+        static std::mt19937 mt = []() {
+            std::array<std::mt19937::result_type, std::mt19937::state_size> data;
+            std::random_device device;
+            std::generate(data.begin(), data.end(), std::ref(device));
+            std::seed_seq seed(data.begin(), data.end());
+            mt.seed(seed);
+            return mt;
+        }();
 
-        template <class T>
-        T *vectorToArray(std::vector<T> const &vect) {
-            T array[vect.size()];
-            for(unsigned int i = 0; i < vect.lenght; i++) {
-                array[i] = vect[i];
-            }
-            return array;
-        }
+        return mt;
+    }
 
-    } // namespace Misc
-} // namespace Utils
+    int randU(int limit) {
+        return random_(0, limit - 1);
+    }
+
+    unsigned int randUI(unsigned int limit) {
+        return random_(0u, limit - 1u);
+    }
+
+    std::size_t hash(const std::string &str) {
+        return std::hash<std::string>{}(str);
+    }
+} // namespace Utils::Misc
+
