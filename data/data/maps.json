@@ -897,6 +897,66 @@
 		"side" : 16
 	    },
 	    {
+		"type" : "TPEvent",
+		"textures" : "alpha",
+		"trigger" : 3,
+		"position" : [77, 40],
+		"tp" : {
+		    "position" : [3, 41],
+		    "map" : "EuviCity",
+		    "side" : 1
+		},
+		"side" : 32
+	    },
+	    {
+		"type" : "TPEvent",
+		"textures" : "alpha",
+		"trigger" : 3,
+		"position" : [77, 41],
+		"tp" : {
+		    "position" : [3, 42],
+		    "map" : "EuviCity",
+		    "side" : 1
+		},
+		"side" : 32
+	    },
+	    {
+		"type" : "TPEvent",
+		"textures" : "alpha",
+		"trigger" : 3,
+		"position" : [77, 42],
+		"tp" : {
+		    "position" : [3, 43],
+		    "map" : "EuviCity",
+		    "side" : 1
+		},
+		"side" : 32
+	    },
+	    {
+		"type" : "TPEvent",
+		"textures" : "alpha",
+		"trigger" : 3,
+		"position" : [77, 43],
+		"tp" : {
+		    "position" : [3, 44],
+		    "map" : "EuviCity",
+		    "side" : 1
+		},
+		"side" : 32
+	    },
+	    {
+		"type" : "TPEvent",
+		"textures" : "alpha",
+		"trigger" : 3,
+		"position" : [77, 44],
+		"tp" : {
+		    "position" : [3, 45],
+		    "map" : "EuviCity",
+		    "side" : 1
+		},
+		"side" : 32
+	    },
+	    {
 		"type" : "TrainerEvent",
 		"trainer" : "Beta",
 		"textures" : "beta",
@@ -1334,24 +1394,70 @@
 	],
 	"size" : [62, 63],
 	"indoor" : false,
-	"music" : "Start",
+	"music" : "Fauxbourg",
 	"events" : [
 	    {
 		"type" : "TPEvent",
 		"textures" : "alpha",
 		"trigger" : 3,
-		"position" : [15, 12],
+		"position" : [1, 41],
 		"tp" : {
-		    "position" : [10, 17],
-		    "map" : "Route14",
-		    "side" : 1
+		    "position" : [77, 40],
+		    "map" : "Road 14",
+		    "side" : 2
 		},
-		"side" : 3
+		"side" : 16
+	    },
+            {
+		"type" : "TPEvent",
+		"textures" : "alpha",
+		"trigger" : 3,
+		"position" : [1, 42],
+		"tp" : {
+		    "position" : [77, 41],
+		    "map" : "Road 14",
+		    "side" : 2
+		},
+		"side" : 16
+	    },
+	    {
+		"type" : "TPEvent",
+		"textures" : "alpha",
+		"trigger" : 3,
+		"position" : [1, 43],
+		"tp" : {
+		    "position" : [77, 42],
+		    "map" : "Road 14",
+		    "side" : 2
+		},
+		"side" : 16
+	    },
+	    {
+		"type" : "TPEvent",
+		"textures" : "alpha",
+		"trigger" : 3,
+		"position" : [1, 44],
+		"tp" : {
+		    "position" : [77, 43],
+		    "map" : "Road 14",
+		    "side" : 2
+		},
+		"side" : 16
+	    },
+	    {
+		"type" : "TPEvent",
+		"textures" : "alpha",
+		"trigger" : 3,
+		"position" : [1, 45],
+		"tp" : {
+		    "position" : [77, 44],
+		    "map" : "Road 14",
+		    "side" : 2
+		},
+		"side" : 16
 	    }
 	]
     },
-
-
 
 
 	{
