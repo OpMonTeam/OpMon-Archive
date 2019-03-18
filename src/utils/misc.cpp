@@ -12,7 +12,7 @@ File under GNU GPL v3.0
 
 namespace Utils::Misc {
 
-    std::mt19937& getRNGEngine() {
+    std::mt19937 &getRNGEngine() {
         static std::mt19937 mt = []() {
             std::array<std::mt19937::result_type, std::mt19937::state_size> data;
             std::random_device device;
@@ -37,4 +37,3 @@ namespace Utils::Misc {
         return std::hash<std::string>{}(str);
     }
 } // namespace Utils::Misc
-
