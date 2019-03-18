@@ -16,7 +16,7 @@ File under GNU GPL v3.0
 
 namespace OpMon {
     namespace View {
-        GameStatus Battle::operator()(sf::RenderTexture &frame, Model::Turn const &atkTurn, Model::Turn const &defTurn, bool *turnActivated, bool atkFirst) {
+        GameStatus Battle::operator()(sf::RenderTexture &frame, Model::TurnData const &atkTurn, Model::TurnData const &defTurn, std::queue<TurnAction> &actionQueue, bool *turnActivated, bool atkFirst) {
             //TODO : OPTIMIZE ! (In 0.16)
             //Removes camera
             frame.setView(frame.getDefaultView());
@@ -79,7 +79,7 @@ namespace OpMon {
 	       - Turn action (Attack, item and other actions)
 	       When the turn is launched, the variable turnActivated is set to true in BattleCtrl.
 	       When the turn is over, the variable turnActivated is set to false in BattleCtrl.
-	       Battle have it's own variable, allowing to know when the variable is changed, and do this code.
+	       Battle have it's own variable, allowing to know when the variable has changed, and do this code.
 	    */
             if(!turnLaunched && *turnActivated) {
                 phase = 1;

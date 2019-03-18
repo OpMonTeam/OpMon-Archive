@@ -39,7 +39,7 @@ namespace OpMon {
                                           DEFENDER = 1 };
                 ChangeStatEffect(Target target, Model::Stats stat, int coef);
                 ChangeStatEffect(nlohmann::json const &data);
-                int apply(Attack &attack, OpMon &attacker, OpMon &defender, Turn &atkTurn) override;
+                int apply(Attack &attack, OpMon &attacker, OpMon &defender, std::queue<TurnAction> &turnQueue) override;
 
               protected:
                 Target target;

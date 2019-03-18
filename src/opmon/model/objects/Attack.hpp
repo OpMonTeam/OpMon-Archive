@@ -21,7 +21,7 @@ namespace OpMon {
 
         class AttackEffect {
           public:
-            virtual int apply(Attack & /*attack*/, OpMon & /*attacker*/, OpMon & /*defender*/, Turn & /* atkTurn */) { return 0; }
+            virtual int apply(Attack & /*attack*/, OpMon & /*attacker*/, OpMon & /*defender*/, std::queue<TurnAction> & /* turnQueue */) { return 0; }
             virtual ~AttackEffect() {}
         };
 
@@ -70,8 +70,7 @@ namespace OpMon {
             }
 
             //"atk" attacks the "def" OpMon
-            int attack(OpMon &atk, OpMon &def, Turn &atkTurn);
-            OP_DEPRECATED void ifFails(OpMon &atk, OpMon &def, Turn &turn /*atkTurn*/) { failEffect->apply(*this, atk, def, turn); }
+            int attack(OpMon &atk, OpMon &def, std::queue<TurnAction> &turnQueue);
 
             std::string save();
 

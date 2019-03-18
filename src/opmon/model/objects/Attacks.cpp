@@ -26,7 +26,7 @@ namespace OpMon {
               , coef(data.at("coef")) {
             }
 
-            int ChangeStatEffect::apply(Attack &, OpMon &attacker, OpMon &defender, Turn &atkTurn) {
+            int ChangeStatEffect::apply(Attack &, OpMon &attacker, OpMon &defender, std::queue<TurnAction> &turnQueue) {
                 std::map<Stats, int (OpMon::*)(int)> stat_to_method = {
                   {Stats::ACC, &OpMon::changeACC},
                   {Stats::ATK, &OpMon::changeATK},
@@ -38,13 +38,19 @@ namespace OpMon {
                 };
                 auto change_method = stat_to_method[stat];
 
+				TurnAction statMod;
+				newTurnAction(statMod);
+				
                 if(target == Target::ATTACKER) {
                     int diff_value = (attacker.*change_method)(coef); // diff_value = attacker.changeXXX(coef)
-                    atkTurn.changedStatsAtk.emplace(stat, diff_value);
+                    statMod.type = ATK_STAT_MOD;
                 } else {
                     int diff_value = (defender.*change_method)(coef); // diff_value = defender.changeXXX(coef)
-                    atkTurn.changedStatsDef.emplace(stat, diff_value);
+                    statMod.type = DEF_STAT_MOD;
                 }
+				statMod.statCoef = coef;
+				turnQueue.push(statMod);
+				
                 return 0;
             }
 
