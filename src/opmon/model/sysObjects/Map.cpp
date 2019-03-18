@@ -55,11 +55,11 @@ namespace OpMon {
         int Map::getCurrentTileCode(sf::Vector2i const &pos, int layer) const {
             switch(layer) {
             case 1:
-                return layer1[pos.x + pos.y * w] == 0 ? 257/*"official" void tile*/  : layer1[pos.x + pos.y * w] - 1;
+                return layer1[pos.x + pos.y * w] == 0 ? 257 /*"official" void tile*/ : layer1[pos.x + pos.y * w] - 1;
             case 2:
-                return layer2[pos.x + pos.y * w] == 0 ? 257/*"official" void tile*/  : layer2[pos.x + pos.y * w] - 1;
+                return layer2[pos.x + pos.y * w] == 0 ? 257 /*"official" void tile*/ : layer2[pos.x + pos.y * w] - 1;
             case 3:
-                return layer3[pos.x + pos.y * w] == 0 ? 257/*"official" void tile*/  : layer3[pos.x + pos.y * w] - 1;
+                return layer3[pos.x + pos.y * w] == 0 ? 257 /*"official" void tile*/ : layer3[pos.x + pos.y * w] - 1;
             default:
                 //TODO: Log error
                 return 0;

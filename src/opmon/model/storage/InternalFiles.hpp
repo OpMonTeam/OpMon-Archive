@@ -26,6 +26,6 @@ namespace OpMon {
         namespace Collisions {
             extern int colTile[4096];
         }
-    }     // namespace Model
+    } // namespace Model
 } // namespace OpMon
 #endif // INTERNALFILES_HPP
