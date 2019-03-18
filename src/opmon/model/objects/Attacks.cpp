@@ -37,7 +37,9 @@ namespace OpMon {
                   {Stats::SPE, &OpMon::changeSPE},
                 };
                 auto change_method = stat_to_method[stat];
-
+				
+				// TODO : Add dialog if stat is at its min/max 
+				
 				TurnAction statMod;
 				newTurnAction(statMod);
 				
@@ -49,6 +51,7 @@ namespace OpMon {
                     statMod.type = DEF_STAT_MOD;
                 }
 				statMod.statCoef = coef;
+				statMod.statMod = stat;
 				turnQueue.push(statMod);
 				
                 return 0;
