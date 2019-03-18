@@ -45,6 +45,7 @@ namespace OpMon {
             std::vector<Utils::OpString> dialog;
 			TurnActionType type;
 			int statCoef;
+			Stats statMod;
         };
 		
 		struct TurnData {

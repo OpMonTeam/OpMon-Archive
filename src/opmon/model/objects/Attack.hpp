@@ -70,7 +70,7 @@ namespace OpMon {
             }
 
             //"atk" attacks the "def" OpMon
-            int attack(OpMon &atk, OpMon &def, std::queue<TurnAction> &turnQueue);
+            int attack(OpMon &atk, OpMon &def, std::queue<TurnAction> &turnQueue, bool attacker);
 
             std::string save();
 

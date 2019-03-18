@@ -106,7 +106,7 @@ namespace OpMon {
        * If 1 is returned, it will do the same attack at the next turn.
 	   * TODO : Create defines to make this more clear
        */
-        int Attack::attack(OpMon &atk, OpMon &def, std::queue<TurnAction> &turnQueue) {
+        int Attack::attack(OpMon &atk, OpMon &def, std::queue<TurnAction> &turnQueue, bool attacker) {
             pp--;
 			turnQueue.push(createTurnDialogAction({Utils::OpString("battle.dialog.attack", {atk.getNickname(), this->name})}));
             //Attack fail
@@ -143,7 +143,7 @@ namespace OpMon {
 				
 				TurnAction loosingHp;
 				newTurnAction(loosingHp);
-				loosingHp.type = TurnActionType::ATK_UPDATE_HP;//TODO_BEFORE_MERGING : Add a way to know if the attack comes from the player or the foe.
+				loosingHp.type = attacker ? TurnActionType::ATK_UPDATE_HP : TurnActionType::DEF_UPDATE_HP;
 				loosingHp.hpLost = hpLost;
 				turnQueue.push(loosingHp);
 
