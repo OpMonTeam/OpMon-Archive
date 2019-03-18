@@ -126,6 +126,12 @@ key.battle.run=Rennen
 key.battle.opmon=OpMons
 
 key.battle.dialog.attack=~ benutze ~ !
+key.battle.dialog.miss=~ fails the attack !
+key.battle.dialog.loosehp=~ verliert ~ hp.
+
+
+key.battle.wait=Was tun?
+
 key.battle.status.frozen.out=~ ist nicht mehr erstarrt!
 key.battle.status.frozen.in=~ ist erstarrt!
 key.battle.status.frozen.attack=~ ist erstarrt und kann nicht angreifen !
@@ -147,7 +153,13 @@ key.battle.status.confused.attack.success.2=greift ~ an!
 key.battle.status.confused.attack.fail=~ ist verwirrt.
 key.battle.status.confused.hplost=~ verliert ~ hp.
 
-key.battle.wait=Was tun?
+key.battle.status.afraid=~ is too afraid to attack !
+
+key.battle.effectiveness.none=But it failed !
+key.battle.effectiveness.almostnone=It's almost ineffective...
+key.battle.effectiveness.notvery=It's not very effective...
+key.battle.effectiveness.very=It's very effective !
+key.battle.effectiveness.super=It's super effective !
 
 key.opmon.name.0=MissingNo.
 key.opmon.name.1=Rosarin

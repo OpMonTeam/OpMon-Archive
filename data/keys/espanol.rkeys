@@ -128,6 +128,11 @@ key.battle.run=Corre
 key.battle.opmon=OpMons
 
 key.battle.dialog.attack=~ usa ~ !
+key.battle.dialog.miss=~ fails the attack !
+key.battle.dialog.loosehp=~ perdiá ~ hp.
+
+key.battle.wait=Qué haces?
+
 key.battle.status.frozen.out=~ ya no esta congelado!
 key.battle.status.frozen.in=~ esta congelado!
 key.battle.status.frozen.attack=~ esta congelado y no puedo atacar!
@@ -147,9 +152,15 @@ key.battle.status.confused.in=~ se esta confundiendo!
 key.battle.status.confused.attack.success.1=Incluso confundido, ~
 key.battle.status.confused.attack.success.2=se las arregla para atacar!
 key.battle.status.confused.attack.fail=~ esta confundido.
-key.battle.status.confused.hplost=~ perdiÃ³ ~ hp.
+key.battle.status.confused.hplost=~ perdiá ~ hp.
 
-key.battle.wait=QuÃ© haces?
+key.battle.status.afraid=~ is too afraid to attack !
+
+key.battle.effectiveness.none=But it failed !
+key.battle.effectiveness.almostnone=It's almost ineffective...
+key.battle.effectiveness.notvery=It's not very effective...
+key.battle.effectiveness.very=It's very effective !
+key.battle.effectiveness.super=It's super effective !
 
 key.opmon.name.0=MissingNo.
 key.opmon.name.1=Rosarin

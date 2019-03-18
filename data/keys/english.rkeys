@@ -71,7 +71,7 @@ key.ppHouse=~'s house.
 
 key.rivalHouse=Skullk's house.
 
-key.labo=Professor KiwaÃ¯'s laboratory.
+key.labo=Professor Kiwaï's laboratory.
 
 key.weirdsign.1=Please do not get close
 key.weirdsign.2=4th wall under reconstruction.
@@ -125,6 +125,11 @@ key.battle.run=Run
 key.battle.opmon=OpMons
 
 key.battle.dialog.attack=~ use ~ !
+key.battle.dialog.miss=~ fails the attack !
+key.battle.dialog.loosehp=~ looses ~ hp.
+
+key.battle.wait=What will you do?
+
 key.battle.status.frozen.out=~ isn't frozen anymore!
 key.battle.status.frozen.in=~ is frozen!
 key.battle.status.frozen.attack=~ is frozen and can't attack!
@@ -144,9 +149,15 @@ key.battle.status.confused.in=~ becomes confused!
 key.battle.status.confused.attack.success.1=Despite the confusion, ~
 key.battle.status.confused.attack.success.2=manages to attack!
 key.battle.status.confused.attack.fail=~ is confused.
-key.battle.status.confused.hplost=~ lost ~ hp.
+key.battle.status.confused.hplost=In the confusion, ~ lost ~ hp.
 
-key.battle.wait=What to do?
+key.battle.status.afraid=~ is too afraid to attack !
+
+key.battle.effectiveness.none=But it failed !
+key.battle.effectiveness.almostnone=It's almost ineffective...
+key.battle.effectiveness.notvery=It's not very effective...
+key.battle.effectiveness.very=It's very effective !
+key.battle.effectiveness.super=It's super effective !
 
 key.opmon.name.0=MissingNo.
 key.opmon.name.1=Rosarin

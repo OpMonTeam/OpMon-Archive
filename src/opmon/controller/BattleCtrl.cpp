@@ -81,7 +81,7 @@ namespace OpMon {
                             break;
                         }
 
-                    } else if(!turnActivated) { //In this case, the attack selecton screen is the active screen.
+                    } else if(!turnActivated) { //In this case, the attack selection screen is the active screen.
                                                 //Gets the selected attack, checks if it isn't a invalid attack (PP check and existence check), and then launches the turn.
                         atkTurn.attackUsed = atk->getAttacks()[view.getCurPos()];
                         if(atkTurn.attackUsed != nullptr) {
@@ -161,12 +161,12 @@ namespace OpMon {
             atk->setStat(Model::Stats::ACC, 100);
             def->setStat(Model::Stats::EVA, 100);
             def->setStat(Model::Stats::ACC, 100);
-            //Clear the turns
+            /*//Clear the turns
             Model::newTurn(&atkTurn);
             Model::newTurn(&defTurn);
             //Register the opmons' addresses in the Turns
             atkTurn.opmon = atk;
-            defTurn.opmon = def;
+            defTurn.opmon = def;*/
         }
 
 #pragma GCC diagnostic ignored "-Wunused-parameter"
@@ -197,25 +197,29 @@ namespace OpMon {
             }
             //If the two of them attack, then the priority must be calculated. Else, the only attacking OpMon will attack, obviously.
             if(defTurn.type == TurnType::ATTACK && atkTurn.type == TurnType::ATTACK) {
-                atkFirst = ((atk->getStatSPE() > def->getStatSPE()) || (atkTurn.attackUsed->getPriority() > defTurn.attackUsed->getPriority()));
+                atkFirst = (atkTurn.attackUsed->getPriority() == defTurn.attackUsed->getPriority()) ? (atk->getStatSPE() > def->getStatSPE()) : (atkTurn.attackUsed->getPriority() > defTurn.attackUsed->getPriority());
             } else {
                 atkFirst = !atkDone;
             }
-
+			
+			if(!actionsQueue.empty()){
+				handleError("Error : Actions Queue not empty but beginning a new turn anyway. Undefined behavior my result, because I won't fix that for you. And this could be funny to see.");
+			}
+			
             if(!atkDone || !defDone) {
                 if(atkFirst) {
                     if(!atkDone && canAttack(atk, &atkTurn)) {
-                        atkTurn.attackUsed->attack(*atk, *def, atkTurn);
+                        atkTurn.attackUsed->attack(*atk, *def, actionsQueue);
                     }
                     if(!defDone && canAttack(def, &defTurn)) {
-                        defTurn.attackUsed->attack(*def, *atk, defTurn);
+                        defTurn.attackUsed->attack(*def, *atk, actionsQueue);
                     }
                 } else {
                     if(!defDone && canAttack(def, &defTurn)) {
-                        defTurn.attackUsed->attack(*def, *atk, defTurn);
+                        defTurn.attackUsed->attack(*def, *atk, actionsQueue);
                     }
                     if(!atkDone && canAttack(atk, &atkTurn)) {
-                        atkTurn.attackUsed->attack(*atk, *def, atkTurn);
+                        atkTurn.attackUsed->attack(*atk, *def, actionsQueue);
                     }
                 }
             }
@@ -232,20 +236,20 @@ namespace OpMon {
             if(opmon->getStatus() == Model::Status::FROZEN) {
                 //The OpMon have one chance out of 5 to be able to move again.
                 if(Utils::Misc::randU(5) == 2) {
-                    opTurn->toPrintBefore.emplace_back(Utils::OpString("battle.status.frozen.out", opName));
+                    actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.frozen.out", opName)}));
                     opmon->setStatus(Model::Status::NOTHING);
                 } else {
-                    opTurn->toPrintBefore.emplace_back(Utils::OpString("battle.status.frozen.attack", opName));
+					actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.frozen.attack", opName)}));
                     canAttack = false;
                 }
                 //Checks if sleeping
             } else if(opmon->getStatus() == Model::Status::SLEEPING) {
                 //Checks the sleep counter.
                 if(opmon->getSleepingCD() <= 0) {
-                    opTurn->toPrintBefore.emplace_back(Utils::OpString("battle.status.sleep.out", opName));
+					actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.sleep.out", opName)}));
                     opmon->setStatus(Status::NOTHING);
                 } else {
-                    opTurn->toPrintBefore.emplace_back(Utils::OpString("battle.status.sleep.attack", opName));
+					actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.sleep.attack", opName)}));
                     canAttack = false;
                     opmon->passCD(true);
                 }
@@ -253,11 +257,10 @@ namespace OpMon {
             } else if(opmon->getStatus() == Model::Status::PARALYSED) {
                 //The opmon have one chance out of three to can't attack when paralysed
                 if(Utils::Misc::randU(4) == 2) {
-                    opTurn->toPrintBefore.emplace_back(Utils::OpString("battle.status.paralysed.attack.fail", opName));
+					actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.paralysed.attack.fail", opName)}));					
                     canAttack = false;
                 } else {
-                    opTurn->toPrintBefore.emplace_back(Utils::OpString("battle.status.paralysed.attack.success.1", {}));
-                    opTurn->toPrintBefore.emplace_back(Utils::OpString("battle.status.paralysed.attack.success.2", opName));
+					actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.paralysed.attack.success.1", opName), Utils::OpString("battle.status.paralysed.attack.success.2", opName)}));
                 }
             }
             //Checks if confused
@@ -265,23 +268,22 @@ namespace OpMon {
                 //Checks the confused counter
                 if(opmon->getConfusedCD() <= 0) {
                     opmon->confused = false;
-                    opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.confused.out", opName));
+					actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.confused.out", opName)}));
                 } else {
                     opmon->passCD(false);
                     //The OpMon have one chance out of two of failing their attack.
                     if(Utils::Misc::randU(2) == 1) {
-                        opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.confused.attack.fail", opName));
+						actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.confused.attack.fail", opName)}));
                         opmon->attacked(opmon->getStatHP() / 8);
                         opTurn->confusedHurt = true;
                     } else {
-                        opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.confused.attack.success.1", opName));
-                        opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.confused.attack.success.2", {}));
+						actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.confused.attack.success.1", opName), Utils::OpString("battle.status.confused.attack.success.2", {})}));
                     }
                 }
             }
             //Checks if afraid
             if(opmon->afraid) {
-                opTurn->toPrintBefore.push_back(Utils::OpString("battle.status.afraid", opName));
+				actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.afraid", opName)}));
                 opmon->afraid = false;
                 canAttack = false;
             }
