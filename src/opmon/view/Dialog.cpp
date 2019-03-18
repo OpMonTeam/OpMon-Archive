@@ -16,8 +16,13 @@ namespace OpMon {
           : text(text)
           , uidata(uidata) {
 
-            if(text.size() % 3 != 0) {
-                handleError("Error : string missing in Dialog. Aborting to avoid more issues.", true);
+            if(this->text.size() % 3 != 0) {
+				for(unsigned int i = 0; i < text.size() % 3; i++){
+					this->text.push_back(sf::String(" "));
+				}
+				if(this->text.size() % 3 != 0){
+					handleError("Error : string missing in Dialog, even after trying to fix it.", true);
+				}
             }
 
             background.setTexture(uidata->getDialogBackground());
@@ -88,7 +93,9 @@ namespace OpMon {
         }
 
         void Dialog::draw(sf::RenderTarget &frame) {
-            frame.draw(background);
+			if(backgroundVisible){
+				frame.draw(background);
+			{
 
             for(size_t itor = 0; itor < 3; itor++) {
                 dialogText[itor].setString(currentTxt[itor].toUtf32());
@@ -106,6 +113,10 @@ namespace OpMon {
         bool Dialog::isDialogOver() {
             return is_dialog_over;
         }
+		
+		void setBackgroundVisible(bool visible){
+			backgroundVisible = visible;
+		}
 
     } // namespace View
 } // namespace OpMon

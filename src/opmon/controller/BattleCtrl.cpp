@@ -31,15 +31,25 @@ namespace OpMon {
             GameStatus returned = view(frame, atkTurn, defTurn, &turnActivated);
             if(turnActivated) {
                 //If one of the OpMon have no PV left, the battle is over.
-                if(atk->getHP() <= 0 || def->getHP() <= 0) {
+                if(def->getHP() <= 0) {
                     /*if(playerTeam->isKo() || trainerTeam->isKo()){
 		      return GameStatus::PREVIOUS;
 		      }*/
                     if(trainer != nullptr) {
                         trainer->defeat();
                     }
-                    returned = GameStatus::PREVIOUS;
-                }
+                    //returned = GameStatus::PREVIOUS;
+					TurnAction victory;
+					victory.type = TurnActionType::VICTORY;
+					actionsQueue.push(victory);
+                }else if(atk->getHP() <= 0){
+					if(trainer != nullptr) {//TODO : Only for the test battle, should be removed at some point.
+                        trainer->defeat();
+                    }
+					TurnAction defeat;
+					defeat.type = TurnActionType::DEFEAT;
+					actionsQueue.push(defeat);
+				}
             }
             return returned;
         }
@@ -209,17 +219,17 @@ namespace OpMon {
             if(!atkDone || !defDone) {
                 if(atkFirst) {
                     if(!atkDone && canAttack(atk, &atkTurn)) {
-                        atkTurn.attackUsed->attack(*atk, *def, actionsQueue);
+                        atkTurn.attackUsed->attack(*atk, *def, actionsQueue, true);
                     }
                     if(!defDone && canAttack(def, &defTurn)) {
-                        defTurn.attackUsed->attack(*def, *atk, actionsQueue);
+                        defTurn.attackUsed->attack(*def, *atk, actionsQueue, false);
                     }
                 } else {
                     if(!defDone && canAttack(def, &defTurn)) {
-                        defTurn.attackUsed->attack(*def, *atk, actionsQueue);
+                        defTurn.attackUsed->attack(*def, *atk, actionsQueue, false);
                     }
                     if(!atkDone && canAttack(atk, &atkTurn)) {
-                        atkTurn.attackUsed->attack(*atk, *def, actionsQueue);
+                        atkTurn.attackUsed->attack(*atk, *def, actionsQueue, true);
                     }
                 }
             }

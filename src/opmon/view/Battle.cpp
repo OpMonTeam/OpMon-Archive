@@ -53,12 +53,8 @@ namespace OpMon {
             }
 
             //Prints OpMon data info (Hp, name...)
-            std::ostringstream oss;
-            oss << "Lv. " << atkTurn.opmon->getLevel();
-            opLevel[0].setString(oss.str());
-            std::ostringstream oss2;
-            oss2 << "Lv. " << defTurn.opmon->getLevel();
-            opLevel[1].setString(oss2.str());
+            opLevel[0].setString("Lv. " + std::to_string(atkTurn.opmon->getLevel()));
+            opLevel[1].setString("Lv. " + std::to_string(defTurn.opmon->getLevel()));
 
             opName[0].setString(atkTurn.opmon->getNickname());
             opName[1].setString(defTurn.opmon->getNickname());
@@ -102,60 +98,90 @@ namespace OpMon {
                 } else {
                     turns[0] = &defTurn;
                     turns[1] = &atkTurn;
-                }
-
-#pragma GCC diagnostic ignored "-Wimplicit-fallthrough"
-                //TODO : Change all this crap (0.16).
-                //I won't comment this code, since I will change it very soon
-                switch(phase) {
-                case 1:
-                    turnTxt[0].setString(Utils::OpString::quickString("battle.dialog.attack", {turns[turnNber]->opmon->getNickname(), turns[turnNber]->attackUsed->getName()}));
-                    break;
-                case 2:
-                    turnTxt[0].setString("");
-                    if(turns[turnNber]->toPrintBefore.size() == 0) {
-                        phase++;
-                    } else {
-                        for(unsigned int i = 0; i < turns[turnNber]->toPrintBefore.size() && i < 3; i++) {
-                            turnTxt[i].setString(turns[turnNber]->toPrintBefore.at(i).getString());
-                        }
-                        break;
-                    }
-
-                case 3:
-                    data.getUiDataPtr()->getJukebox().playSound("hit");
-                    if((atkFirst && turnNber == 0) || (!atkFirst && turnNber == 2)) {
-                        defHp = defTurn.opmon->getHP();
-                    } else {
-                        atkHp = atkTurn.opmon->getHP();
-                    }
-                    phase++;
-                case 4:
-                    if(turns[turnNber]->toPrintAfter.size() == 0) {
-                        phase++;
-                    } else {
-                        for(unsigned int i = 0; i < turns[turnNber]->toPrintAfter.size() && i < 3; i++) {
-                            turnTxt[i].setString(turns[turnNber]->toPrintAfter.at(i).getString());
-                        }
-                        break;
-                    }
-
-                case 5:
-                    phase = 1;
-                    turnNber++;
-                    if(turnNber > 1) {
-                        turnNber = 0;
-                        phase = 0;
-                        *turnActivated = false;
-                    }
-                    break;
-                }
-#pragma GCC diagnostic pop
-
-                frame.draw(turnTxt[0]);
-                frame.draw(turnTxt[1]);
-                frame.draw(turnTxt[2]);
-
+                }				
+				
+				if(!actionQueue.empty()){
+					/* Handles the actions which can happen on screen */
+					TurnAction& turnAct = actionQueue.front();
+					
+					if(turnAct.type == TurnActionType::DIALOG){//If a dialog must be printed
+						if(dialog == nullptr){//A new dialog is created
+							std::vector<sf::String> dialogs;
+							for(Utils::OpString opStr : turnAct.dialog){//Converts OpString in sf::String
+								dialogs.push_back(opStr.getString());
+							}
+							dialog = new Dialog(dialogs, data.getUiData());
+							dialog.draw(frame);
+						}else{//Continuing an old dialog
+							dialog.draw(frame);
+							if(dialog.isDialogOver()){//If the dialog is over, go to the next action in the queue
+								actionQueue.pop();
+								delete(dialog);
+								dialog = nullptr;
+							}
+						}
+					}else if(turnAct.type == TurnActionType::ATK_UPDATE_HBAR){//Updates the player's OpMon's healthbar.
+						atkHp -= turnAct.hpLost;
+						actionQueue.pop();
+					}else if(turnAct.type == TurnActionType::DEF_UPDATE_HBAR){//Updates the foe's OpMon's healthbar.
+						defHp -= turnArt.hpLost;
+						actionQueue.pop();
+					}else if(turnAct.type == TurnActionType::ATK_STAT_MOD){//When an attacker's OpMon's stat is modified
+						//An animation will play here in the future.
+						if(dialog == nullptr){
+							dialog = new Dialog({Utils::OpString::quickString("battle.stat." + std::to_string(turnAct.statMod) + "." + std::to_string(turnAct.statCoef), atkTurn.opmon->getNickname())});
+							dialog.draw(frame);
+						}else{
+							dialog.draw(frame);
+							if(dialog.isDialogOver()){//If the dialog is over, go to the next action in the queue
+								actionQueue.pop();
+								delete(dialog);
+								dialog = nullptr;
+							}
+						}
+					}else if(turnAct.type == TurnActionType::DEF_STAT_MOD){
+						if(dialog == nullptr){
+							dialog = new Dialog({Utils::OpString::quickString("battle.stat." + std::to_string(turnAct.statMod) + "." + std::to_string(turnAct.statCoef), defTurn.opmon->getNickname())});
+							dialog.draw(frame);
+						}else{
+							dialog.draw(frame);
+							if(dialog.isDialogOver()){//If the dialog is over, go to the next action in the queue
+								actionQueue.pop();
+								delete(dialog);
+								dialog = nullptr;
+							}
+						}
+					}else if(turnAct.type == TurnActionType::VICTORY){
+						if(dialog == nullptr){
+							dialog = new Dialog({Utils::OpString::quickString("battle.victory", {data.getPlayer().getName()})});
+							dialog.draw(frame);
+						}else{
+							dialog.draw(frame);
+							if(dialog.isDialogOver()){
+								actionQueue.pop();
+								delete(dialog)
+								dialog = nullptr;
+								return GameStatus::PREVIOUS;
+							}
+						}
+					}else if(turnAct.type == TurnActionType::DEFEAT){
+						if(dialog == nullptr){
+							dialog = new Dialog({Utils::OpString::quickString("battle.defeat", {data.getPlayer().getName()})});
+							dialog.draw(frame);
+						}else{
+							dialog.draw(frame);
+							if(dialog.isDialogOver()){
+								actionQueue.pop();
+								delete(dialog)
+								dialog = nullptr;
+								return GameStatus::PREVIOUS;
+							}
+						}
+					}
+				}else{
+					*turnActivated = false;
+				}
+				
             } else if(!attackChoice) { // Main battle menu
 
                 for(sf::Text &txt : choicesTxt) {
@@ -180,9 +206,6 @@ namespace OpMon {
 
                 if(atkTurn.opmon->getAttacks()[curPos] != nullptr) {
 
-                    //Prints attack's data
-                    std::ostringstream oss3;
-                    oss3 << atkTurn.opmon->getAttacks()[curPos]->getPP() << " / " << atkTurn.opmon->getAttacks()[curPos]->getPPMax();
                     //Changes the text's color according to the number of PP left
                     if(atkTurn.opmon->getAttacks()[curPos]->getPP() <= (atkTurn.opmon->getAttacks()[curPos]->getPPMax() / 5) && atkTurn.opmon->getAttacks()[curPos]->getPP() > 0) {
                         ppTxt.setSfmlColor(sf::Color::Yellow);
@@ -191,7 +214,7 @@ namespace OpMon {
                     } else {
                         ppTxt.setSfmlColor(sf::Color::Black);
                     }
-                    ppTxt.setString(oss3.str());
+                    ppTxt.setString(std::to_string(atkTurn.opmon->getAttacks()[curPos]->getPP()) + " / " + std::to_string(atkTurn.opmon->getAttacks()[curPos]->getPPMax()));
                     type.setTexture(data.getUiDataPtr()->getTypeTexture(atkTurn.opmon->getAttacks()[curPos]->getType()));
                     frame.draw(type);
                 } else { //If there is no attack, print this

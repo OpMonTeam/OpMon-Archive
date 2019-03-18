@@ -81,6 +81,8 @@ namespace OpMon {
 
             int phase = 0;
 
+			Dialog* dialog = nullptr;
+
             Model::BattleData &data;
 
           public:
