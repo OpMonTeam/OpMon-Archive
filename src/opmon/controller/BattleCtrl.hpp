@@ -59,10 +59,10 @@ namespace OpMon {
             /* Initialize a battle between two OpMons. The opId are for the OpMon's number in the team */
             void initBattle(int opId, int opId2);
 
-            Model::Turn *turnIA(int level);
+            Model::TurnData *turnIA(int level);
 
             //Checks if the opmon can attack
-            bool canAttack(Model::OpMon *opmon, Model::Turn *opTurn);
+            bool canAttack(Model::OpMon *opmon, Model::TurnData *opTurn);
 
             Model::Events::TrainerEvent *trainer;
 

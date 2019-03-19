@@ -38,7 +38,7 @@ namespace OpMon {
 			VICTORY,
 			DEFEAT,
 			RUN
-		}
+		};
 
         struct TurnAction {
             int hpLost;
@@ -53,13 +53,13 @@ namespace OpMon {
 			OpMon *opmon;
 			TurnType type;
 			Item *itemUsed;
-		}
+		};
 
         typedef struct TurnAction TurnAction;
 		typedef struct TurnData TurnData;
 
 		void newTurnAction(TurnAction *toNew);
         void newTurnData(TurnData *toNew);
-		TurnAction createTurnDialogAction(std::vector<Utils::OpString>& dialog);
+		TurnAction createTurnDialogAction(std::vector<Utils::OpString> dialog);
     } // namespace Model
 } // namespace OpMon
