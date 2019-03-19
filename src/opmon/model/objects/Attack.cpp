@@ -108,11 +108,11 @@ namespace OpMon {
        */
         int Attack::attack(OpMon &atk, OpMon &def, std::queue<TurnAction> &turnQueue, bool attacker) {
             pp--;
-			turnQueue.push(createTurnDialogAction({Utils::OpString("battle.dialog.attack", {atk.getNickname(), this->name})}));
+			turnQueue.push(createTurnDialogAction({Utils::OpString("battle.dialog.attack", {new sf::String(atk.getNickname()), new sf::String(this->name.getString())})}));
             //Attack fail
             if((Utils::Misc::randU(100)) > (accuracy * (atk.getStatACC() / def.getStatEVA())) && neverFails == false) {
 				TurnAction failAction;
-				turnQueue.push(createTurnDialogAction({Utils::OpString("battle.dialog.fail", {atk.getNickname()})}));
+				turnQueue.push(createTurnDialogAction({Utils::OpString("battle.dialog.fail", {new sf::String(atk.getNickname())})}));
                 failEffect->apply(*this, atk, def, turnQueue);
                 return -2;
             }
@@ -122,7 +122,7 @@ namespace OpMon {
             }
             //If type unefficiency
             if(ArrayTypes::calcEffectiveness(type, def.getType1(), def.getType2()) == 0 && (neverFails == false || status == false)) {
-				turnQueue.push(createTurnDialogAction({Utils::OpString::quickString("battle.effectiveness.none", {atk.getNickname()})}));
+				turnQueue.push(createTurnDialogAction({Utils::OpString("battle.effectiveness.none", {new sf::String(atk.getNickname())})}));
                 if(failEffect != nullptr) failEffect->apply(*this, atk, def, turnQueue);
                 return -1;
             }
@@ -142,27 +142,21 @@ namespace OpMon {
 				def.attacked(hpLost);
 				
 				TurnAction loosingHp;
-				newTurnAction(loosingHp);
-				loosingHp.type = attacker ? TurnActionType::ATK_UPDATE_HP : TurnActionType::DEF_UPDATE_HP;
+				newTurnAction(&loosingHp);
+				loosingHp.type = attacker ? TurnActionType::ATK_UPDATE_HBAR : TurnActionType::DEF_UPDATE_HBAR;
 				loosingHp.hpLost = hpLost;
 				turnQueue.push(loosingHp);
-
-				switch(effectiveness){
-				case 0.25:
-					turnQueue.push(createTurnDialogAction({Utils::OpString("battle.effectiveness.almostnone")}));
-					break;
-				case 0.5:
-					turnQueue.push(createTurnDialogAction({Utils::OpString("battle.effectiveness.notvery")}));
-					break;
-				case 2:
-					turnQueue.push(createTurnDialogAction({Utils::OpString("battle.effectiveness.very")}));
-					break;
-				case 4:
-					turnQueue.push(createTurnDialogAction({Utils::OpString("battle.effectiveness.super")}));
-					break;
-				}
 				
-				turnQueue.push(createTurnDialogAction({Utils::OpMon("battle.dialog.loosehp", {def.getNickname(), std::to_string(hpLost)})}));
+				if(effectiveness == 0.25)
+					turnQueue.push(createTurnDialogAction({Utils::OpString("battle.effectiveness.almostnone")}));
+				else if(effectiveness == 0.5)
+					turnQueue.push(createTurnDialogAction({Utils::OpString("battle.effectiveness.notvery")}));
+				else if(effectiveness == 2)
+					turnQueue.push(createTurnDialogAction({Utils::OpString("battle.effectiveness.very")}));
+				else if(effectiveness == 4)
+					turnQueue.push(createTurnDialogAction({Utils::OpString("battle.effectiveness.super")}));
+				
+				turnQueue.push(createTurnDialogAction({Utils::OpString("battle.dialog.loosehp", {new sf::String(atk.getNickname()), new sf::String(std::to_string(hpLost))})}));
             }
             return postEffect ? postEffect->apply(*this, atk, def, turnQueue) : 0;
         }

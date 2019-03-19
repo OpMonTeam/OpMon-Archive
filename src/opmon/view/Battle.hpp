@@ -9,11 +9,13 @@ File under GNU GPL v3.0 license
 #include "../model/objects/Turn.hpp"
 #include "../model/storage/BattleData.hpp"
 #include "../start/Core.hpp"
+#include "Dialog.hpp"
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/System/String.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <map>
+#include <queue>
 
 namespace OpMon {
 
@@ -88,7 +90,7 @@ namespace OpMon {
           public:
             Battle(const Model::OpTeam *atkTeam, const Model::OpTeam *defTeam, std::string trainerClass, std::string background, Model::BattleData &data);
 
-            GameStatus operator()(sf::RenderTexture &frame, Model::TurnData const &atk, Model::TurnData const &def, std::queue<TurnAction> &actionQueue, bool *turnActivated, bool atkFirst = true);
+            GameStatus operator()(sf::RenderTexture &frame, Model::TurnData const &atk, Model::TurnData const &def, std::queue<Model::TurnAction> &actionQueue, bool *turnActivated, bool atkFirst = true);
             //Moves the cursor
             void moveCur(Model::Side where);
             //Returns the cursor's position
