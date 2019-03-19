@@ -13,6 +13,7 @@ File under GNU GPL v3.0 license
 #include "Enums.hpp"
 #include "Turn.hpp"
 #include <iostream>
+#include <queue>
 
 namespace OpMon {
     namespace Model {

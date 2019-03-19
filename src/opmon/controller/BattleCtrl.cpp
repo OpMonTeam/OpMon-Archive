@@ -28,7 +28,7 @@ namespace OpMon {
         }
 
         GameStatus BattleCtrl::update(sf::RenderTexture &frame) {
-            GameStatus returned = view(frame, atkTurn, defTurn, &turnActivated);
+            GameStatus returned = view(frame, atkTurn, defTurn, actionsQueue, &turnActivated);
             if(turnActivated) {
                 //If one of the OpMon have no PV left, the battle is over.
                 if(def->getHP() <= 0) {
@@ -181,7 +181,7 @@ namespace OpMon {
 
 #pragma GCC diagnostic ignored "-Wunused-parameter"
         //Unfinished method, the IA will be programmed in the future.
-        Model::Turn *BattleCtrl::turnIA(int level) {
+        Model::TurnData *BattleCtrl::turnIA(int level) {
             defTurn.attackUsed = def->getAttacks()[0];
             defTurn.type = TurnType::ATTACK;
             return &defTurn;
@@ -238,7 +238,7 @@ namespace OpMon {
         }
 
         //TODO : add messages to opTurn->toPrintBefore
-        bool BattleCtrl::canAttack(Model::OpMon *opmon, Model::Turn *opTurn) {
+        bool BattleCtrl::canAttack(Model::OpMon *opmon, Model::TurnData *opTurn) {
             bool canAttack = true;
             std::vector<sf::String *> opName(1);
             opName[0] = new sf::String(opmon->getNickname());
@@ -285,7 +285,6 @@ namespace OpMon {
                     if(Utils::Misc::randU(2) == 1) {
 						actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.confused.attack.fail", opName)}));
                         opmon->attacked(opmon->getStatHP() / 8);
-                        opTurn->confusedHurt = true;
                     } else {
 						actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.confused.attack.success.1", opName), Utils::OpString("battle.status.confused.attack.success.2", {})}));
                     }
