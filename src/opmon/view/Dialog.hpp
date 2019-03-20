@@ -19,7 +19,7 @@ namespace OpMon {
         class Dialog {
           private:
             /** array of all lines composing the dialog. */
-            const std::vector<sf::String> &text;
+            std::vector<sf::String> &text;
 
             /** The 3 lines currently displayed. */
             sf::String currentTxt[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
