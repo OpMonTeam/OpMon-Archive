@@ -19,7 +19,7 @@ namespace OpMon {
         class Dialog {
           private:
             /** array of all lines composing the dialog. */
-            std::vector<sf::String> &text;
+            std::vector<sf::String> text;
 
             /** The 3 lines currently displayed. */
             sf::String currentTxt[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
@@ -48,7 +48,7 @@ namespace OpMon {
 			bool backgroundVisible = true;
 
           public:
-            Dialog(const std::vector<sf::String> &text, Model::UiData *uidata);
+            Dialog(std::vector<sf::String> text, Model::UiData *uidata);
 
             /**
        * Move forward in a dialog, in response to an event like a space key pressed.
