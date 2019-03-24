@@ -106,9 +106,7 @@ namespace OpMon {
                         }
                         //During a turn, it passes the dialog. If nextTxt returns false, the end of the texts is reached and the turn is over.
                     } else if(turnActivated) {
-                        if(!view.nextTxt()) {
-                            turnActivated = false;
-                        }
+			view.passDialog();
                     }
 
                     break;
@@ -122,9 +120,7 @@ namespace OpMon {
                 case sf::Keyboard::Space:
                     //During the dialogs, passes to the next one.
                     if(turnActivated) {
-                        if(!view.nextTxt()) {
-                            turnActivated = false;
-                        }
+                        view.passDialog();
                     }
                     break;
                 default:
