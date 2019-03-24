@@ -171,12 +171,13 @@ namespace OpMon {
             atk->setStat(Model::Stats::ACC, 100);
             def->setStat(Model::Stats::EVA, 100);
             def->setStat(Model::Stats::ACC, 100);
-            /*//Clear the turns
-            Model::newTurn(&atkTurn);
-            Model::newTurn(&defTurn);
+            //Clear the turns
+            Model::newTurnData(&atkTurn);
+            Model::newTurnData(&defTurn);
+	    
             //Register the opmons' addresses in the Turns
             atkTurn.opmon = atk;
-            defTurn.opmon = def;*/
+            defTurn.opmon = def;
         }
 
 #pragma GCC diagnostic ignored "-Wunused-parameter"
