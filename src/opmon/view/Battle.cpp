@@ -78,15 +78,15 @@ namespace OpMon {
 	    */
             if(!turnLaunched && *turnActivated) {
                 phase = 1;
-                dialogSpr.setTexture(data.getUiDataPtr()->getDialogBackground());
                 turnLaunched = true;
             } else if(turnLaunched && !(*turnActivated)) {
                 phase = 0;
-                dialogSpr.setTexture(data.getDialog());
                 turnLaunched = false;
             }
-            frame.draw(dialogSpr);
-            //TODO the little arrow
+	    
+	    if(!*turnActivated){
+		frame.draw(dialogSpr);
+	    }
 
             if(*turnActivated && turnNber <= 1) { //If turn's phase
                                                   //Organizes the turns' priority
@@ -99,88 +99,88 @@ namespace OpMon {
                     turns[1] = &atkTurn;
                 }				
 				
-				if(!actionQueue.empty()){
-					using namespace Model;
-					/* Handles the actions which can happen on screen */
-					TurnAction& turnAct = actionQueue.front();
+		if(!actionQueue.empty()){
+		    using namespace Model;
+		    /* Handles the actions which can happen on screen */
+		    TurnAction& turnAct = actionQueue.front();
 					
-					if(turnAct.type == TurnActionType::DIALOG){//If a dialog must be printed
-						if(dialog == nullptr){//A new dialog is created
-							std::vector<sf::String> dialogs;
-							for(Utils::OpString opStr : turnAct.dialog){//Converts OpString in sf::String
-								dialogs.push_back(opStr.getString());
-							}
-							dialog = new Dialog(dialogs, data.getUiDataPtr());
-							dialog->draw(frame);
-						}else{//Continuing an old dialog
-							dialog->draw(frame);
-							if(dialog->isDialogOver()){//If the dialog is over, go to the next action in the queue
-								actionQueue.pop();
-								delete(dialog);
-								dialog = nullptr;
-							}
-						}
-					}else if(turnAct.type == TurnActionType::ATK_UPDATE_HBAR){//Updates the player's OpMon's healthbar.
-						atkHp -= turnAct.hpLost;
-						actionQueue.pop();
-					}else if(turnAct.type == TurnActionType::DEF_UPDATE_HBAR){//Updates the foe's OpMon's healthbar.
-						defHp -= turnAct.hpLost;
-						actionQueue.pop();
-					}else if(turnAct.type == TurnActionType::ATK_STAT_MOD){//When an attacker's OpMon's stat is modified
-						//An animation will play here in the future.
-						if(dialog == nullptr){
-						    dialog = new Dialog({Utils::OpString::quickString("battle.stat." + std::to_string((int) turnAct.statMod) + "." + std::to_string(turnAct.statCoef), {atkTurn.opmon->getNickname()})}, data.getUiDataPtr());
-							dialog->draw(frame);
-						}else{
-							dialog->draw(frame);
-							if(dialog->isDialogOver()){//If the dialog is over, go to the next action in the queue
-								actionQueue.pop();
-								delete(dialog);
-								dialog = nullptr;
-							}
-						}
-					}else if(turnAct.type == TurnActionType::DEF_STAT_MOD){
-						if(dialog == nullptr){
-						    dialog = new Dialog({Utils::OpString::quickString("battle.stat." + std::to_string((int) turnAct.statMod) + "." + std::to_string(turnAct.statCoef), {defTurn.opmon->getNickname()})}, data.getUiDataPtr());
-							dialog->draw(frame);
-						}else{
-							dialog->draw(frame);
-							if(dialog->isDialogOver()){//If the dialog is over, go to the next action in the queue
-								actionQueue.pop();
-								delete(dialog);
-								dialog = nullptr;
-							}
-						}
-					}else if(turnAct.type == TurnActionType::VICTORY){
-						if(dialog == nullptr){
-						    dialog = new Dialog({Utils::OpString::quickString("battle.victory", {data.getPlayer().getName()})}, data.getUiDataPtr());
-							dialog->draw(frame);
-						}else{
-							dialog->draw(frame);
-							if(dialog->isDialogOver()){
-								actionQueue.pop();
-								delete(dialog);
-								dialog = nullptr;
-								return GameStatus::PREVIOUS;
-							}
-						}
-					}else if(turnAct.type == TurnActionType::DEFEAT){
-						if(dialog == nullptr){
-						    dialog = new Dialog({Utils::OpString::quickString("battle.defeat", {data.getPlayer().getName()})}, data.getUiDataPtr());
-							dialog->draw(frame);
-						}else{
-							dialog->draw(frame);
-							if(dialog->isDialogOver()){
-								actionQueue.pop();
-								delete(dialog);
-								dialog = nullptr;
-								return GameStatus::PREVIOUS;
-							}
-						}
-					}
-				}else{
-					*turnActivated = false;
-				}
+		    if(turnAct.type == TurnActionType::DIALOG){//If a dialog must be printed
+			if(dialog == nullptr){//A new dialog is created
+			    std::vector<sf::String> dialogs;
+			    for(Utils::OpString opStr : turnAct.dialog){//Converts OpString in sf::String
+				dialogs.push_back(opStr.getString());
+			    }
+			    dialog = new Dialog(dialogs, data.getUiDataPtr());
+			    dialog->draw(frame);
+			}else{//Continuing an old dialog
+			    dialog->draw(frame);
+			    if(dialog->isDialogOver()){//If the dialog is over, go to the next action in the queue
+				actionQueue.pop();
+				delete(dialog);
+				dialog = nullptr;
+			    }
+			}
+		    }else if(turnAct.type == TurnActionType::ATK_UPDATE_HBAR){//Updates the player's OpMon's healthbar.
+			atkHp -= turnAct.hpLost;
+			actionQueue.pop();
+		    }else if(turnAct.type == TurnActionType::DEF_UPDATE_HBAR){//Updates the foe's OpMon's healthbar.
+			defHp -= turnAct.hpLost;
+			actionQueue.pop();
+		    }else if(turnAct.type == TurnActionType::ATK_STAT_MOD){//When an attacker's OpMon's stat is modified
+			//An animation will play here in the future.
+			if(dialog == nullptr){
+			    dialog = new Dialog({Utils::OpString::quickString("battle.stat." + std::to_string((int) turnAct.statMod) + "." + std::to_string(turnAct.statCoef), {atkTurn.opmon->getNickname()})}, data.getUiDataPtr());
+			    dialog->draw(frame);
+			}else{
+			    dialog->draw(frame);
+			    if(dialog->isDialogOver()){//If the dialog is over, go to the next action in the queue
+				actionQueue.pop();
+				delete(dialog);
+				dialog = nullptr;
+			    }
+			}
+		    }else if(turnAct.type == TurnActionType::DEF_STAT_MOD){
+			if(dialog == nullptr){
+			    dialog = new Dialog({Utils::OpString::quickString("battle.stat." + std::to_string((int) turnAct.statMod) + "." + std::to_string(turnAct.statCoef), {defTurn.opmon->getNickname()})}, data.getUiDataPtr());
+			    dialog->draw(frame);
+			}else{
+			    dialog->draw(frame);
+			    if(dialog->isDialogOver()){//If the dialog is over, go to the next action in the queue
+				actionQueue.pop();
+				delete(dialog);
+				dialog = nullptr;
+			    }
+			}
+		    }else if(turnAct.type == TurnActionType::VICTORY){
+			if(dialog == nullptr){
+			    dialog = new Dialog({Utils::OpString::quickString("battle.victory", {data.getPlayer().getName()})}, data.getUiDataPtr());
+			    dialog->draw(frame);
+			}else{
+			    dialog->draw(frame);
+			    if(dialog->isDialogOver()){
+				actionQueue.pop();
+				delete(dialog);
+				dialog = nullptr;
+				return GameStatus::PREVIOUS;
+			    }
+			}
+		    }else if(turnAct.type == TurnActionType::DEFEAT){
+			if(dialog == nullptr){
+			    dialog = new Dialog({Utils::OpString::quickString("battle.defeat", {data.getPlayer().getName()})}, data.getUiDataPtr());
+			    dialog->draw(frame);
+			}else{
+			    dialog->draw(frame);
+			    if(dialog->isDialogOver()){
+				actionQueue.pop();
+				delete(dialog);
+				dialog = nullptr;
+				return GameStatus::PREVIOUS;
+			    }
+			}
+		    }
+		}else{
+		    *turnActivated = false;
+		}
 				
             } else if(!attackChoice) { // Main battle menu
 
@@ -191,7 +191,7 @@ namespace OpMon {
                 waitText.setString(Utils::StringKeys::get("battle.wait"));
                 frame.draw(waitText);
 
-                cursor.setPosition(posChoices[curPos] + sf::Vector2f((choicesTxt[curPos].getGlobalBounds().width / 2) - 10, 25));
+                cursor.setPosition(posChoices[curPos] + sf::Vector2f((choicesTxt[curPos].getGlobalBounds().width / 2) - 10, 37));
 
             } else { //Attacks menu
 
@@ -225,7 +225,7 @@ namespace OpMon {
                 frame.draw(ppTxt);
                 frame.draw(ppStrTxt);
 
-                cursor.setPosition(posChoices[curPos] + sf::Vector2f((attacks[curPos].getGlobalBounds().width / 2) - 10, 30));
+                cursor.setPosition(posChoices[curPos] + sf::Vector2f((attacks[curPos].getGlobalBounds().width / 2) - 10, 42));
             }
 
             if(!turnLaunched) {
@@ -251,15 +251,14 @@ namespace OpMon {
         void Battle::toggleAttackChoice() {
             attackChoice = !attackChoice;
             if(attackChoice) {
-                dialogSpr.setTexture(data.getAttackDialog());
                 posChoices[0].x = 40;
-                posChoices[0].y = 370;
+                posChoices[0].y = 382;
                 posChoices[1].x = 140;
-                posChoices[1].y = 370;
+                posChoices[1].y = 382;
                 posChoices[2].x = 40;
-                posChoices[2].y = 425;
+                posChoices[2].y = 437;
                 posChoices[3].x = 140;
-                posChoices[3].y = 425;
+                posChoices[3].y = 437;
                 for(unsigned int i = 0; i < 4; i++) {
                     attacks[i].setPosition(posChoices[i]);
                     attacks[i].setFont(data.getUiDataPtr()->getFont());
@@ -269,14 +268,13 @@ namespace OpMon {
 
             } else {
                 posChoices[0].x = 326;
-                posChoices[0].y = 380;
+                posChoices[0].y = 392;
                 posChoices[1].x = 430;
-                posChoices[1].y = 380;
+                posChoices[1].y = 392;
                 posChoices[2].x = 330;
-                posChoices[2].y = 445;
+                posChoices[2].y = 457;
                 posChoices[3].x = 430;
-                posChoices[3].y = 445;
-                dialogSpr.setTexture(data.getDialog());
+                posChoices[3].y = 457;
             }
         }
 
@@ -290,8 +288,6 @@ namespace OpMon {
             playerSpr.setScale(2, 2);
             trainerSpr.setTexture(data.getCharaBattleTextures(trainerClass)[0]);
             trainerSpr.setPosition(400, 20);
-
-            dialogArrow.setTexture(data.getUiDataPtr()->getDialogArrow());
 
             choicesTxt[0].setString(Utils::StringKeys::get("battle.attack"));
             choicesTxt[1].setString(Utils::StringKeys::get("battle.bag"));
@@ -315,7 +311,7 @@ namespace OpMon {
             //ppText.setPosition(326, 380);
 
             dialogSpr.setTexture(data.getDialog());
-            dialogSpr.setPosition(0, 350);
+            dialogSpr.setPosition(0, 512 - 150);
             cursor.setTexture(data.getCursor());
             cursor.setPosition(posChoices[0] + sf::Vector2f((choicesTxt[0].getGlobalBounds().width / 2) - 10, 25));
             curPos = 0;
@@ -333,7 +329,6 @@ namespace OpMon {
             shadowTrainer.setTexture(data.getShadowTrainer());
             shadowTrainer.setPosition(320, 175);
             for(unsigned int i = 0; i < 2; i++) {
-
                 healthbar1[i].setTexture(data.getHealthbar1());
                 healthbar2[i].setTexture(data.getHealthbar2());
             }
@@ -368,24 +363,17 @@ namespace OpMon {
             waitText.setFont(data.getUiDataPtr()->getFont());
             waitText.setCharacterSize(22);
             waitText.setSfmlColor(sf::Color::Black);
-            waitText.setPosition(25, 410);
+            waitText.setPosition(25, 422);
 
-            ppStrTxt.setPosition(326, 380);
+            ppStrTxt.setPosition(326, 392);
             ppStrTxt.setString("PP :");
-            ppTxt.setPosition(326, 400);
+            ppTxt.setPosition(326, 412);
             ppStrTxt.setFont(data.getUiDataPtr()->getFont());
             ppTxt.setFont(data.getUiDataPtr()->getFont());
             ppStrTxt.setCharacterSize(26);
             ppTxt.setCharacterSize(26);
             ppStrTxt.setSfmlColor(sf::Color::Black);
             ppTxt.setSfmlColor(sf::Color::Black);
-
-            for(unsigned int i = 0; i < 3; i++) {
-                turnTxt[i].setFont(data.getUiDataPtr()->getFont());
-                turnTxt[i].setCharacterSize(22);
-                turnTxt[i].setSfmlColor(sf::Color::Black);
-                turnTxt[i].setPosition(25, 410 + i * 20);
-            }
 
             type.setPosition(326, 440);
         }
