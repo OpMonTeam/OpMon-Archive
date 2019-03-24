@@ -78,12 +78,11 @@ namespace OpMon {
             sf::Text ppStrTxt;
             sf::Sprite type;
 
-            std::vector<sf::Text> turnTxt = std::vector<sf::Text>(3);
             sf::Sprite dialogArrow;
 
             int phase = 0;
 
-			Dialog* dialog = nullptr;
+	    Dialog* dialog = nullptr;
 
             Model::BattleData &data;
 
@@ -103,6 +102,8 @@ namespace OpMon {
             int getPhase() { return phase; }
 
             bool isAttackChoice() { return attackChoice; }
+
+	    void passDialog() { if(dialog != nullptr) dialog->pass(); }
         };
 
     } // namespace View
