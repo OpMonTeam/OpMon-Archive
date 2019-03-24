@@ -17,7 +17,7 @@ namespace OpMon {
           , uidata(uidata) {
 
             if(this->text.size() % 3 != 0) {
-		for(unsigned int i = 0; i < text.size() % 3; i++){
+		while(this->text.size() % 3 != 0){
 		    this->text.push_back(sf::String(" "));
 		}
 		if(this->text.size() % 3 != 0){
