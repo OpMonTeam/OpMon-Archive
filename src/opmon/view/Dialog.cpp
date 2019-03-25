@@ -17,12 +17,12 @@ namespace OpMon {
           , uidata(uidata) {
 
             if(this->text.size() % 3 != 0) {
-		while(this->text.size() % 3 != 0){
-		    this->text.push_back(sf::String(" "));
-		}
-		if(this->text.size() % 3 != 0){
-		    handleError("Error : string missing in Dialog, even after trying to fix it.", true);
-		}
+				while(this->text.size() % 3 != 0){
+					this->text.push_back(sf::String(" "));
+				}
+				if(this->text.size() % 3 != 0){
+					handleError("Error : string missing in Dialog, even after trying to fix it.", true);
+				}
             }
 
             background.setTexture(uidata->getDialogBackground());
