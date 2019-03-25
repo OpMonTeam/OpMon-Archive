@@ -143,7 +143,7 @@ namespace OpMon {
 				
 				TurnAction loosingHp;
 				newTurnAction(&loosingHp);
-				loosingHp.type = attacker ? TurnActionType::ATK_UPDATE_HBAR : TurnActionType::DEF_UPDATE_HBAR;
+				loosingHp.type = attacker ? TurnActionType::DEF_UPDATE_HBAR : TurnActionType::ATK_UPDATE_HBAR;
 				loosingHp.hpLost = hpLost;
 				turnQueue.push(loosingHp);
 				
@@ -156,7 +156,6 @@ namespace OpMon {
 				else if(effectiveness == 4)
 					turnQueue.push(createTurnDialogAction({Utils::OpString("battle.effectiveness.super")}));
 				
-				turnQueue.push(createTurnDialogAction({Utils::OpString("battle.dialog.loosehp", {new sf::String(atk.getNickname()), new sf::String(std::to_string(hpLost))})}));
             }
             return postEffect ? postEffect->apply(*this, atk, def, turnQueue) : 0;
         }
