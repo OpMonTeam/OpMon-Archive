@@ -191,7 +191,7 @@ namespace OpMon {
                 waitText.setString(Utils::StringKeys::get("battle.wait"));
                 frame.draw(waitText);
 
-                cursor.setPosition(posChoices[curPos] + sf::Vector2f((choicesTxt[curPos].getGlobalBounds().width / 2) - 10, 37));
+                cursor.setPosition(posChoices[curPos] + sf::Vector2f((choicesTxt[curPos].getGlobalBounds().width / 2) - 10, 25));
 
             } else { //Attacks menu
 
@@ -225,7 +225,7 @@ namespace OpMon {
                 frame.draw(ppTxt);
                 frame.draw(ppStrTxt);
 
-                cursor.setPosition(posChoices[curPos] + sf::Vector2f((attacks[curPos].getGlobalBounds().width / 2) - 10, 42));
+                cursor.setPosition(posChoices[curPos] + sf::Vector2f((attacks[curPos].getGlobalBounds().width / 2) - 10, 30));
             }
 
             if(!turnLaunched) {
@@ -251,13 +251,13 @@ namespace OpMon {
         void Battle::toggleAttackChoice() {
             attackChoice = !attackChoice;
             if(attackChoice) {
-                posChoices[0].x = 40;
+                posChoices[0].x = 35;
                 posChoices[0].y = 382;
-                posChoices[1].x = 140;
+                posChoices[1].x = 135;
                 posChoices[1].y = 382;
-                posChoices[2].x = 40;
+                posChoices[2].x = 35;
                 posChoices[2].y = 437;
-                posChoices[3].x = 140;
+                posChoices[3].x = 135;
                 posChoices[3].y = 437;
                 for(unsigned int i = 0; i < 4; i++) {
                     attacks[i].setPosition(posChoices[i]);
@@ -268,13 +268,13 @@ namespace OpMon {
 
             } else {
                 posChoices[0].x = 326;
-                posChoices[0].y = 392;
-                posChoices[1].x = 430;
-                posChoices[1].y = 392;
-                posChoices[2].x = 330;
-                posChoices[2].y = 457;
-                posChoices[3].x = 430;
-                posChoices[3].y = 457;
+				posChoices[0].y = 392;
+				posChoices[1].x = 430;
+				posChoices[1].y = 392;
+				posChoices[2].x = 330;
+				posChoices[2].y = 457;
+				posChoices[3].x = 430;
+				posChoices[3].y = 457;
             }
         }
 
@@ -284,7 +284,7 @@ namespace OpMon {
           , data(data) {
             this->background.setTexture(data.getBackground(background));
             playerSpr.setTexture(data.getCharaBattleTextures("player")[0]);
-            playerSpr.setPosition(20, 206);
+            playerSpr.setPosition(20, 218);
             playerSpr.setScale(2, 2);
             trainerSpr.setTexture(data.getCharaBattleTextures(trainerClass)[0]);
             trainerSpr.setPosition(400, 20);
@@ -294,13 +294,13 @@ namespace OpMon {
             choicesTxt[2].setString(Utils::StringKeys::get("battle.opmon"));
             choicesTxt[3].setString(Utils::StringKeys::get("battle.run"));
             posChoices[0].x = 326;
-            posChoices[0].y = 380;
+            posChoices[0].y = 392;
             posChoices[1].x = 430;
-            posChoices[1].y = 380;
+            posChoices[1].y = 392;
             posChoices[2].x = 330;
-            posChoices[2].y = 445;
+            posChoices[2].y = 457;
             posChoices[3].x = 430;
-            posChoices[3].y = 445;
+            posChoices[3].y = 457;
             for(unsigned int i = 0; i < 4; i++) {
                 choicesTxt[i].setFont(data.getUiDataPtr()->getFont());
                 choicesTxt[i].setCharacterSize(20);
@@ -365,9 +365,9 @@ namespace OpMon {
             waitText.setSfmlColor(sf::Color::Black);
             waitText.setPosition(25, 422);
 
-            ppStrTxt.setPosition(326, 392);
+            ppStrTxt.setPosition(326, 380);
             ppStrTxt.setString("PP :");
-            ppTxt.setPosition(326, 412);
+            ppTxt.setPosition(326, 400);
             ppStrTxt.setFont(data.getUiDataPtr()->getFont());
             ppTxt.setFont(data.getUiDataPtr()->getFont());
             ppStrTxt.setCharacterSize(26);
@@ -375,7 +375,7 @@ namespace OpMon {
             ppStrTxt.setSfmlColor(sf::Color::Black);
             ppTxt.setSfmlColor(sf::Color::Black);
 
-            type.setPosition(326, 440);
+            type.setPosition(326, 450);
         }
 
         void Battle::moveCur(Model::Side where) {
