@@ -58,9 +58,7 @@ namespace OpMon {
             opName[0].setString(atkTurn.opmon->getNickname());
             opName[1].setString(defTurn.opmon->getNickname());
 
-            std::ostringstream oss3;
-            oss3 << " HP : " << atkHp << " / " << atkTurn.opmon->getStatHP();
-            opHp.setString(oss3.str());
+			opHp.setString("HP : " + std::to_string(atkHp) + " / " + std::to_string(atkTurn.opmon->getStatHP()));
 
             frame.draw(opName[0]);
             frame.draw(opName[1]);
@@ -121,45 +119,25 @@ namespace OpMon {
 						dialog = nullptr;
 					}
 				}
-		    }else if(turnAct.type == TurnActionType::ATK_UPDATE_HBAR){//Updates the player's OpMon's healthbar.
+		    }else if(turnAct.type == TurnActionType::ATK_UPDATE_HBAR || turnAct.type == TurnActionType::DEF_UPDATE_HBAR){//Updates the player's OpMon's healthbar.
 				if(dialog == nullptr){ // Empty dialog to print the dialog background and the arrow
 					dialog = new Dialog({}, data.getUiDataPtr());
 					dialog->draw(frame);
 				}else{
 					dialog->draw(frame);
 				}
-				atkHp -= turnAct.hpLost;
+				data.getUiDataPtr()->getJukebox().playSound("hit");
+				auto& opmonHp = (turnAct.type == TurnActionType::ATK_UPDATE_HBAR) ? atkHp : defHp;
+				opmonHp -= turnAct.hpLost;
+				opmonHp = (opmonHp < 0) ? 0 : opmonHp; //Don't drop below 0
 				actionQueue.pop();
 				delete(dialog);
 				dialog = nullptr;
-		    }else if(turnAct.type == TurnActionType::DEF_UPDATE_HBAR){//Updates the foe's OpMon's healthbar.
-				if(dialog == nullptr){
-					dialog = new Dialog({}, data.getUiDataPtr());
-					dialog->draw(frame);
-				}else{
-					dialog->draw(frame);
-				}
-				defHp -= turnAct.hpLost;
-				actionQueue.pop();
-				delete(dialog);
-				dialog = nullptr;
-		    }else if(turnAct.type == TurnActionType::ATK_STAT_MOD){//When an attacker's OpMon's stat is modified
+		    }else if(turnAct.type == TurnActionType::ATK_STAT_MOD || turnAct.type == TurnActionType::DEF_STAT_MOD){//When an OpMon's stat is modified
 				//An animation will play here in the future.
+				auto& opTurn = (turnAct.type == TurnActionType::ATK_STAT_MOD) ? atkTurn : defTurn;
 				if(dialog == nullptr){
-					dialog = new Dialog({Utils::OpString::quickString("battle.stat." + std::to_string((int) turnAct.statMod) + "." + std::to_string(turnAct.statCoef), {atkTurn.opmon->getNickname()})}, data.getUiDataPtr());
-					dialog->draw(frame);
-				}else{
-					dialog->updateTextAnimation();
-					dialog->draw(frame);
-					if(dialog->isDialogOver()){//If the dialog is over, go to the next action in the queue
-					actionQueue.pop();
-					delete(dialog);
-					dialog = nullptr;
-					}
-				}
-		    }else if(turnAct.type == TurnActionType::DEF_STAT_MOD){
-				if(dialog == nullptr){
-					dialog = new Dialog({Utils::OpString::quickString("battle.stat." + std::to_string((int) turnAct.statMod) + "." + std::to_string(turnAct.statCoef), {defTurn.opmon->getNickname()})}, data.getUiDataPtr());
+					dialog = new Dialog({Utils::OpString::quickString("battle.stat." + std::to_string((int) turnAct.statMod) + "." + std::to_string(turnAct.statCoef), {opTurn.opmon->getNickname()})}, data.getUiDataPtr());
 					dialog->draw(frame);
 				}else{
 					dialog->updateTextAnimation();
@@ -272,6 +250,7 @@ namespace OpMon {
         void Battle::toggleAttackChoice() {
             attackChoice = !attackChoice;
             if(attackChoice) {
+				dialogSpr.setTexture(data.getAttackDialog());
                 posChoices[0].x = 35;
                 posChoices[0].y = 382;
                 posChoices[1].x = 135;
@@ -296,6 +275,7 @@ namespace OpMon {
 				posChoices[2].y = 457;
 				posChoices[3].x = 430;
 				posChoices[3].y = 457;
+				dialogSpr.setTexture(data.getDialog());
             }
         }
 
