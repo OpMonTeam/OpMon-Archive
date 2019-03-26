@@ -63,6 +63,7 @@ namespace OpMon {
 
             //Checks if the opmon can attack
             bool canAttack(Model::OpMon *opmon, Model::TurnData *opTurn);
+			bool checkBattleEnd();
 
             Model::Events::TrainerEvent *trainer;
 
