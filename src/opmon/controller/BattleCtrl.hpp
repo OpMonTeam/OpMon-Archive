@@ -35,9 +35,9 @@ namespace OpMon {
             View::Battle view;
 
             std::queue<Model::TurnAction> actionsQueue;
-			
-			Model::TurnData atkTurn;
-			Model::TurnData defTurn;
+
+            Model::TurnData atkTurn;
+            Model::TurnData defTurn;
 
             //These variables are used to restore the OpMon's stats after the battle
             int oldStats[2][5];
@@ -63,7 +63,7 @@ namespace OpMon {
 
             //Checks if the opmon can attack
             bool canAttack(Model::OpMon *opmon, Model::TurnData *opTurn);
-			bool checkBattleEnd();
+            bool checkBattleEnd();
 
             Model::Events::TrainerEvent *trainer;
 

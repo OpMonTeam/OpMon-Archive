@@ -6,10 +6,10 @@ File under GNU GPL v3.0 license
 */
 #pragma once
 
+#include "../../utils/CycleCounter.hpp"
 #include "../model/objects/Turn.hpp"
 #include "../model/storage/BattleData.hpp"
 #include "../start/Core.hpp"
-#include "../../utils/CycleCounter.hpp"
 #include "Dialog.hpp"
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
@@ -81,7 +81,7 @@ namespace OpMon {
 
             int phase = 0;
 
-	    Dialog* dialog = nullptr;
+            Dialog *dialog = nullptr;
 
             Model::BattleData &data;
 
@@ -102,7 +102,10 @@ namespace OpMon {
 
             bool isAttackChoice() { return attackChoice; }
 
-	    void passDialog() { if(dialog != nullptr) dialog->pass(); }
+            void passDialog() {
+                if(dialog != nullptr)
+                    dialog->pass();
+            }
         };
 
     } // namespace View
