@@ -21,29 +21,45 @@ namespace OpMon {
             RUN,
             CHANGE
         };
+		
+		enum class TurnActionType {
+			NOTHING,
+			ATK_UPDATE_HBAR,
+			ATK_USE_ITEM,
+			ATK_STAT_MOD,
+			ATK_OPMON_CBACK,
+			ATK_OPMON_OUT,
+			DIALOG,
+			DEF_UPDATE_HBAR,
+			DEF_USE_ITEM,
+			DEF_STAT_MOD,
+			DEF_OPMON_CBACK,
+			DEF_OPMON_OUT,
+			VICTORY,
+			DEFEAT,
+			RUN
+		};
 
-        struct Turn {
-            OpMon *opmon;
-            Attack *attackUsed;
-            Item *itemUsed;
-            TurnType type;
-            bool runSuccessful;
-            OpMon *newOpmon;
+        struct TurnAction {
             int hpLost;
-            std::vector<Utils::OpString> toPrintBefore;
-            std::vector<Utils::OpString> toPrintAfter;
-            std::map<Model::Stats, int> changedStatsAtk; //If number > 6 : Stat too high. If number < -6 : Stat too low
-            std::map<Model::Stats, int> changedStatsDef; //If number > 6 : Stat too high. If number < -6 : Stat too low
-            bool confusedHurt;
-            bool attackMissed;
-            bool attackFailed;
-            bool atkEnd;
-            bool OHKO;
-            int attackHurt;
+            std::vector<Utils::OpString> dialog;
+			TurnActionType type;
+			int statCoef;
+			Stats statMod;
         };
+		
+		struct TurnData {
+			Attack *attackUsed;
+			OpMon *opmon;
+			TurnType type;
+			Item *itemUsed;
+		};
 
-        typedef struct Turn Turn;
+        typedef struct TurnAction TurnAction;
+		typedef struct TurnData TurnData;
 
-        void newTurn(Turn *toNew);
+		void newTurnAction(TurnAction *toNew);
+        void newTurnData(TurnData *toNew);
+		TurnAction createTurnDialogAction(std::vector<Utils::OpString> dialog);
     } // namespace Model
 } // namespace OpMon
