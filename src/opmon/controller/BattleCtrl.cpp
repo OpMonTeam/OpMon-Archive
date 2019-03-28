@@ -84,7 +84,7 @@ namespace OpMon {
                         }
                         //During a turn, it passes the dialog. If nextTxt returns false, the end of the texts is reached and the turn is over.
                     } else if(turnActivated) {
-			view.passDialog();
+                        view.passDialog();
                     }
 
                     break;
@@ -148,7 +148,7 @@ namespace OpMon {
             //Clear the turns
             Model::newTurnData(&atkTurn);
             Model::newTurnData(&defTurn);
-	    
+
             //Register the opmons' addresses in the Turns
             atkTurn.opmon = atk;
             defTurn.opmon = def;
@@ -163,27 +163,27 @@ namespace OpMon {
         }
 #pragma GCC diagnostic pop
 
-		bool BattleCtrl::checkBattleEnd() {
-			if(def->getHP() <= 0) {
-                    
-				if(trainer != nullptr) {
-					trainer->defeat();
-				}
-				TurnAction victory;
-				victory.type = TurnActionType::VICTORY;
-				actionsQueue.push(victory);
-				return true;
-			}else if(atk->getHP() <= 0){
-				if(trainer != nullptr) {//TODO : Only for the test battle, should be removed at some point.
-					trainer->defeat();
-				}
-				TurnAction defeat;
-				defeat.type = TurnActionType::DEFEAT;
-				actionsQueue.push(defeat);
-				return true;
-			}
-			return false;
-		}
+        bool BattleCtrl::checkBattleEnd() {
+            if(def->getHP() <= 0) {
+
+                if(trainer != nullptr) {
+                    trainer->defeat();
+                }
+                TurnAction victory;
+                victory.type = TurnActionType::VICTORY;
+                actionsQueue.push(victory);
+                return true;
+            } else if(atk->getHP() <= 0) {
+                if(trainer != nullptr) { //TODO : Only for the test battle, should be removed at some point.
+                    trainer->defeat();
+                }
+                TurnAction defeat;
+                defeat.type = TurnActionType::DEFEAT;
+                actionsQueue.push(defeat);
+                return true;
+            }
+            return false;
+        }
 
         bool BattleCtrl::turn() {
             //These variables are used to check if the turn of one of the OpMons' is over.
@@ -208,22 +208,22 @@ namespace OpMon {
             } else {
                 atkFirst = !atkDone;
             }
-			
-			if(!actionsQueue.empty()){
-				handleError("Error : Actions Queue not empty but beginning a new turn anyway. Undefined behavior my result, because I won't fix that for you. And this could be funny to see.");
-			}
-			
+
+            if(!actionsQueue.empty()) {
+                handleError("Error : Actions Queue not empty but beginning a new turn anyway. Undefined behavior my result, because I won't fix that for you. And this could be funny to see.");
+            }
+
             if(!atkDone || !defDone) {
                 if(atkFirst) {
                     if(!atkDone && canAttack(atk, &atkTurn)) {
                         atkTurn.attackUsed->attack(*atk, *def, actionsQueue, true);
                     }
-					
+
                     if(!defDone && canAttack(def, &defTurn) && !checkBattleEnd()) {
                         defTurn.attackUsed->attack(*def, *atk, actionsQueue, false);
                     }
-					checkBattleEnd();
-					
+                    checkBattleEnd();
+
                 } else {
                     if(!defDone && canAttack(def, &defTurn)) {
                         defTurn.attackUsed->attack(*def, *atk, actionsQueue, false);
@@ -231,7 +231,7 @@ namespace OpMon {
                     if(!atkDone && canAttack(atk, &atkTurn) && !checkBattleEnd()) {
                         atkTurn.attackUsed->attack(*atk, *def, actionsQueue, true);
                     }
-					checkBattleEnd();
+                    checkBattleEnd();
                 }
             }
 
@@ -250,17 +250,17 @@ namespace OpMon {
                     actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.frozen.out", opName)}));
                     opmon->setStatus(Model::Status::NOTHING);
                 } else {
-					actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.frozen.attack", opName)}));
+                    actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.frozen.attack", opName)}));
                     canAttack = false;
                 }
                 //Checks if sleeping
             } else if(opmon->getStatus() == Model::Status::SLEEPING) {
                 //Checks the sleep counter.
                 if(opmon->getSleepingCD() <= 0) {
-					actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.sleep.out", opName)}));
+                    actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.sleep.out", opName)}));
                     opmon->setStatus(Status::NOTHING);
                 } else {
-					actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.sleep.attack", opName)}));
+                    actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.sleep.attack", opName)}));
                     canAttack = false;
                     opmon->passCD(true);
                 }
@@ -268,10 +268,10 @@ namespace OpMon {
             } else if(opmon->getStatus() == Model::Status::PARALYSED) {
                 //The opmon have one chance out of three to can't attack when paralysed
                 if(Utils::Misc::randU(4) == 2) {
-					actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.paralysed.attack.fail", opName)}));					
+                    actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.paralysed.attack.fail", opName)}));
                     canAttack = false;
                 } else {
-					actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.paralysed.attack.success.1", opName), Utils::OpString("battle.status.paralysed.attack.success.2", opName)}));
+                    actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.paralysed.attack.success.1", opName), Utils::OpString("battle.status.paralysed.attack.success.2", opName)}));
                 }
             }
             //Checks if confused
@@ -279,21 +279,21 @@ namespace OpMon {
                 //Checks the confused counter
                 if(opmon->getConfusedCD() <= 0) {
                     opmon->confused = false;
-					actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.confused.out", opName)}));
+                    actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.confused.out", opName)}));
                 } else {
                     opmon->passCD(false);
                     //The OpMon have one chance out of two of failing their attack.
                     if(Utils::Misc::randU(2) == 1) {
-						actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.confused.attack.fail", opName)}));
+                        actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.confused.attack.fail", opName)}));
                         opmon->attacked(opmon->getStatHP() / 8);
                     } else {
-						actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.confused.attack.success.1", opName), Utils::OpString("battle.status.confused.attack.success.2", {})}));
+                        actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.confused.attack.success.1", opName), Utils::OpString("battle.status.confused.attack.success.2", {})}));
                     }
                 }
             }
             //Checks if afraid
             if(opmon->afraid) {
-				actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.afraid", opName)}));
+                actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.afraid", opName)}));
                 opmon->afraid = false;
                 canAttack = false;
             }

@@ -17,12 +17,12 @@ namespace OpMon {
           , uidata(uidata) {
 
             if(this->text.size() % 3 != 0) {
-				while(this->text.size() % 3 != 0){
-					this->text.push_back(sf::String(" "));
-				}
-				if(this->text.size() % 3 != 0){
-					handleError("Error : string missing in Dialog, even after trying to fix it.", true);
-				}
+                while(this->text.size() % 3 != 0) {
+                    this->text.push_back(sf::String(" "));
+                }
+                if(this->text.size() % 3 != 0) {
+                    handleError("Error : string missing in Dialog, even after trying to fix it.", true);
+                }
             }
 
             background.setTexture(uidata->getDialogBackground());
@@ -93,32 +93,32 @@ namespace OpMon {
         }
 
         void Dialog::draw(sf::RenderTarget &frame) {
-	    if(backgroundVisible){
-		frame.draw(background);
-		{
+            if(backgroundVisible) {
+                frame.draw(background);
+                {
 
-		    for(size_t itor = 0; itor < 3; itor++) {
-			dialogText[itor].setString(currentTxt[itor].toUtf32());
-			frame.draw(dialogText[itor]);
-		    }
+                    for(size_t itor = 0; itor < 3; itor++) {
+                        dialogText[itor].setString(currentTxt[itor].toUtf32());
+                        frame.draw(dialogText[itor]);
+                    }
 
-		    sf::Vector2f posArrow(512 - 75, 512 - 30);
-		    arrDial.move(0, 1);
-		    if(arrDial.getPosition().y - posArrow.y > 5) {
-			arrDial.move(0, -6);
-		    }
-		    frame.draw(arrDial);
-		}
-	    }
-	}
+                    sf::Vector2f posArrow(512 - 75, 512 - 30);
+                    arrDial.move(0, 1);
+                    if(arrDial.getPosition().y - posArrow.y > 5) {
+                        arrDial.move(0, -6);
+                    }
+                    frame.draw(arrDial);
+                }
+            }
+        }
 
         bool Dialog::isDialogOver() {
             return is_dialog_over;
         }
-	
-	void Dialog::setBackgroundVisible(bool visible){
-	    backgroundVisible = visible;
-	}
-	
+
+        void Dialog::setBackgroundVisible(bool visible) {
+            backgroundVisible = visible;
+        }
+
     } // namespace View
 } // namespace OpMon

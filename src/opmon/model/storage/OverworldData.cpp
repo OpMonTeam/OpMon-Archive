@@ -51,7 +51,7 @@ namespace OpMon {
             ResourceLoader::loadTextureArray(charaTextures["inferm"], "sprites/chara/inferm/inferm%d.png", 12);
             ResourceLoader::loadTextureArray(charaTextures["|_| -|- |-| |= |_| N"], "sprites/chara/beta/alphabeta/otheon%d.png", 12);
             ResourceLoader::loadTextureArray(charaTextures["beta"], "sprites/chara/beta/beta%d.png", 12);
-			ResourceLoader::loadTextureArray(charaTextures["albd"], "sprites/chara/albd/albd%d.png", 12);
+            ResourceLoader::loadTextureArray(charaTextures["albd"], "sprites/chara/albd/albd%d.png", 12);
 
             //Doors' textures initialization
             ResourceLoader::loadTextureArray(doorsTextures["shop"], "animations/shopdoor/shop_door%d.png", 4, 1);

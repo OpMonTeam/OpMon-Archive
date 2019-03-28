@@ -44,8 +44,8 @@ namespace OpMon {
             sf::Sound dialogPass;
 
             Model::UiData *uidata;
-			
-			bool backgroundVisible = true;
+
+            bool backgroundVisible = true;
 
           public:
             Dialog(std::vector<sf::String> text, Model::UiData *uidata);
@@ -75,11 +75,11 @@ namespace OpMon {
        * @return `true` is the entire dialog has been displayed; `false` otherwise.
        */
             bool isDialogOver();
-			
-			/**
+
+            /**
 				Set the background visible or invisible, used in screens using other dialog boxes.
 			*/
-			void setBackgroundVisible(bool visible);
+            void setBackgroundVisible(bool visible);
 
             sf::Sprite arrDial;
             sf::Text dialogText[3];
