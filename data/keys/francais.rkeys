@@ -127,6 +127,11 @@ key.battle.run=Fuite
 key.battle.opmon=OpMons
 
 key.battle.dialog.attack=~ utilise ~ !
+key.battle.dialog.miss=~ rate son attaque !
+key.battle.dialog.loosehp=~ perd ~ pv.
+
+key.battle.wait=Que voulez vous faire ?
+
 key.battle.status.frozen.out=~ n'est plus gelé!
 key.battle.status.frozen.in=~ est gelé!
 key.battle.status.frozen.attack=~ est gelé et ne peut pas attaquer!
@@ -146,11 +151,116 @@ key.battle.status.confused.in=~ devient confus!
 key.battle.status.confused.attack.success.1=Malgré sa confusion, ~
 key.battle.status.confused.attack.success.2=parvient à attaquer!
 key.battle.status.confused.attack.fail=~ est confus.
-key.battle.status.confused.hplost=~ perd ~ pv.
+key.battle.status.confused.hplost=Dans sa confiusion, ~ perd ~ pv.
 
 key.battle.status.afraid=~ est trop effrayé pour attaquer!
 
-key.battle.wait=Que voulez vous faire ?
+key.battle.effectiveness.none=Mais cela échoue !
+key.battle.effectiveness.almostnone=C'est très peu efficace...
+key.battle.effectiveness.notvery=Ce n'est pas très efficace...
+key.battle.effectiveness.very=C'est très efficace !
+key.battle.effectiveness.super=C'est super efficace !
+
+# Attack
+key.battle.stat.6.-6=L'attaque de ~ tombe au plus bas !
+key.battle.stat.6.-5=L'attaque de ~ tombe très bas !
+key.battle.stat.6.-4=L'attaque de ~ chute beaucoup !
+key.battle.stat.6.-3=L'attaque de ~ chute !
+key.battle.stat.6.-2=L'attaque de ~ diminue beaucoup !
+key.battle.stat.6.-1=L'attaque de ~ diminue !
+key.battle.stat.6.1=L'attaque de ~ augmente !
+key.battle.stat.6.2=L'attaque de ~ augmente beaucoup !
+key.battle.stat.6.3=L'attaque de ~ s'envole !
+key.battle.stat.6.4=L'attaque de ~ s'envole beaucoup !
+key.battle.stat.6.5=L'attaque de ~ monte extrêmement haut !
+key.battle.stat.6.6=L'attaque de ~ augmente au maximum !
+
+# Defense
+key.battle.stat.1.-6=La défense de ~ tombe au plus bas !
+key.battle.stat.1.-5=La défense de ~ tombe très bas !
+key.battle.stat.1.-4=La défense de ~ chute beaucoup !
+key.battle.stat.1.-3=La défense de ~ chute !
+key.battle.stat.1.-2=La défense de ~ diminue beaucoup !
+key.battle.stat.1.-1=La défense de ~ diminue !
+key.battle.stat.1.1=La défense de ~ augmente !
+key.battle.stat.1.2=La défense de ~ augmente beaucoup !
+key.battle.stat.1.3=La défense de ~ s'envole !
+key.battle.stat.1.4=La défense de ~ s'envole beaucoup !
+key.battle.stat.1.5=La défense de ~ monte extrêmement haut !
+key.battle.stat.1.6=La défense de ~ augmente au maximum !
+
+# Special Attack
+key.battle.stat.2.-6=L'attaque spéciale de ~ tombe au plus bas !
+key.battle.stat.2.-5=L'attaque spéciale de ~ tombe très bas !
+key.battle.stat.2.-4=L'attaque spéciale de ~ chute beaucoup !
+key.battle.stat.2.-3=L'attaque spéciale de ~ chute !
+key.battle.stat.2.-2=L'attaque spéciale de ~ diminue beaucoup !
+key.battle.stat.2.-1=L'attaque spéciale de ~ diminue !
+key.battle.stat.2.1=L'attaque spéciale de ~ augmente !
+key.battle.stat.2.2=L'attaque spéciale de ~ augmente beaucoup !
+key.battle.stat.2.3=L'attaque spéciale de ~ s'envole !
+key.battle.stat.2.4=L'attaque spéciale de ~ s'envole beaucoup !
+key.battle.stat.2.5=L'attaque spéciale de ~ monte extrêmement haut !
+key.battle.stat.2.6=L'attaque spéciale de ~ augmente au maximum !
+
+# Special Defense
+key.battle.stat.3.-6=La défense spéciale de ~ tombe au plus bas !
+key.battle.stat.3.-5=La défense spéciale de ~ tombe très bas !
+key.battle.stat.3.-4=La défense spéciale de ~ chute beaucoup !
+key.battle.stat.3.-3=La défense spéciale de ~ chute !
+key.battle.stat.3.-2=La défense spéciale de ~ diminue beaucoup !
+key.battle.stat.3.-1=La défense spéciale de ~ diminue !
+key.battle.stat.3.1=La défense spéciale de ~ augmente !
+key.battle.stat.3.2=La défense spéciale de ~ augmente beaucoup !
+key.battle.stat.3.3=La défense spéciale de ~ s'envole !
+key.battle.stat.3.4=La défense spéciale de ~ s'envole beaucoup !
+key.battle.stat.3.5=La défense spéciale de ~ monte extrêmement haut !
+key.battle.stat.3.6=La défense spéciale de ~ augmente au maximum !
+
+# Speed
+key.battle.stat.4.-6=La vitesse de ~ tombe au plus bas !
+key.battle.stat.4.-5=La vitesse de ~ tombe très bas !
+key.battle.stat.4.-4=La vitesse de ~ chute beaucoup !
+key.battle.stat.4.-3=La vitesse de ~ chute !
+key.battle.stat.4.-2=La vitesse de ~ diminue beaucoup !
+key.battle.stat.4.-1=La vitesse de ~ diminue !
+key.battle.stat.4.1=La vitesse de ~ augmente !
+key.battle.stat.4.2=La vitesse de ~ augmente beaucoup !
+key.battle.stat.4.3=La vitesse de ~ s'envole !
+key.battle.stat.4.4=La vitesse de ~ s'envole beaucoup !
+key.battle.stat.4.5=La vitesse de ~ monte extrêmement haut !
+key.battle.stat.4.6=La vitesse de ~ augmente au maximum !
+
+# Evasion
+key.battle.stat.8.-6=L'esquive de ~ tombe au plus bas !
+key.battle.stat.8.-5=L'esquive de ~ tombe très bas !
+key.battle.stat.8.-4=L'esquive de ~ chute beaucoup !
+key.battle.stat.8.-3=L'esquive de ~ chute !
+key.battle.stat.8.-2=L'esquive de ~ diminue beaucoup !
+key.battle.stat.8.-1=L'esquive de ~ diminue !
+key.battle.stat.8.1=L'esquive de ~ augmente !
+key.battle.stat.8.2=L'esquive de ~ augmente beaucoup !
+key.battle.stat.8.3=L'esquive de ~ s'envole !
+key.battle.stat.8.4=L'esquive de ~ s'envole beaucoup !
+key.battle.stat.8.5=L'esquive de ~ monte extrêmement haut !
+key.battle.stat.8.6=L'esquive de ~ augmente au maximum !
+
+# Accuracy
+key.battle.stat.7.-6=La précision de ~ tombe au plus bas !
+key.battle.stat.7.-5=La précision de ~ tombe très bas !
+key.battle.stat.7.-4=La précision de ~ chute beaucoup !
+key.battle.stat.7.-3=La précision de ~ chute !
+key.battle.stat.7.-2=La précision de ~ diminue beaucoup !
+key.battle.stat.7.-1=La précision de ~ diminue !
+key.battle.stat.7.1=La précision de ~ augmente !
+key.battle.stat.7.2=La précision de ~ augmente beaucoup !
+key.battle.stat.7.3=La précision de ~ s'envole !
+key.battle.stat.7.4=La précision de ~ s'envole beaucoup !
+key.battle.stat.7.5=La précision de ~ monte extrêmement haut !
+key.battle.stat.7.6=La précision de ~ augmente au maximum !
+
+key.battle.victory=Bravo ! ~ a gagné le combat !
+key.battle.defeat=Dommage... ~ a perdu le combat.
 
 key.opmon.name.0=MissingNo.
 key.opmon.name.1=Rosarin

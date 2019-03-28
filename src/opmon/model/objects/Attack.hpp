@@ -13,6 +13,7 @@ File under GNU GPL v3.0 license
 #include "Enums.hpp"
 #include "Turn.hpp"
 #include <iostream>
+#include <queue>
 
 namespace OpMon {
     namespace Model {
@@ -21,7 +22,7 @@ namespace OpMon {
 
         class AttackEffect {
           public:
-            virtual int apply(Attack & /*attack*/, OpMon & /*attacker*/, OpMon & /*defender*/, Turn & /* atkTurn */) { return 0; }
+            virtual int apply(Attack & /*attack*/, OpMon & /*attacker*/, OpMon & /*defender*/, std::queue<TurnAction> & /* turnQueue */) { return 0; }
             virtual ~AttackEffect() {}
         };
 
@@ -70,8 +71,7 @@ namespace OpMon {
             }
 
             //"atk" attacks the "def" OpMon
-            int attack(OpMon &atk, OpMon &def, Turn &atkTurn);
-            OP_DEPRECATED void ifFails(OpMon &atk, OpMon &def, Turn &turn /*atkTurn*/) { failEffect->apply(*this, atk, def, turn); }
+            int attack(OpMon &atk, OpMon &def, std::queue<TurnAction> &turnQueue, bool attacker);
 
             std::string save();
 

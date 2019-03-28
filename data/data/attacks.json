@@ -47,7 +47,7 @@
 				"null" : false,
 				"type" : "ChangeStatEffect",
 				"data" : {
-					"target" : 0,
+					"target" : 1,
 					"stat" : 6,
 					"coef" : -1
 				}

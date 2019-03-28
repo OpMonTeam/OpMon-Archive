@@ -19,7 +19,7 @@ namespace OpMon {
         class Dialog {
           private:
             /** array of all lines composing the dialog. */
-            const std::vector<sf::String> &text;
+            std::vector<sf::String> text;
 
             /** The 3 lines currently displayed. */
             sf::String currentTxt[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
@@ -44,9 +44,11 @@ namespace OpMon {
             sf::Sound dialogPass;
 
             Model::UiData *uidata;
+			
+			bool backgroundVisible = true;
 
           public:
-            Dialog(const std::vector<sf::String> &text, Model::UiData *uidata);
+            Dialog(std::vector<sf::String> text, Model::UiData *uidata);
 
             /**
        * Move forward in a dialog, in response to an event like a space key pressed.
@@ -73,6 +75,11 @@ namespace OpMon {
        * @return `true` is the entire dialog has been displayed; `false` otherwise.
        */
             bool isDialogOver();
+			
+			/**
+				Set the background visible or invisible, used in screens using other dialog boxes.
+			*/
+			void setBackgroundVisible(bool visible);
 
             sf::Sprite arrDial;
             sf::Text dialogText[3];
