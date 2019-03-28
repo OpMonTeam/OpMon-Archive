@@ -848,6 +848,13 @@
 		"dialog" : [["rt14.sk.1"], ["rt14.sk.2"], ["rt14.sk.3"]],
 		"side" : 2
 	    },
+            {
+		"type" : "TalkingCharaEvent",
+		"textures" : "albd",
+		"position" : [69, 38],
+		"dialog" : [["rt14.albd.1"], ["rt14.albd.2"], ["rt14.albd.3"]],
+		"side" : 0
+            },
 	    {
 		"type" : "TPEvent",
 		"textures" : "alpha",
