@@ -17,6 +17,7 @@ File under GNU GPL v3.0
 namespace OpMon {
     namespace View {
         GameStatus Battle::operator()(sf::RenderTexture &frame, Model::TurnData const &atkTurn, Model::TurnData const &defTurn, std::queue<Model::TurnAction> &actionQueue, bool *turnActivated, bool atkFirst) {
+			std::cout << curPos.getValue() << std::endl;
             //Removes camera
             frame.setView(frame.getDefaultView());
 
@@ -190,7 +191,7 @@ namespace OpMon {
                 waitText.setString(Utils::StringKeys::get("battle.wait"));
                 frame.draw(waitText);
 
-                cursor.setPosition(posChoices[curPos] + sf::Vector2f((choicesTxt[curPos].getGlobalBounds().width / 2) - 10, 25));
+                cursor.setPosition(posChoices[curPos.getValue()] + sf::Vector2f((choicesTxt[curPos.getValue()].getGlobalBounds().width / 2) - 10, 25));
 
             } else { //Attacks menu
 
@@ -203,18 +204,18 @@ namespace OpMon {
                     frame.draw(attacks[i]);
                 }
 
-                if(atkTurn.opmon->getAttacks()[curPos] != nullptr) {
+                if(atkTurn.opmon->getAttacks()[curPos.getValue()] != nullptr) {
 
                     //Changes the text's color according to the number of PP left
-                    if(atkTurn.opmon->getAttacks()[curPos]->getPP() <= (atkTurn.opmon->getAttacks()[curPos]->getPPMax() / 5) && atkTurn.opmon->getAttacks()[curPos]->getPP() > 0) {
+                    if(atkTurn.opmon->getAttacks()[curPos.getValue()]->getPP() <= (atkTurn.opmon->getAttacks()[curPos.getValue()]->getPPMax() / 5) && atkTurn.opmon->getAttacks()[curPos.getValue()]->getPP() > 0) {
                         ppTxt.setSfmlColor(sf::Color::Yellow);
-                    } else if(atkTurn.opmon->getAttacks()[curPos]->getPP() == 0) {
+                    } else if(atkTurn.opmon->getAttacks()[curPos.getValue()]->getPP() == 0) {
                         ppTxt.setSfmlColor(sf::Color::Red);
                     } else {
                         ppTxt.setSfmlColor(sf::Color::Black);
                     }
-                    ppTxt.setString(std::to_string(atkTurn.opmon->getAttacks()[curPos]->getPP()) + " / " + std::to_string(atkTurn.opmon->getAttacks()[curPos]->getPPMax()));
-                    type.setTexture(data.getUiDataPtr()->getTypeTexture(atkTurn.opmon->getAttacks()[curPos]->getType()));
+                    ppTxt.setString(std::to_string(atkTurn.opmon->getAttacks()[curPos.getValue()]->getPP()) + " / " + std::to_string(atkTurn.opmon->getAttacks()[curPos.getValue()]->getPPMax()));
+                    type.setTexture(data.getUiDataPtr()->getTypeTexture(atkTurn.opmon->getAttacks()[curPos.getValue()]->getType()));
                     frame.draw(type);
                 } else { //If there is no attack, print this
                     ppTxt.setSfmlColor(sf::Color::Red);
@@ -224,7 +225,7 @@ namespace OpMon {
                 frame.draw(ppTxt);
                 frame.draw(ppStrTxt);
 
-                cursor.setPosition(posChoices[curPos] + sf::Vector2f((attacks[curPos].getGlobalBounds().width / 2) - 10, 30));
+                cursor.setPosition(posChoices[curPos.getValue()] + sf::Vector2f((attacks[curPos.getValue()].getGlobalBounds().width / 2) - 10, 30));
             }
 
             if(!turnLaunched) {
@@ -265,6 +266,7 @@ namespace OpMon {
                     attacks[i].setCharacterSize(26);
                     attacks[i].setSfmlColor(sf::Color::Black);
                 }
+				curPos = 0;
 
             } else {
                 posChoices[0].x = 326;
@@ -276,6 +278,7 @@ namespace OpMon {
 				posChoices[3].x = 430;
 				posChoices[3].y = 457;
 				dialogSpr.setTexture(data.getDialog());
+				curPos = 0;
             }
         }
 
@@ -380,26 +383,21 @@ namespace OpMon {
         }
 
         void Battle::moveCur(Model::Side where) {
-            int cur = curPos;
             switch(where) {
             case Model::Side::TO_LEFT:
-                cur -= 1;
+                curPos -= 1;
                 break;
             case Model::Side::TO_RIGHT:
-                cur += 1;
+                curPos += 1;
                 break;
             case Model::Side::TO_UP:
-                cur -= 2;
+                curPos -= 2;
                 break;
             case Model::Side::TO_DOWN:
-                cur += 2;
+                curPos += 2;
                 break;
             default:
                 break;
-            }
-
-            if(cur >= 0 && cur < 4) {
-                curPos = cur;
             }
         }
     } // namespace View
