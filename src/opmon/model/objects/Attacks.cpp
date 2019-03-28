@@ -26,7 +26,7 @@ namespace OpMon {
               , coef(data.at("coef")) {
             }
 
-            int ChangeStatEffect::apply(Attack &, OpMon &attacker, OpMon &defender, Turn &atkTurn) {
+            int ChangeStatEffect::apply(Attack &, OpMon &attacker, OpMon &defender, std::queue<TurnAction> &turnQueue) {
                 std::map<Stats, int (OpMon::*)(int)> stat_to_method = {
                   {Stats::ACC, &OpMon::changeACC},
                   {Stats::ATK, &OpMon::changeATK},
@@ -37,14 +37,23 @@ namespace OpMon {
                   {Stats::SPE, &OpMon::changeSPE},
                 };
                 auto change_method = stat_to_method[stat];
-
+				
+				// TODO : Add dialog if stat is at its min/max 
+				
+				TurnAction statMod;
+				newTurnAction(&statMod);
+				
                 if(target == Target::ATTACKER) {
                     int diff_value = (attacker.*change_method)(coef); // diff_value = attacker.changeXXX(coef)
-                    atkTurn.changedStatsAtk.emplace(stat, diff_value);
+                    statMod.type = TurnActionType::ATK_STAT_MOD;
                 } else {
                     int diff_value = (defender.*change_method)(coef); // diff_value = defender.changeXXX(coef)
-                    atkTurn.changedStatsDef.emplace(stat, diff_value);
+                    statMod.type = TurnActionType::DEF_STAT_MOD;
                 }
+				statMod.statCoef = coef;
+				statMod.statMod = stat;
+				turnQueue.push(statMod);
+				
                 return 0;
             }
 

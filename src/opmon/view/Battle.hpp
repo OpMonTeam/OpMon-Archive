@@ -9,11 +9,14 @@ File under GNU GPL v3.0 license
 #include "../model/objects/Turn.hpp"
 #include "../model/storage/BattleData.hpp"
 #include "../start/Core.hpp"
+#include "../../utils/CycleCounter.hpp"
+#include "Dialog.hpp"
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/System/String.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <map>
+#include <queue>
 
 namespace OpMon {
 
@@ -39,8 +42,6 @@ namespace OpMon {
 
             int turnNber = 0;
 
-            //The cursor's position for the choices
-            int cursorPos;
             //True if the turn have been calculated
             bool turnLaunched = false;
 
@@ -64,7 +65,7 @@ namespace OpMon {
             sf::Sprite shadowTrainer;
             sf::Sprite shadowPlayer;
 
-            int curPos;
+            Utils::CycleCounter curPos = Utils::CycleCounter(4);
 
             /* If true, the attack selection dialog is printed. If false, the action selection dialog is printed. */
             bool attackChoice = false;
@@ -76,21 +77,22 @@ namespace OpMon {
             sf::Text ppStrTxt;
             sf::Sprite type;
 
-            std::vector<sf::Text> turnTxt = std::vector<sf::Text>(3);
             sf::Sprite dialogArrow;
 
             int phase = 0;
+
+	    Dialog* dialog = nullptr;
 
             Model::BattleData &data;
 
           public:
             Battle(const Model::OpTeam *atkTeam, const Model::OpTeam *defTeam, std::string trainerClass, std::string background, Model::BattleData &data);
 
-            GameStatus operator()(sf::RenderTexture &frame, Model::Turn const &atk, Model::Turn const &def, bool *turnActivated, bool atkFirst = true);
+            GameStatus operator()(sf::RenderTexture &frame, Model::TurnData const &atk, Model::TurnData const &def, std::queue<Model::TurnAction> &actionQueue, bool *turnActivated, bool atkFirst = true);
             //Moves the cursor
             void moveCur(Model::Side where);
             //Returns the cursor's position
-            int getCurPos() { return curPos; }
+            int getCurPos() { return curPos.getValue(); }
             //Tooggle the interface printed, the action or attack selection
             void toggleAttackChoice();
 
@@ -99,6 +101,8 @@ namespace OpMon {
             int getPhase() { return phase; }
 
             bool isAttackChoice() { return attackChoice; }
+
+	    void passDialog() { if(dialog != nullptr) dialog->pass(); }
         };
 
     } // namespace View

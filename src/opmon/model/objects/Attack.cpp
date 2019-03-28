@@ -104,24 +104,26 @@ namespace OpMon {
        * Return -1 : Inform that the attack was ineffective against the target
        * In effectAfter : Return any number except 1 act like return 2.
        * If 1 is returned, it will do the same attack at the next turn.
+	   * TODO : Create defines to make this more clear
        */
-        int Attack::attack(OpMon &atk, OpMon &def, Turn &attackTurn) {
+        int Attack::attack(OpMon &atk, OpMon &def, std::queue<TurnAction> &turnQueue, bool attacker) {
             pp--;
+			turnQueue.push(createTurnDialogAction({Utils::OpString("battle.dialog.attack", {new sf::String(atk.getNickname()), new sf::String(this->name.getString())})}));
             //Attack fail
             if((Utils::Misc::randU(100)) > (accuracy * (atk.getStatACC() / def.getStatEVA())) && neverFails == false) {
-                attackTurn.attackMissed = true;
-                ifFails(atk, def, attackTurn);
+				TurnAction failAction;
+				turnQueue.push(createTurnDialogAction({Utils::OpString("battle.dialog.fail", {new sf::String(atk.getNickname())})}));
+                failEffect->apply(*this, atk, def, turnQueue);
                 return -2;
             }
-            int effectBf = preEffect ? preEffect->apply(*this, atk, def, attackTurn) : 0;
-            if(effectBf == 1 || effectBf == 2) { //If special return, the attack ends.
-                attackTurn.atkEnd = true;
+            int effectBf = preEffect ? preEffect->apply(*this, atk, def, turnQueue) : 0;
+            if(effectBf == 1 || effectBf == 2) { //If special returns 1 or 2, the attack ends.
                 return effectBf;
             }
             //If type unefficiency
             if(ArrayTypes::calcEffectiveness(type, def.getType1(), def.getType2()) == 0 && (neverFails == false || status == false)) {
-                attackTurn.attackFailed = true;
-                ifFails(atk, def, attackTurn);
+				turnQueue.push(createTurnDialogAction({Utils::OpString("battle.effectiveness.none", {new sf::String(atk.getNickname())})}));
+                if(failEffect != nullptr) failEffect->apply(*this, atk, def, turnQueue);
                 return -1;
             }
             if(!status) { //Check if it isn't a status attack to calculate the hp lost
@@ -136,10 +138,26 @@ namespace OpMon {
                     hpLost = round(hpLost * 1.5);
                 }
                 hpLost = round(hpLost * (Utils::Misc::randU(100 - 85 + 1) + 85) / 100);
-                attackTurn.hpLost = hpLost;
-                def.attacked(hpLost);
+                
+				def.attacked(hpLost);
+				
+				TurnAction loosingHp;
+				newTurnAction(&loosingHp);
+				loosingHp.type = attacker ? TurnActionType::DEF_UPDATE_HBAR : TurnActionType::ATK_UPDATE_HBAR;
+				loosingHp.hpLost = hpLost;
+				turnQueue.push(loosingHp);
+				
+				if(effectiveness == 0.25)
+					turnQueue.push(createTurnDialogAction({Utils::OpString("battle.effectiveness.almostnone")}));
+				else if(effectiveness == 0.5)
+					turnQueue.push(createTurnDialogAction({Utils::OpString("battle.effectiveness.notvery")}));
+				else if(effectiveness == 2)
+					turnQueue.push(createTurnDialogAction({Utils::OpString("battle.effectiveness.very")}));
+				else if(effectiveness == 4)
+					turnQueue.push(createTurnDialogAction({Utils::OpString("battle.effectiveness.super")}));
+				
             }
-            return postEffect ? postEffect->apply(*this, atk, def, attackTurn) : 0;
+            return postEffect ? postEffect->apply(*this, atk, def, turnQueue) : 0;
         }
 
         std::string Attack::save() {

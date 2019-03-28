@@ -29,6 +29,8 @@ namespace Utils {
         void operator-=(int number) { value = (*this - number).value; }
         void operator*=(int number) { value = (*this * number).value; }
         void operator/=(int number) { value = (*this / number).value; }
+		
+		void operator=(int number) { value = ((range + (number - limitDown)) % range) + limitDown; }
 
         int getValue() { return value; }
     };
