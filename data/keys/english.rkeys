@@ -1,4 +1,4 @@
-# OpMon english translation
+﻿# OpMon english translation
 key.void= 
 key.load.txt=Loading...
 
@@ -20,13 +20,13 @@ key.options.credit.3=programmer
 key.options.credit.4=Game and 
 key.options.credit.5=Graphic designer
 key.options.credit.6=Collaborators :
-key.options.credit.7=Aerzia, BAKfr, gberthou
+key.options.credit.7=Aerzia, BAKfr, gberthou, Cheesecake
 key.options.credit.8=Contributors : imZERKKA, Mat, Jseutter, Stelyus, Ezaron, rjphares
-key.options.credit.81=Rixem, Jo, Imperator, LÃ©o, LinkyFR, Bircoum, louracame
+key.options.credit.81=Rixem, Jo, Imperator, Léo, LinkyFR, Bircoum, louracame
 key.options.credit.82=Samurai413x, Silvermoon, Lebordelic, Asvirius, jubalh, torq
-key.options.credit.83=JonnyPtn, Cheesecake, bobor, Qwam
+key.options.credit.83=JonnyPtn, bobor, Qwam, CxxSpren
 key.options.credit.84= 
-key.options.credit.9=                   v0.16dev
+key.options.credit.9=                    v0.16
 key.options.cred.title=Credits
 key.options.ctrl.change=Change settings paddle
 
@@ -94,6 +94,10 @@ key.rt14.sk.1=Who are you ?
 key.rt14.sk.2=You should not
 key.rt14.sk.3=be here...
 
+key.rt14.albd.1=test
+key.rt14.albd.2=test
+key.rt14.albd.3=test
+
 key.fe.fisherman.1=Fisherman : Oh ! You surprised me !
 key.fe.fisherman.2=I love coming here to rest
 key.fe.fisherman.3=Everything is calm and simple
@@ -102,7 +106,7 @@ key.fe.fisherman.5=there are not many fish
 key.fe.fisherman.6=in the area !
 key.fe.fisherman.7=...
 key.fe.fisherman.8=Wait, I've never seen you here ? 
-key.fe.fisherman.9=You are new ?
+key.fe.fisherman.9=Are you new ?
 
 key.inferm.dialog.1=Welcome !
 key.inferm.dialog.1=Do you want to heal your OpMons ?

@@ -1,4 +1,4 @@
-# OpMon french translation
+# OpMon french translation ; Contributors : Navet56
 key.void= 
 key.load.txt=Chargement...
 
@@ -8,19 +8,19 @@ key.title.3=Options
 key.title.4=Quitter
 
 key.options.lang=Langues
-key.options.credit.1=Fondateur et
-key.options.credit.2=programmeur
-key.options.credit.3=principal
-key.options.credit.4=Graphiste et
-key.options.credit.5=Game-designer
+key.options.credit.1=Initiation
+key.options.credit.2=du projet et
+key.options.credit.3=programmation
+key.options.credit.4=Graphisme et
+key.options.credit.5=Game-design
 key.options.credit.6=Collaborateurs :
-key.options.credit.7=Aerzia, BAKfr, gberthou
+key.options.credit.7=Aerzia, BAKfr, gberthou, Cheesecake
 key.options.credit.8=Contributeurs : imZERKKA, Mat, Jseutter, Stelyus, Ezaron, rjphares
 key.options.credit.81=Rixem, Jo, Imperator, Léo, LinkyFR, Bircoum, louracame
 key.options.credit.82=Samurai413x, Silvermoon, Lebordelic, Asvirius, jubalh, torq
-key.options.credit.83=JonnyPtn, Cheesecake, bobor, Qwam
+key.options.credit.83=JonnyPtn, bobor, Qwam, CxxSpren
 key.options.credit.84= 
-key.options.credit.9=                   v0.16dev
+key.options.credit.9=                    v0.16
 key.options.retour=Retour
 key.options.title=Options
 key.options.ecran=Plein écran
