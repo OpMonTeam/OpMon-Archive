@@ -61,6 +61,8 @@ namespace OpMon {
             sf::Vector2f &getElementPos(std::string const &id) { return elementsPos[id]; }
             sf::Texture &getCurrentElementTexture(std::string const &id) { return elementsTextures[id][elementsCounter[id]]; }
 
+			OpTeam* getTrainer(std::string const& key) { return trainers.at(key); }
+
             GameMenuData &getGameMenuData() { return gameMenuData; }
 
             OP_DEPRECATED sf::Texture &getMenuTexture() { return gameMenuData.getMenuTexture(); }
