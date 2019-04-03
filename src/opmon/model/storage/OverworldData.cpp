@@ -96,7 +96,8 @@ namespace OpMon {
             }
 
             //Maps initialisation
-
+				
+			//The maps and the trainers' data are stored in two separate files
             std::ifstream mapsJsonFile(Utils::Path::getResourcePath() + "data/maps.json");
             std::ifstream trainersJsonFile(Utils::Path::getResourcePath() + "data/trainers.json");
 
@@ -109,7 +110,8 @@ namespace OpMon {
 
             mapsJsonFile >> mapsJson;
             trainersJsonFile >> trainersJson;
-
+			
+			/* Trainers loading */
             for(auto itor = trainersJson.begin(); itor != trainersJson.end(); ++itor) {
                 OpTeam *team = new Model::OpTeam(itor->at("name"));
                 for(auto opmonItor = itor->at("team").begin(); opmonItor != itor->at("team").end(); ++opmonItor) {
@@ -128,112 +130,9 @@ namespace OpMon {
             std::map<std::string, sf::String *> completions;
             completions.emplace("playername", player->getNameP());
 
+			/* Maps loading */
             for(auto itor = mapsJson.begin(); itor != mapsJson.end(); ++itor) {
-                Map *currentMap = maps.emplace(itor->at("id"), new Map(itor->at("layers")[0],
-                                                                       itor->at("layers")[1],
-                                                                       itor->at("layers")[2],
-                                                                       itor->at("size")[0],
-                                                                       itor->at("size")[1],
-                                                                       itor->at("indoor"),
-                                                                       itor->at("music"),
-                                                                       itor->value("animations", std::vector<std::string>())))
-                                    .first->second;
-                for(auto eitor = itor->at("events").begin(); eitor != itor->at("events").end(); ++eitor) {
-                    std::string type = eitor->at("type");
-
-                    //Creates dialogs object
-                    std::vector<Utils::OpString> dialogs;
-                    std::vector<std::vector<std::string>> dialogsKeys = eitor->value("dialog", std::vector<std::vector<std::string>>());
-                    if(!dialogsKeys.empty()) {
-                        for(unsigned int i = 0; i < dialogsKeys.size(); i++) {
-                            std::string key = dialogsKeys[i][0];
-                            std::vector<sf::String *> toAdd;
-                            for(unsigned int j = 1; j < dialogsKeys[i].size(); j++) {
-                                toAdd.push_back(completions[dialogsKeys[i][j]]);
-                            }
-                            dialogs.push_back(OpString(key, toAdd));
-                        }
-                    }
-
-                    //Creates path objects for npcs
-                    std::vector<std::vector<int>> prePath = eitor->value("path", std::vector<std::vector<int>>());
-                    std::vector<Side> charaPath;
-                    if(!prePath.empty()) {
-                        nlohmann::json prePathJson = eitor->at("path");
-                        for(auto pitor = prePathJson.begin(); pitor != prePathJson.end(); ++pitor) {
-                            for(unsigned int r = 0; r < pitor->at(1); r++) {
-                                charaPath.push_back(pitor->at(0));
-                            }
-                        }
-                    }
-
-                    if(type == "TalkingEvent") {
-                        currentMap->addEvent(new Events::TalkingEvent(eventsTextures[eitor->at("textures")],
-                                                                      sf::Vector2f(eitor->at("position")[0],
-                                                                                   eitor->at("position")[1]),
-                                                                      dialogs,
-                                                                      eitor->value("side", SIDE_ALL),
-                                                                      eitor->value("trigger", Events::EventTrigger::PRESS),
-                                                                      eitor->value("passable", false)));
-                    } else if(type == "DoorEvent") {
-                        currentMap->addEvent(new Events::DoorEvent(doorsTextures[eitor->at("textures")],
-                                                                   eitor->at("doorType"),
-                                                                   sf::Vector2f(eitor->at("position")[0],
-                                                                                eitor->at("position")[1]),
-                                                                   sf::Vector2i(eitor->at("tp").at("position")[0],
-                                                                                eitor->at("tp").at("position")[1]),
-                                                                   eitor->at("tp").at("map"),
-                                                                   eitor->value("trigger", Events::EventTrigger::GO_IN),
-                                                                   eitor->at("tp").value("side", Side::NO_MOVE),
-                                                                   eitor->value("sides", SIDE_ALL),
-                                                                   eitor->value("passable", true)));
-                    } else if(type == "TPEvent") {
-                        currentMap->addEvent(new Events::TPEvent(eventsTextures[eitor->at("textures")],
-                                                                 eitor->at("trigger"),
-                                                                 sf::Vector2f(eitor->at("position")[0],
-                                                                              eitor->at("position")[1]),
-                                                                 sf::Vector2i(eitor->at("tp").at("position")[0],
-                                                                              eitor->at("tp").at("position")[1]),
-                                                                 eitor->at("tp").at("map"),
-                                                                 eitor->at("tp").value("side", Side::NO_MOVE),
-                                                                 eitor->value("side", SIDE_ALL),
-                                                                 eitor->value("passable", true)));
-                    } else if(type == "TalkingCharaEvent") {
-                        currentMap->addEvent(new Events::TalkingCharaEvent(charaTextures[eitor->at("textures")],
-                                                                           sf::Vector2f(eitor->at("position")[0],
-                                                                                        eitor->at("position")[1]),
-                                                                           dialogs,
-                                                                           eitor->value("side", Side::TO_UP),
-                                                                           eitor->value("trigger", Events::EventTrigger::PRESS),
-                                                                           eitor->value("moveStyle", Events::MoveStyle::NO_MOVE),
-                                                                           charaPath,
-                                                                           eitor->value("passable", false),
-                                                                           eitor->value("interactionSide", SIDE_ALL)));
-                    } else if(type == "TrainerEvent") {
-                        std::vector<std::vector<std::string>> defeatedKeys = eitor->at("dialogAfter");
-                        std::vector<OpString> defeatedDialog;
-                        for(unsigned int i = 0; i < defeatedKeys.size(); i++) {
-                            std::string key = defeatedKeys[i][0];
-                            std::vector<sf::String *> toAdd;
-                            for(unsigned int j = 1; j < defeatedKeys[i].size(); j++) {
-                                toAdd.push_back(completions[defeatedKeys[i][j]]);
-                            }
-                            defeatedDialog.push_back(OpString(key, toAdd));
-                        }
-                        currentMap->addEvent(new Events::TrainerEvent(charaTextures[eitor->at("textures")],
-                                                                      sf::Vector2f(eitor->at("position")[0],
-                                                                                   eitor->at("position")[1]),
-                                                                      trainers[eitor->at("trainer")],
-                                                                      dialogs,
-                                                                      defeatedDialog,
-                                                                      eitor->value("side", Side::TO_UP),
-                                                                      eitor->value("trigger", Events::EventTrigger::PRESS),
-                                                                      eitor->value("moveStyle", Events::MoveStyle::NO_MOVE),
-                                                                      charaPath,
-                                                                      eitor->value("passable", false),
-                                                                      eitor->value("interactionSide", SIDE_ALL)));
-                    }
-                }
+                
             }
 
             mapsItor = maps.begin();
