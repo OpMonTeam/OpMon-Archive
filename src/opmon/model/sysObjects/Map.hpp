@@ -9,6 +9,8 @@ File under GNU GPL v3.0 license
 #define MAP_HPP
 
 #include "Events.hpp"
+#include "../../../nlohmann/json.hpp"
+
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <string>
@@ -19,6 +21,8 @@ namespace OpMon {
 
         class Event;
 
+	class OverworldData;
+	
         /**
 	   Class defining a specific place in a game, containing the event, the animated objects and the map layers
 	*/
@@ -41,9 +45,13 @@ namespace OpMon {
             std::vector<Event *> events;
 
             std::vector<std::string> animatedElements;
+			
+	    nlohmann::json jsonData;
+	    bool loaded = false;
 
           public:
             Map(std::vector<int> const &layer1, std::vector<int> const &layer2, std::vector<int> const &layer3, int w, int h, bool indoor, std::string const &bg, std::vector<std::string> const &animatedElements = std::vector<std::string>());
+			Map(nlohmann::json jsonData);
             ~Map();
             int getH() const {
                 return h;
@@ -54,6 +62,9 @@ namespace OpMon {
             bool isIndoor() const {
                 return indoor;
             }
+	    bool isLoaded() const {
+		return loaded;
+	    }
             sf::Vector2i getDimensions() const {
                 return sf::Vector2i(w, h);
             }
@@ -78,8 +89,7 @@ namespace OpMon {
             std::vector<Event *> getEvent(sf::Vector2i position) const;
             std::vector<Event *> &getEvents() {
                 return events;
-            };
-            void debugInfo();
+            }
             void updateElements(sf::RenderTexture &frame);
 
             int getCurrentTileCode(sf::Vector2i const &pos, int layer) const;
@@ -87,6 +97,10 @@ namespace OpMon {
             int getTileCollision(int tile) const;
 
             int getCollision(sf::Vector2i const &pos) const;
+			
+	    Map* loadMap(OverworldData &data);
+
+	    std::string toDebugString();
         };
     } // namespace Model
 } // namespace OpMon

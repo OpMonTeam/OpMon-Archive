@@ -133,14 +133,14 @@ namespace OpMon {
         void Overworld::tp(std::string toTp, sf::Vector2i pos) {
             data.getPlayer().tp(toTp, pos);
             current = data.getCurrentMap();
-            character.setPosition(pos.x SQUARES - 16, pos.y SQUARES);
+	    character.setPosition(pos.x SQUARES - 16, pos.y SQUARES);
             resetCamera();
             //If the music is the same, the program must do nothing. Else, the music will reboot and it's ugly.
             if(musicPath != current->getBg()) {
                 setMusic(current->getBg());
             }
 
-            //Recretes the layers
+            //Recreates the layers
             layer1 = std::make_unique<MapLayer>(current->getDimensions(), current->getLayer1());
             layer2 = std::make_unique<MapLayer>(current->getDimensions(), current->getLayer2());
             layer3 = std::make_unique<MapLayer>(current->getDimensions(), current->getLayer3());
