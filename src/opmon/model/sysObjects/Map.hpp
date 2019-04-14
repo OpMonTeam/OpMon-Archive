@@ -10,6 +10,7 @@ File under GNU GPL v3.0 license
 
 #include "Events.hpp"
 #include "../../../nlohmann/json.hpp"
+
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <string>
@@ -20,6 +21,8 @@ namespace OpMon {
 
         class Event;
 
+	class OverworldData;
+	
         /**
 	   Class defining a specific place in a game, containing the event, the animated objects and the map layers
 	*/
@@ -43,8 +46,8 @@ namespace OpMon {
 
             std::vector<std::string> animatedElements;
 			
-			nlohmann::json jsonData;
-			bool loaded = false;
+	    nlohmann::json jsonData;
+	    bool loaded = false;
 
           public:
             Map(std::vector<int> const &layer1, std::vector<int> const &layer2, std::vector<int> const &layer3, int w, int h, bool indoor, std::string const &bg, std::vector<std::string> const &animatedElements = std::vector<std::string>());
@@ -59,6 +62,9 @@ namespace OpMon {
             bool isIndoor() const {
                 return indoor;
             }
+	    bool isLoaded() const {
+		return loaded;
+	    }
             sf::Vector2i getDimensions() const {
                 return sf::Vector2i(w, h);
             }
@@ -92,7 +98,9 @@ namespace OpMon {
 
             int getCollision(sf::Vector2i const &pos) const;
 			
-			bool loadMap(OverworldData &data);
+	    Map* loadMap(OverworldData &data);
+
+	    std::string toDebugString();
         };
     } // namespace Model
 } // namespace OpMon
