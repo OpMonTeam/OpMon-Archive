@@ -111,7 +111,7 @@ namespace OpMon {
             mapsJsonFile >> mapsJson;
             trainersJsonFile >> trainersJson;
 			
-			/* Trainers loading */
+	    /* Trainers loading */
             for(auto itor = trainersJson.begin(); itor != trainersJson.end(); ++itor) {
                 OpTeam *team = new Model::OpTeam(itor->at("name"));
                 for(auto opmonItor = itor->at("team").begin(); opmonItor != itor->at("team").end(); ++opmonItor) {
@@ -127,12 +127,11 @@ namespace OpMon {
                 trainers.emplace(itor->at("name"), team);
             }
 
-            std::map<std::string, sf::String *> completions;
             completions.emplace("playername", player->getNameP());
 
-			/* Maps loading */
+	    /* Maps loading */
             for(auto itor = mapsJson.begin(); itor != mapsJson.end(); ++itor) {
-                
+                maps.emplace(itor->at("id"), new Map(*itor));
             }
 
             mapsItor = maps.begin();
@@ -144,6 +143,19 @@ namespace OpMon {
             }
             delete(player);
         }
+
+	Map* OverworldData::getMap(std::string const& map){
+	    if(!maps[map]->isLoaded()){
+		Map* newMap = maps[map]->loadMap(*this);
+		delete(maps[map]);
+		maps[map] = newMap;
+	    }
+	    return maps[map];
+	}
+	
+	Map* OverworldData::getCurrentMap() {
+	    return getMap(player->getMapId());
+	}
 
     } // namespace Model
 } // namespace OpMon
