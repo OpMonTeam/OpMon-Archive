@@ -6,6 +6,7 @@ File under GNU GPL v3.0 license
 */
 #include "Map.hpp"
 #include "../../start/Core.hpp"
+#include "../../../utils/log.hpp"
 #include "../storage/InternalFiles.hpp"
 #include "Events.hpp"
 #include "../storage/OverworldData.hpp"
@@ -55,6 +56,7 @@ namespace OpMon {
 		
 	Map* Map::loadMap(OverworldData &data){
 	    if(!loaded){
+		Utils::Log::oplog("Loading " + std::string(jsonData.at("id")));
 		Map *currentMap = new Map(jsonData.at("layers")[0],
                                           jsonData.at("layers")[1],
                                           jsonData.at("layers")[2],
