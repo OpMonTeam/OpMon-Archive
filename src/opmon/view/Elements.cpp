@@ -7,6 +7,7 @@ File under GNU GPL v3.0 license
 #include "Elements.hpp"
 #include "../../utils/defines.hpp"
 #include "../model/storage/ResourceLoader.hpp"
+#include <cmath>
 
 namespace OpMon {
     namespace View {
@@ -57,6 +58,55 @@ namespace OpMon {
 
             target.draw(tiles, states);
         }
+
+	Movement::Movement(std::vector<int> const& xformula, std::vector<int> const& yformula, int const& time, bool const& relative, sf::Sprite* sprite)
+	    : xformula(xformula)
+	    , yformula(yformula)
+	    , time(time)
+	    , relative(relative)
+	    , sprite(sprite){
+	    
+	}
+
+	sf::Sprite* Movement::attach(sf::Sprite* sprite, bool replace){
+	    if(this->sprite != nullptr && !replace){
+		return nullptr;
+	    }
+	    t = 0;
+	    sf::Sprite* oldSprite = sprite;
+	    this->sprite = sprite;
+	    return oldSprite;
+	}
+
+	sf::Sprite* Movement::detach(){
+	    sf::Sprite* toReturn = sprite;
+	    sprite = nullptr;
+	    return toReturn;
+	}
+
+	bool Movement::empty(){
+	    return sprite == nullptr;
+	}
+
+	bool Movement::apply(){
+	    if(empty() || (t > time && time != 0) ){
+		return false;
+	    }
+	    
+	    int coordX = 0;
+	    for(unsigned int i = 0; i < xformula.size(); i++){
+		coordX += xformula[i] * pow(t, i);
+	    }
+	    int coordY = 0;
+	    for(unsigned int i = 0; i < yformula.size(); i++){
+		coordY += yformula[i] * pow(t, i);
+	    }
+
+	    sprite->setPosition( (relative ? sprite->getPosition().x : 0) + coordX,
+				(relative ? sprite->getPosition().y : 0) + coordY);
+	    t++;
+	    return true;
+	}
 
     } // namespace View
 } // namespace OpMon
