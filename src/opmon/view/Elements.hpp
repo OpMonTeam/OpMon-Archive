@@ -25,11 +25,26 @@ namespace OpMon {
             MapLayer(sf::Vector2i size, const int tilesCode[]);
         };
 
+	enum class MovementMode : unsigned int {
+	    POLYNOMIAL,
+	    SINUSOIDAL
+	};
+	
 	class Movement {
 	private:
 	    /* When the movement ends, from 0 to this. Set to 0 for no limit */
 	    const unsigned int time;
-	    /* Formula exemple : {2, 8, 1, 6, 9} will be used as 2 + 8t + t² + 6t^3 + 9t^4 */
+
+	    MovementMode modeX = MovementMode::POLYNOMIAL;
+	    MovementMode modeY = MovementMode::POLYNOMIAL;
+	    
+	    /* Polynomial Formula exemple : {2, 8, 1, 6, 9} will be used as 2 + 8t + t² + 6t^3 + 9t^4 */
+	    /* Sinusoidal Formula exemple : {0, 2, 3, -5, 1, 1, -3, 4, 2, -4} will be used as + 2sin(3t - 5) + 1 - 3cos(4t + 2) - 4
+	       Explication : The array must have this form : 
+	       {sinus (0) or cosinus (1), a, b, c, d} will give a*sin/cos(b*t + c) + d.
+	       The format can be repeated to add each part to the total (See first exemple)
+	       The cosinus and sinus function are the radian ones.
+	    */
 	    const std::vector<int> xformula;
 	    const std::vector<int> yformula;
 	    /* If true, the movement will be relative to the object's position */

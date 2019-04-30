@@ -92,14 +92,40 @@ namespace OpMon {
 	    if(empty() || (t > time && time != 0) ){
 		return false;
 	    }
-	    
+
 	    int coordX = 0;
-	    for(unsigned int i = 0; i < xformula.size(); i++){
-		coordX += xformula[i] * pow(t, i);
-	    }
 	    int coordY = 0;
-	    for(unsigned int i = 0; i < yformula.size(); i++){
-		coordY += yformula[i] * pow(t, i);
+
+	    if(modeX == MovementMode::POLYNOMIAL){
+		for(unsigned int i = 0; i < xformula.size(); i++){
+		    coordX += xformula[i] * pow(t, i);
+		}
+	    
+		
+	    }else if(modeX == MovementMode::SINUSOIDAL){
+		if(xformula.size() % 5 != 0){
+		    handleError("Incorrect siusoidal formula in Movement (xforumla)");
+		    return false;
+		}
+		for(unsigned int i = 0; i < xformula.size(); i+=5){
+		    coordX += xformula[i + 1] * round((xformula[i] == 0) ? sin(xformula[i + 2] * t + xformula[i + 3]) : sin(xformula[i + 2] * t + xformula[i + 3])) + xformula[i + 4];
+		}
+	    }
+
+	    if(modeY == MovementMode::POLYNOMIAL){
+		for(unsigned int i = 0; i < yformula.size(); i++){
+		    coordY += yformula[i] * pow(t, i);
+		}
+	    }else if(modeY == MovementMode::SINUSOIDAL){
+		if(yformula.size() % 5 != 0){
+		    handleError("Incorrect siusoidal formula in Movement (yforumla)");
+		    return false;
+		}
+
+		for(unsigned int i = 0; i < yformula.size(); i+=5){
+		    coordX += yformula[i + 1] * round((yformula[i] == 0) ? sin(xformula[i + 2] * t + yformula[i + 3]) : sin(xformula[i + 2] * t + yformula[i + 3])) + yformula[i + 4];
+		}
+		
 	    }
 
 	    sprite->setPosition( (relative ? sprite->getPosition().x : 0) + coordX,
