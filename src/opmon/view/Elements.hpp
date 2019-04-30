@@ -26,8 +26,8 @@ namespace OpMon {
         };
 
 	enum class MovementMode : unsigned int {
-	    POLYNOMIAL,
-	    SINUSOIDAL
+	    POLYNOMIAL = 0,
+	    SINUSOIDAL = 1
 	};
 	
 	class Movement {
@@ -54,7 +54,7 @@ namespace OpMon {
 	    unsigned int t = 0;
 	public :
 	    
-	    Movement(std::vector<int> const& xformula, std::vector<int> const& yformula, int const& time, bool const& relative = true, sf::Sprite* sprite = nullptr);
+	    Movement(MovementMode modeX, MovementMode modeY, std::vector<int> const& xformula, std::vector<int> const& yformula, int const& time, bool const& relative = true, sf::Sprite* sprite = nullptr);
 
 	    /* Attack a sprite to the object. Set replace to true to replace the current sprite if there is one.
 	       Returns a pointer to the old sprite, nullptr if it was empty or if replace = false and one was already present */
@@ -72,6 +72,8 @@ namespace OpMon {
 	       Returns true otherwise
 	    */
 	    bool apply();
+	    /* Changes the formulas' signs. Used in the battles to set the movement to the defender.*/
+	    static Movement* mirror(Movement const& movement);
 		
 	};
 

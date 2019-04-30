@@ -59,8 +59,10 @@ namespace OpMon {
             target.draw(tiles, states);
         }
 
-	Movement::Movement(std::vector<int> const& xformula, std::vector<int> const& yformula, int const& time, bool const& relative, sf::Sprite* sprite)
-	    : xformula(xformula)
+	Movement::Movement(MovementMode modeX, MovementMode modeY, std::vector<int> const& xformula, std::vector<int> const& yformula, int const& time, bool const& relative, sf::Sprite* sprite)
+	    : modeX(modeX)
+	    , modeY(modeY)
+	    , xformula(xformula)
 	    , yformula(yformula)
 	    , time(time)
 	    , relative(relative)
@@ -96,13 +98,14 @@ namespace OpMon {
 	    int coordX = 0;
 	    int coordY = 0;
 
-	    if(modeX == MovementMode::POLYNOMIAL){
+	    switch(modeX){
+	    case MovementMode::POLYNOMIAL:
 		for(unsigned int i = 0; i < xformula.size(); i++){
 		    coordX += xformula[i] * pow(t, i);
 		}
-	    
-		
-	    }else if(modeX == MovementMode::SINUSOIDAL){
+		break;
+
+	    case MovementMode::SINUSOIDAL:
 		if(xformula.size() % 5 != 0){
 		    handleError("Incorrect siusoidal formula in Movement (xforumla)");
 		    return false;
@@ -110,13 +113,17 @@ namespace OpMon {
 		for(unsigned int i = 0; i < xformula.size(); i+=5){
 		    coordX += xformula[i + 1] * round((xformula[i] == 0) ? sin(xformula[i + 2] * t + xformula[i + 3]) : sin(xformula[i + 2] * t + xformula[i + 3])) + xformula[i + 4];
 		}
+		break;
 	    }
 
-	    if(modeY == MovementMode::POLYNOMIAL){
+	    switch(modeY){
+	    case MovementMode::POLYNOMIAL:
 		for(unsigned int i = 0; i < yformula.size(); i++){
 		    coordY += yformula[i] * pow(t, i);
 		}
-	    }else if(modeY == MovementMode::SINUSOIDAL){
+		break;
+
+	    case MovementMode::SINUSOIDAL:
 		if(yformula.size() % 5 != 0){
 		    handleError("Incorrect siusoidal formula in Movement (yforumla)");
 		    return false;
@@ -125,13 +132,53 @@ namespace OpMon {
 		for(unsigned int i = 0; i < yformula.size(); i+=5){
 		    coordX += yformula[i + 1] * round((yformula[i] == 0) ? sin(xformula[i + 2] * t + yformula[i + 3]) : sin(xformula[i + 2] * t + yformula[i + 3])) + yformula[i + 4];
 		}
-		
+		break;
 	    }
-
+	    
 	    sprite->setPosition( (relative ? sprite->getPosition().x : 0) + coordX,
 				(relative ? sprite->getPosition().y : 0) + coordY);
 	    t++;
 	    return true;
+	}
+
+	Movement* Movement::mirror(Movement const& movement){
+
+	    std::vector<int> xformula = movement.xformula;
+	    std::vector<int> yformula = movement.yformula;
+	    switch(movement.modeX){
+	    case MovementMode::POLYNOMIAL:
+		for(unsigned int i = 0; i < xformula.size(); i++){
+		    xformula[i] = 0 - xformula[i];
+		}
+		break;
+		
+	    case MovementMode::SINUSOIDAL:
+		for(unsigned int i = 0; i < xformula.size(); i++){
+		    if(i % 5 != 0){
+			xformula[i] = 0 - xformula[i];
+		    }
+		}
+		break;
+	    }
+
+	    switch(movement.modeY){
+	    case MovementMode::POLYNOMIAL:
+		for(unsigned int i = 0; i < yformula.size(); i++){
+		    yformula[i] = 0 - yformula[i];
+		}
+		break;
+		
+	    case MovementMode::SINUSOIDAL:
+		for(unsigned int i = 0; i < yformula.size(); i++){
+		    if(i % 5 != 0){
+			yformula[i] = 0 - yformula[i];
+		    }
+		}
+		break;
+	    }
+
+	    return new Movement(movement.modeX, movement.modeY, xformula, yformula, movement.time, movement.relative, movement.sprite);
+	    
 	}
 
     } // namespace View
