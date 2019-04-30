@@ -22,22 +22,27 @@ namespace OpMon {
             CHANGE
         };
 
-        enum class TurnActionType {
-            NOTHING,
-            ATK_UPDATE_HBAR,
-            ATK_USE_ITEM,
-            ATK_STAT_MOD,
-            ATK_OPMON_CBACK,
-            ATK_OPMON_OUT,
-            DIALOG,
-            DEF_UPDATE_HBAR,
-            DEF_USE_ITEM,
-            DEF_STAT_MOD,
-            DEF_OPMON_CBACK,
-            DEF_OPMON_OUT,
-            VICTORY,
-            DEFEAT,
-            RUN
+        enum class TurnActionType : unsigned int{
+            NOTHING = 0,
+            ATK_UPDATE_HBAR = 1,
+            ATK_USE_ITEM = 2,
+            ATK_STAT_MOD = 3,
+            ATK_OPMON_CBACK = 4,
+            ATK_OPMON_OUT = 5,
+            DIALOG = 6,
+            DEF_UPDATE_HBAR = 7,
+            DEF_USE_ITEM = 8,
+            DEF_STAT_MOD = 9,
+            DEF_OPMON_CBACK = 10,
+            DEF_OPMON_OUT = 11,
+            VICTORY = 12,
+            DEFEAT = 13,
+            RUN = 14,
+	    ATK_MOVE = 15,
+	    DEF_MOVE = 16,
+	    ANIMATION = 17,
+	    ATK_MOVE_ANIM = 18,
+	    DEF_MOVE_ANIM = 19
         };
 
         struct TurnAction {
