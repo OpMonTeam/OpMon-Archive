@@ -125,6 +125,7 @@ namespace OpMon {
                                              opmonItor->at("nature")));
                 }
                 trainers.emplace(itor->at("name"), team);
+		Utils::Log::oplog("Loaded trainer " + (std::string) itor->at("name"));
             }
 
             completions.emplace("playername", player->getNameP());
