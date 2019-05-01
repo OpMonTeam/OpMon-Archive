@@ -79,5 +79,41 @@
 		"time" : 0
 	    }],
 	"animations" : ["default"]
+    },
+    {
+	"id" : "Tackle",
+	"power" : 50,
+	"type" : 9,
+	"accuracy" : 100,
+	"special" : false,
+	"status" : false,
+	"criticalRate" : 16,
+	"neverFails" : false,
+	"ppMax" : 35,
+	"priority" : 0,
+	"effects" : [
+	    {
+		"null" : true
+	    },
+	    {
+		"null" : true
+	    },
+	    {
+		"null" : true
+	    }
+	],
+	"animationOrder" : [15, 19],
+	"opMovements" : [
+	    {
+		"mode" : [0, 0],
+		"formulas" : [[0], [0]],
+		"time" : 0
+	    },
+	    {
+		"mode" : [0, 0],
+		"formulas" : [[0], [0]],
+		"time" : 0
+	    }],
+	"animations" : ["default"]
     }
 ]

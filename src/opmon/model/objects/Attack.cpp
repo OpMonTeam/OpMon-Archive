@@ -61,15 +61,22 @@ namespace OpMon {
 		    attackList[idStr].animationOrder.push(itor->at("animationOrder").at(i));
 		}
 		for(auto aitor = itor->at("opMovements").begin(); aitor != itor->at("opMovements").end(); ++aitor){
-		    attackList[idStr].opMovements.push(new View::Movement(aitor->at("mode").at(0), aitor->at("mode").at(1), aitor->at("formulas").at(0), aitor->at("formulas").at(1), aitor->at("time"), aitor->value("relative", true)));
+		    attackList[idStr].opMovements.push(View::Movement(
+							   aitor->at("mode").at(0),
+							   aitor->at("mode").at(1),
+							   aitor->at("formulas").at(0),
+							   aitor->at("formulas").at(1),
+							   aitor->at("time"),
+							   aitor->value("relative", true)));
 		}
 		for(unsigned int i = 0; i < itor->at("animations").size(); i++){
 		    attackList[idStr].animations.push(itor->at("animations").at(i));
 		}
+		Utils::Log::oplog("Loaded attack " + (std::string) itor->at("id"));
             }
         }
 
-        Attack::Attack(std::string nameKey, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::queue<TurnActionType> animationOrder, std::queue<View::Movement*> opMovements, std::queue<std::string> animations, AttackEffect *preEffect, AttackEffect *postEffect, AttackEffect *fails)
+        Attack::Attack(std::string nameKey, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::queue<TurnActionType> animationOrder, std::queue<View::Movement> opMovements, std::queue<std::string> animations, AttackEffect *preEffect, AttackEffect *postEffect, AttackEffect *fails)
           : name(Utils::OpString(nameKey))
           , power(power)
           , priority(priority)
@@ -112,10 +119,6 @@ namespace OpMon {
             delete(this->preEffect);
             delete(this->postEffect);
             delete(this->failEffect);
-	    while(opMovements.size() != 0){
-		delete(opMovements.front());
-		opMovements.pop();
-	    }
         }
 
         /* Return 1 : Inform to do the same attack at the next turn.
