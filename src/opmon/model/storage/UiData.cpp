@@ -80,40 +80,11 @@ namespace OpMon {
                                                         itor->at("curve"),
                                                         itor->at("captureRate"),
                                                         opDexNumber));
+		Utils::Log::oplog("Loaded OpMon n°" + opDexNumberStr + " : " + listOp[opDexNumber]->getName());
             }
 
-            /*nlohmann::json toWrite;
-
-	    for(auto itor = listOp.begin(); itor != listOp.end(); ++itor){
-	      Species* species = itor->second;
-	      nlohmann::json cS;
-	      cS["opDex"] = itor->first;
-	      cS["atk"] = species->getBaseAtk();
-	      cS["def"] = species->getBaseDef();
-	      cS["atkSpe"] =  species->getBaseAtkSpe();
-	      cS["defSpe"] = species->getBaseDefSpe();
-	      cS["spe"] = species->getBaseSpe();
-	      cS["HP"] = species->getBaseHP();
-	      cS["types"] =  {species->getType1(), species->getType2()};
-	      cS["evolution"] = {
-		{"type", ((species->getEvolType() == nullptr) ? "no" : "level")},
-		{"level", species->getNiveauEvolution()},
-		{"species", ((species->getEvolType() == nullptr) ?  species->getEvolType()->getEvolution()->getOpdexNumber() : -1)}
-	      };
-	      cS["evs"] = species->getEv();
-	      cS["height"] =  species->getHeight();
-	      cS["weight"] = species->getWeight();
-	      cS["expGiven"] = species->getExp();
-	      cS["curve"] = species->getExpMax();
-	      cS["captureRate"] = species->getCaptureRate();
-	      toWrite.push_back(cS);
-
-	      }
-
-	    std::ofstream out("opmons.json");
-	    out << toWrite;*/
-
             //Initializating OpMon Sprites
+	    
             //I will use a "for" loop later, I don't use it now to avoid loading errors. I will use it when every sprite will be loaded.
             opSprites.push_back(std::vector<sf::Texture>());
             opSprites.push_back(std::vector<sf::Texture>());

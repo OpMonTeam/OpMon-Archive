@@ -35,19 +35,19 @@ namespace OpMon {
             virtual GameStatus checkEvent(sf::Event const &) { return GameStatus::CONTINUE; }
 
             /**
-       * Update and draw the game.
-       *
-       * This method is called once per frame.
-       */
+	     * Update and draw the game.
+	     *
+	     * This method is called once per frame.
+	     */
             virtual GameStatus update(sf::RenderTexture &frame) = 0;
 
             virtual void suspend(){};
             virtual void resume(){};
 
             /**
-				Loads the next screen. 
-				Method called by Gameloop when the status returned is GameStatus::NEXT
-			*/
+	       Loads the next screen. 
+	       Method called by Gameloop when the status returned is GameStatus::NEXT
+	    */
             virtual void loadNextScreen(){};
 
             std::unique_ptr<AGameScreen> getNextGameScreen() { return std::move(_next_gs); };

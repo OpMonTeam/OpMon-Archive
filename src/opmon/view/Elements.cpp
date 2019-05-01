@@ -59,7 +59,7 @@ namespace OpMon {
             target.draw(tiles, states);
         }
 
-	Movement::Movement(MovementMode modeX, MovementMode modeY, std::vector<int> const& xformula, std::vector<int> const& yformula, int const& time, bool const& relative, sf::Sprite* sprite)
+	Movement::Movement(MovementMode modeX, MovementMode modeY, std::vector<int> xformula, std::vector<int> yformula, int const& time, bool const& relative, sf::Sprite* sprite)
 	    : modeX(modeX)
 	    , modeY(modeY)
 	    , xformula(xformula)
@@ -70,6 +70,11 @@ namespace OpMon {
 	    
 	}
 
+	Movement::~Movement(){
+	    
+	}
+	
+	
 	sf::Sprite* Movement::attach(sf::Sprite* sprite, bool replace){
 	    if(this->sprite != nullptr && !replace){
 		return nullptr;

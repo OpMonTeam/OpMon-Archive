@@ -45,17 +45,19 @@ namespace OpMon {
 	       The format can be repeated to add each part to the total (See first exemple)
 	       The cosinus and sinus function are the radian ones.
 	    */
-	    const std::vector<int> xformula;
-	    const std::vector<int> yformula;
+	    std::vector<int> xformula;
+	    std::vector<int> yformula;
 	    /* If true, the movement will be relative to the object's position */
 	    const bool relative;
 	    /* Sprite to move */
 	    sf::Sprite* sprite;
 	    unsigned int t = 0;
-	public :
+	public:
 	    
-	    Movement(MovementMode modeX, MovementMode modeY, std::vector<int> const& xformula, std::vector<int> const& yformula, int const& time, bool const& relative = true, sf::Sprite* sprite = nullptr);
+	    Movement(MovementMode modeX, MovementMode modeY, std::vector<int> xformula, std::vector<int> yformula, int const& time, bool const& relative = true, sf::Sprite* sprite = nullptr);
 
+	    ~Movement();
+	    
 	    /* Attack a sprite to the object. Set replace to true to replace the current sprite if there is one.
 	       Returns a pointer to the old sprite, nullptr if it was empty or if replace = false and one was already present */
 	    sf::Sprite* attach(sf::Sprite* sprite, bool replace = false);
