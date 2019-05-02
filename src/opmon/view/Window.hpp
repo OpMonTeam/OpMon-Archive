@@ -24,6 +24,7 @@ namespace OpMon {
             void close();
             void open();
             void refresh();
+	    void reboot();
         };
     } // namespace View
 } // namespace OpMon
