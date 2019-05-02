@@ -68,6 +68,12 @@ namespace OpMon {
                 }
             }
 
+	    if(status == GameStatus::WIN_REBOOT){
+		window->reboot();
+		status = GameStatus::CONTINUE;
+	    }
+	    
+	    
             if(status == GameStatus::CONTINUE) {
                 // frame update & draw
                 status = ctrl->update(window->getFrame());
