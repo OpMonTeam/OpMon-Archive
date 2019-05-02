@@ -74,8 +74,7 @@ namespace OpMon {
                             } else {
                                 Model::OptionsSave::addOrModifParam("fullscreen", "true");
                             }
-                            reboot = true;
-                            return GameStatus::STOP;
+                            return GameStatus::WIN_REBOOT;
                         case LANGUAGE:
                             data.getUiDataPtr()->getJukebox().playSound("push");
                             menu.setCurrentOption(View::OptionType::LANG);

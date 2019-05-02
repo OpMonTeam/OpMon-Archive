@@ -13,6 +13,7 @@ namespace OpMon {
         NEXT,
         PREVIOUS,
         NEXT_NLS, //NLS stands for No Loading Screen
-        PREVIOUS_NLS
+        PREVIOUS_NLS,
+	WIN_REBOOT
     };
 }

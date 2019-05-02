@@ -48,6 +48,12 @@ namespace OpMon {
             oplog("Window closed. No error detected. Goodbye.");
         }
 
+	void Window::reboot(){
+	    close();
+	    open();
+	}
+	
+
         void Window::refresh() {
             frame.display();
 	    sf::Texture frameTexture = frame.getTexture();
