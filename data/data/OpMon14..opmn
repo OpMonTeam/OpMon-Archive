@@ -1,0 +1,27 @@
+{
+    "HP":55,
+    "atk":81,
+    "atkSpe":50,
+    "captureRate":127,
+    "curve":1000000,
+    "def":60,
+    "defSpe":70,
+    "evolution":{
+      "level":-1,
+      "species":-1,
+      "type":"no"
+    },
+    "evs":[
+      2,
+      5
+    ],
+    "expGiven":127,
+    "height":1.5,
+    "opDex":14,
+    "spe":97,
+    "types":[
+      9,
+      3
+    ],
+    "weight":38.5
+  }
