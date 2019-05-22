@@ -27,7 +27,7 @@ namespace OpMon {
                 fullScreen = true;
                 window.create(sf::VideoMode::getFullscreenModes().at(0), "OpMon Lazuli", sf::Style::Fullscreen, settings);
             } else {
-                window.create(sf::VideoMode(512, 512), "OpMon Lazuli", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize, settings);
+                window.create(sf::VideoMode(512, 512), "OpMon Lazuli", sf::Style::Default, settings);
             }
 
             sf::Image icon;
@@ -38,7 +38,7 @@ namespace OpMon {
 
             oplog("Window initialized!");
             //window.setVerticalSyncEnabled(true);
-            window.setFramerateLimit(30);
+            window.setFramerateLimit(60);
             window.setKeyRepeatEnabled(false);
         }
 
@@ -65,10 +65,26 @@ namespace OpMon {
                 sprite.setScale(coef, coef);
                 sprite.setPosition(((window.getSize().x / 2) - (sprite.getGlobalBounds().width / 2)), 0);
             }
+					sf::Event event;
+					while (window.pollEvent(event))
+					{
+   				 if (event.type == sf::Event::Close)
+					 {
+						 window.close();
+					 }
 
-            window.clear(sf::Color::Black);
-            window.draw(sprite);
-            window.display();
+    			// catch the resize events
+          if (event.type == sf::Event::Resized)
+          {
+     	    // update the view to the new size of the window
+     	    sf::FloatRect visibleArea(0.f, 0.f, event.size.width, event.size.height);
+    	    window.setView(sf::View(visibleArea));
+  		    }
+          }
+
+           window.clear(sf::Color::Black);
+           window.draw(sprite);
+           window.display();
         }
 
     } // namespace View
