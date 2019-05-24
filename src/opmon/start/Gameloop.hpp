@@ -1,7 +1,7 @@
 /*
 Gameloop.hpp
 Author : Cyriel
-Contributor : Stelyus, BAKFR, Navet56
+Contributor : Stelyus, BAKFR, Navet56, PyroFlareX
 File under GNU GPL v3.0
 */
 
