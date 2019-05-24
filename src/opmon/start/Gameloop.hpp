@@ -1,7 +1,7 @@
 /*
 Gameloop.hpp
 Author : Cyriel
-Contributor : Stelyus, BAKFR, Navet56
+Contributor : Stelyus, BAKFR, Navet56, PyroFlareX
 File under GNU GPL v3.0
 */
 
@@ -13,6 +13,7 @@ File under GNU GPL v3.0
 #include "./GameStatus.hpp"
 #include <memory>
 #include <stack>
+#include <functional>
 
 namespace OpMon {
 
@@ -21,14 +22,14 @@ namespace OpMon {
         GameLoop();
         ~GameLoop() = default;
 
-        GameStatus operator()();
+        GameStatus runLoop();
 
         /**
          * Checks the event to know if the game must be stopped.
          * Returns GameStatus::STOP if escape is pressed or if the game is closed.
          * Returns GameStatus::CONTINUE if the game must continue.
          */
-        GameStatus _checkQuit(const sf::Event &event);
+        GameStatus CheckforClose(sf::Event &event);
 
         std::unique_ptr<Model::UiData> uidata;
         std::stack<std::unique_ptr<Controller::AGameScreen>> _gameScreens;

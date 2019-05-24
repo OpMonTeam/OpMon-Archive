@@ -1,7 +1,7 @@
 /*
 Gameloop.cpp
 Author : Cyriel
-Contributor : BAKFR
+Contributor : BAKFR, PyroFlareX
 File under GNU GPL v3.0 license
 */
 #include "./Gameloop.hpp"
@@ -14,8 +14,6 @@ File under GNU GPL v3.0 license
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Window/Event.hpp>
 
-#include <functional>
-
 namespace OpMon {
 
     GameLoop::GameLoop()
@@ -24,11 +22,12 @@ namespace OpMon {
         _gameScreens.push(std::move(firstCtrl));
     }
 
-    GameStatus GameLoop::operator()() {
+    GameStatus GameLoop::runLoop() {
 
         std::unique_ptr<View::Window, std::function<void(View::Window *)>> window(new View::Window(), [](View::Window *w) {
             w->close();
         });
+
         window->open();
 
         sf::Texture loadTx;
@@ -52,27 +51,30 @@ namespace OpMon {
 
             //Gets the current game screen's controller
             auto *ctrl = _gameScreens.top().get();
+
             sf::Event event;
 
             //process all pending SFML events
             while(status == GameStatus::CONTINUE) {
                 bool isEvent = window->getWindow().pollEvent(event);
+
+                window->handleEvent(&event);
+
                 if(isEvent == false)
                     event.type = sf::Event::SensorChanged;
-                status = _checkQuit(event);
+                status = CheckforClose(event);
                 if(status == GameStatus::STOP)
                     break;
                 status = ctrl->checkEvent(event);
                 if(isEvent == false) {
                     break;
                 }
-            }
+}
 
-	    if(status == GameStatus::WIN_REBOOT){
-		window->reboot();
-		status = GameStatus::CONTINUE;
-	    }
-	    
+	        if(status == GameStatus::WIN_REBOOT){
+    		window->reboot();
+	    	status = GameStatus::CONTINUE;
+	        }
 	    
             if(status == GameStatus::CONTINUE) {
                 // frame update & draw
@@ -112,8 +114,9 @@ namespace OpMon {
         return GameStatus::STOP;
     }
 
-    GameStatus GameLoop::_checkQuit(const sf::Event &event) {
-        if(event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+    GameStatus GameLoop::CheckforClose(sf::Event &event) {
+        //process all pending SFML events
+        if(event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {;
             return GameStatus::STOP;
         }
 
