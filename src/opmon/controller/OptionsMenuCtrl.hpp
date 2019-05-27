@@ -37,7 +37,7 @@ namespace OpMon {
           public:
             OptionsMenuCtrl(Model::UiData *data);
             GameStatus checkEvent(sf::Event const &event) override;
-            GameStatus update(sf::RenderTexture &frame) override;
+            GameStatus update(sf::RenderWindow &frame) override;
 
             const std::vector<std::string> controlsName{{"up", "down", "left", "right", "talk", "interact"}};
             void resume();
