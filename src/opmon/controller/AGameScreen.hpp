@@ -7,7 +7,7 @@ File under GNU GPL v3.0 license
 #pragma once
 
 #include "../start/GameStatus.hpp"
-#include <SFML/Graphics/RenderTexture.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
 #include <memory>
 
@@ -39,7 +39,7 @@ namespace OpMon {
        *
        * This method is called once per frame.
        */
-            virtual GameStatus update(sf::RenderTexture &frame) = 0;
+            virtual GameStatus update(sf::RenderWindow &frame) = 0;
 
             virtual void suspend(){};
             virtual void resume(){};
