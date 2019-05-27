@@ -33,7 +33,7 @@ namespace OpMon {
                 return current;
             }
 
-            GameStatus operator()(sf::RenderTexture &frame);
+            GameStatus operator()(sf::RenderWindow &frame);
 
             void tp(std::string toTp, sf::Vector2i pos);
 
@@ -99,7 +99,7 @@ namespace OpMon {
             }
 
           private:
-            void printElements(sf::RenderTexture &frame);
+            void printElements(sf::RenderWindow &frame);
 
             void printCollisionLayer(sf::RenderTarget &frame);
 
