@@ -16,7 +16,7 @@ File under GNU GPL v3.0
 
 namespace OpMon {
     namespace View {
-        GameStatus Battle::operator()(sf::RenderTexture &frame, Model::TurnData const &atkTurn, Model::TurnData const &defTurn, std::queue<Model::TurnAction> &actionQueue, bool *turnActivated, bool atkFirst) {
+        GameStatus Battle::operator()(sf::RenderWindow &frame, Model::TurnData const &atkTurn, Model::TurnData const &defTurn, std::queue<Model::TurnAction> &actionQueue, bool *turnActivated, bool atkFirst) {
             std::cout << curPos.getValue() << std::endl;
             //Removes camera
             frame.setView(frame.getDefaultView());
