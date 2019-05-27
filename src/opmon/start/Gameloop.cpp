@@ -1,7 +1,7 @@
 /*
 Gameloop.cpp
 Author : Cyriel
-Contributor : BAKFR, PyroFlareX
+Contributor : BAKFR
 File under GNU GPL v3.0 license
 */
 #include "./Gameloop.hpp"
