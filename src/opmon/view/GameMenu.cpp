@@ -25,7 +25,7 @@ namespace OpMon {
             }
         }
 
-        GameStatus GameMenu::operator()(sf::RenderTexture &frame) {
+        GameStatus GameMenu::operator()(sf::RenderWindow &frame) {
             frame.draw(background);
             frame.draw(menuBg);
             frame.draw(selections[curPos]);
