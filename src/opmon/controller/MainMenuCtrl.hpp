@@ -28,7 +28,7 @@ namespace OpMon {
             MainMenuCtrl(Model::UiData *data);
 
             GameStatus checkEvent(sf::Event const &event) override;
-            GameStatus update(sf::RenderTexture &frame) override;
+            GameStatus update(sf::RenderWindow &frame) override;
 
             void loadNextScreen() override;
 
