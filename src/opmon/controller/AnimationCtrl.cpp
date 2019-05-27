@@ -11,7 +11,7 @@ namespace OpMon {
         AnimationCtrl::AnimationCtrl(std::unique_ptr<View::Animations::Animation> view)
           : view(std::move(view)) {}
 
-        GameStatus AnimationCtrl::update(sf::RenderTexture &frame) {
+        GameStatus AnimationCtrl::update(sf::RenderWindow &frame) {
             return (*view)(frame);
         }
     } // namespace Controller
