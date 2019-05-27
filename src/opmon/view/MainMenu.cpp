@@ -66,7 +66,7 @@ namespace OpMon {
             data.getUiDataPtr()->getJukebox().play("Title");
         }
 
-        void MainMenu::draw(sf::RenderTexture &frame, int curPosI) {
+        void MainMenu::draw(sf::RenderWindow &frame, int curPosI) {
             frame.clear(sf::Color::Black);
 
             frame.draw(bg);
