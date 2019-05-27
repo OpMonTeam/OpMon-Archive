@@ -31,7 +31,7 @@ namespace OpMon {
             void pause();
             void play();
 
-            void draw(sf::RenderTexture &frame, int curPosI);
+            void draw(sf::RenderWindow &frame, int curPosI);
 
           private:
             const std::size_t totalView;
