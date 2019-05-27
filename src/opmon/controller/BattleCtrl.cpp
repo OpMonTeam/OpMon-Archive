@@ -27,7 +27,7 @@ namespace OpMon {
             initBattle(0, 0);
         }
 
-        GameStatus BattleCtrl::update(sf::RenderTexture &frame) {
+        GameStatus BattleCtrl::update(sf::RenderWindow &frame) {
             GameStatus returned = view(frame, atkTurn, defTurn, actionsQueue, &turnActivated);
             return returned;
         }
