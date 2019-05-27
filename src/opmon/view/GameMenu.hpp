@@ -24,7 +24,7 @@ namespace OpMon {
           public:
             GameMenu(Model::GameMenuData &data);
 
-            GameStatus operator()(sf::RenderTexture &frame);
+            GameStatus operator()(sf::RenderWindow &frame);
 
             void setCurPos(int newCurPos);
         };
