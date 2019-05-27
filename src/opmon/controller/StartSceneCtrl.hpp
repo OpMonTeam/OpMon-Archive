@@ -11,7 +11,7 @@ File under GNU GPL v3.0 license
 #include "../start/Core.hpp"
 #include "../view/StartScene.hpp"
 #include "AGameScreen.hpp"
-#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 #include <memory>
 
 namespace OpMon {
@@ -31,7 +31,7 @@ namespace OpMon {
           public:
             StartSceneCtrl(Model::UiData *data);
             GameStatus checkEvent(sf::Event const &event) override;
-            GameStatus update(sf::RenderTexture &frame) override;
+            GameStatus update(sf::RenderWindow &frame) override;
 
             void loadNextScreen() override;
             void suspend() override;
