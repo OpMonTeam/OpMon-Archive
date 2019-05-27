@@ -31,7 +31,7 @@ namespace OpMon {
             GameMenuCtrl(Model::GameMenuData &data, Model::Player &player);
 
             GameStatus checkEvent(sf::Event const &event) override;
-            GameStatus update(sf::RenderTexture &frame) override;
+            GameStatus update(sf::RenderWindow &frame) override;
 
             virtual void loadNextScreen();
             virtual void suspend();
