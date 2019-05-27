@@ -181,7 +181,7 @@ namespace OpMon {
             view.play();
         }
 
-        GameStatus OptionsMenuCtrl::update(sf::RenderTexture &frame) {
+        GameStatus OptionsMenuCtrl::update(sf::RenderWindow &frame) {
             view.draw(frame);
             return GameStatus::CONTINUE;
         }
