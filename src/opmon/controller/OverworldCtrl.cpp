@@ -142,14 +142,14 @@ namespace OpMon {
             return GameStatus::CONTINUE;
         }
 
-        GameStatus OverworldCtrl::update(sf::RenderTexture &frame) {
+        GameStatus OverworldCtrl::update(sf::RenderWindow &frame) {
             bool is_dialog_open = view.getDialog() && !view.getDialog()->isDialogOver();
             if(!is_dialog_open) {
                 EventsCtrl::updateEvents(data.getMap(player.getMapId())->getEvents(), player, view);
             }
 
             GameStatus toReturn = view(frame);
-            screenTexture = frame.getTexture();
+            screenTexture.update(frame);
             return toReturn;
         }
 
