@@ -1,79 +1,89 @@
 /*
-Animations.hpp
+Animations.cpp
 Author : Cyriel
 Contributors : BAKFR, Navet56
 File under GNU GPL v3.0 license
 */
-#ifndef ANIMATIONS_HPP
-#define ANIMATIONS_HPP
-
-#include <SFML/Graphics.hpp>
-#include <iostream>
-
-#include "../start/GameStatus.hpp"
+#include "Animations.hpp"
+#include "../../utils/defines.hpp"
+#include "../../utils/time.hpp"
+#include "../model/storage/ResourceLoader.hpp"
+#include "../start/Core.hpp"
+#include "../view/Window.hpp"
 
 namespace OpMon {
     namespace View {
-        /**
-	   Contains the functions used for the majors animations
-	*/
+
         namespace Animations {
 
-            class Animation {
-              protected:
-                int counter = 0;
-                sf::Sprite anim;
-                sf::Sprite bgSpr;
-                sf::Texture bgTxt;
-                sf::Texture afterTx;
+            //While false, the "WinAnim" animation's sprites are not loaded
+            bool WinAnim::winInit = false;
+            //Array used by "WinAnim"
+            sf::Texture WinAnim::fen[6];
 
-              public:
-                /* For classic animations, "before" is enough. "After" is used for transitions */
-                Animation(sf::Texture before, sf::Texture after = sf::Texture());
-                virtual ~Animation() = default;
-                virtual GameStatus operator()(sf::RenderWindow &frame) = 0;
-            };
+            Animation::Animation(sf::Texture bgTxt, sf::Texture after)
+              : bgTxt(bgTxt)
+              , afterTx(after) {
+            }
 
-            class WinAnim : public Animation {
-              private:
-                int frames{5};
-                /*
-		  If true : Opening movement | If false : Closing movement
-		*/
-                bool order;
-                static bool winInit;
-                static sf::Texture fen[6];
+            WinAnim::WinAnim(sf::Texture bgTxt, bool order)
+              : Animation(bgTxt)
+              , order(order) {
+                if(!winInit) {
+                    winInit = true;
+                    Model::ResourceLoader::loadTextureArray(fen, "animations/winChange/animWindowFrame%d.png", 6, 1);
+                }
+            }
 
-              public:
-                WinAnim(sf::Texture bgTxt, bool order);
-                GameStatus operator()(sf::RenderWindow &frame) override;
-            };
+            GameStatus WinAnim::operator()(sf::RenderWindow &frame) {
+                bgSpr.setTexture(bgTxt);
+                anim.setTexture(fen[(order ? counter : (frames - counter))]);
 
-            enum class WooshSide : int {
-                UP = 0,
-                DOWN = 1,
-                LEFT = 2,
-                RIGHT = 3
-            };
+                frame.draw(bgSpr);
+                frame.draw(anim);
 
-            class WooshAnim : public Animation {
-              private:
-                WooshSide side;
-                int duration = 15;
-                int counter = 0;
-                sf::Sprite &before = this->bgSpr;
-                sf::Sprite &after = this->anim;
-                sf::Vector2f initialPos[4];
-                sf::Vector2f mvDir[4];
-                bool outToIn;
+                counter++;
+                return (counter > frames) ? GameStatus::PREVIOUS_NLS : GameStatus::CONTINUE;
+            }
 
-              public:
-                WooshAnim(sf::Texture &before, sf::Texture &after, WooshSide side, int duration = 15, bool outToIn = true);
-                GameStatus operator()(sf::RenderWindow &frame) override;
-            };
+            WooshAnim::WooshAnim(sf::Texture &before, sf::Texture &after, WooshSide side, int duration, bool outToIn)
+              : Animation(before, after)
+              , side(side)
+              , duration(duration)
+              , counter(duration)
+              , outToIn(outToIn) {
+                if(outToIn) {
+                    initialPos[(int)WooshSide::DOWN] = sf::Vector2f(0, -512);
+                    initialPos[(int)WooshSide::UP] = sf::Vector2f(0, 512);
+                    initialPos[(int)WooshSide::RIGHT] = sf::Vector2f(-512, 0);
+                    initialPos[(int)WooshSide::LEFT] = sf::Vector2f(512, 0);
+                } else {
+                    for(size_t i = 0; i < 4; i++)
+                        initialPos[i] = sf::Vector2f(0, 0);
+                }
+                mvDir[(int)WooshSide::DOWN] = sf::Vector2f(0, 1);
+                mvDir[(int)WooshSide::UP] = sf::Vector2f(0, -1);
+                mvDir[(int)WooshSide::RIGHT] = sf::Vector2f(1, 0);
+                mvDir[(int)WooshSide::LEFT] = sf::Vector2f(-1, 0);
+
+                this->bgSpr.setPosition(0, 0);
+                this->bgSpr.setTexture(before);
+
+                this->anim.setTexture(after);
+                this->anim.setPosition(initialPos[(int)side]);
+            }
+
+            GameStatus WooshAnim::operator()(sf::RenderWindow &frame) {
+                anim.move((counter == 0) ? sf::Vector2f(0, 0) : (mvDir[(int)side] * (512.0f / duration)));
+                frame.clear(sf::Color::Black);
+                frame.draw(bgSpr);
+                frame.draw(anim);
+
+                counter--;
+
+                return (counter < 0) ? GameStatus::PREVIOUS_NLS : GameStatus::CONTINUE;
+            }
 
         } // namespace Animations
-
-    } // namespace View
+    }     // namespace View
 } // namespace OpMon
-#endif // ANIMATIONS_HPP
