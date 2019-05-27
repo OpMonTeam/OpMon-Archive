@@ -22,7 +22,7 @@ namespace OpMon {
             AnimationCtrl(std::unique_ptr<View::Animations::Animation> view);
             ~AnimationCtrl() = default;
 
-            GameStatus update(sf::RenderTexture &frame) override;
+            GameStatus update(sf::RenderWindow &frame) override;
         };
     } // namespace Controller
 } // namespace OpMon
