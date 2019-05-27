@@ -35,7 +35,7 @@ namespace OpMon {
                 }
             }
 
-            GameStatus WinAnim::operator()(sf::RenderTexture &frame) {
+            GameStatus WinAnim::operator()(sf::RenderWindow &frame) {
                 bgSpr.setTexture(bgTxt);
                 anim.setTexture(fen[(order ? counter : (frames - counter))]);
 
@@ -73,7 +73,7 @@ namespace OpMon {
                 this->anim.setPosition(initialPos[(int)side]);
             }
 
-            GameStatus WooshAnim::operator()(sf::RenderTexture &frame) {
+            GameStatus WooshAnim::operator()(sf::RenderWindow &frame) {
                 anim.move((counter == 0) ? sf::Vector2f(0, 0) : (mvDir[(int)side] * (512.0f / duration)));
                 frame.clear(sf::Color::Black);
                 frame.draw(bgSpr);
