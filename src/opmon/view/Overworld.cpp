@@ -117,7 +117,7 @@ namespace OpMon {
             camera.setCenter(character.getPosition());
         }
 
-        void Overworld::printElements(sf::RenderTexture &frame) {
+        void Overworld::printElements(sf::RenderWindow &frame) {
             //"i" is the element's id
             for(std::string const &i : current->getAnimatedElements()) {
                 data.incrementElementCounter(i);
@@ -177,7 +177,7 @@ namespace OpMon {
             OpMon::I18n::Translator::getInstance().setLang(OpMon::I18n::Translator::getInstance().getLang());
         }
 
-        GameStatus Overworld::operator()(sf::RenderTexture &frame) {
+        GameStatus Overworld::operator()(sf::RenderWindow &frame) {
             bool is_in_dialog = this->dialog && !this->dialog->isDialogOver();
 
             if(initPlayerAnimation) {
