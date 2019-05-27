@@ -1,7 +1,7 @@
 /*
 Window.cpp
 Author : Cyriel
-Contributors : BAKFR, torq, PyroFlareX
+Contributors : BAKFR, torq
 File under GNU GPL v3.0 license
 */
 #include "Window.hpp"
@@ -35,7 +35,7 @@ namespace OpMon {
             Model::ResourceLoader::load(icon, "opmon.png");
             window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
-            frame->create(window.getSize().x, window.getSize().y);
+            //frame->create(window.getSize().x, window.getSize().y);
 
             oplog("Window initialized!");
             //window.setVerticalSyncEnabled(true);
@@ -56,7 +56,7 @@ namespace OpMon {
 	
 
         void Window::refresh() {
-            frame->display();
+            /*frame->display();
 	        sf::Texture frameTexture = frame->getTexture();
 	        frameTexture.setSmooth(true);
             frameTexture.setRepeated(true);
@@ -66,10 +66,10 @@ namespace OpMon {
                 const float coef = window.getSize().y / (sprite.getGlobalBounds().height);
                 sprite.setScale(coef, coef);
                 sprite.setPosition(((window.getSize().x / 2) - (sprite.getGlobalBounds().width / 2)), 0);
-            }
-            window.clear(sf::Color::Black);
-            window.draw(sprite);
+            }*/
+            //window.draw(sprite);
             window.display();
+            window.clear(sf::Color::Black);
         }
         void Window::handleEvent(sf::Event* event){
 
@@ -80,10 +80,15 @@ namespace OpMon {
                 sf::FloatRect visibleArea(0.f, 0.f, event->size.width, event->size.height);
 
                 sf::View view(visibleArea);
+		        //sf::View oldView = window.getView();
+                //sf::Vector2f scaling(oldView.getSize().x / event->size.width, oldView.getSize().y / event->size.height);
+                //float zoomFactor = (scaling.x + scaling.y) / 2;
+                //view.zoom(zoomFactor);
+		
 
-                delete frame;
-                frame = new sf::RenderTexture();
-                frame->create(window.getSize().x, window.getSize().y);
+                //delete frame;
+                //frame = new sf::RenderTexture();
+                //frame->create(window.getSize().x, window.getSize().y);
                 //frame->setView(view);
 
                 window.setView(view);
