@@ -11,7 +11,7 @@ File under GNU GPL v3.0 license
 #include "Events.hpp"
 #include "../../../nlohmann/json.hpp"
 
-#include <SFML/Graphics/RenderTexture.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <string>
 #include <vector>
@@ -90,7 +90,7 @@ namespace OpMon {
             std::vector<Event *> &getEvents() {
                 return events;
             }
-            void updateElements(sf::RenderTexture &frame);
+            void updateElements(sf::RenderWindow &frame);
 
             int getCurrentTileCode(sf::Vector2i const &pos, int layer) const;
 
