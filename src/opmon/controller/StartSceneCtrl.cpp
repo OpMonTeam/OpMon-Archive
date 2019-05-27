@@ -88,13 +88,13 @@ namespace OpMon {
             }
         }
 
-        GameStatus StartSceneCtrl::update(sf::RenderTexture &frame) {
+        GameStatus StartSceneCtrl::update(sf::RenderWindow &frame) {
             //If the player have finished to enter his/her name, animNext must have been set to true. This part will launch the animation.
             if(animNext) {
                 animNext = false;
                 view.draw(frame);
                 loadNext = LOAD_ANIMATION_CLOSE;
-                screenTexture = frame.getTexture();
+                screenTexture.update(frame);
                 return GameStatus::NEXT_NLS;
             }
             GameStatus toReturn = view();
@@ -106,7 +106,7 @@ namespace OpMon {
                 switch(view.getPart()) {
                 case 1:
                     loadNext = LOAD_ANIMATION_OPEN;
-                    screenTexture = frame.getTexture();
+                    screenTexture.update(frame);
                     toReturn = GameStatus::NEXT_NLS;
                     break;
                 case 3:
