@@ -72,7 +72,7 @@ namespace OpMon {
             BattleCtrl(Model::OpTeam *one, Model::OpTeam *two, Model::UiData *uidata, Model::Player *player);
             BattleCtrl(Model::OpTeam *one, Model::Events::TrainerEvent *two, Model::UiData *uidata, Model::Player *player);
             GameStatus checkEvent(sf::Event const &) override;
-            GameStatus update(sf::RenderTexture &frame) override;
+            GameStatus update(sf::RenderWindow &frame) override;
 
             virtual void suspend();
             virtual void resume();
