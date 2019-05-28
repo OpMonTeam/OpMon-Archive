@@ -1,124 +1,112 @@
 /*
-Dialog.cpp
-Author : BAKFR
-Contributor : Cyriel
+Battle.hpp
+Author : Cyriel
+Contributor : Navet56
 File under GNU GPL v3.0 license
 */
-#include "Dialog.hpp"
-#include "../../utils/defines.hpp"
+#pragma once
+
+#include "../../utils/CycleCounter.hpp"
+#include "../model/objects/Turn.hpp"
+#include "../model/storage/BattleData.hpp"
 #include "../start/Core.hpp"
-#include "Window.hpp"
+#include "Dialog.hpp"
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/System/String.hpp>
+#include <SFML/System/Vector2.hpp>
+#include <map>
+#include <queue>
 
 namespace OpMon {
+
+    namespace Model {
+        class OpTeam;
+        class BattleData;
+    } // namespace Model
+
     namespace View {
 
-        Dialog::Dialog(std::vector<sf::String> text, Model::UiData *uidata)
-          : text(text)
-          , uidata(uidata) {
+        class Battle {
+          private:
+            //The OpMons' sprites
+            sf::Sprite atk;
+            sf::Sprite def;
 
-            if(this->text.size() % 3 != 0) {
-                while(this->text.size() % 3 != 0) {
-                    this->text.push_back(sf::String(" "));
-                }
-                if(this->text.size() % 3 != 0) {
-                    handleError("Error : string missing in Dialog, even after trying to fix it.", true);
-                }
+            const Model::OpTeam *atkTeam;
+            const Model::OpTeam *defTeam;
+
+            //-1 means uninitalized here
+            int atkHp = -1;
+            int defHp = -1;
+
+            int turnNber = 0;
+
+            //True if the turn have been calculated
+            bool turnLaunched = false;
+
+            sf::Sprite background;
+            sf::Sprite playerSpr;
+            sf::Sprite trainerSpr;
+            sf::Sprite dialogSpr;
+            sf::Text choicesTxt[4];
+            sf::Vector2f posChoices[4];
+            sf::Sprite cursor;
+            sf::Text waitText;
+
+            sf::Text opName[2];
+            sf::Text opLevel[2];
+            sf::Text opHp;
+
+            sf::Sprite healthbar1[2];
+            sf::Sprite healthbar2[2];
+            sf::Sprite infoboxPlayer;
+            sf::Sprite infoboxTrainer;
+            sf::Sprite shadowTrainer;
+            sf::Sprite shadowPlayer;
+
+            Utils::CycleCounter curPos = Utils::CycleCounter(4);
+
+            /* If true, the attack selection dialog is printed. If false, the action selection dialog is printed. */
+            bool attackChoice = false;
+
+            sf::Text attacks[4];
+            //Prints the pp count
+            sf::Text ppTxt;
+            //Just prints the text "PP:"
+            sf::Text ppStrTxt;
+            sf::Sprite type;
+
+            sf::Sprite dialogArrow;
+
+            int phase = 0;
+
+            Dialog *dialog = nullptr;
+
+            Model::BattleData &data;
+
+          public:
+            Battle(const Model::OpTeam *atkTeam, const Model::OpTeam *defTeam, std::string trainerClass, std::string background, Model::BattleData &data);
+
+            GameStatus operator()(sf::RenderWindow &frame, Model::TurnData const &atk, Model::TurnData const &def, std::queue<Model::TurnAction> &actionQueue, bool *turnActivated, bool atkFirst = true);
+            //Moves the cursor
+            void moveCur(Model::Side where);
+            //Returns the cursor's position
+            int getCurPos() { return curPos.getValue(); }
+            //Tooggle the interface printed, the action or attack selection
+            void toggleAttackChoice();
+
+            bool nextTxt();
+
+            int getPhase() { return phase; }
+
+            bool isAttackChoice() { return attackChoice; }
+
+            void passDialog() {
+                if(dialog != nullptr)
+                    dialog->pass();
             }
-
-            background.setTexture(uidata->getDialogBackground());
-            arrDial.setTexture(uidata->getDialogArrow());
-
-            background.setPosition(0, 512 - 150);
-            arrDial.setPosition(512 - 75, 512 - 30);
-
-            int minusPos = 32;
-            for(size_t i = 0; i < 3; ++i) {
-                dialogText[i].setFont(uidata->getFont());
-                dialogText[i].setCharacterSize(FONT_SIZE_DEFAULT);
-                dialogText[i].setSfmlColor(sf::Color::Black);
-
-                dialogText[i].setPosition(25, background.getPosition().y + minusPos);
-                minusPos += 32;
-            }
-        }
-
-        void Dialog::pass() {
-            if(changeDialog == false) {
-                currentTxt[0] = text[dialogNb];
-                if(dialogNb + 2 < text.size()) {
-                    currentTxt[1] = text[dialogNb + 1];
-                    currentTxt[2] = text[dialogNb + 2];
-                } else if(dialogNb + 1 < text.size()) {
-                    currentTxt[1] = text[dialogNb + 1];
-                    currentTxt[2] = sf::String(" ");
-                } else {
-                    currentTxt[1] = sf::String(" ");
-                    currentTxt[2] = sf::String(" ");
-                }
-
-                changeDialog = true;
-            } else if(dialogNb + 3 < text.size()) {
-                uidata->getJukebox().playSound("dialog pass");
-                line = 0;
-                dialogNb += 3;
-                i = 0;
-                currentTxt[0] = sf::String(" ");
-                currentTxt[1] = sf::String(" ");
-                currentTxt[2] = sf::String(" ");
-                changeDialog = false;
-            } else {
-                is_dialog_over = true;
-            }
-        }
-
-        void Dialog::updateTextAnimation() {
-            if(!changeDialog) {
-                if(i < text[line + dialogNb].toUtf32().size()) {
-
-                    if(currentTxt[line] == sf::String(" ")) {
-                        currentTxt[line] = text[line + dialogNb].toUtf32()[i];
-                    } else if(text[line + dialogNb].toUtf32()[i] > 10) {
-                        currentTxt[line] += text[line + dialogNb].toUtf32()[i];
-                    }
-                    i++;
-                } else {
-                    if(line == 2) {
-                        changeDialog = true;
-                    } else {
-                        line++;
-                        i = 0;
-                    }
-                }
-            }
-        }
-
-        void Dialog::draw(sf::RenderTarget &frame) {
-            if(backgroundVisible) {
-                frame.draw(background);
-                {
-
-                    for(size_t itor = 0; itor < 3; itor++) {
-                        dialogText[itor].setString(currentTxt[itor].toUtf32());
-                        frame.draw(dialogText[itor]);
-                    }
-
-                    sf::Vector2f posArrow(512 - 75, 512 - 30);
-                    arrDial.move(0, 1);
-                    if(arrDial.getPosition().y - posArrow.y > 5) {
-                        arrDial.move(0, -6);
-                    }
-                    frame.draw(arrDial);
-                }
-            }
-        }
-
-        bool Dialog::isDialogOver() {
-            return is_dialog_over;
-        }
-
-        void Dialog::setBackgroundVisible(bool visible) {
-            backgroundVisible = visible;
-        }
+        };
 
     } // namespace View
 } // namespace OpMon
