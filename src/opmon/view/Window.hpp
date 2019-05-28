@@ -1,7 +1,7 @@
 /*
 Window.hpp
 Author : Cyriel
-Contributor : BAKFR , PyroFlareX
+Contributor : BAKFR
 File under GNU GPL v3.0 license
 */
 #ifndef WINDOW_HPP
@@ -15,11 +15,11 @@ namespace OpMon {
         class Window {
           private:
             sf::RenderWindow window;
-            sf::RenderTexture* frame = new sf::RenderTexture();
+            //sf::RenderTexture* frame = new sf::RenderTexture();
             bool fullScreen = false;
 
           public:
-            sf::RenderTexture &getFrame() { return *frame; }
+            sf::RenderWindow &getFrame() { return window; }
             sf::RenderWindow &getWindow() { return window; }
             void close();
             void open();
