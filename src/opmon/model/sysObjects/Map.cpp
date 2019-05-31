@@ -255,6 +255,7 @@ namespace OpMon {
 		    out << "Json object : " << std::endl;
 		    out << jsonData << std::endl;
 		}
+		return out.str();
 	    }
     } // namespace Model
 } // namespace OpMon
