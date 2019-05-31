@@ -1,6 +1,6 @@
 <h2>OPMon Lazuli is free software, you can read, modify, redistribute or fork this project if you add this license at your fork.</h2>
 
-The original graphic creations of OPMon are not under this license, but visible here: <a href="https://raw.githubusercontent.com/jlppc/OpMon/master/Resources/LICENSE">Art's License</a>
+The original graphic creations of OPMon are not under this license, but visible here: <a href="https://raw.githubusercontent.com/OpMonTeam/OpMon-Data/master/Resources/LICENSE">Art's License</a>
 <br><br>
 The license is <h3>GNU GPL V3</h3>
                     

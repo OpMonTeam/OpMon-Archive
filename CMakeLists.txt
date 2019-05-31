@@ -90,13 +90,13 @@ if (APPLE)
     find_library(COCOA_LIBRARY Cocoa)
 
     # On Apple, Create an app bundle, which includes all the game resources and dependencies
-    set_source_files_properties( ${CMAKE_SOURCE_DIR}/Resources/Other/opmon_icon.icns PROPERTIES MACOSX_PACKAGE_LOCATION Resources )
+    set_source_files_properties( ${CMAKE_SOURCE_DIR}/icons/opmon_icon.icns PROPERTIES MACOSX_PACKAGE_LOCATION Resources )
     set_source_files_properties( ${CMAKE_SOURCE_DIR}/data PROPERTIES MACOSX_PACKAGE_LOCATION Resources )
 
     # Need some extra code to get the correct Resource folder in an app bundle
     list(APPEND SOURCE_FILES src/utils/ResourcePath.hpp src/utils/ResourcePath.mm)
     add_executable(${EXECUTABLE_NAME} MACOSX_BUNDLE ${SOURCE_FILES}
-    ${CMAKE_SOURCE_DIR}/Resources/Other/opmon_icon.icns
+    ${CMAKE_SOURCE_DIR}/icons/opmon_icon.icns
     ${CMAKE_SOURCE_DIR}/data)
 
     # Add Cocoa framework to executable bundle

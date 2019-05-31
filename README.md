@@ -1,4 +1,4 @@
-![Regimys LOGO](https://raw.githubusercontent.com/OpMonTeam/OpMon/master/Resources/Other/opmon_title.png)<br>
+![Regimys LOGO](https://raw.githubusercontent.com/OpMonTeam/OpMon-Data/master/Resources/Other/opmon_title.png)<br>
 
 [Voir En Français](#enfrancais)
 
@@ -110,6 +110,6 @@ Si vous voulez compiler de A à Z OpMon pour Windows, Mac OS ou autres, c'est [i
 
 ## Screenshot : 
 
-![Screenshot](https://raw.githubusercontent.com/OpMonTeam/OpMon/master/Resources/Other/screenshot_2.png)
+![Screenshot](https://raw.githubusercontent.com/OpMonTeam/OpMon-Data/master/Resources/Other/screenshot_2.png)
 
 
