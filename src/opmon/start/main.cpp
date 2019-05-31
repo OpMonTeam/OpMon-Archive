@@ -29,11 +29,7 @@ using Utils::Log::oplog;
 int main(int argc, char *argv[]);
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
-    int argc;
-    char **argv;
-    /* BuildArgVector() uses the Win32 function GetCommandLine() to populate argc and argv */
-    BuildArgVector(&argc, &argv);
-    return main(argc, argv);
+    return main(__argc, __argv);
 }
 #endif
 
