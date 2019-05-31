@@ -251,8 +251,8 @@ namespace OpMon {
                         break;
                     }
                 }
-            }
-            return false;*/
+            }*/
+            return false;
         }
 
         Item *OpMon::hold(Item *item) {
