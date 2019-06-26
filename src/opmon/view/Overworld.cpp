@@ -358,7 +358,7 @@ namespace OpMon {
         /**
      * Events can call this method to start a new dialog with the player.
      */
-        void Overworld::startDialog(std::vector<sf::String> const &dialogs) {
+        void Overworld::startDialog(sf::String const &dialog) {
             if(this->dialog) {
                 if(!this->dialog->isDialogOver()) {
                     Utils::Log::oplog("WARNING: We create a new dialog ... but the last one isn't finished yet!", true);
@@ -366,7 +366,7 @@ namespace OpMon {
                 this->dialog = nullptr;
             }
 
-            this->dialog = std::make_unique<Dialog>(dialogs, data.getUiDataPtr());
+            this->dialog = std::make_unique<Dialog>(dialog, data.getUiDataPtr());
         }
     } // namespace View
 

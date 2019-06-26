@@ -71,17 +71,15 @@ namespace OpMon {
                     std::string type = eitor->at("type");
 
                     //Creates dialogs object
-                    std::vector<Utils::OpString> dialogs;
-                    std::vector<std::vector<std::string>> dialogsKeys = eitor->value("dialog", std::vector<std::vector<std::string>>());
-                    if(!dialogsKeys.empty()) {
-                        for(unsigned int i = 0; i < dialogsKeys.size(); i++) {
-                            std::string key = dialogsKeys[i][0];
-                            std::vector<sf::String *> toAdd;
-                            for(unsigned int j = 1; j < dialogsKeys[i].size(); j++) {
-                                toAdd.push_back(data.getCompletion(dialogsKeys[i][j]));
-                            }
-                            dialogs.push_back(Utils::OpString(key, toAdd));
-                        }
+                    Utils::OpString dialog;
+                    std::vector<std::string> dialogKey = eitor->value("dialog", std::vector<std::string>());
+                    if(!dialogKey.empty()) {
+                    	std::string key = dialogKey[0];
+                    	std::vector<sf::String *> toAdd;
+                    	for(unsigned int j = 1; j < dialogKey.size(); j++) {
+                    		toAdd.push_back(data.getCompletion(dialogKey[j]));
+                    	}
+                    	dialog = Utils::OpString(key, toAdd);
                     }
 
                     //Creates path objects for npcs
@@ -100,7 +98,7 @@ namespace OpMon {
                         currentMap->addEvent(new Events::TalkingEvent(data.getEventsTexture(eitor->at("textures")),
                                                                       sf::Vector2f(eitor->at("position")[0],
                                                                                    eitor->at("position")[1]),
-                                                                      dialogs,
+                                                                      dialog,
                                                                       eitor->value("side", SIDE_ALL),
                                                                       eitor->value("trigger", Events::EventTrigger::PRESS),
                                                                       eitor->value("passable", false)));
@@ -131,7 +129,7 @@ namespace OpMon {
                         currentMap->addEvent(new Events::TalkingCharaEvent(data.getCharaTexture(eitor->at("textures")),
                                                                            sf::Vector2f(eitor->at("position")[0],
                                                                                         eitor->at("position")[1]),
-                                                                           dialogs,
+                                                                           dialog,
                                                                            eitor->value("side", Side::TO_UP),
                                                                            eitor->value("trigger", Events::EventTrigger::PRESS),
                                                                            eitor->value("moveStyle", Events::MoveStyle::NO_MOVE),
@@ -139,21 +137,19 @@ namespace OpMon {
                                                                            eitor->value("passable", false),
                                                                            eitor->value("interactionSide", SIDE_ALL)));
                     } else if(type == "TrainerEvent") {
-                        std::vector<std::vector<std::string>> defeatedKeys = eitor->at("dialogAfter");
-                        std::vector<Utils::OpString> defeatedDialog;
-                        for(unsigned int i = 0; i < defeatedKeys.size(); i++) {
-                            std::string key = defeatedKeys[i][0];
-                            std::vector<sf::String *> toAdd;
-                            for(unsigned int j = 1; j < defeatedKeys[i].size(); j++) {
-                                toAdd.push_back(data.getCompletion(defeatedKeys[i][j]));
-                            }
-                            defeatedDialog.push_back(Utils::OpString(key, toAdd));
+                        std::vector<std::string> defeatedKey = eitor->at("dialogAfter");
+                        Utils::OpString defeatedDialog;
+                        std::string key = defeatedKey[0];
+                        std::vector<sf::String *> toAdd;
+                        for(unsigned int j = 1; j < defeatedKey.size(); j++) {
+                        	toAdd.push_back(data.getCompletion(defeatedKey[j]));
                         }
+                        defeatedDialog = Utils::OpString(key, toAdd);
                         currentMap->addEvent(new Events::TrainerEvent(data.getCharaTexture(eitor->at("textures")),
                                                                       sf::Vector2f(eitor->at("position")[0],
                                                                                    eitor->at("position")[1]),
 								     data.getTrainer(eitor->at("trainer")),
-                                                                      dialogs,
+                                                                      dialog,
                                                                       defeatedDialog,
                                                                       eitor->value("side", Side::TO_UP),
                                                                       eitor->value("trigger", Events::EventTrigger::PRESS),
