@@ -6,19 +6,77 @@ File under GNU GPL v3.0 license
 */
 #include "Dialog.hpp"
 #include "../../utils/defines.hpp"
+#include "../../utils/StringKeys.hpp"
 #include "../start/Core.hpp"
 #include "Window.hpp"
 
 namespace OpMon {
     namespace View {
 
-        Dialog::Dialog(std::vector<sf::String> text, Model::UiData *uidata)
-          : text(text)
-          , uidata(uidata) {
+    	Dialog::Dialog(sf::String text, Model::UiData *uidata)
+    	: uidata(uidata){
+    		this->text = Utils::StringKeys::autoNewLine(text);
+
+    		while(this->text.size() % 3 != 0) {
+    			this->text.push(sf::String(" "));
+    		}
+
+    		background.setTexture(uidata->getDialogBackground());
+    		arrDial.setTexture(uidata->getDialogArrow());
+
+    		background.setPosition(0, 512 - 150);
+    		arrDial.setPosition(512 - 75, 512 - 30);
+
+    		int minusPos = 32;
+    		for(size_t i = 0; i < 3; ++i) {
+    			dialogText[i].setFont(uidata->getFont());
+    			dialogText[i].setCharacterSize(FONT_SIZE_DEFAULT);
+    			dialogText[i].setSfmlColor(sf::Color::Black);
+
+    			dialogText[i].setPosition(25, background.getPosition().y + minusPos);
+    			minusPos += 32;
+    		}
+    	}
+
+    	Dialog::Dialog(std::queue<sf::String> text, Model::UiData *uidata)
+    	: text(text),
+		  uidata(uidata){
+    		if(this->text.size() % 3 != 0) {
+    			while(this->text.size() % 3 != 0) {
+    				this->text.push(sf::String(" "));
+    			}
+    			if(this->text.size() % 3 != 0) {
+    				handleError("Error : string missing in Dialog, even after trying to fix it.", true);
+    			}
+    		}
+
+    		background.setTexture(uidata->getDialogBackground());
+    		arrDial.setTexture(uidata->getDialogArrow());
+
+    		background.setPosition(0, 512 - 150);
+    		arrDial.setPosition(512 - 75, 512 - 30);
+
+    		int minusPos = 32;
+    		for(size_t i = 0; i < 3; ++i) {
+    			dialogText[i].setFont(uidata->getFont());
+    			dialogText[i].setCharacterSize(FONT_SIZE_DEFAULT);
+    			dialogText[i].setSfmlColor(sf::Color::Black);
+
+    			dialogText[i].setPosition(25, background.getPosition().y + minusPos);
+    			minusPos += 32;
+    		}
+    	}
+
+    	Dialog::Dialog(std::vector<sf::String> text, Model::UiData *uidata)
+          : uidata(uidata) {
+
+    		for(sf::String str : text){
+    			this->text.push(str);
+    		}
 
             if(this->text.size() % 3 != 0) {
                 while(this->text.size() % 3 != 0) {
-                    this->text.push_back(sf::String(" "));
+                    this->text.push(sf::String(" "));
                 }
                 if(this->text.size() % 3 != 0) {
                     handleError("Error : string missing in Dialog, even after trying to fix it.", true);
@@ -44,23 +102,14 @@ namespace OpMon {
 
         void Dialog::pass() {
             if(changeDialog == false) {
-                currentTxt[0] = text[dialogNb];
-                if(dialogNb + 2 < text.size()) {
-                    currentTxt[1] = text[dialogNb + 1];
-                    currentTxt[2] = text[dialogNb + 2];
-                } else if(dialogNb + 1 < text.size()) {
-                    currentTxt[1] = text[dialogNb + 1];
-                    currentTxt[2] = sf::String(" ");
-                } else {
-                    currentTxt[1] = sf::String(" ");
-                    currentTxt[2] = sf::String(" ");
-                }
-
+            	for(unsigned int p = line; p < 3; p++){
+            		currentTxt[p] = text.front();
+            		text.pop();
+            	}
                 changeDialog = true;
-            } else if(dialogNb + 3 < text.size()) {
+            } else if(text.size() - 3 != 0) {
                 uidata->getJukebox().playSound("dialog pass");
                 line = 0;
-                dialogNb += 3;
                 i = 0;
                 currentTxt[0] = sf::String(" ");
                 currentTxt[1] = sf::String(" ");
@@ -73,19 +122,20 @@ namespace OpMon {
 
         void Dialog::updateTextAnimation() {
             if(!changeDialog) {
-                if(i < text[line + dialogNb].toUtf32().size()) {
+                if(i < text.front().toUtf32().size()) {
 
                     if(currentTxt[line] == sf::String(" ")) {
-                        currentTxt[line] = text[line + dialogNb].toUtf32()[i];
-                    } else if(text[line + dialogNb].toUtf32()[i] > 10) {
-                        currentTxt[line] += text[line + dialogNb].toUtf32()[i];
+                        currentTxt[line] = text.front().toUtf32()[i];
+                    } else if(text.front().toUtf32()[i] > 10) {
+                        currentTxt[line] += text.front().toUtf32()[i];
                     }
                     i++;
                 } else {
-                    if(line == 2) {
+                	text.pop();
+                	line++;
+                    if(line == 3) {
                         changeDialog = true;
                     } else {
-                        line++;
                         i = 0;
                     }
                 }

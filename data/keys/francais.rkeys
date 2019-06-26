@@ -1,4 +1,6 @@
 # OpMon french translation ; Contributors : Navet56
+# | passes a line
+# $ passes a dialog box
 key.void= 
 key.load.txt=Chargement...
 
@@ -35,33 +37,8 @@ key.nameEntry.med=Entre un nom
 key.nameEntry.indic.1=Appuie sur Entrée lorsque
 key.nameEntry.indic.2=tu as terminé
 
-key.prof.dialog.start.1=Bonjour et bienvenue dans la région 
-key.prof.dialog.start.2=de Regimys. J'imagine que le voyage
-key.prof.dialog.start.3=s'est bien passé !
-key.prof.dialog.start.4=Je me présente je suis le professeur
-key.prof.dialog.start.5=Kiwaï, je suis le propriétaire
-key.prof.dialog.start.6=du labo OpMon de Fauxbourg Euvi.
-key.prof.dialog.start.7=Tu te demandes sûrement ce que 
-key.prof.dialog.start.8=je fais dans cette petite ville.
-key.prof.dialog.start.9=Voilà l'histoire...
-key.prof.dialog.start.10=C'est ici que j'ai grandi 
-key.prof.dialog.start.11=et également rencontré mon
-key.prof.dialog.start.12=premier OPMon: Oursiflamme
-key.prof.dialog.start.13=C'est un petit animal de feu très
-key.prof.dialog.start.14=mignon et protecteur. J'ai refusé de 
-key.prof.dialog.start.15=le faire évoluer pour qu'il le reste!
-key.prof.dialog.start.16=Ah! Désolé, je ne parle que de moi...
-key.prof.dialog.start.17=Du coup c'est quoi ton nom ?
-key.prof.dialog.start.18=                         
-key.prof.dialog.start.19=Bon, ~, je vais te parler de
-key.prof.dialog.start.20=cette région et des créatures
-key.prof.dialog.start.21=qui l'habitent...
-key.prof.dialog.start.22=Est-tu prêt?
-key.prof.dialog.start.23=Cette aventure te rappelle
-key.prof.dialog.start.24=quelque chose non?
-key.prof.dialog.start.25=Bon alors je te laisse découvrir tout
-key.prof.dialog.start.26=cela par toi même...
-key.prof.dialog.start.27=A bientôt !
+key.prof.dialog.start.1=Bonjour et bienvenue dans la région de Regimys. J'imagine que le voyage s'est bien passé !$Je me présente je suis le professeur Kiwaï, je suis le propriétaire du labo OpMon de Fauxbourg Euvi.$Tu te demandes sûrement ce que je fais dans cette petite ville. Voilà l'histoire...$C'est ici que j'ai grandi et également rencontré mon premier OPMon: Oursiflamme.$C'est un petit animal de feu très mignon et protecteur. J'ai refusé de le faire évoluer pour qu'il le reste!$Ah! Désolé, je ne parle que de moi...|Du coup c'est quoi ton nom ?                   
+key.prof.dialog.start.2=Bon, ~, je vais te parler de cette région et des créatures qui l'habitent...$Es-tu prêt? Cette aventure te rappelle quelque chose non?$Bon alors je te laisse découvrir tout cela par toi même...|A bientôt !
 
 key.fedesc.1=Fauxbourg Euvi
 key.fedesc.2=Ce petit village est calme et relaxant.
