@@ -156,35 +156,35 @@
 		"type" : "TalkingEvent",
 		"textures" : "alpha",
 		"position" : [19, 10],
-		"dialog" : [["fedesc.1"], ["fedesc.2"], ["fedesc.3"]],
+		"dialog" : ["fedesc"],
 		"side" : 1
 	    },
 	    {
 		"type" : "TalkingEvent",
 		"textures" : "alpha",
 		"position" : [29, 16],
-		"dialog" : [["ppHouse", "playername"], ["void"], ["void"]],
+		"dialog" : ["ppHouse", "playername"],
 		"side" : 1
 	    },
 	    {
 		"type" : "TalkingEvent",
 		"textures" : "alpha",
 		"position" : [33, 16],
-		"dialog" : [["rivalHouse"], ["void"], ["void"]],
+		"dialog" : ["rivalHouse"],
 		"side" : 1
 	    },
 	    {
 		"type" : "TalkingEvent",
 		"textures" : "alpha",
 		"position" : [22, 28],
-		"dialog" : [["labo"], ["void"], ["void"]],
+		"dialog" : ["labo"],
 		"side" : 1
 	    },
 	    {
 		"type" : "TalkingEvent",
 		"textures" : "alpha",
 		"position" : [31, 28],
-		"dialog" : [["weirdsign.1"], ["weirdsign.2"], ["void"]],
+		"dialog" : ["weirdsign"],
 		"side" : 1
 	    },
 	    {
@@ -271,7 +271,7 @@
 		"path" : [[1, 10], [-1, 1], [2, 10], [-1, 1]],
 		"textures" : "kid",
 		"position" : [25, 21],
-		"dialog" : [["kid"], ["void"], ["void"]],
+		"dialog" : ["kid"],
 		"side" : 1,
 		"trigger" : 0
 	    },
@@ -280,7 +280,7 @@
 		"moveStyle" : 0,
 		"textures" : "fisherman",
 		"position" : [16, 16],
-		"dialog" : [["fe.fisherman.1"], ["fe.fisherman.2"], ["fe.fisherman.3"], ["fe.fisherman.4"], ["fe.fisherman.5"], ["fe.fisherman.6"], ["fe.fisherman.7"], ["fe.fisherman.8"], ["fe.fisherman.9"]],
+		"dialog" : ["fe.fisherman"],
 		"side" : 2
 	    }
 	]
@@ -381,21 +381,21 @@
 		"type" : "TalkingEvent",
 		"textures" : "alpha",
 		"position" : [3, 8],
-		"dialog" : [["playerhome.tv.1"], ["playerhome.tv.2"], ["playerhome.tv.3"]],
+		"dialog" : ["playerhome.tv"],
 		"side" : 1
 	    },
 	    {
 		"type" : "TalkingEvent",
 		"textures" : "alpha",
 		"position" : [2, 8],
-		"dialog" : [["playerhome.tv.1"], ["playerhome.tv.2"], ["playerhome.tv.3"]],
+		"dialog" : ["playerhome.tv"],
 		"side" : 1
 	    },
 	    {
 		"type" : "TalkingCharaEvent",
 		"textures" : "playermom",
 		"position" : [9, 9],
-		"dialog" : [["playermom.dialog.1"], ["playermom.dialog.2"], ["playermom.dialog.3"]],
+		"dialog" : ["playermom.dialog"],
 		"side" : 0
 	    }
 	]
@@ -494,7 +494,7 @@
 		"type" : "TalkingCharaEvent",
 		"textures" : "kiwai",
 		"position" : [15, 4],
-		"dialog" : [["prof.dialog.1"], ["prof.dialog.2"], ["prof.dialog.3"]],
+		"dialog" : ["prof.dialog"],
 		"side" : 0
 	    }
 	]
@@ -657,7 +657,7 @@
 		"type" : "TalkingEvent",
 		"textures" : "alpha",
 		"position" : [1, 3],
-		"dialog" : [["pcRunLinux"], ["void"], ["void"]],
+		"dialog" : ["pcRunLinux"],
 		"side" : 1
 	    }
 	]
@@ -845,14 +845,14 @@
 		"type" : "TalkingCharaEvent",
 		"textures" : "sk",
 		"position" : [16, 39],
-		"dialog" : [["rt14.sk.1"], ["rt14.sk.2"], ["rt14.sk.3"]],
+		"dialog" : ["rt14.sk"],
 		"side" : 2
 	    },
             {
 		"type" : "TalkingCharaEvent",
 		"textures" : "albd",
 		"position" : [69, 38],
-		"dialog" : [["rt14.albd.1"], ["rt14.albd.2"], ["rt14.albd.3"]],
+		"dialog" : ["rt14.albd"],
 		"side" : 0
             },
 	    {
@@ -968,8 +968,8 @@
 		"trainer" : "Beta",
 		"textures" : "beta",
 		"position" : [11, 32],
-		"dialog" : [["rt14.beta.pre.1"], ["rt14.beta.pre.2"], ["rt14.beta.pre.3"], ["rt14.beta.pre.4"], ["rt14.beta.pre.5"], ["rt14.beta.pre.6"], ["rt14.beta.pre.7"], ["void"], ["void"]],
-		"dialogAfter" : [["rt14.beta.post.1"], ["rt14.beta.post.2"], ["rt14.beta.post.3"]],
+		"dialog" : ["rt14.beta.pre"],
+		"dialogAfter" : ["rt14.beta.post"],
 		"side" : 2
 	    }
 	]
@@ -1533,14 +1533,14 @@
 		"type" : "TalkingCharaEvent",
 		"textures" : "inferm",
 		"position" : [9, 10],
-		"dialog" : [["inferm.dialog.1"], ["inferm.dialog.2"], ["inferm.dialog.3"]],
+		"dialog" : ["inferm.dialog"],
 		"side" : 0
 	    },
 	    {
 		"type" : "TalkingEvent",
 		"textures" : "alpha",
 		"position" : [9, 11],
-		"dialog" : [["inferm.dialog.1"], ["inferm.dialog.2"], ["inferm.dialog.3"]],
+		"dialog" : ["inferm.dialog"],
 		"side" : 1
 	    },
 	    {

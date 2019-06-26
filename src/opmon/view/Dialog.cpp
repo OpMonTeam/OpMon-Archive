@@ -101,13 +101,15 @@ namespace OpMon {
         }
 
         void Dialog::pass() {
+        	/* If the dialog is not completely displayed, display the dialog when pressing space */
             if(changeDialog == false) {
             	for(unsigned int p = line; p < 3; p++){
             		currentTxt[p] = text.front();
             		text.pop();
             	}
                 changeDialog = true;
-            } else if(text.size() - 3 != 0) {
+            /* If the dialog is completely displayed, pass to the next dialog when pressing space, if there is one */
+            } else if(text.size() > 0) {
                 uidata->getJukebox().playSound("dialog pass");
                 line = 0;
                 i = 0;
@@ -115,7 +117,7 @@ namespace OpMon {
                 currentTxt[1] = sf::String(" ");
                 currentTxt[2] = sf::String(" ");
                 changeDialog = false;
-            } else {
+            } else {//If there is no more dialogs
                 is_dialog_over = true;
             }
         }
