@@ -1,4 +1,6 @@
 # OpMon deutsch translation
+# | passes a line
+# $ passes a dialog box
 key.void= 
 key.load.txt=Laden...
 
@@ -35,37 +37,10 @@ key.nameEntry.med=Gib einen Namen ein
 key.nameEntry.indic.1=Drücke Enter
 key.nameEntry.indic.2=wenn du fertig bist
 
-key.prof.dialog.start.1=Hallo und willkomen in Regimys
-key.prof.dialog.start.2=Ich hoffe dir geht's gut
-key.prof.dialog.start.3= 
-key.prof.dialog.start.4=Ich bin Professor
-key.prof.dialog.start.5=Kiwaï, der Besitzer des
-key.prof.dialog.start.6=OpMon Labors von Euvi-town
-key.prof.dialog.start.7=Vielleicht fragst du dich: 
-key.prof.dialog.start.8="Was macht er in dieser
-key.prof.dialog.start.9=kleinen Stadt?" Dies ist meine Geschichte.
-key.prof.dialog.start.10=Ich bin hier aufgewachsen
-key.prof.dialog.start.11=und habe mein erstes OpMon getroffen :
-key.prof.dialog.start.12=Furnursus
-key.prof.dialog.start.13=Es ist ein kleines Feuertier süß
-key.prof.dialog.start.14=und beschützerisch mach dass er 
-key.prof.dialog.start.15=sich entwickelt, damit er süß bleibt
-key.prof.dialog.start.16=Tschuldigung, ich rede nur über 
-key.prof.dialog.start.17=mich selbst. Also... Wie heisst du?
-key.prof.dialog.start.18=                         
-key.prof.dialog.start.19=Nun, ~, ich werde dir von
-key.prof.dialog.start.20=diesem Ort und den Kreaturen die
-key.prof.dialog.start.21=die hier leben erzählen.
-key.prof.dialog.start.22=Bist du bereit?
-key.prof.dialog.start.23=Dir scheint dieser Ort bekannt zu sein.
-key.prof.dialog.start.24=Warst du schoneinmal hier?
-key.prof.dialog.start.25=Nun, ich vermute ich werde
-key.prof.dialog.start.26=ihn dich selbst erkunden lassen.
-key.prof.dialog.start.27=Bis bald!
+key.prof.dialog.start.1=Hallo und willkomen in Regimys! Ich hoffe dir geht's gut.|Ich bin Professor Kiwaï, der Besitzer des OpMon Labors von Euvi-town.|Vielleicht fragst du dich: "Was macht er in dieser kleinen Stadt?" Dies ist meine Geschichte.$Ich bin hier aufgewachsen und habe mein erstes OpMon getroffen : Furnursus.|Es ist ein kleines Feuertier süß und beschützerisch mach dass er sich entwickelt, damit er süß bleibt.|Tschuldigung, ich rede nur über mich selbst. Also... Wie heisst du?
+key.prof.dialog.start.2=Nun, ~, ich werde dir von diesem Ort und den Kreaturen die die hier leben erzählen.|Bist du bereit?|Dir scheint dieser Ort bekannt zu sein. Warst du schoneinmal hier? Nun, ich vermute ich werde ihn dich selbst erkunden lassen.|Bis bald!
 
-key.fedesc.1=Euvi-Town
-key.fedesc.2=Diese kleine Stadt ist ruhig
-key.fedesc.3=und entspannend.
+key.fedesc=Euvi Town|Diese kleine Stadt ist ruhig und entspannend.
 
 key.ppHouse=~s Haus.
 
@@ -73,52 +48,26 @@ key.rivalHouse=Skullks Haus.
 
 key.labo=Professor Kiwaïs Labor.
 
-key.weirdsign.1=Betreten verboten!
-key.weirdsign.2=Bauarbeiten an der vierten Wand
+key.weirdsign=Betreten verboten!|Bauarbeiten an der vierten Wand.
+
 key.kid=Ich mag kurze Hosen!
 
-key.prof.dialog.1=Hi ! Hattest du eine gute Reise?
-key.prof.dialog.2=Skullk ist gerade draußen, sorry!
-key.prof.dialog.3=Komm später für Neuigkeiten zurück
+key.prof.dialog=Hi ! Hattest du eine gute Reise? Skullk ist gerade draußen, sorry! Komm später für Neuigkeiten zurück
 
 key.pcRunLinux=Dieser Computer nutzt Linux !
 
-key.playerhome.tv.1=Wir sehen eine Reality Show
-key.playerhome.tv.2=mit OpMons aber sie sehen nicht
-key.playerhome.tv.3=sehr glücklich aus...
+key.playerhome.tv=Wir sehen eine Reality Show mit OpMons aber sie sehen nicht sehr glücklich aus...
 
-key.playermom.dialog.1=Geht es dir gut Schätzchen?
-key.playermom.dialog.2=...
-key.playermom.dialog.3=Es scheint nicht zu gehen
+key.playermom.dialog=Geht es dir gut Schätzchen?$...$Es scheint nicht zu gehen.
 
-key.rt14.sk.1=Wer bist du ?
-key.rt14.sk.2=Du solltest nicht
-key.rt14.sk.3=hier sein...
+key.rt14.sk=Wer bist du ?|Du solltest nicht hier sein...
 
-key.fe.fisherman.1=Fischsünder : Oh ! Du hast mich 
-key.fe.fisherman.2=überrascht ! Ich komme gerne
-key.fe.fisherman.3=her zum ausruhen. Alles ist 
-key.fe.fisherman.4=ruhig und einfach. Obwohl es wahr ist,
-key.fe.fisherman.5=dass es nicht viele Fische 
-key.fe.fisherman.6=in der Gegend gibt
-key.fe.fisherman.7=...
-key.fe.fisherman.8=Warte, Ich habe dich hier noch nie 
-key.fe.fisherman.9=gesehen ? Bist du neu ?
+key.fe.fisherman=Fischsünder : Oh ! Du hast mich überrascht ! Ich komme gerne her zum ausruhen. Alles ist ruhig und einfach. Obwohl es wahr ist, dass es nicht viele Fische in der Gegend gibt.$..$Warte, Ich habe dich hier noch nie gesehen ?|Bist du neu ?
 
-key.inferm.dialog.1=Willkommen !
-key.inferm.dialog.1=Möchtest du deine OpMons heilen ?
-key.inferm.dialog.1=... Aber ? Du hast keine OpMons.
+key.inferm.dialog=Willkommen ! Möchtest du deine OpMons heilen ?$...$Aber ? Du hast keine OpMons.
 
-key.rt14.beta.pre.1=Hallo ! Ich bin Beta.
-key.rt14.beta.pre.2=Ich bin der NPC, der es erlaubt zu testen
-key.rt14.beta.pre.3=die neuen Funktionen zu testen, 
-key.rt14.beta.pre.4=die nicht vollständig implementiert sind.
-key.rt14.beta.pre.5=Ich kann einen OpMon-Kampf gegen
-key.rt14.beta.pre.6=dich machen, wenn du willst.
-key.rt14.beta.pre.7=Lass uns gehen !
-key.rt14.beta.post.1=You found it good ?
-key.rt14.beta.post.2=If you want to do it again
-key.rt14.beta.post.3=relauch the game with M !
+key.rt14.beta.pre=Hallo ! Ich bin Beta. Ich bin der NPC, der es erlaubt zu testen die neuen Funktionen zu testen, die nicht vollständig implementiert sind.|Ich kann einen OpMon-Kampf gegen dich machen, wenn du willst.|Lass uns gehen !
+key.rt14.beta.post=Was it good ? If you want to do it again relauch the game with M !
 
 key.battle.attack=Attacke
 key.battle.bag=Tasche
