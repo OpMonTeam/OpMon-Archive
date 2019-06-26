@@ -122,7 +122,7 @@ namespace OpMon {
                         }
                     } else if(turnAct.type == TurnActionType::ATK_UPDATE_HBAR || turnAct.type == TurnActionType::DEF_UPDATE_HBAR) { //Updates the player's OpMon's healthbar.
                         if(dialog == nullptr) {                                                                                     // Empty dialog to print the dialog background and the arrow
-                            dialog = new Dialog({}, data.getUiDataPtr());
+                            dialog = new Dialog(std::vector<sf::String>(), data.getUiDataPtr());
                             dialog->draw(frame);
                         } else {
                             dialog->draw(frame);
@@ -138,7 +138,7 @@ namespace OpMon {
                         //An animation will play here in the future.
                         auto &opTurn = (turnAct.type == TurnActionType::ATK_STAT_MOD) ? atkTurn : defTurn;
                         if(dialog == nullptr) {
-                            dialog = new Dialog({Utils::OpString::quickString("battle.stat." + std::to_string((int)turnAct.statMod) + "." + std::to_string(turnAct.statCoef), {opTurn.opmon->getNickname()})}, data.getUiDataPtr());
+                            dialog = new Dialog(std::vector<sf::String>{Utils::OpString::quickString("battle.stat." + std::to_string((int)turnAct.statMod) + "." + std::to_string(turnAct.statCoef), {opTurn.opmon->getNickname()})}, data.getUiDataPtr());
                             dialog->draw(frame);
                         } else {
                             dialog->updateTextAnimation();
@@ -165,7 +165,7 @@ namespace OpMon {
                         }
                     } else if(turnAct.type == TurnActionType::DEFEAT) {
                         if(dialog == nullptr) {
-                            dialog = new Dialog({Utils::OpString::quickString("battle.defeat", {data.getPlayer().getName()})}, data.getUiDataPtr());
+                            dialog = new Dialog(std::vector<sf::String>{Utils::OpString::quickString("battle.defeat", {data.getPlayer().getName()})}, data.getUiDataPtr());
                             dialog->draw(frame);
                         } else {
                             dialog->updateTextAnimation();
