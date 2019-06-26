@@ -54,9 +54,7 @@ namespace OpMon {
 
             int part = 0;
 
-            std::vector<sf::String> txtP1;
-            std::vector<sf::String> txtP0;
-            Utils::OpString strName;
+            Utils::OpString txtP1;
 
             std::unique_ptr<Dialog> dialog;
 
