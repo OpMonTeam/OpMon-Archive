@@ -21,21 +21,7 @@ namespace OpMon {
     			this->text.push(sf::String(" "));
     		}
 
-    		background.setTexture(uidata->getDialogBackground());
-    		arrDial.setTexture(uidata->getDialogArrow());
-
-    		background.setPosition(0, 512 - 150);
-    		arrDial.setPosition(512 - 75, 512 - 30);
-
-    		int minusPos = 32;
-    		for(size_t i = 0; i < 3; ++i) {
-    			dialogText[i].setFont(uidata->getFont());
-    			dialogText[i].setCharacterSize(FONT_SIZE_DEFAULT);
-    			dialogText[i].setSfmlColor(sf::Color::Black);
-
-    			dialogText[i].setPosition(25, background.getPosition().y + minusPos);
-    			minusPos += 32;
-    		}
+    		init();
     	}
 
     	Dialog::Dialog(std::queue<sf::String> text, Model::UiData *uidata)
@@ -50,21 +36,7 @@ namespace OpMon {
     			}
     		}
 
-    		background.setTexture(uidata->getDialogBackground());
-    		arrDial.setTexture(uidata->getDialogArrow());
-
-    		background.setPosition(0, 512 - 150);
-    		arrDial.setPosition(512 - 75, 512 - 30);
-
-    		int minusPos = 32;
-    		for(size_t i = 0; i < 3; ++i) {
-    			dialogText[i].setFont(uidata->getFont());
-    			dialogText[i].setCharacterSize(FONT_SIZE_DEFAULT);
-    			dialogText[i].setSfmlColor(sf::Color::Black);
-
-    			dialogText[i].setPosition(25, background.getPosition().y + minusPos);
-    			minusPos += 32;
-    		}
+    		init();
     	}
 
     	Dialog::Dialog(std::vector<sf::String> text, Model::UiData *uidata)
@@ -83,22 +55,28 @@ namespace OpMon {
                 }
             }
 
-            background.setTexture(uidata->getDialogBackground());
-            arrDial.setTexture(uidata->getDialogArrow());
+            init();
 
-            background.setPosition(0, 512 - 150);
-            arrDial.setPosition(512 - 75, 512 - 30);
-
-            int minusPos = 32;
-            for(size_t i = 0; i < 3; ++i) {
-                dialogText[i].setFont(uidata->getFont());
-                dialogText[i].setCharacterSize(FONT_SIZE_DEFAULT);
-                dialogText[i].setSfmlColor(sf::Color::Black);
-
-                dialogText[i].setPosition(25, background.getPosition().y + minusPos);
-                minusPos += 32;
-            }
         }
+
+    	void Dialog::init(){
+    		background.setTexture(uidata->getDialogBackground());
+    		arrDial.setTexture(uidata->getDialogArrow());
+
+    		background.setPosition(0, 512 - 150);
+    		arrDial.setPosition(512 - 40, 512 - 40);
+    		arrDial.setScale(2, 2);
+
+    		int minusPos = 32;
+    		for(size_t i = 0; i < 3; ++i) {
+    			dialogText[i].setFont(uidata->getFont());
+    			dialogText[i].setCharacterSize(FONT_SIZE_DEFAULT);
+    			dialogText[i].setSfmlColor(sf::Color::Black);
+
+    			dialogText[i].setPosition(25, background.getPosition().y + minusPos);
+    			minusPos += 32;
+    		}
+    	}
 
         void Dialog::pass() {
         	/* If the dialog is not completely displayed, display the dialog when pressing space */
@@ -154,12 +132,12 @@ namespace OpMon {
                         frame.draw(dialogText[itor]);
                     }
 
-                    sf::Vector2f posArrow(512 - 75, 512 - 30);
-                    arrDial.move(0, 1);
+                    sf::Vector2f posArrow(512 - 40, 512 - 40);
+                    arrDial.move(0, 0.33f);
                     if(arrDial.getPosition().y - posArrow.y > 5) {
                         arrDial.move(0, -6);
                     }
-                    frame.draw(arrDial);
+                    if(text.size() > 0 && changeDialog) frame.draw(arrDial);
                 }
             }
         }
