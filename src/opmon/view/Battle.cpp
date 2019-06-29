@@ -17,7 +17,6 @@ File under GNU GPL v3.0
 namespace OpMon {
     namespace View {
         GameStatus Battle::operator()(sf::RenderTexture &frame, Model::TurnData const &atkTurn, Model::TurnData const &defTurn, std::queue<Model::TurnAction> &actionQueue, bool *turnActivated, bool atkFirst) {
-            std::cout << curPos.getValue() << std::endl;
             //Removes camera
             frame.setView(frame.getDefaultView());
 
@@ -187,8 +186,11 @@ namespace OpMon {
                 for(sf::Text &txt : choicesTxt) {
                     frame.draw(txt);
                 }
-
-                waitText.setString(Utils::StringKeys::get("battle.wait"));
+                std::queue<sf::String> waitTxt = Utils::StringKeys::autoNewLine(Utils::StringKeys::get("battle.wait"), 12);
+                sf::String str = waitTxt.front() + sf::String('\n');
+                waitTxt.pop();
+                str += waitTxt.front();
+                waitText.setString(str);
                 frame.draw(waitText);
 
                 cursor.setPosition(posChoices[curPos.getValue()] + sf::Vector2f((choicesTxt[curPos.getValue()].getGlobalBounds().width / 2) - 10, 25));
@@ -263,7 +265,7 @@ namespace OpMon {
                 for(unsigned int i = 0; i < 4; i++) {
                     attacks[i].setPosition(posChoices[i]);
                     attacks[i].setFont(data.getUiDataPtr()->getFont());
-                    attacks[i].setCharacterSize(26);
+                    attacks[i].setCharacterSize(22);
                     attacks[i].setSfmlColor(sf::Color::Black);
                 }
                 curPos = 0;
@@ -367,7 +369,7 @@ namespace OpMon {
             waitText.setFont(data.getUiDataPtr()->getFont());
             waitText.setCharacterSize(22);
             waitText.setSfmlColor(sf::Color::Black);
-            waitText.setPosition(25, 422);
+            waitText.setPosition(65, 410);
 
             ppStrTxt.setPosition(326, 380);
             ppStrTxt.setString("PP :");
