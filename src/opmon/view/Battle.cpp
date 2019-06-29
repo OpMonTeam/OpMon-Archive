@@ -86,6 +86,13 @@ namespace OpMon {
                 frame.draw(dialogSpr);
             }
 
+            if(animTest){
+            	if(!test->apply()){
+            		animTest = false;
+            	}
+            	//std::cout << atk.getPosition().x << " | " << atk.getPosition().y << std::endl;
+            }
+
             if(*turnActivated && turnNber <= 1) { //If turn's phase
                                                   //Organizes the turns' priority
                 const Model::TurnData *turns[2];
