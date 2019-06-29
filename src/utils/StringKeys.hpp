@@ -41,7 +41,7 @@ namespace Utils {
         /*
          * Special characters used : | to make a new line manually, $ to go to the next dialog manually
          */
-        std::queue<sf::String> autoNewLine(sf::String str, int limit = 32);
+        std::queue<sf::String> autoNewLine(sf::String str, unsigned int limit = 29);
 	
     } // namespace StringKeys
 } // namespace Utils
