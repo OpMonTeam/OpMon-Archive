@@ -43,18 +43,20 @@ namespace OpMon {
 	       Explication : The array must have this form : 
 	       {sinus (0) or cosinus (1), a, b, c, d} will give a*sin/cos(b*t + c) + d.
 	       The format can be repeated to add each part to the total (See first exemple)
-	       The cosinus and sinus function are the radian ones.
+	       The cosinus and sinus function are the ones with parameters in radians.
 	    */
-	    std::vector<int> xformula;
-	    std::vector<int> yformula;
+	    std::vector<double> xformula;
+	    std::vector<double> yformula;
 	    /* If true, the movement will be relative to the object's position */
 	    const bool relative;
 	    /* Sprite to move */
 	    sf::Sprite* sprite;
 	    unsigned int t = 0;
+
+	    sf::Vector2f basePos;
 	public:
 	    
-	    Movement(MovementMode modeX, MovementMode modeY, std::vector<int> xformula, std::vector<int> yformula, int const& time, bool const& relative = true, sf::Sprite* sprite = nullptr);
+	    Movement(MovementMode modeX, MovementMode modeY, std::vector<double> xformula, std::vector<double> yformula, int const& time, bool const& relative = true, sf::Sprite* sprite = nullptr);
 
 	    ~Movement();
 	    
