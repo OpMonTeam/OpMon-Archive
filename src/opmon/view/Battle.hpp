@@ -10,6 +10,7 @@ File under GNU GPL v3.0 license
 #include "../model/objects/Turn.hpp"
 #include "../model/storage/BattleData.hpp"
 #include "../start/Core.hpp"
+#include "Elements.hpp"
 #include "Dialog.hpp"
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
@@ -85,6 +86,9 @@ namespace OpMon {
 
             Model::BattleData &data;
 
+            bool animTest = false;
+            Movement *test = nullptr;
+
           public:
             Battle(const Model::OpTeam *atkTeam, const Model::OpTeam *defTeam, std::string trainerClass, std::string background, Model::BattleData &data);
 
@@ -105,6 +109,16 @@ namespace OpMon {
             void passDialog() {
                 if(dialog != nullptr)
                     dialog->pass();
+            }
+
+            void setAnimTest() {
+            	if(!animTest){
+            		animTest = true;
+            		if(test != nullptr){
+            			delete(test);
+            		}
+            		test = new Movement(MovementMode::POLYNOMIAL, MovementMode::POLYNOMIAL, std::vector<double>{0, 9.0, -9.0/40.0}, std::vector<double>{0, -11, 11.0/40.0}, 40, true, &atk);
+            	}
             }
         };
 
