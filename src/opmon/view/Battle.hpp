@@ -88,6 +88,7 @@ namespace OpMon {
 
             bool animTest = false;
             Movement *test = nullptr;
+            Rotation *test2 = nullptr;
 
           public:
             Battle(const Model::OpTeam *atkTeam, const Model::OpTeam *defTeam, std::string trainerClass, std::string background, Model::BattleData &data);
@@ -117,7 +118,8 @@ namespace OpMon {
             		if(test != nullptr){
             			delete(test);
             		}
-            		test = new Movement(MovementMode::POLYNOMIAL, MovementMode::POLYNOMIAL, std::vector<double>{0, 9.0, -9.0/40.0}, std::vector<double>{0, -11, 11.0/40.0}, 40, true, &atk);
+                        test = new Movement(FormulaMode::POLYNOMIAL, FormulaMode::POLYNOMIAL, std::vector<double>{0, 9.0, -9.0/40.0}, std::vector<double>{0, -11, 11.0/40.0}, 40, true, &atk);
+                        test2 = new Rotation(FormulaMode::MULTIFUNCTIONS, std::vector<double>{3, -54, 1, 1080, 0, -20}, Rotation::spriteCenter(atk), 40, &atk);
             	}
             }
         };

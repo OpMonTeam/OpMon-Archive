@@ -275,7 +275,7 @@ namespace OpMon {
             }
 
             Item *itemHeld() const {
-                return held; //It's a getted, even if there is no "get" before.
+                return held;
             }
 
             std::string save();
