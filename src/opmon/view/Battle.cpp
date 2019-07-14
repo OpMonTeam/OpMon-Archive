@@ -87,7 +87,7 @@ namespace OpMon {
             }
 
             if(animTest){
-            	if(!test->apply()){
+                if(!test->apply() && !test2->apply()){
             		animTest = false;
             	}
             	//std::cout << atk.getPosition().x << " | " << atk.getPosition().y << std::endl;
