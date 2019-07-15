@@ -30,9 +30,13 @@ namespace OpMon {
 
         class Battle {
           private:
-            //The OpMons' sprites
+            //The OpMons sprites
             sf::Sprite atk;
             sf::Sprite def;
+
+            //The OpMons Transform objects used for the animations
+            sf::Transform atkTr;
+            sf::Transform defTr;
 
             const Model::OpTeam *atkTeam;
             const Model::OpTeam *defTeam;
@@ -87,8 +91,7 @@ namespace OpMon {
             Model::BattleData &data;
 
             bool animTest = false;
-            Movement *test = nullptr;
-            Rotation *test2 = nullptr;
+            Transformation *test = nullptr;
 
           public:
             Battle(const Model::OpTeam *atkTeam, const Model::OpTeam *defTeam, std::string trainerClass, std::string background, Model::BattleData &data);
@@ -118,8 +121,7 @@ namespace OpMon {
             		if(test != nullptr){
             			delete(test);
             		}
-                        test = new Movement(FormulaMode::POLYNOMIAL, FormulaMode::POLYNOMIAL, std::vector<double>{0, 9.0, -9.0/40.0}, std::vector<double>{0, -11, 11.0/40.0}, 40, true, &atk);
-                        test2 = new Rotation(FormulaMode::MULTIFUNCTIONS, std::vector<double>{3, -54, 1, 1080, 0, -20}, Rotation::spriteCenter(atk), 40, &atk);
+                        test = new Transformation(40, Transformation::newMovementData(FormulaMode::POLYNOMIAL, FormulaMode::POLYNOMIAL, std::vector<double>{0, 9.0, -9.0/40.0}, std::vector<double>{0, -11, 11.0/40.0}, true), Transformation::newRotationData(FormulaMode::MULTIFUNCTIONS, std::vector<double>{3, -54, 1, 1080, 0, -20}, Transformation::spriteCenter(atk)), ScaleData(), &atkTr);
             	}
             }
         };
