@@ -9,6 +9,9 @@ File under GNU GPL v3.0 license
 #include "../model/storage/ResourceLoader.hpp"
 #include <cmath>
 
+/* Converts degrees to radians */
+#define DEG * (180 / 3.14159265)
+
 namespace OpMon {
 	namespace View {
 
@@ -59,8 +62,11 @@ namespace OpMon {
 			target.draw(tiles, states);
 		}
 
-		Transformation::Transformation(sf::Sprite* sprite, unsigned int const& time)
-		: time(time)
+		Transformation::Transformation(unsigned int const& time, MovementData const md, RotationData const rd, ScaleData const sd, sf::Transform* sprite)
+		: md(md)
+		, rd(rd)
+		, sd(sd)
+		, time(time)
 		, sprite(sprite){
 			if(sprite != nullptr){
 				attach(sprite, true);
@@ -71,48 +77,25 @@ namespace OpMon {
 
 		}
 
-		Movement::Movement(FormulaMode modeX, FormulaMode modeY, std::vector<double> xformula, std::vector<double> yformula, int const& time, bool const& relative, sf::Sprite* sprite)
-		: Transformation(sprite, time)
-		, modeX(modeX)
-		, modeY(modeY)
-		, xformula(xformula)
-		, yformula(yformula)
-		, relative(relative){
-		}
 
-		Movement::~Movement(){
-
-		}
-
-		Rotation::Rotation(FormulaMode formulaMode, std::vector<double> formula, sf::Vector2f origin, int const& time, sf::Sprite *sprite)
-		  : Transformation(sprite, time)
-		  , formulaMode(formulaMode)
-		  , formula(formula)
-		  , origin(origin){
-
-		}
-
-		Rotation::~Rotation(){}
-
-
-		sf::Sprite* Transformation::attach(sf::Sprite* sprite, bool replace){
+		sf::Transform* Transformation::attach(sf::Transform* sprite, bool replace){
 			if(this->sprite != nullptr && !replace){
 				return nullptr;
 			}
 			t = 0;
-			sf::Sprite* oldSprite = detach();
+			sf::Transform* oldSprite = detach();
 			this->sprite = sprite;
 			return oldSprite;
 		}
 
-		sf::Sprite* Transformation::detach(){
-			sf::Sprite* toReturn = sprite;
+		sf::Transform* Transformation::detach(){
+			sf::Transform* toReturn = sprite;
 			sprite = nullptr;
 			return toReturn;
 		}
 
-		double Transformation::calcFormula(std::vector<double> formula, FormulaMode mode, int t){
-		  double toReturn = 0.0;
+		float Transformation::calcFormula(std::vector<double> formula, FormulaMode mode, int t){
+		  float toReturn = 0.0;
 		  switch(mode){
 		  case FormulaMode::POLYNOMIAL:
 		    for(unsigned int i = 0; i < formula.size(); i++){
@@ -151,33 +134,78 @@ namespace OpMon {
 		  return toReturn;
 		}
 
-		sf::Sprite* Movement::attach(sf::Sprite *sprite, bool replace){
-		  sf::Sprite *oldSprite = Transformation::attach(sprite, replace);
-		  basePos = sprite->getPosition();
-		  return oldSprite;
-		}
-
-		sf::Sprite* Movement::detach(){
-		  sf::Sprite* oldSprite = Transformation::detach();
-		  basePos = sf::Vector2f(0, 0);
-		  return oldSprite;
+		sf::Vector2f Transformation::rotateVector(const sf::Vector2f &vect, double angle){
+		  return sf::Vector2f(((vect.x * std::cos(angle DEG)) - (vect.y * std::sin(angle DEG))), ((vect.x * std::sin(angle DEG)) + (vect.y * std::cos(angle DEG))));
 		}
 
 		bool Transformation::empty(){
 			return sprite == nullptr;
 		}
 
-		bool Movement::apply(){
-			if(empty() || (t > time && time != 0) ){
-				return false;
-			}
-			sprite->setPosition( (relative ? basePos.x : 0.0) + calcFormula(xformula, modeX, t),
-					(relative ? basePos.y : 0.0) + calcFormula(yformula, modeY, t));
-			t++;
-			return true;
+		bool Transformation::apply(){
+		  std::cout << "apply" << std::endl;
+		  if(empty() || (t > time && time != 0) ){
+			  return false;
+		  }
+
+		  //Translation
+		  if(md.init){
+		    sf::Vector2f calc = sf::Vector2f(calcFormula(md.xformula, md.modeX, t), calcFormula(md.yformula, md.modeY, t));//Calculates the new coordinates
+		    sprite->translate(rotateVector(calc - lastTranslation, - lastRotation));//Moves by the difference between the old coordinates and the new one.
+											    //Rotates the vector to ignore the effects due to the rotation.
+		    lastTranslation = calc;
+		  }
+
+		  //Rotation
+		  if(rd.init){
+		    float rotation = calcFormula(rd.formula, rd.formulaMode, t);
+		    sprite->rotate(rotation - lastRotation, rd.origin);
+		    lastRotation = rotation;
+		  }
+
+		  //Scaling
+		  if(sd.init){
+		    sf::Vector2f calc = sf::Vector2f(calcFormula(sd.xformula, sd.modeX, t), calcFormula(md.yformula, md.modeY, t));//Calculates the new scale
+		    sprite->scale(calc.x / lastScaling.x, calc.y / lastScaling.y);//Scaling relatively to the last scale to not multiply the different scalings
+		    lastScaling = calc;
+		  }
+
+
+		  t++;
+		  return true;
 		}
 
-		Movement* Movement::mirror(Movement const& movement){
+		const MovementData Transformation::newMovementData(FormulaMode modeX, FormulaMode modeY, std::vector<double> xformula, std::vector<double> yformula, bool relative){
+		  MovementData toReturn;
+		  toReturn.modeX = modeX;
+		  toReturn.modeY = modeY;
+		  toReturn.xformula = xformula;
+		  toReturn.yformula = yformula;
+		  toReturn.relative = relative;
+		  toReturn.init = true;
+		  return toReturn;
+		}
+
+		const RotationData Transformation::newRotationData(FormulaMode formulaMode, std::vector<double> formula, sf::Vector2f origin){
+		  RotationData toReturn;
+		  toReturn.formulaMode = formulaMode;
+		  toReturn.formula = formula;
+		  toReturn.origin = origin;
+		  toReturn.init = true;
+		  return toReturn;
+		}
+
+		const ScaleData Transformation::newScaleData(FormulaMode modeX, FormulaMode modeY, std::vector<double> xformula, std::vector<double> yformula){
+		  ScaleData toReturn;
+		  toReturn.modeX = modeX;
+		  toReturn.modeY = modeY;
+		  toReturn.xformula = xformula;
+		  toReturn.yformula = yformula;
+		  toReturn.init = true;
+		  return toReturn;
+		}
+
+		MovementData Transformation::mirror(MovementData const& movement){
 
 			std::vector<double> xformula = movement.xformula;
 			std::vector<double> yformula = movement.yformula;
@@ -213,28 +241,12 @@ namespace OpMon {
 				break;
 			}
 
-			return new Movement(movement.modeX, movement.modeY, xformula, yformula, movement.time, movement.relative, movement.sprite);
+			return newMovementData(movement.modeX, movement.modeY, xformula, yformula, movement.relative);
 
 		}
 
-		bool Rotation::apply(){
-		  if(empty() || (t > time && time != 0) ){
-			  return false;
-		  }
-		  //std::cout << "Origin1 : " << sprite->getOrigin().x << " ; " << sprite->getOrigin().y << std::endl;
-		  baseOrigin = sprite->getOrigin();
-		  sprite->setOrigin(sprite->getPosition());
-		  //sprite->setOrigin(origin);
-		  //std::cout << "Origin2 : " << sprite->getOrigin().x << " ; " << sprite->getOrigin().y << std::endl;
-		  sprite->setRotation(calcFormula(formula, formulaMode, t));
-		  //sprite->setOrigin(baseOrigin);
-		  //std::cout << "Origin3 : " << sprite->getOrigin().x << " ; " << sprite->getOrigin().y << std::endl;
-		  t++;
-		  return true;
-		}
-
-		sf::Vector2f Rotation::spriteCenter(const sf::Sprite &spr){
-		  return sf::Vector2f(spr.getTextureRect().width / 2, spr.getTextureRect().height / 2);
+		sf::Vector2f Transformation::spriteCenter(const sf::Sprite &spr){
+		  return sf::Vector2f(3 * spr.getGlobalBounds().width / 4, 3 * spr.getGlobalBounds().height / 4);
 		}
 
 	} // namespace View

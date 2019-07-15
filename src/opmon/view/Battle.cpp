@@ -36,9 +36,9 @@ namespace OpMon {
             frame.draw(playerSpr);
             frame.draw(trainerSpr);
             atk.setTexture(data.getUiDataPtr()->getOpSprite(atkTurn.opmon->getSpecies().getOpdexNumber(), false));
-            this->def.setTexture(data.getUiDataPtr()->getOpSprite(defTurn.opmon->getSpecies().getOpdexNumber(), true));
-            frame.draw(atk);
-            frame.draw(this->def);
+            def.setTexture(data.getUiDataPtr()->getOpSprite(defTurn.opmon->getSpecies().getOpdexNumber(), true));
+            frame.draw(atk, atkTr);
+            frame.draw(def, defTr);
             frame.draw(infoboxPlayer);
             frame.draw(infoboxTrainer);
 
@@ -87,14 +87,11 @@ namespace OpMon {
             }
 
             if(animTest){
-                if(!test->apply() && !test2->apply()){
-            		animTest = false;
-            	}
-            	//std::cout << atk.getPosition().x << " | " << atk.getPosition().y << std::endl;
+              animTest = test->apply();
             }
 
-            if(*turnActivated && turnNber <= 1) { //If turn's phase
-                                                  //Organizes the turns' priority
+            if(*turnActivated && turnNber <= 1) { //If it's turn phase
+                //Organizes the turns priority
                 const Model::TurnData *turns[2];
                 if(atkFirst) {
                     turns[0] = &atkTurn;
@@ -326,9 +323,9 @@ namespace OpMon {
             cursor.setPosition(posChoices[0] + sf::Vector2f((choicesTxt[0].getGlobalBounds().width / 2) - 10, 25));
             curPos = 0;
             cursor.setScale(2, 2);
-            atk.setPosition(107, 195);
-            def.setPosition(305, 120);
-            atk.setScale(2, 2);
+            atkTr.translate(107, 195);
+            defTr.translate(305, 120);
+            atkTr.scale(2, 2);
 
             infoboxPlayer.setTexture(data.getInfoboxPlayer());
             infoboxPlayer.setPosition(277, 252);
