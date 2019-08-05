@@ -45,6 +45,8 @@ namespace OpMon {
 
             bool backgroundVisible = true;
 
+            void init();
+
           public:
             OP_DEPRECATED Dialog(std::vector<sf::String> text, Model::UiData *uidata);
             Dialog(std::queue<sf::String> text, Model::UiData *uidata);

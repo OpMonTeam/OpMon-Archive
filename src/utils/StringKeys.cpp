@@ -153,7 +153,7 @@ namespace Utils {
 
         std::string getStd(std::string const &key) { return sfStringtoStdString(get(key)); }
 
-	std::queue<sf::String> autoNewLine(sf::String str, int limit){
+	std::queue<sf::String> autoNewLine(sf::String str, unsigned int limit){
 	    unsigned int lastLinePos = 0;
 	    sf::String currentWord;
 	    std::queue<sf::String> strings;
@@ -162,8 +162,7 @@ namespace Utils {
 	    	if(str[i] != ' ' && str[i] != '|' && str[i] != '$' && i != (str.getSize() - 1)){
 	    		currentWord += str[i];
 	    	}else{
-	    		if(i - lastLinePos > limit){
-	    			lastLinePos = i;
+	    		if((strings.back().getSize() + currentWord.getSize()) >= limit){
 	    			strings.push(sf::String());
 	    		}
 
@@ -173,7 +172,6 @@ namespace Utils {
 	    		currentWord.clear();
 
 	    		if(str[i] == '|' || str[i] == '$'){
-	    			lastLinePos = i;
 	    			strings.push(sf::String());
 	    		}
 	    		while(str[i] == '$' && (strings.size() % 3) != 1){
