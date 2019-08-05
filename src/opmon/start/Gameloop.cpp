@@ -50,6 +50,15 @@ namespace OpMon {
         while(status != GameStatus::STOP) {
             status = GameStatus::CONTINUE;
 
+
+            //Debug frame by frame
+            while(sf::Keyboard::isKeyPressed(sf::Keyboard::F2) && !(sf::Keyboard::isKeyPressed(fbfType) && hasBeenReleased)){
+              if(!sf::Keyboard::isKeyPressed(fbfType)){
+                hasBeenReleased = true;
+              }
+            }
+            hasBeenReleased = false;
+
             //Gets the current game screen's controller
             auto *ctrl = _gameScreens.top().get();
             sf::Event event;
@@ -85,6 +94,9 @@ namespace OpMon {
                     ctrl->loadNextScreen();
                 }
             }
+
+
+
 
             switch(status) {
             case GameStatus::NEXT: //Pauses the current screen and passes to the next
