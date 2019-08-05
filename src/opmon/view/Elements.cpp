@@ -8,9 +8,10 @@ File under GNU GPL v3.0 license
 #include "../../utils/defines.hpp"
 #include "../model/storage/ResourceLoader.hpp"
 #include <cmath>
+#include <iostream>
 
 /* Converts degrees to radians */
-#define DEG * (180 / 3.14159265)
+#define DEG * (3.14159265 / 180)
 
 namespace OpMon {
 	namespace View {
@@ -143,7 +144,6 @@ namespace OpMon {
 		}
 
 		bool Transformation::apply(){
-		  std::cout << "apply" << std::endl;
 		  if(empty() || (t > time && time != 0) ){
 			  return false;
 		  }
@@ -172,6 +172,7 @@ namespace OpMon {
 
 
 		  t++;
+
 		  return true;
 		}
 
@@ -246,7 +247,7 @@ namespace OpMon {
 		}
 
 		sf::Vector2f Transformation::spriteCenter(const sf::Sprite &spr){
-		  return sf::Vector2f(3 * spr.getGlobalBounds().width / 4, 3 * spr.getGlobalBounds().height / 4);
+		  return sf::Vector2f(spr.getGlobalBounds().width / 2, spr.getGlobalBounds().height / 2);
 		}
 
 	} // namespace View
