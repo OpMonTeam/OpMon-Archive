@@ -53,15 +53,28 @@ key.weirdsign=Betreten verboten!|Bauarbeiten an der vierten Wand.
 
 key.kid=Ich mag kurze Hosen!
 
+key.clock=It is 1:0 for a long time. |This alarm clock must be broken ...
+
+key.trash=This bin is empty
+
+key.playerhome.fridge=Yeah, this is a fridge, captain obvious.
+
 key.prof.dialog=Hi ! Hattest du eine gute Reise? Skullk ist gerade draußen, sorry! Komm später für Neuigkeiten zurück
 
-key.pcRunLinux=Dieser Computer nutzt Linux !
+key.pcRunLinux=Dieser Computer nutzt GNU/Linux !
 
 key.playerhome.tv=Wir sehen eine Reality Show mit OpMons aber sie sehen nicht sehr glücklich aus...
 
 key.playermom.dialog=Geht es dir gut Schätzchen?$...$Es scheint nicht zu gehen.
 
 key.rt14.sk=Wer bist du ?|Du solltest nicht hier sein...
+
+key.euvicity.desc=Welcome to EuviCity !
+
+key.rt14.albd=Bonjour, young person ! I'm Albert Fence !  I love guitare and the fences ! You like that too, right ?
+
+key.rt14.albdHouse=Albert's House | PS : Don't touch my fence !
+
 
 key.fe.fisherman=Fischsünder : Oh ! Du hast mich überrascht ! Ich komme gerne her zum ausruhen. Alles ist ruhig und einfach. Obwohl es wahr ist, dass es nicht viele Fische in der Gegend gibt.$..$Warte, Ich habe dich hier noch nie gesehen ?|Bist du neu ?
 

@@ -46,6 +46,8 @@ key.ppHouse=~'s house.
 
 key.rivalHouse=Skullk's house.
 
+key.clock=It is 1:0 for a long time. |This alarm clock must be broken ...
+
 key.labo=Professor Kiwaï's laboratory.
 
 key.weirdsign.1=Please do not get close.|4th wall under reconstruction.
@@ -54,7 +56,11 @@ key.kid=I like shorts!
 
 key.prof.dialog=Hi! Did your trip go well? Skullk is currently outdoor, sorry! Come back for a future update !
 
-key.pcRunLinux=This computer runs on Linux !
+key.pcRunLinux=This computer runs on GNU/Linux !
+
+key.trash=This bin is empty
+
+key.playerhome.fridge=Yeah, this is a fridge, captain obvious.
 
 key.playerhome.tv=We can see a reality show with OpMons, but they don't look very happy...
 
@@ -62,7 +68,9 @@ key.playermom.dialog=Are you alright darling?$...$You don't seem so...
 
 key.rt14.sk=Who are you ?|You shouldn't be here...
 
-key.rt14.albd=test|test|test
+key.rt14.albd=Bonjour, young person ! I'm Albert Fence !  I love guitare and the fences ! You like that too, right ?
+
+key.rt14.albdHouse=Albert's House | PS : Don't touch my fence !
 
 key.fe.fisherman=Fisherman : Oh ! You surprised me !|I love coming here to rest...$Everything is calm...|Everything is simple...$Although there are not many fish in this area !$...$Wait, I've never seen you here, isn't it?|Are you new ?
 
@@ -70,6 +78,8 @@ key.inferm.dialog=Welcome !|Do you want to heal your OpMons ?$...$Wait. You don'
 
 key.rt14.beta.pre=Hello ! I am Beta. I am the NPC allowing you to test new feature not fully implemented.|I can do an OpMon battle against you if you want.|Let's go !
 key.rt14.beta.post=Was it good ?|If you want to do it again relauch the game with M !
+
+key.euvicity.desc=Welcome to EuviCity
 
 key.battle.attack=Attacks
 key.battle.bag=Bag

@@ -47,6 +47,12 @@ key.ppHouse=Maison de ~.
 
 key.rivalHouse=Maison de Skullk.
 
+key.clock=Il est 1:O depuis ... longtemps |Ce réveil ne doit plus marcher.
+
+key.trash=La poubelle est vide.
+
+key.playerhome.fridge=Ceci est un frigo, captain obvious.
+
 key.labo=Laboratoire du professeur Kiwaï.
 
 key.weirdsign=Ne pas toucher.|Quatrième mur en reconstruction.
@@ -69,6 +75,12 @@ key.inferm.dialog=Bonjour !|Voulez-vous soigner vos OpMons ?$...$Mais ? vous en 
 
 key.rt14.beta.pre=Bonjour ! Je suis Beta. Je suis le PNJ qui permet de tester les nouvelles fonctions pas complètement implémentées.|Je peux faire un combat OpMon contre toi si tu veux.$C'est parti !
 key.rt14.beta.post=Alors ? C'était bien ?|Si tu veux recommencer, relance le jeu avec M !
+
+key.rt14.albd=Bonjour jeune homme ! Je suis Albert Delacloture !  J'adore la guitare et les clotures ! Tu aime ça aussi, n'est ce pas ?
+
+key.rt14.albdHouse=La Maison d'Albert | PS : Touche pas à ma cloture !
+
+key.euvicity.desc=Ville d'EuviCity
 
 key.battle.attack=Attaque
 key.battle.bag=Sac

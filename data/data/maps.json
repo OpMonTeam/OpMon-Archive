@@ -387,6 +387,20 @@
 	    {
 		"type" : "TalkingEvent",
 		"textures" : "alpha",
+		"position" : [1, 1],
+		"dialog" : ["playerhome.fridge"],
+		"side" : 1
+	    },
+	    {
+		"type" : "TalkingEvent",
+		"textures" : "alpha",
+		"position" : [10, 1],
+		"dialog" : ["trash"],
+		"side" : 1
+	    },
+	    {
+		"type" : "TalkingEvent",
+		"textures" : "alpha",
 		"position" : [2, 8],
 		"dialog" : ["playerhome.tv"],
 		"side" : 1
@@ -656,6 +670,13 @@
 	    {
 		"type" : "TalkingEvent",
 		"textures" : "alpha",
+		"position" : [3, 5],
+		"dialog" : ["clock"],
+		"side" : 1
+	    },
+	    {
+		"type" : "TalkingEvent",
+		"textures" : "alpha",
 		"position" : [1, 3],
 		"dialog" : ["pcRunLinux"],
 		"side" : 1
@@ -855,6 +876,14 @@
 		"dialog" : ["rt14.albd"],
 		"side" : 0
             },
+        {
+		"type" : "TalkingEvent",
+		"textures" : "alpha",
+		"position" : [73, 39],
+		"dialog" : ["rt14.albdHouse"],
+		"side" : 1
+	    },
+        
 	    {
 		"type" : "TPEvent",
 		"textures" : "alpha",
@@ -1414,6 +1443,13 @@
 		    "side" : 2
 		},
 		"side" : 16
+	    },
+	    {
+		"type" : "TalkingEvent",
+		"textures" : "alpha",
+		"position" : [25, 40],
+		"dialog" : ["euvicity.desc"],
+		"side" : 1
 	    },
             {
 		"type" : "TPEvent",

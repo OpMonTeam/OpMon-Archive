@@ -48,6 +48,12 @@ key.ppHouse=Casa de ~.
 
 key.rivalHouse=Casa de Skullk.
 
+key.clock=It is 1:0 for a long time. |This alarm clock must be broken ...
+
+key.trash=This bin is empty
+
+key.playerhome.fridge=Yeah, this is a fridge, captain obvious.
+
 key.labo=Laboratorio del profesor KiwaÃ¯.
 
 key.weirdsign=No tocar.|Cuarto muro en reconstrucciòn.
@@ -56,6 +62,8 @@ key.kid=Me gustan los pantalones cortos!
 
 key.prof.dialog=¿Haz echo un buen viaje? Skullk salio a caminar. ¡Vuelve despues de la actualisacion!
 
+key.euvicity.desc=Ciudad de EuviCity
+
 key.pcRunLinux=¡Este PC se ejecuta en GNU/Linux!
 
 key.playerhome.tv=Podemos ver un reality con OpMons, pero ellos no parecen muy felices...
@@ -63,6 +71,11 @@ key.playerhome.tv=Podemos ver un reality con OpMons, pero ellos no parecen muy f
 key.playermom.dialog=¿Como estas carino?$...$¿Estas bien?
 
 key.rt14.sk=¿Quien eres tu?$No deberia estar aqui...
+
+key.rt14.albd=Bonjour, young person ! I'm Albert Fence !  I love guitare and the fences ! You like that too, right ?
+
+key.rt14.albdHouse=Albert's House | PS : Dont touch my fence !
+
 
 key.fe.fisherman=Pescador : Oh ! Estoy sorprendido. Me gusta venir aca para descanzar$Todo es tranquilo y simple...|Claro que es verdad que... no hay muchos peces en el area !$...$Espera, nunca te he visto ahi.|Eres nuevo ?
 
