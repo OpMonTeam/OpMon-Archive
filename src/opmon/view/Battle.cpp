@@ -271,14 +271,14 @@ namespace OpMon {
                 curPos = 0;
 
             } else {
-                posChoices[0].x = 326;
-                posChoices[0].y = 392;
-                posChoices[1].x = 430;
-                posChoices[1].y = 392;
-                posChoices[2].x = 330;
-                posChoices[2].y = 457;
-                posChoices[3].x = 430;
-                posChoices[3].y = 457;
+              posChoices[0].x = 300 + (99 - choicesTxt[0].getGlobalBounds().width) / 3;
+              posChoices[0].y = 392;
+              posChoices[1].x = 400 + (99 - choicesTxt[1].getGlobalBounds().width) / 2;
+              posChoices[1].y = 392;
+              posChoices[2].x = 300 + (99 - choicesTxt[2].getGlobalBounds().width) / 2;
+              posChoices[2].y = 457;
+              posChoices[3].x = 400 + (99 - choicesTxt[3].getGlobalBounds().width) / 2;
+              posChoices[3].y = 457;
                 dialogSpr.setTexture(data.getDialog());
                 curPos = 0;
             }
@@ -299,19 +299,25 @@ namespace OpMon {
             choicesTxt[1].setString(Utils::StringKeys::get("battle.bag"));
             choicesTxt[2].setString(Utils::StringKeys::get("battle.opmon"));
             choicesTxt[3].setString(Utils::StringKeys::get("battle.run"));
-            posChoices[0].x = 326;
-            posChoices[0].y = 392;
-            posChoices[1].x = 430;
-            posChoices[1].y = 392;
-            posChoices[2].x = 330;
-            posChoices[2].y = 457;
-            posChoices[3].x = 430;
-            posChoices[3].y = 457;
+
             for(unsigned int i = 0; i < 4; i++) {
                 choicesTxt[i].setFont(data.getUiDataPtr()->getFont());
                 choicesTxt[i].setCharacterSize(20);
-                choicesTxt[i].setPosition(posChoices[i]);
+
                 choicesTxt[i].setSfmlColor(sf::Color::White);
+            }
+
+            posChoices[0].x = 300 + (99 - choicesTxt[0].getGlobalBounds().width) / 2;
+            posChoices[0].y = 392;
+            posChoices[1].x = 400 + (99 - choicesTxt[1].getGlobalBounds().width) / 2;
+            posChoices[1].y = 392;
+            posChoices[2].x = 300 + (99 - choicesTxt[2].getGlobalBounds().width) / 2;
+            posChoices[2].y = 457;
+            posChoices[3].x = 400 + (99 - choicesTxt[3].getGlobalBounds().width) / 2;
+            posChoices[3].y = 457;
+
+            for(unsigned int i = 0; i < 4; i++){
+              choicesTxt[i].setPosition(posChoices[i]);
             }
 
             //ppText.setPosition(326, 380);
@@ -368,12 +374,12 @@ namespace OpMon {
 
             waitText.setFont(data.getUiDataPtr()->getFont());
             waitText.setCharacterSize(22);
-            waitText.setSfmlColor(sf::Color::Black);
+            waitText.setSfmlColor(sf::Color::White);
             waitText.setPosition(65, 410);
 
             ppStrTxt.setPosition(326, 380);
             ppStrTxt.setString("PP :");
-            ppTxt.setPosition(326, 400);
+            ppTxt.setPosition(326, 405);
             ppStrTxt.setFont(data.getUiDataPtr()->getFont());
             ppTxt.setFont(data.getUiDataPtr()->getFont());
             ppStrTxt.setCharacterSize(26);
