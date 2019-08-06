@@ -165,9 +165,12 @@ namespace OpMon {
 
 		  //Scaling
 		  if(sd.init){
-		    sf::Vector2f calc = sf::Vector2f(calcFormula(sd.xformula, sd.modeX, t), calcFormula(md.yformula, md.modeY, t));//Calculates the new scale
-		    sprite->scale(calc.x / lastScaling.x, calc.y / lastScaling.y);//Scaling relatively to the last scale to not multiply the different scalings
+		    sf::Vector2f calc = sf::Vector2f(calcFormula(sd.xformula, sd.modeX, t), calcFormula(sd.yformula, sd.modeY, t));//Calculates the new scale
+		    sprite->scale(calc.x / lastScaling.x, calc.y / lastScaling.y, sd.origin.x, sd.origin.y);//Scaling relatively to the last scale to not multiply the different scalings
+		    std::cout << "Scale at : " << calc.x << " | " << calc.y << std::endl;
+		    std::cout << "Relative scale : " << calc.x / lastScaling.x << " | " << calc.y / lastScaling.y << std::endl;
 		    lastScaling = calc;
+
 		  }
 
 
@@ -196,13 +199,14 @@ namespace OpMon {
 		  return toReturn;
 		}
 
-		const ScaleData Transformation::newScaleData(FormulaMode modeX, FormulaMode modeY, std::vector<double> xformula, std::vector<double> yformula){
+		const ScaleData Transformation::newScaleData(FormulaMode modeX, FormulaMode modeY, std::vector<double> xformula, std::vector<double> yformula, sf::Vector2f origin){
 		  ScaleData toReturn;
 		  toReturn.modeX = modeX;
 		  toReturn.modeY = modeY;
 		  toReturn.xformula = xformula;
 		  toReturn.yformula = yformula;
 		  toReturn.init = true;
+		  toReturn.origin = origin;
 		  return toReturn;
 		}
 
@@ -247,7 +251,7 @@ namespace OpMon {
 		}
 
 		sf::Vector2f Transformation::spriteCenter(const sf::Sprite &spr){
-		  return sf::Vector2f(spr.getGlobalBounds().width / 2, spr.getGlobalBounds().height / 2);
+		  return sf::Vector2f(spr.getGlobalBounds().width / 2, 3 * spr.getGlobalBounds().height / 4);
 		}
 
 	} // namespace View

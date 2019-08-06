@@ -121,8 +121,9 @@ namespace OpMon {
             		if(test != nullptr){
             			delete(test);
             		}
-                        test = new Transformation(40, Transformation::newMovementData(FormulaMode::POLYNOMIAL, FormulaMode::POLYNOMIAL, std::vector<double>{0, 7.5/2.0, -3.0/32.0}, std::vector<double>{0, -7.5/2.0, 3.0/32.0}, true), Transformation::newRotationData(FormulaMode::MULTIFUNCTIONS, std::vector<double>{3, -54, 1, -20, 0, 1080}, Transformation::spriteCenter(atk)), ScaleData(), &atkTr);
-            	}
+                        //test = new Transformation(40, Transformation::newMovementData(FormulaMode::POLYNOMIAL, FormulaMode::POLYNOMIAL, std::vector<double>{0, 7.5/2.0, -3.0/32.0}, std::vector<double>{0, -7.5/2.0, 3.0/32.0}, true), Transformation::newRotationData(FormulaMode::MULTIFUNCTIONS, std::vector<double>{3, -54, 1, -20, 0, 1080}, Transformation::spriteCenter(atk)), ScaleData(), &atkTr);
+                        test = new Transformation(40, MovementData(), RotationData(), Transformation::newScaleData(FormulaMode::MULTIFUNCTIONS, FormulaMode::MULTIFUNCTIONS, std::vector<double>{2,0.1,2 * PI / 20, 0, 0, 0.9}, std::vector<double>{2,-0.1,2 * PI / 20,0,0,1.1}, Transformation::spriteCenter(atk)), &atkTr);
+                }
             }
         };
 
