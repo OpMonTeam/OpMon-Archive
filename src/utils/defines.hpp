@@ -30,4 +30,6 @@ File under GNU GPL v3.0 license
 
 #define FONT_SIZE_DEFAULT 25
 
+#define PI 3.1415926535
+
 #endif

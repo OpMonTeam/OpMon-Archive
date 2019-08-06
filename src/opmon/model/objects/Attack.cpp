@@ -57,10 +57,26 @@ namespace OpMon {
                     }
                     i++;
                 }
+		for(unsigned int i = 0; i < itor->at("animationOrder").size(); i++){
+		    attackList[idStr].animationOrder.push(itor->at("animationOrder").at(i));
+		}
+		for(auto aitor = itor->at("opMovements").begin(); aitor != itor->at("opMovements").end(); ++aitor){
+		    attackList[idStr].opAnims.push(View::Transformation(aitor->at("time"),
+							   View::Transformation::newMovementData(aitor->at("mode").at(0),
+							   aitor->at("mode").at(1),
+							   aitor->at("formulas").at(0),
+							   aitor->at("formulas").at(1))));
+
+		}
+		for(unsigned int i = 0; i < itor->at("animations").size(); i++){
+		    attackList[idStr].animations.push(itor->at("animations").at(i));
+		}
+		std::string atkStr = itor->at("id");
+		Utils::Log::oplog("Loaded attack " + atkStr);
             }
         }
 
-        Attack::Attack(std::string nameKey, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, AttackEffect *preEffect, AttackEffect *postEffect, AttackEffect *fails)
+        Attack::Attack(std::string nameKey, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::queue<TurnActionType> animationOrder, std::queue<View::Transformation> opAnims, std::queue<std::string> animations, AttackEffect *preEffect, AttackEffect *postEffect, AttackEffect *fails)
           : name(Utils::OpString(nameKey))
           , power(power)
           , priority(priority)
@@ -74,7 +90,10 @@ namespace OpMon {
           , ppMax(ppMax)
           , preEffect(preEffect)
           , postEffect(postEffect)
-          , failEffect(fails) {}
+          , failEffect(fails)
+	  , animationOrder(animationOrder)
+	  , opAnims(opAnims)
+	  , animations(animations) {}
 
         Attack::Attack(AttackData const &data)
           : name(Utils::OpString(data.nameKey))
@@ -90,7 +109,11 @@ namespace OpMon {
           , ppMax(data.ppMax)
           , preEffect(data.preEffect)
           , postEffect(data.postEffect)
-          , failEffect(data.ifFails) {}
+          , failEffect(data.ifFails)
+	  , animationOrder(data.animationOrder)
+	  , opAnims(data.opAnims)
+	  , animations(data.animations) {}
+
 
         Attack::~Attack() {
             delete(this->preEffect);
