@@ -1,4 +1,6 @@
 ﻿# OpMon english translation
+# | passes a line
+# $ passes a dialog box
 key.void= 
 key.load.txt=Loading...
 
@@ -21,12 +23,12 @@ key.options.credit.4=Game and
 key.options.credit.5=Graphic designer
 key.options.credit.6=Collaborators :
 key.options.credit.7=Aerzia, BAKfr, gberthou, Cheesecake
-key.options.credit.8=Contributors : imZERKKA, Mat, Jseutter, Stelyus, Ezaron, rjphares
+key.options.credit.8=Contributors : imZERKKA, Mat, Jseutter, Stelyus
 key.options.credit.81=Rixem, Jo, Imperator, Léo, LinkyFR, Bircoum, louracame
-key.options.credit.82=Samurai413x, Silvermoon, Lebordelic, Asvirius, jubalh, torq
-key.options.credit.83=JonnyPtn, bobor, Qwam, CxxSpren
-key.options.credit.84= 
-key.options.credit.9=                    v0.16
+key.options.credit.82=Samurai413x, Silvermoon, Lebordelic, Asvirius, jubalh
+key.options.credit.83=torq, JonnyPtn, bobor, Qwam, CxxSpren, Ezaron, rjphares
+key.options.credit.84=Anarchiste, PyroFlareX, MarieKrolu
+key.options.credit.9=v0.16
 key.options.cred.title=Credits
 key.options.ctrl.change=Change settings paddle
 
@@ -35,93 +37,49 @@ key.nameEntry.med=Enter a name
 key.nameEntry.indic.1=Press Enter when you
 key.nameEntry.indic.2=have finished
 
-key.prof.dialog.start.1=Hello and welcome to Regimys
-key.prof.dialog.start.2=I hope you are fine!
-key.prof.dialog.start.3= 
-key.prof.dialog.start.4=I am the professor
-key.prof.dialog.start.5=KiwaÃ¯, I am the owner of
-key.prof.dialog.start.6=the OpMon laboratory of Euvi-town
-key.prof.dialog.start.7=Maybe you are asking yourself : 
-key.prof.dialog.start.8="What is he doing in this
-key.prof.dialog.start.9=little town?" This is my story.
-key.prof.dialog.start.10=This is where I grew up
-key.prof.dialog.start.11=and met my first OpMon :
-key.prof.dialog.start.12=Furnursus
-key.prof.dialog.start.13=It is a little fire animal
-key.prof.dialog.start.14=cute and protective. I refused to
-key.prof.dialog.start.15=make him evolve so he stays cute!
-key.prof.dialog.start.16=Sorry, I am only talking about me.
-key.prof.dialog.start.17=So... What is your name?
-key.prof.dialog.start.18=                         
-key.prof.dialog.start.19=Well, ~, I will tell you
-key.prof.dialog.start.20=about this place and the creatures
-key.prof.dialog.start.21=who live here.
-key.prof.dialog.start.22=Are you ready?
-key.prof.dialog.start.23=You seem familiar with this place.
-key.prof.dialog.start.24=Have you already been here?
-key.prof.dialog.start.25=Well, I suppose that I will
-key.prof.dialog.start.26=let you discover it by yourself.
-key.prof.dialog.start.27=See you soon!
+key.prof.dialog.start.1=Hello and welcome to Regimys ! I hope you are fine! I am the professor Kiwaï, owner of the OpMon laboratory of Euvi-town.You are maybe wondering yourself : "What is he doing in this little town?" Here is my story.$This is where I grew up and met my first OpMon : Furnursus. It is a little fire animal cute and protective. I refused to make him evolve so he stays cute!$Sorry, I am only talking about me. So... What is your name?
+key.prof.dialog.start.2=Well, ~, I will tell you about this place and the creatures living in here. Are you ready?$This look of you...$You seem familiar with this place. Have you already been here?|Well, I suppose I will let you discover it by yourself.|See you soon!
 
-key.fedesc.1=Euvi-Town
-key.fedesc.2=This little town is calm
-key.fedesc.3=and relaxing.
+key.fedesc.1=Euvi Town|This little town is calm and relaxing.
 
 key.ppHouse=~'s house.
 
 key.rivalHouse=Skullk's house.
 
+key.clock=It is 1:0 for a long time. |This alarm clock must be broken ...
+
 key.labo=Professor Kiwaï's laboratory.
 
-key.weirdsign.1=Please do not get close
-key.weirdsign.2=4th wall under reconstruction.
+key.weirdsign.1=Please do not get close.|4th wall under reconstruction.
+
 key.kid=I like shorts!
 
-key.prof.dialog.1=Hi ! Your trip went well?
-key.prof.dialog.2=Skullk is currently outdoor, sorry!
-key.prof.dialog.3=Come back for the next update !
+key.prof.dialog=Hi! Did your trip go well? Skullk is currently outdoor, sorry! Come back for a future update !
 
-key.pcRunLinux=This computer runs on Linux !
+key.pcRunLinux=This computer runs on GNU/Linux !
 
-key.playerhome.tv.1=We can see a reality show
-key.playerhome.tv.2=with OpMons, but they don't
-key.playerhome.tv.3=look very happy ...
+key.trash=This bin is empty
 
-key.playermom.dialog.1=Are you alright darling?
-key.playermom.dialog.2=...
+key.playerhome.fridge=Yeah, this is a fridge, captain obvious.
 
-key.rt14.sk.1=Who are you ?
-key.rt14.sk.2=You should not
-key.rt14.sk.3=be here...
+key.playerhome.tv=We can see a reality show with OpMons, but they don't look very happy...
 
-key.rt14.albd.1=test
-key.rt14.albd.2=test
-key.rt14.albd.3=test
+key.playermom.dialog=Are you alright darling?$...$You don't seem so...
 
-key.fe.fisherman.1=Fisherman : Oh ! You surprised me !
-key.fe.fisherman.2=I love coming here to rest
-key.fe.fisherman.3=Everything is calm and simple
-key.fe.fisherman.4=Although it is true that
-key.fe.fisherman.5=there are not many fish
-key.fe.fisherman.6=in the area !
-key.fe.fisherman.7=...
-key.fe.fisherman.8=Wait, I've never seen you here ? 
-key.fe.fisherman.9=Are you new ?
+key.rt14.sk=Who are you ?|You shouldn't be here...
 
-key.inferm.dialog.1=Welcome !
-key.inferm.dialog.1=Do you want to heal your OpMons ?
-key.inferm.dialog.1=... But ? You don't have OpMons.
+key.rt14.albd=Bonjour, young person ! I'm Albert Fence !  I love guitare and the fences ! You like that too, right ?
 
-key.rt14.beta.pre.1=Hello ! I am Beta.
-key.rt14.beta.pre.2=I am the NPC that allows to test
-key.rt14.beta.pre.3=the new functions
-key.rt14.beta.pre.4=not completely implemented.
-key.rt14.beta.pre.5=I can do an OpMon battle 
-key.rt14.beta.pre.6=against you if you want.
-key.rt14.beta.pre.7=Let's go !
-key.rt14.beta.post.1=You found it good ?
-key.rt14.beta.post.2=If you want to do it again
-key.rt14.beta.post.3=relauch the game with M !
+key.rt14.albdHouse=Albert's House | PS : Don't touch my fence !
+
+key.fe.fisherman=Fisherman : Oh ! You surprised me !|I love coming here to rest...$Everything is calm...|Everything is simple...$Although there are not many fish in this area !$...$Wait, I've never seen you here, isn't it?|Are you new ?
+
+key.inferm.dialog=Welcome !|Do you want to heal your OpMons ?$...$Wait. You don't have any OpMons.
+
+key.rt14.beta.pre=Hello ! I am Beta. I am the NPC allowing you to test new feature not fully implemented.|I can do an OpMon battle against you if you want.|Let's go !
+key.rt14.beta.post=Was it good ?|If you want to do it again relauch the game with M !
+
+key.euvicity.desc=Welcome to EuviCity
 
 key.battle.attack=Attacks
 key.battle.bag=Bag

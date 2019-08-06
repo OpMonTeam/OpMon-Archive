@@ -1,6 +1,6 @@
 /*
   OptionsMenu.hpp
-  Author : Cyriel
+  Author : Cyrielle
   Contributors : torq, Navet56, BAKFR
   File under GNU GPL v3.0 license
 */

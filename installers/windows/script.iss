@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "OPMon Lazuli"
-#define MyAppVersion "Alpha 0.15.1"
+#define MyAppVersion "Alpha 0.16"
 #define MyAppPublisher "OPMon Team"
 #define MyAppURL "http://opmon-game.ga"
 #define MyAppExeName "OpMon.exe"
@@ -24,7 +24,7 @@ DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
 OutputDir=.
 OutputBaseFilename=setup-opmon
-SetupIconFile=..\..\Resources\Other\opmon_icon.ico
+SetupIconFile=..\..\icons\opmon_icon.ico
 Compression=lzma
 SolidCompression=yes
 

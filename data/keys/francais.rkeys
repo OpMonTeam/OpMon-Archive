@@ -1,4 +1,6 @@
 # OpMon french translation ; Contributors : Navet56
+# | passes a line
+# $ passes a dialog box
 key.void= 
 key.load.txt=Chargement...
 
@@ -15,12 +17,13 @@ key.options.credit.4=Graphisme et
 key.options.credit.5=Game-design
 key.options.credit.6=Collaborateurs :
 key.options.credit.7=Aerzia, BAKfr, gberthou, Cheesecake
-key.options.credit.8=Contributeurs : imZERKKA, Mat, Jseutter, Stelyus, Ezaron, rjphares
+key.options.credit.8=Contributeurs : imZERKKA, Mat, Jseutter, Stelyus
 key.options.credit.81=Rixem, Jo, Imperator, Léo, LinkyFR, Bircoum, louracame
-key.options.credit.82=Samurai413x, Silvermoon, Lebordelic, Asvirius, jubalh, torq
-key.options.credit.83=JonnyPtn, bobor, Qwam, CxxSpren
-key.options.credit.84= 
-key.options.credit.9=                    v0.16
+key.options.credit.82=Samurai413x, Silvermoon, Lebordelic, Asvirius, jubalh
+key.options.credit.83=torq, JonnyPtn, bobor, Qwam, CxxSpren, Ezaron, rjphares
+key.options.credit.84=Anarchiste, MarieKrolu, PyroFlareX
+key.options.credit.85= 
+key.options.credit.9=v0.16
 key.options.retour=Retour
 key.options.title=Options
 key.options.ecran=Plein écran
@@ -35,93 +38,51 @@ key.nameEntry.med=Entre un nom
 key.nameEntry.indic.1=Appuie sur Entrée lorsque
 key.nameEntry.indic.2=tu as terminé
 
-key.prof.dialog.start.1=Bonjour et bienvenue dans la région 
-key.prof.dialog.start.2=de Regimys. J'imagine que le voyage
-key.prof.dialog.start.3=s'est bien passé !
-key.prof.dialog.start.4=Je me présente je suis le professeur
-key.prof.dialog.start.5=Kiwaï, je suis le propriétaire
-key.prof.dialog.start.6=du labo OpMon de Fauxbourg Euvi.
-key.prof.dialog.start.7=Tu te demandes sûrement ce que 
-key.prof.dialog.start.8=je fais dans cette petite ville.
-key.prof.dialog.start.9=Voilà l'histoire...
-key.prof.dialog.start.10=C'est ici que j'ai grandi 
-key.prof.dialog.start.11=et également rencontré mon
-key.prof.dialog.start.12=premier OPMon: Oursiflamme
-key.prof.dialog.start.13=C'est un petit animal de feu très
-key.prof.dialog.start.14=mignon et protecteur. J'ai refusé de 
-key.prof.dialog.start.15=le faire évoluer pour qu'il le reste!
-key.prof.dialog.start.16=Ah! Désolé, je ne parle que de moi...
-key.prof.dialog.start.17=Du coup c'est quoi ton nom ?
-key.prof.dialog.start.18=                         
-key.prof.dialog.start.19=Bon, ~, je vais te parler de
-key.prof.dialog.start.20=cette région et des créatures
-key.prof.dialog.start.21=qui l'habitent...
-key.prof.dialog.start.22=Est-tu prêt?
-key.prof.dialog.start.23=Cette aventure te rappelle
-key.prof.dialog.start.24=quelque chose non?
-key.prof.dialog.start.25=Bon alors je te laisse découvrir tout
-key.prof.dialog.start.26=cela par toi même...
-key.prof.dialog.start.27=A bientôt !
+key.prof.dialog.start.1=Bonjour et bienvenue dans la région de Regimys. J'imagine que le voyage s'est bien passé !$Je me présente, je suis le professeur Kiwaï, je suis le propriétaire du labo OpMon de Fauxbourg Euvi.$Tu te demandes sûrement ce que je fais dans cette petite ville. Voilà l'histoire...$C'est ici que j'ai grandi et également rencontré mon premier OPMon: Oursiflamme.$C'est un petit animal de feu très mignon et protecteur. J'ai refusé de le faire évoluer pour qu'il le reste!$Ah! Désolé, je ne parle que de moi...|Du coup c'est quoi ton nom ?
+key.prof.dialog.start.2=Bon, ~, je vais te parler de cette région et des créatures qui l'habitent...$Es-tu prêt ?$Ce regard...$Cette aventure te rappelle quelque chose non?$Bon alors je te laisse découvrir tout cela par toi même...|A bientôt !
 
-key.fedesc.1=Fauxbourg Euvi
-key.fedesc.2=Ce petit village est calme et relaxant.
-key.fedesc.3=
+key.fedesc=Fauxbourg Euvi|Ce petit village est calme et relaxant.
 
 key.ppHouse=Maison de ~.
 
 key.rivalHouse=Maison de Skullk.
 
+key.clock=Il est 1:O depuis ... longtemps |Ce réveil ne doit plus marcher.
+
+key.trash=La poubelle est vide.
+
+key.playerhome.fridge=Ceci est un frigo, captain obvious.
+
 key.labo=Laboratoire du professeur Kiwaï.
 
-key.weirdsign.1=Ne pas toucher.
-key.weirdsign.2=4ème mur en reconstruction.
+key.weirdsign=Ne pas toucher.|Quatrième mur en reconstruction.
 
 key.kid=J'aime les shorts!
 
-key.prof.dialog.1=Alors le voyage s'est bien passé ?
-key.prof.dialog.2=Skullk est parti se promener
-key.prof.dialog.3=Reviens à la prochaine mise à jour !
+key.prof.dialog=Alors le voyage s'est bien passé ? Skullk est parti se promener. Reviens à la prochaine mise à jour !
 
 key.pcRunLinux=Ce PC tourne sous GNU/Linux !
 
-key.playerhome.tv.1=Il y a une émission de télérealité
-key.playerhome.tv.2=avec des OpMons mais ils n'ont pas
-key.playerhome.tv.3=l'air très heureux...
+key.playerhome.tv=Il y a une émission de télérealité avec des OpMons mais ils n'ont pas l'air très heureux...
 
-key.playermom.dialog.1=Tu vas bien mon cheri ?
-key.playermom.dialog.2=...
-key.playermom.dialog.3=Ça n'a pas l'air d'aller
+key.playermom.dialog=Tu vas bien mon chéri ?$...$Ça n'a pas l'air d'aller...
 
-key.rt14.sk.1=Qui es-tu ?
-key.rt14.sk.2=Tu ne devrais pas
-key.rt14.sk.3=être ici...
+key.rt14.sk=Qui es-tu ?|Tu ne devrais pas être ici...
 
-key.fe.fisherman.1=Pécheur : Oh ! Tu m'as surpris !
-key.fe.fisherman.2=J'adore venir ici pour me reposer,
-key.fe.fisherman.3=tout est calme...
-key.fe.fisherman.4=tout est simple ...
-key.fe.fisherman.5=Même si je l'avoue, il n'y a pas
-key.fe.fisherman.6=beaucoup de poissons par ici.
-key.fe.fisherman.7=...
-key.fe.fisherman.8=Mais je ne t'ai jamais vu toi ? 
-key.fe.fisherman.9=Tu es nouveau ?
+key.fe.fisherman=Pêcheur : Oh ! Tu m'as surpris !|J'adore venir ici pour me reposer.$Tout est calme...|Tout est simple...$Même si je l'avoue, il n'y a pas beaucoup de poissons par ici.$...$Mais je ne t'ai jamais vu toi, si ?|Tu es nouveau ?
 
-key.inferm.dialog.1=Bonjour !
-key.inferm.dialog.2=Voulez-vous soigner vos OpMons ?
-key.inferm.dialog.3=... Mais ? vous en n'avez pas.
+key.inferm.dialog=Bonjour !|Voulez-vous soigner vos OpMons ?$...$Mais ? vous en n'avez pas.
 
-key.rt14.beta.pre.1=Bonjour ! Je suis Beta.
-key.rt14.beta.pre.2=Je suis le PNJ qui permet de tester
-key.rt14.beta.pre.3=les nouvelles fonctions pas
-key.rt14.beta.pre.4=complètement implémentées.
-key.rt14.beta.pre.5=Je peux faire un combat OpMon
-key.rt14.beta.pre.6=contre toi si tu veux.
-key.rt14.beta.pre.7=C'est parti !
-key.rt14.beta.post.1=Alors ? C'était bien ?
-key.rt14.beta.post.2=Si tu veux recommencer, relance
-key.rt14.beta.post.3=le jeu avec M !
+key.rt14.beta.pre=Bonjour ! Je suis Beta. Je suis le PNJ qui permet de tester les nouvelles fonctions pas complètement implémentées.|Je peux faire un combat OpMon contre toi si tu veux.$C'est parti !
+key.rt14.beta.post=Alors ? C'était bien ?|Si tu veux recommencer, relance le jeu avec M !
 
-key.battle.attack=Attaques
+key.rt14.albd=Bonjour jeune homme ! Je suis Albert Delacloture !  J'adore la guitare et les clotures ! Tu aime ça aussi, n'est ce pas ?
+
+key.rt14.albdHouse=La Maison d'Albert | PS : Touche pas à ma cloture !
+
+key.euvicity.desc=Ville d'EuviCity
+
+key.battle.attack=Attaque
 key.battle.bag=Sac
 key.battle.run=Fuite
 key.battle.opmon=OpMons

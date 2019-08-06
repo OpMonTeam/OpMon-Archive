@@ -1,6 +1,6 @@
 /*
 AnimationCtrl.hpp
-Author : Cyriel
+Author : Cyrielle
 File under GNU GPL 3.0 license.
 */
 #pragma once
