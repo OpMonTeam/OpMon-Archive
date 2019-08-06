@@ -1,6 +1,6 @@
 /*
 StringKeys.cpp
-Author : Cyriel
+Author : Cyrielle
 Contributor : BAKFR
 File under GNU GPL v3.0 license
 */

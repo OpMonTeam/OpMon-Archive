@@ -1,6 +1,6 @@
 /*
 Jukebox.cpp
-Author : Cyriel
+Author : Cyrielle
 Contributors : Samurai413x, BAKFR
 File under GNU GPL v3.0 license
 */

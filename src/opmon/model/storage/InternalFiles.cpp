@@ -1,6 +1,6 @@
 /*
   InternalFiles.cpp
-  Author : Cyriel
+  Author : Cyrielle
   Contributors : Navet56, BAKFR, Stelyus
   File under GNU GPL v3.0 license
 */

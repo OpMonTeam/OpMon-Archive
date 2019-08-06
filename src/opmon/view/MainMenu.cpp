@@ -1,6 +1,6 @@
 /*
 MainMenu.cpp
-Author : Cyriel
+Author : Cyrielle
 Contributors : BAKFR, torq
 File under GNU GPL v3.0 license
 */

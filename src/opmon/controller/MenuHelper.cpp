@@ -1,6 +1,6 @@
 /*
 MenuHelper.cpp
-Author : Cyriel / Bobor-dev
+Author : Cyrielle / Bobor-dev
 File under GNU GPL v3.0 license
 */
 #include "MenuHelper.hpp"
