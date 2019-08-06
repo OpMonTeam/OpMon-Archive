@@ -323,7 +323,7 @@ namespace OpMon {
             cursor.setPosition(posChoices[0] + sf::Vector2f((choicesTxt[0].getGlobalBounds().width / 2) - 10, 25));
             curPos = 0;
             cursor.setScale(2, 2);
-            atkTr.translate(107, 195);
+            atkTr.translate(107, 230);
             defTr.translate(305, 120);
             atkTr.scale(2, 2);
 

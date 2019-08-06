@@ -84,7 +84,7 @@ namespace OpMon {
             std::vector<double> xformula;
             std::vector<double> yformula;
             bool init = false;//If false, the object is not ready to be used
-
+            sf::Vector2f origin;//The origin point where the scaling is calculated from.
 
           };
 
@@ -112,7 +112,7 @@ namespace OpMon {
 
                   sf::Vector2f lastTranslation = sf::Vector2f(0., 0.);
                   float lastRotation = 0.;
-                  sf::Vector2f lastScaling = sf::Vector2f(0., 0.);
+                  sf::Vector2f lastScaling = sf::Vector2f(1.0, 1.0);
 
                   float calcFormula(std::vector<double> formula, FormulaMode mode, int t);
                   //Rotates a vector. The angle is in degrees.
@@ -149,7 +149,7 @@ namespace OpMon {
 
                   static const MovementData newMovementData(FormulaMode modeX, FormulaMode modeY, std::vector<double> xformula, std::vector<double> yformula, bool relative = true);
                   static const RotationData newRotationData(FormulaMode formulaMode, std::vector<double> formula, sf::Vector2f origin);
-                  static const ScaleData newScaleData(FormulaMode modeX, FormulaMode modeY, std::vector<double> xformula, std::vector<double> yformula);
+                  static const ScaleData newScaleData(FormulaMode modeX, FormulaMode modeY, std::vector<double> xformula, std::vector<double> yformula, sf::Vector2f origin);
           };
 
 
