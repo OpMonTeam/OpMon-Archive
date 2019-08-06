@@ -1,7 +1,7 @@
 /*
 OptionsMenuCtrl.cpp
 Author : BAKFR
-Contributors : Cyriel, Navet56, torq, Samurai413x
+Contributors : Cyrielle, Navet56, torq, Samurai413x
 File under GNU GPL v3.0 license
 */
 #include "OptionsMenuCtrl.hpp"

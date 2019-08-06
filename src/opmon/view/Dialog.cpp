@@ -1,7 +1,7 @@
 /*
 Dialog.cpp
 Author : BAKFR
-Contributor : Cyriel
+Contributor : Cyrielle
 File under GNU GPL v3.0 license
 */
 #include "Dialog.hpp"

@@ -1,6 +1,6 @@
 /*
 Save.hpp
-Author : Cyriel
+Author : Cyrielle
 Contributor : BAKFR
 File under GNU GPL v30 license
 */

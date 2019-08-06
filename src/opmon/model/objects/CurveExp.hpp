@@ -1,7 +1,7 @@
 /*
 CurveExp.hpp
 Author : torq
-Contributor : Cyriel
+Contributor : Cyrielle
 File under GNU GPL v3.0 license
 */
 #ifndef COURB_EXP_HPP

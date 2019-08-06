@@ -1,6 +1,6 @@
 /*
 Evolution.cpp
-Author : Cyriel
+Author : Cyrielle
 File under GNU GPL v3.0 license
 */
 #include "Evolution.hpp"

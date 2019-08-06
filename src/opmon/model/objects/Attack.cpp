@@ -1,6 +1,6 @@
 /*
 Attack.cpp
-Author : Cyriel
+Author : Cyrielle
 Contributors : BAKFR, torq, Navet56
 File under GNU GPL v3.0 license
 */
