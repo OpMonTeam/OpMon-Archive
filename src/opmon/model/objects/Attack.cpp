@@ -71,7 +71,8 @@ namespace OpMon {
 		for(unsigned int i = 0; i < itor->at("animations").size(); i++){
 		    attackList[idStr].animations.push(itor->at("animations").at(i));
 		}
-		Utils::Log::oplog("Loaded attack " + (std::string) itor->at("id"));
+		std::string atkStr = itor->at("id");
+		Utils::Log::oplog("Loaded attack " + atkStr);
             }
         }
 
