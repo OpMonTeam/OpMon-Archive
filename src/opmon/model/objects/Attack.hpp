@@ -1,6 +1,6 @@
 /*
 Attack.hpp
-Author : Cyriel
+Author : Cyrielle
 Contributors : BAKFR, Navet56
 File under GNU GPL v3.0 license
 */

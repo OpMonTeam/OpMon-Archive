@@ -1,7 +1,7 @@
 /*
   Dialog.hpp
   Author : BAKFR
-  Contributor : Cyriel
+  Contributor : Cyrielle
   File under GNU GPL 3.0 licence
 */
 #ifndef OPMON_DIALOG_CPP_HPP
@@ -12,6 +12,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <string>
+#include <queue>
 
 namespace OpMon {
     namespace View {
@@ -19,13 +20,10 @@ namespace OpMon {
         class Dialog {
           private:
             /** array of all lines composing the dialog. */
-            std::vector<sf::String> text;
+            std::queue<sf::String> text;
 
             /** The 3 lines currently displayed. */
             sf::String currentTxt[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
-
-            /** index of the first line currently displayed on screen */
-            unsigned int dialogNb = 0;
 
             /**
              * If true, the dialog is fully displayed by the text animation, and the
@@ -33,7 +31,7 @@ namespace OpMon {
             */
             bool changeDialog = false;
 
-            /** index of line being displayed by the text animation. */
+            /** Number of completely displayed lines. */
             unsigned int line = 0;
             /** index of the next character to display by the text animation. */
             unsigned int i = 0;
@@ -47,8 +45,12 @@ namespace OpMon {
 
             bool backgroundVisible = true;
 
+            void init();
+
           public:
-            Dialog(std::vector<sf::String> text, Model::UiData *uidata);
+            OP_DEPRECATED Dialog(std::vector<sf::String> text, Model::UiData *uidata);
+            Dialog(std::queue<sf::String> text, Model::UiData *uidata);
+            Dialog(sf::String text, Model::UiData *uidata);
 
             /**
        * Move forward in a dialog, in response to an event like a space key pressed.

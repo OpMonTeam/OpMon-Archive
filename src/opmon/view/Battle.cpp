@@ -1,6 +1,6 @@
 /*
 Battle.cpp
-Author : Cyriel
+Author : Cyrielle
 Contributors : Navet56, torq
 File under GNU GPL v3.0
 */
@@ -125,7 +125,7 @@ namespace OpMon {
                         }
                     } else if(turnAct.type == TurnActionType::ATK_UPDATE_HBAR || turnAct.type == TurnActionType::DEF_UPDATE_HBAR) { //Updates the player's OpMon's healthbar.
                         if(dialog == nullptr) {                                                                                     // Empty dialog to print the dialog background and the arrow
-                            dialog = new Dialog({}, data.getUiDataPtr());
+                            dialog = new Dialog(std::vector<sf::String>(), data.getUiDataPtr());
                             dialog->draw(frame);
                         } else {
                             dialog->draw(frame);
@@ -141,7 +141,7 @@ namespace OpMon {
                         //An animation will play here in the future.
                         auto &opTurn = (turnAct.type == TurnActionType::ATK_STAT_MOD) ? atkTurn : defTurn;
                         if(dialog == nullptr) {
-                            dialog = new Dialog({Utils::OpString::quickString("battle.stat." + std::to_string((int)turnAct.statMod) + "." + std::to_string(turnAct.statCoef), {opTurn.opmon->getNickname()})}, data.getUiDataPtr());
+                            dialog = new Dialog(std::vector<sf::String>{Utils::OpString::quickString("battle.stat." + std::to_string((int)turnAct.statMod) + "." + std::to_string(turnAct.statCoef), {opTurn.opmon->getNickname()})}, data.getUiDataPtr());
                             dialog->draw(frame);
                         } else {
                             dialog->updateTextAnimation();
@@ -168,7 +168,7 @@ namespace OpMon {
                         }
                     } else if(turnAct.type == TurnActionType::DEFEAT) {
                         if(dialog == nullptr) {
-                            dialog = new Dialog({Utils::OpString::quickString("battle.defeat", {data.getPlayer().getName()})}, data.getUiDataPtr());
+                            dialog = new Dialog(std::vector<sf::String>{Utils::OpString::quickString("battle.defeat", {data.getPlayer().getName()})}, data.getUiDataPtr());
                             dialog->draw(frame);
                         } else {
                             dialog->updateTextAnimation();
@@ -190,8 +190,11 @@ namespace OpMon {
                 for(sf::Text &txt : choicesTxt) {
                     frame.draw(txt);
                 }
-
-                waitText.setString(Utils::StringKeys::get("battle.wait"));
+                std::queue<sf::String> waitTxt = Utils::StringKeys::autoNewLine(Utils::StringKeys::get("battle.wait"), 12);
+                sf::String str = waitTxt.front() + sf::String('\n');
+                waitTxt.pop();
+                str += waitTxt.front();
+                waitText.setString(str);
                 frame.draw(waitText);
 
                 cursor.setPosition(posChoices[curPos.getValue()] + sf::Vector2f((choicesTxt[curPos.getValue()].getGlobalBounds().width / 2) - 10, 25));
@@ -266,20 +269,20 @@ namespace OpMon {
                 for(unsigned int i = 0; i < 4; i++) {
                     attacks[i].setPosition(posChoices[i]);
                     attacks[i].setFont(data.getUiDataPtr()->getFont());
-                    attacks[i].setCharacterSize(26);
+                    attacks[i].setCharacterSize(22);
                     attacks[i].setSfmlColor(sf::Color::Black);
                 }
                 curPos = 0;
 
             } else {
-                posChoices[0].x = 326;
-                posChoices[0].y = 392;
-                posChoices[1].x = 430;
-                posChoices[1].y = 392;
-                posChoices[2].x = 330;
-                posChoices[2].y = 457;
-                posChoices[3].x = 430;
-                posChoices[3].y = 457;
+              posChoices[0].x = 300 + (99 - choicesTxt[0].getGlobalBounds().width) / 3;
+              posChoices[0].y = 392;
+              posChoices[1].x = 400 + (99 - choicesTxt[1].getGlobalBounds().width) / 2;
+              posChoices[1].y = 392;
+              posChoices[2].x = 300 + (99 - choicesTxt[2].getGlobalBounds().width) / 2;
+              posChoices[2].y = 457;
+              posChoices[3].x = 400 + (99 - choicesTxt[3].getGlobalBounds().width) / 2;
+              posChoices[3].y = 457;
                 dialogSpr.setTexture(data.getDialog());
                 curPos = 0;
             }
@@ -300,19 +303,25 @@ namespace OpMon {
             choicesTxt[1].setString(Utils::StringKeys::get("battle.bag"));
             choicesTxt[2].setString(Utils::StringKeys::get("battle.opmon"));
             choicesTxt[3].setString(Utils::StringKeys::get("battle.run"));
-            posChoices[0].x = 326;
-            posChoices[0].y = 392;
-            posChoices[1].x = 430;
-            posChoices[1].y = 392;
-            posChoices[2].x = 330;
-            posChoices[2].y = 457;
-            posChoices[3].x = 430;
-            posChoices[3].y = 457;
+
             for(unsigned int i = 0; i < 4; i++) {
                 choicesTxt[i].setFont(data.getUiDataPtr()->getFont());
                 choicesTxt[i].setCharacterSize(20);
-                choicesTxt[i].setPosition(posChoices[i]);
+
                 choicesTxt[i].setSfmlColor(sf::Color::White);
+            }
+
+            posChoices[0].x = 300 + (99 - choicesTxt[0].getGlobalBounds().width) / 2;
+            posChoices[0].y = 392;
+            posChoices[1].x = 400 + (99 - choicesTxt[1].getGlobalBounds().width) / 2;
+            posChoices[1].y = 392;
+            posChoices[2].x = 300 + (99 - choicesTxt[2].getGlobalBounds().width) / 2;
+            posChoices[2].y = 457;
+            posChoices[3].x = 400 + (99 - choicesTxt[3].getGlobalBounds().width) / 2;
+            posChoices[3].y = 457;
+
+            for(unsigned int i = 0; i < 4; i++){
+              choicesTxt[i].setPosition(posChoices[i]);
             }
 
             //ppText.setPosition(326, 380);
@@ -369,12 +378,12 @@ namespace OpMon {
 
             waitText.setFont(data.getUiDataPtr()->getFont());
             waitText.setCharacterSize(22);
-            waitText.setSfmlColor(sf::Color::Black);
-            waitText.setPosition(25, 422);
+            waitText.setSfmlColor(sf::Color::White);
+            waitText.setPosition(65, 410);
 
             ppStrTxt.setPosition(326, 380);
             ppStrTxt.setString("PP :");
-            ppTxt.setPosition(326, 400);
+            ppTxt.setPosition(326, 405);
             ppStrTxt.setFont(data.getUiDataPtr()->getFont());
             ppTxt.setFont(data.getUiDataPtr()->getFont());
             ppStrTxt.setCharacterSize(26);

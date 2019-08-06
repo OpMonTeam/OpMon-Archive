@@ -61,4 +61,4 @@
 * Qwam
 
 ### Others
-Look [here](https://github.com/jlppc/OpMon/blob/master/Resources/README.md).
+Look [here](https://github.com/OpMonTeam/OpMon-Data/blob/master/Resources/README.md).

@@ -1,6 +1,6 @@
 /*
   Overworld.hpp
-  Author : Cyriel
+  Author : Cyrielle
   Contributor : BAKFR
   File under GNU GPL v3.0 license
 */
@@ -92,7 +92,7 @@ namespace OpMon {
             /**
 	     * Events can call this method to start a new dialog with the player.
 	     */
-            void startDialog(std::vector<sf::String> const &dialogs);
+            void startDialog(sf::String const &dialog);
 
             void startPlayerAnimation() {
                 initPlayerAnimation = true;
