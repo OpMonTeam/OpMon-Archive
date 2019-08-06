@@ -1,7 +1,7 @@
 /*
 path.cpp
 Author : BAKFR
-Contributors : Cyriel, jubalh, JonnyPtn
+Contributors : Cyrielle, jubalh, JonnyPtn
 File under GNU GPL v3.0 license
 */
 #include "fs.hpp"

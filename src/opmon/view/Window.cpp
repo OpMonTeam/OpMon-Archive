@@ -1,6 +1,6 @@
 /*
 Window.cpp
-Author : Cyriel
+Author : Cyrielle
 Contributors : BAKFR, torq
 File under GNU GPL v3.0 license
 */
@@ -22,6 +22,7 @@ namespace OpMon {
             if(!Model::OptionsSave::checkParam("fullscreen")) {
                 Model::OptionsSave::addOrModifParam("fullscreen", "false");
             }
+	    //settings.antialiasingLevel = 1;
             if(Model::OptionsSave::getParam("fullscreen").getValue() == "true") {
                 fullScreen = true;
                 window.create(sf::VideoMode::getFullscreenModes().at(0), "OpMon Lazuli", sf::Style::Fullscreen, settings);
@@ -47,10 +48,18 @@ namespace OpMon {
             oplog("Window closed. No error detected. Goodbye.");
         }
 
+	void Window::reboot(){
+	    close();
+	    open();
+	}
+	
+
         void Window::refresh() {
             frame.display();
-            sf::Sprite sprite(frame.getTexture());
-
+	    sf::Texture frameTexture = frame.getTexture();
+	    frameTexture.setSmooth(true);
+            sf::Sprite sprite(frameTexture);
+	    
             if(fullScreen) {
                 const float coef = window.getSize().y / (sprite.getGlobalBounds().height);
                 sprite.setScale(coef, coef);

@@ -1,6 +1,6 @@
 /*
 Gameloop.hpp
-Author : Cyriel
+Author : Cyrielle
 Contributor : Stelyus, BAKFR, Navet56
 File under GNU GPL v3.0
 */

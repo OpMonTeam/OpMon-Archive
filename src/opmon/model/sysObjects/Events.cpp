@@ -1,6 +1,6 @@
 /*
 Events.cpp
-Author : Cyriel
+Author : Cyrielle
 Contributors : BAKFR, Stelyus
 File under GNU GPL v3.0 license
 */
@@ -72,18 +72,16 @@ namespace OpMon {
             }
 
             TalkingEvent::TalkingEvent(std::vector<sf::Texture> &otherTextures, sf::Vector2f const &position,
-                                       std::vector<Utils::OpString> const &dialogKeys, int sides, EventTrigger eventTrigger,
+                                       Utils::OpString const &dialogKey, int sides, EventTrigger eventTrigger,
                                        bool passable)
               : Event(otherTextures, eventTrigger, position, sides, passable)
-              , dialogKeys(dialogKeys) {
+              , dialogKey(dialogKey) {
                 this->onLangChanged();
             }
 
             void TalkingEvent::onLangChanged() {
-                dialogs.clear();
-                for(auto &currentObj : this->dialogKeys) {
-                    dialogs.push_back(currentObj.getString());
-                }
+                dialog.clear();
+                dialog = dialogKey.getString();
             }
 
             LockedDoorEvent::LockedDoorEvent(std::vector<sf::Texture> &doorTextures, std::string doorType, Item *needed, sf::Vector2f const &position,
@@ -109,15 +107,15 @@ namespace OpMon {
             }
 
             TalkingCharaEvent::TalkingCharaEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position,
-                                                 std::vector<Utils::OpString> const &dialogKeys, Side posDir, EventTrigger eventTrigger,
+                                                 Utils::OpString const &dialogKey, Side posDir, EventTrigger eventTrigger,
                                                  MoveStyle moveStyle, std::vector<Side> predefinedPath, bool passable,
                                                  int sides)
               : Event(textures, eventTrigger, position, sides, passable)
               , CharacterEvent(textures, position, posDir, moveStyle, eventTrigger, predefinedPath, passable, sides)
-              , TalkingEvent(textures, position, dialogKeys, sides, eventTrigger, passable) {
+              , TalkingEvent(textures, position, dialogKey, sides, eventTrigger, passable) {
             }
 
-            TrainerEvent::TrainerEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, OpTeam *team, std::vector<Utils::OpString> const &dialogKeys, std::vector<Utils::OpString> const &defeatedDialog, Side posDir, EventTrigger eventTrigger, MoveStyle moveStyle, std::vector<Side> predefinedPath, bool passable, int side)
+            TrainerEvent::TrainerEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, OpTeam *team, Utils::OpString const &dialogKeys, Utils::OpString const &defeatedDialog, Side posDir, EventTrigger eventTrigger, MoveStyle moveStyle, std::vector<Side> predefinedPath, bool passable, int side)
               : Event(textures, eventTrigger, position, side, passable)
               , TalkingCharaEvent(textures, position, dialogKeys, posDir, eventTrigger, moveStyle, predefinedPath, passable, side)
               , team(team)
@@ -171,14 +169,14 @@ namespace OpMon {
             }
 
             void TalkingEvent::action(Model::Player &player, View::Overworld &overworld) {
-                overworld.startDialog(this->dialogs);
+                overworld.startDialog(this->dialog);
             }
 
             void TalkingEvent::update(Model::Player &player, View::Overworld &overworld) {
             }
 
-            void TalkingEvent::changeDialog(std::vector<Utils::OpString> newDialog) {
-                dialogKeys = newDialog;
+            void TalkingEvent::changeDialog(Utils::OpString newDialog) {
+                dialogKey = newDialog;
                 this->onLangChanged();
             }
 
@@ -317,7 +315,7 @@ namespace OpMon {
                     updateTexture();
                     mapPos.unlockMove();
                     talking = false;
-                    overworld.startDialog(this->dialogs);
+                    overworld.startDialog(this->dialog);
                 }
             }
 
@@ -356,7 +354,7 @@ namespace OpMon {
                 this->changeDialog(defeatedDialog);
             }
 
-            std::vector<Utils::OpString> LockedDoorEvent::keysLock = std::vector<Utils::OpString>();
+            Utils::OpString LockedDoorEvent::keysLock = Utils::OpString();
 
         } // namespace Events
 

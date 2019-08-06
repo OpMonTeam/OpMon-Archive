@@ -1,7 +1,7 @@
 /*
 OptionsMenuCtrl.cpp
 Author : BAKFR
-Contributors : Cyriel, Navet56, torq, Samurai413x
+Contributors : Cyrielle, Navet56, torq, Samurai413x
 File under GNU GPL v3.0 license
 */
 #include "OptionsMenuCtrl.hpp"
@@ -74,8 +74,7 @@ namespace OpMon {
                             } else {
                                 Model::OptionsSave::addOrModifParam("fullscreen", "true");
                             }
-                            reboot = true;
-                            return GameStatus::STOP;
+                            return GameStatus::WIN_REBOOT;
                         case LANGUAGE:
                             data.getUiDataPtr()->getJukebox().playSound("push");
                             menu.setCurrentOption(View::OptionType::LANG);
