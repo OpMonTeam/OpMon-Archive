@@ -8,6 +8,7 @@ File under GNU GPL v3.0 license
 
 #include "../objects/OpMon.hpp"
 #include <iostream>
+#include <vector>
 
 namespace OpMon {
     namespace Model {

@@ -54,6 +54,9 @@ namespace OpMon {
                     data.getUiDataPtr()->getJukebox().playSound("arrow");
                     view.moveCur(Model::Side::TO_DOWN);
                     break;
+                case sf::Keyboard::T:
+                	view.setAnimTest();
+                	break;
                 case sf::Keyboard::Return:
                     //If it the attack selection screen is not the active screen, and if the turn is not activated, the battle's main menu is printed.
                     if(!view.isAttackChoice() && !turnActivated) {
@@ -104,6 +107,7 @@ namespace OpMon {
                 default:
                     break;
                 }
+                break;
             default:
                 break;
             }

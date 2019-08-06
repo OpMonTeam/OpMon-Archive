@@ -10,6 +10,7 @@ File under GNU GPL v3.0 license
 #include "../../../utils/OpString.hpp"
 #include "../../../utils/defines.hpp"
 #include "../../../utils/misc.hpp"
+#include "../../view/Elements.hpp"
 #include "Enums.hpp"
 #include "Turn.hpp"
 #include <iostream>
@@ -40,6 +41,10 @@ namespace OpMon {
             AttackEffect *preEffect = nullptr;
             AttackEffect *postEffect = nullptr;
             AttackEffect *ifFails = nullptr;
+	    std::queue<TurnActionType> animationOrder;
+	    std::queue<View::Transformation> opAnims;
+	    std::queue<std::string> animations;
+	    
         };
 
         typedef struct AttackData AttackData;
@@ -47,7 +52,7 @@ namespace OpMon {
         class Attack {
           public:
             virtual ~Attack();
-            Attack(std::string nameKey, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, AttackEffect *preEffect = nullptr, AttackEffect *postEffect = nullptr, AttackEffect *fails = nullptr);
+            Attack(std::string nameKey, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::queue<TurnActionType> animationOrder, std::queue<View::Transformation> opAnims, std::queue<std::string> animations, AttackEffect *preEffect = nullptr, AttackEffect *postEffect = nullptr, AttackEffect *fails = nullptr);
 
             Attack(AttackData const &data);
 
@@ -98,8 +103,6 @@ namespace OpMon {
             int getPart() { return part; }
             void setPart(int part) { this->part = part; }
             int getHpLost() { return this->hpLost; }
-            int getSavedDefSpe() { return this->savedDefSpe; }
-            void setSavedDefSpe(int defSpe) { this->savedDefSpe = defSpe; }
 
           protected:
             Utils::OpString name;
@@ -121,8 +124,11 @@ namespace OpMon {
             AttackEffect *failEffect;
             /**Variables used in preEffect and postEffect*/
             int hpLost = 0;
-            int savedDefSpe = 0; // used by ChocPsy
 
+	    std::queue<TurnActionType> animationOrder;
+	    std::queue<View::Transformation> opAnims;
+	    std::queue<std::string> animations;
+	    
             static std::map<std::string, AttackData> attackList;
         };
 
