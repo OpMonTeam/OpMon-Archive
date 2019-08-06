@@ -10,6 +10,7 @@ File under GNU GPL v3.0 license
 #include "../model/objects/Turn.hpp"
 #include "../model/storage/BattleData.hpp"
 #include "../start/Core.hpp"
+#include "Elements.hpp"
 #include "Dialog.hpp"
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
@@ -29,9 +30,13 @@ namespace OpMon {
 
         class Battle {
           private:
-            //The OpMons' sprites
+            //The OpMons sprites
             sf::Sprite atk;
             sf::Sprite def;
+
+            //The OpMons Transform objects used for the animations
+            sf::Transform atkTr;
+            sf::Transform defTr;
 
             const Model::OpTeam *atkTeam;
             const Model::OpTeam *defTeam;
@@ -85,6 +90,9 @@ namespace OpMon {
 
             Model::BattleData &data;
 
+            bool animTest = false;
+            Transformation *test = nullptr;
+
           public:
             Battle(const Model::OpTeam *atkTeam, const Model::OpTeam *defTeam, std::string trainerClass, std::string background, Model::BattleData &data);
 
@@ -105,6 +113,17 @@ namespace OpMon {
             void passDialog() {
                 if(dialog != nullptr)
                     dialog->pass();
+            }
+
+            void setAnimTest() {
+            	if(!animTest){
+            		animTest = true;
+            		if(test != nullptr){
+            			delete(test);
+            		}
+                        //test = new Transformation(40, Transformation::newMovementData(FormulaMode::POLYNOMIAL, FormulaMode::POLYNOMIAL, std::vector<double>{0, 7.5/2.0, -3.0/32.0}, std::vector<double>{0, -7.5/2.0, 3.0/32.0}, true), Transformation::newRotationData(FormulaMode::MULTIFUNCTIONS, std::vector<double>{3, -54, 1, -20, 0, 1080}, Transformation::spriteCenter(atk)), ScaleData(), &atkTr);
+                        test = new Transformation(40, MovementData(), RotationData(), Transformation::newScaleData(FormulaMode::MULTIFUNCTIONS, FormulaMode::MULTIFUNCTIONS, std::vector<double>{2,0.1,2 * PI / 20, 0, 0, 0.9}, std::vector<double>{2,-0.1,2 * PI / 20,0,0,1.1}, Transformation::spriteCenter(atk)), &atkTr);
+                }
             }
         };
 

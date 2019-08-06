@@ -12,6 +12,7 @@ File under GNU GPL v3.0 license
 #include "Position.hpp"
 #include <SFML/System.hpp>
 #include <map>
+#include <vector>
 
 namespace OpMon {
     namespace Model {
