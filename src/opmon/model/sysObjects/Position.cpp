@@ -1,6 +1,6 @@
 /*
 Position.cpp
-Author : Cyriel
+Author : Cyrielle
 Contributors : BAKFR, Stelyus
 File under GNU GPL v3.0 license
 */
