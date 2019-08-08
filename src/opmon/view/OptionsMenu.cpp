@@ -162,11 +162,11 @@ namespace OpMon {
             txtCred.setPosition(250, 25);
             txtCtrl.setPosition(250, 25);
 
-            txtCre1.setPosition(200, 128);
-            txtCre2.setPosition(200, 148);
-            txtCre3.setPosition(200, 168);
-            txtCre4.setPosition(400, 128);
-            txtCre5.setPosition(400, 148);
+            txtCre1.setPosition(180, 128);
+            txtCre2.setPosition(180, 148);
+            txtCre3.setPosition(180, 168);
+            txtCre4.setPosition(350, 128);
+            txtCre5.setPosition(350, 148);
             txtCre6.setPosition(30, 250);
             txtCre7.setPosition(30, 274);
             txtCre8.setPosition(30, 368);
@@ -175,7 +175,7 @@ namespace OpMon {
             txtCre83.setPosition(10, 420);
             txtCre84.setPosition(10, 437);
             txtCre9.setPosition(450, 488);
-						txtCre10.setPosition(195, 100);
+						txtCre10.setPosition(180, 100);
 
             txtCtrlChange.setPosition(33.0, 91.0);
 
