@@ -89,6 +89,7 @@ namespace OpMon {
             sf::Text txtCre83;
             sf::Text txtCre84;
             sf::Text txtCre9;
+						sf::Text txtCre10;
             sf::Text txtOpt1;
             sf::Text txtOpt2;
             sf::Text txtOpt3;
