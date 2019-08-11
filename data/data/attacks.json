@@ -112,21 +112,14 @@
 		"null" : true
 	    }
 	],
-	"animationOrder" : [15, 19],
+    "animationOrder" : [18],
     "opMovements" : [
         {
             "translation" : {
-                "mode" : [0, 0],
-                "formulas" : [[0], [0]]
+                "mode" : [1, 1],
+                "formulas" : [[3, -6, 0, -5, 0, 30], [3, 6, 0, 5, 0, -30]]
             },
-            "time" : 0
-        },
-        {
-            "translation" : {
-                "mode" : [0, 0],
-                "formulas" : [[0], [0]]
-            },
-            "time" : 0
+            "time" : 10
         }
     ],
     "animations" : ["default"]

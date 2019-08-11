@@ -95,6 +95,8 @@ namespace OpMon {
             bool animTest = false;
             Transformation *test = nullptr;
 
+            bool dialogOver = true;
+
           public:
             Battle(const Model::OpTeam *atkTeam, const Model::OpTeam *defTeam, std::string trainerClass, std::string background, Model::BattleData &data);
 

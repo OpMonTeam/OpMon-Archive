@@ -41,10 +41,8 @@ namespace OpMon {
 	    ATK_MOVE = 15,
 	    DEF_MOVE = 16,
 	    ANIMATION = 17,
-	    ATK_MOVE_ANIM = 18,
-	    DEF_MOVE_ANIM = 19,
-	    OPANIM = 20, //Animates the current attack
-	    NEXT = 21 //Indicate that this is now the next OpMon turn
+	    OPANIM = 18, //Animates the current attack
+	    NEXT = 19 //Indicate that this is now the next OpMon turn
         };
 
         struct TurnAction {

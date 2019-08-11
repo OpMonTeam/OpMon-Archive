@@ -107,49 +107,40 @@ namespace OpMon {
                     TurnAction &turnAct = actionQueue.front();
 
                     if(turnAct.type == TurnActionType::DIALOG) { //If a dialog must be printed
-                        if(dialog == nullptr) {                  //A new dialog is created
+                        if(dialogOver) {                  //A new dialog is created
+                          if(dialog != nullptr){
+                            delete(dialog);
+                            dialog = nullptr;
+                          }
+                          dialogOver = false;
                             std::vector<sf::String> dialogs;
                             for(Utils::OpString opStr : turnAct.dialog) { //Converts OpString in sf::String
                                 dialogs.push_back(opStr.getString());
                             }
                             dialog = new Dialog(dialogs, data.getUiDataPtr());
-                            dialog->draw(frame);
                         } else { //Continuing an old dialog
                             dialog->updateTextAnimation();
-                            dialog->draw(frame);
                             if(dialog->isDialogOver()) { //If the dialog is over, go to the next action in the queue
                                 actionQueue.pop();
-                                delete(dialog);
-                                dialog = nullptr;
+                                dialogOver = true;
                             }
                         }
                     } else if(turnAct.type == TurnActionType::ATK_UPDATE_HBAR || turnAct.type == TurnActionType::DEF_UPDATE_HBAR) { //Updates the player's OpMon's healthbar.
-                        if(dialog == nullptr) {                                                                                     // Empty dialog to print the dialog background and the arrow
-                            dialog = new Dialog(std::vector<sf::String>(), data.getUiDataPtr());
-                            dialog->draw(frame);
-                        } else {
-                            dialog->draw(frame);
-                        }
                         data.getUiDataPtr()->getJukebox().playSound("hit");
                         auto &opmonHp = (turnAct.type == TurnActionType::ATK_UPDATE_HBAR) ? atkHp : defHp;
                         opmonHp -= turnAct.hpLost;
                         opmonHp = (opmonHp < 0) ? 0 : opmonHp; //Don't drop below 0
                         actionQueue.pop();
-                        delete(dialog);
-                        dialog = nullptr;
                     } else if(turnAct.type == TurnActionType::ATK_STAT_MOD || turnAct.type == TurnActionType::DEF_STAT_MOD) { //When an OpMon's stat is modified
                         //An animation will play here in the future.
                         auto &opTurn = (turnAct.type == TurnActionType::ATK_STAT_MOD) ? atkTurn : defTurn;
-                        if(dialog == nullptr) {
+                        if(dialogOver) {
                             dialog = new Dialog(std::vector<sf::String>{Utils::OpString::quickString("battle.stat." + std::to_string((int)turnAct.statMod) + "." + std::to_string(turnAct.statCoef), {opTurn.opmon->getNickname()})}, data.getUiDataPtr());
-                            dialog->draw(frame);
                         } else {
                             dialog->updateTextAnimation();
-                            dialog->draw(frame);
                             if(dialog->isDialogOver()) { //If the dialog is over, go to the next action in the queue
                                 actionQueue.pop();
-                                delete(dialog);
-                                dialog = nullptr;
+                                dialogOver = true;
                             }
                         }
                     } else if(turnAct.type == TurnActionType::VICTORY) {
@@ -207,6 +198,11 @@ namespace OpMon {
                     *turnActivated = false;
                     turnNber = 0;
                 }
+
+                if(dialog == nullptr){//Always show the dialog box (if possible)
+                  dialog = new Dialog(" ", data.getUiDataPtr());
+                }
+                dialog->draw(frame);
 
             } else if(!attackChoice) { // Main battle menu
 
