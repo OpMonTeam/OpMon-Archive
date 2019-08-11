@@ -30,16 +30,21 @@
 	"animationOrder" : [15, 19],
 	"opMovements" : [
 	    {
-		"mode" : [0, 0],
-		"formulas" : [[0], [0]],
-		"time" : 0
+            "translation" : {
+                "mode" : [0, 0],
+                "formulas" : [[0], [0]]
+            },
+            "time" : 0
 	    },
 	    {
-		"mode" : [0, 0],
-		"formulas" : [[0], [0]],
-		"time" : 0
-	    }],
-	"animations" : ["default"]
+            "translation" : {
+                "mode" : [0, 0],
+                "formulas" : [[0], [0]]
+            },
+            "time" : 0
+        }
+    ],
+    "animations" : ["default"]
     },
     {
 	"id" : "Growl",
@@ -67,18 +72,23 @@
 	    }
 	],
 	"animationOrder" : [15, 19],
-	"opMovements" : [
-	    {
-		"mode" : [0, 0],
-		"formulas" : [[0], [0]],
-		"time" : 0
-	    },
-	    {
-		"mode" : [0, 0],
-		"formulas" : [[0], [0]],
-		"time" : 0
-	    }],
-	"animations" : ["default"]
+    "opMovements" : [
+        {
+            "translation" : {
+                "mode" : [0, 0],
+                "formulas" : [[0], [0]]
+            },
+            "time" : 0
+        },
+        {
+            "translation" : {
+                "mode" : [0, 0],
+                "formulas" : [[0], [0]]
+            },
+            "time" : 0
+        }
+    ],
+    "animations" : ["default"]
     },
     {
 	"id" : "Tackle",
@@ -103,17 +113,22 @@
 	    }
 	],
 	"animationOrder" : [15, 19],
-	"opMovements" : [
-	    {
-		"mode" : [0, 0],
-		"formulas" : [[0], [0]],
-		"time" : 0
-	    },
-	    {
-		"mode" : [0, 0],
-		"formulas" : [[0], [0]],
-		"time" : 0
-	    }],
-	"animations" : ["default"]
+    "opMovements" : [
+        {
+            "translation" : {
+                "mode" : [0, 0],
+                "formulas" : [[0], [0]]
+            },
+            "time" : 0
+        },
+        {
+            "translation" : {
+                "mode" : [0, 0],
+                "formulas" : [[0], [0]]
+            },
+            "time" : 0
+        }
+    ],
+    "animations" : ["default"]
     }
 ]

@@ -58,25 +58,62 @@ namespace OpMon {
                     i++;
                 }
 		for(unsigned int i = 0; i < itor->at("animationOrder").size(); i++){
-		    attackList[idStr].animationOrder.push(itor->at("animationOrder").at(i));
+		    attackList[idStr].animationOrder.push_back(itor->at("animationOrder").at(i));
 		}
 		for(auto aitor = itor->at("opMovements").begin(); aitor != itor->at("opMovements").end(); ++aitor){
-		    attackList[idStr].opAnims.push(View::Transformation(aitor->at("time"),
-							   View::Transformation::newMovementData(aitor->at("mode").at(0),
-							   aitor->at("mode").at(1),
-							   aitor->at("formulas").at(0),
-							   aitor->at("formulas").at(1))));
+		  nlohmann::json transObj = aitor->value("translation", nlohmann::json::value_t::object);
+		  nlohmann::json rotObj = aitor->value("rotation", nlohmann::json::value_t::object);
+		  nlohmann::json scalObj = aitor->value("scaling", nlohmann::json::value_t::object);
+
+		  View::MovementData mov;
+		  View::RotationData rot;
+		  View::ScaleData scal;
+
+		  if(!transObj.empty()){
+		    mov = View::Transformation::newMovementData(transObj.at("mode").at(0),
+								transObj.at("mode").at(1),
+								transObj.at("formulas").at(0),
+								transObj.at("formulas").at(1));
+		  }
+
+		  if(!rotObj.empty()){
+		    rot = View::Transformation::newRotationData(rotObj.at("mode"),
+								rotObj.at("formula"),
+								sf::Vector2f(rotObj.at("origin").at(0), rotObj.at("origin").at(1)));
+		  }
+
+		  if(!scalObj.empty()){
+		    scal = View::Transformation::newScaleData(scalObj.at("mode").at(0),
+							      scalObj.at("mode").at(1),
+							      scalObj.at("formula").at(0),
+							      scalObj.at("formula").at(1),
+							      sf::Vector2f(scalObj.at("origin").at(0), scalObj.at("origin").at(1)));
+		  }
+
+		  attackList[idStr].opAnims.push(View::Transformation(aitor->at("time"), mov, rot, scal));
 
 		}
-		for(unsigned int i = 0; i < itor->at("animations").size(); i++){
-		    attackList[idStr].animations.push(itor->at("animations").at(i));
+
+		for(auto aitor = itor->at("animations").begin(); aitor != itor->at("animations").end(); ++aitor){
+		  attackList[idStr].animations.push(*aitor);
 		}
 		std::string atkStr = itor->at("id");
 		Utils::Log::oplog("Loaded attack " + atkStr);
             }
         }
 
-        Attack::Attack(std::string nameKey, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::queue<TurnActionType> animationOrder, std::queue<View::Transformation> opAnims, std::queue<std::string> animations, AttackEffect *preEffect, AttackEffect *postEffect, AttackEffect *fails)
+        std::queue<View::Transformation> Attack::generateDefAnims(std::queue<View::Transformation> opAnims){
+          std::queue<View::Transformation> opAnimsDef;
+          while(!opAnims.empty()){
+            opAnimsDef.push(opAnims.front().inverse());
+            opAnims.pop();
+          }
+          return opAnimsDef;
+
+        }
+
+
+        Attack::Attack(std::string nameKey, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::vector<TurnActionType> animationOrder, std::queue<View::Transformation> opAnims, std::queue<std::string> animations, AttackEffect *preEffect, AttackEffect *postEffect, AttackEffect *fails)
           : name(Utils::OpString(nameKey))
           , power(power)
           , priority(priority)
@@ -93,7 +130,10 @@ namespace OpMon {
           , failEffect(fails)
 	  , animationOrder(animationOrder)
 	  , opAnims(opAnims)
-	  , animations(animations) {}
+	  , opAnimsDef(generateDefAnims(opAnims))
+	  , animations(animations) {
+
+	}
 
         Attack::Attack(AttackData const &data)
           : name(Utils::OpString(data.nameKey))
@@ -112,6 +152,7 @@ namespace OpMon {
           , failEffect(data.ifFails)
 	  , animationOrder(data.animationOrder)
 	  , opAnims(data.opAnims)
+	  , opAnimsDef(generateDefAnims(data.opAnims))
 	  , animations(data.animations) {}
 
 
@@ -150,6 +191,14 @@ namespace OpMon {
                     failEffect->apply(*this, atk, def, turnQueue);
                 return -1;
             }
+
+            //Animation time
+            for(TurnActionType tat : animationOrder){
+              TurnAction ta;
+              ta.type = tat;
+              turnQueue.push(ta);
+            }
+
             if(!status) { //Check if it isn't a status attack to calculate the hp lost
                 hpLost = (((atk.getLevel() * 0.4 + 2) * (special ? atk.getStatATKSPE() : atk.getStatATK()) * power) / ((special ? def.getStatDEFSPE() : def.getStatDEF()) * 50) + 2);
                 if(type == atk.getType1() || type == atk.getType2()) {

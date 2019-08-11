@@ -15,6 +15,7 @@ namespace OpMon {
         BattleCtrl::BattleCtrl(OpTeam *one, Events::TrainerEvent *two, UiData *uidata, Player *player)
           : BattleCtrl(one, two->getOpTeam(), uidata, player) {
             this->trainer = two;
+            next.type = TurnActionType::NEXT;
         }
 
         BattleCtrl::BattleCtrl(OpTeam *one, OpTeam *two, UiData *uidata, Player *player)
@@ -25,6 +26,7 @@ namespace OpMon {
           , def(two->getOp(0))
           , view(one, two, "beta", "grass", this->data) {
             initBattle(0, 0);
+            next.type = TurnActionType::NEXT;
         }
 
         GameStatus BattleCtrl::update(sf::RenderTexture &frame) {
@@ -85,7 +87,6 @@ namespace OpMon {
                         } else { //The attack is invalid
                             data.getUiDataPtr()->getJukebox().playSound("nope");
                         }
-                        //During a turn, it passes the dialog. If nextTxt returns false, the end of the texts is reached and the turn is over.
                     } else if(turnActivated) {
                         view.passDialog();
                     }
@@ -196,6 +197,10 @@ namespace OpMon {
 
             turnIA(0);
 
+            if(!actionsQueue.empty()) {
+                handleError("Error : Actions Queue not empty but beginning a new turn anyway. Undefined behavior my result, because I won't fix that for you. And it could be funny to see.");
+            }
+
             //Item use or switching always comes before the attack. It is calculated before everything else.
             bool atkFirst = true;
             if(atkTurn.type != TurnType::ATTACK) {
@@ -213,25 +218,23 @@ namespace OpMon {
                 atkFirst = !atkDone;
             }
 
-            if(!actionsQueue.empty()) {
-                handleError("Error : Actions Queue not empty but beginning a new turn anyway. Undefined behavior my result, because I won't fix that for you. And this could be funny to see.");
-            }
-
             if(!atkDone || !defDone) {
                 if(atkFirst) {
                     if(!atkDone && canAttack(atk, &atkTurn)) {
                         atkTurn.attackUsed->attack(*atk, *def, actionsQueue, true);
                     }
-
+                    actionsQueue.push(next);
                     if(!defDone && canAttack(def, &defTurn) && !checkBattleEnd()) {
                         defTurn.attackUsed->attack(*def, *atk, actionsQueue, false);
                     }
+
                     checkBattleEnd();
 
                 } else {
                     if(!defDone && canAttack(def, &defTurn)) {
                         defTurn.attackUsed->attack(*def, *atk, actionsQueue, false);
                     }
+                    actionsQueue.push(next);
                     if(!atkDone && canAttack(atk, &atkTurn) && !checkBattleEnd()) {
                         atkTurn.attackUsed->attack(*atk, *def, actionsQueue, true);
                     }

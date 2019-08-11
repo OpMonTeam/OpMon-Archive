@@ -72,7 +72,7 @@ namespace OpMon {
 	       - Turn action (Attack, item and other actions)
 	       When the turn is launched, the variable turnActivated is set to true in BattleCtrl.
 	       When the turn is over, the variable turnActivated is set to false in BattleCtrl.
-	       Battle have it's own variable, allowing to know when the variable has changed, and do this code.
+	       Battle have its own variable, allowing to know when the variable has changed, and do this code.
 	    */
             if(!turnLaunched && *turnActivated) {
                 phase = 1;
@@ -180,9 +180,32 @@ namespace OpMon {
                                 return GameStatus::PREVIOUS;
                             }
                         }
+                    } else if(turnAct.type == TurnActionType::OPANIM){
+                      if(currentOpAnims == nullptr){
+                        currentOpAnims = new std::queue<Transformation>(((atkFirst && (turnNber == 0)) || (!atkFirst && (turnNber == 1))) /* Is it player's turn */ ?
+                                                                          turns[turnNber]->attackUsed->getOpAnimsAtk() :
+                                                                          turns[turnNber]->attackUsed->getOpAnimsDef());
+                      }
+                      if(currentOpAnims->front().empty()){
+                        currentOpAnims->front().attach(((atkFirst && (turnNber == 0)) || (!atkFirst && (turnNber == 1))) /* Is it player's turn */ ? &atkTr : &defTr);
+                      }
+                      if(!currentOpAnims->front().apply()){
+                        currentOpAnims->pop();
+                        actionQueue.pop();
+                        if(currentOpAnims->empty()){
+                          delete(currentOpAnims);
+                          currentOpAnims = nullptr;
+                        }
+                      }
+                    } else if(turnAct.type == TurnActionType::NEXT){
+                      turnNber++;
+                      actionQueue.pop();
+                    } else{
+                      actionQueue.pop();
                     }
                 } else {
                     *turnActivated = false;
+                    turnNber = 0;
                 }
 
             } else if(!attackChoice) { // Main battle menu
@@ -238,20 +261,6 @@ namespace OpMon {
                 frame.draw(cursor);
             }
             return GameStatus::CONTINUE;
-        }
-
-        bool Battle::nextTxt() {
-            if(phase >= 4) {
-                phase = 1;
-                turnNber++;
-                if(turnNber > 1) {
-                    turnNber = 0;
-                    return false;
-                }
-            } else {
-                phase++;
-            }
-            return true;
         }
 
         void Battle::toggleAttackChoice() {
