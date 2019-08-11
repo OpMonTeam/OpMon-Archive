@@ -41,10 +41,9 @@ namespace OpMon {
             AttackEffect *preEffect = nullptr;
             AttackEffect *postEffect = nullptr;
             AttackEffect *ifFails = nullptr;
-	    std::queue<TurnActionType> animationOrder;
+            std::vector<TurnActionType> animationOrder;
 	    std::queue<View::Transformation> opAnims;
 	    std::queue<std::string> animations;
-	    
         };
 
         typedef struct AttackData AttackData;
@@ -52,7 +51,7 @@ namespace OpMon {
         class Attack {
           public:
             virtual ~Attack();
-            Attack(std::string nameKey, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::queue<TurnActionType> animationOrder, std::queue<View::Transformation> opAnims, std::queue<std::string> animations, AttackEffect *preEffect = nullptr, AttackEffect *postEffect = nullptr, AttackEffect *fails = nullptr);
+            Attack(std::string nameKey, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::vector<TurnActionType> animationOrder, std::queue<View::Transformation> opAnims, std::queue<std::string> animations, AttackEffect *preEffect = nullptr, AttackEffect *postEffect = nullptr, AttackEffect *fails = nullptr);
 
             Attack(AttackData const &data);
 
@@ -96,6 +95,18 @@ namespace OpMon {
                 return name.getString();
             }
 
+            std::queue<View::Transformation> getOpAnimsAtk() const {
+              return opAnims;
+            }
+
+            std::queue<View::Transformation> getOpAnimsDef() const {
+              return opAnimsDef;
+            }
+
+            std::queue<std::string> getAnimations() const {
+              return animations;
+            }
+
             // methods used by pre and post Effects
             void setPower(int power) { this->power = power; }
             int getAccuracy() { return this->accuracy; }
@@ -125,11 +136,14 @@ namespace OpMon {
             /**Variables used in preEffect and postEffect*/
             int hpLost = 0;
 
-	    std::queue<TurnActionType> animationOrder;
-	    std::queue<View::Transformation> opAnims;
-	    std::queue<std::string> animations;
+	    const std::vector<TurnActionType> animationOrder;
+	    const std::queue<View::Transformation> opAnims;
+	    const std::queue<View::Transformation> opAnimsDef;
+	    const std::queue<std::string> animations;
 	    
             static std::map<std::string, AttackData> attackList;
+
+            std::queue<View::Transformation> generateDefAnims(std::queue<View::Transformation> opAnims);
         };
 
     } // namespace Model

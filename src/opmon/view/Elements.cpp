@@ -210,44 +210,39 @@ namespace OpMon {
 		  return toReturn;
 		}
 
-		MovementData Transformation::mirror(MovementData const& movement){
 
-			std::vector<double> xformula = movement.xformula;
-			std::vector<double> yformula = movement.yformula;
-			switch(movement.modeX){
-			case FormulaMode::POLYNOMIAL:
-				for(unsigned int i = 0; i < xformula.size(); i++){
-					xformula[i] = 0.0 - xformula[i];
-				}
-				break;
+		std::vector<double> Transformation::inverseFormula(std::vector<double> formula, FormulaMode mode){
+		  std::vector<double> toReturn;
+		  switch(mode){
+		  case FormulaMode::POLYNOMIAL:
+			  for(unsigned int i = 0; i < formula.size(); i++){
+				  formula[i] = 0.0 - formula[i];
+			  }
+			  break;
 
-			case FormulaMode::MULTIFUNCTIONS:
-				for(unsigned int i = 0; i < xformula.size(); i++){
-					if(i % 5 != 0){
-						xformula[i] = 0.0 - xformula[i];
-					}
-				}
-				break;
-			}
+		  case FormulaMode::MULTIFUNCTIONS:
+			  int jump = 0;
+			  for(unsigned int i = 0; i < formula.size(); i++){
+			    if(formula[i] == 0){
+			      jump = 2;
+			    }else{
+			      jump = 4;
+			    }
+			    for(int j = 1; j < jump; j++){
+			      formula[i + j] = - formula[i + j];
+			    }
+			    i += jump;
+			  }
+			  break;
+		  }
+		  return toReturn;
+		}
 
-			switch(movement.modeY){
-			case FormulaMode::POLYNOMIAL:
-				for(unsigned int i = 0; i < yformula.size(); i++){
-					yformula[i] = 0.0 - yformula[i];
-				}
-				break;
-
-			case FormulaMode::MULTIFUNCTIONS:
-				for(unsigned int i = 0; i < yformula.size(); i++){
-					if(i % 5 != 0){
-						yformula[i] = 0.0 - yformula[i];
-					}
-				}
-				break;
-			}
-
-			return newMovementData(movement.modeX, movement.modeY, xformula, yformula, movement.relative);
-
+		Transformation Transformation::inverse(){
+		  std::vector<double> xformula = inverseFormula(md.xformula, md.modeX);
+		  std::vector<double> yformula = inverseFormula(md.yformula, md.modeY);
+		  std::vector<double> rotFormula = inverseFormula(rd.formula, rd.formulaMode);
+		  return Transformation(time, newMovementData(md.modeX, md.modeY, xformula, yformula, md.relative), newRotationData(rd.formulaMode, rotFormula, rd.origin), sd, sprite);
 		}
 
 		sf::Vector2f Transformation::spriteCenter(const sf::Sprite &spr){

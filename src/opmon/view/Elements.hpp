@@ -118,6 +118,8 @@ namespace OpMon {
                   //Rotates a vector. The angle is in degrees.
                   sf::Vector2f rotateVector(sf::Vector2f const& vect, double angle);
 
+                  std::vector<double> inverseFormula(std::vector<double> formula, FormulaMode mode);
+
           public:
                   Transformation(unsigned int const& time, MovementData const md = MovementData(), RotationData const rd = RotationData(), ScaleData const sd = ScaleData(), sf::Transform* sprite = nullptr);
 
@@ -143,7 +145,8 @@ namespace OpMon {
 
                   virtual ~Transformation();
 
-                  static MovementData mirror(MovementData const& movement);
+                  /* Returns a inversed version of the animation (for the other OpMon in the battle) */
+                  Transformation inverse();
                   /* Return the coordinates of a sprite center (width/2; height/2)*/
                   static sf::Vector2f spriteCenter(sf::Sprite const& spr);
 
