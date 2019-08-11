@@ -67,6 +67,8 @@ namespace OpMon {
 
             Model::Events::TrainerEvent *trainer;
 
+            Model::TurnAction next;
+
           public:
             virtual ~BattleCtrl() = default;
             BattleCtrl(Model::OpTeam *one, Model::OpTeam *two, Model::UiData *uidata, Model::Player *player);
@@ -74,8 +76,8 @@ namespace OpMon {
             GameStatus checkEvent(sf::Event const &) override;
             GameStatus update(sf::RenderTexture &frame) override;
 
-            virtual void suspend();
-            virtual void resume();
+            virtual void suspend() override;
+            virtual void resume() override;
         };
 
     } // namespace Controller

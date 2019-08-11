@@ -41,6 +41,8 @@ namespace OpMon {
             const Model::OpTeam *atkTeam;
             const Model::OpTeam *defTeam;
 
+            std::queue<Transformation>* currentOpAnims = nullptr;
+
             //-1 means uninitalized here
             int atkHp = -1;
             int defHp = -1;
@@ -103,8 +105,6 @@ namespace OpMon {
             int getCurPos() { return curPos.getValue(); }
             //Tooggle the interface printed, the action or attack selection
             void toggleAttackChoice();
-
-            bool nextTxt();
 
             int getPhase() { return phase; }
 
