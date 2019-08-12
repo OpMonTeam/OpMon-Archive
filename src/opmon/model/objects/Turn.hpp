@@ -22,7 +22,7 @@ namespace OpMon {
             CHANGE
         };
 
-        enum class TurnActionType : unsigned int{
+        enum class TurnActionType : unsigned int {
             NOTHING = 0,
             ATK_UPDATE_HBAR = 1,
             ATK_USE_ITEM = 2,
@@ -38,11 +38,11 @@ namespace OpMon {
             VICTORY = 12,
             DEFEAT = 13,
             RUN = 14,
-	    ATK_MOVE = 15,
-	    DEF_MOVE = 16,
-	    ANIMATION = 17,
-	    OPANIM = 18, //Animates the current attack
-	    NEXT = 19 //Indicate that this is now the next OpMon turn
+            ATK_MOVE = 15,
+            DEF_MOVE = 16,
+            ANIMATION = 17,
+            OPANIM = 18, //Animates the current attack
+            NEXT = 19    //Indicate that this is now the next OpMon turn
         };
 
         struct TurnAction {

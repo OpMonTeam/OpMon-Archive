@@ -96,8 +96,8 @@ namespace OpMon {
             }
 
             //Maps initialisation
-				
-			//The maps and the trainers' data are stored in two separate files
+
+            //The maps and the trainers' data are stored in two separate files
             std::ifstream mapsJsonFile(Utils::Path::getResourcePath() + "data/maps.json");
             std::ifstream trainersJsonFile(Utils::Path::getResourcePath() + "data/trainers.json");
 
@@ -110,8 +110,8 @@ namespace OpMon {
 
             mapsJsonFile >> mapsJson;
             trainersJsonFile >> trainersJson;
-			
-	    /* Trainers loading */
+
+            /* Trainers loading */
             for(auto itor = trainersJson.begin(); itor != trainersJson.end(); ++itor) {
                 OpTeam *team = new Model::OpTeam(itor->at("name"));
                 for(auto opmonItor = itor->at("team").begin(); opmonItor != itor->at("team").end(); ++opmonItor) {
@@ -131,7 +131,7 @@ namespace OpMon {
 
             completions.emplace("playername", player->getNameP());
 
-	    /* Maps loading */
+            /* Maps loading */
             for(auto itor = mapsJson.begin(); itor != mapsJson.end(); ++itor) {
                 maps.emplace(itor->at("id"), new Map(*itor));
             }
@@ -146,18 +146,18 @@ namespace OpMon {
             delete(player);
         }
 
-	Map* OverworldData::getMap(std::string const& map){
-	    if(!maps[map]->isLoaded()){
-		Map* newMap = maps[map]->loadMap(*this);
-		delete(maps[map]);
-		maps[map] = newMap;
-	    }
-	    return maps[map];
-	}
-	
-	Map* OverworldData::getCurrentMap() {
-	    return getMap(player->getMapId());
-	}
+        Map *OverworldData::getMap(std::string const &map) {
+            if(!maps[map]->isLoaded()) {
+                Map *newMap = maps[map]->loadMap(*this);
+                delete(maps[map]);
+                maps[map] = newMap;
+            }
+            return maps[map];
+        }
+
+        Map *OverworldData::getCurrentMap() {
+            return getMap(player->getMapId());
+        }
 
     } // namespace Model
 } // namespace OpMon

@@ -49,8 +49,8 @@ namespace OpMon {
 
             std::map<std::string, std::unique_ptr<Item>> itemsList;
 
-	    std::map<std::string, sf::String *> completions;
-	    
+            std::map<std::string, sf::String *> completions;
+
             GameMenuData gameMenuData;
 
             OverworldData(OverworldData const &);
@@ -63,22 +63,22 @@ namespace OpMon {
             sf::Vector2f &getElementPos(std::string const &id) { return elementsPos[id]; }
             sf::Texture &getCurrentElementTexture(std::string const &id) { return elementsTextures[id][elementsCounter[id]]; }
 
-	    std::vector<sf::Texture>& getCharaTexture(std::string const& key) { return charaTextures[key]; }
-	    std::vector<sf::Texture>& getDoorsTexture(std::string const& key) { return doorsTextures[key]; }
-	    std::vector<sf::Texture>& getEventsTexture(std::string const& key) { return eventsTextures[key]; }
+            std::vector<sf::Texture> &getCharaTexture(std::string const &key) { return charaTextures[key]; }
+            std::vector<sf::Texture> &getDoorsTexture(std::string const &key) { return doorsTextures[key]; }
+            std::vector<sf::Texture> &getEventsTexture(std::string const &key) { return eventsTextures[key]; }
 
-	    sf::String* getCompletion(std::string const& key) { return completions.at(key); }
-	    
-	    OpTeam* getTrainer(std::string const& key) { return trainers.at(key); }
-	    
+            sf::String *getCompletion(std::string const &key) { return completions.at(key); }
+
+            OpTeam *getTrainer(std::string const &key) { return trainers.at(key); }
+
             GameMenuData &getGameMenuData() { return gameMenuData; }
 
             OP_DEPRECATED sf::Texture &getMenuTexture() { return gameMenuData.getMenuTexture(); }
 
-            Map *getMap(std::string const& map);
-	    Map *getCurrentMap();
+            Map *getMap(std::string const &map);
+            Map *getCurrentMap();
 
-	    std::string getCurrentItorMap() { return mapsItor->first; }
+            std::string getCurrentItorMap() { return mapsItor->first; }
             void incrementItorMap() {
                 mapsItor++;
                 if(mapsItor == maps.end())

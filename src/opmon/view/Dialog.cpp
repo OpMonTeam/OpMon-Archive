@@ -5,46 +5,46 @@ Contributor : Cyrielle
 File under GNU GPL v3.0 license
 */
 #include "Dialog.hpp"
-#include "../../utils/defines.hpp"
 #include "../../utils/StringKeys.hpp"
+#include "../../utils/defines.hpp"
 #include "../start/Core.hpp"
 #include "Window.hpp"
 
 namespace OpMon {
     namespace View {
 
-    	Dialog::Dialog(sf::String text, Model::UiData *uidata)
-    	: uidata(uidata){
-    		this->text = Utils::StringKeys::autoNewLine(text);
+        Dialog::Dialog(sf::String text, Model::UiData *uidata)
+          : uidata(uidata) {
+            this->text = Utils::StringKeys::autoNewLine(text);
 
-    		while(this->text.size() % 3 != 0) {
-    			this->text.push(sf::String(" "));
-    		}
+            while(this->text.size() % 3 != 0) {
+                this->text.push(sf::String(" "));
+            }
 
-    		init();
-    	}
+            init();
+        }
 
-    	Dialog::Dialog(std::queue<sf::String> text, Model::UiData *uidata)
-    	: text(text),
-		  uidata(uidata){
-    		if(this->text.size() % 3 != 0) {
-    			while(this->text.size() % 3 != 0) {
-    				this->text.push(sf::String(" "));
-    			}
-    			if(this->text.size() % 3 != 0) {
-    				handleError("Error : string missing in Dialog, even after trying to fix it.", true);
-    			}
-    		}
+        Dialog::Dialog(std::queue<sf::String> text, Model::UiData *uidata)
+          : text(text)
+          , uidata(uidata) {
+            if(this->text.size() % 3 != 0) {
+                while(this->text.size() % 3 != 0) {
+                    this->text.push(sf::String(" "));
+                }
+                if(this->text.size() % 3 != 0) {
+                    handleError("Error : string missing in Dialog, even after trying to fix it.", true);
+                }
+            }
 
-    		init();
-    	}
+            init();
+        }
 
-    	Dialog::Dialog(std::vector<sf::String> text, Model::UiData *uidata)
+        Dialog::Dialog(std::vector<sf::String> text, Model::UiData *uidata)
           : uidata(uidata) {
 
-    		for(sf::String str : text){
-    			this->text.push(str);
-    		}
+            for(sf::String str : text) {
+                this->text.push(str);
+            }
 
             if(this->text.size() % 3 != 0) {
                 while(this->text.size() % 3 != 0) {
@@ -56,37 +56,36 @@ namespace OpMon {
             }
 
             init();
-
         }
 
-    	void Dialog::init(){
-    		background.setTexture(uidata->getDialogBackground());
-    		arrDial.setTexture(uidata->getDialogArrow());
+        void Dialog::init() {
+            background.setTexture(uidata->getDialogBackground());
+            arrDial.setTexture(uidata->getDialogArrow());
 
-    		background.setPosition(0, 512 - 150);
-    		arrDial.setPosition(512 - 40, 512 - 40);
-    		arrDial.setScale(2, 2);
+            background.setPosition(0, 512 - 150);
+            arrDial.setPosition(512 - 40, 512 - 40);
+            arrDial.setScale(2, 2);
 
-    		int minusPos = 32;
-    		for(size_t i = 0; i < 3; ++i) {
-    			dialogText[i].setFont(uidata->getFont());
-    			dialogText[i].setCharacterSize(FONT_SIZE_DEFAULT);
-    			dialogText[i].setSfmlColor(sf::Color::Black);
+            int minusPos = 32;
+            for(size_t i = 0; i < 3; ++i) {
+                dialogText[i].setFont(uidata->getFont());
+                dialogText[i].setCharacterSize(FONT_SIZE_DEFAULT);
+                dialogText[i].setSfmlColor(sf::Color::Black);
 
-    			dialogText[i].setPosition(25, background.getPosition().y + minusPos);
-    			minusPos += 32;
-    		}
-    	}
+                dialogText[i].setPosition(25, background.getPosition().y + minusPos);
+                minusPos += 32;
+            }
+        }
 
         void Dialog::pass() {
-        	/* If the dialog is not completely displayed, display the dialog when pressing space */
+            /* If the dialog is not completely displayed, display the dialog when pressing space */
             if(changeDialog == false) {
-            	for(unsigned int p = line; p < 3; p++){
-            		currentTxt[p] = text.front();
-            		text.pop();
-            	}
+                for(unsigned int p = line; p < 3; p++) {
+                    currentTxt[p] = text.front();
+                    text.pop();
+                }
                 changeDialog = true;
-            /* If the dialog is completely displayed, pass to the next dialog when pressing space, if there is one */
+                /* If the dialog is completely displayed, pass to the next dialog when pressing space, if there is one */
             } else if(text.size() > 0) {
                 uidata->getJukebox().playSound("dialog pass");
                 line = 0;
@@ -95,7 +94,7 @@ namespace OpMon {
                 currentTxt[1] = sf::String(" ");
                 currentTxt[2] = sf::String(" ");
                 changeDialog = false;
-            } else {//If there is no more dialogs
+            } else { //If there is no more dialogs
                 is_dialog_over = true;
             }
         }
@@ -111,8 +110,8 @@ namespace OpMon {
                     }
                     i++;
                 } else {
-                	text.pop();
-                	line++;
+                    text.pop();
+                    line++;
                     if(line == 3) {
                         changeDialog = true;
                     } else {
@@ -137,7 +136,8 @@ namespace OpMon {
                     if(arrDial.getPosition().y - posArrow.y > 5) {
                         arrDial.move(0, -6);
                     }
-                    if(text.size() > 0 && changeDialog) frame.draw(arrDial);
+                    if(text.size() > 0 && changeDialog)
+                        frame.draw(arrDial);
                 }
             }
         }
