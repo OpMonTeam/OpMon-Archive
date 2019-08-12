@@ -70,6 +70,7 @@ namespace OpMon {
             void setKeyRight(const std::string rightName) { right = KeyData::keysMap.at(rightName); }
             void setKeyInteract(const std::string interactName) { interact = KeyData::keysMap.at(interactName); }
             void setKeyTalk(const std::string talkName) { talk = KeyData::keysMap.at(talkName); }
+
         };
 
     } // namespace Model
