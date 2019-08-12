@@ -50,12 +50,11 @@ namespace OpMon {
         while(status != GameStatus::STOP) {
             status = GameStatus::CONTINUE;
 
-
             //Debug frame by frame
-            while(sf::Keyboard::isKeyPressed(sf::Keyboard::F2) && !(sf::Keyboard::isKeyPressed(fbfType) && hasBeenReleased)){
-              if(!sf::Keyboard::isKeyPressed(fbfType)){
-                hasBeenReleased = true;
-              }
+            while(sf::Keyboard::isKeyPressed(sf::Keyboard::F2) && !(sf::Keyboard::isKeyPressed(fbfType) && hasBeenReleased)) {
+                if(!sf::Keyboard::isKeyPressed(fbfType)) {
+                    hasBeenReleased = true;
+                }
             }
             hasBeenReleased = false;
 
@@ -77,12 +76,11 @@ namespace OpMon {
                 }
             }
 
-	    if(status == GameStatus::WIN_REBOOT){
-		window->reboot();
-		status = GameStatus::CONTINUE;
-	    }
-	    
-	    
+            if(status == GameStatus::WIN_REBOOT) {
+                window->reboot();
+                status = GameStatus::CONTINUE;
+            }
+
             if(status == GameStatus::CONTINUE) {
                 // frame update & draw
                 status = ctrl->update(window->getFrame());
@@ -100,9 +98,6 @@ namespace OpMon {
                     ctrl->loadNextScreen();
                 }
             }
-
-
-
 
             switch(status) {
             case GameStatus::NEXT: //Pauses the current screen and passes to the next

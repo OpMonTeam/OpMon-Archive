@@ -110,10 +110,10 @@ namespace OpMon {
             txtCre9.setString(kget("options.credit.9"));
             txtCre9.setFont(data.getUiDataPtr()->getFont());
             txtCre9.setCharacterSize(13);
-						txtCre10.setString(kget("options.credit.10"));
+            txtCre10.setString(kget("options.credit.10"));
             txtCre10.setFont(data.getUiDataPtr()->getFont());
             txtCre10.setCharacterSize(20);
-						txtCre10.setSfmlColor(sf::Color::Blue);
+            txtCre10.setSfmlColor(sf::Color::Blue);
 
             txtCtrlChange.setString(kget("options.ctrl.change"));
             txtCtrlChange.setFont(data.getUiDataPtr()->getFont());
@@ -175,7 +175,7 @@ namespace OpMon {
             txtCre83.setPosition(10, 420);
             txtCre84.setPosition(10, 437);
             txtCre9.setPosition(450, 488);
-						txtCre10.setPosition(180, 100);
+            txtCre10.setPosition(180, 100);
 
             txtCtrlChange.setPosition(33.0, 91.0);
 
@@ -367,7 +367,7 @@ namespace OpMon {
             frame.draw(txtCre83);
             frame.draw(txtCre84);
             frame.draw(txtCre9);
-						frame.draw(txtCre10);
+            frame.draw(txtCre10);
 
             rectSurb.setPosition(curPosOpt[0]);
             rectSurb.setScale(curSizeLang[0]);

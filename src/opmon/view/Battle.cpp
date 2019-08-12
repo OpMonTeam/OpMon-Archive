@@ -86,8 +86,8 @@ namespace OpMon {
                 frame.draw(dialogSpr);
             }
 
-            if(animTest){
-              animTest = test->apply();
+            if(animTest) {
+                animTest = test->apply();
             }
 
             if(*turnActivated && turnNber <= 1) { //If it's turn phase
@@ -107,12 +107,12 @@ namespace OpMon {
                     TurnAction &turnAct = actionQueue.front();
 
                     if(turnAct.type == TurnActionType::DIALOG) { //If a dialog must be printed
-                        if(dialogOver) {                  //A new dialog is created
-                          if(dialog != nullptr){
-                            delete(dialog);
-                            dialog = nullptr;
-                          }
-                          dialogOver = false;
+                        if(dialogOver) {                         //A new dialog is created
+                            if(dialog != nullptr) {
+                                delete(dialog);
+                                dialog = nullptr;
+                            }
+                            dialogOver = false;
                             std::vector<sf::String> dialogs;
                             for(Utils::OpString opStr : turnAct.dialog) { //Converts OpString in sf::String
                                 dialogs.push_back(opStr.getString());
@@ -133,42 +133,42 @@ namespace OpMon {
                         actionQueue.pop();
                     } else if(turnAct.type == TurnActionType::ATK_STAT_MOD || turnAct.type == TurnActionType::DEF_STAT_MOD) { //When an OpMon's stat is modified
 
-                      //Animation part
-                      if(currentOpAnims == nullptr){
-                        currentOpAnims = new std::queue<Transformation>();
-                        currentOpAnims->push(Transformation(40, MovementData(), RotationData(), Transformation::newScaleData(FormulaMode::MULTIFUNCTIONS, FormulaMode::MULTIFUNCTIONS, (turnAct.statCoef > 0) ? std::vector<double>{2,0.1,2 * PI / 20, 0, 0, 0.9} : std::vector<double>{2,-0.1,2 * PI / 20,0,0,1.1}, (turnAct.statCoef <= 0) ? std::vector<double>{2,0.1,2 * PI / 20, 0, 0, 0.9} : std::vector<double>{2,-0.1,2 * PI / 20,0,0,1.1}, Transformation::spriteCenter(atk))));
-                      }
-                      if(currentOpAnims->front().empty()){
-                        currentOpAnims->front().attach((turnAct.type == TurnActionType::ATK_STAT_MOD) ? &atkTr : &defTr);
-                      }
+                        //Animation part
+                        if(currentOpAnims == nullptr) {
+                            currentOpAnims = new std::queue<Transformation>();
+                            currentOpAnims->push(Transformation(40, MovementData(), RotationData(), Transformation::newScaleData(FormulaMode::MULTIFUNCTIONS, FormulaMode::MULTIFUNCTIONS, (turnAct.statCoef > 0) ? std::vector<double>{2, 0.1, 2 * PI / 20, 0, 0, 0.9} : std::vector<double>{2, -0.1, 2 * PI / 20, 0, 0, 1.1}, (turnAct.statCoef <= 0) ? std::vector<double>{2, 0.1, 2 * PI / 20, 0, 0, 0.9} : std::vector<double>{2, -0.1, 2 * PI / 20, 0, 0, 1.1}, Transformation::spriteCenter(atk))));
+                        }
+                        if(currentOpAnims->front().empty()) {
+                            currentOpAnims->front().attach((turnAct.type == TurnActionType::ATK_STAT_MOD) ? &atkTr : &defTr);
+                        }
 
-                      //Dialog part
-                      auto &opTurn = (turnAct.type == TurnActionType::ATK_STAT_MOD) ? atkTurn : defTurn;
+                        //Dialog part
+                        auto &opTurn = (turnAct.type == TurnActionType::ATK_STAT_MOD) ? atkTurn : defTurn;
                         if(dialogOver) {
-                          if(dialog != nullptr){
-                            delete(dialog);
-                            dialog = nullptr;
-                          }
-                          dialogOver = false;
+                            if(dialog != nullptr) {
+                                delete(dialog);
+                                dialog = nullptr;
+                            }
+                            dialogOver = false;
                             dialog = new Dialog(std::vector<sf::String>{Utils::OpString::quickString("battle.stat." + std::to_string((int)turnAct.statMod) + "." + std::to_string(turnAct.statCoef), {opTurn.opmon->getNickname()})}, data.getUiDataPtr());
                         } else {
-                            dialog->updateTextAnimation();   
+                            dialog->updateTextAnimation();
                         }
 
                         //Checking part
                         if(!currentOpAnims->front().apply() && dialog->isDialogOver()) { //If the dialog is over, go to the next action in the queue
-                          actionQueue.pop();
-                          dialogOver = true;
-                          delete(currentOpAnims);
-                          currentOpAnims = nullptr;
+                            actionQueue.pop();
+                            dialogOver = true;
+                            delete(currentOpAnims);
+                            currentOpAnims = nullptr;
                         }
                     } else if(turnAct.type == TurnActionType::VICTORY) {
                         if(dialogOver) {
-                          if(dialog != nullptr){
-                            delete(dialog);
-                            dialog = nullptr;
-                          }
-                          dialogOver = false;
+                            if(dialog != nullptr) {
+                                delete(dialog);
+                                dialog = nullptr;
+                            }
+                            dialogOver = false;
                             dialog = new Dialog({Utils::OpString::quickString("battle.victory", {data.getPlayer().getName()})}, data.getUiDataPtr());
                         } else {
                             dialog->updateTextAnimation();
@@ -182,11 +182,11 @@ namespace OpMon {
                         }
                     } else if(turnAct.type == TurnActionType::DEFEAT) {
                         if(dialogOver) {
-                          if(dialog != nullptr){
-                            delete(dialog);
-                            dialog = nullptr;
-                          }
-                          dialogOver = false;
+                            if(dialog != nullptr) {
+                                delete(dialog);
+                                dialog = nullptr;
+                            }
+                            dialogOver = false;
                             dialog = new Dialog(std::vector<sf::String>{Utils::OpString::quickString("battle.defeat", {data.getPlayer().getName()})}, data.getUiDataPtr());
                         } else {
                             dialog->updateTextAnimation();
@@ -198,36 +198,34 @@ namespace OpMon {
                                 return GameStatus::PREVIOUS;
                             }
                         }
-                    } else if(turnAct.type == TurnActionType::OPANIM){
-                      if(currentOpAnims == nullptr){
-                        currentOpAnims = new std::queue<Transformation>(((atkFirst && (turnNber == 0)) || (!atkFirst && (turnNber == 1))) /* Is it player's turn */ ?
-                                                                          turns[turnNber]->attackUsed->getOpAnimsAtk() :
-                                                                          turns[turnNber]->attackUsed->getOpAnimsDef());
-                      }
-                      if(currentOpAnims->front().empty()){
-                        currentOpAnims->front().attach(((atkFirst && (turnNber == 0)) || (!atkFirst && (turnNber == 1))) /* Is it player's turn */ ? &atkTr : &defTr);
-                      }
-                      if(!currentOpAnims->front().apply()){
-                        currentOpAnims->pop();
-                        actionQueue.pop();
-                        if(currentOpAnims->empty()){
-                          delete(currentOpAnims);
-                          currentOpAnims = nullptr;
+                    } else if(turnAct.type == TurnActionType::OPANIM) {
+                        if(currentOpAnims == nullptr) {
+                            currentOpAnims = new std::queue<Transformation>(((atkFirst && (turnNber == 0)) || (!atkFirst && (turnNber == 1))) /* Is it player's turn */ ? turns[turnNber]->attackUsed->getOpAnimsAtk() : turns[turnNber]->attackUsed->getOpAnimsDef());
                         }
-                      }
-                    } else if(turnAct.type == TurnActionType::NEXT){
-                      turnNber++;
-                      actionQueue.pop();
-                    } else{
-                      actionQueue.pop();
+                        if(currentOpAnims->front().empty()) {
+                            currentOpAnims->front().attach(((atkFirst && (turnNber == 0)) || (!atkFirst && (turnNber == 1))) /* Is it player's turn */ ? &atkTr : &defTr);
+                        }
+                        if(!currentOpAnims->front().apply()) {
+                            currentOpAnims->pop();
+                            actionQueue.pop();
+                            if(currentOpAnims->empty()) {
+                                delete(currentOpAnims);
+                                currentOpAnims = nullptr;
+                            }
+                        }
+                    } else if(turnAct.type == TurnActionType::NEXT) {
+                        turnNber++;
+                        actionQueue.pop();
+                    } else {
+                        actionQueue.pop();
                     }
                 } else {
                     *turnActivated = false;
                     turnNber = 0;
                 }
 
-                if(dialog == nullptr){//Always show the dialog box (if possible)
-                  dialog = new Dialog(" ", data.getUiDataPtr());
+                if(dialog == nullptr) { //Always show the dialog box (if possible)
+                    dialog = new Dialog(" ", data.getUiDataPtr());
                 }
                 dialog->draw(frame);
 
@@ -307,14 +305,14 @@ namespace OpMon {
                 curPos = 0;
 
             } else {
-              posChoices[0].x = 300 + (99 - choicesTxt[0].getGlobalBounds().width) / 3;
-              posChoices[0].y = 392;
-              posChoices[1].x = 400 + (99 - choicesTxt[1].getGlobalBounds().width) / 2;
-              posChoices[1].y = 392;
-              posChoices[2].x = 300 + (99 - choicesTxt[2].getGlobalBounds().width) / 2;
-              posChoices[2].y = 457;
-              posChoices[3].x = 400 + (99 - choicesTxt[3].getGlobalBounds().width) / 2;
-              posChoices[3].y = 457;
+                posChoices[0].x = 300 + (99 - choicesTxt[0].getGlobalBounds().width) / 3;
+                posChoices[0].y = 392;
+                posChoices[1].x = 400 + (99 - choicesTxt[1].getGlobalBounds().width) / 2;
+                posChoices[1].y = 392;
+                posChoices[2].x = 300 + (99 - choicesTxt[2].getGlobalBounds().width) / 2;
+                posChoices[2].y = 457;
+                posChoices[3].x = 400 + (99 - choicesTxt[3].getGlobalBounds().width) / 2;
+                posChoices[3].y = 457;
                 dialogSpr.setTexture(data.getDialog());
                 curPos = 0;
             }
@@ -352,8 +350,8 @@ namespace OpMon {
             posChoices[3].x = 400 + (99 - choicesTxt[3].getGlobalBounds().width) / 2;
             posChoices[3].y = 457;
 
-            for(unsigned int i = 0; i < 4; i++){
-              choicesTxt[i].setPosition(posChoices[i]);
+            for(unsigned int i = 0; i < 4; i++) {
+                choicesTxt[i].setPosition(posChoices[i]);
             }
 
             //ppText.setPosition(326, 380);

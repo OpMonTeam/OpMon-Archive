@@ -10,8 +10,8 @@ File under GNU GPL v3.0 license
 #include "../model/objects/Turn.hpp"
 #include "../model/storage/BattleData.hpp"
 #include "../start/Core.hpp"
-#include "Elements.hpp"
 #include "Dialog.hpp"
+#include "Elements.hpp"
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/System/String.hpp>
@@ -41,7 +41,7 @@ namespace OpMon {
             const Model::OpTeam *atkTeam;
             const Model::OpTeam *defTeam;
 
-            std::queue<Transformation>* currentOpAnims = nullptr;
+            std::queue<Transformation> *currentOpAnims = nullptr;
 
             //-1 means uninitalized here
             int atkHp = -1;
@@ -118,13 +118,13 @@ namespace OpMon {
             }
 
             void setAnimTest() {
-            	if(!animTest){
-            		animTest = true;
-            		if(test != nullptr){
-            			delete(test);
-            		}
-                        //test = new Transformation(40, Transformation::newMovementData(FormulaMode::POLYNOMIAL, FormulaMode::POLYNOMIAL, std::vector<double>{0, 7.5/2.0, -3.0/32.0}, std::vector<double>{0, -7.5/2.0, 3.0/32.0}, true), Transformation::newRotationData(FormulaMode::MULTIFUNCTIONS, std::vector<double>{3, -54, 1, -20, 0, 1080}, Transformation::spriteCenter(atk)), ScaleData(), &atkTr);
-                        test = new Transformation(40, MovementData(), RotationData(), Transformation::newScaleData(FormulaMode::MULTIFUNCTIONS, FormulaMode::MULTIFUNCTIONS, std::vector<double>{2,0.1,2 * PI / 20, 0, 0, 0.9}, std::vector<double>{2,-0.1,2 * PI / 20,0,0,1.1}, Transformation::spriteCenter(atk)), &atkTr);
+                if(!animTest) {
+                    animTest = true;
+                    if(test != nullptr) {
+                        delete(test);
+                    }
+                    //test = new Transformation(40, Transformation::newMovementData(FormulaMode::POLYNOMIAL, FormulaMode::POLYNOMIAL, std::vector<double>{0, 7.5/2.0, -3.0/32.0}, std::vector<double>{0, -7.5/2.0, 3.0/32.0}, true), Transformation::newRotationData(FormulaMode::MULTIFUNCTIONS, std::vector<double>{3, -54, 1, -20, 0, 1080}, Transformation::spriteCenter(atk)), ScaleData(), &atkTr);
+                    test = new Transformation(40, MovementData(), RotationData(), Transformation::newScaleData(FormulaMode::MULTIFUNCTIONS, FormulaMode::MULTIFUNCTIONS, std::vector<double>{2, 0.1, 2 * PI / 20, 0, 0, 0.9}, std::vector<double>{2, -0.1, 2 * PI / 20, 0, 0, 1.1}, Transformation::spriteCenter(atk)), &atkTr);
                 }
             }
         };
