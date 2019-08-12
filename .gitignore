@@ -65,3 +65,4 @@ src/opmon/model/objects/AttackEffectsOld.txt
 OpMon.cbp
 CMakeLists.txt.user
 *.ninja
+.ninja_*
