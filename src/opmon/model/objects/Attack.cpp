@@ -61,19 +61,20 @@ namespace OpMon {
 		    attackList[idStr].animationOrder.push_back(itor->at("animationOrder").at(i));
 		}
 		for(auto aitor = itor->at("opMovements").begin(); aitor != itor->at("opMovements").end(); ++aitor){
-		  nlohmann::json transObj = aitor->value("translation", nlohmann::json::value_t::object);
-		  nlohmann::json rotObj = aitor->value("rotation", nlohmann::json::value_t::object);
-		  nlohmann::json scalObj = aitor->value("scaling", nlohmann::json::value_t::object);
+
+		  nlohmann::json transObj = aitor->value("translation", nlohmann::json(nlohmann::json::value_t::object));
+		  nlohmann::json rotObj = aitor->value("rotation", nlohmann::json(nlohmann::json::value_t::object));
+		  nlohmann::json scalObj = aitor->value("scaling", nlohmann::json(nlohmann::json::value_t::object));
 
 		  View::MovementData mov;
 		  View::RotationData rot;
 		  View::ScaleData scal;
-
 		  if(!transObj.empty()){
 		    mov = View::Transformation::newMovementData(transObj.at("mode").at(0),
 								transObj.at("mode").at(1),
 								transObj.at("formulas").at(0),
 								transObj.at("formulas").at(1));
+		    std::cout << std::endl;
 		  }
 
 		  if(!rotObj.empty()){
