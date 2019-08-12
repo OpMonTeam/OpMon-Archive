@@ -30,7 +30,7 @@ namespace OpMon {
         }
 
         GameStatus BattleCtrl::update(sf::RenderTexture &frame) {
-            GameStatus returned = view(frame, atkTurn, defTurn, actionsQueue, &turnActivated);
+            GameStatus returned = view(frame, atkTurn, defTurn, actionsQueue, &turnActivated, atkFirst);
             return returned;
         }
 
@@ -202,7 +202,6 @@ namespace OpMon {
             }
 
             //Item use or switching always comes before the attack. It is calculated before everything else.
-            bool atkFirst = true;
             if(atkTurn.type != TurnType::ATTACK) {
                 //Actions
                 atkDone = true;

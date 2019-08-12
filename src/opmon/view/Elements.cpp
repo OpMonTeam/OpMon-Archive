@@ -131,7 +131,6 @@ namespace OpMon {
 		    }
 		    break;
 		  }
-		  std::cout << t << " | " << toReturn << std::endl;
 		  return toReturn;
 		}
 
@@ -148,18 +147,11 @@ namespace OpMon {
 			  return false;
 		  }
 
-		  for(unsigned int i = 0; i < this->md.xformula.size(); i++){
-		    std::cout << this->md.xformula[i] << " | ";
-		  }
-		  std::cout << std::endl;
-
 		  //Translation
 		  if(md.init){
 		    sf::Vector2f calc = sf::Vector2f(calcFormula(md.xformula, md.modeX, t), calcFormula(md.yformula, md.modeY, t));//Calculates the new coordinates
 		    sprite->translate(rotateVector(calc - lastTranslation, - lastRotation));//Moves by the difference between the old coordinates and the new one.
 											    //Rotates the vector to ignore the effects due to the rotation.
-		    std::cout << "Translation :" << std::endl;
-		    std::cout << "Calc : " << calc.x << " | " << calc.y << std::endl;
 		    lastTranslation = calc;
 		  }
 
