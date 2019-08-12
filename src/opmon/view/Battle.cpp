@@ -135,6 +135,11 @@ namespace OpMon {
                         //An animation will play here in the future.
                         auto &opTurn = (turnAct.type == TurnActionType::ATK_STAT_MOD) ? atkTurn : defTurn;
                         if(dialogOver) {
+                          if(dialog != nullptr){
+                            delete(dialog);
+                            dialog = nullptr;
+                          }
+                          dialogOver = false;
                             dialog = new Dialog(std::vector<sf::String>{Utils::OpString::quickString("battle.stat." + std::to_string((int)turnAct.statMod) + "." + std::to_string(turnAct.statCoef), {opTurn.opmon->getNickname()})}, data.getUiDataPtr());
                         } else {
                             dialog->updateTextAnimation();
