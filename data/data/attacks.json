@@ -27,21 +27,21 @@
 		"null" : true
 	    }
 	],
-	"animationOrder" : [15, 19],
+    "animationOrder" : [18],
     "opMovementsAtk" : [
         {
             "translation" : {
                 "mode" : [0, 0],
                 "formulas" : [[0], [0]]
             },
-            "time" : 0
+            "time" : 1
         },
         {
             "translation" : {
                 "mode" : [0, 0],
                 "formulas" : [[0], [0]]
             },
-            "time" : 0
+            "time" : 1
         }
     ],
     "opMovementsDef" : [
@@ -50,14 +50,14 @@
                 "mode" : [0, 0],
                 "formulas" : [[0], [0]]
             },
-            "time" : 0
+            "time" : 1
         },
         {
             "translation" : {
                 "mode" : [0, 0],
                 "formulas" : [[0], [0]]
             },
-            "time" : 0
+            "time" : 1
         }
     ],
     "animations" : ["default"]
@@ -87,21 +87,21 @@
 		}
 	    }
 	],
-	"animationOrder" : [15, 19],
+    "animationOrder" : [18],
     "opMovementsAtk" : [
         {
             "translation" : {
                 "mode" : [0, 0],
                 "formulas" : [[0], [0]]
             },
-            "time" : 0
+            "time" : 1
         },
         {
             "translation" : {
                 "mode" : [0, 0],
                 "formulas" : [[0], [0]]
             },
-            "time" : 0
+            "time" : 1
         }
     ],
     "opMovementsDef" : [
@@ -110,14 +110,14 @@
                 "mode" : [0, 0],
                 "formulas" : [[0], [0]]
             },
-            "time" : 0
+            "time" : 1
         },
         {
             "translation" : {
                 "mode" : [0, 0],
                 "formulas" : [[0], [0]]
             },
-            "time" : 0
+            "time" : 1
         }
     ],
     "animations" : ["default"]

@@ -38,6 +38,7 @@ namespace OpMon {
 
             Model::TurnData atkTurn;
             Model::TurnData defTurn;
+            bool atkFirst;
 
             //These variables are used to restore the OpMon's stats after the battle
             int oldStats[2][5];
