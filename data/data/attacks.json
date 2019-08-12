@@ -27,38 +27,12 @@
 		"null" : true
 	    }
 	],
-    "animationOrder" : [18],
+    "animationOrder" : [],
     "opMovementsAtk" : [
-        {
-            "translation" : {
-                "mode" : [0, 0],
-                "formulas" : [[0], [0]]
-            },
-            "time" : 1
-        },
-        {
-            "translation" : {
-                "mode" : [0, 0],
-                "formulas" : [[0], [0]]
-            },
-            "time" : 1
-        }
+
     ],
     "opMovementsDef" : [
-        {
-            "translation" : {
-                "mode" : [0, 0],
-                "formulas" : [[0], [0]]
-            },
-            "time" : 1
-        },
-        {
-            "translation" : {
-                "mode" : [0, 0],
-                "formulas" : [[0], [0]]
-            },
-            "time" : 1
-        }
+
     ],
     "animations" : ["default"]
     },
@@ -87,38 +61,12 @@
 		}
 	    }
 	],
-    "animationOrder" : [18],
+    "animationOrder" : [],
     "opMovementsAtk" : [
-        {
-            "translation" : {
-                "mode" : [0, 0],
-                "formulas" : [[0], [0]]
-            },
-            "time" : 1
-        },
-        {
-            "translation" : {
-                "mode" : [0, 0],
-                "formulas" : [[0], [0]]
-            },
-            "time" : 1
-        }
+
     ],
     "opMovementsDef" : [
-        {
-            "translation" : {
-                "mode" : [0, 0],
-                "formulas" : [[0], [0]]
-            },
-            "time" : 1
-        },
-        {
-            "translation" : {
-                "mode" : [0, 0],
-                "formulas" : [[0], [0]]
-            },
-            "time" : 1
-        }
+
     ],
     "animations" : ["default"]
     },
