@@ -132,8 +132,18 @@ namespace OpMon {
                         opmonHp = (opmonHp < 0) ? 0 : opmonHp; //Don't drop below 0
                         actionQueue.pop();
                     } else if(turnAct.type == TurnActionType::ATK_STAT_MOD || turnAct.type == TurnActionType::DEF_STAT_MOD) { //When an OpMon's stat is modified
-                        //An animation will play here in the future.
-                        auto &opTurn = (turnAct.type == TurnActionType::ATK_STAT_MOD) ? atkTurn : defTurn;
+
+                      //Animation part
+                      if(currentOpAnims == nullptr){
+                        currentOpAnims = new std::queue<Transformation>();
+                        currentOpAnims->push(Transformation(40, MovementData(), RotationData(), Transformation::newScaleData(FormulaMode::MULTIFUNCTIONS, FormulaMode::MULTIFUNCTIONS, (turnAct.statCoef > 0) ? std::vector<double>{2,0.1,2 * PI / 20, 0, 0, 0.9} : std::vector<double>{2,-0.1,2 * PI / 20,0,0,1.1}, (turnAct.statCoef <= 0) ? std::vector<double>{2,0.1,2 * PI / 20, 0, 0, 0.9} : std::vector<double>{2,-0.1,2 * PI / 20,0,0,1.1}, Transformation::spriteCenter(atk))));
+                      }
+                      if(currentOpAnims->front().empty()){
+                        currentOpAnims->front().attach((turnAct.type == TurnActionType::ATK_STAT_MOD) ? &atkTr : &defTr);
+                      }
+
+                      //Dialog part
+                      auto &opTurn = (turnAct.type == TurnActionType::ATK_STAT_MOD) ? atkTurn : defTurn;
                         if(dialogOver) {
                           if(dialog != nullptr){
                             delete(dialog);
@@ -142,11 +152,15 @@ namespace OpMon {
                           dialogOver = false;
                             dialog = new Dialog(std::vector<sf::String>{Utils::OpString::quickString("battle.stat." + std::to_string((int)turnAct.statMod) + "." + std::to_string(turnAct.statCoef), {opTurn.opmon->getNickname()})}, data.getUiDataPtr());
                         } else {
-                            dialog->updateTextAnimation();
-                            if(dialog->isDialogOver()) { //If the dialog is over, go to the next action in the queue
-                                actionQueue.pop();
-                                dialogOver = true;
-                            }
+                            dialog->updateTextAnimation();   
+                        }
+
+                        //Checking part
+                        if(!currentOpAnims->front().apply() && dialog->isDialogOver()) { //If the dialog is over, go to the next action in the queue
+                          actionQueue.pop();
+                          dialogOver = true;
+                          delete(currentOpAnims);
+                          currentOpAnims = nullptr;
                         }
                     } else if(turnAct.type == TurnActionType::VICTORY) {
                         if(dialogOver) {
