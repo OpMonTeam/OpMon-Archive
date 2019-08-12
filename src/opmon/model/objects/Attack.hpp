@@ -42,7 +42,8 @@ namespace OpMon {
             AttackEffect *postEffect = nullptr;
             AttackEffect *ifFails = nullptr;
             std::vector<TurnActionType> animationOrder;
-	    std::queue<View::Transformation> opAnims;
+            std::queue<View::Transformation> opAnimsAtk;
+            std::queue<View::Transformation> opAnimsDef;
 	    std::queue<std::string> animations;
         };
 
@@ -51,7 +52,7 @@ namespace OpMon {
         class Attack {
           public:
             virtual ~Attack();
-            Attack(std::string nameKey, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::vector<TurnActionType> animationOrder, std::queue<View::Transformation> opAnims, std::queue<std::string> animations, AttackEffect *preEffect = nullptr, AttackEffect *postEffect = nullptr, AttackEffect *fails = nullptr);
+            Attack(std::string nameKey, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::vector<TurnActionType> animationOrder, std::queue<View::Transformation> opAnimsAtk, std::queue<View::Transformation> opAnimsDef, std::queue<std::string> animations, AttackEffect *preEffect = nullptr, AttackEffect *postEffect = nullptr, AttackEffect *fails = nullptr);
 
             Attack(AttackData const &data);
 
@@ -96,7 +97,7 @@ namespace OpMon {
             }
 
             std::queue<View::Transformation> getOpAnimsAtk() const {
-              return opAnims;
+              return opAnimsAtk;
             }
 
             std::queue<View::Transformation> getOpAnimsDef() const {
@@ -137,7 +138,7 @@ namespace OpMon {
             int hpLost = 0;
 
 	    const std::vector<TurnActionType> animationOrder;
-	    const std::queue<View::Transformation> opAnims;
+	    const std::queue<View::Transformation> opAnimsAtk;
 	    const std::queue<View::Transformation> opAnimsDef;
 	    const std::queue<std::string> animations;
 	    

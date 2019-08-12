@@ -60,47 +60,58 @@ namespace OpMon {
 		for(unsigned int i = 0; i < itor->at("animationOrder").size(); i++){
 		    attackList[idStr].animationOrder.push_back(itor->at("animationOrder").at(i));
 		}
-		for(auto aitor = itor->at("opMovements").begin(); aitor != itor->at("opMovements").end(); ++aitor){
 
-		  nlohmann::json transObj = aitor->value("translation", nlohmann::json(nlohmann::json::value_t::object));
-		  nlohmann::json rotObj = aitor->value("rotation", nlohmann::json(nlohmann::json::value_t::object));
-		  nlohmann::json scalObj = aitor->value("scaling", nlohmann::json(nlohmann::json::value_t::object));
+		for(int i = 0; i < 2; i++){
+		    for(auto aitor = itor->at(i ? "opMovementsAtk" : "opMovementsDef").begin(); aitor != itor->at(i ? "opMovementsAtk" : "opMovementsDef").end(); ++aitor){
 
-		  View::MovementData mov;
-		  View::RotationData rot;
-		  View::ScaleData scal;
-		  if(!transObj.empty()){
-		    mov = View::Transformation::newMovementData(transObj.at("mode").at(0),
-								transObj.at("mode").at(1),
-								transObj.at("formulas").at(0),
-								transObj.at("formulas").at(1));
-		    std::cout << std::endl;
-		  }
+                      nlohmann::json transObj = aitor->value("translation", nlohmann::json(nlohmann::json::value_t::object));
+                      nlohmann::json rotObj = aitor->value("rotation", nlohmann::json(nlohmann::json::value_t::object));
+                      nlohmann::json scalObj = aitor->value("scaling", nlohmann::json(nlohmann::json::value_t::object));
 
-		  if(!rotObj.empty()){
-		    rot = View::Transformation::newRotationData(rotObj.at("mode"),
-								rotObj.at("formula"),
-								sf::Vector2f(rotObj.at("origin").at(0), rotObj.at("origin").at(1)));
-		  }
+                      View::MovementData mov;
+                      View::RotationData rot;
+                      View::ScaleData scal;
+                      if(!transObj.empty()){
+                        mov = View::Transformation::newMovementData(transObj.at("mode").at(0),
+                                                                    transObj.at("mode").at(1),
+                                                                    transObj.at("formulas").at(0),
+                                                                    transObj.at("formulas").at(1));
+                        std::cout << std::endl;
+                      }
 
-		  if(!scalObj.empty()){
-		    scal = View::Transformation::newScaleData(scalObj.at("mode").at(0),
-							      scalObj.at("mode").at(1),
-							      scalObj.at("formula").at(0),
-							      scalObj.at("formula").at(1),
-							      sf::Vector2f(scalObj.at("origin").at(0), scalObj.at("origin").at(1)));
-		  }
+                      if(!rotObj.empty()){
+                        rot = View::Transformation::newRotationData(rotObj.at("mode"),
+                                                                    rotObj.at("formula"),
+                                                                    sf::Vector2f(rotObj.at("origin").at(0), rotObj.at("origin").at(1)));
+                      }
 
-		  attackList[idStr].opAnims.push(View::Transformation(aitor->at("time"), mov, rot, scal));
+                      if(!scalObj.empty()){
+                        scal = View::Transformation::newScaleData(scalObj.at("mode").at(0),
+                                                                  scalObj.at("mode").at(1),
+                                                                  scalObj.at("formula").at(0),
+                                                                  scalObj.at("formula").at(1),
+                                                                  sf::Vector2f(scalObj.at("origin").at(0), scalObj.at("origin").at(1)));
+                      }
+                      if(i){
+                        attackList[idStr].opAnimsAtk.push(View::Transformation(aitor->at("time"), mov, rot, scal));
+                      }else{
+                        attackList[idStr].opAnimsDef.push(View::Transformation(aitor->at("time"), mov, rot, scal));
+                      }
 
-		}
 
-		for(auto aitor = itor->at("animations").begin(); aitor != itor->at("animations").end(); ++aitor){
-		  attackList[idStr].animations.push(*aitor);
-		}
-		std::string atkStr = itor->at("id");
-		Utils::Log::oplog("Loaded attack " + atkStr);
+                    }
+
+                }
+                for(auto aitor = itor->at("animations").begin(); aitor != itor->at("animations").end(); ++aitor){
+                  attackList[idStr].animations.push(*aitor);
+                }
+                std::string atkStr = itor->at("id");
+                Utils::Log::oplog("Loaded attack " + atkStr);
             }
+
+
+
+
         }
 
         std::queue<View::Transformation> Attack::generateDefAnims(std::queue<View::Transformation> opAnims){
@@ -114,7 +125,7 @@ namespace OpMon {
         }
 
 
-        Attack::Attack(std::string nameKey, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::vector<TurnActionType> animationOrder, std::queue<View::Transformation> opAnims, std::queue<std::string> animations, AttackEffect *preEffect, AttackEffect *postEffect, AttackEffect *fails)
+        Attack::Attack(std::string nameKey, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::vector<TurnActionType> animationOrder, std::queue<View::Transformation> opAnimsAtk, std::queue<View::Transformation> opAnimsDef, std::queue<std::string> animations, AttackEffect *preEffect, AttackEffect *postEffect, AttackEffect *fails)
           : name(Utils::OpString(nameKey))
           , power(power)
           , priority(priority)
@@ -130,8 +141,8 @@ namespace OpMon {
           , postEffect(postEffect)
           , failEffect(fails)
 	  , animationOrder(animationOrder)
-	  , opAnims(opAnims)
-	  , opAnimsDef(generateDefAnims(opAnims))
+	  , opAnimsAtk(opAnimsAtk)
+	  , opAnimsDef(opAnimsDef)
 	  , animations(animations) {
 
 	}
@@ -152,8 +163,8 @@ namespace OpMon {
           , postEffect(data.postEffect)
           , failEffect(data.ifFails)
 	  , animationOrder(data.animationOrder)
-	  , opAnims(data.opAnims)
-	  , opAnimsDef(generateDefAnims(data.opAnims))
+	  , opAnimsAtk(data.opAnimsAtk)
+	  , opAnimsDef(data.opAnimsDef)
 	  , animations(data.animations) {}
 
 
