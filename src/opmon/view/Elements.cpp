@@ -131,7 +131,7 @@ namespace OpMon {
 		    }
 		    break;
 		  }
-
+		  std::cout << t << " | " << toReturn << std::endl;
 		  return toReturn;
 		}
 
@@ -148,11 +148,18 @@ namespace OpMon {
 			  return false;
 		  }
 
+		  for(unsigned int i = 0; i < this->md.xformula.size(); i++){
+		    std::cout << this->md.xformula[i] << " | ";
+		  }
+		  std::cout << std::endl;
+
 		  //Translation
 		  if(md.init){
 		    sf::Vector2f calc = sf::Vector2f(calcFormula(md.xformula, md.modeX, t), calcFormula(md.yformula, md.modeY, t));//Calculates the new coordinates
 		    sprite->translate(rotateVector(calc - lastTranslation, - lastRotation));//Moves by the difference between the old coordinates and the new one.
 											    //Rotates the vector to ignore the effects due to the rotation.
+		    std::cout << "Translation :" << std::endl;
+		    std::cout << "Calc : " << calc.x << " | " << calc.y << std::endl;
 		    lastTranslation = calc;
 		  }
 
@@ -167,8 +174,6 @@ namespace OpMon {
 		  if(sd.init){
 		    sf::Vector2f calc = sf::Vector2f(calcFormula(sd.xformula, sd.modeX, t), calcFormula(sd.yformula, sd.modeY, t));//Calculates the new scale
 		    sprite->scale(calc.x / lastScaling.x, calc.y / lastScaling.y, sd.origin.x, sd.origin.y);//Scaling relatively to the last scale to not multiply the different scalings
-		    std::cout << "Scale at : " << calc.x << " | " << calc.y << std::endl;
-		    std::cout << "Relative scale : " << calc.x / lastScaling.x << " | " << calc.y / lastScaling.y << std::endl;
 		    lastScaling = calc;
 
 		  }
@@ -239,10 +244,17 @@ namespace OpMon {
 		}
 
 		Transformation Transformation::inverse(){
-		  std::vector<double> xformula = inverseFormula(md.xformula, md.modeX);
-		  std::vector<double> yformula = inverseFormula(md.yformula, md.modeY);
-		  std::vector<double> rotFormula = inverseFormula(rd.formula, rd.formulaMode);
-		  return Transformation(time, newMovementData(md.modeX, md.modeY, xformula, yformula, md.relative), newRotationData(rd.formulaMode, rotFormula, rd.origin), sd, sprite);
+		  std::vector<double> xformula;
+		  std::vector<double> yformula;
+		  std::vector<double> rotFormula;
+		  if(md.init){
+		    xformula = inverseFormula(md.xformula, md.modeX);
+		    yformula = inverseFormula(md.yformula, md.modeY);
+		  }
+		  if(rd.init){
+		    rotFormula = inverseFormula(rd.formula, rd.formulaMode);
+		  }
+		  return Transformation(time, md.init ? newMovementData(md.modeX, md.modeY, xformula, yformula, md.relative) : md, rd.init ? newRotationData(rd.formulaMode, rotFormula, rd.origin) : rd, sd, sprite);
 		}
 
 		sf::Vector2f Transformation::spriteCenter(const sf::Sprite &spr){
