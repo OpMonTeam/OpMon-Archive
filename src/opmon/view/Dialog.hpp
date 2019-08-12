@@ -11,8 +11,8 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
-#include <string>
 #include <queue>
+#include <string>
 
 namespace OpMon {
     namespace View {

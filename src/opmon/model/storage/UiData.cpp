@@ -80,11 +80,11 @@ namespace OpMon {
                                                         itor->at("curve"),
                                                         itor->at("captureRate"),
                                                         opDexNumber));
-		Utils::Log::oplog("Loaded OpMon n°" + opDexNumberStr + " : " + listOp[opDexNumber]->getName());
+                Utils::Log::oplog("Loaded OpMon n°" + opDexNumberStr + " : " + listOp[opDexNumber]->getName());
             }
 
             //Initializating OpMon Sprites
-	    
+
             //I will use a "for" loop later, I don't use it now to avoid loading errors. I will use it when every sprite will be loaded.
             opSprites.push_back(std::vector<sf::Texture>());
             opSprites.push_back(std::vector<sf::Texture>());

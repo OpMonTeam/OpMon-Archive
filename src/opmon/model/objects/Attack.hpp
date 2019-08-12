@@ -44,7 +44,7 @@ namespace OpMon {
             std::vector<TurnActionType> animationOrder;
             std::queue<View::Transformation> opAnimsAtk;
             std::queue<View::Transformation> opAnimsDef;
-	    std::queue<std::string> animations;
+            std::queue<std::string> animations;
         };
 
         typedef struct AttackData AttackData;
@@ -97,15 +97,15 @@ namespace OpMon {
             }
 
             std::queue<View::Transformation> getOpAnimsAtk() const {
-              return opAnimsAtk;
+                return opAnimsAtk;
             }
 
             std::queue<View::Transformation> getOpAnimsDef() const {
-              return opAnimsDef;
+                return opAnimsDef;
             }
 
             std::queue<std::string> getAnimations() const {
-              return animations;
+                return animations;
             }
 
             // methods used by pre and post Effects
@@ -137,11 +137,11 @@ namespace OpMon {
             /**Variables used in preEffect and postEffect*/
             int hpLost = 0;
 
-	    const std::vector<TurnActionType> animationOrder;
-	    const std::queue<View::Transformation> opAnimsAtk;
-	    const std::queue<View::Transformation> opAnimsDef;
-	    const std::queue<std::string> animations;
-	    
+            const std::vector<TurnActionType> animationOrder;
+            const std::queue<View::Transformation> opAnimsAtk;
+            const std::queue<View::Transformation> opAnimsDef;
+            const std::queue<std::string> animations;
+
             static std::map<std::string, AttackData> attackList;
 
             std::queue<View::Transformation> generateDefAnims(std::queue<View::Transformation> opAnims);
