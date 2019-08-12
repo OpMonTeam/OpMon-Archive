@@ -150,9 +150,12 @@ namespace OpMon {
                         }
                     } else if(turnAct.type == TurnActionType::VICTORY) {
                         if(dialogOver) {
-                          delete(dialog);
+                          if(dialog != nullptr){
+                            delete(dialog);
+                            dialog = nullptr;
+                          }
+                          dialogOver = false;
                             dialog = new Dialog({Utils::OpString::quickString("battle.victory", {data.getPlayer().getName()})}, data.getUiDataPtr());
-                            dialog->draw(frame);
                         } else {
                             dialog->updateTextAnimation();
                             dialog->draw(frame);
@@ -165,9 +168,12 @@ namespace OpMon {
                         }
                     } else if(turnAct.type == TurnActionType::DEFEAT) {
                         if(dialogOver) {
-                          delete(dialog);
+                          if(dialog != nullptr){
+                            delete(dialog);
+                            dialog = nullptr;
+                          }
+                          dialogOver = false;
                             dialog = new Dialog(std::vector<sf::String>{Utils::OpString::quickString("battle.defeat", {data.getPlayer().getName()})}, data.getUiDataPtr());
-                            dialog->draw(frame);
                         } else {
                             dialog->updateTextAnimation();
                             dialog->draw(frame);
