@@ -12,6 +12,7 @@ addons:
     - libflac-dev
     - libvorbis-dev
     - libgtk-3-dev
+    - freeglut3-dev
     sources:
     - ubuntu-toolchain-r-test
 before_script:
