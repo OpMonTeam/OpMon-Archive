@@ -60,12 +60,27 @@
              }
          }
      ],
-     "animationOrder" : [],
+     "animationOrder" : [18],
      "opMovementsAtk" : [
+        {
+             "scaling" : {
+                 "mode" : [1, 1],
+                 "formulas" : [[1, 1, 0.1570796326795, 0, 0, 1], [1, 1, 0.1570796326795, 0, 0, 1]],
+                 "origin" : [50, 50]
+             },
+             "time" : 20
+         }
 
      ],
      "opMovementsDef" : [
-
+         {
+              "scaling" : {
+                  "mode" : [1, 1],
+                  "formulas" : [[1, 1, 0.1570796326795, 0, 0, 1], [1, 1, 0.1570796326795, 0, 0, 1]],
+                  "origin" : [50, 50]
+              },
+              "time" : 20
+          }
      ],
      "animations" : ["default"]
  },
