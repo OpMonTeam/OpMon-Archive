@@ -117,7 +117,8 @@ namespace OpMon {
         }
 
         Attack::Attack(std::string nameKey, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::vector<TurnActionType> animationOrder, std::queue<View::Transformation> opAnimsAtk, std::queue<View::Transformation> opAnimsDef, std::queue<std::string> animations, AttackEffect *preEffect, AttackEffect *postEffect, AttackEffect *fails)
-          : name(Utils::OpString(nameKey))
+          : nameKey(Utils::OpString(nameKey))
+          , name(this->nameKey.getString())
           , power(power)
           , priority(priority)
           , accuracy(accuracy)
@@ -138,7 +139,8 @@ namespace OpMon {
         }
 
         Attack::Attack(AttackData const &data)
-          : name(Utils::OpString(data.nameKey))
+          : nameKey(Utils::OpString(data.nameKey))
+          , name(nameKey.getString())
           , power(data.power)
           , priority(data.priority)
           , accuracy(data.accuracy)
@@ -173,11 +175,11 @@ namespace OpMon {
        */
         int Attack::attack(OpMon &atk, OpMon &def, std::queue<TurnAction> &turnQueue, bool attacker) {
             pp--;
-            turnQueue.push(createTurnDialogAction({Utils::OpString("battle.dialog.attack", {new sf::String(atk.getNickname()), new sf::String(this->name.getString())})}));
+            turnQueue.push(createTurnDialogAction(Utils::OpString("battle.dialog.attack", {atk.getNicknamePtr(), &name})));
             //Attack fail
             if((Utils::Misc::randU(100)) > (accuracy * (atk.getStatACC() / def.getStatEVA())) && neverFails == false) {
                 TurnAction failAction;
-                turnQueue.push(createTurnDialogAction({Utils::OpString("battle.dialog.fail", {new sf::String(atk.getNickname())})}));
+                turnQueue.push(createTurnDialogAction({Utils::OpString("battle.dialog.fail", {atk.getNicknamePtr()})}));
                 failEffect->apply(*this, atk, def, turnQueue);
                 return -2;
             }
@@ -187,7 +189,7 @@ namespace OpMon {
             }
             //If type unefficiency
             if(ArrayTypes::calcEffectiveness(type, def.getType1(), def.getType2()) == 0 && (neverFails == false || status == false)) {
-                turnQueue.push(createTurnDialogAction({Utils::OpString("battle.effectiveness.none", {new sf::String(atk.getNickname())})}));
+                turnQueue.push(createTurnDialogAction({Utils::OpString("battle.effectiveness.none", {atk.getNicknamePtr()})}));
                 if(failEffect != nullptr)
                     failEffect->apply(*this, atk, def, turnQueue);
                 return -1;
