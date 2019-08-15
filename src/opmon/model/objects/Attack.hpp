@@ -93,7 +93,7 @@ namespace OpMon {
             }
 
             sf::String getName() {
-                return name.getString();
+                return name;
             }
 
             std::queue<View::Transformation> getOpAnimsAtk() const {
@@ -117,7 +117,8 @@ namespace OpMon {
             int getHpLost() { return this->hpLost; }
 
           protected:
-            Utils::OpString name;
+            Utils::OpString nameKey;
+            sf::String name;
             int power;
             int priority;
             int accuracy;
