@@ -102,7 +102,7 @@ namespace OpMon {
             switch(status) {
             case GameStatus::NEXT: //Pauses the current screen and passes to the next
                 ctrl->suspend();
-                _gameScreens.push(std::move(ctrl->getNextGameScreen()));
+                _gameScreens.push(ctrl->getNextGameScreen());
                 break;
             case GameStatus::PREVIOUS: //Deletes the current screen and returns to the previous one
                 _gameScreens.pop();
@@ -116,6 +116,7 @@ namespace OpMon {
             }
         }
 
+        delete(window.release());
         return GameStatus::STOP;
     }
 
