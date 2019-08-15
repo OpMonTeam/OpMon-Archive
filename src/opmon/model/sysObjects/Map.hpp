@@ -1,6 +1,6 @@
 /*
 Map.hpp
-Author : Cyrion
+Author : Cyrielle
 Contributors : BAKFR
 File under GNU GPL v3.0 license
 */
@@ -8,7 +8,9 @@ File under GNU GPL v3.0 license
 #ifndef MAP_HPP
 #define MAP_HPP
 
+#include "../../../nlohmann/json.hpp"
 #include "Events.hpp"
+
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <string>
@@ -19,14 +21,16 @@ namespace OpMon {
 
         class Event;
 
+        class OverworldData;
+
         /**
 	   Class defining a specific place in a game, containing the event, the animated objects and the map layers
 	*/
         class Map {
           private:
-            const int *layer1;
-            const int *layer2;
-            const int *layer3;
+            int *layer1;
+            int *layer2;
+            int *layer3;
 
             bool indoor;
 
@@ -42,8 +46,12 @@ namespace OpMon {
 
             std::vector<std::string> animatedElements;
 
+            nlohmann::json jsonData;
+            bool loaded = false;
+
           public:
-            Map(const int layer1[], const int layer2[], const int layer3[], int w, int h, bool indoor, std::string const &bg, std::vector<std::string> const &animatedElements = std::vector<std::string>());
+            Map(std::vector<int> const &layer1, std::vector<int> const &layer2, std::vector<int> const &layer3, int w, int h, bool indoor, std::string const &bg, std::vector<std::string> const &animatedElements = std::vector<std::string>());
+            Map(nlohmann::json jsonData);
             ~Map();
             int getH() const {
                 return h;
@@ -53,6 +61,9 @@ namespace OpMon {
             }
             bool isIndoor() const {
                 return indoor;
+            }
+            bool isLoaded() const {
+                return loaded;
             }
             sf::Vector2i getDimensions() const {
                 return sf::Vector2i(w, h);
@@ -78,8 +89,7 @@ namespace OpMon {
             std::vector<Event *> getEvent(sf::Vector2i position) const;
             std::vector<Event *> &getEvents() {
                 return events;
-            };
-            void debugInfo();
+            }
             void updateElements(sf::RenderTexture &frame);
 
             int getCurrentTileCode(sf::Vector2i const &pos, int layer) const;
@@ -87,6 +97,10 @@ namespace OpMon {
             int getTileCollision(int tile) const;
 
             int getCollision(sf::Vector2i const &pos) const;
+
+            Map *loadMap(OverworldData &data);
+
+            std::string toDebugString();
         };
     } // namespace Model
 } // namespace OpMon

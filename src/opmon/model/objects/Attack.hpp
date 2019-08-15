@@ -1,35 +1,63 @@
 /*
 Attack.hpp
-Author : Cyrion
+Author : Cyrielle
 Contributors : BAKFR, Navet56
 File under GNU GPL v3.0 license
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUE_HPP_
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUE_HPP_
 
+#include "../../../utils/OpString.hpp"
+#include "../../../utils/defines.hpp"
 #include "../../../utils/misc.hpp"
+#include "../../view/Elements.hpp"
 #include "Enums.hpp"
 #include "Turn.hpp"
 #include <iostream>
+#include <queue>
 
 namespace OpMon {
     namespace Model {
 
         class OpMon;
 
-        /**
-	   Represents an OpMon attack
-	*/
         class AttackEffect {
           public:
-            virtual int apply(Attack & /*attack*/, OpMon & /*attacker*/, OpMon & /*defender*/, Turn & /* atkTurn */) { return 0; }
+            virtual int apply(Attack & /*attack*/, OpMon & /*attacker*/, OpMon & /*defender*/, std::queue<TurnAction> & /* turnQueue */) { return 0; }
             virtual ~AttackEffect() {}
         };
+
+        struct AttackData {
+            std::string nameKey;
+            int power;
+            Type type;
+            int accuracy;
+            bool special;
+            bool status;
+            int criticalRate;
+            bool neverFails;
+            int ppMax;
+            int priority;
+            AttackEffect *preEffect = nullptr;
+            AttackEffect *postEffect = nullptr;
+            AttackEffect *ifFails = nullptr;
+            std::vector<TurnActionType> animationOrder;
+            std::queue<View::Transformation> opAnimsAtk;
+            std::queue<View::Transformation> opAnimsDef;
+            std::queue<std::string> animations;
+        };
+
+        typedef struct AttackData AttackData;
 
         class Attack {
           public:
             virtual ~Attack();
-            Attack(std::string name, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::string className, AttackEffect *preEffect = NULL, AttackEffect *postEffect = NULL);
+            Attack(std::string nameKey, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::vector<TurnActionType> animationOrder, std::queue<View::Transformation> opAnimsAtk, std::queue<View::Transformation> opAnimsDef, std::queue<std::string> animations, AttackEffect *preEffect = nullptr, AttackEffect *postEffect = nullptr, AttackEffect *fails = nullptr);
+
+            Attack(AttackData const &data);
+
+            static Attack *newAtk(std::string name);
+            static void initAttacks(std::string file);
 
             void healPP() {
                 pp = ppMax;
@@ -48,12 +76,7 @@ namespace OpMon {
             }
 
             //"atk" attacks the "def" OpMon
-            int attack(OpMon &atk, OpMon &def, Turn &atkTurn);
-            void ifFails(OpMon &, OpMon &, Turn & /*atkTurn*/) {}
-
-            std::string getClassName() {
-                return className;
-            }
+            int attack(OpMon &atk, OpMon &def, std::queue<TurnAction> &turnQueue, bool attacker);
 
             std::string save();
 
@@ -69,8 +92,20 @@ namespace OpMon {
                 return this->priority;
             }
 
-            std::string getName() {
+            sf::String getName() {
                 return name;
+            }
+
+            std::queue<View::Transformation> getOpAnimsAtk() const {
+                return opAnimsAtk;
+            }
+
+            std::queue<View::Transformation> getOpAnimsDef() const {
+                return opAnimsDef;
+            }
+
+            std::queue<std::string> getAnimations() const {
+                return animations;
             }
 
             // methods used by pre and post Effects
@@ -80,12 +115,10 @@ namespace OpMon {
             int getPart() { return part; }
             void setPart(int part) { this->part = part; }
             int getHpLost() { return this->hpLost; }
-            int getSavedDefSpe() { return this->savedDefSpe; }
-            void setSavedDefSpe(int defSpe) { this->savedDefSpe = defSpe; }
 
           protected:
-            std::string className;
-            std::string name;
+            Utils::OpString nameKey;
+            sf::String name;
             int power;
             int priority;
             int accuracy;
@@ -101,9 +134,18 @@ namespace OpMon {
 
             AttackEffect *preEffect;
             AttackEffect *postEffect;
+            AttackEffect *failEffect;
             /**Variables used in preEffect and postEffect*/
             int hpLost = 0;
-            int savedDefSpe = 0; // used by ChocPsy
+
+            const std::vector<TurnActionType> animationOrder;
+            const std::queue<View::Transformation> opAnimsAtk;
+            const std::queue<View::Transformation> opAnimsDef;
+            const std::queue<std::string> animations;
+
+            static std::map<std::string, AttackData> attackList;
+
+            std::queue<View::Transformation> generateDefAnims(std::queue<View::Transformation> opAnims);
         };
 
     } // namespace Model

@@ -1,6 +1,6 @@
 /*
 OptionsMenu.cpp
-Author : Cyrion
+Author : Cyrielle
 Contributors : torq, Navet56, BAKFR
 File under GNU GPL v3.0 license
 */
@@ -42,7 +42,7 @@ namespace OpMon {
             txtOpt3.setString(kget("options.vol"));
             txtOpt3.setFont(data.getUiDataPtr()->getFont());
             txtOpt3.setCharacterSize(FONT_SIZE_DEFAULT);
-            txtOpt3.setSfmlColor(sf::Color::Red);
+            txtOpt3.setSfmlColor(sf::Color::White);
             txtOpt4.setString(kget("options.control"));
             txtOpt4.setFont(data.getUiDataPtr()->getFont());
             txtOpt4.setCharacterSize(FONT_SIZE_DEFAULT);
@@ -59,6 +59,10 @@ namespace OpMon {
             txtCred.setString(kget("options.cred.title"));
             txtCred.setFont(data.getUiDataPtr()->getFont());
             txtCred.setCharacterSize(FONT_SIZE_DEFAULT);
+
+            txtCtrl.setString(kget("options.vol"));
+            txtCtrl.setFont(data.getUiDataPtr()->getFont());
+            txtCtrl.setCharacterSize(FONT_SIZE_DEFAULT);
 
             txtCre1.setString(kget("options.credit.1"));
             txtCre1.setFont(data.getUiDataPtr()->getFont());
@@ -97,15 +101,23 @@ namespace OpMon {
             txtCre82.setString(kget("options.credit.82"));
             txtCre82.setFont(data.getUiDataPtr()->getFont());
             txtCre82.setCharacterSize(15);
-            txtCre82.setString(kget("options.credit.83"));
-            txtCre82.setFont(data.getUiDataPtr()->getFont());
-            txtCre82.setCharacterSize(15);
-            txtCre82.setString(kget("options.credit.84"));
-            txtCre82.setFont(data.getUiDataPtr()->getFont());
-            txtCre82.setCharacterSize(15);
+            txtCre83.setString(kget("options.credit.83"));
+            txtCre83.setFont(data.getUiDataPtr()->getFont());
+            txtCre83.setCharacterSize(15);
+            txtCre84.setString(kget("options.credit.84"));
+            txtCre84.setFont(data.getUiDataPtr()->getFont());
+            txtCre84.setCharacterSize(15);
             txtCre9.setString(kget("options.credit.9"));
             txtCre9.setFont(data.getUiDataPtr()->getFont());
             txtCre9.setCharacterSize(13);
+            txtCre10.setString(kget("options.credit.10"));
+            txtCre10.setFont(data.getUiDataPtr()->getFont());
+            txtCre10.setCharacterSize(20);
+            txtCre10.setSfmlColor(sf::Color::Blue);
+
+            txtCtrlChange.setString(kget("options.ctrl.change"));
+            txtCtrlChange.setFont(data.getUiDataPtr()->getFont());
+            txtCtrlChange.setCharacterSize(FONT_SIZE_DEFAULT);
         }
 
         void OptionsMenu::onLangChanged() {
@@ -121,6 +133,7 @@ namespace OpMon {
             bgLangues.setTexture(data.getLangBg());
             check.setTexture(data.getYesTx());
             bgCredits.setTexture(data.getCreditsBg());
+            bgControls.setTexture(data.getControlsBg());
 
             volumeCur.setTexture(data.getVolumeCur());
             //Cursor positions :
@@ -147,22 +160,47 @@ namespace OpMon {
             txtLang.setPosition(250, 25);
             txtOptions.setPosition(230, 25);
             txtCred.setPosition(250, 25);
+            txtCtrl.setPosition(250, 25);
 
-            txtCre1.setPosition(200, 128);
-            txtCre2.setPosition(200, 148);
-            txtCre3.setPosition(200, 168);
-            txtCre4.setPosition(400, 128);
-            txtCre5.setPosition(400, 148);
-            txtCre6.setPosition(30, 270);
-            txtCre7.setPosition(201, 274);
+            txtCre1.setPosition(180, 128);
+            txtCre2.setPosition(180, 148);
+            txtCre3.setPosition(180, 168);
+            txtCre4.setPosition(350, 128);
+            txtCre5.setPosition(350, 148);
+            txtCre6.setPosition(30, 250);
+            txtCre7.setPosition(30, 274);
             txtCre8.setPosition(30, 368);
-            txtCre81.setPosition(30, 385);
-            txtCre82.setPosition(30, 402);
-            txtCre83.setPosition(30, 420);
-            txtCre84.setPosition(30, 437);
-            txtCre9.setPosition(375, 488);
+            txtCre81.setPosition(10, 385);
+            txtCre82.setPosition(10, 402);
+            txtCre83.setPosition(10, 420);
+            txtCre84.setPosition(10, 437);
+            txtCre9.setPosition(450, 488);
+            txtCre10.setPosition(180, 100);
 
-            data.getUiDataPtr()->getJukebox().play("Title");
+            txtCtrlChange.setPosition(33.0, 91.0);
+
+            txtCtrlUp.setPosition(155.0, 180.0);
+            txtCtrlDown.setPosition(153.0, 455.0);
+            txtCtrlLeft.setPosition(14.0, 316.0);
+            txtCtrlRight.setPosition(303.0, 315.0);
+            txtCtrlTalk.setPosition(417.0, 216.0);
+            txtCtrlInteract.setPosition(417.0, 339.0);
+
+            txtCtrlUp.setFont(data.getUiDataPtr()->getFont());
+            txtCtrlUp.setCharacterSize(FONT_SIZE_DEFAULT - 4);
+            txtCtrlDown.setFont(data.getUiDataPtr()->getFont());
+            txtCtrlDown.setCharacterSize(FONT_SIZE_DEFAULT - 4);
+            txtCtrlLeft.setFont(data.getUiDataPtr()->getFont());
+            txtCtrlLeft.setCharacterSize(FONT_SIZE_DEFAULT - 4);
+            txtCtrlRight.setFont(data.getUiDataPtr()->getFont());
+            txtCtrlRight.setCharacterSize(FONT_SIZE_DEFAULT - 4);
+            txtCtrlTalk.setFont(data.getUiDataPtr()->getFont());
+            txtCtrlTalk.setCharacterSize(FONT_SIZE_DEFAULT - 4);
+            txtCtrlInteract.setFont(data.getUiDataPtr()->getFont());
+            txtCtrlInteract.setCharacterSize(FONT_SIZE_DEFAULT - 4);
+
+            rectKeyChange.setTexture(data.getKeyChange());
+            rectKeyChange.setScale(70 / rectKeyChange.getGlobalBounds().width, 43 / rectKeyChange.getGlobalBounds().height);
 
             curPosOpt[0].x = 23;
             curPosOpt[0].y = 17;
@@ -173,6 +211,11 @@ namespace OpMon {
             curPosLang[0].y = 17;
             curSizeLang[0].x = 134 / rectSurb.getGlobalBounds().width;
             curSizeLang[0].y = 49 / rectSurb.getGlobalBounds().height;
+
+            curPosCtrl[0].x = 23;
+            curPosCtrl[0].y = 17;
+            curSizeCtrl[0].x = 134 / rectSurb.getGlobalBounds().width;
+            curSizeCtrl[0].y = 49 / rectSurb.getGlobalBounds().height;
 
             for(int i = 1, j = 86; i < 6; i++) {
                 curPosOpt[i].x = 23;
@@ -194,6 +237,11 @@ namespace OpMon {
                 curSizeLang[i].y = 57 / rectSurb.getGlobalBounds().height;
                 j += 69;
             }
+
+            curPosCtrl[1].x = 23;
+            curPosCtrl[1].y = 81;
+            curSizeCtrl[1].x = 351 / rectSurb.getGlobalBounds().width;
+            curSizeCtrl[1].y = 63 / rectSurb.getGlobalBounds().height;
         }
 
         void OptionsMenu::draw(sf::RenderTarget &frame) {
@@ -202,6 +250,8 @@ namespace OpMon {
                 return loop(frame);
             case OptionType::LANG:
                 return langLoop(frame);
+            case OptionType::CONTROLS:
+                return controlsLoop(frame);
             case OptionType::CREDITS:
                 return creditsLoop(frame);
             }
@@ -210,30 +260,16 @@ namespace OpMon {
         void OptionsMenu::moveArrow(bool move) {
             switch(currentOptions) {
             case OptionType::ALL:
-                if(move) {
-                    curPosOptI--;
-                } else {
-                    curPosOptI++;
-                }
-                if(curPosOptI >= 6) {
-                    curPosOptI = 0;
-                } else if(curPosOptI < 0) {
-                    curPosOptI = 5;
-                }
+                Controller::Helper::moveArrow(move, curPosOptI, 6);
+                break;
+            case OptionType::CONTROLS:
+                Controller::Helper::moveArrow(move, curPosCtrlI, 2);
                 break;
             case OptionType::LANG:
-                if(move) {
-                    curPosLangI--;
-                } else {
-                    curPosLangI++;
-                }
-                if(curPosLangI >= 5) {
-                    curPosLangI = 0;
-                } else if(curPosLangI < 0) {
-                    curPosLangI = 4;
-                }
-            default:
+                Controller::Helper::moveArrow(move, curPosLangI, 5);
                 break;
+            default:
+              break;
             }
         }
 
@@ -279,10 +315,38 @@ namespace OpMon {
         }
 
         void OptionsMenu::play() {
-            data.getUiDataPtr()->getJukebox().play("Title");
         }
 
-        OptionsMenu::~OptionsMenu() {
+        void OptionsMenu::controlsLoop(sf::RenderTarget &frame) {
+            frame.clear(sf::Color::White);
+
+            frame.draw(bgControls);
+
+            frame.draw(txtCtrlChange);
+
+            rectKeyChange.setPosition(posControls[currentActionsCtrl]);
+            frame.draw(rectKeyChange);
+
+            txtCtrlUp.setString(Model::OptionsSave::getParam("control.up").getValue());
+            txtCtrlDown.setString(Model::OptionsSave::getParam("control.down").getValue());
+            txtCtrlLeft.setString(Model::OptionsSave::getParam("control.left").getValue());
+            txtCtrlRight.setString(Model::OptionsSave::getParam("control.right").getValue());
+            txtCtrlTalk.setString(Model::OptionsSave::getParam("control.talk").getValue());
+            txtCtrlInteract.setString(Model::OptionsSave::getParam("control.interact").getValue());
+
+            frame.draw(txtCtrlUp);
+            frame.draw(txtCtrlDown);
+            frame.draw(txtCtrlLeft);
+            frame.draw(txtCtrlRight);
+            frame.draw(txtCtrlTalk);
+            frame.draw(txtCtrlInteract);
+
+            rectSurb.setPosition(curPosCtrl[curPosCtrlI]);
+            rectSurb.setScale(curSizeCtrl[curPosCtrlI]);
+            frame.draw(rectSurb);
+
+            frame.draw(txtRetour);
+            frame.draw(txtCtrl);
         }
 
         void OptionsMenu::creditsLoop(sf::RenderTarget &frame) {
@@ -302,6 +366,7 @@ namespace OpMon {
             frame.draw(txtCre83);
             frame.draw(txtCre84);
             frame.draw(txtCre9);
+            frame.draw(txtCre10);
 
             rectSurb.setPosition(curPosOpt[0]);
             rectSurb.setScale(curSizeLang[0]);

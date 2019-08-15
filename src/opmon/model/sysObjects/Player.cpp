@@ -1,6 +1,6 @@
 /*
 Player.cpp
-Author : Cyrion
+Author : Cyrielle
 Contributor : BAKFR
 File under GNU GPL v3.0 license
 */
@@ -23,9 +23,6 @@ namespace OpMon {
         Player::Player()
           : trainerID(Utils::Misc::randUI(0xFFFFFFFF))
           , opteam(name) {
-            for(unsigned int i = 0; i < ITEM_NUMBER; i++) {
-                bag[i] = 0;
-            }
             Position::setPlayerPos(&position);
         }
 
@@ -33,22 +30,15 @@ namespace OpMon {
             return &opteam;
         }
 
-        void Player::addItem(int itemID) {
+        void Player::addItem(std::string const &itemID) {
             bag[itemID]++;
         }
 
-        int Player::checkItem(int itemID) {
-            if(itemID > ITEM_NUMBER || itemID < 0) {
-                handleError("Player : itemID invalide", true);
-            }
+        int Player::checkItem(std::string const &itemID) {
             return bag[itemID];
         }
 
-        bool Player::deleteItem(int itemID) {
-
-            if(bag[itemID] != 0 || itemID < 0) {
-                handleError("Player : itemID invalide", true);
-            }
+        bool Player::deleteItem(std::string const &itemID) {
             if(bag[itemID] != 0) {
                 bag[itemID]--;
                 return true;
@@ -84,7 +74,7 @@ namespace OpMon {
 
         //TODO : Update the save system
         void Player::save() {
-            SOUT
+            /*SOUT
               << Utils::StringKeys::sfStringtoStdString(this->name) << std::endl;
             SOUT << Save::intToChar(trainerID) << std::endl;
             SOUT << Save::intToChar(ITEM_NUMBER) << std::endl;
@@ -97,7 +87,7 @@ namespace OpMon {
             }
             for(unsigned int it = 0; it < 6; it++) {
                 SOUT << opteam[it]->save();
-            }
+		}*/
         }
 
 #include "../objects/OpMon.hpp" //This will be deleted soon

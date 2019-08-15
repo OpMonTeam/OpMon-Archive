@@ -1,6 +1,6 @@
 /*
 Window.hpp
-Author : Cyrion
+Author : Cyrielle
 Contributor : BAKFR
 File under GNU GPL v3.0 license
 */
@@ -24,6 +24,7 @@ namespace OpMon {
             void close();
             void open();
             void refresh();
+            void reboot();
         };
     } // namespace View
 } // namespace OpMon

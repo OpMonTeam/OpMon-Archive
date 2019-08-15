@@ -8,7 +8,7 @@ set(OPMON_VERSION_MAJOR 0)
 set(OPMON_VERSION_MINOR 15)
 set(OPMON_VERSION_PATCH 1)
 
-set(OPMON_CONTACT "Cyrion <jlppcprog@ntymail.com>")
+set(OPMON_CONTACT "Cyrielle <jlppcprog@ntymail.com>")
 set(OPMON_DESCRIPTION_SUMMARY "An open source RPG monster fighting game")
 set(OPMON_HOMEPAGE "http://opmon-game.ga/")
 
@@ -86,15 +86,21 @@ endif()
 
 # Note: the executable must be declared before adding libraries
 if (APPLE)
+    # Need Cocoa framework for Obj-C code
+    find_library(COCOA_LIBRARY Cocoa)
+
     # On Apple, Create an app bundle, which includes all the game resources and dependencies
-    set_source_files_properties( ${CMAKE_SOURCE_DIR}/Resources/Other/opmon_icon.icns PROPERTIES MACOSX_PACKAGE_LOCATION Resources )
+    set_source_files_properties( ${CMAKE_SOURCE_DIR}/icons/opmon_icon.icns PROPERTIES MACOSX_PACKAGE_LOCATION Resources )
     set_source_files_properties( ${CMAKE_SOURCE_DIR}/data PROPERTIES MACOSX_PACKAGE_LOCATION Resources )
 
     # Need some extra code to get the correct Resource folder in an app bundle
     list(APPEND SOURCE_FILES src/utils/ResourcePath.hpp src/utils/ResourcePath.mm)
     add_executable(${EXECUTABLE_NAME} MACOSX_BUNDLE ${SOURCE_FILES}
-    ${CMAKE_SOURCE_DIR}/Resources/Other/opmon_icon.icns
+    ${CMAKE_SOURCE_DIR}/icons/opmon_icon.icns
     ${CMAKE_SOURCE_DIR}/data)
+
+    # Add Cocoa framework to executable bundle
+    target_link_libraries(${EXECUTABLE_NAME} ${COCOA_LIBRARY})
 
     # Set the icon
     set_target_properties( ${EXECUTABLE_NAME} PROPERTIES MACOSX_BUNDLE_ICON_FILE opmon_icon.icns )

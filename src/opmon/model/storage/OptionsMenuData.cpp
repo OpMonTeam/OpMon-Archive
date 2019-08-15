@@ -1,6 +1,6 @@
 /*
   OptionsMenuData.cpp
-  Author : Cyrion
+  Author : Cyrielle
   File under GNU GPL v3.0 license
 */
 #include "OptionsMenuData.hpp"
@@ -15,7 +15,9 @@ namespace OpMon {
             ResourceLoader::load(langBg, "backgrounds/lang.png");
             ResourceLoader::load(yesTx, "sprites/misc/yes.png");
             ResourceLoader::load(creditsBg, "backgrounds/credits.png");
+            ResourceLoader::load(controlsBg, "backgrounds/controls.png");
             ResourceLoader::load(volumeCur, "sprites/misc/cursor.png");
+            ResourceLoader::load(keyChange, "sprites/misc/keyChange.png");
         }
     } // namespace Model
 } // namespace OpMon

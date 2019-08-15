@@ -1,6 +1,6 @@
 /*
 StringKeys.hpp
-Author : Cyrion
+Author : Cyrielle
 Contributor : BAKFR
 File under GNU GPL v3.0 license
 */
@@ -9,6 +9,7 @@ File under GNU GPL v3.0 license
 
 #include <SFML/System/String.hpp>
 #include <iostream>
+#include <queue>
 #include <vector>
 
 #include "defines.hpp"
@@ -33,7 +34,15 @@ namespace Utils {
 
         std::string sfStringtoStdString(sf::String const &str);
 
+        std::string getStd(std::string const &key);
+
         int countInstances(sf::String const &str, char const &toSearch);
+
+        /*
+         * Special characters used : | to make a new line manually, $ to go to the next dialog manually
+         */
+        std::queue<sf::String> autoNewLine(sf::String str, unsigned int limit = 29);
+
     } // namespace StringKeys
 } // namespace Utils
 
