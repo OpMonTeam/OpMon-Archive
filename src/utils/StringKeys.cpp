@@ -154,7 +154,6 @@ namespace Utils {
         std::string getStd(std::string const &key) { return sfStringtoStdString(get(key)); }
 
         std::queue<sf::String> autoNewLine(sf::String str, unsigned int limit) {
-            unsigned int lastLinePos = 0;
             sf::String currentWord;
             std::queue<sf::String> strings;
             strings.push(sf::String());

@@ -47,7 +47,7 @@ namespace OpMon {
 
         struct TurnAction {
             int hpLost;
-            std::vector<Utils::OpString> dialog;
+            Utils::OpString dialog;
             TurnActionType type;
             int statCoef;
             Stats statMod;
@@ -65,6 +65,6 @@ namespace OpMon {
 
         void newTurnAction(TurnAction *toNew);
         void newTurnData(TurnData *toNew);
-        TurnAction createTurnDialogAction(std::vector<Utils::OpString> dialog);
+        TurnAction createTurnDialogAction(Utils::OpString dialog);
     } // namespace Model
 } // namespace OpMon

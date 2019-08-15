@@ -34,6 +34,7 @@ namespace OpMon {
             void draw(sf::RenderTexture &frame, int curPosI);
 
           private:
+            Model::MainMenuData &data;
             const std::size_t totalView;
             sf::Sprite bg;
 
@@ -42,9 +43,8 @@ namespace OpMon {
                 sf::Vector2f pos;
             };
             std::vector<OptionMenu> optionsVec;
-
             sf::Sprite cursor;
-            Model::MainMenuData &data;
+
         };
     } // namespace View
 } // namespace OpMon

@@ -11,7 +11,7 @@ namespace OpMon {
     namespace Model {
         void newTurnAction(TurnAction *toNew) {
             toNew->hpLost = 0;
-            toNew->dialog = std::vector<Utils::OpString>();
+            toNew->dialog = Utils::OpString();
             toNew->type = TurnActionType::NOTHING;
             toNew->statCoef = 0;
         }
@@ -23,7 +23,7 @@ namespace OpMon {
             toNew->itemUsed = nullptr;
         }
 
-        TurnAction createTurnDialogAction(std::vector<Utils::OpString> dialog) {
+        TurnAction createTurnDialogAction(Utils::OpString dialog) {
             TurnAction ta;
             newTurnAction(&ta);
             ta.type = TurnActionType::DIALOG;
