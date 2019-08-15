@@ -1,6 +1,6 @@
 /*
 defines.hpp
-Author : Cyrion
+Author : Cyrielle
 Contributor : BAKFR
 File under GNU GPL v3.0 license
 */
@@ -29,5 +29,7 @@ File under GNU GPL v3.0 license
 #define SAVE_PATH Utils::Path::getSavePath()
 
 #define FONT_SIZE_DEFAULT 25
+
+#define PI 3.1415926535
 
 #endif

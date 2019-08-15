@@ -1,6 +1,6 @@
 /*
 StartSceneCtrl.cpp
-Author : Cyrion
+Author : Cyrielle
 Contributor : BAKFR
 File under GNU GPL v3.0 license
 */
@@ -9,6 +9,11 @@ File under GNU GPL v3.0 license
 #include "../view/Window.hpp"
 #include "./OverworldCtrl.hpp"
 #include "AnimationCtrl.hpp"
+
+//Defines created to make the code easier to understand.
+#define LOAD_OVERWORLD 1
+#define LOAD_ANIMATION_OPEN 2
+#define LOAD_ANIMATION_CLOSE 3
 
 namespace OpMon {
     namespace Controller {
@@ -36,9 +41,9 @@ namespace OpMon {
                     animNext = true;
                     return GameStatus::CONTINUE;
                 }
-                //P is used to skip the introduction, but it must be not working when entering the name
+                //P is used to skip the introduction, but it must be disabled when entering the name
                 if(event.key.code == sf::Keyboard::P && startscene.getPart() != 1) {
-                    _next_gs = std::make_unique<OverworldCtrl>(data.getPlayer(), data.getUiDataPtr());
+                    loadNext = LOAD_OVERWORLD;
                     return GameStatus::NEXT;
                 }
                 break;
@@ -61,10 +66,26 @@ namespace OpMon {
 
             //If it's the end of the introduction, go to the overworld
             if(view.getPart() > 2) {
-                _next_gs = std::make_unique<OverworldCtrl>(data.getPlayer(), data.getUiDataPtr());
+                loadNext = LOAD_OVERWORLD;
                 return GameStatus::NEXT;
             }
             return GameStatus::CONTINUE;
+        }
+
+        void StartSceneCtrl::loadNextScreen() {
+            switch(loadNext) {
+            case LOAD_OVERWORLD:
+                _next_gs = std::make_unique<OverworldCtrl>(data.getPlayer(), data.getUiDataPtr());
+                break;
+            case LOAD_ANIMATION_OPEN:
+                _next_gs = std::make_unique<AnimationCtrl>(std::make_unique<View::Animations::WinAnim>(screenTexture, true));
+                break;
+            case LOAD_ANIMATION_CLOSE:
+                _next_gs = std::make_unique<AnimationCtrl>(std::make_unique<View::Animations::WinAnim>(screenTexture, false));
+                break;
+            default:
+                handleError("Error : Unknown view to load in StartSceneCtrl.", true);
+            }
         }
 
         GameStatus StartSceneCtrl::update(sf::RenderTexture &frame) {
@@ -72,21 +93,24 @@ namespace OpMon {
             if(animNext) {
                 animNext = false;
                 view.draw(frame);
-                _next_gs = std::make_unique<AnimationCtrl>(std::make_unique<View::Animations::WinAnim>(frame.getTexture(), false));
-                return GameStatus::NEXT;
+                loadNext = LOAD_ANIMATION_CLOSE;
+                screenTexture = frame.getTexture();
+                return GameStatus::NEXT_NLS;
             }
             GameStatus toReturn = view();
             if(toReturn == GameStatus::CONTINUE) {
                 view.draw(frame);
             }
 
-            if(toReturn == GameStatus::NEXT) {
+            if(toReturn == GameStatus::NEXT_NLS || toReturn == GameStatus::NEXT) {
                 switch(view.getPart()) {
                 case 1:
-                    _next_gs = std::make_unique<AnimationCtrl>(std::make_unique<View::Animations::WinAnim>(frame.getTexture(), true));
+                    loadNext = LOAD_ANIMATION_OPEN;
+                    screenTexture = frame.getTexture();
+                    toReturn = GameStatus::NEXT_NLS;
                     break;
                 case 3:
-                    _next_gs = std::make_unique<OverworldCtrl>(data.getPlayer(), data.getUiDataPtr());
+                    loadNext = LOAD_OVERWORLD;
                     break;
                 default:
                     handleError("Internal error, unknown part in StartSceneCtrl::update", true);

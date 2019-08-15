@@ -1,11 +1,12 @@
 # Project credits
-## Programmer, project creator : Cyrion
+## Programmer, project creator : Cyriel
 ## Game and graphics designer, project co-creator : Navet56
-## Collaborators since the very beginning : Aerzia
+## Collaborators since the very beginning : 
 
 ## OpFriends (People who helped the project a lot. Big thanks to them!) : 
 <li><h3>BAKFR</h3></li>
 <li><h3>gberthou (aka BarkomVarjeFura on Discord)</h3></li>
+<li><h3>Aerzia (old big contributor who left the project)</h3></li>
 </ul>
 
 ## Contributors : 
@@ -29,6 +30,10 @@
 <li><h3>torq</h3></li>
 <li><h3>JonnyPtn</h3></li>
 <li><h3>Bobor</h3></li>
+<li><h3>Qwam</h3></li>
+ <li><h3>Reuun</h3></li>
+ <li><h3>sergioag</h3></li>
+ <li><h3>CxxSpren</h3></li>
 </ul>
 
 ## Inspirations :
@@ -41,8 +46,7 @@
 <ul>
 <li><h3>GlueBie</h3></li>
 <li><h3>Lebordelic</h3></li>
-<li><h3>Sythos</h3></li>
-<li><h3><a href="http://osaris.net/">Osaris</a></h3></li>
+<li><h3><a href="http://osaris.net/">Osaris</a> (one of the people who launched Cyriel into programmation)</h3></li>
 <li><h3>Our families, friends, and everyone who taught us what we know today!</h3></li>
 <li><h4>And many others...</h4></li>
 </ul>
@@ -54,6 +58,7 @@
 * Navet56
 * Aerzia
 * Silvermoon
+* Qwam
 
 ### Others
-Look [here](https://github.com/jlppc/OpMon/blob/master/Resources/README.md).
+Look [here](https://github.com/OpMonTeam/OpMon-Data/blob/master/Resources/README.md).

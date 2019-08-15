@@ -1,6 +1,6 @@
 /*
 StringKeys.cpp
-Author : Cyrion
+Author : Cyrielle
 Contributor : BAKFR
 File under GNU GPL v3.0 license
 */
@@ -9,6 +9,9 @@ File under GNU GPL v3.0 license
 #include "./log.hpp"
 #include <cstdio>
 #include <fstream>
+#include <queue>
+
+#define DIALOG_LIMIT 33
 
 namespace Utils {
     namespace StringKeys {
@@ -42,7 +45,6 @@ namespace Utils {
         }
 
         bool initialize(const std::string &keysFileS) {
-            //Ouverture du fichier de clÃ©es, initialisation des vectors
             std::ifstream keysFile;
             OpMon::Model::ResourceLoader::loadKeysFile(keysFileS.c_str(), keysFile);
             keys = std::vector<std::string>();
@@ -86,6 +88,7 @@ namespace Utils {
                     return strings[i];
                 }
             }
+            Log::warn("Key " + key + " not found in the keys files.");
             return voi; //If nothing found, returns an empty string
         }
 
@@ -146,6 +149,44 @@ namespace Utils {
                 }
             }
             return instances;
+        }
+
+        std::string getStd(std::string const &key) { return sfStringtoStdString(get(key)); }
+
+        std::queue<sf::String> autoNewLine(sf::String str, unsigned int limit) {
+            sf::String currentWord;
+            std::queue<sf::String> strings;
+            strings.push(sf::String());
+            for(unsigned int i = 0; i < str.getSize(); i++) {
+                if(str[i] != ' ' && str[i] != '|' && str[i] != '$' && i != (str.getSize() - 1)) {
+                    currentWord += str[i];
+                } else {
+                    if((strings.back().getSize() + currentWord.getSize()) >= limit) {
+                        strings.push(sf::String());
+                    }
+
+                    if(i == str.getSize() - 1)
+                        currentWord += str[i];
+                    strings.back() += currentWord;
+                    if(str[i] == ' ')
+                        strings.back() += " ";
+                    currentWord.clear();
+
+                    if(str[i] == '|' || str[i] == '$') {
+                        strings.push(sf::String());
+                    }
+                    while(str[i] == '$' && (strings.size() % 3) != 1) {
+                        strings.back() += " ";
+                        strings.push(sf::String());
+                    }
+                }
+            }
+            if(strings.back().isEmpty())
+                strings.back() += " ";
+            while((strings.size() % 3) != 0) {
+                strings.push(sf::String(" "));
+            }
+            return strings;
         }
 
     } // namespace StringKeys

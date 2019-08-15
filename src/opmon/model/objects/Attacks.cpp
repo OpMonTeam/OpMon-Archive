@@ -1,6 +1,6 @@
 /*
 Attacks.cpp
-Author : Cyrion
+Author : Cyrielle
 Contributors : BAKFR, Navet56, JonnyPtn
 File under GNU GPL v3.0 license
 */
@@ -15,20 +15,18 @@ namespace OpMon {
 
             using namespace Utils;
 
-            Attack *newAtk(std::string name) {
-                IF_ATK(Mist, Attack("Mist", 0, Type::NEUTRAL, 100, false, true, -1, false, 20, 0, "Mist",
-                                    nullptr, new ChangeStatEffect(ChangeStatEffect::DEFENDER, Stats::ACC, -1)))
-                IF_ATK(Growl, Attack("Growl", 0, Type::NEUTRAL, 100, false, true, -1, false, 20, 0, "Growl", nullptr, new ChangeStatEffect(ChangeStatEffect::DEFENDER, Stats::ATK, -1)))
-                IF_ATK(Tackle, Attack("Tackle", 50, Type::NEUTRAL, 100, false, false, 16, false, 35, 0, "Tackle"))
-                return nullptr;
-            }
-
             ChangeStatEffect::ChangeStatEffect(Target target, Model::Stats stat, int coef)
               : target(target)
               , stat(stat)
               , coef(coef) {}
 
-            int ChangeStatEffect::apply(Attack &, OpMon &attacker, OpMon &defender, Turn &atkTurn) {
+            ChangeStatEffect::ChangeStatEffect(nlohmann::json const &data)
+              : target(data.at("target"))
+              , stat(data.at("stat"))
+              , coef(data.at("coef")) {
+            }
+
+            int ChangeStatEffect::apply(Attack &, OpMon &attacker, OpMon &defender, std::queue<TurnAction> &turnQueue) {
                 std::map<Stats, int (OpMon::*)(int)> stat_to_method = {
                   {Stats::ACC, &OpMon::changeACC},
                   {Stats::ATK, &OpMon::changeATK},
@@ -40,13 +38,22 @@ namespace OpMon {
                 };
                 auto change_method = stat_to_method[stat];
 
+                // TODO : Add dialog if stat is at its min/max
+
+                TurnAction statMod;
+                newTurnAction(&statMod);
+
                 if(target == Target::ATTACKER) {
-                    int diff_value = (attacker.*change_method)(coef); // diff_value = attacker.changeXXX(coef)
-                    atkTurn.changedStatsAtk.emplace(stat, diff_value);
+                    (attacker.*change_method)(coef); // diff_value = attacker.changeXXX(coef)
+                    statMod.type = TurnActionType::ATK_STAT_MOD;
                 } else {
-                    int diff_value = (defender.*change_method)(coef); // diff_value = defender.changeXXX(coef)
-                    atkTurn.changedStatsDef.emplace(stat, diff_value);
+                    (defender.*change_method)(coef); // diff_value = defender.changeXXX(coef)
+                    statMod.type = TurnActionType::DEF_STAT_MOD;
                 }
+                statMod.statCoef = coef;
+                statMod.statMod = stat;
+                turnQueue.push(statMod);
+
                 return 0;
             }
 

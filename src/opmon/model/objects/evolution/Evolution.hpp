@@ -1,6 +1,6 @@
 /*
 Evolution.hpp
-Author : Cyrion
+Author : Cyrielle
 File under GNU GPL v3.0 license
 */
 #ifndef EVOLUTION_HPP
@@ -30,17 +30,8 @@ namespace OpMon {
             Species *getEvolution() const;
             /**Gets the Species pointer to the evolution. Can't be done in the constructor, since the evolution might not be defined yet.*/
             void checkEvo();
-            virtual int getEvolID() const {
-                return evolID;
-            }
-#pragma GCC diagnostic ignored "-Wunused-parameter"
-            virtual bool itemEvolve(Item *tem) const {
-                return false;
-            }
-#pragma GCC diagnostic pop
 
           protected:
-            static const int evolID = 0;
             Species *toEvolve;
             int evo;
         };

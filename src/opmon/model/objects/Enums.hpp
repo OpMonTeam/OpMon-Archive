@@ -1,6 +1,6 @@
 /*
 Enums.hpp
-Author : Cyrion
+Author : Cyrielle
 Contributor : BAKFR, Samurai413x
 File under GNU GPL v3.0 license
 */

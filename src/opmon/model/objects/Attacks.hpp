@@ -1,12 +1,13 @@
 /*
   Attacks.hpp
-  Author : Cyrion
+  Author : Cyrielle
   Contributors : BAKFR, Navet56
   File under GNU GPL v3.0 license
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUES_HPP_
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUES_HPP_
 
+#include "../../../nlohmann/json.hpp"
 #include "Attack.hpp"
 #include "OpMon.hpp"
 #include <cmath>
@@ -28,24 +29,17 @@
 namespace OpMon {
     namespace Model {
         /**
-       Namespace containing attacks' definitions
-    */
+	   Namespace containing attacks' definitions
+	*/
         //->NoDoc
         namespace Attacks {
-
-            /**
-	 TODO : Put the attacks' names in english, put all the attacks' names in the rkeys files for translation. 
-      */
-
-            Attack *newAtk(std::string name);
-
             class ChangeStatEffect : public AttackEffect {
               public:
-                enum Target { ATTACKER,
-                              DEFENDER };
+                enum class Target : int { ATTACKER = 0,
+                                          DEFENDER = 1 };
                 ChangeStatEffect(Target target, Model::Stats stat, int coef);
-
-                int apply(Attack &attack, OpMon &attacker, OpMon &defender, Turn &atkTurn) override;
+                ChangeStatEffect(nlohmann::json const &data);
+                int apply(Attack &attack, OpMon &attacker, OpMon &defender, std::queue<TurnAction> &turnQueue) override;
 
               protected:
                 Target target;

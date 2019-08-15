@@ -1,6 +1,6 @@
 /*
 Nature.hpp
-Author : Cyrion
+Author : Cyrielle
 Contributor : Navet56
 File under GNU GPL v3.0 license
 */
@@ -37,31 +37,31 @@ namespace OpMon {
        Enumerate the natures
     */
         enum class Nature : unsigned int {
-            BOLD,
-            BASHFUL,
-            BRAVE,
-            CALM,
-            QUIET,
-            DOCILE,
-            MILD,
-            RASH,
-            GENTLE,
-            HARDY,
-            JOLLY,
-            LAX,
-            IMPISH,
-            SASSY,
-            NAUGHTY,
-            MODEST,
-            NAIVE,
-            HASTY,
-            CAREFUL,
-            QUIRKY,
-            RELAXED,
-            ADAMANT,
-            SERIOUS,
-            LONELY,
-            TIMID
+            BOLD = 0,
+            BASHFUL = 1,
+            BRAVE = 2,
+            CALM = 3,
+            QUIET = 4,
+            DOCILE = 5,
+            MILD = 6,
+            RASH = 7,
+            GENTLE = 8,
+            HARDY = 9,
+            JOLLY = 10,
+            LAX = 11,
+            IMPISH = 12,
+            SASSY = 13,
+            NAUGHTY = 14,
+            MODEST = 15,
+            NAIVE = 16,
+            HASTY = 17,
+            CAREFUL = 18,
+            QUIRKY = 19,
+            RELAXED = 20,
+            ADAMANT = 21,
+            SERIOUS = 22,
+            LONELY = 23,
+            TIMID = 24
         };
     } // namespace Model
 } // namespace OpMon

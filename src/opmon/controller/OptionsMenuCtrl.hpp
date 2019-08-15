@@ -1,13 +1,18 @@
 /*
 OptionsMenuCtrl.hpp
 Author : BAKFR
-Contributors : Cyrion, Samurai413x
+Contributors : Cyrielle, Samurai413x
 File under GNU GPL v3.0 license
 */
 #pragma once
 
 #include <SFML/Window/Event.hpp>
+#include <string>
 
+#include "../../utils/defines.hpp"
+#include "../../utils/path.hpp"
+#include "../model/save/OptionsSave.hpp"
+#include "../model/storage/KeyData.hpp"
 #include "../model/storage/OptionsMenuData.hpp"
 #include "../start/Core.hpp"
 #include "../view/MainMenu.hpp"
@@ -26,11 +31,15 @@ namespace OpMon {
             void raiseVolume();
             void lowerVolume();
 
+            std::size_t currentKeyChange{0};
+            bool keyChangeActive{false};
+
           public:
             OptionsMenuCtrl(Model::UiData *data);
             GameStatus checkEvent(sf::Event const &event) override;
             GameStatus update(sf::RenderTexture &frame) override;
 
+            const std::vector<std::string> controlsName{{"up", "down", "left", "right", "talk", "interact"}};
             void resume();
             void suspend();
         };

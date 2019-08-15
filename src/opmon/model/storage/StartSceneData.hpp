@@ -1,6 +1,6 @@
 /*
   StartSceneData.hpp
-  Author : Cyrion
+  Author : Cyrielle
   File under GNU GPL v3.0 license
 */
 #pragma once

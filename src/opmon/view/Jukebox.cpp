@@ -1,6 +1,6 @@
 /*
 Jukebox.cpp
-Author : Cyrion
+Author : Cyrielle
 Contributors : Samurai413x, BAKFR
 File under GNU GPL v3.0 license
 */
@@ -10,14 +10,14 @@ File under GNU GPL v3.0 license
 
 namespace OpMon {
     namespace View {
-        void Jukebox::addMusic(const std::string& name, const std::string& path, bool loop) {
+        void Jukebox::addMusic(const std::string &name, const std::string &path, bool loop) {
             auto music = Model::ResourceLoader::loadMusic(path.c_str());
             music->setVolume(globalVolume);
             music->setLoop(loop);
             musList[name] = std::move(music);
         }
 
-        void Jukebox::addSound(const std::string& name, const std::string& path) {
+        void Jukebox::addSound(const std::string &name, const std::string &path) {
             //Sounds are saved in the code as a pair of sf::SoundBuffer and sf::Sound.
             auto sb = std::make_unique<sf::SoundBuffer>();
             Model::ResourceLoader::load(*sb, path.c_str());
@@ -28,7 +28,7 @@ namespace OpMon {
             soundsList[name].second->setVolume(globalVolume);
         }
 
-        void Jukebox::play(const std::string& music) {
+        void Jukebox::play(const std::string &music) {
             if(musList[music].get() == playing) {
                 return;
             }
@@ -75,7 +75,7 @@ namespace OpMon {
             this->globalVolume = globalVolume;
         }
 
-        void Jukebox::playSound(const std::string& sound) {
+        void Jukebox::playSound(const std::string &sound) {
             if(soundsList[sound].first.get() == nullptr) {
                 handleError(std::string("Warning - Jukebox::playSound : Unknown sound \"") + sound + "\"");
                 return;

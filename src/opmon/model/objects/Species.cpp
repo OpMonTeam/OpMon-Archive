@@ -1,6 +1,6 @@
 /*
 Species.cpp
-Author : Cyrion
+Author : Cyrielle
 Contributor : BAKFR
 File under GNU GPL v3.0
 */
@@ -15,7 +15,6 @@ namespace OpMon {
             name = other.name;
             opdexNumber = other.opdexNumber;
             evolution = other.evolution;
-            niveauEvolution = other.niveauEvolution;
             evolType = other.evolType;
             type1 = other.type1;
             type2 = other.type2;
@@ -42,10 +41,7 @@ namespace OpMon {
             delete(curve);
         }
 #pragma GCC diagnostic ignored "-Wunused-parameter"
-        Species::Species(unsigned int atk, unsigned int def, unsigned int atkSpe, unsigned int defSpe, unsigned int spe, unsigned int hp, std::string name, Type type1, Type type2, int maniereEvolution /*En fait faut mettre 0, il est la pour un souci de compatibilit�*/, int niveauEvolution, Evolution *evolType, std::vector<Stats> EVGiven, float height, float weight, std::string opdexEntry, unsigned int expGiven, int expMax, int captureRate, int opdexNumber) {
-            if(evolType == nullptr) {
-                evolType = new E_Nope();
-            }
+        Species::Species(unsigned int atk, unsigned int def, unsigned int atkSpe, unsigned int defSpe, unsigned int spe, unsigned int hp, std::string name, Type type1, Type type2, Evolution *evolType, std::vector<Stats> EVGiven, float height, float weight, std::string opdexEntry, unsigned int expGiven, int expMax, int captureRate, int opdexNumber) {
             this->opdexNumber = opdexNumber;
             this->captureRate = captureRate;
             this->baseAtk = atk;
@@ -57,10 +53,8 @@ namespace OpMon {
             this->baseHP = hp;
             this->type1 = type1;
             this->type2 = type2;
-            this->niveauEvolution = niveauEvolution;
             this->evolType = evolType;
-            evolType->checkEvo();
-            this->evolution = this->evolType->getEvolution();
+            this->evolution = ((evolType != nullptr) ? this->evolType->getEvolution() : nullptr);
             this->weight = weight;
             this->height = height;
             this->opdexEntry = opdexEntry;
@@ -69,7 +63,6 @@ namespace OpMon {
             this->expMax = expMax;
 
             //The curve is found according to the max OpMon's exp.
-            //TODO : Reverse this : find the max exp with the curve
             switch(this->expMax) {
             case 800000:
                 curve = new CurveExpQuick();
@@ -92,7 +85,6 @@ namespace OpMon {
             default:
                 curve = new CurveExpNormal();
             }
-            this->opdexNumber = opdexNumber;
         }
 #pragma GCC diagnostic pop
     } // namespace Model

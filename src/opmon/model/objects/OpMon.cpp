@@ -1,6 +1,6 @@
 /*
 OpMon.cpp
-Author : Cyrion
+Author : Cyrielle
 Contributors : BAKFR, JonnyPtn, torq, Stelyus
 File under GNU GPL v3.0 license
 */
@@ -13,7 +13,7 @@ File under GNU GPL v3.0 license
 #include "./evolution/Evolution.hpp"
 #include "./evolution/evolutions.hpp"
 #include "Attacks.hpp"
-#include "item/IHeal.hpp"
+#include "Item.hpp"
 #include <fstream>
 #include <sstream>
 
@@ -57,9 +57,10 @@ namespace OpMon {
             initialized = false;
         }
 
-        bool OpMon::captured(I_OpBox const &OpBox) {
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+        bool OpMon::captured(Item const &OpBox) {
             //Big formulas
-            int a = round((((3 * statHP - 2 * HP) * captureRate * OpBox.getCaptureRate() * (status == Status::PARALYSED || status == Status::POISONED || status == Status::BURNING ? 1.5 : (status == Status::FROZEN || status == Status::SLEEPING ? 2 : 1))) / (3 * statHP)));
+            int a = round((((3 * statHP - 2 * HP) * captureRate * /*TODO OpBox.getCaptureRate() */ (status == Status::PARALYSED || status == Status::POISONED || status == Status::BURNING ? 1.5 : (status == Status::FROZEN || status == Status::SLEEPING ? 2 : 1))) / (3 * statHP)));
             int b = round((pow(2, 16) - 1) * pow(a / (pow(2, 8) - 1), 0.25));
             int c[] = {Utils::Misc::randU(65535), Utils::Misc::randU(65535), Utils::Misc::randU(65535),
                        Utils::Misc::randU(65535)};
@@ -89,7 +90,7 @@ namespace OpMon {
                 return true;
             }
         }
-
+#pragma GCC diagnostic pop
         void OpMon::setStat(Stats stat, int newStat) {
             switch(stat) {
             case Stats::ATK:
@@ -133,9 +134,7 @@ namespace OpMon {
             calcStats();
             //Check if the OpMon evolves
             if(species->getEvolType()->checkEvolve(*this)) {
-                if((species->getEvolType()->getEvolID()) == (Evolutions::ETrade)) {
-                    evolve();
-                }
+                evolve();
             }
         }
 
@@ -217,49 +216,6 @@ namespace OpMon {
             statSPE = round(
               ((((2 * species->getBaseSpe() + speIV + (speEV / 4)) * level) / 100) + 5) * ((natures[(int)nature].bonus == Stats::SPE) ? 1.1 : ((natures[(int)nature].malus == Stats::SPE) ? 0.9 : 1)));
             statHP = round(((2 * species->getBaseHP() + hpIV + (hpEV / 4)) * level) / 100) + level + 10;
-        }
-
-        //This method will be removed in the future
-        bool OpMon::itemUsed(Item *used) {
-            //if the OpMon evolves by using an item, check if the item used is the item to make the OpMon evolve.
-            if((species->getEvolType()->getEvolID()) == Evolutions::EItem) {
-                if(species->getEvolType()->itemEvolve(used)) {
-                    evolve();
-                    return true;
-                }
-            }
-
-            if(used->getItemTypeID() == ItemType::IHeal) {
-
-                I_Heal *usedI = dynamic_cast<I_Heal *>(used);
-                if(usedI->getHpHeal() > 0) {
-                    heal(usedI->getHpHeal());
-                }
-                if(usedI->isHealAll() && status == Status::NOTHING) {
-                    setStatus(Status::NOTHING);
-
-                } else if(usedI->getStatusHeald() != Status::NOTHING && status == usedI->getStatusHeald()) {
-                    setStatus(Status::NOTHING);
-                    //Choose HERE the different dialogs to show
-                    switch(usedI->getStatusHeald()) {
-                    case Status::NOTHING:
-                        break;
-                    case Status::BURNING:
-                        break;
-                    case Status::FROZEN:
-                        break;
-                    case Status::PARALYSED:
-                        break;
-                    case Status::POISONED:
-                        break;
-                    case Status::SLEEPING:
-                        break;
-                    default:
-                        break;
-                    }
-                }
-            }
-            return false;
         }
 
         Item *OpMon::hold(Item *item) {
@@ -1356,7 +1312,7 @@ namespace OpMon {
 
         std::string OpMon::save() {
             if(!initialized) {
-
+                /*
                 std::ostringstream oss;
                 oss << nickname.toAnsiString() << std::endl;
                 oss << Save::intToChar(atkIV) << std::endl;
@@ -1373,7 +1329,7 @@ namespace OpMon {
                 oss << Save::intToChar(hpEV) << std::endl;
                 oss << Save::intToChar(statLove) << std::endl;
                 oss << Save::intToChar(level) << std::endl;
-                oss << Save::intToChar(natures[(int)nature].id) << std::endl;
+                oss << Save::intToChar(natures[(int)nature].id) << std::endl;*/
                 /*for(unsigned int it = 0; it < 4; it++){
                 cout << "Attack : " << it << " Pointer : " << attaques[it] << endl;
                 Attack *atk = attaques[it];
@@ -1386,7 +1342,7 @@ namespace OpMon {
                     oss << "nullptr" << endl;
                 }
             }*/
-                for(int i = 0; i < 4; i++) {
+                /*for(int i = 0; i < 4; i++) {
                     if(attacks[i] != nullptr)
                         oss << attacks[i]->save();
                     else
@@ -1405,10 +1361,11 @@ namespace OpMon {
                     oss << std::endl;
                 }
                 oss << Save::intToChar(captureRate) << std::endl;
-                return oss.str();
+                return oss.str();*/
             } else {
                 return "NULL\n";
             }
+            return std::string();
         }
         /*
         OpMon::OpMon(std::ifstream &in) {
