@@ -202,8 +202,6 @@ namespace OpMon {
             rectKeyChange.setTexture(data.getKeyChange());
             rectKeyChange.setScale(70 / rectKeyChange.getGlobalBounds().width, 43 / rectKeyChange.getGlobalBounds().height);
 
-            data.getUiDataPtr()->getJukebox().play("Title");
-
             curPosOpt[0].x = 23;
             curPosOpt[0].y = 17;
             curSizeOpt[0].x = 134 / rectSurb.getGlobalBounds().width;
@@ -317,7 +315,6 @@ namespace OpMon {
         }
 
         void OptionsMenu::play() {
-            data.getUiDataPtr()->getJukebox().play("Title");
         }
 
         void OptionsMenu::controlsLoop(sf::RenderTarget &frame) {

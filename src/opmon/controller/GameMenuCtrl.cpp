@@ -28,15 +28,19 @@ namespace OpMon {
                     return GameStatus::PREVIOUS_NLS;
                 }
                 if(event.key.code == sf::Keyboard::Up) {
+                    data.getUiDataPtr()->getJukebox().playSound("arrow");
                     curPos -= 2;
                 }
                 if(event.key.code == sf::Keyboard::Down) {
+                    data.getUiDataPtr()->getJukebox().playSound("arrow");
                     curPos += 2;
                 }
                 if(event.key.code == sf::Keyboard::Left) {
+                   data.getUiDataPtr()->getJukebox().playSound("arrow");
                     curPos--;
                 }
                 if(event.key.code == sf::Keyboard::Right) {
+                    data.getUiDataPtr()->getJukebox().playSound("arrow");
                     curPos++;
                 }
                 if(event.key.code == sf::Keyboard::Return) {
