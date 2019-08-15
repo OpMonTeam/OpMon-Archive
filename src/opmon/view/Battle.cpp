@@ -1,6 +1,6 @@
 /*
 Battle.cpp
-Author : Cyrion
+Author : Cyrielle
 Contributors : Navet56, torq
 File under GNU GPL v3.0
 */
@@ -16,8 +16,7 @@ File under GNU GPL v3.0
 
 namespace OpMon {
     namespace View {
-        GameStatus Battle::operator()(sf::RenderTexture &frame, Model::Turn const &atkTurn, Model::Turn const &defTurn, bool *turnActivated, bool atkFirst) {
-            //TODO : OPTIMIZE ! (In 0.16)
+        GameStatus Battle::operator()(sf::RenderTexture &frame, Model::TurnData const &atkTurn, Model::TurnData const &defTurn, std::queue<Model::TurnAction> &actionQueue, bool *turnActivated, bool atkFirst) {
             //Removes camera
             frame.setView(frame.getDefaultView());
 
@@ -37,9 +36,9 @@ namespace OpMon {
             frame.draw(playerSpr);
             frame.draw(trainerSpr);
             atk.setTexture(data.getUiDataPtr()->getOpSprite(atkTurn.opmon->getSpecies().getOpdexNumber(), false));
-            this->def.setTexture(data.getUiDataPtr()->getOpSprite(defTurn.opmon->getSpecies().getOpdexNumber(), true));
-            frame.draw(atk);
-            frame.draw(this->def);
+            def.setTexture(data.getUiDataPtr()->getOpSprite(defTurn.opmon->getSpecies().getOpdexNumber(), true));
+            frame.draw(atk, atkTr);
+            frame.draw(def, defTr);
             frame.draw(infoboxPlayer);
             frame.draw(infoboxTrainer);
 
@@ -53,19 +52,13 @@ namespace OpMon {
             }
 
             //Prints OpMon data info (Hp, name...)
-            std::ostringstream oss;
-            oss << "Lv. " << atkTurn.opmon->getLevel();
-            opLevel[0].setString(oss.str());
-            std::ostringstream oss2;
-            oss2 << "Lv. " << defTurn.opmon->getLevel();
-            opLevel[1].setString(oss2.str());
+            opLevel[0].setString("Lv. " + std::to_string(atkTurn.opmon->getLevel()));
+            opLevel[1].setString("Lv. " + std::to_string(defTurn.opmon->getLevel()));
 
             opName[0].setString(atkTurn.opmon->getNickname());
             opName[1].setString(defTurn.opmon->getNickname());
 
-            std::ostringstream oss3;
-            oss3 << " HP : " << atkHp << " / " << atkTurn.opmon->getStatHP();
-            opHp.setString(oss3.str());
+            opHp.setString("HP : " + std::to_string(atkHp) + " / " + std::to_string(atkTurn.opmon->getStatHP()));
 
             frame.draw(opName[0]);
             frame.draw(opName[1]);
@@ -79,23 +72,23 @@ namespace OpMon {
 	       - Turn action (Attack, item and other actions)
 	       When the turn is launched, the variable turnActivated is set to true in BattleCtrl.
 	       When the turn is over, the variable turnActivated is set to false in BattleCtrl.
-	       Battle have it's own variable, allowing to know when the variable is changed, and do this code.
+	       Battle have its own variable, allowing to know when the variable has changed, and do this code.
 	    */
             if(!turnLaunched && *turnActivated) {
                 phase = 1;
-                dialogSpr.setTexture(data.getUiDataPtr()->getDialogBackground());
                 turnLaunched = true;
             } else if(turnLaunched && !(*turnActivated)) {
                 phase = 0;
-                dialogSpr.setTexture(data.getDialog());
                 turnLaunched = false;
             }
-            frame.draw(dialogSpr);
-            //TODO the little arrow
 
-            if(*turnActivated && turnNber <= 1) { //If turn's phase
-                                                  //Organizes the turns' priority
-                const Model::Turn *turns[2];
+            if(!*turnActivated) {
+                frame.draw(dialogSpr);
+            }
+
+            if(*turnActivated && turnNber <= 1) { //If it's turn phase
+                //Organizes the turns priority
+                const Model::TurnData *turns[2];
                 if(atkFirst) {
                     turns[0] = &atkTurn;
                     turns[1] = &defTurn;
@@ -104,68 +97,142 @@ namespace OpMon {
                     turns[1] = &atkTurn;
                 }
 
-#pragma GCC diagnostic ignored "-Wimplicit-fallthrough"
-                //TODO : Change all this crap (0.16).
-                //I won't comment this code, since I will change it very soon
-                switch(phase) {
-                case 1:
-                    turnTxt[0].setString(Utils::OpString::quickString("battle.dialog.attack", {turns[turnNber]->opmon->getNickname(), turns[turnNber]->attackUsed->getName()}));
-                    break;
-                case 2:
-                    turnTxt[0].setString("");
-                    if(turns[turnNber]->toPrintBefore.size() == 0) {
-                        phase++;
-                    } else {
-                        for(unsigned int i = 0; i < turns[turnNber]->toPrintBefore.size() && i < 3; i++) {
-                            turnTxt[i].setString(turns[turnNber]->toPrintBefore.at(i).getString());
-                        }
-                        break;
-                    }
+                if(!actionQueue.empty()) {
+                    using namespace Model;
+                    /* Handles the actions which can happen on screen */
+                    TurnAction &turnAct = actionQueue.front();
 
-                case 3:
-                    data.getUiDataPtr()->getJukebox().playSound("hit");
-                    if((atkFirst && turnNber == 0) || (!atkFirst && turnNber == 2)) {
-                        defHp = defTurn.opmon->getHP();
-                    } else {
-                        atkHp = atkTurn.opmon->getHP();
-                    }
-                    phase++;
-                case 4:
-                    if(turns[turnNber]->toPrintAfter.size() == 0) {
-                        phase++;
-                    } else {
-                        for(unsigned int i = 0; i < turns[turnNber]->toPrintAfter.size() && i < 3; i++) {
-                            turnTxt[i].setString(turns[turnNber]->toPrintAfter.at(i).getString());
+                    if(turnAct.type == TurnActionType::DIALOG) { //If a dialog must be printed
+                        if(dialogOver) {                         //A new dialog is created
+                            if(dialog != nullptr) {
+                                delete(dialog);
+                                dialog = nullptr;
+                            }
+                            dialogOver = false;
+                            sf::String dialogs = turnAct.dialog.getString();
+                            dialog = new Dialog(dialogs, data.getUiDataPtr());
+                        } else { //Continuing an old dialog
+                            dialog->updateTextAnimation();
+                            if(dialog->isDialogOver()) { //If the dialog is over, go to the next action in the queue
+                                actionQueue.pop();
+                                dialogOver = true;
+                            }
                         }
-                        break;
-                    }
+                    } else if(turnAct.type == TurnActionType::ATK_UPDATE_HBAR || turnAct.type == TurnActionType::DEF_UPDATE_HBAR) { //Updates the player's OpMon's healthbar.
+                        data.getUiDataPtr()->getJukebox().playSound("hit");
+                        auto &opmonHp = (turnAct.type == TurnActionType::ATK_UPDATE_HBAR) ? atkHp : defHp;
+                        opmonHp -= turnAct.hpLost;
+                        opmonHp = (opmonHp < 0) ? 0 : opmonHp; //Don't drop below 0
+                        actionQueue.pop();
+                    } else if(turnAct.type == TurnActionType::ATK_STAT_MOD || turnAct.type == TurnActionType::DEF_STAT_MOD) { //When an OpMon's stat is modified
 
-                case 5:
-                    phase = 1;
-                    turnNber++;
-                    if(turnNber > 1) {
-                        turnNber = 0;
-                        phase = 0;
-                        *turnActivated = false;
+                        //Animation part
+                        if(currentOpAnims == nullptr) {
+                            currentOpAnims = new std::queue<Transformation>();
+                            currentOpAnims->push(Transformation(40, MovementData(), RotationData(), Transformation::newScaleData(FormulaMode::MULTIFUNCTIONS, FormulaMode::MULTIFUNCTIONS, (turnAct.statCoef > 0) ? std::vector<double>{2, 0.1, 2 * PI / 20, 0, 0, 0.9} : std::vector<double>{2, -0.1, 2 * PI / 20, 0, 0, 1.1}, (turnAct.statCoef <= 0) ? std::vector<double>{2, 0.1, 2 * PI / 20, 0, 0, 0.9} : std::vector<double>{2, -0.1, 2 * PI / 20, 0, 0, 1.1}, Transformation::spriteCenter(atk))));
+                        }
+                        if(currentOpAnims->front().empty()) {
+                            currentOpAnims->front().attach((turnAct.type == TurnActionType::ATK_STAT_MOD) ? &atkTr : &defTr);
+                        }
+
+                        //Dialog part
+                        auto &opTurn = (turnAct.type == TurnActionType::ATK_STAT_MOD) ? atkTurn : defTurn;
+                        if(dialogOver) {
+                            if(dialog != nullptr) {
+                                delete(dialog);
+                                dialog = nullptr;
+                            }
+                            dialogOver = false;
+                            dialog = new Dialog(Utils::OpString::quickString("battle.stat." + std::to_string((int)turnAct.statMod) + "." + std::to_string(turnAct.statCoef), {opTurn.opmon->getNickname()}), data.getUiDataPtr());
+                        } else {
+                            dialog->updateTextAnimation();
+                        }
+
+                        //Checking part
+                        if(!currentOpAnims->front().apply() && dialog->isDialogOver()) { //If the dialog is over, go to the next action in the queue
+                            actionQueue.pop();
+                            dialogOver = true;
+                            delete(currentOpAnims);
+                            currentOpAnims = nullptr;
+                        }
+                    } else if(turnAct.type == TurnActionType::VICTORY) {
+                        if(dialogOver) {
+                            if(dialog != nullptr) {
+                                delete(dialog);
+                                dialog = nullptr;
+                            }
+                            dialogOver = false;
+                            dialog = new Dialog(Utils::OpString::quickString("battle.victory", {data.getPlayer().getName()}), data.getUiDataPtr());
+                        } else {
+                            dialog->updateTextAnimation();
+                            if(dialog->isDialogOver()) {
+                                actionQueue.pop();
+                                delete(dialog);
+                                dialog = nullptr;
+                                return GameStatus::PREVIOUS;
+                            }
+                        }
+                    } else if(turnAct.type == TurnActionType::DEFEAT) {
+                        if(dialogOver) {
+                            if(dialog != nullptr) {
+                                delete(dialog);
+                                dialog = nullptr;
+                            }
+                            dialogOver = false;
+                            dialog = new Dialog(Utils::OpString::quickString("battle.defeat", {data.getPlayer().getName()}), data.getUiDataPtr());
+                        } else {
+                            dialog->updateTextAnimation();
+                            if(dialog->isDialogOver()) {
+                                actionQueue.pop();
+                                delete(dialog);
+                                dialog = nullptr;
+                                return GameStatus::PREVIOUS;
+                            }
+                        }
+                    } else if(turnAct.type == TurnActionType::OPANIM) {
+                        if(currentOpAnims == nullptr) {
+                            currentOpAnims = new std::queue<Transformation>(((atkFirst && (turnNber == 0)) || (!atkFirst && (turnNber == 1))) /* Is it player's turn */ ? turns[turnNber]->attackUsed->getOpAnimsAtk() : turns[turnNber]->attackUsed->getOpAnimsDef());
+                        }
+                        if(currentOpAnims->front().empty()) {
+                            currentOpAnims->front().attach(((atkFirst && (turnNber == 0)) || (!atkFirst && (turnNber == 1))) /* Is it player's turn */ ? &atkTr : &defTr);
+                        }
+                        if(!currentOpAnims->front().apply()) {
+                            currentOpAnims->pop();
+                            actionQueue.pop();
+                            if(currentOpAnims->empty()) {
+                                delete(currentOpAnims);
+                                currentOpAnims = nullptr;
+                            }
+                        }
+                    } else if(turnAct.type == TurnActionType::NEXT) {
+                        turnNber++;
+                        actionQueue.pop();
+                    } else {
+                        actionQueue.pop();
                     }
-                    break;
+                } else {
+                    *turnActivated = false;
+                    turnNber = 0;
                 }
-#pragma GCC diagnostic pop
 
-                frame.draw(turnTxt[0]);
-                frame.draw(turnTxt[1]);
-                frame.draw(turnTxt[2]);
+                if(dialog == nullptr) { //Always show the dialog box (if possible)
+                    dialog = new Dialog(" ", data.getUiDataPtr());
+                }
+                dialog->draw(frame);
 
             } else if(!attackChoice) { // Main battle menu
 
                 for(sf::Text &txt : choicesTxt) {
                     frame.draw(txt);
                 }
-
-                waitText.setString(Utils::StringKeys::get("battle.wait"));
+                std::queue<sf::String> waitTxt = Utils::StringKeys::autoNewLine(Utils::StringKeys::get("battle.wait"), 12);
+                sf::String str = waitTxt.front() + sf::String('\n');
+                waitTxt.pop();
+                str += waitTxt.front();
+                waitText.setString(str);
                 frame.draw(waitText);
 
-                cursor.setPosition(posChoices[curPos] + sf::Vector2f((choicesTxt[curPos].getGlobalBounds().width / 2) - 10, 25));
+                cursor.setPosition(posChoices[curPos.getValue()] + sf::Vector2f((choicesTxt[curPos.getValue()].getGlobalBounds().width / 2) - 10, 25));
 
             } else { //Attacks menu
 
@@ -178,21 +245,18 @@ namespace OpMon {
                     frame.draw(attacks[i]);
                 }
 
-                if(atkTurn.opmon->getAttacks()[curPos] != nullptr) {
+                if(atkTurn.opmon->getAttacks()[curPos.getValue()] != nullptr) {
 
-                    //Prints attack's data
-                    std::ostringstream oss3;
-                    oss3 << atkTurn.opmon->getAttacks()[curPos]->getPP() << " / " << atkTurn.opmon->getAttacks()[curPos]->getPPMax();
                     //Changes the text's color according to the number of PP left
-                    if(atkTurn.opmon->getAttacks()[curPos]->getPP() <= (atkTurn.opmon->getAttacks()[curPos]->getPPMax() / 5) && atkTurn.opmon->getAttacks()[curPos]->getPP() > 0) {
+                    if(atkTurn.opmon->getAttacks()[curPos.getValue()]->getPP() <= (atkTurn.opmon->getAttacks()[curPos.getValue()]->getPPMax() / 5) && atkTurn.opmon->getAttacks()[curPos.getValue()]->getPP() > 0) {
                         ppTxt.setSfmlColor(sf::Color::Yellow);
-                    } else if(atkTurn.opmon->getAttacks()[curPos]->getPP() == 0) {
+                    } else if(atkTurn.opmon->getAttacks()[curPos.getValue()]->getPP() == 0) {
                         ppTxt.setSfmlColor(sf::Color::Red);
                     } else {
                         ppTxt.setSfmlColor(sf::Color::Black);
                     }
-                    ppTxt.setString(oss3.str());
-                    type.setTexture(data.getUiDataPtr()->getTypeTexture(atkTurn.opmon->getAttacks()[curPos]->getType()));
+                    ppTxt.setString(std::to_string(atkTurn.opmon->getAttacks()[curPos.getValue()]->getPP()) + " / " + std::to_string(atkTurn.opmon->getAttacks()[curPos.getValue()]->getPPMax()));
+                    type.setTexture(data.getUiDataPtr()->getTypeTexture(atkTurn.opmon->getAttacks()[curPos.getValue()]->getType()));
                     frame.draw(type);
                 } else { //If there is no attack, print this
                     ppTxt.setSfmlColor(sf::Color::Red);
@@ -202,7 +266,7 @@ namespace OpMon {
                 frame.draw(ppTxt);
                 frame.draw(ppStrTxt);
 
-                cursor.setPosition(posChoices[curPos] + sf::Vector2f((attacks[curPos].getGlobalBounds().width / 2) - 10, 30));
+                cursor.setPosition(posChoices[curPos.getValue()] + sf::Vector2f((attacks[curPos.getValue()].getGlobalBounds().width / 2) - 10, 30));
             }
 
             if(!turnLaunched) {
@@ -211,49 +275,37 @@ namespace OpMon {
             return GameStatus::CONTINUE;
         }
 
-        bool Battle::nextTxt() {
-            if(phase >= 4) {
-                phase = 1;
-                turnNber++;
-                if(turnNber > 1) {
-                    turnNber = 0;
-                    return false;
-                }
-            } else {
-                phase++;
-            }
-            return true;
-        }
-
         void Battle::toggleAttackChoice() {
             attackChoice = !attackChoice;
             if(attackChoice) {
                 dialogSpr.setTexture(data.getAttackDialog());
-                posChoices[0].x = 40;
-                posChoices[0].y = 370;
-                posChoices[1].x = 140;
-                posChoices[1].y = 370;
-                posChoices[2].x = 40;
-                posChoices[2].y = 425;
-                posChoices[3].x = 140;
-                posChoices[3].y = 425;
+                posChoices[0].x = 35;
+                posChoices[0].y = 382;
+                posChoices[1].x = 135;
+                posChoices[1].y = 382;
+                posChoices[2].x = 35;
+                posChoices[2].y = 437;
+                posChoices[3].x = 135;
+                posChoices[3].y = 437;
                 for(unsigned int i = 0; i < 4; i++) {
                     attacks[i].setPosition(posChoices[i]);
                     attacks[i].setFont(data.getUiDataPtr()->getFont());
-                    attacks[i].setCharacterSize(26);
+                    attacks[i].setCharacterSize(22);
                     attacks[i].setSfmlColor(sf::Color::Black);
                 }
+                curPos = 0;
 
             } else {
-                posChoices[0].x = 326;
-                posChoices[0].y = 380;
-                posChoices[1].x = 430;
-                posChoices[1].y = 380;
-                posChoices[2].x = 330;
-                posChoices[2].y = 445;
-                posChoices[3].x = 430;
-                posChoices[3].y = 445;
+                posChoices[0].x = 300 + (99 - choicesTxt[0].getGlobalBounds().width) / 3;
+                posChoices[0].y = 392;
+                posChoices[1].x = 400 + (99 - choicesTxt[1].getGlobalBounds().width) / 2;
+                posChoices[1].y = 392;
+                posChoices[2].x = 300 + (99 - choicesTxt[2].getGlobalBounds().width) / 2;
+                posChoices[2].y = 457;
+                posChoices[3].x = 400 + (99 - choicesTxt[3].getGlobalBounds().width) / 2;
+                posChoices[3].y = 457;
                 dialogSpr.setTexture(data.getDialog());
+                curPos = 0;
             }
         }
 
@@ -263,43 +315,47 @@ namespace OpMon {
           , data(data) {
             this->background.setTexture(data.getBackground(background));
             playerSpr.setTexture(data.getCharaBattleTextures("player")[0]);
-            playerSpr.setPosition(20, 206);
+            playerSpr.setPosition(20, 218);
             playerSpr.setScale(2, 2);
             trainerSpr.setTexture(data.getCharaBattleTextures(trainerClass)[0]);
             trainerSpr.setPosition(400, 20);
-
-            dialogArrow.setTexture(data.getUiDataPtr()->getDialogArrow());
 
             choicesTxt[0].setString(Utils::StringKeys::get("battle.attack"));
             choicesTxt[1].setString(Utils::StringKeys::get("battle.bag"));
             choicesTxt[2].setString(Utils::StringKeys::get("battle.opmon"));
             choicesTxt[3].setString(Utils::StringKeys::get("battle.run"));
-            posChoices[0].x = 326;
-            posChoices[0].y = 380;
-            posChoices[1].x = 430;
-            posChoices[1].y = 380;
-            posChoices[2].x = 330;
-            posChoices[2].y = 445;
-            posChoices[3].x = 430;
-            posChoices[3].y = 445;
+
             for(unsigned int i = 0; i < 4; i++) {
                 choicesTxt[i].setFont(data.getUiDataPtr()->getFont());
                 choicesTxt[i].setCharacterSize(20);
-                choicesTxt[i].setPosition(posChoices[i]);
+
                 choicesTxt[i].setSfmlColor(sf::Color::White);
+            }
+
+            posChoices[0].x = 300 + (99 - choicesTxt[0].getGlobalBounds().width) / 2;
+            posChoices[0].y = 392;
+            posChoices[1].x = 400 + (99 - choicesTxt[1].getGlobalBounds().width) / 2;
+            posChoices[1].y = 392;
+            posChoices[2].x = 300 + (99 - choicesTxt[2].getGlobalBounds().width) / 2;
+            posChoices[2].y = 457;
+            posChoices[3].x = 400 + (99 - choicesTxt[3].getGlobalBounds().width) / 2;
+            posChoices[3].y = 457;
+
+            for(unsigned int i = 0; i < 4; i++) {
+                choicesTxt[i].setPosition(posChoices[i]);
             }
 
             //ppText.setPosition(326, 380);
 
             dialogSpr.setTexture(data.getDialog());
-            dialogSpr.setPosition(0, 350);
+            dialogSpr.setPosition(0, 512 - 150);
             cursor.setTexture(data.getCursor());
             cursor.setPosition(posChoices[0] + sf::Vector2f((choicesTxt[0].getGlobalBounds().width / 2) - 10, 25));
             curPos = 0;
             cursor.setScale(2, 2);
-            atk.setPosition(107, 195);
-            def.setPosition(305, 120);
-            atk.setScale(2, 2);
+            atkTr.translate(107, 230);
+            defTr.translate(305, 120);
+            atkTr.scale(2, 2);
 
             infoboxPlayer.setTexture(data.getInfoboxPlayer());
             infoboxPlayer.setPosition(277, 252);
@@ -310,7 +366,6 @@ namespace OpMon {
             shadowTrainer.setTexture(data.getShadowTrainer());
             shadowTrainer.setPosition(320, 175);
             for(unsigned int i = 0; i < 2; i++) {
-
                 healthbar1[i].setTexture(data.getHealthbar1());
                 healthbar2[i].setTexture(data.getHealthbar2());
             }
@@ -344,12 +399,12 @@ namespace OpMon {
 
             waitText.setFont(data.getUiDataPtr()->getFont());
             waitText.setCharacterSize(22);
-            waitText.setSfmlColor(sf::Color::Black);
-            waitText.setPosition(25, 410);
+            waitText.setSfmlColor(sf::Color::White);
+            waitText.setPosition(65, 410);
 
             ppStrTxt.setPosition(326, 380);
             ppStrTxt.setString("PP :");
-            ppTxt.setPosition(326, 400);
+            ppTxt.setPosition(326, 405);
             ppStrTxt.setFont(data.getUiDataPtr()->getFont());
             ppTxt.setFont(data.getUiDataPtr()->getFont());
             ppStrTxt.setCharacterSize(26);
@@ -357,37 +412,25 @@ namespace OpMon {
             ppStrTxt.setSfmlColor(sf::Color::Black);
             ppTxt.setSfmlColor(sf::Color::Black);
 
-            for(unsigned int i = 0; i < 3; i++) {
-                turnTxt[i].setFont(data.getUiDataPtr()->getFont());
-                turnTxt[i].setCharacterSize(22);
-                turnTxt[i].setSfmlColor(sf::Color::Black);
-                turnTxt[i].setPosition(25, 410 + i * 20);
-            }
-
-            type.setPosition(326, 440);
+            type.setPosition(326, 450);
         }
 
         void Battle::moveCur(Model::Side where) {
-            int cur = curPos;
             switch(where) {
             case Model::Side::TO_LEFT:
-                cur -= 1;
+                curPos -= 1;
                 break;
             case Model::Side::TO_RIGHT:
-                cur += 1;
+                curPos += 1;
                 break;
             case Model::Side::TO_UP:
-                cur -= 2;
+                curPos -= 2;
                 break;
             case Model::Side::TO_DOWN:
-                cur += 2;
+                curPos += 2;
                 break;
             default:
                 break;
-            }
-
-            if(cur >= 0 && cur < 4) {
-                curPos = cur;
             }
         }
     } // namespace View

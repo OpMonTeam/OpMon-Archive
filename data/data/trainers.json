@@ -1,0 +1,17 @@
+[{
+    "name" : "Beta",
+    "team" : [
+        {
+            "nickname" : "",
+            "species" : 1,
+            "level" : 5,
+            "attacks" : [
+                "Tackle",
+                "Mist",
+                "null",
+                "null"
+            ],
+            "nature" : 4
+        }
+    ]
+}]

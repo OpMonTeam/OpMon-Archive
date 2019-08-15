@@ -1,6 +1,6 @@
 /*
 OpTeam.hpp
-Author : Cyrion
+Author : Cyrielle
 File under GNU GPL v3.0 license
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_PLAYERCORE_EQUIPE_HPP_
@@ -8,6 +8,7 @@ File under GNU GPL v3.0 license
 
 #include "../objects/OpMon.hpp"
 #include <iostream>
+#include <vector>
 
 namespace OpMon {
     namespace Model {

@@ -1,6 +1,6 @@
 /*
 Overworld.cpp
-Author : Cyrion
+Author : Cyrielle
 Contributors : BAKFR, torq, Navet56
 File under GNU GPL v3.0 license
 */
@@ -140,7 +140,7 @@ namespace OpMon {
                 setMusic(current->getBg());
             }
 
-            //Recretes the layers
+            //Recreates the layers
             layer1 = std::make_unique<MapLayer>(current->getDimensions(), current->getLayer1());
             layer2 = std::make_unique<MapLayer>(current->getDimensions(), current->getLayer2());
             layer3 = std::make_unique<MapLayer>(current->getDimensions(), current->getLayer3());
@@ -358,7 +358,7 @@ namespace OpMon {
         /**
      * Events can call this method to start a new dialog with the player.
      */
-        void Overworld::startDialog(std::vector<sf::String> const &dialogs) {
+        void Overworld::startDialog(sf::String const &dialog) {
             if(this->dialog) {
                 if(!this->dialog->isDialogOver()) {
                     Utils::Log::oplog("WARNING: We create a new dialog ... but the last one isn't finished yet!", true);
@@ -366,7 +366,7 @@ namespace OpMon {
                 this->dialog = nullptr;
             }
 
-            this->dialog = std::make_unique<Dialog>(dialogs, data.getUiDataPtr());
+            this->dialog = std::make_unique<Dialog>(dialog, data.getUiDataPtr());
         }
     } // namespace View
 

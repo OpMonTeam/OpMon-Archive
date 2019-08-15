@@ -1,6 +1,6 @@
 /*
 EItem.cpp
-Author : Cyrion
+Author : Cyrielle
 File under GNU GPL v3.0
 */
 #include "evolutions.hpp"
@@ -9,17 +9,14 @@ namespace OpMon {
     namespace Model {
 
         namespace Evolutions {
-            E_Item::E_Item(int evo, Item *forEvolve)
+            E_Item::E_Item(int evo, std::string const &itemId)
               : Evolution(evo)
-              , forEvolve(forEvolve) {
-            }
-            /* DO NOT USE. It's useless.*/
-            bool E_Item::checkEvolve(OpMon const &toCheck) const {
-                return false;
+              , itemID(itemId) {
             }
 
-            bool E_Item::itemEvolve(Item *forEvolve) const {
-                return this->forEvolve == forEvolve;
+            bool E_Item::checkEvolve(OpMon const &toCheck) const {
+                //Temporary
+                return false;
             }
         } // namespace Evolutions
 

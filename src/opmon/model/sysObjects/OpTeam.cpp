@@ -1,6 +1,6 @@
 /*
 OpTeam.cpp
-Author : Cyrion
+Author : Cyrielle
 File under GNU GPL v3.0 license
 */
 #include "OpTeam.hpp"

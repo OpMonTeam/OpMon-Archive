@@ -1,4 +1,6 @@
-# OpMon spanish translation ; Contributors : Cyrion, Navet56, ANSA7DOt
+# OpMon spanish translation ; Contributors : Cyrielle, Navet56, ANSA7DOt
+# | passes a line
+# $ passes a dialog box
 key.void= 
 key.load.txt=Cargando...
 
@@ -18,108 +20,77 @@ key.options.credit.3=principal
 key.options.credit.4=Graphista y
 key.options.credit.5=Game designer
 key.options.credit.6=Collaboratores :
-key.options.credit.7=Aerzia, BAKfr, gberthou
-key.options.credit.8=Contribuidores : imZERKKA, Mat, Jseutter,Stelyus,Ezaron,rjphares
-key.options.credit.81=Rixem, Jo, Imperator Dei, Léo, LinkyFR, Bircoum, louracame
-key.options.credit.82=Samurai413x, Silvermoon, Lebordelic, Asvirius, jubalh, torq,
-key.options.credit.83=JonnyPtn, Cheesecake,bobor
-key.options.credit.84= 
-key.options.credit.9=                   v0.15.1
+key.options.credit.7=Aerzia, BAKfr, gberthou, Cheesecake
+key.options.credit.8=Contribudores : imZERKKA, Mat, Jseutter, Stelyus
+key.options.credit.81=Rixem, Jo, Imperator, Léo, LinkyFR, Bircoum, louracame
+key.options.credit.82=Samurai413x, Silvermoon, Lebordelic, Asvirius, jubalh
+key.options.credit.83=torq, JonnyPtn, bobor, Qwam, CxxSpren, Ezaron, rjphares
+key.options.credit.84=Anarchiste, MarieKrolu, PyroFlareX 
+key.options.credit.85=
+key.options.credit.9=v0.16
+key.options.credit.10=Cyrielle      Navet56
 key.options.vol=Controles
 key.options.control=Creditos
 key.options.lang.title=Idiomas
 key.options.cred.title=Creditos
+key.options.ctrl.change=Change configuration
 
 key.nameEntry.top=Cual es su nombre
 key.nameEntry.med=Escriba un nombre
-key.nameEntry.indic.1=Presione "enter"
+key.nameEntry.indic.1=Presione "Enter"
 key.nameEntry.indic.2=al terminar
 
-key.prof.dialog.start.1=Buenos días y bienvenidos 
-key.prof.dialog.start.2=de Regimys.¡Me imagino que haz echo
-key.prof.dialog.start.3=un buen viaje!
-key.prof.dialog.start.4=Me presento soy el profesor
-key.prof.dialog.start.5=Kiwaï, soy el propietario 
-key.prof.dialog.start.6=del laboratorio OpMon de Faubourg Euvi.
-key.prof.dialog.start.7=Te preguntas seguramente 
-key.prof.dialog.start.8=lo que hago en este pueblo.
-key.prof.dialog.start.9=Esta es la historia...
-key.prof.dialog.start.10=yo creci en este lugar
-key.prof.dialog.start.11=y aqui encontré 
-key.prof.dialog.start.12=mi primer OPMon : Oursiflamme
-key.prof.dialog.start.13=Es un animalito de fuego 
-key.prof.dialog.start.14=bonito y protector.¡Me negué a
-key.prof.dialog.start.15= hacerlo evolucionar para que asi quede!
-key.prof.dialog.start.16=Ah! Disculpa, hablo solamente de mi
-key.prof.dialog.start.17=Entonces ¿Cual es tu nombre?
-key.prof.dialog.start.18=                         
-key.prof.dialog.start.19=bueno, voy à hablarte de 
-key.prof.dialog.start.20=esta región y de las criaturas 
-key.prof.dialog.start.21=que viven aqui
-key.prof.dialog.start.22=¿Estas listo?
-key.prof.dialog.start.23=¿Esta aventura te hace recordar
-key.prof.dialog.start.24=algo no?
-key.prof.dialog.start.25=Bueno. Entonces te dejo descubrir 
-key.prof.dialog.start.26=esto por tí mismo...
-key.prof.dialog.start.27=¡Nos vemos!
+key.prof.dialog.start.1=Buenos dias y bienvenidos de Regimys. ¡Me imagino que haz echo un buen viaje!$ Me presento, soy el profesor Kiwaï, soy el propietario del laboratorio OpMon de Faubourg Euvi.$ Te preguntas seguramente lo que hago en este pueblo. Esta es la historia...$Yo creci en este lugar y aqui encontré mi primer OPMon : Furnursus.$Es un animalito de fuego bonito y protector.¡Me negué a hacerlo evolucionar para que asi quede!$Ah! Disculpa, hablo solamente de mi.|Entonces ¿Cual es tu nombre?
+key.prof.dialog.start.2=Bueno ~, voy a hablarte de esta región y de las criaturas que viven aqui...|¿Estas listo?$...$¿Esta aventura te hace recordar algo no?$Bueno. Entonces te dejo descubrir esto por tu mismo...|¡Nos vemos!
 
-key.fedesc.1=Fauxbourg Euvi
-key.fesesc.2=Es un pueblito tranquilo
-key.fedesc.3= y relajante
+key.fedesc=Fauxbourg Euvi|Es un pueblito tranquilo y relajante.
 
 key.ppHouse=Casa de ~.
 
 key.rivalHouse=Casa de Skullk.
 
-key.labo=Laboratorio del profesor Kiwaï.
+key.clock=It is 1:0 for a long time. |This alarm clock must be broken ...
 
-key.weirdsign.1=No tocar.
-key.weirdsign.2=Cuarto muro en reconstrucción.
+key.trash=This bin is empty
+
+key.playerhome.fridge=Yeah, this is a fridge, captain obvious.
+
+key.labo=Laboratorio del profesor KiwaÃ¯.
+
+key.weirdsign=No tocar.|Cuarto muro en reconstrucciòn.
 
 key.kid=Me gustan los pantalones cortos!
 
-key.prof.dialog.1=¿Haz echo un buen viaje?
-key.prof.dialog.2=Skullk salio a caminar
-key.prof.dialog.3=¡Vuelve despues de la actualisacion!
+key.prof.dialog=¿Haz echo un buen viaje? Skullk salio a caminar. ¡Vuelve despues de la actualisacion!
+
+key.euvicity.desc=Ciudad de EuviCity
 
 key.pcRunLinux=¡Este PC se ejecuta en GNU/Linux!
 
-key.playerhome.tv.1=Podemos ver un reality
-key.playerhome.tv.2=con OpMons, pero ellos no
-key.playerhome.tv.3=parecen muy felices...
+key.playerhome.tv=Podemos ver un reality con OpMons, pero ellos no parecen muy felices...
 
-key.playermom.dialog.1=¿Como estas carino?
-key.playermom.dialog.2=...
-key.playermom.dialog.3=¿Estas bien?
+key.playermom.dialog=¿Como estas carino?$...$¿Estas bien?
 
-key.rt14.sk.1=¿Quien eres tu?
-key.rt14.sk.2=No deberia
-key.rt14.sk.3=estar aqui...
+key.rt14.sk=¿Quien eres tu?$No deberia estar aqui...
 
-key.fe.fisherman.1=Pescador : Oh ! Estoy sorprendido
-key.fe.fisherman.2=Me gusta venir aca para descanzar
-key.fe.fisherman.3=Todo es tranquilo y simple
-key.fe.fisherman.4=Claro que es verdad que..
-key.fe.fisherman.5=no hay muchos peces en el area !
-key.fe.fisherman.6= 
-key.fe.fisherman.7=...
-key.fe.fisherman.8=Espera, nunca te he visto ahi.
-key.fe.fisherman.9=Eres nuevo ?
+key.rt14.albd=Bonjour, young person ! I'm Albert Fence !  I love guitare and the fences ! You like that too, right ?
 
-key.inferm.dialog.1=Bienvenido !
-key.inferm.dialog.1=¿ Quiere curar sus OpMons ?
-key.inferm.dialog.1=... Pero ? Tu no tienes OpMons.
+key.rt14.albdHouse=Albert's House | PS : Dont touch my fence !
 
-key.rt14.beta.pre.1=Hola ! Yo soy Beta.
-key.rt14.beta.pre.2=Yo soy el NPC que permite probar
-key.rt14.beta.pre.3=las nuevas funciones
-key.rt14.beta.pre.4=no completamente implementadas.
-key.rt14.beta.pre.5=Yo puedo hacer una batalla OpMon
-key.rt14.beta.pre.6=contra ti si lo deseas.
-key.rt14.beta.pre.7=Vamos ! Que empieze!
-key.rt14.beta.post.1=¿ Te gusto ?
-key.rt14.beta.post.2=Si quieres hacerlo de nuevo
-key.rt14.beta.post.3=reinicia el juego con la letra M !
+
+key.fe.fisherman=Pescador : Oh ! Estoy sorprendido. Me gusta venir aca para descanzar$Todo es tranquilo y simple...|Claro que es verdad que... no hay muchos peces en el area !$...$Espera, nunca te he visto ahi.|Eres nuevo ?
+
+key.inferm.dialog=Bienvenido !|¿ Quiere curar sus OpMons ?$...$Pero ? No tienes OpMons.
+
+key.rt14.beta.pre=Hola ! Yo soy Beta. Yo soy el NPC que permite probar las nuevas funciones no completamente implementadas.$Yo puedo hacer una batalla OpMon contra ti si lo deseas.$Vamos ! Que empieze!
+key.rt14.beta.post=¿ Te gusto ?|Si quieres hacerlo de nuevo, reinicia el juego con la letra M !
+
+key.gamemenu.save=Guarda
+key.gamemenu.id=Identidad
+key.gamemenu.bag=Bolso
+key.gamemenu.opmons=OpMons
+key.gamemenu.opdex=OpDex
+key.gamemenu.settings=Ajustes
 
 key.battle.attack=Ataques
 key.battle.bag=Mochila
@@ -127,6 +98,11 @@ key.battle.run=Corre
 key.battle.opmon=OpMons
 
 key.battle.dialog.attack=~ usa ~ !
+key.battle.dialog.miss=~ fails the attack !
+key.battle.dialog.loosehp=~ perdiá ~ hp.
+
+key.battle.wait=Qué haces?
+
 key.battle.status.frozen.out=~ ya no esta congelado!
 key.battle.status.frozen.in=~ esta congelado!
 key.battle.status.frozen.attack=~ esta congelado y no puedo atacar!
@@ -146,8 +122,232 @@ key.battle.status.confused.in=~ se esta confundiendo!
 key.battle.status.confused.attack.success.1=Incluso confundido, ~
 key.battle.status.confused.attack.success.2=se las arregla para atacar!
 key.battle.status.confused.attack.fail=~ esta confundido.
-key.battle.status.confused.hplost=~ perdió ~ hp.
+key.battle.status.confused.hplost=~ perdiá ~ hp.
 
-key.battle.wait=Qué haces?
+key.battle.status.afraid=~ is too afraid to attack !
+
+key.battle.effectiveness.none=But it failed !
+key.battle.effectiveness.almostnone=It's almost ineffective...
+key.battle.effectiveness.notvery=It's not very effective...
+key.battle.effectiveness.very=It's very effective !
+key.battle.effectiveness.super=It's super effective !
+
+# Attack
+key.battle.stat.6.-6=~'s attack reaches the bottom !
+key.battle.stat.6.-5=~'s attack falls super low !
+key.battle.stat.6.-4=~'s attack falls a lot !
+key.battle.stat.6.-3=~'s attack falls !
+key.battle.stat.6.-2=~'s attack is lowered a lot !
+key.battle.stat.6.-1=~'s attack is lowered !
+key.battle.stat.6.1=~'s attack increases !
+key.battle.stat.6.2=~'s attack increases a lot !
+key.battle.stat.6.3=~'s attack soared !
+key.battle.stat.6.4=~'s attack soared a lot !
+key.battle.stat.6.5=~'s attack increases super high !
+key.battle.stat.6.6=~'s attack reaches the top !
+
+# Defense
+key.battle.stat.1.-6=~'s defense reaches the bottom !
+key.battle.stat.1.-5=~'s defense falls super low !
+key.battle.stat.1.-4=~'s defense falls a lot !
+key.battle.stat.1.-3=~'s defense falls !
+key.battle.stat.1.-2=~'s defense is lowered a lot !
+key.battle.stat.1.-1=~'s defense is lowered !
+key.battle.stat.1.1=~'s defense increases !
+key.battle.stat.1.2=~'s defense increases a lot !
+key.battle.stat.1.3=~'s defense soared !
+key.battle.stat.1.4=~'s defense soared a lot !
+key.battle.stat.1.5=~'s defense increases super high !
+key.battle.stat.1.6=~'s defense reaches the top !
+
+# Special Attack
+key.battle.stat.2.-6=~'s special attack reaches the bottom !
+key.battle.stat.2.-5=~'s special attack falls super low !
+key.battle.stat.2.-4=~'s special attack falls a lot !
+key.battle.stat.2.-3=~'s special attack falls !
+key.battle.stat.2.-2=~'s special attack is lowered a lot !
+key.battle.stat.2.-1=~'s special attack is lowered !
+key.battle.stat.2.1=~'s special attack increases !
+key.battle.stat.2.2=~'s special attack increases a lot !
+key.battle.stat.2.3=~'s special attack soared !
+key.battle.stat.2.4=~'s special attack soared a lot !
+key.battle.stat.2.5=~'s special attack increases super high !
+key.battle.stat.2.6=~'s special attack reaches the top !
+
+# Special Defense
+key.battle.stat.3.-6=~'s special defense reaches the bottom !
+key.battle.stat.3.-5=~'s special defense falls super low !
+key.battle.stat.3.-4=~'s special defense falls a lot !
+key.battle.stat.3.-3=~'s special defense falls !
+key.battle.stat.3.-2=~'s special defense is lowered a lot !
+key.battle.stat.3.-1=~'s special defense is lowered !
+key.battle.stat.3.1=~'s special defense increases !
+key.battle.stat.3.2=~'s special defense increases a lot !
+key.battle.stat.3.3=~'s special defense soared !
+key.battle.stat.3.4=~'s special defense soared a lot !
+key.battle.stat.3.5=~'s special defense increases super high !
+key.battle.stat.3.6=~'s special defense reaches the top !
+
+# Speed
+key.battle.stat.4.-6=~'s speed reaches the bottom !
+key.battle.stat.4.-5=~'s speed falls super low !
+key.battle.stat.4.-4=~'s speed falls a lot !
+key.battle.stat.4.-3=~'s speed falls !
+key.battle.stat.4.-2=~'s speed is lowered a lot !
+key.battle.stat.4.-1=~'s speed is lowered !
+key.battle.stat.4.1=~'s speed increases !
+key.battle.stat.4.2=~'s speed increases a lot !
+key.battle.stat.4.3=~'s speed soared !
+key.battle.stat.4.4=~'s speed soared a lot !
+key.battle.stat.4.5=~'s speed increases super high !
+key.battle.stat.4.6=~'s speed reaches the top !
+
+# Evasion
+key.battle.stat.8.-6=~'s evasion reaches the bottom !
+key.battle.stat.8.-5=~'s evasion falls super low !
+key.battle.stat.8.-4=~'s evasion falls a lot !
+key.battle.stat.8.-3=~'s evasion falls !
+key.battle.stat.8.-2=~'s evasion is lowered a lot !
+key.battle.stat.8.-1=~'s evasion is lowered !
+key.battle.stat.8.1=~'s evasion increases !
+key.battle.stat.8.2=~'s evasion increases a lot !
+key.battle.stat.8.3=~'s evasion soared !
+key.battle.stat.8.4=~'s evasion soared a lot !
+key.battle.stat.8.5=~'s evasion increases super high !
+key.battle.stat.8.6=~'s evasion reaches the top !
+
+# Accuracy
+key.battle.stat.7.-6=~'s accuracy reaches the bottom !
+key.battle.stat.7.-5=~'s accuracy falls super low !
+key.battle.stat.7.-4=~'s accuracy falls a lot !
+key.battle.stat.7.-3=~'s accuracy falls !
+key.battle.stat.7.-2=~'s accuracy is lowered a lot !
+key.battle.stat.7.-1=~'s accuracy is lowered !
+key.battle.stat.7.1=~'s accuracy increases !
+key.battle.stat.7.2=~'s accuracy increases a lot !
+key.battle.stat.7.3=~'s accuracy soared !
+key.battle.stat.7.4=~'s accuracy soared a lot !
+key.battle.stat.7.5=~'s accuracy increases super high !
+key.battle.stat.7.6=~'s accuracy reaches the top !
+
+key.battle.victory=Congratulations ! ~ wins !
+key.battle.defeat=Too bad... ~ looses.
+
+key.opmon.name.0=MissingNo.
+key.opmon.name.1=Rosarin
+key.opmon.name.2=Toxiris
+key.opmon.name.3=Ninjasmine
+key.opmon.name.4=Oursiflamme
+key.opmon.name.5=Boudabrun
+key.opmon.name.6=Calcinours
+key.opmon.name.7=Nanolphin
+key.opmon.name.8=Dolsea
+key.opmon.name.9=Roileine
+key.opmon.name.10=Spoilurm
+key.opmon.name.11=Name
+key.opmon.name.12=Name
+key.opmon.name.13=Taupypus
+key.opmon.name.14=Name
+key.opmon.name.15=Grasstrawpper
+key.opmon.name.16=Name
+key.opmon.name.17=Name
+key.opmon.name.18=Squind
+key.opmon.name.19=Name
+key.opmon.name.20=Chibiro
+key.opmon.name.21=Fatoro
+key.opmon.name.22=Graffiki
+key.opmon.name.23=Name
+key.opmon.name.24=Name
+key.opmon.name.25=Circephant
+key.opmon.name.26=Elheka
+key.opmon.name.27=Ganestar
+key.opmon.name.28=Name
+key.opmon.name.29=Name
+key.opmon.name.30=Candurn
+key.opmon.name.31=Ricepirit
+key.opmon.name.32=Dragonbowlofrice
+key.opmon.name.33=Kameosan
+key.opmon.name.34=Punchroom
+key.opmon.name.35=Boxali
+key.opmon.name.36=Nebulba
+key.opmon.name.37=Draquasar
+key.opmon.name.38=Name
+key.opmon.name.39=Coaslty
+key.opmon.name.40=Name
+key.opmon.name.41=Name
+key.opmon.name.42=Name
+key.opmon.name.43=Name
+key.opmon.name.44=Name
+key.opmon.name.45=Name
+key.opmon.name.46=Magmortis
+key.opmon.name.47=Name
+key.opmon.name.48=Name
+key.opmon.name.49=Name
+key.opmon.name.50=Moonlight
+key.opmon.name.51=Prestazuli
+
+
+key.opmon.desc.0=ERROR
+key.opmon.desc.1=Rosarin's love is incredible, he's only asking some affection.
+key.opmon.desc.2=Toxiris is extremely powerful, it violently poisons everything in his way.
+key.opmon.desc.3=Ninjasmine poisons his opponents quickly using his two poison swords.
+key.opmon.desc.4=Furnurus are friendly, and often forget that their bodies are too hot for others to touch.
+key.opmon.desc.5=WIP
+key.opmon.desc.6=WIP
+key.opmon.desc.7=WIP
+key.opmon.desc.8=WIP
+key.opmon.desc.9=WIP
+key.opmon.desc.10=Spoilurm disguise themselves as apples, and wait in trees to eat the Grasstrawppers.
+key.opmon.desc.11=WIP
+key.opmon.desc.12=WIP
+key.opmon.desc.13=WIP
+key.opmon.desc.14=WIP
+key.opmon.desc.15=Unbelievable ! He is able to jump, fly, hover, dig and even blow out! Too bad he is so small, weak, and can be confused with a pebble ...
+key.opmon.desc.16=WIP
+key.opmon.desc.17=WIP
+key.opmon.desc.18=WIP
+key.opmon.desc.19=WIP
+key.opmon.desc.20=WIP
+key.opmon.desc.21=WIP
+key.opmon.desc.22=WIP
+key.opmon.desc.23=WIP
+key.opmon.desc.24=WIP
+key.opmon.desc.25=WIP
+key.opmon.desc.26=WIP
+key.opmon.desc.27=WIP
+key.opmon.desc.28=WIP
+key.opmon.desc.29=WIP
+key.opmon.desc.30=WIP
+key.opmon.desc.31=WIP
+key.opmon.desc.32=WIP
+key.opmon.desc.33=WIP
+key.opmon.desc.34=WIP
+key.opmon.desc.35=WIP
+key.opmon.desc.36=WIP
+key.opmon.desc.37=WIP
+key.opmon.desc.38=WIP
+key.opmon.desc.39=Nobody knows the origin of this spirit nor the origin of the coat he wears. His face is full of sorrow.
+key.opmon.desc.40=WIP
+key.opmon.desc.41=WIP
+key.opmon.desc.42=WIP
+key.opmon.desc.43=WIP
+key.opmon.desc.44=WIP
+key.opmon.desc.45=WIP
+key.opmon.desc.46=This forgotten OpMon over time is, in itself, the origin of the disappearance of an old generation of monsters.
+key.opmon.desc.47=WIP
+key.opmon.desc.48=WIP
+key.opmon.desc.49=WIP
+key.opmon.desc.50=WIP
+key.opmon.desc.51=WIP
+
+key.attacks.Mist.name=Mist
+key.attacks.Tackle.name=Tackle
+key.attacks.Growl.name=Growl
+
+key.items.hcandy.name=Healing Candy
+
+key.items.dialog.heal.fullHP=But ~'s HP are already full !
+key.items.dialog.heal.healKO=But ~ is KO.
+key.items.dialog.heal.healHP=~ just recovered ~ HP !
 
 end

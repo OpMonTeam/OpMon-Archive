@@ -1,12 +1,13 @@
 /*
   OverworldData.hpp
-  Author : Cyrion
+  Author : Cyrielle
   File under GNU GPL v3.0 license
 */
 #pragma once
 
 #include "../sysObjects/Map.hpp"
 #include "../sysObjects/Player.hpp"
+#include "GameMenuData.hpp"
 #include "UiData.hpp"
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/System/Vector2.hpp>
@@ -21,6 +22,8 @@ namespace OpMon {
           private:
             sf::Texture alpha = sf::Texture();
             std::vector<sf::Texture> alphaTab = std::vector<sf::Texture>(1);
+
+            std::map<std::string, OpTeam *> trainers;
 
             std::map<std::string, Map *> maps;
             std::map<std::string, Map *>::iterator mapsItor;
@@ -40,7 +43,15 @@ namespace OpMon {
 
             std::map<std::string, std::vector<sf::Texture>> charaTextures;
 
+            std::map<std::string, std::vector<sf::Texture>> eventsTextures;
+
             std::map<std::string, std::vector<sf::Texture>> doorsTextures;
+
+            std::map<std::string, std::unique_ptr<Item>> itemsList;
+
+            std::map<std::string, sf::String *> completions;
+
+            GameMenuData gameMenuData;
 
             OverworldData(OverworldData const &);
 
@@ -52,8 +63,19 @@ namespace OpMon {
             sf::Vector2f &getElementPos(std::string const &id) { return elementsPos[id]; }
             sf::Texture &getCurrentElementTexture(std::string const &id) { return elementsTextures[id][elementsCounter[id]]; }
 
-            Map *getMap(std::string map) { return maps[map]; }
-            Map *getCurrentMap() { return maps[player->getMapId()]; }
+            std::vector<sf::Texture> &getCharaTexture(std::string const &key) { return charaTextures[key]; }
+            std::vector<sf::Texture> &getDoorsTexture(std::string const &key) { return doorsTextures[key]; }
+            std::vector<sf::Texture> &getEventsTexture(std::string const &key) { return eventsTextures[key]; }
+
+            sf::String *getCompletion(std::string const &key) { return completions.at(key); }
+
+            OpTeam *getTrainer(std::string const &key) { return trainers.at(key); }
+
+            GameMenuData &getGameMenuData() { return gameMenuData; }
+
+            Map *getMap(std::string const &map);
+            Map *getCurrentMap();
+
             std::string getCurrentItorMap() { return mapsItor->first; }
             void incrementItorMap() {
                 mapsItor++;
@@ -77,6 +99,8 @@ namespace OpMon {
             UiData *getUiDataPtr() { return uidata; }
             Player *getPlayerPtr() { return player; }
             Player &getPlayer() { return *player; }
+
+            std::unique_ptr<Item> &getItem(std::string const &str) { return itemsList[str]; }
 
             OverworldData(UiData *uidata, Player *player);
             ~OverworldData();

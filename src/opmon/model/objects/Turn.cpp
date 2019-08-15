@@ -1,6 +1,6 @@
 /*
 Turn.cpp
-Author : Cyrion
+Author : Cyrielle
 File under GNU GPL v3.0 license
 */
 #include "Turn.hpp"
@@ -9,24 +9,26 @@ File under GNU GPL v3.0 license
 
 namespace OpMon {
     namespace Model {
-        void newTurn(Turn *toNew) {
+        void newTurnAction(TurnAction *toNew) {
+            toNew->hpLost = 0;
+            toNew->dialog = Utils::OpString();
+            toNew->type = TurnActionType::NOTHING;
+            toNew->statCoef = 0;
+        }
+
+        void newTurnData(TurnData *toNew) {
             toNew->opmon = nullptr;
             toNew->attackUsed = nullptr;
-            toNew->itemUsed = nullptr;
             toNew->type = TurnType::ATTACK;
-            toNew->runSuccessful = false;
-            toNew->newOpmon = nullptr;
-            toNew->hpLost = 0;
-            toNew->toPrintBefore = std::vector<Utils::OpString>();
-            toNew->toPrintAfter = std::vector<Utils::OpString>();
-            toNew->changedStatsAtk = std::map<Model::Stats, int>();
-            toNew->changedStatsDef = std::map<Model::Stats, int>();
-            toNew->confusedHurt = false;
-            toNew->attackFailed = false;
-            toNew->attackMissed = false;
-            toNew->atkEnd = false;
-            toNew->OHKO = false;
-            toNew->attackHurt = 0;
+            toNew->itemUsed = nullptr;
+        }
+
+        TurnAction createTurnDialogAction(Utils::OpString dialog) {
+            TurnAction ta;
+            newTurnAction(&ta);
+            ta.type = TurnActionType::DIALOG;
+            ta.dialog = dialog;
+            return ta;
         }
 
     } // namespace Model

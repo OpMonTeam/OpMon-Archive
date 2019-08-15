@@ -1,6 +1,6 @@
 /*
 BattleCtrl.hpp
-Author : Cyrion
+Author : Cyrielle
 File under GNU GPL v3.0 license
 */
 #pragma once
@@ -34,8 +34,11 @@ namespace OpMon {
 
             View::Battle view;
 
-            Model::Turn atkTurn;
-            Model::Turn defTurn;
+            std::queue<Model::TurnAction> actionsQueue;
+
+            Model::TurnData atkTurn;
+            Model::TurnData defTurn;
+            bool atkFirst;
 
             //These variables are used to restore the OpMon's stats after the battle
             int oldStats[2][5];
@@ -57,12 +60,15 @@ namespace OpMon {
             /* Initialize a battle between two OpMons. The opId are for the OpMon's number in the team */
             void initBattle(int opId, int opId2);
 
-            Model::Turn *turnIA(int level);
+            Model::TurnData *turnIA(int level);
 
             //Checks if the opmon can attack
-            bool canAttack(Model::OpMon *opmon, Model::Turn *opTurn);
+            bool canAttack(Model::OpMon *opmon, Model::TurnData *opTurn);
+            bool checkBattleEnd();
 
             Model::Events::TrainerEvent *trainer;
+
+            Model::TurnAction next;
 
           public:
             virtual ~BattleCtrl() = default;
@@ -71,8 +77,8 @@ namespace OpMon {
             GameStatus checkEvent(sf::Event const &) override;
             GameStatus update(sf::RenderTexture &frame) override;
 
-            virtual void suspend();
-            virtual void resume();
+            virtual void suspend() override;
+            virtual void resume() override;
         };
 
     } // namespace Controller

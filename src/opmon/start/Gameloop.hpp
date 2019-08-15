@@ -1,6 +1,6 @@
 /*
 Gameloop.hpp
-Author : Cyrion
+Author : Cyrielle
 Contributor : Stelyus, BAKFR, Navet56
 File under GNU GPL v3.0
 */
@@ -32,6 +32,10 @@ namespace OpMon {
 
         std::unique_ptr<Model::UiData> uidata;
         std::stack<std::unique_ptr<Controller::AGameScreen>> _gameScreens;
+
+        bool frameByFrame = false;
+        sf::Keyboard::Key fbfType = sf::Keyboard::F3;
+        bool hasBeenReleased = true;
     };
 
 } // namespace OpMon

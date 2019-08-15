@@ -45,7 +45,7 @@ namespace OpMon {
             if(!music->openFromFile(ResourceLoader::getResourcePath() + path)) {
                 handleError(std::string("Failed to load music: ") + path, false);
             }
-            return std::move(music);
+            return music;
         }
 
         void ResourceLoader::loadKeysFile(const char *path, std::ifstream &file) {

@@ -1,6 +1,6 @@
 /*
 StartScene.cpp
-Author : Cyrion
+Author : Cyrielle
 Contributors : BAKFR, JonnyPtn, torq, Navet56
 File under GNU GPL v3.0 license
 */
@@ -17,27 +17,13 @@ namespace OpMon {
     namespace View {
 
         void StartScene::initStrings() {
-            auto kget = Utils::StringKeys::get;
 
-            unsigned int it = 0;
-            for(it = 0; it < 18; it++) {
-                std::string actual;
-                actual << std::string("prof.dialog.start.") << it + 1;
-                txtP0.push_back(kget(actual));
-            }
-            it++;
-            strName = Utils::OpString("prof.dialog.start.19", {data.getPlayer().getNameP()});
-            txtP1.emplace_back(); // empty space replaced later by OpString 'strName'
-            for(it = it; it < 27; it++) {
-                std::string actual;
-                actual << std::string("prof.dialog.start.") << it + 1;
-                txtP1.push_back(kget(actual));
-            }
+            txtP1 = Utils::OpString("prof.dialog.start.2", {data.getPlayer().getNameP()});
 
-            textDescs[0].setString(kget("nameEntry.med"));
-            textDescs[1].setString(kget("nameEntry.top"));
-            textDescs[2].setString(kget("nameEntry.indic.1"));
-            textDescs[3].setString(kget("nameEntry.indic.2"));
+            textDescs[0].setString(Utils::StringKeys::get("nameEntry.med"));
+            textDescs[1].setString(Utils::StringKeys::get("nameEntry.top"));
+            textDescs[2].setString(Utils::StringKeys::get("nameEntry.indic.1"));
+            textDescs[3].setString(Utils::StringKeys::get("nameEntry.indic.2"));
         }
 
         StartScene::StartScene(Model::StartSceneData &data)
@@ -69,7 +55,7 @@ namespace OpMon {
             data.getUiDataPtr()->getJukebox().play("Start");
 
             // Init loop 0
-            dialog = std::make_unique<Dialog>(txtP0, data.getUiDataPtr());
+            dialog = std::make_unique<Dialog>(Utils::StringKeys::get("prof.dialog.start.1"), data.getUiDataPtr());
         }
 
         void StartScene::onLangChanged() {
@@ -85,7 +71,7 @@ namespace OpMon {
                     // Init loop 1
                     dialog = nullptr;
                     part++;
-                    return GameStatus::NEXT;
+                    return GameStatus::NEXT_NLS;
                 }
                 break;
 
@@ -107,12 +93,9 @@ namespace OpMon {
         }
 
         void StartScene::delLoop1() {
-
-            txtP1[0] = strName.getString();
             part++;
-
             // Init loop 2
-            dialog = std::make_unique<Dialog>(txtP1, data.getUiDataPtr());
+            dialog = std::make_unique<Dialog>(txtP1.getString(), data.getUiDataPtr());
         }
 
         void StartScene::draw(sf::RenderTarget &frame) {

@@ -1,7 +1,7 @@
 /*
 MainMenuCtrl.cpp
 Author : BAKFR
-Contributors : Cyrion
+Contributors : Cyrielle
 File under GNU GPL v3.0 license
 */
 #include "./MainMenuCtrl.hpp"
@@ -9,6 +9,10 @@ File under GNU GPL v3.0 license
 
 #include "./OptionsMenuCtrl.hpp"
 #include "./StartSceneCtrl.hpp"
+
+//Defines created to make the code easier to read
+#define LOAD_STARTSCENE 1
+#define LOAD_OPTIONS 2
 
 namespace OpMon {
     namespace Controller {
@@ -23,16 +27,16 @@ namespace OpMon {
                 switch(event.key.code) {
                     //Activates the player's selection
                 case sf::Keyboard::Return:
-                    switch(view.getCursorPosition()) {
+                    switch(curPosI) {
                     case 0:
-                        _next_gs = std::make_unique<StartSceneCtrl>(data.getUiDataPtr());
+                        loadNext = LOAD_STARTSCENE;
                         data.getUiDataPtr()->getJukebox().playSound("push");
                         return GameStatus::NEXT;
                     case 1:
                         data.getUiDataPtr()->getJukebox().playSound("nope");
                         return GameStatus::CONTINUE;
                     case 2:
-                        _next_gs = std::make_unique<OptionsMenuCtrl>(data.getUiDataPtr());
+                        loadNext = LOAD_OPTIONS;
                         data.getUiDataPtr()->getJukebox().playSound("push");
                         return GameStatus::NEXT;
                     case 3:
@@ -42,24 +46,35 @@ namespace OpMon {
                     break;
                     //Moves the cursor
                 case sf::Keyboard::Up:
-                    view.moveArrow(true);
+                    Helper::moveArrow(true, curPosI);
                     data.getUiDataPtr()->getJukebox().playSound("arrow");
                     break;
                 case sf::Keyboard::Down:
-                    view.moveArrow(false);
+                    Helper::moveArrow(false, curPosI);
                     data.getUiDataPtr()->getJukebox().playSound("arrow");
                     break;
-
-                default:
-                    break;
+                default: break;
                 }
             }
             return GameStatus::CONTINUE;
         }
 
         GameStatus MainMenuCtrl::update(sf::RenderTexture &frame) {
-            view.draw(frame);
+            view.draw(frame, curPosI);
             return GameStatus::CONTINUE;
+        }
+
+        void MainMenuCtrl::loadNextScreen() {
+            switch(loadNext) {
+            case LOAD_STARTSCENE:
+                _next_gs = std::make_unique<StartSceneCtrl>(data.getUiDataPtr());
+                break;
+            case LOAD_OPTIONS:
+                _next_gs = std::make_unique<OptionsMenuCtrl>(data.getUiDataPtr());
+                break;
+            default:
+                handleError("Error : Unknown view to load in MainMenuCtrl.", true);
+            }
         }
 
         void MainMenuCtrl::suspend() {

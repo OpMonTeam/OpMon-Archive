@@ -21,7 +21,7 @@ namespace Utils {
      * Write a log message in a log file.
      *
      * @param toSay message to write.
-     * @param bool if `true` the log message will be written in th error log file;
+     * @param bool if `true` the log message will be written in the error log file;
      *   otherwise, it will be written in the regular log file.
      */
         void oplog(const std::string &toSay, bool error = false);

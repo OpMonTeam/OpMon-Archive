@@ -1,6 +1,6 @@
 /*
 main.cpp
-Author : Cyrion
+Author : Cyrielle
 Contributors : Stelyus, Navet56
 File under GNU GPL v3.0 license
 */
@@ -29,11 +29,7 @@ using Utils::Log::oplog;
 int main(int argc, char *argv[]);
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
-    int argc;
-    char **argv;
-    /* BuildArgVector() uses the Win32 function GetCommandLine() to populate argc and argv */
-    BuildArgVector(&argc, &argv);
-    return main(argc, argv);
+    return main(__argc, __argv);
 }
 #endif
 
@@ -127,14 +123,13 @@ int main(int argc, char *argv[]) {
                 //std::cout << "--opt <path> : Changes the options save file's location." << std:: endl;
                 std::cout << "--debug : Starts the game with debug code. Changes when needed." << std::endl;
                 return 0;
-            } /*else if(str == "--debug") {
-                std::cout << (int)Side::TO_UP << std::endl;
-                std::cout << (int)Side::TO_DOWN << std::endl;
-                std::cout << (int)Side::TO_LEFT << std::endl;
-                std::cout << (int)Side::TO_RIGHT << std::endl;
-                std::cout << (int)(Side::TO_UP + 4) << std::endl;
+            } /* else if(str == "--debug") {
+            	std::vector<sf::String> tab = Utils::StringKeys::autoNewLine("Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.");
+            	for(sf::String str : tab){
+            		std::cout << Utils::StringKeys::sfStringtoStdString(str) << std::endl;
+            	}
                 return 0;
-		} */
+            }*/
             else {
                 //std::cout << "Unknown parameters. Skipping." << std::endl;
             }

@@ -1,6 +1,6 @@
 /*
 ELevel.cpp
-Author : Cyrion
+Author : Cyrielle
 File under GNU GPL v3.0
 */
 #include "evolutions.hpp"

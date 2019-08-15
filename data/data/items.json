@@ -1,0 +1,18 @@
+[{
+    "id" : "hcandy",
+    "usable" : true,
+    "onOpMon" : true,
+    "effects" : [
+        {
+            "type" : "HpHealEffect",
+            "healed" : 20
+        },
+        {
+            "type" : "null"
+        },
+        {
+            "type" : "null"
+        }
+    ]
+
+}]

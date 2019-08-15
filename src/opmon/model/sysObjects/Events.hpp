@@ -1,6 +1,6 @@
 /*
   Events.hpp
-  Author : Cyrion
+  Author : Cyrielle
   Contributors : BAKFR, Navet56
   File under GNU GPL v3.0 license.
 */
@@ -143,24 +143,24 @@ namespace OpMon {
 
             class TalkingEvent : public virtual Event, I18n::ATranslatable {
               private:
-                std::vector<Utils::OpString> dialogKeys;
+                Utils::OpString dialogKey;
 
               protected:
-                std::vector<sf::String> dialogs;
+                sf::String dialog;
 
               public:
-                TalkingEvent(std::vector<sf::Texture> &otherTextures, sf::Vector2f const &position, std::vector<Utils::OpString> const &dialogKeys, int sides = SIDE_ALL, EventTrigger eventTrigger = EventTrigger::PRESS, bool passable = false);
+                TalkingEvent(std::vector<sf::Texture> &otherTextures, sf::Vector2f const &position, Utils::OpString const &dialogKey, int sides = SIDE_ALL, EventTrigger eventTrigger = EventTrigger::PRESS, bool passable = false);
                 void onLangChanged() override;
                 virtual void update(Model::Player &player, View::Overworld &overworld);
                 virtual void action(Model::Player &player, View::Overworld &overworld);
-                virtual void changeDialog(std::vector<Utils::OpString> newDialog);
+                virtual void changeDialog(Utils::OpString newDialog);
             };
 
             class LockedDoorEvent : public DoorEvent, TalkingEvent {
               protected:
                 Item *needed;
                 bool consumeItem;
-                static std::vector<Utils::OpString> keysLock;
+                static Utils::OpString keysLock;
 
               public:
                 virtual void action(Model::Player &player, View::Overworld &overworld);
@@ -203,11 +203,11 @@ namespace OpMon {
                 bool talking = false;
 
               public:
-                TalkingCharaEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, std::vector<Utils::OpString> const &dialogKeys, Side posDir = Side::TO_UP, EventTrigger eventTrigger = EventTrigger::PRESS, MoveStyle moveStyle = MoveStyle::NO_MOVE, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int side = SIDE_ALL);
+                TalkingCharaEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, Utils::OpString const &dialogKey, Side posDir = Side::TO_UP, EventTrigger eventTrigger = EventTrigger::PRESS, MoveStyle moveStyle = MoveStyle::NO_MOVE, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int side = SIDE_ALL);
 
                 virtual void update(Model::Player &player, View::Overworld &overworld);
                 virtual void action(Model::Player &player, View::Overworld &overworld);
-                virtual void changeDialog(std::vector<Utils::OpString> newDialog) { TalkingEvent::changeDialog(newDialog); }
+                virtual void changeDialog(Utils::OpString newDialog) { TalkingEvent::changeDialog(newDialog); }
             };
 
             class TrainerEvent : public TalkingCharaEvent {
@@ -216,10 +216,10 @@ namespace OpMon {
                 bool defeated = false;
                 bool triggerBattle = false;
                 bool checkTalking = false;
-                std::vector<Utils::OpString> defeatedDialog;
+                Utils::OpString defeatedDialog;
 
               public:
-                TrainerEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, OpTeam *team, std::vector<Utils::OpString> const &dialogKeys, std::vector<Utils::OpString> const &defeatedDialog, Side posDir = Side::TO_UP, EventTrigger eventTrigger = EventTrigger::PRESS, MoveStyle moveStyle = MoveStyle::NO_MOVE, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int side = SIDE_ALL);
+                TrainerEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, OpTeam *team, Utils::OpString const &dialogKeys, Utils::OpString const &defeatedDialog, Side posDir = Side::TO_UP, EventTrigger eventTrigger = EventTrigger::PRESS, MoveStyle moveStyle = MoveStyle::NO_MOVE, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int side = SIDE_ALL);
 
                 virtual void update(Model::Player &player, View::Overworld &overworld);
                 virtual void action(Model::Player &player, View::Overworld &overworld);
