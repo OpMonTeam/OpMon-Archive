@@ -16,6 +16,7 @@ namespace OpMon {
             sf::Sprite background;
             sf::Sprite menuBg;
             sf::Sprite selections[6];
+            sf::Text selectxt[6];
 
             Model::GameMenuData &data;
 
