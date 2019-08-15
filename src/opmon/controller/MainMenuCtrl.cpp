@@ -53,6 +53,7 @@ namespace OpMon {
                     Helper::moveArrow(false, curPosI);
                     data.getUiDataPtr()->getJukebox().playSound("arrow");
                     break;
+                default: break;
                 }
             }
             return GameStatus::CONTINUE;

@@ -13,6 +13,7 @@ File under GNU GPL v3.0 license
 #include "Position.hpp"
 
 #pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wreorder"
 
 namespace OpMon {
     namespace Model {
