@@ -169,10 +169,9 @@ namespace OpMon {
                                 dialog = nullptr;
                             }
                             dialogOver = false;
-                            dialog = new Dialog({Utils::OpString::quickString("battle.victory", {data.getPlayer().getName()})}, data.getUiDataPtr());
+                            dialog = new Dialog(Utils::OpString::quickString("battle.victory", {data.getPlayer().getName()}), data.getUiDataPtr());
                         } else {
                             dialog->updateTextAnimation();
-                            dialog->draw(frame);
                             if(dialog->isDialogOver()) {
                                 actionQueue.pop();
                                 delete(dialog);
@@ -187,10 +186,9 @@ namespace OpMon {
                                 dialog = nullptr;
                             }
                             dialogOver = false;
-                            dialog = new Dialog(std::vector<sf::String>{Utils::OpString::quickString("battle.defeat", {data.getPlayer().getName()})}, data.getUiDataPtr());
+                            dialog = new Dialog(Utils::OpString::quickString("battle.defeat", {data.getPlayer().getName()}), data.getUiDataPtr());
                         } else {
                             dialog->updateTextAnimation();
-                            dialog->draw(frame);
                             if(dialog->isDialogOver()) {
                                 actionQueue.pop();
                                 delete(dialog);
