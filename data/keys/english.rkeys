@@ -82,6 +82,13 @@ key.rt14.beta.post=Was it good ?|If you want to do it again relauch the game wit
 
 key.euvicity.desc=Welcome to EuviCity
 
+key.gamemenu.save=Save
+key.gamemenu.id=Identity
+key.gamemenu.bag=Bag
+key.gamemenu.opmons=OpMons
+key.gamemenu.opdex=OpDex
+key.gamemenu.settings=Settings
+
 key.battle.attack=Attacks
 key.battle.bag=Bag
 key.battle.run=Run

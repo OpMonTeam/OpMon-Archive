@@ -85,6 +85,13 @@ key.inferm.dialog=Bienvenido !|¿ Quiere curar sus OpMons ?$...$Pero ? No tienes
 key.rt14.beta.pre=Hola ! Yo soy Beta. Yo soy el NPC que permite probar las nuevas funciones no completamente implementadas.$Yo puedo hacer una batalla OpMon contra ti si lo deseas.$Vamos ! Que empieze!
 key.rt14.beta.post=¿ Te gusto ?|Si quieres hacerlo de nuevo, reinicia el juego con la letra M !
 
+key.gamemenu.save=Guarda
+key.gamemenu.id=Identidad
+key.gamemenu.bag=Bolso
+key.gamemenu.opmons=OpMons
+key.gamemenu.opdex=OpDex
+key.gamemenu.settings=Ajustes
+
 key.battle.attack=Ataques
 key.battle.bag=Mochila
 key.battle.run=Corre

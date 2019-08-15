@@ -39,6 +39,13 @@ key.nameEntry.med=Gib einen Namen ein
 key.nameEntry.indic.1=Drücke Enter
 key.nameEntry.indic.2=wenn du fertig bist
 
+key.gamemenu.save=Save
+key.gamemenu.id=Identity
+key.gamemenu.bag=Bag
+key.gamemenu.opmons=OpMons
+key.gamemenu.opdex=OpDex
+key.gamemenu.settings=Settings
+
 key.prof.dialog.start.1=Hallo und willkomen in Regimys! Ich hoffe dir geht's gut.|Ich bin Professor Kiwaï, der Besitzer des OpMon Labors von Euvi-town.|Vielleicht fragst du dich: "Was macht er in dieser kleinen Stadt?" Dies ist meine Geschichte.$Ich bin hier aufgewachsen und habe mein erstes OpMon getroffen : Furnursus.|Es ist ein kleines Feuertier süß und beschützerisch mach dass er sich entwickelt, damit er süß bleibt.|Tschuldigung, ich rede nur über mich selbst. Also... Wie heisst du?
 key.prof.dialog.start.2=Nun, ~, ich werde dir von diesem Ort und den Kreaturen die die hier leben erzählen.|Bist du bereit?|Dir scheint dieser Ort bekannt zu sein. Warst du schoneinmal hier? Nun, ich vermute ich werde ihn dich selbst erkunden lassen.|Bis bald!
 

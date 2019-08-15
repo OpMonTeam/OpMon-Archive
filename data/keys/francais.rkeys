@@ -83,6 +83,14 @@ key.rt14.albdHouse=La Maison d'Albert | PS : Touche pas à ma cloture !
 
 key.euvicity.desc=Ville d'EuviCity
 
+key.gamemenu.save=Sauvegarder
+key.gamemenu.id=Identité
+key.gamemenu.bag=Sac
+key.gamemenu.opmons=OpMons
+key.gamemenu.opdex=OpDex
+key.gamemenu.settings=Options
+
+
 key.battle.attack=Attaque
 key.battle.bag=Sac
 key.battle.run=Fuite
