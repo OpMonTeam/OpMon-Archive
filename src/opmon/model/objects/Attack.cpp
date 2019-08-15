@@ -88,8 +88,8 @@ namespace OpMon {
                         if(!scalObj.empty()) {
                             scal = View::Transformation::newScaleData(scalObj.at("mode").at(0),
                                                                       scalObj.at("mode").at(1),
-                                                                      scalObj.at("formula").at(0),
-                                                                      scalObj.at("formula").at(1),
+                                                                      scalObj.at("formulas").at(0),
+                                                                      scalObj.at("formulas").at(1),
                                                                       sf::Vector2f(scalObj.at("origin").at(0), scalObj.at("origin").at(1)));
                         }
                         if(i) {
