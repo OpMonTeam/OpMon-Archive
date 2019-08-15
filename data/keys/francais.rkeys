@@ -104,14 +104,12 @@ key.battle.status.sleep.attack=~ dort profondément.
 
 key.battle.status.paralysed.out=~ n'est plus paralysé!
 key.battle.status.paralysed.in=~ est paralysé!
-key.battle.status.paralysed.attack.success.1=Malgré sa paralysie,
-key.battle.status.paralysed.attack.success.2=~ réussit à attaquer!
+key.battle.status.paralysed.attack.success=Malgré sa paralysie, ~ réussit à attaquer!
 key.battle.status.paralysed.attack.fail=~ est paralysé !
 
 key.battle.status.confused.out=~ n'est plus confus!
 key.battle.status.confused.in=~ devient confus!
-key.battle.status.confused.attack.success.1=Malgré sa confusion, ~
-key.battle.status.confused.attack.success.2=parvient à attaquer!
+key.battle.status.confused.attack.success=Malgré sa confusion, ~ parvient à attaquer!
 key.battle.status.confused.attack.fail=~ est confus.
 key.battle.status.confused.hplost=Dans sa confiusion, ~ perd ~ pv.
 

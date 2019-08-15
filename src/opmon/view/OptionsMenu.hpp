@@ -50,6 +50,8 @@ namespace OpMon {
                     return curPosLangI;
                 case OptionType::CONTROLS:
                     return curPosCtrlI;
+                default:
+                    return curPosOptI;
                 }
 
                 return 0;
