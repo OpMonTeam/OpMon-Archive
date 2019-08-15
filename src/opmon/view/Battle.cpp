@@ -86,10 +86,6 @@ namespace OpMon {
                 frame.draw(dialogSpr);
             }
 
-            if(animTest) {
-                animTest = test->apply();
-            }
-
             if(*turnActivated && turnNber <= 1) { //If it's turn phase
                 //Organizes the turns priority
                 const Model::TurnData *turns[2];
