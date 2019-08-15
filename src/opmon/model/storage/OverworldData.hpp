@@ -73,8 +73,6 @@ namespace OpMon {
 
             GameMenuData &getGameMenuData() { return gameMenuData; }
 
-            OP_DEPRECATED sf::Texture &getMenuTexture() { return gameMenuData.getMenuTexture(); }
-
             Map *getMap(std::string const &map);
             Map *getCurrentMap();
 

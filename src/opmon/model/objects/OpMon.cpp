@@ -57,6 +57,7 @@ namespace OpMon {
             initialized = false;
         }
 
+#pragma GCC diagnostic ignored "-Wunused-parameter"
         bool OpMon::captured(Item const &OpBox) {
             //Big formulas
             int a = round((((3 * statHP - 2 * HP) * captureRate * /*TODO OpBox.getCaptureRate() */ (status == Status::PARALYSED || status == Status::POISONED || status == Status::BURNING ? 1.5 : (status == Status::FROZEN || status == Status::SLEEPING ? 2 : 1))) / (3 * statHP)));
@@ -89,7 +90,7 @@ namespace OpMon {
                 return true;
             }
         }
-
+#pragma GCC diagnostic pop
         void OpMon::setStat(Stats stat, int newStat) {
             switch(stat) {
             case Stats::ATK:
@@ -215,44 +216,6 @@ namespace OpMon {
             statSPE = round(
               ((((2 * species->getBaseSpe() + speIV + (speEV / 4)) * level) / 100) + 5) * ((natures[(int)nature].bonus == Stats::SPE) ? 1.1 : ((natures[(int)nature].malus == Stats::SPE) ? 0.9 : 1)));
             statHP = round(((2 * species->getBaseHP() + hpIV + (hpEV / 4)) * level) / 100) + level + 10;
-        }
-
-        //This method will be removed in the future
-        bool OpMon::itemUsed(Item *used) {
-            //if the OpMon evolves by using an item, check if the item used is the item to make the OpMon evolve.
-            //TODO : Update this method for the new item system
-
-            /*if(used->getItemTypeID() == ItemType::IHeal) {
-
-                I_Item *usedI = used;
-                if(usedI->getHpHeal() > 0) {
-                    heal(usedI->getHpHeal());
-                }
-                if(usedI->isHealAll() && status == Status::NOTHING) {
-                    setStatus(Status::NOTHING);
-
-                } else if(usedI->getStatusHeald() != Status::NOTHING && status == usedI->getStatusHeald()) {
-                    setStatus(Status::NOTHING);
-                    //Choose HERE the different dialogs to show
-                    switch(usedI->getStatusHeald()) {
-                    case Status::NOTHING:
-                        break;
-                    case Status::BURNING:
-                        break;
-                    case Status::FROZEN:
-                        break;
-                    case Status::PARALYSED:
-                        break;
-                    case Status::POISONED:
-                        break;
-                    case Status::SLEEPING:
-                        break;
-                    default:
-                        break;
-                    }
-                }
-            }*/
-            return false;
         }
 
         Item *OpMon::hold(Item *item) {
@@ -1402,6 +1365,7 @@ namespace OpMon {
             } else {
                 return "NULL\n";
             }
+            return std::string();
         }
         /*
         OpMon::OpMon(std::ifstream &in) {

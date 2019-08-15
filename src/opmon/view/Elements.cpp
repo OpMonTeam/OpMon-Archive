@@ -64,10 +64,10 @@ namespace OpMon {
         }
 
         Transformation::Transformation(unsigned int const &time, MovementData const md, RotationData const rd, ScaleData const sd, sf::Transform *sprite)
-          : md(md)
+          : time(time)
+          , md(md)
           , rd(rd)
           , sd(sd)
-          , time(time)
           , sprite(sprite) {
             if(sprite != nullptr) {
                 attach(sprite, true);
