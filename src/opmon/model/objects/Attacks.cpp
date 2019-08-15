@@ -44,10 +44,10 @@ namespace OpMon {
                 newTurnAction(&statMod);
 
                 if(target == Target::ATTACKER) {
-                    int diff_value = (attacker.*change_method)(coef); // diff_value = attacker.changeXXX(coef)
+                    (attacker.*change_method)(coef); // diff_value = attacker.changeXXX(coef)
                     statMod.type = TurnActionType::ATK_STAT_MOD;
                 } else {
-                    int diff_value = (defender.*change_method)(coef); // diff_value = defender.changeXXX(coef)
+                    (defender.*change_method)(coef); // diff_value = defender.changeXXX(coef)
                     statMod.type = TurnActionType::DEF_STAT_MOD;
                 }
                 statMod.statCoef = coef;

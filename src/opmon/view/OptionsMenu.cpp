@@ -270,6 +270,8 @@ namespace OpMon {
             case OptionType::LANG:
                 Controller::Helper::moveArrow(move, curPosLangI, 5);
                 break;
+            default:
+              break;
             }
         }
 

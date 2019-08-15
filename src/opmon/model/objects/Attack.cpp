@@ -22,7 +22,7 @@ namespace OpMon {
         Attack *Attack::newAtk(std::string name) {
             try {
                 return new Attack(attackList.at(name));
-            } catch(std::out_of_range e) {
+            } catch(const std::out_of_range&) {
                 Utils::Log::warn("Attack " + name + " not found.");
                 return nullptr;
             }
@@ -124,10 +124,10 @@ namespace OpMon {
           , type(type)
           , special(special)
           , status(status)
-          , criticalRate(criticalRate)
-          , neverFails(neverFails)
           , pp(ppMax)
           , ppMax(ppMax)
+          , criticalRate(criticalRate)
+          , neverFails(neverFails)
           , preEffect(preEffect)
           , postEffect(postEffect)
           , failEffect(fails)
@@ -145,10 +145,10 @@ namespace OpMon {
           , type(data.type)
           , special(data.special)
           , status(data.status)
-          , criticalRate(data.criticalRate)
-          , neverFails(data.neverFails)
           , pp(data.ppMax)
           , ppMax(data.ppMax)
+          , criticalRate(data.criticalRate)
+          , neverFails(data.neverFails)
           , preEffect(data.preEffect)
           , postEffect(data.postEffect)
           , failEffect(data.ifFails)

@@ -244,6 +244,7 @@ namespace OpMon {
             return false;
         }
 
+#pragma GCC diagnostic ignored "-Wunused-parameter"
         //TODO : add messages to opTurn->toPrintBefore
         bool BattleCtrl::canAttack(Model::OpMon *opmon, Model::TurnData *opTurn) {
             bool canAttack = true;
@@ -274,10 +275,10 @@ namespace OpMon {
             } else if(opmon->getStatus() == Model::Status::PARALYSED) {
                 //The opmon have one chance out of three to can't attack when paralysed
                 if(Utils::Misc::randU(4) == 2) {
-                    actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.paralysed.attack.fail", opName)}));
+                    actionsQueue.push(createTurnDialogAction(Utils::OpString("battle.status.paralysed.attack.fail", opName)));
                     canAttack = false;
                 } else {
-                    actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.paralysed.attack.success.1", opName), Utils::OpString("battle.status.paralysed.attack.success.2", opName)}));
+                    actionsQueue.push(createTurnDialogAction(Utils::OpString("battle.status.paralysed.attack.success", opName)));
                 }
             }
             //Checks if confused
@@ -293,7 +294,7 @@ namespace OpMon {
                         actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.confused.attack.fail", opName)}));
                         opmon->attacked(opmon->getStatHP() / 8);
                     } else {
-                        actionsQueue.push(createTurnDialogAction({Utils::OpString("battle.status.confused.attack.success.1", opName), Utils::OpString("battle.status.confused.attack.success.2", {})}));
+                        actionsQueue.push(createTurnDialogAction(Utils::OpString("battle.status.confused.attack.success", opName)));
                     }
                 }
             }
@@ -306,6 +307,7 @@ namespace OpMon {
             delete(opName[0]);
             return canAttack;
         }
+#pragma GCC diagnostic pop
 
         void BattleCtrl::suspend() {
             data.getUiDataPtr()->getJukebox().pause();

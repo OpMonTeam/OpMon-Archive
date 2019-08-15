@@ -113,10 +113,7 @@ namespace OpMon {
                                 dialog = nullptr;
                             }
                             dialogOver = false;
-                            std::vector<sf::String> dialogs;
-                            for(Utils::OpString opStr : turnAct.dialog) { //Converts OpString in sf::String
-                                dialogs.push_back(opStr.getString());
-                            }
+                            sf::String dialogs = turnAct.dialog.getString();
                             dialog = new Dialog(dialogs, data.getUiDataPtr());
                         } else { //Continuing an old dialog
                             dialog->updateTextAnimation();
@@ -150,7 +147,7 @@ namespace OpMon {
                                 dialog = nullptr;
                             }
                             dialogOver = false;
-                            dialog = new Dialog(std::vector<sf::String>{Utils::OpString::quickString("battle.stat." + std::to_string((int)turnAct.statMod) + "." + std::to_string(turnAct.statCoef), {opTurn.opmon->getNickname()})}, data.getUiDataPtr());
+                            dialog = new Dialog(Utils::OpString::quickString("battle.stat." + std::to_string((int)turnAct.statMod) + "." + std::to_string(turnAct.statCoef), {opTurn.opmon->getNickname()}), data.getUiDataPtr());
                         } else {
                             dialog->updateTextAnimation();
                         }
