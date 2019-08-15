@@ -18,7 +18,7 @@ namespace OpMon {
                 selections[i].setTexture(data.getSelectionTexture(i));
                 selections[i].setPosition(data.getSelectionPos(i));
                 selectxt[i].setFont(data.getUiDataPtr()->getFont());
-                selectxt[i].setCharacterSize(22);
+                selectxt[i].setCharacterSize(20);
                 selectxt[i].setSfmlColor(sf::Color::White);
             }
             selectxt[0].setString(Utils::StringKeys::get("gamemenu.save"));
@@ -28,12 +28,12 @@ namespace OpMon {
             selectxt[4].setString(Utils::StringKeys::get("gamemenu.opdex"));
             selectxt[5].setString(Utils::StringKeys::get("gamemenu.settings"));
 
-            selectxt[0].setPosition(150, 140);
-            selectxt[1].setPosition(260, 140);
-            selectxt[2].setPosition(115, 225);
-            selectxt[3].setPosition(312, 225);
-            selectxt[4].setPosition(150, 310);
-            selectxt[5].setPosition(260, 310);
+            selectxt[0].setPosition(146, 143);
+            selectxt[1].setPosition(260, 143);
+            selectxt[2].setPosition(113, 225);
+            selectxt[3].setPosition(314, 225);
+            selectxt[4].setPosition(153, 310);
+            selectxt[5].setPosition(262, 310);
 
 
         }
