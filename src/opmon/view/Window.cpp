@@ -7,11 +7,13 @@ File under GNU GPL v3.0 license
 #include "Window.hpp"
 #include "../../utils/StringKeys.hpp"
 #include "../../utils/log.hpp"
+#include "../../utils/centerOrigin.hpp"
 #include "../model/save/OptionsSave.hpp"
 #include "../model/storage/ResourceLoader.hpp"
 #include "../start/Core.hpp"
 
 #include <SFML/Graphics.hpp>
+#include <algorithm> // for std::min and std::max
 
 using Utils::Log::oplog;
 
@@ -35,6 +37,8 @@ namespace OpMon {
             window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
             frame.create(512, 512);
+            sprite.setTexture(frame.getTexture());
+            updateView();
 
             oplog("Window initialized!");
             //window.setVerticalSyncEnabled(true);
@@ -55,19 +59,30 @@ namespace OpMon {
 
         void Window::refresh() {
             frame.display();
-            sf::Texture frameTexture = frame.getTexture();
-            frameTexture.setSmooth(true);
-            sf::Sprite sprite(frameTexture);
-
-            if(fullScreen) {
-                const float coef = window.getSize().y / (sprite.getGlobalBounds().height);
-                sprite.setScale(coef, coef);
-                sprite.setPosition(((window.getSize().x / 2) - (sprite.getGlobalBounds().width / 2)), 0);
-            }
-
             window.clear(sf::Color::Black);
             window.draw(sprite);
             window.display();
+        }
+
+        void Window::updateView() {
+            // unsigned int to float conversion of sizes (needed for division)
+            sf::Vector2f frameSize(frame.getSize());
+            sf::Vector2f windowSize(window.getSize());
+            auto frameRatio = frameSize.x / frameSize.y;
+
+            // Computing the scaling factors : the sprite shouldn't be bigger than the screen,
+            // and any dimension shouldn't be bigger than the value computed from the ratio and the other dimension :
+            // we take the min of the two. We then divide by the original frame size to get the scaling factor.
+            auto xCoef = std::min(windowSize.y * frameRatio, windowSize.x) / frameSize.x;
+            auto yCoef = std::min(windowSize.x / frameRatio, windowSize.y) / frameSize.y;
+            sprite.setScale(xCoef, yCoef);
+
+            // update the sprite position
+            Utils::Origin::centerOrigin(sprite);
+            sprite.setPosition(windowSize.x / 2.f, windowSize.y / 2.f);
+
+            // prevent auto-stretching
+            window.setView(sf::View({ 0.f, 0.f, windowSize.x, windowSize.y }));
         }
 
     } // namespace View
