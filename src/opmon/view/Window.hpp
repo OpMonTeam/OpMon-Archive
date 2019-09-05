@@ -9,6 +9,7 @@ File under GNU GPL v3.0 license
 
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/Sprite.hpp>
 
 namespace OpMon {
     namespace View {
@@ -16,6 +17,7 @@ namespace OpMon {
           private:
             sf::RenderWindow window;
             sf::RenderTexture frame;
+            sf::Sprite sprite;
             bool fullScreen = false;
 
           public:
@@ -25,6 +27,7 @@ namespace OpMon {
             void open();
             void refresh();
             void reboot();
+            void updateView();
         };
     } // namespace View
 } // namespace OpMon
