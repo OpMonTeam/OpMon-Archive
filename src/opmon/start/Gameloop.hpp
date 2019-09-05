@@ -30,6 +30,13 @@ namespace OpMon {
          */
         GameStatus _checkQuit(const sf::Event &event);
 
+        /**
+         * Checks the event for window resize, and updates the window view if it's the case.
+         * @param event The native SFMl event
+         * @param window A reference to the window in case an update is necessary
+         */
+        void _checkWindowResize(const sf::Event &event, View::Window &window) const;
+
         std::unique_ptr<Model::UiData> uidata;
         std::stack<std::unique_ptr<Controller::AGameScreen>> _gameScreens;
 

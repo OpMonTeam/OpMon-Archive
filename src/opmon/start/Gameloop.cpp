@@ -67,6 +67,7 @@ namespace OpMon {
                 bool isEvent = window->getWindow().pollEvent(event);
                 if(isEvent == false)
                     event.type = sf::Event::SensorChanged;
+                _checkWindowResize(event, *window);
                 status = _checkQuit(event);
                 if(status == GameStatus::STOP)
                     break;
@@ -126,6 +127,12 @@ namespace OpMon {
         }
 
         return GameStatus::CONTINUE;
+    }
+
+    void GameLoop::_checkWindowResize(const sf::Event &event, View::Window &window) const {
+        if(event.type == sf::Event::Resized) {
+            window.updateView();
+        }
     }
 
 } // namespace OpMon
