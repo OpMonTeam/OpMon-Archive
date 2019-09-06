@@ -1,13 +1,27 @@
 #pragma once
 
 namespace Utils {
-
+    /**
+     * Represents a counter cycling in the interval between two values. When the counter reaches the upper value, it goes to the lower value, and vice versa.
+     */
     class CycleCounter {
       private:
+	/**
+	 * The counter value.
+	*/
         int value = 0;
 
+	/**
+	 * The lower limit.
+	*/
         int limitDown;
+	/**
+	 * The upper limit.
+	*/
         int limitUp;
+	/**
+	 * The range of the counter (number of values it can take).
+	*/
         int range;
 
       public:
@@ -32,6 +46,9 @@ namespace Utils {
 
         void operator=(int number) { value = ((range + (number - limitDown)) % range) + limitDown; }
 
+	/**
+	 * Return the counter value
+	 */
         int getValue() { return value; }
     };
 } // namespace Utils
