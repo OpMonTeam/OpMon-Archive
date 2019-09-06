@@ -12,13 +12,13 @@ namespace Utils {
     namespace Time {
 
         /**
-     * Set (or reset) the reference clock to zero.
-     */
+	 * Set (or reset) the reference clock to zero.
+	 */
         void initClock();
 
         /**
-     * Return the number of elapsed milliseconds since the beginning of the program
-     */
+	 * Return the number of elapsed milliseconds since the beginning of the program
+	 */
         int getElapsedMilliseconds();
 
         /**
@@ -27,9 +27,9 @@ namespace Utils {
         float getElapsedSeconds();
 
         /**
-     * Sleep for determined duration.
-     * @param duration - time to wait, in milliseconds
-     */
+	 * Sleep for determined duration.
+	 * @param duration - time to wait, in milliseconds
+	 */
         void wait(int duration);
 
     } // namespace Time
