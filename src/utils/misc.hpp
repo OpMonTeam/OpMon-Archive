@@ -58,7 +58,7 @@ namespace Utils::Misc {
     int randU(int limit);
 
     unsigned int randUI(unsigned int limit);
-
+    
     std::size_t hash(const std::string &str);
 } // namespace Utils::Misc
 
