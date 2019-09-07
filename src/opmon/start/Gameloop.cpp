@@ -65,14 +65,14 @@ namespace OpMon {
             //process all pending SFML events
             while(status == GameStatus::CONTINUE) {
                 bool isEvent = window->getWindow().pollEvent(event);
-                if(isEvent == false)
+                if(!isEvent)
                     event.type = sf::Event::SensorChanged;
                 _checkWindowResize(event, *window);
                 status = _checkQuit(event);
                 if(status == GameStatus::STOP)
                     break;
                 status = ctrl->checkEvent(event);
-                if(isEvent == false) {
+                if(!isEvent) {
                     break;
                 }
             }

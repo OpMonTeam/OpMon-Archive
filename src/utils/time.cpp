@@ -11,24 +11,22 @@ File under GNU GPL v3.0
  */
 static sf::Clock ticks;
 
-namespace Utils {
-    namespace Time {
+namespace Utils::Time {
 
-        void initClock() {
-            ticks.restart();
-        }
+    void initClock() {
+        ticks.restart();
+    }
 
-        int getElapsedMilliseconds() {
-            return ticks.getElapsedTime().asMilliseconds();
-        }
+    int getElapsedMilliseconds() {
+        return ticks.getElapsedTime().asMilliseconds();
+    }
 
-        float getElapsedSeconds() {
-            return ticks.getElapsedTime().asSeconds();
-        }
+    float getElapsedSeconds() {
+        return ticks.getElapsedTime().asSeconds();
+    }
 
-        void wait(int duration) {
-            sf::sleep(sf::milliseconds(duration));
-        }
+    void wait(int duration) {
+        sf::sleep(sf::milliseconds(duration));
+    }
 
-    } // namespace Time
-} // namespace Utils
+} // namespace Utils::Time

@@ -11,8 +11,7 @@
 #include <SFML/Graphics.hpp>
 #include <fstream>
 
-namespace OpMon {
-    namespace Model {
+namespace OpMon::Model {
 
         class ResourceLoader {
           public:
@@ -68,5 +67,4 @@ namespace OpMon {
             }
         }
 
-    } // namespace Model
-} // namespace OpMon
+    } // namespace OpMon

@@ -8,27 +8,25 @@ File under GNU GPL v3.0 license
 #include "../model/storage/GameMenuData.hpp"
 #include <SFML/Graphics/Sprite.hpp>
 
-namespace OpMon {
-    namespace View {
+namespace OpMon::View {
 
-        class GameMenu {
-          private:
-            sf::Sprite background;
-            sf::Sprite menuBg;
-            sf::Sprite selections[6];
-            sf::Text selectxt[6];
+    class GameMenu {
+      private:
+        sf::Sprite background;
+        sf::Sprite menuBg;
+        sf::Sprite selections[6];
+        sf::Text selectxt[6];
 
-            Model::GameMenuData &data;
+        Model::GameMenuData &data;
 
-            int curPos = 0;
+        int curPos = 0;
 
-          public:
-            GameMenu(Model::GameMenuData &data);
+      public:
+        explicit GameMenu(Model::GameMenuData &data);
 
-            GameStatus operator()(sf::RenderTexture &frame);
+        GameStatus operator()(sf::RenderTexture &frame);
 
-            void setCurPos(int newCurPos);
-        };
+        void setCurPos(int newCurPos);
+    };
 
-    } // namespace View
-} // namespace OpMon
+} // namespace OpMon::View

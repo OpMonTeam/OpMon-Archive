@@ -6,26 +6,26 @@ namespace Utils {
      */
     class CycleCounter {
       private:
-	/**
+        /**
 	 * The counter value.
 	*/
         int value = 0;
 
-	/**
+        /**
 	 * The lower limit.
 	*/
         int limitDown;
-	/**
+        /**
 	 * The upper limit.
 	*/
         int limitUp;
-	/**
+        /**
 	 * The range of the counter (number of values it can take).
 	*/
         int range;
 
       public:
-        CycleCounter(int limitUp, int limitDown = 0, int value = 0)
+        explicit CycleCounter(int limitUp, int limitDown = 0, int value = 0)
           : value(value)
           , limitDown(limitDown)
           , limitUp(limitUp)
@@ -46,7 +46,7 @@ namespace Utils {
 
         void operator=(int number) { value = ((range + (number - limitDown)) % range) + limitDown; }
 
-	/**
+        /**
 	 * Return the counter value
 	 */
         int getValue() { return value; }

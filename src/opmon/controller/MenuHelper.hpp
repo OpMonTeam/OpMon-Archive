@@ -6,17 +6,13 @@ File under GNU GPL v3.0 license
 #ifndef MENUHELPER_HPP
 #define MENUHELPER_HPP 1
 
-namespace OpMon {
-    namespace Controller {
-        namespace Helper {
+namespace OpMon::Controller::Helper {
 
-            /**
+    /**
          * Moves the cursor to select another menu entry.
          * @param `true` moves the cursor up; `false` moves it down.
          */
-            void moveArrow(bool direction, int &curPosI, int limitMax = 4);
-        } // namespace Helper
-    }     // namespace Controller
-} // namespace OpMon
+    void moveArrow(bool direction, int &curPosI, int limitMax = 4);
+} // namespace OpMon::Controller::Helper
 
 #endif // MENUHELPER_HPP

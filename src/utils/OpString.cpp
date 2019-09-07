@@ -8,6 +8,7 @@ File under GNU GPL v3.0 license
 #include "./log.hpp"
 #include "StringKeys.hpp"
 #include <cstdarg>
+#include <utility>
 
 namespace Utils {
     /**
@@ -18,19 +19,18 @@ namespace Utils {
     OpString::OpString(std::string const &key, std::vector<sf::String *> obj) {
         this->key = key;
         unsigned int instances = StringKeys::countInstances(StringKeys::get(key), '~');
-        this->objects = obj;
+        this->objects = std::move(obj);
 
         if(objects.size() != instances) {
             Log::warn("OpString: number of '~' placeholders and arguments mismatch for key \"" + key + "\"");
         }
     }
 
-    OpString::OpString() {
-    }
+    OpString::OpString() = default;
 
-    sf::String OpString::quickString(std::string const &key, std::vector<std::string> vstr) {
+    sf::String OpString::quickString(std::string const &key, const std::vector<std::string> &vstr) {
         std::vector<sf::String *> vect;
-        for(std::string str : vstr) {
+        for(const std::string &str : vstr) {
             vect.push_back(new sf::String(str));
         }
         OpString op = OpString(key, vect);
@@ -47,7 +47,7 @@ namespace Utils {
         if(this->key.empty()) { //If empty, it doesn't execute the algorithm. That would be useless.
             return sf::String();
         }
-        if(objects.size() == 0) { //If there is not object, it just returns the string.
+        if(objects.empty()) { //If there is not object, it just returns the string.
             return StringKeys::get(key);
         }
         //Ok, so there is some things to do

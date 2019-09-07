@@ -13,32 +13,30 @@
 #include <memory>
 #include <unordered_map>
 
-namespace OpMon {
-    namespace View {
+namespace OpMon::View {
 
-        class Jukebox {
-          private:
-            std::unordered_map<std::string, std::unique_ptr<sf::Music>> musList;
-            std::unordered_map<std::string, std::pair<std::unique_ptr<sf::SoundBuffer>, std::unique_ptr<sf::Sound>>> soundsList;
-            sf::Music *playing{nullptr};
-            float globalVolume{50.0};
+    class Jukebox {
+      private:
+        std::unordered_map<std::string, std::unique_ptr<sf::Music>> musList;
+        std::unordered_map<std::string, std::pair<std::unique_ptr<sf::SoundBuffer>, std::unique_ptr<sf::Sound>>> soundsList;
+        sf::Music *playing{nullptr};
+        float globalVolume{50.0};
 
-          public:
-            Jukebox() = default;
-            ~Jukebox() = default;
+      public:
+        Jukebox() = default;
+        ~Jukebox() = default;
 
-            void addMusic(const std::string &name, const std::string &path, bool loop = true);
+        void addMusic(const std::string &name, const std::string &path, bool loop = true);
 
-            void play(const std::string &music);
-            void pause();
-            void stop();
+        void play(const std::string &music);
+        void pause();
+        void stop();
 
-            void setGlobalVolume(float globalVolume);
-            int getGlobalVolume() const;
+        void setGlobalVolume(float globalVolume);
+        float getGlobalVolume() const;
 
-            void playSound(const std::string &sound);
-            void addSound(const std::string &name, const std::string &path);
-        };
+        void playSound(const std::string &sound);
+        void addSound(const std::string &name, const std::string &path);
+    };
 
-    } // namespace View
-} // namespace OpMon
+} // namespace OpMon::View

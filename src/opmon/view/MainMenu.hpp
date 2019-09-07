@@ -13,40 +13,37 @@ File under GNU GPL v3.0 license
 #include "../model/storage/MainMenuData.hpp"
 #include "../start/i18n/ATranslatable.hpp"
 
-namespace OpMon {
-    namespace View {
+namespace OpMon::View {
 
-        /**
+    /**
          * MainMenu's view (displayed when the game starts).
          */
-        class MainMenu : public I18n::ATranslatable {
+    class MainMenu : public I18n::ATranslatable {
 
-          public:
-            MainMenu(Model::MainMenuData &data, const std::size_t totalView = 4);
-            ~MainMenu() override = default;
+      public:
+        explicit MainMenu(Model::MainMenuData &data, std::size_t totalView = 4);
+        ~MainMenu() override = default;
 
-            void initStrings();
-            void onLangChanged() override;
+        void initStrings();
+        void onLangChanged() override;
 
-            void pause();
-            void play();
+        static void pause();
+        void play();
 
-            void draw(sf::RenderTexture &frame, int curPosI);
+        void draw(sf::RenderTexture &frame, int curPosI);
 
-          private:
-            Model::MainMenuData &data;
-            const std::size_t totalView;
-            sf::Sprite bg;
+      private:
+        Model::MainMenuData &data;
+        const std::size_t totalView;
+        sf::Sprite bg;
 
-            struct OptionMenu {
-                sf::Text text;
-                sf::Vector2f pos;
-            };
-            std::vector<OptionMenu> optionsVec;
-            sf::Sprite cursor;
-
+        struct OptionMenu {
+            sf::Text text;
+            sf::Vector2f pos;
         };
-    } // namespace View
-} // namespace OpMon
+        std::vector<OptionMenu> optionsVec;
+        sf::Sprite cursor;
+    };
+} // namespace OpMon::View
 
 #endif // MAINMENU_HPP

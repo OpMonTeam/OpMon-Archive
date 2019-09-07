@@ -11,25 +11,23 @@ File under GNU GPL v3.0 license
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 
-namespace OpMon {
-    namespace View {
-        class Window {
-          private:
-            sf::RenderWindow window;
-            sf::RenderTexture frame;
-            sf::Sprite sprite;
-            bool fullScreen = false;
+namespace OpMon::View {
+    class Window {
+      private:
+        sf::RenderWindow window;
+        sf::RenderTexture frame;
+        sf::Sprite sprite;
+        bool fullScreen = false;
 
-          public:
-            sf::RenderTexture &getFrame() { return frame; }
-            sf::RenderWindow &getWindow() { return window; }
-            void close();
-            void open();
-            void refresh();
-            void reboot();
-            void updateView();
-        };
-    } // namespace View
-} // namespace OpMon
+      public:
+        sf::RenderTexture &getFrame() { return frame; }
+        sf::RenderWindow &getWindow() { return window; }
+        void close();
+        void open();
+        void refresh();
+        void reboot();
+        void updateView();
+    };
+} // namespace OpMon::View
 
 #endif

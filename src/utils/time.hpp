@@ -5,32 +5,27 @@ File under GNU GPL v3.0
 */
 #pragma once
 
-namespace Utils {
-    /**
-   * Utilities for everything time-related.
-   */
-    namespace Time {
+namespace Utils::Time {
 
-        /**
+    /**
 	 * Set (or reset) the reference clock to zero.
 	 */
-        void initClock();
+    void initClock();
 
-        /**
+    /**
 	 * Return the number of elapsed milliseconds since the beginning of the program
 	 */
-        int getElapsedMilliseconds();
+    int getElapsedMilliseconds();
 
-        /**
+    /**
          * Return the number of elapsed seconds since the beginning of the program
          */
-        float getElapsedSeconds();
+    float getElapsedSeconds();
 
-        /**
+    /**
 	 * Sleep for determined duration.
 	 * @param duration - time to wait, in milliseconds
 	 */
-        void wait(int duration);
+    void wait(int duration);
 
-    } // namespace Time
-} // namespace Utils
+} // namespace Utils::Time

@@ -18,37 +18,35 @@ static std::ostream *rerrLog = nullptr;
 /* location of the log folder */
 #define LOG_PATH Path::getLogPath()
 
-namespace Utils {
-    namespace Log {
+namespace Utils::Log {
 
-        void init() {
-            if(rlog != nullptr)
-                return; // Log already initialized
+    void init() {
+        if(rlog != nullptr)
+            return; // Log already initialized
 
-            Fs::mkdir(LOG_PATH);
+        Fs::mkdir(LOG_PATH);
 
-            rlog = new std::ofstream(std::string(LOG_PATH + "log.txt"));
-            rerrLog = new std::ofstream(std::string(LOG_PATH + "errLog.txt"));
+        rlog = new std::ofstream(std::string(LOG_PATH + "log.txt"));
+        rerrLog = new std::ofstream(std::string(LOG_PATH + "errLog.txt"));
 
-            if(!*rlog) {
-                rlog = &std::cout;
-                std::cerr << "Unable to open the log." << std::endl;
-            }
-            if(!*rerrLog) {
-                rerrLog = &std::cerr;
-                std::cerr << "Unable to open the error log" << std::endl;
-            }
+        if(!*rlog) {
+            rlog = &std::cout;
+            std::cerr << "Unable to open the log." << std::endl;
         }
-
-        void oplog(const std::string &toSay, bool error) {
-            init();
-            std::ostream *logStream = error ? rerrLog : rlog;
-            *logStream << "[T = " << Time::getElapsedMilliseconds() << "] - " << toSay << std::endl;
+        if(!*rerrLog) {
+            rerrLog = &std::cerr;
+            std::cerr << "Unable to open the error log" << std::endl;
         }
+    }
 
-        void warn(const std::string &toSay) {
-            oplog("[WARN] " + toSay);
-        }
+    void oplog(const std::string &toSay, bool error) {
+        init();
+        std::ostream *logStream = error ? rerrLog : rlog;
+        *logStream << "[T = " << Time::getElapsedMilliseconds() << "] - " << toSay << std::endl;
+    }
 
-    } // namespace Log
-} // namespace Utils
+    void warn(const std::string &toSay) {
+        oplog("[WARN] " + toSay);
+    }
+
+} // namespace Utils::Log

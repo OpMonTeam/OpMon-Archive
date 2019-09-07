@@ -6,8 +6,7 @@
 #include "StartSceneData.hpp"
 #include "ResourceLoader.hpp"
 
-namespace OpMon {
-    namespace Model {
+namespace OpMon::Model {
 
         StartSceneData::StartSceneData(UiData *data)
           : uidata(data)
@@ -21,5 +20,4 @@ namespace OpMon {
             player->getPosition().setDir(Side::TO_UP);
         }
 
-    } // namespace Model
-} // namespace OpMon
+    } // namespace OpMon

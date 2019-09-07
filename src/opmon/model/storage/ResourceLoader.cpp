@@ -6,8 +6,7 @@
 #include "ResourceLoader.hpp"
 #include "../../../utils/path.hpp"
 
-namespace OpMon {
-    namespace Model {
+namespace OpMon::Model {
 
         const std::string &ResourceLoader::getResourcePath() {
             static const std::string &path = Utils::Path::getResourcePath();
@@ -58,5 +57,4 @@ namespace OpMon {
             }
         }
 
-    } // namespace Model
-} // namespace OpMon
+    } // namespace OpMon

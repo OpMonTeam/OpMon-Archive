@@ -17,40 +17,39 @@ namespace Utils {
    */
     class OpString {
       private:
-	/**
+        /**
 	 * The StringKey key to get the string.
 	 */
         std::string key;
-	/**
+        /**
 	 * The vecteur of objects to insert in the string. It's a pointer because it allows the value to change later.
 	 */
         std::vector<sf::String *> objects;
 
       public:
-	
-        OpString(std::string const &key, std::vector<sf::String *> obj = {});
+        explicit OpString(std::string const &key, std::vector<sf::String *> obj = {});
         OpString();
 
-	/**
+        /**
 	 * Return the object at the given index.
 	 * @param index
 	 */
-        const sf::String &getObject(int index) const {
+        [[nodiscard]] const sf::String &getObject(int index) const {
             return *(objects[index]);
         }
-	/**
+        /**
 	 * Return the key giving the string in StringKeys
 	 */
-        const std::string &getKey() const {
+        [[nodiscard]] const std::string &getKey() const {
             return key;
         }
-	/**
+        /**
 	 * Return the completed key.
 	 */
-        sf::String getString() const;
+        [[nodiscard]] sf::String getString() const;
         /* A empty OpString */
 
-	/**
+        /**
 	 * An empty OpString
 	 */
         static OpString voidStr;
@@ -58,7 +57,7 @@ namespace Utils {
         /** Create an OpString and returns the result of getString. Quick version to have a string because it uses std::string instead of sf::String pointers. 
 	 * @param key
 	 * @param vstr The competions*/
-        static sf::String quickString(std::string const &key, std::vector<std::string> vstr = {});
+        static sf::String quickString(std::string const &key, const std::vector<std::string> &vstr = {});
     };
 
 } // namespace Utils

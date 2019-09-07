@@ -16,8 +16,7 @@ File under GNU GPL v3.0 license
 #include <string>
 #include <vector>
 
-namespace OpMon {
-    namespace Model {
+namespace OpMon::Model {
 
         class Event;
 
@@ -50,59 +49,58 @@ namespace OpMon {
             bool loaded = false;
 
           public:
-            Map(std::vector<int> const &layer1, std::vector<int> const &layer2, std::vector<int> const &layer3, int w, int h, bool indoor, std::string const &bg, std::vector<std::string> const &animatedElements = std::vector<std::string>());
-            Map(nlohmann::json jsonData);
+            Map(std::vector<int> const &layer1, std::vector<int> const &layer2, std::vector<int> const &layer3, int w, int h, bool indoor, std::string bg, std::vector<std::string> animatedElements = std::vector<std::string>());
+            explicit Map(nlohmann::json jsonData);
             ~Map();
-            int getH() const {
+            [[nodiscard]] int getH() const {
                 return h;
             }
-            int getW() const {
+            [[nodiscard]] int getW() const {
                 return w;
             }
-            bool isIndoor() const {
+            [[nodiscard]] bool isIndoor() const {
                 return indoor;
             }
-            bool isLoaded() const {
+            [[nodiscard]] bool isLoaded() const {
                 return loaded;
             }
-            sf::Vector2i getDimensions() const {
+            [[nodiscard]] sf::Vector2i getDimensions() const {
                 return sf::Vector2i(w, h);
             }
-            const int *getLayer1() const {
+            [[nodiscard]] const int *getLayer1() const {
                 return layer1;
             }
-            const int *getLayer2() const {
+            [[nodiscard]] const int *getLayer2() const {
                 return layer2;
             }
-            const int *getLayer3() const {
+            [[nodiscard]] const int *getLayer3() const {
                 return layer3;
             }
-            std::string getBg() const {
+            [[nodiscard]] std::string getBg() const {
                 return bg;
             }
-            const std::vector<std::string> &getAnimatedElements() const {
+            [[nodiscard]] const std::vector<std::string> &getAnimatedElements() const {
                 return animatedElements;
             }
             void addEvent(Event *event) {
                 events.push_back(event);
             }
-            std::vector<Event *> getEvent(sf::Vector2i position) const;
+            [[nodiscard]] std::vector<Event *> getEvent(sf::Vector2i position) const;
             std::vector<Event *> &getEvents() {
                 return events;
             }
-            void updateElements(sf::RenderTexture &frame);
+            void updateElements(sf::RenderTexture &frame); // TODO
 
-            int getCurrentTileCode(sf::Vector2i const &pos, int layer) const;
+            [[nodiscard]] int getCurrentTileCode(sf::Vector2i const &pos, int layer) const;
 
-            int getTileCollision(int tile) const;
+            [[nodiscard]] int getTileCollision(int tile) const;
 
-            int getCollision(sf::Vector2i const &pos) const;
+            [[nodiscard]] int getCollision(sf::Vector2i const &pos) const;
 
             Map *loadMap(OverworldData &data);
 
             std::string toDebugString();
         };
-    } // namespace Model
-} // namespace OpMon
+    } // namespace OpMon
 
 #endif // MAP_HPP

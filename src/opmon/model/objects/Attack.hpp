@@ -16,138 +16,136 @@ File under GNU GPL v3.0 license
 #include <iostream>
 #include <queue>
 
-namespace OpMon {
-    namespace Model {
+namespace OpMon::Model {
 
-        class OpMon;
+    class OpMon;
 
-        class AttackEffect {
-          public:
-            virtual int apply(Attack & /*attack*/, OpMon & /*attacker*/, OpMon & /*defender*/, std::queue<TurnAction> & /* turnQueue */) { return 0; }
-            virtual ~AttackEffect() {}
-        };
+    class AttackEffect {
+      public:
+        virtual int apply(Attack & /*attack*/, OpMon & /*attacker*/, OpMon & /*defender*/, std::queue<TurnAction> & /* turnQueue */) { return 0; }
+        virtual ~AttackEffect() = default;
+    };
 
-        struct AttackData {
-            std::string nameKey;
-            int power;
-            Type type;
-            int accuracy;
-            bool special;
-            bool status;
-            int criticalRate;
-            bool neverFails;
-            int ppMax;
-            int priority;
-            AttackEffect *preEffect = nullptr;
-            AttackEffect *postEffect = nullptr;
-            AttackEffect *ifFails = nullptr;
-            std::vector<TurnActionType> animationOrder;
-            std::queue<View::Transformation> opAnimsAtk;
-            std::queue<View::Transformation> opAnimsDef;
-            std::queue<std::string> animations;
-        };
+    struct AttackData {
+        std::string nameKey;
+        int power;
+        Type type;
+        int accuracy;
+        bool special;
+        bool status;
+        int criticalRate;
+        bool neverFails;
+        int ppMax;
+        int priority;
+        AttackEffect *preEffect = nullptr;
+        AttackEffect *postEffect = nullptr;
+        AttackEffect *ifFails = nullptr;
+        std::vector<TurnActionType> animationOrder;
+        std::queue<View::Transformation> opAnimsAtk;
+        std::queue<View::Transformation> opAnimsDef;
+        std::queue<std::string> animations;
+    };
 
-        typedef struct AttackData AttackData;
+    typedef struct AttackData AttackData;
 
-        class Attack {
-          public:
-            virtual ~Attack();
-            Attack(std::string nameKey, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::vector<TurnActionType> animationOrder, std::queue<View::Transformation> opAnimsAtk, std::queue<View::Transformation> opAnimsDef, std::queue<std::string> animations, AttackEffect *preEffect = nullptr, AttackEffect *postEffect = nullptr, AttackEffect *fails = nullptr);
+    class Attack {
+      public:
+        virtual ~Attack();
+        Attack(const std::string &nameKey, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::vector<TurnActionType> animationOrder, std::queue<View::Transformation> opAnimsAtk, std::queue<View::Transformation> opAnimsDef, std::queue<std::string> animations, AttackEffect *preEffect = nullptr, AttackEffect *postEffect = nullptr, AttackEffect *fails = nullptr);
 
-            Attack(AttackData const &data);
+        explicit Attack(AttackData const &data);
 
-            static Attack *newAtk(std::string name);
-            static void initAttacks(std::string file);
+        static Attack *newAtk(const std::string &name);
+        static void initAttacks(const std::string &file);
 
-            void healPP() {
-                pp = ppMax;
-            }
+        void healPP() {
+            pp = ppMax;
+        }
 
-            Type getType() {
-                return type;
-            }
+        Type getType() {
+            return type;
+        }
 
-            int getPP() {
-                return pp;
-            }
+        int getPP() {
+            return pp;
+        }
 
-            int getPPMax() {
-                return ppMax;
-            }
+        int getPPMax() {
+            return ppMax;
+        }
 
-            //"atk" attacks the "def" OpMon
-            int attack(OpMon &atk, OpMon &def, std::queue<TurnAction> &turnQueue, bool attacker);
+        //"atk" attacks the "def" OpMon
+        int attack(OpMon &atk, OpMon &def, std::queue<TurnAction> &turnQueue, bool attacker);
 
-            std::string save();
+        std::string save();
 
-            void setPP(int PP) {
-                this->pp = PP;
-            }
+        void setPP(int PP) {
+            this->pp = PP;
+        }
 
-            void setPPMax(int PPMax) {
-                this->ppMax = PPMax;
-            }
+        void setPPMax(int PPMax) {
+            this->ppMax = PPMax;
+        }
 
-            int getPriority() {
-                return this->priority;
-            }
+        int getPriority() {
+            return this->priority;
+        }
 
-            sf::String getName() {
-                return name;
-            }
+        sf::String getName() {
+            return name;
+        }
 
-            std::queue<View::Transformation> getOpAnimsAtk() const {
-                return opAnimsAtk;
-            }
+        [[nodiscard]] std::queue<View::Transformation> getOpAnimsAtk() const {
+            return opAnimsAtk;
+        }
 
-            std::queue<View::Transformation> getOpAnimsDef() const {
-                return opAnimsDef;
-            }
+        [[nodiscard]] std::queue<View::Transformation> getOpAnimsDef() const {
+            return opAnimsDef;
+        }
 
-            std::queue<std::string> getAnimations() const {
-                return animations;
-            }
+        [[nodiscard]] std::queue<std::string> getAnimations() const {
+            return animations;
+        }
 
-            // methods used by pre and post Effects
-            void setPower(int power) { this->power = power; }
-            int getAccuracy() { return this->accuracy; }
-            void setAccuracy(int accuracy) { this->accuracy = accuracy; }
-            int getPart() { return part; }
-            void setPart(int part) { this->part = part; }
-            int getHpLost() { return this->hpLost; }
+        // methods used by pre and post Effects
+        void setPower(int power) { this->power = power; }
+        int getAccuracy() { return this->accuracy; }
+        void setAccuracy(int accuracy) { this->accuracy = accuracy; }
+        int getPart() { return part; }
+        void setPart(int part) { this->part = part; }
+        int getHpLost() { return this->hpLost; }
 
-          protected:
-            Utils::OpString nameKey;
-            sf::String name;
-            int power;
-            int priority;
-            int accuracy;
-            Type type;
-            bool special;
-            bool status;
-            int part = 0;
-            int pp;
-            int ppMax;
-            /** The critical hit rate is 1/criticalRate */
-            int criticalRate;
-            bool neverFails;
+      protected:
+        Utils::OpString nameKey;
+        sf::String name;
+        int power;
+        int priority;
+        int accuracy;
+        Type type;
+        bool special;
+        bool status;
+        int part = 0;
+        int pp;
+        int ppMax;
+        /** The critical hit rate is 1/criticalRate */
+        int criticalRate;
+        bool neverFails;
 
-            AttackEffect *preEffect;
-            AttackEffect *postEffect;
-            AttackEffect *failEffect;
-            /**Variables used in preEffect and postEffect*/
-            int hpLost = 0;
+        AttackEffect *preEffect;
+        AttackEffect *postEffect;
+        AttackEffect *failEffect;
+        /**Variables used in preEffect and postEffect*/
+        int hpLost = 0;
 
-            const std::vector<TurnActionType> animationOrder;
-            const std::queue<View::Transformation> opAnimsAtk;
-            const std::queue<View::Transformation> opAnimsDef;
-            const std::queue<std::string> animations;
+        const std::vector<TurnActionType> animationOrder;
+        const std::queue<View::Transformation> opAnimsAtk;
+        const std::queue<View::Transformation> opAnimsDef;
+        const std::queue<std::string> animations;
 
-            static std::map<std::string, AttackData> attackList;
+        static std::map<std::string, AttackData> attackList;
 
-            std::queue<View::Transformation> generateDefAnims(std::queue<View::Transformation> opAnims);
-        };
+        static std::queue<View::Transformation> generateDefAnims(std::queue<View::Transformation> opAnims);
+    };
 
-    } // namespace Model
-} // namespace OpMon
+} // namespace OpMon::Model
 #endif /* SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUE_HPP_ */

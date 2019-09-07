@@ -28,7 +28,7 @@ namespace OpMon {
          * Returns GameStatus::STOP if escape is pressed or if the game is closed.
          * Returns GameStatus::CONTINUE if the game must continue.
          */
-        GameStatus _checkQuit(const sf::Event &event);
+        static GameStatus _checkQuit(const sf::Event &event);
 
         /**
          * Checks the event for window resize, and updates the window view if it's the case.

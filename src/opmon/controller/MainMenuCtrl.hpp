@@ -14,27 +14,25 @@ File under GNU GPL v3.0
 #include "AGameScreen.hpp"
 #include "MenuHelper.hpp"
 
-namespace OpMon {
-    namespace Controller {
-        class MainMenuCtrl : public AGameScreen {
-          private:
-            Model::MainMenuData data;
-            View::MainMenu view;
+namespace OpMon::Controller {
+    class MainMenuCtrl : public AGameScreen {
+      private:
+        Model::MainMenuData data;
+        View::MainMenu view;
 
-            int loadNext = 0;
-            int curPosI{0};
+        int loadNext = 0;
+        int curPosI{0};
 
-          public:
-            MainMenuCtrl(Model::UiData *data);
+      public:
+        explicit MainMenuCtrl(Model::UiData *data);
 
-            GameStatus checkEvent(sf::Event const &event) override;
-            GameStatus update(sf::RenderTexture &frame) override;
+        GameStatus checkEvent(sf::Event const &event) override;
+        GameStatus update(sf::RenderTexture &frame) override;
 
-            void loadNextScreen() override;
+        void loadNextScreen() override;
 
-            void suspend() override;
-            void resume() override;
-        };
+        void suspend() override;
+        void resume() override;
+    };
 
-    } // namespace Controller
-} // namespace OpMon
+} // namespace OpMon::Controller

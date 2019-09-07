@@ -6,17 +6,14 @@ File under GNU GPL v3.0 license
 */
 #include "Events.hpp"
 
+
 #include "../../../utils/defines.hpp"
 #include "../../../utils/log.hpp"
 #include "../../start/Core.hpp"
 #include "../../view/Overworld.hpp"
 #include "Position.hpp"
 
-#pragma GCC diagnostic ignored "-Wunused-parameter"
-#pragma GCC diagnostic ignored "-Wreorder"
-
-namespace OpMon {
-    namespace Model {
+namespace OpMon::Model {
 
         using namespace Events;
 
@@ -49,15 +46,15 @@ namespace OpMon {
             }
 
             TPEvent::TPEvent(std::vector<sf::Texture> &otherTextures, EventTrigger eventTrigger,
-                             sf::Vector2f const &position, sf::Vector2i const &tpPos, std::string const &map, Side ppDir,
+                             sf::Vector2f const &position, sf::Vector2i const &tpPos, std::string map, Side ppDir,
                              int sides, bool passable)
               : Event(otherTextures, eventTrigger, position, sides, passable)
               , tpCoord(tpPos)
-              , map(map)
+              , map(std::move(map))
               , ppDir(ppDir) {
             }
 
-            DoorEvent::DoorEvent(std::vector<sf::Texture> &doorTextures, std::string doorType, sf::Vector2f const &position, sf::Vector2i const &tpPos,
+            DoorEvent::DoorEvent(std::vector<sf::Texture> &doorTextures, const std::string& doorType, sf::Vector2f const &position, sf::Vector2i const &tpPos,
                                  std::string const &map, EventTrigger eventTrigger, Side ppDir, int sides, bool passable)
               : Event(doorTextures, eventTrigger, position, sides, passable)
               , TPEvent(doorTextures, eventTrigger, position, tpPos, map, ppDir, sides, passable)
@@ -73,10 +70,10 @@ namespace OpMon {
             }
 
             TalkingEvent::TalkingEvent(std::vector<sf::Texture> &otherTextures, sf::Vector2f const &position,
-                                       Utils::OpString const &dialogKey, int sides, EventTrigger eventTrigger,
+                                       Utils::OpString dialogKey, int sides, EventTrigger eventTrigger,
                                        bool passable)
               : Event(otherTextures, eventTrigger, position, sides, passable)
-              , dialogKey(dialogKey) {
+              , dialogKey(std::move(dialogKey)) {
                 this->onLangChanged();
             }
 
@@ -88,7 +85,7 @@ namespace OpMon {
             LockedDoorEvent::LockedDoorEvent(std::vector<sf::Texture> &doorTextures, std::string doorType, Item *needed, sf::Vector2f const &position,
                                              sf::Vector2i const &tpPos, std::string const &map, Side ppDir,
                                              EventTrigger eventTrigger, bool consumeItem, int sides, bool passable)
-              : DoorEvent(doorTextures, doorType, position, tpPos, map, eventTrigger, ppDir, sides, passable)
+              : DoorEvent(doorTextures, std::move(doorType), position, tpPos, map, eventTrigger, ppDir, sides, passable)
               , Event(doorTextures, eventTrigger, position, sides, passable)
               , TalkingEvent(doorTextures, position, LockedDoorEvent::keysLock, sides, eventTrigger, passable)
               , needed(needed)
@@ -103,7 +100,7 @@ namespace OpMon {
                 sprite->setScale(2, 2);
                 sprite->setOrigin(16, 16);
                 this->position += sf::Vector2f(16, 0);
-                setPredefinedMove(predefinedPath);
+                setPredefinedMove(std::move(predefinedPath));
                 mapPos.setDir(posDir);
             }
 
@@ -112,15 +109,15 @@ namespace OpMon {
                                                  MoveStyle moveStyle, std::vector<Side> predefinedPath, bool passable,
                                                  int sides)
               : Event(textures, eventTrigger, position, sides, passable)
-              , CharacterEvent(textures, position, posDir, moveStyle, eventTrigger, predefinedPath, passable, sides)
+              , CharacterEvent(textures, position, posDir, moveStyle, eventTrigger, std::move(predefinedPath), passable, sides)
               , TalkingEvent(textures, position, dialogKey, sides, eventTrigger, passable) {
             }
 
-            TrainerEvent::TrainerEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, OpTeam *team, Utils::OpString const &dialogKeys, Utils::OpString const &defeatedDialog, Side posDir, EventTrigger eventTrigger, MoveStyle moveStyle, std::vector<Side> predefinedPath, bool passable, int side)
+            TrainerEvent::TrainerEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, OpTeam *team, Utils::OpString const &dialogKeys, Utils::OpString defeatedDialog, Side posDir, EventTrigger eventTrigger, MoveStyle moveStyle, std::vector<Side> predefinedPath, bool passable, int side)
               : Event(textures, eventTrigger, position, side, passable)
-              , TalkingCharaEvent(textures, position, dialogKeys, posDir, eventTrigger, moveStyle, predefinedPath, passable, side)
+              , TalkingCharaEvent(textures, position, dialogKeys, posDir, eventTrigger, moveStyle, std::move(predefinedPath), passable, side)
               , team(team)
-              , defeatedDialog(defeatedDialog) {
+              , defeatedDialog(std::move(defeatedDialog)) {
             }
 
             TrainerEvent::~TrainerEvent() {
@@ -177,7 +174,7 @@ namespace OpMon {
             }
 
             void TalkingEvent::changeDialog(Utils::OpString newDialog) {
-                dialogKey = newDialog;
+                dialogKey = std::move(newDialog);
                 this->onLangChanged();
             }
 
@@ -321,7 +318,7 @@ namespace OpMon {
             }
 
             void CharacterEvent::setPredefinedMove(std::vector<Side> moves) {
-                this->movements = moves;
+                this->movements = std::move(moves);
             }
 
             void LockedDoorEvent::action(Model::Player &player, View::Overworld &overworld) {
@@ -359,6 +356,4 @@ namespace OpMon {
 
         } // namespace Events
 
-    } // namespace Model
-} // namespace OpMon
-#pragma GCC diagnostic pop
+    } // namespace OpMon

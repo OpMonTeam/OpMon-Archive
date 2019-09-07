@@ -15,8 +15,7 @@
 #include <string>
 #include <vector>
 
-namespace OpMon {
-    namespace Model {
+namespace OpMon::Model {
 
         class OverworldData {
           private:
@@ -106,5 +105,4 @@ namespace OpMon {
             ~OverworldData();
         };
 
-    } // namespace Model
-} // namespace OpMon
+    } // namespace OpMon

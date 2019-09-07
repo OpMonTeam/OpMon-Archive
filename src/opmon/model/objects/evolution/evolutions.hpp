@@ -9,36 +9,34 @@ File under GNU GPL v3.0 license
 #include "../Item.hpp"
 #include "Evolution.hpp"
 #include <iostream>
-#pragma GCC diagnostic ignored "-Wunused-parameter"
-namespace OpMon {
-    namespace Model {
 
-        /**
+namespace OpMon::Model {
+
+    /**
 	   Namespace containing evolution definitions
 	*/
-        namespace Evolutions {
+    namespace Evolutions {
 
-            class E_Item : public Evolution {
-              public:
-                E_Item(int evo, std::string const &itemID);
-                bool checkEvolve(OpMon const &toCheck) const;
+        class E_Item : public Evolution {
+          public:
+            E_Item(int evo, std::string itemID);
+            [[nodiscard]] bool checkEvolve(OpMon const &toCheck) const override;
 
-              protected:
-                const std::string itemID;
-            };
+          protected:
+            const std::string itemID;
+        };
 
-            class E_Level : public Evolution {
-              public:
-                E_Level(int evo, int level);
-                bool checkEvolve(OpMon const &toCheck) const;
+        class E_Level : public Evolution {
+          public:
+            E_Level(int evo, int level);
+            [[nodiscard]] bool checkEvolve(OpMon const &toCheck) const override;
 
-              private:
-                int level;
-            };
-        } // namespace Evolutions
+          private:
+            int level;
+        };
+    } // namespace Evolutions
 
-        using namespace Evolutions;
-    } // namespace Model
-} // namespace OpMon
-#pragma GCC diagnostic pop
+    using namespace Evolutions;
+} // namespace OpMon::Model
+
 #endif // EVOLUTIONS_HPP_INCLUDED

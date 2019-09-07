@@ -95,7 +95,7 @@ namespace OpMon {
             bool dialogOver = true;
 
           public:
-            Battle(const Model::OpTeam *atkTeam, const Model::OpTeam *defTeam, std::string trainerClass, std::string background, Model::BattleData &data);
+            Battle(const Model::OpTeam *atkTeam, const Model::OpTeam *defTeam, const std::string& trainerClass, const std::string& background, Model::BattleData &data);
 
             GameStatus operator()(sf::RenderTexture &frame, Model::TurnData const &atk, Model::TurnData const &def, std::queue<Model::TurnAction> &actionQueue, bool *turnActivated, bool atkFirst);
             //Moves the cursor

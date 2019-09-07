@@ -4,17 +4,12 @@
   File under GNU GPL v3.0 license
 */
 #include "OverworldData.hpp"
-#include "../../../nlohmann/json.hpp"
-#include "../../../utils/OpString.hpp"
 #include "../../../utils/log.hpp"
 #include "../../../utils/path.hpp"
 #include "../objects/Attacks.hpp"
 #include "InternalFiles.hpp"
-#include "ResourceLoader.hpp"
-#include <fstream>
 
-namespace OpMon {
-    namespace Model {
+namespace OpMon::Model {
 
         OverworldData::OverworldData(UiData *uidata, Player *player)
           : uidata(uidata)
@@ -82,17 +77,27 @@ namespace OpMon {
 
             itemsJsonFile >> itemsJson;
 
-            for(auto itor = itemsJson.begin(); itor != itemsJson.end(); ++itor) {
+            for(auto & itor : itemsJson) {
                 std::vector<std::unique_ptr<ItemEffect>> effects; //0 is opmon, 1 is player, 2 is held
-                for(auto eitor = itor->at("effects").begin(); eitor != itor->at("effects").end(); ++eitor) {
+                for(auto eitor = itor.at("effects").begin(); eitor != itor.at("effects").end(); ++eitor) {
                     if(eitor->at("type") == "HpHealEffect") {
                         effects.push_back(std::make_unique<Items::HpHealEffect>(eitor->at("healed")));
                     } else {
                         effects.push_back(nullptr);
                     }
                 }
-                std::string itemId = itor->at("id");
-                itemsList.emplace(itemId, std::make_unique<Item>(Utils::OpString("items." + itemId + ".name"), itor->at("usable"), itor->at("onOpMon"), std::move(effects[0]), std::move(effects[1]), std::move(effects[2])));
+                std::string itemId = itor.at("id");
+                itemsList.emplace(
+                  itemId,
+                  std::make_unique<Item>(
+                    Utils::OpString("items." + itemId + ".name"),
+                    itor.at("usable"),
+                    itor.at("onOpMon"),
+                    std::move(effects[0]),
+                    std::move(effects[1]),
+                    std::move(effects[2])
+                  )
+                );
             }
 
             //Maps initialisation
@@ -112,9 +117,9 @@ namespace OpMon {
             trainersJsonFile >> trainersJson;
 
             /* Trainers loading */
-            for(auto itor = trainersJson.begin(); itor != trainersJson.end(); ++itor) {
-                OpTeam *team = new Model::OpTeam(itor->at("name"));
-                for(auto opmonItor = itor->at("team").begin(); opmonItor != itor->at("team").end(); ++opmonItor) {
+            for(auto & itor : trainersJson) {
+                auto *team = new Model::OpTeam(itor.at("name"));
+                for(auto opmonItor = itor.at("team").begin(); opmonItor != itor.at("team").end(); ++opmonItor) {
                     team->addOpMon(new OpMon(opmonItor->at("nickname"),
                                              uidata->getOp(opmonItor->at("species")),
                                              opmonItor->at("level"),
@@ -124,16 +129,16 @@ namespace OpMon {
                                               Model::Attack::newAtk(opmonItor->at("attacks")[3])},
                                              opmonItor->at("nature")));
                 }
-                trainers.emplace(itor->at("name"), team);
-                std::string strName = itor->at("name");
+                trainers.emplace(itor.at("name"), team);
+                std::string strName = itor.at("name");
                 Utils::Log::oplog("Loaded trainer " + strName);
             }
 
             completions.emplace("playername", player->getNameP());
 
             /* Maps loading */
-            for(auto itor = mapsJson.begin(); itor != mapsJson.end(); ++itor) {
-                maps.emplace(itor->at("id"), new Map(*itor));
+            for(auto & itor : mapsJson) {
+                maps.emplace(itor.at("id"), new Map(itor));
             }
 
             mapsItor = maps.begin();
@@ -159,5 +164,4 @@ namespace OpMon {
             return getMap(player->getMapId());
         }
 
-    } // namespace Model
-} // namespace OpMon
+    } // namespace OpMon

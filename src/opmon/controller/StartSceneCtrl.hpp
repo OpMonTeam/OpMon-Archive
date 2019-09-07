@@ -14,31 +14,29 @@ File under GNU GPL v3.0 license
 #include <SFML/Window.hpp>
 #include <memory>
 
-namespace OpMon {
-    namespace Controller {
+namespace OpMon::Controller {
 
-        class StartSceneCtrl : public AGameScreen {
-          protected:
-            Model::StartSceneData data;
+    class StartSceneCtrl : public AGameScreen {
+      protected:
+        Model::StartSceneData data;
 
-            View::StartScene view;
-            bool animNext = false;
+        View::StartScene view;
+        bool animNext = false;
 
-            int loadNext = 0;
+        int loadNext = 0;
 
-            sf::Texture screenTexture;
+        sf::Texture screenTexture;
 
-          public:
-            StartSceneCtrl(Model::UiData *data);
-            GameStatus checkEvent(sf::Event const &event) override;
-            GameStatus update(sf::RenderTexture &frame) override;
+      public:
+        explicit StartSceneCtrl(Model::UiData *data);
+        GameStatus checkEvent(sf::Event const &event) override;
+        GameStatus update(sf::RenderTexture &frame) override;
 
-            void loadNextScreen() override;
-            void suspend() override;
-            void resume() override;
-        };
+        void loadNextScreen() override;
+        void suspend() override;
+        void resume() override;
+    };
 
-    } // namespace Controller
-} // namespace OpMon
+} // namespace OpMon::Controller
 
 #endif

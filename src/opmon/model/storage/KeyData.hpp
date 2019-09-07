@@ -9,14 +9,12 @@
 #include <string>
 #include <unordered_map>
 
-namespace OpMon {
-    namespace Model {
+namespace OpMon::Model {
 
-        struct KeyData {
-            static const std::string &findNameKeyCode(sf::Keyboard::Key searchKeyCode);
+    struct KeyData {
+        static const std::string &findNameKeyCode(sf::Keyboard::Key searchKeyCode);
 
-            //Loading controls compile time
-            static const std::unordered_map<std::string, sf::Keyboard::Key> keysMap;
-        };
-    } // namespace Model
-} // namespace OpMon
+        //Loading controls compile time
+        static const std::unordered_map<std::string, sf::Keyboard::Key> keysMap;
+    };
+} // namespace OpMon::Model

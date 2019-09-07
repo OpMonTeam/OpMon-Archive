@@ -11,31 +11,29 @@ File under GNU GPL v3.0 license
 
 //TODO : Enhance the evolution system
 
-namespace OpMon {
-    namespace Model {
+namespace OpMon::Model {
 
-        class Species;
-        /**
+    class Species;
+    /**
 		Defines an evolution type
 		*/
-        class Evolution {
-          public:
-            virtual ~Evolution() {}
-            Evolution() {
-                evo = -1;
-            }
-            Evolution(int evo);
-            /**Checks if the OpMon evolves.*/
-            virtual bool checkEvolve(OpMon const &toCheck) const = 0;
-            Species *getEvolution() const;
-            /**Gets the Species pointer to the evolution. Can't be done in the constructor, since the evolution might not be defined yet.*/
-            void checkEvo();
+    class Evolution {
+      public:
+        virtual ~Evolution() = default;
+        Evolution() {
+            evo = -1;
+        }
+        explicit Evolution(int evo);
+        /**Checks if the OpMon evolves.*/
+        [[nodiscard]] virtual bool checkEvolve(OpMon const &toCheck) const = 0;
+        [[nodiscard]] Species *getEvolution() const;
+        /**Gets the Species pointer to the evolution. Can't be done in the constructor, since the evolution might not be defined yet.*/
+        void checkEvo(); // TODO
 
-          protected:
-            Species *toEvolve;
-            int evo;
-        };
+      protected:
+        Species *toEvolve;
+        int evo;
+    };
 
-    } // namespace Model
-} // namespace OpMon
+} // namespace OpMon::Model
 #endif /* EVOLUTION_HPP */

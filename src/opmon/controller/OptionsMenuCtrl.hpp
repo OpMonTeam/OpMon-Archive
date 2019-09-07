@@ -19,30 +19,28 @@ File under GNU GPL v3.0 license
 #include "../view/OptionsMenu.hpp"
 #include "AGameScreen.hpp"
 
-namespace OpMon {
-    namespace Controller {
+namespace OpMon::Controller {
 
-        class OptionsMenuCtrl : public AGameScreen {
-          private:
-            Model::OptionsMenuData data;
+    class OptionsMenuCtrl : public AGameScreen {
+      private:
+        Model::OptionsMenuData data;
 
-            View::OptionsMenu view;
-            void toggleVolume();
-            void raiseVolume();
-            void lowerVolume();
+        View::OptionsMenu view;
+        void toggleVolume();
+        void raiseVolume();
+        void lowerVolume();
 
-            std::size_t currentKeyChange{0};
-            bool keyChangeActive{false};
+        std::size_t currentKeyChange{0};
+        bool keyChangeActive{false};
 
-          public:
-            OptionsMenuCtrl(Model::UiData *data);
-            GameStatus checkEvent(sf::Event const &event) override;
-            GameStatus update(sf::RenderTexture &frame) override;
+      public:
+        explicit OptionsMenuCtrl(Model::UiData *data);
+        GameStatus checkEvent(sf::Event const &event) override;
+        GameStatus update(sf::RenderTexture &frame) override;
 
-            const std::vector<std::string> controlsName{{"up", "down", "left", "right", "talk", "interact"}};
-            void resume();
-            void suspend();
-        };
+        const std::vector<std::string> controlsName{{"up", "down", "left", "right", "talk", "interact"}};
+        void resume() override;
+        void suspend() override;
+    };
 
-    } // namespace Controller
-} // namespace OpMon
+} // namespace OpMon::Controller

@@ -35,8 +35,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 //#define DEBUG
 
-namespace OpMon {
-    namespace Main {
+namespace OpMon::Main {
 
         std::string version = OPMON_VERSION;
 
@@ -49,7 +48,7 @@ namespace OpMon {
             oplog("Log opening OK. Welcome in OpMon Lazuli.");
             oplog("Version : Alpha " + version + ((pre == "0") ? "" : ("-pre_" + pre)));
             std::ostringstream osslog;
-            osslog << "Date in seconds : " << time(NULL);
+            osslog << "Date in seconds : " << time(nullptr);
             oplog(osslog.str());
 #ifdef _WIN32
             oplog("Plateform : Windows");
@@ -95,8 +94,7 @@ namespace OpMon {
             oplog("Ending the game normally.");
             return quit(0);
         }
-    } // namespace Main
-} // namespace OpMon
+    } // namespace OpMon
 
 int main(int argc, char *argv[]) {
     Utils::Time::initClock();

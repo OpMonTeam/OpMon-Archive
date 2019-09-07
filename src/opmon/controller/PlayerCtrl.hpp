@@ -13,13 +13,9 @@ File under GNU GPL v3.0 license
 #include "../model/sysObjects/Player.hpp"
 #include "../view/Overworld.hpp"
 
-namespace OpMon {
-    namespace Controller {
-        namespace PlayerCtrl {
-            void checkMove(Model::Player &player, View::Overworld &overworld);
-            void move(Model::Side direction, Model::Player &player, View::Overworld &overworld);
-        } // namespace PlayerCtrl
-    }     // namespace Controller
-} // namespace OpMon
+namespace OpMon::Controller::PlayerCtrl {
+    void checkMove(Model::Player &player, View::Overworld &overworld);
+    void move(Model::Side direction, Model::Player &player, View::Overworld &overworld);
+} // namespace OpMon::Controller::PlayerCtrl
 
 #endif

@@ -28,7 +28,6 @@
 #define SIDE_RIGHT 0x0020
 #define SIDE_ALL (SIDE_UP | SIDE_DOWN | SIDE_RIGHT | SIDE_LEFT)
 //TODO : Disable it
-#pragma GCC diagnostic ignored "-Wreorder"
 
 namespace OpMon {
 
@@ -74,28 +73,28 @@ namespace OpMon {
 
             void updateTexture();
 
-            int getSide() const {
+            [[nodiscard]] int getSide() const {
                 return sides;
             }
             const sf::Texture &getTexture() {
                 return *currentTexture;
             }
-            Events::EventTrigger getEventTrigger() const {
+            [[nodiscard]] Events::EventTrigger getEventTrigger() const {
                 return eventTrigger;
             }
 
-            sf::Vector2f getPosition() const {
+            [[nodiscard]] sf::Vector2f getPosition() const {
                 return position;
             }
 
-            Position getPositionMap() const {
+            [[nodiscard]] Position getPositionMap() const {
                 return mapPos;
             }
 
-            bool isPassable() const {
+            [[nodiscard]] bool isPassable() const {
                 return passable;
             }
-            const sf::Sprite *getSprite() const {
+            [[nodiscard]] const sf::Sprite *getSprite() const {
                 return sprite.get();
             }
         };
@@ -124,9 +123,9 @@ namespace OpMon {
                 Side ppDir;
 
               public:
-                TPEvent(std::vector<sf::Texture> &otherTextures, EventTrigger eventTrigger, sf::Vector2f const &position, sf::Vector2i const &tpPos, std::string const &map, Side ppDir = Side::NO_MOVE, int sides = SIDE_ALL, bool passable = true);
-                virtual void update(Model::Player &player, View::Overworld &overworld);
-                virtual void action(Model::Player &player, View::Overworld &overworld);
+                TPEvent(std::vector<sf::Texture> &otherTextures, EventTrigger eventTrigger, sf::Vector2f const &position, sf::Vector2i const &tpPos, std::string map, Side ppDir = Side::NO_MOVE, int sides = SIDE_ALL, bool passable = true);
+                void update(Model::Player &player, View::Overworld &overworld) override;
+                void action(Model::Player &player, View::Overworld &overworld) override;
             };
 
             class DoorEvent : public TPEvent {
@@ -136,9 +135,9 @@ namespace OpMon {
 
               public:
                 /* Types of door (to put in doorType (TODO)) : "door" | "shop door"*/
-                DoorEvent(std::vector<sf::Texture> &doorTextures, std::string doorType, sf::Vector2f const &position, sf::Vector2i const &tpPos, std::string const &map, EventTrigger eventTrigger = EventTrigger::GO_IN, Side ppDir = Side::NO_MOVE, int sides = SIDE_ALL, bool passable = true);
-                virtual void action(Model::Player &player, View::Overworld &overworld);
-                virtual void update(Model::Player &player, View::Overworld &overworld);
+                DoorEvent(std::vector<sf::Texture> &doorTextures, const std::string& doorType, sf::Vector2f const &position, sf::Vector2i const &tpPos, std::string const &map, EventTrigger eventTrigger = EventTrigger::GO_IN, Side ppDir = Side::NO_MOVE, int sides = SIDE_ALL, bool passable = true);
+                void action(Model::Player &player, View::Overworld &overworld) override;
+                void update(Model::Player &player, View::Overworld &overworld) override;
             };
 
             class TalkingEvent : public virtual Event, I18n::ATranslatable {
@@ -149,10 +148,10 @@ namespace OpMon {
                 sf::String dialog;
 
               public:
-                TalkingEvent(std::vector<sf::Texture> &otherTextures, sf::Vector2f const &position, Utils::OpString const &dialogKey, int sides = SIDE_ALL, EventTrigger eventTrigger = EventTrigger::PRESS, bool passable = false);
+                TalkingEvent(std::vector<sf::Texture> &otherTextures, sf::Vector2f const &position, Utils::OpString dialogKey, int sides = SIDE_ALL, EventTrigger eventTrigger = EventTrigger::PRESS, bool passable = false);
                 void onLangChanged() override;
-                virtual void update(Model::Player &player, View::Overworld &overworld);
-                virtual void action(Model::Player &player, View::Overworld &overworld);
+                void update(Model::Player &player, View::Overworld &overworld) override;
+                void action(Model::Player &player, View::Overworld &overworld) override;
                 virtual void changeDialog(Utils::OpString newDialog);
             };
 
@@ -163,8 +162,8 @@ namespace OpMon {
                 static Utils::OpString keysLock;
 
               public:
-                virtual void action(Model::Player &player, View::Overworld &overworld);
-                virtual void update(Model::Player &player, View::Overworld &overworld);
+                void action(Model::Player &player, View::Overworld &overworld) override;
+                void update(Model::Player &player, View::Overworld &overworld) override;
                 LockedDoorEvent(std::vector<sf::Texture> &doorTextures, std::string doorType, Item *needed, sf::Vector2f const &position, sf::Vector2i const &tpPos, std::string const &map, Side ppDir = Side::NO_MOVE, EventTrigger eventTrigger = EventTrigger::PRESS, bool consumeItem = false, int sides = SIDE_ALL, bool passable = false);
             };
 
@@ -191,8 +190,8 @@ namespace OpMon {
 
               public:
                 CharacterEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, Side posDir = Side::TO_UP, MoveStyle moveStyle = MoveStyle::NO_MOVE, EventTrigger eventTrigger = EventTrigger::PRESS, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int sides = SIDE_ALL);
-                virtual void update(Model::Player &player, View::Overworld &overworld);
-                virtual void action(Model::Player &, View::Overworld &){};
+                void update(Model::Player &player, View::Overworld &overworld) override;
+                void action(Model::Player &, View::Overworld &) override{};
                 void setPredefinedMove(std::vector<Side> movement);
                 OP_DEPRECATED void move(Side direction, Model::Player &player, View::Overworld &overworld);
                 bool move(Side direction, Map *map);
@@ -205,9 +204,9 @@ namespace OpMon {
               public:
                 TalkingCharaEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, Utils::OpString const &dialogKey, Side posDir = Side::TO_UP, EventTrigger eventTrigger = EventTrigger::PRESS, MoveStyle moveStyle = MoveStyle::NO_MOVE, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int side = SIDE_ALL);
 
-                virtual void update(Model::Player &player, View::Overworld &overworld);
-                virtual void action(Model::Player &player, View::Overworld &overworld);
-                virtual void changeDialog(Utils::OpString newDialog) { TalkingEvent::changeDialog(newDialog); }
+                void update(Model::Player &player, View::Overworld &overworld) override;
+                void action(Model::Player &player, View::Overworld &overworld) override;
+                void changeDialog(Utils::OpString newDialog) override { TalkingEvent::changeDialog(newDialog); }
             };
 
             class TrainerEvent : public TalkingCharaEvent {
@@ -219,10 +218,10 @@ namespace OpMon {
                 Utils::OpString defeatedDialog;
 
               public:
-                TrainerEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, OpTeam *team, Utils::OpString const &dialogKeys, Utils::OpString const &defeatedDialog, Side posDir = Side::TO_UP, EventTrigger eventTrigger = EventTrigger::PRESS, MoveStyle moveStyle = MoveStyle::NO_MOVE, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int side = SIDE_ALL);
+                TrainerEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, OpTeam *team, Utils::OpString const &dialogKeys, Utils::OpString defeatedDialog, Side posDir = Side::TO_UP, EventTrigger eventTrigger = EventTrigger::PRESS, MoveStyle moveStyle = MoveStyle::NO_MOVE, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int side = SIDE_ALL);
 
-                virtual void update(Model::Player &player, View::Overworld &overworld);
-                virtual void action(Model::Player &player, View::Overworld &overworld);
+                void update(Model::Player &player, View::Overworld &overworld) override;
+                void action(Model::Player &player, View::Overworld &overworld) override;
 
                 OpTeam *getOpTeam() {
                     return team;
@@ -234,7 +233,7 @@ namespace OpMon {
                     return defeated;
                 }
 
-                virtual ~TrainerEvent();
+                ~TrainerEvent() override;
             };
 
             class TrainerEyesightEvent : public Event {
@@ -245,10 +244,8 @@ namespace OpMon {
 
               public:
                 TrainerEyesightEvent(TrainerEvent *trainer, sf::Vector2f position);
-#pragma GCC diagnostic ignored "-Wunused-parameter"
-                virtual void update(Model::Player &player, View::Overworld &overworld){};
-                virtual void action(Model::Player &player, View::Overworld &overworld){};
-#pragma GCC diagnostic pop
+                void update(Model::Player &player, View::Overworld &overworld) override{};
+                void action(Model::Player &player, View::Overworld &overworld) override{};
             };
 
         } // namespace Events

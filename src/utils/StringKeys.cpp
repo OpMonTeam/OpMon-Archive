@@ -7,14 +7,11 @@ File under GNU GPL v3.0 license
 #include "StringKeys.hpp"
 #include "../opmon/model/storage/ResourceLoader.hpp"
 #include "./log.hpp"
-#include <cstdio>
-#include <fstream>
 #include <queue>
 
 #define DIALOG_LIMIT 33
 
-namespace Utils {
-    namespace StringKeys {
+namespace Utils::StringKeys {
         std::vector<std::string> keys = std::vector<std::string>();
         std::vector<sf::String> strings = std::vector<sf::String>();
 
@@ -38,8 +35,8 @@ namespace Utils {
         std::string sfStringtoStdString(sf::String const &str) {
             std::string toReelReturn;
             std::basic_string<unsigned char> bs = str.toUtf8();
-            for(unsigned int i = 0; i < bs.size(); i++) {
-                toReelReturn += bs.at(i);
+            for(unsigned char b : bs) {
+                toReelReturn += b;
             }
             return toReelReturn;
         }
@@ -63,14 +60,14 @@ namespace Utils {
                     break;                                 //Else, stops reading
                 }
                 //Splits the string in two parts
-                if(read[0] != '#' || read[0] != ' ' || !read.isEmpty()) { //Checks if the string is valid
+                if(read[0] != '#' && read[0] != ' ' && !read.isEmpty()) { //Checks if the string is valid (WARNING I changed || to &&)
                     std::vector<sf::String> strSplit = split(read, '=');
-                    if(!strSplit.size() == 0 && strSplit[0] != "") {
+                    if(strSplit.empty() == 0 && strSplit[0] != "") {
                         keys.push_back(strSplit[0]);
                         if(strSplit.size() < 2) {
-                            strings.push_back(" ");
+                            strings.emplace_back(" ");
                         } else {
-                            strings.push_back(sf::String(strSplit[1]));
+                            strings.emplace_back(strSplit[1]);
                             itore++;
                         }
                     }
@@ -189,5 +186,4 @@ namespace Utils {
             return strings;
         }
 
-    } // namespace StringKeys
-} // namespace Utils
+    } // namespace Utils

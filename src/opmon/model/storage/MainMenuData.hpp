@@ -7,22 +7,20 @@
 
 #include "UiData.hpp"
 
-namespace OpMon {
-    namespace Model {
-        class MainMenuData {
-          private:
-            sf::Texture titlescreen;
-            sf::Texture arrChoice;
+namespace OpMon::Model {
+    class MainMenuData {
+      private:
+        sf::Texture titlescreen;
+        sf::Texture arrChoice;
 
-            UiData *uidata;
+        UiData *uidata;
 
-            MainMenuData(MainMenuData const &);
+        MainMenuData(MainMenuData const &);
 
-          public:
-            UiData *getUiDataPtr() const { return uidata; }
-            sf::Texture const &getTitlescreen() const { return titlescreen; }
-            sf::Texture const &getArrChoice() const { return arrChoice; }
-            MainMenuData(UiData *ptr);
-        };
-    } // namespace Model
-} // namespace OpMon
+      public:
+        UiData *getUiDataPtr() const { return uidata; }
+        sf::Texture const &getTitlescreen() const { return titlescreen; }
+        sf::Texture const &getArrChoice() const { return arrChoice; }
+        explicit MainMenuData(UiData *ptr);
+    };
+} // namespace OpMon::Model

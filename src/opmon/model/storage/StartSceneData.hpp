@@ -9,8 +9,7 @@
 #include "UiData.hpp"
 #include <SFML/Graphics/Texture.hpp>
 
-namespace OpMon {
-    namespace Model {
+namespace OpMon::Model {
 
         class StartSceneData {
           private:
@@ -32,8 +31,7 @@ namespace OpMon {
             sf::Texture &getProf() { return prof; }
             sf::Texture &getNameBg() { return nameBg; }
 
-            StartSceneData(UiData *data);
+            explicit StartSceneData(UiData *data);
         };
 
-    } // namespace Model
-} // namespace OpMon
+    } // namespace OpMon
