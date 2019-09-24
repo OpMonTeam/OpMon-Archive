@@ -188,7 +188,7 @@ namespace OpMon {
                     switch(moveStyle) {
                     case MoveStyle::PREDEFINED: //Movement predefined during the npc's initialization
                         predefinedCounter++;
-                        if(predefinedCounter >= movements.size()) { //TODO : Add the possibility of disabling the loop, for unique movements
+                        if(predefinedCounter >= movements.size()) { //TODO : Add the possibility of disabling the loop, for one-time movements
                             predefinedCounter = 0;
                         }
 
