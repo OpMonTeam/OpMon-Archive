@@ -27,7 +27,7 @@
 #define SIDE_LEFT 0x0010
 #define SIDE_RIGHT 0x0020
 #define SIDE_ALL (SIDE_UP | SIDE_DOWN | SIDE_RIGHT | SIDE_LEFT)
-//TODO : Disable it
+
 #pragma GCC diagnostic ignored "-Wreorder"
 
 namespace OpMon {
