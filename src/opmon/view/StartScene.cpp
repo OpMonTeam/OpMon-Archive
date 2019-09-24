@@ -8,6 +8,7 @@ File under GNU GPL v3.0 license
 #include "../../utils/OpString.hpp"
 #include "../../utils/StringKeys.hpp"
 #include "../../utils/defines.hpp"
+#include "../../utils/log.hpp"
 #include "../model/storage/ResourceLoader.hpp"
 #include "../model/sysObjects/Player.hpp"
 #include "./Window.hpp"
@@ -87,7 +88,8 @@ namespace OpMon {
                 }
                 break;
 
-            default:; // TODO: LOG
+            default:
+               handleError("Unknown part in StartScene::operator()", true);
             }
             return GameStatus::CONTINUE;
         }
@@ -116,7 +118,8 @@ namespace OpMon {
                 frame.draw(nameField);
                 break;
 
-            default:; // TODO: log something !
+            default:
+              handleError("Unknown part in StartScene::draw()", true);
             }
         }
 

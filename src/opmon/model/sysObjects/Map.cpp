@@ -190,7 +190,7 @@ namespace OpMon {
                 case 3:
                     return layer3[pos.x + pos.y * w] == 0 ? 257 /*"official" void tile*/ : layer3[pos.x + pos.y * w] - 1;
                 default:
-                    //TODO: Log error
+                    handleError("Map::getCurrentTileCode : layer is not 1, 2 or 3. Returning 0.");
                     return 0;
                 }
             } else {
@@ -213,6 +213,7 @@ namespace OpMon {
                 int collisionLayer1 = getTileCollision(getCurrentTileCode(pos, 1));
                 int collisionLayer2 = getTileCollision(getCurrentTileCode(pos, 2));
 
+                //TODO : factorise if possible (I don't like all these return statements)
                 if(collisionLayer1 == 0) {
                     return collisionLayer2;
                 }
@@ -222,7 +223,6 @@ namespace OpMon {
                 if(collisionLayer1 == 1 || collisionLayer2 == 1) {
                     return 1;
                 }
-                // TODO: it may have a conflict between collisions from layer1 and layer2. (Priority to layer1) TODO : Inform the programmer in the logs
                 return collisionLayer1;
             } else {
                 handleError("Error : using an unloaded map (Map::getCollision).", true);
