@@ -89,8 +89,6 @@ namespace OpMon {
 		}*/
         }
 
-#include "../objects/OpMon.hpp" //TODO : This will be deleted soon
-
         Player::Player(std::ifstream &in, std::string &name)
           : name(name)
           , trainerID(in.get())
