@@ -242,7 +242,6 @@ namespace OpMon {
         }
 
 #pragma GCC diagnostic ignored "-Wunused-parameter"
-        //TODO : add messages
         bool BattleCtrl::canAttack(Model::OpMon *opmon, Model::TurnData *opTurn) {
             bool canAttack = true;
             std::vector<sf::String *> opName(1);

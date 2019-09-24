@@ -9,8 +9,6 @@ File under GNU GPL v3.0 license
 #include "../OpMon.hpp"
 #include <iostream>
 
-//TODO : Enhance the evolution system
-
 namespace OpMon {
     namespace Model {
 
