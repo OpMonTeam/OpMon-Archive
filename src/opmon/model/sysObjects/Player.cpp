@@ -6,75 +6,74 @@ File under GNU GPL v3.0 license
 */
 #include "Player.hpp"
 #include "../../../utils/StringKeys.hpp"
+#include "../../start/Core.hpp"
 #include "../objects/Attack.hpp"
+#include "../save/Save.hpp"
 #include <sstream>
-#include <utility>
-#include <fstream>
 
-namespace OpMon::Model {
+namespace OpMon {
+    namespace Model {
 
-    Player::Player(sf::String const &name)
-      : name(name)
-      , trainerID(Utils::Misc::randUI(0xFFFFFFFF))
-      , opteam(name) {
-        Position::setPlayerPos(&position);
-    }
-
-    Player::Player()
-      : trainerID(Utils::Misc::randUI(0xFFFFFFFF))
-      , opteam(name) {
-        Position::setPlayerPos(&position);
-    }
-
-    OpTeam *Player::getOpTeam() {
-        return &opteam;
-    }
-
-    void Player::addItem(std::string const &itemID) {
-        bag[itemID]++;
-    }
-
-    int Player::checkItem(std::string const &itemID) {
-        return bag[itemID];
-    }
-
-    bool Player::deleteItem(std::string const &itemID) {
-        if(bag[itemID] != 0) {
-            bag[itemID]--;
-            return true;
-        } else {
-            return false;
+        Player::Player(sf::String const &name)
+          : Player() {
+            this->name = name;
+            this->opteam = OpTeam(name);
         }
-    }
 
-    void Player::healOp() {
-        opteam.heal();
-        for(int i = 0; i < opteam.getSize(); i++) {
-            OpMon *pkmn = opteam[i];
-            if(pkmn != nullptr) {
-                //TODO : Reset status problems
-                for(int j = 0; j < 4; j++) {
-                    Attack *atk = (pkmn->getAttacks())[j];
-                    if(atk != nullptr) {
-                        atk->healPP();
+        Player::Player()
+          : trainerID(Utils::Misc::randUI(0xFFFFFFFF))
+          , opteam(name) {
+            Position::setPlayerPos(&position);
+        }
+
+        OpTeam *Player::getOpTeam() {
+            return &opteam;
+        }
+
+        void Player::addItem(std::string const &itemID) {
+            bag[itemID]++;
+        }
+
+        int Player::checkItem(std::string const &itemID) {
+            return bag[itemID];
+        }
+
+        bool Player::deleteItem(std::string const &itemID) {
+            if(bag[itemID] != 0) {
+                bag[itemID]--;
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        void Player::healOp() {
+            opteam.heal();
+            for(int i = 0; i < opteam.getSize(); i++) {
+                OpMon *pkmn = opteam[i];
+                if(pkmn != nullptr) {
+                    //TODO : Reset status problems
+                    for(int j = 0; j < 4; j++) {
+                        Attack *atk = (pkmn->getAttacks())[j];
+                        if(atk != nullptr) {
+                            atk->healPP();
+                        }
                     }
                 }
             }
         }
-    }
 
-    bool Player::addOpToOpTeam(OpMon *toAdd) {
-        if(opteam.addOpMon(toAdd)) {
-            return true;
-        } else {
-            addOpMonToPC(toAdd);
-            return false;
+        bool Player::addOpToOpTeam(OpMon *toAdd) {
+            if(opteam.addOpMon(toAdd)) {
+                return true;
+            } else {
+                addOpMonToPC(toAdd);
+                return false;
+            }
         }
-    }
 
-    //TODO : Update the save system
-    void Player::save() {
-        /*SOUT
+        void Player::save() {
+            /*SOUT
               << Utils::StringKeys::sfStringtoStdString(this->name) << std::endl;
             SOUT << Save::intToChar(trainerID) << std::endl;
             SOUT << Save::intToChar(ITEM_NUMBER) << std::endl;
@@ -88,15 +87,12 @@ namespace OpMon::Model {
             for(unsigned int it = 0; it < 6; it++) {
                 SOUT << opteam[it]->save();
 		}*/
-    }
+        }
 
- //This will be deleted soon
-                                //TODO : Update the save system
-
-    Player::Player(std::ifstream &in, std::string &name)
-      : name(name)
-      , trainerID(in.get())
-      , opteam(name) { /*
+        Player::Player(std::ifstream &in, std::string &name)
+          : name(name)
+          , trainerID(in.get())
+          , opteam(name) { /*
             in.get();
             int iNber = in.get();
             in.get();
@@ -122,11 +118,12 @@ namespace OpMon::Model {
                 OpMon *op = new OpMon(in);
                 opteam.addOpMon(op);
 		}*/
-    }
+        }
 
-    void Player::tp(std::string mapToTp, sf::Vector2i newPos) {
-        mapID = std::move(mapToTp);
-        position.tp(newPos);
-    }
+        void Player::tp(std::string mapToTp, sf::Vector2i newPos) {
+            mapID = mapToTp;
+            position.tp(newPos);
+        }
 
-} // namespace OpMon::Model
+    } // namespace Model
+} // namespace OpMon
