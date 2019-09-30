@@ -72,7 +72,6 @@ namespace OpMon {
             }
         }
 
-        //TODO : Update the save system
         void Player::save() {
             /*SOUT
               << Utils::StringKeys::sfStringtoStdString(this->name) << std::endl;
@@ -89,9 +88,6 @@ namespace OpMon {
                 SOUT << opteam[it]->save();
 		}*/
         }
-
-#include "../objects/OpMon.hpp" //This will be deleted soon
-                                //TODO : Update the save system
 
         Player::Player(std::ifstream &in, std::string &name)
           : name(name)
