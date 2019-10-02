@@ -1,5 +1,5 @@
 # Project credits
-## Programmer, project creator : Cyriel
+## Programmer, project creator : Cyrielle
 ## Game and graphics designer, project co-creator : Navet56
 ## Collaborators since the very beginning : 
 
@@ -31,14 +31,14 @@
 <li><h3>JonnyPtn</h3></li>
 <li><h3>Bobor</h3></li>
 <li><h3>Qwam</h3></li>
- <li><h3>Reuun</h3></li>
- <li><h3>sergioag</h3></li>
- <li><h3>CxxSpren</h3></li>
+<li><h3>Reuun</h3></li>
+<li><h3>sergioag</h3></li>
+<li><h3>CxxSpren</h3></li>
+<li><h3>f0ffee</h3></li>
 </ul>
 
 ## Inspirations :
 <li><h3>Satoshi Tajiri (Pokemon creation)</h3></li>
-<li><h3>Toby Fox (Inspriration of some musics and gameplay elements)</h3></li>
 <li><h3>Linus Torvalds (Creation of Linux, Git and so much more...)</h3></li>
 </ul>
 
@@ -46,7 +46,7 @@
 <ul>
 <li><h3>GlueBie</h3></li>
 <li><h3>Lebordelic</h3></li>
-<li><h3><a href="http://osaris.net/">Osaris</a> (one of the people who launched Cyriel into programmation)</h3></li>
+<li><h3><a href="http://osaris.net/">Osaris</a> (one of the people who launched Cyrielle into programmation)</h3></li>
 <li><h3>Our families, friends, and everyone who taught us what we know today!</h3></li>
 <li><h4>And many others...</h4></li>
 </ul>
