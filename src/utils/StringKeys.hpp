@@ -1,9 +1,10 @@
-/*
-StringKeys.hpp
-Author : Cyrielle
-Contributor : BAKFR
-File under GNU GPL v3.0 license
-*/
+/*!
+ * \file StringKeys.hpp
+ * \author Cyrielle
+ * \author BAKFR
+ * \date 11/10/17
+ * \copyright GNU GPL v3.0 license
+ */
 #ifndef STRINGKEYS_HPP
 #define STRINGKEYS_HPP
 
@@ -14,8 +15,14 @@ File under GNU GPL v3.0 license
 
 #include "defines.hpp"
 
+/*! \namespace Utils
+ *  \brief Contains different utilities.
+ */
 namespace Utils {
     //TODO : Make this a class
+	/*! \namespace StringKeys
+		\brief Contains functions to manage game strings.
+	*/
     namespace StringKeys {
         extern std::vector<std::string> keys;
         extern std::vector<sf::String> strings;
