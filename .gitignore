@@ -66,3 +66,6 @@ OpMon.cbp
 CMakeLists.txt.user
 *.ninja
 .ninja_*
+GPATH
+GRTAGS
+GTAGS
