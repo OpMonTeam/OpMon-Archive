@@ -12,27 +12,27 @@
  */
 namespace Utils {
     /*!
-	 * \namespace Time
+	 * \namespace Utils::Time
      * \brief Contains time-related utilities.
 	 */
     namespace Time {
 
-        /*! \fn void initClock()
+        /*!
 		 *  \brief Set (or reset) the reference clock to zero.
 		 */
         void initClock();
 
-        /*! \fn int getElapsedMilliseconds()
+        /*!
 		 *  \return The number of elapsed milliseconds since the beginning of the program.
 		 */
         int getElapsedMilliseconds();
 
-        /*! \fn float getElapsedSeconds()
+        /*!
          *  \return The number of elapsed seconds since the beginning of the program.
          */
         float getElapsedSeconds();
 
-        /*! \fn void wait(int duration)
+        /*!
 		*   \brief Pauses the program for a determined duration.
 		*   \param duration Time to wait, in milliseconds
 		*/

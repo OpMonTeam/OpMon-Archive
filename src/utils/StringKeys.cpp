@@ -17,7 +17,9 @@ namespace Utils {
     namespace StringKeys {
         std::vector<std::string> keys = std::vector<std::string>();
         std::vector<sf::String> strings = std::vector<sf::String>();
-
+        /*!
+         * \warning Source-only function.
+         */
         sf::String readLine(std::ifstream &input) {
             std::basic_string<unsigned char> toReturn;
             for(unsigned int i = 0; i < 1024; i++) {
@@ -79,6 +81,9 @@ namespace Utils {
             return true;
         }
 
+        /*!
+         * \warning Source-only variable.
+         */
         sf::String voi;
 
         sf::String &get(std::string key) {
@@ -92,6 +97,9 @@ namespace Utils {
             return voi; //If nothing found, returns an empty string
         }
 
+        /*!
+         * \warning Source-only function.
+         */
         int getIndex(std::string key) {
             key = std::string("key.") + key;                //Adding "key" prefix
             for(unsigned int i = 0; i < keys.size(); i++) { //Scans keys
