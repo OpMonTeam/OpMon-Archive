@@ -59,7 +59,7 @@ namespace OpMon {
         std::stack<std::unique_ptr<Controller::AGameScreen>> _gameScreens;
         /*!
          * \brief If `true`, the game executes itself frame by frame.
-         * \details This mode is activated my keeping the F2 key pressed. On release, the mode is disabled. One frame can be passed by pressing the key registered in fbfType.
+         * \details This mode is activated my keeping the F2 key pressed. On release, the mode is disabled. One frame can be passed by pressing the key registered in `fbfType`.
          */
         bool frameByFrame = false;
         /*!
@@ -67,7 +67,7 @@ namespace OpMon {
          */
         sf::Keyboard::Key fbfType = sf::Keyboard::F3;
         /*!
-         * \brief Checks in the fbfType key has been released before passing one more frame.
+         * \brief Checks in the `fbfType` key has been released before passing one more frame.
          */
         bool hasBeenReleased = true;
     };
