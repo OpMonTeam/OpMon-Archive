@@ -84,10 +84,10 @@ namespace OpMon {
                 GameLoop gameloop;
                 gameloop();
 
-                std::string logEntry;
+                std::ostringstream logEntry;
                 logEntry << std::string("Game ended after ") << Utils::Time::getElapsedSeconds() << std::string("seconds");
 
-                oplog(logEntry);
+                oplog(logEntry.str());
                 if(reboot) {
                     oplog("Restarting the game.");
                 }

@@ -64,30 +64,4 @@ namespace OpMon {
         exit(returns);
     }
 
-    std::string &operator<<(std::string &str, int nbre) {
-        std::ostringstream oss;
-        oss << str << nbre;
-        str = oss.str();
-        return str;
-    }
-
-    std::string &operator<<(std::string &str, std::string const &thing) {
-        std::ostringstream oss;
-        oss << str << thing;
-        str = oss.str();
-        return str;
-    }
-
-    std::string &operator<<(std::string &str, char thing[]) {
-        std::string strThing(thing);
-        std::ostringstream oss;
-        oss << str << strThing;
-        str = oss.str();
-        return str;
-    }
-
-    template <typename Base, typename T>
-    bool instanceOf(const Base *toTest) {
-        return dynamic_cast<const T *>(toTest) != nullptr;
-    }
 } // namespace OpMon
