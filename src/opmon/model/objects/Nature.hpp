@@ -1,8 +1,9 @@
-/*
-Nature.hpp
-Author : Cyrielle
-Contributor : Navet56
-File under GNU GPL v3.0 license
+/*!
+ * \file Nature.hpp
+ * \authors Cyrielle
+ * \authors Navet56
+ * \copyright GNU GPL v3.0
+ * \todo Improve the system of natures.
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_ENUMS_CARACTERE_HPP_
 #define SRCCPP_JLPPC_REGIMYS_ENUMS_CARACTERE_HPP_
@@ -12,30 +13,50 @@ File under GNU GPL v3.0 license
 namespace OpMon {
     namespace Model {
 
-        /**
-       Defines a nature. A natures brings a malus and a bonus on a stat. Each OpMon have a nature chosen randomly.
-	*/
+        /*!
+         * \brief Defines a nature.
+         *
+         * A natures brings a malus and a bonus on some stats. Each OpMon have a randomy-generated nature.
+         */
         class NatureClass {
           public:
-            /**The bonus brought by the nature*/
+            /*!
+             * \brief The bonus brought by the nature.
+             */
             Stats bonus;
-            /**The malus brought by the nature*/
+            /*!
+             * \brief The malus brought by the nature.
+             */
             Stats malus;
-
+            /*!
+             * \brief The id of the nature.
+             */
             int id;
+            /*!
+             * \brief Creates an object.
+             * \param bonus \copydoc NatureClass::bonus
+             * \param malus \copydoc NatureClass::malus
+             * \param id \copydoc NatureClass::id
+             */
             NatureClass(Stats bonus, Stats malus, int id)
               : bonus(bonus)
               , malus(malus)
               , id(id){};
         };
 
+        /*!
+         * \brief Array containing every nature.
+         */
         extern const NatureClass natures[25];
 
+        /*!
+         * \brief Compares two natures.
+         */
         bool operator==(NatureClass const &one, NatureClass const &two);
 
         /**
-       Enumerate the natures
-    */
+         * \brief Enumerates the natures
+         */
         enum class Nature : unsigned int {
             BOLD = 0,
             BASHFUL = 1,
