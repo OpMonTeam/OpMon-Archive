@@ -1,26 +1,28 @@
-/*
-Enums.hpp
-Author : Cyrielle
-Contributor : BAKFR, Samurai413x
-File under GNU GPL v3.0 license
+/*!
+ * \file Enums.hpp
+ * \authors Cyrielle
+ * \authors BAKFR
+ * \authors Samurai413x
+ * \copyright GNU GPL v3.0
 */
 #ifndef ENUMS_HPP
 #define ENUMS_HPP
 
-/**Macros created to make the effectivenesses table more easy to read*/
-#define NOT 0    //Not effective at all
-#define VLO 0.25 //Very low effectiveness
-#define LO_ 0.5  //Low effectiveness
-#define AVG 1    //Average effectiveness
-#define HI_ 2    //High effectiveness
-#define VHI 4    //Very High effectiveness
+/*Macros created to make the effectivenesses table more easy to read*/
+
+#define NOT 0    /*!<\brief Not effective at all*/
+#define VLO 0.25 /*!< \brief Very low effectiveness*/
+#define LO_ 0.5  /*!< \brief Low effectiveness*/
+#define AVG 1    /*!< \brief Average effectiveness*/
+#define HI_ 2    /*!< \brief High effectiveness*/
+#define VHI 4    /*!< \brief Very High effectiveness*/
 
 namespace OpMon {
     namespace Model {
 
-        /**
-	 Enumerate the OPMons status
-      */
+        /*!
+         * \brief Enumerates the OpMon statuses.
+         */
         enum class Status {
             BURNING,
             PARALYSED,
@@ -29,23 +31,23 @@ namespace OpMon {
             POISONED,
             NOTHING
         };
-        /**
-	   Enumerate the OPMons stats
-	*/
+        /*!
+         * \brief Enumerates the OpMon stats.
+         */
         enum class Stats : int {
-            ATK = 6,
-            DEF = 1,
-            ATKSPE = 2,
-            DEFSPE = 3,
-            SPE = 4,
-            HP = 5,
-            ACC = 7,
-            EVA = 8,
+            ATK = 6,/*!< Attack*/
+            DEF = 1,/*!< Defense*/
+            ATKSPE = 2,/*!< Special Attack*/
+            DEFSPE = 3,/*!< Special Defense*/
+            SPE = 4,/*!< Speed*/
+            HP = 5,/*!< Health Points*/
+            ACC = 7,/*!< Accuracy*/
+            EVA = 8,/*!< Evasion*/
             NOTHING = 0
         };
-        /**
-	 Enumerate the bag categories
-      */
+        /*!
+         * \brief Enumerates the bag categories
+         */
         enum class BagCat {
             HEAL,
             OBJECTS,
@@ -53,8 +55,8 @@ namespace OpMon {
             HMS
         };
         /**
-	   Enumerate the OPMons types
-	*/
+         * \brief Enumerates the OpMon types
+         */
         enum class Type : int {
             LIQUID = 3,
             BURNING = 6,
@@ -76,18 +78,18 @@ namespace OpMon {
             COLD = 7,
             NOTHING = -1
         };
-        /**
-       Enumerates kinds of contacts between events and the player.
-    */
+        /*!
+         * \brief Enumerates the different types of contacts between events and the player.
+         */
         enum class ActionType {
-            ENTER,
-            TOUCH,
-            IN_,
-            VIEW
+            ENTER,/*!< Event activated by pressing the action key.*/
+            TOUCH,/*!< Event activated by the player being in an adjacent square from the event.*/
+            IN_,/*!< Event activated by the player being on the same square as the event.*/
+            VIEW/*!< Event activated as soon as it is on the screen.*/
         };
-        /**
-	   Enumerates sprites directions.
-	*/
+        /*!
+         * \brief Enumerates sprite directions.
+         */
         enum class Side : int {
             TO_DOWN = 0,
             TO_RIGHT = 1,
@@ -97,9 +99,9 @@ namespace OpMon {
             STAY = -2
         };
 
-        /**
-	   Enumerates differents encodings
-	*/
+        /*!
+         * \brief Enumerates different encodings
+         */
         enum class Encoding {
             LATIN,
             UNICODE,
@@ -116,8 +118,17 @@ namespace OpMon {
         int operator-(Side, int);
         Side getSide(int);
 
+        /*!
+         * \brief Contains the type effectiveness-related functions / objects
+         */
         namespace ArrayTypes {
-
+            /*!
+             * \brief Calculates the effectiveness of an attack and returns it.
+             * \return The effectiveness.
+             * \param atk The type of the attack.
+             * \param def1 The first type of the OpMon.
+             * \param def2 The second type of the OpMon.
+             */
             float calcEffectiveness(Type atk, Type def1, Type def2);
 
         } // namespace ArrayTypes
