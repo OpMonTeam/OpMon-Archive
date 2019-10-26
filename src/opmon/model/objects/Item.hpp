@@ -1,8 +1,9 @@
-/**
-Item.hpp
-Author : Cyrielle
-File under GNU GPL v3.0 license
-*/
+/*!
+ * \file Item.hpp
+ * \author Cyrielle
+ * \copyright GNU GPL v3.0
+ * \warn Work in progress. The documentation might not be complete or up to date.
+ */
 #pragma once
 
 #include "../../../utils/OpString.hpp"
@@ -22,22 +23,39 @@ namespace OpMon {
 
         class Player;
 
+        /*!
+         * \brief Defines the effect of an item.
+         * \warn Work in progress.
+         */
         class ItemEffect {
           public:
             ItemEffect() {}
 
             /** Different effects. The boolean returned is true if the item must be consumed */
 
-            /** Effect when used on an OpMon */
-            bool operator()(OpMon *opmon) { return false; }
-            /** Effect when used on the field */
-            bool operator()(Player *player) { return false; }
-            /** Effect when held during a turn */
-            bool operator()(Turn &owner, Turn &opponent) { return false; }
-            /** Dialog used when the object is used on an OpMon or on the field. Can be used only one time because it moves the unique_ptr. */
+            /*!
+             * \brief Effect when the item is used on an OpMon.
+             * \return `true` if the item has to be consumed.
+             * \param opmon A pointer to the OpMon on which the item has been used.
+             */
+            virtual bool use(OpMon *opmon) { return false; }
+            /*!
+             * \brief Effect when the item used in the overworld.
+             * \return `true` if the item has to be consumed.
+             * \param player A pointer to the Player.
+             */
+            virtual bool use(Player *player) { return false; }
+            /*!
+             *\brief Returns the dialog shown when the object is used on an OpMon or on the field.
+             *
+             * Can be used only one time because it moves the unique_ptr.
+             */
             std::unique_ptr<std::vector<sf::String>> getDialog() { return std::move(dialog); }
 
           protected:
+            /*!
+             * \brief The dialog shown when the object is used.
+             */
             std::unique_ptr<std::vector<sf::String>> dialog = std::make_unique<std::vector<sf::String>>();
         };
 
@@ -49,7 +67,7 @@ namespace OpMon {
 
             std::unique_ptr<std::vector<sf::String>> use(OpMon *opmon, int &itemCount);
             std::unique_ptr<std::vector<sf::String>> use(Player *player, int &itemCount);
-            void updateHeld(Turn &owner, Turn &opponent, int &itemCount);
+//            void updateHeld(Turn &owner, Turn &opponent, int &itemCount);
 
           protected:
             Utils::OpString name;
@@ -66,7 +84,7 @@ namespace OpMon {
               public:
                 HpHealEffect(int hpHealed);
 
-                bool operator()(OpMon *opmon);
+                bool use(OpMon *opmon) override;
 
               protected:
                 const int hpHealed;
