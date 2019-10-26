@@ -98,31 +98,31 @@ namespace OpMon {
                     } else if(menu.getCurrentOption() == View::OptionType::LANG) { //Chooses language to print
 
                         auto &tr = OpMon::I18n::Translator::getInstance();
+			data.getUiDataPtr()->getJukebox().playSound("push");
                         switch(menu.cursorPosition()) {
                         case 0:
-                            data.getUiDataPtr()->getJukebox().playSound("push");
                             menu.setCurrentOption(View::OptionType::ALL);
                             return GameStatus::CONTINUE;
                         case 1:
-                            data.getUiDataPtr()->getJukebox().playSound("push");
                             Model::OptionsSave::modifyParam("lang", "en");
                             tr.setLang("en");
                             break;
                         case 2:
-                            data.getUiDataPtr()->getJukebox().playSound("push");
                             Model::OptionsSave::modifyParam("lang", "es");
                             tr.setLang("es");
                             break;
                         case 3:
-                            data.getUiDataPtr()->getJukebox().playSound("push");
                             Model::OptionsSave::modifyParam("lang", "fr");
                             tr.setLang("fr");
                             break;
                         case 4:
-                            data.getUiDataPtr()->getJukebox().playSound("push");
                             Model::OptionsSave::modifyParam("lang", "de");
                             tr.setLang("de");
                             break;
+			case 5:
+			    Model::OptionsSave::modifyParam("lang", "it");
+			    tr.setLang("it");
+			    break;
                         }
                     } else if(menu.getCurrentOption() == View::OptionType::CREDITS) {
                         //Only one choice is avilable on the credits : back.
