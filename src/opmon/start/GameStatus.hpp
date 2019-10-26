@@ -9,7 +9,6 @@
 
 namespace OpMon {
     /*!
-     * \enum GameStatus
      * \brief Enumeration defining the different commands returned to define the game status.
      */
     enum class GameStatus {
