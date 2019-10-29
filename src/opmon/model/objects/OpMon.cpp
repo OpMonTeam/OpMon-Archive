@@ -54,7 +54,6 @@ namespace OpMon {
             statLove = 100;
             statACC = 100;
             statEVA = 100;
-            initialized = false;
         }
 
 #pragma GCC diagnostic ignored "-Wunused-parameter"
@@ -222,10 +221,6 @@ namespace OpMon {
             Item *old = held;
             held = item;
             return old;
-        }
-
-        void OpMon::traded() {
-            expBoost = 1.5;
         }
 
         void OpMon::evolve() {
@@ -1311,7 +1306,7 @@ namespace OpMon {
         //I'll redo this soon
 
         std::string OpMon::save() {
-            if(!initialized) {
+            if(false) {
                 /*
                 std::ostringstream oss;
                 oss << nickname.toAnsiString() << std::endl;
