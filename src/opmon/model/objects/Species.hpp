@@ -1,8 +1,11 @@
-/*
-Species.hpp
-Author : Cyrielle
-Contributors : Stelyus, BAKFR, Navet56, JonnyPtn
-File under GNU GPL v3.0 license
+/*!
+  \file Species.hpp
+  \authors Cyrielle
+  \authors Stelyus
+  \authors BAKFR
+  \authors Navet56
+  \authors JonnyPtn
+  \copyright GNU GPL v3.0
 */
 #ifndef ESPECE_HPP
 #define ESPECE_HPP
@@ -17,13 +20,11 @@ namespace OpMon {
 
         class Evolution;
 
-        /**
-           Class to define a species of OPMon.
-        */
-        //->Final
+        /*!
+         * \brief Defines a species of OpMon.
+         * \todo Put the stats in one array.
+         */
         class Species {
-
-          protected:
           private:
             std::string name;
             int opdexNumber;
@@ -40,11 +41,10 @@ namespace OpMon {
             unsigned int baseDefSpe;
             unsigned int baseSpe;
             unsigned int baseHP;
-            /**The EXP curve*/
             CurveExp *curve;
-            /**The total EXP the OpMon can have (EXP at level 100)*/
+            /*! \brief The total EXP the OpMon can have (EXP at level max) */
             int expMax;
-            /**Array representing the EV given by the OpMon when defeated*/
+            /*! \brief Array representing the EV given by the OpMon when defeated. */
             std::vector<Stats> EVgiven;
 
             unsigned int expGiven;
