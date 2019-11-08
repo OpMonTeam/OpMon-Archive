@@ -662,7 +662,7 @@
              "tp" : {
                  "position" : [ 16, 2 ],
                  "map" : "Player's home",
-                 "side" : 1
+                 "side" : 2
              },
              "side" : 32
          },
