@@ -5,7 +5,7 @@ Contributor : BAKFR
 File under GNU GPL v3.0 license
 */
 #include "StringKeys.hpp"
-#include "../opmon/model/storage/ResourceLoader.hpp"
+#include "../opmon/start/Core.hpp"
 #include "./log.hpp"
 #include <cstdio>
 #include <fstream>
@@ -47,8 +47,10 @@ namespace Utils {
         }
 
         bool initialize(const std::string &keysFileS) {
-            std::ifstream keysFile;
-            OpMon::Model::ResourceLoader::loadKeysFile(keysFileS.c_str(), keysFile);
+            std::ifstream keysFile(keysFileS);
+            if(!keysFile) {
+                OpMon::handleError(std::string("Keys initialization error: ") + keysFileS, true);
+            }
             keys = std::vector<std::string>();
             strings = std::vector<sf::String>();
             Log::oplog("Keys initialization");

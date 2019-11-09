@@ -109,7 +109,7 @@ namespace OpMon {
              */
             sf::Texture &getShadowTrainer() { return shadowTrainer; }
             /*!
-             * \brief Gets the grey healthbar.
+             * \brief Gets the gray healthbar.
              */
             sf::Texture &getHealthbar1() { return healthbar1; }
             /*!
