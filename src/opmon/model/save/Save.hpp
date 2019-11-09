@@ -1,8 +1,9 @@
-/*
-Save.hpp
-Author : Cyrielle
-Contributor : BAKFR
-File under GNU GPL v30 license
+/*!
+ * \file  Save.hpp
+ * \authors Cyrielle
+ * \authors BAKFR
+ * \copyright GNU GPL v3.0
+ * \warning This file is to be redone completely. Therefore, it is not documented.
 */
 #ifndef SAVE_HPP
 #define SAVE_HPP
