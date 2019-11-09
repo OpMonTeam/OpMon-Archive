@@ -2,7 +2,7 @@
  * \file Item.hpp
  * \author Cyrielle
  * \copyright GNU GPL v3.0
- * \warn Work in progress. The documentation might not be complete or up to date.
+ * \warn Work in progress. The documentation may not be complete or up to date.
  */
 #pragma once
 
