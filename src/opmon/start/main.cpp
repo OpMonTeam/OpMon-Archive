@@ -56,8 +56,6 @@ namespace OpMon {
 #else
             oplog("Plateform : Unix");
 #endif
-            oplog("Loading internal files.");
-            InternalFiles::registerFiles();
             oplog("Loading options");
             OptionsSave::initParams(Utils::Path::getSavePath() + "/optSave.oparams"); //Loading parameters
             if(!OptionsSave::checkParam("lang")) {                                    //If the "lang" setting don't exist
