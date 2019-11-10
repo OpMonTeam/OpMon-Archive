@@ -207,8 +207,8 @@ namespace OpMon {
                 return nickname;
             }
 
-            sf::String *getNicknamePtr(){
-              return &nickname;
+            sf::String *getNicknamePtr() {
+                return &nickname;
             }
 
             /**Heals the OPMon (Opposite of attack() )*/

@@ -71,12 +71,12 @@ namespace OpMon {
             sf::Sprite bgOpt;
             sf::Sprite bgControls;
 
-	    //TODO : Making the addition of a language easier.
+            //TODO : Making the addition of a language easier.
             sf::Text langFr;
             sf::Text langEng;
             sf::Text langEsp;
             sf::Text langDe;
-	    sf::Text langIt;
+            sf::Text langIt;
 
             sf::Text txtRetour;
             sf::Text txtOptions;

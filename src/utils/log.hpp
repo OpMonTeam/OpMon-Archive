@@ -26,7 +26,7 @@ namespace Utils {
      */
         void oplog(const std::string &toSay, bool error = false);
 
-	/** Add "[WARN - " to the parameter before calling oplog.
+        /** Add "[WARN - " to the parameter before calling oplog.
 	 * 
 	 * @param toSay message to write.
 	 */
