@@ -98,7 +98,7 @@ namespace OpMon {
                     } else if(menu.getCurrentOption() == View::OptionType::LANG) { //Chooses language to print
 
                         auto &tr = OpMon::I18n::Translator::getInstance();
-			data.getUiDataPtr()->getJukebox().playSound("push");
+                        data.getUiDataPtr()->getJukebox().playSound("push");
                         switch(menu.cursorPosition()) {
                         case 0:
                             menu.setCurrentOption(View::OptionType::ALL);
@@ -119,10 +119,10 @@ namespace OpMon {
                             Model::OptionsSave::modifyParam("lang", "de");
                             tr.setLang("de");
                             break;
-			case 5:
-			    Model::OptionsSave::modifyParam("lang", "it");
-			    tr.setLang("it");
-			    break;
+                        case 5:
+                            Model::OptionsSave::modifyParam("lang", "it");
+                            tr.setLang("it");
+                            break;
                         }
                     } else if(menu.getCurrentOption() == View::OptionType::CREDITS) {
                         //Only one choice is avilable on the credits : back.

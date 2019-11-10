@@ -36,7 +36,7 @@ namespace OpMon {
                     curPos += 2;
                 }
                 if(event.key.code == sf::Keyboard::Left) {
-                   data.getUiDataPtr()->getJukebox().playSound("arrow");
+                    data.getUiDataPtr()->getJukebox().playSound("arrow");
                     curPos--;
                 }
                 if(event.key.code == sf::Keyboard::Right) {

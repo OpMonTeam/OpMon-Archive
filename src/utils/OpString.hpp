@@ -17,40 +17,39 @@ namespace Utils {
    */
     class OpString {
       private:
-	/**
+        /**
 	 * The StringKey key to get the string.
 	 */
         std::string key;
-	/**
+        /**
 	 * The vecteur of objects to insert in the string. It's a pointer because it allows the value to change later.
 	 */
         std::vector<sf::String *> objects;
 
       public:
-	
         OpString(std::string const &key, std::vector<sf::String *> obj = {});
         OpString();
 
-	/**
+        /**
 	 * Return the object at the given index.
 	 * @param index
 	 */
         const sf::String &getObject(int index) const {
             return *(objects[index]);
         }
-	/**
+        /**
 	 * Return the key giving the string in StringKeys
 	 */
         const std::string &getKey() const {
             return key;
         }
-	/**
+        /**
 	 * Return the completed key.
 	 */
         sf::String getString() const;
         /* A empty OpString */
 
-	/**
+        /**
 	 * An empty OpString
 	 */
         static OpString voidStr;
