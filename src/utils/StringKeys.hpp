@@ -20,7 +20,7 @@ namespace Utils {
         extern std::vector<std::string> keys;
         extern std::vector<sf::String> strings;
 
-	/**
+        /**
 	 * Return the characted string associated with the key.
 	 * @param key
 	 */
@@ -33,7 +33,7 @@ namespace Utils {
      */
         bool initialize(const std::string &file);
 
-	/**
+        /**
 	 * Split a character string and returns the part corresponding to the given index. Deprecated, use the function returning directly a vector.
 	 * @param str The string to split
 	 * @param splitter The character used as the limit between the different parts
@@ -41,26 +41,26 @@ namespace Utils {
 	 */
         OP_DEPRECATED sf::String split(sf::String const &str, char const &splitter, int const &part);
 
-	/**
+        /**
 	 * Split a character string and returns an array.
 	 * @param str The string to split
 	 * @param splitter The character used as the limit between the different parts
 	 */
         std::vector<sf::String> split(sf::String const &str, char const &splitter);
 
-	/**
+        /**
 	 * Converts a sf::String to a std::string without encoding problems.
 	 * @param str The sf::String to convert
 	 */
         std::string sfStringtoStdString(sf::String const &str);
 
-	/**
+        /**
 	 * Returns the string associated with the key in std::string format.
 	 * @param key
 	 */
         std::string getStd(std::string const &key);
 
-	/**
+        /**
 	 * Count the number of instances of toSearch into str.
 	 * @param str
 	 * @param toSearch
