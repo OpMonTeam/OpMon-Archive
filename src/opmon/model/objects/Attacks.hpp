@@ -1,8 +1,9 @@
-/*
-  Attacks.hpp
-  Author : Cyrielle
-  Contributors : BAKFR, Navet56
-  File under GNU GPL v3.0 license
+/*!
+ * \file Attacks.hpp
+ * \authors Cyrielle
+ * \authors BAKFR
+ * \authors Navet56
+ * \copyright GNU GPL v3.0
 */
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUES_HPP_
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUES_HPP_
@@ -13,38 +14,42 @@
 #include <cmath>
 #include <iostream>
 
-/** Macro replacing an attack class declaration. I created it by pure laziness. */
-#define DEFINE_BATTLE_EFFECT_CLASS(name)                                                     \
-    class name : public AttackEffect {                                                       \
-      public:                                                                                \
-        int apply(Attack &attack, OpMon &attacker, OpMon &defender, Turn &atkTurn) override; \
-    }
-
-/** Used in the .cpp in newAtk */
-#define IF_ATK(NAME, RESULT) \
-    if(name == #NAME) {      \
-        return new RESULT;   \
-    }
-
 namespace OpMon {
     namespace Model {
-        /**
-	   Namespace containing attacks' definitions
-	*/
-        //->NoDoc
+        /*!
+         * \brief Contains the AttackEffects used in the game.
+         */
         namespace Attacks {
+            /*!
+             * \brief A generic effet to change an OpMon's statistic.
+             */
             class ChangeStatEffect : public AttackEffect {
               public:
-                enum class Target : int { ATTACKER = 0,
-                                          DEFENDER = 1 };
+                /*!
+                 * \brief Sets the target for the effect.
+                 */
+                enum class Target : int { ATTACKER = 0,/*!< The attack user will receive the stat modification.*/
+                                          DEFENDER = 1 /*!< The attacked OpMon will receive the stat modification.*/};
+                /*!
+                 * \param target The targeted OpMon.
+                 * \param stat The stat to change.
+                 * \param coef The coefficient of the modification to apply.
+                 */
                 ChangeStatEffect(Target target, Model::Stats stat, int coef);
+                /*!
+                 * \brief Initialises the object from a json object.
+                 * \param data The json object.
+                 */
                 ChangeStatEffect(nlohmann::json const &data);
+                /*!
+                 * \brief Applies the stat modification.
+                 */
                 int apply(Attack &attack, OpMon &attacker, OpMon &defender, std::queue<TurnAction> &turnQueue) override;
 
               protected:
-                Target target;
-                Model::Stats stat;
-                int coef;
+                Target target;/*!<\brief The targeted OpMon.*/
+                Model::Stats stat;/*!<\brief The stat to change.*/
+                int coef;/*!< \brief The coefficient of the modifications to apply.*/
             };
         } // namespace Attacks
     }     // namespace Model

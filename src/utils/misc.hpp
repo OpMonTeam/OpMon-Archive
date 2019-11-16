@@ -1,8 +1,9 @@
-/*
-misc.hpp
-Author : BAKFR
-File under GNU GPL v3.0
-*/
+/*!
+ * \file  misc.hpp
+ * \author BAKFR
+ * \copyright GNU GPL v3.0
+ * \date 08/01/18
+ */
 #ifndef UTILS_HPP
 #define UTILS_HPP
 
@@ -11,6 +12,10 @@ File under GNU GPL v3.0
 #include <type_traits> //std::is_floating_point_v, std::is_same_v
                        //std::is_integral_v, std::conditional_t
 
+/*!
+ * \namespace Utils::Misc
+ * \brief Contains miscanellous utilities.
+ */
 namespace Utils::Misc {
 
     template <class T, class... U>
@@ -21,8 +26,8 @@ namespace Utils::Misc {
 
     std::mt19937 &getRNGEngine();
 
-    ///Generates a random number of type T in the range [min, max]
-    ///Example: random_<int>(0, 255);
+    ///\brief Generates a random number of type T in the range [min, max]
+    ///\details Example: random_<int>(0, 255);
     ///Example: random_('a', 'z');
     ///Example: random_<bool>();
     template <class T>
@@ -55,8 +60,13 @@ namespace Utils::Misc {
                           static_cast<T>(1));
     }
 
+    /*!
+     * \brief Generates a random signed integer.
+     */
     int randU(int limit);
-
+    /*!
+     * \brief Generates a random unsigned integer.
+     */
     unsigned int randUI(unsigned int limit);
 
     std::size_t hash(const std::string &str);

@@ -1,16 +1,26 @@
+/*!
+ * \file centerOrigin.hpp
+ * \author Srykah
+ * \date 03/09/19
+ * \copyright GNU GPL v3.0
+ */
 #pragma once
 
 #include <SFML/Graphics/Rect.hpp>
 #include <cmath>
 
+/*!
+ * \namespace Utils::Origin
+ * \brief Contains origin-related functions.
+ */
 namespace Utils::Origin {
-    /**
-     * Template function for centering graphical objects' origins.
+    /*!
+     * \brief Template function for centering graphical objects' origins.
      *
      * It has to be a template function, because we need setOrigin() from Transformable and getLocalBounds() from
      * the Drawable implementations.
-     * @tparam T The type of the graphical object in argument
-     * @param transformable The graphical object that will have its origin centered
+     * \tparam T The type of the graphical object in argument
+     * \param transformable The graphical object that will have its origin centered
      */
     template <class T>
     void centerOrigin(T &transformable) {
