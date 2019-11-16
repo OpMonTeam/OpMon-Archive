@@ -174,9 +174,9 @@ namespace OpMon {
         }
 
         void OverworldCtrl::suspend() {
-          if(loadNext == LOAD_BATTLE){
-            data.getUiDataPtr()->getJukebox().pause();
-          }
+            if(loadNext == LOAD_BATTLE) {
+                data.getUiDataPtr()->getJukebox().pause();
+            }
         }
 
         void OverworldCtrl::resume() {

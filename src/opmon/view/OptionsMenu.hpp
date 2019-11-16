@@ -71,10 +71,12 @@ namespace OpMon {
             sf::Sprite bgOpt;
             sf::Sprite bgControls;
 
+            //TODO : Making the addition of a language easier.
             sf::Text langFr;
             sf::Text langEng;
             sf::Text langEsp;
             sf::Text langDe;
+            sf::Text langIt;
 
             sf::Text txtRetour;
             sf::Text txtOptions;
@@ -120,8 +122,8 @@ namespace OpMon {
             sf::Text txtCred;
             sf::Text txtCtrl;
             sf::Sprite bgLangues;
-            sf::Vector2f curPosLang[5] = {};
-            sf::Vector2f curSizeLang[5];
+            sf::Vector2f curPosLang[6] = {};
+            sf::Vector2f curSizeLang[6];
             sf::Vector2f curPosCtrl[5] = {};
             sf::Vector2f curSizeCtrl[5];
             sf::Sprite check;

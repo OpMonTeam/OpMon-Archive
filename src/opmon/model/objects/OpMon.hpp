@@ -234,11 +234,11 @@ namespace OpMon {
              * \copydoc OpMon::changeATK
              */
             int changeATKSPE(int power);
-/*!
+            /*!
              * \copydoc OpMon::changeATK
              */
             int changeDEFSPE(int power);
-/*!
+            /*!
              * \copydoc OpMon::changeATK
              */
             int changeSPE(int power);
@@ -271,8 +271,8 @@ namespace OpMon {
             /*!
              * \brief Returns a pointer to the OpMon's nickname.
              */
-            sf::String *getNicknamePtr(){
-              return &nickname;
+            sf::String *getNicknamePtr() {
+                return &nickname;
             }
 
             /*!
