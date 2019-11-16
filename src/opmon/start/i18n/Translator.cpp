@@ -25,6 +25,7 @@ namespace OpMon {
               {"en", "keys/english.rkeys"},
               {"es", "keys/espanol.rkeys"},
               {"fr", "keys/francais.rkeys"},
+              {"it", "keys/italian.rkeys"},
               {"de", "keys/deutsch.rkeys"}};
 
             /*            if(langCode == _currentLang)
@@ -49,6 +50,7 @@ namespace OpMon {
               {"en", "English"},
               {"es", "Espa\u00F1ol"},
               {"fr", "Fran\u00E7ais"},
+              {"it", "Italian"},
               {"de", "Deutsch"}};
 
             return languages;

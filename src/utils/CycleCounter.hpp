@@ -23,15 +23,15 @@ namespace Utils {
          */
         int value = 0;
 
-        /**
+        /*!
          * \brief The lower limit.
          */
         int limitDown;
-        /**
+        /*!
          * \brief The upper limit.
          */
         int limitUp;
-        /**
+        /*!
          * \brief The range of the counter (number of values it can take).
          */
         int range;
@@ -64,7 +64,7 @@ namespace Utils {
 
         void operator=(int number) { value = ((range + (number - limitDown)) % range) + limitDown; }
 
-        /**
+        /*!
          * \return The value of the counter.
          */
         int getValue() { return value; }
