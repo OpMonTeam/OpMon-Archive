@@ -23,8 +23,8 @@ namespace Utils::Origin {
      * \param transformable The graphical object that will have its origin centered
      */
     template <class T>
-    void centerOrigin(T& transformable) {
+    void centerOrigin(T &transformable) {
         sf::FloatRect bounds = transformable.getLocalBounds();
         transformable.setOrigin(std::floor(bounds.left + bounds.width / 2.f), std::floor(bounds.top + bounds.height / 2.f));
     }
-}
+} // namespace Utils::Origin

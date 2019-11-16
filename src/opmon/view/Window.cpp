@@ -6,8 +6,8 @@ File under GNU GPL v3.0 license
 */
 #include "Window.hpp"
 #include "../../utils/StringKeys.hpp"
-#include "../../utils/log.hpp"
 #include "../../utils/centerOrigin.hpp"
+#include "../../utils/log.hpp"
 #include "../model/save/OptionsSave.hpp"
 #include "../model/storage/ResourceLoader.hpp"
 #include "../start/Core.hpp"
@@ -82,7 +82,7 @@ namespace OpMon {
             sprite.setPosition(windowSize.x / 2.f, windowSize.y / 2.f);
 
             // prevent auto-stretching
-            window.setView(sf::View({ 0.f, 0.f, windowSize.x, windowSize.y }));
+            window.setView(sf::View({0.f, 0.f, windowSize.x, windowSize.y}));
         }
 
     } // namespace View

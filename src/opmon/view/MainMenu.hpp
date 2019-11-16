@@ -44,7 +44,6 @@ namespace OpMon {
             };
             std::vector<OptionMenu> optionsVec;
             sf::Sprite cursor;
-
         };
     } // namespace View
 } // namespace OpMon
