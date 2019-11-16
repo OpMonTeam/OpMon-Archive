@@ -1,9 +1,7 @@
-/*
-  OpMon.hpp
-  Author : Jlppc
-  File under the GPL 3.0 license.
-  http://opmon-game.ga
-  Contains CalCourbs namespace defintions and OpMon class
+/*!
+  \file OpMon.hpp
+  \author Cyrielle
+  \copyright GNU GPL 3.0
 */
 #ifndef OPMON_HPP
 #define OPMON_HPP
@@ -24,12 +22,14 @@ namespace OpMon {
 
         class Item;
 
-        /**
-            Class defining a particular OpMon. To see the class that defines a species, see Species.hpp
+        /*!
+           \brief Class defining an OpMon. To see the class defining a species, see Species
+           \todo Re-check the class a bit, rewrite what's necessary. There is a lot of old code here. Also check for french and translate it.
+           \todo Change the IV, EV and stat variables into arrays working with the enumeration Stats.
+           \todo Delete the stat variables and make the methods returing the stats calculating them.
+           \todo Finish to document the file when the changes are done.
         */
         class OpMon {
-
-          protected:
           private:
             sf::String nickname;
             int atkIV = Utils::Misc::randU(32);
@@ -71,13 +71,9 @@ namespace OpMon {
 
             Nature nature;
 
-            /**Warning: This variable contains the current PV of the OPMon, the statPV class contains the max PV*/
             int HP;
-            //->ExpectEnum->Status
             Status status = Status::NOTHING;
-            //->ExpectEnum->Type
             Type type1;
-            //->ExpectEnum->Type
             Type type2;
 
             int exp;
@@ -95,24 +91,20 @@ namespace OpMon {
             unsigned int sleepingCD = 0;
 
           public:
-            /**Lets you know if a OPMon is an OPMon that is initialized with a default initializer*/
-            //Not very useful anymore I think...
-            bool initialized = true;
-
             bool confused = false;
             bool afraid = false;
             bool inLove = false;
-            bool vampigraine = false;
-            bool malediction = false;
 
             virtual ~OpMon();
 
+            /*!
+             * \param nickname The OpMon's nickname. Replaced by the species name if empty.
+             * \param species The OpMon's species.
+             * \param level The OpMon's level.
+             * \param attacks The OpMon's attacks.
+             */
             OpMon(const std::string &nickname, const Species *species, int level, const std::vector<Attack *> &attacks,
                   Nature nature);
-
-            OpMon() {
-                initialized = true;
-            }
 
             int getConfusedCD() {
                 return confusedCD;
@@ -122,73 +114,139 @@ namespace OpMon {
                 return sleepingCD;
             }
 
+            /*!
+             * \brief Updates the sleep or confused countdown.
+             * \param sleep If `true`, updates the sleep countdown, if `false`, updates the confused countdown.
+             */
             void passCD(bool sleep);
 
+            /*!
+             * \brief Makes the OpMon asleep.
+             */
             void goToSleep() {
                 sleepingCD = Utils::Misc::randU(3);
                 setStatus(Status::SLEEPING);
             }
 
+            /*!
+             * \brief Makes the OpMon confused.
+             * \todo Change the name, maybe ?
+             */
             void drinkTooMuch() {
                 confused = true;
                 confusedCD = Utils::Misc::randU(4);
             }
 
             /**Returns true if the OPMon is well captured*/
+            /*!
+             * \brief Calculates the capture of an OpMon.
+             * \param OpBox The OpBox used to capture the OpMon.
+             * \returns `true` if the OpMon is captured, `false` otherwise.
+             */
             bool captured(Item const &OpBox);
 
-            /** Set the stat given*/
+            /*!
+             * \brief Sets a stat.
+             * \param stat The stat to set.
+             * \param newStat The new value of the stat.
+             */
             void setStat(Stats stat, int newStat);
 
-            /**Method called when leveling up*/
+            /*!
+             * \brief Makes the OpMon level up.
+             */
             void levelUp();
 
+            /*!
+             * \brief Returns if the OpMon is holding an item or not.
+             * \returns `true` if the held item is not `nullptr`, `false` otherwise.
+             */
             bool isHoldingItem() const {
-                return (held == nullptr);
+                return (held != nullptr);
             }
 
-            /**Method called when the Opmon wins*/
-            int win(OpMon const &vaincu);
+            /*!
+             * \brief Method called when the OpMon wins against another one.
+             * \param defeated The defeated OpMon.
+             * \returns The number of exp gained by this OpMon.
+             */
+            int win(OpMon const &defeated);
 
-            /**Recalculates the stats*/
+            /*!
+             * \brief Calculates the stats
+             */
             void calcStats();
 
-            /**Method called when an item is used. Returns true if the item must be deleted from the player's inventory*/
+            /*!
+             * \warn Work in progress.
+             * \brief Method called when an item is used.
+             * \return `true` if the item has to be deleted from the player's inventory.
+             */
             bool itemUsed(Item *used);
 
+            /*!
+             * \brief Makes the OpMon hold an item.
+             * \return The previous held item.
+             * \param item The item the hold.
+             */
             Item *hold(Item *item);
-            /**Method called during an exchange*/
-            void traded();
 
-            /**Method called when the OpMon is about to evolve*/
+            /*!
+             * \brief Method called when the OpMon evolves.
+             */
             void evolve();
 
-            /**Allows to completely change the OPMon*/
+            /*!
+             * \brief Changes different stats of the OpMon.
+             * \param stats An array containing the stats in the order of the enumeration Stats.
+             * \param attacks An array containing up to 4 attacks.
+             * \param species The new species of the OpMon.
+             * \param types The two new types of the OpMon.
+             */
             void setStats(int stats[], Attack *attacks[], const Species &species, Type types[]);
 
-            /**Attack the OpMon (he looses HP)*/
-            void attacked(int hpPerdus);
+            /*!
+             * \brief Makes the OpMon loose HP.
+             * \details The method makes sure the HP can't go below 0.
+             * \param hpLost The HP lost by the OpMon.
+             */
+            void attacked(int hpLost);
 
-            /**Changes the STAT depending of the power given. It doesn't edit directly the variable, it lowers or increases (Depending of the power's sign) by multiplicating it.*/
+            /*!
+             * \brief Changes the STAT depending of the power given.
+             * \details It doesn't edit directly the variable, it lowers or increases (Depending of the sign of the paramter) by multiplicating it.
+             * \param power The power of the change (negative if the stat descreases, positif if it increases).
+             */
             int changeATK(int power);
-
+            /*!
+             * \copydoc OpMon::changeATK
+             */
             int changeACC(int power);
-
+            /*!
+             * \copydoc OpMon::changeATK
+             */
             int changeEVA(int power);
-
+            /*!
+             * \copydoc OpMon::changeATK
+             */
             int changeDEF(int power);
-
+            /*!
+             * \copydoc OpMon::changeATK
+             */
             int changeATKSPE(int power);
-
+            /*!
+             * \copydoc OpMon::changeATK
+             */
             int changeDEFSPE(int power);
-
+            /*!
+             * \copydoc OpMon::changeATK
+             */
             int changeSPE(int power);
 
             Status getStatus() {
                 return status;
             }
 
-            /**Changes OpMon's status*/
             bool setStatus(Status status);
 
             int getStatHP() const {
@@ -203,15 +261,23 @@ namespace OpMon {
                 return HP;
             }
 
+            /*!
+             * \brief Returns a reference to the OpMon's nickname.
+             */
             sf::String &getNickname() {
                 return nickname;
             }
 
+            /*!
+             * \brief Returns a pointer to the OpMon's nickname.
+             */
             sf::String *getNicknamePtr() {
                 return &nickname;
             }
 
-            /**Heals the OPMon (Opposite of attack() )*/
+            /*!
+             * \brief Heals the OPMon (Opposite of attack()). Makes sure the HP doesn't go higher than the maximum HP.
+             */
             void heal(int HP);
 
             int getLevel() const {
@@ -230,7 +296,11 @@ namespace OpMon {
                 return statACC;
             }
 
-            void getEvs(OpMon const &vaincu);
+            /*!
+             * \brief Gives the OpMon the evs gained by defeating an OpMon.
+             * \param defeated The defeated OpMon.
+             */
+            void getEvs(OpMon const &defeated);
 
             Type getType1() const {
                 return type1;
@@ -268,20 +338,13 @@ namespace OpMon {
                 return *species;
             }
 
-            //Warning! The == and != operators do not compare two OPMons! They compare whether OPMons are "initialized" or not (see initialized))
-            //Yup, I should change this in the future (TODO)
-            bool operator==(OpMon const &a) {
-                return (initialized == a.initialized);
-            }
-
-            bool operator!=(OpMon const &a) {
-                return !(initialized == a.initialized);
-            }
-
             Item *itemHeld() const {
                 return held;
             }
 
+            /*!
+             * \warning Work in progress.
+             */
             std::string save();
         };
 

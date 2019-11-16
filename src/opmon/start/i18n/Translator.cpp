@@ -7,6 +7,7 @@ File under GNU GPL v3.0
 #include "Translator.hpp"
 #include "../../../utils/StringKeys.hpp"
 #include "../../../utils/log.hpp"
+#include "../../../utils/path.hpp"
 #include "ATranslatable.hpp"
 
 namespace OpMon {
@@ -32,7 +33,7 @@ namespace OpMon {
 	      Desactivated : if we need to reload the keys
 */
 
-            Utils::StringKeys::initialize(langMap[langCode]);
+            Utils::StringKeys::initialize(Utils::Path::getResourcePath() + langMap[langCode]);
 
             _currentLang = langCode;
             for(auto &listener : _listeners) {

@@ -1,30 +1,48 @@
+/*!
+ * \file CycleCounter.hpp
+ * \brief A cycling counter.
+ * \author Cyrielle
+ * \date 14/02/19
+ * \copyright GNU GPL v3.0
+ */
 #pragma once
 
+/*! \namespace Utils
+ *  \brief Contains different utilities.
+ */
 namespace Utils {
-    /**
-     * Represents a counter cycling in the interval between two values. When the counter reaches the upper value, it goes to the lower value, and vice versa.
+    /*!
+     * \class CycleCounter "utils/CycleCounter.hpp"
+     * \brief Represents a counter cycling in the interval between two values.
+     * \details When the counter reaches the upper value, it goes to the lower value, and vice versa. The class is designed to work with the most common operators, allowing to manipulate an objet as simply as if it were a number.
      */
     class CycleCounter {
       private:
-        /**
-	 * The counter value.
-	*/
+        /*!
+         * \brief The value of the counter.
+         */
         int value = 0;
 
-        /**
-	 * The lower limit.
-	*/
+        /*!
+         * \brief The lower limit.
+         */
         int limitDown;
-        /**
-	 * The upper limit.
-	*/
+        /*!
+         * \brief The upper limit.
+         */
         int limitUp;
-        /**
-	 * The range of the counter (number of values it can take).
-	*/
+        /*!
+         * \brief The range of the counter (number of values it can take).
+         */
         int range;
 
       public:
+
+        /*!
+         * \param limitUp The upper limit of the counter.
+         * \param limitDown The lower limit of the counter.
+         * \param value The value of the counter.
+         */
         CycleCounter(int limitUp, int limitDown = 0, int value = 0)
           : value(value)
           , limitDown(limitDown)
@@ -46,9 +64,9 @@ namespace Utils {
 
         void operator=(int number) { value = ((range + (number - limitDown)) % range) + limitDown; }
 
-        /**
-	 * Return the counter value
-	 */
+        /*!
+         * \return The value of the counter.
+         */
         int getValue() { return value; }
     };
 } // namespace Utils
