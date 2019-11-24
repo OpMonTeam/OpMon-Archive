@@ -220,7 +220,7 @@
             "type" : "TPEvent",
             "textures" : "alpha",
             "trigger" : 3,
-            "position" : [ 39, 17 ],
+            "position" : [ 47, 17 ],
             "tp" : {
                 "position" : [ 4, 38 ],
                 "map" : "Road 14",
@@ -232,7 +232,7 @@
             "type" : "TPEvent",
             "textures" : "alpha",
             "trigger" : 3,
-            "position" : [ 39, 18 ],
+          "position": [ 47, 18 ],
             "tp" : {
                 "position" : [ 4, 39 ],
                 "map" : "Road 14",
@@ -244,7 +244,7 @@
             "type" : "TPEvent",
             "textures" : "alpha",
             "trigger" : 3,
-            "position" : [ 39, 19 ],
+          "position": [ 47, 19 ],
             "tp" : {
                 "position" : [ 4, 40 ],
                 "map" : "Road 14",
@@ -256,7 +256,7 @@
             "type" : "TPEvent",
             "textures" : "alpha",
             "trigger" : 3,
-            "position" : [ 39, 20 ],
+          "position": [ 47, 20 ],
             "tp" : {
                 "position" : [ 4, 41 ],
                 "map" : "Road 14",
