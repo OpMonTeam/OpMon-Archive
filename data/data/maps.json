@@ -232,7 +232,7 @@
             "type" : "TPEvent",
             "textures" : "alpha",
             "trigger" : 3,
-          "position": [ 47, 18 ],
+            "position" : [ 47, 18 ],
             "tp" : {
                 "position" : [ 4, 39 ],
                 "map" : "Road 14",
@@ -244,7 +244,7 @@
             "type" : "TPEvent",
             "textures" : "alpha",
             "trigger" : 3,
-          "position": [ 47, 19 ],
+            "position" : [ 47, 19 ],
             "tp" : {
                 "position" : [ 4, 40 ],
                 "map" : "Road 14",
@@ -256,7 +256,7 @@
             "type" : "TPEvent",
             "textures" : "alpha",
             "trigger" : 3,
-          "position": [ 47, 20 ],
+            "position" : [ 47, 20 ],
             "tp" : {
                 "position" : [ 4, 41 ],
                 "map" : "Road 14",
