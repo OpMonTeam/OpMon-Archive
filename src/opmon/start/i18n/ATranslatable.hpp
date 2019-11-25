@@ -24,7 +24,7 @@ namespace OpMon {
 
           public:
             /*!
-             * \brief Method called after the lang has been changed.
+             * \brief Method called after the language has been changed.
              */
             virtual void onLangChanged() = 0;
         };
