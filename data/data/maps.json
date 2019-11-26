@@ -935,9 +935,9 @@
              "type" : "TPEvent",
              "textures" : "alpha",
              "trigger" : 3,
-             "position" : [ 77, 40 ],
+             "position" : [ 84, 40 ],
              "tp" : {
-                 "position" : [ 3, 41 ],
+                 "position" : [ 2, 41 ],
                  "map" : "EuviCity",
                  "side" : 1
              },
@@ -947,9 +947,9 @@
              "type" : "TPEvent",
              "textures" : "alpha",
              "trigger" : 3,
-             "position" : [ 77, 41 ],
+             "position" : [ 84, 41 ],
              "tp" : {
-                 "position" : [ 3, 42 ],
+                 "position" : [ 2, 42 ],
                  "map" : "EuviCity",
                  "side" : 1
              },
@@ -959,9 +959,9 @@
              "type" : "TPEvent",
              "textures" : "alpha",
              "trigger" : 3,
-             "position" : [ 77, 42 ],
+             "position" : [ 84, 42 ],
              "tp" : {
-                 "position" : [ 3, 43 ],
+                 "position" : [ 2, 43 ],
                  "map" : "EuviCity",
                  "side" : 1
              },
@@ -971,9 +971,9 @@
              "type" : "TPEvent",
              "textures" : "alpha",
              "trigger" : 3,
-             "position" : [ 77, 43 ],
+             "position" : [ 84, 43 ],
              "tp" : {
-                 "position" : [ 3, 44 ],
+                 "position" : [ 2, 44 ],
                  "map" : "EuviCity",
                  "side" : 1
              },
@@ -983,9 +983,9 @@
              "type" : "TPEvent",
              "textures" : "alpha",
              "trigger" : 3,
-             "position" : [ 77, 44 ],
+             "position" : [ 84, 44 ],
              "tp" : {
-                 "position" : [ 3, 45 ],
+                 "position" : [ 2, 45 ],
                  "map" : "EuviCity",
                  "side" : 1
              },
@@ -1437,7 +1437,7 @@
              "trigger" : 3,
              "position" : [ 1, 41 ],
              "tp" : {
-                 "position" : [ 77, 40 ],
+                 "position" : [ 85, 40 ],
                  "map" : "Road 14",
                  "side" : 2
              },
@@ -1456,7 +1456,7 @@
              "trigger" : 3,
              "position" : [ 1, 42 ],
              "tp" : {
-                 "position" : [ 77, 41 ],
+              "position": [ 85, 41 ],
                  "map" : "Road 14",
                  "side" : 2
              },
@@ -1468,7 +1468,7 @@
              "trigger" : 3,
              "position" : [ 1, 43 ],
              "tp" : {
-                 "position" : [ 77, 42 ],
+              "position": [ 85, 42 ],
                  "map" : "Road 14",
                  "side" : 2
              },
@@ -1480,7 +1480,7 @@
              "trigger" : 3,
              "position" : [ 1, 44 ],
              "tp" : {
-                 "position" : [ 77, 43 ],
+              "position": [ 85, 43 ],
                  "map" : "Road 14",
                  "side" : 2
              },
@@ -1492,7 +1492,7 @@
              "trigger" : 3,
              "position" : [ 1, 45 ],
              "tp" : {
-                 "position" : [ 77, 44 ],
+              "position": [ 85, 44 ],
                  "map" : "Road 14",
                  "side" : 2
              },
