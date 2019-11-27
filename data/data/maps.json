@@ -935,9 +935,9 @@
              "type" : "TPEvent",
              "textures" : "alpha",
              "trigger" : 3,
-             "position" : [ 84, 40 ],
+             "position" : [ 85, 40 ],
              "tp" : {
-                 "position" : [ 2, 41 ],
+                 "position" : [ 1, 41 ],
                  "map" : "EuviCity",
                  "side" : 1
              },
@@ -947,9 +947,9 @@
              "type" : "TPEvent",
              "textures" : "alpha",
              "trigger" : 3,
-             "position" : [ 84, 41 ],
+             "position": [ 85, 41 ],
              "tp" : {
-                 "position" : [ 2, 42 ],
+                 "position" : [ 1, 42 ],
                  "map" : "EuviCity",
                  "side" : 1
              },
@@ -959,9 +959,9 @@
              "type" : "TPEvent",
              "textures" : "alpha",
              "trigger" : 3,
-             "position" : [ 84, 42 ],
+             "position": [ 85, 42 ],
              "tp" : {
-                 "position" : [ 2, 43 ],
+                 "position" : [ 1, 43 ],
                  "map" : "EuviCity",
                  "side" : 1
              },
@@ -971,21 +971,9 @@
              "type" : "TPEvent",
              "textures" : "alpha",
              "trigger" : 3,
-             "position" : [ 84, 43 ],
+             "position": [ 85, 43 ],
              "tp" : {
-                 "position" : [ 2, 44 ],
-                 "map" : "EuviCity",
-                 "side" : 1
-             },
-             "side" : 32
-         },
-         {
-             "type" : "TPEvent",
-             "textures" : "alpha",
-             "trigger" : 3,
-             "position" : [ 84, 44 ],
-             "tp" : {
-                 "position" : [ 2, 45 ],
+                 "position" : [ 1, 44 ],
                  "map" : "EuviCity",
                  "side" : 1
              },
@@ -1435,9 +1423,9 @@
              "type" : "TPEvent",
              "textures" : "alpha",
              "trigger" : 3,
-             "position" : [ 1, 41 ],
+             "position" : [ 0, 41 ],
              "tp" : {
-                 "position" : [ 85, 40 ],
+                 "position": [ 86, 40 ],
                  "map" : "Road 14",
                  "side" : 2
              },
@@ -1454,9 +1442,9 @@
              "type" : "TPEvent",
              "textures" : "alpha",
              "trigger" : 3,
-             "position" : [ 1, 42 ],
+             "position" : [ 0, 42 ],
              "tp" : {
-              "position": [ 85, 41 ],
+                 "position": [ 86, 41 ],
                  "map" : "Road 14",
                  "side" : 2
              },
@@ -1466,9 +1454,9 @@
              "type" : "TPEvent",
              "textures" : "alpha",
              "trigger" : 3,
-             "position" : [ 1, 43 ],
+             "position" : [ 0, 43 ],
              "tp" : {
-              "position": [ 85, 42 ],
+                 "position": [ 86, 42 ],
                  "map" : "Road 14",
                  "side" : 2
              },
@@ -1478,21 +1466,9 @@
              "type" : "TPEvent",
              "textures" : "alpha",
              "trigger" : 3,
-             "position" : [ 1, 44 ],
+             "position" : [ 0, 44 ],
              "tp" : {
-              "position": [ 85, 43 ],
-                 "map" : "Road 14",
-                 "side" : 2
-             },
-             "side" : 16
-         },
-         {
-             "type" : "TPEvent",
-             "textures" : "alpha",
-             "trigger" : 3,
-             "position" : [ 1, 45 ],
-             "tp" : {
-              "position": [ 85, 44 ],
+                 "position": [ 86, 43 ],
                  "map" : "Road 14",
                  "side" : 2
              },
