@@ -1,7 +1,7 @@
-/*
-  StartSceneData.hpp
-  Author : Cyrielle
-  File under GNU GPL v3.0 license
+/**!
+ * \file StartSceneData.hpp
+ * \author Cyrielle
+ * \copyright GNU GPL v3.0 license
 */
 #pragma once
 
