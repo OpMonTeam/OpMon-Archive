@@ -160,13 +160,13 @@ namespace OpMon {
                 _next_gs = std::make_unique<BattleCtrl>(data.getPlayer().getOpTeam(), view.getBattleDeclared(), data.getUiDataPtr(), data.getPlayerPtr());
                 break;
             case LOAD_MENU_OPEN:
-                _next_gs = std::make_unique<AnimationCtrl>(std::make_unique<View::Animations::WooshAnim>(screenTexture, data.getGameMenuData().getMenuTexture(), View::Animations::WooshSide::UP, 15, true));
+                _next_gs = std::make_unique<AnimationCtrl>(std::make_unique<View::Animations::WooshAnim>(screenTexture, data.getGameMenuData().getMenuTexture(), View::Animations::WooshDir::UP, 15, true));
                 break;
             case LOAD_MENU:
                 _next_gs = std::make_unique<GameMenuCtrl>(data.getGameMenuData(), player);
                 break;
             case LOAD_MENU_CLOSE:
-                _next_gs = std::make_unique<AnimationCtrl>(std::make_unique<View::Animations::WooshAnim>(screenTexture, data.getGameMenuData().getMenuTexture(), View::Animations::WooshSide::DOWN, 15, false));
+                _next_gs = std::make_unique<AnimationCtrl>(std::make_unique<View::Animations::WooshAnim>(screenTexture, data.getGameMenuData().getMenuTexture(), View::Animations::WooshDir::DOWN, 15, false));
                 break;
             default:
                 handleError("Error : Unknown view to load in OverworldCtrl", true);
