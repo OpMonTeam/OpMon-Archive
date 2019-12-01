@@ -83,7 +83,7 @@ Vous pouvez ajouter des OpMons, des attaques, des items, et autres!
 Vous n'avez qu'à nous proposer vos modifications et nous les ajouterons peut-être au jeu. 
 Si vous nous proposez beaucoup de bonnes modifications, et qu'elles sont acceptées, vous deviendrez peut-être collaborateur!<br/>
 Nous sommes plusieurs sur le projet : Cyriel, le programmeur et créateur de l'histoire et des personnages ; Navet56, le graphiste et correcteur ; et d'autres contributeurs, comme Imperator Dei, qui a corrigé les fautes d'orthographe sur la version française,  merci à eux !<br/>
-Contacts : jlppcprog@ntymail.com pour la programmation | evandib@gmail.com pour les graphismes<br/>
+Contacts : cyriellecentori@uymail.com pour la programmation | evandib@gmail.com pour les graphismes<br/>
 Si vous avez des questions à poser, n'hésitez pas à les demander dans la section F.A.Q. du wiki ou à nous contacter par mail!<br/>
 
 ### Les contrôles
