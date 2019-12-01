@@ -33,7 +33,7 @@ If you want to play to the game quickly, use build-and-run.sh. The game will be 
 If you don't use build-and-run.sh, don't forget to copy the data folder in the game's folder or use `sudo make install` if you are on linux.
 If you want to compile OPMon from A to Z for Windows, Mac OS or other, it's [here](https://github.com/OpMonTeam/OpMon/wiki/Compilation)
 ### Contact Us
-* jlppcprog@ntymail.com for bugs, lags or about the code
+* cyriellecentori@uymail.com for bugs, lags or about the code
 * evandib@gmail.com for sprites, the graphics, design or graphics bugs
 * [Discord server](https://discord.gg/mvS67qu)
 * IRC channel on Freenode : #OpMon
@@ -42,10 +42,10 @@ English is not our native language, but we do our best! If you see some errors, 
 
 If there are problems understanding the old commits or monthly reports that are in French, don't hesitate to ask!
 
-__The current game version is Alpha 0.15.1__ Download link: <a 
-href="http://opmon-game.ga/downloads"><img src="https://img.shields.io/badge/download-v0.15.1-red.svg" alt="Download Link"></a>
+__The current game version is Alpha 0.16__ Download link: <a 
+href="http://opmon-game.ga/downloads"><img src="https://img.shields.io/badge/download-v0.16-red.svg" alt="Download Link"></a>
 
-__The next game version will be Alpha 0.16__: Fight system update and OpMons improvements
+__The next game version will be Alpha 0.17__: Important code improvement, documentation.
 * [Look the ROADMAP](https://github.com/OpMonTeam/OpMon/wiki/ROADMAP)
 * [Look the Releases changelog](https://github.com/OpMonTeam/OpMon/wiki/Releases)
 
@@ -66,11 +66,11 @@ See the controls of the game OpMon [here](http://opmon-game.ga/controls.html)
 * [Dépot du site web](https://github.com/OpMonTeam/OpMon-Website)
 * [Crédits](https://github.com/OpMonTeam/OpMon/blob/master/Credits.md)
 
-<br/>Version du jeu : Alpha 0.15.1 | Téléchargement : <a 
-href="http://opmon-game.ga"><img src="https://img.shields.io/badge/download-v0.15.1-red.svg" alt="Logo Téléchargement"></a><br/><br/>
+<br/>Version du jeu : Alpha 0.16 | Téléchargement : <a 
+href="http://opmon-game.ga"><img src="https://img.shields.io/badge/download-v0.16-red.svg" alt="Logo Téléchargement"></a><br/><br/>
 
-### Prochaines versions :
-* Alpha 0.16 : Amelioration du système de combat et ameliorations des OpMons et de leurs stats
+### Prochaine version :
+* Alpha 0.17 : Importantes amélioration du code, documentation.
 * [Voir la RoadMap](https://github.com/OpMonTeam/OpMon/wiki/ROADMAP)
 
 <br/>
