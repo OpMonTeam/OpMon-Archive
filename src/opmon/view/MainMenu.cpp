@@ -25,10 +25,9 @@ namespace OpMon {
             }
         }
 
-        MainMenu::MainMenu(Model::MainMenuData &data, const std::size_t totalView)
+        MainMenu::MainMenu(Model::MainMenuData &data)
           : data(data)
-          , totalView(totalView)
-          , optionsVec(this->totalView) {
+          , optionsVec(4) {
             int i{0};
             float j{175.0};
             for(auto &optionVec : optionsVec) {
