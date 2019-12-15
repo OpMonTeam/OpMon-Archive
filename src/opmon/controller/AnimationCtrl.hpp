@@ -1,8 +1,8 @@
-/*
-AnimationCtrl.hpp
-Author : Cyrielle
-File under GNU GPL 3.0 license.
-*/
+/*!
+ * \file AnimationCtrl.hpp
+ * \author Cyrielle
+ * \copyright GNU GPL 3.0
+ */
 #pragma once
 
 #include "../view/Animations.hpp"
@@ -11,9 +11,11 @@ File under GNU GPL 3.0 license.
 
 namespace OpMon {
     namespace Controller {
-        /**
-	   AnimationCtrl is a special game screen which can call all types of animations.
-        **/
+        /*!
+         * \brief A special game screen able to call any type of animation.
+         *
+         * AnimationCtrl does nothing else than calling the method to update and draw the animation.
+         */
         class AnimationCtrl : public AGameScreen {
           private:
             std::unique_ptr<View::Animations::Animation> view;
