@@ -41,7 +41,7 @@ namespace OpMon {
 
             /*!
              * \brief Moves the cursor.
-             * \param dir If `true`, the cursor goes up. It goes down otherwis
+             * \param dir If `true`, the cursor goes up. It goes down otherwise
              */
             void moveArrow(bool dir);
 
