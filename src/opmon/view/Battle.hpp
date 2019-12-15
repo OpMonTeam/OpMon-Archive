@@ -30,6 +30,10 @@ namespace OpMon {
 
         /*!
          * \brief Class managing the battles on the screen.
+         *
+         * The Battle view alternates between two phases :
+         * - The choices phase, with the different menus where the player has to choose between different actions and attacks. The view will only manage these two choices, the other selection menus (OpMon and items) will be manages by other views.
+         * - The turns phase, in which the actions are being executed. Everything is calculated in BattleCtrl and stored in a queue of TurnAction. This class reads these objects corresponding to the different animations this view has to do according to the TurnActionType object in them.
          */
         class Battle {
           private:
@@ -42,7 +46,6 @@ namespace OpMon {
              */
             sf::Sprite def;
 
-            //The OpMons Transform objects used for the animations
             /*!
              * \brief The sf::Transform used to animate the front OpMon.
              */
@@ -73,7 +76,7 @@ namespace OpMon {
             int atkHp = -1;
             /*!
              * \brief The HP of the opposite OpMon.
-             * \details -1 ùeans unitialised.
+             * \details -1 Ã¹eans unitialised.
              */
             int defHp = -1;
 
