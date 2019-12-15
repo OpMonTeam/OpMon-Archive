@@ -135,16 +135,12 @@ namespace OpMon {
             current = data.getCurrentMap();
             character.setPosition(pos.x SQUARES - 16, pos.y SQUARES);
             resetCamera();
-            //If the music is the same, the program must do nothing. Else, the music will reboot and it's ugly.
-            if(musicPath != current->getBg()) {
-                setMusic(current->getBg());
-            }
+            setMusic(current->getBg());
 
             //Recreates the layers
             layer1 = std::make_unique<MapLayer>(current->getDimensions(), current->getLayer1());
             layer2 = std::make_unique<MapLayer>(current->getDimensions(), current->getLayer2());
             layer3 = std::make_unique<MapLayer>(current->getDimensions(), current->getLayer3());
-            tpCount = 0;
         }
 
         void Overworld::pause() {
@@ -182,7 +178,6 @@ namespace OpMon {
 
             if(initPlayerAnimation) {
                 startPlayerAnimationTime = Utils::Time::getElapsedMilliseconds();
-                charaStartPos = character.getPosition();
                 initPlayerAnimation = false;
             }
 
