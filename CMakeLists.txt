@@ -8,7 +8,7 @@ set(OPMON_VERSION_MAJOR 0)
 set(OPMON_VERSION_MINOR 16)
 set(OPMON_VERSION_PATCH 0)
 
-set(OPMON_CONTACT "Cyrielle <jlppcprog@ntymail.com>")
+set(OPMON_CONTACT "Cyrielle <cyriellecentori@uymail.com>")
 set(OPMON_DESCRIPTION_SUMMARY "An open source RPG monster fighting game")
 set(OPMON_HOMEPAGE "http://opmon-game.ga/")
 
