@@ -1,7 +1,7 @@
-/**
-GameMenuCtrl.hpp
-Author : Cyrielle
-File under GNU GPL v3.0 license
+/*!
+ * \file GameMenuCtrl.hpp
+ * \author Cyrielle
+ * \copyright GNU GPL v3.0
 */
 #pragma once
 
@@ -14,6 +14,9 @@ File under GNU GPL v3.0 license
 namespace OpMon {
     namespace Controller {
 
+        /*!
+         * \brief Controller of the in-game menu.
+         */
         class GameMenuCtrl : public AGameScreen {
           private:
             Model::GameMenuData &data;
@@ -21,8 +24,16 @@ namespace OpMon {
             View::GameMenu view;
             Model::Player &player;
 
+            /*!
+             * \brief Determines which screen has to be loaded in loadNextScreen.
+             *
+             * This integer is filled with some special values determined by macros in GameMenuCtrl.cpp. Currently, there is only LOAD_OPTIONS. Then, loadNextScreen loads in _next_gs a game screen according the value of this variable.
+             */
             int loadNext = 0;
 
+            /*!
+             * \brief The position of the cursor on the menu.
+             */
             Utils::CycleCounter curPos = Utils::CycleCounter(6);
 
           public:
@@ -33,9 +44,9 @@ namespace OpMon {
             GameStatus checkEvent(sf::Event const &event) override;
             GameStatus update(sf::RenderTexture &frame) override;
 
-            virtual void loadNextScreen();
-            virtual void suspend();
-            virtual void resume();
+            void loadNextScreen() override;
+            void suspend() override;
+            void resume() override;
         };
 
     } // namespace Controller

@@ -46,13 +46,16 @@ namespace OpMon {
 
             /*!
              * \brief Loads the next screen.
-             * \details Method called by Gameloop when the status returned is GameStatus::NEXT
+             * \details Method called by Gameloop when the status returned is GameStatus::NEXT. It loads the next screen in _next_gs
             */
             virtual void loadNextScreen(){};
 
             std::unique_ptr<AGameScreen> getNextGameScreen() { return std::move(_next_gs); };
 
           protected:
+            /*!
+             * \brief The next screen, loaded after loadNextScreen has been called.
+             */
             std::unique_ptr<AGameScreen> _next_gs;
         };
 
