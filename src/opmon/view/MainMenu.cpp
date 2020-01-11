@@ -15,16 +15,6 @@ File under GNU GPL v3.0 license
 namespace OpMon {
     namespace View {
 
-        void MainMenu::initStrings() {
-            auto kget = Utils::StringKeys::get;
-
-            int i{0};
-            for(auto &optionVec : optionsVec) {
-                optionVec.text.setString(kget("title." + std::to_string(i + 1)));
-                ++i;
-            }
-        }
-
         MainMenu::MainMenu(Model::MainMenuData &data, const std::size_t totalView)
           : data(data)
           , totalView(totalView)
@@ -53,6 +43,16 @@ namespace OpMon {
             }
 
             data.getUiDataPtr()->getJukebox().play("Title");
+        }
+
+        void MainMenu::initStrings() {
+            auto kget = Utils::StringKeys::get;
+
+            int i{0};
+            for(auto &mainMenuItem : mainMenuItems) {
+                mainMenuItem.text.setString(kget("title." + std::to_string(i + 1)));
+                ++i;
+            }
         }
 
         void MainMenu::onLangChanged() {
