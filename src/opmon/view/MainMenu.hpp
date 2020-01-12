@@ -25,7 +25,7 @@ namespace OpMon {
             MainMenu(Model::MainMenuData &data, const std::size_t totalView = 4);
             ~MainMenu() override = default;
 
-            void initStrings();
+            void initMainMenuItemsName();
             void onLangChanged() override;
 
             void pause();
@@ -36,13 +36,13 @@ namespace OpMon {
           private:
             Model::MainMenuData &data;
             const std::size_t totalView;
-            sf::Sprite bg;
+            sf::Sprite background;
 
             struct OptionMenu {
                 sf::Text text;
                 sf::Vector2f pos;
             };
-            std::vector<OptionMenu> optionsVec;
+            std::vector<OptionMenu> mainMenuItems;
             sf::Sprite cursor;
 
         };
