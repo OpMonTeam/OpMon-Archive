@@ -56,6 +56,8 @@ namespace OpMon {
              * \brief Resizes Window::frame to fit with the size of Window::window.
              */
             void updateView();
+            static int getBaseWindowWidth();
+            static int getBaseWindowHeight();
         };
     } // namespace View
 } // namespace OpMon
