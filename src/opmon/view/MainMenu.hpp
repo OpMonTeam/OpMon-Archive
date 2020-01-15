@@ -12,6 +12,7 @@ File under GNU GPL v3.0 license
 
 #include "../model/storage/MainMenuData.hpp"
 #include "../start/i18n/ATranslatable.hpp"
+#include "ui/TextBox.hpp"
 
 namespace OpMon {
     namespace View {
@@ -22,7 +23,7 @@ namespace OpMon {
         class MainMenu : public I18n::ATranslatable {
 
           public:
-            MainMenu(Model::MainMenuData &data, const std::size_t totalView = 4);
+            MainMenu(Model::MainMenuData &data);
             ~MainMenu() override = default;
 
             void initMainMenuItemsName();
@@ -35,16 +36,9 @@ namespace OpMon {
 
           private:
             Model::MainMenuData &data;
-            const std::size_t totalView;
-            sf::Sprite background;
 
-            struct OptionMenu {
-                sf::Text text;
-                sf::Vector2f pos;
-            };
-            std::vector<OptionMenu> mainMenuItems;
+            std::vector<TextBox> mainMenuItems;
             sf::Sprite cursor;
-
         };
     } // namespace View
 } // namespace OpMon

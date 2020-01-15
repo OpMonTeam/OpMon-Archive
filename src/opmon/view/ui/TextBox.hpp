@@ -10,9 +10,6 @@ class TextBox : public sf::Drawable {
     // The texture used to draw the box
     sf::Texture texture;
 
-    // The position of the box
-    sf::Vector2f position;
-
     // The width of the box
     int width;
 
@@ -22,12 +19,20 @@ class TextBox : public sf::Drawable {
     // An eventual text to be displayed in the box
     sf::Text text;
 
+    // The font to display the text with
+    sf::Font font;
+
+    // The position of the box
+    sf::Vector2f position;
+
     // Draw the box on the given render texture
     virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
   public:
     // Create a box with the given texture, position, widht and height that can be later drawn on screen
-    TextBox(sf::Texture texture, sf::Vector2f position, int width, int height);
+    TextBox(sf::Texture texture, const sf::Font &font, sf::Vector2f position, int width, int height);
 
     ~TextBox() = default;
+
+    void setContent(std::string);
 };
