@@ -10,7 +10,7 @@ namespace OpMon {
     namespace Model {
         MainMenuData::MainMenuData(UiData *ptr)
           : uidata(ptr) {
-            ResourceLoader::load(titlescreen, "backgrounds/titlescreen.png");
+            ResourceLoader::load(menuframe, "backgrounds/menuframe.png");
             ResourceLoader::load(arrChoice, "sprites/misc/arrChoiceScale.png");
         }
     } // namespace Model
