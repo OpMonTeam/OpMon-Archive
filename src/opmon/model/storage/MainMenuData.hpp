@@ -11,7 +11,7 @@ namespace OpMon {
     namespace Model {
         class MainMenuData {
           private:
-            sf::Texture titlescreen;
+            sf::Texture menuframe;
             sf::Texture arrChoice;
 
             UiData *uidata;
@@ -20,7 +20,7 @@ namespace OpMon {
 
           public:
             UiData *getUiDataPtr() const { return uidata; }
-            sf::Texture const &getTitlescreen() const { return titlescreen; }
+            sf::Texture const &getMenuframe() const { return menuframe; }
             sf::Texture const &getArrChoice() const { return arrChoice; }
             MainMenuData(UiData *ptr);
         };

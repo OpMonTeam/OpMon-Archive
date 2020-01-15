@@ -11,36 +11,25 @@ File under GNU GPL v3.0 license
 #include "../model/storage/ResourceLoader.hpp"
 #include "OptionsMenu.hpp"
 #include "Window.hpp"
+#include "ui/TextBox.hpp"
 
 namespace OpMon {
     namespace View {
 
-        MainMenu::MainMenu(Model::MainMenuData &data, const std::size_t totalView)
-          : data(data)
-          , totalView(totalView)
-          , mainMenuItems(this->totalView) {
-            int i{0};
-            float j{175.0};
-            for(auto &mainMenuItem : mainMenuItems) {
-                mainMenuItem.pos.x = 10.0;
-                mainMenuItem.pos.y = j;
+        int MAIN_MENU_ITEM_HEIGHT = 64;
+        int MAIN_MENU_ITEM_WIDTH = 504;
+        int MAIN_MENU_ITEM_PADDING = 4;
 
-                mainMenuItem.text.setPosition(60.0, j);
+        MainMenu::MainMenu(Model::MainMenuData &data)
+          : data(data) {
 
-                j += 85.0;
-                ++i;
+            for(int i = 0; i < 4; i++) {
+                sf::Vector2f position(MAIN_MENU_ITEM_PADDING, MAIN_MENU_ITEM_PADDING + i * (MAIN_MENU_ITEM_HEIGHT + MAIN_MENU_ITEM_PADDING));
+                TextBox mainMenuItem(data.getMenuframe(), data.getUiDataPtr()->getFont(), position, MAIN_MENU_ITEM_WIDTH, MAIN_MENU_ITEM_HEIGHT);
+                mainMenuItems.push_back(mainMenuItem);
             }
-
-            background.setTexture(data.getTitlescreen());
-            cursor.setTexture(data.getArrChoice());
 
             initMainMenuItemsName();
-
-            for(auto &mainMenuItem : mainMenuItems) {
-                mainMenuItem.text.setSfmlColor(sf::Color::White);
-                mainMenuItem.text.setFont(data.getUiDataPtr()->getFont());
-                mainMenuItem.text.setCharacterSize(FONT_SIZE_DEFAULT);
-            }
 
             data.getUiDataPtr()->getJukebox().play("Title");
         }
@@ -50,7 +39,7 @@ namespace OpMon {
 
             int i{0};
             for(auto &mainMenuItem : mainMenuItems) {
-                mainMenuItem.text.setString(kget("title." + std::to_string(i + 1)));
+                mainMenuItem.setContent(kget("title." + std::to_string(i + 1)));
                 ++i;
             }
         }
@@ -67,16 +56,11 @@ namespace OpMon {
         }
 
         void MainMenu::draw(sf::RenderTexture &frame, int curPosI) {
-            frame.clear(sf::Color::Black);
-
-            frame.draw(background);
+            frame.clear(sf::Color(74, 81, 148));
 
             for(auto &mainMenuItem : mainMenuItems) {
-                frame.draw(mainMenuItem.text);
+                frame.draw(mainMenuItem);
             }
-
-            cursor.setPosition(mainMenuItems[curPosI].pos);
-            frame.draw(cursor);
         }
 
     } // namespace View
