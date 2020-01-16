@@ -25,14 +25,24 @@ class TextBox : public sf::Drawable {
     // The position of the box
     sf::Vector2f position;
 
+    bool active;
+
+    sf::Color activeColor = sf::Color(255, 255, 255, 255);
+
+    sf::Color inactiveColor = sf::Color(50, 50, 50, 200);
+
     // Draw the box on the given render texture
     virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
   public:
     // Create a box with the given texture, position, widht and height that can be later drawn on screen
-    TextBox(sf::Texture texture, const sf::Font &font, sf::Vector2f position, int width, int height);
+    TextBox(sf::Texture texture, sf::Vector2f position, int width, int height);
 
     ~TextBox() = default;
 
-    void setContent(std::string);
+    void setFont(const sf::Font& font);
+
+    void setContent(const std::string& content);
+
+    void setActive(bool active);
 };

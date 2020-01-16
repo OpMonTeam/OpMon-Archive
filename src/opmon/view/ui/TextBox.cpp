@@ -6,22 +6,20 @@
 #include <ostream>
 #include <sstream>
 
-TextBox::TextBox(sf::Texture texture, const sf::Font &font, sf::Vector2f position, int width, int height)
+TextBox::TextBox(sf::Texture texture, sf::Vector2f position, int width, int height)
   : texture(texture)
-  , font(font)
   , position(position)
   , width(width)
   , height(height) {
 
-    // Size of one of the nine parts of the text box (assuming its a square)
-    int partSize = 16;
-
-    text.setFillColor(sf::Color::Black);
-    text.setFont(font);
-    text.setCharacterSize(16);
-
+    // Some default values for the text
     sf::Vector2f textPosition(position.x + 24, position.y + 24);
     text.setPosition(textPosition);
+    text.setFillColor(sf::Color::Black);
+    text.setCharacterSize(16);
+
+    // Size of one of the nine parts of the text box (assuming its a square)
+    int partSize = 16;
 
     for(unsigned int i = 0; i < 3; ++i) {
         for(unsigned int j = 0; j < 3; ++j) {
@@ -107,6 +105,33 @@ void TextBox::draw(sf::RenderTarget &target, sf::RenderStates states) const {
     target.draw(this->text, states);
 }
 
-void TextBox::setContent(std::string content) {
+void TextBox::setFont(const sf::Font &font) {
+    text.setFillColor(sf::Color::Black);
+    text.setFont(font);
+    text.setCharacterSize(16);
+}
+
+void TextBox::setContent(const std::string &content) {
     text.setString(content);
+}
+
+void TextBox::setActive(bool active) {
+
+    for(unsigned int i = 0; i < 3; ++i) {
+        for(unsigned int j = 0; j < 3; ++j) {
+            sf::Vertex *quad = &this->vertexArray[(i * 3 + j) * 4];
+
+            if(active) {
+                quad[0].color = activeColor;
+                quad[1].color = activeColor;
+                quad[2].color = activeColor;
+                quad[3].color = activeColor;
+            } else {
+                quad[0].color = inactiveColor;
+                quad[1].color = inactiveColor;
+                quad[2].color = inactiveColor;
+                quad[3].color = inactiveColor;
+            }
+        }
+    }
 }

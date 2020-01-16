@@ -25,7 +25,8 @@ namespace OpMon {
 
             for(int i = 0; i < 4; i++) {
                 sf::Vector2f position(MAIN_MENU_ITEM_PADDING, MAIN_MENU_ITEM_PADDING + i * (MAIN_MENU_ITEM_HEIGHT + MAIN_MENU_ITEM_PADDING));
-                TextBox mainMenuItem(data.getMenuframe(), data.getUiDataPtr()->getFont(), position, MAIN_MENU_ITEM_WIDTH, MAIN_MENU_ITEM_HEIGHT);
+                TextBox mainMenuItem(data.getMenuframe(), position, MAIN_MENU_ITEM_WIDTH, MAIN_MENU_ITEM_HEIGHT);
+                mainMenuItem.setFont(data.getUiDataPtr()->getFont());
                 mainMenuItems.push_back(mainMenuItem);
             }
 
@@ -59,8 +60,15 @@ namespace OpMon {
             frame.clear(sf::Color(74, 81, 148));
 
             for(auto &mainMenuItem : mainMenuItems) {
+                mainMenuItem.setActive(false);
+            }
+
+            mainMenuItems[curPosI].setActive(true);
+
+            for(auto &mainMenuItem : mainMenuItems) {
                 frame.draw(mainMenuItem);
             }
+            
         }
 
     } // namespace View
