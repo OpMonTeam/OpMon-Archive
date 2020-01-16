@@ -53,7 +53,7 @@
 
 ## Artists :
 
-### Originals
+### Original artists
 
 * Navet56
 * Aerzia
@@ -62,3 +62,15 @@
 
 ### Others
 Look [here](https://github.com/OpMonTeam/OpMon-Data/blob/master/Resources/README.md).
+
+## Inspirations
+* Satoshi Tajiri (Pokemon creation)
+* Toby Fox (Inspriration of some musics and gameplay elements)
+* Linus Torvalds (Creation of Linux, Git and so much more...)
+
+## Special thanks
+* GlueBie
+* Lebordelic
+* [Osaris](http://osaris.net) (one of the people who launched Cyriel into programmation)
+* Our families, friends, and everyone who taught us what we know today!
+* And many more...
