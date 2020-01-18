@@ -41,7 +41,7 @@ namespace OpMon {
                             Model::OptionsSave::addParam(std::string("control.") + controlsName[currentKeyChange], keyCode.c_str());
                         }
                         ++currentKeyChange;
-                        view.setCurrentActionsCtrl(currentKeyChange + 1);
+                        view.setCurrentKeyChange(currentKeyChange + 1);
                     }
 
                     if(currentKeyChange >= controlsName.size()) {
@@ -138,7 +138,7 @@ namespace OpMon {
                         case 1: //Set controls
                             data.getUiDataPtr()->getJukebox().playSound("push");
                             keyChangeActive = true;
-                            view.setCurrentActionsCtrl(currentKeyChange + 1);
+                            view.setCurrentKeyChange(currentKeyChange + 1);
                             break;
                         }
                     } else {

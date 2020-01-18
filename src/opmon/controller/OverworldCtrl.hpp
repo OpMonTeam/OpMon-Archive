@@ -18,6 +18,13 @@
 namespace OpMon {
     namespace Controller {
 
+        /*!
+         * \brief Manages the overworld.
+         *
+         * This class checks for the different SFML events the player can trigger to interact with the overworld, like the directional keys to move the player, and then calls the associated methods/functions.
+         * It also manages the two overworld states : the free state where the player can move and explore, and the dialog state, when a dialog is currently on screen.
+         * Finally, it updates the Event objects and manages the debug mode.
+         */
         class OverworldCtrl : public AGameScreen {
           private:
             Model::OverworldData data;
