@@ -47,7 +47,7 @@ namespace OpMon {
                     if(currentKeyChange >= controlsName.size()) {
                         currentKeyChange = 0;
                         keyChangeActive = false;
-                        view.setCurrentActionsCtrl(currentKeyChange);
+                        view.setCurrentKeyChange(currentKeyChange);
                         Model::OptionsSave::saveParams(std::string(SAVE_PATH + "optSave.oparams"));
 
                         data.getUiDataPtr()->setKeyUp(Model::OptionsSave::getParam("control.up").getValue());

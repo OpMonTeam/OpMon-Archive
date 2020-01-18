@@ -1,8 +1,8 @@
-/*
-OverworldCtrl.hpp
-Author : Cyrielle
-Contributor : BAKFR
-File under GNU GPL v3.0 license
+/*!
+ * \file OverworldCtrl.hpp
+ * \authors Cyrielle
+ * \authors BAKFR
+ * \copyright GNU GPL v3.0
 */
 #ifndef OVERWORLDCTRL_HPP
 #define OVERWORLDCTRL_HPP
@@ -25,15 +25,35 @@ namespace OpMon {
             View::Overworld view;
             Model::Player &player;
 
+            /*!
+             * \brief Determines which screen has to be loaded in loadNextScreen().
+             *
+             * This integer is filled with some special values determined by macros in GameMenuCtrl.cpp. Currently, there is
+             * - LOAD_BATTLE : Loads BattleCtrl
+             * - LOAD_MENU_OPEN : Loads the opening animation for the menu. Called when the player presses the menu key.
+             * - LOAD_MENU_CLOSE : Loads the closing animation for the menu. Called when OverworldCtrl::checkEvent is called right after the end of GameMenuCtrl.
+             * - LOAD_MENU : Loads GameMenuCtrl. Called when OverworldCtrl::checkEvent is called right after the end of the opening animation.
+             * Then, loadNextScreen() loads in _next_gs a game screen according the value of this variable.
+             */
             int loadNext = 0;
 
+            /*!
+             * \brief Contains a screenshot.
+             * \details A screenshot of the frame is taken in update(sf::RenderTexture&). It used as a background in GameMenu and its opening/closing animations.
+             */
             sf::Texture screenTexture;
 
           public:
             OverworldCtrl(Model::Player &player, Model::UiData *uidata);
 
             GameStatus checkEvent(sf::Event const &event) override;
+            /*!
+             * \brief Checks the necessary events when a dialog is currently playing.
+             */
             GameStatus checkEventsDialog(sf::Event const &events, View::Overworld &overworld);
+            /*!
+             * \brief Checks the necessary events when no dialog is currently playing.
+             */
             GameStatus checkEventsNoDialog(sf::Event const &events, Model::Player &player);
             GameStatus update(sf::RenderTexture &frame) override;
 

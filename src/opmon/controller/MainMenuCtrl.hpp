@@ -26,9 +26,9 @@ namespace OpMon {
             View::MainMenu view;
 
             /*!
-             * \brief Determines which screen has to be loaded in loadNextScreen.
+             * \brief Determines which screen has to be loaded in loadNextScreen().
              *
-             * This integer is filled with some special values determined by macros in GameMenuCtrl.cpp. Currently, there is LOAD_STARTSCENE and LOAD_OPTIONS. Then, loadNextScreen loads in _next_gs a game screen according the value of this variable.
+             * This integer is filled with some special values determined by macros in GameMenuCtrl.cpp. Currently, there is LOAD_STARTSCENE and LOAD_OPTIONS. Then, loadNextScreen loads in _next_gs a game screen according the value of this variable().
              */
             int loadNext = 0;
             /*!

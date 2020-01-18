@@ -1,8 +1,9 @@
-/*
-OptionsMenuCtrl.hpp
-Author : BAKFR
-Contributors : Cyrielle, Samurai413x
-File under GNU GPL v3.0 license
+/*!
+ * \file OptionsMenuCtrl.hpp
+ * \authors BAKFR
+ * \authors Cyrielle
+ * \authors Samurai413x
+ * \copyright GNU GPL v3.0
 */
 #pragma once
 
@@ -31,7 +32,13 @@ namespace OpMon {
             void raiseVolume();
             void lowerVolume();
 
+            /*!
+             * \brief The currently selected key to change in the controls menu.
+             */
             std::size_t currentKeyChange{0};
+            /*!
+             * \brief If the controls edition mode is on or off.
+             */
             bool keyChangeActive{false};
 
           public:
@@ -39,6 +46,9 @@ namespace OpMon {
             GameStatus checkEvent(sf::Event const &event) override;
             GameStatus update(sf::RenderTexture &frame) override;
 
+            /*!
+             * \brief The different names of the controls for the controls menu.
+             */
             const std::vector<std::string> controlsName{{"up", "down", "left", "right", "talk", "interact"}};
             void resume();
             void suspend();

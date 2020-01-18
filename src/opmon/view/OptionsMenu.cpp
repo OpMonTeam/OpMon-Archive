@@ -329,7 +329,7 @@ namespace OpMon {
 
             frame.draw(txtCtrlChange);
 
-            rectKeyChange.setPosition(posControls[currentActionsCtrl]);
+            rectKeyChange.setPosition(posControls[currentKeyChange]);
             frame.draw(rectKeyChange);
 
             txtCtrlUp.setString(Model::OptionsSave::getParam("control.up").getValue());

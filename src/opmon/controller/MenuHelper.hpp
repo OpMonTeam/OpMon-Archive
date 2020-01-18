@@ -1,5 +1,5 @@
 /*!
- * \file HelperMenu.hpp
+ * \file MenuHelper.hpp
  * \author Bobor-dev
  * \copyright GNU GPL v3.0
 */
