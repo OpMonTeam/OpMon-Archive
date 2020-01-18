@@ -12,15 +12,15 @@
  */
 #define F_NOTHING 0
 /*!
- * \brief Sinus function : {1, a, b, c} -> a·sin(b·t + c)
- * \warning The sinus function is in radians.
+ * \brief Sine function : {1, a, b, c} -> a·sin(b·t + c)
+ * \warning The sine function is in radians.
  */
-#define F_SINUS 1
+#define F_SINE 1
 /*!
- * \brief Cosinus function : {2, a, b, c} -> a·cos(b·t + c)
- * \warning The cosinus function is in radians.
+ * \brief Cosine function : {2, a, b, c} -> a·cos(b·t + c)
+ * \warning The cosine function is in radians.
  */
-#define F_COSINUS 2
+#define F_COSINE 2
 /*!
  * \brief Absolute value function : {3, a, b, c} -> a·|b·t + c|
  */
@@ -80,11 +80,11 @@ namespace OpMon {
             POLYNOMIAL = 0,
             /*!
              * A formula using different base fonctions. The interpretation will change according to the chosen function.
-             * Exemple : {#F_SINUS, 2, 3, -5, #F_ABS, -3, 4, -2} will be interpreted as 2sin(3t - 5) - 3·|4t - 2|
+             * Exemple : {#F_SINE, 2, 3, -5, #F_ABS, -3, 4, -2} will be interpreted as 2sin(3t - 5) - 3·|4t - 2|
              * List of currently available functions :
              * #F_NOTHING
-             * #F_SINUS
-             * #F_COSINUS
+             * #F_SINE
+             * #F_COSINE
              * #F_ABS
              * #F_POW
              * See the documentation of each one to see how to use it.

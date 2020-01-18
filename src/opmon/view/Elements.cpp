@@ -109,11 +109,11 @@ namespace OpMon {
                         toReturn += formula[i + 1];
                         i += 2;
                         break;
-                    case F_SINUS: //Sinus function : {1, a, b, c} -> a·sin(b·t + c)
+                    case F_SINE: //Sine function : {1, a, b, c} -> a·sin(b·t + c)
                         toReturn += (formula[i + 1] * std::sin(formula[i + 2] * (double)t + formula[i + 3]));
                         i += 4;
                         break;
-                    case F_COSINUS: //Cosinus function : {2, a, b, c} -> a·cos(b·t + c)
+                    case F_COSINE: //Cosine function : {2, a, b, c} -> a·cos(b·t + c)
                         toReturn += (formula[i + 1] * std::cos(formula[i + 2] * (double)t + formula[i + 3]));
                         i += 4;
                         break;
