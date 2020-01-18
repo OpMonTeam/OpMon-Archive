@@ -93,7 +93,7 @@ namespace OpMon {
                 return 0;
             }
 
-            void setCurrentActionsCtrl(int currentActionsCtrl_) { currentActionsCtrl = currentActionsCtrl_; }
+            void setCurrentKeyChange(int currentKeyChange_) { currentKeyChange = currentKeyChange_; }
 
             void play();
             void pause();
@@ -142,7 +142,10 @@ namespace OpMon {
             int curPosOptI = 0;
             int curPosLangI = 0;
             int curPosCtrlI = 0;
-            int currentActionsCtrl{0};
+            /*!
+             * \brief The currently selected key to change in the controls menu.
+             */
+            int currentKeyChange{0};
             sf::Text txtCtrlChange;
             sf::Text txtCtrlUp;
             sf::Text txtCtrlDown;
