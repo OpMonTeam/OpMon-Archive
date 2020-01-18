@@ -23,14 +23,14 @@ namespace OpMon {
         class MainMenu : public I18n::ATranslatable {
 
           public:
-            MainMenu(Model::MainMenuData &data);
+            MainMenu(Model::MainMenuData &data, const std::size_t totalView = 4);
             ~MainMenu() override = default;
 
             /*!
              * \brief Loads the strings used in the menu.
              */
             void initMainMenuItemsName();
-          
+
             void onLangChanged() override;
 
             /*!
