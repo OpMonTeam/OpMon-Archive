@@ -156,14 +156,14 @@ namespace OpMon {
             }
 
             void DoorEvent::update(Model::Player &player, View::Overworld &overworld) {
-                if(animStarted != -1) { //If true, action() have started the animation
+                if(animStarted != -1) { //If true, action() has started the animation
                     ++animStarted;
-                    if(animStarted < 8 && (animStarted / 2) * 2 == animStarted) {
+                    if(animStarted < 8 && animStarted % 2 == 0) {
                         currentTexture = otherTextures.begin() + (animStarted / 2);
                     } else if(animStarted > 10) { //End of the animation
                         player.getPosition().unlockMove();
                         TPEvent::action(player, overworld);
-                        animStarted = -1;
+                        animStarted = -1; //Resets the animation
                         currentTexture = otherTextures.begin();
                     }
                 }
@@ -204,7 +204,7 @@ namespace OpMon {
                     case MoveStyle::NO_MOVE: //This is easy to do.
                         break;
 
-                    case MoveStyle::RANDOM: //I don't think I will be using this often, but I keep it here, who knows ?
+                    case MoveStyle::RANDOM: //I don't think I will be using this often, but I keep it here, who knows?
                         randomMove = Utils::Misc::randUI(5) - 1;
                         switch(randomMove) {
                         case -1:

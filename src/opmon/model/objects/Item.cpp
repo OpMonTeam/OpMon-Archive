@@ -21,7 +21,7 @@ namespace OpMon {
                 handleError("Calling an unknown item effect !");
                 return nullptr;
             }
-            bool result = (*opmonEffect)(opmon);
+            bool result = opmonEffect->use(opmon);
             itemCount = (result ? itemCount - 1 : itemCount);
             return opmonEffect->getDialog();
         }
@@ -31,26 +31,26 @@ namespace OpMon {
                 handleError("Calling an unknown item effect !");
                 return nullptr;
             }
-            bool result = (*playerEffect)(player);
+            bool result = playerEffect->use(player);
             itemCount = (result ? itemCount - 1 : itemCount);
             return playerEffect->getDialog();
         }
 
-        void Item::updateHeld(Turn &owner, Turn &opponent, int &itemCount) {
+        /*  void Item::updateHeld(Turn &owner, Turn &opponent, int &itemCount) {
             if(heldEffect == nullptr) {
                 handleError("Calling an unknown item effect !");
                 return;
             }
-            bool result = (*heldEffect)(owner, opponent);
+            bool result = heldEffect->use(owner, opponent);
             itemCount = (result ? itemCount - 1 : itemCount);
-        }
+            }*/
 
         namespace Items {
             HpHealEffect::HpHealEffect(int hpHealed)
               : hpHealed(hpHealed) {
             }
 
-            bool HpHealEffect::operator()(OpMon *opmon) {
+            bool HpHealEffect::use(OpMon *opmon) {
                 dialog = std::make_unique<std::vector<sf::String>>();
                 bool toReturn = true;
                 if(opmon->getHP() == opmon->getStatHP()) {

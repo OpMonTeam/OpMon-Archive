@@ -83,30 +83,5 @@ namespace OpMon {
             };
         } // namespace Collisions
 
-        namespace InternalFiles {
-            std::vector<std::string> filesNames;
-            std::vector<std::string> files;
-
-            int searchFile(std::string const &name) {
-                for(unsigned int i = 0; i < filesNames.size(); i++) {
-                    if(filesNames[i] == name) {
-                        return i;
-                    }
-                }
-                return -1;
-            }
-
-            std::ostringstream *openFileOut(std::string const &name) {
-                return new std::ostringstream(files[searchFile(name)]);
-            }
-
-            std::istringstream *openFileIn(std::string const &name) {
-                return new std::istringstream(files[searchFile(name)]);
-            }
-
-            void registerFiles() {
-            }
-
-        } // namespace InternalFiles
     }     // namespace Model
 } // namespace OpMon

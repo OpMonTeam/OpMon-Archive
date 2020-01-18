@@ -27,9 +27,9 @@ namespace OpMon {
             langDe.setString("Deutsch");
             langDe.setFont(data.getUiDataPtr()->getFont());
             langDe.setCharacterSize(FONT_SIZE_DEFAULT);
-	    langIt.setString("Italiano");
-	    langIt.setFont(data.getUiDataPtr()->getFont());
-	    langIt.setCharacterSize(FONT_SIZE_DEFAULT);
+            langIt.setString("Italiano");
+            langIt.setFont(data.getUiDataPtr()->getFont());
+            langIt.setCharacterSize(FONT_SIZE_DEFAULT);
             txtRetour.setString(kget("options.retour"));
             txtRetour.setFont(data.getUiDataPtr()->getFont());
             txtRetour.setCharacterSize(FONT_SIZE_DEFAULT);
@@ -157,7 +157,7 @@ namespace OpMon {
             langEng.setPosition(45, 100);
             langFr.setPosition(45, 240);
             langDe.setPosition(45, 310);
-	    langIt.setPosition(45, 380);
+            langIt.setPosition(45, 380);
 
             txtRetour.setPosition(55, 25);
 
@@ -273,7 +273,7 @@ namespace OpMon {
                 Controller::Helper::moveArrow(move, curPosLangI, 6);
                 break;
             default:
-              break;
+                break;
             }
         }
 
@@ -308,7 +308,7 @@ namespace OpMon {
             frame.draw(langEsp);
             frame.draw(langFr);
             frame.draw(langDe);
-	    frame.draw(langIt);
+            frame.draw(langIt);
             frame.draw(txtRetour);
             frame.draw(txtLang);
             rectSurb.setPosition(curPosOpt[curPosLangI]);
@@ -329,7 +329,7 @@ namespace OpMon {
 
             frame.draw(txtCtrlChange);
 
-            rectKeyChange.setPosition(posControls[currentActionsCtrl]);
+            rectKeyChange.setPosition(posControls[currentKeyChange]);
             frame.draw(rectKeyChange);
 
             txtCtrlUp.setString(Model::OptionsSave::getParam("control.up").getValue());

@@ -65,7 +65,7 @@ namespace OpMon {
                             view.toggleAttackChoice();
                             break;
                             /*case 3:
-			      return GameStatus::PREVIOUS; //Run*/
+                              return GameStatus::PREVIOUS; //Run*/
                         default:
                             data.getUiDataPtr()->getJukebox().playSound("nope");
                             break;

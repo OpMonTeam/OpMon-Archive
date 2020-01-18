@@ -105,23 +105,23 @@ namespace OpMon {
                 unsigned int i = 0;
                 while(i < formula.size()) { //Warning : if an incorrect function is put here, with an incorrect size, it will very likely cause a segmentation fault and the game will crash.
                     switch((int)round(formula[i])) {
-                    case 0: //*1 function : {0, a} -> a
+                    case F_NOTHING: //*1 function : {0, a} -> a
                         toReturn += formula[i + 1];
                         i += 2;
                         break;
-                    case 1: //Sinus function : {1, a, b, c} -> a·sin(b·t + c)
+                    case F_SINUS: //Sinus function : {1, a, b, c} -> a·sin(b·t + c)
                         toReturn += (formula[i + 1] * std::sin(formula[i + 2] * (double)t + formula[i + 3]));
                         i += 4;
                         break;
-                    case 2: //Cosinus function : {2, a, b, c} -> a·cos(b·t + c)
+                    case F_COSINUS: //Cosinus function : {2, a, b, c} -> a·cos(b·t + c)
                         toReturn += (formula[i + 1] * std::cos(formula[i + 2] * (double)t + formula[i + 3]));
                         i += 4;
                         break;
-                    case 3: //Absolute value function : {3, a, b, c} -> a·|b·t + c|
+                    case F_ABS: //Absolute value function : {3, a, b, c} -> a·|b·t + c|
                         toReturn += (formula[i + 1] * std::abs(formula[i + 2] * (double)t + formula[i + 3]));
                         i += 4;
                         break;
-                    case 4: //Power function : {4, a, b, c} -> a·(t + b)^c
+                    case F_POW: //Power function : {4, a, b, c} -> a·(t + b)^c
                         toReturn += (formula[i + 1] * std::pow((double)t + formula[i + 2], formula[i + 3]));
                         t += 4;
                         break;

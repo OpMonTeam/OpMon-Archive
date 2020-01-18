@@ -67,13 +67,13 @@ namespace OpMon {
             frame.draw(opHp);
 
             //Checks if the turn is launched or not
-            /* During the battle, two phases alternate : 
-	       - Action selection (Menu with different actions)
-	       - Turn action (Attack, item and other actions)
-	       When the turn is launched, the variable turnActivated is set to true in BattleCtrl.
-	       When the turn is over, the variable turnActivated is set to false in BattleCtrl.
-	       Battle have its own variable, allowing to know when the variable has changed, and do this code.
-	    */
+            /* During the battle, two phases alternate:
+              - Action selection (Menu with different actions)
+              - Turn action (Attack, item and other actions)
+              When the turn is launched, the variable turnActivated is set to true in BattleCtrl.
+              When the turn is over, the variable turnActivated is set to false in BattleCtrl.
+              Battle have its own variable, allowing to know when the variable has changed, and do this code.
+            */
             if(!turnLaunched && *turnActivated) {
                 phase = 1;
                 turnLaunched = true;
