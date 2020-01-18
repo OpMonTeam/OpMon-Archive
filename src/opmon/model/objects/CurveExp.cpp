@@ -37,11 +37,11 @@ namespace OpMon {
 
         int CurveExpFluctuating::getNeededExp(int n) {
             if(0 < n && n <= 15) {
-                return round(pow(n, 3) * ((24 + ((n + 1) / 3) / 50)));
+                return round(pow(n, 3) * ((24 + floor((n + 1) / 3) / 50)));
             } else if(16 <= n && n <= 35) {
                 return round(pow(n, 3) * ((14 + n) / 50));
             } else if(n >= 36) {
-                return round(pow(n, 3) * ((32 + (n / 2)) / 50));
+                return round(pow(n, 3) * ((32 + floor(n / 2)) / 50));
             } else {
                 handleError("Error when calculating exp : level <= 0", true);
                 return 0;
