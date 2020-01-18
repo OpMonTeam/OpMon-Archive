@@ -69,7 +69,7 @@ CMakeLists.txt.user
 GPATH
 GRTAGS
 GTAGS
-
+doc/html
 # Visual Studio Code
 .vscode/*
 !.vscode/settings.json
