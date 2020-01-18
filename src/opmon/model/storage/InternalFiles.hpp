@@ -1,8 +1,10 @@
-/*
-  InternalFiles.hpp
-  Author : Cyrielle
-  Contributors : Navet56, BAKFR
-  File under GNU GPL v3.0 license
+/*!
+ * \file InternalFiles.hpp
+ * \authors Cyrielle
+ * \authors Navet56
+ * \authors BAKFR
+ * \copyright GNU GPL v3.0
+ * \todo Delete this and move what's left in the file elsewhere.
 */
 
 #ifndef INTERNALFILES_HPP
@@ -14,16 +16,13 @@
 
 namespace OpMon {
     namespace Model {
-
-        namespace InternalFiles {
-            extern std::vector<std::string> filesNames;
-            extern std::vector<std::string> files;
-            void registerFiles();
-            std::ostringstream *openFileOut(std::string const &name);
-            std::istringstream *openFileIn(std::string const &name);
-        } // namespace InternalFiles
-
+        /*!
+         * \brief Contains the data of the collisions.
+         */
         namespace Collisions {
+            /*!
+             * \brief Contains the collisions for each tile.
+             */
             extern int colTile[4096];
         }
     } // namespace Model

@@ -34,8 +34,6 @@ namespace OpMon {
             selectxt[3].setPosition(314, 225);
             selectxt[4].setPosition(153, 310);
             selectxt[5].setPosition(262, 310);
-
-
         }
 
         void GameMenu::setCurPos(int newCurPos) {
@@ -48,8 +46,8 @@ namespace OpMon {
             frame.draw(background);
             frame.draw(menuBg);
             frame.draw(selections[curPos]);
-            for(size_t i = 0; i < 6; i++){
-              frame.draw(selectxt[i]);
+            for(size_t i = 0; i < 6; i++) {
+                frame.draw(selectxt[i]);
             }
             return GameStatus::CONTINUE;
         }

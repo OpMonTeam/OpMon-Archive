@@ -1,18 +1,29 @@
-/*
-path.hpp
-Author : BAKFR
-File under GNU GPL v3.0
+/*!
+ * \file path.hpp
+ * \author BAKFR
+ * \copyright GNU GPL v3.0
+ * \date 13/01/18
 */
 #pragma once
 
 namespace Utils {
+    /*!
+     * \namespace Utils::Path
+     * \brief Contains path-related utilites.
+     */
     namespace Path {
 
-        /**
-	 * Get the root path of resource files.
-	 */
+        /*!
+         * \returns The root path of resource files.
+         */
         const std::string getResourcePath();
+        /*!
+         * \returns The root path of save files.
+         */
         const std::string getSavePath();
+        /*!
+         * \returns The root path of log files.
+         */
         const std::string getLogPath();
     } // namespace Path
 } // namespace Utils

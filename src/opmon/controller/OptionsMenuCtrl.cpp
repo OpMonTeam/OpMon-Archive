@@ -41,13 +41,13 @@ namespace OpMon {
                             Model::OptionsSave::addParam(std::string("control.") + controlsName[currentKeyChange], keyCode.c_str());
                         }
                         ++currentKeyChange;
-                        view.setCurrentActionsCtrl(currentKeyChange + 1);
+                        view.setCurrentKeyChange(currentKeyChange + 1);
                     }
 
                     if(currentKeyChange >= controlsName.size()) {
                         currentKeyChange = 0;
                         keyChangeActive = false;
-                        view.setCurrentActionsCtrl(currentKeyChange);
+                        view.setCurrentKeyChange(currentKeyChange);
                         Model::OptionsSave::saveParams(std::string(SAVE_PATH + "optSave.oparams"));
 
                         data.getUiDataPtr()->setKeyUp(Model::OptionsSave::getParam("control.up").getValue());
@@ -98,7 +98,7 @@ namespace OpMon {
                     } else if(menu.getCurrentOption() == View::OptionType::LANG) { //Chooses language to print
 
                         auto &tr = OpMon::I18n::Translator::getInstance();
-			data.getUiDataPtr()->getJukebox().playSound("push");
+                        data.getUiDataPtr()->getJukebox().playSound("push");
                         switch(menu.cursorPosition()) {
                         case 0:
                             menu.setCurrentOption(View::OptionType::ALL);
@@ -119,10 +119,10 @@ namespace OpMon {
                             Model::OptionsSave::modifyParam("lang", "de");
                             tr.setLang("de");
                             break;
-			case 5:
-			    Model::OptionsSave::modifyParam("lang", "it");
-			    tr.setLang("it");
-			    break;
+                        case 5:
+                            Model::OptionsSave::modifyParam("lang", "it");
+                            tr.setLang("it");
+                            break;
                         }
                     } else if(menu.getCurrentOption() == View::OptionType::CREDITS) {
                         //Only one choice is avilable on the credits : back.
@@ -138,7 +138,7 @@ namespace OpMon {
                         case 1: //Set controls
                             data.getUiDataPtr()->getJukebox().playSound("push");
                             keyChangeActive = true;
-                            view.setCurrentActionsCtrl(currentKeyChange + 1);
+                            view.setCurrentKeyChange(currentKeyChange + 1);
                             break;
                         }
                     } else {

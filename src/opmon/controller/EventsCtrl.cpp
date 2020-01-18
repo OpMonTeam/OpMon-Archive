@@ -44,7 +44,7 @@ namespace OpMon {
                 }
             }
 #pragma GCC diagnostic pop
-            //Searches and activate the event which activate when the player is in the same square than the event.
+            //Searches for events at the same position as the player and activates them if they are triggered when the playeris in them.
             if(!player.getPosition().isMoving()) {
                 std::vector<Model::Event *> eventList = overworld.getData().getCurrentMap()->getEvent(player.getPosition().getPosition());
                 actionEvents(eventList, player, Model::Events::EventTrigger::BE_IN, overworld);
