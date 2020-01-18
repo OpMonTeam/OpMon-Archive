@@ -27,9 +27,10 @@ namespace OpMon {
             ~MainMenu() override = default;
 
             /*!
-             * \brief Loads the strings.
+             * \brief Loads the strings used in the menu.
              */
-            void initStrings();
+            void initMainMenuItemsName();
+          
             void onLangChanged() override;
 
             /*!
@@ -48,10 +49,11 @@ namespace OpMon {
 
           private:
             Model::MainMenuData &data;
+            const std::size_t totalView;
             /*!
              * \brief The background of the menu.
              */
-            sf::Sprite bg;
+            sf::Sprite background;
 
             /*!
              * \brief Stucture representing an option in the menu.
@@ -63,7 +65,7 @@ namespace OpMon {
             /*!
              * \brief Contains the different options of the main menu.
              */
-            std::vector<OptionMenu> optionsVec;
+            std::vector<OptionMenu> mainMenuItems;
             sf::Sprite cursor;
         };
     } // namespace View
