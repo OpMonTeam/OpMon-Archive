@@ -1,25 +1,31 @@
-/**
-ATranslatable.hpp
-Author : BAKfr
-File under GNU GPL v3.0 license
+/*!
+ * \file ATranslatable.hpp
+ * \author BAKfr
+ * \copyright GNU GPL v3.0
+ * \date 12/01/18
 */
 #pragma once
 
 namespace OpMon {
+    /*!
+     * \namespace OpMon::I18n
+     * \brief Contains internationalisation tools.
+     */
     namespace I18n {
 
-        /**
-     * Base class for any element requiring to reload when the lang changes.
-     */
+        /*!
+         * \class ATranslatable ATranslatable.hpp "opmon/start/i18n/ATranslatable.hpp"
+         * \brief Base class for any element requiring to reload when the lang changes.
+         */
         class ATranslatable {
           protected:
             ATranslatable();
             virtual ~ATranslatable();
 
           public:
-            /**
-       * Method called after the lang has been changed.
-       */
+            /*!
+             * \brief Method called after the language has been changed.
+             */
             virtual void onLangChanged() = 0;
         };
 

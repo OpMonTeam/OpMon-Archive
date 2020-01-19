@@ -11,9 +11,9 @@ File under GNU GPL v3.0
 #include <fstream>
 
 /**Principal log*/
-static std::ostream *rlog = nullptr;
+std::ostream *rlog = nullptr;
 /**Error log*/
-static std::ostream *rerrLog = nullptr;
+std::ostream *rerrLog = nullptr;
 
 /* location of the log folder */
 #define LOG_PATH Path::getLogPath()

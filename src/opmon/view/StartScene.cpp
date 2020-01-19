@@ -89,7 +89,7 @@ namespace OpMon {
                 break;
 
             default:
-               handleError("Unknown part in StartScene::operator()", true);
+                handleError("Unknown part in StartScene::operator()", true);
             }
             return GameStatus::CONTINUE;
         }
@@ -119,7 +119,7 @@ namespace OpMon {
                 break;
 
             default:
-              handleError("Unknown part in StartScene::draw()", true);
+                handleError("Unknown part in StartScene::draw()", true);
             }
         }
 

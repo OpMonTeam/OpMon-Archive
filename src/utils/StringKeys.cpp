@@ -5,7 +5,7 @@ Contributor : BAKFR
 File under GNU GPL v3.0 license
 */
 #include "StringKeys.hpp"
-#include "../opmon/model/storage/ResourceLoader.hpp"
+#include "../opmon/start/Core.hpp"
 #include "./log.hpp"
 #include <cstdio>
 #include <fstream>
@@ -17,7 +17,9 @@ namespace Utils {
     namespace StringKeys {
         std::vector<std::string> keys = std::vector<std::string>();
         std::vector<sf::String> strings = std::vector<sf::String>();
-
+        /*!
+         * \warning Source-only function.
+         */
         sf::String readLine(std::ifstream &input) {
             std::basic_string<unsigned char> toReturn;
             for(unsigned int i = 0; i < 1024; i++) {
@@ -45,8 +47,10 @@ namespace Utils {
         }
 
         bool initialize(const std::string &keysFileS) {
-            std::ifstream keysFile;
-            OpMon::Model::ResourceLoader::loadKeysFile(keysFileS.c_str(), keysFile);
+            std::ifstream keysFile(keysFileS);
+            if(!keysFile) {
+                OpMon::handleError(std::string("Keys initialization error: ") + keysFileS, true);
+            }
             keys = std::vector<std::string>();
             strings = std::vector<sf::String>();
             Log::oplog("Keys initialization");
@@ -79,6 +83,9 @@ namespace Utils {
             return true;
         }
 
+        /*!
+         * \warning Source-only variable.
+         */
         sf::String voi;
 
         sf::String &get(std::string key) {
@@ -92,6 +99,9 @@ namespace Utils {
             return voi; //If nothing found, returns an empty string
         }
 
+        /*!
+         * \warning Source-only function.
+         */
         int getIndex(std::string key) {
             key = std::string("key.") + key;                //Adding "key" prefix
             for(unsigned int i = 0; i < keys.size(); i++) { //Scans keys
