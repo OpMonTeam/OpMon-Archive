@@ -10,9 +10,9 @@ File under GNU GPL v3.0 license
 #include <cstdarg>
 
 namespace Utils {
-    /**
-       OpString containing nothing
-    */
+    /*!
+      The "void" key returns an empty string.
+     */
     OpString OpString::voidStr = OpString("void");
 
     OpString::OpString(std::string const &key, std::vector<sf::String *> obj) {

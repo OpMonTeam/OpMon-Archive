@@ -1,8 +1,9 @@
-/*
-evolutions.hpp
-Author : Cyrielle
-File under GNU GPL v3.0 license
-*/
+/*!
+ * \file evolutions.hpp
+ * \author Cyrielle
+ * \copyright GNU GPL v3.0
+ * \warning This file is to be completely redone later. It way not have a lot of documentation.
+ */
 #ifndef EVOLUTIONS_HPP_INCLUDED
 #define EVOLUTIONS_HPP_INCLUDED
 
@@ -14,8 +15,8 @@ namespace OpMon {
     namespace Model {
 
         /**
-	   Namespace containing evolution definitions
-	*/
+         * \brief Namespace containing evolution definitions
+        */
         namespace Evolutions {
 
             class E_Item : public Evolution {

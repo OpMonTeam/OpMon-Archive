@@ -1,8 +1,8 @@
-/*
-MainMenuCtrl.hpp
-Author : BAKFR
-Contributor : Cyrielle
-File under GNU GPL v3.0
+/*!
+ * \file MainMenuCtrl.hpp
+ * \authors BAKFR
+ * \authors Cyrielle
+ * \copyright GNU GPL v3.0
 */
 #pragma once
 
@@ -13,16 +13,28 @@ File under GNU GPL v3.0
 #include "../view/MainMenu.hpp"
 #include "AGameScreen.hpp"
 #include "MenuHelper.hpp"
+#include "../../utils/CycleCounter.hpp"
 
 namespace OpMon {
     namespace Controller {
+        /*!
+         * \brief Manages the main menu of the game.
+         */
         class MainMenuCtrl : public AGameScreen {
           private:
             Model::MainMenuData data;
             View::MainMenu view;
 
+            /*!
+             * \brief Determines which screen has to be loaded in loadNextScreen().
+             *
+             * This integer is filled with some special values determined by macros in GameMenuCtrl.cpp. Currently, there is LOAD_STARTSCENE and LOAD_OPTIONS. Then, loadNextScreen loads in _next_gs a game screen according the value of this variable().
+             */
             int loadNext = 0;
-            int curPosI{0};
+            /*!
+             * \brief The position of the cursor on the menu.
+             */
+            Utils::CycleCounter curPosI = Utils::CycleCounter(4);
 
           public:
             MainMenuCtrl(Model::UiData *data);
