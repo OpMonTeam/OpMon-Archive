@@ -15,7 +15,7 @@ namespace OpMon {
          */
         class MainMenuData {
           private:
-            sf::Texture titlescreen;
+            sf::Texture menuframe;
             sf::Texture arrChoice;
 
             UiData *uidata;
@@ -30,6 +30,8 @@ namespace OpMon {
              * \brief Returns a pointer to the UiData object.
              */
             UiData *getUiDataPtr() const { return uidata; }
+          
+            sf::Texture const &getMenuframe() const { return menuframe; }
             /*!
              * \brief Gets the background.
              */
