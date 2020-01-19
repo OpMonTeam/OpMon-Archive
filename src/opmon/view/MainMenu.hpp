@@ -50,7 +50,6 @@ namespace OpMon {
 
           private:
             Model::MainMenuData &data;
-            const std::size_t totalView;
             /*!
              * \brief The background of the menu.
              */

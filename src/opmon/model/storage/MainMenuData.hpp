@@ -33,10 +33,6 @@ namespace OpMon {
           
             sf::Texture const &getMenuframe() const { return menuframe; }
             /*!
-             * \brief Gets the background.
-             */
-            sf::Texture const &getTitlescreen() const { return titlescreen; }
-            /*!
              * \brief Gets the cursor.
              */
             sf::Texture const &getArrChoice() const { return arrChoice; }
