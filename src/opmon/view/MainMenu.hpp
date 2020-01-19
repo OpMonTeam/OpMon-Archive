@@ -13,6 +13,7 @@
 
 #include "../model/storage/MainMenuData.hpp"
 #include "../start/i18n/ATranslatable.hpp"
+#include "ui/TextBox.hpp"
 
 namespace OpMon {
     namespace View {
@@ -23,7 +24,7 @@ namespace OpMon {
         class MainMenu : public I18n::ATranslatable {
 
           public:
-            MainMenu(Model::MainMenuData &data, const std::size_t totalView = 4);
+            MainMenu(Model::MainMenuData &data);
             ~MainMenu() override = default;
 
             /*!
@@ -65,7 +66,7 @@ namespace OpMon {
             /*!
              * \brief Contains the different options of the main menu.
              */
-            std::vector<OptionMenu> mainMenuItems;
+            std::vector<TextBox> mainMenuItems;
             sf::Sprite cursor;
         };
     } // namespace View
