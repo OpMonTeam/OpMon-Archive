@@ -1,8 +1,10 @@
-/*
-  OptionsMenu.hpp
-  Author : Cyrielle
-  Contributors : torq, Navet56, BAKFR
-  File under GNU GPL v3.0 license
+/*!
+ * \file OptionsMenu.hpp
+ * \authors Cyrielle
+ * \authors torq
+ * \authors Navet56
+ * \authors BAKFR
+ * \copyright GNU GPL v3.0
 */
 #ifndef OPTIONSMENU_HPP
 #define OPTIONSMENU_HPP
@@ -18,30 +20,64 @@
 namespace OpMon {
     namespace View {
 
-        enum class OptionType { ALL,
-                                LANG,
-                                CONTROLS,
-                                CREDITS };
+        /*!
+         * \brief The different screens of the settings.
+         */
+        enum class OptionType { ALL,/*!< The main menu of the settings.*/
+                                LANG,/*!< The language menu.*/
+                                CONTROLS,/*!< The controls menu.*/
+                                CREDITS/*!< The credits screen.*/ };
 
+        /*!
+         * \brief The screen of the settings.
+         * \todo Change OptionsMenu to SettingsMenu
+         * \todo Make the addition of a language easier.
+         * \todo Put some variables in arrays.
+         */
         class OptionsMenu : I18n::ATranslatable {
           public:
             OptionsMenu(Model::OptionsMenuData &data);
             ~OptionsMenu() = default;
 
+            /*!
+             * \brief Moves the cursor.
+             * \param dir If `true`, the cursor goes up. It goes down otherwise
+             */
             void moveArrow(bool dir);
 
+            /*!
+             * \brief Draws the menu on the given frame.
+             */
             void draw(sf::RenderTarget &frame);
 
+            /*!
+             * \brief Updates the main settings menu.
+             */
             void loop(sf::RenderTarget &frame);
+            /*!
+             * \brief Updates the language menu.
+             */
             void langLoop(sf::RenderTarget &frame);
+            /*!
+             * \brief Updates the controls menu.
+             */
             void controlsLoop(sf::RenderTarget &frame);
+            /*!
+             * \brief Updates the credit screen.
+             */
             void creditsLoop(sf::RenderTarget &frame);
 
+            /*!
+             * \brief Initialises the strings used in the setting
+             */
             void initStrings();
             void onLangChanged() override;
 
             OptionType getCurrentOption() { return currentOptions; }
             void setCurrentOption(OptionType newOpt) { currentOptions = newOpt; }
+            /*!
+             * \brief Returns the cursor position of the current menu.
+             */
             int cursorPosition() const {
                 switch(currentOptions) {
                 case OptionType::ALL:
@@ -57,7 +93,7 @@ namespace OpMon {
                 return 0;
             }
 
-            void setCurrentActionsCtrl(int currentActionsCtrl_) { currentActionsCtrl = currentActionsCtrl_; }
+            void setCurrentKeyChange(int currentKeyChange_) { currentKeyChange = currentKeyChange_; }
 
             void play();
             void pause();
@@ -71,12 +107,12 @@ namespace OpMon {
             sf::Sprite bgOpt;
             sf::Sprite bgControls;
 
-	    //TODO : Making the addition of a language easier.
+            //TODO : Make the addition of a language easier.
             sf::Text langFr;
             sf::Text langEng;
             sf::Text langEsp;
             sf::Text langDe;
-	    sf::Text langIt;
+            sf::Text langIt;
 
             sf::Text txtRetour;
             sf::Text txtOptions;
@@ -106,7 +142,10 @@ namespace OpMon {
             int curPosOptI = 0;
             int curPosLangI = 0;
             int curPosCtrlI = 0;
-            int currentActionsCtrl{0};
+            /*!
+             * \brief The currently selected key to change in the controls menu.
+             */
+            int currentKeyChange{0};
             sf::Text txtCtrlChange;
             sf::Text txtCtrlUp;
             sf::Text txtCtrlDown;
@@ -121,11 +160,18 @@ namespace OpMon {
             sf::Text txtLang;
             sf::Text txtCred;
             sf::Text txtCtrl;
+            /*!
+             * \brief The background for the language screen.
+             * \todo Change to bgLang
+             */
             sf::Sprite bgLangues;
             sf::Vector2f curPosLang[6] = {};
             sf::Vector2f curSizeLang[6];
             sf::Vector2f curPosCtrl[5] = {};
             sf::Vector2f curSizeCtrl[5];
+            /*!
+             * \brief The sprite of the check for the fullscreen option.
+             */
             sf::Sprite check;
         };
     } // namespace View

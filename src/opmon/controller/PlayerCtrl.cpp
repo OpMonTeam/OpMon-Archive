@@ -12,6 +12,7 @@ namespace OpMon {
     namespace Controller {
         void PlayerCtrl::checkMove(Model::Player &player, View::Overworld &overworld) {
             if(!overworld.justTp && !player.getPosition().isAnim() && !player.getPosition().isLocked()) {
+                //TODO Factorise code
                 if(sf::Keyboard::isKeyPressed(overworld.getData().getUiDataPtr()->getKeyUp())) {
                     overworld.startPlayerAnimation();
                     move(Model::Side::TO_UP, player, overworld);
