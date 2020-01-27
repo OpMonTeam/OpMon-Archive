@@ -1,0 +1,17 @@
+name: Build
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install SFML
+      run: sudo apt-get update && sudo apt-get install libsfml-dev
+    - name: Run CMake
+      run: cmake .
+    - name: Run Make
+      run: make
