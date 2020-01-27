@@ -139,9 +139,6 @@ namespace OpMon {
             bgControls.setTexture(data.getControlsBg());
 
             volumeCur.setTexture(data.getVolumeCur());
-            //Cursor positions :
-            //volumeCur.setPosition(165, 290);// = 0
-            //volumeCur.setPosition(460, 290);// = 100
 
             check.setPosition(425, 88);
 
