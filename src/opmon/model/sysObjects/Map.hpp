@@ -71,6 +71,16 @@ namespace OpMon {
              */
             bool loaded = false;
 
+
+            /*!
+             * \brief The collisions for each tile.
+             *
+             * \todo Add description of each number/collision type.
+             * \todo Move this in a json file and add multiple tileset support.
+             */
+            static int colTile[4096];
+
+
           public:
             /*!
              * \brief Creates a map and loads it at the same time, with all the information needed.
