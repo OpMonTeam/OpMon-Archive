@@ -400,13 +400,13 @@ namespace OpMon {
                         key = "lang";
                         break;
                     case 3:
-                        key = "vol";
+                        key = "controls";
                         break;
                     case 4:
                         key = "volume";
                         break;
                     case 5:
-                        key = "control";
+                        key = "credits";
                         break;
                 }
                 optionsMenuItem.setLeftContent(kget("options." + key));
