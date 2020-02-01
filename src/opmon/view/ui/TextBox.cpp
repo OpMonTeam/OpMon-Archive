@@ -12,11 +12,9 @@ TextBox::TextBox(sf::Texture texture, sf::Vector2f position, int width, int heig
   , width(width)
   , height(height) {
 
-    // Some default values for the text
-    sf::Vector2f textPosition(position.x + 24, position.y + 24);
-    text.setPosition(textPosition);
-    text.setFillColor(sf::Color::Black);
-    text.setCharacterSize(16);
+    // Some default values for the left text
+    sf::Vector2f leftTextPosition(position.x + 24, position.y + 24);
+    leftText.setPosition(leftTextPosition);
 
     // Size of one of the nine parts of the text box (assuming its a square)
     int partSize = 16;
@@ -102,17 +100,31 @@ TextBox::TextBox(sf::Texture texture, sf::Vector2f position, int width, int heig
 void TextBox::draw(sf::RenderTarget &target, sf::RenderStates states) const {
     states.texture = &this->texture;
     target.draw(this->vertexArray, states);
-    target.draw(this->text, states);
+    target.draw(this->leftText, states);
+    target.draw(this->rightText, states);
 }
 
 void TextBox::setFont(const sf::Font &font) {
-    text.setFillColor(sf::Color::Black);
-    text.setFont(font);
-    text.setCharacterSize(16);
+    leftText.setFillColor(sf::Color::Black);
+    leftText.setFont(font);
+    leftText.setCharacterSize(16);
+    rightText.setFillColor(sf::Color::Black);
+    rightText.setFont(font);
+    rightText.setCharacterSize(16);
 }
 
-void TextBox::setContent(const std::string &content) {
-    text.setString(content);
+void TextBox::setLeftContent(const std::string &content) {
+    leftText.setString(content);
+}
+
+void TextBox::setRightContent(const std::string &content) {
+    rightText.setString(content);
+
+    // We need to recalculate the position of the right text each time we change its string
+    sf::FloatRect rightTextGlobalBound = rightText.getGlobalBounds();
+    float rightTextWidth = rightTextGlobalBound.width;
+    sf::Vector2f rightTextPosition(position.x + width - rightTextWidth - 24, position.y + 24);
+    rightText.setPosition(rightTextPosition);
 }
 
 void TextBox::setActive(bool active) {
