@@ -59,13 +59,13 @@ class TextBox : public sf::Drawable {
      * \brief Set the string used for the content of the text in the left of the box.
      * \param content A string to use for the content.
      */
-    void setLeftContent(const std::string& content);
+    void setLeftContent(const sf::String& content);
 
     /**!
      * \brief Set the string used for the content of the text in the right of the box.
      * \param content A string to use for the content.
      */
-    void setRightContent(const std::string& content);
+    void setRightContent(const sf::String& content);
 
     /**!
      * \brief Set the box as inactive or active (i.e. greyed out or not).
