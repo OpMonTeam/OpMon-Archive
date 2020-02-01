@@ -17,7 +17,7 @@ OPMon is a Pokémon-inspired game project imagined in 2012 and started in septem
 ### Build
 
 Master (Last stable build) : ![Build](https://api.travis-ci.org/OpMonTeam/OpMon.svg?branch=master)  
-Develop (Development branch) : ![Build](https://api.travis-ci.org/OpMonTeam/OpMon.svg?branch=develop)
+Develop (Development branch) : ![Build](https://github.com/OpMonTeam/OpMon/workflows/Build/badge.svg?branch=develop)
 
 The build system use *cmake*. Commands for GNU/Linux systems :
 
