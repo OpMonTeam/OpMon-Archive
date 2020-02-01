@@ -38,7 +38,7 @@ namespace OpMon {
                     case 2:
                         loadNext = LOAD_OPTIONS;
                         data.getUiDataPtr()->getJukebox().playSound("push");
-                        return GameStatus::NEXT;
+                        return GameStatus::NEXT_NLS;
                     case 3:
                         data.getUiDataPtr()->getJukebox().playSound("push");
                         return GameStatus::STOP;
