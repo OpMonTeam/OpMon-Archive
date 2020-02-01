@@ -9,7 +9,6 @@
 #include "../../../utils/log.hpp"
 #include "../../../utils/path.hpp"
 #include "../objects/Attacks.hpp"
-#include "InternalFiles.hpp"
 #include "ResourceLoader.hpp"
 #include <fstream>
 

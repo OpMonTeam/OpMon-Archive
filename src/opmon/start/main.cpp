@@ -11,7 +11,6 @@ File under GNU GPL v3.0 license
 #include "../../utils/time.hpp"
 #include "../model/objects/Enums.hpp"
 #include "../model/save/OptionsSave.hpp"
-#include "../model/storage/InternalFiles.hpp"
 #include "../model/storage/ResourceLoader.hpp"
 #include "./Gameloop.hpp"
 #include "i18n/Translator.hpp"
