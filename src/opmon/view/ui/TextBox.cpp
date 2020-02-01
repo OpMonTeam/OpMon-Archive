@@ -113,11 +113,11 @@ void TextBox::setFont(const sf::Font &font) {
     rightText.setCharacterSize(16);
 }
 
-void TextBox::setLeftContent(const std::string &content) {
+void TextBox::setLeftContent(const sf::String &content) {
     leftText.setString(content);
 }
 
-void TextBox::setRightContent(const std::string &content) {
+void TextBox::setRightContent(const sf::String &content) {
     rightText.setString(content);
 
     // We need to recalculate the position of the right text each time we change its string
