@@ -21,49 +21,12 @@ namespace OpMon {
         void OptionsMenu::initStrings() {
             auto kget = Utils::StringKeys::get;
 
-            langFr.setString(L"Français");
-            langFr.setFont(data.getUiDataPtr()->getFont());
-            langFr.setCharacterSize(FONT_SIZE_DEFAULT);
-            langEng.setString("English");
-            langEng.setFont(data.getUiDataPtr()->getFont());
-            langEng.setCharacterSize(FONT_SIZE_DEFAULT);
-            langEsp.setString(L"Espa\u00F1ol");
-            langEsp.setFont(data.getUiDataPtr()->getFont());
-            langEsp.setCharacterSize(FONT_SIZE_DEFAULT);
-            langDe.setString("Deutsch");
-            langDe.setFont(data.getUiDataPtr()->getFont());
-            langDe.setCharacterSize(FONT_SIZE_DEFAULT);
-            langIt.setString("Italiano");
-            langIt.setFont(data.getUiDataPtr()->getFont());
-            langIt.setCharacterSize(FONT_SIZE_DEFAULT);
             txtRetour.setString(kget("options.retour"));
             txtRetour.setFont(data.getUiDataPtr()->getFont());
             txtRetour.setCharacterSize(FONT_SIZE_DEFAULT);
             txtOptions.setString(kget("options.title"));
             txtOptions.setFont(data.getUiDataPtr()->getFont());
             txtOptions.setCharacterSize(FONT_SIZE_DEFAULT);
-            txtOpt1.setString(kget("options.ecran"));
-            txtOpt1.setFont(data.getUiDataPtr()->getFont());
-            txtOpt1.setCharacterSize(FONT_SIZE_DEFAULT);
-            txtOpt2.setString(kget("options.lang"));
-            txtOpt2.setFont(data.getUiDataPtr()->getFont());
-            txtOpt2.setCharacterSize(FONT_SIZE_DEFAULT);
-            txtOpt3.setString(kget("options.vol"));
-            txtOpt3.setFont(data.getUiDataPtr()->getFont());
-            txtOpt3.setCharacterSize(FONT_SIZE_DEFAULT);
-            txtOpt3.setSfmlColor(sf::Color::White);
-            txtOpt4.setString(kget("options.control"));
-            txtOpt4.setFont(data.getUiDataPtr()->getFont());
-            txtOpt4.setCharacterSize(FONT_SIZE_DEFAULT);
-            txtOpt4.setSfmlColor(sf::Color::White);
-            txtOpt5.setString(kget("options.credit"));
-            txtOpt5.setFont(data.getUiDataPtr()->getFont());
-            txtOpt5.setCharacterSize(FONT_SIZE_DEFAULT);
-            txtOpt5.setSfmlColor(sf::Color::White);
-
-            txtLang.setString(kget("options.lang.title"));
-            txtLang.setFont(data.getUiDataPtr()->getFont());
-            txtLang.setCharacterSize(FONT_SIZE_DEFAULT);
 
             txtCred.setString(kget("options.cred.title"));
             txtCred.setFont(data.getUiDataPtr()->getFont());
@@ -169,21 +132,8 @@ namespace OpMon {
 
             initStrings();
 
-            txtOpt1.setPosition(120, 100);
-            txtOpt2.setPosition(120, 170);
-            txtOpt3.setPosition(120, 240);
-            txtOpt5.setPosition(120, 310);
-            txtOpt4.setPosition(120, 380);
-
-            langEsp.setPosition(45, 170);
-            langEng.setPosition(45, 100);
-            langFr.setPosition(45, 240);
-            langDe.setPosition(45, 310);
-            langIt.setPosition(45, 380);
-
             txtRetour.setPosition(55, 25);
 
-            txtLang.setPosition(250, 25);
             txtOptions.setPosition(230, 25);
             txtCred.setPosition(250, 25);
             txtCtrl.setPosition(250, 25);

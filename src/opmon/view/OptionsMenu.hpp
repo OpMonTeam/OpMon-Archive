@@ -112,13 +112,6 @@ namespace OpMon {
             sf::Sprite bgOpt;
             sf::Sprite bgControls;
 
-            //TODO : Make the addition of a language easier.
-            sf::Text langFr;
-            sf::Text langEng;
-            sf::Text langEsp;
-            sf::Text langDe;
-            sf::Text langIt;
-
             sf::Text txtRetour;
             sf::Text txtOptions;
             sf::Text txtCre1;
@@ -135,11 +128,6 @@ namespace OpMon {
             sf::Text txtCre84;
             sf::Text txtCre9;
             sf::Text txtCre10;
-            sf::Text txtOpt1;
-            sf::Text txtOpt2;
-            sf::Text txtOpt3;
-            sf::Text txtOpt4;
-            sf::Text txtOpt5;
             sf::Sprite rectSurb;
             sf::Vector2f curPosOpt[6] = {};
             sf::Vector2f curSizeOpt[6];
@@ -162,7 +150,6 @@ namespace OpMon {
             const sf::Vector2f posControls[7] = {
               {-500.0, -500.0}, {150.0, 175.0}, {148.0, 450.0}, {9.0, 311.0}, {298.0, 310.0}, {412.0, 211.0}, {412.0, 334.0}};
 
-            sf::Text txtLang;
             sf::Text txtCred;
             sf::Text txtCtrl;
             /*!
