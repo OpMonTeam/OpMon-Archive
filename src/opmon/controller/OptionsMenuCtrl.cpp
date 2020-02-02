@@ -125,6 +125,8 @@ namespace OpMon {
                                 tr.setLang("it");
                                 break;
                         }
+                        // Refresh the content of the menu items to change the language
+                        view.initLanguagesMenuItemsName();
                         view.initOptionsMenuItemsName();
                     } else if(menu.getCurrentOption() == View::OptionType::CREDITS) {
                         //Only one choice is avilable on the credits : back.
