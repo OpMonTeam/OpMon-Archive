@@ -16,6 +16,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "ui/TextBox.hpp"
 
 namespace OpMon {
     namespace View {
@@ -98,6 +99,9 @@ namespace OpMon {
             void play();
             void pause();
 
+            void initOptionsMenuItemsName();
+            void initOptionsMenuItemsValue();
+
           private:
             Model::OptionsMenuData &data;
             OptionType currentOptions;
@@ -173,6 +177,8 @@ namespace OpMon {
              * \brief The sprite of the check for the fullscreen option.
              */
             sf::Sprite check;
+
+            std::vector<TextBox> optionsMenuItems;
         };
     } // namespace View
 } // namespace OpMon
