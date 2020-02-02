@@ -29,8 +29,9 @@ key.options.retour=Retour
 key.options.title=Options
 key.options.ecran=Plein écran
 key.options.lang.title=Langues
-key.options.control=Crédits
-key.options.vol=Contrôles
+key.options.credits=Crédits
+key.options.volume=Volume
+key.options.controls=Contrôles
 key.options.cred.title=Crédits
 key.options.ctrl.change=Change configuration
 
