@@ -21,49 +21,12 @@ namespace OpMon {
         void OptionsMenu::initStrings() {
             auto kget = Utils::StringKeys::get;
 
-            langFr.setString(L"Français");
-            langFr.setFont(data.getUiDataPtr()->getFont());
-            langFr.setCharacterSize(FONT_SIZE_DEFAULT);
-            langEng.setString("English");
-            langEng.setFont(data.getUiDataPtr()->getFont());
-            langEng.setCharacterSize(FONT_SIZE_DEFAULT);
-            langEsp.setString(L"Espa\u00F1ol");
-            langEsp.setFont(data.getUiDataPtr()->getFont());
-            langEsp.setCharacterSize(FONT_SIZE_DEFAULT);
-            langDe.setString("Deutsch");
-            langDe.setFont(data.getUiDataPtr()->getFont());
-            langDe.setCharacterSize(FONT_SIZE_DEFAULT);
-            langIt.setString("Italiano");
-            langIt.setFont(data.getUiDataPtr()->getFont());
-            langIt.setCharacterSize(FONT_SIZE_DEFAULT);
             txtRetour.setString(kget("options.retour"));
             txtRetour.setFont(data.getUiDataPtr()->getFont());
             txtRetour.setCharacterSize(FONT_SIZE_DEFAULT);
             txtOptions.setString(kget("options.title"));
             txtOptions.setFont(data.getUiDataPtr()->getFont());
             txtOptions.setCharacterSize(FONT_SIZE_DEFAULT);
-            txtOpt1.setString(kget("options.ecran"));
-            txtOpt1.setFont(data.getUiDataPtr()->getFont());
-            txtOpt1.setCharacterSize(FONT_SIZE_DEFAULT);
-            txtOpt2.setString(kget("options.lang"));
-            txtOpt2.setFont(data.getUiDataPtr()->getFont());
-            txtOpt2.setCharacterSize(FONT_SIZE_DEFAULT);
-            txtOpt3.setString(kget("options.vol"));
-            txtOpt3.setFont(data.getUiDataPtr()->getFont());
-            txtOpt3.setCharacterSize(FONT_SIZE_DEFAULT);
-            txtOpt3.setSfmlColor(sf::Color::White);
-            txtOpt4.setString(kget("options.control"));
-            txtOpt4.setFont(data.getUiDataPtr()->getFont());
-            txtOpt4.setCharacterSize(FONT_SIZE_DEFAULT);
-            txtOpt4.setSfmlColor(sf::Color::White);
-            txtOpt5.setString(kget("options.credit"));
-            txtOpt5.setFont(data.getUiDataPtr()->getFont());
-            txtOpt5.setCharacterSize(FONT_SIZE_DEFAULT);
-            txtOpt5.setSfmlColor(sf::Color::White);
-
-            txtLang.setString(kget("options.lang.title"));
-            txtLang.setFont(data.getUiDataPtr()->getFont());
-            txtLang.setCharacterSize(FONT_SIZE_DEFAULT);
 
             txtCred.setString(kget("options.cred.title"));
             txtCred.setFont(data.getUiDataPtr()->getFont());
@@ -137,6 +100,7 @@ namespace OpMon {
           : data(data)
           , currentOptions(OptionType::ALL) {
 
+            // Create text boxes for the main screen
             for(int i = 0; i < 6; i++) {
                 sf::Vector2f position(OPTIONS_MENU_ITEM_PADDING, OPTIONS_MENU_ITEM_PADDING + i * (OPTIONS_MENU_ITEM_HEIGHT + OPTIONS_MENU_ITEM_PADDING));
                 TextBox optionsMenuItem(data.getMenuframe(), position, OPTIONS_MENU_ITEM_WIDTH, OPTIONS_MENU_ITEM_HEIGHT);
@@ -146,34 +110,27 @@ namespace OpMon {
             initOptionsMenuItemsName();
             initOptionsMenuItemsValue();
 
+            // Create text boxes for the language selection screen
+            for(int i = 0; i < 6; i++) {
+                sf::Vector2f position(OPTIONS_MENU_ITEM_PADDING, OPTIONS_MENU_ITEM_PADDING + i * (OPTIONS_MENU_ITEM_HEIGHT + OPTIONS_MENU_ITEM_PADDING));
+                TextBox languagesMenuItem(data.getMenuframe(), position, OPTIONS_MENU_ITEM_WIDTH, OPTIONS_MENU_ITEM_HEIGHT);
+                languagesMenuItem.setFont(data.getUiDataPtr()->getFont());
+                languagesMenuItems.push_back(languagesMenuItem);
+            }
+            initLanguagesMenuItemsName();
+
             bgOpt.setTexture(data.getBackground());
             rectSurb.setTexture(data.getSelectBar());
             bgLangues.setTexture(data.getLangBg());
-            check.setTexture(data.getYesTx());
             bgCredits.setTexture(data.getCreditsBg());
             bgControls.setTexture(data.getControlsBg());
 
             volumeCur.setTexture(data.getVolumeCur());
 
-            check.setPosition(425, 88);
-
             initStrings();
-
-            txtOpt1.setPosition(120, 100);
-            txtOpt2.setPosition(120, 170);
-            txtOpt3.setPosition(120, 240);
-            txtOpt5.setPosition(120, 310);
-            txtOpt4.setPosition(120, 380);
-
-            langEsp.setPosition(45, 170);
-            langEng.setPosition(45, 100);
-            langFr.setPosition(45, 240);
-            langDe.setPosition(45, 310);
-            langIt.setPosition(45, 380);
 
             txtRetour.setPosition(55, 25);
 
-            txtLang.setPosition(250, 25);
             txtOptions.setPosition(230, 25);
             txtCred.setPosition(250, 25);
             txtCtrl.setPosition(250, 25);
@@ -304,19 +261,17 @@ namespace OpMon {
         }
 
         void OptionsMenu::langLoop(sf::RenderTarget &frame) {
-            frame.clear(sf::Color::White);
+            frame.clear(sf::Color(74, 81, 148));
 
-            frame.draw(bgLangues);
-            frame.draw(langEng);
-            frame.draw(langEsp);
-            frame.draw(langFr);
-            frame.draw(langDe);
-            frame.draw(langIt);
-            frame.draw(txtRetour);
-            frame.draw(txtLang);
-            rectSurb.setPosition(curPosOpt[curPosLangI]);
-            rectSurb.setScale(curSizeLang[curPosLangI]);
-            frame.draw(rectSurb);
+            for(auto &languagesMenuItem : languagesMenuItems) {
+                languagesMenuItem.setActive(false);
+            }
+
+            languagesMenuItems[curPosLangI].setActive(true);
+
+            for(auto &languagesMenuItem : languagesMenuItems) {
+                frame.draw(languagesMenuItem);
+            }
         }
 
         void OptionsMenu::pause() {
@@ -431,6 +386,36 @@ namespace OpMon {
                         break;
                     default:
                         break;
+                }
+                ++i;
+            }
+        }
+
+        void OptionsMenu::initLanguagesMenuItemsName() {
+            auto kget = Utils::StringKeys::get;
+
+            int i = 0;
+            for(auto &languagesMenuItem : languagesMenuItems) {
+                switch (i) {
+                    case 0:
+                        languagesMenuItem.setLeftContent(kget("options.retour"));
+                        break;
+                    case 1:
+                        languagesMenuItem.setLeftContent("English");
+                        break;
+                    case 2:
+                        languagesMenuItem.setLeftContent(L"Espa\u00F1ol");
+                        break;
+                    case 3:
+                        languagesMenuItem.setLeftContent(L"Francais");
+                        break;
+                    case 4:
+                        languagesMenuItem.setLeftContent("Deutsch");
+                        break;
+                    case 5:
+                        languagesMenuItem.setLeftContent("Italiano");
+                        break;
+
                 }
                 ++i;
             }
