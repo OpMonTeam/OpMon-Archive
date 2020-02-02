@@ -218,7 +218,7 @@ namespace OpMon {
                 if(dialog == nullptr) { //Always show the dialog box (if possible)
                     dialog = new Dialog(" ", data.getUiDataPtr());
                 }
-                dialog->draw(frame);
+                frame.draw(*dialog);
 
             } else if(!attackChoice) { // Main battle menu
 

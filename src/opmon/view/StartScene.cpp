@@ -107,7 +107,7 @@ namespace OpMon {
             case 2:
                 frame.draw(bg);
                 frame.draw(prof);
-                dialog->draw(frame);
+                frame.draw(*dialog);
                 break;
             case 1:
                 frame.draw(bgName);

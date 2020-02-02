@@ -119,25 +119,26 @@ namespace OpMon {
                     }
                 }
             }
+            for(size_t itor = 0; itor < 3; itor++) {
+                dialogText[itor].setString(currentTxt[itor].toUtf32());
+            }
+            sf::Vector2f posArrow(512 - 40, 512 - 40);
+            arrDial.move(0, 0.33f);
+            if(arrDial.getPosition().y - posArrow.y > 5) {
+                arrDial.move(0, -6);
+            }
         }
 
-        void Dialog::draw(sf::RenderTarget &frame) {
+        void Dialog::draw(sf::RenderTarget &target, sf::RenderStates states) const {
             if(backgroundVisible) {
-                frame.draw(background);
+                target.draw(background);
                 {
-
                     for(size_t itor = 0; itor < 3; itor++) {
-                        dialogText[itor].setString(currentTxt[itor].toUtf32());
-                        frame.draw(dialogText[itor]);
+                        target.draw(dialogText[itor]);
                     }
 
-                    sf::Vector2f posArrow(512 - 40, 512 - 40);
-                    arrDial.move(0, 0.33f);
-                    if(arrDial.getPosition().y - posArrow.y > 5) {
-                        arrDial.move(0, -6);
-                    }
                     if(text.size() > 0 && changeDialog)
-                        frame.draw(arrDial);
+                        target.draw(arrDial);
                 }
             }
         }
