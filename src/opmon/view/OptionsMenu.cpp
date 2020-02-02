@@ -137,6 +137,7 @@ namespace OpMon {
           : data(data)
           , currentOptions(OptionType::ALL) {
 
+            // Create text boxes for the main screen
             for(int i = 0; i < 6; i++) {
                 sf::Vector2f position(OPTIONS_MENU_ITEM_PADDING, OPTIONS_MENU_ITEM_PADDING + i * (OPTIONS_MENU_ITEM_HEIGHT + OPTIONS_MENU_ITEM_PADDING));
                 TextBox optionsMenuItem(data.getMenuframe(), position, OPTIONS_MENU_ITEM_WIDTH, OPTIONS_MENU_ITEM_HEIGHT);
@@ -145,6 +146,15 @@ namespace OpMon {
             }
             initOptionsMenuItemsName();
             initOptionsMenuItemsValue();
+
+            // Create text boxes for the language selection screen
+            for(int i = 0; i < 6; i++) {
+                sf::Vector2f position(OPTIONS_MENU_ITEM_PADDING, OPTIONS_MENU_ITEM_PADDING + i * (OPTIONS_MENU_ITEM_HEIGHT + OPTIONS_MENU_ITEM_PADDING));
+                TextBox languagesMenuItem(data.getMenuframe(), position, OPTIONS_MENU_ITEM_WIDTH, OPTIONS_MENU_ITEM_HEIGHT);
+                languagesMenuItem.setFont(data.getUiDataPtr()->getFont());
+                languagesMenuItems.push_back(languagesMenuItem);
+            }
+            initLanguagesMenuItemsName();
 
             bgOpt.setTexture(data.getBackground());
             rectSurb.setTexture(data.getSelectBar());
@@ -304,19 +314,17 @@ namespace OpMon {
         }
 
         void OptionsMenu::langLoop(sf::RenderTarget &frame) {
-            frame.clear(sf::Color::White);
+            frame.clear(sf::Color(74, 81, 148));
 
-            frame.draw(bgLangues);
-            frame.draw(langEng);
-            frame.draw(langEsp);
-            frame.draw(langFr);
-            frame.draw(langDe);
-            frame.draw(langIt);
-            frame.draw(txtRetour);
-            frame.draw(txtLang);
-            rectSurb.setPosition(curPosOpt[curPosLangI]);
-            rectSurb.setScale(curSizeLang[curPosLangI]);
-            frame.draw(rectSurb);
+            for(auto &languagesMenuItem : languagesMenuItems) {
+                languagesMenuItem.setActive(false);
+            }
+
+            languagesMenuItems[curPosLangI].setActive(true);
+
+            for(auto &languagesMenuItem : languagesMenuItems) {
+                frame.draw(languagesMenuItem);
+            }
         }
 
         void OptionsMenu::pause() {
@@ -431,6 +439,36 @@ namespace OpMon {
                         break;
                     default:
                         break;
+                }
+                ++i;
+            }
+        }
+
+        void OptionsMenu::initLanguagesMenuItemsName() {
+            auto kget = Utils::StringKeys::get;
+
+            int i = 0;
+            for(auto &languagesMenuItem : languagesMenuItems) {
+                switch (i) {
+                    case 0:
+                        languagesMenuItem.setLeftContent(kget("options.retour"));
+                        break;
+                    case 1:
+                        languagesMenuItem.setLeftContent("English");
+                        break;
+                    case 2:
+                        languagesMenuItem.setLeftContent(L"Espa\u00F1ol");
+                        break;
+                    case 3:
+                        languagesMenuItem.setLeftContent(L"Francais");
+                        break;
+                    case 4:
+                        languagesMenuItem.setLeftContent("Deutsch");
+                        break;
+                    case 5:
+                        languagesMenuItem.setLeftContent("Italiano");
+                        break;
+
                 }
                 ++i;
             }
