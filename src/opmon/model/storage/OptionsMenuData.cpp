@@ -13,7 +13,6 @@ namespace OpMon {
             ResourceLoader::load(background, "backgrounds/options.png");
             ResourceLoader::load(selectBar, "sprites/misc/selectBar.png");
             ResourceLoader::load(langBg, "backgrounds/lang.png");
-            ResourceLoader::load(yesTx, "sprites/misc/yes.png");
             ResourceLoader::load(creditsBg, "backgrounds/credits.png");
             ResourceLoader::load(controlsBg, "backgrounds/controls.png");
             ResourceLoader::load(volumeCur, "sprites/misc/cursor.png");
