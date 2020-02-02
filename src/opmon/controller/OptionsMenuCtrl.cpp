@@ -101,30 +101,31 @@ namespace OpMon {
                         auto &tr = OpMon::I18n::Translator::getInstance();
                         data.getUiDataPtr()->getJukebox().playSound("push");
                         switch(menu.cursorPosition()) {
-                        case 0:
-                            menu.setCurrentOption(View::OptionType::ALL);
-                            return GameStatus::CONTINUE;
-                        case 1:
-                            Model::OptionsSave::modifyParam("lang", "en");
-                            tr.setLang("en");
-                            break;
-                        case 2:
-                            Model::OptionsSave::modifyParam("lang", "es");
-                            tr.setLang("es");
-                            break;
-                        case 3:
-                            Model::OptionsSave::modifyParam("lang", "fr");
-                            tr.setLang("fr");
-                            break;
-                        case 4:
-                            Model::OptionsSave::modifyParam("lang", "de");
-                            tr.setLang("de");
-                            break;
-                        case 5:
-                            Model::OptionsSave::modifyParam("lang", "it");
-                            tr.setLang("it");
-                            break;
+                            case 0:
+                                menu.setCurrentOption(View::OptionType::ALL);
+                                return GameStatus::CONTINUE;
+                            case 1:
+                                Model::OptionsSave::modifyParam("lang", "en");
+                                tr.setLang("en");
+                                break;
+                            case 2:
+                                Model::OptionsSave::modifyParam("lang", "es");
+                                tr.setLang("es");
+                                break;
+                            case 3:
+                                Model::OptionsSave::modifyParam("lang", "fr");
+                                tr.setLang("fr");
+                                break;
+                            case 4:
+                                Model::OptionsSave::modifyParam("lang", "de");
+                                tr.setLang("de");
+                                break;
+                            case 5:
+                                Model::OptionsSave::modifyParam("lang", "it");
+                                tr.setLang("it");
+                                break;
                         }
+                        view.initOptionsMenuItemsName();
                     } else if(menu.getCurrentOption() == View::OptionType::CREDITS) {
                         //Only one choice is avilable on the credits : back.
                         data.getUiDataPtr()->getJukebox().playSound("push");
