@@ -8,9 +8,15 @@ File under GNU GPL v3.0 license
 #include "../model/save/OptionsSave.hpp"
 #include "../model/storage/ResourceLoader.hpp"
 #include "Window.hpp"
+#include "ui/TextBox.hpp"
+#include "ui/TextBox.hpp"
 
 namespace OpMon {
     namespace View {
+
+        int OPTIONS_MENU_ITEM_HEIGHT = 64;
+        int OPTIONS_MENU_ITEM_WIDTH = 504;
+        int OPTIONS_MENU_ITEM_PADDING = 4;
 
         void OptionsMenu::initStrings() {
             auto kget = Utils::StringKeys::get;
@@ -131,6 +137,15 @@ namespace OpMon {
           : data(data)
           , currentOptions(OptionType::ALL) {
 
+            for(int i = 0; i < 6; i++) {
+                sf::Vector2f position(OPTIONS_MENU_ITEM_PADDING, OPTIONS_MENU_ITEM_PADDING + i * (OPTIONS_MENU_ITEM_HEIGHT + OPTIONS_MENU_ITEM_PADDING));
+                TextBox optionsMenuItem(data.getMenuframe(), position, OPTIONS_MENU_ITEM_WIDTH, OPTIONS_MENU_ITEM_HEIGHT);
+                optionsMenuItem.setFont(data.getUiDataPtr()->getFont());
+                optionsMenuItems.push_back(optionsMenuItem);
+            }
+            initOptionsMenuItemsName();
+            initOptionsMenuItemsValue();
+
             bgOpt.setTexture(data.getBackground());
             rectSurb.setTexture(data.getSelectBar());
             bgLangues.setTexture(data.getLangBg());
@@ -139,9 +154,6 @@ namespace OpMon {
             bgControls.setTexture(data.getControlsBg());
 
             volumeCur.setTexture(data.getVolumeCur());
-            //Cursor positions :
-            //volumeCur.setPosition(165, 290);// = 0
-            //volumeCur.setPosition(460, 290);// = 100
 
             check.setPosition(425, 88);
 
@@ -278,26 +290,17 @@ namespace OpMon {
         }
 
         void OptionsMenu::loop(sf::RenderTarget &frame) {
-            frame.clear(sf::Color::White);
+            frame.clear(sf::Color(74, 81, 148));
 
-            frame.draw(bgOpt);
-            frame.draw(txtOpt1);
-            frame.draw(txtOpt2);
-            frame.draw(txtOpt3);
-            frame.draw(txtOpt4);
-            frame.draw(txtOpt5);
-            frame.draw(txtRetour);
-            frame.draw(txtOptions);
-
-            volumeCur.setPosition(166 + (295 * data.getUiDataPtr()->getJukebox().getGlobalVolume() / 100), 298);
-
-            frame.draw(volumeCur);
-            if(Model::OptionsSave::getParam("fullscreen").getValue() == "true") {
-                frame.draw(check);
+            for(auto &optionsMenuItem : optionsMenuItems) {
+                optionsMenuItem.setActive(false);
             }
-            rectSurb.setPosition(curPosOpt[curPosOptI]);
-            rectSurb.setScale(curSizeOpt[curPosOptI]);
-            frame.draw(rectSurb);
+
+            optionsMenuItems[curPosOptI].setActive(true);
+
+            for(auto &optionsMenuItem : optionsMenuItems) {
+                frame.draw(optionsMenuItem);
+            }
         }
 
         void OptionsMenu::langLoop(sf::RenderTarget &frame) {
@@ -379,6 +382,58 @@ namespace OpMon {
 
             frame.draw(txtRetour);
             frame.draw(txtCred);
+        }
+
+        void OptionsMenu::initOptionsMenuItemsName() {
+            auto kget = Utils::StringKeys::get;
+            std::string key;
+            int i = 0;
+            for(auto &optionsMenuItem : optionsMenuItems) {
+                switch (i) {
+                    case 0:
+                        key = "retour";
+                        break;
+                    case 1:
+                        key = "ecran";
+                        break;
+                    case 2:
+                        key = "lang";
+                        break;
+                    case 3:
+                        key = "controls";
+                        break;
+                    case 4:
+                        key = "volume";
+                        break;
+                    case 5:
+                        key = "credits";
+                        break;
+                }
+                optionsMenuItem.setLeftContent(kget("options." + key));
+                ++i;
+            }
+        }
+
+        void OptionsMenu::initOptionsMenuItemsValue() {
+            int i = 0;
+            int globalVolume = data.getUiDataPtr()->getJukebox().getGlobalVolume();
+            for(auto &optionsMenuItem : optionsMenuItems) {
+                switch (i) {
+                    case 1:
+                        if(Model::OptionsSave::getParam("fullscreen").getValue() == "true") {
+                            optionsMenuItem.setRightContent("On");
+                        } else {
+                            optionsMenuItem.setRightContent("Off");
+                        }
+                        break;
+                    case 4:
+                        optionsMenuItem.setRightContent(std::to_string(globalVolume) + "%");
+                        break;
+                    default:
+                        break;
+                }
+                ++i;
+            }
         }
 
     } // namespace View

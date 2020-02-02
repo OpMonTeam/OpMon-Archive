@@ -29,8 +29,9 @@ key.options.retour=Torna
 key.options.title=Opzioni
 key.options.ecran=Schermo intero
 key.options.lang.title=Lingua
-key.options.control=Riconoscimenti
-key.options.vol=Controlli
+key.options.credits=Riconoscimenti
+key.options.volume=Volume
+key.options.controls=Controlli
 key.options.cred.title=Riconoscimenti
 key.options.ctrl.change=Cambia configurazione
 

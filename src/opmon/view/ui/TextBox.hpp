@@ -10,20 +10,23 @@ class TextBox : public sf::Drawable {
     // The texture used to draw the box
     sf::Texture texture;
 
+    // The position of the box
+    sf::Vector2f position;
+
     // The width of the box
     int width;
 
     // The height of the box
     int height;
 
-    // An eventual text to be displayed in the box
-    sf::Text text;
+    // An eventual text to be displayed in the left side of the box
+    sf::Text leftText;
+
+    // An eventual text to be displayed in the right side of the box
+    sf::Text rightText;
 
     // The font to display the text with
     sf::Font font;
-
-    // The position of the box
-    sf::Vector2f position;
 
     bool active;
 
@@ -53,10 +56,16 @@ class TextBox : public sf::Drawable {
     void setFont(const sf::Font& font);
 
     /**!
-     * \brief Set the text used for the content of the text box.
-     * \param content The text to use for the content of the text box.
+     * \brief Set the string used for the content of the text in the left of the box.
+     * \param content A string to use for the content.
      */
-    void setContent(const std::string& content);
+    void setLeftContent(const sf::String& content);
+
+    /**!
+     * \brief Set the string used for the content of the text in the right of the box.
+     * \param content A string to use for the content.
+     */
+    void setRightContent(const sf::String& content);
 
     /**!
      * \brief Set the box as inactive or active (i.e. greyed out or not).

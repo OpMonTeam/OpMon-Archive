@@ -40,7 +40,7 @@ namespace OpMon {
 
             int i{0};
             for(auto &mainMenuItem : mainMenuItems) {
-                mainMenuItem.setContent(kget("title." + std::to_string(i + 1)));
+                mainMenuItem.setLeftContent(kget("title." + std::to_string(i + 1)));
                 ++i;
             }
         }
