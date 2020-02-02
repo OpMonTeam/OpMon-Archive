@@ -101,6 +101,7 @@ namespace OpMon {
 
             void initOptionsMenuItemsName();
             void initOptionsMenuItemsValue();
+            void initLanguagesMenuItemsName();
 
           private:
             Model::OptionsMenuData &data;
@@ -179,6 +180,7 @@ namespace OpMon {
             sf::Sprite check;
 
             std::vector<TextBox> optionsMenuItems;
+            std::vector<TextBox> languagesMenuItems;
         };
     } // namespace View
 } // namespace OpMon
