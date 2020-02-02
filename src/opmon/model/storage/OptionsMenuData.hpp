@@ -19,7 +19,6 @@ namespace OpMon {
             sf::Texture background;
             sf::Texture selectBar;
             sf::Texture langBg;
-            sf::Texture yesTx;
             sf::Texture creditsBg;
             sf::Texture controlsBg;
             sf::Texture volumeCur;
@@ -44,10 +43,6 @@ namespace OpMon {
              * \brief Gets the background for the language options.
              */
             sf::Texture const &getLangBg() const { return langBg; }
-            /*!
-             * \brief Gets the texture of the tick.
-             */
-            sf::Texture const &getYesTx() const { return yesTx; }
             /*!
              * \brief Gets the background for the credits.
              */
