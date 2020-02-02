@@ -10,6 +10,9 @@ class TextBox : public sf::Drawable {
     // The texture used to draw the box
     sf::Texture texture;
 
+    // The position of the box
+    sf::Vector2f position;
+
     // The width of the box
     int width;
 
@@ -24,9 +27,6 @@ class TextBox : public sf::Drawable {
 
     // The font to display the text with
     sf::Font font;
-
-    // The position of the box
-    sf::Vector2f position;
 
     bool active;
 
