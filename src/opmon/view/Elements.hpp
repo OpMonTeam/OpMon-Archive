@@ -206,11 +206,6 @@ namespace OpMon {
              */
             unsigned int t = 0;
             /*!
-             * \brief The transform object which will be applied to the sprite to animate.
-             */
-            sf::Transform *sprite;
-
-            /*!
              * \brief The data for the a translation.
              */
             const MovementData md;
@@ -222,6 +217,10 @@ namespace OpMon {
              * \brief The data for a scaling.
              */
             const ScaleData sd;
+            /*!
+             * \brief The transform object which will be applied to the sprite to animate.
+             */
+            sf::Transform *sprite;
 
             /*!
              * \brief The last translation applied.
