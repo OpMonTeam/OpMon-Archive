@@ -17,7 +17,7 @@
 namespace OpMon {
     namespace View {
 
-        class Dialog {
+        class Dialog : public sf::Drawable {
           private:
             /*!
              * \brief Array of all lines composing the dialog.
@@ -102,7 +102,7 @@ namespace OpMon {
             /*!
              * \brief Draw the dialog on the main frame.
              */
-            void draw(sf::RenderTarget &frame);
+            virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
             /*!
              * \return `true` is the entire dialog has been displayed; `false` otherwise.

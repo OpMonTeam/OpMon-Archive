@@ -313,7 +313,7 @@ namespace OpMon {
             frame.setView(frame.getDefaultView());
 
             if(is_in_dialog) {
-                this->dialog->draw(frame);
+                frame.draw(*this->dialog);
             }
 
             if(debugMode) {
