@@ -172,10 +172,10 @@ namespace OpMon {
             Type type; /*!< \brief The type of the attack.*/
             int accuracy;/*!< \brief The accuracy of the attack*/
             bool special; /*!< \brief If `true`, the attack is a special attack (uses the special stats). Else, the attack is a physical attack (uses the basic stats).*/
-            int pp;/*!<\brief The current pp of the attack.*/
             bool status; /*!< \brief If `true`, the attack does not harm directly the opposite OpMon.*/
             int criticalRate; /*!< \brief The critical rate of the attack. It represents the denominator (one chance out of the value of the variable)*/
             bool neverFails; /*!< \brief If `true`, the attack can't fail.*/
+            int pp;/*!<\brief The current pp of the attack.*/
             int ppMax; /*!< \brief The maximum base PP (Power points) of the attack.*/
             int priority; /*!< \brief The level of priority of the attack.*/
             AttackEffect *preEffect; /*!< \brief The attack effect applied before the calculation of the damages.*/
