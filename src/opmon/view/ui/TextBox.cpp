@@ -6,7 +6,7 @@
 #include <ostream>
 #include <sstream>
 
-TextBox::TextBox(sf::Texture texture, sf::Vector2f position, int width, int height, uint32_t linesCount)
+TextBox::TextBox(sf::Texture texture, sf::Vector2f position, uint32_t width, uint32_t height, uint32_t linesCount)
   : texture(texture)
   , position(position)
   , width(width)
@@ -24,16 +24,16 @@ TextBox::TextBox(sf::Texture texture, sf::Vector2f position, int width, int heig
     }
 
     // Size of one of the nine parts of the text box (assuming its a square)
-    int partSize = 16;
+    uint32_t partSize = 16;
 
-    for(unsigned int i = 0; i < 3; ++i) {
-        for(unsigned int j = 0; j < 3; ++j) {
+    for(uint32_t i = 0; i < 3; ++i) {
+        for(uint32_t j = 0; j < 3; ++j) {
             sf::Vertex *quad = &this->vertexArray[(i * 3 + j) * 4];
 
-            int currentQuadX = 0;
-            int currentQuadY = 0;
-            int currentQuadWidth = 0;
-            int currentQuadHeight = 0;
+            uint32_t currentQuadX = 0;
+            uint32_t currentQuadY = 0;
+            uint32_t currentQuadWidth = 0;
+            uint32_t currentQuadHeight = 0;
 
             if(i == 0 && j == 0) {
                 // Top-left part
@@ -147,8 +147,8 @@ void TextBox::setRightContent(const sf::String &content) {
 
 void TextBox::setActive(bool active) {
 
-    for(unsigned int i = 0; i < 3; ++i) {
-        for(unsigned int j = 0; j < 3; ++j) {
+    for(uint32_t i = 0; i < 3; ++i) {
+        for(uint32_t j = 0; j < 3; ++j) {
             sf::Vertex *quad = &this->vertexArray[(i * 3 + j) * 4];
 
             if(active) {
