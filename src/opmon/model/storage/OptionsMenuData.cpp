@@ -17,7 +17,6 @@ namespace OpMon {
             ResourceLoader::load(controlsBg, "backgrounds/controls.png");
             ResourceLoader::load(volumeCur, "sprites/misc/cursor.png");
             ResourceLoader::load(keyChange, "sprites/misc/keyChange.png");
-            ResourceLoader::load(menuframe, "backgrounds/menuframe.png");
         }
     } // namespace Model
 } // namespace OpMon
