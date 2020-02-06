@@ -42,7 +42,7 @@
 /*!
  * \brief Contains the default size font.
  */
-#define FONT_SIZE_DEFAULT 25
+#define FONT_SIZE_DEFAULT 16
 
 /*!
  * \brief Contains the number PI with 11 digits.

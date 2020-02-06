@@ -9,9 +9,39 @@ File under GNU GPL v3.0 license
 #include "../../utils/defines.hpp"
 #include "../start/Core.hpp"
 #include "Window.hpp"
+#include "ui/TextBox.hpp"
 
 namespace OpMon {
     namespace View {
+
+        void Dialog::init() {
+            // Create the text box in which the dialogue will be displayed
+            dialogBoxHeight = 112;
+            dialogBoxWidth = uidata->getWindowWidth() - 8;
+            sf::Vector2f position(4, uidata->getWindowHeight() - dialogBoxHeight - 4);
+            dialogBox = new TextBox(uidata->getMenuFrame(), position, dialogBoxWidth, dialogBoxHeight, 3);
+            dialogBox->setFont(uidata->getFont());
+
+            // Create the arrow that appears to prompt the player to press the action key
+            arrDial.setTexture(uidata->getDialogArrow());
+            arrDial.setPosition(512 - 40, 512 - 40);
+            arrDial.setScale(2, 2);
+        }
+
+        Dialog::Dialog(std::queue<sf::String> text, Model::UiData *uidata)
+          : text(text)
+          , uidata(uidata) {
+            if(this->text.size() % 3 != 0) {
+                while(this->text.size() % 3 != 0) {
+                    this->text.push(sf::String(" "));
+                }
+                if(this->text.size() % 3 != 0) {
+                    handleError("Error: string missing in Dialog, even after trying to fix it.", true);
+                }
+            }
+
+            init();
+        }
 
         Dialog::Dialog(sf::String text, Model::UiData *uidata)
           : uidata(uidata) {
@@ -24,69 +54,18 @@ namespace OpMon {
             init();
         }
 
-        Dialog::Dialog(std::queue<sf::String> text, Model::UiData *uidata)
-          : text(text)
-          , uidata(uidata) {
-            if(this->text.size() % 3 != 0) {
-                while(this->text.size() % 3 != 0) {
-                    this->text.push(sf::String(" "));
-                }
-                if(this->text.size() % 3 != 0) {
-                    handleError("Error : string missing in Dialog, even after trying to fix it.", true);
-                }
-            }
-
-            init();
-        }
-
-        Dialog::Dialog(std::vector<sf::String> text, Model::UiData *uidata)
-          : uidata(uidata) {
-
-            for(sf::String str : text) {
-                this->text.push(str);
-            }
-
-            if(this->text.size() % 3 != 0) {
-                while(this->text.size() % 3 != 0) {
-                    this->text.push(sf::String(" "));
-                }
-                if(this->text.size() % 3 != 0) {
-                    handleError("Error : string missing in Dialog, even after trying to fix it.", true);
-                }
-            }
-
-            init();
-        }
-
-        void Dialog::init() {
-            background.setTexture(uidata->getDialogBackground());
-            arrDial.setTexture(uidata->getDialogArrow());
-
-            background.setPosition(0, 512 - 150);
-            arrDial.setPosition(512 - 40, 512 - 40);
-            arrDial.setScale(2, 2);
-
-            int minusPos = 32;
-            for(size_t i = 0; i < 3; ++i) {
-                dialogText[i].setFont(uidata->getFont());
-                dialogText[i].setCharacterSize(FONT_SIZE_DEFAULT);
-                dialogText[i].setSfmlColor(sf::Color::Black);
-
-                dialogText[i].setPosition(25, background.getPosition().y + minusPos);
-                minusPos += 32;
-            }
-        }
-
         void Dialog::pass() {
-            /* If the dialog is not completely displayed, display the dialog when pressing space */
             if(changeDialog == false) {
-                for(unsigned int p = line; p < 3; p++) {
+                // If the current lines are not completely displayed, display them in full when
+                // pressing space
+                for(uint32_t p = line; p < 3; p++) {
                     currentTxt[p] = text.front();
                     text.pop();
                 }
                 changeDialog = true;
-                /* If the dialog is completely displayed, pass to the next dialog when pressing space, if there is one */
             } else if(text.size() > 0) {
+                // If the current lines are completely displayed, pass to the next set of lines when
+                // pressing space (if there is one)
                 uidata->getJukebox().playSound("dialog pass");
                 line = 0;
                 i = 0;
@@ -94,8 +73,9 @@ namespace OpMon {
                 currentTxt[1] = sf::String(" ");
                 currentTxt[2] = sf::String(" ");
                 changeDialog = false;
-            } else { //If there is no more dialogs
-                is_dialog_over = true;
+            } else {
+                // If there are no more lines to display
+                dialogOver = true;
             }
         }
 
@@ -120,7 +100,7 @@ namespace OpMon {
                 }
             }
             for(size_t itor = 0; itor < 3; itor++) {
-                dialogText[itor].setString(currentTxt[itor].toUtf32());
+                dialogBox->setLeftContent(currentTxt[itor].toUtf32(), itor);
             }
             sf::Vector2f posArrow(512 - 40, 512 - 40);
             arrDial.move(0, 0.33f);
@@ -130,25 +110,15 @@ namespace OpMon {
         }
 
         void Dialog::draw(sf::RenderTarget &target, sf::RenderStates states) const {
-            if(backgroundVisible) {
-                target.draw(background);
-                {
-                    for(size_t itor = 0; itor < 3; itor++) {
-                        target.draw(dialogText[itor]);
-                    }
-
-                    if(text.size() > 0 && changeDialog)
-                        target.draw(arrDial);
-                }
+            target.draw(*dialogBox);
+            {
+                if(text.size() > 0 && changeDialog)
+                    target.draw(arrDial);
             }
         }
 
         bool Dialog::isDialogOver() {
-            return is_dialog_over;
-        }
-
-        void Dialog::setBackgroundVisible(bool visible) {
-            backgroundVisible = visible;
+            return dialogOver;
         }
 
     } // namespace View
