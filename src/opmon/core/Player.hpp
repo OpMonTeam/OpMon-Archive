@@ -11,9 +11,11 @@
 #define _PLAYER_HPP_
 
 #include "../objects/Item.hpp"
-#include "OpTeam.hpp"
-#include "Position.hpp"
+#include "../objects/OpTeam.hpp"
+#include "../views/objects/Position.hpp"
+
 #include <SFML/System.hpp>
+
 #include <map>
 #include <vector>
 
@@ -108,15 +110,6 @@ namespace OpMon {
              * \returns `false` if the team is already full.
              */
             bool addOpToOpTeam(OpMon *toAdd);
-
-            void save();
-
-            /*!
-             * \brief Constructs the Player object.
-             * \param in The file in which to load the player's data.
-             * \param name The player's name.
-             */
-            Player(std::ifstream &in, std::string &name);
 
             bool isKo() {
                 return opteam.isKo();

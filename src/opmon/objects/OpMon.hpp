@@ -6,7 +6,7 @@
 #ifndef OPMON_HPP
 #define OPMON_HPP
 
-#include "../../../utils/misc.hpp"
+#include "../../utils/misc.hpp"
 #include "Nature.hpp"
 #include "Species.hpp"
 #include <SFML/System/String.hpp>
@@ -342,10 +342,6 @@ namespace OpMon {
                 return held;
             }
 
-            /*!
-             * \warning Work in progress.
-             */
-            std::string save();
         };
 
     } // namespace Model

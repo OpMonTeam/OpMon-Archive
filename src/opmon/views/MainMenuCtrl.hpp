@@ -8,11 +8,10 @@
 
 #include <SFML/Window/Event.hpp>
 
-#include "../model/storage/MainMenuData.hpp"
-#include "../start/Core.hpp"
-#include "../view/MainMenu.hpp"
-#include "AGameScreen.hpp"
-#include "MenuHelper.hpp"
+#include "MainMenuData.hpp"
+#include "../core/Core.hpp"
+#include "MainMenu.hpp"
+#include "base/AGameScreen.hpp"
 #include "../../utils/CycleCounter.hpp"
 
 namespace OpMon {

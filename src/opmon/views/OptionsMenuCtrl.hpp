@@ -12,13 +12,13 @@
 
 #include "../../utils/defines.hpp"
 #include "../../utils/path.hpp"
-#include "../model/save/OptionsSave.hpp"
-#include "../model/storage/KeyData.hpp"
-#include "../model/storage/OptionsMenuData.hpp"
-#include "../start/Core.hpp"
-#include "../view/MainMenu.hpp"
-#include "../view/OptionsMenu.hpp"
-#include "AGameScreen.hpp"
+#include "../core/system/OptionsSave.hpp"
+#include "../core/system/KeyData.hpp"
+#include "OptionsMenuData.hpp"
+#include "../core/Core.hpp"
+#include "MainMenu.hpp"
+#include "OptionsMenu.hpp"
+#include "base/AGameScreen.hpp"
 
 namespace OpMon {
     namespace Controller {

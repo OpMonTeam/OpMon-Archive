@@ -5,7 +5,7 @@ Contributors : BAKFR, Navet56, JonnyPtn
 File under GNU GPL v3.0 license
 */
 #include "Attacks.hpp"
-#include "../../../utils/misc.hpp"
+#include "../../utils/misc.hpp"
 
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 namespace OpMon {

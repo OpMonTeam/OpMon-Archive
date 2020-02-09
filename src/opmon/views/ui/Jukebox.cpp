@@ -5,7 +5,7 @@ Contributors : Samurai413x, BAKFR
 File under GNU GPL v3.0 license
 */
 #include "Jukebox.hpp"
-#include "../start/Core.hpp"
+#include "../../core/Core.hpp"
 #include <iostream>
 
 namespace OpMon {

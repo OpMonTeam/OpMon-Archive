@@ -6,10 +6,10 @@ File under GNU GPL v3.0
 */
 #include "Battle.hpp"
 #include "../../utils/StringKeys.hpp"
-#include "../model/objects/Attack.hpp"
-#include "../model/storage/BattleData.hpp"
-#include "../model/sysObjects/OpTeam.hpp"
-#include "Window.hpp"
+#include "../objects/Attack.hpp"
+#include "BattleData.hpp"
+#include "../objects/OpTeam.hpp"
+#include "ui/Window.hpp"
 #include <SFML/Graphics/Rect.hpp>
 #include <iostream>
 #include <sstream>

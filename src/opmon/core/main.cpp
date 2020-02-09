@@ -9,11 +9,12 @@ File under GNU GPL v3.0 license
 #include "../../utils/log.hpp"
 #include "../../utils/path.hpp"
 #include "../../utils/time.hpp"
-#include "../model/objects/Enums.hpp"
-#include "../model/save/OptionsSave.hpp"
-#include "../model/storage/ResourceLoader.hpp"
-#include "./Gameloop.hpp"
+
+#include "system/OptionsSave.hpp"
+#include "system/ResourceLoader.hpp"
+#include "Gameloop.hpp"
 #include "i18n/Translator.hpp"
+
 #include <ostream>
 #include <string>
 
@@ -65,7 +66,7 @@ namespace OpMon {
             //Initializaing keys
             oplog("Loading strings");
             std::string lang = OptionsSave::getParam("lang").getValue();
-            auto &tr = ::OpMon::I18n::Translator::getInstance();
+            auto &tr = I18n::Translator::getInstance();
 
             if(!tr.getAvailableLanguages().count(lang)) {
                 lang = "en"; // The lang isn't available. Default to english.
@@ -117,18 +118,8 @@ int main(int argc, char *argv[]) {
             } else if(str == "--help") {
                 std::cout << "--version : Prints the version and quit." << std::endl;
                 std::cout << "--help : Prints this message and quit." << std::endl;
-                //std::cout << "--opt <path> : Changes the options save file's location." << std:: endl;
                 std::cout << "--debug : Starts the game with debug code. Changes when needed." << std::endl;
                 return 0;
-            } /* else if(str == "--debug") {
-            	std::vector<sf::String> tab = Utils::StringKeys::autoNewLine("Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.");
-            	for(sf::String str : tab){
-            		std::cout << Utils::StringKeys::sfStringtoStdString(str) << std::endl;
-            	}
-                return 0;
-            }*/
-            else {
-                //std::cout << "Unknown parameters. Skipping." << std::endl;
             }
         }
     }

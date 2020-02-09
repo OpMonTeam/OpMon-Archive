@@ -4,8 +4,8 @@ Author : Cyrielle
 File under GNU GPL v3.0 license
 */
 #include "Turn.hpp"
-#include "Attack.hpp"
-#include "OpMon.hpp"
+#include "../../objects/Attack.hpp"
+#include "../../objects/OpMon.hpp"
 
 namespace OpMon {
     namespace Model {

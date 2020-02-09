@@ -10,10 +10,12 @@
 
 #pragma once
 
-#include "../controller/AGameScreen.hpp"
-#include "../model/storage/UiData.hpp"
-#include "../view/Window.hpp"
-#include "./GameStatus.hpp"
+#include "../views/base/AGameScreen.hpp"
+#include "../views/ui/Window.hpp"
+
+#include "UiData.hpp"
+#include "GameStatus.hpp"
+
 #include <memory>
 #include <stack>
 

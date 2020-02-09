@@ -5,7 +5,7 @@
 */
 #pragma once
 
-#include "UiData.hpp"
+#include "../core/UiData.hpp"
 
 namespace OpMon {
     namespace Model {
@@ -30,7 +30,7 @@ namespace OpMon {
              * \brief Returns a pointer to the UiData object.
              */
             UiData *getUiDataPtr() const { return uidata; }
-          
+
             sf::Texture const &getMenuframe() const { return menuframe; }
             /*!
              * \brief Gets the cursor.

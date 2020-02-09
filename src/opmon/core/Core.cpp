@@ -5,12 +5,14 @@ Contributor : BAKFR
 File under GNU GPL v3.0 license
 */
 #include "Core.hpp"
+
 #include "../../utils/StringKeys.hpp"
 #include "../../utils/defines.hpp"
 #include "../../utils/log.hpp"
 #include "../../utils/path.hpp"
-#include "../model/save/OptionsSave.hpp"
-#include "../model/sysObjects/Map.hpp"
+
+#include "system/OptionsSave.hpp"
+
 #include <map>
 #include <ostream>
 #include <sstream>
@@ -37,8 +39,8 @@ namespace OpMon {
         oplog(osslog.str(), true);
         std::cerr << "Error no" << errors << " : " << errorName << std::endl;
         if(errors > 20) { //If the program gets more than 20 errors, it stops.
-            std::cerr << "Too many errors. Closing program. Please verify your installation." << std::endl;
-            oplog("Too many errors. Closing program. Please verify your installation. If the problems persists, warn us.", true);
+            std::cerr << "Too many errors. Closing program. Please check the integrity of your installation." << std::endl;
+            oplog("Too many errors. Closing program. Please check the integrity of your installation. If the problems persists, warn us.", true);
             fatal = true;
         }
         if(fatal) {
@@ -53,13 +55,14 @@ namespace OpMon {
 
     int quit(int const &returns) {
         OptionsSave::saveParams(optSave); //Saving parameters
-        oplog("Deleting resources in the memory");
 
         std::ostringstream osslog;
         osslog << "End of the program. Return " << returns;
         oplog(osslog.str());
         if(returns != 0) {
-            oplog("There is a problem. Create an issue on github!");
+            Utils::Log::warn("There is a problem. Create an issue on github!");
+        }else{
+            Utils::Log::warn("Quitting without liberating the resources!");
         }
         exit(returns);
     }

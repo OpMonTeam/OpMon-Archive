@@ -5,10 +5,10 @@
 */
 #pragma once
 
-#include "../sysObjects/Map.hpp"
-#include "../sysObjects/Player.hpp"
+#include "objects/Map.hpp"
+#include "../core/Player.hpp"
 #include "GameMenuData.hpp"
-#include "UiData.hpp"
+#include "../core/UiData.hpp"
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <map>

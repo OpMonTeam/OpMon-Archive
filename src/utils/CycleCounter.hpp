@@ -67,6 +67,6 @@ namespace Utils {
         /*!
          * \return The value of the counter.
          */
-        int getValue() { return value; }
+        int getValue() const { return value; }
     };
 } // namespace Utils

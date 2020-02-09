@@ -5,13 +5,13 @@ Contributors : Cyrielle, Navet56, torq, Samurai413x
 File under GNU GPL v3.0 license
 */
 #include "OptionsMenuCtrl.hpp"
-#include "../view/Window.hpp"
+#include "ui/Window.hpp"
 
 #include "../../utils/defines.hpp"
-#include "../model/save/OptionsSave.hpp"
-#include "../start/i18n/Translator.hpp"
-#include "../view/Overworld.hpp"
-#include "../view/StartScene.hpp"
+#include "../core/system/OptionsSave.hpp"
+#include "../core/i18n/Translator.hpp"
+#include "Overworld.hpp"
+#include "StartScene.hpp"
 
 #include <math.h>
 

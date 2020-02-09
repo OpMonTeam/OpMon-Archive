@@ -8,8 +8,8 @@ File under GNU GPL v3.0 license
 
 #include "../../../utils/defines.hpp"
 #include "../../../utils/log.hpp"
-#include "../../start/Core.hpp"
-#include "../../view/Overworld.hpp"
+#include "../../core/Core.hpp"
+#include "../Overworld.hpp"
 #include "Position.hpp"
 
 #pragma GCC diagnostic ignored "-Wunused-parameter"

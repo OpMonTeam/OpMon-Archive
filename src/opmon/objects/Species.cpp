@@ -5,8 +5,8 @@ Contributor : BAKFR
 File under GNU GPL v3.0
 */
 #include "Species.hpp"
-#include "./evolution/Evolution.hpp"
-#include "./evolution/evolutions.hpp"
+#include "./Evolution.hpp"
+#include "./evolutions.hpp"
 
 namespace OpMon {
     namespace Model {

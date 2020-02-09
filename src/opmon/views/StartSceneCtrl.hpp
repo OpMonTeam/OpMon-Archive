@@ -7,10 +7,10 @@
 #ifndef STARTSCENECTRL_HPP
 #define STARTSCENECTRL_HPP
 
-#include "../model/storage/StartSceneData.hpp"
-#include "../start/Core.hpp"
-#include "../view/StartScene.hpp"
-#include "AGameScreen.hpp"
+#include "StartSceneData.hpp"
+#include "../core/Core.hpp"
+#include "StartScene.hpp"
+#include "base/AGameScreen.hpp"
 #include <SFML/Window.hpp>
 #include <memory>
 

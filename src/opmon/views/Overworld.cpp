@@ -4,27 +4,24 @@ Author : Cyrielle
 Contributors : BAKFR, torq, Navet56
 File under GNU GPL v3.0 license
 */
-#include "Overworld.hpp"
-#include "../model/objects/Enums.hpp"
-#include <algorithm>
 
 #define FPS_TICKS 33
+
+#include "Overworld.hpp"
+#include "../objects/Enums.hpp"
+#include <algorithm>
+
 #include "../../utils/defines.hpp"
 #include "../../utils/log.hpp"
 #include "../../utils/time.hpp"
-#include "../model/sysObjects/Events.hpp"
-#include "../start/Core.hpp"
-#include "../start/i18n/Translator.hpp"
-#include "Dialog.hpp"
-#include "Window.hpp"
+#include "objects/Events.hpp"
+#include "../core/Core.hpp"
+#include "../core/i18n/Translator.hpp"
+#include "ui/Dialog.hpp"
+#include "ui/Window.hpp"
 #include <cmath>
 #include <map>
 #include <sstream>
-#ifndef _WIN32
-
-//#define DEBUG_REPORT
-
-#endif
 
 using OpMon::Model::Side;
 

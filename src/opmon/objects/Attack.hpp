@@ -8,12 +8,12 @@
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUE_HPP_
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUE_HPP_
 
-#include "../../../utils/OpString.hpp"
-#include "../../../utils/defines.hpp"
-#include "../../../utils/misc.hpp"
-#include "../../view/Elements.hpp"
+#include "../../utils/OpString.hpp"
+#include "../../utils/defines.hpp"
+#include "../../utils/misc.hpp"
+#include "../views/ui/Elements.hpp"
 #include "Enums.hpp"
-#include "Turn.hpp"
+#include "../views/objects/Turn.hpp"
 #include <iostream>
 #include <queue>
 
@@ -120,12 +120,6 @@ namespace OpMon {
              * \param attacker If `true`, the OpMon attacking is the player's one (The one on the front of the screen.). Used to determine which health bar update.
              */
             int attack(OpMon &atk, OpMon &def, std::queue<TurnAction> &turnQueue, bool attacker);
-
-            /*!
-             * \warning Work in progress.
-             * \brief Will be used to save the AttacK.
-             */
-            std::string save();
 
             void setPP(int PP) {
                 this->pp = PP;

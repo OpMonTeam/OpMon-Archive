@@ -8,7 +8,7 @@
 #pragma once
 
 #include "../../../utils/OpString.hpp"
-#include "Item.hpp"
+#include "../../objects/Item.hpp"
 #include <map>
 
 namespace OpMon {

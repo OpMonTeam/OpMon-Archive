@@ -34,7 +34,7 @@
 #include <iostream>
 #include <vector>
 
-#include "../model/sysObjects/Player.hpp"
+#include "../../core/Player.hpp"
 
 namespace OpMon {
     /*!
