@@ -8,14 +8,14 @@
 #define STARTSCENE_HPP
 
 #include "../../utils/OpString.hpp"
-#include "../model/storage/StartSceneData.hpp"
+#include "StartSceneData.hpp"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <memory>
 
-#include "../start/Core.hpp"
-#include "../start/i18n/ATranslatable.hpp"
-#include "./Dialog.hpp"
+#include "../core/Core.hpp"
+#include "../core/i18n/ATranslatable.hpp"
+#include "ui/Dialog.hpp"
 
 namespace OpMon {
     namespace View {

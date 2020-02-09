@@ -11,8 +11,8 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 
-#include "../model/storage/MainMenuData.hpp"
-#include "../start/i18n/ATranslatable.hpp"
+#include "MainMenuData.hpp"
+#include "../core/i18n/ATranslatable.hpp"
 #include "ui/TextBox.hpp"
 
 namespace OpMon {

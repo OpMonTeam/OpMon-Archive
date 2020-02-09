@@ -6,8 +6,8 @@ File under GNU GPL v3.0 license
 */
 #include "Map.hpp"
 #include "../../../utils/log.hpp"
-#include "../../start/Core.hpp"
-#include "../storage/OverworldData.hpp"
+#include "../../core/Core.hpp"
+#include "../OverworldData.hpp"
 #include "Events.hpp"
 #include <cstdlib>
 #include <sstream>

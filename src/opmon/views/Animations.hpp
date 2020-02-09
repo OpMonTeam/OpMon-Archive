@@ -11,7 +11,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-#include "../start/GameStatus.hpp"
+#include "../core/GameStatus.hpp"
 
 namespace OpMon {
     namespace View {

@@ -5,8 +5,8 @@
  */
 #pragma once
 
-#include "../view/Animations.hpp"
-#include "AGameScreen.hpp"
+#include "Animations.hpp"
+#include "base/AGameScreen.hpp"
 #include <memory>
 
 namespace OpMon {

@@ -5,10 +5,9 @@ Contributors : torq, Navet56, BAKFR
 File under GNU GPL v3.0 license
 */
 #include "OptionsMenu.hpp"
-#include "../model/save/OptionsSave.hpp"
-#include "../model/storage/ResourceLoader.hpp"
-#include "Window.hpp"
-#include "ui/TextBox.hpp"
+#include "../core/system/OptionsSave.hpp"
+#include "../core/system/ResourceLoader.hpp"
+#include "ui/Window.hpp"
 #include "ui/TextBox.hpp"
 
 namespace OpMon {
@@ -233,13 +232,13 @@ namespace OpMon {
         void OptionsMenu::moveArrow(bool move) {
             switch(currentOptions) {
             case OptionType::ALL:
-                Controller::Helper::moveArrow(move, curPosOptI, 6);
+                curPosOptI += (move ? -1 : 1);
                 break;
             case OptionType::CONTROLS:
-                Controller::Helper::moveArrow(move, curPosCtrlI, 2);
+                curPosCtrlI += (move ? -1 : 1);
                 break;
             case OptionType::LANG:
-                Controller::Helper::moveArrow(move, curPosLangI, 6);
+                curPosLangI += (move ? -1 : 1);
                 break;
             default:
                 break;
@@ -253,7 +252,7 @@ namespace OpMon {
                 optionsMenuItem.setActive(false);
             }
 
-            optionsMenuItems[curPosOptI].setActive(true);
+            optionsMenuItems[curPosOptI.getValue()].setActive(true);
 
             for(auto &optionsMenuItem : optionsMenuItems) {
                 frame.draw(optionsMenuItem);
@@ -267,7 +266,7 @@ namespace OpMon {
                 languagesMenuItem.setActive(false);
             }
 
-            languagesMenuItems[curPosLangI].setActive(true);
+            languagesMenuItems[curPosLangI.getValue()].setActive(true);
 
             for(auto &languagesMenuItem : languagesMenuItems) {
                 frame.draw(languagesMenuItem);
@@ -304,8 +303,8 @@ namespace OpMon {
             frame.draw(txtCtrlTalk);
             frame.draw(txtCtrlInteract);
 
-            rectSurb.setPosition(curPosCtrl[curPosCtrlI]);
-            rectSurb.setScale(curSizeCtrl[curPosCtrlI]);
+            rectSurb.setPosition(curPosCtrl[curPosCtrlI.getValue()]);
+            rectSurb.setScale(curSizeCtrl[curPosCtrlI.getValue()]);
             frame.draw(rectSurb);
 
             frame.draw(txtRetour);

@@ -8,9 +8,9 @@ File under GNU GPL v3.0 license
 #include "../../utils/StringKeys.hpp"
 #include "../../utils/defines.hpp"
 #include "../../utils/log.hpp"
-#include "../model/storage/ResourceLoader.hpp"
+#include "../core/system/ResourceLoader.hpp"
 #include "OptionsMenu.hpp"
-#include "Window.hpp"
+#include "ui/Window.hpp"
 #include "ui/TextBox.hpp"
 
 namespace OpMon {

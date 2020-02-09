@@ -1,7 +1,7 @@
 #include "Item.hpp"
-#include "../../../utils/StringKeys.hpp"
-#include "../sysObjects/Player.hpp"
-#include "Turn.hpp"
+#include "../../utils/StringKeys.hpp"
+#include "../core/Player.hpp"
+#include "../views/objects/Turn.hpp"
 
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 

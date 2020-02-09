@@ -6,10 +6,10 @@
 #pragma once
 
 #include "../../utils/CycleCounter.hpp"
-#include "../model/storage/GameMenuData.hpp"
-#include "../model/sysObjects/Player.hpp"
-#include "../view/GameMenu.hpp"
-#include "AGameScreen.hpp"
+#include "GameMenuData.hpp"
+#include "../core/Player.hpp"
+#include "GameMenu.hpp"
+#include "base/AGameScreen.hpp"
 
 namespace OpMon {
     namespace Controller {

@@ -5,7 +5,7 @@ Contributors : BAKFR, Stelyus
 File under GNU GPL v3.0 license
 */
 #include "Position.hpp"
-#include "../../start/Core.hpp"
+#include "../../core/Core.hpp"
 #include "Events.hpp"
 #include "Map.hpp"
 

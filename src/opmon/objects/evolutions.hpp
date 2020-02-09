@@ -7,7 +7,7 @@
 #ifndef EVOLUTIONS_HPP_INCLUDED
 #define EVOLUTIONS_HPP_INCLUDED
 
-#include "../Item.hpp"
+#include "Item.hpp"
 #include "Evolution.hpp"
 #include <iostream>
 #pragma GCC diagnostic ignored "-Wunused-parameter"

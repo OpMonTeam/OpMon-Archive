@@ -9,11 +9,10 @@
 
 #include <SFML/Window/Event.hpp>
 
-#include "../model/sysObjects/Player.hpp"
-#include "../start/Core.hpp"
-#include "../view/Overworld.hpp"
-#include "AGameScreen.hpp"
-#include "EventsCtrl.hpp"
+#include "../core/Player.hpp"
+#include "../core/Core.hpp"
+#include "Overworld.hpp"
+#include "base/AGameScreen.hpp"
 
 namespace OpMon {
     namespace Controller {
@@ -116,6 +115,7 @@ namespace OpMon {
              * \param overworld A reference to the overworld view.
              */
             void checkAction(sf::Event const &event, Model::Player &player, View::Overworld &overworld);
+        };
 
     } // namespace Controller
 } // namespace OpMon

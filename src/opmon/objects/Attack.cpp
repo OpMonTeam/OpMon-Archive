@@ -5,10 +5,9 @@ Contributors : BAKFR, torq, Navet56
 File under GNU GPL v3.0 license
 */
 #include "Attack.hpp"
-#include "../../../nlohmann/json.hpp"
-#include "../../../utils/defines.hpp"
-#include "../../../utils/log.hpp"
-#include "../save/Save.hpp"
+#include "../../nlohmann/json.hpp"
+#include "../../utils/defines.hpp"
+#include "../../utils/log.hpp"
 #include "Attacks.hpp"
 #include "OpMon.hpp"
 #include <fstream>
@@ -233,13 +232,6 @@ namespace OpMon {
                     turnQueue.push(createTurnDialogAction({Utils::OpString("battle.effectiveness.super")}));
             }
             return postEffect ? postEffect->apply(*this, atk, def, turnQueue) : 0;
-        }
-
-        std::string Attack::save() {
-            std::ostringstream oss;
-            oss << Save::intToChar(pp) << std::endl;
-            oss << Save::intToChar(ppMax) << std::endl;
-            return oss.str();
         }
 
     } // namespace Model

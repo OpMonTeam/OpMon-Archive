@@ -6,7 +6,7 @@
  */
 #pragma once
 
-#include "../start/GameStatus.hpp"
+#include "../../core/GameStatus.hpp"
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <SFML/Window/Event.hpp>
 #include <memory>

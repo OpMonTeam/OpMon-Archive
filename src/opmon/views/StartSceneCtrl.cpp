@@ -6,8 +6,8 @@ File under GNU GPL v3.0 license
 */
 #include "StartSceneCtrl.hpp"
 #include "../../utils/log.hpp"
-#include "../view/Window.hpp"
-#include "./OverworldCtrl.hpp"
+#include "ui/Window.hpp"
+#include "OverworldCtrl.hpp"
 #include "AnimationCtrl.hpp"
 
 //Defines created to make the code easier to understand.

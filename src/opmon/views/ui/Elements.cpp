@@ -5,8 +5,8 @@ Contributor : BAKFR
 File under GNU GPL v3.0 license
  */
 #include "Elements.hpp"
-#include "../../utils/defines.hpp"
-#include "../model/storage/ResourceLoader.hpp"
+#include "../../../utils/defines.hpp"
+#include "../../core/system/ResourceLoader.hpp"
 #include <cmath>
 #include <iostream>
 

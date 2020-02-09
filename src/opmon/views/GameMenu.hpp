@@ -5,7 +5,7 @@
 */
 #pragma once
 
-#include "../model/storage/GameMenuData.hpp"
+#include "GameMenuData.hpp"
 #include <SFML/Graphics/Sprite.hpp>
 
 namespace OpMon {

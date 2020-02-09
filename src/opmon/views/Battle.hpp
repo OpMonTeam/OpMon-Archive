@@ -7,11 +7,11 @@
 #pragma once
 
 #include "../../utils/CycleCounter.hpp"
-#include "../model/objects/Turn.hpp"
-#include "../model/storage/BattleData.hpp"
-#include "../start/Core.hpp"
-#include "Dialog.hpp"
-#include "Elements.hpp"
+#include "objects/Turn.hpp"
+#include "BattleData.hpp"
+#include "../core/Core.hpp"
+#include "ui/Dialog.hpp"
+#include "ui/Elements.hpp"
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/System/String.hpp>

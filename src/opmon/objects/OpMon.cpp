@@ -5,15 +5,17 @@ Contributors : BAKFR, JonnyPtn, torq, Stelyus
 File under GNU GPL v3.0 license
 */
 #include "OpMon.hpp"
-#include "../../../utils/defines.hpp"
-#include "../../../utils/log.hpp"
-#include "../../../utils/misc.hpp"
-#include "../../start/Core.hpp"
-#include "../save/Save.hpp"
-#include "./evolution/Evolution.hpp"
-#include "./evolution/evolutions.hpp"
+#include "../../utils/defines.hpp"
+#include "../../utils/log.hpp"
+#include "../../utils/misc.hpp"
+
+#include "../core/Core.hpp"
+
+#include "./Evolution.hpp"
+#include "./evolutions.hpp"
 #include "Attacks.hpp"
 #include "Item.hpp"
+
 #include <fstream>
 #include <sstream>
 
@@ -1302,146 +1304,6 @@ namespace OpMon {
         void OpMon::setType2(Type type) {
             this->type2 = type;
         }
-
-        //I'll redo this soon
-
-        std::string OpMon::save() {
-            if(false) {
-                /*
-                std::ostringstream oss;
-                oss << nickname.toAnsiString() << std::endl;
-                oss << Save::intToChar(atkIV) << std::endl;
-                oss << Save::intToChar(defIV) << std::endl;
-                oss << Save::intToChar(atkSpeIV) << std::endl;
-                oss << Save::intToChar(defSpeIV) << std::endl;
-                oss << Save::intToChar(speIV) << std::endl;
-                oss << Save::intToChar(hpIV) << std::endl;
-                oss << Save::intToChar(atkEV) << std::endl;
-                oss << Save::intToChar(defEV) << std::endl;
-                oss << Save::intToChar(atkSpeEV) << std::endl;
-                oss << Save::intToChar(defSpeEV) << std::endl;
-                oss << Save::intToChar(speEV) << std::endl;
-                oss << Save::intToChar(hpEV) << std::endl;
-                oss << Save::intToChar(statLove) << std::endl;
-                oss << Save::intToChar(level) << std::endl;
-                oss << Save::intToChar(natures[(int)nature].id) << std::endl;*/
-                /*for(unsigned int it = 0; it < 4; it++){
-                cout << "Attack : " << it << " Pointer : " << attaques[it] << endl;
-                Attack *atk = attaques[it];
-                cout << "Pointer : " << atk << endl;
-                if(atk != nullptr){
-                    cout << "Attack no NULL" << endl;
-                    oss << atk->save();
-                }else{
-                    cout << "Attack nullptr" << endl;
-                    oss << "nullptr" << endl;
-                }
-            }*/
-                /*for(int i = 0; i < 4; i++) {
-                    if(attacks[i] != nullptr)
-                        oss << attacks[i]->save();
-                    else
-                        oss << "NULL" << std::endl;
-                }
-                oss << Save::intToChar(species->getOpdexNumber()) << std::endl;
-                oss << Save::intToChar(HP) << std::endl;
-                oss << Save::intToChar(exp) << std::endl;
-                oss << Save::intToChar(toNextLevel) << std::endl;
-                oss << Save::intToChar(expBoost * 10) << std::endl;
-                if(held != nullptr) {
-                    oss << "Y" << std::endl;
-                    oss << Save::intToChar(held->getID()) << std::endl;
-                } else {
-                    oss << "N" << std::endl;
-                    oss << std::endl;
-                }
-                oss << Save::intToChar(captureRate) << std::endl;
-                return oss.str();*/
-            } else {
-                return "NULL\n";
-            }
-            return std::string();
-        }
-        /*
-        OpMon::OpMon(std::ifstream &in) {
-            this->nickname = Save::readLine(in);
-            if(nickname != "NULL") {
-                atkIV = in.get();
-                in.get();
-                defIV = in.get();
-                in.get();
-                atkSpeIV = in.get();
-                in.get();
-                defSpeIV = in.get();
-                in.get();
-                speIV = in.get();
-                in.get();
-                hpIV = in.get();
-                in.get();
-                atkEV = in.get();
-                in.get();
-                defEV = in.get();
-                in.get();
-                atkSpeEV = in.get();
-                in.get();
-                defSpeEV = in.get();
-                in.get();
-                speEV = in.get();
-                in.get();
-
-                hpEV = in.get();
-                in.get();
-                statLove = in.get();
-                in.get();
-
-                level = in.get();
-                in.get();
-                //int toSearch = in.get();
-                //nature = toSearch;
-                in.get();
-
-                for(int i = 0; i < 4; i++) {
-                    attacks[i] = Attacks::newAtk(Save::readLine(in));
-                    if(attacks[i] != nullptr) {
-                        attacks[i]->setPP(in.get());
-                        in.get();
-                        attacks[i]->setPPMax(in.get());
-                        in.get();
-                    }
-                }
-                //int speciesID = in.get();
-                //species = Data::OpMons::listOp.at(speciesID);
-                in.get();
-                HP = in.get();
-                in.get();
-                exp = in.get();
-                in.get();
-                toNextLevel = in.get();
-                in.get();
-                expBoost = in.get() / 10.0;
-                in.get();
-                if(Save::intToChar(in.get()) == 'Y') {
-                    in.get();
-                    held = Item::itemsLst[in.get()];
-                    in.get();
-                } else {
-                    in.get();
-                    held = nullptr;
-                    in.get();
-                }
-                captureRate = in.get();
-                in.get();
-                calcStats();
-                type1 = species->getType1();
-                type2 = species->getType2();
-                statACC = 100;
-                statEVA = 100;
-                initialized = false;
-            } else {
-                initialized = true;
-            }
-        }
-		*/
 
         void OpMon::passCD(bool sleep) {
             if(confusedCD > 0 && !sleep) {

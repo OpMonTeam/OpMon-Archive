@@ -6,7 +6,9 @@
 #pragma once
 
 #include "../../../utils/defines.hpp"
-#include "../../start/Core.hpp"
+
+#include "../Core.hpp"
+
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <fstream>

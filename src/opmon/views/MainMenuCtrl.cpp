@@ -4,11 +4,11 @@ Author : BAKFR
 Contributors : Cyrielle
 File under GNU GPL v3.0 license
 */
-#include "./MainMenuCtrl.hpp"
-#include "../view/Window.hpp"
+#include "MainMenuCtrl.hpp"
+#include "ui/Window.hpp"
 
-#include "./OptionsMenuCtrl.hpp"
-#include "./StartSceneCtrl.hpp"
+#include "OptionsMenuCtrl.hpp"
+#include "StartSceneCtrl.hpp"
 
 //Defines created to make the code easier to read
 #define LOAD_STARTSCENE 1

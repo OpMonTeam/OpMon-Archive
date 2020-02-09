@@ -7,9 +7,9 @@ File under GNU GPL v3.0 license
 #include "Animations.hpp"
 #include "../../utils/defines.hpp"
 #include "../../utils/time.hpp"
-#include "../model/storage/ResourceLoader.hpp"
-#include "../start/Core.hpp"
-#include "../view/Window.hpp"
+#include "../core/system/ResourceLoader.hpp"
+#include "../core/Core.hpp"
+#include "ui/Window.hpp"
 
 namespace OpMon {
     namespace View {

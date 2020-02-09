@@ -5,9 +5,9 @@ Contributor : Cyrielle
 File under GNU GPL v3.0 license
 */
 #include "Dialog.hpp"
-#include "../../utils/StringKeys.hpp"
-#include "../../utils/defines.hpp"
-#include "../start/Core.hpp"
+#include "../../../utils/StringKeys.hpp"
+#include "../../../utils/defines.hpp"
+#include "../../core/Core.hpp"
 #include "Window.hpp"
 
 namespace OpMon {

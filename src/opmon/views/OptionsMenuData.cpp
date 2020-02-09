@@ -4,7 +4,7 @@
   File under GNU GPL v3.0 license
 */
 #include "OptionsMenuData.hpp"
-#include "ResourceLoader.hpp"
+#include "../core/system/ResourceLoader.hpp"
 
 namespace OpMon {
     namespace Model {

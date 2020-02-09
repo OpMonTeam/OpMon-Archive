@@ -4,7 +4,7 @@ Author : Cyrielle
 File under GNU GPL 3.0 license
 */
 #include "AnimationCtrl.hpp"
-#include "../view/Window.hpp"
+#include "ui/Window.hpp"
 
 namespace OpMon {
     namespace Controller {

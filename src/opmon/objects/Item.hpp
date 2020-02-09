@@ -6,8 +6,8 @@
  */
 #pragma once
 
-#include "../../../utils/OpString.hpp"
-#include "../../start/Core.hpp"
+#include "../../utils/OpString.hpp"
+#include "../core/Core.hpp"
 #include "OpMon.hpp"
 #include <memory>
 #include <vector>
