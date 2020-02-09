@@ -12,6 +12,7 @@
 #include <iostream>
 
 #include "../core/GameStatus.hpp"
+#include "../../utils/defines.hpp"
 
 namespace OpMon {
     /*!
@@ -22,7 +23,7 @@ namespace OpMon {
         /*!
          * \brrief Base class defining an animation on the whole screen.
          */
-        class Animation {
+        class Animation : public sf::Drawable{
         protected:
             int counter = 0;
             /*!
@@ -51,10 +52,12 @@ namespace OpMon {
              */
             Animation(sf::Texture before, sf::Texture after = sf::Texture());
             virtual ~Animation() = default;
+            virtual GameStatus update() = 0;
             /*!
              * \brief Updates the animation.
+             * \deprecated Use update() and then sf::RenderTexture::draw(sf::Drawable).
              */
-            virtual GameStatus operator()(sf::RenderTexture &frame) = 0;
+            OP_DEPRECATED virtual GameStatus operator()(sf::RenderTexture &frame) {update(); frame.draw(*this);};
         };
 
         /*!
@@ -79,7 +82,8 @@ namespace OpMon {
 
         public:
             WinAnim(sf::Texture const& bgTxt, bool order);
-            GameStatus operator()(sf::RenderTexture &frame) override;
+            virtual GameStatus update() override;
+            void draw(sf::RenderTarget& frame, sf::RenderStates state) const;
         };
 
         /*!
@@ -132,7 +136,9 @@ namespace OpMon {
              * \param outToIn The initial position of the mobile sprite.
              */
             WooshAnim(sf::Texture const& before, sf::Texture const& after, WooshDir dir, int duration = 15, bool outToIn = true);
-            GameStatus operator()(sf::RenderTexture &frame) override;
+
+            GameStatus update();
+            void draw(sf::RenderTarget& frame, sf::RenderStates state) const;
         };
 
     } // namespace Animations
