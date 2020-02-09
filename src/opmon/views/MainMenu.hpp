@@ -20,7 +20,7 @@ namespace OpMon {
     /*!
      * \brief The view printing the main menu showing at the start of the game.
      */
-    class MainMenu : public I18n::ATranslatable {
+    class MainMenu : public I18n::ATranslatable, public sf::Drawable {
 
     public:
         MainMenu(MainMenuData &data);
@@ -43,9 +43,14 @@ namespace OpMon {
         void play();
 
         /*!
-         * \brief Updates and draws the screen.
+         * \brief Updates the screen.
          */
-        void draw(sf::RenderTexture &frame, int curPosI);
+        void update(int curPosI);
+
+        /*!
+         * \brief Draws the screen.
+         */
+        void draw(sf::RenderTarget &frame, sf::RenderStates states) const;
 
     private:
         MainMenuData &data;

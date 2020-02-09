@@ -60,7 +60,8 @@ namespace OpMon {
     }
 
     GameStatus MainMenuCtrl::update(sf::RenderTexture &frame) {
-        view.draw(frame, curPosI.getValue());
+        view.update(curPosI.getValue());
+        frame.draw(view);
         return GameStatus::CONTINUE;
     }
 
