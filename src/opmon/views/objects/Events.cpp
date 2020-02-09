@@ -16,7 +16,7 @@ File under GNU GPL v3.0 license
 #pragma GCC diagnostic ignored "-Wreorder"
 
 namespace OpMon {
-    namespace Model {
+    namespace Elements {
 
         using namespace Events;
 
@@ -134,7 +134,7 @@ namespace OpMon {
 
             //Actions and updates
 
-            void TPEvent::action(Model::Player &player, View::Overworld &overworld) {
+            void TPEvent::action(Player &player, Overworld &overworld) {
                 if(!justTP) {
                     overworld.tp(map, tpCoord);
                     //Sets the player's direction after the teleportation. If this->ppDir == -1, the old player position is kept
@@ -145,17 +145,17 @@ namespace OpMon {
                 }
             }
 
-            void TPEvent::update(Model::Player &player, View::Overworld &overworld) {
+            void TPEvent::update(Player &player, Overworld &overworld) {
             }
 
-            void DoorEvent::action(Model::Player &player, View::Overworld &overworld) {
+            void DoorEvent::action(Player &player, Overworld &overworld) {
                 //Starts the animation. The animation itself will be done in update()
                 animStarted = 0;
                 player.getPosition().lockMove();
                 overworld.getData().getUiDataPtr()->getJukebox().playSound(doorType + " sound");
             }
 
-            void DoorEvent::update(Model::Player &player, View::Overworld &overworld) {
+            void DoorEvent::update(Player &player, Overworld &overworld) {
                 if(animStarted != -1) { //If true, action() has started the animation
                     ++animStarted;
                     if(animStarted < 8 && animStarted % 2 == 0) {
@@ -169,11 +169,11 @@ namespace OpMon {
                 }
             }
 
-            void TalkingEvent::action(Model::Player &player, View::Overworld &overworld) {
+            void TalkingEvent::action(Player &player, Overworld &overworld) {
                 overworld.startDialog(this->dialog);
             }
 
-            void TalkingEvent::update(Model::Player &player, View::Overworld &overworld) {
+            void TalkingEvent::update(Player &player, Overworld &overworld) {
             }
 
             void TalkingEvent::changeDialog(Utils::OpString newDialog) {
@@ -181,7 +181,7 @@ namespace OpMon {
                 this->onLangChanged();
             }
 
-            void CharacterEvent::update(Model::Player &player, View::Overworld &overworld) {
+            void CharacterEvent::update(Player &player, Overworld &overworld) {
                 frames++;
                 if(!mapPos.isAnim()) { //Checks if not already moving
                     int randomMove;
@@ -283,16 +283,16 @@ namespace OpMon {
                 return mapPos.move(direction, map);
             }
 
-            void CharacterEvent::move(Side direction, Model::Player &player, View::Overworld &overworld) {
+            void CharacterEvent::move(Side direction, Player &player, Overworld &overworld) {
                 move(direction, overworld.getData().getCurrentMap());
             }
 
-            void TalkingCharaEvent::action(Model::Player &player, View::Overworld &overworld) {
+            void TalkingCharaEvent::action(Player &player, Overworld &overworld) {
                 mapPos.lockMove();
                 talking = true;
             }
 
-            void TalkingCharaEvent::update(Model::Player &player, View::Overworld &overworld) {
+            void TalkingCharaEvent::update(Player &player, Overworld &overworld) {
                 CharacterEvent::update(player, overworld);
                 if(talking && !mapPos.isAnim()) {           //Talking is set by "action".
                     switch(player.getPosition().getDir()) { //Put the character's face in front of the player's one
@@ -324,17 +324,17 @@ namespace OpMon {
                 this->movements = moves;
             }
 
-            void LockedDoorEvent::action(Model::Player &player, View::Overworld &overworld) {
+            void LockedDoorEvent::action(Player &player, Overworld &overworld) {
             }
 
-            void LockedDoorEvent::update(Model::Player &player, View::Overworld &overworld) {
+            void LockedDoorEvent::update(Player &player, Overworld &overworld) {
             }
 
-            void TrainerEvent::action(Model::Player &player, View::Overworld &overworld) {
+            void TrainerEvent::action(Player &player, Overworld &overworld) {
                 TalkingCharaEvent::action(player, overworld);
             }
 
-            void TrainerEvent::update(Model::Player &player, View::Overworld &overworld) {
+            void TrainerEvent::update(Player &player, Overworld &overworld) {
                 if(triggerBattle) {
                     triggerBattle = false;
                     overworld.declareBattle(this);
@@ -359,6 +359,6 @@ namespace OpMon {
 
         } // namespace Events
 
-    } // namespace Model
+    } // namespace Elements
 } // namespace OpMon
 #pragma GCC diagnostic pop

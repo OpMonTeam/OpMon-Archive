@@ -18,7 +18,6 @@ File under GNU GPL v3.0 license
 #include <ostream>
 #include <string>
 
-using namespace OpMon::Model;
 using Utils::Log::oplog;
 
 //Compilation with Visual Studio
@@ -57,15 +56,15 @@ namespace OpMon {
             oplog("Plateform : Unix");
 #endif
             oplog("Loading options");
-            OptionsSave::initParams(Utils::Path::getSavePath() + "/optSave.oparams"); //Loading parameters
-            if(!OptionsSave::checkParam("lang")) {                                    //If the "lang" setting don't exist
-                OptionsSave::addParam("lang", "eng");
+            System::OptionsSave::initParams(Utils::Path::getSavePath() + "/optSave.oparams"); //Loading parameters
+            if(!System::OptionsSave::checkParam("lang")) {                                    //If the "lang" setting don't exist
+                System::OptionsSave::addParam("lang", "eng");
             }
             oplog("Resources repertory : " + Utils::Path::getResourcePath());
 
             //Initializaing keys
             oplog("Loading strings");
-            std::string lang = OptionsSave::getParam("lang").getValue();
+            std::string lang = System::OptionsSave::getParam("lang").getValue();
             auto &tr = I18n::Translator::getInstance();
 
             if(!tr.getAvailableLanguages().count(lang)) {
@@ -101,7 +100,7 @@ int main(int argc, char *argv[]) {
 
     auto versionS = "Version : Alpha " + OpMon::Main::version + ((OpMon::Main::pre == "0") ? "" : ("-pre_" + OpMon::Main::pre));
 
-    if(!ResourceLoader::checkResourceFolderExists() || !Utils::Fs::mkdir(SAVE_PATH)) {
+    if(!OpMon::System::ResourceLoader::checkResourceFolderExists() || !Utils::Fs::mkdir(SAVE_PATH)) {
         std::cout << "Exiting" << std::endl;
         return -1;
     }

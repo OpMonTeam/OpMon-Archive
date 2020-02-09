@@ -31,11 +31,9 @@
 
 namespace OpMon {
 
-    namespace View {
-        class Overworld;
-    }
+    class Overworld;
 
-    namespace Model {
+    namespace Elements {
 
         namespace Events {
             /*!
@@ -98,11 +96,11 @@ namespace OpMon {
             /*!
              * \brief Method called at each frame.
              */
-            virtual void update(Model::Player &player, View::Overworld &overworld) = 0;
+            virtual void update(Player &player, Overworld &overworld) = 0;
             /**
              * \brief Method called when the player interacts with the event.
              */
-            virtual void action(Model::Player &player, View::Overworld &overworld) = 0;
+            virtual void action(Player &player, Overworld &overworld) = 0;
             /*!
              * \brief Updates Event::sprite with Event::currentTexture and Event::position.
              */
@@ -177,8 +175,8 @@ namespace OpMon {
 
               public:
                 TPEvent(std::vector<sf::Texture> &otherTextures, EventTrigger eventTrigger, sf::Vector2f const &position, sf::Vector2i const &tpCoord, std::string const &map, Side ppDir = Side::NO_MOVE, int sides = SIDE_ALL, bool passable = true);
-                virtual void update(Model::Player &player, View::Overworld &overworld);
-                virtual void action(Model::Player &player, View::Overworld &overworld);
+                virtual void update(Player &player, Overworld &overworld);
+                virtual void action(Player &player, Overworld &overworld);
             };
 
             /*!
@@ -199,8 +197,8 @@ namespace OpMon {
 
               public:
                 DoorEvent(std::vector<sf::Texture> &doorTextures, std::string doorType, sf::Vector2f const &position, sf::Vector2i const &tpCoord, std::string const &map, EventTrigger eventTrigger = EventTrigger::GO_IN, Side ppDir = Side::NO_MOVE, int sides = SIDE_ALL, bool passable = true);
-                virtual void action(Model::Player &player, View::Overworld &overworld);
-                virtual void update(Model::Player &player, View::Overworld &overworld);
+                virtual void action(Player &player, Overworld &overworld);
+                virtual void update(Player &player, Overworld &overworld);
             };
 
             /*!
@@ -222,8 +220,8 @@ namespace OpMon {
               public:
                 TalkingEvent(std::vector<sf::Texture> &otherTextures, sf::Vector2f const &position, Utils::OpString const &dialogKey, int sides = SIDE_ALL, EventTrigger eventTrigger = EventTrigger::PRESS, bool passable = false);
                 void onLangChanged() override;
-                virtual void update(Model::Player &player, View::Overworld &overworld);
-                virtual void action(Model::Player &player, View::Overworld &overworld);
+                virtual void update(Player &player, Overworld &overworld);
+                virtual void action(Player &player, Overworld &overworld);
                 /*!
                  * \brief Changes the dialog shown by the event.
                  * \param newDialog An OpString containing the new dialog.
@@ -250,8 +248,8 @@ namespace OpMon {
                 static Utils::OpString keysLock;
 
               public:
-                virtual void action(Model::Player &player, View::Overworld &overworld);
-                virtual void update(Model::Player &player, View::Overworld &overworld);
+                virtual void action(Player &player, Overworld &overworld);
+                virtual void update(Player &player, Overworld &overworld);
                 LockedDoorEvent(std::vector<sf::Texture> &doorTextures, std::string doorType, Item *needed, sf::Vector2f const &position, sf::Vector2i const &tpCoord, std::string const &map, Side ppDir = Side::NO_MOVE, EventTrigger eventTrigger = EventTrigger::PRESS, bool consumeItem = false, int sides = SIDE_ALL, bool passable = false);
             };
 
@@ -304,8 +302,8 @@ namespace OpMon {
 
               public:
                 CharacterEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, Side posDir = Side::TO_UP, MoveStyle moveStyle = MoveStyle::NO_MOVE, EventTrigger eventTrigger = EventTrigger::PRESS, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int sides = SIDE_ALL);
-                virtual void update(Model::Player &player, View::Overworld &overworld);
-                virtual void action(Model::Player &, View::Overworld &){};
+                virtual void update(Player &player, Overworld &overworld);
+                virtual void action(Player &, Overworld &){};
                 /*!
                  * \brief Sets the predefined movement.
                  */
@@ -314,7 +312,7 @@ namespace OpMon {
                  * \brief Moves the npc
                  * \deprecated Use directly move(Side direction, Map *map). This method searches in overworld for the map, which is completely useless.
                  */
-                OP_DEPRECATED void move(Side direction, Model::Player &player, View::Overworld &overworld);
+                OP_DEPRECATED void move(Side direction, Player &player, Overworld &overworld);
                 /*!
                  * \brief Moves the npc
                  */
@@ -334,8 +332,8 @@ namespace OpMon {
               public:
                 TalkingCharaEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, Utils::OpString const &dialogKey, Side posDir = Side::TO_UP, EventTrigger eventTrigger = EventTrigger::PRESS, MoveStyle moveStyle = MoveStyle::NO_MOVE, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int side = SIDE_ALL);
 
-                virtual void update(Model::Player &player, View::Overworld &overworld);
-                virtual void action(Model::Player &player, View::Overworld &overworld);
+                virtual void update(Player &player, Overworld &overworld);
+                virtual void action(Player &player, Overworld &overworld);
             };
 
             /*!
@@ -367,8 +365,8 @@ namespace OpMon {
               public:
                 TrainerEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, OpTeam *team, Utils::OpString const &dialogKeys, Utils::OpString const &defeatedDialog, Side posDir = Side::TO_UP, EventTrigger eventTrigger = EventTrigger::PRESS, MoveStyle moveStyle = MoveStyle::NO_MOVE, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int side = SIDE_ALL);
 
-                virtual void update(Model::Player &player, View::Overworld &overworld);
-                virtual void action(Model::Player &player, View::Overworld &overworld);
+                virtual void update(Player &player, Overworld &overworld);
+                virtual void action(Player &player, Overworld &overworld);
 
                 OpTeam *getOpTeam() {
                     return team;
@@ -398,13 +396,13 @@ namespace OpMon {
               public:
                 TrainerEyesightEvent(TrainerEvent *trainer, sf::Vector2f position);
 #pragma GCC diagnostic ignored "-Wunused-parameter"
-                virtual void update(Model::Player &player, View::Overworld &overworld){};
-                virtual void action(Model::Player &player, View::Overworld &overworld){};
+                virtual void update(Player &player, Overworld &overworld){};
+                virtual void action(Player &player, Overworld &overworld){};
 #pragma GCC diagnostic pop
             };
 
         } // namespace Events
 
-    } // namespace Model
+    } // namespace Elements
 } // namespace OpMon
 #endif // EVENTS_HPP

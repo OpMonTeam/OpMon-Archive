@@ -12,7 +12,7 @@
 #include <SFML/Graphics/Sprite.hpp>
 
 namespace OpMon {
-    namespace View {
+    namespace Ui {
         /*!
          * \brief Manages and stores the objects related to the game window.
          */
@@ -57,7 +57,7 @@ namespace OpMon {
              */
             void updateView();
         };
-    } // namespace View
+    } // namespace Ui
 } // namespace OpMon
 
 #endif

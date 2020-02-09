@@ -10,12 +10,11 @@ File under GNU GPL v3.0 license
 #define LOAD_OPTIONS 1
 
 namespace OpMon {
-    namespace Controller {
 
         GameMenuCtrl::~GameMenuCtrl() {
         }
 
-        GameMenuCtrl::GameMenuCtrl(Model::GameMenuData &data, Model::Player &player)
+        GameMenuCtrl::GameMenuCtrl(GameMenuData &data, Player &player)
           : data(data)
           , view(data)
           , player(player) {
@@ -81,5 +80,4 @@ namespace OpMon {
         void GameMenuCtrl::resume() {
         }
 
-    } // namespace Controller
 } // namespace OpMon

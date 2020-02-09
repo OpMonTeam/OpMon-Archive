@@ -7,17 +7,15 @@
 #include "../core/system/ResourceLoader.hpp"
 
 namespace OpMon {
-    namespace Model {
-        OptionsMenuData::OptionsMenuData(UiData *data)
-          : uidata(data) {
-            ResourceLoader::load(background, "backgrounds/options.png");
-            ResourceLoader::load(selectBar, "sprites/misc/selectBar.png");
-            ResourceLoader::load(langBg, "backgrounds/lang.png");
-            ResourceLoader::load(creditsBg, "backgrounds/credits.png");
-            ResourceLoader::load(controlsBg, "backgrounds/controls.png");
-            ResourceLoader::load(volumeCur, "sprites/misc/cursor.png");
-            ResourceLoader::load(keyChange, "sprites/misc/keyChange.png");
-            ResourceLoader::load(menuframe, "backgrounds/menuframe.png");
-        }
-    } // namespace Model
+    OptionsMenuData::OptionsMenuData(UiData *data)
+        : uidata(data) {
+        System::ResourceLoader::load(background, "backgrounds/options.png");
+        System::ResourceLoader::load(selectBar, "sprites/misc/selectBar.png");
+        System::ResourceLoader::load(langBg, "backgrounds/lang.png");
+        System::ResourceLoader::load(creditsBg, "backgrounds/credits.png");
+        System::ResourceLoader::load(controlsBg, "backgrounds/controls.png");
+        System::ResourceLoader::load(volumeCur, "sprites/misc/cursor.png");
+        System::ResourceLoader::load(keyChange, "sprites/misc/keyChange.png");
+        System::ResourceLoader::load(menuframe, "backgrounds/menuframe.png");
+    }
 } // namespace OpMon

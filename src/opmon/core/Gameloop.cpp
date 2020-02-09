@@ -22,20 +22,20 @@ File under GNU GPL v3.0 license
 namespace OpMon {
 
     GameLoop::GameLoop()
-      : uidata(std::make_unique<Model::UiData>()) {
-        std::unique_ptr<Controller::AGameScreen> firstCtrl = std::make_unique<Controller::MainMenuCtrl>(uidata.get());
+      : uidata(std::make_unique<UiData>()) {
+        std::unique_ptr<AGameScreen> firstCtrl = std::make_unique<MainMenuCtrl>(uidata.get());
         _gameScreens.push(std::move(firstCtrl));
     }
 
     GameStatus GameLoop::operator()() {
 
-        std::unique_ptr<View::Window, std::function<void(View::Window *)>> window(new View::Window(), [](View::Window *w) {
+        std::unique_ptr<Ui::Window, std::function<void(Ui::Window *)>> window(new Ui::Window(), [](Ui::Window *w) {
             w->close();
         });
         window->open();
 
         sf::Texture loadTx;
-        Model::ResourceLoader::load(loadTx, "backgrounds/loading.png");
+        System::ResourceLoader::load(loadTx, "backgrounds/loading.png");
         sf::Text loadingTxt;
         loadingTxt.setString(Utils::StringKeys::get("load.txt"));
         loadingTxt.setPosition(250, 440);
@@ -132,7 +132,7 @@ namespace OpMon {
         return GameStatus::CONTINUE;
     }
 
-    void GameLoop::_checkWindowResize(const sf::Event &event, View::Window &window) const {
+    void GameLoop::_checkWindowResize(const sf::Event &event, Ui::Window &window) const {
         if(event.type == sf::Event::Resized) {
             window.updateView();
         }

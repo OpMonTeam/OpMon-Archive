@@ -5,7 +5,7 @@
  * \authors Navet56
  * \authors BAKFR
  * \copyright GNU GPL v3.0
-*/
+ */
 #ifndef OPTIONSMENU_HPP
 #define OPTIONSMENU_HPP
 
@@ -19,157 +19,155 @@
 #include "../../utils/CycleCounter.hpp"
 
 namespace OpMon {
-    namespace View {
+
+    /*!
+     * \brief The different screens of the settings.
+     */
+    enum class OptionType { ALL,/*!< The main menu of the settings.*/
+                            LANG,/*!< The language menu.*/
+                            CONTROLS,/*!< The controls menu.*/
+                            CREDITS/*!< The credits screen.*/ };
+
+    /*!
+     * \brief The screen of the settings.
+     * \todo Change OptionsMenu to SettingsMenu
+     * \todo Make the addition of a language easier.
+     * \todo Put some variables in arrays.
+     */
+    class OptionsMenu : I18n::ATranslatable {
+    public:
+        OptionsMenu(OptionsMenuData &data);
+        ~OptionsMenu() = default;
 
         /*!
-         * \brief The different screens of the settings.
+         * \brief Moves the cursor.
+         * \param dir If `true`, the cursor goes up. It goes down otherwise
          */
-        enum class OptionType { ALL,/*!< The main menu of the settings.*/
-                                LANG,/*!< The language menu.*/
-                                CONTROLS,/*!< The controls menu.*/
-                                CREDITS/*!< The credits screen.*/ };
+        void moveArrow(bool dir);
 
         /*!
-         * \brief The screen of the settings.
-         * \todo Change OptionsMenu to SettingsMenu
-         * \todo Make the addition of a language easier.
-         * \todo Put some variables in arrays.
+         * \brief Draws the menu on the given frame.
          */
-        class OptionsMenu : I18n::ATranslatable {
-          public:
-            OptionsMenu(Model::OptionsMenuData &data);
-            ~OptionsMenu() = default;
+        void draw(sf::RenderTarget &frame);
 
-            /*!
-             * \brief Moves the cursor.
-             * \param dir If `true`, the cursor goes up. It goes down otherwise
-             */
-            void moveArrow(bool dir);
+        /*!
+         * \brief Updates the main settings menu.
+         */
+        void loop(sf::RenderTarget &frame);
+        /*!
+         * \brief Updates the language menu.
+         */
+        void langLoop(sf::RenderTarget &frame);
+        /*!
+         * \brief Updates the controls menu.
+         */
+        void controlsLoop(sf::RenderTarget &frame);
+        /*!
+         * \brief Updates the credit screen.
+         */
+        void creditsLoop(sf::RenderTarget &frame);
 
-            /*!
-             * \brief Draws the menu on the given frame.
-             */
-            void draw(sf::RenderTarget &frame);
+        /*!
+         * \brief Initialises the strings used in the setting
+         */
+        void initStrings();
+        void onLangChanged() override;
 
-            /*!
-             * \brief Updates the main settings menu.
-             */
-            void loop(sf::RenderTarget &frame);
-            /*!
-             * \brief Updates the language menu.
-             */
-            void langLoop(sf::RenderTarget &frame);
-            /*!
-             * \brief Updates the controls menu.
-             */
-            void controlsLoop(sf::RenderTarget &frame);
-            /*!
-             * \brief Updates the credit screen.
-             */
-            void creditsLoop(sf::RenderTarget &frame);
-
-            /*!
-             * \brief Initialises the strings used in the setting
-             */
-            void initStrings();
-            void onLangChanged() override;
-
-            OptionType getCurrentOption() { return currentOptions; }
-            void setCurrentOption(OptionType newOpt) { currentOptions = newOpt; }
-            /*!
-             * \brief Returns the cursor position of the current menu.
-             */
-            int cursorPosition() const {
-                switch(currentOptions) {
-                case OptionType::ALL:
-                    return curPosOptI.getValue();
-                case OptionType::LANG:
-                    return curPosLangI.getValue();
-                case OptionType::CONTROLS:
-                    return curPosCtrlI.getValue();
-                default:
-                    return curPosOptI.getValue();
-                }
-
-                return 0;
+        OptionType getCurrentOption() { return currentOptions; }
+        void setCurrentOption(OptionType newOpt) { currentOptions = newOpt; }
+        /*!
+         * \brief Returns the cursor position of the current menu.
+         */
+        int cursorPosition() const {
+            switch(currentOptions) {
+            case OptionType::ALL:
+                return curPosOptI.getValue();
+            case OptionType::LANG:
+                return curPosLangI.getValue();
+            case OptionType::CONTROLS:
+                return curPosCtrlI.getValue();
+            default:
+                return curPosOptI.getValue();
             }
 
-            void setCurrentKeyChange(int currentKeyChange_) { currentKeyChange = currentKeyChange_; }
+            return 0;
+        }
 
-            void play();
-            void pause();
+        void setCurrentKeyChange(int currentKeyChange_) { currentKeyChange = currentKeyChange_; }
 
-            void initOptionsMenuItemsName();
-            void initOptionsMenuItemsValue();
-            void initLanguagesMenuItemsName();
+        void play();
+        void pause();
 
-          private:
-            Model::OptionsMenuData &data;
-            OptionType currentOptions;
+        void initOptionsMenuItemsName();
+        void initOptionsMenuItemsValue();
+        void initLanguagesMenuItemsName();
 
-            sf::Sprite volumeCur;
-            sf::Sprite bgCredits;
-            sf::Sprite bgOpt;
-            sf::Sprite bgControls;
+    private:
+        OptionsMenuData &data;
+        OptionType currentOptions;
 
-            sf::Text txtRetour;
-            sf::Text txtOptions;
-            sf::Text txtCre1;
-            sf::Text txtCre2;
-            sf::Text txtCre3;
-            sf::Text txtCre4;
-            sf::Text txtCre5;
-            sf::Text txtCre6;
-            sf::Text txtCre7;
-            sf::Text txtCre8;
-            sf::Text txtCre81;
-            sf::Text txtCre82;
-            sf::Text txtCre83;
-            sf::Text txtCre84;
-            sf::Text txtCre9;
-            sf::Text txtCre10;
-            sf::Sprite rectSurb;
-            sf::Vector2f curPosOpt[6] = {};
-            sf::Vector2f curSizeOpt[6];
-            int optionSelect = -1;
-            Utils::CycleCounter curPosOptI = Utils::CycleCounter(6);
-            Utils::CycleCounter curPosLangI = Utils::CycleCounter(6);
-            Utils::CycleCounter curPosCtrlI = Utils::CycleCounter(2);
-            /*!
-             * \brief The currently selected key to change in the controls menu.
-             */
-            int currentKeyChange{0};
-            sf::Text txtCtrlChange;
-            sf::Text txtCtrlUp;
-            sf::Text txtCtrlDown;
-            sf::Text txtCtrlLeft;
-            sf::Text txtCtrlRight;
-            sf::Text txtCtrlTalk;
-            sf::Text txtCtrlInteract;
-            sf::Sprite rectKeyChange;
-            const sf::Vector2f posControls[7] = {
-              {-500.0, -500.0}, {150.0, 175.0}, {148.0, 450.0}, {9.0, 311.0}, {298.0, 310.0}, {412.0, 211.0}, {412.0, 334.0}};
+        sf::Sprite volumeCur;
+        sf::Sprite bgCredits;
+        sf::Sprite bgOpt;
+        sf::Sprite bgControls;
 
-            sf::Text txtCred;
-            sf::Text txtCtrl;
-            /*!
-             * \brief The background for the language screen.
-             * \todo Change to bgLang
-             */
-            sf::Sprite bgLangues;
-            sf::Vector2f curPosLang[6] = {};
-            sf::Vector2f curSizeLang[6];
-            sf::Vector2f curPosCtrl[5] = {};
-            sf::Vector2f curSizeCtrl[5];
-            /*!
-             * \brief The sprite of the check for the fullscreen option.
-             */
-            sf::Sprite check;
+        sf::Text txtRetour;
+        sf::Text txtOptions;
+        sf::Text txtCre1;
+        sf::Text txtCre2;
+        sf::Text txtCre3;
+        sf::Text txtCre4;
+        sf::Text txtCre5;
+        sf::Text txtCre6;
+        sf::Text txtCre7;
+        sf::Text txtCre8;
+        sf::Text txtCre81;
+        sf::Text txtCre82;
+        sf::Text txtCre83;
+        sf::Text txtCre84;
+        sf::Text txtCre9;
+        sf::Text txtCre10;
+        sf::Sprite rectSurb;
+        sf::Vector2f curPosOpt[6] = {};
+        sf::Vector2f curSizeOpt[6];
+        int optionSelect = -1;
+        Utils::CycleCounter curPosOptI = Utils::CycleCounter(6);
+        Utils::CycleCounter curPosLangI = Utils::CycleCounter(6);
+        Utils::CycleCounter curPosCtrlI = Utils::CycleCounter(2);
+        /*!
+         * \brief The currently selected key to change in the controls menu.
+         */
+        int currentKeyChange{0};
+        sf::Text txtCtrlChange;
+        sf::Text txtCtrlUp;
+        sf::Text txtCtrlDown;
+        sf::Text txtCtrlLeft;
+        sf::Text txtCtrlRight;
+        sf::Text txtCtrlTalk;
+        sf::Text txtCtrlInteract;
+        sf::Sprite rectKeyChange;
+        const sf::Vector2f posControls[7] = {
+            {-500.0, -500.0}, {150.0, 175.0}, {148.0, 450.0}, {9.0, 311.0}, {298.0, 310.0}, {412.0, 211.0}, {412.0, 334.0}};
 
-            std::vector<TextBox> optionsMenuItems;
-            std::vector<TextBox> languagesMenuItems;
-        };
-    } // namespace View
+        sf::Text txtCred;
+        sf::Text txtCtrl;
+        /*!
+         * \brief The background for the language screen.
+         * \todo Change to bgLang
+         */
+        sf::Sprite bgLangues;
+        sf::Vector2f curPosLang[6] = {};
+        sf::Vector2f curSizeLang[6];
+        sf::Vector2f curPosCtrl[5] = {};
+        sf::Vector2f curSizeCtrl[5];
+        /*!
+         * \brief The sprite of the check for the fullscreen option.
+         */
+        sf::Sprite check;
+
+        std::vector<TextBox> optionsMenuItems;
+        std::vector<TextBox> languagesMenuItems;
+    };
 } // namespace OpMon
 
 #endif // OPTIONSMENU_HPP

@@ -14,13 +14,13 @@ File under GNU GPL v3.0 license
 #define DEG *(3.14159265 / 180)
 
 namespace OpMon {
-    namespace View {
+    namespace Ui {
 
         sf::Texture MapLayer::tileset;
 
         MapLayer::MapLayer(sf::Vector2i size, const int tilesCodes[]) {
             if(tileset.getSize() == sf::Vector2u(0, 0)) {
-                Model::ResourceLoader::load(tileset, "tileset/tileset.png");
+                System::ResourceLoader::load(tileset, "tileset/tileset.png");
             }
             tiles.setPrimitiveType(sf::Quads);
             tiles.resize(size.x * size.y * 4);
@@ -248,5 +248,5 @@ namespace OpMon {
             return sf::Vector2f(spr.getGlobalBounds().width / 2, 3 * spr.getGlobalBounds().height / 4);
         }
 
-    } // namespace View
+    } // namespace Ui
 } // namespace OpMon

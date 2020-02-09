@@ -11,9 +11,9 @@ File under GNU GPL v3.0 license
 #include "Window.hpp"
 
 namespace OpMon {
-    namespace View {
+    namespace Ui {
 
-        Dialog::Dialog(sf::String text, Model::UiData *uidata)
+        Dialog::Dialog(sf::String text, UiData *uidata)
           : uidata(uidata) {
             this->text = Utils::StringKeys::autoNewLine(text);
 
@@ -24,7 +24,7 @@ namespace OpMon {
             init();
         }
 
-        Dialog::Dialog(std::queue<sf::String> text, Model::UiData *uidata)
+        Dialog::Dialog(std::queue<sf::String> text, UiData *uidata)
           : text(text)
           , uidata(uidata) {
             if(this->text.size() % 3 != 0) {
@@ -39,7 +39,7 @@ namespace OpMon {
             init();
         }
 
-        Dialog::Dialog(std::vector<sf::String> text, Model::UiData *uidata)
+        Dialog::Dialog(std::vector<sf::String> text, UiData *uidata)
           : uidata(uidata) {
 
             for(sf::String str : text) {
@@ -151,5 +151,5 @@ namespace OpMon {
             backgroundVisible = visible;
         }
 
-    } // namespace View
+    } // namespace Ui
 } // namespace OpMon

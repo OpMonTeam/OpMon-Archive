@@ -40,7 +40,7 @@ namespace OpMon {
     /*!
      * \brief Namespace containing the view part.
      */
-    namespace View {
+    namespace Ui {
 
         /*!
          * \brief A map layer.
@@ -326,7 +326,7 @@ namespace OpMon {
             static const ScaleData newScaleData(FormulaMode modeX, FormulaMode modeY, std::vector<double> xformula, std::vector<double> yformula, sf::Vector2f origin);
         };
 
-    } // namespace View
+    } // namespace Ui
 } // namespace OpMon
 
 #endif // ELEMENTS_HPP

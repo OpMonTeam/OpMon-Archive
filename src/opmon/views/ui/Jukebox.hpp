@@ -14,7 +14,7 @@
 #include <unordered_map>
 
 namespace OpMon {
-    namespace View {
+    namespace Ui {
 
         /*!
          * \brief Class managing the audio in the game.
@@ -81,5 +81,5 @@ namespace OpMon {
             void addSound(const std::string &name, const std::string &path);
         };
 
-    } // namespace View
+    } // namespace Ui
 } // namespace OpMon

@@ -6,14 +6,14 @@
 #include "KeyData.hpp"
 
 namespace OpMon {
-    namespace Model {
+    namespace System {
         const std::string &KeyData::findNameKeyCode(sf::Keyboard::Key searchKeyCode) {
-            for(auto it = std::cbegin(Model::KeyData::keysMap); it != std::cend(Model::KeyData::keysMap); ++it) {
+            for(auto it = std::cbegin(System::KeyData::keysMap); it != std::cend(System::KeyData::keysMap); ++it) {
                 if(it->second == searchKeyCode)
                     return it->first;
             }
 
-            return std::cbegin(Model::KeyData::keysMap)->first;
+            return std::cbegin(System::KeyData::keysMap)->first;
         }
 
 #define ADDMAP(key) \
@@ -34,5 +34,5 @@ namespace OpMon {
           ADDMAP(Numpad1), ADDMAP(Numpad2), ADDMAP(Numpad3), ADDMAP(Numpad4), ADDMAP(Numpad5),
           ADDMAP(Numpad6), ADDMAP(Numpad7), ADDMAP(Numpad8), ADDMAP(Numpad9), ADDMAP(Numpad0)};
 #undef ADDMAP
-    } // namespace Model
+    } // namespace System
 } // namespace OpMon

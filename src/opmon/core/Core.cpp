@@ -17,7 +17,6 @@ File under GNU GPL v3.0 license
 #include <ostream>
 #include <sstream>
 
-using namespace OpMon::Model;
 using Utils::Log::oplog;
 
 namespace OpMon {
@@ -54,7 +53,7 @@ namespace OpMon {
     }
 
     int quit(int const &returns) {
-        OptionsSave::saveParams(optSave); //Saving parameters
+        System::OptionsSave::saveParams(optSave); //Saving parameters
 
         std::ostringstream osslog;
         osslog << "End of the program. Return " << returns;
