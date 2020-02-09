@@ -28,7 +28,8 @@ namespace OpMon {
     }
 
     GameStatus BattleCtrl::update(sf::RenderTexture &frame) {
-        GameStatus returned = view(frame, atkTurn, defTurn, actionsQueue, &turnActivated, atkFirst);
+        GameStatus returned = view.update(atkTurn, defTurn, actionsQueue, &turnActivated, atkFirst);
+        frame.draw(view);
         return returned;
     }
 
