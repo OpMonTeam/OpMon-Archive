@@ -14,7 +14,7 @@
 #include <fstream>
 
 namespace OpMon {
-    namespace Model {
+    namespace System {
 
         class ResourceLoader {
           public:
@@ -72,5 +72,5 @@ namespace OpMon {
             }
         }
 
-    } // namespace Model
+    } // namespace System
 } // namespace OpMon

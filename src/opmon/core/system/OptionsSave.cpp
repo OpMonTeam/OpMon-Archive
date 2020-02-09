@@ -9,7 +9,7 @@ File under GNU GPL v3.0 license
 #include "../Core.hpp"
 
 namespace OpMon {
-    namespace Model {
+    namespace System {
         namespace OptionsSave {
 
             int searchParam(std::string const &name);
@@ -116,5 +116,5 @@ namespace OpMon {
             }
 
         } // namespace OptionsSave
-    }     // namespace Model
+    }     // namespace System
 } // namespace OpMon

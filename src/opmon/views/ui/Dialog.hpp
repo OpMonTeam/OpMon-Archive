@@ -15,7 +15,7 @@
 #include <string>
 
 namespace OpMon {
-    namespace View {
+    namespace Ui {
 
         class Dialog : public sf::Drawable {
           private:
@@ -55,7 +55,7 @@ namespace OpMon {
              */
             sf::Sound dialogPass;
 
-            Model::UiData *uidata;
+            UiData *uidata;
 
             bool backgroundVisible = true;
 
@@ -71,17 +71,17 @@ namespace OpMon {
              * \param text An array of texts. One element = one line.
              * \deprecated Use std::queue instead of std::vector, or send one sf::String directly.
              */
-            OP_DEPRECATED Dialog(std::vector<sf::String> text, Model::UiData *uidata);
+            OP_DEPRECATED Dialog(std::vector<sf::String> text, UiData *uidata);
             /*!
              * \brief Initises a dialog with a queue of texts to print.
              * \param text A queue of texts. One element = one line.
              */
-            Dialog(std::queue<sf::String> text, Model::UiData *uidata);
+            Dialog(std::queue<sf::String> text, UiData *uidata);
             /*!
              * \brief Initialises a dialog.
              * \param text The text of the dialog.
              */
-            Dialog(sf::String text, Model::UiData *uidata);
+            Dialog(sf::String text, UiData *uidata);
 
             /*!
              * \brief Move forward in a dialog, in response to an event like a space key pressed.
@@ -114,6 +114,6 @@ namespace OpMon {
              */
             void setBackgroundVisible(bool visible);
         };
-    } // namespace View
+    } // namespace Ui
 } // namespace OpMon
 #endif //OPMON_DIALOG_CPP_HPP

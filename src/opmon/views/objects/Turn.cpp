@@ -8,7 +8,7 @@ File under GNU GPL v3.0 license
 #include "../../objects/OpMon.hpp"
 
 namespace OpMon {
-    namespace Model {
+    namespace Elements {
         void newTurnAction(TurnAction *toNew) {
             toNew->hpLost = 0;
             toNew->dialog = Utils::OpString();
@@ -31,5 +31,5 @@ namespace OpMon {
             return ta;
         }
 
-    } // namespace Model
+    } // namespace Elements
 } // namespace OpMon

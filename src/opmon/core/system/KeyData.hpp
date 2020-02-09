@@ -10,7 +10,7 @@
 #include <unordered_map>
 
 namespace OpMon {
-    namespace Model {
+    namespace System {
 
         /*!
          * \brief Used to link the keyboard keys to std::strings.
@@ -28,5 +28,5 @@ namespace OpMon {
              */
             static const std::unordered_map<std::string, sf::Keyboard::Key> keysMap;
         };
-    } // namespace Model
+    } // namespace System
 } // namespace OpMon

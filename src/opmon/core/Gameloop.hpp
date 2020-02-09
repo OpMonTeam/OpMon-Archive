@@ -48,17 +48,17 @@ namespace OpMon {
          * \param event The native SFML event
          * \param window A reference to the window in case an update is necessary
          */
-        void _checkWindowResize(const sf::Event &event, View::Window &window) const;
+        void _checkWindowResize(const sf::Event &event, Ui::Window &window) const;
 
     private:
         /*!
          * \brief The pointer containing the UiData object shared in the different data objects.
          */
-        std::unique_ptr<Model::UiData> uidata;
+        std::unique_ptr<UiData> uidata;
         /*!
          * \brief The stack of game screens.
          */
-        std::stack<std::unique_ptr<Controller::AGameScreen>> _gameScreens;
+        std::stack<std::unique_ptr<AGameScreen>> _gameScreens;
         /*!
          * \brief If `true`, the game executes itself frame by frame.
          * \details This mode is activated my keeping the F2 key pressed. On release, the mode is disabled. One frame can be passed by pressing the key registered in `fbfType`.

@@ -17,11 +17,11 @@
 #include <vector>
 
 namespace OpMon {
-    namespace Model {
+
+    class OverworldData;
+    namespace Elements {
 
         class Event;
-
-        class OverworldData;
 
         /*!
          * \brief Defines a specific place in a game, containing the event, the animated objects and the map layers.
@@ -179,7 +179,7 @@ namespace OpMon {
              */
             std::string toDebugString();
         };
-    } // namespace Model
+    } // namespace Elements
 } // namespace OpMon
 
 #endif // MAP_HPP

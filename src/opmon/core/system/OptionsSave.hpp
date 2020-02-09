@@ -24,7 +24,7 @@
 #define modifyParam addOrModifParam
 
 namespace OpMon {
-    namespace Model {
+    namespace System {
         /*!
          *	\brief Contains the functions used to save the parameters.
          *  \todo Make this a class.
@@ -99,6 +99,6 @@ namespace OpMon {
             bool checkParam(std::string const &name);
 
         } // namespace OptionsSave
-    }     // namespace Model
+    }     // namespace System
 } // namespace OpMon
 #endif // OPTIONSSAVE_HPP

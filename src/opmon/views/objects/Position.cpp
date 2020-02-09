@@ -10,7 +10,7 @@ File under GNU GPL v3.0 license
 #include "Map.hpp"
 
 namespace OpMon {
-    namespace Model {
+    namespace Elements {
         Position::Position(bool event)
           : posX(0)
           , posY(0)
@@ -145,5 +145,5 @@ namespace OpMon {
             return false;
         }
 
-    } // namespace Model
+    } // namespace Elements
 } // namespace OpMon

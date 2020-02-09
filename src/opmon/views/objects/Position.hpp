@@ -25,7 +25,7 @@
 #define SQUARES *SQUARES_SIZE
 
 namespace OpMon {
-    namespace Model {
+    namespace Elements {
 
         class Map;
 
@@ -166,7 +166,7 @@ namespace OpMon {
              */
             bool event = false;
         };
-    } // namespace Model
+    } // namespace Elements
 } // namespace OpMon
 
 #endif

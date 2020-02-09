@@ -13,7 +13,7 @@ File under GNU GPL v3.0 license
 #include <sstream>
 
 namespace OpMon {
-    namespace Model {
+    namespace Elements {
 
         Map::Map(std::vector<int> const &layer1, std::vector<int> const &layer2, std::vector<int> const &layer3, int w, int h, bool indoor, std::string const &bg, std::vector<std::string> const &animatedElements)
           : indoor(indoor)
@@ -322,5 +322,5 @@ namespace OpMon {
 
         #undef FILL_VOID
 
-    } // namespace Model
+    } // namespace Elements
 } // namespace OpMon
