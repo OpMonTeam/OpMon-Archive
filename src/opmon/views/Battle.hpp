@@ -32,7 +32,7 @@ namespace OpMon {
      * - The choices phase, with the different menus where the player has to choose between different actions and attacks. The view will only manage these two choices, the other selection menus (OpMon and items) will be manages by other views.
      * - The turns phase, in which the actions are being executed. Everything is calculated in BattleCtrl and stored in a queue of TurnAction. This class reads these objects corresponding to the different animations this view has to do according to the TurnActionType object in them.
      */
-    class Battle {
+    class Battle : public sf::Drawable{
     private:
         /*!
          * \brief The sprite of the front OpMon.
@@ -189,6 +189,36 @@ namespace OpMon {
 
         bool dialogOver = true;
 
+        /*!
+         * \brief If the battle has been initialized with the current battling OpMons.
+         */
+        bool initialized = false;
+
+        /*!
+         * \brief Updates the sprites when new OpMons join the battle.
+         */
+        void initNewOp(OpMon const* atk, OpMon const* def);
+
+        /*!
+         * \brief If the dialog has to be drawn on the screen.
+         */
+        bool drawDialog = false;
+
+        /*!
+         * \brief If the main choice dialog has to be drawn on the screen.
+         */
+        bool drawMainDialog = false;
+
+        /*!
+         * \brief If the elements of Battle::attacks have to be drawn on the screen.
+         */
+        bool drawAttacks = false;
+
+        /*!
+         * \brief If Battle::type has to be drawn on the screen.
+         */
+        bool drawType = false;
+
     public:
         /*!
          * \brief Initialises a battle.
@@ -200,6 +230,8 @@ namespace OpMon {
          */
         Battle(const OpTeam *atkTeam, const OpTeam *defTeam, std::string trainerClass, std::string background, BattleData &data);
 
+        void draw(sf::RenderTarget &frame, sf::RenderStates states) const;
+
         /*!
          * \brief One frame of the battle.
          * \param frame The frame of the game.
@@ -209,7 +241,13 @@ namespace OpMon {
          * \param turnActivated A pointer to BattleCtrl::turnActivated. See Battle::phase for further explanation.
          * \param atkFirst If `true`, the player's turn is the first. Else, the opponent's turn is the first.
          */
-        GameStatus operator()(sf::RenderTexture &frame, Elements::TurnData const &atk, Elements::TurnData const &def, std::queue<Elements::TurnAction> &actionQueue, bool *turnActivated, bool atkFirst);
+        GameStatus update(Elements::TurnData const &atk, Elements::TurnData const &def, std::queue<Elements::TurnAction> &actionQueue, bool *turnActivated, bool atkFirst);
+
+        /*!
+         * \brief Initializes the battle with the current data.
+         */
+        void initialize(Elements::TurnData const &atk, Elements::TurnData const &def);
+
         /*!
          * \brief Moves the cursor.
          * \param where In which direction the cursor has to move.

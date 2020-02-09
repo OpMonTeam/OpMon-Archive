@@ -15,55 +15,96 @@
 #include <sstream>
 
 namespace OpMon {
-    GameStatus Battle::operator()(sf::RenderTexture &frame, Elements::TurnData const &atkTurn, Elements::TurnData const &defTurn, std::queue<Elements::TurnAction> &actionQueue, bool *turnActivated, bool atkFirst) {
-        //Removes camera
+
+    void Battle::draw(sf::RenderTarget& frame, sf::RenderStates states) const {
+
         frame.setView(frame.getDefaultView());
 
-        //Initializes hp variables
-        if(atkHp == -1) {
-            atkHp = atkTurn.opmon->getHP();
-        }
-        if(defHp == -1) {
-            defHp = defTurn.opmon->getHP();
-        }
-
-        data.getUiDataPtr()->getJukebox().play("Wild Battle");
-
         frame.draw(background);
-        /*frame.draw(shadowPlayer);
-	      frame.draw(shadowTrainer);*/
         frame.draw(playerSpr);
         frame.draw(trainerSpr);
-        atk.setTexture(data.getUiDataPtr()->getOpSprite(atkTurn.opmon->getSpecies().getOpdexNumber(), false));
-        def.setTexture(data.getUiDataPtr()->getOpSprite(defTurn.opmon->getSpecies().getOpdexNumber(), true));
         frame.draw(atk, atkTr);
         frame.draw(def, defTr);
         frame.draw(infoboxPlayer);
         frame.draw(infoboxTrainer);
-
-        //Resizes heath bars to print the correct colors
-        healthbar2[0].setTextureRect(sf::IntRect(0, 0, (defHp * data.getHealthbar2().getSize().x) / defTurn.opmon->getStatHP(), data.getHealthbar2().getSize().y));
-        healthbar2[1].setTextureRect(sf::IntRect(0, 0, (atkHp * data.getHealthbar2().getSize().x) / atkTurn.opmon->getStatHP(), data.getHealthbar2().getSize().y));
 
         for(unsigned int i = 0; i < 2; i++) {
             frame.draw(healthbar1[i]);
             frame.draw(healthbar2[i]);
         }
 
-        //Prints OpMon data info (Hp, name...)
-        opLevel[0].setString("Lv. " + std::to_string(atkTurn.opmon->getLevel()));
-        opLevel[1].setString("Lv. " + std::to_string(defTurn.opmon->getLevel()));
-
-        opName[0].setString(atkTurn.opmon->getNickname());
-        opName[1].setString(defTurn.opmon->getNickname());
-
-        opHp.setString("HP : " + std::to_string(atkHp) + " / " + std::to_string(atkTurn.opmon->getStatHP()));
-
         frame.draw(opName[0]);
         frame.draw(opName[1]);
         frame.draw(opLevel[0]);
         frame.draw(opLevel[1]);
         frame.draw(opHp);
+
+
+        if(!turnLaunched)
+            frame.draw(dialogSpr);
+
+        if(drawDialog)
+            frame.draw(*dialog);
+
+        if(drawMainDialog){
+            for(sf::Text txt : choicesTxt) {
+                frame.draw(txt);
+            }
+            frame.draw(waitText);
+        }
+
+        if(drawAttacks){
+            for(unsigned int i = 0; i < 4; i++) {
+                frame.draw(attacks[i]);
+            }
+            if(drawType){
+                frame.draw(type);
+            }
+
+            frame.draw(ppTxt);
+            frame.draw(ppStrTxt);
+        }
+
+        if(!turnLaunched) {
+            frame.draw(cursor);
+        }
+    }
+
+    void Battle::initialize(Elements::TurnData const &atkTurn, Elements::TurnData const &defTurn){
+        data.getUiDataPtr()->getJukebox().play("Wild Battle");
+        initNewOp(atkTurn.opmon, defTurn.opmon);
+        initialized = true;
+    }
+
+    void Battle::initNewOp(OpMon const* atk, OpMon const* def){
+        //Prints OpMon data info (Hp, name...)
+        opLevel[0].setString("Lv. " + std::to_string(atk->getLevel()));
+        opLevel[1].setString("Lv. " + std::to_string(def->getLevel()));
+
+        opName[0].setString(atk->getNickname());
+        opName[1].setString(def->getNickname());
+
+        this->atk.setTexture(data.getUiDataPtr()->getOpSprite(atk->getSpecies().getOpdexNumber(), false));
+        this->def.setTexture(data.getUiDataPtr()->getOpSprite(def->getSpecies().getOpdexNumber(), true));
+
+        atkHp = atk->getHP();
+        defHp = def->getHP();
+    }
+
+    GameStatus Battle::update(Elements::TurnData const &atkTurn, Elements::TurnData const &defTurn, std::queue<Elements::TurnAction> &actionQueue, bool *turnActivated, bool atkFirst) {
+
+        drawDialog = false;
+        drawMainDialog = false;
+        drawAttacks = false;
+        drawType = false;
+
+        if(!initialized){
+            initialize(atkTurn, defTurn);
+        }
+
+         //Resizes heath bars to print the correct colors
+        healthbar2[0].setTextureRect(sf::IntRect(0, 0, (defHp * data.getHealthbar2().getSize().x) / defTurn.opmon->getStatHP(), data.getHealthbar2().getSize().y));
+        healthbar2[1].setTextureRect(sf::IntRect(0, 0, (atkHp * data.getHealthbar2().getSize().x) / atkTurn.opmon->getStatHP(), data.getHealthbar2().getSize().y));
 
         //Checks if the turn is launched or not
         /* During the battle, two phases alternate:
@@ -79,10 +120,6 @@ namespace OpMon {
         } else if(turnLaunched && !(*turnActivated)) {
             phase = 0;
             turnLaunched = false;
-        }
-
-        if(!*turnActivated) {
-            frame.draw(dialogSpr);
         }
 
         if(*turnActivated && turnNber <= 1) { //If it's turn phase
@@ -216,20 +253,15 @@ namespace OpMon {
             if(dialog == nullptr) { //Always show the dialog box (if possible)
                 dialog = new Ui::Dialog(" ", data.getUiDataPtr());
             }
-            frame.draw(*dialog);
+            drawDialog = true;
 
         } else if(!attackChoice) { // Main battle menu
-
-            for(sf::Text &txt : choicesTxt) {
-                frame.draw(txt);
-            }
             std::queue<sf::String> waitTxt = Utils::StringKeys::autoNewLine(Utils::StringKeys::get("battle.wait"), 12);
             sf::String str = waitTxt.front() + sf::String('\n');
             waitTxt.pop();
             str += waitTxt.front();
             waitText.setString(str);
-            frame.draw(waitText);
-
+            drawMainDialog = true;
             cursor.setPosition(posChoices[curPos.getValue()] + sf::Vector2f((choicesTxt[curPos.getValue()].getGlobalBounds().width / 2) - 10, 25));
 
         } else { //Attacks menu
@@ -240,7 +272,7 @@ namespace OpMon {
                 } else {
                     attacks[i].setString("----"); //Text to print if there is no attack
                 }
-                frame.draw(attacks[i]);
+                drawAttacks = true;
             }
 
             if(atkTurn.opmon->getAttacks()[curPos.getValue()] != nullptr) {
@@ -255,21 +287,17 @@ namespace OpMon {
                 }
                 ppTxt.setString(std::to_string(atkTurn.opmon->getAttacks()[curPos.getValue()]->getPP()) + " / " + std::to_string(atkTurn.opmon->getAttacks()[curPos.getValue()]->getPPMax()));
                 type.setTexture(data.getUiDataPtr()->getTypeTexture(atkTurn.opmon->getAttacks()[curPos.getValue()]->getType()));
-                frame.draw(type);
+                drawType = true;
             } else { //If there is no attack, print this
                 ppTxt.setSfmlColor(sf::Color::Red);
                 ppTxt.setString("0 / 0");
             }
 
-            frame.draw(ppTxt);
-            frame.draw(ppStrTxt);
 
             cursor.setPosition(posChoices[curPos.getValue()] + sf::Vector2f((attacks[curPos.getValue()].getGlobalBounds().width / 2) - 10, 30));
         }
 
-        if(!turnLaunched) {
-            frame.draw(cursor);
-        }
+        
         return GameStatus::CONTINUE;
     }
 

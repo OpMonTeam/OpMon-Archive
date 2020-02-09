@@ -105,11 +105,11 @@ namespace OpMon {
         OpMon(const std::string &nickname, const Species *species, int level, const std::vector<Attack *> &attacks,
               Nature nature);
 
-        int getConfusedCD() {
+        int getConfusedCD() const {
             return confusedCD;
         }
 
-        int getSleepingCD() {
+        int getSleepingCD() const {
             return sleepingCD;
         }
 
@@ -261,9 +261,16 @@ namespace OpMon {
         }
 
         /*!
+         * \brief Returns the OpMon's nickname.
+         */
+        sf::String getNickname() const {
+            return nickname;
+        }
+
+        /*!
          * \brief Returns a reference to the OpMon's nickname.
          */
-        sf::String &getNickname() {
+        sf::String &getNicknameRef() {
             return nickname;
         }
 

@@ -57,7 +57,7 @@ namespace OpMon {
              * \brief Updates the animation.
              * \deprecated Use update() and then sf::RenderTexture::draw(sf::Drawable).
              */
-            OP_DEPRECATED virtual GameStatus operator()(sf::RenderTexture &frame) {update(); frame.draw(*this);};
+            OP_DEPRECATED virtual GameStatus operator()(sf::RenderTexture &frame) {GameStatus t = update(); frame.draw(*this); return t;};
         };
 
         /*!
