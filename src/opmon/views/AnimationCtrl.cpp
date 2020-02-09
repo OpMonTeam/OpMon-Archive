@@ -11,6 +11,8 @@ namespace OpMon {
         : view(std::move(view)) {}
 
     GameStatus AnimationCtrl::update(sf::RenderTexture &frame) {
-        return (*view)(frame);
+        GameStatus status = view->update();
+        frame.draw(*view);
+        return status;
     }
 } // namespace OpMon

@@ -67,7 +67,7 @@ namespace OpMon {
         frame.clear(sf::Color(74, 81, 148));
 
         for(auto &mainMenuItem : mainMenuItems) {
-            states.draw(mainMenuItem);
+            frame.draw(mainMenuItem);
         }
     }
 

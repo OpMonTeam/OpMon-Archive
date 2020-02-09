@@ -34,15 +34,16 @@ namespace OpMon {
             }
         }
 
-        GameStatus WinAnim::operator()(sf::RenderTexture &frame) {
+        GameStatus WinAnim::update(){
             bgSpr.setTexture(bgTxt);
             anim.setTexture(fen[(order ? counter : (frames - counter))]);
-
-            frame.draw(bgSpr);
-            frame.draw(anim);
-
             counter++;
             return (counter > frames) ? GameStatus::PREVIOUS_NLS : GameStatus::CONTINUE;
+        }
+
+        void WinAnim::draw(sf::RenderTarget &frame, sf::RenderStates states) const {
+            frame.draw(bgSpr);
+            frame.draw(anim);
         }
 
         WooshAnim::WooshAnim(sf::Texture const& before, sf::Texture const& after, WooshDir dir, int duration, bool outToIn)
@@ -72,15 +73,16 @@ namespace OpMon {
             this->anim.setPosition(initialPos[(int)dir]);
         }
 
-        GameStatus WooshAnim::operator()(sf::RenderTexture &frame) {
+        GameStatus WooshAnim::update(){
             anim.move((counter == 0) ? sf::Vector2f(0, 0) : (mvDir[(int)dir] * (512.0f / duration)));
+            counter--;
+            return (counter < 0) ? GameStatus::PREVIOUS_NLS : GameStatus::CONTINUE;
+        }
+
+        void WooshAnim::draw(sf::RenderTarget &frame, sf::RenderStates state) const {
             frame.clear(sf::Color::Black);
             frame.draw(bgSpr);
             frame.draw(anim);
-
-            counter--;
-
-            return (counter < 0) ? GameStatus::PREVIOUS_NLS : GameStatus::CONTINUE;
         }
 
     } // namespace Animations
