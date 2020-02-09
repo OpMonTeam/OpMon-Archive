@@ -6,7 +6,7 @@
  * \authors Stelyus
  * \authors Navet56
  * \copyright GNU GPL v3.0
-*/
+ */
 #ifndef _PLAYER_HPP_
 #define _PLAYER_HPP_
 
@@ -20,139 +20,137 @@
 #include <vector>
 
 namespace OpMon {
-    namespace Model {
 
-        class OpMon;
+    class OpMon;
+
+    /*!
+     * \brief Contains information about the player.
+     */
+    class Player {
+    public:
+        Player(sf::String const &name);
+
+        Player();
 
         /*!
-         * \brief Contains information about the player.
+         * \brief Returns a pointer to the player's team.
          */
-        class Player {
-          public:
-            Player(sf::String const &name);
+        OpTeam *getOpTeam();
 
-            Player();
+        /*!
+         * \warning Work in progress.
+         */
+        void addItem(std::string const &itemID);
 
-            /*!
-             * \brief Returns a pointer to the player's team.
-             */
-            OpTeam *getOpTeam();
+        /*!
+         * \warning Work in progress.
+         */
+        int checkItem(std::string const &itemID);
 
-            /*!
-             * \warning Work in progress.
-             */
-            void addItem(std::string const &itemID);
+        /*!
+         * \warning Work in progress.
+         */
+        bool deleteItem(std::string const &itemID);
 
-            /*!
-             * \warning Work in progress.
-             */
-            int checkItem(std::string const &itemID);
+        sf::String getName() const {
+            return name;
+        }
 
-            /*!
-             * \warning Work in progress.
-             */
-            bool deleteItem(std::string const &itemID);
+        /*!
+         * \brief Returns a const pointer to the player's name.
+         */
+        const sf::String *getNameP() const {
+            return &name;
+        }
 
-            sf::String getName() const {
-                return name;
-            }
+        /*!
+         * \brief Returns a pointer to the player's name.
+         */
+        sf::String *getNameP() {
+            return &name;
+        }
 
-            /*!
-             * \brief Returns a const pointer to the player's name.
-             */
-            const sf::String *getNameP() const {
-                return &name;
-            }
+        void setName(sf::String const &name) {
+            this->name = name;
+        }
 
-            /*!
-             * \brief Returns a pointer to the player's name.
-             */
-            sf::String *getNameP() {
-                return &name;
-            }
+        int getTrainerID() const {
+            return trainerID;
+        }
 
-            void setName(sf::String const &name) {
-                this->name = name;
-            }
+        /*!
+         * \brief Adds an OpMon to the computer.
+         */
+        void addOpMonToPC(OpMon *toAdd) {
+            pc.push_back(toAdd);
+        }
 
-            int getTrainerID() const {
-                return trainerID;
-            }
+        /*!
+         * \brief Returns an OpMon from the player's team.
+         */
+        OpMon *getOp(int ID) const {
+            return opteam[ID];
+        }
 
-            /*!
-             * \brief Adds an OpMon to the computer.
-             */
-            void addOpMonToPC(OpMon *toAdd) {
-                pc.push_back(toAdd);
-            }
+        /*!
+         * \brief Returns an OpMon from the computer.
+         */
+        OpMon *getPcOp(int ID) const {
+            return pc[ID];
+        }
 
-            /*!
-             * \brief Returns an OpMon from the player's team.
-             */
-            OpMon *getOp(int ID) const {
-                return opteam[ID];
-            }
+        /*!
+         * \brief  Heals all the player's OpMon
+         */
+        void healOp();
 
-            /*!
-             * \brief Returns an OpMon from the computer.
-             */
-            OpMon *getPcOp(int ID) const {
-                return pc[ID];
-            }
+        /*!
+         * \brief Tries to add an OpMon to the team.
+         * \returns `false` if the team is already full.
+         */
+        bool addOpToOpTeam(OpMon *toAdd);
 
-            /*!
-             * \brief  Heals all the player's OpMon
-             */
-            void healOp();
+        bool isKo() {
+            return opteam.isKo();
+        }
 
-            /*!
-             * \brief Tries to add an OpMon to the team.
-             * \returns `false` if the team is already full.
-             */
-            bool addOpToOpTeam(OpMon *toAdd);
+        int getPosX() {
+            return position.getPosition().x;
+        }
 
-            bool isKo() {
-                return opteam.isKo();
-            }
+        int getPosY() {
+            return position.getPosition().y;
+        }
 
-            int getPosX() {
-                return position.getPosition().x;
-            }
+        Elements::Position &getPosition() {
+            return position;
+        }
 
-            int getPosY() {
-                return position.getPosition().y;
-            }
+        const std::string &getMapId() {
+            return mapID;
+        }
 
-            Position &getPosition() {
-                return position;
-            }
+        void setMapID(std::string mapID) {
+            this->mapID = mapID;
+        }
 
-            const std::string &getMapId() {
-                return mapID;
-            }
+        /**
+         * \brief Teleports the player.
+         * \warning It will NOT move the Camera. You should call Overworld::tp instead.
+         * \param mapToTp The map in which teleport the player.
+         * \param position The position of the player in the map.
+         */
+        void tp(std::string mapToTp, sf::Vector2i position);
 
-            void setMapID(std::string mapID) {
-                this->mapID = mapID;
-            }
-
-            /**
-             * \brief Teleports the player.
-             * \warning It will NOT move the Camera. You should call Overworld::tp instead.
-             * \param mapToTp The map in which teleport the player.
-             * \param position The position of the player in the map.
-             */
-            void tp(std::string mapToTp, sf::Vector2i position);
-
-          private:
-            sf::String name;
-            const unsigned int trainerID; //Max : 8 digits in hexadecimal (Unimplemented yet)
-            std::map<std::string, int> bag;
-            std::vector<OpMon *> pc = std::vector<OpMon *>();
-            OpTeam opteam;
-            std::string mapID = "Player's room"; //Player's room is the start room for the player
-            Position position;
-        };
-    } // namespace Model
+    private:
+        sf::String name;
+        const unsigned int trainerID; //Max : 8 digits in hexadecimal (Unimplemented yet)
+        std::map<std::string, int> bag;
+        std::vector<OpMon *> pc = std::vector<OpMon *>();
+        OpTeam opteam;
+        std::string mapID = "Player's room"; //Player's room is the start room for the player
+        Elements::Position position;
+    };
 } // namespace OpMon
 
 #endif /* _PLAYER_HPP_ */

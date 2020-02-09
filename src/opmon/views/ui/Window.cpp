@@ -18,14 +18,14 @@ File under GNU GPL v3.0 license
 using Utils::Log::oplog;
 
 namespace OpMon {
-    namespace View {
+    namespace Ui {
         void Window::open() {
             sf::ContextSettings settings;
-            if(!Model::OptionsSave::checkParam("fullscreen")) {
-                Model::OptionsSave::addOrModifParam("fullscreen", "false");
+            if(!System::OptionsSave::checkParam("fullscreen")) {
+                System::OptionsSave::addOrModifParam("fullscreen", "false");
             }
             //settings.antialiasingLevel = 1;
-            if(Model::OptionsSave::getParam("fullscreen").getValue() == "true") {
+            if(System::OptionsSave::getParam("fullscreen").getValue() == "true") {
                 fullScreen = true;
                 window.create(sf::VideoMode::getFullscreenModes().at(0), "OpMon Lazuli", sf::Style::Fullscreen, settings);
             } else {
@@ -33,7 +33,7 @@ namespace OpMon {
             }
 
             sf::Image icon;
-            Model::ResourceLoader::load(icon, "opmon.png");
+            System::ResourceLoader::load(icon, "opmon.png");
             window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
             frame.create(512, 512);
@@ -85,5 +85,5 @@ namespace OpMon {
             window.setView(sf::View({0.f, 0.f, windowSize.x, windowSize.y}));
         }
 
-    } // namespace View
+    } // namespace UI
 } // namespace OpMon

@@ -12,15 +12,11 @@
 #include <map>
 
 namespace OpMon {
-    /*!
-     * \namespace OpMon::Model
-     * \brief Contains the model part of the game.
-     * \details This namespace is to be deleted late, as well as View and Controller.
-     */
-    namespace Model {
 
-        class OpMon;
-        class Attack;
+    class OpMon;
+    class Attack;
+
+    namespace Elements {
 
         /*!
          * \brief Enumerates the different types of turns.
@@ -102,5 +98,5 @@ namespace OpMon {
          * \returns The TurnAction printing the dialog in Battle::View.
          */
         TurnAction createTurnDialogAction(Utils::OpString dialog);
-    } // namespace Model
+    } // namespace Elements
 } // namespace OpMon
