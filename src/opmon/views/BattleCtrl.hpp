@@ -5,16 +5,16 @@
 */
 #pragma once
 
-#include "../model/objects/Attack.hpp"
-#include "../model/objects/Enums.hpp"
-#include "../model/objects/OpMon.hpp"
-#include "../model/objects/Species.hpp"
-#include "../model/objects/Turn.hpp"
-#include "../model/storage/BattleData.hpp"
-#include "../model/sysObjects/Events.hpp"
-#include "../model/sysObjects/OpTeam.hpp"
-#include "../view/Battle.hpp"
-#include "AGameScreen.hpp"
+#include "../objects/Attack.hpp"
+#include "../objects/Enums.hpp"
+#include "../objects/OpMon.hpp"
+#include "../objects/Species.hpp"
+#include "objects/Turn.hpp"
+#include "BattleData.hpp"
+#include "objects/Events.hpp"
+#include "../objects/OpTeam.hpp"
+#include "Battle.hpp"
+#include "base/AGameScreen.hpp"
 #include <vector>
 
 namespace OpMon {

@@ -7,7 +7,7 @@
 #ifndef OPMON_DIALOG_CPP_HPP
 #define OPMON_DIALOG_CPP_HPP
 
-#include "../model/storage/UiData.hpp"
+#include "../../core/UiData.hpp"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>

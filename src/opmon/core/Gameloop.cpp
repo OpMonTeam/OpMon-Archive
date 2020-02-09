@@ -4,11 +4,14 @@ Author : Cyrielle
 Contributor : BAKFR
 File under GNU GPL v3.0 license
 */
-#include "./Gameloop.hpp"
+#include "Gameloop.hpp"
+
 #include "../../utils/StringKeys.hpp"
-#include "../controller/MainMenuCtrl.hpp"
-#include "../model/storage/ResourceLoader.hpp"
-#include "../model/sysObjects/Player.hpp"
+
+#include "../views/MainMenuCtrl.hpp"
+#include "system/ResourceLoader.hpp"
+#include "Player.hpp"
+
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Graphics/Texture.hpp>

@@ -13,7 +13,7 @@
 #include <SFML/System/Vector2.hpp>
 #include <string>
 
-#include "../objects/Enums.hpp"
+#include "../../objects/Enums.hpp"
 
 /*!
  * \brief The size of one tile, in pixels.

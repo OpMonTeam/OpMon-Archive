@@ -10,7 +10,9 @@
 #define CORE_HPP
 
 #include "../../utils/defines.hpp"
+
 #include "GameStatus.hpp"
+
 #include <string>
 
 /*!

@@ -6,9 +6,9 @@ File under GNU GPL v3.0 license
 */
 #include "OverworldCtrl.hpp"
 
-#include "../model/objects/Attacks.hpp"
-#include "../model/objects/OpMon.hpp"
-#include "../model/sysObjects/OpTeam.hpp"
+#include "../objects/Attacks.hpp"
+#include "../objects/OpMon.hpp"
+#include "../objects/OpTeam.hpp"
 #include "AnimationCtrl.hpp"
 #include "BattleCtrl.hpp"
 #include "GameMenuCtrl.hpp"

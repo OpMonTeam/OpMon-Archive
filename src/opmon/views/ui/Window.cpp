@@ -5,12 +5,12 @@ Contributors : BAKFR, torq
 File under GNU GPL v3.0 license
 */
 #include "Window.hpp"
-#include "../../utils/StringKeys.hpp"
-#include "../../utils/centerOrigin.hpp"
-#include "../../utils/log.hpp"
-#include "../model/save/OptionsSave.hpp"
-#include "../model/storage/ResourceLoader.hpp"
-#include "../start/Core.hpp"
+#include "../../../utils/StringKeys.hpp"
+#include "../../../utils/centerOrigin.hpp"
+#include "../../../utils/log.hpp"
+#include "../../core/system/OptionsSave.hpp"
+#include "../../core/system/ResourceLoader.hpp"
+#include "../../core/Core.hpp"
 
 #include <SFML/Graphics.hpp>
 #include <algorithm> // for std::min and std::max

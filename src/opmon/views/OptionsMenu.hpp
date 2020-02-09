@@ -9,14 +9,14 @@
 #ifndef OPTIONSMENU_HPP
 #define OPTIONSMENU_HPP
 
-#include "../controller/MenuHelper.hpp"
-#include "../model/storage/OptionsMenuData.hpp"
-#include "../start/i18n/ATranslatable.hpp"
-#include "Elements.hpp"
+#include "OptionsMenuData.hpp"
+#include "../core/i18n/ATranslatable.hpp"
+#include "ui/Elements.hpp"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "ui/TextBox.hpp"
+#include "../../utils/CycleCounter.hpp"
 
 namespace OpMon {
     namespace View {
@@ -82,13 +82,13 @@ namespace OpMon {
             int cursorPosition() const {
                 switch(currentOptions) {
                 case OptionType::ALL:
-                    return curPosOptI;
+                    return curPosOptI.getValue();
                 case OptionType::LANG:
-                    return curPosLangI;
+                    return curPosLangI.getValue();
                 case OptionType::CONTROLS:
-                    return curPosCtrlI;
+                    return curPosCtrlI.getValue();
                 default:
-                    return curPosOptI;
+                    return curPosOptI.getValue();
                 }
 
                 return 0;
@@ -132,9 +132,9 @@ namespace OpMon {
             sf::Vector2f curPosOpt[6] = {};
             sf::Vector2f curSizeOpt[6];
             int optionSelect = -1;
-            int curPosOptI = 0;
-            int curPosLangI = 0;
-            int curPosCtrlI = 0;
+            Utils::CycleCounter curPosOptI = Utils::CycleCounter(6);
+            Utils::CycleCounter curPosLangI = Utils::CycleCounter(6);
+            Utils::CycleCounter curPosCtrlI = Utils::CycleCounter(2);
             /*!
              * \brief The currently selected key to change in the controls menu.
              */

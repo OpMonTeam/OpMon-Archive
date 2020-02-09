@@ -5,7 +5,7 @@
 */
 #pragma once
 
-#include "UiData.hpp"
+#include "../core/UiData.hpp"
 
 namespace OpMon {
     namespace Model {

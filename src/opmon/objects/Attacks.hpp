@@ -8,7 +8,7 @@
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUES_HPP_
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUES_HPP_
 
-#include "../../../nlohmann/json.hpp"
+#include "../../nlohmann/json.hpp"
 #include "Attack.hpp"
 #include "OpMon.hpp"
 #include <cmath>

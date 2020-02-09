@@ -5,7 +5,7 @@ Contributor : BAKFR
 File under GNU GPL v3.0 license
 */
 #include "StringKeys.hpp"
-#include "../opmon/start/Core.hpp"
+#include "../opmon/core/Core.hpp"
 #include "./log.hpp"
 #include <cstdio>
 #include <fstream>

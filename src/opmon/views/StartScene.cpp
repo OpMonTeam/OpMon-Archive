@@ -9,10 +9,9 @@ File under GNU GPL v3.0 license
 #include "../../utils/StringKeys.hpp"
 #include "../../utils/defines.hpp"
 #include "../../utils/log.hpp"
-#include "../model/storage/ResourceLoader.hpp"
-#include "../model/sysObjects/Player.hpp"
-#include "./Window.hpp"
-#include "Dialog.hpp"
+#include "../core/system/ResourceLoader.hpp"
+#include "ui/Window.hpp"
+#include "ui/Dialog.hpp"
 
 namespace OpMon {
     namespace View {

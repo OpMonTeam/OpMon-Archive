@@ -4,12 +4,12 @@
   File under GNU GPL v3.0 license
 */
 #include "OverworldData.hpp"
-#include "../../../nlohmann/json.hpp"
-#include "../../../utils/OpString.hpp"
-#include "../../../utils/log.hpp"
-#include "../../../utils/path.hpp"
+#include "../../nlohmann/json.hpp"
+#include "../../utils/OpString.hpp"
+#include "../../utils/log.hpp"
+#include "../../utils/path.hpp"
 #include "../objects/Attacks.hpp"
-#include "ResourceLoader.hpp"
+#include "../core/system/ResourceLoader.hpp"
 #include <fstream>
 
 namespace OpMon {

@@ -9,14 +9,14 @@
 
 #include <memory>
 
-#include "../model/objects/Enums.hpp"
-#include "../model/storage/OverworldData.hpp"
-#include "../model/sysObjects/Map.hpp"
-#include "../model/sysObjects/Player.hpp"
-#include "../start/Core.hpp"
-#include "../start/GameStatus.hpp"
-#include "Dialog.hpp"
-#include "Elements.hpp"
+#include "../objects/Enums.hpp"
+#include "OverworldData.hpp"
+#include "objects/Map.hpp"
+#include "../core/Player.hpp"
+#include "../core/Core.hpp"
+#include "../core/GameStatus.hpp"
+#include "ui/Dialog.hpp"
+#include "ui/Elements.hpp"
 
 namespace OpMon {
     namespace View {

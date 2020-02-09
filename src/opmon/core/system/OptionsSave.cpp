@@ -6,7 +6,7 @@ File under GNU GPL v3.0 license
 */
 #include "OptionsSave.hpp"
 #include "../../../utils/log.hpp"
-#include "../../start/Core.hpp"
+#include "../Core.hpp"
 
 namespace OpMon {
     namespace Model {

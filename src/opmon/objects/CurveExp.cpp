@@ -4,7 +4,7 @@ Author : torq
 File under GNU GPL v3.0 license
 */
 #include "CurveExp.hpp"
-#include "../../start/Core.hpp"
+#include "../core/Core.hpp"
 #include "math.h"
 
 namespace OpMon {

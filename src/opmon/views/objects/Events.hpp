@@ -15,9 +15,9 @@
 
 #include "../../../utils/OpString.hpp"
 #include "../../../utils/defines.hpp"
-#include "../../start/i18n/ATranslatable.hpp"
-#include "../objects/Enums.hpp"
-#include "Player.hpp"
+#include "../../core/i18n/ATranslatable.hpp"
+#include "../../objects/Enums.hpp"
+#include "../../core/Player.hpp"
 #include "Position.hpp"
 
 //Macros defining constants to know the side from where the events can be triggered.

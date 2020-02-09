@@ -6,7 +6,7 @@
 */
 #pragma once
 
-#include "../model/storage/ResourceLoader.hpp"
+#include "../../core/system/ResourceLoader.hpp"
 #include <SFML/Audio/Music.hpp>
 #include <SFML/Audio/Sound.hpp>
 #include <SFML/Audio/SoundBuffer.hpp>
