@@ -55,17 +55,19 @@ namespace OpMon {
         data.getUiDataPtr()->getJukebox().play("Title");
     }
 
-    void MainMenu::draw(sf::RenderTexture &frame, int curPosI) {
-        frame.clear(sf::Color(74, 81, 148));
-
+    void MainMenu::update(int curPosI){
         for(auto &mainMenuItem : mainMenuItems) {
             mainMenuItem.setActive(false);
         }
 
         mainMenuItems[curPosI].setActive(true);
+    }
+
+    void MainMenu::draw(sf::RenderTarget &frame, sf::RenderStates states) const {
+        frame.clear(sf::Color(74, 81, 148));
 
         for(auto &mainMenuItem : mainMenuItems) {
-            frame.draw(mainMenuItem);
+            states.draw(mainMenuItem);
         }
     }
 
