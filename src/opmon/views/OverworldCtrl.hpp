@@ -67,7 +67,55 @@ namespace OpMon {
             virtual void loadNextScreen();
             virtual void suspend();
             virtual void resume();
-        };
+
+            /*!
+             * \brief Checks the key pressed on the keyboard to see if the player wants to move.
+             * \details Does not check if Overworld::justTp is `true`, if the player is currently animated or if their movement is locked (Position::moveLock). If a direction key is pressed and the player is able to move, calls PlayerCtrl::move.
+             */
+            void checkMove(Model::Player &player, View::Overworld &overworld);
+
+            /*!
+             * \brief Moves the player, and then triggers the events activated when the player is moving towards them.
+             * \details Calls Position::move and EventsCtrl::actionEvents with Model::Events::EventTrigger::GO_IN.
+             */
+            void move(Model::Side direction, Model::Player &player, View::Overworld &overworld);
+
+            /*!
+             * \brief Calls Event::update for each event.
+             * \param events The events.
+             * \param player A reference to the player object.
+             * \param overworld A reference to the overworld view.
+             */
+            void updateEvents(std::vector<Model::Event *> &events, Model::Player &player, View::Overworld &overworld);
+
+            /*!
+             * \brief Calls Event::action for some events.
+             * \details The method checks two things first :
+             * - If the EventTrigger of the event matches with the
+             * given EventTrigger.
+             * - If the side of interaction of the event matches with
+             * the player's direction.
+             * \param events The events.
+             * \param player A reference to the player object.
+             * \param toTrigger The method will only call
+             * Event::action for the events with this EventTrigger.
+             * \param overworld A reference to the overworld view.
+             */
+            void actionEvents(std::vector<Model::Event *> &events, Model::Player &player, Model::Events::EventTrigger toTrigger, View::Overworld &overworld);
+
+            /*!
+             * \brief Calls actionEvents for some events.
+             * \details This method does two things :
+             * - If the player has pressed the interaction key, it
+             * calls actionEvents for with all the events in the square
+             * ahead of the player, with EventTrigger::PRESS
+             * - It calls actionEvents with all the events in the
+             * square where the player currently is, with EventTrigger::BE_IN.
+             * \param event The events.
+             * \param player A reference to the player object.
+             * \param overworld A reference to the overworld view.
+             */
+            void checkAction(sf::Event const &event, Model::Player &player, View::Overworld &overworld);
 
     } // namespace Controller
 } // namespace OpMon
