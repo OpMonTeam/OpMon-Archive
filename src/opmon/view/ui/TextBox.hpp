@@ -20,10 +20,10 @@ class TextBox : public sf::Drawable {
     int height;
 
     // An eventual text to be displayed in the left side of the box
-    sf::Text leftText;
+    std::vector<sf::Text> leftText;
 
     // An eventual text to be displayed in the right side of the box
-    sf::Text rightText;
+    std::vector<sf::Text> rightText;
 
     // The font to display the text with
     sf::Font font;
@@ -45,7 +45,7 @@ class TextBox : public sf::Drawable {
      * \param width The width of the box.
      * \param height The height of the box.
      */
-    TextBox(sf::Texture texture, sf::Vector2f position, int width, int height);
+    TextBox(sf::Texture texture, sf::Vector2f position, int width, int height, uint32_t linesCount = 1);
 
     ~TextBox() = default;
 
@@ -59,7 +59,7 @@ class TextBox : public sf::Drawable {
      * \brief Set the string used for the content of the text in the left of the box.
      * \param content A string to use for the content.
      */
-    void setLeftContent(const sf::String& content);
+    void setLeftContent(const sf::String& content, uint32_t line = 0);
 
     /**!
      * \brief Set the string used for the content of the text in the right of the box.
