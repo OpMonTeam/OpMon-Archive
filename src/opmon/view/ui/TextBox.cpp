@@ -6,15 +6,22 @@
 #include <ostream>
 #include <sstream>
 
-TextBox::TextBox(sf::Texture texture, sf::Vector2f position, int width, int height)
+TextBox::TextBox(sf::Texture texture, sf::Vector2f position, int width, int height, uint32_t linesCount)
   : texture(texture)
   , position(position)
   , width(width)
   , height(height) {
 
     // Some default values for the left text
-    sf::Vector2f leftTextPosition(position.x + 24, position.y + 24);
-    leftText.setPosition(leftTextPosition);
+    for (uint32_t i = 0; i < linesCount; i++) {
+        sf::Text newLeftText;
+        sf::Vector2f leftTextPosition(position.x + 24, position.y + 24 * (i+1));
+        newLeftText.setPosition(leftTextPosition);
+        leftText.push_back(newLeftText);
+
+        sf::Text newRightText;
+        rightText.push_back(newRightText);
+    }
 
     // Size of one of the nine parts of the text box (assuming its a square)
     int partSize = 16;
@@ -100,31 +107,42 @@ TextBox::TextBox(sf::Texture texture, sf::Vector2f position, int width, int heig
 void TextBox::draw(sf::RenderTarget &target, sf::RenderStates states) const {
     states.texture = &this->texture;
     target.draw(this->vertexArray, states);
-    target.draw(this->leftText, states);
-    target.draw(this->rightText, states);
+
+    for (auto& text : leftText) {
+        target.draw(text, states);
+    }
+
+    for (auto& text : rightText) {
+        target.draw(text, states);
+    }
 }
 
 void TextBox::setFont(const sf::Font &font) {
-    leftText.setFillColor(sf::Color::Black);
-    leftText.setFont(font);
-    leftText.setCharacterSize(16);
-    rightText.setFillColor(sf::Color::Black);
-    rightText.setFont(font);
-    rightText.setCharacterSize(16);
+    for (auto& text : leftText) {
+        text.setFillColor(sf::Color::Black);
+        text.setFont(font);
+        text.setCharacterSize(16);
+    }
+
+    for (auto& text : rightText) {
+        text.setFillColor(sf::Color::Black);
+        text.setFont(font);
+        text.setCharacterSize(16);
+    }
 }
 
-void TextBox::setLeftContent(const sf::String &content) {
-    leftText.setString(content);
+void TextBox::setLeftContent(const sf::String &content, uint32_t line) {
+    leftText[line].setString(content);
 }
 
 void TextBox::setRightContent(const sf::String &content) {
-    rightText.setString(content);
+    rightText[0].setString(content);
 
     // We need to recalculate the position of the right text each time we change its string
-    sf::FloatRect rightTextGlobalBound = rightText.getGlobalBounds();
+    sf::FloatRect rightTextGlobalBound = rightText[0].getGlobalBounds();
     float rightTextWidth = rightTextGlobalBound.width;
     sf::Vector2f rightTextPosition(position.x + width - rightTextWidth - 24, position.y + 24);
-    rightText.setPosition(rightTextPosition);
+    rightText[0].setPosition(rightTextPosition);
 }
 
 void TextBox::setActive(bool active) {
