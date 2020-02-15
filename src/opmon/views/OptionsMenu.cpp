@@ -215,16 +215,73 @@ namespace OpMon {
         curSizeCtrl[1].y = 63 / rectSurb.getGlobalBounds().height;
     }
 
-    void OptionsMenu::draw(sf::RenderTarget &frame) {
+    void OptionsMenu::draw(sf::RenderTarget &frame, sf::RenderStates states) const {
+        switch(currentOptions) {
+        case OptionType::CREDITS:
+            frame.clear(sf::Color::White);
+            frame.draw(bgCredits);
+            frame.draw(txtCre1);
+            frame.draw(txtCre2);
+            frame.draw(txtCre3);
+            frame.draw(txtCre4);
+            frame.draw(txtCre5);
+            frame.draw(txtCre6);
+            frame.draw(txtCre7);
+            frame.draw(txtCre8);
+            frame.draw(txtCre81);
+            frame.draw(txtCre82);
+            frame.draw(txtCre83);
+            frame.draw(txtCre84);
+            frame.draw(txtCre9);
+            frame.draw(txtCre10);
+            frame.draw(rectSurb);
+            frame.draw(txtRetour);
+            frame.draw(txtCred);
+            break;
+
+        case OptionType::CONTROLS:
+            frame.clear(sf::Color::White);
+            frame.draw(bgControls);
+            frame.draw(txtCtrlChange);
+            frame.draw(rectKeyChange);
+            frame.draw(txtCtrlUp);
+            frame.draw(txtCtrlDown);
+            frame.draw(txtCtrlLeft);
+            frame.draw(txtCtrlRight);
+            frame.draw(txtCtrlTalk);
+            frame.draw(txtCtrlInteract);
+            frame.draw(rectSurb);
+            frame.draw(txtRetour);
+            frame.draw(txtCtrl);
+            break;
+
+        case OptionType::LANG:
+            frame.clear(sf::Color(74, 81, 148));
+            for(auto &languagesMenuItem : languagesMenuItems) {
+                frame.draw(languagesMenuItem);
+            }
+            break;
+
+        case OptionType::ALL:
+            frame.clear(sf::Color(74, 81, 148));
+            for(auto &optionsMenuItem : optionsMenuItems) {
+                frame.draw(optionsMenuItem);
+            }
+            break;
+
+        }
+    }
+
+    GameStatus OptionsMenu::update() {
         switch(currentOptions) {
         case OptionType::ALL:
-            return loop(frame);
+            return loop();
         case OptionType::LANG:
-            return langLoop(frame);
+            return langLoop();
         case OptionType::CONTROLS:
-            return controlsLoop(frame);
+            return controlsLoop();
         case OptionType::CREDITS:
-            return creditsLoop(frame);
+            return creditsLoop();
         }
     }
 
@@ -244,32 +301,20 @@ namespace OpMon {
         }
     }
 
-    void OptionsMenu::loop(sf::RenderTarget &frame) {
-        frame.clear(sf::Color(74, 81, 148));
-
+    GameStatus OptionsMenu::loop() {
         for(auto &optionsMenuItem : optionsMenuItems) {
             optionsMenuItem.setActive(false);
         }
-
         optionsMenuItems[curPosOptI.getValue()].setActive(true);
-
-        for(auto &optionsMenuItem : optionsMenuItems) {
-            frame.draw(optionsMenuItem);
-        }
+        return GameStatus::CONTINUE;
     }
 
-    void OptionsMenu::langLoop(sf::RenderTarget &frame) {
-        frame.clear(sf::Color(74, 81, 148));
-
+    GameStatus OptionsMenu::langLoop() {
         for(auto &languagesMenuItem : languagesMenuItems) {
             languagesMenuItem.setActive(false);
         }
-
         languagesMenuItems[curPosLangI.getValue()].setActive(true);
-
-        for(auto &languagesMenuItem : languagesMenuItems) {
-            frame.draw(languagesMenuItem);
-        }
+        return GameStatus::CONTINUE;
     }
 
     void OptionsMenu::pause() {
@@ -278,63 +323,23 @@ namespace OpMon {
     void OptionsMenu::play() {
     }
 
-    void OptionsMenu::controlsLoop(sf::RenderTarget &frame) {
-        frame.clear(sf::Color::White);
-
-        frame.draw(bgControls);
-
-        frame.draw(txtCtrlChange);
-
+    GameStatus OptionsMenu::controlsLoop() {
         rectKeyChange.setPosition(posControls[currentKeyChange]);
-        frame.draw(rectKeyChange);
-
         txtCtrlUp.setString(System::OptionsSave::getParam("control.up").getValue());
         txtCtrlDown.setString(System::OptionsSave::getParam("control.down").getValue());
         txtCtrlLeft.setString(System::OptionsSave::getParam("control.left").getValue());
         txtCtrlRight.setString(System::OptionsSave::getParam("control.right").getValue());
         txtCtrlTalk.setString(System::OptionsSave::getParam("control.talk").getValue());
         txtCtrlInteract.setString(System::OptionsSave::getParam("control.interact").getValue());
-
-        frame.draw(txtCtrlUp);
-        frame.draw(txtCtrlDown);
-        frame.draw(txtCtrlLeft);
-        frame.draw(txtCtrlRight);
-        frame.draw(txtCtrlTalk);
-        frame.draw(txtCtrlInteract);
-
         rectSurb.setPosition(curPosCtrl[curPosCtrlI.getValue()]);
         rectSurb.setScale(curSizeCtrl[curPosCtrlI.getValue()]);
-        frame.draw(rectSurb);
-
-        frame.draw(txtRetour);
-        frame.draw(txtCtrl);
+        return GameStatus::CONTINUE;
     }
 
-    void OptionsMenu::creditsLoop(sf::RenderTarget &frame) {
-        frame.clear(sf::Color::White);
-
-        frame.draw(bgCredits);
-        frame.draw(txtCre1);
-        frame.draw(txtCre2);
-        frame.draw(txtCre3);
-        frame.draw(txtCre4);
-        frame.draw(txtCre5);
-        frame.draw(txtCre6);
-        frame.draw(txtCre7);
-        frame.draw(txtCre8);
-        frame.draw(txtCre81);
-        frame.draw(txtCre82);
-        frame.draw(txtCre83);
-        frame.draw(txtCre84);
-        frame.draw(txtCre9);
-        frame.draw(txtCre10);
-
+    GameStatus OptionsMenu::creditsLoop() {
         rectSurb.setPosition(curPosOpt[0]);
         rectSurb.setScale(curSizeLang[0]);
-        frame.draw(rectSurb);
-
-        frame.draw(txtRetour);
-        frame.draw(txtCred);
+        return GameStatus::CONTINUE;
     }
 
     void OptionsMenu::initOptionsMenuItemsName() {
