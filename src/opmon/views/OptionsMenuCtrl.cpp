@@ -185,8 +185,9 @@ namespace OpMon {
     }
 
     GameStatus OptionsMenuCtrl::update(sf::RenderTexture &frame) {
-        view.draw(frame);
-        return GameStatus::CONTINUE;
+        GameStatus status = view.update();
+        frame.draw(view);
+        return status;
     }
 
     void OptionsMenuCtrl::toggleVolume() {

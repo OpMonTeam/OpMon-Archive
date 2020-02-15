@@ -34,7 +34,7 @@ namespace OpMon {
      * \todo Make the addition of a language easier.
      * \todo Put some variables in arrays.
      */
-    class OptionsMenu : I18n::ATranslatable {
+    class OptionsMenu : I18n::ATranslatable, public sf::Drawable{
     public:
         OptionsMenu(OptionsMenuData &data);
         ~OptionsMenu() = default;
@@ -48,24 +48,12 @@ namespace OpMon {
         /*!
          * \brief Draws the menu on the given frame.
          */
-        void draw(sf::RenderTarget &frame);
+        void draw(sf::RenderTarget &frame, sf::RenderStates states) const;
 
         /*!
-         * \brief Updates the main settings menu.
+         * \brief Updates the current screen shown on the screen.
          */
-        void loop(sf::RenderTarget &frame);
-        /*!
-         * \brief Updates the language menu.
-         */
-        void langLoop(sf::RenderTarget &frame);
-        /*!
-         * \brief Updates the controls menu.
-         */
-        void controlsLoop(sf::RenderTarget &frame);
-        /*!
-         * \brief Updates the credit screen.
-         */
-        void creditsLoop(sf::RenderTarget &frame);
+        GameStatus update();
 
         /*!
          * \brief Initialises the strings used in the setting
@@ -103,6 +91,25 @@ namespace OpMon {
         void initLanguagesMenuItemsName();
 
     private:
+
+        /*!
+         * \brief Updates the main settings menu.
+         */
+        GameStatus loop();
+        /*!
+         * \brief Updates the language menu.
+         */
+        GameStatus langLoop();
+        /*!
+         * \brief Updates the controls menu.
+         */
+        GameStatus controlsLoop();
+        /*!
+         * \brief Updates the credit screen.
+         */
+        GameStatus creditsLoop();
+
+
         OptionsMenuData &data;
         OptionType currentOptions;
 
