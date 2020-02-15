@@ -23,7 +23,7 @@ namespace OpMon {
      * \brief View managing the introduction scene.
      * \todo Change name to IntroScene.
      */
-    class StartScene : public I18n::ATranslatable {
+    class StartScene : public I18n::ATranslatable, public sf::Drawable {
     public:
         StartScene(StartSceneData &data);
         ~StartScene() override = default;
@@ -31,11 +31,11 @@ namespace OpMon {
         /*!
          * \brief Updates the screen.
          */
-        GameStatus operator()();
+        GameStatus update();
         /*!
          * \brief Draws the screen.
          */
-        void draw(sf::RenderTarget &frame);
+        void draw(sf::RenderTarget &frame, sf::RenderStates states) const;
 
         void play();
         void pause();
