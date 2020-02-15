@@ -5,6 +5,8 @@
 */
 #include "Nature.hpp"
 
+#include "src/opmon/objects/Enums.hpp"
+
 namespace OpMon {
 
     const NatureClass BOLD = NatureClass(Stats::DEF, Stats::ATK, 0),

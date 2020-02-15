@@ -7,14 +7,17 @@
 */
 #pragma once
 
+#include <map>
+
 #include "../../../utils/OpString.hpp"
 #include "../../objects/Item.hpp"
-#include <map>
+#include "src/opmon/objects/Enums.hpp"
 
 namespace OpMon {
 
     class OpMon;
     class Attack;
+class Item;
 
     namespace Elements {
 

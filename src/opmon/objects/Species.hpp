@@ -10,13 +10,16 @@
 #ifndef ESPECE_HPP
 #define ESPECE_HPP
 
-#include "CurveExp.hpp"
-#include "Enums.hpp"
 #include <iostream>
 #include <vector>
+#include <string>
+
+#include "CurveExp.hpp"
+#include "Enums.hpp"
 
 namespace OpMon {
     class Evolution;
+class CurveExp;
 
     /*!
      * \brief Defines a species of OpMon.

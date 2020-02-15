@@ -10,12 +10,23 @@
 
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/RenderStates.hpp>
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/System/Vector2.hpp>
+#include <vector>
 
 #include "MainMenuData.hpp"
 #include "../core/i18n/ATranslatable.hpp"
 #include "ui/TextBox.hpp"
 
+namespace sf {
+class RenderTarget;
+}  // namespace sf
+
 namespace OpMon {
+class MainMenuData;
 
     /*!
      * \brief The view printing the main menu showing at the start of the game.

@@ -6,16 +6,13 @@ File under GNU GPL v3.0 license
 */
 #include "Core.hpp"
 
-#include "../../utils/StringKeys.hpp"
+#include <stdlib.h>
+#include <iostream>
+
 #include "../../utils/defines.hpp"
 #include "../../utils/log.hpp"
 #include "../../utils/path.hpp"
-
 #include "system/OptionsSave.hpp"
-
-#include <map>
-#include <ostream>
-#include <sstream>
 
 using Utils::Log::oplog;
 

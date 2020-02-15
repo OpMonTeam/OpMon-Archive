@@ -5,14 +5,32 @@
   File under GNU GPL v3.0
 */
 #include "Battle.hpp"
+
+#include <SFML/Graphics/Rect.hpp>
+#include <ext/alloc_traits.h>
+#include <SFML/Graphics/Color.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/System/String.hpp>
+#include <algorithm>
+#include <map>
+#include <memory>
+#include <vector>
+
 #include "../../utils/StringKeys.hpp"
 #include "../objects/Attack.hpp"
 #include "BattleData.hpp"
-#include "../objects/OpTeam.hpp"
-#include "ui/Window.hpp"
-#include <SFML/Graphics/Rect.hpp>
-#include <iostream>
-#include <sstream>
+#include "src/opmon/core/Player.hpp"
+#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/objects/OpMon.hpp"
+#include "src/opmon/objects/Species.hpp"
+#include "src/opmon/views/objects/Turn.hpp"
+#include "src/opmon/views/ui/Dialog.hpp"
+#include "src/opmon/views/ui/Elements.hpp"
+#include "src/opmon/views/ui/Jukebox.hpp"
+#include "src/utils/CycleCounter.hpp"
+#include "src/utils/OpString.hpp"
+#include "src/utils/defines.hpp"
 
 namespace OpMon {
 

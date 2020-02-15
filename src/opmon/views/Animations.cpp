@@ -5,11 +5,13 @@
   File under GNU GPL v3.0 license
 */
 #include "Animations.hpp"
-#include "../../utils/defines.hpp"
-#include "../../utils/time.hpp"
+
+#include <stddef.h>
+#include <SFML/Graphics/Color.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
+
 #include "../core/system/ResourceLoader.hpp"
-#include "../core/Core.hpp"
-#include "ui/Window.hpp"
+#include "src/opmon/core/GameStatus.hpp"
 
 namespace OpMon {
 

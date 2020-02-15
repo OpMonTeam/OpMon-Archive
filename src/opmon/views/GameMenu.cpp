@@ -5,7 +5,16 @@
 */
 
 #include "GameMenu.hpp"
+
+#include <stddef.h>
+#include <SFML/Graphics/Color.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
+#include <memory>
+
 #include "../../utils/StringKeys.hpp"
+#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/views/GameMenuData.hpp"
+#include "src/utils/defines.hpp"
 
 namespace OpMon {
 

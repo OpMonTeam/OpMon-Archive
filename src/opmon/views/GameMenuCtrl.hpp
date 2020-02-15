@@ -10,8 +10,16 @@
 #include "../core/Player.hpp"
 #include "GameMenu.hpp"
 #include "base/AGameScreen.hpp"
+#include "src/opmon/core/GameStatus.hpp"
+
+namespace sf {
+class Event;
+class RenderTexture;
+}  // namespace sf
 
 namespace OpMon {
+class GameMenuData;
+class Player;
 
     /*!
      * \brief Controller of the in-game menu.

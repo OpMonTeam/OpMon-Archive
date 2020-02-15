@@ -5,10 +5,13 @@ Contributor : Cyrielle
 File under GNU GPL v3.0
 */
 #include "./log.hpp"
+
+#include <iostream>
+#include <fstream>
+
 #include "./fs.hpp"
 #include "./time.hpp"
 #include "path.hpp"
-#include <fstream>
 
 /**Principal log*/
 std::ostream *rlog = nullptr;

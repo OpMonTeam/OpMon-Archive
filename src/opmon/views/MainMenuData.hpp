@@ -5,9 +5,13 @@
  */
 #pragma once
 
+#include <SFML/Graphics/Texture.hpp>
+
 #include "../core/UiData.hpp"
 
 namespace OpMon {
+class UiData;
+
     /*!
      * \brief Contains the data for the main menu of the game.
      * \details Used by View::MainMenu and Controller:MainMenuCtrl

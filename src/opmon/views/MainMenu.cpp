@@ -5,13 +5,18 @@
   File under GNU GPL v3.0 license
 */
 #include "MainMenu.hpp"
+
+#include <SFML/Graphics/Color.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
+#include <algorithm>
+#include <memory>
+#include <string>
+
 #include "../../utils/StringKeys.hpp"
-#include "../../utils/defines.hpp"
-#include "../../utils/log.hpp"
-#include "../core/system/ResourceLoader.hpp"
-#include "OptionsMenu.hpp"
-#include "ui/Window.hpp"
 #include "ui/TextBox.hpp"
+#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/views/MainMenuData.hpp"
+#include "src/opmon/views/ui/Jukebox.hpp"
 
 namespace OpMon {
 

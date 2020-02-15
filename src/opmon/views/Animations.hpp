@@ -9,10 +9,20 @@
 #define ANIMATIONS_HPP
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/RenderStates.hpp>
+#include <SFML/Graphics/RenderTexture.hpp>
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/System/Vector2.hpp>
 #include <iostream>
 
 #include "../core/GameStatus.hpp"
 #include "../../utils/defines.hpp"
+
+namespace sf {
+class RenderTarget;
+}  // namespace sf
 
 namespace OpMon {
     /*!

@@ -5,6 +5,9 @@ Contributors : Cyrielle, jubalh
 File under GNU GPL v3.0
 */
 #include "Translator.hpp"
+
+#include <utility>
+
 #include "../../../utils/StringKeys.hpp"
 #include "../../../utils/log.hpp"
 #include "../../../utils/path.hpp"

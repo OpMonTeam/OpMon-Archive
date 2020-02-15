@@ -5,17 +5,33 @@
  */
 #pragma once
 
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/System/Vector2.hpp>
+#include <SFML/Graphics/Rect.hpp>
+#include <map>
+#include <string>
+#include <vector>
+#include <memory>
+#include <utility>
+
 #include "objects/Map.hpp"
 #include "../core/Player.hpp"
 #include "GameMenuData.hpp"
 #include "../core/UiData.hpp"
-#include <SFML/Graphics/Texture.hpp>
-#include <SFML/System/Vector2.hpp>
-#include <map>
-#include <string>
-#include <vector>
+#include "src/opmon/objects/Item.hpp"
+
+namespace sf {
+class String;
+}  // namespace sf
 
 namespace OpMon {
+class OpTeam;
+class Player;
+class UiData;
+namespace Elements {
+class Map;
+}  // namespace Elements
+
     /*!
      * \brief Contains the data used for the Overworld.
      */

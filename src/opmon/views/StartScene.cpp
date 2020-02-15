@@ -5,13 +5,19 @@
   File under GNU GPL v3.0 license
 */
 #include "StartScene.hpp"
+
+#include <SFML/Graphics/Color.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
+
 #include "../../utils/OpString.hpp"
 #include "../../utils/StringKeys.hpp"
 #include "../../utils/defines.hpp"
-#include "../../utils/log.hpp"
-#include "../core/system/ResourceLoader.hpp"
-#include "ui/Window.hpp"
 #include "ui/Dialog.hpp"
+#include "src/opmon/core/Core.hpp"
+#include "src/opmon/core/Player.hpp"
+#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/views/StartSceneData.hpp"
+#include "src/opmon/views/ui/Jukebox.hpp"
 
 namespace OpMon {
 

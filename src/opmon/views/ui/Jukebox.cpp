@@ -5,8 +5,13 @@ Contributors : Samurai413x, BAKFR
 File under GNU GPL v3.0 license
 */
 #include "Jukebox.hpp"
+
+#include <SFML/Audio/Music.hpp>
+#include <SFML/Audio/Sound.hpp>
+#include <SFML/Audio/SoundBuffer.hpp>
+
 #include "../../core/Core.hpp"
-#include <iostream>
+#include "src/opmon/core/system/ResourceLoader.hpp"
 
 namespace OpMon {
     namespace Ui {

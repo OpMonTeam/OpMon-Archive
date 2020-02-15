@@ -5,10 +5,19 @@
  */
 #pragma once
 
-#include "GameMenuData.hpp"
 #include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/RenderStates.hpp>
+#include <SFML/Graphics/Text.hpp>
+
+#include "GameMenuData.hpp"
+
+namespace sf {
+class RenderTarget;
+}  // namespace sf
 
 namespace OpMon {
+class GameMenuData;
 
     /*!
      * \brief View printing the in-game menu.

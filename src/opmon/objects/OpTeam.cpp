@@ -5,6 +5,9 @@
 */
 #include "OpTeam.hpp"
 
+#include "src/opmon/objects/Enums.hpp"
+#include "src/opmon/objects/OpMon.hpp"
+
 namespace OpMon {
 
     OpTeam::~OpTeam() {

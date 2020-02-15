@@ -7,12 +7,15 @@
 #ifndef EVOLUTION_HPP
 #define EVOLUTION_HPP
 
-#include "OpMon.hpp"
 #include <iostream>
+
+#include "OpMon.hpp"
 
 namespace OpMon {
 
     class Species;
+class OpMon;
+
     /**
      * \brief Defines an evolution type
      */

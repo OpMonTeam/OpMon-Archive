@@ -1,10 +1,8 @@
 #include "TextBox.hpp"
 
-#include <SFML/Graphics.hpp>
-
-#include "../../../utils/log.hpp"
-#include <ostream>
-#include <sstream>
+#include <SFML/Graphics/Rect.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/Graphics/Vertex.hpp>
 
 namespace OpMon{
     TextBox::TextBox(sf::Texture texture, sf::Vector2f position, int width, int height)

@@ -6,12 +6,11 @@
 */
 #include "Player.hpp"
 
-#include "../../utils/StringKeys.hpp"
-
-#include "Core.hpp"
 #include "../objects/Attack.hpp"
-
-#include <sstream>
+#include "src/opmon/objects/OpMon.hpp"
+#include "src/opmon/objects/OpTeam.hpp"
+#include "src/opmon/views/objects/Position.hpp"
+#include "src/utils/misc.hpp"
 
 namespace OpMon {
 

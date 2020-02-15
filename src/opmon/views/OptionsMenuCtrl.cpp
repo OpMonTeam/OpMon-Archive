@@ -5,15 +5,21 @@
   File under GNU GPL v3.0 license
 */
 #include "OptionsMenuCtrl.hpp"
-#include "ui/Window.hpp"
+
+#include <ext/alloc_traits.h>
+#include <SFML/Graphics/RenderTexture.hpp>
+#include <SFML/Window/Event.hpp>
+#include <SFML/Window/Keyboard.hpp>
+#include <algorithm>
 
 #include "../../utils/defines.hpp"
 #include "../core/system/OptionsSave.hpp"
 #include "../core/i18n/Translator.hpp"
-#include "Overworld.hpp"
-#include "StartScene.hpp"
-
-#include <math.h>
+#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/core/system/KeyData.hpp"
+#include "src/opmon/views/OptionsMenu.hpp"
+#include "src/opmon/views/OptionsMenuData.hpp"
+#include "src/opmon/views/ui/Jukebox.hpp"
 
 enum MenuOption { BACK = 0,
                   FULLSCREEN = 1,

@@ -5,11 +5,16 @@
  */
 #pragma once
 
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/System/Vector2.hpp>
+
 #include "../core/Player.hpp"
 #include "../core/UiData.hpp"
-#include <SFML/Graphics/Texture.hpp>
 
 namespace OpMon {
+class Player;
+class UiData;
+
     /*!
      * \brief Contains the data of the in-game menu used by View::GameMenu and Controller::GameMenuCtrl
      */

@@ -10,6 +10,8 @@
 #include <cassert>     //assert
 #include <random>      //std::uniform_real_distribution, std::uniform_int_distribution
 #include <type_traits> //std::is_floating_point_v, std::is_same_v
+#include <iosfwd>
+#include <string>
                        //std::is_integral_v, std::conditional_t
 
 /*!

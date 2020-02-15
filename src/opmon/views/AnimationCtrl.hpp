@@ -5,9 +5,15 @@
  */
 #pragma once
 
+#include <memory>
+
 #include "Animations.hpp"
 #include "base/AGameScreen.hpp"
-#include <memory>
+#include "src/opmon/core/GameStatus.hpp"
+
+namespace sf {
+class RenderTexture;
+}  // namespace sf
 
 namespace OpMon {
     /*!

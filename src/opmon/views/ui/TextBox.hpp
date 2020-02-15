@@ -1,6 +1,20 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Color.hpp>
+#include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/Font.hpp>
+#include <SFML/Graphics/PrimitiveType.hpp>
+#include <SFML/Graphics/RenderStates.hpp>
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/VertexArray.hpp>
+#include <SFML/System/String.hpp>
+#include <SFML/System/Vector2.hpp>
+
+namespace sf {
+class RenderTarget;
+}  // namespace sf
 
 namespace OpMon{
 

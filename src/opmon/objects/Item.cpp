@@ -1,7 +1,10 @@
 #include "Item.hpp"
-#include "../../utils/StringKeys.hpp"
-#include "../core/Player.hpp"
-#include "../views/objects/Turn.hpp"
+
+#include <string>
+
+#include "src/opmon/core/Core.hpp"
+#include "src/opmon/objects/OpMon.hpp"
+#include "src/utils/OpString.hpp"
 
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 
