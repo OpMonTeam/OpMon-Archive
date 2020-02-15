@@ -4,6 +4,10 @@
   File under GNU GPL v3.0 license
 */
 #include "CurveExp.hpp"
+
+#include <math.h>
+#include <memory>
+
 #include "../core/Core.hpp"
 #include "math.h"
 

@@ -8,17 +8,23 @@
 #ifndef MAP_HPP
 #define MAP_HPP
 
-#include "../../../nlohmann/json.hpp"
-#include "Events.hpp"
-
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <string>
 #include <vector>
+#include <algorithm>
+
+#include "../../../nlohmann/json.hpp"
+#include "Events.hpp"
+
+namespace sf {
+class RenderTexture;
+}  // namespace sf
 
 namespace OpMon {
 
     class OverworldData;
+
     namespace Elements {
 
         class Event;

@@ -5,7 +5,24 @@ File under GNU GPL v3.0 license
 */
 
 #include "GameMenuCtrl.hpp"
+
+#include <SFML/Graphics/RenderTexture.hpp>
+#include <SFML/Window/Event.hpp>
+#include <SFML/Window/Keyboard.hpp>
+#include <memory>
+
 #include "OptionsMenuCtrl.hpp"
+#include "src/opmon/core/Core.hpp"
+#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/views/GameMenu.hpp"
+#include "src/opmon/views/GameMenuData.hpp"
+#include "src/opmon/views/base/AGameScreen.hpp"
+#include "src/opmon/views/ui/Jukebox.hpp"
+#include "src/utils/CycleCounter.hpp"
+
+namespace OpMon {
+class Player;
+}  // namespace OpMon
 
 #define LOAD_OPTIONS 1
 

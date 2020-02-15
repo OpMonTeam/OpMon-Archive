@@ -9,6 +9,8 @@
 
 #include <SFML/Window/Event.hpp>
 #include <string>
+#include <iosfwd>
+#include <vector>
 
 #include "../../utils/defines.hpp"
 #include "../../utils/path.hpp"
@@ -19,8 +21,15 @@
 #include "MainMenu.hpp"
 #include "OptionsMenu.hpp"
 #include "base/AGameScreen.hpp"
+#include "src/opmon/core/GameStatus.hpp"
+
+namespace sf {
+class Event;
+class RenderTexture;
+}  // namespace sf
 
 namespace OpMon {
+class UiData;
 
     class OptionsMenuCtrl : public AGameScreen {
     private:

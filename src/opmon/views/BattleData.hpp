@@ -5,15 +5,18 @@
  */
 #pragma once
 
-#include "../core/Player.hpp"
-#include "../core/UiData.hpp"
 #include <SFML/Graphics/Texture.hpp>
 #include <list>
 #include <map>
 #include <string>
 #include <vector>
 
+#include "../core/Player.hpp"
+#include "../core/UiData.hpp"
+
 namespace OpMon {
+class Player;
+class UiData;
 
     /*!
      * \brief Contains the data used by View::Battle and Controller::BattleCtrl

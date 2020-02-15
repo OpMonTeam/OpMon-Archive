@@ -5,10 +5,22 @@
   File under GNU GPL v3.0 license
 */
 #include "OptionsMenu.hpp"
+
+#include <SFML/Graphics/Color.hpp>
+#include <SFML/Graphics/Rect.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
+#include <algorithm>
+#include <memory>
+#include <string>
+
 #include "../core/system/OptionsSave.hpp"
-#include "../core/system/ResourceLoader.hpp"
-#include "ui/Window.hpp"
 #include "ui/TextBox.hpp"
+#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/views/OptionsMenuData.hpp"
+#include "src/opmon/views/ui/Jukebox.hpp"
+#include "src/utils/CycleCounter.hpp"
+#include "src/utils/StringKeys.hpp"
+#include "src/utils/defines.hpp"
 
 namespace OpMon {
 

@@ -5,8 +5,16 @@ Contributor : Stelyus, BAKFR
 File under GNU GPL v3.0 license
 */
 #include "OptionsSave.hpp"
+
+#include <stddef.h>
+#include <SFML/System/String.hpp>
+#include <algorithm>
+#include <fstream>
+#include <memory>
+
 #include "../../../utils/log.hpp"
 #include "../Core.hpp"
+#include "src/utils/StringKeys.hpp"
 
 namespace OpMon {
     namespace System {

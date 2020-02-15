@@ -5,6 +5,9 @@
 */
 #include "KeyData.hpp"
 
+#include <iterator>
+#include <utility>
+
 namespace OpMon {
     namespace System {
         const std::string &KeyData::findNameKeyCode(sf::Keyboard::Key searchKeyCode) {

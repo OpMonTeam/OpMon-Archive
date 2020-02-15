@@ -5,11 +5,17 @@ Contributor : BAKFR
 File under GNU GPL v3.0 license
 */
 #include "StringKeys.hpp"
+
+#include <ext/alloc_traits.h>
+#include <SFML/Config.hpp>
+#include <queue>
+#include <algorithm>
+#include <iostream>
+#include <fstream>
+#include <memory>
+
 #include "../opmon/core/Core.hpp"
 #include "./log.hpp"
-#include <cstdio>
-#include <fstream>
-#include <queue>
 
 #define DIALOG_LIMIT 33
 

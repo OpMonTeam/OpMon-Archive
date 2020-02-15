@@ -5,10 +5,31 @@
   File under GNU GPL v3.0 license.
 */
 #include "BattleCtrl.hpp"
+
+#include <SFML/Graphics/RenderTexture.hpp>
+#include <SFML/System/String.hpp>
+#include <SFML/Window/Event.hpp>
+#include <SFML/Window/Keyboard.hpp>
+#include <algorithm>
+#include <string>
+
 #include "../../utils/OpString.hpp"
-#include <iostream>
+#include "src/opmon/core/Core.hpp"
+#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/objects/Attack.hpp"
+#include "src/opmon/objects/Enums.hpp"
+#include "src/opmon/objects/OpMon.hpp"
+#include "src/opmon/objects/OpTeam.hpp"
+#include "src/opmon/views/Battle.hpp"
+#include "src/opmon/views/BattleData.hpp"
+#include "src/opmon/views/objects/Events.hpp"
+#include "src/opmon/views/objects/Turn.hpp"
+#include "src/opmon/views/ui/Jukebox.hpp"
+#include "src/utils/misc.hpp"
 
 namespace OpMon {
+class Player;
+class Species;
 
     BattleCtrl::BattleCtrl(OpTeam *one, Elements::Events::TrainerEvent *two, UiData *uidata, Player *player)
         : BattleCtrl(one, two->getOpTeam(), uidata, player) {

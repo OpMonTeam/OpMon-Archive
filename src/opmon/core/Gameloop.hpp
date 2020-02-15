@@ -10,16 +10,23 @@
 
 #pragma once
 
-#include "../views/base/AGameScreen.hpp"
-#include "../views/ui/Window.hpp"
-
-#include "UiData.hpp"
-#include "GameStatus.hpp"
-
+#include <SFML/Window/Keyboard.hpp>
 #include <memory>
 #include <stack>
 
+#include "../views/base/AGameScreen.hpp"
+#include "../views/ui/Window.hpp"
+#include "UiData.hpp"
+#include "GameStatus.hpp"
+
+namespace sf {
+class Event;
+}  // namespace sf
+
 namespace OpMon {
+namespace Ui {
+class Window;
+}  // namespace Ui
 
     /*!
       \class GameLoop Gameloop.hpp "src/start/Gameloop.hpp"

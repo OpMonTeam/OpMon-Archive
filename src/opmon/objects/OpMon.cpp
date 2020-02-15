@@ -5,19 +5,18 @@
   File under GNU GPL v3.0 license
 */
 #include "OpMon.hpp"
-#include "../../utils/defines.hpp"
+
+#include <algorithm>
+#include <cmath>
+
 #include "../../utils/log.hpp"
 #include "../../utils/misc.hpp"
-
 #include "../core/Core.hpp"
-
 #include "./Evolution.hpp"
-#include "./evolutions.hpp"
-#include "Attacks.hpp"
-#include "Item.hpp"
-
-#include <fstream>
-#include <sstream>
+#include "src/opmon/objects/Attack.hpp"
+#include "src/opmon/objects/CurveExp.hpp"
+#include "src/opmon/objects/Nature.hpp"
+#include "src/opmon/objects/Species.hpp"
 
 namespace OpMon {
 

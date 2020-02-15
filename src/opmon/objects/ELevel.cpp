@@ -4,6 +4,8 @@
   File under GNU GPL v3.0
 */
 #include "evolutions.hpp"
+#include "src/opmon/objects/Evolution.hpp"
+#include "src/opmon/objects/OpMon.hpp"
 
 namespace OpMon {
     namespace Evolutions {

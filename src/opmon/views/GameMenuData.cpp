@@ -6,7 +6,12 @@
 
 #include "GameMenuData.hpp"
 
+
+#include "src/opmon/core/system/ResourceLoader.hpp"
+
 namespace OpMon {
+class Player;
+class UiData;
 
     GameMenuData::GameMenuData(UiData *data, Player *player)
         : uidata(data)

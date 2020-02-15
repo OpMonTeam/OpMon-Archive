@@ -6,12 +6,21 @@
 */
 #pragma once
 
-#include "../../core/system/ResourceLoader.hpp"
 #include <SFML/Audio/Music.hpp>
 #include <SFML/Audio/Sound.hpp>
 #include <SFML/Audio/SoundBuffer.hpp>
 #include <memory>
 #include <unordered_map>
+#include <string>
+#include <utility>
+
+#include "../../core/system/ResourceLoader.hpp"
+
+namespace sf {
+class Music;
+class Sound;
+class SoundBuffer;
+}  // namespace sf
 
 namespace OpMon {
     namespace Ui {

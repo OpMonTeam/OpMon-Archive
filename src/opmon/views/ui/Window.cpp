@@ -5,15 +5,22 @@ Contributors : BAKFR, torq
 File under GNU GPL v3.0 license
 */
 #include "Window.hpp"
-#include "../../../utils/StringKeys.hpp"
+
+#include <SFML/Graphics/Color.hpp>
+#include <SFML/Graphics/Image.hpp>
+#include <SFML/Graphics/View.hpp>
+#include <SFML/System/Vector2.hpp>
+#include <SFML/Window/ContextSettings.hpp>
+#include <SFML/Window/VideoMode.hpp>
+#include <SFML/Window/WindowStyle.hpp>
+#include <algorithm> // for std::min and std::max
+#include <string>
+#include <vector>
+
 #include "../../../utils/centerOrigin.hpp"
 #include "../../../utils/log.hpp"
 #include "../../core/system/OptionsSave.hpp"
 #include "../../core/system/ResourceLoader.hpp"
-#include "../../core/Core.hpp"
-
-#include <SFML/Graphics.hpp>
-#include <algorithm> // for std::min and std::max
 
 using Utils::Log::oplog;
 

@@ -6,12 +6,26 @@
 */
 #include "OverworldCtrl.hpp"
 
-#include "../objects/Attacks.hpp"
-#include "../objects/OpMon.hpp"
-#include "../objects/OpTeam.hpp"
+#include <SFML/Graphics/RenderTexture.hpp>
+#include <SFML/System/Vector2.hpp>
+#include <SFML/Window/Event.hpp>
+#include <SFML/Window/Keyboard.hpp>
+#include <memory>
+
 #include "AnimationCtrl.hpp"
 #include "BattleCtrl.hpp"
 #include "GameMenuCtrl.hpp"
+#include "src/opmon/core/Core.hpp"
+#include "src/opmon/core/Player.hpp"
+#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/views/Animations.hpp"
+#include "src/opmon/views/GameMenuData.hpp"
+#include "src/opmon/views/Overworld.hpp"
+#include "src/opmon/views/base/AGameScreen.hpp"
+#include "src/opmon/views/objects/Map.hpp"
+#include "src/opmon/views/objects/Position.hpp"
+#include "src/opmon/views/ui/Dialog.hpp"
+#include "src/opmon/views/ui/Jukebox.hpp"
 
 //Defines created to make the code easier to read
 #define LOAD_BATTLE 1

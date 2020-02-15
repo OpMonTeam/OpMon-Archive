@@ -4,19 +4,22 @@ Author : Cyrielle
 Contributors : Stelyus, Navet56
 File under GNU GPL v3.0 license
 */
+#include <time.h>
+#include <string>
+#include <iostream>
+#include <map>
+
 #include "../../utils/defines.hpp"
 #include "../../utils/fs.hpp"
 #include "../../utils/log.hpp"
 #include "../../utils/path.hpp"
 #include "../../utils/time.hpp"
-
 #include "system/OptionsSave.hpp"
 #include "system/ResourceLoader.hpp"
 #include "Gameloop.hpp"
 #include "i18n/Translator.hpp"
-
-#include <ostream>
-#include <string>
+#include "config.hpp"
+#include "src/opmon/core/Core.hpp"
 
 using Utils::Log::oplog;
 
@@ -25,6 +28,7 @@ using Utils::Log::oplog;
 #ifdef _MSC_VER
 
 #include <windows.h>
+
 int main(int argc, char *argv[]);
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {

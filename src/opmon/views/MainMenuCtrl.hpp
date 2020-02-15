@@ -13,8 +13,16 @@
 #include "MainMenu.hpp"
 #include "base/AGameScreen.hpp"
 #include "../../utils/CycleCounter.hpp"
+#include "src/opmon/core/GameStatus.hpp"
+
+namespace sf {
+class Event;
+class RenderTexture;
+}  // namespace sf
 
 namespace OpMon {
+class UiData;
+
     /*!
      * \brief Manages the main menu of the game.
      */

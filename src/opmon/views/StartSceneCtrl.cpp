@@ -5,10 +5,24 @@
   File under GNU GPL v3.0 license
 */
 #include "StartSceneCtrl.hpp"
-#include "../../utils/log.hpp"
-#include "ui/Window.hpp"
+
+#include <SFML/Graphics/RenderTexture.hpp>
+#include <SFML/System/String.hpp>
+#include <SFML/Window/Event.hpp>
+#include <SFML/Window/Keyboard.hpp>
+#include <memory>
+#include <string>
+
 #include "OverworldCtrl.hpp"
 #include "AnimationCtrl.hpp"
+#include "src/opmon/core/Core.hpp"
+#include "src/opmon/core/Player.hpp"
+#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/views/Animations.hpp"
+#include "src/opmon/views/StartScene.hpp"
+#include "src/opmon/views/StartSceneData.hpp"
+#include "src/opmon/views/base/AGameScreen.hpp"
+#include "src/opmon/views/ui/Dialog.hpp"
 
 //Defines created to make the code easier to understand.
 #define LOAD_OVERWORLD 1

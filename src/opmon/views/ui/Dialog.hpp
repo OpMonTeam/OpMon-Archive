@@ -7,14 +7,29 @@
 #ifndef OPMON_DIALOG_CPP_HPP
 #define OPMON_DIALOG_CPP_HPP
 
-#include "../../core/UiData.hpp"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
+#include <SFML/Audio/Sound.hpp>
+#include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/RenderStates.hpp>
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/System/String.hpp>
 #include <queue>
 #include <string>
+#include <vector>
+
+#include "../../core/UiData.hpp"
+#include "src/utils/defines.hpp"
+
+namespace sf {
+class RenderTarget;
+}  // namespace sf
 
 namespace OpMon {
+class UiData;
+
     namespace Ui {
 
         class Dialog : public sf::Drawable {

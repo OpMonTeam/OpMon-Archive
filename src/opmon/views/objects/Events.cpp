@@ -6,11 +6,25 @@ File under GNU GPL v3.0 license
 */
 #include "Events.hpp"
 
-#include "../../../utils/defines.hpp"
-#include "../../../utils/log.hpp"
+
 #include "../../core/Core.hpp"
 #include "../Overworld.hpp"
 #include "Position.hpp"
+#include "src/opmon/core/Player.hpp"
+#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/objects/Enums.hpp"
+#include "src/opmon/objects/OpTeam.hpp"
+#include "src/opmon/views/OverworldData.hpp"
+#include "src/opmon/views/ui/Jukebox.hpp"
+#include "src/utils/OpString.hpp"
+#include "src/utils/misc.hpp"
+
+namespace OpMon {
+class Item;
+namespace Elements {
+class Map;
+}  // namespace Elements
+}  // namespace OpMon
 
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 #pragma GCC diagnostic ignored "-Wreorder"

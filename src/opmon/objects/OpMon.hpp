@@ -6,19 +6,21 @@
 #ifndef OPMON_HPP
 #define OPMON_HPP
 
-#include "../../utils/misc.hpp"
-#include "Nature.hpp"
-#include "Species.hpp"
 #include <SFML/System/String.hpp>
 #include <cmath>
 #include <iostream>
+#include <string>
+#include <vector>
+
+#include "../../utils/misc.hpp"
+#include "Nature.hpp"
+#include "Species.hpp"
+#include "src/opmon/objects/Enums.hpp"
 
 namespace OpMon {
 
     class Species;
-
     class Attack;
-
     class Item;
 
     /*!

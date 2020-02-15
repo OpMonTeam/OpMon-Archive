@@ -4,9 +4,12 @@
   File under GNU GPL v3.0 license
 */
 #include "OptionsMenuData.hpp"
+
 #include "../core/system/ResourceLoader.hpp"
 
 namespace OpMon {
+class UiData;
+
     OptionsMenuData::OptionsMenuData(UiData *data)
         : uidata(data) {
         System::ResourceLoader::load(background, "backgrounds/options.png");

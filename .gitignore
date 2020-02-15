@@ -10,19 +10,7 @@
 *.tmp
 *.out
 *.log
-exe/log.txt
-exe/errLog.txt
-exeLinux/log.txt
-exeLinux/errLog.txt
-exeLinux/logs/log.txt
-exeLinux/logs/errLog.txt
-exeLinux/logs
-exeLinux/logs/
-exeLinux/OpMon
-exeLinux/OpMon-Debug
 *vgcore*
-exe/OpMon.exe
-exe/OpMon-Debug.exe
 installers/Windows/*.exe
 installers/Debian/*.deb
 *.db
@@ -59,7 +47,6 @@ install_manifest.txt
 *#
 .#*
 config.hpp
-src/opmon/model/objects/AttackEffectsOld.txt
 .cproject
 .project
 OpMon.cbp
@@ -77,3 +64,5 @@ doc/html
 .vscode/launch.json
 .vscode/extensions.json
 *.code-workspace
+compile_commands.json
+doc/latex

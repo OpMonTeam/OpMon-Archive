@@ -4,7 +4,14 @@
   File under GNU GPL v3.0 license
 */
 #include "ResourceLoader.hpp"
+
+#include <stdio.h>
+#include <SFML/Audio/Music.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <algorithm>
+
 #include "../../../utils/path.hpp"
+#include "src/opmon/core/Core.hpp"
 
 namespace OpMon {
     namespace System {

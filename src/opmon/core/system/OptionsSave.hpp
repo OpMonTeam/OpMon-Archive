@@ -7,12 +7,13 @@
 #ifndef OPTIONSSAVE_HPP
 #define OPTIONSSAVE_HPP
 
-#include "../../../utils/StringKeys.hpp"
-
 #include <fstream>
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <string>
+
+#include "../../../utils/StringKeys.hpp"
 
 /*!
  * \brief Macro used to explicit the use of OptionsSave::addOrModifParam when calling it in the code.
