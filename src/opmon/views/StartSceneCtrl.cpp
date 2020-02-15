@@ -91,14 +91,14 @@ namespace OpMon {
         //If the player have finished to enter his/her name, animNext must have been set to true. This part will launch the animation.
         if(animNext) {
             animNext = false;
-            view.draw(frame);
+            frame.draw(view);
             loadNext = LOAD_ANIMATION_CLOSE;
             screenTexture = frame.getTexture();
             return GameStatus::NEXT_NLS;
         }
-        GameStatus toReturn = view();
+        GameStatus toReturn = view.update();
         if(toReturn == GameStatus::CONTINUE) {
-            view.draw(frame);
+            frame.draw(view);
         }
 
         if(toReturn == GameStatus::NEXT_NLS || toReturn == GameStatus::NEXT) {
