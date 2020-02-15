@@ -41,14 +41,13 @@ namespace OpMon {
         }
     }
 
-    GameStatus GameMenu::operator()(sf::RenderTexture &frame) {
+    void GameMenu::draw(sf::RenderTarget &frame, sf::RenderStates states) const {
         frame.draw(background);
         frame.draw(menuBg);
         frame.draw(selections[curPos]);
         for(size_t i = 0; i < 6; i++) {
             frame.draw(selectxt[i]);
         }
-        return GameStatus::CONTINUE;
     }
 
 } // namespace OpMon
