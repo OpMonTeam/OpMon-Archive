@@ -61,7 +61,7 @@ namespace OpMon {
         initStrings();
     }
 
-    GameStatus StartScene::operator()() {
+    GameStatus StartScene::update() {
         switch(part) {
         case 0:
             if(!dialog->isDialogOver()) {
@@ -75,6 +75,7 @@ namespace OpMon {
             break;
 
         case 1:
+            nameField.setString(pName);
             return GameStatus::CONTINUE; // Everything is handled by StartSceneCtrl
 
         case 2:
@@ -98,7 +99,7 @@ namespace OpMon {
         dialog = std::make_unique<Ui::Dialog>(txtP1.getString(), data.getUiDataPtr());
     }
 
-    void StartScene::draw(sf::RenderTarget &frame) {
+    void StartScene::draw(sf::RenderTarget &frame, sf::RenderStates states) const {
         frame.clear(sf::Color::White);
         switch(part) {
         case 0:
@@ -112,7 +113,6 @@ namespace OpMon {
             for(const sf::Text &desc : textDescs) {
                 frame.draw(desc);
             }
-            nameField.setString(pName);
             frame.draw(nameField);
             break;
 
