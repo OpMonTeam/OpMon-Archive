@@ -25,7 +25,7 @@ namespace OpMon {
      * \details This class prints and manages the camera, the map, the events, the animated elements on the map, and the player's animation.
      * \todo Unify the player animation system and the npc animation system.
      */
-    class Overworld {
+    class Overworld : public sf::Drawable {
     public:
         Overworld(const std::string &mapId, OverworldData &data);
 
@@ -42,9 +42,11 @@ namespace OpMon {
         }
 
         /*!
-         * \brief Updates and draws the overworld on the screen.
+         * \brief Updates the overworld.
          */
-        GameStatus operator()(sf::RenderTexture &frame);
+        GameStatus update();
+
+        void draw(sf::RenderTarget& frame, sf::RenderStates states) const;
 
         /*!
          * \brief Teleports the player.
@@ -146,19 +148,24 @@ namespace OpMon {
         /*!
          * \brief Prints the animated elements on the screen.
          */
-        void printElements(sf::RenderTexture &frame);
+        void printElements(sf::RenderTarget &frame) const;
+
+        /*!
+         * \brief Updates the animated elements.
+         */
+        void updateElements();
 
         /*!
          * \brief Shows the collision layer.
          * \brief The collision layer consists in semi-transparent squares on each tile. You can see it by pressing C while in debug mode ('=' key).
          */
-        void printCollisionLayer(sf::RenderTarget &frame);
+        void printCollisionLayer(sf::RenderTarget &frame) const;
 
         /*!
          * \brief Moves the camera to follow the player's position.
          * \todo Change camera to make it always centered on the player, except on the edges of the map
          */
-        void updateCamera(sf::RenderTarget &frame);
+        void updateCamera();
 
         /*!
          * \brief Centers the camera on the player.
@@ -167,6 +174,7 @@ namespace OpMon {
 
         Elements::Events::TrainerEvent *trainerToBattle = nullptr;
 
+        sf::Text debugText;
         sf::View camera;
         sf::Sprite character;
         /*!

@@ -56,12 +56,7 @@ namespace OpMon {
         }
     }
 
-    void Overworld::updateCamera(sf::RenderTarget &frame) {
-        if(cameraLock) {
-            frame.setView(camera);
-            return;
-        }
-
+    void Overworld::updateCamera() {
         // Note: character is already center on itself:
         // character.getPosition() returns the center of the player's sprite
         const sf::Vector2f &playerPos = character.getPosition();
@@ -104,14 +99,13 @@ namespace OpMon {
         }
         camera.setCenter(center);
 
-        frame.setView(camera); // It must be called after all camera modification
     }
 
     void Overworld::resetCamera() {
         camera.setCenter(character.getPosition());
     }
 
-    void Overworld::printElements(sf::RenderTexture &frame) {
+    void Overworld::updateElements() {
         //"i" is the element's id
         for(std::string const &i : current->getAnimatedElements()) {
             data.incrementElementCounter(i);
@@ -120,7 +114,13 @@ namespace OpMon {
             }
             elementsSprites[i].setTexture(data.getCurrentElementTexture(i));
             elementsSprites[i].setPosition(data.getElementPos(i));
-            frame.draw(elementsSprites[i]);
+        }
+    }
+
+    void Overworld::printElements(sf::RenderTarget &frame) const {
+        //"i" is the element's id
+        for(std::string const &i : current->getAnimatedElements()) {
+            frame.draw(elementsSprites.at(i));
         }
     }
 
@@ -167,7 +167,63 @@ namespace OpMon {
         I18n::Translator::getInstance().setLang(I18n::Translator::getInstance().getLang());
     }
 
-    GameStatus Overworld::operator()(sf::RenderTexture &frame) {
+    void Overworld::draw(sf::RenderTarget &frame, sf::RenderStates states) const {
+        bool is_in_dialog = this->dialog && !this->dialog->isDialogOver();
+        frame.setView(camera);
+        frame.clear(sf::Color::Black);
+
+        //Drawing the two first layers
+        if((debugMode ? printlayer[0] : true)) {
+            frame.draw(*layer1);
+        }
+        if((debugMode ? printlayer[1] : true)) {
+            frame.draw(*layer2);
+        }
+        //Drawing events under the player
+        for(const Elements::Event *event : current->getEvents()) {
+            const sf::Sprite *sprite = event->getSprite();
+            if(sprite->getPosition().y <= data.getPlayer().getPosition().getPositionPixel().y) {
+                frame.draw(*sprite);
+            }
+        }
+
+        frame.draw(character);
+
+        //Drawing the events above the player
+        for(const Elements::Event *event : current->getEvents()) {
+            const sf::Sprite *sprite = event->getSprite();
+            if(sprite->getPosition().y > data.getPlayer().getPosition().getPositionPixel().y) {
+                frame.draw(*sprite);
+            }
+        }
+
+                if(debugMode && printCollisions) {
+            printCollisionLayer(frame);
+        }
+
+        //Drawing the third layer
+        if((debugMode ? printlayer[2] : true)) {
+            frame.draw(*layer3);
+        }
+
+        printElements(frame);
+
+        /***** draw GUI *****/
+        frame.setView(frame.getDefaultView());
+
+
+        if(is_in_dialog) {
+            frame.draw(*this->dialog);
+        }
+
+        if(debugMode) {
+            frame.draw(debugText);
+            frame.draw(fpsPrint);
+            frame.draw(coordPrint);
+        }
+    }
+
+    GameStatus Overworld::update() {
         bool is_in_dialog = this->dialog && !this->dialog->isDialogOver();
 
         if(initPlayerAnimation) {
@@ -182,7 +238,6 @@ namespace OpMon {
             oldTicksFps = Utils::Time::getElapsedMilliseconds();
         }
 
-        sf::Text debugText;
         if(debugMode) {
             std::cout << "Elapsed Time: " << Utils::Time::getElapsedSeconds() << "s" << std::endl;
             std::cout << "Loop : " << (is_in_dialog ? "Dialog" : "Normal") << std::endl;
@@ -215,25 +270,11 @@ namespace OpMon {
             this->dialog->updateTextAnimation();
         }
 
-        /**** draw ****/
+        updateCamera();
 
-        updateCamera(frame);
-        frame.clear(sf::Color::Black);
-
-        //Drawing the two first layers
-        if((debugMode ? printlayer[0] : true)) {
-            frame.draw(*layer1);
-        }
-        if((debugMode ? printlayer[1] : true)) {
-            frame.draw(*layer2);
-        }
         //Drawing events under the player
         for(Elements::Event *event : current->getEvents()) {
-            const sf::Sprite *sprite = event->getSprite();
             event->updateTexture();
-            if(sprite->getPosition().y <= data.getPlayer().getPosition().getPositionPixel().y) {
-                frame.draw(*sprite);
-            }
         }
 
         if(!is_in_dialog && data.getPlayer().getPosition().isAnim()) {
@@ -281,45 +322,17 @@ namespace OpMon {
             character.setTextureRect(data.getTexturePPRect((unsigned int)data.getPlayer().getPosition().getDir()));
         }
 
-        //Drawing character
-        frame.draw(character);
         //Drawing the events above the player
         for(Elements::Event *event : current->getEvents()) {
-            const sf::Sprite *sprite = event->getSprite();
             event->updateTexture();
-            if(sprite->getPosition().y > data.getPlayer().getPosition().getPositionPixel().y) {
-                frame.draw(*sprite);
-            }
         }
 
-        if(debugMode && printCollisions) {
-            printCollisionLayer(frame);
-        }
-
-        //Drawing the third layer
-        if((debugMode ? printlayer[2] : true)) {
-            frame.draw(*layer3);
-        }
-
-        printElements(frame);
-
-        /***** draw GUI *****/
-        frame.setView(frame.getDefaultView());
-
-        if(is_in_dialog) {
-            frame.draw(*this->dialog);
-        }
-
-        if(debugMode) {
-            frame.draw(debugText);
-            frame.draw(fpsPrint);
-            frame.draw(coordPrint);
-        }
+        updateElements();
 
         return GameStatus::CONTINUE;
     }
 
-    void Overworld::printCollisionLayer(sf::RenderTarget &frame) {
+    void Overworld::printCollisionLayer(sf::RenderTarget &frame) const {
         sf::Vector2i pos;
         sf::RectangleShape tile({32, 32});
         std::map<int, sf::Color> collision2Color{
