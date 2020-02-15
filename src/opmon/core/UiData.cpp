@@ -6,18 +6,25 @@
 */
 #include "UiData.hpp"
 
+#include <fstream>
+#include <algorithm>
+#include <utility>
+
 #include "../../nlohmann/json.hpp"
 #include "../../utils/log.hpp"
 #include "../../utils/path.hpp"
-
 #include "../objects/evolutions.hpp"
-
 #include "system/OptionsSave.hpp"
 #include "system/ResourceLoader.hpp"
-
-#include <fstream>
+#include "src/opmon/core/Core.hpp"
+#include "src/opmon/core/system/KeyData.hpp"
+#include "src/opmon/objects/Enums.hpp"
+#include "src/opmon/objects/Species.hpp"
+#include "src/opmon/views/ui/Jukebox.hpp"
+#include "src/utils/StringKeys.hpp"
 
 namespace OpMon {
+class Evolution;
 
     UiData::UiData() {
 

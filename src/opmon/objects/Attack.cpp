@@ -5,13 +5,24 @@
   File under GNU GPL v3.0 license
 */
 #include "Attack.hpp"
+
+#include <math.h>
+#include <SFML/System/Vector2.hpp>
+#include <algorithm>
+#include <iostream>
+#include <fstream>
+#include <memory>
+#include <stdexcept>
+
 #include "../../nlohmann/json.hpp"
-#include "../../utils/defines.hpp"
 #include "../../utils/log.hpp"
 #include "Attacks.hpp"
 #include "OpMon.hpp"
-#include <fstream>
-#include <sstream>
+#include "src/opmon/objects/Enums.hpp"
+#include "src/opmon/views/objects/Turn.hpp"
+#include "src/opmon/views/ui/Elements.hpp"
+#include "src/utils/OpString.hpp"
+#include "src/utils/misc.hpp"
 
 namespace OpMon {
 

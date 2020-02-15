@@ -4,13 +4,24 @@
   File under GNU GPL v3.0 license
 */
 #include "OverworldData.hpp"
+
+#include <fstream>
+#include <algorithm>
+
 #include "../../nlohmann/json.hpp"
 #include "../../utils/OpString.hpp"
 #include "../../utils/log.hpp"
 #include "../../utils/path.hpp"
-#include "../objects/Attacks.hpp"
 #include "../core/system/ResourceLoader.hpp"
-#include <fstream>
+#include "src/opmon/core/Core.hpp"
+#include "src/opmon/core/Player.hpp"
+#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/objects/Attack.hpp"
+#include "src/opmon/objects/Enums.hpp"
+#include "src/opmon/objects/Nature.hpp"
+#include "src/opmon/objects/OpMon.hpp"
+#include "src/opmon/objects/OpTeam.hpp"
+#include "src/opmon/views/objects/Map.hpp"
 
 namespace OpMon {
 

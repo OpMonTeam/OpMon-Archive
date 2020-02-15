@@ -5,8 +5,10 @@
   File under GNU GPL v3.0
 */
 #include "Species.hpp"
+
 #include "./Evolution.hpp"
-#include "./evolutions.hpp"
+#include "src/opmon/objects/CurveExp.hpp"
+#include "src/opmon/objects/Enums.hpp"
 
 namespace OpMon {
 

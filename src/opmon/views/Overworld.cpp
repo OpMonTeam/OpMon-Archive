@@ -8,9 +8,17 @@
 #define FPS_TICKS 33
 
 #include "Overworld.hpp"
-#include "../objects/Enums.hpp"
-#include <algorithm>
 
+#include <SFML/Graphics/Color.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
+#include <algorithm>
+#include <map>
+#include <iostream>
+#include <sstream>
+#include <vector>
+
+#include "../objects/Enums.hpp"
 #include "../../utils/defines.hpp"
 #include "../../utils/log.hpp"
 #include "../../utils/time.hpp"
@@ -18,10 +26,14 @@
 #include "../core/Core.hpp"
 #include "../core/i18n/Translator.hpp"
 #include "ui/Dialog.hpp"
-#include "ui/Window.hpp"
-#include <cmath>
-#include <map>
-#include <sstream>
+#include "src/opmon/core/GameStatus.hpp"
+#include "src/opmon/core/Player.hpp"
+#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/views/OverworldData.hpp"
+#include "src/opmon/views/objects/Map.hpp"
+#include "src/opmon/views/objects/Position.hpp"
+#include "src/opmon/views/ui/Elements.hpp"
+#include "src/opmon/views/ui/Jukebox.hpp"
 
 namespace OpMon {
 

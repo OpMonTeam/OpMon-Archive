@@ -5,7 +5,17 @@
   File under GNU GPL v3.0 license
 */
 #include "Attacks.hpp"
-#include "../../utils/misc.hpp"
+
+#include <algorithm>
+#include <map>
+
+#include "src/nlohmann/json.hpp"
+#include "src/opmon/objects/OpMon.hpp"
+#include "src/utils/OpString.hpp"
+
+namespace OpMon {
+class Attack;
+}  // namespace OpMon
 
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 namespace OpMon {

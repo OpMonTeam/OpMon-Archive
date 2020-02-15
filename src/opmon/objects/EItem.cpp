@@ -3,7 +3,15 @@
   Author : Cyrielle
   File under GNU GPL v3.0
 */
+#include <string>
+
 #include "evolutions.hpp"
+#include "src/opmon/objects/Evolution.hpp"
+
+namespace OpMon {
+class OpMon;
+}  // namespace OpMon
+
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 namespace OpMon {
 

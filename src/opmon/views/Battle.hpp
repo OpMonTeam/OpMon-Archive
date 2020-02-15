@@ -6,23 +6,38 @@
  */
 #pragma once
 
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/System/String.hpp>
+#include <SFML/System/Vector2.hpp>
+#include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/RenderStates.hpp>
+#include <SFML/Graphics/Transform.hpp>
+#include <map>
+#include <queue>
+#include <string>
+
 #include "../../utils/CycleCounter.hpp"
 #include "objects/Turn.hpp"
 #include "BattleData.hpp"
 #include "../core/Core.hpp"
 #include "ui/Dialog.hpp"
 #include "ui/Elements.hpp"
-#include <SFML/Graphics/Sprite.hpp>
-#include <SFML/Graphics/Text.hpp>
-#include <SFML/System/String.hpp>
-#include <SFML/System/Vector2.hpp>
-#include <map>
-#include <queue>
+#include "src/opmon/core/GameStatus.hpp"
+#include "src/opmon/objects/Enums.hpp"
+
+namespace sf {
+class RenderTarget;
+}  // namespace sf
 
 namespace OpMon {
 
     class OpTeam;
     class BattleData;
+class OpMon;
+namespace Ui {
+class Transformation;
+}  // namespace Ui
 
 
     /*!

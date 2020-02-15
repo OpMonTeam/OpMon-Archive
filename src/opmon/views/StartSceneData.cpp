@@ -5,9 +5,16 @@
 */
 
 #include "StartSceneData.hpp"
+
+#include <memory>
+
 #include "../core/system/ResourceLoader.hpp"
+#include "src/opmon/core/Player.hpp"
+#include "src/opmon/objects/Enums.hpp"
+#include "src/opmon/views/objects/Position.hpp"
 
 namespace OpMon {
+class UiData;
 
     StartSceneData::StartSceneData(UiData *data)
         : uidata(data)

@@ -9,11 +9,10 @@
 #ifndef CORE_HPP
 #define CORE_HPP
 
-#include "../../utils/defines.hpp"
-
-#include "GameStatus.hpp"
-
 #include <string>
+
+#include "../../utils/defines.hpp"
+#include "GameStatus.hpp"
 
 /*!
   \namespace OpMon

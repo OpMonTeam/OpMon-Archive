@@ -5,9 +5,13 @@ Contributors : BAKFR, Stelyus
 File under GNU GPL v3.0 license
 */
 #include "Position.hpp"
+
+#include <vector>
+
 #include "../../core/Core.hpp"
 #include "Events.hpp"
 #include "Map.hpp"
+#include "src/opmon/objects/Enums.hpp"
 
 namespace OpMon {
     namespace Elements {

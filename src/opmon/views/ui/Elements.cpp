@@ -5,10 +5,17 @@ Contributor : BAKFR
 File under GNU GPL v3.0 license
  */
 #include "Elements.hpp"
-#include "../../../utils/defines.hpp"
-#include "../../core/system/ResourceLoader.hpp"
+
+#include <SFML/Graphics/PrimitiveType.hpp>
+#include <SFML/Graphics/Rect.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/Transform.hpp>
+#include <SFML/Graphics/Vertex.hpp>
 #include <cmath>
-#include <iostream>
+
+#include "../../core/system/ResourceLoader.hpp"
 
 /* Converts degrees to radians */
 #define DEG *(3.14159265 / 180)

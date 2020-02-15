@@ -5,12 +5,22 @@ Contributor : BAKFR
 File under GNU GPL v3.0 license
 */
 #include "Map.hpp"
+
+#include <cstdlib>
+#include <sstream>
+
 #include "../../../utils/log.hpp"
 #include "../../core/Core.hpp"
 #include "../OverworldData.hpp"
 #include "Events.hpp"
-#include <cstdlib>
-#include <sstream>
+#include "src/nlohmann/json.hpp"
+#include "src/opmon/objects/Enums.hpp"
+#include "src/opmon/views/objects/Position.hpp"
+#include "src/utils/OpString.hpp"
+
+namespace sf {
+class String;
+}  // namespace sf
 
 namespace OpMon {
     namespace Elements {

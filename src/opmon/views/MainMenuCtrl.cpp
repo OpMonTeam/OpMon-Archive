@@ -5,10 +5,21 @@
   File under GNU GPL v3.0 license
 */
 #include "MainMenuCtrl.hpp"
-#include "ui/Window.hpp"
+
+#include <SFML/Graphics/RenderTexture.hpp>
+#include <SFML/Window/Event.hpp>
+#include <SFML/Window/Keyboard.hpp>
+#include <memory>
 
 #include "OptionsMenuCtrl.hpp"
 #include "StartSceneCtrl.hpp"
+#include "src/opmon/core/Core.hpp"
+#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/views/MainMenu.hpp"
+#include "src/opmon/views/MainMenuData.hpp"
+#include "src/opmon/views/base/AGameScreen.hpp"
+#include "src/opmon/views/ui/Jukebox.hpp"
+#include "src/utils/CycleCounter.hpp"
 
 //Defines created to make the code easier to read
 #define LOAD_STARTSCENE 1

@@ -4,7 +4,11 @@
   File under GNU GPL 3.0 license
 */
 #include "AnimationCtrl.hpp"
-#include "ui/Window.hpp"
+
+#include <SFML/Graphics/RenderTexture.hpp>
+#include <utility>
+
+#include "src/opmon/views/Animations.hpp"
 
 namespace OpMon {
     AnimationCtrl::AnimationCtrl(std::unique_ptr<Animations::Animation> view)

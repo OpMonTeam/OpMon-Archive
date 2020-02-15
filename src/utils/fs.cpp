@@ -4,7 +4,8 @@ Author : BAKFR
 File under GNU GPL v3.0
 */
 #include "./fs.hpp"
-#include <algorithm>
+
+#include <errno.h>
 #include <iostream>
 #include <string>
 

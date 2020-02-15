@@ -7,14 +7,23 @@
 #ifndef STARTSCENECTRL_HPP
 #define STARTSCENECTRL_HPP
 
+#include <SFML/Window.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <memory>
+
 #include "StartSceneData.hpp"
 #include "../core/Core.hpp"
 #include "StartScene.hpp"
 #include "base/AGameScreen.hpp"
-#include <SFML/Window.hpp>
-#include <memory>
+#include "src/opmon/core/GameStatus.hpp"
+
+namespace sf {
+class Event;
+class RenderTexture;
+}  // namespace sf
 
 namespace OpMon {
+class UiData;
 
     /*!
      * \brief Manages the introduction scene and its three phases.

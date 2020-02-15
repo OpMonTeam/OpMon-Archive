@@ -5,6 +5,9 @@
  */
 #pragma once
 
+#include <vector>
+#include <queue>
+
 #include "../objects/Attack.hpp"
 #include "../objects/Enums.hpp"
 #include "../objects/OpMon.hpp"
@@ -15,9 +18,25 @@
 #include "../objects/OpTeam.hpp"
 #include "Battle.hpp"
 #include "base/AGameScreen.hpp"
-#include <vector>
+#include "src/opmon/core/GameStatus.hpp"
+
+namespace sf {
+class Event;
+class RenderTexture;
+}  // namespace sf
 
 namespace OpMon {
+class Attack;
+class OpMon;
+class OpTeam;
+class Player;
+class Species;
+class UiData;
+namespace Elements {
+namespace Events {
+class TrainerEvent;
+}  // namespace Events
+}  // namespace Elements
 
     /*!
      * \brief Manages a battle.

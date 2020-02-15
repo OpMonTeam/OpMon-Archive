@@ -6,11 +6,18 @@
  */
 #pragma once
 
+#include <SFML/System/String.hpp>
+#include <memory>
+#include <vector>
+#include <utility>
+
 #include "../../utils/OpString.hpp"
 #include "../core/Core.hpp"
 #include "OpMon.hpp"
-#include <memory>
-#include <vector>
+
+namespace OpMon {
+class OpMon;
+}  // namespace OpMon
 
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 

@@ -5,9 +5,13 @@ Contributors : BAKFR, JonnyPtn, torq
 File under GNU GPL v3.0 license
 */
 #include "OpString.hpp"
+
+#include <stddef.h>
+#include <algorithm>
+#include <iostream>
+
 #include "./log.hpp"
 #include "StringKeys.hpp"
-#include <cstdarg>
 
 namespace Utils {
     /*!

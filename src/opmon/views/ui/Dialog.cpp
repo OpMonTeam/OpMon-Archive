@@ -5,10 +5,21 @@ Contributor : Cyrielle
 File under GNU GPL v3.0 license
 */
 #include "Dialog.hpp"
+
+#include <stddef.h>
+#include <SFML/Config.hpp>
+#include <SFML/Graphics/Color.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/System/Vector2.hpp>
+#include <algorithm>
+#include <memory>
+#include <string>
+
 #include "../../../utils/StringKeys.hpp"
 #include "../../../utils/defines.hpp"
 #include "../../core/Core.hpp"
-#include "Window.hpp"
+#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/views/ui/Jukebox.hpp"
 
 namespace OpMon {
     namespace Ui {

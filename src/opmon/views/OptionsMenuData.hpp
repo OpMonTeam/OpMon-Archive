@@ -5,9 +5,12 @@
  */
 #pragma once
 
+#include <SFML/Graphics/Texture.hpp>
+
 #include "../core/UiData.hpp"
 
 namespace OpMon {
+class UiData;
 
     /*!
      * \brief Contains the data used in the options menu.

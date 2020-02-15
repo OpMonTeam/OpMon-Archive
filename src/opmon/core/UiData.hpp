@@ -6,24 +6,25 @@
  */
 #pragma once
 
-#include "../../utils/defines.hpp"
+#include <SFML/Graphics/Font.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/Window/Keyboard.hpp>
+#include <ext/alloc_traits.h>
+#include <map>
+#include <unordered_map>
+#include <vector>
+#include <string>
 
+#include "../../utils/defines.hpp"
 #include "../views/ui/Jukebox.hpp"
 #include "../views/ui/Window.hpp"
 #include "../objects/Enums.hpp"
 #include "../objects/Species.hpp"
-
 #include "system/KeyData.hpp"
 
-#include <SFML/Graphics/Font.hpp>
-#include <SFML/Graphics/Texture.hpp>
-#include <SFML/Window/Keyboard.hpp>
-
-#include <map>
-#include <unordered_map>
-#include <vector>
-
 namespace OpMon {
+class Species;
+
     /*!
      * \brief Contains the data needed for the game in general.
      * \details One instance of it must be created in GameLoop, and then shared as a pointer in every "Data" classes.
