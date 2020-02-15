@@ -146,7 +146,8 @@ namespace OpMon {
             updateEvents(data.getMap(player.getMapId())->getEvents(), player, view);
         }
 
-        GameStatus toReturn = view(frame);
+        GameStatus toReturn = view.update();
+        frame.draw(view);
         screenTexture = frame.getTexture();
         return toReturn;
     }
