@@ -13,7 +13,7 @@ namespace OpMon {
     /*!
      * \brief View printing the in-game menu.
      */
-    class GameMenu {
+    class GameMenu : public sf::Drawable {
     private:
         /*!
          * \brief The background displayed behind the menu (Usually a screenshot taken before opening the menu).
@@ -45,10 +45,7 @@ namespace OpMon {
     public:
         GameMenu(GameMenuData &data);
 
-        /*!
-         * \brief Updates one frame.
-         */
-        GameStatus operator()(sf::RenderTexture &frame);
+        void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
         /*!
          * \brief Changed the position of the cursor.
