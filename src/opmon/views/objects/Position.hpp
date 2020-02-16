@@ -134,6 +134,12 @@ namespace OpMon {
              */
             static void setPlayerPos(Position *pos);
 
+
+            /*!
+             * \brief Indicates if the player has just been teleported between two maps.
+             */
+            bool justTP;
+
           private:
             /*!
              * \brief Checks if the entity can go through an adjacent tile.

@@ -161,12 +161,6 @@ namespace OpMon {
             extern sf::Sound shopdoorSound;
 
             /*!
-             * \brief Indicates if the player has just been teleported between two maps.
-             * \todo Move this elsewhere.
-             */
-            extern bool justTP;
-
-            /*!
              * \brief Defines an event that teleports the player.
              */
             class TPEvent : public virtual Event {

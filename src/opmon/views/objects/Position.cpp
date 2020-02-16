@@ -52,9 +52,6 @@ namespace OpMon {
             posY = y;
         }
 
-        //Just lasiness TODO : Remove this when Events::justTP will be removed.
-#define UNLOCK_TP Events::justTP = false;
-
         bool Position::move(Side dir, Map *map, bool debugCol) {
             if(!anim && !moveLock) {
                 this->dir = dir;
@@ -62,7 +59,7 @@ namespace OpMon {
                 anim = true;
 
                 if((!event && debugCol) /*Noclip mode in the debug*/ || checkPass(dir, map)) {
-                    UNLOCK_TP
+                    justTP = false;
                     movement = true;
                     switch(dir) {
                     case Side::TO_UP:
