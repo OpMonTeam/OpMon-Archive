@@ -53,7 +53,6 @@ namespace OpMon {
 
         namespace Events {
             std::vector<sf::Texture> alpha = std::vector<sf::Texture>(1);
-            bool justTP = false;
 
             sf::Sound doorSound;
             sf::Sound shopdoorSound;
@@ -147,15 +146,14 @@ namespace OpMon {
             }
 
             //Actions and updates
-
             void TPEvent::action(Player &player, Overworld &overworld) {
-                if(!justTP) {
+                if(!player.getPosition().justTP) {
                     overworld.tp(map, tpCoord);
                     //Sets the player's direction after the teleportation. If this->ppDir == -1, the old player position is kept
                     if(this->ppDir != -1) {
                         player.getPosition().setDir(this->ppDir);
                     }
-                    justTP = true;
+                    player.getPosition().justTP = true;
                 }
             }
 
