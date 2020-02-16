@@ -20,34 +20,45 @@
  *  \brief Contains different utilities.
  */
 namespace Utils {
-	/*! \namespace Utils::StringKeys
+	/*!
      *  \brief Contains functions to manage game strings.
-     *  \todo Make the namespace into a class.
+     *  \todo Make this into an instantiable class.
      */
-    namespace StringKeys {
+    class StringKeys {
+    private:
         /*!
          * \brief The array containing the keys.
          * \todo Replace it by one map.
          */
-        extern std::vector<std::string> keys;
+        static std::vector<std::string> keys;
         /*!
          * \brief The array containing the strings.
-         * \todo Repace it by one map.
+         * \todo Replace it by one map.
          */
-        extern std::vector<sf::String> strings;
+        static std::vector<sf::String> strings;
 
+        /*!
+         * \brief Returns the index of the given key.
+         */
+        static int getIndex(std::string key);
+
+        /*!
+         * \brief Reads a line from the input.
+         */
+        static sf::String readLine(std::ifstream &input);
+    public:
         /*!
          * \return The character string associated with the key.
          * \param key The key corresponding to the wanted string.
          */
-        sf::String &get(std::string key);
+        static sf::String &get(std::string key);
 
         /*!
          * \brief Loads the file containing the keys and initializes the list of them.
          * \param file The file to load, containing the keys.
          * \return `true` if everything is ok; `false` if there is an error.
          */
-        bool initialize(const std::string &file);
+        static bool initialize(const std::string &file);
 
         /*!
          * \brief Splits a character string.
@@ -57,7 +68,7 @@ namespace Utils {
          * \param splitter The character used as the limit between the different parts.
          * \param part The index to return.
          */
-        OP_DEPRECATED sf::String split(sf::String const &str, char const &splitter, int const &part);
+        OP_DEPRECATED static sf::String split(sf::String const &str, char const &splitter, int const &part);
 
         /*!
          * \brief Splits a character string.
@@ -65,27 +76,27 @@ namespace Utils {
          * \param str The string to split.
          * \param splitter The character used as the limit between the different parts.
          */
-        std::vector<sf::String> split(sf::String const &str, char const &splitter);
+        static std::vector<sf::String> split(sf::String const &str, char const &splitter);
 
         /*!
          * \brief Converts a sf::String to a std::string without encoding problems.
          * \param str The sf::String to convert.
          */
-        std::string sfStringtoStdString(sf::String const &str);
+        static std::string sfStringtoStdString(sf::String const &str);
 
         /*!
          * \brief A shortcut for sfStringtoStdString(get(key)).
          * \return The string associated with the key in std::string format.
          * \param key The key corresponding to the wanted string.
          */
-        std::string getStd(std::string const &key);
+        static std::string getStd(std::string const &key);
 
         /**
          * \brief Counts the number of instances of a character into a string.
          * \param str The string in which to search.
          * \param toSearch The character to search for.
          */
-        int countInstances(sf::String const &str, char const &toSearch);
+        static int countInstances(sf::String const &str, char const &toSearch);
 
         /*!
          * \brief Splits a string into different strings according to the fixed limit of size while respecting the words.
@@ -93,9 +104,9 @@ namespace Utils {
          * \param str The string to cut.
          * \param limit The character limit, 29 by default to fit in a standard OpMon dialog box.
          */
-        std::queue<sf::String> autoNewLine(sf::String str, unsigned int limit = 29);
+        static std::queue<sf::String> autoNewLine(sf::String str, unsigned int limit = 29);
 
-    } // namespace StringKeys
+        };
 } // namespace Utils
 
 #endif // STRINGKEYS_HPP
