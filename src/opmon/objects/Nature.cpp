@@ -35,7 +35,7 @@ namespace OpMon {
         LONELY = NatureClass(Stats::ATK, Stats::DEF, 23),
         TIMID = NatureClass(Stats::SPE, Stats::ATK, 24);
 
-    const NatureClass natures[25] = {BOLD, BASHFUL, BRAVE, CALM, QUIET, DOCILE, MILD, RASH, GENTLE, HARDY, JOLLY, LAX, IMPISH, SASSY, NAUGHTY, MODEST, NAIVE, HASTY, CAREFUL, QUIRKY, RELAXED, ADAMANT, SERIOUS /*Why so serious? | edit : I'm thinking about removing this joke*/, LONELY, TIMID};
+    const NatureClass natures[25] = {BOLD, BASHFUL, BRAVE, CALM, QUIET, DOCILE, MILD, RASH, GENTLE, HARDY, JOLLY, LAX, IMPISH, SASSY, NAUGHTY, MODEST, NAIVE, HASTY, CAREFUL, QUIRKY, RELAXED, ADAMANT, SERIOUS, LONELY, TIMID};
 
     bool operator==(NatureClass const &one, NatureClass const &two) {
         if((one.malus == two.malus) && (one.bonus == two.bonus)) {
