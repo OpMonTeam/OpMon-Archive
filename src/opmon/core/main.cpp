@@ -78,12 +78,13 @@ namespace OpMon {
 
             oplog("Loading completed! Opening gui.");
 
+            bool reboot = false;
             do {
                 reboot = false;
                 oplog("Starting game loop");
 
                 GameLoop gameloop;
-                gameloop();
+                reboot = gameloop() == GameStatus::REBOOT;
 
                 std::ostringstream logEntry;
                 logEntry << std::string("Game ended after ") << Utils::Time::getElapsedSeconds() << std::string("seconds");

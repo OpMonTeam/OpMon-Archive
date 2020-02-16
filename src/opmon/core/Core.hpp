@@ -33,21 +33,6 @@ namespace OpMon {
      */
     int quit(int const &returns);
 
-    /*!
-     * \brief If `true`, the game is in debug mode.
-     * \todo Put the variable in a class.
-     */
-    extern bool debugMode;
-    /*!
-     * \brief If `true`, the collision debug mode is activated.
-     * \todo Put the variable in Overworld.
-     */
-    extern bool debugCol;
-    /*!
-     * \brief Indicates to OpMon::starts() if the game has to reboot or to close.
-     */
-    extern bool reboot;
-
 } // namespace OpMon
 
 #endif

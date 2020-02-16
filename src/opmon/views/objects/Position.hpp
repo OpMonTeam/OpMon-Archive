@@ -122,9 +122,12 @@ namespace OpMon {
             /*!
              * \brief Moves the entity.
              * \details This method checks for the current collisions, checks if the entity can move, and then activates the animation and the movement.
+             * \param dir The direction of the movement
+             * \param map The current map
+             * \param debugCol If noclip is activated
              * \return `false` if the entity can't move, `true` if the movement has been initiated.
              */
-            bool move(Side dir, Map *map);
+            bool move(Side dir, Map *map, bool debugCol = false);
 
             /*!
              * \brief Sets the position of Position::playerPos
