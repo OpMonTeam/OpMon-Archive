@@ -55,7 +55,7 @@ namespace OpMon {
 
         GameStatus status{GameStatus::CONTINUE};
 
-        while(status != GameStatus::STOP) {
+        while(status != GameStatus::STOP && status != GameStatus::REBOOT) {
             status = GameStatus::CONTINUE;
 
             //Debug frame by frame
@@ -77,7 +77,7 @@ namespace OpMon {
                     event.type = sf::Event::SensorChanged;
                 _checkWindowResize(event, *window);
                 status = _checkQuit(event);
-                if(status == GameStatus::STOP)
+                if(status == GameStatus::STOP || status == GameStatus::REBOOT)
                     break;
                 status = ctrl->checkEvent(event);
                 if(isEvent == false) {
@@ -126,7 +126,7 @@ namespace OpMon {
         }
 
         delete(window.release());
-        return GameStatus::STOP;
+        return status;
     }
 
     GameStatus GameLoop::_checkQuit(const sf::Event &event) {

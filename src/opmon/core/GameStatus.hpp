@@ -14,6 +14,7 @@ namespace OpMon {
     enum class GameStatus {
         CONTINUE, /*!< The program has to continue.*/
         STOP, /*!< The program has to stop.*/
+        REBOOT, /*!< Same as STOP, but the program has to reboot.*/
         NEXT, /*!< The program has to get to the next state.*/
         PREVIOUS, /*!< The program has to get to the previous state.*/
         NEXT_NLS, /*!< The program has to get to the next state without loading screen.*/
