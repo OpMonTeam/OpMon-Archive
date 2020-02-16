@@ -78,9 +78,6 @@ namespace OpMon {
              */
             static Param deleteParam(std::string const &name);
 
-            //.CPP ONLY :
-            //int searchParam(string name);
-
             /*!
              * \brief Saves the parameters.
              * \param file The file in which save the paramters.
