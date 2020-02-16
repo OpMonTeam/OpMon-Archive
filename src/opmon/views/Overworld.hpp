@@ -164,6 +164,11 @@ class TrainerEvent;
 
         OverworldData &getData() { return data; }
 
+        /*!
+         * \brief If `true`, the game is in debug mode.
+         */
+        bool debugMode = false;
+
     private:
         /*!
          * \brief Prints the animated elements on the screen.

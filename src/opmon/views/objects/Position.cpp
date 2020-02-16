@@ -55,7 +55,7 @@ namespace OpMon {
         //Just lasiness TODO : Remove this when Events::justTP will be removed.
 #define UNLOCK_TP Events::justTP = false;
 
-        bool Position::move(Side dir, Map *map) {
+        bool Position::move(Side dir, Map *map, bool debugCol) {
             if(!anim && !moveLock) {
                 this->dir = dir;
 

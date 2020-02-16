@@ -61,6 +61,11 @@ class UiData;
          */
         sf::Texture screenTexture;
 
+        /*!
+         * \brief If `true`, the collision debug mode is activated (noclip).
+         */
+        bool debugCol = false;
+
     public:
         OverworldCtrl(Player &player, UiData *uidata);
 

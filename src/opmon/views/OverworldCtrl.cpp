@@ -56,18 +56,17 @@ namespace OpMon {
         case sf::Event::KeyPressed:
             //The key equals starts the debug mode
             if(events.key.code == sf::Keyboard::Equal) {
-                debugMode = !debugMode;
-                if(!debugMode) {
+                view.debugMode = !view.debugMode;
+                if(!view.debugMode) {
                     debugCol = false;
                     overworld.setCameraLock(false);
                 }
             }
-            //M reboots the game
-            /*if(events.key.code == sf::Keyboard::M) {
-              reboot = true;
-              return GameStatus::STOP;
-              }*/
-            if(debugMode) {
+            if(view.debugMode) {
+                //R reboots the game
+                if(events.key.code == sf::Keyboard::R) {
+                    return GameStatus::REBOOT;
+                }
                 //Debug, chooses the layers to print
                 if(events.key.code == sf::Keyboard::F10) {
                     overworld.printlayer[0] = !overworld.printlayer[0];
@@ -216,7 +215,7 @@ namespace OpMon {
     }
 
     void OverworldCtrl::move(Side direction, Player &player, Overworld &overworld) {
-        player.getPosition().move(direction, overworld.getData().getCurrentMap());
+        player.getPosition().move(direction, overworld.getData().getCurrentMap(), debugCol);
 
         Elements::Map *map = overworld.getData().getCurrentMap();
         auto eventList = map->getEvent(player.getPosition().getPosition());
