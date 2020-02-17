@@ -20,6 +20,8 @@ namespace OpMon {
 
             Utils::Log::oplog("Initializating UiData");
 
+            ResourceLoader::load(menuFrame, "backgrounds/menuframe.png");
+
             jukebox.addMusic("Title", "audio/music/title.ogg", 50);
             jukebox.addMusic("Start", "audio/music/intro.ogg");
             jukebox.addMusic("Fauxbourg", "audio/music/faubourgeuvi.ogg");

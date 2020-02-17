@@ -103,7 +103,7 @@ namespace OpMon {
             // Create text boxes for the main screen
             for(int i = 0; i < 6; i++) {
                 sf::Vector2f position(OPTIONS_MENU_ITEM_PADDING, OPTIONS_MENU_ITEM_PADDING + i * (OPTIONS_MENU_ITEM_HEIGHT + OPTIONS_MENU_ITEM_PADDING));
-                TextBox optionsMenuItem(data.getMenuframe(), position, OPTIONS_MENU_ITEM_WIDTH, OPTIONS_MENU_ITEM_HEIGHT);
+                TextBox optionsMenuItem(data.getUiDataPtr()->getMenuFrame(), position, OPTIONS_MENU_ITEM_WIDTH, OPTIONS_MENU_ITEM_HEIGHT);
                 optionsMenuItem.setFont(data.getUiDataPtr()->getFont());
                 optionsMenuItems.push_back(optionsMenuItem);
             }
@@ -113,7 +113,7 @@ namespace OpMon {
             // Create text boxes for the language selection screen
             for(int i = 0; i < 6; i++) {
                 sf::Vector2f position(OPTIONS_MENU_ITEM_PADDING, OPTIONS_MENU_ITEM_PADDING + i * (OPTIONS_MENU_ITEM_HEIGHT + OPTIONS_MENU_ITEM_PADDING));
-                TextBox languagesMenuItem(data.getMenuframe(), position, OPTIONS_MENU_ITEM_WIDTH, OPTIONS_MENU_ITEM_HEIGHT);
+                TextBox languagesMenuItem(data.getUiDataPtr()->getMenuFrame(), position, OPTIONS_MENU_ITEM_WIDTH, OPTIONS_MENU_ITEM_HEIGHT);
                 languagesMenuItem.setFont(data.getUiDataPtr()->getFont());
                 languagesMenuItems.push_back(languagesMenuItem);
             }
