@@ -14,20 +14,21 @@ class TextBox : public sf::Drawable {
     sf::Vector2f position;
 
     // The width of the box
-    int width;
+    uint32_t width;
 
     // The height of the box
-    int height;
+    uint32_t height;
 
     // An eventual text to be displayed in the left side of the box
-    sf::Text leftText;
+    std::vector<sf::Text> leftText;
 
     // An eventual text to be displayed in the right side of the box
-    sf::Text rightText;
+    std::vector<sf::Text> rightText;
 
     // The font to display the text with
     sf::Font font;
 
+    // Whether or not the box is active (i.e. if it's greyed out or not)
     bool active;
 
     sf::Color activeColor = sf::Color(255, 255, 255, 255);
@@ -44,8 +45,9 @@ class TextBox : public sf::Drawable {
      * \param position The position fo the box.
      * \param width The width of the box.
      * \param height The height of the box.
+     * \param linesCount The number of lines of text to display in the box.
      */
-    TextBox(sf::Texture texture, sf::Vector2f position, int width, int height);
+    TextBox(sf::Texture texture, sf::Vector2f position, uint32_t width, uint32_t height, uint32_t linesCount = 1);
 
     ~TextBox() = default;
 
@@ -58,8 +60,9 @@ class TextBox : public sf::Drawable {
     /**!
      * \brief Set the string used for the content of the text in the left of the box.
      * \param content A string to use for the content.
+     * \param line The index of the line for which the content will be set (start at 0).
      */
-    void setLeftContent(const sf::String& content);
+    void setLeftContent(const sf::String& content, uint32_t line = 0);
 
     /**!
      * \brief Set the string used for the content of the text in the right of the box.
