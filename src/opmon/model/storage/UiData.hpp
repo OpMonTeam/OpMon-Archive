@@ -46,6 +46,11 @@ namespace OpMon {
             sf::Keyboard::Key interact;
             sf::Keyboard::Key talk;
 
+            uint32_t windowHeight = 512;
+            uint32_t windowWidth = 512;
+
+            sf::Texture menuFrame;
+
             /*!
              * \brief The copy constructor. Not defined, must not be used.
              */
@@ -110,6 +115,18 @@ namespace OpMon {
              * \brief Gets the key for the "talk" action.
              */
             sf::Keyboard::Key getKeyTalk() const { return talk; }
+
+            /*!
+             * \brief Gets the heigth of the window
+             */
+            uint32_t getWindowHeight() const { return windowHeight; }
+
+            /*!
+             * \brief Gets the width of the window
+             */
+            uint32_t getWindowWidth() const { return windowWidth; }
+
+            sf::Texture &getMenuFrame() { return menuFrame; }
 
             /*!
              * \brief Sets the key for the "up" action.
