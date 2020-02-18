@@ -8,6 +8,7 @@
 #ifndef STRINGKEYS_HPP
 #define STRINGKEYS_HPP
 
+#include <SFML/Graphics/Font.hpp>
 #include <SFML/System/String.hpp>
 #include <iostream>
 #include <queue>
@@ -19,7 +20,7 @@
  *  \brief Contains different utilities.
  */
 namespace Utils {
-	/*! \namespace Utils::StringKeys
+    /*! \namespace Utils::StringKeys
      *  \brief Contains functions to manage game strings.
      *  \todo Make the namespace into a class.
      */
@@ -87,13 +88,17 @@ namespace Utils {
         int countInstances(sf::String const &str, char const &toSearch);
 
         /*!
-         * \brief Splits a string into different strings according to the fixed limit of size while respecting the words.
-         * \details Special characters used : | to make a new line manually, $ to go to the next dialog manually.
+         * \brief Splits a string into different strings according to the fixed size limit while respecting the words.
+         * \details Special characters used: "|" to make a new line manually, "$" to go to the next dialog manually.
          * \param str The string to cut.
-         * \param limit The character limit, 29 by default to fit in a standard OpMon dialog box.
+         * \param font The font used to calculate the size of the text.
+         * \param characterSize The character size used to calculate the size of the text.
+         * \param limit The size limit, 456 by default to fit in a standard OpMon dialog box.
          */
-        std::queue<sf::String> autoNewLine(sf::String str, unsigned int limit = 29);
-
+        std::queue<sf::String> autoNewLine(sf::String str,
+                                           sf::Font font,
+                                           unsigned int characterSize,
+                                           float limit);
     } // namespace StringKeys
 } // namespace Utils
 
