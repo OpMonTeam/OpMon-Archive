@@ -16,7 +16,7 @@ namespace OpMon {
 
         void Dialog::init() {
             // Create the text box in which the dialogue will be displayed
-            dialogBoxHeight = 112;
+            dialogBoxHeight = 100;
             dialogBoxWidth = uidata->getWindowWidth() - 8;
             sf::Vector2f position(4, uidata->getWindowHeight() - dialogBoxHeight - 4);
             dialogBox = new TextBox(uidata->getMenuFrame(), position, dialogBoxWidth, dialogBoxHeight, 3);
@@ -31,11 +31,11 @@ namespace OpMon {
         Dialog::Dialog(std::queue<sf::String> text, Model::UiData *uidata)
           : text(text)
           , uidata(uidata) {
-            if(this->text.size() % 3 != 0) {
-                while(this->text.size() % 3 != 0) {
+            if(this->text.size() % 2 != 0) {
+                while(this->text.size() % 2 != 0) {
                     this->text.push(sf::String(" "));
                 }
-                if(this->text.size() % 3 != 0) {
+                if(this->text.size() % 2 != 0) {
                     handleError("Error: string missing in Dialog, even after trying to fix it.", true);
                 }
             }
@@ -47,7 +47,7 @@ namespace OpMon {
           : uidata(uidata) {
             this->text = Utils::StringKeys::autoNewLine(text, uidata->getFont(), 16, 456);
 
-            while(this->text.size() % 3 != 0) {
+            while(this->text.size() % 2 != 0) {
                 this->text.push(sf::String(" "));
             }
 
@@ -58,7 +58,7 @@ namespace OpMon {
             if(changeDialog == false) {
                 // If the current lines are not completely displayed, display them in full when
                 // pressing space
-                for(uint32_t p = line; p < 3; p++) {
+                for(uint32_t p = line; p < 2; p++) {
                     currentTxt[p] = text.front();
                     text.pop();
                 }
@@ -71,7 +71,6 @@ namespace OpMon {
                 i = 0;
                 currentTxt[0] = sf::String(" ");
                 currentTxt[1] = sf::String(" ");
-                currentTxt[2] = sf::String(" ");
                 changeDialog = false;
             } else {
                 // If there are no more lines to display
@@ -92,14 +91,14 @@ namespace OpMon {
                 } else {
                     text.pop();
                     line++;
-                    if(line == 3) {
+                    if(line == 2) {
                         changeDialog = true;
                     } else {
                         i = 0;
                     }
                 }
             }
-            for(size_t itor = 0; itor < 3; itor++) {
+            for(size_t itor = 0; itor < 2; itor++) {
                 dialogBox->setLeftContent(currentTxt[itor].toUtf32(), itor);
             }
             sf::Vector2f posArrow(512 - 40, 512 - 40);
