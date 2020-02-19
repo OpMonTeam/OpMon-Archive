@@ -180,7 +180,7 @@ namespace Utils {
 
             for(unsigned int i = 0; i < str.getSize(); i++) {
 
-                if(str[i] != ' ' && str[i] != '|' && str[i] != '$') {
+                if(str[i] != ' ' && str[i] != '|' && str[i] != '$' && i != (str.getSize() - 1)) {
                     currentWord += str[i];
                 } else {
 
@@ -194,6 +194,10 @@ namespace Utils {
                     // If this width is over the limit, generate a new line
                     if(testTextWidth > limit) {
                         lines.push(sf::String());
+                    }
+
+                    if(i == str.getSize() - 1) {
+                        currentWord += str[i];
                     }
 
                     lines.back() += currentWord;
