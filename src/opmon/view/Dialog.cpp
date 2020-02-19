@@ -45,7 +45,7 @@ namespace OpMon {
 
         Dialog::Dialog(sf::String text, Model::UiData *uidata)
           : uidata(uidata) {
-            this->text = Utils::StringKeys::autoNewLine(text);
+            this->text = Utils::StringKeys::autoNewLine(text, uidata->getFont(), 16, 456);
 
             while(this->text.size() % 3 != 0) {
                 this->text.push(sf::String(" "));

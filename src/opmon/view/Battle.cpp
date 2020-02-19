@@ -225,7 +225,7 @@ namespace OpMon {
                 for(sf::Text &txt : choicesTxt) {
                     frame.draw(txt);
                 }
-                std::queue<sf::String> waitTxt = Utils::StringKeys::autoNewLine(Utils::StringKeys::get("battle.wait"), 12);
+                std::queue<sf::String> waitTxt = Utils::StringKeys::autoNewLine(Utils::StringKeys::get("battle.wait"), data.getUiDataPtr()->getFont(), 22, 192);
                 sf::String str = waitTxt.front() + sf::String('\n');
                 waitTxt.pop();
                 str += waitTxt.front();
