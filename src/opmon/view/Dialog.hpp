@@ -40,7 +40,7 @@ namespace OpMon {
             /*!
              * \brief The 3 lines currently displayed.
              */
-            sf::String currentTxt[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
+            sf::String currentTxt[2] = {sf::String(" "), sf::String(" ")};
 
             /*!
              * \brief Checks if the dialog box is full.
