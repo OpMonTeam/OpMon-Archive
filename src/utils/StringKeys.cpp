@@ -180,7 +180,7 @@ namespace Utils {
 
             for(unsigned int i = 0; i < str.getSize(); i++) {
 
-                if(str[i] != ' ' && str[i] != '|' && str[i] != '$') {
+                if(str[i] != ' ' && str[i] != '|' && str[i] != '$' && i != (str.getSize() - 1)) {
                     currentWord += str[i];
                 } else {
 
@@ -196,6 +196,10 @@ namespace Utils {
                         lines.push(sf::String());
                     }
 
+                    if(i == str.getSize() - 1) {
+                        currentWord += str[i];
+                    }
+
                     lines.back() += currentWord;
 
                     if(str[i] == ' ') {
@@ -207,7 +211,7 @@ namespace Utils {
                     if(str[i] == '|' || str[i] == '$') {
                         lines.push(sf::String());
                     }
-                    while(str[i] == '$' && (lines.size() % 3) != 1) {
+                    while(str[i] == '$' && (lines.size() % 2) != 1) {
                         lines.back() += " ";
                         lines.push(sf::String());
                     }
@@ -216,7 +220,7 @@ namespace Utils {
             if(lines.back().isEmpty()) {
                 lines.back() += " ";
             }
-            while((lines.size() % 3) != 0) {
+            while((lines.size() % 2) != 0) {
                 lines.push(sf::String(" "));
             }
             return lines;
