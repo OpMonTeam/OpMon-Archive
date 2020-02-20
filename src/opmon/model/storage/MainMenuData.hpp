@@ -15,7 +15,6 @@ namespace OpMon {
          */
         class MainMenuData {
           private:
-            sf::Texture menuframe;
             sf::Texture arrChoice;
 
             UiData *uidata;
@@ -31,7 +30,6 @@ namespace OpMon {
              */
             UiData *getUiDataPtr() const { return uidata; }
           
-            sf::Texture const &getMenuframe() const { return menuframe; }
             /*!
              * \brief Gets the cursor.
              */

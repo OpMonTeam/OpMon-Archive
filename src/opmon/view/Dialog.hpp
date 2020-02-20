@@ -4,13 +4,14 @@
  * \authors Cyrielle
  * \copyright GNU GPL 3.0
 */
-#ifndef OPMON_DIALOG_CPP_HPP
-#define OPMON_DIALOG_CPP_HPP
+
+#pragma once
 
 #include "../model/storage/UiData.hpp"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
+#include "ui/TextBox.hpp"
 #include <queue>
 #include <string>
 
@@ -19,6 +20,18 @@ namespace OpMon {
 
         class Dialog : public sf::Drawable {
           private:
+            TextBox *dialogBox;
+
+            /*!
+             * \brief Height of a dialog box.
+             */
+            uint32_t dialogBoxHeight;
+
+            /*!
+             * \brief Width of a dialog box.
+             */
+            uint32_t dialogBoxWidth;
+
             /*!
              * \brief Array of all lines composing the dialog.
              */
@@ -27,7 +40,7 @@ namespace OpMon {
             /*!
              * \brief The 3 lines currently displayed.
              */
-            sf::String currentTxt[3] = {sf::String(" "), sf::String(" "), sf::String(" ")};
+            sf::String currentTxt[2] = {sf::String(" "), sf::String(" ")};
 
             /*!
              * \brief Checks if the dialog box is full.
@@ -39,16 +52,17 @@ namespace OpMon {
             /*!
              * \brief Number of completely displayed lines.
              */
-            unsigned int line = 0;
+            uint32_t line = 0;
+
             /*!
              * \brief Index of the next character to display by the text animation.
              */
-            unsigned int i = 0;
+            uint32_t i = 0;
 
             /*!
              * \brief Set to `true` when the entire dialog has been displayed.
              */
-            bool is_dialog_over = false;
+            bool dialogOver = false;
 
             /*!
              * \brief The sound played when a dialog is passed.
@@ -57,21 +71,11 @@ namespace OpMon {
 
             Model::UiData *uidata;
 
-            bool backgroundVisible = true;
+            sf::Sprite arrDial;
 
             void init();
 
-            sf::Sprite arrDial;
-            sf::Text dialogText[3];
-            sf::Sprite background;
-
           public:
-            /*!
-             * \brief Initialises a dialog with an array of texts to print.
-             * \param text An array of texts. One element = one line.
-             * \deprecated Use std::queue instead of std::vector, or send one sf::String directly.
-             */
-            OP_DEPRECATED Dialog(std::vector<sf::String> text, Model::UiData *uidata);
             /*!
              * \brief Initises a dialog with a queue of texts to print.
              * \param text A queue of texts. One element = one line.
@@ -108,12 +112,6 @@ namespace OpMon {
              * \return `true` is the entire dialog has been displayed; `false` otherwise.
              */
             bool isDialogOver();
-
-            /*!
-             * \brief Set the background visible or invisible, used in screens using other dialog boxes.
-             */
-            void setBackgroundVisible(bool visible);
         };
     } // namespace View
 } // namespace OpMon
-#endif //OPMON_DIALOG_CPP_HPP
