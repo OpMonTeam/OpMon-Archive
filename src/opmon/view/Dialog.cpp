@@ -14,17 +14,23 @@ File under GNU GPL v3.0 license
 namespace OpMon {
     namespace View {
 
+        unsigned int DIALOG_BOX_WIDTH = 504;
+        unsigned int DIALOG_BOX_HEIGHT = 100;
+
         void Dialog::init() {
-            // Create the text box in which the dialogue will be displayed
-            dialogBoxHeight = 100;
-            dialogBoxWidth = uidata->getWindowWidth() - 8;
-            sf::Vector2f position(4, uidata->getWindowHeight() - dialogBoxHeight - 4);
-            dialogBox = new TextBox(uidata->getMenuFrame(), position, dialogBoxWidth, dialogBoxHeight, 3);
+     
+            float dialogBoxX = (uidata->getWindowWidth() - DIALOG_BOX_WIDTH)/2;
+            float dialogBoxY = uidata->getWindowHeight() - DIALOG_BOX_HEIGHT - 4;
+
+            sf::Vector2f dialogBoxPosition(dialogBoxX, dialogBoxY);
+            dialogBox = new TextBox(uidata->getMenuFrame(), dialogBoxPosition, DIALOG_BOX_WIDTH, DIALOG_BOX_HEIGHT, 3);
             dialogBox->setFont(uidata->getFont());
 
             // Create the arrow that appears to prompt the player to press the action key
             arrDial.setTexture(uidata->getDialogArrow());
-            arrDial.setPosition(512 - 40, 512 - 40);
+            arrDialX = dialogBoxX + DIALOG_BOX_WIDTH - 32;
+            arrDialY = dialogBoxY + DIALOG_BOX_HEIGHT - 32;
+            arrDial.setPosition(arrDialX, arrDialY);
             arrDial.setScale(2, 2);
         }
 
@@ -101,7 +107,7 @@ namespace OpMon {
             for(size_t itor = 0; itor < 2; itor++) {
                 dialogBox->setLeftContent(currentTxt[itor].toUtf32(), itor);
             }
-            sf::Vector2f posArrow(512 - 40, 512 - 40);
+            sf::Vector2f posArrow(arrDialX, arrDialY);
             arrDial.move(0, 0.33f);
             if(arrDial.getPosition().y - posArrow.y > 5) {
                 arrDial.move(0, -6);

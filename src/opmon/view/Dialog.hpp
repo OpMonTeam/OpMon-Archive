@@ -23,16 +23,6 @@ namespace OpMon {
             TextBox *dialogBox;
 
             /*!
-             * \brief Height of a dialog box.
-             */
-            uint32_t dialogBoxHeight;
-
-            /*!
-             * \brief Width of a dialog box.
-             */
-            uint32_t dialogBoxWidth;
-
-            /*!
              * \brief Array of all lines composing the dialog.
              */
             std::queue<sf::String> text;
@@ -70,6 +60,9 @@ namespace OpMon {
             sf::Sound dialogPass;
 
             Model::UiData *uidata;
+
+            float arrDialX;
+            float arrDialY;
 
             sf::Sprite arrDial;
 
