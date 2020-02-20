@@ -91,13 +91,13 @@ if (APPLE)
 
     # On Apple, Create an app bundle, which includes all the game resources and dependencies
     set_source_files_properties( ${CMAKE_SOURCE_DIR}/icons/opmon_icon.icns PROPERTIES MACOSX_PACKAGE_LOCATION Resources )
-    set_source_files_properties( ${CMAKE_SOURCE_DIR}/data PROPERTIES MACOSX_PACKAGE_LOCATION Resources )
+    set_source_files_properties( ${CMAKE_SOURCE_DIR}/OpMon-Data/GameData PROPERTIES MACOSX_PACKAGE_LOCATION Resources )
 
     # Need some extra code to get the correct Resource folder in an app bundle
     list(APPEND SOURCE_FILES src/utils/ResourcePath.hpp src/utils/ResourcePath.mm)
     add_executable(${EXECUTABLE_NAME} MACOSX_BUNDLE ${SOURCE_FILES}
     ${CMAKE_SOURCE_DIR}/icons/opmon_icon.icns
-    ${CMAKE_SOURCE_DIR}/data)
+    ${CMAKE_SOURCE_DIR}/OpMon-Data/GameData)
 
     # Add Cocoa framework to executable bundle
     target_link_libraries(${EXECUTABLE_NAME} ${COCOA_LIBRARY})
@@ -127,14 +127,14 @@ include_directories(${SFML_INCLUDE_DIR})
 # Install target
 if (UNIX)
     install(TARGETS ${EXECUTABLE_NAME} DESTINATION bin)
-    install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/OPMon.desktop DESTINATION share/applications)
+    install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/OpMon-Data/GameData/OPMon.desktop DESTINATION share/applications)
 
     # TODO: put resource files in the correct folder
     # Note: trailing slash "bin/" is important.
-    install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/data/ DESTINATION share/OpMon)
+    install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/OpMon-Data/GameData/ DESTINATION share/OpMon)
 else()
     install(TARGETS ${EXECUTABLE_NAME} DESTINATION .)
-    install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/data DESTINATION .)
+    install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/OpMon-Data/GameData DESTINATION .)
     # TODO: copy only usefull DLL
     # Note: trailing slash "bin/" is important.
     install(DIRECTORY ${SFML_ROOT}/bin/ DESTINATION .) # copy SFML DLL
