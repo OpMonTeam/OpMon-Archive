@@ -46,16 +46,16 @@ namespace OpMon {
         void Overworld::moveCamera(Side dir) {
             switch(dir) {
             case Side::TO_UP:
-                camera.move(0, -4);
+                camera.move(0, -2);
                 break;
             case Side::TO_DOWN:
-                camera.move(0, 4);
+                camera.move(0, 2);
                 break;
             case Side::TO_LEFT:
-                camera.move(-4, 0);
+                camera.move(-2, 0);
                 break;
             case Side::TO_RIGHT:
-                camera.move(4, 0);
+                camera.move(2, 0);
                 break;
             default:
                 break;
@@ -72,7 +72,7 @@ namespace OpMon {
             // character.getPosition() returns the center of the player's sprite
             const sf::Vector2f &playerPos = character.getPosition();
             const sf::Vector2f &cameraSize = camera.getSize();
-            const sf::Vector2i mapSize = current->getDimensions() * 32;
+            const sf::Vector2i mapSize = current->getDimensions() * 16;
 
             sf::Vector2f center = camera.getCenter();
 
@@ -157,7 +157,8 @@ namespace OpMon {
             character.setTexture(data.getTexturePP());
             character.setTextureRect(data.getTexturePPRect((unsigned int)Side::TO_DOWN));
             data.getPlayer().tp(mapId, sf::Vector2i(2, 4)); //TODO : Add a parameter to configure the default player's position
-            character.setPosition(2 SQUARES - 16, 4 SQUARES);
+            character.setOrigin(16, 28);
+            character.setPosition(1.5 SQUARES, 3.5 SQUARES);
             camera.setSize(sf::Vector2f(30 SQUARES, 16.875 SQUARES));
             resetCamera();
 
@@ -165,8 +166,7 @@ namespace OpMon {
             layer1 = std::make_unique<MapLayer>(current->getDimensions(), current->getLayer1());
             layer2 = std::make_unique<MapLayer>(current->getDimensions(), current->getLayer2());
             layer3 = std::make_unique<MapLayer>(current->getDimensions(), current->getLayer3());
-            character.setScale(2, 2);
-            character.setOrigin(16, 16);
+            character.setOrigin(8, 8);
 
             data.getUiDataPtr()->getJukebox().play(current->getBg());
 
@@ -246,16 +246,16 @@ namespace OpMon {
                 if(data.getPlayer().getPosition().isMoving()) {
                     switch(data.getPlayer().getPosition().getDir()) {
                     case Side::TO_UP:
-                        character.move(0, -4);
+                        character.move(0, -2);
                         break;
                     case Side::TO_DOWN:
-                        character.move(0, 4);
+                        character.move(0, 2);
                         break;
                     case Side::TO_LEFT:
-                        character.move(-4, 0);
+                        character.move(-2, 0);
                         break;
                     case Side::TO_RIGHT:
-                        character.move(4, 0);
+                        character.move(2, 0);
                         break;
                     default:
                         break;
@@ -327,7 +327,7 @@ namespace OpMon {
 
         void Overworld::printCollisionLayer(sf::RenderTarget &frame) {
             sf::Vector2i pos;
-            sf::RectangleShape tile({32, 32});
+            sf::RectangleShape tile({16, 16});
             std::map<int, sf::Color> collision2Color{
               {1, sf::Color(255, 0, 0, 128)},
               {2, sf::Color(0, 0, 255, 128)},

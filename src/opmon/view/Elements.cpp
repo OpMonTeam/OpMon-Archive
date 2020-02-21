@@ -37,20 +37,20 @@ namespace OpMon {
                         tileNumber = 257; //official void tile
                     }
 
-                    int tx = tileNumber % (tileset.getSize().x / 32);
-                    int ty = tileNumber / (tileset.getSize().x / 32);
+                    int tx = tileNumber % 64;
+                    int ty = tileNumber / 64;
 
                     sf::Vertex *quad = &tiles[((i * size.x) + j) * 4];
 
-                    quad[0].position = sf::Vector2f(j * 32, i * 32);
-                    quad[1].position = sf::Vector2f((j + 1) * 32, i * 32);
-                    quad[2].position = sf::Vector2f((j + 1) * 32, (i + 1) * 32);
-                    quad[3].position = sf::Vector2f(j * 32, (i + 1) * 32);
+                    quad[0].position = sf::Vector2f(j * SQUARES_SIZE, i * SQUARES_SIZE);
+                    quad[1].position = sf::Vector2f((j + 1) * SQUARES_SIZE, i * SQUARES_SIZE);
+                    quad[2].position = sf::Vector2f((j + 1) * SQUARES_SIZE, (i + 1) * SQUARES_SIZE);
+                    quad[3].position = sf::Vector2f(j * SQUARES_SIZE, (i + 1) * SQUARES_SIZE);
 
-                    quad[0].texCoords = sf::Vector2f(tx * 32, ty * 32);
-                    quad[1].texCoords = sf::Vector2f((tx + 1) * 32, ty * 32);
-                    quad[2].texCoords = sf::Vector2f((tx + 1) * 32, (ty + 1) * 32);
-                    quad[3].texCoords = sf::Vector2f(tx * 32, (ty + 1) * 32);
+                    quad[0].texCoords = sf::Vector2f(tx * SQUARES_SIZE, ty * SQUARES_SIZE);
+                    quad[1].texCoords = sf::Vector2f((tx + 1) * SQUARES_SIZE, ty * SQUARES_SIZE);
+                    quad[2].texCoords = sf::Vector2f((tx + 1) * SQUARES_SIZE, (ty + 1) * SQUARES_SIZE);
+                    quad[3].texCoords = sf::Vector2f(tx * SQUARES_SIZE, (ty + 1) * SQUARES_SIZE);
                 }
             }
         }

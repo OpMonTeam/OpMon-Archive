@@ -18,7 +18,7 @@
 /*!
  * \brief The size of one tile, in pixels.
  */
-#define SQUARES_SIZE 32
+#define SQUARES_SIZE 16
 /*!
  * \brief Shortcut to make the code more readable.
  */
