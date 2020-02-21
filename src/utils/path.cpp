@@ -64,8 +64,8 @@ namespace Utils {
 #ifdef __APPLE__
             resPath = resourcePath();
 #endif
-            if(_isFolder(resPath + "./data"))
-                return resPath + "./data/";
+            if(_isFolder(resPath + "./GameData"))
+                return resPath + "./GameData/";
 
             { // search in $XDG_DATA_HOME
                 const char *xdg_data_home = std::getenv("XDG_DATA_HOME");
