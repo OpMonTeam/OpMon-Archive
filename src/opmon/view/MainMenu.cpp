@@ -23,8 +23,10 @@ namespace OpMon {
         MainMenu::MainMenu(Model::MainMenuData &data)
           : data(data) {
 
+            float mainMenuItemX = (data.getUiDataPtr()->getWindowWidth() - MAIN_MENU_ITEM_WIDTH)/2;
+
             for(int i = 0; i < 4; i++) {
-                sf::Vector2f position(MAIN_MENU_ITEM_PADDING, MAIN_MENU_ITEM_PADDING + i * (MAIN_MENU_ITEM_HEIGHT + MAIN_MENU_ITEM_PADDING));
+                sf::Vector2f position(mainMenuItemX, MAIN_MENU_ITEM_PADDING + i * (MAIN_MENU_ITEM_HEIGHT + MAIN_MENU_ITEM_PADDING));
                 TextBox mainMenuItem(data.getUiDataPtr()->getMenuFrame(), position, MAIN_MENU_ITEM_WIDTH, MAIN_MENU_ITEM_HEIGHT);
                 mainMenuItem.setFont(data.getUiDataPtr()->getFont());
                 mainMenuItems.push_back(mainMenuItem);
