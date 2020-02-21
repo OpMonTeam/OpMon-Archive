@@ -46,8 +46,8 @@ namespace OpMon {
             sf::Keyboard::Key interact;
             sf::Keyboard::Key talk;
 
-            uint32_t windowHeight = 512;
-            uint32_t windowWidth = 512;
+            uint32_t windowHeight = 540;
+            uint32_t windowWidth = 960;
 
             sf::Texture menuFrame;
 

@@ -29,14 +29,14 @@ namespace OpMon {
                 fullScreen = true;
                 window.create(sf::VideoMode::getFullscreenModes().at(0), "OpMon Lazuli", sf::Style::Fullscreen, settings);
             } else {
-                window.create(sf::VideoMode(512, 512), "OpMon Lazuli", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize, settings);
+                window.create(sf::VideoMode(960, 540), "OpMon Lazuli", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize, settings);
             }
 
             sf::Image icon;
             Model::ResourceLoader::load(icon, "opmon.png");
             window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
-            frame.create(512, 512);
+            frame.create(960, 540);
             sprite.setTexture(frame.getTexture());
             updateView();
 
@@ -83,6 +83,14 @@ namespace OpMon {
 
             // prevent auto-stretching
             window.setView(sf::View({0.f, 0.f, windowSize.x, windowSize.y}));
+        }
+
+        int Window::getBaseWindowWidth() {
+            return 960;
+        }
+
+        int Window::getBaseWindowHeight() {
+            return 540;
         }
 
     } // namespace View
