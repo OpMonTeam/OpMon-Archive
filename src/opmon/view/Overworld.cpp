@@ -158,7 +158,7 @@ namespace OpMon {
             character.setTextureRect(data.getTexturePPRect((unsigned int)Side::TO_DOWN));
             data.getPlayer().tp(mapId, sf::Vector2i(2, 4)); //TODO : Add a parameter to configure the default player's position
             character.setPosition(2 SQUARES - 16, 4 SQUARES);
-            camera.setSize(sf::Vector2f(16 SQUARES, 16 SQUARES));
+            camera.setSize(sf::Vector2f(30 SQUARES, 16.875 SQUARES));
             resetCamera();
 
             setMusic(current->getBg());
