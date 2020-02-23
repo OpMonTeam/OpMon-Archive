@@ -47,7 +47,7 @@ class Species;
 
         uint32_t windowHeight = 540;
         uint32_t windowWidth = 960;
-        
+
         sf::Texture menuFrame;
 
         /*!
@@ -114,6 +114,18 @@ class Species;
          * \brief Gets the key for the "talk" action.
          */
         sf::Keyboard::Key getKeyTalk() const { return talk; }
+
+        /*!
+         * \brief Gets the heigth of the window
+         */
+        uint32_t getWindowHeight() const { return windowHeight; }
+
+        /*!
+         * \brief Gets the width of the window
+         */
+        uint32_t getWindowWidth() const { return windowWidth; }
+
+        sf::Texture &getMenuFrame() { return menuFrame; }
 
         /*!
          * \brief Sets the key for the "up" action.

@@ -6,23 +6,19 @@ File under GNU GPL v3.0 license
 */
 #include "Dialog.hpp"
 
-#include "../../utils/StringKeys.hpp"
-#include "../../utils/defines.hpp"
-#include "../start/Core.hpp"
+#include "../../../utils/StringKeys.hpp"
+#include "../../../utils/defines.hpp"
+#include "../../core/Core.hpp"
 #include "Window.hpp"
-#include "ui/TextBox.hpp"
+#include "TextBox.hpp"
 
 namespace OpMon {
     namespace Ui {
 
-        Dialog::Dialog(sf::String text, UiData *uidata)
-          : uidata(uidata) {
-            this->text = Utils::StringKeys::autoNewLine(text);
+        void Dialog::init() {
+
             unsigned int DIALOG_BOX_WIDTH = 504;
             unsigned int DIALOG_BOX_HEIGHT = 100;
-        }
-
-        void Dialog::init() {
 
             float dialogBoxX = (uidata->getWindowWidth() - DIALOG_BOX_WIDTH)/2;
             float dialogBoxY = uidata->getWindowHeight() - DIALOG_BOX_HEIGHT - 4;
@@ -54,7 +50,7 @@ namespace OpMon {
             init();
         }
 
-        Dialog::Dialog(sf::String text, Model::UiData *uidata)
+        Dialog::Dialog(sf::String text, UiData *uidata)
           : uidata(uidata) {
             this->text = Utils::StringKeys::autoNewLine(text, uidata->getFont(), 16, 456);
 
