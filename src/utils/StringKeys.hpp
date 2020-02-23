@@ -106,7 +106,7 @@ namespace Utils {
          * \param characterSize The character size used to calculate the size of the text.
          * \param limit The size limit, 456 by default to fit in a standard OpMon dialog box.
          */
-        std::queue<sf::String> autoNewLine(sf::String str,
+        static std::queue<sf::String> autoNewLine(sf::String str,
                                            sf::Font font,
                                            unsigned int characterSize,
                                            float limit);
