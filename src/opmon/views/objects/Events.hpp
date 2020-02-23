@@ -11,18 +11,9 @@
 #include <SFML/Audio/Sound.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Texture.hpp>
-#include <SFML/System/String.hpp>
-#include <SFML/System/Vector2.hpp>
-#include <memory>
-#include <string>
-#include <vector>
 
-#include "../../../utils/OpString.hpp"
-#include "../../../utils/defines.hpp"
 #include "../../core/i18n/ATranslatable.hpp"
-#include "../../objects/Enums.hpp"
 #include "../../core/Player.hpp"
-#include "Position.hpp"
 
 namespace OpMon {
 class Item;

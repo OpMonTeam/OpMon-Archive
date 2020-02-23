@@ -9,22 +9,11 @@
 #ifndef OPTIONSMENU_HPP
 #define OPTIONSMENU_HPP
 
-#include <SFML/Audio.hpp>
-#include <SFML/Graphics.hpp>
-#include <SFML/Graphics/Drawable.hpp>
-#include <SFML/Graphics/RenderStates.hpp>
-#include <SFML/Graphics/Sprite.hpp>
-#include <SFML/Graphics/Text.hpp>
-#include <SFML/System/Vector2.hpp>
-#include <iostream>
-#include <vector>
-
 #include "OptionsMenuData.hpp"
 #include "../core/i18n/ATranslatable.hpp"
 #include "ui/Elements.hpp"
 #include "ui/TextBox.hpp"
 #include "../../utils/CycleCounter.hpp"
-#include "src/opmon/core/GameStatus.hpp"
 
 namespace sf {
 class RenderTarget;

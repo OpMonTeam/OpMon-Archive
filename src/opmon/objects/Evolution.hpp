@@ -7,8 +7,6 @@
 #ifndef EVOLUTION_HPP
 #define EVOLUTION_HPP
 
-#include <iostream>
-
 #include "OpMon.hpp"
 
 namespace OpMon {

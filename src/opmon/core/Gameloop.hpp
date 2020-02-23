@@ -10,14 +10,10 @@
 
 #pragma once
 
-#include <SFML/Window/Keyboard.hpp>
-#include <memory>
 #include <stack>
 
 #include "../views/base/AGameScreen.hpp"
-#include "../views/ui/Window.hpp"
 #include "UiData.hpp"
-#include "GameStatus.hpp"
 
 namespace sf {
 class Event;

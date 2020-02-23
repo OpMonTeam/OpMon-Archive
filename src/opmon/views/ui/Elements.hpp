@@ -30,15 +30,10 @@
  */
 #define F_POW 4
 
-#include <SFML/Graphics.hpp>
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/Graphics/Transformable.hpp>
 #include <SFML/Graphics/VertexArray.hpp>
-#include <SFML/System/Vector2.hpp>
-#include <iostream>
-#include <vector>
-#include <algorithm>
 
 #include "../../core/Player.hpp"
 

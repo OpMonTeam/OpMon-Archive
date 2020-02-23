@@ -7,21 +7,9 @@
 #ifndef STARTSCENE_HPP
 #define STARTSCENE_HPP
 
-#include <SFML/Audio.hpp>
-#include <SFML/Graphics.hpp>
-#include <SFML/Graphics/Drawable.hpp>
-#include <SFML/Graphics/RenderStates.hpp>
-#include <SFML/Graphics/Sprite.hpp>
-#include <SFML/Graphics/Text.hpp>
-#include <SFML/System/String.hpp>
-#include <memory>
-
-#include "../../utils/OpString.hpp"
 #include "StartSceneData.hpp"
-#include "../core/Core.hpp"
 #include "../core/i18n/ATranslatable.hpp"
 #include "ui/Dialog.hpp"
-#include "src/opmon/core/GameStatus.hpp"
 
 namespace sf {
 class RenderTarget;

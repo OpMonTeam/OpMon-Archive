@@ -8,15 +8,6 @@
 #ifndef MAINMENU_HPP
 #define MAINMENU_HPP
 
-#include <SFML/Audio.hpp>
-#include <SFML/Graphics.hpp>
-#include <SFML/Graphics/Drawable.hpp>
-#include <SFML/Graphics/RenderStates.hpp>
-#include <SFML/Graphics/Sprite.hpp>
-#include <SFML/Graphics/Text.hpp>
-#include <SFML/System/Vector2.hpp>
-#include <vector>
-
 #include "MainMenuData.hpp"
 #include "../core/i18n/ATranslatable.hpp"
 #include "ui/TextBox.hpp"

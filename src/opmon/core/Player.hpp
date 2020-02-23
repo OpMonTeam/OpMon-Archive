@@ -11,12 +11,8 @@
 #define _PLAYER_HPP_
 
 #include <SFML/System.hpp>
-#include <SFML/System/String.hpp>
-#include <SFML/System/Vector2.hpp>
 #include <map>
-#include <vector>
 #include <algorithm>
-#include <string>
 
 #include "../objects/Item.hpp"
 #include "../objects/OpTeam.hpp"

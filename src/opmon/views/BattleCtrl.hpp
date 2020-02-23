@@ -5,20 +5,10 @@
  */
 #pragma once
 
-#include <vector>
-#include <queue>
-
 #include "../objects/Attack.hpp"
-#include "../objects/Enums.hpp"
-#include "../objects/OpMon.hpp"
-#include "../objects/Species.hpp"
-#include "objects/Turn.hpp"
-#include "BattleData.hpp"
 #include "objects/Events.hpp"
-#include "../objects/OpTeam.hpp"
 #include "Battle.hpp"
 #include "base/AGameScreen.hpp"
-#include "src/opmon/core/GameStatus.hpp"
 
 namespace sf {
 class Event;

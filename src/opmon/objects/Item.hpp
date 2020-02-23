@@ -6,14 +6,11 @@
  */
 #pragma once
 
-#include <SFML/System/String.hpp>
 #include <memory>
-#include <vector>
-#include <utility>
 
-#include "../../utils/OpString.hpp"
 #include "../core/Core.hpp"
 #include "OpMon.hpp"
+#include "../../utils/OpString.hpp"
 
 namespace OpMon {
 class OpMon;

@@ -5,20 +5,10 @@
  */
 #pragma once
 
-#include <SFML/Graphics/Texture.hpp>
-#include <SFML/System/Vector2.hpp>
 #include <SFML/Graphics/Rect.hpp>
-#include <map>
-#include <string>
-#include <vector>
-#include <memory>
-#include <utility>
 
 #include "objects/Map.hpp"
-#include "../core/Player.hpp"
 #include "GameMenuData.hpp"
-#include "../core/UiData.hpp"
-#include "src/opmon/objects/Item.hpp"
 
 namespace sf {
 class String;

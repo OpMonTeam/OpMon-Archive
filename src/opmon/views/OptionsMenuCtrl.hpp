@@ -7,21 +7,13 @@
  */
 #pragma once
 
-#include <SFML/Window/Event.hpp>
-#include <string>
 #include <iosfwd>
-#include <vector>
 
-#include "../../utils/defines.hpp"
 #include "../../utils/path.hpp"
 #include "../core/system/OptionsSave.hpp"
-#include "../core/system/KeyData.hpp"
-#include "OptionsMenuData.hpp"
-#include "../core/Core.hpp"
 #include "MainMenu.hpp"
 #include "OptionsMenu.hpp"
 #include "base/AGameScreen.hpp"
-#include "src/opmon/core/GameStatus.hpp"
 
 namespace sf {
 class Event;

@@ -6,11 +6,8 @@
 #pragma once
 
 #include "../../utils/CycleCounter.hpp"
-#include "GameMenuData.hpp"
-#include "../core/Player.hpp"
 #include "GameMenu.hpp"
 #include "base/AGameScreen.hpp"
-#include "src/opmon/core/GameStatus.hpp"
 
 namespace sf {
 class Event;

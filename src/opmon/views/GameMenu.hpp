@@ -5,7 +5,6 @@
  */
 #pragma once
 
-#include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/Graphics/Text.hpp>
