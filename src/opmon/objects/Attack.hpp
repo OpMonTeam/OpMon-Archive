@@ -8,18 +8,9 @@
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUE_HPP_
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUE_HPP_
 
-#include <SFML/System/String.hpp>
-#include <iostream>
 #include <queue>
-#include <map>
-#include <string>
-#include <vector>
 
-#include "../../utils/OpString.hpp"
-#include "../../utils/defines.hpp"
-#include "../../utils/misc.hpp"
 #include "../views/ui/Elements.hpp"
-#include "Enums.hpp"
 #include "../views/objects/Turn.hpp"
 
 namespace OpMon {

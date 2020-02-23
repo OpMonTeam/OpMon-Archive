@@ -9,10 +9,6 @@
 #define MAP_HPP
 
 #include <SFML/Graphics/RenderTexture.hpp>
-#include <SFML/System/Vector2.hpp>
-#include <string>
-#include <vector>
-#include <algorithm>
 
 #include "../../../nlohmann/json.hpp"
 #include "Events.hpp"

@@ -7,18 +7,8 @@
 #ifndef OVERWORLDCTRL_HPP
 #define OVERWORLDCTRL_HPP
 
-#include <SFML/Window/Event.hpp>
-#include <SFML/Graphics/Texture.hpp>
-#include <vector>
-
-#include "../core/Player.hpp"
-#include "../core/Core.hpp"
 #include "Overworld.hpp"
 #include "base/AGameScreen.hpp"
-#include "src/opmon/core/GameStatus.hpp"
-#include "src/opmon/objects/Enums.hpp"
-#include "src/opmon/views/OverworldData.hpp"
-#include "src/opmon/views/objects/Events.hpp"
 
 namespace sf {
 class Event;

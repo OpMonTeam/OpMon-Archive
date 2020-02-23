@@ -8,14 +8,9 @@
 #define STARTSCENECTRL_HPP
 
 #include <SFML/Window.hpp>
-#include <SFML/Graphics/Texture.hpp>
-#include <memory>
 
-#include "StartSceneData.hpp"
-#include "../core/Core.hpp"
 #include "StartScene.hpp"
 #include "base/AGameScreen.hpp"
-#include "src/opmon/core/GameStatus.hpp"
 
 namespace sf {
 class Event;

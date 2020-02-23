@@ -9,9 +9,7 @@
 #include <SFML/Audio/Music.hpp>
 #include <SFML/Audio/Sound.hpp>
 #include <SFML/Audio/SoundBuffer.hpp>
-#include <memory>
 #include <unordered_map>
-#include <string>
 #include <utility>
 
 #include "../../core/system/ResourceLoader.hpp"

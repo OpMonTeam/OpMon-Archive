@@ -10,10 +10,8 @@
 #include <stddef.h>
 #include <fstream>
 #include <memory>
-#include <string>
 #include <vector>
 
-#include "../../../utils/defines.hpp"
 #include "../Core.hpp"
 
 namespace sf {

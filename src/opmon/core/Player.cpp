@@ -6,6 +6,7 @@
 */
 #include "Player.hpp"
 
+#include "../../utils/OpString.hpp"
 #include "../objects/Attack.hpp"
 #include "src/opmon/objects/OpMon.hpp"
 #include "src/opmon/objects/OpTeam.hpp"

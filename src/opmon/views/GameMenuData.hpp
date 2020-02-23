@@ -5,9 +5,6 @@
  */
 #pragma once
 
-#include <SFML/Graphics/Texture.hpp>
-#include <SFML/System/Vector2.hpp>
-
 #include "../core/Player.hpp"
 #include "../core/UiData.hpp"
 

@@ -1,6 +1,10 @@
+/*!
+ * \file TextBox.hpp
+ * \author Olivier Grech
+ * \copyright GNU GPL v3.0
+ */
 #pragma once
 
-#include <SFML/Graphics.hpp>
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/Font.hpp>

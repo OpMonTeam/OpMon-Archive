@@ -5,6 +5,7 @@
 */
 #include <string>
 
+#include "../../utils/OpString.hpp"
 #include "evolutions.hpp"
 #include "src/opmon/objects/Evolution.hpp"
 

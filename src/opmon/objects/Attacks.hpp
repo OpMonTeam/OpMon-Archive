@@ -8,15 +8,8 @@
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUES_HPP_
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUES_HPP_
 
-#include <cmath>
-#include <iostream>
-#include <queue>
-
 #include "../../nlohmann/json.hpp"
 #include "Attack.hpp"
-#include "OpMon.hpp"
-#include "src/opmon/objects/Enums.hpp"
-#include "src/opmon/views/objects/Turn.hpp"
 
 namespace OpMon {
 class OpMon;

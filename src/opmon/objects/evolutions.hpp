@@ -9,7 +9,6 @@
 
 #include "Item.hpp"
 #include "Evolution.hpp"
-#include <iostream>
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 namespace OpMon {
 
