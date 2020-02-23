@@ -12,7 +12,6 @@ class UiData;
 
     MainMenuData::MainMenuData(UiData *ptr)
         : uidata(ptr) {
-        System::ResourceLoader::load(menuframe, "backgrounds/menuframe.png");
         System::ResourceLoader::load(arrChoice, "sprites/misc/arrChoiceScale.png");
     }
 } // namespace OpMon

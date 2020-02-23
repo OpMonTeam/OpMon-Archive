@@ -19,6 +19,5 @@ class UiData;
         System::ResourceLoader::load(controlsBg, "backgrounds/controls.png");
         System::ResourceLoader::load(volumeCur, "sprites/misc/cursor.png");
         System::ResourceLoader::load(keyChange, "sprites/misc/keyChange.png");
-        System::ResourceLoader::load(menuframe, "backgrounds/menuframe.png");
     }
 } // namespace OpMon

@@ -1,13 +1,18 @@
 /*
-StringKeys.cpp
-Author : Cyrielle
-Contributor : BAKFR
-File under GNU GPL v3.0 license
+  StringKeys.cpp
+  Author : Cyrielle
+  Contributor : BAKFR
+  File under GNU GPL v3.0 license
 */
 #include "StringKeys.hpp"
 
 #include <ext/alloc_traits.h>
 #include <SFML/Config.hpp>
+#include "../opmon/start/Core.hpp"
+#include "./log.hpp"
+#include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Font.hpp>
+#include <cstdio>
 #include <queue>
 #include <algorithm>
 #include <iostream>
@@ -156,40 +161,64 @@ namespace Utils {
 
     std::string StringKeys::getStd(std::string const &key) { return sfStringtoStdString(get(key)); }
 
-    std::queue<sf::String> StringKeys::autoNewLine(sf::String str, unsigned int limit) {
+    std::queue<sf::String> StringKeys::autoNewLine(sf::String str,
+                                                   sf::Font font,
+                                                   unsigned int characterSize,
+                                                   float limit) {
         sf::String currentWord;
-        std::queue<sf::String> strings;
-        strings.push(sf::String());
+        std::queue<sf::String> lines;
+        lines.push(sf::String());
+
+        // Temporary text used to measure the size
+        sf::Text testText;
+        testText.setFont(font);
+        testText.setCharacterSize(characterSize);
+
         for(unsigned int i = 0; i < str.getSize(); i++) {
+
             if(str[i] != ' ' && str[i] != '|' && str[i] != '$' && i != (str.getSize() - 1)) {
                 currentWord += str[i];
             } else {
-                if((strings.back().getSize() + currentWord.getSize()) >= limit) {
-                    strings.push(sf::String());
+
+                sf::String currentLine = lines.back() + " " + currentWord;
+
+                // Calculate the width that a text with the given font and character size would
+                // have with the current string
+                testText.setString(currentLine);
+                float testTextWidth = testText.getLocalBounds().width;
+
+                // If this width is over the limit, generate a new line
+                if(testTextWidth > limit) {
+                    lines.push(sf::String());
                 }
 
-                if(i == str.getSize() - 1)
+                if(i == str.getSize() - 1) {
                     currentWord += str[i];
-                strings.back() += currentWord;
-                if(str[i] == ' ')
-                    strings.back() += " ";
+                }
+
+                lines.back() += currentWord;
+
+                if(str[i] == ' ') {
+                    lines.back() += " ";
+                }
+
                 currentWord.clear();
 
                 if(str[i] == '|' || str[i] == '$') {
-                    strings.push(sf::String());
+                    lines.push(sf::String());
                 }
-                while(str[i] == '$' && (strings.size() % 3) != 1) {
-                    strings.back() += " ";
-                    strings.push(sf::String());
+                while(str[i] == '$' && (lines.size() % 2) != 1) {
+                    lines.back() += " ";
+                    lines.push(sf::String());
                 }
             }
         }
-        if(strings.back().isEmpty())
-            strings.back() += " ";
-        while((strings.size() % 3) != 0) {
-            strings.push(sf::String(" "));
+        if(lines.back().isEmpty()) {
+            lines.back() += " ";
         }
-        return strings;
+        while((lines.size() % 2) != 0) {
+            lines.push(sf::String(" "));
+        }
+        return lines;
     }
-
 } // namespace Utils
