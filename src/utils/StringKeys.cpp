@@ -8,7 +8,6 @@
 
 #include <ext/alloc_traits.h>
 #include <SFML/Config.hpp>
-#include "../opmon/start/Core.hpp"
 #include "./log.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/Font.hpp>
@@ -55,7 +54,7 @@ namespace Utils {
     bool StringKeys::initialize(const std::string &keysFileS) {
         std::ifstream keysFile(keysFileS);
         if(!keysFile) {
-            OpMon::handleError(std::string("Keys initialization error: ") + keysFileS, true);
+            //OpMon::handleError(std::string("Keys initialization error: ") + keysFileS, true);
         }
         keys = std::vector<std::string>();
         strings = std::vector<sf::String>();

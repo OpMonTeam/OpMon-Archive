@@ -8,7 +8,7 @@
 #pragma once
 
 #include <SFML/System.hpp>
-#include "ui/TextBox.hpp"
+#include "../ui/TextBox.hpp"
 #include <queue>
 
 #include "../../core/UiData.hpp"
