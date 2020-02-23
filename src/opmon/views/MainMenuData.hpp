@@ -18,7 +18,6 @@ class UiData;
      */
     class MainMenuData {
     private:
-        sf::Texture menuframe;
         sf::Texture arrChoice;
 
         UiData *uidata;
@@ -34,7 +33,6 @@ class UiData;
          */
         UiData *getUiDataPtr() const { return uidata; }
 
-        sf::Texture const &getMenuframe() const { return menuframe; }
         /*!
          * \brief Gets the cursor.
          */

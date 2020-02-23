@@ -6,20 +6,11 @@ File under GNU GPL v3.0 license
 */
 #include "Dialog.hpp"
 
-#include <stddef.h>
-#include <SFML/Config.hpp>
-#include <SFML/Graphics/Color.hpp>
-#include <SFML/Graphics/RenderTarget.hpp>
-#include <SFML/System/Vector2.hpp>
-#include <algorithm>
-#include <memory>
-#include <string>
-
-#include "../../../utils/StringKeys.hpp"
-#include "../../../utils/defines.hpp"
-#include "../../core/Core.hpp"
-#include "src/opmon/core/UiData.hpp"
-#include "src/opmon/views/ui/Jukebox.hpp"
+#include "../../utils/StringKeys.hpp"
+#include "../../utils/defines.hpp"
+#include "../start/Core.hpp"
+#include "Window.hpp"
+#include "ui/TextBox.hpp"
 
 namespace OpMon {
     namespace Ui {
@@ -27,86 +18,74 @@ namespace OpMon {
         Dialog::Dialog(sf::String text, UiData *uidata)
           : uidata(uidata) {
             this->text = Utils::StringKeys::autoNewLine(text);
+            unsigned int DIALOG_BOX_WIDTH = 504;
+            unsigned int DIALOG_BOX_HEIGHT = 100;
+        }
 
-            while(this->text.size() % 3 != 0) {
+        void Dialog::init() {
+
+            float dialogBoxX = (uidata->getWindowWidth() - DIALOG_BOX_WIDTH)/2;
+            float dialogBoxY = uidata->getWindowHeight() - DIALOG_BOX_HEIGHT - 4;
+
+            sf::Vector2f dialogBoxPosition(dialogBoxX, dialogBoxY);
+            dialogBox = new TextBox(uidata->getMenuFrame(), dialogBoxPosition, DIALOG_BOX_WIDTH, DIALOG_BOX_HEIGHT, 3);
+            dialogBox->setFont(uidata->getFont());
+
+            // Create the arrow that appears to prompt the player to press the action key
+            arrDial.setTexture(uidata->getDialogArrow());
+            arrDialX = dialogBoxX + DIALOG_BOX_WIDTH - 32;
+            arrDialY = dialogBoxY + DIALOG_BOX_HEIGHT - 32;
+            arrDial.setPosition(arrDialX, arrDialY);
+            arrDial.setScale(2, 2);
+        }
+
+        Dialog::Dialog(std::queue<sf::String> text, UiData *uidata)
+          : text(text)
+          , uidata(uidata) {
+            if(this->text.size() % 2 != 0) {
+                while(this->text.size() % 2 != 0) {
+                    this->text.push(sf::String(" "));
+                }
+                if(this->text.size() % 2 != 0) {
+                    handleError("Error: string missing in Dialog, even after trying to fix it.", true);
+                }
+            }
+
+            init();
+        }
+
+        Dialog::Dialog(sf::String text, Model::UiData *uidata)
+          : uidata(uidata) {
+            this->text = Utils::StringKeys::autoNewLine(text, uidata->getFont(), 16, 456);
+
+            while(this->text.size() % 2 != 0) {
                 this->text.push(sf::String(" "));
             }
 
             init();
         }
 
-        Dialog::Dialog(std::queue<sf::String> text, UiData *uidata)
-          : text(text)
-          , uidata(uidata) {
-            if(this->text.size() % 3 != 0) {
-                while(this->text.size() % 3 != 0) {
-                    this->text.push(sf::String(" "));
-                }
-                if(this->text.size() % 3 != 0) {
-                    handleError("Error : string missing in Dialog, even after trying to fix it.", true);
-                }
-            }
-
-            init();
-        }
-
-        Dialog::Dialog(std::vector<sf::String> text, UiData *uidata)
-          : uidata(uidata) {
-
-            for(sf::String str : text) {
-                this->text.push(str);
-            }
-
-            if(this->text.size() % 3 != 0) {
-                while(this->text.size() % 3 != 0) {
-                    this->text.push(sf::String(" "));
-                }
-                if(this->text.size() % 3 != 0) {
-                    handleError("Error : string missing in Dialog, even after trying to fix it.", true);
-                }
-            }
-
-            init();
-        }
-
-        void Dialog::init() {
-            background.setTexture(uidata->getDialogBackground());
-            arrDial.setTexture(uidata->getDialogArrow());
-
-            background.setPosition(0, 512 - 150);
-            arrDial.setPosition(512 - 40, 512 - 40);
-            arrDial.setScale(2, 2);
-
-            int minusPos = 32;
-            for(size_t i = 0; i < 3; ++i) {
-                dialogText[i].setFont(uidata->getFont());
-                dialogText[i].setCharacterSize(FONT_SIZE_DEFAULT);
-                dialogText[i].setSfmlColor(sf::Color::Black);
-
-                dialogText[i].setPosition(25, background.getPosition().y + minusPos);
-                minusPos += 32;
-            }
-        }
-
         void Dialog::pass() {
-            /* If the dialog is not completely displayed, display the dialog when pressing space */
             if(changeDialog == false) {
-                for(unsigned int p = line; p < 3; p++) {
+                // If the current lines are not completely displayed, display them in full when
+                // pressing space
+                for(uint32_t p = line; p < 2; p++) {
                     currentTxt[p] = text.front();
                     text.pop();
                 }
                 changeDialog = true;
-                /* If the dialog is completely displayed, pass to the next dialog when pressing space, if there is one */
             } else if(text.size() > 0) {
+                // If the current lines are completely displayed, pass to the next set of lines when
+                // pressing space (if there is one)
                 uidata->getJukebox().playSound("dialog pass");
                 line = 0;
                 i = 0;
                 currentTxt[0] = sf::String(" ");
                 currentTxt[1] = sf::String(" ");
-                currentTxt[2] = sf::String(" ");
                 changeDialog = false;
-            } else { //If there is no more dialogs
-                is_dialog_over = true;
+            } else {
+                // If there are no more lines to display
+                dialogOver = true;
             }
         }
 
@@ -123,17 +102,17 @@ namespace OpMon {
                 } else {
                     text.pop();
                     line++;
-                    if(line == 3) {
+                    if(line == 2) {
                         changeDialog = true;
                     } else {
                         i = 0;
                     }
                 }
             }
-            for(size_t itor = 0; itor < 3; itor++) {
-                dialogText[itor].setString(currentTxt[itor].toUtf32());
+            for(size_t itor = 0; itor < 2; itor++) {
+                dialogBox->setLeftContent(currentTxt[itor].toUtf32(), itor);
             }
-            sf::Vector2f posArrow(512 - 40, 512 - 40);
+            sf::Vector2f posArrow(arrDialX, arrDialY);
             arrDial.move(0, 0.33f);
             if(arrDial.getPosition().y - posArrow.y > 5) {
                 arrDial.move(0, -6);
@@ -141,25 +120,15 @@ namespace OpMon {
         }
 
         void Dialog::draw(sf::RenderTarget &target, sf::RenderStates states) const {
-            if(backgroundVisible) {
-                target.draw(background);
-                {
-                    for(size_t itor = 0; itor < 3; itor++) {
-                        target.draw(dialogText[itor]);
-                    }
-
-                    if(text.size() > 0 && changeDialog)
-                        target.draw(arrDial);
-                }
+            target.draw(*dialogBox);
+            {
+                if(text.size() > 0 && changeDialog)
+                    target.draw(arrDial);
             }
         }
 
         bool Dialog::isDialogOver() {
-            return is_dialog_over;
-        }
-
-        void Dialog::setBackgroundVisible(bool visible) {
-            backgroundVisible = visible;
+            return dialogOver;
         }
 
     } // namespace Ui

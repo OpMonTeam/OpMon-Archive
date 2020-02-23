@@ -23,7 +23,6 @@ class UiData;
         sf::Texture controlsBg;
         sf::Texture volumeCur;
         sf::Texture keyChange;
-        sf::Texture menuframe;
 
         /*!
          * \brief The copy constructor. Not defined, must not be used.
@@ -59,7 +58,6 @@ class UiData;
          * \brief Gets the texture of the cursor used in the controls.
          */
         sf::Texture const &getKeyChange() const { return keyChange; }
-        sf::Texture const &getMenuframe() const { return menuframe; }
         /*!
          * \brief Gets a pointer to the UiData object.
          */

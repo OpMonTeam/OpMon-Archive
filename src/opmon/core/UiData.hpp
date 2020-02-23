@@ -45,6 +45,11 @@ class Species;
         sf::Keyboard::Key interact;
         sf::Keyboard::Key talk;
 
+        uint32_t windowHeight = 540;
+        uint32_t windowWidth = 960;
+        
+        sf::Texture menuFrame;
+
         /*!
          * \brief The copy constructor. Not defined, must not be used.
          */
