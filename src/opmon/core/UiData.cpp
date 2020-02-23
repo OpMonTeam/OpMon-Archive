@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <utility>
 
+#include "../../utils/OpString.hpp"
 #include "../../nlohmann/json.hpp"
 #include "../../utils/log.hpp"
 #include "../../utils/path.hpp"

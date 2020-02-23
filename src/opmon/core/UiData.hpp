@@ -8,19 +8,14 @@
 
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/Texture.hpp>
-#include <SFML/Window/Keyboard.hpp>
 #include <ext/alloc_traits.h>
 #include <map>
-#include <unordered_map>
-#include <vector>
-#include <string>
 
-#include "../../utils/defines.hpp"
 #include "../views/ui/Jukebox.hpp"
 #include "../views/ui/Window.hpp"
-#include "../objects/Enums.hpp"
 #include "../objects/Species.hpp"
 #include "system/KeyData.hpp"
+
 
 namespace OpMon {
 class Species;

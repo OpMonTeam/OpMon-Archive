@@ -7,23 +7,9 @@
 #ifndef OVERWORLD_HPP
 #define OVERWORLD_HPP
 
-#include <SFML/Graphics/Drawable.hpp>
-#include <SFML/Graphics/RenderStates.hpp>
-#include <SFML/Graphics/Sprite.hpp>
-#include <SFML/Graphics/Text.hpp>
 #include <SFML/Graphics/View.hpp>
-#include <SFML/System/String.hpp>
-#include <SFML/System/Vector2.hpp>
-#include <memory>
-#include <map>
-#include <string>
 
-#include "../objects/Enums.hpp"
 #include "OverworldData.hpp"
-#include "objects/Map.hpp"
-#include "../core/Player.hpp"
-#include "../core/Core.hpp"
-#include "../core/GameStatus.hpp"
 #include "ui/Dialog.hpp"
 #include "ui/Elements.hpp"
 

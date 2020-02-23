@@ -5,8 +5,6 @@
  */
 #pragma once
 
-#include <SFML/Graphics/Texture.hpp>
-
 #include "../core/UiData.hpp"
 
 namespace OpMon {

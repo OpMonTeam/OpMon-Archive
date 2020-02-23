@@ -5,8 +5,6 @@
  */
 #pragma once
 
-#include <SFML/Graphics/Texture.hpp>
-
 #include "../core/Player.hpp"
 #include "../core/UiData.hpp"
 

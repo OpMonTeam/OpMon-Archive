@@ -9,9 +9,7 @@
 
 #include <map>
 
-#include "../../../utils/OpString.hpp"
 #include "../../objects/Item.hpp"
-#include "src/opmon/objects/Enums.hpp"
 
 namespace OpMon {
 

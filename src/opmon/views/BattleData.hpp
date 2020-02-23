@@ -5,11 +5,7 @@
  */
 #pragma once
 
-#include <SFML/Graphics/Texture.hpp>
 #include <list>
-#include <map>
-#include <string>
-#include <vector>
 
 #include "../core/Player.hpp"
 #include "../core/UiData.hpp"

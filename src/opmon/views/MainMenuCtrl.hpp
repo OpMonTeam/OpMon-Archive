@@ -6,14 +6,9 @@
  */
 #pragma once
 
-#include <SFML/Window/Event.hpp>
-
-#include "MainMenuData.hpp"
-#include "../core/Core.hpp"
 #include "MainMenu.hpp"
 #include "base/AGameScreen.hpp"
 #include "../../utils/CycleCounter.hpp"
-#include "src/opmon/core/GameStatus.hpp"
 
 namespace sf {
 class Event;
