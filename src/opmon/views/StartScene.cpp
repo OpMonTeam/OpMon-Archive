@@ -45,7 +45,20 @@ namespace OpMon {
         bgName.setPosition(0, 0);
 
         bg.setPosition(0, 0);
-        prof.setPosition(205, 120);
+        sf::FloatRect backgroundGlobalBounds = bg.getGlobalBounds();
+        float backgroundWidth = backgroundGlobalBounds.width;
+        float backgroundHeight = backgroundGlobalBounds.height;
+        float backgroundScaleX = (float)Window::getBaseWindowWidth()/backgroundWidth;
+        float backgroundScaleY = (float)Window::getBaseWindowHeight()/backgroundHeight;
+        bg.setScale(sf::Vector2f(backgroundScaleX, backgroundScaleY));
+
+        // Calculate professor sprite position
+        sf::FloatRect professorGlobalBounds = prof.getGlobalBounds();
+        float professorWidth = professorGlobalBounds.width;
+        float professorHeight = professorGlobalBounds.height;
+        float professorX = (Window::getBaseWindowWidth() - professorWidth)/2;
+        float professorY = (Window::getBaseWindowHeight() - professorHeight)/2;
+        prof.setPosition(professorX, professorY);
         prof.setScale(1.5, 1.5);
 
         for(sf::Text &cellTxt : textDescs) {

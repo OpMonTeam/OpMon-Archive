@@ -17,7 +17,7 @@
 #include <SFML/System/Vector2.hpp>
 
 namespace sf {
-class RenderTarget;
+    class RenderTarget;
 }  // namespace sf
 
 namespace OpMon{
@@ -27,34 +27,35 @@ namespace OpMon{
     private:
         sf::VertexArray vertexArray = sf::VertexArray(sf::Quads, 36);
 
-        // The texture used to draw the box
+        /// \brief The texture used to draw the box
         sf::Texture texture;
 
-        // The position of the box
+        /// \brief The position of the box
         sf::Vector2f position;
 
-        // The width of the box
-        int width;
+        /// \brief The width of the box
+        uint32_t width;
 
-        // The height of the box
-        int height;
+        /// \brief The height of the box
+        uint32_t height;
 
-        // An eventual text to be displayed in the left side of the box
-        sf::Text leftText;
+        /// \brief An eventual text to be displayed in the left side of the box
+        std::vector<sf::Text> leftText;
 
-        // An eventual text to be displayed in the right side of the box
-        sf::Text rightText;
+        /// \brief An eventual text to be displayed in the right side of the box
+        std::vector<sf::Text> rightText;
 
-        // The font to display the text with
+        /// \brief The font to display the text with
         sf::Font font;
 
+        /// \brief Whether or not the box is active (i.e. if it's greyed out or not)
         bool active;
 
         sf::Color activeColor = sf::Color(255, 255, 255, 255);
 
         sf::Color inactiveColor = sf::Color(50, 50, 50, 200);
 
-        // Draw the box on the given render texture
+        /// \brief Draw the box on the given render texture
         virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
     public:
@@ -64,8 +65,9 @@ namespace OpMon{
          * \param position The position fo the box.
          * \param width The width of the box.
          * \param height The height of the box.
+         * \param linesCount The number of lines of text to display in the box.
          */
-        TextBox(sf::Texture texture, sf::Vector2f position, int width, int height);
+        TextBox(sf::Texture texture, sf::Vector2f position, uint32_t width, uint32_t height, uint32_t linesCount = 1);
 
         ~TextBox() = default;
 
@@ -78,8 +80,9 @@ namespace OpMon{
         /**!
          * \brief Set the string used for the content of the text in the left of the box.
          * \param content A string to use for the content.
+         * \param line The index of the line for which the content will be set (start at 0).
          */
-        void setLeftContent(const sf::String& content);
+        void setLeftContent(const sf::String& content, uint32_t line = 0);
 
         /**!
          * \brief Set the string used for the content of the text in the right of the box.
@@ -93,5 +96,6 @@ namespace OpMon{
          */
         void setActive(bool active);
     };
+
 
 }

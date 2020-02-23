@@ -19,20 +19,22 @@ OPMon is a Pokémon-inspired game project imagined in 2012 and started in septem
 Master (Last stable build) : ![Build](https://api.travis-ci.org/OpMonTeam/OpMon.svg?branch=master)  
 Develop (Development branch) : ![Build](https://github.com/OpMonTeam/OpMon/workflows/Build/badge.svg?branch=develop)
 
-The build system use *cmake*. Commands for GNU/Linux systems :
+The game data is stored as a git submodule in the OpMon-Data repository. The build system use *cmake*. Commands for GNU/Linux systems :
 
 ```sh
-cmake .             #If you want to build in Debug, use -DCMAKE_BUILD_TYPE=Debug
+submodule update --init
+md build && cd build
+cmake ..            #If you want to build in Debug, use -DCMAKE_BUILD_TYPE=Debug
 make
 sudo make install   # install the game into your system
 make package        # generate both .deb package and .tar.gz package
 ```
 
-You can see the dependancies for GNU/Linux systems [here](https://github.com/OpMonTeam/OpMon/wiki/Dependencies).
+You can see the dependencies for GNU/Linux systems [here](https://github.com/OpMonTeam/OpMon/wiki/Dependencies).
 
 If you want to play to the game quickly, use `build-and-run.sh`. The game will be built in `bin/Release/`, and the data will be pasted in this repository. The game will launch after building.
 
-If you don't use `build-and-run.sh`, do not forget to copy the data folder in the game's folder or use `sudo make install` if you are on GNU/Linux.
+If you don't use `build-and-run.sh`, do not forget to copy the GameData folder in the game's folder or use `sudo make install` if you are on GNU/Linux.
 
 If you want to compile OPMon from A to Z for Windows, Mac OS or other, it is [here](https://github.com/OpMonTeam/OpMon/wiki/Compilation)
 
@@ -96,16 +98,18 @@ Vous pouvez voir les contrôles du jeu OpMon [ici](http://opmon-game.ga/controls
 
 ### Build
 
-Le système de build utilise *cmake*. Voici les commandes pour compiler le jeu et l'installer (sous GNU/Linux).
+Les données du jeu sont stockées dans OpMon-Data, utilisé en tant que sous-module Git. Le système de build utilise *cmake*. Voici les commandes pour compiler le jeu et l'installer (sous GNU/Linux).
 
 ```sh
-cmake .
+submodule update --init
+md build && cd build
+cmake ..            # Si vous voulez compiler en Debug, ajoutez -DCMAKE_BUILD_TYPE=Debug
 make
 sudo make install   # installe le jeu sur votre système
 make package        # génère deux paquets: un fichier générique .tar.gz et un paquet .deb
 ```
 
-Vous pouvez aussi utiliser le `build-and-run.sh` pour compiler et jouer au jeu rapidement. Le jeu se trouvera alors dans le dossier `bin/Release/`, avec le dossier data copié dedans. Il se lancera dès la fin de la compilation.
+Vous pouvez aussi utiliser le `build-and-run.sh` pour compiler et jouer au jeu rapidement. Le jeu se trouvera alors dans le dossier `bin/Release/`, avec le dossier GameData copié dedans. Il se lancera dès la fin de la compilation.
 
 Si vous n'utilisez pas le `build-and-run.sh`, n'oubliez pas de copier le dossier data dans le dossier du jeu, ou de faire `sudo make install` si vous êtes sous GNU/Linux !
 
