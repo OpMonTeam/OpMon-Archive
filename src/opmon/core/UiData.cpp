@@ -31,7 +31,7 @@ class Evolution;
 
         Utils::Log::oplog("Initializating UiData");
 
-        ResourceLoader::load(menuFrame, "backgrounds/menuframe.png");
+        System::ResourceLoader::load(menuFrame, "backgrounds/menuframe.png");
 
         jukebox.addMusic("Title", "audio/music/title.ogg", 50);
         jukebox.addMusic("Start", "audio/music/intro.ogg");
