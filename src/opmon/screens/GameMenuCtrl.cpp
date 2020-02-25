@@ -1,0 +1,101 @@
+/*
+GameMenuCtrl.cpp
+Author : Cyrielle
+File under GNU GPL v3.0 license
+*/
+
+#include "GameMenuCtrl.hpp"
+
+#include <SFML/Graphics/RenderTexture.hpp>
+#include <SFML/Window/Event.hpp>
+#include <SFML/Window/Keyboard.hpp>
+#include <memory>
+
+#include "OptionsMenuCtrl.hpp"
+#include "src/opmon/core/Core.hpp"
+#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/screens/GameMenu.hpp"
+#include "src/opmon/screens/GameMenuData.hpp"
+#include "src/opmon/screens/base/AGameScreen.hpp"
+#include "src/opmon/view/ui/Jukebox.hpp"
+#include "src/utils/CycleCounter.hpp"
+
+namespace OpMon {
+class Player;
+}  // namespace OpMon
+
+#define LOAD_OPTIONS 1
+
+namespace OpMon {
+
+        GameMenuCtrl::~GameMenuCtrl() {
+        }
+
+        GameMenuCtrl::GameMenuCtrl(GameMenuData &data, Player &player)
+          : data(data)
+          , view(data)
+          , player(player) {
+        }
+
+        GameStatus GameMenuCtrl::checkEvent(sf::Event const &event) {
+            switch(event.type) {
+            case sf::Event::KeyPressed:
+                if(event.key.code == sf::Keyboard::M) {
+                    return GameStatus::PREVIOUS_NLS;
+                }
+                if(event.key.code == sf::Keyboard::Up) {
+                    data.getUiDataPtr()->getJukebox().playSound("arrow");
+                    curPos -= 2;
+                }
+                if(event.key.code == sf::Keyboard::Down) {
+                    data.getUiDataPtr()->getJukebox().playSound("arrow");
+                    curPos += 2;
+                }
+                if(event.key.code == sf::Keyboard::Left) {
+                    data.getUiDataPtr()->getJukebox().playSound("arrow");
+                    curPos--;
+                }
+                if(event.key.code == sf::Keyboard::Right) {
+                    data.getUiDataPtr()->getJukebox().playSound("arrow");
+                    curPos++;
+                }
+                if(event.key.code == sf::Keyboard::Return) {
+                    switch(curPos.getValue()) {
+                    case 5:
+                        loadNext = LOAD_OPTIONS;
+                        return GameStatus::NEXT_NLS;
+                    default:
+                        data.getUiDataPtr()->getJukebox().playSound("nope");
+                        break;
+                    }
+                }
+                view.setCurPos(curPos.getValue());
+            default:
+                break;
+            }
+
+            return GameStatus::CONTINUE;
+        }
+
+        GameStatus GameMenuCtrl::update(sf::RenderTexture &frame) {
+            frame.draw(view);
+            return GameStatus::CONTINUE;
+        }
+
+        void GameMenuCtrl::loadNextScreen() {
+            switch(loadNext) {
+            case LOAD_OPTIONS:
+                _next_gs = std::make_unique<OptionsMenuCtrl>(data.getUiDataPtr());
+                break;
+            default:
+                handleError("Error : Unknown view to load in MainMenuCtrl.", true);
+            }
+        }
+
+        void GameMenuCtrl::suspend() {
+        }
+
+        void GameMenuCtrl::resume() {
+        }
+
+} // namespace OpMon

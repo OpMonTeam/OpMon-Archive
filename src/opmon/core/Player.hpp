@@ -14,9 +14,9 @@
 #include <map>
 #include <algorithm>
 
-#include "../objects/Item.hpp"
-#include "../objects/OpTeam.hpp"
-#include "../views/objects/Position.hpp"
+#include "../model/Item.hpp"
+#include "../model/OpTeam.hpp"
+#include "../view/elements/Position.hpp"
 
 namespace OpMon {
 
