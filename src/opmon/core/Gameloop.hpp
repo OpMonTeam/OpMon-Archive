@@ -12,7 +12,7 @@
 
 #include <stack>
 
-#include "../views/base/AGameScreen.hpp"
+#include "../screens/base/AGameScreen.hpp"
 #include "UiData.hpp"
 
 namespace sf {

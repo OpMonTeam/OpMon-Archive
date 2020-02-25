@@ -7,10 +7,10 @@
 #include "Player.hpp"
 
 #include "../../utils/OpString.hpp"
-#include "../objects/Attack.hpp"
-#include "src/opmon/objects/OpMon.hpp"
-#include "src/opmon/objects/OpTeam.hpp"
-#include "src/opmon/views/objects/Position.hpp"
+#include "../model/Attack.hpp"
+#include "src/opmon/model/OpMon.hpp"
+#include "src/opmon/model/OpTeam.hpp"
+#include "src/opmon/view/elements/Position.hpp"
 #include "src/utils/misc.hpp"
 
 namespace OpMon {

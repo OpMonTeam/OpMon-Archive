@@ -14,14 +14,14 @@
 #include "../../nlohmann/json.hpp"
 #include "../../utils/log.hpp"
 #include "../../utils/path.hpp"
-#include "../objects/evolutions.hpp"
+#include "../model/evolutions.hpp"
 #include "system/OptionsSave.hpp"
 #include "system/ResourceLoader.hpp"
 #include "src/opmon/core/Core.hpp"
 #include "src/opmon/core/system/KeyData.hpp"
-#include "src/opmon/objects/Enums.hpp"
-#include "src/opmon/objects/Species.hpp"
-#include "src/opmon/views/ui/Jukebox.hpp"
+#include "src/opmon/model/Enums.hpp"
+#include "src/opmon/model/Species.hpp"
+#include "src/opmon/view/ui/Jukebox.hpp"
 #include "src/utils/StringKeys.hpp"
 
 namespace OpMon {

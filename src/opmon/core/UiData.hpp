@@ -11,9 +11,9 @@
 #include <ext/alloc_traits.h>
 #include <map>
 
-#include "../views/ui/Jukebox.hpp"
-#include "../views/ui/Window.hpp"
-#include "../objects/Species.hpp"
+#include "../view/ui/Jukebox.hpp"
+#include "../view/ui/Window.hpp"
+#include "../model/Species.hpp"
 #include "system/KeyData.hpp"
 
 
