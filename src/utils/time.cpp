@@ -4,7 +4,10 @@ Author : BAKFR
 File under GNU GPL v3.0
 */
 #include "time.hpp"
-#include <SFML/System.hpp>
+
+#include <SFML/System/Clock.hpp>
+#include <SFML/System/Sleep.hpp>
+#include <SFML/System/Time.hpp>
 
 /**
  * Clock created at the very beginning, used as the time reference.

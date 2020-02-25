@@ -5,19 +5,23 @@ Contributors : BAKFR, JonnyPtn, torq
 File under GNU GPL v3.0 license
 */
 #include "OpString.hpp"
+
+#include <stddef.h>
+#include <algorithm>
+#include <iostream>
+
 #include "./log.hpp"
 #include "StringKeys.hpp"
-#include <cstdarg>
 
 namespace Utils {
-    /*!
-      The "void" key returns an empty string.
+    /*
+     * The "void" key returns an empty string.
      */
     OpString OpString::voidStr = OpString("void");
 
     OpString::OpString(std::string const &key, std::vector<sf::String *> obj) {
         this->key = key;
-        unsigned int instances = StringKeys::countInstances(StringKeys::get(key), '~');
+        unsigned int instances = (key == "void") ? 0 : StringKeys::countInstances(StringKeys::get(key), '~');
         this->objects = obj;
 
         if(objects.size() != instances) {
@@ -44,7 +48,7 @@ namespace Utils {
     }
 
     sf::String OpString::getString() const {
-        if(this->key.empty()) { //If empty, it doesn't execute the algorithm. That would be useless.
+        if(this->key.empty() || this->key == "void") { //If empty or void, it doesn't execute the algorithm. That would be useless.
             return sf::String();
         }
         if(objects.size() == 0) { //If there is not object, it just returns the string.
