@@ -12,6 +12,7 @@
 #include <SFML/System/String.hpp>
 #include <iostream>
 #include <vector>
+#include <string>
 
 /*! \namespace Utils
  *  \brief Contains different utilities.
