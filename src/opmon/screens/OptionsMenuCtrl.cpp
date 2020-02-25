@@ -14,7 +14,7 @@
 
 #include "../../utils/defines.hpp"
 #include "../core/system/OptionsSave.hpp"
-#include "../core/i18n/Translator.hpp"
+#include "src/utils/i18n/Translator.hpp"
 #include "src/opmon/core/UiData.hpp"
 #include "src/opmon/core/system/KeyData.hpp"
 #include "src/opmon/screens/OptionsMenu.hpp"
@@ -103,7 +103,7 @@ namespace OpMon {
                     }
                 } else if(menu.getCurrentOption() == OptionType::LANG) { //Chooses language to print
 
-                    auto &tr = I18n::Translator::getInstance();
+                    auto &tr = Utils::I18n::Translator::getInstance();
                     data.getUiDataPtr()->getJukebox().playSound("push");
                     switch(menu.cursorPosition()) {
                     case 0:

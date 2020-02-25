@@ -6,15 +6,14 @@
 */
 #pragma once
 
-namespace OpMon {
+namespace Utils {
     /*!
-     * \namespace OpMon::I18n
+     * \namespace Utils::I18n
      * \brief Contains internationalisation tools.
      */
     namespace I18n {
 
         /*!
-         * \class ATranslatable ATranslatable.hpp "opmon/start/i18n/ATranslatable.hpp"
          * \brief Base class for any element requiring to reload when the lang changes.
          */
         class ATranslatable {

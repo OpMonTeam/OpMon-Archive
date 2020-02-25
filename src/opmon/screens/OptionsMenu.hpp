@@ -10,7 +10,7 @@
 #define OPTIONSMENU_HPP
 
 #include "OptionsMenuData.hpp"
-#include "../core/i18n/ATranslatable.hpp"
+#include "src/utils/i18n/ATranslatable.hpp"
 #include "../view/ui/Elements.hpp"
 #include "../view/ui/TextBox.hpp"
 #include "../../utils/CycleCounter.hpp"
@@ -36,7 +36,7 @@ class OptionsMenuData;
      * \todo Make the addition of a language easier.
      * \todo Put some variables in arrays.
      */
-    class OptionsMenu : I18n::ATranslatable, public sf::Drawable{
+    class OptionsMenu : Utils::I18n::ATranslatable, public sf::Drawable{
     public:
         OptionsMenu(OptionsMenuData &data);
         ~OptionsMenu() = default;

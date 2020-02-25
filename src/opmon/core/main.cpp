@@ -17,7 +17,7 @@ File under GNU GPL v3.0 license
 #include "system/OptionsSave.hpp"
 #include "system/ResourceLoader.hpp"
 #include "Gameloop.hpp"
-#include "i18n/Translator.hpp"
+#include "src/utils/i18n/Translator.hpp"
 #include "config.hpp"
 #include "src/opmon/core/Core.hpp"
 
@@ -69,7 +69,13 @@ namespace OpMon {
             //Initializaing keys
             oplog("Loading strings");
             std::string lang = System::OptionsSave::getParam("lang").getValue();
-            auto &tr = I18n::Translator::getInstance();
+            auto &tr = Utils::I18n::Translator::getInstance();
+            tr.setAvailableLanguages({
+              {"en", "keys/english.rkeys"},
+              {"es", "keys/espanol.rkeys"},
+              {"fr", "keys/francais.rkeys"},
+              {"it", "keys/italian.rkeys"},
+              {"de", "keys/deutsch.rkeys"}});
 
             if(!tr.getAvailableLanguages().count(lang)) {
                 lang = "en"; // The lang isn't available. Default to english.

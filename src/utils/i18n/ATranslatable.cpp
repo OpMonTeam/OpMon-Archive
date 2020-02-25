@@ -6,7 +6,7 @@ File under GNU GPL v3.0 license
 #include "./ATranslatable.hpp"
 #include "./Translator.hpp"
 
-namespace OpMon {
+namespace Utils {
     namespace I18n {
 
         ATranslatable::ATranslatable() {

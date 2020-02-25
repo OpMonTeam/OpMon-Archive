@@ -8,12 +8,12 @@ File under GNU GPL v3.0
 
 #include <utility>
 
-#include "../../../utils/StringKeys.hpp"
-#include "../../../utils/log.hpp"
-#include "../../../utils/path.hpp"
+#include "../StringKeys.hpp"
+#include "../log.hpp"
+#include "../path.hpp"
 #include "ATranslatable.hpp"
 
-namespace OpMon {
+namespace Utils {
     namespace I18n {
 
         Translator &Translator::getInstance() {
@@ -24,17 +24,10 @@ namespace OpMon {
 
         void Translator::setLang(const std::string &langCode) {
 
-            std::map<const std::string, const std::string> langMap{
-              {"en", "keys/english.rkeys"},
-              {"es", "keys/espanol.rkeys"},
-              {"fr", "keys/francais.rkeys"},
-              {"it", "keys/italian.rkeys"},
-              {"de", "keys/deutsch.rkeys"}};
-
             /*            if(langCode == _currentLang)
-	      return; // Nothing to do
-	      Desactivated : if we need to reload the keys
-*/
+                          return; // Nothing to do
+                          Desactivated : if we need to reload the keys
+            */
 
             Utils::StringKeys::initialize(Utils::Path::getResourcePath() + langMap[langCode]);
 
@@ -49,14 +42,7 @@ namespace OpMon {
         }
 
         const std::map<const std::string, const std::string> Translator::getAvailableLanguages() {
-            std::map<const std::string, const std::string> languages = {
-              {"en", "English"},
-              {"es", "Espa\u00F1ol"},
-              {"fr", "Fran\u00E7ais"},
-              {"it", "Italian"},
-              {"de", "Deutsch"}};
-
-            return languages;
+            return langMap;
         }
 
         void Translator::subscribe(ATranslatable *listener) {
@@ -72,5 +58,8 @@ namespace OpMon {
             }
         }
 
+        void Translator::setAvailableLanguages(std::map<const std::string, const std::string> langMap) {
+            this->langMap = langMap;
+        }
     } // namespace I18n
-} // namespace OpMon
+} // namespace Utils

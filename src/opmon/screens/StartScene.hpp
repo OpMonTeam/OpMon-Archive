@@ -8,7 +8,7 @@
 #define STARTSCENE_HPP
 
 #include "StartSceneData.hpp"
-#include "../core/i18n/ATranslatable.hpp"
+#include "src/utils/i18n/ATranslatable.hpp"
 #include "src/opmon/view/ui/Dialog.hpp"
 
 namespace sf {
@@ -22,7 +22,7 @@ class StartSceneData;
      * \brief View managing the introduction scene.
      * \todo Change name to IntroScene.
      */
-    class StartScene : public I18n::ATranslatable, public sf::Drawable {
+    class StartScene : public Utils::I18n::ATranslatable, public sf::Drawable {
     public:
         StartScene(StartSceneData &data);
         ~StartScene() override = default;
