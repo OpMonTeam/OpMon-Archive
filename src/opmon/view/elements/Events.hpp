@@ -12,7 +12,7 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Texture.hpp>
 
-#include "../../core/i18n/ATranslatable.hpp"
+#include "src/utils/i18n/ATranslatable.hpp"
 #include "../../core/Player.hpp"
 
 namespace OpMon {
@@ -202,7 +202,7 @@ namespace OpMon {
             /*!
              * \brief An event starting a dialog.
              */
-            class TalkingEvent : public virtual Event, public I18n::ATranslatable {
+            class TalkingEvent : public virtual Event, public Utils::I18n::ATranslatable {
               private:
                 /*!
                  * \brief The OpString containing the dialog to show.

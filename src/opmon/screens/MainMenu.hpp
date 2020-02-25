@@ -9,7 +9,7 @@
 #define MAINMENU_HPP
 
 #include "MainMenuData.hpp"
-#include "../core/i18n/ATranslatable.hpp"
+#include "src/utils/i18n/ATranslatable.hpp"
 #include "../view/ui/TextBox.hpp"
 
 namespace sf {
@@ -22,7 +22,7 @@ class MainMenuData;
     /*!
      * \brief The view printing the main menu showing at the start of the game.
      */
-    class MainMenu : public I18n::ATranslatable, public sf::Drawable {
+    class MainMenu : public Utils::I18n::ATranslatable, public sf::Drawable {
 
     public:
         MainMenu(MainMenuData &data);

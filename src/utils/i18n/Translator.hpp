@@ -9,13 +9,12 @@
 #include <string>
 #include <unordered_set>
 
-namespace OpMon {
+namespace Utils {
     namespace I18n {
 
         class ATranslatable;
 
         /*!
-         * \class Translator Translator.hpp "start/opmon/i18n/Translator.hpp"
          * \brief Class in charge of the lang setting. It load (and reload) language file.
          *
          * When the lang changes, it informs all Translatable instances registered with subscribe().
@@ -34,7 +33,7 @@ namespace OpMon {
              * \brief Sets the language.
              * \warning It MUST be called at start to set the first language.
              *
-             * \param lang_code should be "en", "es" or "fr".
+             * \param lang_code should be one of the available languages.
              */
             void setLang(const std::string &lang_code);
 
@@ -51,8 +50,18 @@ namespace OpMon {
             void subscribe(ATranslatable *listener);
             void unsubscribe(ATranslatable *listener);
 
+            /*!
+             * The format should be a map of pairs {code, file}:
+             * {"en", "keys/english.rkeys"}
+             *
+             * The path for the file have to be from the data directory.
+             */
+            void setAvailableLanguages(std::map<const std::string, const std::string> langMap);
+
           private:
             Translator() = default;
+
+            std::map<const std::string, const std::string> langMap;
 
             std::string _currentLang;
             std::unordered_set<ATranslatable *> _listeners;

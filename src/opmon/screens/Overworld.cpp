@@ -24,7 +24,7 @@
 #include "../../utils/time.hpp"
 #include "src/opmon/view/elements/Events.hpp"
 #include "../core/Core.hpp"
-#include "../core/i18n/Translator.hpp"
+#include "src/utils/i18n/Translator.hpp"
 #include "src/opmon/view/ui/Dialog.hpp"
 #include "src/opmon/core/GameStatus.hpp"
 #include "src/opmon/core/Player.hpp"
@@ -176,7 +176,7 @@ namespace OpMon {
 
         data.getUiDataPtr()->getJukebox().play(current->getBg());
 
-        I18n::Translator::getInstance().setLang(I18n::Translator::getInstance().getLang());
+        Utils::I18n::Translator::getInstance().setLang(Utils::I18n::Translator::getInstance().getLang());
     }
 
     void Overworld::draw(sf::RenderTarget &frame, sf::RenderStates states) const {
