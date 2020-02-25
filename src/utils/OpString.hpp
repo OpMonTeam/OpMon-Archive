@@ -23,6 +23,7 @@ namespace Utils {
      * \class OpString OpString.hpp "utils/OpString.hpp"
      * \brief A string with an empty space to complete using StringKeys.
      * \details Every `~` in the character string will be completed by the given array of objects, one by one. If there isn't enough objects, the `~` will be deleted from the string, and if there is too much objects, they will only be ignored.
+     * \todo Rename for a clearer name and not OpMon-related.
      */
     class OpString {
       private:
