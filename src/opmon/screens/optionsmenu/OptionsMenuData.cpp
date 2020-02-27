@@ -5,7 +5,7 @@
 */
 #include "OptionsMenuData.hpp"
 
-#include "../core/system/ResourceLoader.hpp"
+#include "src/opmon/core/system/ResourceLoader.hpp"
 
 namespace OpMon {
 class UiData;

@@ -9,11 +9,11 @@
 
 #include <iosfwd>
 
-#include "../../utils/path.hpp"
-#include "../core/system/OptionsSave.hpp"
-#include "MainMenu.hpp"
+#include "src/utils/path.hpp"
+#include "src/opmon/core/system/OptionsSave.hpp"
+#include "src/opmon/screens/mainmenu/MainMenu.hpp"
 #include "OptionsMenu.hpp"
-#include "base/AGameScreen.hpp"
+#include "src/opmon/screens/base/AGameScreen.hpp"
 
 namespace sf {
 class Event;

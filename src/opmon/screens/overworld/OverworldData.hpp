@@ -8,7 +8,7 @@
 #include <SFML/Graphics/Rect.hpp>
 
 #include "src/opmon/view/elements/Map.hpp"
-#include "GameMenuData.hpp"
+#include "src/opmon/screens/gamemenu/GameMenuData.hpp"
 
 namespace sf {
 class String;

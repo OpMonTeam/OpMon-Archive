@@ -5,7 +5,7 @@
  */
 #pragma once
 
-#include "../core/UiData.hpp"
+#include "src/opmon/core/UiData.hpp"
 
 namespace OpMon {
 class UiData;

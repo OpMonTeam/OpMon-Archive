@@ -8,7 +8,7 @@
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <utility>
 
-#include "src/opmon/screens/Animations.hpp"
+#include "src/opmon/screens/animation/Animations.hpp"
 
 namespace OpMon {
     AnimationCtrl::AnimationCtrl(std::unique_ptr<Animations::Animation> view)

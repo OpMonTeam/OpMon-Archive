@@ -10,7 +10,7 @@
 
 #include "MainMenuData.hpp"
 #include "src/utils/i18n/ATranslatable.hpp"
-#include "../view/ui/TextBox.hpp"
+#include "src/opmon/view/ui/TextBox.hpp"
 
 namespace sf {
 class RenderTarget;

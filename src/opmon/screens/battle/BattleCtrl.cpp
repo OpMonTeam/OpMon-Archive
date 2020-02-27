@@ -13,15 +13,15 @@
 #include <algorithm>
 #include <string>
 
-#include "../../utils/OpString.hpp"
+#include "src/utils/OpString.hpp"
 #include "src/opmon/core/Core.hpp"
 #include "src/opmon/core/UiData.hpp"
 #include "src/opmon/model/Attack.hpp"
 #include "src/opmon/model/Enums.hpp"
 #include "src/opmon/model/OpMon.hpp"
 #include "src/opmon/model/OpTeam.hpp"
-#include "src/opmon/screens/Battle.hpp"
-#include "src/opmon/screens/BattleData.hpp"
+#include "src/opmon/screens/battle/Battle.hpp"
+#include "src/opmon/screens/battle/BattleData.hpp"
 #include "src/opmon/view/elements/Events.hpp"
 #include "src/opmon/view/elements/Turn.hpp"
 #include "src/opmon/view/ui/Jukebox.hpp"

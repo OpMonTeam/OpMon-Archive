@@ -11,9 +11,9 @@
 
 #include "OptionsMenuData.hpp"
 #include "src/utils/i18n/ATranslatable.hpp"
-#include "../view/ui/Elements.hpp"
-#include "../view/ui/TextBox.hpp"
-#include "../../utils/CycleCounter.hpp"
+#include "src/opmon/view/ui/Elements.hpp"
+#include "src/opmon/view/ui/TextBox.hpp"
+#include "src/utils/CycleCounter.hpp"
 
 namespace sf {
 class RenderTarget;

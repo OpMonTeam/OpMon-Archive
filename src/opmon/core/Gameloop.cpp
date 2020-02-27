@@ -17,7 +17,7 @@ File under GNU GPL v3.0 license
 #include <utility>
 
 #include "../../utils/StringKeys.hpp"
-#include "../screens/MainMenuCtrl.hpp"
+#include "../screens/mainmenu/MainMenuCtrl.hpp"
 #include "system/ResourceLoader.hpp"
 #include "src/opmon/core/GameStatus.hpp"
 #include "src/opmon/core/UiData.hpp"

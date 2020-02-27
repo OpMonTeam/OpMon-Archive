@@ -17,8 +17,8 @@
 #include <SFML/System/Vector2.hpp>
 #include <iostream>
 
-#include "../core/GameStatus.hpp"
-#include "../../utils/defines.hpp"
+#include "src/opmon/core/GameStatus.hpp"
+#include "src/utils/defines.hpp"
 
 namespace sf {
 class RenderTarget;
