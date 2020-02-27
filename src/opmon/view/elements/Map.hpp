@@ -1,4 +1,10 @@
 /*!
+ * \dir src/opmon/view/elements
+ * \brief Contains graphical elements and animations tools.
+ *
+ * This directory contains some graphical elements unrelated to the user interface (the map for example) as well as tools used to animate/move sprites.
+ */
+/*!
   \file Map.hpp
   \authors Cyrielle
   \authors BAKFR

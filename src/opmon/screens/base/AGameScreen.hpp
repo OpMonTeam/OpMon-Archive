@@ -1,4 +1,10 @@
 /*!
+ * \dir src/opmon/screens
+ * \brief Contains the different screens
+ *
+ * This directory contains all the screens used in the game. Each one has its own directory, containing the three classes needed for a screen : Ctrl, Data and the screen itself. Two exceptions : animations contains a screen that can handle any animation, and base contains the base class for the three classes needed for a screen.
+ */
+/*!
  * \file AGameScreen.hpp
  * \authors BAKFR
  * \authors Cyrielle

@@ -1,4 +1,10 @@
 /*!
+ * \dir src/opmon/view/ui
+ * \brief Contains the elements of the user interface
+ *
+ * This directory contains the elements that are directly used in the user interface.
+ */
+/*!
  * \file Jukebox.hpp
  * \authors Cyrielle
  * \authors Samurai413x
