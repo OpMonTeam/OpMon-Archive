@@ -11,7 +11,7 @@ File under GNU GPL v3.0 license
 
 #include "../../../utils/log.hpp"
 #include "../../core/Core.hpp"
-#include "src/opmon/screens/OverworldData.hpp"
+#include "src/opmon/screens/overworld/OverworldData.hpp"
 #include "Events.hpp"
 #include "src/nlohmann/json.hpp"
 #include "src/opmon/model/Enums.hpp"

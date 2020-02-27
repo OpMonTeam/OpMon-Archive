@@ -11,9 +11,9 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <memory>
 
-#include "../../utils/StringKeys.hpp"
+#include "src/utils/StringKeys.hpp"
 #include "src/opmon/core/UiData.hpp"
-#include "src/opmon/screens/GameMenuData.hpp"
+#include "src/opmon/screens/gamemenu/GameMenuData.hpp"
 #include "src/utils/defines.hpp"
 
 namespace OpMon {

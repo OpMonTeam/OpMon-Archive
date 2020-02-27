@@ -5,10 +5,10 @@
  */
 #pragma once
 
-#include "../model/Attack.hpp"
-#include "../view/elements/Events.hpp"
+#include "src/opmon/model/Attack.hpp"
+#include "src/opmon/view/elements/Events.hpp"
 #include "Battle.hpp"
-#include "base/AGameScreen.hpp"
+#include "src/opmon/screens/base/AGameScreen.hpp"
 
 namespace sf {
 class Event;

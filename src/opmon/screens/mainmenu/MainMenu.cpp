@@ -12,10 +12,10 @@
 #include <memory>
 #include <string>
 
-#include "../../utils/StringKeys.hpp"
-#include "../view/ui/TextBox.hpp"
+#include "src/utils/StringKeys.hpp"
+#include "src/opmon/view/ui/TextBox.hpp"
 #include "src/opmon/core/UiData.hpp"
-#include "src/opmon/screens/MainMenuData.hpp"
+#include "MainMenuData.hpp"
 #include "src/opmon/view/ui/Jukebox.hpp"
 
 namespace OpMon {

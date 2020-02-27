@@ -8,11 +8,11 @@
 
 #include <SFML/Graphics/Transform.hpp>
 
-#include "../../utils/CycleCounter.hpp"
-#include "../view/elements/Turn.hpp"
+#include "src/utils/CycleCounter.hpp"
+#include "src/opmon/view/elements/Turn.hpp"
 #include "BattleData.hpp"
-#include "../view/ui/Dialog.hpp"
-#include "../view/ui/Elements.hpp"
+#include "src/opmon/view/ui/Dialog.hpp"
+#include "src/opmon/view/ui/Elements.hpp"
 
 namespace sf {
 class RenderTarget;

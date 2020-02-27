@@ -7,7 +7,7 @@
 
 #include <SFML/Graphics/Texture.hpp>
 
-#include "../core/UiData.hpp"
+#include "src/opmon/core/UiData.hpp"
 
 namespace OpMon {
 class UiData;

@@ -11,11 +11,11 @@ File under GNU GPL v3.0 license
 #include <SFML/Window/Keyboard.hpp>
 #include <memory>
 
-#include "OptionsMenuCtrl.hpp"
+#include "src/opmon/screens/optionsmenu/OptionsMenuCtrl.hpp"
 #include "src/opmon/core/Core.hpp"
 #include "src/opmon/core/UiData.hpp"
-#include "src/opmon/screens/GameMenu.hpp"
-#include "src/opmon/screens/GameMenuData.hpp"
+#include "GameMenu.hpp"
+#include "GameMenuData.hpp"
 #include "src/opmon/screens/base/AGameScreen.hpp"
 #include "src/opmon/view/ui/Jukebox.hpp"
 #include "src/utils/CycleCounter.hpp"

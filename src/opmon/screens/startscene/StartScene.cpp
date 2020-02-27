@@ -9,14 +9,14 @@
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 
-#include "../../utils/OpString.hpp"
-#include "../../utils/StringKeys.hpp"
-#include "../../utils/defines.hpp"
+#include "src/utils/OpString.hpp"
+#include "src/utils/StringKeys.hpp"
+#include "src/utils/defines.hpp"
 #include "src/opmon/view/ui/Dialog.hpp"
 #include "src/opmon/core/Core.hpp"
 #include "src/opmon/core/Player.hpp"
 #include "src/opmon/core/UiData.hpp"
-#include "src/opmon/screens/StartSceneData.hpp"
+#include "StartSceneData.hpp"
 #include "src/opmon/view/ui/Jukebox.hpp"
 
 namespace OpMon {

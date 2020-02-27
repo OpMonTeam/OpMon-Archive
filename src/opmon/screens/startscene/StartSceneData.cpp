@@ -8,7 +8,7 @@
 
 #include <memory>
 
-#include "../core/system/ResourceLoader.hpp"
+#include "src/opmon/core/system/ResourceLoader.hpp"
 #include "src/opmon/core/Player.hpp"
 #include "src/opmon/model/Enums.hpp"
 #include "src/opmon/view/elements/Position.hpp"

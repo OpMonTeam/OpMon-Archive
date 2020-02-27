@@ -13,10 +13,10 @@
 #include <memory>
 #include <string>
 
-#include "../core/system/OptionsSave.hpp"
+#include "src/opmon/core/system/OptionsSave.hpp"
 #include "src/opmon/view/ui/TextBox.hpp"
 #include "src/opmon/core/UiData.hpp"
-#include "src/opmon/screens/OptionsMenuData.hpp"
+#include "OptionsMenuData.hpp"
 #include "src/opmon/view/ui/Jukebox.hpp"
 #include "src/utils/CycleCounter.hpp"
 #include "src/utils/StringKeys.hpp"

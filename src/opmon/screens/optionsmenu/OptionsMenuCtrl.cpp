@@ -12,13 +12,13 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <algorithm>
 
-#include "../../utils/defines.hpp"
-#include "../core/system/OptionsSave.hpp"
+#include "src/utils/defines.hpp"
+#include "src/opmon/core/system/OptionsSave.hpp"
 #include "src/utils/i18n/Translator.hpp"
 #include "src/opmon/core/UiData.hpp"
 #include "src/opmon/core/system/KeyData.hpp"
-#include "src/opmon/screens/OptionsMenu.hpp"
-#include "src/opmon/screens/OptionsMenuData.hpp"
+#include "OptionsMenu.hpp"
+#include "OptionsMenuData.hpp"
 #include "src/opmon/view/ui/Jukebox.hpp"
 
 enum MenuOption { BACK = 0,
