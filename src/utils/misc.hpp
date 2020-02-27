@@ -1,4 +1,10 @@
 /*!
+ * \dir src/utils
+ * \brief Contains useful tools for any C++ project.
+ *
+ * This directory contains tools that are designed to be independent from the OpMon Project, and that can be reused in other projects.
+ */
+/*!
  * \file  misc.hpp
  * \author BAKFR
  * \copyright GNU GPL v3.0

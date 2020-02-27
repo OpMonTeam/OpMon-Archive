@@ -1,4 +1,10 @@
 /*!
+ * \dir src/opmon/model
+ * \brief Contains the model elements of the game.
+ *
+ * This directory contains the in-game concrete objects.
+ */
+/*!
   \file OpMon.hpp
   \author Cyrielle
   \copyright GNU GPL 3.0
