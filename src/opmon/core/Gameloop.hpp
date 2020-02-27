@@ -1,4 +1,10 @@
 /*!
+ * \dir src/opmon/core
+ * \brief Contains the core elements of the game.
+ *
+ * This directory contains the utilities, the main objects and the starting code for the game.
+ */
+/*!
  * \file Gameloop.hpp
  * \authors Cyrielle
  * \authors Stelyus
