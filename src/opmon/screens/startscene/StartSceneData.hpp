@@ -5,8 +5,8 @@
  */
 #pragma once
 
-#include "../core/Player.hpp"
-#include "../core/UiData.hpp"
+#include "src/opmon/core/Player.hpp"
+#include "src/opmon/core/UiData.hpp"
 
 namespace OpMon {
 class Player;

@@ -8,13 +8,13 @@ File under GNU GPL v3.0 license
 
 
 #include "../../core/Core.hpp"
-#include "src/opmon/screens/Overworld.hpp"
+#include "src/opmon/screens/overworld/Overworld.hpp"
 #include "Position.hpp"
 #include "src/opmon/core/Player.hpp"
 #include "src/opmon/core/UiData.hpp"
 #include "src/opmon/model/Enums.hpp"
 #include "src/opmon/model/OpTeam.hpp"
-#include "src/opmon/screens/OverworldData.hpp"
+#include "src/opmon/screens/overworld/OverworldData.hpp"
 #include "src/opmon/view/ui/Jukebox.hpp"
 #include "src/utils/OpString.hpp"
 #include "src/utils/misc.hpp"

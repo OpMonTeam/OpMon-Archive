@@ -7,8 +7,8 @@
 #pragma once
 
 #include "MainMenu.hpp"
-#include "base/AGameScreen.hpp"
-#include "../../utils/CycleCounter.hpp"
+#include "src/opmon/screens/base/AGameScreen.hpp"
+#include "src/utils/CycleCounter.hpp"
 
 namespace sf {
 class Event;

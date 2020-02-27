@@ -8,11 +8,11 @@
 #include <fstream>
 #include <algorithm>
 
-#include "../../nlohmann/json.hpp"
-#include "../../utils/OpString.hpp"
-#include "../../utils/log.hpp"
-#include "../../utils/path.hpp"
-#include "../core/system/ResourceLoader.hpp"
+#include "src/nlohmann/json.hpp"
+#include "src/utils/OpString.hpp"
+#include "src/utils/log.hpp"
+#include "src/utils/path.hpp"
+#include "src/opmon/core/system/ResourceLoader.hpp"
 #include "src/opmon/core/Core.hpp"
 #include "src/opmon/core/Player.hpp"
 #include "src/opmon/core/UiData.hpp"

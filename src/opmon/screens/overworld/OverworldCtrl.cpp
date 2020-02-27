@@ -12,15 +12,15 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <memory>
 
-#include "AnimationCtrl.hpp"
-#include "BattleCtrl.hpp"
-#include "GameMenuCtrl.hpp"
+#include "src/opmon/screens/animation/AnimationCtrl.hpp"
+#include "src/opmon/screens/battle/BattleCtrl.hpp"
+#include "src/opmon/screens/gamemenu/GameMenuCtrl.hpp"
 #include "src/opmon/core/Core.hpp"
 #include "src/opmon/core/Player.hpp"
 #include "src/opmon/core/UiData.hpp"
-#include "src/opmon/screens/Animations.hpp"
-#include "src/opmon/screens/GameMenuData.hpp"
-#include "src/opmon/screens/Overworld.hpp"
+#include "src/opmon/screens/animation/Animations.hpp"
+#include "src/opmon/screens/gamemenu/GameMenuData.hpp"
+#include "Overworld.hpp"
 #include "src/opmon/screens/base/AGameScreen.hpp"
 #include "src/opmon/view/elements/Map.hpp"
 #include "src/opmon/view/elements/Position.hpp"

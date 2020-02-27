@@ -13,14 +13,14 @@
 #include <memory>
 #include <string>
 
-#include "OverworldCtrl.hpp"
-#include "AnimationCtrl.hpp"
+#include "src/opmon/screens/overworld/OverworldCtrl.hpp"
+#include "src/opmon/screens/animation/AnimationCtrl.hpp"
 #include "src/opmon/core/Core.hpp"
 #include "src/opmon/core/Player.hpp"
 #include "src/opmon/core/UiData.hpp"
-#include "src/opmon/screens/Animations.hpp"
-#include "src/opmon/screens/StartScene.hpp"
-#include "src/opmon/screens/StartSceneData.hpp"
+#include "src/opmon/screens/animation/Animations.hpp"
+#include "StartScene.hpp"
+#include "StartSceneData.hpp"
 #include "src/opmon/screens/base/AGameScreen.hpp"
 #include "src/opmon/view/ui/Dialog.hpp"
 

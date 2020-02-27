@@ -17,8 +17,8 @@
 #include <memory>
 #include <vector>
 
-#include "../../utils/StringKeys.hpp"
-#include "../model/Attack.hpp"
+#include "src/utils/StringKeys.hpp"
+#include "src/opmon/model/Attack.hpp"
 #include "BattleData.hpp"
 #include "src/opmon/core/Player.hpp"
 #include "src/opmon/core/UiData.hpp"

@@ -6,7 +6,7 @@
 #pragma once
 
 #include "Animations.hpp"
-#include "base/AGameScreen.hpp"
+#include "src/opmon/screens/base/AGameScreen.hpp"
 
 namespace sf {
 class RenderTexture;

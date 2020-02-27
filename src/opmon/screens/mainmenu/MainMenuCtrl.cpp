@@ -11,12 +11,12 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <memory>
 
-#include "OptionsMenuCtrl.hpp"
-#include "StartSceneCtrl.hpp"
+#include "src/opmon/screens/optionsmenu/OptionsMenuCtrl.hpp"
+#include "src/opmon/screens/startscene/StartSceneCtrl.hpp"
 #include "src/opmon/core/Core.hpp"
 #include "src/opmon/core/UiData.hpp"
-#include "src/opmon/screens/MainMenu.hpp"
-#include "src/opmon/screens/MainMenuData.hpp"
+#include "MainMenu.hpp"
+#include "MainMenuData.hpp"
 #include "src/opmon/screens/base/AGameScreen.hpp"
 #include "src/opmon/view/ui/Jukebox.hpp"
 #include "src/utils/CycleCounter.hpp"
