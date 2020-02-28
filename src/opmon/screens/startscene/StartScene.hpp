@@ -93,7 +93,7 @@ class StartSceneData;
         /*!
          * \brief The texts shown during the name input screen.
          */
-        sf::Text textDescs[4];
+        sf::Text textDesc;
         sf::Sprite bgName;
         sf::Text nameField;
 
