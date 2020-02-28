@@ -12,9 +12,7 @@ class UiData;
 
     OptionsMenuData::OptionsMenuData(UiData *data)
         : uidata(data) {
-        System::ResourceLoader::load(background, "backgrounds/options.png");
         System::ResourceLoader::load(selectBar, "sprites/misc/selectBar.png");
-        System::ResourceLoader::load(langBg, "backgrounds/lang.png");
         System::ResourceLoader::load(creditsBg, "backgrounds/credits.png");
         System::ResourceLoader::load(controlsBg, "backgrounds/controls.png");
         System::ResourceLoader::load(volumeCur, "sprites/misc/cursor.png");
