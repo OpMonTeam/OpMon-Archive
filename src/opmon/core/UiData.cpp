@@ -31,8 +31,6 @@ class Evolution;
 
         Utils::Log::oplog("Initializating UiData");
 
-        System::ResourceLoader::load(menuFrame, "backgrounds/menuframe.png");
-
         jukebox.addMusic("Title", "audio/music/title.ogg", 50);
         jukebox.addMusic("Start", "audio/music/intro.ogg");
         jukebox.addMusic("Fauxbourg", "audio/music/faubourgeuvi.ogg");
@@ -140,7 +138,7 @@ class Evolution;
 #undef LOAD_TYPE
 
         //Loading dialogs
-        System::ResourceLoader::load(dialogBackground, "backgrounds/dialog/dialog.png");
+        System::ResourceLoader::load(menuFrame, "backgrounds/menuframe.png");
         System::ResourceLoader::load(dialogArrow, "sprites/misc/arrDial.png");
 
         //Loading volume
