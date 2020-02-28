@@ -5,6 +5,8 @@ set -e # exit on error
 md bin/Release && cd bin/Release
 rm -r GameData
 cp -r ../../OpMon-Data/GameData .
-cmake ../.. -DCMAKE_BUILD_TYPE=Release
+cd ../..
+cmake . -DCMAKE_BUILD_TYPE=Release
 make
+cd bin/Release
 ./opmon
