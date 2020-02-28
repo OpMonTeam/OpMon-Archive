@@ -44,12 +44,10 @@ namespace OpMon {
         sf::Text loadingTxt;
         loadingTxt.setString(Utils::StringKeys::get("load.txt"));
         loadingTxt.setPosition(250, 440);
-        sf::Sprite loadSpr;
-        loadSpr.setTexture(loadTx);
         loadingTxt.setFont(uidata->getFont());
         loadingTxt.setCharacterSize(35);
 
-        window->getFrame().draw(loadSpr);
+        window->getFrame().clear(sf::Color(74, 81, 148));
         window->getFrame().draw(loadingTxt);
         window->refresh();
 
@@ -97,7 +95,7 @@ namespace OpMon {
 
             if(status == GameStatus::NEXT || status == GameStatus::PREVIOUS || status == GameStatus::NEXT_NLS || status == GameStatus::PREVIOUS_NLS) {
                 if(status == GameStatus::NEXT) {
-                    window->getFrame().draw(loadSpr);
+                    window->getFrame().clear(sf::Color(74, 81, 148));
                     window->getFrame().draw(loadingTxt);
                     window->refresh();
                 } else {
