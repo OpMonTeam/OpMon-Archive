@@ -25,20 +25,13 @@ namespace OpMon {
 
         txtP1 = Utils::OpString("prof.dialog.start.2", {data.getPlayer().getNameP()});
 
-        textDescs[0].setString(Utils::StringKeys::get("nameEntry.med"));
-        textDescs[1].setString(Utils::StringKeys::get("nameEntry.top"));
-        textDescs[2].setString(Utils::StringKeys::get("nameEntry.indic.1"));
-        textDescs[3].setString(Utils::StringKeys::get("nameEntry.indic.2"));
+        textDesc.setString(Utils::StringKeys::get("nameEntry.desc"));
     }
 
     StartScene::StartScene(StartSceneData &data)
         : data(data) {
         initStrings();
-        textDescs[1].setPosition(85, 25);
-        textDescs[0].setPosition(155, 200);
-        textDescs[2].setPosition(95, 375);
-        textDescs[3].setPosition(95, 405);
-
+        textDesc.setPosition(310, 450);
         bg.setTexture(data.getBackground());
         prof.setTexture(data.getProf());
         bgName.setTexture(data.getNameBg());
@@ -56,19 +49,18 @@ namespace OpMon {
         sf::FloatRect professorGlobalBounds = prof.getGlobalBounds();
         float professorWidth = professorGlobalBounds.width;
         float professorHeight = professorGlobalBounds.height;
-        float professorX = (Ui::Window::getBaseWindowWidth() - professorWidth)/2;
-        float professorY = (Ui::Window::getBaseWindowHeight() - professorHeight)/2;
+        float professorX = (Ui::Window::getBaseWindowWidth() - professorWidth)/2 - 20;
+        float professorY = (Ui::Window::getBaseWindowHeight() - professorHeight)/2 - 26;
         prof.setPosition(professorX, professorY);
         prof.setScale(1.5, 1.5);
 
-        for(sf::Text &cellTxt : textDescs) {
-            cellTxt.setCharacterSize(FONT_SIZE_DEFAULT);
-            cellTxt.setSfmlColor(sf::Color::White);
-            cellTxt.setFont(data.getUiDataPtr()->getFont());
-        }
+        textDesc.setCharacterSize(FONT_SIZE_DEFAULT);
+        textDesc.setSfmlColor(sf::Color::White);
+        textDesc.setFont(data.getUiDataPtr()->getFont());
 
+        nameField.setSfmlColor(sf::Color::Black);
         nameField.setFont(data.getUiDataPtr()->getFont());
-        nameField.setPosition(120, 300);
+        nameField.setPosition(310, 255);
 
         data.getUiDataPtr()->getJukebox().play("Start");
 
@@ -129,9 +121,7 @@ namespace OpMon {
             break;
         case 1:
             frame.draw(bgName);
-            for(const sf::Text &desc : textDescs) {
-                frame.draw(desc);
-            }
+            frame.draw(textDesc);
             frame.draw(nameField);
             break;
 
