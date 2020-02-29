@@ -10,7 +10,7 @@
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 
-#include "src/opmon/core/system/ResourceLoader.hpp"
+#include "src/utils/ResourceLoader.hpp"
 #include "src/opmon/core/GameStatus.hpp"
 
 namespace OpMon {
@@ -32,7 +32,7 @@ namespace OpMon {
             , order(order) {
             if(!winInit) {
                 winInit = true;
-                System::ResourceLoader::loadTextureArray(fen, "animations/winChange/animWindowFrame%d.png", 6, 1);
+                Utils::ResourceLoader::loadTextureArray(fen, "animations/winChange/animWindowFrame%d.png", 6, 1);
             }
         }
 

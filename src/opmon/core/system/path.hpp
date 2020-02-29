@@ -6,7 +6,7 @@
 */
 #pragma once
 
-namespace Utils {
+namespace OpMon {
     /*!
      * \namespace Utils::Path
      * \brief Contains path-related utilites.
@@ -26,4 +26,4 @@ namespace Utils {
          */
         const std::string getLogPath();
     } // namespace Path
-} // namespace Utils
+} // namespace OpMon

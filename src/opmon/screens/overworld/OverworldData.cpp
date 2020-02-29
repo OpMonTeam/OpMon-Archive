@@ -11,8 +11,8 @@
 #include "src/nlohmann/json.hpp"
 #include "src/utils/OpString.hpp"
 #include "src/utils/log.hpp"
-#include "src/utils/path.hpp"
-#include "src/opmon/core/system/ResourceLoader.hpp"
+#include "src/opmon/core/system/path.hpp"
+#include "src/utils/ResourceLoader.hpp"
 #include "src/opmon/core/Core.hpp"
 #include "src/opmon/core/Player.hpp"
 #include "src/opmon/core/UiData.hpp"
@@ -32,12 +32,12 @@ namespace OpMon {
 
         using namespace Utils;
 
-        Attack::initAttacks(Utils::Path::getResourcePath() + "data/attacks.json");
+        Attack::initAttacks(Path::getResourcePath() + "data/attacks.json");
 
         player->addOpToOpTeam(new OpMon("", uidata->getOp(4), 5, {Attack::newAtk("Tackle"), Attack::newAtk("Growl"), nullptr, nullptr}, Nature::QUIET));
 
         //PP texture and rect loading
-        System::ResourceLoader::load(texturePP, "sprites/chara/pp/pp_anim.png");
+        Utils::ResourceLoader::load(texturePP, "sprites/chara/pp/pp_anim.png");
         texturePPRect[(unsigned int)Side::TO_DOWN] = sf::IntRect(0, 64, 32, 32);
         texturePPRect[(unsigned int)Side::TO_RIGHT] = sf::IntRect(32, 64, 32, 32);
         texturePPRect[(unsigned int)Side::TO_LEFT] = sf::IntRect(64, 64, 32, 32);
@@ -52,19 +52,19 @@ namespace OpMon {
         walkingPP2Rect[(unsigned int)Side::TO_UP] = sf::IntRect(96, 32, 32, 32);
 
         //Characters' textures initialization
-        System::ResourceLoader::loadTextureArray(charaTextures["kid"], "sprites/chara/kid/kid%d.png", 12);
-        System::ResourceLoader::loadTextureArray(charaTextures["fisherman"], "sprites/chara/fisherman/fisherman%d.png", 12);
-        System::ResourceLoader::loadTextureArray(charaTextures["kiwai"], "sprites/chara/prof/prof%d.png", 12);
-        System::ResourceLoader::loadTextureArray(charaTextures["playermom"], "sprites/chara/mom/mom%d.png", 12);
-        System::ResourceLoader::loadTextureArray(charaTextures["sk"], "sprites/chara/rival/sk%d.png", 12);
-        System::ResourceLoader::loadTextureArray(charaTextures["inferm"], "sprites/chara/inferm/inferm%d.png", 12);
-        System::ResourceLoader::loadTextureArray(charaTextures["|_| -|- |-| |= |_| N"], "sprites/chara/beta/alphabeta/otheon%d.png", 12);
-        System::ResourceLoader::loadTextureArray(charaTextures["beta"], "sprites/chara/beta/beta%d.png", 12);
-        System::ResourceLoader::loadTextureArray(charaTextures["albd"], "sprites/chara/albd/albd%d.png", 12);
+        Utils::ResourceLoader::loadTextureArray(charaTextures["kid"], "sprites/chara/kid/kid%d.png", 12);
+        Utils::ResourceLoader::loadTextureArray(charaTextures["fisherman"], "sprites/chara/fisherman/fisherman%d.png", 12);
+        Utils::ResourceLoader::loadTextureArray(charaTextures["kiwai"], "sprites/chara/prof/prof%d.png", 12);
+        Utils::ResourceLoader::loadTextureArray(charaTextures["playermom"], "sprites/chara/mom/mom%d.png", 12);
+        Utils::ResourceLoader::loadTextureArray(charaTextures["sk"], "sprites/chara/rival/sk%d.png", 12);
+        Utils::ResourceLoader::loadTextureArray(charaTextures["inferm"], "sprites/chara/inferm/inferm%d.png", 12);
+        Utils::ResourceLoader::loadTextureArray(charaTextures["|_| -|- |-| |= |_| N"], "sprites/chara/beta/alphabeta/otheon%d.png", 12);
+        Utils::ResourceLoader::loadTextureArray(charaTextures["beta"], "sprites/chara/beta/beta%d.png", 12);
+        Utils::ResourceLoader::loadTextureArray(charaTextures["albd"], "sprites/chara/albd/albd%d.png", 12);
 
         //Doors' textures initialization
-        System::ResourceLoader::loadTextureArray(doorsTextures["shop"], "animations/shopdoor/shop_door%d.png", 4, 1);
-        System::ResourceLoader::loadTextureArray(doorsTextures["normal"], "animations/basicdoor/basic_door%d.png", 4, 1);
+        Utils::ResourceLoader::loadTextureArray(doorsTextures["shop"], "animations/shopdoor/shop_door%d.png", 4, 1);
+        Utils::ResourceLoader::loadTextureArray(doorsTextures["normal"], "animations/basicdoor/basic_door%d.png", 4, 1);
 
         eventsTextures.emplace("alpha", alphaTab);
 
@@ -72,18 +72,18 @@ namespace OpMon {
         elementsCounter["windturbine"] = 0;
         elementsPos["windturbine"] = sf::Vector2f(8 * 32 + 25 * 32 - 7, 3 * 32 + 15);
 
-        System::ResourceLoader::loadTextureArray(elementsTextures["windturbine"], "animations/windturbine/blade_%d.png", 16, 1);
+        Utils::ResourceLoader::loadTextureArray(elementsTextures["windturbine"], "animations/windturbine/blade_%d.png", 16, 1);
 
         elementsCounter["smoke"] = 0;
         elementsPos["smoke"] = sf::Vector2f(8 * 32 + 18 * 32, 11 * 32);
 
-        System::ResourceLoader::loadTextureArray(elementsTextures["smoke"], "animations/chimneysmoke/chimneysmoke_%d.png", 32, 1);
+        Utils::ResourceLoader::loadTextureArray(elementsTextures["smoke"], "animations/chimneysmoke/chimneysmoke_%d.png", 32, 1);
 
         //Items initialisation
 
         nlohmann::json itemsJson;
 
-        std::ifstream itemsJsonFile(Utils::Path::getResourcePath() + "data/items.json");
+        std::ifstream itemsJsonFile(Path::getResourcePath() + "data/items.json");
 
         if(!itemsJsonFile) {
             handleError("Can't open items data. (items.json)", true);
@@ -107,8 +107,8 @@ namespace OpMon {
         //Maps initialisation
 
         //The maps and the trainers' data are stored in two separate files
-        std::ifstream mapsJsonFile(Utils::Path::getResourcePath() + "data/maps.json");
-        std::ifstream trainersJsonFile(Utils::Path::getResourcePath() + "data/trainers.json");
+        std::ifstream mapsJsonFile(Path::getResourcePath() + "data/maps.json");
+        std::ifstream trainersJsonFile(Path::getResourcePath() + "data/trainers.json");
 
         if(!mapsJsonFile || !trainersJsonFile) {
             handleError("Can't open maps or trainers data. (maps.json, trainers.json)", true);

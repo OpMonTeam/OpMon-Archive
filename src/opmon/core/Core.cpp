@@ -9,16 +9,16 @@ File under GNU GPL v3.0 license
 #include <stdlib.h>
 #include <iostream>
 
-#include "../../utils/defines.hpp"
-#include "../../utils/log.hpp"
-#include "../../utils/path.hpp"
-#include "system/OptionsSave.hpp"
+#include "src/utils/defines.hpp"
+#include "src/utils/log.hpp"
+#include "system/path.hpp"
+#include "src/utils/OptionsSave.hpp"
 
 using Utils::Log::oplog;
 
 namespace OpMon {
 
-    std::string optSave(SAVE_PATH + "optSave.oparams");
+    std::string optSave(Path::getSavePath() + "optSave.oparams");
 
     //The number of errors handeled in the program.
     int errors = 0;
@@ -45,7 +45,7 @@ namespace OpMon {
     }
 
     int quit(int const &returns) {
-        System::OptionsSave::saveParams(optSave); //Saving parameters
+        Utils::OptionsSave::saveParams(optSave); //Saving parameters
 
         std::ostringstream osslog;
         osslog << "End of the program. Return " << returns;

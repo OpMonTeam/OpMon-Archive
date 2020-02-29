@@ -18,7 +18,7 @@ File under GNU GPL v3.0 license
 
 #include "../../utils/StringKeys.hpp"
 #include "../screens/mainmenu/MainMenuCtrl.hpp"
-#include "system/ResourceLoader.hpp"
+#include "src/utils/ResourceLoader.hpp"
 #include "src/opmon/core/GameStatus.hpp"
 #include "src/opmon/core/UiData.hpp"
 #include "src/opmon/screens/base/AGameScreen.hpp"
@@ -40,7 +40,7 @@ namespace OpMon {
         window->open();
 
         sf::Texture loadTx;
-        System::ResourceLoader::load(loadTx, "backgrounds/loading.png");
+        Utils::ResourceLoader::load(loadTx, "backgrounds/loading.png");
         sf::Text loadingTxt;
         loadingTxt.setString(Utils::StringKeys::get("load.txt"));
         loadingTxt.setPosition(250, 440);

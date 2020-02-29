@@ -34,12 +34,6 @@
 #include <string>
 
 /*!
- * \brief Returns the location of the save path folder.
- * \deprecated Use Utils::Path::getSavePath().
- */
-#define SAVE_PATH Utils::Path::getSavePath()
-
-/*!
  * \brief Contains the default size font.
  */
 #define FONT_SIZE_DEFAULT 16

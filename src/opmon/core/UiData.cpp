@@ -13,12 +13,12 @@
 #include "../../utils/OpString.hpp"
 #include "../../nlohmann/json.hpp"
 #include "../../utils/log.hpp"
-#include "../../utils/path.hpp"
+#include "system/path.hpp"
 #include "../model/evolutions.hpp"
-#include "system/OptionsSave.hpp"
-#include "system/ResourceLoader.hpp"
+#include "src/utils/OptionsSave.hpp"
+#include "src/utils/ResourceLoader.hpp"
 #include "src/opmon/core/Core.hpp"
-#include "src/opmon/core/system/KeyData.hpp"
+#include "src/utils/KeyData.hpp"
 #include "src/opmon/model/Enums.hpp"
 #include "src/opmon/model/Species.hpp"
 #include "src/opmon/view/ui/Jukebox.hpp"
@@ -49,9 +49,9 @@ class Evolution;
         jukebox.addSound("push", "audio/sounds/selectbuttons.ogg");
         jukebox.addSound("hit", "audio/sounds/hit.ogg");
 
-        System::ResourceLoader::load(font, "fonts/Default.ttf", true);
+        Utils::ResourceLoader::load(font, "fonts/Default.ttf", true);
 
-        std::ifstream opmonJsonFile(Utils::Path::getResourcePath() + "data/opmon.json");
+        std::ifstream opmonJsonFile(Path::getResourcePath() + "data/opmon.json");
         if(!opmonJsonFile) {
             handleError("Can't open opmon data.", true);
         }
@@ -99,20 +99,20 @@ class Evolution;
         //I will use a "for" loop later, I don't use it now to avoid loading errors. I will use it when every sprite will be loaded.
         opSprites.push_back(std::vector<sf::Texture>());
         opSprites.push_back(std::vector<sf::Texture>());
-        System::ResourceLoader::loadTextureArray(opSprites[1], "sprites/opmons/1-%d.png", 2);
+        Utils::ResourceLoader::loadTextureArray(opSprites[1], "sprites/opmons/1-%d.png", 2);
         opSprites.push_back(std::vector<sf::Texture>());
-        System::ResourceLoader::loadTextureArray(opSprites[2], "sprites/opmons/2-%d.png", 2);
-        opSprites.push_back(std::vector<sf::Texture>());
-        opSprites.push_back(std::vector<sf::Texture>());
-        System::ResourceLoader::loadTextureArray(opSprites[4], "sprites/opmons/4-%d.png", 2);
+        Utils::ResourceLoader::loadTextureArray(opSprites[2], "sprites/opmons/2-%d.png", 2);
         opSprites.push_back(std::vector<sf::Texture>());
         opSprites.push_back(std::vector<sf::Texture>());
+        Utils::ResourceLoader::loadTextureArray(opSprites[4], "sprites/opmons/4-%d.png", 2);
         opSprites.push_back(std::vector<sf::Texture>());
-        System::ResourceLoader::loadTextureArray(opSprites[7], "sprites/opmons/7-%d.png", 2);
+        opSprites.push_back(std::vector<sf::Texture>());
+        opSprites.push_back(std::vector<sf::Texture>());
+        Utils::ResourceLoader::loadTextureArray(opSprites[7], "sprites/opmons/7-%d.png", 2);
 
         //Intializing types sprites
 #define LOAD_TYPE(type)                                                 \
-        System::ResourceLoader::load(tempTx, (std::string("sprites/battle/types/") + #type + ".png").c_str()); \
+        Utils::ResourceLoader::load(tempTx, (std::string("sprites/battle/types/") + #type + ".png").c_str()); \
         typesTextures.emplace(Type::type, sf::Texture(tempTx))
 
         sf::Texture tempTx;
@@ -138,58 +138,58 @@ class Evolution;
 #undef LOAD_TYPE
 
         //Loading dialogs
-        System::ResourceLoader::load(menuFrame, "backgrounds/menuframe.png");
-        System::ResourceLoader::load(dialogArrow, "sprites/misc/arrDial.png");
+        Utils::ResourceLoader::load(menuFrame, "backgrounds/menuframe.png");
+        Utils::ResourceLoader::load(dialogArrow, "sprites/misc/arrDial.png");
 
         //Loading volume
-        if(!System::OptionsSave::checkParam("volume")) {
-            System::OptionsSave::addParam("volume", "100");
+        if(!Utils::OptionsSave::checkParam("volume")) {
+            Utils::OptionsSave::addParam("volume", "100");
         }
 
-        int volume = std::stoi(System::OptionsSave::getParam("volume").getValue());
+        int volume = std::stoi(Utils::OptionsSave::getParam("volume").getValue());
         jukebox.setGlobalVolume(volume);
 
-        std::string keyUp = System::OptionsSave::getParam("control.up").getValue();
+        std::string keyUp = Utils::OptionsSave::getParam("control.up").getValue();
         if(keyUp == "NULL") {
-            System::OptionsSave::addParam("control.up", "Up");
+            Utils::OptionsSave::addParam("control.up", "Up");
             up = sf::Keyboard::Up;
         } else {
-            up = System::KeyData::keysMap.at(keyUp);
+            up = Utils::KeyData::keysMap.at(keyUp);
         }
-        std::string keyDown = System::OptionsSave::getParam("control.down").getValue();
+        std::string keyDown = Utils::OptionsSave::getParam("control.down").getValue();
         if(keyDown == "NULL") {
-            System::OptionsSave::addParam("control.down", "Down");
+            Utils::OptionsSave::addParam("control.down", "Down");
             down = sf::Keyboard::Down;
         } else {
-            down = System::KeyData::keysMap.at(keyDown);
+            down = Utils::KeyData::keysMap.at(keyDown);
         }
-        std::string keyLeft = System::OptionsSave::getParam("control.left").getValue();
+        std::string keyLeft = Utils::OptionsSave::getParam("control.left").getValue();
         if(keyLeft == "NULL") {
-            System::OptionsSave::addParam("control.left", "Left");
+            Utils::OptionsSave::addParam("control.left", "Left");
             left = sf::Keyboard::Left;
         } else {
-            left = System::KeyData::keysMap.at(keyLeft);
+            left = Utils::KeyData::keysMap.at(keyLeft);
         }
-        std::string keyRight = System::OptionsSave::getParam("control.right").getValue();
+        std::string keyRight = Utils::OptionsSave::getParam("control.right").getValue();
         if(keyRight == "NULL") {
-            System::OptionsSave::addParam("control.right", "Right");
+            Utils::OptionsSave::addParam("control.right", "Right");
             right = sf::Keyboard::Right;
         } else {
-            right = System::KeyData::keysMap.at(keyRight);
+            right = Utils::KeyData::keysMap.at(keyRight);
         }
-        std::string keyTalk = System::OptionsSave::getParam("control.talk").getValue();
+        std::string keyTalk = Utils::OptionsSave::getParam("control.talk").getValue();
         if(keyTalk == "NULL") {
-            System::OptionsSave::addParam("control.talk", "Space");
+            Utils::OptionsSave::addParam("control.talk", "Space");
             talk = sf::Keyboard::Space;
         } else {
-            talk = System::KeyData::keysMap.at(keyTalk);
+            talk = Utils::KeyData::keysMap.at(keyTalk);
         }
-        std::string keyInteract = System::OptionsSave::getParam("control.interact").getValue();
+        std::string keyInteract = Utils::OptionsSave::getParam("control.interact").getValue();
         if(keyInteract == "NULL") {
-            System::OptionsSave::addParam("control.interact", "Return");
+            Utils::OptionsSave::addParam("control.interact", "Return");
             interact = sf::Keyboard::Return;
         } else {
-            interact = System::KeyData::keysMap.at(keyInteract);
+            interact = Utils::KeyData::keysMap.at(keyInteract);
         }
     }
 
