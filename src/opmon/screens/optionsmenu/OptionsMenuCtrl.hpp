@@ -9,8 +9,8 @@
 
 #include <iosfwd>
 
-#include "src/utils/path.hpp"
-#include "src/opmon/core/system/OptionsSave.hpp"
+#include "src/opmon/core/system/path.hpp"
+#include "src/utils/OptionsSave.hpp"
 #include "src/opmon/screens/mainmenu/MainMenu.hpp"
 #include "OptionsMenu.hpp"
 #include "src/opmon/screens/base/AGameScreen.hpp"

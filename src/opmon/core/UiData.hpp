@@ -14,7 +14,7 @@
 #include "../view/ui/Jukebox.hpp"
 #include "../view/ui/Window.hpp"
 #include "../model/Species.hpp"
-#include "system/KeyData.hpp"
+#include "src/utils/KeyData.hpp"
 
 
 namespace OpMon {
@@ -130,24 +130,24 @@ class Species;
         /*!
          * \brief Sets the key for the "up" action.
          */
-        void setKeyUp(const std::string upName) { up = System::KeyData::keysMap.at(upName); }
+        void setKeyUp(const std::string upName) { up = Utils::KeyData::keysMap.at(upName); }
         /*!
          * \brief Sets the key for the "down" action.
          */
-        void setKeyDown(const std::string downName) { down = System::KeyData::keysMap.at(downName); }
-        void setKeyLeft(const std::string leftName) { left = System::KeyData::keysMap.at(leftName); }
+        void setKeyDown(const std::string downName) { down = Utils::KeyData::keysMap.at(downName); }
+        void setKeyLeft(const std::string leftName) { left = Utils::KeyData::keysMap.at(leftName); }
         /*!
          * \brief Sets the key for the "left" action.
          */
-        void setKeyRight(const std::string rightName) { right = System::KeyData::keysMap.at(rightName); }
+        void setKeyRight(const std::string rightName) { right = Utils::KeyData::keysMap.at(rightName); }
         /*!
          * \brief Sets the key for the "interact" action.
          */
-        void setKeyInteract(const std::string interactName) { interact = System::KeyData::keysMap.at(interactName); }
+        void setKeyInteract(const std::string interactName) { interact = Utils::KeyData::keysMap.at(interactName); }
         /*!
          * \brief Sets the key for the "talk" action.
          */
-        void setKeyTalk(const std::string talkName) { talk = System::KeyData::keysMap.at(talkName); }
+        void setKeyTalk(const std::string talkName) { talk = Utils::KeyData::keysMap.at(talkName); }
     };
 
 } // namespace OpMon

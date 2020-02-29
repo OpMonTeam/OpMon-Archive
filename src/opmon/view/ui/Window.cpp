@@ -19,8 +19,8 @@ File under GNU GPL v3.0 license
 
 #include "../../../utils/centerOrigin.hpp"
 #include "../../../utils/log.hpp"
-#include "../../core/system/OptionsSave.hpp"
-#include "../../core/system/ResourceLoader.hpp"
+#include "src/utils/OptionsSave.hpp"
+#include "src/utils/ResourceLoader.hpp"
 
 using Utils::Log::oplog;
 
@@ -28,11 +28,11 @@ namespace OpMon {
     namespace Ui {
         void Window::open() {
             sf::ContextSettings settings;
-            if(!System::OptionsSave::checkParam("fullscreen")) {
-                System::OptionsSave::addOrModifParam("fullscreen", "false");
+            if(!Utils::OptionsSave::checkParam("fullscreen")) {
+                Utils::OptionsSave::addOrModifParam("fullscreen", "false");
             }
             //settings.antialiasingLevel = 1;
-            if(System::OptionsSave::getParam("fullscreen").getValue() == "true") {
+            if(Utils::OptionsSave::getParam("fullscreen").getValue() == "true") {
                 fullScreen = true;
                 window.create(sf::VideoMode::getFullscreenModes().at(0), "OpMon Lazuli", sf::Style::Fullscreen, settings);
             } else {
@@ -40,7 +40,7 @@ namespace OpMon {
             }
 
             sf::Image icon;
-            System::ResourceLoader::load(icon, "opmon.png");
+            Utils::ResourceLoader::load(icon, "opmon.png");
             window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
             frame.create(960, 540);

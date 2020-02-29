@@ -3,7 +3,6 @@
  * \authors BAKFR
  * \authors Cyrielle
  * \copyright GNU GPL v3.0
- * \date 
 */
 #pragma once
 
@@ -22,7 +21,7 @@ namespace Utils {
          *
          * This function must be called before any call to oplog().
          */
-        void init();
+        void init(std::string path);
 
         /*!
          * \brief Write a log message in a log file.

@@ -5,7 +5,7 @@
 */
 #include "BattleData.hpp"
 
-#include "src/opmon/core/system/ResourceLoader.hpp"
+#include "src/utils/ResourceLoader.hpp"
 
 namespace OpMon {
 class Player;
@@ -14,26 +14,26 @@ class UiData;
     BattleData::BattleData(UiData *data, Player *player)
         : uidata(data)
         , player(player) {
-        System::ResourceLoader::load(backgrounds["grass"], "backgrounds/battle_bkg/background_grass.png");
-        System::ResourceLoader::load(dialog, "backgrounds/dialog/battle_dialog.png");
+        Utils::ResourceLoader::load(backgrounds["grass"], "backgrounds/battle_bkg/background_grass.png");
+        Utils::ResourceLoader::load(dialog, "backgrounds/dialog/battle_dialog.png");
 
-        System::ResourceLoader::load(cursor, "sprites/misc/arrBattle.png");
+        Utils::ResourceLoader::load(cursor, "sprites/misc/arrBattle.png");
 
         charaBattleTextures["player"].push_back(sf::Texture());
-        System::ResourceLoader::load(charaBattleTextures["player"][0], "sprites/chara/pp/pp_battle.png");
+        Utils::ResourceLoader::load(charaBattleTextures["player"][0], "sprites/chara/pp/pp_battle.png");
         //charaBattleTextures["cyrielle"].push_back(sf::Texture());
-        //System::ResourceLoader::load(charaBattleTextures["cyrielle"][0], "sprites/chara/cyrielle/cyrielle_battle.png");
+        //Utils::ResourceLoader::load(charaBattleTextures["cyrielle"][0], "sprites/chara/cyrielle/cyrielle_battle.png");
         charaBattleTextures["beta"].push_back(sf::Texture());
-        System::ResourceLoader::load(charaBattleTextures["beta"][0], "sprites/chara/beta/beta_battle.png");
+        Utils::ResourceLoader::load(charaBattleTextures["beta"][0], "sprites/chara/beta/beta_battle.png");
         battlePlayerAnim.push_back(charaBattleTextures["player"][0]);
-        System::ResourceLoader::load(infoboxPlayer, "sprites/battle/square_1.png");
-        System::ResourceLoader::load(infoboxTrainer, "sprites/battle/square_2.png");
-        System::ResourceLoader::load(healthbar1, "sprites/battle/health_bar.png");
-        System::ResourceLoader::load(healthbar2, "sprites/battle/health_jauge.png");
-        System::ResourceLoader::load(shadowPlayer, "sprites/battle/shadow_2.png");
-        System::ResourceLoader::load(shadowTrainer, "sprites/battle/shadow_1.png");
+        Utils::ResourceLoader::load(infoboxPlayer, "sprites/battle/square_1.png");
+        Utils::ResourceLoader::load(infoboxTrainer, "sprites/battle/square_2.png");
+        Utils::ResourceLoader::load(healthbar1, "sprites/battle/health_bar.png");
+        Utils::ResourceLoader::load(healthbar2, "sprites/battle/health_jauge.png");
+        Utils::ResourceLoader::load(shadowPlayer, "sprites/battle/shadow_2.png");
+        Utils::ResourceLoader::load(shadowTrainer, "sprites/battle/shadow_1.png");
 
-        System::ResourceLoader::load(attackDialog, "backgrounds/dialog/attacks_dialog.png");
+        Utils::ResourceLoader::load(attackDialog, "backgrounds/dialog/attacks_dialog.png");
     }
 
 } // namespace OpMon

@@ -8,7 +8,7 @@
 
 #include <memory>
 
-#include "src/opmon/core/system/ResourceLoader.hpp"
+#include "src/utils/ResourceLoader.hpp"
 #include "src/opmon/core/Player.hpp"
 #include "src/opmon/model/Enums.hpp"
 #include "src/opmon/view/elements/Position.hpp"
@@ -19,9 +19,9 @@ class UiData;
     StartSceneData::StartSceneData(UiData *data)
         : uidata(data)
         , player(new Player()) {
-        System::ResourceLoader::load(background, "backgrounds/start/startscene.png");
-        System::ResourceLoader::load(prof, "sprites/chara/prof/profkiwai.png");
-        System::ResourceLoader::load(nameBg, "backgrounds/start/nameEntry.png");
+        Utils::ResourceLoader::load(background, "backgrounds/start/startscene.png");
+        Utils::ResourceLoader::load(prof, "sprites/chara/prof/profkiwai.png");
+        Utils::ResourceLoader::load(nameBg, "backgrounds/start/nameEntry.png");
 
         //Player initalization
         player->setMapID("Player's room");

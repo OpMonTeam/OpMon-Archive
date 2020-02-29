@@ -4,7 +4,7 @@ Author : BAKFR
 Contributors : Cyrielle, jubalh, JonnyPtn
 File under GNU GPL v3.0 license
 */
-#include "fs.hpp"
+#include "src/utils/fs.hpp"
 #include <cstdlib>
 #include <string>
 #include <sys/stat.h>
@@ -16,10 +16,10 @@ File under GNU GPL v3.0 license
 
 // Apple needs special code to get the resource folder within an app bundle
 #ifdef __APPLE__
-#include "ResourcePath.hpp"
+#include "src/utils/ResourcePath.hpp"
 #endif
 
-namespace Utils {
+namespace OpMon {
     namespace Path {
         static bool _isFolder(const std::string &path) {
             struct stat st;
@@ -38,8 +38,8 @@ namespace Utils {
                 }
             }
             if(!config_dir.empty()) {
-                Fs::mkdir(config_dir + "/OpMon");
-                Fs::mkdir(config_dir + "/OpMon/" + section);
+                Utils::Fs::mkdir(config_dir + "/OpMon");
+                Utils::Fs::mkdir(config_dir + "/OpMon/" + section);
                 return config_dir + "/OpMon/" + section + "/";
             }
             return nullptr;
@@ -104,4 +104,4 @@ namespace Utils {
         }
 
     } // namespace Path
-} // namespace Utils
+} // namespace OpMon

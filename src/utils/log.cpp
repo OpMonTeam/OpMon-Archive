@@ -11,27 +11,23 @@ File under GNU GPL v3.0
 
 #include "./fs.hpp"
 #include "./time.hpp"
-#include "path.hpp"
 
 /**Principal log*/
 std::ostream *rlog = nullptr;
 /**Error log*/
 std::ostream *rerrLog = nullptr;
 
-/* location of the log folder */
-#define LOG_PATH Path::getLogPath()
-
 namespace Utils {
     namespace Log {
 
-        void init() {
+        void init(std::string path) {
             if(rlog != nullptr)
                 return; // Log already initialized
 
-            Fs::mkdir(LOG_PATH);
+            Fs::mkdir(path);
 
-            rlog = new std::ofstream(std::string(LOG_PATH + "log.txt"));
-            rerrLog = new std::ofstream(std::string(LOG_PATH + "errLog.txt"));
+            rlog = new std::ofstream(std::string(path + "log.txt"));
+            rerrLog = new std::ofstream(std::string(path + "errLog.txt"));
 
             if(!*rlog) {
                 rlog = &std::cout;
@@ -44,7 +40,9 @@ namespace Utils {
         }
 
         void oplog(const std::string &toSay, bool error) {
-            init();
+            if(rlog == nullptr) {
+                return; //Error to handle (handleError)
+            }
             std::ostream *logStream = error ? rerrLog : rlog;
             *logStream << "[T = " << Time::getElapsedMilliseconds() << "] - " << toSay << std::endl;
         }
