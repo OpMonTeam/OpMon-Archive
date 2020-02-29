@@ -5,13 +5,13 @@
 */
 #include "MainMenuData.hpp"
 
-#include "src/opmon/core/system/ResourceLoader.hpp"
+#include "src/utils/ResourceLoader.hpp"
 
 namespace OpMon {
 class UiData;
 
     MainMenuData::MainMenuData(UiData *ptr)
         : uidata(ptr) {
-        System::ResourceLoader::load(arrChoice, "sprites/misc/arrChoiceScale.png");
+        Utils::ResourceLoader::load(arrChoice, "sprites/misc/arrChoiceScale.png");
     }
 } // namespace OpMon

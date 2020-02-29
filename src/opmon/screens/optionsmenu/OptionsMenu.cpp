@@ -13,7 +13,7 @@
 #include <memory>
 #include <string>
 
-#include "src/opmon/core/system/OptionsSave.hpp"
+#include "src/utils/OptionsSave.hpp"
 #include "src/opmon/view/ui/TextBox.hpp"
 #include "src/opmon/core/UiData.hpp"
 #include "OptionsMenuData.hpp"
@@ -338,12 +338,12 @@ namespace OpMon {
 
     GameStatus OptionsMenu::controlsLoop() {
         rectKeyChange.setPosition(posControls[currentKeyChange]);
-        txtCtrlUp.setString(System::OptionsSave::getParam("control.up").getValue());
-        txtCtrlDown.setString(System::OptionsSave::getParam("control.down").getValue());
-        txtCtrlLeft.setString(System::OptionsSave::getParam("control.left").getValue());
-        txtCtrlRight.setString(System::OptionsSave::getParam("control.right").getValue());
-        txtCtrlTalk.setString(System::OptionsSave::getParam("control.talk").getValue());
-        txtCtrlInteract.setString(System::OptionsSave::getParam("control.interact").getValue());
+        txtCtrlUp.setString(Utils::OptionsSave::getParam("control.up").getValue());
+        txtCtrlDown.setString(Utils::OptionsSave::getParam("control.down").getValue());
+        txtCtrlLeft.setString(Utils::OptionsSave::getParam("control.left").getValue());
+        txtCtrlRight.setString(Utils::OptionsSave::getParam("control.right").getValue());
+        txtCtrlTalk.setString(Utils::OptionsSave::getParam("control.talk").getValue());
+        txtCtrlInteract.setString(Utils::OptionsSave::getParam("control.interact").getValue());
         rectSurb.setPosition(curPosCtrl[curPosCtrlI.getValue()]);
         rectSurb.setScale(curSizeCtrl[curPosCtrlI.getValue()]);
         return GameStatus::CONTINUE;
@@ -391,7 +391,7 @@ namespace OpMon {
         for(auto &optionsMenuItem : optionsMenuItems) {
             switch (i) {
             case 1:
-                if(System::OptionsSave::getParam("fullscreen").getValue() == "true") {
+                if(Utils::OptionsSave::getParam("fullscreen").getValue() == "true") {
                     optionsMenuItem.setRightContent("On");
                 } else {
                     optionsMenuItem.setRightContent("Off");

@@ -11,12 +11,12 @@ File under GNU GPL v3.0 license
 #include <SFML/Audio/SoundBuffer.hpp>
 
 #include "../../core/Core.hpp"
-#include "src/opmon/core/system/ResourceLoader.hpp"
+#include "src/utils/ResourceLoader.hpp"
 
 namespace OpMon {
     namespace Ui {
         void Jukebox::addMusic(const std::string &name, const std::string &path, bool loop) {
-            auto music = System::ResourceLoader::loadMusic(path.c_str());
+            auto music = Utils::ResourceLoader::loadMusic(path.c_str());
             music->setVolume(globalVolume);
             music->setLoop(loop);
             musList[name] = std::move(music);
@@ -25,7 +25,7 @@ namespace OpMon {
         void Jukebox::addSound(const std::string &name, const std::string &path) {
             //Sounds are saved in the code as a pair of sf::SoundBuffer and sf::Sound.
             auto sb = std::make_unique<sf::SoundBuffer>();
-            System::ResourceLoader::load(*sb, path.c_str());
+            Utils::ResourceLoader::load(*sb, path.c_str());
 
             soundsList[name].first = std::move(sb);
             soundsList[name].second = std::make_unique<sf::Sound>();

@@ -15,7 +15,7 @@ File under GNU GPL v3.0 license
 #include <SFML/Graphics/Vertex.hpp>
 #include <cmath>
 
-#include "../../core/system/ResourceLoader.hpp"
+#include "src/utils/ResourceLoader.hpp"
 
 /* Converts degrees to radians */
 #define DEG *(3.14159265 / 180)
@@ -27,7 +27,7 @@ namespace OpMon {
 
         MapLayer::MapLayer(sf::Vector2i size, const int tilesCodes[]) {
             if(tileset.getSize() == sf::Vector2u(0, 0)) {
-                System::ResourceLoader::load(tileset, "tileset/tileset.png");
+                Utils::ResourceLoader::load(tileset, "tileset/tileset.png");
             }
             tiles.setPrimitiveType(sf::Quads);
             tiles.resize(size.x * size.y * 4);

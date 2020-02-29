@@ -7,7 +7,7 @@
 #include "GameMenuData.hpp"
 
 
-#include "src/opmon/core/system/ResourceLoader.hpp"
+#include "src/utils/ResourceLoader.hpp"
 
 namespace OpMon {
 class Player;
@@ -16,8 +16,8 @@ class UiData;
     GameMenuData::GameMenuData(UiData *data, Player *player)
         : uidata(data)
         , player(player) {
-        System::ResourceLoader::load(menuTexture, "backgrounds/menu.png");
-        System::ResourceLoader::loadTextureArray(selectionTexture, "backgrounds/menuS%d.png", 6, 1);
+        Utils::ResourceLoader::load(menuTexture, "backgrounds/menu.png");
+        Utils::ResourceLoader::loadTextureArray(selectionTexture, "backgrounds/menuS%d.png", 6, 1);
 
         selectionPos[0] = sf::Vector2f(106, 77);
         selectionPos[1] = sf::Vector2f(252, selectionPos[0].y);

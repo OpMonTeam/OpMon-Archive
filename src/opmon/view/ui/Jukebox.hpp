@@ -18,7 +18,7 @@
 #include <unordered_map>
 #include <utility>
 
-#include "../../core/system/ResourceLoader.hpp"
+#include "src/utils/ResourceLoader.hpp"
 
 namespace sf {
 class Music;

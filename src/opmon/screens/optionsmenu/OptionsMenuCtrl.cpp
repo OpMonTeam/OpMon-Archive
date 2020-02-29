@@ -13,10 +13,10 @@
 #include <algorithm>
 
 #include "src/utils/defines.hpp"
-#include "src/opmon/core/system/OptionsSave.hpp"
+#include "src/utils/OptionsSave.hpp"
 #include "src/utils/i18n/Translator.hpp"
 #include "src/opmon/core/UiData.hpp"
-#include "src/opmon/core/system/KeyData.hpp"
+#include "src/utils/KeyData.hpp"
 #include "OptionsMenu.hpp"
 #include "OptionsMenuData.hpp"
 #include "src/opmon/view/ui/Jukebox.hpp"
@@ -41,9 +41,9 @@ namespace OpMon {
         case sf::Event::KeyPressed:
             if(menu.getCurrentOption() == OptionType::CONTROLS && keyChangeActive) {
                 if(currentKeyChange < controlsName.size()) {
-                    const std::string &keyCode = System::KeyData::findNameKeyCode(event.key.code);
+                    const std::string &keyCode = Utils::KeyData::findNameKeyCode(event.key.code);
                     if(!keyCode.empty()) {
-                        System::OptionsSave::addParam(std::string("control.") + controlsName[currentKeyChange], keyCode.c_str());
+                        Utils::OptionsSave::addParam(std::string("control.") + controlsName[currentKeyChange], keyCode.c_str());
                     }
                     ++currentKeyChange;
                     view.setCurrentKeyChange(currentKeyChange + 1);
@@ -53,14 +53,14 @@ namespace OpMon {
                     currentKeyChange = 0;
                     keyChangeActive = false;
                     view.setCurrentKeyChange(currentKeyChange);
-                    System::OptionsSave::saveParams(std::string(SAVE_PATH + "optSave.oparams"));
+                    Utils::OptionsSave::saveParams(std::string(Path::getSavePath()) + "optSave.oparams");
 
-                    data.getUiDataPtr()->setKeyUp(System::OptionsSave::getParam("control.up").getValue());
-                    data.getUiDataPtr()->setKeyDown(System::OptionsSave::getParam("control.down").getValue());
-                    data.getUiDataPtr()->setKeyLeft(System::OptionsSave::getParam("control.left").getValue());
-                    data.getUiDataPtr()->setKeyRight(System::OptionsSave::getParam("control.right").getValue());
-                    data.getUiDataPtr()->setKeyTalk(System::OptionsSave::getParam("control.talk").getValue());
-                    data.getUiDataPtr()->setKeyInteract(System::OptionsSave::getParam("control.interact").getValue());
+                    data.getUiDataPtr()->setKeyUp(Utils::OptionsSave::getParam("control.up").getValue());
+                    data.getUiDataPtr()->setKeyDown(Utils::OptionsSave::getParam("control.down").getValue());
+                    data.getUiDataPtr()->setKeyLeft(Utils::OptionsSave::getParam("control.left").getValue());
+                    data.getUiDataPtr()->setKeyRight(Utils::OptionsSave::getParam("control.right").getValue());
+                    data.getUiDataPtr()->setKeyTalk(Utils::OptionsSave::getParam("control.talk").getValue());
+                    data.getUiDataPtr()->setKeyInteract(Utils::OptionsSave::getParam("control.interact").getValue());
                 }
 
                 return GameStatus::CONTINUE;
@@ -74,10 +74,10 @@ namespace OpMon {
                         return GameStatus::PREVIOUS;
                     case FULLSCREEN:
                         data.getUiDataPtr()->getJukebox().playSound("push");
-                        if(System::OptionsSave::getParam("fullscreen").getValue() == "true") {
-                            System::OptionsSave::addOrModifParam("fullscreen", "false");
+                        if(Utils::OptionsSave::getParam("fullscreen").getValue() == "true") {
+                            Utils::OptionsSave::addOrModifParam("fullscreen", "false");
                         } else {
-                            System::OptionsSave::addOrModifParam("fullscreen", "true");
+                            Utils::OptionsSave::addOrModifParam("fullscreen", "true");
                         }
                         view.initOptionsMenuItemsValue();
                         return GameStatus::WIN_REBOOT;
@@ -110,23 +110,23 @@ namespace OpMon {
                         menu.setCurrentOption(OptionType::ALL);
                         return GameStatus::CONTINUE;
                     case 1:
-                        System::OptionsSave::modifyParam("lang", "en");
+                        Utils::OptionsSave::modifyParam("lang", "en");
                         tr.setLang("en");
                         break;
                     case 2:
-                        System::OptionsSave::modifyParam("lang", "es");
+                        Utils::OptionsSave::modifyParam("lang", "es");
                         tr.setLang("es");
                         break;
                     case 3:
-                        System::OptionsSave::modifyParam("lang", "fr");
+                        Utils::OptionsSave::modifyParam("lang", "fr");
                         tr.setLang("fr");
                         break;
                     case 4:
-                        System::OptionsSave::modifyParam("lang", "de");
+                        Utils::OptionsSave::modifyParam("lang", "de");
                         tr.setLang("de");
                         break;
                     case 5:
-                        System::OptionsSave::modifyParam("lang", "it");
+                        Utils::OptionsSave::modifyParam("lang", "it");
                         tr.setLang("it");
                         break;
                     }
@@ -199,10 +199,10 @@ namespace OpMon {
     void OptionsMenuCtrl::toggleVolume() {
         if(data.getUiDataPtr()->getJukebox().getGlobalVolume() > 0) {
             data.getUiDataPtr()->getJukebox().setGlobalVolume(0);
-            System::OptionsSave::modifyParam("volume", "0");
+            Utils::OptionsSave::modifyParam("volume", "0");
         } else {
             data.getUiDataPtr()->getJukebox().setGlobalVolume(100);
-            System::OptionsSave::modifyParam("volume", "100");
+            Utils::OptionsSave::modifyParam("volume", "100");
         }
         view.initOptionsMenuItemsValue();
     }
@@ -210,14 +210,14 @@ namespace OpMon {
     void OptionsMenuCtrl::raiseVolume() {
         const int newVolume = std::min(100, data.getUiDataPtr()->getJukebox().getGlobalVolume() + 10);
         data.getUiDataPtr()->getJukebox().setGlobalVolume(newVolume);
-        System::OptionsSave::modifyParam("volume", std::to_string(newVolume));
+        Utils::OptionsSave::modifyParam("volume", std::to_string(newVolume));
         view.initOptionsMenuItemsValue();
     }
 
     void OptionsMenuCtrl::lowerVolume() {
         const int newVolume = std::max(0, data.getUiDataPtr()->getJukebox().getGlobalVolume() - 10);
         data.getUiDataPtr()->getJukebox().setGlobalVolume(newVolume);
-        System::OptionsSave::modifyParam("volume", std::to_string(newVolume));
+        Utils::OptionsSave::modifyParam("volume", std::to_string(newVolume));
         view.initOptionsMenuItemsValue();
     }
 

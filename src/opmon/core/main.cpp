@@ -12,10 +12,10 @@ File under GNU GPL v3.0 license
 #include "../../utils/defines.hpp"
 #include "../../utils/fs.hpp"
 #include "../../utils/log.hpp"
-#include "../../utils/path.hpp"
+#include "system/path.hpp"
 #include "../../utils/time.hpp"
-#include "system/OptionsSave.hpp"
-#include "system/ResourceLoader.hpp"
+#include "src/utils/OptionsSave.hpp"
+#include "src/utils/ResourceLoader.hpp"
 #include "Gameloop.hpp"
 #include "src/utils/i18n/Translator.hpp"
 #include "config.hpp"
@@ -43,32 +43,45 @@ namespace OpMon {
 
         std::string version = OPMON_VERSION;
 
-        std::string pre = "0";
+        std::string pre = "1";
 
         std::string versionS;
 
         int starts() {
 
+            Utils::Log::init(Path::getLogPath());
+
             oplog("Log opening OK. Welcome in OpMon Lazuli.");
-            oplog("Version : Alpha " + version + ((pre == "0") ? "" : ("-pre_" + pre)));
+            oplog("Version: Alpha " + version + ((pre == "0") ? "" : ("-pre_" + pre)));
             std::ostringstream osslog;
-            osslog << "Date in seconds : " << time(NULL);
+            osslog << "Date in seconds: " << time(NULL);
             oplog(osslog.str());
 #ifdef _WIN32
-            oplog("Plateform : Windows");
+            oplog("Plateform: Windows");
 #else
-            oplog("Plateform : Unix");
+            oplog("Plateform: Unix");
 #endif
-            oplog("Loading options");
-            System::OptionsSave::initParams(Utils::Path::getSavePath() + "/optSave.oparams"); //Loading parameters
-            if(!System::OptionsSave::checkParam("lang")) {                                    //If the "lang" setting don't exist
-                System::OptionsSave::addParam("lang", "eng");
+            oplog("Resources repertory: " + Path::getResourcePath());
+            Utils::ResourceLoader::setResourcePath(Path::getResourcePath());
+
+            oplog("Checking directories...");
+
+            if(!Utils::ResourceLoader::checkResourceFolderExists() || !Utils::Fs::mkdir(OpMon::Path::getSavePath())) {
+                oplog("Problems found with the directories, quitting.");
+                return -1;
             }
-            oplog("Resources repertory : " + Utils::Path::getResourcePath());
+
+
+
+            oplog("Loading options");
+            Utils::OptionsSave::initParams(Path::getSavePath() + "/optSave.oparams"); //Loading parameters
+            if(!Utils::OptionsSave::checkParam("lang")) {                                    //If the "lang" setting don't exist
+                Utils::OptionsSave::addParam("lang", "eng");
+            }
 
             //Initializaing keys
             oplog("Loading strings");
-            std::string lang = System::OptionsSave::getParam("lang").getValue();
+            std::string lang = Utils::OptionsSave::getParam("lang").getValue();
             auto &tr = Utils::I18n::Translator::getInstance();
             tr.setAvailableLanguages({
               {"en", "keys/english.rkeys"},
@@ -86,7 +99,6 @@ namespace OpMon {
 
             bool reboot = false;
             do {
-                reboot = false;
                 oplog("Starting game loop");
 
                 GameLoop gameloop;
@@ -101,7 +113,9 @@ namespace OpMon {
                 }
             } while(reboot);
             oplog("Ending the game normally.");
-            return quit(0);
+            Utils::OptionsSave::saveParams(Path::getSavePath() + "/optSave.oparams"); //Saving parameters
+            oplog("End of the program. Return 0");
+            return 0;
         }
     } // namespace Main
 } // namespace OpMon
@@ -110,11 +124,6 @@ int main(int argc, char *argv[]) {
     Utils::Time::initClock();
 
     auto versionS = "Version : Alpha " + OpMon::Main::version + ((OpMon::Main::pre == "0") ? "" : ("-pre_" + OpMon::Main::pre));
-
-    if(!OpMon::System::ResourceLoader::checkResourceFolderExists() || !Utils::Fs::mkdir(SAVE_PATH)) {
-        std::cout << "Exiting" << std::endl;
-        return -1;
-    }
 
     //Checking parameters
     if(argc >= 2) {

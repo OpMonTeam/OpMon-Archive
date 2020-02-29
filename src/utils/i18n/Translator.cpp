@@ -10,7 +10,7 @@ File under GNU GPL v3.0
 
 #include "../StringKeys.hpp"
 #include "../log.hpp"
-#include "../path.hpp"
+#include "../ResourceLoader.hpp"
 #include "ATranslatable.hpp"
 
 namespace Utils {
@@ -29,7 +29,7 @@ namespace Utils {
                           Desactivated : if we need to reload the keys
             */
 
-            Utils::StringKeys::initialize(Utils::Path::getResourcePath() + langMap[langCode]);
+            Utils::StringKeys::initialize(Utils::ResourceLoader::getResourcePath() + langMap[langCode]);
 
             _currentLang = langCode;
             for(auto &listener : _listeners) {
