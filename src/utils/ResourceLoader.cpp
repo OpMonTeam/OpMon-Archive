@@ -23,7 +23,6 @@ namespace Utils {
     }
 
     bool ResourceLoader::checkResourceFolderExists() {
-        //getResourcePath() already check if the folder exists.
         return !getResourcePath().empty();
     }
 
@@ -50,7 +49,7 @@ namespace Utils {
     std::unique_ptr<sf::Music> ResourceLoader::loadMusic(const char *path) {
         auto music = std::make_unique<sf::Music>();
         if(!music->openFromFile(ResourceLoader::getResourcePath() + path)) {
-            //handleError(std::string("Failed to load music: ") + path, false);
+            throw LoadingException(path);
         }
         return music;
     }
