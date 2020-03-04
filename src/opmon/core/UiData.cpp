@@ -53,7 +53,7 @@ class Evolution;
 
         std::ifstream opmonJsonFile(Path::getResourcePath() + "data/opmon.json");
         if(!opmonJsonFile) {
-            handleError("Can't open opmon data.", true);
+            throw Utils::LoadingException(Path::getResourcePath() + "data/opmon.json", true);
         }
         nlohmann::json opmonJson;
         opmonJsonFile >> opmonJson;

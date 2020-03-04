@@ -11,6 +11,7 @@ File under GNU GPL v3.0
 
 #include "./fs.hpp"
 #include "./time.hpp"
+#include "exceptions.hpp"
 
 /**Principal log*/
 std::ostream *rlog = nullptr;
