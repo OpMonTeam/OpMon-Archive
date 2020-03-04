@@ -23,6 +23,7 @@ File under GNU GPL v3.0 license
 #include "src/opmon/core/UiData.hpp"
 #include "src/opmon/screens/base/AGameScreen.hpp"
 #include "src/opmon/view/ui/Window.hpp"
+#include "src/utils/exceptions.hpp"
 
 namespace OpMon {
 
@@ -54,73 +55,85 @@ namespace OpMon {
         GameStatus status{GameStatus::CONTINUE};
 
         while(status != GameStatus::STOP && status != GameStatus::REBOOT) {
-            status = GameStatus::CONTINUE;
-
-            //Debug frame by frame
-            while(sf::Keyboard::isKeyPressed(sf::Keyboard::F2) && !(sf::Keyboard::isKeyPressed(fbfType) && hasBeenReleased)) {
-                if(!sf::Keyboard::isKeyPressed(fbfType)) {
-                    hasBeenReleased = true;
-                }
-            }
-            hasBeenReleased = false;
-
-            //Gets the current game screen's controller
-            auto *ctrl = _gameScreens.top().get();
-            sf::Event event;
-
-            //process all pending SFML events
-            while(status == GameStatus::CONTINUE) {
-                bool isEvent = window->getWindow().pollEvent(event);
-                if(isEvent == false)
-                    event.type = sf::Event::SensorChanged;
-                _checkWindowResize(event, *window);
-                status = _checkQuit(event);
-                if(status == GameStatus::STOP || status == GameStatus::REBOOT)
-                    break;
-                status = ctrl->checkEvent(event);
-                if(isEvent == false) {
-                    break;
-                }
-            }
-
-            if(status == GameStatus::WIN_REBOOT) {
-                window->reboot();
+            try {
                 status = GameStatus::CONTINUE;
-            }
 
-            if(status == GameStatus::CONTINUE) {
-                // frame update & draw
-                status = ctrl->update(window->getFrame());
-            }
+                //Debug frame by frame
+                while(sf::Keyboard::isKeyPressed(sf::Keyboard::F2) && !(sf::Keyboard::isKeyPressed(fbfType) && hasBeenReleased)) {
+                    if(!sf::Keyboard::isKeyPressed(fbfType)) {
+                        hasBeenReleased = true;
+                    }
+                }
+                hasBeenReleased = false;
 
-            if(status == GameStatus::NEXT || status == GameStatus::PREVIOUS || status == GameStatus::NEXT_NLS || status == GameStatus::PREVIOUS_NLS) {
-                if(status == GameStatus::NEXT) {
-                    window->getFrame().clear(sf::Color(74, 81, 148));
-                    window->getFrame().draw(loadingTxt);
+                //Gets the current game screen's controller
+                auto *ctrl = _gameScreens.top().get();
+                sf::Event event;
+
+                //process all pending SFML events
+                while(status == GameStatus::CONTINUE) {
+                    bool isEvent = window->getWindow().pollEvent(event);
+                    if(isEvent == false)
+                        event.type = sf::Event::SensorChanged;
+                    _checkWindowResize(event, *window);
+                    status = _checkQuit(event);
+                    if(status == GameStatus::STOP || status == GameStatus::REBOOT)
+                        break;
+                    status = ctrl->checkEvent(event);
+                    if(isEvent == false) {
+                        break;
+                    }
+                }
+
+                if(status == GameStatus::WIN_REBOOT) {
+                    window->reboot();
+                    status = GameStatus::CONTINUE;
+                }
+
+                if(status == GameStatus::CONTINUE) {
+                    // frame update & draw
+                    status = ctrl->update(window->getFrame());
+                }
+
+                if(status == GameStatus::NEXT || status == GameStatus::PREVIOUS || status == GameStatus::NEXT_NLS || status == GameStatus::PREVIOUS_NLS) {
+                    if(status == GameStatus::NEXT) {
+                        window->getFrame().clear(sf::Color(74, 81, 148));
+                        window->getFrame().draw(loadingTxt);
+                        window->refresh();
+                    } else {
+                        status = ((status == GameStatus::NEXT_NLS) ? GameStatus::NEXT : GameStatus::PREVIOUS);
+                    }
+                    if(status == GameStatus::NEXT) {
+                        ctrl->loadNextScreen();
+                    }
+                }
+
+                switch(status) {
+                case GameStatus::NEXT: //Pauses the current screen and passes to the next
+                    ctrl->suspend();
+                    _gameScreens.push(ctrl->getNextGameScreen());
+                    break;
+                case GameStatus::PREVIOUS: //Deletes the current screen and returns to the previous one
+                    _gameScreens.pop();
+                    _gameScreens.top()->resume();
+                    break;
+                case GameStatus::CONTINUE:
                     window->refresh();
-                } else {
-                    status = ((status == GameStatus::NEXT_NLS) ? GameStatus::NEXT : GameStatus::PREVIOUS);
+                    break;
+                default:
+                    break;
                 }
-                if(status == GameStatus::NEXT) {
-                    ctrl->loadNextScreen();
+            } catch(Utils::Exception& e){
+                frameskips++;
+                Utils::Log::oplog(e.desc(), true);
+                if(e.fatal || frameskips >= 100) {
+                    Utils::Log::oplog(e.fatal ? "Fatal error, closing game." : "Too much frame skips, closing game.", true);
+                    throw;
+                } else {
+                    Utils::Log::warn("Skipping one frame (Exception caught)");
                 }
             }
 
-            switch(status) {
-            case GameStatus::NEXT: //Pauses the current screen and passes to the next
-                ctrl->suspend();
-                _gameScreens.push(ctrl->getNextGameScreen());
-                break;
-            case GameStatus::PREVIOUS: //Deletes the current screen and returns to the previous one
-                _gameScreens.pop();
-                _gameScreens.top()->resume();
-                break;
-            case GameStatus::CONTINUE:
-                window->refresh();
-                break;
-            default:
-                break;
-            }
         }
 
         delete(window.release());
