@@ -13,6 +13,7 @@
 #include <vector>
 
 #include "exceptions.hpp"
+#include "log.hpp"
 
 namespace sf {
     class Music;
@@ -76,9 +77,13 @@ namespace Utils {
 
     template <typename T>
     void ResourceLoader::load(T &resource, const char *path, bool fatal) {
-
-        if(!resource.loadFromFile(ResourceLoader::getResourcePath() + path)) {
-            throw LoadingException(path, fatal);
+        try{
+            if(!resource.loadFromFile(ResourceLoader::getResourcePath() + path)) {
+                throw LoadingException(path, fatal);
+            }
+        } catch (LoadingException& e) {
+            if(e.fatal) throw;
+            else Log::warn(e.desc());
         }
     }
 

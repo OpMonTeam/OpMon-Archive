@@ -68,5 +68,5 @@ namespace Utils {
          * \brief Some information about the error.
          */
         const std::string info;
-    }
+    };
 }
