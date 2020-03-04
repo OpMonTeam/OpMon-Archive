@@ -5,7 +5,7 @@
 */
 #include "CurveExp.hpp"
 
-#include <math.h>
+#include <cmath>
 #include <memory>
 
 #include "../core/Core.hpp"
