@@ -148,7 +148,6 @@ int main(int argc, char *argv[]) {
             } else if(str == "--help") {
                 std::cout << "--version : Prints the version and quit." << std::endl;
                 std::cout << "--help : Prints this message and quit." << std::endl;
-                std::cout << "--debug : Starts the game with debug code. Changes when needed." << std::endl;
                 return 0;
             }
         }
