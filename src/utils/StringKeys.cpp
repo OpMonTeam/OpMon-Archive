@@ -20,6 +20,7 @@
 
 #include "../opmon/core/Core.hpp"
 #include "./log.hpp"
+#include "exceptions.hpp"
 
 namespace Utils {
     std::vector<std::string> StringKeys::keys = std::vector<std::string>();
@@ -54,7 +55,7 @@ namespace Utils {
     bool StringKeys::initialize(const std::string &keysFileS) {
         std::ifstream keysFile(keysFileS);
         if(!keysFile) {
-            //OpMon::handleError(std::string("Keys initialization error: ") + keysFileS, true);
+            throw LoadingException(keysFileS, true);
         }
         keys = std::vector<std::string>();
         strings = std::vector<sf::String>();
