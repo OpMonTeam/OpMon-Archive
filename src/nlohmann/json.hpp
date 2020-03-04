@@ -1305,7 +1305,7 @@ JSON_HEDLEY_DIAGNOSTIC_POP
 #if defined(__INTPTR_TYPE__)
 #define JSON_HEDLEY__IS_CONSTEXPR(expr) __builtin_types_compatible_p(__typeof__((1 ? (void *)((__INTPTR_TYPE__)((expr)*0)) : (int *)0)), int *)
 #else
-#include <stdint.h>
+#include <cstdint>
 #define JSON_HEDLEY__IS_CONSTEXPR(expr) __builtin_types_compatible_p(__typeof__((1 ? (void *)((intptr_t)((expr)*0)) : (int *)0)), int *)
 #endif
 #elif(defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 201112L) && !defined(JSON_HEDLEY_SUNPRO_VERSION) && !defined(JSON_HEDLEY_PGI_VERSION)) || \
@@ -1317,7 +1317,7 @@ JSON_HEDLEY_DIAGNOSTIC_POP
 #if defined(__INTPTR_TYPE__)
 #define JSON_HEDLEY__IS_CONSTEXPR(expr) _Generic((1 ? (void *)((__INTPTR_TYPE__)((expr)*0)) : (int *)0), int * : 1, void * : 0)
 #else
-#include <stdint.h>
+#include <cstdint>
 #define JSON_HEDLEY__IS_CONSTEXPR(expr) _Generic((1 ? (void *)((intptr_t)*0) : (int *)0), int * : 1, void * : 0)
 #endif
 #elif defined(JSON_HEDLEY_GCC_VERSION) || \
