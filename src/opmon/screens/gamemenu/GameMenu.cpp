@@ -6,7 +6,7 @@
 
 #include "GameMenu.hpp"
 
-#include <stddef.h>
+#include <cstddef>
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <memory>
