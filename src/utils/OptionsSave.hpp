@@ -45,6 +45,7 @@ namespace Utils {
     /*!
      *	\brief Contains the functions used to save the parameters.
      *  \todo Make this an instantiable class.
+     *  \todo Save the parameters in JSON.
      */
     class OptionsSave {
     public:

@@ -42,6 +42,8 @@ namespace Utils {
 
     /*!
      * \brief Exception representing a loading error.
+     *
+     * Return code: 2
      */
     class LoadingException : public Exception {
     public:
@@ -52,4 +54,19 @@ namespace Utils {
          */
         const std::string path;
     };
+
+    /*!
+     * \brief Exception thrown when a pointer unexpectedly have the value `nullptr`.
+     *
+     * Return code: 3
+     */
+    class NullptrException : public Exception {
+    public:
+        const std::string desc() const noexcept;
+        NullptrException(std::string info, bool fatal = true);
+        /*!
+         * \brief Some information about the error.
+         */
+        const std::string info;
+    }
 }

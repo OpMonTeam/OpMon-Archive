@@ -78,11 +78,11 @@ namespace Utils {
             std::ofstream strm(file.c_str());
             strm.close();
             std::ifstream cpy(file.c_str());
-            //handleError("Unable to open the settings file. If the file was only non-existent, it was created. It will therefore be opened correctly when rebooting.", false);
+            Log::warn("Unable to open the settings file. If the file was only non-existent, it was created. It will therefore be opened correctly when rebooting.");
         }
         std::string read;
         int i = 0;
-        for(i = 0; i < 100000; i++) { //Prevents from a infinite loop (So, gives a miximum of 10000 parameters, I think there is enough room)
+        while(!stream.eof()) {
             getline(stream, read);
             if(!(read.substr(0, read.size() - (read.size() - 3)) == "pm|")) { //Checks if the pm| prefix is present, if not, stop the loop.
                 break;
@@ -94,9 +94,6 @@ namespace Utils {
             if(!checkParam(newParam.getName())) {
                 paramList.push_back(newParam);
             }
-        }
-        if(i >= 100000) {
-            //handleError("initParams : Endless loop stopped", true);
         }
 
         stream.close();

@@ -13,4 +13,11 @@ namespace Utils {
         return "LoadingException: can't load " + path;
     }
 
+    NullptrException::NullptrException(std::string info, bool fatal)
+        : Exception(fatal, 3),
+          info(info) {}
+
+    const std::string NullptrException::desc() const noexcept {
+        return "NullptrException (unexpected nullptr): " + info;
+    }
 }
