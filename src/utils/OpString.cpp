@@ -6,7 +6,7 @@ File under GNU GPL v3.0 license
 */
 #include "OpString.hpp"
 
-#include <stddef.h>
+#include <cstddef>
 #include <algorithm>
 #include <iostream>
 

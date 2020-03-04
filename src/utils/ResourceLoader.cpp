@@ -5,7 +5,7 @@
 */
 #include "ResourceLoader.hpp"
 
-#include <stdio.h>
+#include <cstdio>
 #include <SFML/Audio/Music.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <algorithm>

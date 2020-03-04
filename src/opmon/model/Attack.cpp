@@ -6,7 +6,7 @@
 */
 #include "Attack.hpp"
 
-#include <math.h>
+#include <cmath>
 #include <SFML/System/Vector2.hpp>
 #include <algorithm>
 #include <iostream>
