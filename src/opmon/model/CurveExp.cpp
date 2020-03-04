@@ -5,11 +5,10 @@
 */
 #include "CurveExp.hpp"
 
-#include <math.h>
+#include <cmath>
 #include <memory>
 
 #include "../core/Core.hpp"
-#include "math.h"
 
 namespace OpMon {
     float CurveExpErratic::p(int x) {

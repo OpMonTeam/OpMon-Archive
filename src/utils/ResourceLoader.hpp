@@ -7,7 +7,7 @@
 
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-#include <stddef.h>
+#include <cstddef>
 #include <fstream>
 #include <memory>
 #include <vector>

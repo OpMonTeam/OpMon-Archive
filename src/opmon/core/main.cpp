@@ -4,7 +4,7 @@ Author : Cyrielle
 Contributors : Stelyus, Navet56
 File under GNU GPL v3.0 license
 */
-#include <time.h>
+#include <ctime>
 #include <string>
 #include <iostream>
 #include <map>

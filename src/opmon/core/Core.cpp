@@ -6,7 +6,7 @@ File under GNU GPL v3.0 license
 */
 #include "Core.hpp"
 
-#include <stdlib.h>
+#include <cstdlib>
 #include <iostream>
 
 #include "src/utils/defines.hpp"
@@ -26,7 +26,7 @@ namespace OpMon {
     void handleError(std::string const &errorName, bool fatal) {
         errors++;
         std::ostringstream osslog;
-        osslog << std::string("Error  n°") << errors << (std::string(" : ") + errorName);
+        osslog << std::string("Error  nï¿½") << errors << (std::string(" : ") + errorName);
         oplog(osslog.str(), true);
         std::cerr << "Error no" << errors << " : " << errorName << std::endl;
         if(errors > 20) { //If the program gets more than 20 errors, it stops.
