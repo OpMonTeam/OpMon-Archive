@@ -12,7 +12,6 @@ File under GNU GPL v3.0 license
 #include <memory>
 
 #include "src/opmon/screens/optionsmenu/OptionsMenuCtrl.hpp"
-#include "src/opmon/core/Core.hpp"
 #include "src/opmon/core/UiData.hpp"
 #include "GameMenu.hpp"
 #include "GameMenuData.hpp"

@@ -15,7 +15,6 @@
 #include "src/opmon/screens/animation/AnimationCtrl.hpp"
 #include "src/opmon/screens/battle/BattleCtrl.hpp"
 #include "src/opmon/screens/gamemenu/GameMenuCtrl.hpp"
-#include "src/opmon/core/Core.hpp"
 #include "src/opmon/core/Player.hpp"
 #include "src/opmon/core/UiData.hpp"
 #include "src/opmon/screens/animation/Animations.hpp"
@@ -26,6 +25,7 @@
 #include "src/opmon/view/elements/Position.hpp"
 #include "src/opmon/view/ui/Dialog.hpp"
 #include "src/opmon/view/ui/Jukebox.hpp"
+#include "src/opmon/core/GameStatus.hpp"
 
 //Defines created to make the code easier to read
 #define LOAD_BATTLE 1

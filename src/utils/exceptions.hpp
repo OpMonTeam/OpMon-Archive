@@ -88,4 +88,21 @@ namespace Utils {
          */
         const std::string expected;
     };
+
+    /*!
+     * \brief Exception thrown when the program tries to access a variable which haven't been loaded.
+     */
+    class UnloadedResourceException : public Exception {
+    public:
+        const std::string desc() const noexcept;
+        UnloadedResourceException(std::string resource, std::string location, bool fatal = true);
+        /*!
+         * \brief The unloaded resource the program is trying to access.
+         */
+        const std::string resource;
+        /*!
+         * \brief The location of the error.
+         */
+        const std::string location;
+    };
 }

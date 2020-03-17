@@ -14,6 +14,7 @@
 
 #include "src/utils/i18n/ATranslatable.hpp"
 #include "../../core/Player.hpp"
+#include "src/utils/defines.hpp"
 
 namespace OpMon {
 class Item;

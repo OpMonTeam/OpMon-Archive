@@ -13,7 +13,6 @@
 
 #include "src/opmon/screens/optionsmenu/OptionsMenuCtrl.hpp"
 #include "src/opmon/screens/startscene/StartSceneCtrl.hpp"
-#include "src/opmon/core/Core.hpp"
 #include "src/opmon/core/UiData.hpp"
 #include "MainMenu.hpp"
 #include "MainMenuData.hpp"

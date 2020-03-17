@@ -8,7 +8,6 @@ File under GNU GPL v3.0 license
 
 #include "../../../utils/StringKeys.hpp"
 #include "../../../utils/defines.hpp"
-#include "../../core/Core.hpp"
 #include "Window.hpp"
 #include "TextBox.hpp"
 
@@ -43,7 +42,7 @@ namespace OpMon {
                     this->text.push(sf::String(" "));
                 }
                 if(this->text.size() % 2 != 0) {
-                    handleError("Error: string missing in Dialog, even after trying to fix it.", true);
+                    throw std::runtime_error("String missing in Dialog, even after trying to fix it.");
                 }
             }
 

@@ -14,6 +14,7 @@
 #include "src/opmon/view/ui/Elements.hpp"
 #include "src/opmon/view/ui/TextBox.hpp"
 #include "src/utils/CycleCounter.hpp"
+#include "src/opmon/core/GameStatus.hpp"
 
 namespace sf {
 class RenderTarget;
