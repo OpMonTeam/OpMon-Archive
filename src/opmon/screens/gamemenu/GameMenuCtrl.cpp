@@ -12,7 +12,6 @@ File under GNU GPL v3.0 license
 #include <memory>
 
 #include "src/opmon/screens/optionsmenu/OptionsMenuCtrl.hpp"
-#include "src/opmon/core/Core.hpp"
 #include "src/opmon/core/UiData.hpp"
 #include "GameMenu.hpp"
 #include "GameMenuData.hpp"
@@ -88,7 +87,7 @@ namespace OpMon {
                 _next_gs = std::make_unique<OptionsMenuCtrl>(data.getUiDataPtr());
                 break;
             default:
-                handleError("Error : Unknown view to load in MainMenuCtrl.", true);
+                throw Utils::UnexpectedValueException(std::to_string(loadNext), "a view to load in GameMenuCtrl::loadNextScreen()");
             }
         }
 

@@ -15,7 +15,6 @@
 
 #include "src/opmon/screens/overworld/OverworldCtrl.hpp"
 #include "src/opmon/screens/animation/AnimationCtrl.hpp"
-#include "src/opmon/core/Core.hpp"
 #include "src/opmon/core/Player.hpp"
 #include "src/opmon/core/UiData.hpp"
 #include "src/opmon/screens/animation/Animations.hpp"
@@ -97,7 +96,7 @@ namespace OpMon {
             _next_gs = std::make_unique<AnimationCtrl>(std::make_unique<Animations::WinAnim>(screenTexture, false));
             break;
         default:
-            handleError("Error : Unknown view to load in StartSceneCtrl.", true);
+            throw Utils::UnexpectedValueException(std::to_string(loadNext), "a view to load in StartSceneCtrl::loadNextScreen()");
         }
     }
 
@@ -126,8 +125,7 @@ namespace OpMon {
                 loadNext = LOAD_OVERWORLD;
                 break;
             default:
-                handleError("Internal error, unknown part in StartSceneCtrl::update", true);
-                break;
+                throw Utils::UnexpectedValueException(std::to_string(view.getPart()), "1 or 3 in StartScene::draw()");
             }
         }
 

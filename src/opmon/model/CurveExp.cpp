@@ -8,7 +8,7 @@
 #include <cmath>
 #include <memory>
 
-#include "../core/Core.hpp"
+#include  "src/utils/exceptions.hpp"
 
 namespace OpMon {
     float CurveExpErratic::p(int x) {
@@ -32,8 +32,7 @@ namespace OpMon {
         } else if(n >= 99) {
             return round(pow(n, 3) * ((160 - n) / 100));
         } else {
-            handleError("Error when calculating exp : level <= 0", true);
-            return 0;
+            throw Utils::UnexpectedValueException(std::to_string(n), "a positive integer in CurveExpErratic::getNeededExp");
         }
     }
 
@@ -45,8 +44,7 @@ namespace OpMon {
         } else if(n >= 36) {
             return round(pow(n, 3) * ((32 + floor(n / 2)) / 50));
         } else {
-            handleError("Error when calculating exp : level <= 0", true);
-            return 0;
+            throw Utils::UnexpectedValueException(std::to_string(n), "a positive integer in CurveExpFluctuating::getNeededExp");
         }
     }
 

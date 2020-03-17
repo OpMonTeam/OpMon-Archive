@@ -11,7 +11,6 @@
 
 #include "../../utils/log.hpp"
 #include "../../utils/misc.hpp"
-#include "../core/Core.hpp"
 #include "./Evolution.hpp"
 #include "src/opmon/model/Attack.hpp"
 #include "src/opmon/model/CurveExp.hpp"
@@ -84,7 +83,6 @@ namespace OpMon {
                 return false;
             }
             if(nbreOk != 4) { //An OpBall can't wriggle four times
-                handleError("InternalError : OpMon.cpp : nbreOk != 4", true);
             }
             return true;
         }

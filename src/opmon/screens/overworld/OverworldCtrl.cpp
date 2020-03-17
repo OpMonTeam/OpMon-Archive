@@ -15,7 +15,6 @@
 #include "src/opmon/screens/animation/AnimationCtrl.hpp"
 #include "src/opmon/screens/battle/BattleCtrl.hpp"
 #include "src/opmon/screens/gamemenu/GameMenuCtrl.hpp"
-#include "src/opmon/core/Core.hpp"
 #include "src/opmon/core/Player.hpp"
 #include "src/opmon/core/UiData.hpp"
 #include "src/opmon/screens/animation/Animations.hpp"
@@ -26,6 +25,7 @@
 #include "src/opmon/view/elements/Position.hpp"
 #include "src/opmon/view/ui/Dialog.hpp"
 #include "src/opmon/view/ui/Jukebox.hpp"
+#include "src/opmon/core/GameStatus.hpp"
 
 //Defines created to make the code easier to read
 #define LOAD_BATTLE 1
@@ -181,7 +181,7 @@ namespace OpMon {
             _next_gs = std::make_unique<AnimationCtrl>(std::make_unique<Animations::WooshAnim>(screenTexture, data.getGameMenuData().getMenuTexture(), Animations::WooshDir::DOWN, 15, false));
             break;
         default:
-            handleError("Error : Unknown view to load in OverworldCtrl", true);
+            throw Utils::UnexpectedValueException(std::to_string(loadNext), "a view to load in OverworldCtrl::loadNextScreen()");
         }
     }
 

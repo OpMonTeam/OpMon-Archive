@@ -11,6 +11,7 @@ File under GNU GPL v3.0
 
 #include "./fs.hpp"
 #include "./time.hpp"
+#include "exceptions.hpp"
 
 /**Principal log*/
 std::ostream *rlog = nullptr;
@@ -35,13 +36,13 @@ namespace Utils {
             }
             if(!*rerrLog) {
                 rerrLog = &std::cerr;
-                std::cerr << "Unable to open the error log" << std::endl;
+                std::cerr << "Unable to open the error log." << std::endl;
             }
         }
 
         void oplog(const std::string &toSay, bool error) {
-            if(rlog == nullptr) {
-                return; //Error to handle (handleError)
+            if(rlog == nullptr || rerrLog == nullptr) {
+                throw NullptrException("log stream or error log stream", false);
             }
             std::ostream *logStream = error ? rerrLog : rlog;
             *logStream << "[T = " << Time::getElapsedMilliseconds() << "] - " << toSay << std::endl;

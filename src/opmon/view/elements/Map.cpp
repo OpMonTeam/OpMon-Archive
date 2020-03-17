@@ -10,7 +10,6 @@ File under GNU GPL v3.0 license
 #include <sstream>
 
 #include "../../../utils/log.hpp"
-#include "../../core/Core.hpp"
 #include "src/opmon/screens/overworld/OverworldData.hpp"
 #include "Events.hpp"
 #include "src/nlohmann/json.hpp"
@@ -168,7 +167,7 @@ namespace OpMon {
                 }
                 return currentMap;
             } else {
-                handleError("Error : Trying to load an already loaded map.");
+                Utils::Log::warn("Trying to load an already loaded map.");
                 return nullptr;
             }
         }
@@ -184,8 +183,7 @@ namespace OpMon {
                 }
                 return toReturn;
             } else {
-                handleError("Error : using an unloaded map (Map::getEvent).", true);
-                return std::vector<Event *>();
+                throw Utils::UnloadedResourceException("Map", "Map::getEvent");
             }
         }
 
@@ -199,12 +197,11 @@ namespace OpMon {
                 case 3:
                     return layer3[pos.x + pos.y * w] == 0 ? 257 /*"official" void tile*/ : layer3[pos.x + pos.y * w] - 1;
                 default:
-                    handleError("Map::getCurrentTileCode : layer is not 1, 2 or 3. Returning 0.");
+                    throw Utils::UnexpectedValueException(std::to_string(layer), "a layer between 1 and 3 in Map::getCurrentTileCode", false);
                     return 0;
                 }
             } else {
-                handleError("Error : using an unloaded map (Map::getCurrentTileCode).", true);
-                return 0;
+                throw Utils::UnloadedResourceException("Map", "Map::getCurrentTileCode");
             }
         }
 
@@ -212,8 +209,7 @@ namespace OpMon {
             if(loaded) {
                 return colTile[tile];
             } else {
-                handleError("Error : using an unloaded map (Map::getTileCollision).", true);
-                return 0;
+                throw Utils::UnloadedResourceException("Map", "Map::getTileCollision");
             }
         }
 
@@ -234,8 +230,7 @@ namespace OpMon {
                 }
                 return collisionLayer1;
             } else {
-                handleError("Error : using an unloaded map (Map::getCollision).", true);
-                return 0;
+                throw Utils::UnloadedResourceException("Map", "Map::getCollision");
             }
         }
 

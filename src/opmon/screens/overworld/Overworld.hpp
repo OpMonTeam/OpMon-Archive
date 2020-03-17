@@ -12,6 +12,7 @@
 #include "OverworldData.hpp"
 #include "src/opmon/view/ui/Dialog.hpp"
 #include "src/opmon/view/ui/Elements.hpp"
+#include "src/opmon/core/GameStatus.hpp"
 
 namespace sf {
 class RenderTarget;
@@ -122,7 +123,7 @@ class TrainerEvent;
             if(trainerToBattle == nullptr) {
                 trainerToBattle = trainer;
             } else {
-                handleError("Trying to set up a battle, but an another is already set up. Recheck the code", true);
+                throw std::runtime_error("Trying to set up a battle, but an another is already set up. Recheck the code.");
             }
         }
 
@@ -131,7 +132,7 @@ class TrainerEvent;
          */
         void endBattle() {
             if(trainerToBattle == nullptr) {
-                handleError("Warning : ending a battle, but there is no battle.");
+                Utils::Log::warn("Ending a battle, but there is no battle.");
             }
             trainerToBattle = nullptr;
         }

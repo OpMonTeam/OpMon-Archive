@@ -10,27 +10,36 @@ File under GNU GPL v3.0 license
 #include <SFML/Audio/Sound.hpp>
 #include <SFML/Audio/SoundBuffer.hpp>
 
-#include "../../core/Core.hpp"
 #include "src/utils/ResourceLoader.hpp"
 
 namespace OpMon {
     namespace Ui {
         void Jukebox::addMusic(const std::string &name, const std::string &path, bool loop) {
-            auto music = Utils::ResourceLoader::loadMusic(path.c_str());
-            music->setVolume(globalVolume);
-            music->setLoop(loop);
-            musList[name] = std::move(music);
+            try {
+                auto music = Utils::ResourceLoader::loadMusic(path.c_str());
+                music->setVolume(globalVolume);
+                music->setLoop(loop);
+                musList[name] = std::move(music);
+            } catch (Utils::LoadingException& e) {
+                Utils::Log::oplog(e.desc(), true);
+                Utils::Log::warn(std::string("Music '") + name + "' failed to load.");
+            }
         }
 
         void Jukebox::addSound(const std::string &name, const std::string &path) {
-            //Sounds are saved in the code as a pair of sf::SoundBuffer and sf::Sound.
-            auto sb = std::make_unique<sf::SoundBuffer>();
-            Utils::ResourceLoader::load(*sb, path.c_str());
+            try{
+                //Sounds are saved in the code as a pair of sf::SoundBuffer and sf::Sound.
+                auto sb = std::make_unique<sf::SoundBuffer>();
+                Utils::ResourceLoader::load(*sb, path.c_str());
 
-            soundsList[name].first = std::move(sb);
-            soundsList[name].second = std::make_unique<sf::Sound>();
-            soundsList[name].second->setBuffer(*soundsList[name].first);
-            soundsList[name].second->setVolume(globalVolume);
+                soundsList[name].first = std::move(sb);
+                soundsList[name].second = std::make_unique<sf::Sound>();
+                soundsList[name].second->setBuffer(*soundsList[name].first);
+                soundsList[name].second->setVolume(globalVolume);
+            } catch (Utils::LoadingException& e) {
+                Utils::Log::oplog(e.desc(), true);
+                Utils::Log::warn(std::string("Sound '") + name + "' failed to load.");
+            }
         }
 
         void Jukebox::play(const std::string &music) {
@@ -43,7 +52,7 @@ namespace OpMon {
             }
 
             if(musList[music].get() == nullptr) {
-                handleError(std::string("Warning - Jukebox::play : Unknown music \"") + music + "\"");
+                Utils::Log::warn(std::string("Unknown music '") + music + "'");
                 return;
             }
 
@@ -66,8 +75,8 @@ namespace OpMon {
         }
 
         void Jukebox::setGlobalVolume(float globalVolume) {
-            if(globalVolume > 100) {
-                handleError(std::string("Warning - Jukebox::setGlobalVolume : Volume greater than 100"));
+            if(globalVolume > 100 || globalVolume < 0) {
+                Utils::Log::warn(std::string("Volume greater than 100 or lesser than 0."));
                 return;
             }
 
@@ -82,7 +91,7 @@ namespace OpMon {
 
         void Jukebox::playSound(const std::string &sound) {
             if(soundsList[sound].first.get() == nullptr) {
-                handleError(std::string("Warning - Jukebox::playSound : Unknown sound \"") + sound + "\"");
+                Utils::Log::warn(std::string("Unknown sound '") + sound + "'");
                 return;
             }
             soundsList.at(sound).second->play();

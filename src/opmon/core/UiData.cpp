@@ -17,7 +17,6 @@
 #include "../model/evolutions.hpp"
 #include "src/utils/OptionsSave.hpp"
 #include "src/utils/ResourceLoader.hpp"
-#include "src/opmon/core/Core.hpp"
 #include "src/utils/KeyData.hpp"
 #include "src/opmon/model/Enums.hpp"
 #include "src/opmon/model/Species.hpp"
@@ -53,7 +52,7 @@ class Evolution;
 
         std::ifstream opmonJsonFile(Path::getResourcePath() + "data/opmon.json");
         if(!opmonJsonFile) {
-            handleError("Can't open opmon data.", true);
+            throw Utils::LoadingException(Path::getResourcePath() + "data/opmon.json", true);
         }
         nlohmann::json opmonJson;
         opmonJsonFile >> opmonJson;
