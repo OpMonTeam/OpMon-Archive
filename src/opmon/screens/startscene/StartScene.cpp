@@ -13,7 +13,6 @@
 #include "src/utils/StringKeys.hpp"
 #include "src/utils/defines.hpp"
 #include "src/opmon/view/ui/Dialog.hpp"
-#include "src/opmon/core/Core.hpp"
 #include "src/opmon/core/Player.hpp"
 #include "src/opmon/core/UiData.hpp"
 #include "StartSceneData.hpp"

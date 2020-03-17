@@ -18,7 +18,6 @@
 #include <fstream>
 #include <memory>
 
-#include "../opmon/core/Core.hpp"
 #include "./log.hpp"
 #include "exceptions.hpp"
 

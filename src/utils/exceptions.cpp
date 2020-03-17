@@ -29,4 +29,13 @@ namespace Utils {
     const std::string UnexpectedValueException::desc() const noexcept {
         return "UnexpectedValueException : unexpected value \"" + value + "\" but expected " + expected;
     }
+
+    UnloadedResourceException::UnloadedResourceException(std::string resource, std::string location, bool fatal)
+        : Exception(fatal, 5),
+          resource(resource),
+          location(location) {}
+
+    const std::string UnloadedResourceException::desc() const noexcept {
+        return "UnloadedResourceException : Resource \"" + resource + "\" has never been loaded in " + location;
+    }
 }

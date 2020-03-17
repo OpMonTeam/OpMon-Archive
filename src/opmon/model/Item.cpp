@@ -2,9 +2,9 @@
 
 #include <string>
 
-#include "src/opmon/core/Core.hpp"
 #include "src/opmon/model/OpMon.hpp"
 #include "src/utils/OpString.hpp"
+#include "src/utils/exceptions.hpp"
 
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 
@@ -20,8 +20,7 @@ namespace OpMon {
 
     std::unique_ptr<std::vector<sf::String>> Item::use(OpMon *opmon, int &itemCount) {
         if(opmonEffect == nullptr) {
-            handleError("Calling an unknown item effect !");
-            return nullptr;
+            throw Utils::NullptrException("Item::use -> opmonEffect is nullptr");
         }
         bool result = opmonEffect->use(opmon);
         itemCount = (result ? itemCount - 1 : itemCount);
@@ -30,8 +29,7 @@ namespace OpMon {
 
     std::unique_ptr<std::vector<sf::String>> Item::use(Player *player, int &itemCount) {
         if(playerEffect == nullptr) {
-            handleError("Calling an unknown item effect !");
-            return nullptr;
+            throw Utils::NullptrException("Item::use -> opmonEffect is nullptr");
         }
         bool result = playerEffect->use(player);
         itemCount = (result ? itemCount - 1 : itemCount);
@@ -40,8 +38,6 @@ namespace OpMon {
 
     /*  void Item::updateHeld(Turn &owner, Turn &opponent, int &itemCount) {
         if(heldEffect == nullptr) {
-        handleError("Calling an unknown item effect !");
-        return;
         }
         bool result = heldEffect->use(owner, opponent);
         itemCount = (result ? itemCount - 1 : itemCount);

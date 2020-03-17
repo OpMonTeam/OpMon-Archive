@@ -14,7 +14,6 @@
 #include <string>
 
 #include "src/utils/OpString.hpp"
-#include "src/opmon/core/Core.hpp"
 #include "src/opmon/core/UiData.hpp"
 #include "src/opmon/model/Attack.hpp"
 #include "src/opmon/model/Enums.hpp"
