@@ -8,7 +8,6 @@ File under GNU GPL v3.0 license
 
 #include <vector>
 
-#include "../../core/Core.hpp"
 #include "Events.hpp"
 #include "Map.hpp"
 #include "src/opmon/model/Enums.hpp"

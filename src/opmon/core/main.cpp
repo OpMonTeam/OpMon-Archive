@@ -19,7 +19,6 @@ File under GNU GPL v3.0 license
 #include "Gameloop.hpp"
 #include "src/utils/i18n/Translator.hpp"
 #include "config.hpp"
-#include "src/opmon/core/Core.hpp"
 
 using Utils::Log::oplog;
 
@@ -98,24 +97,35 @@ namespace OpMon {
             oplog("Loading completed! Opening gui.");
 
             bool reboot = false;
-            do {
-                oplog("Starting game loop");
+            try{
+                do {
+                    oplog("Starting game loop");
 
-                GameLoop gameloop;
-                reboot = gameloop() == GameStatus::REBOOT;
+                    GameLoop gameloop;
+                    reboot = gameloop() == GameStatus::REBOOT;
 
-                std::ostringstream logEntry;
-                logEntry << std::string("Game ended after ") << Utils::Time::getElapsedSeconds() << std::string("seconds");
+                    std::ostringstream logEntry;
+                    logEntry << std::string("Game ended after ") << Utils::Time::getElapsedSeconds() << std::string("seconds");
 
-                oplog(logEntry.str());
-                if(reboot) {
-                    oplog("Restarting the game.");
-                }
-            } while(reboot);
-            oplog("Ending the game normally.");
-            Utils::OptionsSave::saveParams(Path::getSavePath() + "/optSave.oparams"); //Saving parameters
-            oplog("End of the program. Return 0");
-            return 0;
+                    oplog(logEntry.str());
+                    if(reboot) {
+                        oplog("Restarting the game.");
+                    }
+                } while(reboot);
+                oplog("Ending the game normally.");
+                Utils::OptionsSave::saveParams(Path::getSavePath() + "/optSave.oparams"); //Saving parameters
+                oplog("End of the program. Return 0");
+                return 0;
+
+            } catch(Utils::Exception& e){
+                oplog("Uncaught exception reached main: " + e.desc() + " - Status: " + (e.fatal ? "" : "not ") + "fatal. Quitting anyway, can't do otherwise.", true);
+                oplog("Uncaught exception reached main, quitting.");
+                return e.returnId;
+            } catch(std::exception& e) {
+                oplog("Unexpected exception occured: " + std::string(e.what()), true);
+                oplog("Unexpected exception occured, quitting.");
+                return 1;
+            }
         }
     } // namespace Main
 } // namespace OpMon
@@ -137,7 +147,6 @@ int main(int argc, char *argv[]) {
             } else if(str == "--help") {
                 std::cout << "--version : Prints the version and quit." << std::endl;
                 std::cout << "--help : Prints this message and quit." << std::endl;
-                std::cout << "--debug : Starts the game with debug code. Changes when needed." << std::endl;
                 return 0;
             }
         }

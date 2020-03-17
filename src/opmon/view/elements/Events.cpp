@@ -7,7 +7,6 @@ File under GNU GPL v3.0 license
 #include "Events.hpp"
 
 
-#include "../../core/Core.hpp"
 #include "src/opmon/screens/overworld/Overworld.hpp"
 #include "Position.hpp"
 #include "src/opmon/core/Player.hpp"
@@ -81,7 +80,7 @@ namespace OpMon {
                     this->position.x -= 4;
                 }
                 if(doorType != "door" && doorType != "shop door") {
-                    handleError(std::string("Warning - DoorEvent : Unknown door type \" ") + doorType + "\"");
+                    Utils::Log::warn(std::string("DoorEvent : Unknown door type \" ") + doorType + "\"");
                 }
             }
 
@@ -218,24 +217,29 @@ namespace OpMon {
 
                     case MoveStyle::RANDOM: //I don't think I will be using this often, but I keep it here, who knows?
                         randomMove = Utils::Misc::randUI(5) - 1;
-                        switch(randomMove) {
-                        case -1:
-                            move(Side::NO_MOVE, overworld.getData().getCurrentMap());
-                            break;
-                        case 0:
-                            move(Side::TO_UP, overworld.getData().getCurrentMap());
-                            break;
-                        case 1:
-                            move(Side::TO_DOWN, overworld.getData().getCurrentMap());
-                            break;
-                        case 2:
-                            move(Side::TO_LEFT, overworld.getData().getCurrentMap());
-                            break;
-                        case 3:
-                            move(Side::TO_RIGHT, overworld.getData().getCurrentMap());
-                            break;
-                        default: //This would be weird
-                            handleError("[WARNING] - Random number out of bounds CharacterEvent::update");
+                        try {
+                            switch(randomMove) {
+                            case -1:
+                                move(Side::NO_MOVE, overworld.getData().getCurrentMap());
+                                break;
+                            case 0:
+                                move(Side::TO_UP, overworld.getData().getCurrentMap());
+                                break;
+                            case 1:
+                                move(Side::TO_DOWN, overworld.getData().getCurrentMap());
+                                break;
+                            case 2:
+                                move(Side::TO_LEFT, overworld.getData().getCurrentMap());
+                                break;
+                            case 3:
+                                move(Side::TO_RIGHT, overworld.getData().getCurrentMap());
+                                break;
+                            default:
+                                throw Utils::UnexpectedValueException(std::to_string(randomMove), "an integer in [-1,3] representing a random movement in CharacterEvent::update");
+                            }
+                        } catch(Utils::UnexpectedValueException &e){
+                            if(e.fatal) throw;
+                            Utils::Log::oplog(e.desc(), true);
                             move(Side::NO_MOVE, overworld.getData().getCurrentMap());
                         }
                         break;

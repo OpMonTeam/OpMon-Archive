@@ -13,7 +13,6 @@
 
 #include "src/opmon/screens/optionsmenu/OptionsMenuCtrl.hpp"
 #include "src/opmon/screens/startscene/StartSceneCtrl.hpp"
-#include "src/opmon/core/Core.hpp"
 #include "src/opmon/core/UiData.hpp"
 #include "MainMenu.hpp"
 #include "MainMenuData.hpp"
@@ -85,7 +84,7 @@ namespace OpMon {
             _next_gs = std::make_unique<OptionsMenuCtrl>(data.getUiDataPtr());
             break;
         default:
-            handleError("Error : Unknown view to load in MainMenuCtrl.", true);
+            throw Utils::UnexpectedValueException(std::to_string(loadNext), "a view to load in MainMenuCtrl::loadNextScreen()");
         }
     }
 
