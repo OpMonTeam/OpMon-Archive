@@ -17,7 +17,6 @@
 #include "../model/evolutions.hpp"
 #include "src/utils/OptionsSave.hpp"
 #include "src/utils/ResourceLoader.hpp"
-#include "src/opmon/core/Core.hpp"
 #include "src/utils/KeyData.hpp"
 #include "src/opmon/model/Enums.hpp"
 #include "src/opmon/model/Species.hpp"

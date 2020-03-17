@@ -12,6 +12,7 @@
 #include "OverworldData.hpp"
 #include "src/opmon/view/ui/Dialog.hpp"
 #include "src/opmon/view/ui/Elements.hpp"
+#include "src/opmon/core/GameStatus.hpp"
 
 namespace sf {
 class RenderTarget;

@@ -13,7 +13,6 @@
 #include "src/utils/log.hpp"
 #include "src/opmon/core/system/path.hpp"
 #include "src/utils/ResourceLoader.hpp"
-#include "src/opmon/core/Core.hpp"
 #include "src/opmon/core/Player.hpp"
 #include "src/opmon/core/UiData.hpp"
 #include "src/opmon/model/Attack.hpp"

@@ -15,7 +15,6 @@
 
 #include "src/opmon/screens/overworld/OverworldCtrl.hpp"
 #include "src/opmon/screens/animation/AnimationCtrl.hpp"
-#include "src/opmon/core/Core.hpp"
 #include "src/opmon/core/Player.hpp"
 #include "src/opmon/core/UiData.hpp"
 #include "src/opmon/screens/animation/Animations.hpp"

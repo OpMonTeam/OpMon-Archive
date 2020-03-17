@@ -19,7 +19,6 @@ File under GNU GPL v3.0 license
 #include "Gameloop.hpp"
 #include "src/utils/i18n/Translator.hpp"
 #include "config.hpp"
-#include "src/opmon/core/Core.hpp"
 
 using Utils::Log::oplog;
 
