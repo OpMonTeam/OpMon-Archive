@@ -18,6 +18,15 @@ namespace Utils {
           info(info) {}
 
     const std::string NullptrException::desc() const noexcept {
-        return "NullptrException (unexpected nullptr): " + info;
+        return "NullptrException : " + info;
+    }
+
+    UnexpectedValueException::UnexpectedValueException(std::string value, std::string expected, bool fatal)
+        : Exception(fatal, 4),
+          value(value),
+          expected(expected) {}
+
+    const std::string UnexpectedValueException::desc() const noexcept {
+        return "UnexpectedValueException : unexpected value \"" + value + "\" but expected " + expected;
     }
 }
