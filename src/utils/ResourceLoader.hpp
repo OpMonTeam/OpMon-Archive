@@ -12,6 +12,9 @@
 #include <memory>
 #include <vector>
 
+#include "exceptions.hpp"
+#include "log.hpp"
+
 namespace sf {
     class Music;
     class Texture;
@@ -74,9 +77,13 @@ namespace Utils {
 
     template <typename T>
     void ResourceLoader::load(T &resource, const char *path, bool fatal) {
-
-        if(!resource.loadFromFile(ResourceLoader::getResourcePath() + path)) {
-            //handleError(std::string("Failed to load resource: ") + path, fatal);
+        try{
+            if(!resource.loadFromFile(ResourceLoader::getResourcePath() + path)) {
+                throw LoadingException(path, fatal);
+            }
+        } catch (LoadingException& e) {
+            if(e.fatal) throw;
+            else Log::warn(e.desc());
         }
     }
 

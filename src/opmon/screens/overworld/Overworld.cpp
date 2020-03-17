@@ -23,7 +23,6 @@
 #include "src/utils/log.hpp"
 #include "src/utils/time.hpp"
 #include "src/opmon/view/elements/Events.hpp"
-#include "src/opmon/core/Core.hpp"
 #include "src/utils/i18n/Translator.hpp"
 #include "src/opmon/view/ui/Dialog.hpp"
 #include "src/opmon/core/GameStatus.hpp"

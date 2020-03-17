@@ -81,6 +81,10 @@ class Window;
          * \brief Checks in the `fbfType` key has been released before passing one more frame.
          */
         bool hasBeenReleased = true;
+        /*!
+         * \brief Counts the number of times a frame has been skipped because of an exception.
+         */
+        int frameskips = 0;
     };
 
 } // namespace OpMon

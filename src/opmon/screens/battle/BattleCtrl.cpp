@@ -14,7 +14,6 @@
 #include <string>
 
 #include "src/utils/OpString.hpp"
-#include "src/opmon/core/Core.hpp"
 #include "src/opmon/core/UiData.hpp"
 #include "src/opmon/model/Attack.hpp"
 #include "src/opmon/model/Enums.hpp"
@@ -215,7 +214,8 @@ class Species;
         turnIA(0);
 
         if(!actionsQueue.empty()) {
-            handleError("Error : Actions Queue not empty but beginning a new turn anyway. Undefined behavior my result, because I won't fix that for you. And it could be funny to see.");
+            Utils::Log::warn("Battle: Action queue not empty when beginning a new turn. Emptying it, hope it won't mess everything up. Good luck.");
+            actionsQueue = std::queue<Elements::TurnAction>();
         }
 
         //Item use or switching always comes before the attack. It is calculated before everything else.

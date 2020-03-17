@@ -8,7 +8,6 @@
 
 #include <memory>
 
-#include "../core/Core.hpp"
 #include "OpMon.hpp"
 #include "../../utils/OpString.hpp"
 
