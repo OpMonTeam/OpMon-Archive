@@ -99,7 +99,7 @@ namespace OpMon {
             break;
 
         default:
-            handleError("Unknown part in StartScene::operator()", true);
+            throw Utils::UnexpectedValueException(std::to_string(part), "an integer in [0,2] in StartScene::update()");
         }
         return GameStatus::CONTINUE;
     }
@@ -126,7 +126,7 @@ namespace OpMon {
             break;
 
         default:
-            handleError("Unknown part in StartScene::draw()", true);
+            throw Utils::UnexpectedValueException(std::to_string(part), "an integer in [0,2] in StartScene::draw()");
         }
     }
 

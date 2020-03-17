@@ -85,7 +85,7 @@ namespace OpMon {
             _next_gs = std::make_unique<OptionsMenuCtrl>(data.getUiDataPtr());
             break;
         default:
-            handleError("Error : Unknown view to load in MainMenuCtrl.", true);
+            throw Utils::UnexpectedValueException(std::to_string(loadNext), "a view to load in MainMenuCtrl::loadNextScreen()");
         }
     }
 
