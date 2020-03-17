@@ -181,7 +181,7 @@ namespace OpMon {
             _next_gs = std::make_unique<AnimationCtrl>(std::make_unique<Animations::WooshAnim>(screenTexture, data.getGameMenuData().getMenuTexture(), Animations::WooshDir::DOWN, 15, false));
             break;
         default:
-            handleError("Error : Unknown view to load in OverworldCtrl", true);
+            throw Utils::UnexpectedValueException(std::to_string(loadNext), "a view to load in OverworldCtrl::loadNextScreen()");
         }
     }
 

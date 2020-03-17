@@ -69,4 +69,23 @@ namespace Utils {
          */
         const std::string info;
     };
+
+    /*!
+     * \brief Exception thrown when a variable have an unexpected value that can't be handled.
+     *
+     * Return code: 4
+     */
+    class UnexpectedValueException : public Exception {
+    public:
+        const std::string desc() const noexcept;
+        UnexpectedValueException(std::string value, std::string expected, bool fatal = true);
+        /*!
+         * \brief The unexpected value that caused the error.
+         */
+        const std::string value;
+        /*!
+         * \brief The description of the expected values.
+         */
+        const std::string expected;
+    };
 }

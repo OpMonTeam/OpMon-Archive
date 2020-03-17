@@ -86,7 +86,7 @@ namespace OpMon {
         std::ifstream itemsJsonFile(Path::getResourcePath() + "data/items.json");
 
         if(!itemsJsonFile) {
-            handleError("Can't open items data. (items.json)", true);
+            throw Utils::LoadingException("items.json", true);
         }
 
         itemsJsonFile >> itemsJson;
@@ -110,8 +110,11 @@ namespace OpMon {
         std::ifstream mapsJsonFile(Path::getResourcePath() + "data/maps.json");
         std::ifstream trainersJsonFile(Path::getResourcePath() + "data/trainers.json");
 
-        if(!mapsJsonFile || !trainersJsonFile) {
-            handleError("Can't open maps or trainers data. (maps.json, trainers.json)", true);
+        if(!mapsJsonFile) {
+            throw Utils::LoadingException(Path::getResourcePath() + "data/maps.json");
+        }
+        if(!trainersJsonFile){
+            throw Utils::LoadingException(Path::getResourcePath() + "data/trainers.json");
         }
 
         nlohmann::json mapsJson;
