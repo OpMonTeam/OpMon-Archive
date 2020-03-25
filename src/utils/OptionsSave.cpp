@@ -34,8 +34,6 @@ namespace Utils {
         this->value = value;
     }
 
-    std::vector<Param> OptionsSave::paramList;
-
     Param OptionsSave::getParam(std::string const &name) {
         if(searchParam(name) != -1) {
             return paramList[searchParam(name)];
@@ -71,8 +69,9 @@ namespace Utils {
         return -1;
     }
 
-    void OptionsSave::initParams(std::string const &file) {
-        Utils::Log::oplog("Settings loading");
+    OptionsSave::OptionsSave(std::string const &file)
+    	: file(file) {
+        Utils::Log::oplog("Loading of the settings.");
         std::ifstream stream(file.c_str());
         if(!stream) { //If the file doesn't exist, it is created and opened when saving the parameters
             std::ofstream strm(file.c_str());
@@ -99,10 +98,10 @@ namespace Utils {
         stream.close();
     }
 
-    void OptionsSave::saveParams(std::string const &file) {
+    void OptionsSave::saveParams() {
         std::ofstream stream(file.c_str());
         std::string toGo;
-        for(auto &currentObj : paramList) {
+        for(Param &currentObj : paramList) {
             toGo += ("pm|" + currentObj.getName() + "=" + currentObj.getValue() +
                      '\n'); //Adds the pm| and writes the parameter into the file
             stream << toGo;
@@ -113,6 +112,10 @@ namespace Utils {
 
     bool OptionsSave::checkParam(std::string const &name) {
         return searchParam(name) != -1;
+    }
+
+    OptionsSave::~OptionsSave(){
+    	saveParams();
     }
 
 } // namespace Utils

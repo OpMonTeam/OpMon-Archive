@@ -28,9 +28,16 @@ class Evolution;
 
     UiData::UiData() {
 
+    	Utils::Log::oplog("Loading options");
+
+    	options = new Utils::OptionsSave(Path::getSavePath() + "/optSave.oparams");
+    	if(!options->checkParam("lang")) {//If the "lang" setting don't exist
+    		options->addParam("lang", "eng");
+    	}
+
     	//Initializaing keys
     	Utils::Log::oplog("Loading strings");
-    	std::string lang = Utils::OptionsSave::getParam("lang").getValue();
+    	std::string lang = options->getParam("lang").getValue();
     	auto &tr = Utils::I18n::Translator::getInstance();
     	tr.setAvailableLanguages({
     		{"en", "keys/english.rkeys"},
@@ -157,51 +164,51 @@ class Evolution;
         Utils::ResourceLoader::load(dialogArrow, "sprites/misc/arrDial.png");
 
         //Loading volume
-        if(!Utils::OptionsSave::checkParam("volume")) {
-            Utils::OptionsSave::addParam("volume", "100");
+        if(!options->checkParam("volume")) {
+        	options->addParam("volume", "100");
         }
 
-        int volume = std::stoi(Utils::OptionsSave::getParam("volume").getValue());
+        int volume = std::stoi(options->getParam("volume").getValue());
         jukebox.setGlobalVolume(volume);
 
-        std::string keyUp = Utils::OptionsSave::getParam("control.up").getValue();
+        std::string keyUp = options->getParam("control.up").getValue();
         if(keyUp == "NULL") {
-            Utils::OptionsSave::addParam("control.up", "Up");
+        	options->addParam("control.up", "Up");
             up = sf::Keyboard::Up;
         } else {
             up = Utils::KeyData::keysMap.at(keyUp);
         }
-        std::string keyDown = Utils::OptionsSave::getParam("control.down").getValue();
+        std::string keyDown = options->getParam("control.down").getValue();
         if(keyDown == "NULL") {
-            Utils::OptionsSave::addParam("control.down", "Down");
+        	options->addParam("control.down", "Down");
             down = sf::Keyboard::Down;
         } else {
             down = Utils::KeyData::keysMap.at(keyDown);
         }
-        std::string keyLeft = Utils::OptionsSave::getParam("control.left").getValue();
+        std::string keyLeft = options->getParam("control.left").getValue();
         if(keyLeft == "NULL") {
-            Utils::OptionsSave::addParam("control.left", "Left");
+        	options->addParam("control.left", "Left");
             left = sf::Keyboard::Left;
         } else {
             left = Utils::KeyData::keysMap.at(keyLeft);
         }
-        std::string keyRight = Utils::OptionsSave::getParam("control.right").getValue();
+        std::string keyRight = options->getParam("control.right").getValue();
         if(keyRight == "NULL") {
-            Utils::OptionsSave::addParam("control.right", "Right");
+        	options->addParam("control.right", "Right");
             right = sf::Keyboard::Right;
         } else {
             right = Utils::KeyData::keysMap.at(keyRight);
         }
-        std::string keyTalk = Utils::OptionsSave::getParam("control.talk").getValue();
+        std::string keyTalk = options->getParam("control.talk").getValue();
         if(keyTalk == "NULL") {
-            Utils::OptionsSave::addParam("control.talk", "Space");
+        	options->addParam("control.talk", "Space");
             talk = sf::Keyboard::Space;
         } else {
             talk = Utils::KeyData::keysMap.at(keyTalk);
         }
-        std::string keyInteract = Utils::OptionsSave::getParam("control.interact").getValue();
+        std::string keyInteract = options->getParam("control.interact").getValue();
         if(keyInteract == "NULL") {
-            Utils::OptionsSave::addParam("control.interact", "Return");
+        	options->addParam("control.interact", "Return");
             interact = sf::Keyboard::Return;
         } else {
             interact = Utils::KeyData::keysMap.at(keyInteract);
@@ -209,9 +216,10 @@ class Evolution;
     }
 
     UiData::~UiData() {
-        for(auto spe : listOp) {
+        for(std::pair<unsigned int, Species*> spe : listOp) {
             delete(spe.second);
         }
+        delete(options);
         Utils::Log::oplog("Deleted UiData");
     }
 } // namespace OpMon

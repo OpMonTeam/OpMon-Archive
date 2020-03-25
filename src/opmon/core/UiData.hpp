@@ -16,6 +16,7 @@
 #include "../model/Species.hpp"
 #include "src/utils/KeyData.hpp"
 #include "src/utils/i18n/Translator.hpp"
+#include "src/utils/OptionsSave.hpp"
 
 
 namespace OpMon {
@@ -51,10 +52,12 @@ class Species;
 
         sf::Texture menuFrame;
 
+        Utils::OptionsSave *options;
+
         /*!
-         * \brief The copy constructor. Not defined, must not be used.
+         * \brief The copy constructor. Must not be used.
          */
-        UiData(UiData const &data);
+        UiData(UiData const &data) = delete;
 
     public:
         /*!
@@ -153,6 +156,8 @@ class Species;
         sf::String getString(std::string key) {return Utils::I18n::Translator::getInstance().getStringKeys().get(key);}
 
         Utils::StringKeys& getStringKeys() {return Utils::I18n::Translator::getInstance().getStringKeys();}
+
+        Utils::OptionsSave& getOptions() {return *options;}
     };
 
 } // namespace OpMon

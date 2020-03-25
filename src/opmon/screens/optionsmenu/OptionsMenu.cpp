@@ -336,12 +336,12 @@ namespace OpMon {
 
     GameStatus OptionsMenu::controlsLoop() {
         rectKeyChange.setPosition(posControls[currentKeyChange]);
-        txtCtrlUp.setString(Utils::OptionsSave::getParam("control.up").getValue());
-        txtCtrlDown.setString(Utils::OptionsSave::getParam("control.down").getValue());
-        txtCtrlLeft.setString(Utils::OptionsSave::getParam("control.left").getValue());
-        txtCtrlRight.setString(Utils::OptionsSave::getParam("control.right").getValue());
-        txtCtrlTalk.setString(Utils::OptionsSave::getParam("control.talk").getValue());
-        txtCtrlInteract.setString(Utils::OptionsSave::getParam("control.interact").getValue());
+        txtCtrlUp.setString(data.getUiDataPtr()->getOptions().getParam("control.up").getValue());
+        txtCtrlDown.setString(data.getUiDataPtr()->getOptions().getParam("control.down").getValue());
+        txtCtrlLeft.setString(data.getUiDataPtr()->getOptions().getParam("control.left").getValue());
+        txtCtrlRight.setString(data.getUiDataPtr()->getOptions().getParam("control.right").getValue());
+        txtCtrlTalk.setString(data.getUiDataPtr()->getOptions().getParam("control.talk").getValue());
+        txtCtrlInteract.setString(data.getUiDataPtr()->getOptions().getParam("control.interact").getValue());
         rectSurb.setPosition(curPosCtrl[curPosCtrlI.getValue()]);
         rectSurb.setScale(curSizeCtrl[curPosCtrlI.getValue()]);
         return GameStatus::CONTINUE;
@@ -388,7 +388,7 @@ namespace OpMon {
         for(auto &optionsMenuItem : optionsMenuItems) {
             switch (i) {
             case 1:
-                if(Utils::OptionsSave::getParam("fullscreen").getValue() == "true") {
+                if(data.getUiDataPtr()->getOptions().getParam("fullscreen").getValue() == "true") {
                     optionsMenuItem.setRightContent("On");
                 } else {
                     optionsMenuItem.setRightContent("Off");
