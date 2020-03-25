@@ -270,20 +270,20 @@ class Species;
         if(opmon->getStatus() == Status::FROZEN) {
             //The OpMon have one chance out of 5 to be able to move again.
             if(Utils::Misc::randU(5) == 2) {
-                actionsQueue.push(Elements::createTurnDialogAction({Utils::OpString("battle.status.frozen.out", opName)}));
+                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.frozen.out", opName)));
                 opmon->setStatus(Status::NOTHING);
             } else {
-                actionsQueue.push(Elements::createTurnDialogAction({Utils::OpString("battle.status.frozen.attack", opName)}));
+                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.frozen.attack", opName)));
                 canAttack = false;
             }
             //Checks if sleeping
         } else if(opmon->getStatus() == Status::SLEEPING) {
             //Checks the sleep counter.
             if(opmon->getSleepingCD() <= 0) {
-                actionsQueue.push(Elements::createTurnDialogAction({Utils::OpString("battle.status.sleep.out", opName)}));
+                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.sleep.out", opName)));
                 opmon->setStatus(Status::NOTHING);
             } else {
-                actionsQueue.push(Elements::createTurnDialogAction({Utils::OpString("battle.status.sleep.attack", opName)}));
+                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.sleep.attack", opName)));
                 canAttack = false;
                 opmon->passCD(true);
             }
@@ -291,10 +291,10 @@ class Species;
         } else if(opmon->getStatus() == Status::PARALYSED) {
             //The opmon have one chance out of three to can't attack when paralysed
             if(Utils::Misc::randU(4) == 2) {
-                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString("battle.status.paralysed.attack.fail", opName)));
+                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.paralysed.attack.fail", opName)));
                 canAttack = false;
             } else {
-                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString("battle.status.paralysed.attack.success", opName)));
+                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.paralysed.attack.success", opName)));
             }
         }
         //Checks if confused
@@ -302,21 +302,21 @@ class Species;
             //Checks the confused counter
             if(opmon->getConfusedCD() <= 0) {
                 opmon->confused = false;
-                actionsQueue.push(Elements::createTurnDialogAction({Utils::OpString("battle.status.confused.out", opName)}));
+                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.confused.out", opName)));
             } else {
                 opmon->passCD(false);
                 //The OpMon have one chance out of two of failing their attack.
                 if(Utils::Misc::randU(2) == 1) {
-                    actionsQueue.push(Elements::createTurnDialogAction({Utils::OpString("battle.status.confused.attack.fail", opName)}));
+                    actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.confused.attack.fail", opName)));
                     opmon->attacked(opmon->getStatHP() / 8);
                 } else {
-                    actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString("battle.status.confused.attack.success", opName)));
+                    actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.confused.attack.success", opName)));
                 }
             }
         }
         //Checks if afraid
         if(opmon->afraid) {
-            actionsQueue.push(Elements::createTurnDialogAction({Utils::OpString("battle.status.afraid", opName)}));
+            actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.afraid", opName)));
             opmon->afraid = false;
             canAttack = false;
         }

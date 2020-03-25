@@ -126,8 +126,8 @@ namespace OpMon {
     }
 
     Attack::Attack(std::string nameKey, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::vector<Elements::TurnActionType> animationOrder, std::queue<Ui::Transformation> opAnimsAtk, std::queue<Ui::Transformation> opAnimsDef, std::queue<std::string> animations, AttackEffect *preEffect, AttackEffect *postEffect, AttackEffect *fails)
-        : nameKey(Utils::OpString(nameKey))
-        , name(this->nameKey.getString())
+        : nameKey(Utils::OpString(stringkeys, nameKey))
+        , name(this->nameKey.getString(stringkeys))
         , power(power)
         , type(type)
         , accuracy(accuracy)
@@ -148,8 +148,8 @@ namespace OpMon {
     }
 
     Attack::Attack(AttackData const &data)
-        : nameKey(Utils::OpString(data.nameKey))
-        , name(nameKey.getString())
+        : nameKey(Utils::OpString(stringkeys, data.nameKey))
+        , name(nameKey.getString(stringkeys))
         , power(data.power)
         , type(data.type)
         , accuracy(data.accuracy)
@@ -184,11 +184,11 @@ namespace OpMon {
      */
     int Attack::attack(OpMon &atk, OpMon &def, std::queue<Elements::TurnAction> &turnQueue, bool attacker) {
         pp--;
-        turnQueue.push(Elements::createTurnDialogAction(Utils::OpString("battle.dialog.attack", {atk.getNicknamePtr(), &name})));
+        turnQueue.push(Elements::createTurnDialogAction(Utils::OpString(stringkeys, "battle.dialog.attack", {atk.getNicknamePtr(), &name})));
         //Attack fail
         if((Utils::Misc::randU(100)) > (accuracy * (atk.getStatACC() / def.getStatEVA())) && neverFails == false) {
             Elements::TurnAction failAction;
-            turnQueue.push(Elements::createTurnDialogAction({Utils::OpString("battle.dialog.fail", {atk.getNicknamePtr()})}));
+            turnQueue.push(Elements::createTurnDialogAction(Utils::OpString(stringkeys, "battle.dialog.fail", {atk.getNicknamePtr()})));
             failEffect->apply(*this, atk, def, turnQueue);
             return -2;
         }
@@ -198,7 +198,7 @@ namespace OpMon {
         }
         //If type unefficiency
         if(ArrayTypes::calcEffectiveness(type, def.getType1(), def.getType2()) == 0 && (neverFails == false || status == false)) {
-            turnQueue.push(Elements::createTurnDialogAction({Utils::OpString("battle.effectiveness.none", {atk.getNicknamePtr()})}));
+            turnQueue.push(Elements::createTurnDialogAction(Utils::OpString(stringkeys, "battle.effectiveness.none", {atk.getNicknamePtr()})));
             if(failEffect != nullptr)
                 failEffect->apply(*this, atk, def, turnQueue);
             return -1;
@@ -233,15 +233,19 @@ namespace OpMon {
             turnQueue.push(loosingHp);
 
             if(effectiveness == 0.25)
-                turnQueue.push(Elements::createTurnDialogAction({Utils::OpString("battle.effectiveness.almostnone")}));
+                turnQueue.push(Elements::createTurnDialogAction(Utils::OpString(stringkeys, "battle.effectiveness.almostnone")));
             else if(effectiveness == 0.5)
-                turnQueue.push(Elements::createTurnDialogAction({Utils::OpString("battle.effectiveness.notvery")}));
+                turnQueue.push(Elements::createTurnDialogAction(Utils::OpString(stringkeys, "battle.effectiveness.notvery")));
             else if(effectiveness == 2)
-                turnQueue.push(Elements::createTurnDialogAction({Utils::OpString("battle.effectiveness.very")}));
+                turnQueue.push(Elements::createTurnDialogAction(Utils::OpString(stringkeys, "battle.effectiveness.very")));
             else if(effectiveness == 4)
-                turnQueue.push(Elements::createTurnDialogAction({Utils::OpString("battle.effectiveness.super")}));
+                turnQueue.push(Elements::createTurnDialogAction(Utils::OpString(stringkeys, "battle.effectiveness.super")));
         }
         return postEffect ? postEffect->apply(*this, atk, def, turnQueue) : 0;
+    }
+
+    void Attack::onLangChanged(){
+    	name = nameKey.getString(stringkeys);
     }
 
 } // namespace OpMon

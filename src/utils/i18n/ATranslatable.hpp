@@ -6,6 +6,8 @@
 */
 #pragma once
 
+#include "Translator.hpp"
+
 namespace Utils {
     /*!
      * \namespace Utils::I18n
@@ -20,6 +22,8 @@ namespace Utils {
           protected:
             ATranslatable();
             virtual ~ATranslatable();
+
+            StringKeys& stringkeys = Translator::getInstance().getStringKeys();
 
           public:
             /*!

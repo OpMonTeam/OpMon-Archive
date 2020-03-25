@@ -8,6 +8,7 @@
 #include <map>
 #include <string>
 #include <unordered_set>
+#include "../StringKeys.hpp"
 
 namespace Utils {
     namespace I18n {
@@ -58,6 +59,8 @@ namespace Utils {
              */
             void setAvailableLanguages(std::map<const std::string, const std::string> langMap);
 
+            StringKeys& getStringKeys() {return stringkeys;}
+
           private:
             Translator() = default;
 
@@ -65,6 +68,8 @@ namespace Utils {
 
             std::string _currentLang;
             std::unordered_set<ATranslatable *> _listeners;
+
+            StringKeys stringkeys;
         };
 
     } // namespace I18n

@@ -22,9 +22,9 @@ namespace OpMon {
 
     void StartScene::initStrings() {
 
-        txtP1 = Utils::OpString("prof.dialog.start.2", {data.getPlayer().getNameP()});
+        txtP1 = Utils::OpString(stringkeys, "prof.dialog.start.2", {data.getPlayer().getNameP()});
 
-        textDesc.setString(Utils::StringKeys::get("nameEntry.desc"));
+        textDesc.setString(data.getUiDataPtr()->getString("nameEntry.desc"));
     }
 
     StartScene::StartScene(StartSceneData &data)
@@ -64,7 +64,7 @@ namespace OpMon {
         data.getUiDataPtr()->getJukebox().play("Start");
 
         // Init loop 0
-        dialog = std::make_unique<Ui::Dialog>(Utils::StringKeys::get("prof.dialog.start.1"), data.getUiDataPtr());
+        dialog = std::make_unique<Ui::Dialog>(data.getUiDataPtr()->getString("prof.dialog.start.1"), data.getUiDataPtr());
     }
 
     void StartScene::onLangChanged() {
@@ -106,7 +106,7 @@ namespace OpMon {
     void StartScene::delLoop1() {
         part++;
         // Init loop 2
-        dialog = std::make_unique<Ui::Dialog>(txtP1.getString(), data.getUiDataPtr());
+        dialog = std::make_unique<Ui::Dialog>(txtP1.getString(data.getUiDataPtr()->getStringKeys()), data.getUiDataPtr());
     }
 
     void StartScene::draw(sf::RenderTarget &frame, sf::RenderStates states) const {

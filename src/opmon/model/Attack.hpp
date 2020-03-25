@@ -12,6 +12,7 @@
 
 #include "../view/ui/Elements.hpp"
 #include "../view/elements/Turn.hpp"
+#include "src/utils/i18n/ATranslatable.hpp"
 
 namespace OpMon {
 
@@ -63,7 +64,7 @@ class Attack;
      * \details This class describes an attack owned by an OpMon, and not just an attack in general (AttackData is used for this, the attacks are stored in Attack::attackList).
      * \todo Change the name to "move" to stick better with the original game.
      */
-    class Attack {
+    class Attack : public Utils::I18n::ATranslatable{
     public:
         virtual ~Attack();
         /*!
@@ -153,6 +154,8 @@ class Attack;
         int getPart() { return part; }
         void setPart(int part) { this->part = part; }
         int getHpLost() { return this->hpLost; }
+
+        void onLangChanged();
 
     protected:
         Utils::OpString nameKey;/*!<\brief The key (see Utils::StringKeys) used to get the attack name in the right language.*/

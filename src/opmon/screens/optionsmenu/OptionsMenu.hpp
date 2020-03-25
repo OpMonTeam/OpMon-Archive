@@ -37,7 +37,7 @@ class OptionsMenuData;
      * \todo Make the addition of a language easier.
      * \todo Put some variables in arrays.
      */
-    class OptionsMenu : Utils::I18n::ATranslatable, public sf::Drawable{
+    class OptionsMenu : public Utils::I18n::ATranslatable, public sf::Drawable{
     public:
         OptionsMenu(OptionsMenuData &data);
         ~OptionsMenu() = default;
