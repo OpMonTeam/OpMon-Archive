@@ -70,14 +70,6 @@ namespace OpMon {
                 return -1;
             }
 
-
-
-            oplog("Loading options");
-            Utils::OptionsSave::initParams(Path::getSavePath() + "/optSave.oparams"); //Loading parameters
-            if(!Utils::OptionsSave::checkParam("lang")) {                                    //If the "lang" setting don't exist
-                Utils::OptionsSave::addParam("lang", "eng");
-            }
-
             oplog("Loading completed! Opening gui.");
 
             bool reboot = false;
@@ -97,7 +89,6 @@ namespace OpMon {
                     }
                 } while(reboot);
                 oplog("Ending the game normally.");
-                Utils::OptionsSave::saveParams(Path::getSavePath() + "/optSave.oparams"); //Saving parameters
                 oplog("End of the program. Return 0");
                 return 0;
 

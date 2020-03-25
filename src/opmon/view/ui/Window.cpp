@@ -19,20 +19,19 @@ File under GNU GPL v3.0 license
 
 #include "../../../utils/centerOrigin.hpp"
 #include "../../../utils/log.hpp"
-#include "src/utils/OptionsSave.hpp"
 #include "src/utils/ResourceLoader.hpp"
 
 using Utils::Log::oplog;
 
 namespace OpMon {
     namespace Ui {
-        void Window::open() {
+        void Window::open(Utils::OptionsSave &options) {
             sf::ContextSettings settings;
-            if(!Utils::OptionsSave::checkParam("fullscreen")) {
-                Utils::OptionsSave::addOrModifParam("fullscreen", "false");
+            if(!options.checkParam("fullscreen")) {
+                options.addOrModifParam("fullscreen", "false");
             }
             //settings.antialiasingLevel = 1;
-            if(Utils::OptionsSave::getParam("fullscreen").getValue() == "true") {
+            if(options.getParam("fullscreen").getValue() == "true") {
                 fullScreen = true;
                 window.create(sf::VideoMode::getFullscreenModes().at(0), "OpMon Lazuli", sf::Style::Fullscreen, settings);
             } else {
@@ -59,9 +58,9 @@ namespace OpMon {
             oplog("Window closed. No error detected. Goodbye.");
         }
 
-        void Window::reboot() {
+        void Window::reboot(Utils::OptionsSave &options) {
             close();
-            open();
+            open(options);
         }
 
         void Window::refresh() {

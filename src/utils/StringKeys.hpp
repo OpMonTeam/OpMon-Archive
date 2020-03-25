@@ -22,7 +22,6 @@
 namespace Utils {
 	/*!
      *  \brief Contains functions to manage game strings.
-     *  \todo Make this into an instantiable class.
      */
     class StringKeys {
     private:

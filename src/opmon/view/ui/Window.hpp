@@ -10,6 +10,8 @@
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Sprite.hpp>
+#include "src/utils/OptionsSave.hpp"
+
 
 namespace OpMon {
     namespace Ui {
@@ -43,7 +45,7 @@ namespace OpMon {
             /*!
              * \brief Opens the window.
              */
-            void open();
+            void open(Utils::OptionsSave &options);
             /*!
              * \brief Updates the Window::window with RenderTexture::frame
              */
@@ -51,7 +53,7 @@ namespace OpMon {
             /*!
              * \brief Shortcut calling close() and open().
              */
-            void reboot();
+            void reboot(Utils::OptionsSave &options);
             /*!
              * \brief Resizes Window::frame to fit with the size of Window::window.
              */
