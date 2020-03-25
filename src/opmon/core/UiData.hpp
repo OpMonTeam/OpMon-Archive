@@ -15,6 +15,7 @@
 #include "../view/ui/Window.hpp"
 #include "../model/Species.hpp"
 #include "src/utils/KeyData.hpp"
+#include "src/utils/i18n/Translator.hpp"
 
 
 namespace OpMon {
@@ -148,6 +149,10 @@ class Species;
          * \brief Sets the key for the "talk" action.
          */
         void setKeyTalk(const std::string talkName) { talk = Utils::KeyData::keysMap.at(talkName); }
+
+        sf::String getString(std::string key) {return Utils::I18n::Translator::getInstance().getStringKeys().get(key);}
+
+        Utils::StringKeys& getStringKeys() {return Utils::I18n::Translator::getInstance().getStringKeys();}
     };
 
 } // namespace OpMon

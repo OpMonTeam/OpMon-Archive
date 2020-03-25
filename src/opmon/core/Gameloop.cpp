@@ -43,7 +43,7 @@ namespace OpMon {
         sf::Texture loadTx;
         Utils::ResourceLoader::load(loadTx, "backgrounds/loading.png");
         sf::Text loadingTxt;
-        loadingTxt.setString(Utils::StringKeys::get("load.txt"));
+        loadingTxt.setString(uidata->getString("load.txt"));
         loadingTxt.setPosition(250, 440);
         loadingTxt.setFont(uidata->getFont());
         loadingTxt.setCharacterSize(35);

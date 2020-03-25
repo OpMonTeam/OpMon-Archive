@@ -29,7 +29,7 @@ namespace Utils {
                           Desactivated : if we need to reload the keys
             */
 
-            Utils::StringKeys::initialize(Utils::ResourceLoader::getResourcePath() + langMap[langCode]);
+            stringkeys = StringKeys(Utils::ResourceLoader::getResourcePath() + langMap[langCode]);
 
             _currentLang = langCode;
             for(auto &listener : _listeners) {

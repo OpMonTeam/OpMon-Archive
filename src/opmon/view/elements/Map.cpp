@@ -85,7 +85,7 @@ namespace OpMon {
                         for(unsigned int j = 1; j < dialogKey.size(); j++) {
                             toAdd.push_back(data.getCompletion(dialogKey[j]));
                         }
-                        dialog = Utils::OpString(key, toAdd);
+                        dialog = Utils::OpString(data.getUiDataPtr()->getStringKeys(), key, toAdd);
                     }
 
                     //Creates path objects for npcs
@@ -150,7 +150,7 @@ namespace OpMon {
                         for(unsigned int j = 1; j < defeatedKey.size(); j++) {
                             toAdd.push_back(data.getCompletion(defeatedKey[j]));
                         }
-                        defeatedDialog = Utils::OpString(key, toAdd);
+                        defeatedDialog = Utils::OpString(data.getUiDataPtr()->getStringKeys(), key, toAdd);
                         currentMap->addEvent(new Events::TrainerEvent(data.getCharaTexture(eitor->at("textures")),
                                                                       sf::Vector2f(eitor->at("position")[0],
                                                                                    eitor->at("position")[1]),

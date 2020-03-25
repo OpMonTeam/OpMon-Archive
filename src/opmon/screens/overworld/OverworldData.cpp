@@ -100,7 +100,7 @@ namespace OpMon {
                 }
             }
             std::string itemId = itor->at("id");
-            itemsList.emplace(itemId, std::make_unique<Item>(Utils::OpString("items." + itemId + ".name"), itor->at("usable"), itor->at("onOpMon"), std::move(effects[0]), std::move(effects[1]), std::move(effects[2])));
+            itemsList.emplace(itemId, std::make_unique<Item>(Utils::OpString(uidata->getStringKeys(), "items." + itemId + ".name"), itor->at("usable"), itor->at("onOpMon"), std::move(effects[0]), std::move(effects[1]), std::move(effects[2])));
         }
 
         //Maps initialisation

@@ -66,3 +66,4 @@ doc/html
 *.code-workspace
 compile_commands.json
 doc/latex
+.settings/

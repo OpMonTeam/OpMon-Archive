@@ -22,8 +22,6 @@
 #include "exceptions.hpp"
 
 namespace Utils {
-    std::vector<std::string> StringKeys::keys = std::vector<std::string>();
-    std::vector<sf::String> StringKeys::strings = std::vector<sf::String>();
 
     sf::String StringKeys::readLine(std::ifstream &input) {
         std::basic_string<unsigned char> toReturn;
@@ -51,17 +49,13 @@ namespace Utils {
         return toReelReturn;
     }
 
-    bool StringKeys::initialize(const std::string &keysFileS) {
+    StringKeys::StringKeys(const std::string &keysFileS) {
         std::ifstream keysFile(keysFileS);
-        if(!keysFile) {
-            throw LoadingException(keysFileS, true);
-        }
         keys = std::vector<std::string>();
         strings = std::vector<sf::String>();
         Log::oplog("Keys initialization");
         if(!keysFile) {
-            // Opening of th keys file failed
-            return false;
+            throw LoadingException(keysFileS, true);
         }
         //Keys recovering
         int itore = 0;
@@ -85,7 +79,6 @@ namespace Utils {
                 }
             }
         }
-        return true;
     }
 
     sf::String &StringKeys::get(std::string key) {

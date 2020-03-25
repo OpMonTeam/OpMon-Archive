@@ -29,75 +29,73 @@ namespace OpMon {
     int OPTIONS_MENU_ITEM_PADDING = 4;
 
     void OptionsMenu::initStrings() {
-        auto kget = Utils::StringKeys::get;
-
-        txtRetour.setString(kget("options.retour"));
+        txtRetour.setString(data.getUiDataPtr()->getString("options.retour"));
         txtRetour.setFont(data.getUiDataPtr()->getFont());
         txtRetour.setCharacterSize(FONT_SIZE_DEFAULT);
-        txtOptions.setString(kget("options.title"));
+        txtOptions.setString(data.getUiDataPtr()->getString("options.title"));
         txtOptions.setFont(data.getUiDataPtr()->getFont());
         txtOptions.setCharacterSize(FONT_SIZE_DEFAULT);
 
-        txtCred.setString(kget("options.cred.title"));
+        txtCred.setString(data.getUiDataPtr()->getString("options.cred.title"));
         txtCred.setFont(data.getUiDataPtr()->getFont());
         txtCred.setCharacterSize(FONT_SIZE_DEFAULT);
 
-        txtCtrl.setString(kget("options.vol"));
+        txtCtrl.setString(data.getUiDataPtr()->getString("options.vol"));
         txtCtrl.setFont(data.getUiDataPtr()->getFont());
         txtCtrl.setCharacterSize(FONT_SIZE_DEFAULT);
 
-        txtCre1.setString(kget("options.credit.1"));
+        txtCre1.setString(data.getUiDataPtr()->getString("options.credit.1"));
         txtCre1.setFont(data.getUiDataPtr()->getFont());
         txtCre1.setCharacterSize(14);
         txtCre1.setSfmlColor(sf::Color::Black);
-        txtCre2.setString(kget("options.credit.2"));
+        txtCre2.setString(data.getUiDataPtr()->getString("options.credit.2"));
         txtCre2.setFont(data.getUiDataPtr()->getFont());
         txtCre2.setCharacterSize(14);
         txtCre2.setSfmlColor(sf::Color::Black);
-        txtCre3.setString(kget("options.credit.3"));
+        txtCre3.setString(data.getUiDataPtr()->getString("options.credit.3"));
         txtCre3.setFont(data.getUiDataPtr()->getFont());
         txtCre3.setCharacterSize(14);
         txtCre3.setSfmlColor(sf::Color::Black);
-        txtCre4.setString(kget("options.credit.4"));
+        txtCre4.setString(data.getUiDataPtr()->getString("options.credit.4"));
         txtCre4.setFont(data.getUiDataPtr()->getFont());
         txtCre4.setCharacterSize(14);
         txtCre4.setSfmlColor(sf::Color::Black);
-        txtCre5.setString(kget("options.credit.5"));
+        txtCre5.setString(data.getUiDataPtr()->getString("options.credit.5"));
         txtCre5.setFont(data.getUiDataPtr()->getFont());
         txtCre5.setCharacterSize(14);
         txtCre5.setSfmlColor(sf::Color::Black);
-        txtCre6.setString(kget("options.credit.6"));
+        txtCre6.setString(data.getUiDataPtr()->getString("options.credit.6"));
         txtCre6.setFont(data.getUiDataPtr()->getFont());
         txtCre6.setCharacterSize(22);
         txtCre6.setSfmlColor(sf::Color::Black);
-        txtCre7.setString(kget("options.credit.7"));
+        txtCre7.setString(data.getUiDataPtr()->getString("options.credit.7"));
         txtCre7.setFont(data.getUiDataPtr()->getFont());
         txtCre7.setCharacterSize(18);
         txtCre7.setSfmlColor(sf::Color::Black);
-        txtCre8.setString(kget("options.credit.8"));
+        txtCre8.setString(data.getUiDataPtr()->getString("options.credit.8"));
         txtCre8.setFont(data.getUiDataPtr()->getFont());
         txtCre8.setCharacterSize(15);
-        txtCre81.setString(kget("options.credit.81"));
+        txtCre81.setString(data.getUiDataPtr()->getString("options.credit.81"));
         txtCre81.setFont(data.getUiDataPtr()->getFont());
         txtCre81.setCharacterSize(15);
-        txtCre82.setString(kget("options.credit.82"));
+        txtCre82.setString(data.getUiDataPtr()->getString("options.credit.82"));
         txtCre82.setFont(data.getUiDataPtr()->getFont());
         txtCre82.setCharacterSize(15);
-        txtCre83.setString(kget("options.credit.83"));
+        txtCre83.setString(data.getUiDataPtr()->getString("options.credit.83"));
         txtCre83.setFont(data.getUiDataPtr()->getFont());
         txtCre83.setCharacterSize(15);
-        txtCre84.setString(kget("options.credit.84"));
+        txtCre84.setString(data.getUiDataPtr()->getString("options.credit.84"));
         txtCre84.setFont(data.getUiDataPtr()->getFont());
         txtCre84.setCharacterSize(15);
-        txtCre9.setString(kget("options.credit.9"));
+        txtCre9.setString(data.getUiDataPtr()->getString("options.credit.9"));
         txtCre9.setFont(data.getUiDataPtr()->getFont());
         txtCre9.setCharacterSize(13);
-        txtCre10.setString(kget("options.credit.10"));
+        txtCre10.setString(data.getUiDataPtr()->getString("options.credit.10"));
         txtCre10.setFont(data.getUiDataPtr()->getFont());
         txtCre10.setCharacterSize(20);
         txtCre10.setSfmlColor(sf::Color::Blue);
 
-        txtCtrlChange.setString(kget("options.ctrl.change"));
+        txtCtrlChange.setString(data.getUiDataPtr()->getString("options.ctrl.change"));
         txtCtrlChange.setFont(data.getUiDataPtr()->getFont());
         txtCtrlChange.setCharacterSize(FONT_SIZE_DEFAULT);
     }
@@ -356,7 +354,6 @@ namespace OpMon {
     }
 
     void OptionsMenu::initOptionsMenuItemsName() {
-        auto kget = Utils::StringKeys::get;
         std::string key;
         int i = 0;
         for(auto &optionsMenuItem : optionsMenuItems) {
@@ -380,7 +377,7 @@ namespace OpMon {
                 key = "credits";
                 break;
             }
-            optionsMenuItem.setLeftContent(kget("options." + key));
+            optionsMenuItem.setLeftContent(data.getUiDataPtr()->getString("options." + key));
             ++i;
         }
     }
@@ -408,13 +405,11 @@ namespace OpMon {
     }
 
     void OptionsMenu::initLanguagesMenuItemsName() {
-        auto kget = Utils::StringKeys::get;
-
         int i = 0;
         for(auto &languagesMenuItem : languagesMenuItems) {
             switch (i) {
             case 0:
-                languagesMenuItem.setLeftContent(kget("options.retour"));
+                languagesMenuItem.setLeftContent(data.getUiDataPtr()->getString("options.retour"));
                 break;
             case 1:
                 languagesMenuItem.setLeftContent("English");

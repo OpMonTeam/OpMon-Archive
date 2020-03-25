@@ -13,6 +13,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include "StringKeys.hpp"
 
 /*! \namespace Utils
  *  \brief Contains different utilities.
@@ -43,7 +44,7 @@ namespace Utils {
          * \param key The key allowing to get the character string from StringKeys.
          * \param obj A array of pointers to objects completing the string.
          */
-        OpString(std::string const &key, std::vector<sf::String *> obj = {});
+        OpString(StringKeys &instance, std::string const &key, std::vector<sf::String *> obj = {});
         /*!
          * \brief Contructs an empty OpString with no key nor object.
          * \details It is not possible to set the key and the objects after. However, it is still possible to call getString(), which will return an empty string.
@@ -67,12 +68,7 @@ namespace Utils {
          * \brief Generates the completed string and returns it.
          * \returns The completed string.
          */
-        sf::String getString() const;
-
-        /*!
-         * \brief An empty OpString.
-         */
-        static OpString voidStr;
+        sf::String getString(StringKeys& instance) const;
 
         /*!
          * \brief Creates an OpString and directly returns the result of getString().
@@ -80,7 +76,7 @@ namespace Utils {
          * \param key The key allowing to get the character string from StringKeys.
          * \param vstr The array of objects completing the string.
          */
-        static sf::String quickString(std::string const &key, std::vector<std::string> vstr = {});
+        static sf::String quickString(StringKeys &instance, std::string const &key, std::vector<std::string> vstr = {});
     };
 
 } // namespace Utils

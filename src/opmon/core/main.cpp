@@ -78,22 +78,6 @@ namespace OpMon {
                 Utils::OptionsSave::addParam("lang", "eng");
             }
 
-            //Initializaing keys
-            oplog("Loading strings");
-            std::string lang = Utils::OptionsSave::getParam("lang").getValue();
-            auto &tr = Utils::I18n::Translator::getInstance();
-            tr.setAvailableLanguages({
-              {"en", "keys/english.rkeys"},
-              {"es", "keys/espanol.rkeys"},
-              {"fr", "keys/francais.rkeys"},
-              {"it", "keys/italian.rkeys"},
-              {"de", "keys/deutsch.rkeys"}});
-
-            if(!tr.getAvailableLanguages().count(lang)) {
-                lang = "en"; // The lang isn't available. Default to english.
-            }
-            tr.setLang(lang);
-
             oplog("Loading completed! Opening gui.");
 
             bool reboot = false;
