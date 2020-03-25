@@ -44,22 +44,16 @@ namespace Utils {
 
     /*!
      *	\brief Contains the functions used to save the parameters.
-     *  \todo Make this an instantiable class.
      *  \todo Save the parameters in JSON.
      */
     class OptionsSave {
     public:
-        /*!
-         * \brief The list of the different parameters.
-         * \todo Change this to an std::list ?
-         */
-        static std::vector<Param> paramList;
 
         /*!
          * \returns The parameter with this name in OptionsSave::paramList. Returns an empty parameter if none exists with the given name.
          * \param name The name of the parameter.
          */
-        static Param getParam(std::string const &name);
+        Param getParam(std::string const &name);
 
         /*!
          * \brief Sets the parameter with the given name to the given value.
@@ -68,36 +62,49 @@ namespace Utils {
          * \param value The value to set the parameter to.
          * \todo Change to addOrEditParam
          */
-        static void addOrModifParam(std::string const &name, std::string const &value);
+        void addOrModifParam(std::string const &name, std::string const &value);
 
         /*!
          * \brief Deletes a parameter.
          * \param name The name of the parameter.
          * \returns The deleted parameter. If none exists with this name, returns an empty parameter.
          */
-        static Param deleteParam(std::string const &name);
+        Param deleteParam(std::string const &name);
 
         /*!
          * \brief Saves the parameters.
-         * \param file The file in which save the paramters.
          */
-        static void saveParams(std::string const &file);
+        void saveParams();
 
         /*!
          * \brief Loads the paramters.
          * \param file The file in which the parameters are stored.
          */
-        static void initParams(std::string const &file);
+        OptionsSave(std::string const &file);
 
         /*!
          * \brief Checks if a parameters exists.
          * \param name The name of the parameter.
          * \returns `true` if the parameters exists, `false` otherwise.
          */
-        static bool checkParam(std::string const &name);
+        bool checkParam(std::string const &name);
+
+        ~OptionsSave();
 
     private:
-        static int searchParam(std::string const &name);
+
+        /*!
+         * \brief The list of the different parameters.
+         * \todo Change this to an std::list ?
+         */
+        std::vector<Param> paramList;
+
+        /*!
+         * \brief The file used to save the options.
+         */
+        std::string file;
+
+        int searchParam(std::string const &name);
 
     };
 } // namespace Utils

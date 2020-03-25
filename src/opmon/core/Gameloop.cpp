@@ -38,7 +38,7 @@ namespace OpMon {
         std::unique_ptr<Ui::Window, std::function<void(Ui::Window *)>> window(new Ui::Window(), [](Ui::Window *w) {
             w->close();
         });
-        window->open();
+        window->open(uidata->getOptions());
 
         sf::Texture loadTx;
         Utils::ResourceLoader::load(loadTx, "backgrounds/loading.png");
@@ -86,7 +86,7 @@ namespace OpMon {
                 }
 
                 if(status == GameStatus::WIN_REBOOT) {
-                    window->reboot();
+                    window->reboot(uidata->getOptions());
                     status = GameStatus::CONTINUE;
                 }
 
