@@ -30,35 +30,41 @@ namespace Utils {
          * \brief The array containing the keys.
          * \todo Replace it by one map.
          */
-        static std::vector<std::string> keys;
+        std::vector<std::string> keys;
         /*!
          * \brief The array containing the strings.
          * \todo Replace it by one map.
          */
-        static std::vector<sf::String> strings;
+        std::vector<sf::String> strings;
 
         /*!
          * \brief Returns the index of the given key.
          */
-        static int getIndex(std::string key);
+        int getIndex(std::string key);
 
         /*!
          * \brief Reads a line from the input.
          */
-        static sf::String readLine(std::ifstream &input);
+        sf::String readLine(std::ifstream &input);
     public:
         /*!
          * \return The character string associated with the key.
          * \param key The key corresponding to the wanted string.
          */
-        static sf::String &get(std::string key);
+        sf::String &get(std::string key);
 
         /*!
          * \brief Loads the file containing the keys and initializes the list of them.
          * \param file The file to load, containing the keys.
-         * \return `true` if everything is ok; `false` if there is an error.
          */
-        static bool initialize(const std::string &file);
+        StringKeys(const std::string &file);
+
+        /*!
+         * \brief Creates an empty StringKeys instance.
+         *
+         * An empty StringKeys instance does not contain any key nor string.
+         */
+        StringKeys() = default;
 
         /*!
          * \brief Splits a character string.
@@ -68,7 +74,7 @@ namespace Utils {
          * \param splitter The character used as the limit between the different parts.
          * \param part The index to return.
          */
-        OP_DEPRECATED static sf::String split(sf::String const &str, char const &splitter, int const &part);
+        OP_DEPRECATED sf::String split(sf::String const &str, char const &splitter, int const &part);
 
         /*!
          * \brief Splits a character string.
@@ -89,7 +95,7 @@ namespace Utils {
          * \return The string associated with the key in std::string format.
          * \param key The key corresponding to the wanted string.
          */
-        static std::string getStd(std::string const &key);
+        std::string getStd(std::string const &key);
 
         /**
          * \brief Counts the number of instances of a character into a string.

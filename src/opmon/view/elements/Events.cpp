@@ -94,7 +94,7 @@ namespace OpMon {
 
             void TalkingEvent::onLangChanged() {
                 dialog.clear();
-                dialog = dialogKey.getString();
+                dialog = dialogKey.getString(stringkeys);
             }
 
             LockedDoorEvent::LockedDoorEvent(std::vector<sf::Texture> &doorTextures, std::string doorType, Item *needed, sf::Vector2f const &position,

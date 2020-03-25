@@ -49,7 +49,7 @@ namespace OpMon {
         }
 
         bool HpHealEffect::use(OpMon *opmon) {
-            dialog = std::make_unique<std::vector<sf::String>>();
+            /*dialog = std::make_unique<std::vector<sf::String>>();
             bool toReturn = true;
             if(opmon->getHP() == opmon->getStatHP()) {
                 dialog->push_back(Utils::OpString::quickString("items.dialog.heal.fullHP", {opmon->getNickname()}));
@@ -66,8 +66,8 @@ namespace OpMon {
 
             dialog->push_back(Utils::OpString::quickString("void"));
             dialog->push_back(Utils::OpString::quickString("void"));
-
-            return toReturn;
+	*/
+            return /*toReturn*/ false;
         }
     } // namespace Items
 

@@ -10,6 +10,7 @@
 
 #include "OpMon.hpp"
 #include "../../utils/OpString.hpp"
+#include "src/utils/i18n/ATranslatable.hpp"
 
 namespace OpMon {
 class OpMon;
@@ -32,6 +33,8 @@ namespace OpMon {
     class ItemEffect {
     public:
         ItemEffect() {}
+
+        virtual ~ItemEffect() = default;
 
         /** Different effects. The boolean returned is true if the item must be consumed */
 
@@ -61,15 +64,17 @@ namespace OpMon {
         std::unique_ptr<std::vector<sf::String>> dialog = std::make_unique<std::vector<sf::String>>();
     };
 
-    class Item {
+    class Item : public Utils::I18n::ATranslatable {
     public:
         Item(Utils::OpString name, bool usable, bool onOpMon, std::unique_ptr<ItemEffect> opmonEffect = nullptr, std::unique_ptr<ItemEffect> playerEffect = nullptr, std::unique_ptr<ItemEffect> heldEffect = nullptr);
 
-        ~Item() = default;
+        virtual ~Item() = default;
 
         std::unique_ptr<std::vector<sf::String>> use(OpMon *opmon, int &itemCount);
         std::unique_ptr<std::vector<sf::String>> use(Player *player, int &itemCount);
 //            void updateHeld(Turn &owner, Turn &opponent, int &itemCount);
+
+        void onLangChanged(){}
 
     protected:
         Utils::OpString name;

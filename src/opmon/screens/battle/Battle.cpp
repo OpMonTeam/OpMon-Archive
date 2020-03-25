@@ -162,7 +162,7 @@ namespace OpMon {
                             dialog = nullptr;
                         }
                         dialogOver = false;
-                        sf::String dialogs = turnAct.dialog.getString();
+                        sf::String dialogs = turnAct.dialog.getString(data.getUiDataPtr()->getStringKeys());
                         dialog = new Ui::Dialog(dialogs, data.getUiDataPtr());
                     } else { //Continuing an old dialog
                         dialog->updateTextAnimation();
@@ -196,7 +196,7 @@ namespace OpMon {
                             dialog = nullptr;
                         }
                         dialogOver = false;
-                        dialog = new Ui::Dialog(Utils::OpString::quickString("battle.stat." + std::to_string((int)turnAct.statMod) + "." + std::to_string(turnAct.statCoef), {opTurn.opmon->getNickname()}), data.getUiDataPtr());
+                        dialog = new Ui::Dialog(Utils::OpString::quickString(data.getUiDataPtr()->getStringKeys(), "battle.stat." + std::to_string((int)turnAct.statMod) + "." + std::to_string(turnAct.statCoef), {opTurn.opmon->getNickname()}), data.getUiDataPtr());
                     } else {
                         dialog->updateTextAnimation();
                     }
@@ -215,7 +215,7 @@ namespace OpMon {
                             dialog = nullptr;
                         }
                         dialogOver = false;
-                        dialog = new Ui::Dialog(Utils::OpString::quickString("battle.victory", {data.getPlayer().getName()}), data.getUiDataPtr());
+                        dialog = new Ui::Dialog(Utils::OpString::quickString(data.getUiDataPtr()->getStringKeys(), "battle.victory", {data.getPlayer().getName()}), data.getUiDataPtr());
                     } else {
                         dialog->updateTextAnimation();
                         if(dialog->isDialogOver()) {
@@ -232,7 +232,7 @@ namespace OpMon {
                             dialog = nullptr;
                         }
                         dialogOver = false;
-                        dialog = new Ui::Dialog(Utils::OpString::quickString("battle.defeat", {data.getPlayer().getName()}), data.getUiDataPtr());
+                        dialog = new Ui::Dialog(Utils::OpString::quickString(data.getUiDataPtr()->getStringKeys(), "battle.defeat", {data.getPlayer().getName()}), data.getUiDataPtr());
                     } else {
                         dialog->updateTextAnimation();
                         if(dialog->isDialogOver()) {
@@ -274,7 +274,7 @@ namespace OpMon {
             drawDialog = true;
 
         } else if(!attackChoice) { // Main battle menu
-            std::queue<sf::String> waitTxt = Utils::StringKeys::autoNewLine(Utils::StringKeys::get("battle.wait"), data.getUiDataPtr()->getFont(), 22, 192);
+            std::queue<sf::String> waitTxt = Utils::StringKeys::autoNewLine(data.getUiDataPtr()->getString("battle.wait"), data.getUiDataPtr()->getFont(), 22, 192);
             sf::String str = waitTxt.front() + sf::String('\n');
             waitTxt.pop();
             str += waitTxt.front();
@@ -364,10 +364,10 @@ namespace OpMon {
         trainerSpr.setTexture(data.getCharaBattleTextures(trainerClass)[0]);
         trainerSpr.setPosition(400, 20);
 
-        choicesTxt[0].setString(Utils::StringKeys::get("battle.attack"));
-        choicesTxt[1].setString(Utils::StringKeys::get("battle.bag"));
-        choicesTxt[2].setString(Utils::StringKeys::get("battle.opmon"));
-        choicesTxt[3].setString(Utils::StringKeys::get("battle.run"));
+        choicesTxt[0].setString(data.getUiDataPtr()->getString("battle.attack"));
+        choicesTxt[1].setString(data.getUiDataPtr()->getString("battle.bag"));
+        choicesTxt[2].setString(data.getUiDataPtr()->getString("battle.opmon"));
+        choicesTxt[3].setString(data.getUiDataPtr()->getString("battle.run"));
 
         for(unsigned int i = 0; i < 4; i++) {
             choicesTxt[i].setFont(data.getUiDataPtr()->getFont());

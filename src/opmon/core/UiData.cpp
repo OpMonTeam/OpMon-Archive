@@ -21,12 +21,28 @@
 #include "src/opmon/model/Enums.hpp"
 #include "src/opmon/model/Species.hpp"
 #include "src/opmon/view/ui/Jukebox.hpp"
-#include "src/utils/StringKeys.hpp"
+#include "src/utils/i18n/Translator.hpp"
 
 namespace OpMon {
 class Evolution;
 
     UiData::UiData() {
+
+    	//Initializaing keys
+    	Utils::Log::oplog("Loading strings");
+    	std::string lang = Utils::OptionsSave::getParam("lang").getValue();
+    	auto &tr = Utils::I18n::Translator::getInstance();
+    	tr.setAvailableLanguages({
+    		{"en", "keys/english.rkeys"},
+			{"es", "keys/espanol.rkeys"},
+			{"fr", "keys/francais.rkeys"},
+			{"it", "keys/italian.rkeys"},
+			{"de", "keys/deutsch.rkeys"}});
+
+    	if(!tr.getAvailableLanguages().count(lang)) {
+    		lang = "en"; // The lang isn't available. Default to english.
+    	}
+    	tr.setLang(lang);
 
         Utils::Log::oplog("Initializating UiData");
 
@@ -78,14 +94,14 @@ class Evolution;
                                                     itor->at("defSpe"),
                                                     itor->at("spe"),
                                                     itor->at("HP"),
-                                                    Utils::StringKeys::getStd("opmon.name." + opDexNumberStr),
+                                                    getStringKeys().getStd("opmon.name." + opDexNumberStr),
                                                     itor->at("types")[0],
                                                     itor->at("types")[1],
                                                     evol,
                                                     evs,
                                                     itor->at("height"),
                                                     itor->at("weight"),
-                                                    Utils::StringKeys::getStd("opmon.desc." + opDexNumberStr),
+													getStringKeys().getStd("opmon.desc." + opDexNumberStr),
                                                     itor->at("expGiven"),
                                                     itor->at("curve"),
                                                     itor->at("captureRate"),

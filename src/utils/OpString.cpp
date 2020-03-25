@@ -11,17 +11,12 @@ File under GNU GPL v3.0 license
 #include <iostream>
 
 #include "./log.hpp"
-#include "StringKeys.hpp"
 
 namespace Utils {
-    /*
-     * The "void" key returns an empty string.
-     */
-    OpString OpString::voidStr = OpString("void");
 
-    OpString::OpString(std::string const &key, std::vector<sf::String *> obj) {
+    OpString::OpString(StringKeys &instance, std::string const &key, std::vector<sf::String *> obj) {
         this->key = key;
-        unsigned int instances = (key == "void") ? 0 : StringKeys::countInstances(StringKeys::get(key), '~');
+        unsigned int instances = (key == "void") ? 0 : StringKeys::countInstances(instance.get(key), '~');
         this->objects = obj;
 
         if(objects.size() != instances) {
@@ -32,13 +27,13 @@ namespace Utils {
     OpString::OpString() {
     }
 
-    sf::String OpString::quickString(std::string const &key, std::vector<std::string> vstr) {
+    sf::String OpString::quickString(StringKeys &instance, std::string const &key, std::vector<std::string> vstr) {
         std::vector<sf::String *> vect;
         for(std::string str : vstr) {
             vect.push_back(new sf::String(str));
         }
-        OpString op = OpString(key, vect);
-        sf::String str = op.getString();
+        OpString op = OpString(instance, key, vect);
+        sf::String str = op.getString(instance);
 
         for(sf::String *sfstr : vect) {
             delete(sfstr);
@@ -47,15 +42,15 @@ namespace Utils {
         return str;
     }
 
-    sf::String OpString::getString() const {
+    sf::String OpString::getString(StringKeys &instance) const {
         if(this->key.empty() || this->key == "void") { //If empty or void, it doesn't execute the algorithm. That would be useless.
             return sf::String();
         }
         if(objects.size() == 0) { //If there is not object, it just returns the string.
-            return StringKeys::get(key);
+            return instance.get(key);
         }
         //Ok, so there is some things to do
-        std::vector<sf::String> splitted = StringKeys::split(StringKeys::get(key), '~'); //Split every ~
+        std::vector<sf::String> splitted = StringKeys::split(instance.get(key), '~'); //Split every ~
 
         sf::String toReturn;
         for(size_t i = 0; i < splitted.size(); ++i) {

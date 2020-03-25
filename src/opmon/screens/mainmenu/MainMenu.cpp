@@ -42,11 +42,10 @@ namespace OpMon {
     }
 
     void MainMenu::initMainMenuItemsName() {
-        auto kget = Utils::StringKeys::get;
 
         int i{0};
         for(auto &mainMenuItem : mainMenuItems) {
-            mainMenuItem.setLeftContent(kget("title." + std::to_string(i + 1)));
+            mainMenuItem.setLeftContent(data.getUiDataPtr()->getString("title." + std::to_string(i + 1)));
             ++i;
         }
     }

@@ -29,12 +29,12 @@ namespace OpMon {
             selectxt[i].setCharacterSize(20);
             selectxt[i].setSfmlColor(sf::Color::White);
         }
-        selectxt[0].setString(Utils::StringKeys::get("gamemenu.save"));
-        selectxt[1].setString(Utils::StringKeys::get("gamemenu.id"));
-        selectxt[2].setString(Utils::StringKeys::get("gamemenu.bag"));
-        selectxt[3].setString(Utils::StringKeys::get("gamemenu.opmons"));
-        selectxt[4].setString(Utils::StringKeys::get("gamemenu.opdex"));
-        selectxt[5].setString(Utils::StringKeys::get("gamemenu.settings"));
+        selectxt[0].setString(data.getUiDataPtr()->getString("gamemenu.save"));
+        selectxt[1].setString(data.getUiDataPtr()->getString("gamemenu.id"));
+        selectxt[2].setString(data.getUiDataPtr()->getString("gamemenu.bag"));
+        selectxt[3].setString(data.getUiDataPtr()->getString("gamemenu.opmons"));
+        selectxt[4].setString(data.getUiDataPtr()->getString("gamemenu.opdex"));
+        selectxt[5].setString(data.getUiDataPtr()->getString("gamemenu.settings"));
 
         selectxt[0].setPosition(146, 143);
         selectxt[1].setPosition(260, 143);
