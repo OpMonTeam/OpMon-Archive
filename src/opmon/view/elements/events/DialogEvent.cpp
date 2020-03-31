@@ -22,5 +22,10 @@ namespace OpMon {
 		void DialogEvent::update(Player &player, Overworld &overworld) {
 		}
 
+		void DialogEvent::changeDialog(Utils::OpString newDialog) {
+			dialogKey = newDialog;
+			this->onLangChanged();
+		}
+
 	} /* namespace Elements */
 } /* namespace OpMon */
