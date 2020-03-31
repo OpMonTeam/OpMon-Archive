@@ -25,7 +25,5 @@ namespace OpMon::Elements {
 		OpTeam *getOpTeam() {
 			return team;
 		}
-
-		virtual ~BattleEvent();
 	};
 }

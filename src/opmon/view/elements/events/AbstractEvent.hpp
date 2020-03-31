@@ -34,7 +34,7 @@ namespace OpMon{
 		};
 
 		class AbstractEvent {
-		private:
+		protected:
 			/*!
 			 * \brief How the event is triggered by the player.
 			 */
@@ -47,7 +47,7 @@ namespace OpMon{
 			 * \brief From which sides the player is able to interact with the event.
 			 */
 			int sides = SIDE_ALL;
-		protected:
+
             /*!
              * \brief The position of the event on the screen.
              */
@@ -108,9 +108,12 @@ namespace OpMon{
             bool isPassable() const {
                 return passable;
             }
+
             const sf::Sprite *getSprite() const {
                 return sprite.get();
             }
+
+            std::vector<sf::Texture>& getTextures() {return otherTextures;}
 		};
 	}
 }

@@ -3,7 +3,7 @@
 namespace OpMon {
 	namespace Elements {
 
-		SoundEvent::SoundEvent(std::vector<sf::Texture> &otherTextures, EventTrigger eventTrigger, sf::Vector2f const &position, std::string const& playID, bool music, bool toggle, int sides = SIDE_ALL, bool passable = true)
+		SoundEvent::SoundEvent(std::vector<sf::Texture> &otherTextures, EventTrigger eventTrigger, sf::Vector2f const &position, std::string const& playID, bool music, bool toggle, int sides, bool passable)
 				: AbstractEvent(otherTextures, eventTrigger, position, sides, passable)
 				  , playID(playID)
 				  , music(music)
