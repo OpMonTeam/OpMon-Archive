@@ -41,8 +41,15 @@ namespace OpMon {
     namespace Elements {
 
         namespace Events {
-
-
+            /*!
+             * \brief Used to know when the event must be triggered, relatively from the player.
+             */
+            enum class EventTrigger {
+                PRESS = 0,/*!< The event is triggered when the player presses the action key.*/
+                GO_IN = 1,/*!< The event is triggered when the player is moving to the tile.*/
+                ZONE = 2,/*!< The event is triggered as soon as the player sees it.*/
+                BE_IN = 3/*!< The event is triggered as long as the player is on its position.*/
+            };
         } // namespace Events
 
         /*!
@@ -203,7 +210,7 @@ namespace OpMon {
                  */
                 Utils::OpString dialogKey;
 
-              protected:
+            protected:
                 /*!
                  * \brief The dialog to show.
                  */

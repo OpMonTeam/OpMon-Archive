@@ -35,7 +35,7 @@ namespace OpMon::Elements {
 		/*!
 		 * \brief Counter to know how many ticks has been elapsed since the last update.
 		 */
-		int framecount = 0;
+		unsigned int framecount = 0;
 	public:
 		AnimationEvent(std::vector<sf::Texture> &otherTextures, EventTrigger eventTrigger, sf::Vector2f const &position, unsigned int framerate, bool loop, bool passable, int sides = SIDE_ALL);
 		void action(Player &player, Overworld &overworld);
