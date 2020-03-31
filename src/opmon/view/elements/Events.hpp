@@ -203,7 +203,7 @@ namespace OpMon {
                  */
                 Utils::OpString dialogKey;
 
-            protected:
+              protected:
                 /*!
                  * \brief The dialog to show.
                  */
