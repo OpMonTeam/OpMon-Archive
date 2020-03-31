@@ -1,9 +1,3 @@
-/*!
- * \file SoundEvent.cpp
- * \author Author: cyrielle
- * \copyright GNU GPL v3.0
- */
-
 #include "SoundEvent.hpp"
 
 namespace OpMon {
