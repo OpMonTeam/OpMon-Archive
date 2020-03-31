@@ -1,9 +1,3 @@
-/*!
- * \file CharacterEvent.cpp
- * \author Author: cyrielle
- * \copyright GNU GPL v3.0
- */
-
 #include "CharacterEvent.hpp"
 
 namespace OpMon {
