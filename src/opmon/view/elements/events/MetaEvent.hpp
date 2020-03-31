@@ -22,6 +22,7 @@ namespace OpMon{
             std::queue<AbstractEvent*> eventQueue;
         public:
             MetaEvent(sf::Vector2i position, std::queue<AbstractEvent*> eventQueue);
+
         };
     }
 }

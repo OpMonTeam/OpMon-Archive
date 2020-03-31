@@ -9,7 +9,6 @@
 #include <memory>
 #include <SFML/Graphics/Sprite.hpp>
 
-#include "src/utils/i18n/ATranslatable.hpp"
 #include "src/opmon/core/Player.hpp"
 #include "src/opmon/screens/overworld/Overworld.hpp"
 
@@ -34,7 +33,7 @@ namespace OpMon{
 			BE_IN = 3/*!< The event is triggered as long as the player is on its position.*/
 		};
 
-		class AbstractEvent : public Utils::I18n::ATranslatable {
+		class AbstractEvent {
 		private:
 			/*!
 			 * \brief How the event is triggered by the player.
