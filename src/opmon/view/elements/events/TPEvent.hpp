@@ -1,6 +1,6 @@
 /*!
  * \file TPEvent.hpp
- * \author Author: cyrielle
+ * \author Cyrielle
  * \copyright GNU GPL v3.0
  */
 

@@ -1,6 +1,6 @@
 /*!
  * \file CharacterEvent.hpp
- * \author Author: cyrielle
+ * \author Cyrielle
  * \copyright GNU GPL v3.0
  */
 
@@ -21,7 +21,7 @@ namespace OpMon::Elements {
 	};
 
 	/*!
-	 * \brief Defines a npc.
+	 * \brief A NPC that just walks through the map.
 	 */
 	class CharacterEvent : public AbstractEvent {
 	private:
