@@ -11,4 +11,14 @@ namespace OpMon::Elements {
 			eventQueue.pop();
 		}
 	}
+
+	void AbstractMetaEvent::update(Player &player, Overworld &overworld){
+		AbstractEvent* event = eventQueue.front();
+		otherTextures = event->getTextures();
+		eventTrigger = event->getEventTrigger();
+		position = event->getPosition();
+		mapPos = event->getPositionMap();
+		passable = event->isPassable();
+		sides = event->getSide();
+	}
 }
