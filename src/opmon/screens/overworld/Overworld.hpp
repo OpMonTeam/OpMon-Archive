@@ -127,6 +127,18 @@ class TrainerEvent;
             }
         }
 
+        bool isInBattle() const {
+        	return !(trainerToBattle == nullptr);
+        }
+
+        bool isDialogOver() const {
+        	if(dialog == nullptr){
+        		return true;
+        	}else{
+        		return dialog->isDialogOver();
+        	}
+        }
+
         /*!
          * \brief Ends the current Battle.
          */

@@ -113,6 +113,11 @@ namespace OpMon{
                 return sprite.get();
             }
 
+            /*!
+             * \brief If the activation of the event is over, returns true. If the event is still doing something, returns false.
+             */
+            virtual bool isOver() const = 0;
+
             std::vector<sf::Texture>& getTextures() {return otherTextures;}
 		};
 	}

@@ -40,5 +40,6 @@ namespace OpMon::Elements {
 		AnimationEvent(std::vector<sf::Texture> &otherTextures, EventTrigger eventTrigger, sf::Vector2f const &position, unsigned int framerate, bool loop, bool passable, int sides = SIDE_ALL);
 		void action(Player &player, Overworld &overworld);
 		void update(Player &player, Overworld &overworld);
+		bool isOver() const {return !playing;}
 	};
 }
