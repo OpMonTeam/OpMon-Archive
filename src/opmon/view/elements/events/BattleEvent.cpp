@@ -9,7 +9,8 @@ namespace OpMon {
 		}
 
 		void BattleEvent::action(Player &player, Overworld &overworld) {
-			overworld.declareBattle(this);
+			//overworld.declareBattle(this);
+			//TODO : To uncomment.
 			over = !overworld.isInBattle();
 		}
 
