@@ -18,7 +18,9 @@ namespace OpMon{
          *
          * This pure virtual is made to manage event that are a composition of events.
          * The way of managing the queue of actions will depend according to what the MetaEvent will be doing.
-         * Any AbstractMetaEvent automatically takes the basic properties of the first event in the queue.
+         * Any AbstractMetaEvent automatically takes the basic properties of the first event in the queue,
+         * and the update method will update it each frame. If the first event in the queue changes, the properties
+         * of the AbstractMetaEvent changes too.
          *
          * Note that the destructor will delete every given AbstractEvent pointer in the queue.
          */
@@ -47,9 +49,11 @@ namespace OpMon{
         public:
             AbstractMetaEvent(std::queue<AbstractEvent*> eventQueue);
             virtual void action(Player &player, Overworld &overworld) = 0;
-            virtual void update(Player &player, Overworld &overworld) = 0;
+            virtual void update(Player &player, Overworld &overworld);
             virtual bool isOver() const {return !processing;}
             virtual ~AbstractMetaEvent();
+            virtual const sf::Sprite* getSprite() const {return eventQueue.front()->getSprite();}
+            virtual const sf::Texture &getTexture() {return eventQueue.front()->getTexture();}
         };
     }
 }

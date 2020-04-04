@@ -90,7 +90,7 @@ namespace OpMon{
             int getSide() const {
                 return sides;
             }
-            const sf::Texture &getTexture() {
+            virtual const sf::Texture &getTexture() {
                 return *currentTexture;
             }
             EventTrigger getEventTrigger() const {
@@ -109,7 +109,7 @@ namespace OpMon{
                 return passable;
             }
 
-            const sf::Sprite *getSprite() const {
+            virtual const sf::Sprite *getSprite() const {
                 return sprite.get();
             }
 

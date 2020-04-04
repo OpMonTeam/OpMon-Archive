@@ -47,6 +47,8 @@ namespace OpMon {
 					} while(actionQueue.front());//If the next event action is false, the program must wait for the queue to be empty again.
 				}
 			}
+
+			AbstractMetaEvent::update(player, overworld);
 		}
 
 	} /* namespace Elements */
