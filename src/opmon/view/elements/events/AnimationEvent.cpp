@@ -8,9 +8,6 @@ namespace OpMon {
 		: AbstractEvent(otherTextures, eventTrigger, position, sides, passable)
 		, framerate(framerate)
 		, loop(loop) {
-			if(framerate <= 0){
-				throw Utils::UnexpectedValueException(std::to_string(framerate), "a strictly positive integer in AnimationEvent", false);
-			}
 		}
 
 		void AnimationEvent::action(Player &player, Overworld &overworld){

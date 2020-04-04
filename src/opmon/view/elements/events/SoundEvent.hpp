@@ -37,6 +37,6 @@ namespace OpMon::Elements {
 		SoundEvent(std::vector<sf::Texture> &otherTextures, EventTrigger eventTrigger, sf::Vector2f const &position, std::string const& playID, bool music, bool toggle, int sides = SIDE_ALL, bool passable = true);
 		virtual void update(Player &player, Overworld &overworld) {}
 		virtual void action(Player &player, Overworld &overworld);
-		bool isOver() {return !playing;}
+		bool isOver() const {return !playing;}
 	};
 }
