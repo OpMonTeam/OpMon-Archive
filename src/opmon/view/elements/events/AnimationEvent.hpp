@@ -18,7 +18,7 @@ namespace OpMon::Elements {
 		/*!
 		 *  \brief The number of ticks elapsed between two frames.
 		 *
-		 *  \warn Can't be 0 or below.
+		 *  0 means one frame per tick.
 		 */
 		unsigned int framerate;
 

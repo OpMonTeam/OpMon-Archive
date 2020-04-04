@@ -158,6 +158,8 @@ class Species;
         Utils::StringKeys& getStringKeys() {return Utils::I18n::Translator::getInstance().getStringKeys();}
 
         Utils::OptionsSave& getOptions() {return *options;}
+
+        std::vector<sf::Texture> alpha = {sf::Texture()};
     };
 
 } // namespace OpMon
