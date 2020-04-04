@@ -18,5 +18,9 @@ namespace OpMon {
 			over = !overworld.isInBattle();
 		}
 
+		BattleEvent::~BattleEvent(){
+			delete(team);
+		}
+
 	} /* namespace Elements */
 } /* namespace OpMon */
