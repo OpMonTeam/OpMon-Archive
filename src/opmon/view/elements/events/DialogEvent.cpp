@@ -17,9 +17,11 @@ namespace OpMon {
 
 		void DialogEvent::action(Player &player, Overworld &overworld) {
 			overworld.startDialog(this->dialog);
+			over = overworld.isDialogOver();
 		}
 
 		void DialogEvent::update(Player &player, Overworld &overworld) {
+			over = overworld.isDialogOver();
 		}
 
 		void DialogEvent::changeDialog(Utils::OpString newDialog) {

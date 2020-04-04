@@ -74,5 +74,7 @@ namespace OpMon::Elements {
 		 * \brief Moves the npc
 		 */
 		bool move(Side direction, Map *map);
+
+		bool isOver() const {return true;}
 	};
 }
