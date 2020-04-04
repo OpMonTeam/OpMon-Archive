@@ -10,10 +10,11 @@ namespace OpMon {
 
 		void BattleEvent::action(Player &player, Overworld &overworld) {
 			overworld.declareBattle(this);
+			over = !overworld.isInBattle();
 		}
 
 		void BattleEvent::update(Player &player, Overworld &overworld) {
-
+			over = !overworld.isInBattle();
 		}
 
 	} /* namespace Elements */

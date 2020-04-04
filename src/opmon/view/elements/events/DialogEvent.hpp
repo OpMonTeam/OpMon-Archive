@@ -17,12 +17,15 @@ namespace OpMon{
 			 * \brief The OpString containing the dialog to show.
 			 */
 			Utils::OpString dialogKey;
-
-		protected:
 			/*!
 			 * \brief The dialog to show.
 			 */
 			sf::String dialog;
+
+			/*!
+			 * \brief If the dialog is over.
+			 */
+			bool over = true;
 
 		public:
 			DialogEvent(std::vector<sf::Texture> &otherTextures, sf::Vector2f const &position, Utils::OpString const &dialogKey, int sides = SIDE_ALL, EventTrigger eventTrigger = EventTrigger::PRESS, bool passable = false);
@@ -34,6 +37,8 @@ namespace OpMon{
 			 * \param newDialog An OpString containing the new dialog.
 			 */
 			virtual void changeDialog(Utils::OpString newDialog);
+
+			bool isOver() const {return over;}
 		};
 	}
 }

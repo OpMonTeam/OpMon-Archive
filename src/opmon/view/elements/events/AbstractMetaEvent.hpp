@@ -6,6 +6,7 @@
 #pragma once
 
 #include <queue>
+#include <list>
 #include <SFML/System/Vector2.hpp>
 #include "src/utils/i18n/ATranslatable.hpp"
 #include "AbstractEvent.hpp"
@@ -17,15 +18,38 @@ namespace OpMon{
          *
          * This pure virtual is made to manage event that are a composition of events.
          * The way of managing the queue of actions will depend according to what the MetaEvent will be doing.
-         * Any AbstractMetaEvent automatically takes the basic properties of the first event in the queue (
+         * Any AbstractMetaEvent automatically takes the basic properties of the first event in the queue.
+         *
+         * Note that the destructor will delete every given AbstractEvent pointer in the queue.
          */
         class AbstractMetaEvent : public AbstractEvent {
-        private:
+        protected:
+        	/*!
+        	 * \brief The queue of events to process.
+        	 *
+        	 * Since the processing of the queue will loop after processing have been set to `true`,
+        	 * you can use the `nullptr` value to stop the loop. It can be used anywhere in the queue to pause it,
+        	 * or you can use it at the end to stop at the end of the queue. The `nullptr` value will clear the processingList
+        	 * and set processing to `false`. To continue the processing, the player will have to interact again with the event.
+        	 */
             std::queue<AbstractEvent*> eventQueue;
+
+            /*!
+             * \brief The list of events being proccessed.
+             */
+            std::list<AbstractEvent*> processingList = std::list<AbstractEvent*>();
+
+            /*!
+             * \brief If the queue of events is currently being processed.
+             */
+            bool processing = false;
+
         public:
             AbstractMetaEvent(std::queue<AbstractEvent*> eventQueue);
-            void action(Player &player, Overworld &overworld) = 0;
-            void update(Player &player, Overworld &overworld) = 0;
+            virtual void action(Player &player, Overworld &overworld) = 0;
+            virtual void update(Player &player, Overworld &overworld) = 0;
+            virtual bool isOver() const {return !processing;}
+            virtual ~AbstractMetaEvent();
         };
     }
 }
