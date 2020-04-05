@@ -9,6 +9,7 @@
 #include "LinearMetaEvent.hpp"
 #include "CharacterEvent.hpp"
 #include "BattleEvent.hpp"
+#include "src/opmon/screens/overworld/OverworldData.hpp"
 
 namespace OpMon::Elements {
 	/*!

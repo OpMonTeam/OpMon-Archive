@@ -1,4 +1,5 @@
 #include "BattleEvent.hpp"
+#include "src/opmon/screens/overworld/Overworld.hpp"
 
 namespace OpMon {
 	namespace Elements {
@@ -9,13 +10,10 @@ namespace OpMon {
 		}
 
 		void BattleEvent::action(Player &player, Overworld &overworld) {
-			//overworld.declareBattle(this);
-			//TODO : To uncomment.
-			over = !overworld.isInBattle();
+			if(over) overworld.declareBattle(this);
 		}
 
 		void BattleEvent::update(Player &player, Overworld &overworld) {
-			over = !overworld.isInBattle();
 		}
 
 		BattleEvent::~BattleEvent(){

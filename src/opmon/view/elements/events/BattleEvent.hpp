@@ -32,6 +32,8 @@ namespace OpMon::Elements {
 
 		bool isOver() const {return over;}
 
+		void setOver() {over = true;}
+
 		virtual ~BattleEvent();
 	};
 }

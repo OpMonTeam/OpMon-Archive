@@ -1,4 +1,5 @@
 #include "LinearMetaEvent.hpp"
+#include "src/utils/exceptions.hpp"
 
 namespace OpMon {
 	namespace Elements {
