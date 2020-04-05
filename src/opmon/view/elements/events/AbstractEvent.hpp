@@ -8,9 +8,7 @@
 
 #include <memory>
 #include <SFML/Graphics/Sprite.hpp>
-
 #include "src/opmon/core/Player.hpp"
-#include "src/opmon/screens/overworld/Overworld.hpp"
 
 
 //Macros defining constants to know the side from where the events can be triggered.
@@ -21,6 +19,7 @@
 #define SIDE_ALL (SIDE_UP | SIDE_DOWN | SIDE_RIGHT | SIDE_LEFT)
 
 namespace OpMon{
+	class Overworld;
 	namespace Elements {
 
 		/*!

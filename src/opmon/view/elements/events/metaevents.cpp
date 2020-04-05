@@ -84,9 +84,10 @@ namespace OpMon::Elements {
 		eventQueue.front()->update(player, overworld);
 		if(triggered && !defeated && eventQueue.front()->isOver()){
 			eventQueue.pop();
-			eventQueue.front()->action(player, overworld);
-			defeated = true;
-			triggered = false;
+			if(eventQueue.size() == 1){
+				eventQueue.front()->action(player, overworld);
+				defeated = true;
+			}
 		}
 
 		AbstractMetaEvent::update(player, overworld);

@@ -13,6 +13,7 @@
 #include "src/opmon/view/ui/Dialog.hpp"
 #include "src/opmon/view/ui/Elements.hpp"
 #include "src/opmon/core/GameStatus.hpp"
+#include "src/opmon/view/elements/events/BattleEvent.hpp"
 
 namespace sf {
 class RenderTarget;
@@ -110,7 +111,7 @@ class TrainerEvent;
          */
         void setMusic(std::string const &path);
 
-        Elements::Events::TrainerEvent *getBattleDeclared() {
+        Elements::BattleEvent *getBattleDeclared() {
             return trainerToBattle;
         }
 
@@ -119,11 +120,11 @@ class TrainerEvent;
          * \details The controller will then start a Battle with the given trainer.
          * \param trainer The trainer to fight.
          */
-        void declareBattle(Elements::Events::TrainerEvent *trainer) {
+        void declareBattle(Elements::BattleEvent *trainer) {
             if(trainerToBattle == nullptr) {
                 trainerToBattle = trainer;
             } else {
-                throw std::runtime_error("Trying to set up a battle, but an another is already set up. Recheck the code.");
+                throw std::runtime_error("Trying to set up a battle, but an another one is already set up. Recheck the code.");
             }
         }
 
@@ -196,7 +197,7 @@ class TrainerEvent;
          */
         void resetCamera();
 
-        Elements::Events::TrainerEvent *trainerToBattle = nullptr;
+        Elements::BattleEvent *trainerToBattle = nullptr;
 
         sf::Text debugText;
         sf::View camera;

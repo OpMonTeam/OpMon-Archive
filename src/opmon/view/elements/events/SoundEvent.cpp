@@ -1,4 +1,5 @@
 #include "SoundEvent.hpp"
+#include "src/opmon/screens/overworld/Overworld.hpp"
 
 namespace OpMon {
 	namespace Elements {

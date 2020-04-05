@@ -142,7 +142,7 @@ namespace OpMon {
         checkMove(player, view);
 
         if(view.getBattleDeclared() != nullptr) {
-            if(view.getBattleDeclared()->isDefeated()) {
+            if(view.getBattleDeclared()->isOver()) {
                 view.endBattle();
             } else {
                 loadNext = LOAD_BATTLE;
@@ -218,8 +218,8 @@ namespace OpMon {
         player.getPosition().move(direction, overworld.getData().getCurrentMap(), debugCol);
 
         Elements::Map *map = overworld.getData().getCurrentMap();
-        auto eventList = map->getEvent(player.getPosition().getPosition());
-        actionEvents(eventList, player, Elements::Events::EventTrigger::GO_IN, overworld);
+        std::vector<Elements::AbstractEvent*> eventList = map->getEvent(player.getPosition().getPosition());
+        actionEvents(eventList, player, Elements::EventTrigger::GO_IN, overworld);
     }
 
     void OverworldCtrl::checkAction(sf::Event const &event, Player &player, Overworld &overworld) {
@@ -246,19 +246,19 @@ namespace OpMon {
                     break;
                 }
 
-                std::vector<Elements::Event *> eventList = overworld.getData().getCurrentMap()->getEvent(sf::Vector2i(lx, ly));
-                actionEvents(eventList, player, Elements::Events::EventTrigger::PRESS, overworld);
+                std::vector<Elements::AbstractEvent *> eventList = overworld.getData().getCurrentMap()->getEvent(sf::Vector2i(lx, ly));
+                actionEvents(eventList, player, Elements::EventTrigger::PRESS, overworld);
             }
         }
 
         //Searches for events at the same position as the player and activates them if they are triggered when the playeris in them.
         if(!player.getPosition().isMoving()) {
-            std::vector<Elements::Event *> eventList = overworld.getData().getCurrentMap()->getEvent(player.getPosition().getPosition());
-            actionEvents(eventList, player, Elements::Events::EventTrigger::BE_IN, overworld);
+            std::vector<Elements::AbstractEvent *> eventList = overworld.getData().getCurrentMap()->getEvent(player.getPosition().getPosition());
+            actionEvents(eventList, player, Elements::EventTrigger::BE_IN, overworld);
         }
     }
 
-    void OverworldCtrl::actionEvents(std::vector<Elements::Event *> &events, Player &player, Elements::Events::EventTrigger toTrigger, Overworld &overworld) {
+    void OverworldCtrl::actionEvents(std::vector<Elements::AbstractEvent *> &events, Player &player, Elements::EventTrigger toTrigger, Overworld &overworld) {
         //Checks if the player points at the right direction to activate the events. If yes, calls the events' action methods.
         Side ppDir = player.getPosition().getDir();
         for(unsigned int i = 0; i < events.size(); i++) {
@@ -280,8 +280,8 @@ namespace OpMon {
         }
     }
 
-    void OverworldCtrl::updateEvents(std::vector<Elements::Event *> &events, Player &player, Overworld &overworld) {
-        for(Elements::Event *event : events) {
+    void OverworldCtrl::updateEvents(std::vector<Elements::AbstractEvent *> &events, Player &player, Overworld &overworld) {
+        for(Elements::AbstractEvent *event : events) {
             event->update(player, overworld);
         }
     }
