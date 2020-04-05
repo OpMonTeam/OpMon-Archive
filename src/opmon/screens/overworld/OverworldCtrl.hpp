@@ -92,7 +92,7 @@ class UiData;
          * \param player A reference to the player object.
          * \param overworld A reference to the overworld view.
          */
-        void updateEvents(std::vector<Elements::Event *> &events, Player &player, Overworld &overworld);
+        void updateEvents(std::vector<Elements::AbstractEvent *> &events, Player &player, Overworld &overworld);
 
         /*!
          * \brief Calls Event::action for some events.
@@ -107,7 +107,7 @@ class UiData;
          * Event::action for the events with this EventTrigger.
          * \param overworld A reference to the overworld view.
          */
-        void actionEvents(std::vector<Elements::Event *> &events, Player &player, Elements::Events::EventTrigger toTrigger, Overworld &overworld);
+        void actionEvents(std::vector<Elements::AbstractEvent *> &events, Player &player, Elements::EventTrigger toTrigger, Overworld &overworld);
 
         /*!
          * \brief Calls actionEvents for some events.

@@ -22,7 +22,6 @@
 #include "src/utils/defines.hpp"
 #include "src/utils/log.hpp"
 #include "src/utils/time.hpp"
-#include "src/opmon/view/elements/Events.hpp"
 #include "src/utils/i18n/Translator.hpp"
 #include "src/opmon/view/ui/Dialog.hpp"
 #include "src/opmon/core/GameStatus.hpp"
@@ -191,7 +190,7 @@ namespace OpMon {
             frame.draw(*layer2);
         }
         //Drawing events under the player
-        for(const Elements::Event *event : current->getEvents()) {
+        for(const Elements::AbstractEvent *event : current->getEvents()) {
             const sf::Sprite *sprite = event->getSprite();
             if(sprite->getPosition().y <= data.getPlayer().getPosition().getPositionPixel().y) {
                 frame.draw(*sprite);
@@ -201,14 +200,14 @@ namespace OpMon {
         frame.draw(character);
 
         //Drawing the events above the player
-        for(const Elements::Event *event : current->getEvents()) {
+        for(const Elements::AbstractEvent *event : current->getEvents()) {
             const sf::Sprite *sprite = event->getSprite();
             if(sprite->getPosition().y > data.getPlayer().getPosition().getPositionPixel().y) {
                 frame.draw(*sprite);
             }
         }
 
-                if(debugMode && printCollisions) {
+        if(debugMode && printCollisions) {
             printCollisionLayer(frame);
         }
 
@@ -284,7 +283,7 @@ namespace OpMon {
         updateCamera();
 
         //Drawing events under the player
-        for(Elements::Event *event : current->getEvents()) {
+        for(Elements::AbstractEvent *event : current->getEvents()) {
             event->updateTexture();
         }
 
@@ -334,7 +333,7 @@ namespace OpMon {
         }
 
         //Drawing the events above the player
-        for(Elements::Event *event : current->getEvents()) {
+        for(Elements::AbstractEvent *event : current->getEvents()) {
             event->updateTexture();
         }
 

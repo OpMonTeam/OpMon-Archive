@@ -61,13 +61,13 @@ namespace OpMon {
         Utils::ResourceLoader::loadTextureArray(charaTextures["beta"], "sprites/chara/beta/beta%d.png", 12);
         Utils::ResourceLoader::loadTextureArray(charaTextures["albd"], "sprites/chara/albd/albd%d.png", 12);
 
-        //Doors' textures initialization
+        //Initialization of doors
         Utils::ResourceLoader::loadTextureArray(doorsTextures["shop"], "animations/shopdoor/shop_door%d.png", 4, 1);
         Utils::ResourceLoader::loadTextureArray(doorsTextures["normal"], "animations/basicdoor/basic_door%d.png", 4, 1);
 
         eventsTextures.emplace("alpha", alphaTab);
 
-        //Elements initialization
+        //Initialization of animated elements
         elementsCounter["windturbine"] = 0;
         elementsPos["windturbine"] = sf::Vector2f(8 * 32 + 25 * 32 - 7, 3 * 32 + 15);
 
