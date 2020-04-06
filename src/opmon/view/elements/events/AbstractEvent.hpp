@@ -9,6 +9,7 @@
 #include <memory>
 #include <SFML/Graphics/Sprite.hpp>
 #include "src/opmon/core/Player.hpp"
+#include "src/nlohmann/json.hpp"
 
 
 //Macros defining constants to know the side from where the events can be triggered.
@@ -20,6 +21,8 @@
 
 namespace OpMon{
 	class Overworld;
+	class OverworldData;
+
 	namespace Elements {
 
 		/*!
@@ -72,6 +75,7 @@ namespace OpMon{
 
           public:
             AbstractEvent(std::vector<sf::Texture> &otherTextures, EventTrigger eventTrigger, sf::Vector2f const &position, int sides, bool passable);
+            AbstractEvent(std::vector<sf::Texture> &textures, nlohmann::json jsonData);
             virtual ~AbstractEvent() = default;
             /*!
              * \brief Method called at each frame.

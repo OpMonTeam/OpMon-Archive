@@ -59,6 +59,7 @@ namespace OpMon::Elements {
 
 	public:
 		CharacterEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, Side posDir = Side::TO_UP, MoveStyle moveStyle = MoveStyle::NO_MOVE, EventTrigger eventTrigger = EventTrigger::PRESS, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int sides = SIDE_ALL);
+		CharacterEvent(OverworldData &data, nlohmann::json jsonData);
 		virtual void update(Player &player, Overworld &overworld);
 		virtual void action(Player &, Overworld &){};
 		/*!

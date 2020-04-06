@@ -16,6 +16,26 @@ namespace OpMon {
 			mapPos.setDir(posDir);
 		}
 
+		CharacterEvent::CharacterEvent(OverworldData &data, nlohmann::json jsonData)
+		: AbstractEvent(data.getCharaTexture(jsonData.value("textures", "alpha")), jsonData)
+		, moveStyle(jsonData.value("moveStyle", MoveStyle::NO_MOVE)){
+			sprite->setScale(2, 2);
+			sprite->setOrigin(16, 16);
+			this->position += sf::Vector2f(16, 0);
+			std::vector<std::vector<int>> prePath = jsonData.value("path", std::vector<std::vector<int>>());
+			std::vector<Side> charaPath;
+			if(!prePath.empty()) {
+				nlohmann::json prePathJson = jsonData.at("path");
+				for(auto pitor = prePathJson.begin(); pitor != prePathJson.end(); ++pitor) {
+					for(unsigned int r = 0; r < pitor->at(1); r++) {
+						charaPath.push_back(pitor->at(0));
+					}
+				}
+			}
+			setPredefinedMove(charaPath);
+			mapPos.setDir(jsonData.value("facing", Side::TO_UP));
+		}
+
 		void CharacterEvent::update(Player &player, Overworld &overworld) {
 			frames++;
 			if(!mapPos.isAnim()) { //Checks if not already moving

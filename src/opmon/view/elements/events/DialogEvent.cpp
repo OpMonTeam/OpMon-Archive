@@ -11,6 +11,20 @@ namespace OpMon {
 			this->onLangChanged();
 		}
 
+		DialogEvent::DialogEvent(OverworldData &data, nlohmann::json jsonData)
+		: AbstractEvent(data.getEventsTexture(jsonData.value("textures", "alpha")), jsonData)
+		, Utils::I18n::ATranslatable(){
+			Utils::OpString dialog;
+			std::vector<std::string> dialogKeys = jsonData.value("dialog", std::vector<std::string>());
+			std::string key = dialogKeys[0];
+			std::vector<sf::String *> toAdd;
+			for(unsigned int j = 1; j < dialogKeys.size(); j++) {
+				toAdd.push_back(data.getCompletion(dialogKeys[j]));
+			}
+			this->dialogKey = Utils::OpString(data.getUiDataPtr()->getStringKeys(), key, toAdd);
+			this->onLangChanged();
+		}
+
 		void DialogEvent::onLangChanged() {
 			dialog.clear();
 			dialog = dialogKey.getString(stringkeys);
