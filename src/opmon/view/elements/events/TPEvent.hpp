@@ -28,6 +28,7 @@ namespace OpMon {
 
 		public:
 			TPEvent(std::vector<sf::Texture> &otherTextures, EventTrigger eventTrigger, sf::Vector2f const &position, sf::Vector2i const &tpCoord, std::string const &map, Side ppDir = Side::NO_MOVE, int sides = SIDE_ALL, bool passable = true);
+			TPEvent(OverworldData& data, nlohmann::json jsonData);
 			virtual void update(Player &player, Overworld &overworld);
 			virtual void action(Player &player, Overworld &overworld);
 			bool isOver() const {return true;}

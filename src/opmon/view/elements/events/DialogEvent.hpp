@@ -29,6 +29,7 @@ namespace OpMon{
 
 		public:
 			DialogEvent(std::vector<sf::Texture> &otherTextures, sf::Vector2f const &position, Utils::OpString const &dialogKey, int sides = SIDE_ALL, EventTrigger eventTrigger = EventTrigger::PRESS, bool passable = false);
+			DialogEvent(OverworldData &data, nlohmann::json jsonData);
 			void onLangChanged() override;
 			virtual void update(Player &player, Overworld &overworld);
 			virtual void action(Player &player, Overworld &overworld);
