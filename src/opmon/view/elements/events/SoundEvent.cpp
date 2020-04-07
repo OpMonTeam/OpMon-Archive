@@ -10,6 +10,14 @@ namespace OpMon {
 				  , music(music)
 				  , toggle(toggle) {}
 
+		SoundEvent::SoundEvent(OverworldData &data, nlohmann::json jsonData)
+		: AbstractEvent(data, jsonData)
+		, playID(jsonData.at("playID"))
+		, music(jsonData.value("music", false))
+		, toggle(jsonData.value("toggle", false)){
+
+		}
+
 		void SoundEvent::action(Player& player, Overworld& overworld){
 			Ui::Jukebox &jukebox = overworld.getData().getUiDataPtr()->getJukebox();
 			if(toggle && playing && music){

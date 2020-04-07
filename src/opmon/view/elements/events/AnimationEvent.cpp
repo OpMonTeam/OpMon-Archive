@@ -10,6 +10,13 @@ namespace OpMon {
 		, loop(loop) {
 		}
 
+		AnimationEvent::AnimationEvent(OverworldData &data, nlohmann::json jsonData)
+		: AbstractEvent(data, jsonData)
+		, framerate(jsonData.value("framerate", 0))
+		, loop(jsonData.value("loop", false)){
+
+		}
+
 		void AnimationEvent::action(Player &player, Overworld &overworld){
 			playing = !(playing && loop); //Stops playing only if it's a loop. Else, stay playing or start playing.
 		}

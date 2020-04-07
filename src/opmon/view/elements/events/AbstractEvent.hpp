@@ -75,7 +75,7 @@ namespace OpMon{
 
           public:
             AbstractEvent(std::vector<sf::Texture> &otherTextures, EventTrigger eventTrigger, sf::Vector2f const &position, int sides, bool passable);
-            AbstractEvent(std::vector<sf::Texture> &textures, nlohmann::json jsonData);
+            AbstractEvent(OverworldData &data, nlohmann::json jsonData);
             virtual ~AbstractEvent() = default;
             /*!
              * \brief Method called at each frame.
