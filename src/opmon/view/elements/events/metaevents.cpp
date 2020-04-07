@@ -19,6 +19,19 @@ namespace OpMon::Elements {
 		}
 	}
 
+	DoorEvent::DoorEvent(OverworldData &data, nlohmann::json jsonData)
+	: LinearMetaEvent(std::queue<AbstractEvent*>(std::deque<AbstractEvent*>({
+		new AnimationEvent(data, jsonData),
+				new SoundEvent(data, jsonData),
+				new TPEvent(data, jsonData),
+				nullptr})),
+			std::queue<bool>(std::deque<bool>({false, true, false, false}))){
+		this->position += sf::Vector2f(0, -6); //TODO : Fix the sprites to get rid of this little fix
+		if(jsonData.at("textures") == "shop door") {
+			this->position.x -= 4;
+		}
+	}
+
 	void DoorEvent::action(Player &player, Overworld &overworld){
 		player.getPosition().lockMove();
 		LinearMetaEvent::action(player, overworld);
@@ -34,12 +47,17 @@ namespace OpMon::Elements {
 
 	TalkingCharaEvent::TalkingCharaEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, Utils::OpString const &dialogKey, Side posDir, EventTrigger eventTrigger, MoveStyle moveStyle, std::vector<Side> predefinedPath, bool passable, int side)
 	: LinearMetaEvent(std::queue<AbstractEvent*>(std::deque<AbstractEvent*>({
-				new CharacterEvent(textures, position, posDir, moveStyle, eventTrigger, predefinedPath, passable, sides),
+		new CharacterEvent(textures, position, posDir, moveStyle, eventTrigger, predefinedPath, passable, sides),
 				new DialogEvent(textures, position, dialogKey, sides, eventTrigger, passable),
 				nullptr})),
-			std::queue<bool>(std::deque<bool>({false, true, false}))) {
+			std::queue<bool>(std::deque<bool>({false, true, false}))) {}
 
-	}
+	TalkingCharaEvent::TalkingCharaEvent(OverworldData &data, nlohmann::json jsonData)
+	: LinearMetaEvent(std::queue<AbstractEvent*>(std::deque<AbstractEvent*>({
+		new CharacterEvent(data, jsonData),
+				new DialogEvent(data, jsonData),
+				nullptr})),
+			std::queue<bool>(std::deque<bool>({false, true, false}))) {}
 
 	void TalkingCharaEvent::action(Player &player, Overworld& overworld){
 		mapPos.lockMove();
@@ -78,6 +96,13 @@ namespace OpMon::Elements {
 	TrainerEvent::TrainerEvent(TalkingCharaEvent* prebattlenpc, BattleEvent* battle, TalkingCharaEvent* postbattlenpc)
 	: AbstractMetaEvent(std::queue<AbstractEvent*>(std::deque<AbstractEvent*>({
 		prebattlenpc, battle, postbattlenpc
+	}))) {}
+
+	TrainerEvent::TrainerEvent(OverworldData &data, nlohmann::json jsonData)
+	: AbstractMetaEvent(std::queue<AbstractEvent*>(std::deque<AbstractEvent*>({
+		new TalkingCharaEvent(data, jsonData.at("prebattle")),
+				new BattleEvent(data, jsonData.at("battle")),
+				new TalkingCharaEvent(data, jsonData.at("postbattle"))
 	}))) {}
 
 	void TrainerEvent::update(Player &player, Overworld &overworld){
