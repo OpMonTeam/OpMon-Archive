@@ -14,7 +14,7 @@ namespace OpMon {
 		}
 
 		TPEvent::TPEvent(OverworldData& data, nlohmann::json jsonData)
-		: AbstractEvent(data.getEventsTexture(jsonData.value("textures", "alpha")), jsonData)
+		: AbstractEvent(data, jsonData)
 		, tpCoord(sf::Vector2f(jsonData.at("tp").at("position")[0], jsonData.at("tp").at("position")[1]))
 		, map(jsonData.at("tp").at("map"))
 		, ppDir(jsonData.at("tp").value("side", Side::NO_MOVE)){

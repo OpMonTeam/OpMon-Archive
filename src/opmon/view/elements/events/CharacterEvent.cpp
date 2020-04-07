@@ -17,7 +17,7 @@ namespace OpMon {
 		}
 
 		CharacterEvent::CharacterEvent(OverworldData &data, nlohmann::json jsonData)
-		: AbstractEvent(data.getCharaTexture(jsonData.value("textures", "alpha")), jsonData)
+		: AbstractEvent(data, jsonData)
 		, moveStyle(jsonData.value("moveStyle", MoveStyle::NO_MOVE)){
 			sprite->setScale(2, 2);
 			sprite->setOrigin(16, 16);

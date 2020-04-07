@@ -22,6 +22,7 @@ namespace OpMon::Elements {
 		bool over = true;
 	public:
 		BattleEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, OpTeam *team, EventTrigger eventTrigger = EventTrigger::PRESS, bool passable = false, int side = SIDE_ALL);
+		BattleEvent(OverworldData &data, nlohmann::json jsonData);
 
 		virtual void update(Player &player, Overworld &overworld);
 		virtual void action(Player &player, Overworld &overworld);
@@ -32,6 +33,9 @@ namespace OpMon::Elements {
 
 		bool isOver() const {return over;}
 
+		/*!
+		 * \brief Sets over to true.
+		 */
 		void setOver() {over = true;}
 
 		virtual ~BattleEvent();

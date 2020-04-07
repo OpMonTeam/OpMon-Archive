@@ -12,7 +12,7 @@ namespace OpMon {
 		}
 
 		DialogEvent::DialogEvent(OverworldData &data, nlohmann::json jsonData)
-		: AbstractEvent(data.getEventsTexture(jsonData.value("textures", "alpha")), jsonData)
+		: AbstractEvent(data, jsonData)
 		, Utils::I18n::ATranslatable(){
 			Utils::OpString dialog;
 			std::vector<std::string> dialogKeys = jsonData.value("dialog", std::vector<std::string>());

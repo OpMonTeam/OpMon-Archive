@@ -51,19 +51,19 @@ namespace OpMon {
         walkingPP2Rect[(unsigned int)Side::TO_UP] = sf::IntRect(96, 32, 32, 32);
 
         //Characters' textures initialization
-        Utils::ResourceLoader::loadTextureArray(charaTextures["kid"], "sprites/chara/kid/kid%d.png", 12);
-        Utils::ResourceLoader::loadTextureArray(charaTextures["fisherman"], "sprites/chara/fisherman/fisherman%d.png", 12);
-        Utils::ResourceLoader::loadTextureArray(charaTextures["kiwai"], "sprites/chara/prof/prof%d.png", 12);
-        Utils::ResourceLoader::loadTextureArray(charaTextures["playermom"], "sprites/chara/mom/mom%d.png", 12);
-        Utils::ResourceLoader::loadTextureArray(charaTextures["sk"], "sprites/chara/rival/sk%d.png", 12);
-        Utils::ResourceLoader::loadTextureArray(charaTextures["inferm"], "sprites/chara/inferm/inferm%d.png", 12);
-        Utils::ResourceLoader::loadTextureArray(charaTextures["|_| -|- |-| |= |_| N"], "sprites/chara/beta/alphabeta/otheon%d.png", 12);
-        Utils::ResourceLoader::loadTextureArray(charaTextures["beta"], "sprites/chara/beta/beta%d.png", 12);
-        Utils::ResourceLoader::loadTextureArray(charaTextures["albd"], "sprites/chara/albd/albd%d.png", 12);
+        Utils::ResourceLoader::loadTextureArray(eventsTextures["kid"], "sprites/chara/kid/kid%d.png", 12);
+        Utils::ResourceLoader::loadTextureArray(eventsTextures["fisherman"], "sprites/chara/fisherman/fisherman%d.png", 12);
+        Utils::ResourceLoader::loadTextureArray(eventsTextures["kiwai"], "sprites/chara/prof/prof%d.png", 12);
+        Utils::ResourceLoader::loadTextureArray(eventsTextures["playermom"], "sprites/chara/mom/mom%d.png", 12);
+        Utils::ResourceLoader::loadTextureArray(eventsTextures["sk"], "sprites/chara/rival/sk%d.png", 12);
+        Utils::ResourceLoader::loadTextureArray(eventsTextures["inferm"], "sprites/chara/inferm/inferm%d.png", 12);
+        Utils::ResourceLoader::loadTextureArray(eventsTextures["|_| -|- |-| |= |_| N"], "sprites/chara/beta/alphabeta/otheon%d.png", 12);
+        Utils::ResourceLoader::loadTextureArray(eventsTextures["beta"], "sprites/chara/beta/beta%d.png", 12);
+        Utils::ResourceLoader::loadTextureArray(eventsTextures["albd"], "sprites/chara/albd/albd%d.png", 12);
 
         //Initialization of doors
-        Utils::ResourceLoader::loadTextureArray(doorsTextures["shop"], "animations/shopdoor/shop_door%d.png", 4, 1);
-        Utils::ResourceLoader::loadTextureArray(doorsTextures["normal"], "animations/basicdoor/basic_door%d.png", 4, 1);
+        Utils::ResourceLoader::loadTextureArray(eventsTextures["shop"], "animations/shopdoor/shop_door%d.png", 4, 1);
+        Utils::ResourceLoader::loadTextureArray(eventsTextures["normal"], "animations/basicdoor/basic_door%d.png", 4, 1);
 
         eventsTextures.emplace("alpha", alphaTab);
 

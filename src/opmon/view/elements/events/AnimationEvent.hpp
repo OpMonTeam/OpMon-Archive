@@ -38,6 +38,7 @@ namespace OpMon::Elements {
 		unsigned int framecount = 0;
 	public:
 		AnimationEvent(std::vector<sf::Texture> &otherTextures, EventTrigger eventTrigger, sf::Vector2f const &position, unsigned int framerate, bool loop, bool passable, int sides = SIDE_ALL);
+		AnimationEvent(OverworldData &data, nlohmann::json jsonData);
 		void action(Player &player, Overworld &overworld);
 		void update(Player &player, Overworld &overworld);
 		bool isOver() const {return !playing;}

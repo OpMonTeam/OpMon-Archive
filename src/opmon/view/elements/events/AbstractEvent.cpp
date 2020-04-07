@@ -13,8 +13,8 @@ namespace OpMon {
 		, sprite(std::make_unique<sf::Sprite>())
 		, currentTexture(otherTextures.begin()) {}
 
-		AbstractEvent::AbstractEvent(std::vector<sf::Texture> &textures, nlohmann::json jsonData)
-		: otherTextures(textures)
+		AbstractEvent::AbstractEvent(OverworldData &data, nlohmann::json jsonData)
+		: otherTextures(data.getEventsTexture(jsonData.value("textures", "alpha")))
 		, eventTrigger(jsonData.value("trigger", EventTrigger::PRESS))
 		, position(sf::Vector2f(jsonData.value("position", std::vector<int>{0,0})[0], jsonData.value("position", std::vector<int>{0,0})[1]))
 		, mapPos(position, true)
