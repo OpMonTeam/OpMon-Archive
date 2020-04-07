@@ -12,6 +12,13 @@ namespace OpMon {
 			}
 		}
 
+		LinearMetaEvent::LinearMetaEvent(OverworldData &data, nlohmann::json jsonData)
+		: AbstractMetaEvent(data, jsonData)
+		, actionQueue(std::deque<bool>(jsonData.at("actions"))){
+
+		}
+
+
 		void LinearMetaEvent::action(Player &player, Overworld &overworld){
 			if(!processing){ //When triggered, start the process.
 				processing = true;
