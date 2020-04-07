@@ -9,6 +9,12 @@ namespace OpMon {
 		, team(team){
 		}
 
+		BattleEvent::BattleEvent(OverworldData &data, nlohmann::json jsonData)
+		: AbstractEvent(data, jsonData)
+		, team(data.getTrainer(jsonData.at("trainer"))){
+
+		}
+
 		void BattleEvent::action(Player &player, Overworld &overworld) {
 			if(over) overworld.declareBattle(this);
 		}
