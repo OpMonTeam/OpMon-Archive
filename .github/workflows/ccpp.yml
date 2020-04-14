@@ -9,11 +9,9 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
-    - name: Install GCC 9
-      run: sudo add-apt-repository ppa:jonathonf/gcc-9.0 && sudo apt-get update && sudo apt-get install gcc-9
     - name: Install SFML
       run: sudo apt-get install libsfml-dev
     - name: Run CMake
-      run: cmake .
+      run: cmake -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 .
     - name: Run Make
       run: make
