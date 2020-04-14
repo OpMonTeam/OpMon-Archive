@@ -79,7 +79,6 @@ namespace OpMon {
 
 				for(nlohmann::json event : jsonData.at("events")){
 					std::string type = event.at("type");
-					std::cout << event.dump(4) << std::endl;
 					if(type == "TP") currentMap->addEvent(new TPEvent(data, event));
 					else if(type == "Animation") currentMap->addEvent(new AnimationEvent(data, event));
 					else if(type == "Character") currentMap->addEvent(new CharacterEvent(data, event));

@@ -22,6 +22,8 @@ namespace OpMon::Elements {
 
 	/*!
 	 * \brief A NPC that just walks through the map.
+	 *
+	 * When the NPC is triggered, it
 	 */
 	class CharacterEvent : public AbstractEvent {
 	private:
@@ -56,12 +58,16 @@ namespace OpMon::Elements {
 		 * \brief Counts the frames.
 		 */
 		int frames = 0;
+		/*!
+		 * \brief If set to true, the character has to turn towards the player.
+		 */
+		bool wantmove = false;
 
 	public:
 		CharacterEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, Side posDir = Side::TO_UP, MoveStyle moveStyle = MoveStyle::NO_MOVE, EventTrigger eventTrigger = EventTrigger::PRESS, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int sides = SIDE_ALL);
 		CharacterEvent(OverworldData &data, nlohmann::json jsonData);
 		virtual void update(Player &player, Overworld &overworld);
-		virtual void action(Player &, Overworld &){};
+		virtual void action(Player &, Overworld &){wantmove = true;}
 		/*!
 		 * \brief Sets the predefined movement.
 		 */
@@ -76,6 +82,6 @@ namespace OpMon::Elements {
 		 */
 		bool move(Side direction, Map *map);
 
-		bool isOver() const {return true;}
+		bool isOver() const {return !wantmove;}
 	};
 }
