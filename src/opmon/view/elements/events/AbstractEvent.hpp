@@ -51,14 +51,14 @@ namespace OpMon{
 			int sides = SIDE_ALL;
 
 			/*!
-			 * \brief The position of the event on the screen.
+			 * \brief The position of the event on the screen, in pixels.
 			 */
 			sf::Vector2f position;
 
 			/*!
 			 * \brief The sprite of the event.
 			 */
-			std::unique_ptr<sf::Sprite> sprite;
+			sf::Sprite* sprite;
 			/*!
 			 * \brief The position of the even of the map.
 			 */
@@ -73,6 +73,9 @@ namespace OpMon{
 			std::vector<sf::Texture>::iterator currentTexture;
 
 		public:
+			/*!
+			 * \warn The parameter position represents the position in squares, unlike the field position which stores the position in pixels.
+			 */
 			AbstractEvent(std::vector<sf::Texture> &otherTextures, EventTrigger eventTrigger, sf::Vector2f const &position, int sides, bool passable);
 			AbstractEvent(OverworldData &data, nlohmann::json jsonData);
 			virtual ~AbstractEvent() = default;
@@ -87,7 +90,7 @@ namespace OpMon{
 			/*!
 			 * \brief Updates Event::sprite with Event::currentTexture and Event::position.
 			 */
-			void updateTexture();
+			virtual void updateTexture();
 
 			int getSide() const {
 				return sides;
@@ -112,7 +115,7 @@ namespace OpMon{
 			}
 
 			virtual const sf::Sprite *getSprite() const {
-				return sprite.get();
+				return sprite;
 			}
 
 			/*!

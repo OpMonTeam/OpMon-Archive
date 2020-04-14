@@ -1,5 +1,6 @@
 #include "CharacterEvent.hpp"
 #include "src/opmon/screens/overworld/Overworld.hpp"
+#include "src/utils/misc.hpp"
 
 namespace OpMon {
 	namespace Elements {
@@ -33,7 +34,7 @@ namespace OpMon {
 				}
 			}
 			setPredefinedMove(charaPath);
-			mapPos.setDir(jsonData.value("facing", Side::TO_UP));
+			mapPos.setDir(jsonData.value("facing", Side::TO_DOWN));
 		}
 
 		void CharacterEvent::update(Player &player, Overworld &overworld) {
