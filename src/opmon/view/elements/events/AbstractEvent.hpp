@@ -22,6 +22,7 @@
 namespace OpMon{
 	class Overworld;
 	class OverworldData;
+	class TalkingCharaEvent;
 
 	namespace Elements {
 
@@ -36,6 +37,7 @@ namespace OpMon{
 		};
 
 		class AbstractEvent {
+			friend class TalkingCharaEvent; //Needed to update currentTexture without creating a public setter.
 		protected:
 			/*!
 			 * \brief How the event is triggered by the player.
@@ -116,6 +118,10 @@ namespace OpMon{
 
 			virtual const sf::Sprite *getSprite() const {
 				return sprite;
+			}
+
+			void setCurrentTexture(std::vector<sf::Texture>::iterator itor) {
+				currentTexture = itor;
 			}
 
 			/*!

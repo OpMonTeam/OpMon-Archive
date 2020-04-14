@@ -137,6 +137,28 @@ namespace OpMon {
 				if(frames - startFrames >= 7)
 					mapPos.stopMove();
 			}
+			if(wantmove && !mapPos.isAnim()){
+				switch(player.getPosition().getDir()) { //Put the character's face in front of the player's one
+				case Side::TO_DOWN:
+					mapPos.setDir(Side::TO_UP);
+					break;
+				case Side::TO_UP:
+					mapPos.setDir(Side::TO_DOWN);
+					break;
+				case Side::TO_LEFT:
+					mapPos.setDir(Side::TO_RIGHT);
+					break;
+				case Side::TO_RIGHT:
+					mapPos.setDir(Side::TO_LEFT);
+					break;
+				default:
+					break;
+				}
+				//Put the correct texture to the NPC
+				currentTexture = getTextures().begin() + (int)mapPos.getDir();
+				updateTexture();
+				wantmove = false;
+			}
 		}
 
 		bool CharacterEvent::move(Side direction, Map *map) {

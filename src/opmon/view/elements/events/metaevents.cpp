@@ -50,14 +50,14 @@ namespace OpMon::Elements {
 		new CharacterEvent(textures, position, posDir, moveStyle, eventTrigger, predefinedPath, passable, sides),
 				new DialogEvent(textures, position, dialogKey, sides, eventTrigger, passable),
 				nullptr})),
-			std::queue<bool>(std::deque<bool>({false, true, false}))) {}
+			std::queue<bool>(std::deque<bool>({false, false, false}))) {}
 
 	TalkingCharaEvent::TalkingCharaEvent(OverworldData &data, nlohmann::json jsonData)
 	: LinearMetaEvent(std::queue<AbstractEvent*>(std::deque<AbstractEvent*>({
 		new CharacterEvent(data, jsonData),
 				new DialogEvent(data, jsonData),
 				nullptr})),
-			std::queue<bool>(std::deque<bool>({false, true, false}))) {}
+			std::queue<bool>(std::deque<bool>({false, false, false}))) {}
 
 	void TalkingCharaEvent::action(Player &player, Overworld& overworld){
 		mapPos.lockMove();
@@ -65,27 +65,6 @@ namespace OpMon::Elements {
 	}
 
 	void TalkingCharaEvent::update(Player &player, Overworld &overworld){
-		if(processing && !mapPos.isAnim()){
-			switch(player.getPosition().getDir()) { //Put the character's face in front of the player's one
-			case Side::TO_DOWN:
-				mapPos.setDir(Side::TO_UP);
-				break;
-			case Side::TO_UP:
-				mapPos.setDir(Side::TO_DOWN);
-				break;
-			case Side::TO_LEFT:
-				mapPos.setDir(Side::TO_RIGHT);
-				break;
-			case Side::TO_RIGHT:
-				mapPos.setDir(Side::TO_LEFT);
-				break;
-			default:
-				break;
-			}
-			//Put the correct texture to the NPC
-			currentTexture = otherTextures.begin() + (int)mapPos.getDir();
-			updateTexture();
-		}
 		LinearMetaEvent::update(player, overworld);
 		if(processing && !mapPos.isAnim()){
 			mapPos.unlockMove();
@@ -106,12 +85,18 @@ namespace OpMon::Elements {
 	}))) {}
 
 	void TrainerEvent::update(Player &player, Overworld &overworld){
-		eventQueue.front()->update(player, overworld);
-		if(triggered && !defeated && eventQueue.front()->isOver()){
+		eventQueue.front()->update(player, overworld); //Updates the first event in the queue.
+		if(triggered && !defeated && eventQueue.front()->isOver()){ //If the event has been triggered, not defeated yet and that the current action is over,
+																	//it means that the player has interacted with the event, so the dialog has been launched
+																	//and is now over, and the battle can now start, or that the battle just ended.
+			delete(eventQueue.front()); //Deleting the pre-battle NPC or the battle event
 			eventQueue.pop();
-			if(eventQueue.size() == 1){
-				eventQueue.front()->action(player, overworld);
-				defeated = true;
+			mainEvent = eventQueue.front();
+			if(eventQueue.size() == 2){ //If the only events left are the battle and the post-battle NPC
+				eventQueue.front()->action(player, overworld); //Starts the battle
+			}else{ //It can only mean one thing : one event left, and it is the post-battle NPC
+				defeated = true; //If the only event left is the post-battle NPC and the trainer is not defeated, it means the battle just ended.
+				triggered = false;
 			}
 		}
 
@@ -119,7 +104,7 @@ namespace OpMon::Elements {
 	}
 
 	void TrainerEvent::action(Player &player, Overworld &overworld){
-		eventQueue.front()->action(player, overworld);
+		eventQueue.front()->action(player, overworld); //Triggers the first event in the queue.
 		triggered = true;
 	}
 }
