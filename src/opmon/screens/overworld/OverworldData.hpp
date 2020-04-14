@@ -101,7 +101,7 @@ class Map;
         /*!
          * \brief Gets the textures of an event.
          */
-        std::vector<sf::Texture> &getEventsTexture(std::string const &key) { return eventsTextures[key]; }
+        std::vector<sf::Texture> &getEventsTexture(std::string const &key);
 
         /*!
          * \brief Gets a completion.

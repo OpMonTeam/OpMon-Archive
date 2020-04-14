@@ -63,7 +63,7 @@ namespace OpMon {
 
         //Initialization of doors
         Utils::ResourceLoader::loadTextureArray(eventsTextures["shop"], "animations/shopdoor/shop_door%d.png", 4, 1);
-        Utils::ResourceLoader::loadTextureArray(eventsTextures["normal"], "animations/basicdoor/basic_door%d.png", 4, 1);
+        Utils::ResourceLoader::loadTextureArray(eventsTextures["door"], "animations/basicdoor/basic_door%d.png", 4, 1);
 
         eventsTextures.emplace("alpha", alphaTab);
 
@@ -168,6 +168,13 @@ namespace OpMon {
 
     Elements::Map *OverworldData::getCurrentMap() {
         return getMap(player->getMapId());
+    }
+
+    std::vector<sf::Texture> &OverworldData::getEventsTexture(std::string const &key) {
+    	if(!eventsTextures.contains(key)){
+    		Utils::Log::warn("Event texture key " + key + " not found. Returning alpha.");
+    		return eventsTextures["alpha"];
+    	}else return eventsTextures[key];
     }
 
 } // namespace OpMon
