@@ -30,9 +30,9 @@ namespace OpMon{
 		 */
 		enum class EventTrigger {
 			PRESS = 0,/*!< The event is triggered when the player presses the action key.*/
-			GO_IN = 1,/*!< The event is triggered when the player is moving to the tile.*/
-			ZONE = 2,/*!< The event is triggered as soon as the player sees it.*/
-			BE_IN = 3/*!< The event is triggered as long as the player is on its position.*/
+					GO_IN = 1,/*!< The event is triggered when the player is moving to the tile.*/
+					ZONE = 2,/*!< The event is triggered as soon as the player sees it.*/
+					BE_IN = 3/*!< The event is triggered as long as the player is on its position.*/
 		};
 
 		class AbstractEvent {
@@ -50,78 +50,77 @@ namespace OpMon{
 			 */
 			int sides = SIDE_ALL;
 
-            /*!
-             * \brief The position of the event on the screen.
-             */
-            sf::Vector2f position;
+			/*!
+			 * \brief The position of the event on the screen.
+			 */
+			sf::Vector2f position;
 
-            /*!
-             * \brief The sprite of the event.
-             */
-            std::unique_ptr<sf::Sprite> sprite;
-            /*!
-             * \brief The position of the even of the map.
-             */
-            Position mapPos;
-            /*!
-             * \brief An iterator to the current texture in Event::otherTextures.
-             */
-            std::vector<sf::Texture>::iterator currentTexture;
+			/*!
+			 * \brief The sprite of the event.
+			 */
+			std::unique_ptr<sf::Sprite> sprite;
+			/*!
+			 * \brief The position of the even of the map.
+			 */
+			Position mapPos;
+			/*!
+			 * \brief Other textures used by the event.
+			 */
+			std::vector<sf::Texture> &otherTextures;
+			/*!
+			 * \brief An iterator to the current texture in Event::otherTextures.
+			 */
+			std::vector<sf::Texture>::iterator currentTexture;
 
-            /*!
-             * \brief Other textures used by the event.
-             */
-            std::vector<sf::Texture> &otherTextures;
+		public:
+			AbstractEvent(std::vector<sf::Texture> &otherTextures, EventTrigger eventTrigger, sf::Vector2f const &position, int sides, bool passable);
+			AbstractEvent(OverworldData &data, nlohmann::json jsonData);
+			virtual ~AbstractEvent() = default;
+			/*!
+			 * \brief Method called at each frame.
+			 */
+			virtual void update(Player &player, Overworld &overworld) = 0;
+			/**
+			 * \brief Method called when the player interacts with the event.
+			 */
+			virtual void action(Player &player, Overworld &overworld) = 0;
+			/*!
+			 * \brief Updates Event::sprite with Event::currentTexture and Event::position.
+			 */
+			void updateTexture();
 
-          public:
-            AbstractEvent(std::vector<sf::Texture> &otherTextures, EventTrigger eventTrigger, sf::Vector2f const &position, int sides, bool passable);
-            AbstractEvent(OverworldData &data, nlohmann::json jsonData);
-            virtual ~AbstractEvent() = default;
-            /*!
-             * \brief Method called at each frame.
-             */
-            virtual void update(Player &player, Overworld &overworld) = 0;
-            /**
-             * \brief Method called when the player interacts with the event.
-             */
-            virtual void action(Player &player, Overworld &overworld) = 0;
-            /*!
-             * \brief Updates Event::sprite with Event::currentTexture and Event::position.
-             */
-            void updateTexture();
+			int getSide() const {
+				return sides;
+			}
+			virtual const sf::Texture &getTexture() {
+				return *currentTexture;
+			}
+			EventTrigger getEventTrigger() const {
+				return eventTrigger;
+			}
 
-            int getSide() const {
-                return sides;
-            }
-            virtual const sf::Texture &getTexture() {
-                return *currentTexture;
-            }
-            EventTrigger getEventTrigger() const {
-                return eventTrigger;
-            }
+			sf::Vector2f getPosition() const {
+				return position;
+			}
 
-            sf::Vector2f getPosition() const {
-                return position;
-            }
+			Position getPositionMap() const {
+				return mapPos;
+			}
 
-            Position getPositionMap() const {
-                return mapPos;
-            }
+			bool isPassable() const {
+				return passable;
+			}
 
-            bool isPassable() const {
-                return passable;
-            }
+			virtual const sf::Sprite *getSprite() const {
+				return sprite.get();
+			}
 
-            virtual const sf::Sprite *getSprite() const {
-                return sprite.get();
-            }
+			/*!
+			 * \brief If the activation of the event is over, returns true. If the event is still doing something, returns false.
+			 */
+			 virtual bool isOver() const = 0;
 
-            /*!
-             * \brief If the activation of the event is over, returns true. If the event is still doing something, returns false.
-             */
-            virtual bool isOver() const = 0;
-
-            std::vector<sf::Texture>& getTextures() {return otherTextures;}
+			std::vector<sf::Texture>& getTextures() {return otherTextures;}
 		};
 	}
 }

@@ -1,5 +1,6 @@
 #include "AbstractEvent.hpp"
 #include "src/opmon/screens/overworld/Overworld.hpp"
+#include "src/utils/log.hpp"
 
 namespace OpMon {
 	namespace Elements {
@@ -14,14 +15,15 @@ namespace OpMon {
 		, currentTexture(otherTextures.begin()) {}
 
 		AbstractEvent::AbstractEvent(OverworldData &data, nlohmann::json jsonData)
-		: otherTextures(data.getEventsTexture(jsonData.value("textures", "alpha")))
+		: otherTextures(data.getEventsTexture(jsonData.at("textures")))
 		, eventTrigger(jsonData.value("trigger", EventTrigger::PRESS))
 		, position(sf::Vector2f(jsonData.value("position", std::vector<int>{0,0})[0], jsonData.value("position", std::vector<int>{0,0})[1]))
 		, mapPos(position, true)
 		, passable(jsonData.value("passable", false))
 		, sides(jsonData.value("side", SIDE_ALL))
 		, sprite(std::make_unique<sf::Sprite>())
-		, currentTexture(otherTextures.begin()) {}
+		, currentTexture(otherTextures.begin()) {
+		}
 
 		void AbstractEvent::updateTexture() {
 			this->sprite->setPosition(position);

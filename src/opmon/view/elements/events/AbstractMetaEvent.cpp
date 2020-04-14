@@ -20,6 +20,10 @@ namespace OpMon::Elements {
 			else if(type == "Dialog") eventQueue.push(new DialogEvent(data, event));
 			else if(type == "Sound") eventQueue.push(new SoundEvent(data, event));
 			else if(type == "Battle") eventQueue.push(new BattleEvent(data, event));
+			else if(type == "Trainer") eventQueue.push(new TrainerEvent(data, event));
+			else if(type == "TalkingCharacter") eventQueue.push(new TrainerEvent(data, event));
+			else if(type == "Door") eventQueue.push(new DoorEvent(data, event));
+			else if(type == "LinearMeta") eventQueue.push(new LinearMetaEvent(data, event));
 		}
 	}
 
