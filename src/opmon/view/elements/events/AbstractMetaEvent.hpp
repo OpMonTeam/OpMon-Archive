@@ -55,6 +55,7 @@ namespace OpMon{
             virtual ~AbstractMetaEvent();
             virtual const sf::Sprite* getSprite() const {return eventQueue.front()->getSprite();}
             virtual const sf::Texture &getTexture() {return eventQueue.front()->getTexture();}
+            virtual void updateTexture() {eventQueue.front()->updateTexture();}
         };
     }
 }
