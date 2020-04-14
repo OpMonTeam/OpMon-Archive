@@ -42,6 +42,8 @@ namespace OpMon {
 					do {
 						if(eventQueue.front() == nullptr){ //If the event is nullptr, pause the process and clear the processing list.
 							processingList.clear();
+							eventQueue.push(eventQueue.front());
+							eventQueue.pop();
 							processing = false;
 							return;
 						}

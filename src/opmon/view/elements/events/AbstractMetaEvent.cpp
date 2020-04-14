@@ -8,7 +8,8 @@
 namespace OpMon::Elements {
 	AbstractMetaEvent::AbstractMetaEvent(std::queue<AbstractEvent*> eventQueue)
 	: AbstractEvent(*eventQueue.front())
-	, eventQueue(eventQueue) {}
+	, eventQueue(eventQueue)
+	, mainEvent(eventQueue.front()){}
 
 	AbstractMetaEvent::AbstractMetaEvent(OverworldData &data, nlohmann::json jsonData)
 	: AbstractEvent(data, jsonData.at("events").at(0)){
@@ -25,6 +26,7 @@ namespace OpMon::Elements {
 			else if(type == "Door") eventQueue.push(new DoorEvent(data, event));
 			else if(type == "LinearMeta") eventQueue.push(new LinearMetaEvent(data, event));
 		}
+		mainEvent = eventQueue.front();
 	}
 
 	AbstractMetaEvent::~AbstractMetaEvent(){
@@ -35,12 +37,7 @@ namespace OpMon::Elements {
 	}
 
 	void AbstractMetaEvent::update(Player &player, Overworld &overworld){
-		AbstractEvent* event = eventQueue.front();
-		otherTextures = event->getTextures();
-		eventTrigger = event->getEventTrigger();
-		position = event->getPosition();
-		mapPos = event->getPositionMap();
-		passable = event->isPassable();
-		sides = event->getSide();
+		position = mainEvent->getPosition();
+		mapPos = mainEvent->getPositionMap();
 	}
 }

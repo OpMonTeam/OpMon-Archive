@@ -18,9 +18,8 @@ namespace OpMon{
          *
          * This pure virtual is made to manage event that are a composition of events.
          * The way of managing the queue of actions will depend according to what the MetaEvent will be doing.
-         * Any AbstractMetaEvent automatically takes the basic properties of the first event in the queue,
-         * and the update method will update it each frame. If the first event in the queue changes, the properties
-         * of the AbstractMetaEvent changes too.
+         * Any AbstractMetaEvent automatically takes the basic properties of the first event in the queue given in the constructor,
+         * and the update method will update them each frame.
          *
          * Note that the destructor will delete every given AbstractEvent pointer in the queue.
          */
@@ -46,6 +45,15 @@ namespace OpMon{
              */
             bool processing = false;
 
+            /*!
+             * \brief A pointer to the main event.
+             *
+             * The main event is the first event of the unmodified eventQueue (the one given in the constructor).
+             * AbstractMetaEvent takes the properties of this one event. Note that it is possible to redefine this
+             * variable afterwards if needed to in a inherited class.
+             */
+            AbstractEvent* mainEvent;
+
         public:
             AbstractMetaEvent(std::queue<AbstractEvent*> eventQueue);
             AbstractMetaEvent(OverworldData &data, nlohmann::json jsonData);
@@ -53,9 +61,9 @@ namespace OpMon{
             virtual void update(Player &player, Overworld &overworld);
             virtual bool isOver() const {return !processing;}
             virtual ~AbstractMetaEvent();
-            virtual const sf::Sprite* getSprite() const {return eventQueue.front()->getSprite();}
-            virtual const sf::Texture &getTexture() {return eventQueue.front()->getTexture();}
-            virtual void updateTexture() {eventQueue.front()->updateTexture();}
+            virtual const sf::Sprite* getSprite() const {return mainEvent->getSprite();}
+            virtual const sf::Texture &getTexture() {return mainEvent->getTexture();}
+            virtual void updateTexture() {mainEvent->updateTexture();}
         };
     }
 }
