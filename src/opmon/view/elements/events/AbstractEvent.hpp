@@ -31,7 +31,7 @@ namespace OpMon{
 		 */
 		enum class EventTrigger {
 			PRESS = 0,/*!< The event is triggered when the player presses the action key.*/
-					GO_IN = 1,/*!< The event is triggered when the player is moving to the tile.*/
+					GO_IN = 1,/*!< The event is triggered when the player is moving towards the tile.*/
 					ZONE = 2,/*!< The event is triggered as soon as the player sees it.*/
 					BE_IN = 3/*!< The event is triggered as long as the player is on its position.*/
 		};
@@ -120,9 +120,7 @@ namespace OpMon{
 				return sprite;
 			}
 
-			void setCurrentTexture(std::vector<sf::Texture>::iterator itor) {
-				currentTexture = itor;
-			}
+			void resetTexture() {currentTexture = otherTextures.begin();}
 
 			/*!
 			 * \brief If the activation of the event is over, returns true. If the event is still doing something, returns false.
