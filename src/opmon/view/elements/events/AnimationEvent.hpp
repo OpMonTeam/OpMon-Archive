@@ -36,8 +36,13 @@ namespace OpMon::Elements {
 		 * \brief Counter to know how many ticks has been elapsed since the last update.
 		 */
 		unsigned int framecount = 0;
+
+		/*!
+		 * \brief If `true` and if loop is `false`, the last texture will be the new one after the animation. Else, it will be back to the first texture.
+		 */
+		bool lastTexture;
 	public:
-		AnimationEvent(std::vector<sf::Texture> &otherTextures, EventTrigger eventTrigger, sf::Vector2f const &position, unsigned int framerate, bool loop, bool passable, int sides = SIDE_ALL);
+		AnimationEvent(std::vector<sf::Texture> &otherTextures, EventTrigger eventTrigger, sf::Vector2f const &position, unsigned int framerate, bool loop, bool passable, bool lastTexture = true, int sides = SIDE_ALL);
 		AnimationEvent(OverworldData &data, nlohmann::json jsonData);
 		void action(Player &player, Overworld &overworld);
 		void update(Player &player, Overworld &overworld);

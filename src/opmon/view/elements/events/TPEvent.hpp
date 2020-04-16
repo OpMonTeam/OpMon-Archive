@@ -10,6 +10,11 @@
 
 namespace OpMon {
 	namespace Elements {
+		/*!
+		 * \brief An event that teleports the player.
+		 *
+		 * This event, when triggered, waits for the player to stop first, and then teleports the character.
+		 */
 		class TPEvent : public AbstractEvent {
 		private:
 			int frames = -1;
@@ -25,13 +30,17 @@ namespace OpMon {
 			 * \brief The direction in which the character will be looking after the teleportation.
 			 */
 			Side ppDir;
+			/*!
+			 * \brief If the event have been triggered but the player not teleported yet.
+			 */
+			bool command = false;
 
 		public:
 			TPEvent(std::vector<sf::Texture> &otherTextures, EventTrigger eventTrigger, sf::Vector2f const &position, sf::Vector2i const &tpCoord, std::string const &map, Side ppDir = Side::NO_MOVE, int sides = SIDE_ALL, bool passable = true);
 			TPEvent(OverworldData& data, nlohmann::json jsonData);
 			virtual void update(Player &player, Overworld &overworld);
 			virtual void action(Player &player, Overworld &overworld);
-			bool isOver() const {return true;}
+			bool isOver() const {return !command;}
 		};
 	}
 }

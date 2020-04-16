@@ -62,7 +62,7 @@ namespace OpMon {
         Utils::ResourceLoader::loadTextureArray(eventsTextures["albd"], "sprites/chara/albd/albd%d.png", 12);
 
         //Initialization of doors
-        Utils::ResourceLoader::loadTextureArray(eventsTextures["shop"], "animations/shopdoor/shop_door%d.png", 4, 1);
+        Utils::ResourceLoader::loadTextureArray(eventsTextures["shop door"], "animations/shopdoor/shop_door%d.png", 4, 1);
         Utils::ResourceLoader::loadTextureArray(eventsTextures["door"], "animations/basicdoor/basic_door%d.png", 4, 1);
 
         eventsTextures.emplace("alpha", alphaTab);

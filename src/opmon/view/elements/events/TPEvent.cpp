@@ -22,17 +22,23 @@ namespace OpMon {
 		}
 
 		void TPEvent::action(Player &player, Overworld &overworld) {
-			if(!player.getPosition().justTP) {
-				overworld.tp(map, tpCoord);
-				//Sets the player's direction after the teleportation. If this->ppDir == -1, the old player position is kept
-				if(this->ppDir != -1) {
-					player.getPosition().setDir(this->ppDir);
-				}
-				player.getPosition().justTP = true;
-			}
+			command = true;
+			player.getPosition().lockMove();
 		}
 
 		void TPEvent::update(Player &player, Overworld &overworld) {
+			if(command && !player.getPosition().isMoving()){
+				if(!player.getPosition().justTP) {
+					overworld.tp(map, tpCoord);
+					//Sets the player's direction after the teleportation. If this->ppDir == -1, the old player position is kept
+					if(this->ppDir != -1) {
+						player.getPosition().setDir(this->ppDir);
+					}
+					player.getPosition().justTP = true;
+				}
+				command = false;
+				player.getPosition().unlockMove();
+			}
 		}
 
 	} /* namespace Elements */
