@@ -53,7 +53,7 @@ class Evolution;
 
         Utils::Log::oplog("Initializating UiData");
 
-        jukebox.addMusic("Title", "audio/music/title.ogg", 50);
+        jukebox.addMusic("Title", "audio/music/title.ogg");
         jukebox.addMusic("Start", "audio/music/intro.ogg");
         jukebox.addMusic("Fauxbourg", "audio/music/faubourgeuvi.ogg");
         jukebox.addMusic("Road 14", "audio/music/route14.ogg");
@@ -63,8 +63,8 @@ class Evolution;
         jukebox.addMusic("Wild Battle", "audio/music/wildbattle.ogg");
 
         //Loading sounds
-        jukebox.addSound("door sound", "audio/sounds/door.ogg");
-        jukebox.addSound("shop door sound", "audio/sounds/shopdoor.ogg");
+        jukebox.addSound("door", "audio/sounds/door.ogg");
+        jukebox.addSound("shop door", "audio/sounds/shopdoor.ogg");
         jukebox.addSound("dialog pass", "audio/sounds/dialogChange.ogg");
         jukebox.addSound("nope", "audio/sounds/nope.ogg");
         jukebox.addSound("arrow", "audio/sounds/select.ogg");
