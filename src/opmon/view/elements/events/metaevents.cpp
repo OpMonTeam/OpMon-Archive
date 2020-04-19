@@ -98,5 +98,8 @@ namespace OpMon::Elements {
 	void TrainerEvent::action(Player &player, Overworld &overworld){
 		eventQueue.front()->action(player, overworld); //Triggers the first event in the queue.
 		triggered = true;
+		static unsigned int i = (i > 20) ? 0 : i;
+		i++;
+		std::cout << "Actionned " << i << " times !" << std::endl;
 	}
 }
