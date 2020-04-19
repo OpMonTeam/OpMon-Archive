@@ -12,6 +12,7 @@ namespace OpMon::Elements {
 
 	/*!
 	 * \brief An event that animates itself when triggered.
+	 * \ingroup Events
 	 */
 	class AnimationEvent : public AbstractEvent {
 	private:

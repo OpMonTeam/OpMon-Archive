@@ -1,5 +1,5 @@
 /*!
- * \file MetaEvent.hpp
+ * \file AbstractMetaEvent.hpp
  * \author Cyrielle
  * \copyright GNU GPL v3.0
  */
@@ -15,6 +15,7 @@ namespace OpMon{
     namespace Elements {
         /*!
          * \brief An event that contains a queue of events.
+         * \ingroup Events
          *
          * This pure virtual is made to manage event that are a composition of events.
          * The way of managing the queue of actions will depend according to what the MetaEvent will be doing.
@@ -27,11 +28,6 @@ namespace OpMon{
         protected:
         	/*!
         	 * \brief The queue of events to process.
-        	 *
-        	 * Since the processing of the queue will loop after processing have been set to `true`,
-        	 * you can use the `nullptr` value to stop the loop. It can be used anywhere in the queue to pause it,
-        	 * or you can use it at the end to stop at the end of the queue. The `nullptr` value will clear the processingList
-        	 * and set processing to `false`. To continue the processing, the player will have to interact again with the event.
         	 */
             std::queue<AbstractEvent*> eventQueue;
 
@@ -61,8 +57,17 @@ namespace OpMon{
             virtual void update(Player &player, Overworld &overworld);
             virtual bool isOver() const {return !processing;}
             virtual ~AbstractMetaEvent();
+            /*!
+             * \brief Returns the sprite of \ref mainEvent.
+             */
             virtual const sf::Sprite* getSprite() const {return mainEvent->getSprite();}
+            /*!
+             * \brief Returns the texture of \ref mainEvent.
+             */
             virtual const sf::Texture &getTexture() {return mainEvent->getTexture();}
+            /*!
+             * \brief Updates the texture of \ref mainEvent.
+             */
             virtual void updateTexture() {mainEvent->updateTexture();}
         };
     }

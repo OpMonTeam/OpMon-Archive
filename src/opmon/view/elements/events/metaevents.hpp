@@ -14,6 +14,7 @@
 namespace OpMon::Elements {
 	/*!
 	 * \brief An shortcut for an door event.
+	 * \ingroup Events
 	 */
 	class DoorEvent: public LinearMetaEvent {
 	public:
@@ -24,6 +25,7 @@ namespace OpMon::Elements {
 
 	/*!
 	 * \brief A talking NPC.
+	 * \ingroup Events
 	 */
 	class TalkingCharaEvent: public LinearMetaEvent {
 	public:
@@ -35,6 +37,7 @@ namespace OpMon::Elements {
 
 	/*!
 	 * \brief A trainer.
+	 * \ingroup Events
 	 *
 	 * The TrainerEvent class is a basic meta event (Not a LinearMetaEvent) containing three events : two TalkingCharaEvents and one BattleEvent.
 	 * The first TalkingCharaEvent represents the trainer before the battle,
@@ -43,7 +46,17 @@ namespace OpMon::Elements {
 	 */
 	class TrainerEvent: public AbstractMetaEvent {
 	private:
+		/*!
+		 * \brief If `true`, the trainer has been battled.
+		 *
+		 * \note In the future, this variable will be true only if the player won against the trainer.
+		 */
 		bool defeated = false;
+		/*!
+		 * \brief If `true`, the player has interacted with the event.
+		 *
+		 * This variable is set to `false` at the end of the battle (if not defeated) or dialog (if defeated).
+		 */
 		bool triggered = false;
 	public:
 		TrainerEvent(TalkingCharaEvent* prebattlenpc, BattleEvent* battle, TalkingCharaEvent* postbattlenpc);
