@@ -9,6 +9,7 @@
 
 #include "Overworld.hpp"
 #include "src/opmon/screens/base/AGameScreen.hpp"
+#include <list>
 
 namespace sf {
 class Event;
@@ -55,6 +56,13 @@ class UiData;
          * \brief If `true`, the collision debug mode is activated (noclip).
          */
         bool debugCol = false;
+
+        /*!
+         * \brief List of last activated events by pressing a button.
+         *
+         * This list is used in checkAction to avoid AbstractEvent::action being called in two consecutive frames.
+         */
+        std::list<Elements::AbstractEvent*> usedList;
 
     public:
         OverworldCtrl(Player &player, UiData *uidata);
@@ -107,7 +115,7 @@ class UiData;
          * Event::action for the events with this EventTrigger.
          * \param overworld A reference to the overworld view.
          */
-        void actionEvents(std::vector<Elements::AbstractEvent *> &events, Player &player, Elements::EventTrigger toTrigger, Overworld &overworld);
+        void actionEvents(std::list<Elements::AbstractEvent *> &events, Player &player, Elements::EventTrigger toTrigger, Overworld &overworld);
 
         /*!
          * \brief Calls actionEvents for some events.

@@ -16,7 +16,10 @@ namespace OpMon {
 		}
 
 		void BattleEvent::action(Player &player, Overworld &overworld) {
-			if(over) overworld.declareBattle(this);
+			if(over){
+				overworld.declareBattle(this);
+				over = false;
+			}
 		}
 
 		void BattleEvent::update(Player &player, Overworld &overworld) {

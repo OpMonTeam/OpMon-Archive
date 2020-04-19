@@ -97,9 +97,9 @@ namespace OpMon {
 			}
 		}
 
-		std::vector<AbstractEvent *> Map::getEvent(sf::Vector2i position) const {
+		std::list<AbstractEvent *> Map::getEvent(sf::Vector2i position) const {
 			if(loaded) {
-				std::vector<AbstractEvent *> toReturn;
+				std::list<AbstractEvent *> toReturn;
 
 				for(AbstractEvent *event : events) {
 					if(event->getPositionMap().getPosition().x == position.x && event->getPositionMap().getPosition().y == position.y) {
