@@ -1,5 +1,5 @@
 /*!
- * \file TrainerEvent.hpp
+ * \file BattleEvent.hpp
  * \author Cyrielle
  * \copyright GNU GPL v3.0
  */
@@ -9,6 +9,10 @@
 #include "AbstractEvent.hpp"
 
 namespace OpMon::Elements {
+	/*!
+	 * \brief An event that launches a battle.
+	 * \ingroup Events
+	 */
 	class BattleEvent : public AbstractEvent {
 	private:
 		/*!

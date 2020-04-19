@@ -2,6 +2,7 @@
  * \file AbstractEvent.hpp
  * \author Cyrielle
  * \copyright GNU GPL v3.0
+ * \defgroup Events
  */
 
 #pragma once
@@ -27,7 +28,8 @@ namespace OpMon{
 	namespace Elements {
 
 		/*!
-		 * \brief Used to know when the event must be triggered, relatively from the player.
+		 * \brief Defines the multiples way for an event to be triggered.
+		 * \ingroup Events
 		 */
 		enum class EventTrigger {
 			PRESS = 0,/*!< The event is triggered when the player presses the action key.*/
@@ -36,6 +38,18 @@ namespace OpMon{
 					BE_IN = 3/*!< The event is triggered as long as the player is on its position.*/
 		};
 
+		/*!
+		 * \brief The base class of all events.
+		 * \ingroup Events
+		 *
+		 * An event has two major methods :
+		 * - update, which is called each frame.
+		 * - action, which is called when the event is triggered.
+		 *
+		 * The way the event is triggered can be defined with the enumeration EventTrigger.
+		 * The events directly inherited from AbstractEvent are simple events : they must not depend on any other event.
+		 * To create events that use other events, see AbstractMetaEvent.
+		 */
 		class AbstractEvent {
 			friend class TalkingCharaEvent; //Needed to update currentTexture without creating a public setter.
 		protected:
@@ -46,11 +60,11 @@ namespace OpMon{
 			/*!
 			 * \brief If the player can go through the even or not.
 			 */
-			bool passable = false;
+			bool passable;
 			/*!
 			 * \brief From which sides the player is able to interact with the event.
 			 */
-			int sides = SIDE_ALL;
+			int sides;
 
 			/*!
 			 * \brief The position of the event on the screen, in pixels.
@@ -70,19 +84,19 @@ namespace OpMon{
 			 */
 			std::vector<sf::Texture> &otherTextures;
 			/*!
-			 * \brief An iterator to the current texture in Event::otherTextures.
+			 * \brief An iterator to the current texture in \ref otherTextures.
 			 */
 			std::vector<sf::Texture>::iterator currentTexture;
 
 		public:
 			/*!
-			 * \warn The parameter position represents the position in squares, unlike the field position which stores the position in pixels.
+			 * \warning The parameter position represents the position in squares, unlike the field position which stores the position in pixels.
 			 */
 			AbstractEvent(std::vector<sf::Texture> &otherTextures, EventTrigger eventTrigger, sf::Vector2f const &position, int sides, bool passable);
 			AbstractEvent(OverworldData &data, nlohmann::json jsonData);
 			virtual ~AbstractEvent() = default;
 			/*!
-			 * \brief Method called at each frame.
+			 * \brief Method called each frame.
 			 */
 			virtual void update(Player &player, Overworld &overworld) = 0;
 			/**
@@ -90,7 +104,7 @@ namespace OpMon{
 			 */
 			virtual void action(Player &player, Overworld &overworld) = 0;
 			/*!
-			 * \brief Updates Event::sprite with Event::currentTexture and Event::position.
+			 * \brief Updates \ref sprite with \ref currentTexture and \ref position.
 			 */
 			virtual void updateTexture();
 
@@ -120,6 +134,9 @@ namespace OpMon{
 				return sprite;
 			}
 
+			/*!
+			 * \brief Sets the current texture to the first texture of \ref otherTextures.
+			 */
 			void resetTexture() {currentTexture = otherTextures.begin();}
 
 			/*!
