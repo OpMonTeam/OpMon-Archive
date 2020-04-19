@@ -171,7 +171,18 @@ namespace OpMon {
     }
 
     std::vector<sf::Texture> &OverworldData::getEventsTexture(std::string const &key) {
+	#if __cplusplus > 201703L
     	if(!eventsTextures.contains(key)){
+	#else
+    	bool contains = false;
+    	for(std::pair<std::string, std::vector<sf::Texture> > pair : eventsTextures){
+    		if(pair.first == key) {
+    			contains = true;
+    			break;
+    		}
+    	}
+    	if(contains){
+	#endif
     		Utils::Log::warn("Event texture key " + key + " not found. Returning alpha.");
     		return eventsTextures["alpha"];
     	}else return eventsTextures[key];
