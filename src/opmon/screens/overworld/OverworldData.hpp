@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics/Rect.hpp>
 
+#include "src/utils/defines.hpp"
 #include "src/opmon/view/elements/Map.hpp"
 #include "src/opmon/screens/gamemenu/GameMenuData.hpp"
 
@@ -48,11 +49,7 @@ class Map;
         std::map<std::string, unsigned int> elementsCounter;
         std::map<std::string, std::vector<sf::Texture>> elementsTextures;
 
-        std::map<std::string, std::vector<sf::Texture>> charaTextures;
-
         std::map<std::string, std::vector<sf::Texture>> eventsTextures;
-
-        std::map<std::string, std::vector<sf::Texture>> doorsTextures;
 
         std::map<std::string, std::unique_ptr<Item>> itemsList;
 
@@ -93,16 +90,18 @@ class Map;
 
         /*!
          * \brief Gets the textures of a character.
+         * \deprecated Use getEventsTexture, charaTextures have been merged with eventsTextures.
          */
-        std::vector<sf::Texture> &getCharaTexture(std::string const &key) { return charaTextures[key]; }
+        OP_DEPRECATED std::vector<sf::Texture> &getCharaTexture(std::string const &key) { return eventsTextures[key]; }
         /*!
          * \brief Gets the textures of a door.
+         * \deprecated Use getEventsTexture, doorsTextures have been merged with eventsTextures.
          */
-        std::vector<sf::Texture> &getDoorsTexture(std::string const &key) { return doorsTextures[key]; }
+        OP_DEPRECATED std::vector<sf::Texture> &getDoorsTexture(std::string const &key) { return eventsTextures[key]; }
         /*!
          * \brief Gets the textures of an event.
          */
-        std::vector<sf::Texture> &getEventsTexture(std::string const &key) { return eventsTextures[key]; }
+        std::vector<sf::Texture> &getEventsTexture(std::string const &key);
 
         /*!
          * \brief Gets a completion.

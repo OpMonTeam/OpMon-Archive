@@ -15,9 +15,9 @@
 #define MAP_HPP
 
 #include <SFML/Graphics/RenderTexture.hpp>
+#include <list>
 
 #include "../../../nlohmann/json.hpp"
-#include "Events.hpp"
 
 namespace sf {
 class RenderTexture;
@@ -29,7 +29,7 @@ namespace OpMon {
 
     namespace Elements {
 
-        class Event;
+        class AbstractEvent;
 
         /*!
          * \brief Defines a specific place in a game, containing the event, the animated objects and the map layers.
@@ -63,7 +63,7 @@ namespace OpMon {
 
             Map(Map const &toCopy) = delete;
 
-            std::vector<Event *> events;
+            std::vector<AbstractEvent *> events;
             /*!
              * \brief Contains the animated elements of the map.
              * \details An animated element is an animation put on the top of the map. For exemple, the wind turbine of Fauxbourg Euvi.
@@ -135,18 +135,18 @@ namespace OpMon {
              * \param event A pointer to an event.
              * \warning The given event will be deleted at the destruction of the map.
              */
-            void addEvent(Event *event) {
+            void addEvent(AbstractEvent *event) {
                 events.push_back(event);
             }
             /*!
              * \brief Returns all the events in the given position.
              * \param position The position in which to search for event.
              */
-            std::vector<Event *> getEvent(sf::Vector2i position) const;
+            std::list<AbstractEvent *> getEvent(sf::Vector2i position) const;
             /*!
              * \brief Returns all the events of the map.
              */
-            std::vector<Event *> &getEvents() {
+            std::vector<AbstractEvent *> &getEvents() {
                 return events;
             }
             /*!

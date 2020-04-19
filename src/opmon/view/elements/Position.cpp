@@ -8,9 +8,9 @@ File under GNU GPL v3.0 license
 
 #include <vector>
 
-#include "Events.hpp"
 #include "Map.hpp"
 #include "src/opmon/model/Enums.hpp"
+#include "events/AbstractEvent.hpp"
 
 namespace OpMon {
     namespace Elements {
@@ -96,7 +96,7 @@ namespace OpMon {
 
         bool Position::checkPass(Side direction, Map *map) {
 
-            std::vector<Event *> nextEvents;
+            std::list<AbstractEvent *> nextEvents;
             sf::Vector2i nextPos;
             sf::Vector2i nextPosPix;
             int exclusiveCol = 0;
@@ -132,7 +132,7 @@ namespace OpMon {
                 if((colLayer1 == 0 || colLayer1 == exclusiveCol) && (colLayer2 == 0 || colLayer2 == exclusiveCol)) {           //Checks if the next tile is passable
                     if(event ? !(nextPos.y == playerPos->getPosition().y && nextPos.x == playerPos->getPosition().x) : true) { //Checks if the player is not in the way, but only if it's an event (A player can not interact with itself.)
                         nextEvents = map->getEvent(nextPos);                                                                   //Searches the events at this position
-                        for(Event *nextEvent : nextEvents) {
+                        for(AbstractEvent *nextEvent : nextEvents) {
                             if(!nextEvent->isPassable()) { //Checks if the event ahead of the player is passable
                                 return false;
                             }
