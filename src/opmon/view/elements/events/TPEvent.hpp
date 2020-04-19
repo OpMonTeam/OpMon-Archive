@@ -12,12 +12,12 @@ namespace OpMon {
 	namespace Elements {
 		/*!
 		 * \brief An event that teleports the player.
+		 * \ingroup Events
 		 *
 		 * This event, when triggered, waits for the player to stop first, and then teleports the character.
 		 */
 		class TPEvent : public AbstractEvent {
 		private:
-			int frames = -1;
 			/*!
 			 * \brief The coordinates of where the event will teleport the player.
 			 */

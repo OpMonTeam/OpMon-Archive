@@ -11,6 +11,10 @@
 
 namespace OpMon{
 	namespace Elements {
+		/*!
+		 * \brief An event that shows a dialog.
+		 * \ingroup Events
+		 */
 		class DialogEvent : public AbstractEvent, public Utils::I18n::ATranslatable {
 		private:
 			/*!

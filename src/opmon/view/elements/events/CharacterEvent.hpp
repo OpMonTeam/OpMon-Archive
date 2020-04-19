@@ -12,6 +12,7 @@ namespace OpMon::Elements {
 
 	/*!
 	 * \brief Defines different ways of moving of the npcs.
+	 * \ingroup Events
 	 */
 	enum class MoveStyle : int {
 		NO_MOVE = 0,/*!< The npc has to stay still.*/
@@ -22,8 +23,9 @@ namespace OpMon::Elements {
 
 	/*!
 	 * \brief A NPC that just walks through the map.
+	 * \ingroup Events
 	 *
-	 * When the NPC is triggered, it
+	 * When the NPC is triggered, it turns itself to face the player.
 	 */
 	class CharacterEvent : public AbstractEvent {
 	private:

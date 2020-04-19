@@ -11,6 +11,7 @@
 namespace OpMon::Elements {
 	/*!
 	 * \brief An event that plays a sound or a music when triggered.
+	 * \ingroup Events
 	 */
 	class SoundEvent : public AbstractEvent {
 	private:
