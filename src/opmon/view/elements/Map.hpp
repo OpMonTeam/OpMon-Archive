@@ -15,6 +15,7 @@
 #define MAP_HPP
 
 #include <SFML/Graphics/RenderTexture.hpp>
+#include <list>
 
 #include "../../../nlohmann/json.hpp"
 
@@ -141,7 +142,7 @@ namespace OpMon {
              * \brief Returns all the events in the given position.
              * \param position The position in which to search for event.
              */
-            std::vector<AbstractEvent *> getEvent(sf::Vector2i position) const;
+            std::list<AbstractEvent *> getEvent(sf::Vector2i position) const;
             /*!
              * \brief Returns all the events of the map.
              */

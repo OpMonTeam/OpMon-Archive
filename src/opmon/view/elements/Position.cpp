@@ -96,7 +96,7 @@ namespace OpMon {
 
         bool Position::checkPass(Side direction, Map *map) {
 
-            std::vector<AbstractEvent *> nextEvents;
+            std::list<AbstractEvent *> nextEvents;
             sf::Vector2i nextPos;
             sf::Vector2i nextPosPix;
             int exclusiveCol = 0;
