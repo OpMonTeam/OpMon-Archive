@@ -6,7 +6,6 @@
 #pragma once
 
 #include "src/opmon/model/Attack.hpp"
-#include "src/opmon/view/elements/Events.hpp"
 #include "Battle.hpp"
 #include "src/opmon/screens/base/AGameScreen.hpp"
 
@@ -23,10 +22,8 @@ class Player;
 class Species;
 class UiData;
 namespace Elements {
-namespace Events {
-class TrainerEvent;
-}  // namespace Events
-}  // namespace Elements
+	class BattleEvent;
+}
 
     /*!
      * \brief Manages a battle.
@@ -147,7 +144,7 @@ class TrainerEvent;
         /*!
          * \brief The opposite trainer.
          */
-        Elements::Events::TrainerEvent *trainer;
+        Elements::BattleEvent *trainer;
 
         /*!
          * \brief A shortcut to a TurnActionType::NEXT
@@ -171,7 +168,7 @@ class TrainerEvent;
          * \param uidata The UiData object.
          * \param player The Player object.
          */
-        BattleCtrl(OpTeam *one, Elements::Events::TrainerEvent *two, UiData *uidata, Player *player);
+        BattleCtrl(OpTeam *one, Elements::BattleEvent *two, UiData *uidata, Player *player);
         GameStatus checkEvent(sf::Event const &) override;
         GameStatus update(sf::RenderTexture &frame) override;
 

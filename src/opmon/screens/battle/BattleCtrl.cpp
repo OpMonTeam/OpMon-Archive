@@ -21,16 +21,16 @@
 #include "src/opmon/model/OpTeam.hpp"
 #include "src/opmon/screens/battle/Battle.hpp"
 #include "src/opmon/screens/battle/BattleData.hpp"
-#include "src/opmon/view/elements/Events.hpp"
 #include "src/opmon/view/elements/Turn.hpp"
 #include "src/opmon/view/ui/Jukebox.hpp"
 #include "src/utils/misc.hpp"
+#include "src/opmon/view/elements/events/BattleEvent.hpp"
 
 namespace OpMon {
 class Player;
 class Species;
 
-    BattleCtrl::BattleCtrl(OpTeam *one, Elements::Events::TrainerEvent *two, UiData *uidata, Player *player)
+    BattleCtrl::BattleCtrl(OpTeam *one, Elements::BattleEvent *two, UiData *uidata, Player *player)
         : BattleCtrl(one, two->getOpTeam(), uidata, player) {
         this->trainer = two;
         next.type = Elements::TurnActionType::NEXT;
@@ -185,22 +185,11 @@ class Species;
 #pragma GCC diagnostic pop
 
     bool BattleCtrl::checkBattleEnd() {
-        if(def->getHP() <= 0) {
-
-            if(trainer != nullptr) {
-                trainer->defeat();
-            }
-            Elements::TurnAction victory;
-            victory.type = Elements::TurnActionType::VICTORY;
-            actionsQueue.push(victory);
-            return true;
-        } else if(atk->getHP() <= 0) {
-            if(trainer != nullptr) { //TODO : Only for the test battle, should be removed at some point.
-                trainer->defeat();
-            }
-            Elements::TurnAction defeat;
-            defeat.type = Elements::TurnActionType::DEFEAT;
-            actionsQueue.push(defeat);
+        if(def->getHP() <= 0 || atk->getHP() <= 0) {
+        	trainer->setOver();
+            Elements::TurnAction batEnd;
+            batEnd.type = (def->getHP() <= 0) ? Elements::TurnActionType::VICTORY : Elements::TurnActionType::DEFEAT;
+            actionsQueue.push(batEnd);
             return true;
         }
         return false;
