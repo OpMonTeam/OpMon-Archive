@@ -51,23 +51,23 @@ namespace OpMon {
         walkingPP2Rect[(unsigned int)Side::TO_UP] = sf::IntRect(96, 32, 32, 32);
 
         //Characters' textures initialization
-        Utils::ResourceLoader::loadTextureArray(charaTextures["kid"], "sprites/chara/kid/kid%d.png", 12);
-        Utils::ResourceLoader::loadTextureArray(charaTextures["fisherman"], "sprites/chara/fisherman/fisherman%d.png", 12);
-        Utils::ResourceLoader::loadTextureArray(charaTextures["kiwai"], "sprites/chara/prof/prof%d.png", 12);
-        Utils::ResourceLoader::loadTextureArray(charaTextures["playermom"], "sprites/chara/mom/mom%d.png", 12);
-        Utils::ResourceLoader::loadTextureArray(charaTextures["sk"], "sprites/chara/rival/sk%d.png", 12);
-        Utils::ResourceLoader::loadTextureArray(charaTextures["inferm"], "sprites/chara/inferm/inferm%d.png", 12);
-        Utils::ResourceLoader::loadTextureArray(charaTextures["|_| -|- |-| |= |_| N"], "sprites/chara/beta/alphabeta/otheon%d.png", 12);
-        Utils::ResourceLoader::loadTextureArray(charaTextures["beta"], "sprites/chara/beta/beta%d.png", 12);
-        Utils::ResourceLoader::loadTextureArray(charaTextures["albd"], "sprites/chara/albd/albd%d.png", 12);
+        Utils::ResourceLoader::loadTextureArray(eventsTextures["kid"], "sprites/chara/kid/kid%d.png", 12);
+        Utils::ResourceLoader::loadTextureArray(eventsTextures["fisherman"], "sprites/chara/fisherman/fisherman%d.png", 12);
+        Utils::ResourceLoader::loadTextureArray(eventsTextures["kiwai"], "sprites/chara/prof/prof%d.png", 12);
+        Utils::ResourceLoader::loadTextureArray(eventsTextures["playermom"], "sprites/chara/mom/mom%d.png", 12);
+        Utils::ResourceLoader::loadTextureArray(eventsTextures["sk"], "sprites/chara/rival/sk%d.png", 12);
+        Utils::ResourceLoader::loadTextureArray(eventsTextures["inferm"], "sprites/chara/inferm/inferm%d.png", 12);
+        Utils::ResourceLoader::loadTextureArray(eventsTextures["|_| -|- |-| |= |_| N"], "sprites/chara/beta/alphabeta/otheon%d.png", 12);
+        Utils::ResourceLoader::loadTextureArray(eventsTextures["beta"], "sprites/chara/beta/beta%d.png", 12);
+        Utils::ResourceLoader::loadTextureArray(eventsTextures["albd"], "sprites/chara/albd/albd%d.png", 12);
 
-        //Doors' textures initialization
-        Utils::ResourceLoader::loadTextureArray(doorsTextures["shop"], "animations/shopdoor/shop_door%d.png", 4, 1);
-        Utils::ResourceLoader::loadTextureArray(doorsTextures["normal"], "animations/basicdoor/basic_door%d.png", 4, 1);
+        //Initialization of doors
+        Utils::ResourceLoader::loadTextureArray(eventsTextures["shop door"], "animations/shopdoor/shop_door%d.png", 4, 1);
+        Utils::ResourceLoader::loadTextureArray(eventsTextures["door"], "animations/basicdoor/basic_door%d.png", 4, 1);
 
         eventsTextures.emplace("alpha", alphaTab);
 
-        //Elements initialization
+        //Initialization of animated elements
         elementsCounter["windturbine"] = 0;
         elementsPos["windturbine"] = sf::Vector2f(8 * 32 + 25 * 32 - 7, 3 * 32 + 15);
 
@@ -168,6 +168,24 @@ namespace OpMon {
 
     Elements::Map *OverworldData::getCurrentMap() {
         return getMap(player->getMapId());
+    }
+
+    std::vector<sf::Texture> &OverworldData::getEventsTexture(std::string const &key) {
+	#if __cplusplus > 201703L
+    	if(!eventsTextures.contains(key)){
+	#else
+    	bool contains = false;
+    	for(std::pair<std::string, std::vector<sf::Texture> > pair : eventsTextures){
+    		if(pair.first == key) {
+    			contains = true;
+    			break;
+    		}
+    	}
+    	if(contains){
+	#endif
+    		Utils::Log::warn("Event texture key " + key + " not found. Returning alpha.");
+    		return eventsTextures["alpha"];
+    	}else return eventsTextures[key];
     }
 
 } // namespace OpMon
