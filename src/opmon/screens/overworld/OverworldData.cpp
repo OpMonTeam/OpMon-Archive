@@ -170,10 +170,10 @@ namespace OpMon {
         return getMap(player->getMapId());
     }
 
-    std::vector<sf::Texture> &OverworldData::getEventsTexture(std::string const &key) {
-	#if __cplusplus > 201703L
-    	if(!eventsTextures.contains(key)){
-	#else
+    std::vector<sf::Texture> &OverworldData::getEventsTexture(std::string const &key) { //Uncomment commented lines when C++20 is commonly used
+        //#if __cplusplus > 201703L
+    	//if(!eventsTextures.contains(key)){
+        //#else
     	bool contains = false;
     	for(std::pair<std::string, std::vector<sf::Texture> > pair : eventsTextures){
     		if(pair.first == key) {
@@ -182,7 +182,7 @@ namespace OpMon {
     		}
     	}
     	if(contains){
-	#endif
+            //#endif
     		Utils::Log::warn("Event texture key " + key + " not found. Returning alpha.");
     		return eventsTextures["alpha"];
     	}else return eventsTextures[key];
