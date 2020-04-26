@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Install SFML
-      run: sudo apt-get install libsfml-dev
+      run: sudo apt-get update && sudo apt-get install libsfml-dev
     - name: Run CMake
       run: cmake -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 .
     - name: Run Make
