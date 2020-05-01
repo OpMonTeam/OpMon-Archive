@@ -15,7 +15,7 @@
 
 #include "src/utils/OpString.hpp"
 #include "src/opmon/core/UiData.hpp"
-#include "src/opmon/model/Attack.hpp"
+#include "src/opmon/model/Move.hpp"
 #include "src/opmon/model/Enums.hpp"
 #include "src/opmon/model/OpMon.hpp"
 #include "src/opmon/model/OpTeam.hpp"
@@ -76,12 +76,12 @@ class Species;
                 view.moveCur(Side::TO_DOWN);
                 break;
             case sf::Keyboard::Return:
-                //If it the attack selection screen is not the active screen, and if the turn is not activated, the battle's main menu is printed.
-                if(!view.isAttackChoice() && !turnActivated) {
+                //If it the move selection screen is not the active screen, and if the turn is not activated, the battle's main menu is printed.
+                if(!view.isMoveChoice() && !turnActivated) {
                     switch(view.getCurPos()) {
-                        //Currently, there is only one choice avilable, the "attack" choice.
+                        //Currently, there is only one choice avilable, the "move" choice.
                     case 0:
-                        view.toggleAttackChoice();
+                        view.toggleMoveChoice();
                         break;
                         /*case 3:
                           return GameStatus::PREVIOUS; //Run*/
@@ -90,17 +90,17 @@ class Species;
                         break;
                     }
 
-                } else if(!turnActivated) { //In this case, the attack selection screen is the active screen.
-                    //Gets the selected attack, checks if it isn't a invalid attack (PP check and existence check), and then launches the turn.
-                    atkTurn.attackUsed = atk->getAttacks()[view.getCurPos()];
-                    if(atkTurn.attackUsed != nullptr) {
-                        if(atkTurn.attackUsed->getPP() > 0) {
-                            atkTurn.type = Elements::TurnType::ATTACK;
+                } else if(!turnActivated) { //In this case, the move selection screen is the active screen.
+                    //Gets the selected move, checks if it isn't a invalid move (PP check and existence check), and then launches the turn.
+                    atkTurn.moveUsed = atk->getMoves()[view.getCurPos()];
+                    if(atkTurn.moveUsed != nullptr) {
+                        if(atkTurn.moveUsed->getPP() > 0) {
+                            atkTurn.type = Elements::TurnType::MOVE;
                             turn();
-                            view.toggleAttackChoice();
+                            view.toggleMoveChoice();
                             turnActivated = true;
                         }
-                    } else { //The attack is invalid
+                    } else { //The move is invalid
                         data.getUiDataPtr()->getJukebox().playSound("nope");
                     }
                 } else if(turnActivated) {
@@ -109,9 +109,9 @@ class Species;
 
                 break;
             case sf::Keyboard::BackSpace:
-                //From the attack selection screen, returns to the battle's main menu.
-                if(view.isAttackChoice()) {
-                    view.toggleAttackChoice();
+                //From the move selection screen, returns to the battle's main menu.
+                if(view.isMoveChoice()) {
+                    view.toggleMoveChoice();
                 }
                 break;
 
@@ -159,8 +159,8 @@ class Species;
         oldSpecies[0] = &atkSpecies;
         oldSpecies[1] = &defSpecies;
 
-        oldAttacks[0] = atk->getAttacks();
-        oldAttacks[1] = def->getAttacks();
+        oldMoves[0] = atk->getMoves();
+        oldMoves[1] = def->getMoves();
 
         atk->setStat(Stats::EVA, 100);
         atk->setStat(Stats::ACC, 100);
@@ -178,8 +178,8 @@ class Species;
 #pragma GCC diagnostic ignored "-Wunused-parameter"
     //Unfinished method, the IA will be programmed in the future.
     Elements::TurnData *BattleCtrl::turnIA(int level) {
-        defTurn.attackUsed = def->getAttacks()[0];
-        defTurn.type = Elements::TurnType::ATTACK;
+        defTurn.moveUsed = def->getMoves()[0];
+        defTurn.type = Elements::TurnType::MOVE;
         return &defTurn;
     }
 #pragma GCC diagnostic pop
@@ -207,41 +207,41 @@ class Species;
             actionsQueue = std::queue<Elements::TurnAction>();
         }
 
-        //Item use or switching always comes before the attack. It is calculated before everything else.
-        if(atkTurn.type != Elements::TurnType::ATTACK) {
+        //Item use or switching always comes before the move. It is calculated before everything else.
+        if(atkTurn.type != Elements::TurnType::MOVE) {
             //Actions
             atkDone = true;
         }
-        if(defTurn.type != Elements::TurnType::ATTACK) {
+        if(defTurn.type != Elements::TurnType::MOVE) {
             //Actions
             defDone = true;
         }
-        //If the two of them attack, then the priority must be calculated. Else, the only attacking OpMon will attack, obviously.
-        if(defTurn.type == Elements::TurnType::ATTACK && atkTurn.type == Elements::TurnType::ATTACK) {
-            atkFirst = (atkTurn.attackUsed->getPriority() == defTurn.attackUsed->getPriority()) ? (atk->getStatSPE() > def->getStatSPE()) : (atkTurn.attackUsed->getPriority() > defTurn.attackUsed->getPriority());
+        //If the two of them move, then the priority must be calculated. Else, the only attacking OpMon will move, obviously.
+        if(defTurn.type == Elements::TurnType::MOVE && atkTurn.type == Elements::TurnType::MOVE) {
+            atkFirst = (atkTurn.moveUsed->getPriority() == defTurn.moveUsed->getPriority()) ? (atk->getStatSPE() > def->getStatSPE()) : (atkTurn.moveUsed->getPriority() > defTurn.moveUsed->getPriority());
         } else {
             atkFirst = !atkDone;
         }
 
         if(!atkDone || !defDone) {
             if(atkFirst) {
-                if(!atkDone && canAttack(atk, &atkTurn)) {
-                    atkTurn.attackUsed->attack(*atk, *def, actionsQueue, true);
+                if(!atkDone && canMove(atk, &atkTurn)) {
+                    atkTurn.moveUsed->move(*atk, *def, actionsQueue, true);
                 }
                 actionsQueue.push(next);
-                if(!defDone && canAttack(def, &defTurn) && !checkBattleEnd()) {
-                    defTurn.attackUsed->attack(*def, *atk, actionsQueue, false);
+                if(!defDone && canMove(def, &defTurn) && !checkBattleEnd()) {
+                    defTurn.moveUsed->move(*def, *atk, actionsQueue, false);
                 }
 
                 checkBattleEnd();
 
             } else {
-                if(!defDone && canAttack(def, &defTurn)) {
-                    defTurn.attackUsed->attack(*def, *atk, actionsQueue, false);
+                if(!defDone && canMove(def, &defTurn)) {
+                    defTurn.moveUsed->move(*def, *atk, actionsQueue, false);
                 }
                 actionsQueue.push(next);
-                if(!atkDone && canAttack(atk, &atkTurn) && !checkBattleEnd()) {
-                    atkTurn.attackUsed->attack(*atk, *def, actionsQueue, true);
+                if(!atkDone && canMove(atk, &atkTurn) && !checkBattleEnd()) {
+                    atkTurn.moveUsed->move(*atk, *def, actionsQueue, true);
                 }
                 checkBattleEnd();
             }
@@ -251,8 +251,8 @@ class Species;
     }
 
 #pragma GCC diagnostic ignored "-Wunused-parameter"
-    bool BattleCtrl::canAttack(OpMon *opmon, Elements::TurnData *opTurn) {
-        bool canAttack = true;
+    bool BattleCtrl::canMove(OpMon *opmon, Elements::TurnData *opTurn) {
+        bool canMove = true;
         std::vector<sf::String *> opName(1);
         opName[0] = new sf::String(opmon->getNickname());
         //Checks if frozen
@@ -262,8 +262,8 @@ class Species;
                 actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.frozen.out", opName)));
                 opmon->setStatus(Status::NOTHING);
             } else {
-                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.frozen.attack", opName)));
-                canAttack = false;
+                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.frozen.move", opName)));
+                canMove = false;
             }
             //Checks if sleeping
         } else if(opmon->getStatus() == Status::SLEEPING) {
@@ -272,18 +272,18 @@ class Species;
                 actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.sleep.out", opName)));
                 opmon->setStatus(Status::NOTHING);
             } else {
-                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.sleep.attack", opName)));
-                canAttack = false;
+                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.sleep.move", opName)));
+                canMove = false;
                 opmon->passCD(true);
             }
             //Checks if paralysed
         } else if(opmon->getStatus() == Status::PARALYSED) {
-            //The opmon have one chance out of three to can't attack when paralysed
+            //The opmon have one chance out of three to can't move when paralysed
             if(Utils::Misc::randU(4) == 2) {
-                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.paralysed.attack.fail", opName)));
-                canAttack = false;
+                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.paralysed.move.fail", opName)));
+                canMove = false;
             } else {
-                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.paralysed.attack.success", opName)));
+                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.paralysed.move.success", opName)));
             }
         }
         //Checks if confused
@@ -294,12 +294,12 @@ class Species;
                 actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.confused.out", opName)));
             } else {
                 opmon->passCD(false);
-                //The OpMon have one chance out of two of failing their attack.
+                //The OpMon have one chance out of two of failing their move.
                 if(Utils::Misc::randU(2) == 1) {
-                    actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.confused.attack.fail", opName)));
+                    actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.confused.move.fail", opName)));
                     opmon->attacked(opmon->getStatHP() / 8);
                 } else {
-                    actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.confused.attack.success", opName)));
+                    actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.confused.move.success", opName)));
                 }
             }
         }
@@ -307,10 +307,10 @@ class Species;
         if(opmon->afraid) {
             actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.afraid", opName)));
             opmon->afraid = false;
-            canAttack = false;
+            canMove = false;
         }
         delete(opName[0]);
-        return canAttack;
+        return canMove;
     }
 #pragma GCC diagnostic pop
 

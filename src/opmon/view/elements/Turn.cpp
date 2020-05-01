@@ -18,8 +18,8 @@ namespace OpMon {
 
         void newTurnData(TurnData *toNew) {
             toNew->opmon = nullptr;
-            toNew->attackUsed = nullptr;
-            toNew->type = TurnType::ATTACK;
+            toNew->moveUsed = nullptr;
+            toNew->type = TurnType::MOVE;
             toNew->itemUsed = nullptr;
         }
 

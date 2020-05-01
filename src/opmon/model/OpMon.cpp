@@ -12,7 +12,7 @@
 #include "../../utils/log.hpp"
 #include "../../utils/misc.hpp"
 #include "./Evolution.hpp"
-#include "src/opmon/model/Attack.hpp"
+#include "src/opmon/model/Move.hpp"
 #include "src/opmon/model/CurveExp.hpp"
 #include "src/opmon/model/Nature.hpp"
 #include "src/opmon/model/Species.hpp"
@@ -21,15 +21,15 @@ namespace OpMon {
 
     OpMon::~OpMon() {
         for(int i = 0; i < 4; i++) {
-            delete(attacks[i]);
+            delete(moves[i]);
         }
     }
 
-    OpMon::OpMon(const std::string &nickname, const Species *species, int level, const std::vector<Attack *> &attacks, Nature nature)
+    OpMon::OpMon(const std::string &nickname, const Species *species, int level, const std::vector<Move *> &moves, Nature nature)
         : nickname((nickname.empty()) ? species->getName() : nickname)
         , species(species)
         , level(level)
-        , attacks(attacks)
+        , moves(moves)
         , nature(nature) {
         atkIV = Utils::Misc::randU(32);
         defIV = Utils::Misc::randU(32);
@@ -226,7 +226,7 @@ namespace OpMon {
         species = species->getEvolution();
     }
 
-    void OpMon::setStats(int stats[], Attack *attacks[], const Species &species, Type types[]) {
+    void OpMon::setStats(int stats[], Move *moves[], const Species &species, Type types[]) {
         statATK = stats[0];
         statDEF = stats[1];
         statATKSPE = stats[2];
@@ -237,10 +237,10 @@ namespace OpMon {
         type1 = types[0];
         type2 = types[1];
         this->species = &species;
-        this->attacks[0] = attacks[0];
-        this->attacks[1] = attacks[1];
-        this->attacks[2] = attacks[2];
-        this->attacks[3] = attacks[3];
+        this->moves[0] = moves[0];
+        this->moves[1] = moves[1];
+        this->moves[2] = moves[2];
+        this->moves[3] = moves[3];
         type1 = types[0];
         type2 = types[1];
     }

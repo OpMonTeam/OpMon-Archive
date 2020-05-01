@@ -14,7 +14,7 @@
 namespace OpMon {
 
     class OpMon;
-    class Attack;
+    class Move;
 class Item;
 
     namespace Elements {
@@ -23,7 +23,7 @@ class Item;
          * \brief Enumerates the different types of turns.
          */
         enum class TurnType {
-            ATTACK,/*!< The OpMon attacks the opponent.*/
+            MOVE,/*!< The OpMon moves the opponent.*/
             ITEM, /*!< The OpMon uses an item.*/
             RUN, /*!< The OpMon tries to run.*/
             CHANGE /*!< The opponent changes OpMon.*/
@@ -72,7 +72,7 @@ class Item;
          * \brief Contains data needed to show a turn in View::Battle.
          */
         struct TurnData {
-            Attack *attackUsed;
+            Move *moveUsed;
             OpMon *opmon;
             TurnType type;
             Item *itemUsed;

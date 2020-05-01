@@ -5,7 +5,7 @@
  */
 #pragma once
 
-#include "src/opmon/model/Attack.hpp"
+#include "src/opmon/model/Move.hpp"
 #include "Battle.hpp"
 #include "src/opmon/screens/base/AGameScreen.hpp"
 
@@ -15,7 +15,7 @@ class RenderTexture;
 }  // namespace sf
 
 namespace OpMon {
-class Attack;
+class Move;
 class OpMon;
 class OpTeam;
 class Player;
@@ -65,7 +65,7 @@ namespace Elements {
          */
         Elements::TurnData defTurn;
         /*!
-         * \brief `true` if the player's OpMon attacks first, `false` otherwise.
+         * \brief `true` if the player's OpMon moves first, `false` otherwise.
          */
         bool atkFirst;
 
@@ -86,10 +86,10 @@ namespace Elements {
          */
         const Species *oldSpecies[2];
         /*!
-         * \brief The attacks of the currently fighting OpMons before entering the battle.
-         * \details These attacks are used to reset the attacks after the battle.
+         * \brief The moves of the currently fighting OpMons before entering the battle.
+         * \details These moves are used to reset the moves after the battle.
          */
-        std::vector<Attack *> oldAttacks[2];
+        std::vector<Move *> oldMoves[2];
 
         /*!
          * \brief `true` if the battle is in the turns phase.
@@ -110,7 +110,7 @@ namespace Elements {
         /*!
          * \brief Calculates one turn.
          *
-         * This method calculates first who attacks first, and then calculates the different actions and their consequences by calling the Attack::attack methods of the moves. This method takes in parameter a reference to the TurnAction queue, so the moves can fill it.
+         * This method calculates first who moves first, and then calculates the different actions and their consequences by calling the Move::move methods of the moves. This method takes in parameter a reference to the TurnAction queue, so the moves can fill it.
          */
         bool turn();
         /*!
@@ -123,17 +123,17 @@ namespace Elements {
         /*!
          * \warning WIP
          * \brief Makes the IA choosing the actions of the opponent.
-         * \details This methods currently chooses the first attack.
+         * \details This methods currently chooses the first move.
          * \param level The level of intelligence for the IA
          */
         Elements::TurnData *turnIA(int level);
 
         /*!
-         * \brief Checks if the OpMon can attack.
+         * \brief Checks if the OpMon can move.
          * \param opmon The OpMon to check.
          * \param opTurn The data of this turn.
          */
-        bool canAttack(OpMon *opmon, Elements::TurnData *opTurn);
+        bool canMove(OpMon *opmon, Elements::TurnData *opTurn);
         /*!
          * \brief Checks if the battle is over.
          * \returns `true` if the battle is over, `false` otherwise.

@@ -21,7 +21,7 @@ class UiData;
     private:
         std::map<std::string, sf::Texture> backgrounds;
         sf::Texture dialog;
-        sf::Texture attackDialog;
+        sf::Texture moveDialog;
         sf::Texture cursor;
         //std::vector<sf::Texture> choices;
         std::map<std::string, std::vector<sf::Texture>> charaBattleTextures;
@@ -74,9 +74,9 @@ class UiData;
          */
         sf::Texture &getDialog() { return dialog; }
         /*!
-         * \brief Gets the texture of the attack choice dialog.
+         * \brief Gets the texture of the move choice dialog.
          */
-        sf::Texture &getAttackDialog() { return attackDialog; }
+        sf::Texture &getMoveDialog() { return moveDialog; }
         /*!
          * \brief Gets the texture of the cursor.
          */

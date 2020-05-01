@@ -7,7 +7,7 @@
 #include "Player.hpp"
 
 #include "../../utils/OpString.hpp"
-#include "../model/Attack.hpp"
+#include "../model/Move.hpp"
 #include "src/opmon/model/OpMon.hpp"
 #include "src/opmon/model/OpTeam.hpp"
 #include "src/opmon/view/elements/Position.hpp"
@@ -55,7 +55,7 @@ namespace OpMon {
             if(pkmn != nullptr) {
                 //TODO : Reset status problems
                 for(int j = 0; j < 4; j++) {
-                    Attack *atk = (pkmn->getAttacks())[j];
+                    Move *atk = (pkmn->getMoves())[j];
                     if(atk != nullptr) {
                         atk->healPP();
                     }

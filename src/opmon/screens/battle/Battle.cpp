@@ -18,7 +18,7 @@
 #include <vector>
 
 #include "src/utils/StringKeys.hpp"
-#include "src/opmon/model/Attack.hpp"
+#include "src/opmon/model/Move.hpp"
 #include "BattleData.hpp"
 #include "src/opmon/core/Player.hpp"
 #include "src/opmon/core/UiData.hpp"
@@ -71,9 +71,9 @@ namespace OpMon {
             frame.draw(waitText);
         }
 
-        if(drawAttacks){
+        if(drawMoves){
             for(unsigned int i = 0; i < 4; i++) {
-                frame.draw(attacks[i]);
+                frame.draw(moves[i]);
             }
             if(drawType){
                 frame.draw(type);
@@ -113,7 +113,7 @@ namespace OpMon {
 
         drawDialog = false;
         drawMainDialog = false;
-        drawAttacks = false;
+        drawMoves = false;
         drawType = false;
 
         if(!initialized){
@@ -127,7 +127,7 @@ namespace OpMon {
         //Checks if the turn is launched or not
         /* During the battle, two phases alternate:
            - Action selection (Menu with different actions)
-           - Turn action (Attack, item and other actions)
+           - Turn action (Move, item and other actions)
            When the turn is launched, the variable turnActivated is set to true in BattleCtrl.
            When the turn is over, the variable turnActivated is set to false in BattleCtrl.
            Battle have its own variable, allowing to know when the variable has changed, and do this code.
@@ -244,7 +244,7 @@ namespace OpMon {
                     }
                 } else if(turnAct.type == Elements::TurnActionType::OPANIM) {
                     if(currentOpAnims == nullptr) {
-                        currentOpAnims = new std::queue<Ui::Transformation>(((atkFirst && (turnNber == 0)) || (!atkFirst && (turnNber == 1))) /* Is it player's turn */ ? turns[turnNber]->attackUsed->getOpAnimsAtk() : turns[turnNber]->attackUsed->getOpAnimsDef());
+                        currentOpAnims = new std::queue<Ui::Transformation>(((atkFirst && (turnNber == 0)) || (!atkFirst && (turnNber == 1))) /* Is it player's turn */ ? turns[turnNber]->moveUsed->getOpAnimsAtk() : turns[turnNber]->moveUsed->getOpAnimsDef());
                     }
                     if(currentOpAnims->front().empty()) {
                         currentOpAnims->front().attach(((atkFirst && (turnNber == 0)) || (!atkFirst && (turnNber == 1))) /* Is it player's turn */ ? &atkTr : &defTr);
@@ -273,7 +273,7 @@ namespace OpMon {
             }
             drawDialog = true;
 
-        } else if(!attackChoice) { // Main battle menu
+        } else if(!moveChoice) { // Main battle menu
             std::queue<sf::String> waitTxt = Utils::StringKeys::autoNewLine(data.getUiDataPtr()->getString("battle.wait"), data.getUiDataPtr()->getFont(), 22, 192);
             sf::String str = waitTxt.front() + sf::String('\n');
             waitTxt.pop();
@@ -282,47 +282,47 @@ namespace OpMon {
             drawMainDialog = true;
             cursor.setPosition(posChoices[curPos.getValue()] + sf::Vector2f((choicesTxt[curPos.getValue()].getGlobalBounds().width / 2) - 10, 25));
 
-        } else { //Attacks menu
+        } else { //Moves menu
 
             for(unsigned int i = 0; i < 4; i++) {
-                if(atkTurn.opmon->getAttacks()[i] != nullptr) {
-                    attacks[i].setString(atkTurn.opmon->getAttacks()[i]->getName());
+                if(atkTurn.opmon->getMoves()[i] != nullptr) {
+                    moves[i].setString(atkTurn.opmon->getMoves()[i]->getName());
                 } else {
-                    attacks[i].setString("----"); //Text to print if there is no attack
+                    moves[i].setString("----"); //Text to print if there is no move
                 }
-                drawAttacks = true;
+                drawMoves = true;
             }
 
-            if(atkTurn.opmon->getAttacks()[curPos.getValue()] != nullptr) {
+            if(atkTurn.opmon->getMoves()[curPos.getValue()] != nullptr) {
 
                 //Changes the text's color according to the number of PP left
-                if(atkTurn.opmon->getAttacks()[curPos.getValue()]->getPP() <= (atkTurn.opmon->getAttacks()[curPos.getValue()]->getPPMax() / 5) && atkTurn.opmon->getAttacks()[curPos.getValue()]->getPP() > 0) {
+                if(atkTurn.opmon->getMoves()[curPos.getValue()]->getPP() <= (atkTurn.opmon->getMoves()[curPos.getValue()]->getPPMax() / 5) && atkTurn.opmon->getMoves()[curPos.getValue()]->getPP() > 0) {
                     ppTxt.setSfmlColor(sf::Color::Yellow);
-                } else if(atkTurn.opmon->getAttacks()[curPos.getValue()]->getPP() == 0) {
+                } else if(atkTurn.opmon->getMoves()[curPos.getValue()]->getPP() == 0) {
                     ppTxt.setSfmlColor(sf::Color::Red);
                 } else {
                     ppTxt.setSfmlColor(sf::Color::Black);
                 }
-                ppTxt.setString(std::to_string(atkTurn.opmon->getAttacks()[curPos.getValue()]->getPP()) + " / " + std::to_string(atkTurn.opmon->getAttacks()[curPos.getValue()]->getPPMax()));
-                type.setTexture(data.getUiDataPtr()->getTypeTexture(atkTurn.opmon->getAttacks()[curPos.getValue()]->getType()));
+                ppTxt.setString(std::to_string(atkTurn.opmon->getMoves()[curPos.getValue()]->getPP()) + " / " + std::to_string(atkTurn.opmon->getMoves()[curPos.getValue()]->getPPMax()));
+                type.setTexture(data.getUiDataPtr()->getTypeTexture(atkTurn.opmon->getMoves()[curPos.getValue()]->getType()));
                 drawType = true;
-            } else { //If there is no attack, print this
+            } else { //If there is no move, print this
                 ppTxt.setSfmlColor(sf::Color::Red);
                 ppTxt.setString("0 / 0");
             }
 
 
-            cursor.setPosition(posChoices[curPos.getValue()] + sf::Vector2f((attacks[curPos.getValue()].getGlobalBounds().width / 2) - 10, 30));
+            cursor.setPosition(posChoices[curPos.getValue()] + sf::Vector2f((moves[curPos.getValue()].getGlobalBounds().width / 2) - 10, 30));
         }
 
         
         return GameStatus::CONTINUE;
     }
 
-    void Battle::toggleAttackChoice() {
-        attackChoice = !attackChoice;
-        if(attackChoice) {
-            dialogSpr.setTexture(data.getAttackDialog());
+    void Battle::toggleMoveChoice() {
+        moveChoice = !moveChoice;
+        if(moveChoice) {
+            dialogSpr.setTexture(data.getMoveDialog());
             posChoices[0].x = 35;
             posChoices[0].y = 382;
             posChoices[1].x = 135;
@@ -332,10 +332,10 @@ namespace OpMon {
             posChoices[3].x = 135;
             posChoices[3].y = 437;
             for(unsigned int i = 0; i < 4; i++) {
-                attacks[i].setPosition(posChoices[i]);
-                attacks[i].setFont(data.getUiDataPtr()->getFont());
-                attacks[i].setCharacterSize(22);
-                attacks[i].setSfmlColor(sf::Color::Black);
+                moves[i].setPosition(posChoices[i]);
+                moves[i].setFont(data.getUiDataPtr()->getFont());
+                moves[i].setCharacterSize(22);
+                moves[i].setSfmlColor(sf::Color::Black);
             }
             curPos = 0;
 
@@ -364,7 +364,7 @@ namespace OpMon {
         trainerSpr.setTexture(data.getCharaBattleTextures(trainerClass)[0]);
         trainerSpr.setPosition(400, 20);
 
-        choicesTxt[0].setString(data.getUiDataPtr()->getString("battle.attack"));
+        choicesTxt[0].setString(data.getUiDataPtr()->getString("battle.move"));
         choicesTxt[1].setString(data.getUiDataPtr()->getString("battle.bag"));
         choicesTxt[2].setString(data.getUiDataPtr()->getString("battle.opmon"));
         choicesTxt[3].setString(data.getUiDataPtr()->getString("battle.run"));
