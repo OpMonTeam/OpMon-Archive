@@ -33,7 +33,7 @@ class UiData;
         Utils::ResourceLoader::load(shadowPlayer, "sprites/battle/shadow_2.png");
         Utils::ResourceLoader::load(shadowTrainer, "sprites/battle/shadow_1.png");
 
-        Utils::ResourceLoader::load(attackDialog, "backgrounds/dialog/attacks_dialog.png");
+        Utils::ResourceLoader::load(moveDialog, "backgrounds/dialog/moves_dialog.png");
     }
 
 } // namespace OpMon

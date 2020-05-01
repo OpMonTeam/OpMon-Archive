@@ -122,9 +122,9 @@ namespace OpMon {
      */
     namespace ArrayTypes {
         /*!
-         * \brief Calculates the effectiveness of an attack and returns it.
+         * \brief Calculates the effectiveness of an move and returns it.
          * \return The effectiveness.
-         * \param atk The type of the attack.
+         * \param atk The type of the move.
          * \param def1 The first type of the OpMon.
          * \param def2 The second type of the OpMon.
          */

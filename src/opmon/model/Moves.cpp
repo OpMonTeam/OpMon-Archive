@@ -1,10 +1,10 @@
 /*
-  Attacks.cpp
+  Moves.cpp
   Author : Cyrielle
   Contributors : BAKFR, Navet56, JonnyPtn
   File under GNU GPL v3.0 license
 */
-#include "Attacks.hpp"
+#include "Moves.hpp"
 
 #include <algorithm>
 #include <map>
@@ -14,13 +14,13 @@
 #include "src/utils/OpString.hpp"
 
 namespace OpMon {
-class Attack;
+class Move;
 }  // namespace OpMon
 
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 namespace OpMon {
 
-    namespace Attacks {
+    namespace Moves {
 
         using namespace Utils;
 
@@ -35,7 +35,7 @@ namespace OpMon {
             , coef(data.at("coef")) {
         }
 
-        int ChangeStatEffect::apply(Attack &, OpMon &attacker, OpMon &defender, std::queue<Elements::TurnAction> &turnQueue) {
+        int ChangeStatEffect::apply(Move &, OpMon &attacker, OpMon &defender, std::queue<Elements::TurnAction> &turnQueue) {
             std::map<Stats, int (OpMon::*)(int)> stat_to_method = {
                 {Stats::ACC, &OpMon::changeACC},
                 {Stats::ATK, &OpMon::changeATK},
@@ -52,7 +52,7 @@ namespace OpMon {
             Elements::TurnAction statMod;
             newTurnAction(&statMod);
 
-            if(target == Target::ATTACKER) {
+            if(target == Target::MOVEER) {
                 (attacker.*change_method)(coef); // diff_value = attacker.changeXXX(coef)
                 statMod.type = Elements::TurnActionType::ATK_STAT_MOD;
             } else {
@@ -66,7 +66,7 @@ namespace OpMon {
             return 0;
         }
 
-    } // namespace Attacks
+    } // namespace Moves
 
 } // namespace OpMon
 #pragma GCC diagnostic pop

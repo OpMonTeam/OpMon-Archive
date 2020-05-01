@@ -33,7 +33,7 @@ class Transformation;
      * \brief Class managing the battles on the screen.
      *
      * The Battle view alternates between two phases :
-     * - The choices phase, with the different menus where the player has to choose between different actions and attacks. The view will only manage these two choices, the other selection menus (OpMon and items) will be manages by other views.
+     * - The choices phase, with the different menus where the player has to choose between different actions and moves. The view will only manage these two choices, the other selection menus (OpMon and items) will be manages by other views.
      * - The turns phase, in which the actions are being executed. Everything is calculated in BattleCtrl and stored in a queue of TurnAction. This class reads these objects corresponding to the different animations this view has to do according to the TurnActionType object in them.
      */
     class Battle : public sf::Drawable{
@@ -97,7 +97,7 @@ class Transformation;
         sf::Sprite trainerSpr;
         sf::Sprite dialogSpr;
         /*!
-         * \brief The four choices in the battles (used for the action and attack selection.)
+         * \brief The four choices in the battles (used for the action and move selection.)
          */
         sf::Text choicesTxt[4];
         /*!
@@ -152,13 +152,13 @@ class Transformation;
 
         /*!
          * \brief Indicates the current selection mode.
-         * \details If `true`, the attack selection dialog is printed. If `false`, the action selection dialog is printed.
+         * \details If `true`, the move selection dialog is printed. If `false`, the action selection dialog is printed.
          */
-        bool attackChoice = false;
+        bool moveChoice = false;
 
-        sf::Text attacks[4];
+        sf::Text moves[4];
         /*!
-         * \brief The number of PP of an attack.
+         * \brief The number of PP of an move.
          */
         sf::Text ppTxt;
         /*!
@@ -166,7 +166,7 @@ class Transformation;
          */
         sf::Text ppStrTxt;
         /*!
-         * \brief Prints the type of the attack.
+         * \brief Prints the type of the move.
          */
         sf::Sprite type;
 
@@ -180,7 +180,7 @@ class Transformation;
          *
          * During the battle, two phases alternate:
          * - Action selection (Menu with different actions)
-         * - Turn action (Attack, item and other actions)
+         * - Turn action (Move, item and other actions)
          * When the turn is launched, the variable BattleCtrl::turnActivated is set to true.
          * When the turn is over, the variable BattleCtrl::turnActivated is set to false.
          * Battle have its own variable, allowing to know when the variable has changed.
@@ -214,9 +214,9 @@ class Transformation;
         bool drawMainDialog = false;
 
         /*!
-         * \brief If the elements of Battle::attacks have to be drawn on the screen.
+         * \brief If the elements of Battle::moves have to be drawn on the screen.
          */
-        bool drawAttacks = false;
+        bool drawMoves = false;
 
         /*!
          * \brief If Battle::type has to be drawn on the screen.
@@ -261,13 +261,13 @@ class Transformation;
         int getCurPos() { return curPos.getValue(); }
 
         /*!
-         * \brief Tooggle the interface printed, the action or attack selection.
+         * \brief Tooggle the interface printed, the action or move selection.
          */
-        void toggleAttackChoice();
+        void toggleMoveChoice();
 
         int getPhase() { return phase; }
 
-        bool isAttackChoice() { return attackChoice; }
+        bool isMoveChoice() { return moveChoice; }
 
         void passDialog() {
             if(dialog != nullptr)

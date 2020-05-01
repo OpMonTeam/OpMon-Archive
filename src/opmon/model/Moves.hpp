@@ -1,5 +1,5 @@
 /*!
- * \file Attacks.hpp
+ * \file Moves.hpp
  * \authors Cyrielle
  * \authors BAKFR
  * \authors Navet56
@@ -9,24 +9,24 @@
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUES_HPP_
 
 #include "../../nlohmann/json.hpp"
-#include "Attack.hpp"
+#include "Move.hpp"
 
 namespace OpMon {
 class OpMon;
 
     /*!
-     * \brief Contains the AttackEffects used in the game.
+     * \brief Contains the MoveEffects used in the game.
      */
-    namespace Attacks {
+    namespace Moves {
         /*!
          * \brief A generic effet to change an OpMon's statistic.
          */
-        class ChangeStatEffect : public AttackEffect {
+        class ChangeStatEffect : public MoveEffect {
         public:
             /*!
              * \brief Sets the target for the effect.
              */
-            enum class Target : int { ATTACKER = 0,/*!< The attack user will receive the stat modification.*/
+            enum class Target : int { MOVEER = 0,/*!< The move user will receive the stat modification.*/
                                       DEFENDER = 1 /*!< The attacked OpMon will receive the stat modification.*/};
             /*!
              * \param target The targeted OpMon.
@@ -42,14 +42,14 @@ class OpMon;
             /*!
              * \brief Applies the stat modification.
              */
-            int apply(Attack &attack, OpMon &attacker, OpMon &defender, std::queue<Elements::TurnAction> &turnQueue) override;
+            int apply(Move &move, OpMon &attacker, OpMon &defender, std::queue<Elements::TurnAction> &turnQueue) override;
 
         protected:
             Target target;/*!<\brief The targeted OpMon.*/
             Stats stat;/*!<\brief The stat to change.*/
             int coef;/*!< \brief The coefficient of the modifications to apply.*/
         };
-    } // namespace Attacks
+    } // namespace Moves
 } // namespace OpMon
 
 #endif /* SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUES_HPP_ */

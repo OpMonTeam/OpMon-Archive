@@ -1,10 +1,10 @@
 /*
-  Attack.cpp
+  Move.cpp
   Author : Cyrielle
   Contributors : BAKFR, torq, Navet56
   File under GNU GPL v3.0 license
 */
-#include "Attack.hpp"
+#include "Move.hpp"
 
 #include <cmath>
 #include <SFML/System/Vector2.hpp>
@@ -16,7 +16,7 @@
 
 #include "../../nlohmann/json.hpp"
 #include "../../utils/log.hpp"
-#include "Attacks.hpp"
+#include "Moves.hpp"
 #include "OpMon.hpp"
 #include "src/opmon/model/Enums.hpp"
 #include "src/opmon/view/elements/Turn.hpp"
@@ -26,18 +26,18 @@
 
 namespace OpMon {
 
-    std::map<std::string, AttackData> Attack::attackList;
+    std::map<std::string, MoveData> Move::moveList;
 
-    Attack *Attack::newAtk(std::string name) {
+    Move *Move::newMove(std::string name) {
         try {
-            return new Attack(attackList.at(name));
+            return new Move(moveList.at(name));
         } catch(const std::out_of_range &) {
-            Utils::Log::warn("Attack " + name + " not found.");
+            Utils::Log::warn("Move " + name + " not found.");
             return nullptr;
         }
     }
 
-    void Attack::initAttacks(std::string file) {
+    void Move::initMoves(std::string file) {
         std::ifstream jsonStream(file);
         nlohmann::json json;
 
@@ -45,29 +45,29 @@ namespace OpMon {
 
         for(auto itor = json.begin(); itor != json.end(); ++itor) {
             std::string idStr = itor->at("id");
-            std::vector<AttackEffect **> effects = {&attackList[idStr].preEffect, &attackList[idStr].postEffect, &attackList[idStr].ifFails};
-            attackList[idStr].nameKey = std::string("attacks.") + idStr + ".name";
-            attackList[idStr].power = itor->at("power");
-            attackList[idStr].type = itor->at("type");
-            attackList[idStr].accuracy = itor->at("accuracy");
-            attackList[idStr].special = itor->at("special");
-            attackList[idStr].status = itor->at("status");
-            attackList[idStr].criticalRate = itor->at("criticalRate");
-            attackList[idStr].neverFails = itor->at("neverFails");
-            attackList[idStr].ppMax = itor->at("ppMax");
-            attackList[idStr].priority = itor->at("priority");
+            std::vector<MoveEffect **> effects = {&moveList[idStr].preEffect, &moveList[idStr].postEffect, &moveList[idStr].ifFails};
+            moveList[idStr].nameKey = std::string("moves.") + idStr + ".name";
+            moveList[idStr].power = itor->at("power");
+            moveList[idStr].type = itor->at("type");
+            moveList[idStr].accuracy = itor->at("accuracy");
+            moveList[idStr].special = itor->at("special");
+            moveList[idStr].status = itor->at("status");
+            moveList[idStr].criticalRate = itor->at("criticalRate");
+            moveList[idStr].neverFails = itor->at("neverFails");
+            moveList[idStr].ppMax = itor->at("ppMax");
+            moveList[idStr].priority = itor->at("priority");
             int i = 0;
             for(auto eitor = itor->at("effects").begin(); eitor != itor->at("effects").end(); ++eitor) {
                 if(!eitor->at("null")) {
                     std::string effectType = eitor->at("type");
                     if(effectType == "ChangeStatEffect") {
-                        *(effects[i]) = new Attacks::ChangeStatEffect(eitor->at("data"));
+                        *(effects[i]) = new Moves::ChangeStatEffect(eitor->at("data"));
                     }
                 }
                 i++;
             }
             for(unsigned int i = 0; i < itor->at("animationOrder").size(); i++) {
-                attackList[idStr].animationOrder.push_back(itor->at("animationOrder").at(i));
+                moveList[idStr].animationOrder.push_back(itor->at("animationOrder").at(i));
             }
 
             for(int i = 0; i < 2; i++) {
@@ -102,21 +102,21 @@ namespace OpMon {
                                                                   sf::Vector2f(scalObj.at("origin").at(0), scalObj.at("origin").at(1)));
                     }
                     if(i) {
-                        attackList[idStr].opAnimsAtk.push(Ui::Transformation(aitor->at("time"), mov, rot, scal));
+                        moveList[idStr].opAnimsAtk.push(Ui::Transformation(aitor->at("time"), mov, rot, scal));
                     } else {
-                        attackList[idStr].opAnimsDef.push(Ui::Transformation(aitor->at("time"), mov, rot, scal));
+                        moveList[idStr].opAnimsDef.push(Ui::Transformation(aitor->at("time"), mov, rot, scal));
                     }
                 }
             }
             for(auto aitor = itor->at("animations").begin(); aitor != itor->at("animations").end(); ++aitor) {
-                attackList[idStr].animations.push(*aitor);
+                moveList[idStr].animations.push(*aitor);
             }
             std::string atkStr = itor->at("id");
-            Utils::Log::oplog("Loaded attack " + atkStr);
+            Utils::Log::oplog("Loaded move " + atkStr);
         }
     }
 
-    std::queue<Ui::Transformation> Attack::generateDefAnims(std::queue<Ui::Transformation> opAnims) {
+    std::queue<Ui::Transformation> Move::generateDefAnims(std::queue<Ui::Transformation> opAnims) {
         std::queue<Ui::Transformation> opAnimsDef;
         while(!opAnims.empty()) {
             opAnimsDef.push(opAnims.front().inverse());
@@ -125,7 +125,7 @@ namespace OpMon {
         return opAnimsDef;
     }
 
-    Attack::Attack(std::string nameKey, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::vector<Elements::TurnActionType> animationOrder, std::queue<Ui::Transformation> opAnimsAtk, std::queue<Ui::Transformation> opAnimsDef, std::queue<std::string> animations, AttackEffect *preEffect, AttackEffect *postEffect, AttackEffect *fails)
+    Move::Move(std::string nameKey, int power, Type type, int accuracy, bool special, bool status, int criticalRate, bool neverFails, int ppMax, int priority, std::vector<Elements::TurnActionType> animationOrder, std::queue<Ui::Transformation> opAnimsAtk, std::queue<Ui::Transformation> opAnimsDef, std::queue<std::string> animations, MoveEffect *preEffect, MoveEffect *postEffect, MoveEffect *fails)
         : nameKey(Utils::OpString(stringkeys, nameKey))
         , name(this->nameKey.getString(stringkeys))
         , power(power)
@@ -147,7 +147,7 @@ namespace OpMon {
         , animations(animations) {
     }
 
-    Attack::Attack(AttackData const &data)
+    Move::Move(MoveData const &data)
         : nameKey(Utils::OpString(stringkeys, data.nameKey))
         , name(nameKey.getString(stringkeys))
         , power(data.power)
@@ -168,24 +168,24 @@ namespace OpMon {
         , opAnimsDef(data.opAnimsDef)
         , animations(data.animations) {}
 
-    Attack::~Attack() {
+    Move::~Move() {
         delete(this->preEffect);
         delete(this->postEffect);
         delete(this->failEffect);
     }
 
-    /* Return 1 : Inform to do the same attack at the next turn.
-     * Return 2 : End the attack
-     * Return -2 : Inform that the attack failed
-     * Return -1 : Inform that the attack was ineffective against the target
+    /* Return 1 : Inform to do the same move at the next turn.
+     * Return 2 : End the move
+     * Return -2 : Inform that the move failed
+     * Return -1 : Inform that the move was ineffective against the target
      * In effectAfter : Return any number except 1 act like return 2.
-     * If 1 is returned, it will do the same attack at the next turn.
+     * If 1 is returned, it will do the same move at the next turn.
      * TODO : Create defines to make this more clear
      */
-    int Attack::attack(OpMon &atk, OpMon &def, std::queue<Elements::TurnAction> &turnQueue, bool attacker) {
+    int Move::move(OpMon &atk, OpMon &def, std::queue<Elements::TurnAction> &turnQueue, bool attacker) {
         pp--;
-        turnQueue.push(Elements::createTurnDialogAction(Utils::OpString(stringkeys, "battle.dialog.attack", {atk.getNicknamePtr(), &name})));
-        //Attack fail
+        turnQueue.push(Elements::createTurnDialogAction(Utils::OpString(stringkeys, "battle.dialog.move", {atk.getNicknamePtr(), &name})));
+        //Move fail
         if((Utils::Misc::randU(100)) > (accuracy * (atk.getStatACC() / def.getStatEVA())) && neverFails == false) {
             Elements::TurnAction failAction;
             turnQueue.push(Elements::createTurnDialogAction(Utils::OpString(stringkeys, "battle.dialog.fail", {atk.getNicknamePtr()})));
@@ -193,7 +193,7 @@ namespace OpMon {
             return -2;
         }
         int effectBf = preEffect ? preEffect->apply(*this, atk, def, turnQueue) : 0;
-        if(effectBf == 1 || effectBf == 2) { //If special returns 1 or 2, the attack ends.
+        if(effectBf == 1 || effectBf == 2) { //If special returns 1 or 2, the move ends.
             return effectBf;
         }
         //If type unefficiency
@@ -211,7 +211,7 @@ namespace OpMon {
             turnQueue.push(ta);
         }
 
-        if(!status) { //Check if it isn't a status attack to calculate the hp lost
+        if(!status) { //Check if it isn't a status move to calculate the hp lost
             hpLost = (((atk.getLevel() * 0.4 + 2) * (special ? atk.getStatATKSPE() : atk.getStatATK()) * power) / ((special ? def.getStatDEFSPE() : def.getStatDEF()) * 50) + 2);
             if(type == atk.getType1() || type == atk.getType2()) {
                 hpLost = round(hpLost * 1.5);
@@ -244,7 +244,7 @@ namespace OpMon {
         return postEffect ? postEffect->apply(*this, atk, def, turnQueue) : 0;
     }
 
-    void Attack::onLangChanged(){
+    void Move::onLangChanged(){
     	name = nameKey.getString(stringkeys);
     }
 
