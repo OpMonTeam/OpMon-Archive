@@ -15,7 +15,7 @@
 #include "src/utils/ResourceLoader.hpp"
 #include "src/opmon/core/Player.hpp"
 #include "src/opmon/core/UiData.hpp"
-#include "src/opmon/model/Attack.hpp"
+#include "src/opmon/model/Move.hpp"
 #include "src/opmon/model/Enums.hpp"
 #include "src/opmon/model/Nature.hpp"
 #include "src/opmon/model/OpMon.hpp"
@@ -31,9 +31,9 @@ namespace OpMon {
 
         using namespace Utils;
 
-        Attack::initAttacks(Path::getResourcePath() + "data/attacks.json");
+        Move::initMoves(Path::getResourcePath() + "data/moves.json");
 
-        player->addOpToOpTeam(new OpMon("", uidata->getOp(4), 5, {Attack::newAtk("Tackle"), Attack::newAtk("Growl"), nullptr, nullptr}, Nature::QUIET));
+        player->addOpToOpTeam(new OpMon("", uidata->getOp(4), 5, {Move::newMove("Tackle"), Move::newMove("Growl"), nullptr, nullptr}, Nature::QUIET));
 
         //PP texture and rect loading
         Utils::ResourceLoader::load(texturePP, "sprites/chara/pp/pp_anim.png");
@@ -129,10 +129,10 @@ namespace OpMon {
                 team->addOpMon(new OpMon(opmonItor->at("nickname"),
                                          uidata->getOp(opmonItor->at("species")),
                                          opmonItor->at("level"),
-                                         {Attack::newAtk(opmonItor->at("attacks")[0]),
-                                          Attack::newAtk(opmonItor->at("attacks")[1]),
-                                          Attack::newAtk(opmonItor->at("attacks")[2]),
-                                          Attack::newAtk(opmonItor->at("attacks")[3])},
+                                         {Move::newMove(opmonItor->at("moves")[0]),
+                                          Move::newMove(opmonItor->at("moves")[1]),
+                                          Move::newMove(opmonItor->at("moves")[2]),
+                                          Move::newMove(opmonItor->at("moves")[3])},
                                          opmonItor->at("nature")));
             }
             trainers.emplace(itor->at("name"), team);

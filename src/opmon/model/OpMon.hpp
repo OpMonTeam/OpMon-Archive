@@ -22,7 +22,7 @@
 namespace OpMon {
 
     class Species;
-    class Attack;
+    class Move;
     class Item;
 
     /*!
@@ -70,7 +70,7 @@ namespace OpMon {
         const Species *species;
         int level;
 
-        std::vector<Attack *> attacks;
+        std::vector<Move *> moves;
 
         Nature nature;
 
@@ -104,9 +104,9 @@ namespace OpMon {
          * \param nickname The OpMon's nickname. Replaced by the species name if empty.
          * \param species The OpMon's species.
          * \param level The OpMon's level.
-         * \param attacks The OpMon's attacks.
+         * \param moves The OpMon's moves.
          */
-        OpMon(const std::string &nickname, const Species *species, int level, const std::vector<Attack *> &attacks,
+        OpMon(const std::string &nickname, const Species *species, int level, const std::vector<Move *> &moves,
               Nature nature);
 
         int getConfusedCD() const {
@@ -202,11 +202,11 @@ namespace OpMon {
         /*!
          * \brief Changes different stats of the OpMon.
          * \param stats An array containing the stats in the order of the enumeration Stats.
-         * \param attacks An array containing up to 4 attacks.
+         * \param moves An array containing up to 4 moves.
          * \param species The new species of the OpMon.
          * \param types The two new types of the OpMon.
          */
-        void setStats(int stats[], Attack *attacks[], const Species &species, Type types[]);
+        void setStats(int stats[], Move *moves[], const Species &species, Type types[]);
 
         /*!
          * \brief Makes the OpMon loose HP.
@@ -286,7 +286,7 @@ namespace OpMon {
         }
 
         /*!
-         * \brief Heals the OPMon (Opposite of attack()). Makes sure the HP doesn't go higher than the maximum HP.
+         * \brief Heals the OPMon (Opposite of move()). Makes sure the HP doesn't go higher than the maximum HP.
          */
         void heal(int HP);
 
@@ -294,8 +294,8 @@ namespace OpMon {
             return level;
         }
 
-        std::vector<Attack *> getAttacks() {
-            return attacks;
+        std::vector<Move *> getMoves() {
+            return moves;
         }
 
         int getStatEVA() const {
