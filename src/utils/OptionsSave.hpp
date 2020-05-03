@@ -18,9 +18,8 @@
 #define addParam addOrModifParam
 /*!
  *\brief Macro used to explicit the use of OptionsSave::addOrModifParam when calling it in the code.
- * \todo Change to editParam
  */
-#define modifyParam addOrModifParam
+#define editParam addOrModifParam
 
 namespace Utils {
     /**
