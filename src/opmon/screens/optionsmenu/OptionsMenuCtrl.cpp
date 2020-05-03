@@ -110,23 +110,23 @@ namespace OpMon {
                         menu.setCurrentOption(OptionType::ALL);
                         return GameStatus::CONTINUE;
                     case 1:
-                        data.getUiDataPtr()->getOptions().modifyParam("lang", "en");
+                        data.getUiDataPtr()->getOptions().editParam("lang", "en");
                         tr.setLang("en");
                         break;
                     case 2:
-                        data.getUiDataPtr()->getOptions().modifyParam("lang", "es");
+                        data.getUiDataPtr()->getOptions().editParam("lang", "es");
                         tr.setLang("es");
                         break;
                     case 3:
-                        data.getUiDataPtr()->getOptions().modifyParam("lang", "fr");
+                        data.getUiDataPtr()->getOptions().editParam("lang", "fr");
                         tr.setLang("fr");
                         break;
                     case 4:
-                        data.getUiDataPtr()->getOptions().modifyParam("lang", "de");
+                        data.getUiDataPtr()->getOptions().editParam("lang", "de");
                         tr.setLang("de");
                         break;
                     case 5:
-                        data.getUiDataPtr()->getOptions().modifyParam("lang", "it");
+                        data.getUiDataPtr()->getOptions().editParam("lang", "it");
                         tr.setLang("it");
                         break;
                     }
@@ -199,10 +199,10 @@ namespace OpMon {
     void OptionsMenuCtrl::toggleVolume() {
         if(data.getUiDataPtr()->getJukebox().getGlobalVolume() > 0) {
             data.getUiDataPtr()->getJukebox().setGlobalVolume(0);
-            data.getUiDataPtr()->getOptions().modifyParam("volume", "0");
+            data.getUiDataPtr()->getOptions().editParam("volume", "0");
         } else {
             data.getUiDataPtr()->getJukebox().setGlobalVolume(100);
-            data.getUiDataPtr()->getOptions().modifyParam("volume", "100");
+            data.getUiDataPtr()->getOptions().editParam("volume", "100");
         }
         view.initOptionsMenuItemsValue();
     }
@@ -210,14 +210,14 @@ namespace OpMon {
     void OptionsMenuCtrl::raiseVolume() {
         const int newVolume = std::min(100, data.getUiDataPtr()->getJukebox().getGlobalVolume() + 10);
         data.getUiDataPtr()->getJukebox().setGlobalVolume(newVolume);
-        data.getUiDataPtr()->getOptions().modifyParam("volume", std::to_string(newVolume));
+        data.getUiDataPtr()->getOptions().editParam("volume", std::to_string(newVolume));
         view.initOptionsMenuItemsValue();
     }
 
     void OptionsMenuCtrl::lowerVolume() {
         const int newVolume = std::max(0, data.getUiDataPtr()->getJukebox().getGlobalVolume() - 10);
         data.getUiDataPtr()->getJukebox().setGlobalVolume(newVolume);
-        data.getUiDataPtr()->getOptions().modifyParam("volume", std::to_string(newVolume));
+        data.getUiDataPtr()->getOptions().editParam("volume", std::to_string(newVolume));
         view.initOptionsMenuItemsValue();
     }
 
