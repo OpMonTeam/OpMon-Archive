@@ -16,6 +16,7 @@ File under GNU GPL v3.0 license
 #include "GameMenu.hpp"
 #include "GameMenuData.hpp"
 #include "src/opmon/screens/base/AGameScreen.hpp"
+#include "src/opmon/screens/savemenu/SaveMenuCtrl.hpp"
 #include "src/opmon/view/ui/Jukebox.hpp"
 #include "src/utils/CycleCounter.hpp"
 
@@ -60,6 +61,9 @@ namespace OpMon {
                 }
                 if(event.key.code == sf::Keyboard::Return) {
                     switch(curPos.getValue()) {
+                    case 0:
+                        submenuToLoadNext = SubMenu::SAVE_MENU;
+                        return GameStatus::NEXT_NLS;
                     case 5:
                         submenuToLoadNext = SubMenu::SETTINGS_MENU;
                         return GameStatus::NEXT_NLS;
@@ -83,6 +87,9 @@ namespace OpMon {
 
         void GameMenuCtrl::loadNextScreen() {
             switch(submenuToLoadNext) {
+            case SubMenu::SAVE_MENU:
+                _next_gs = std::make_unique<SaveMenuCtrl>(data.getGameDataPtr());
+                break;
             case SubMenu::SETTINGS_MENU:
                 _next_gs = std::make_unique<OptionsMenuCtrl>(data.getGameDataPtr());
                 break;
