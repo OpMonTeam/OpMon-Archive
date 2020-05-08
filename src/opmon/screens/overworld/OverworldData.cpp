@@ -181,7 +181,7 @@ namespace OpMon {
     			break;
     		}
     	}
-    	if(contains){
+    	if(!contains){
             //#endif
     		Utils::Log::warn("Event texture key " + key + " not found. Returning alpha.");
     		return eventsTextures["alpha"];
