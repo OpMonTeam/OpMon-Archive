@@ -7,6 +7,7 @@
 
 #include <fstream>
 #include <algorithm>
+#include <filesystem>
 
 #include "src/nlohmann/json.hpp"
 #include "src/utils/OpString.hpp"
@@ -103,48 +104,42 @@ namespace OpMon {
             itemsList.emplace(itemId, std::make_unique<Item>(Utils::OpString(uidata->getStringKeys(), "items." + itemId + ".name"), itor->at("usable"), itor->at("onOpMon"), std::move(effects[0]), std::move(effects[1]), std::move(effects[2])));
         }
 
-        //Maps initialisation
 
-        //The maps and the trainers' data are stored in two separate files
-        std::ifstream mapsJsonFile(Path::getResourcePath() + "data/maps.json");
-        std::ifstream trainersJsonFile(Path::getResourcePath() + "data/trainers.json");
+        for(std::filesystem::directory_entry const& file : std::filesystem::directory_iterator(Path::getResourcePath() + "data/trainers")) {
+        	if(file.is_regular_file()){
+        		std::ifstream trainersFile(file.path());
+        		nlohmann::json trainersJson;
+        		trainersFile >> trainersJson;
 
-        if(!mapsJsonFile) {
-            throw Utils::LoadingException(Path::getResourcePath() + "data/maps.json");
-        }
-        if(!trainersJsonFile){
-            throw Utils::LoadingException(Path::getResourcePath() + "data/trainers.json");
-        }
-
-        nlohmann::json mapsJson;
-        nlohmann::json trainersJson;
-
-        mapsJsonFile >> mapsJson;
-        trainersJsonFile >> trainersJson;
-
-        /* Trainers loading */
-        for(auto itor = trainersJson.begin(); itor != trainersJson.end(); ++itor) {
-            OpTeam *team = new OpTeam(itor->at("name"));
-            for(auto opmonItor = itor->at("team").begin(); opmonItor != itor->at("team").end(); ++opmonItor) {
-                team->addOpMon(new OpMon(opmonItor->at("nickname"),
-                                         uidata->getOp(opmonItor->at("species")),
-                                         opmonItor->at("level"),
-                                         {Move::newMove(opmonItor->at("moves")[0]),
-                                          Move::newMove(opmonItor->at("moves")[1]),
-                                          Move::newMove(opmonItor->at("moves")[2]),
-                                          Move::newMove(opmonItor->at("moves")[3])},
-                                         opmonItor->at("nature")));
-            }
-            trainers.emplace(itor->at("name"), team);
-            std::string strName = itor->at("name");
-            Utils::Log::oplog("Loaded trainer " + strName);
+        		for(auto itor = trainersJson.begin(); itor != trainersJson.end(); ++itor) {
+        			OpTeam *team = new OpTeam(itor->at("name"));
+        			for(auto opmonItor = itor->at("team").begin(); opmonItor != itor->at("team").end(); ++opmonItor) {
+        				team->addOpMon(new OpMon(opmonItor->at("nickname"),
+        						uidata->getOp(opmonItor->at("species")),
+								opmonItor->at("level"),
+								{Move::newMove(opmonItor->at("moves")[0]),
+										Move::newMove(opmonItor->at("moves")[1]),
+										Move::newMove(opmonItor->at("moves")[2]),
+										Move::newMove(opmonItor->at("moves")[3])},
+										opmonItor->at("nature")));
+        			}
+        			trainers.emplace(itor->at("name"), team);
+        			std::string strName = itor->at("name");
+        			Utils::Log::oplog("Loaded trainer " + strName);
+        		}
+        	}
         }
 
         completions.emplace("playername", player->getNameP());
 
-        /* Maps loading */
-        for(auto itor = mapsJson.begin(); itor != mapsJson.end(); ++itor) {
-            maps.emplace(itor->at("id"), new Elements::Map(*itor));
+        //Maps loading
+        for(std::filesystem::directory_entry const& file : std::filesystem::directory_iterator(Path::getResourcePath() + "data/maps")) { //One map per JSON file
+        	if(file.is_regular_file()){
+        		nlohmann::json mapJson;
+        		std::ifstream mapFile(file.path());
+        		mapFile >> mapJson;
+        		maps.emplace(mapJson.at("id"), new Elements::Map(mapJson));
+        	}
         }
 
         mapsItor = maps.begin();
@@ -181,7 +176,7 @@ namespace OpMon {
     			break;
     		}
     	}
-    	if(contains){
+    	if(!contains){
             //#endif
     		Utils::Log::warn("Event texture key " + key + " not found. Returning alpha.");
     		return eventsTextures["alpha"];

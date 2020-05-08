@@ -8,7 +8,6 @@
 
 namespace OpMon {
     /*!
-     * \namespace Utils::Path
      * \brief Contains path-related utilites.
      */
     namespace Path {
