@@ -5,6 +5,7 @@ Contributors : Cyrielle, jubalh, JonnyPtn
 File under GNU GPL v3.0 license
 */
 #include "src/utils/fs.hpp"
+#include "src/utils/exceptions.hpp"
 #include <cstdlib>
 #include <string>
 #include <sys/stat.h>
@@ -66,6 +67,9 @@ namespace OpMon {
 #endif
             if(_isFolder(resPath + "./GameData"))
                 return resPath + "./GameData/";
+#ifdef __WIN32__
+            else throw Utils::LoadingException("Can't find the GameData directory in the game directory. Can't run the game without data, recheck your installation.", true);
+#endif
 
             { // search in $XDG_DATA_HOME
                 const char *xdg_data_home = std::getenv("XDG_DATA_HOME");
