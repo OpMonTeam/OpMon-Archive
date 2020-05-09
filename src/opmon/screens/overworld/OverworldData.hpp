@@ -55,6 +55,13 @@ class Map;
 
         std::map<std::string, sf::String *> completions;
 
+        /*!
+         * \brief Contains the tilesets.
+         *
+         * The first element of the pair represents the texture of the tileset, the second represents the array of collisions.
+         */
+        std::map<std::string, std::pair<sf::Texture, int*>> tilesets;
+
         GameMenuData gameMenuData;
 
         /*!
@@ -195,6 +202,16 @@ class Map;
          * \brief Gets an item.
          */
         std::unique_ptr<Item> &getItem(std::string const &str) { return itemsList[str]; }
+
+        /*!
+         * \brief Returns a tileset.
+         */
+        sf::Texture& getTileset(std::string id) {return tilesets[id].first;}
+
+        /*!
+         * \brief Returns the collision array for a tileset.
+         */
+        int* getTilesetCol(std::string id) {return tilesets[id].second;}
 
         /*!
          * \brief Initialises all the data.

@@ -23,6 +23,7 @@
 #include "src/opmon/view/ui/Elements.hpp"
 #include "src/utils/OpString.hpp"
 #include "src/utils/misc.hpp"
+#include <filesystem>
 
 namespace OpMon {
 
@@ -37,83 +38,88 @@ namespace OpMon {
         }
     }
 
-    void Move::initMoves(std::string file) {
-        std::ifstream jsonStream(file);
-        nlohmann::json json;
+    void Move::initMoves(std::filesystem::directory_iterator dir) {
+    	for(std::filesystem::directory_entry const& file : dir) {
+    		if(file.is_regular_file()){
+    			std::ifstream jsonStream(file.path());
+    			nlohmann::json json;
 
-        jsonStream >> json;
+    			jsonStream >> json;
 
-        for(auto itor = json.begin(); itor != json.end(); ++itor) {
-            std::string idStr = itor->at("id");
-            std::vector<MoveEffect **> effects = {&moveList[idStr].preEffect, &moveList[idStr].postEffect, &moveList[idStr].ifFails};
-            moveList[idStr].nameKey = std::string("moves.") + idStr + ".name";
-            moveList[idStr].power = itor->at("power");
-            moveList[idStr].type = itor->at("type");
-            moveList[idStr].accuracy = itor->at("accuracy");
-            moveList[idStr].special = itor->at("special");
-            moveList[idStr].status = itor->at("status");
-            moveList[idStr].criticalRate = itor->at("criticalRate");
-            moveList[idStr].neverFails = itor->at("neverFails");
-            moveList[idStr].ppMax = itor->at("ppMax");
-            moveList[idStr].priority = itor->at("priority");
-            int i = 0;
-            for(auto eitor = itor->at("effects").begin(); eitor != itor->at("effects").end(); ++eitor) {
-                if(!eitor->at("null")) {
-                    std::string effectType = eitor->at("type");
-                    if(effectType == "ChangeStatEffect") {
-                        *(effects[i]) = new Moves::ChangeStatEffect(eitor->at("data"));
-                    }
-                }
-                i++;
-            }
-            for(unsigned int i = 0; i < itor->at("animationOrder").size(); i++) {
-                moveList[idStr].animationOrder.push_back(itor->at("animationOrder").at(i));
-            }
+    			for(auto itor = json.begin(); itor != json.end(); ++itor) {
+    				std::string idStr = itor->at("id");
+    				std::vector<MoveEffect **> effects = {&moveList[idStr].preEffect, &moveList[idStr].postEffect, &moveList[idStr].ifFails};
+    				moveList[idStr].nameKey = std::string("moves.") + idStr + ".name";
+    				moveList[idStr].power = itor->at("power");
+    				moveList[idStr].type = itor->at("type");
+    				moveList[idStr].accuracy = itor->at("accuracy");
+    				moveList[idStr].special = itor->at("special");
+    				moveList[idStr].status = itor->at("status");
+    				moveList[idStr].criticalRate = itor->at("criticalRate");
+    				moveList[idStr].neverFails = itor->at("neverFails");
+    				moveList[idStr].ppMax = itor->at("ppMax");
+    				moveList[idStr].priority = itor->at("priority");
+    				int i = 0;
+    				for(auto eitor = itor->at("effects").begin(); eitor != itor->at("effects").end(); ++eitor) {
+    					if(!eitor->at("null")) {
+    						std::string effectType = eitor->at("type");
+    						if(effectType == "ChangeStatEffect") {
+    							*(effects[i]) = new Moves::ChangeStatEffect(eitor->at("data"));
+    						}
+    					}
+    					i++;
+    				}
+    				for(unsigned int i = 0; i < itor->at("animationOrder").size(); i++) {
+    					moveList[idStr].animationOrder.push_back(itor->at("animationOrder").at(i));
+    				}
 
-            for(int i = 0; i < 2; i++) {
-                for(auto aitor = itor->at(i ? "opMovementsAtk" : "opMovementsDef").begin(); aitor != itor->at(i ? "opMovementsAtk" : "opMovementsDef").end(); ++aitor) {
+    				for(int i = 0; i < 2; i++) {
+    					for(auto aitor = itor->at(i ? "opMovementsAtk" : "opMovementsDef").begin(); aitor != itor->at(i ? "opMovementsAtk" : "opMovementsDef").end(); ++aitor) {
 
-                    nlohmann::json transObj = aitor->value("translation", nlohmann::json(nlohmann::json::value_t::object));
-                    nlohmann::json rotObj = aitor->value("rotation", nlohmann::json(nlohmann::json::value_t::object));
-                    nlohmann::json scalObj = aitor->value("scaling", nlohmann::json(nlohmann::json::value_t::object));
+    						nlohmann::json transObj = aitor->value("translation", nlohmann::json(nlohmann::json::value_t::object));
+    						nlohmann::json rotObj = aitor->value("rotation", nlohmann::json(nlohmann::json::value_t::object));
+    						nlohmann::json scalObj = aitor->value("scaling", nlohmann::json(nlohmann::json::value_t::object));
 
-                    Ui::MovementData mov;
-                    Ui::RotationData rot;
-                    Ui::ScaleData scal;
-                    if(!transObj.empty()) {
-                        mov = Ui::Transformation::newMovementData(transObj.at("mode").at(0),
-                                                                    transObj.at("mode").at(1),
-                                                                    transObj.at("formulas").at(0),
-                                                                    transObj.at("formulas").at(1));
-                        std::cout << std::endl;
-                    }
+    						Ui::MovementData mov;
+    						Ui::RotationData rot;
+    						Ui::ScaleData scal;
+    						if(!transObj.empty()) {
+    							mov = Ui::Transformation::newMovementData(transObj.at("mode").at(0),
+    									transObj.at("mode").at(1),
+										transObj.at("formulas").at(0),
+										transObj.at("formulas").at(1));
+    							std::cout << std::endl;
+    						}
 
-                    if(!rotObj.empty()) {
-                        rot = Ui::Transformation::newRotationData(rotObj.at("mode"),
-                                                                    rotObj.at("formula"),
-                                                                    sf::Vector2f(rotObj.at("origin").at(0), rotObj.at("origin").at(1)));
-                    }
+    						if(!rotObj.empty()) {
+    							rot = Ui::Transformation::newRotationData(rotObj.at("mode"),
+    									rotObj.at("formula"),
+										sf::Vector2f(rotObj.at("origin").at(0), rotObj.at("origin").at(1)));
+    						}
 
-                    if(!scalObj.empty()) {
-                        scal = Ui::Transformation::newScaleData(scalObj.at("mode").at(0),
-                                                                  scalObj.at("mode").at(1),
-                                                                  scalObj.at("formulas").at(0),
-                                                                  scalObj.at("formulas").at(1),
-                                                                  sf::Vector2f(scalObj.at("origin").at(0), scalObj.at("origin").at(1)));
-                    }
-                    if(i) {
-                        moveList[idStr].opAnimsAtk.push(Ui::Transformation(aitor->at("time"), mov, rot, scal));
-                    } else {
-                        moveList[idStr].opAnimsDef.push(Ui::Transformation(aitor->at("time"), mov, rot, scal));
-                    }
-                }
-            }
-            for(auto aitor = itor->at("animations").begin(); aitor != itor->at("animations").end(); ++aitor) {
-                moveList[idStr].animations.push(*aitor);
-            }
-            std::string atkStr = itor->at("id");
-            Utils::Log::oplog("Loaded move " + atkStr);
-        }
+    						if(!scalObj.empty()) {
+    							scal = Ui::Transformation::newScaleData(scalObj.at("mode").at(0),
+    									scalObj.at("mode").at(1),
+										scalObj.at("formulas").at(0),
+										scalObj.at("formulas").at(1),
+										sf::Vector2f(scalObj.at("origin").at(0), scalObj.at("origin").at(1)));
+    						}
+    						if(i) {
+    							moveList[idStr].opAnimsAtk.push(Ui::Transformation(aitor->at("time"), mov, rot, scal));
+    						} else {
+    							moveList[idStr].opAnimsDef.push(Ui::Transformation(aitor->at("time"), mov, rot, scal));
+    						}
+    					}
+    				}
+    				for(auto aitor = itor->at("animations").begin(); aitor != itor->at("animations").end(); ++aitor) {
+    					moveList[idStr].animations.push(*aitor);
+    				}
+    				std::string atkStr = itor->at("id");
+    				Utils::Log::oplog("Loaded move " + atkStr);
+    			}
+    		}
+    	}
+
     }
 
     std::queue<Ui::Transformation> Move::generateDefAnims(std::queue<Ui::Transformation> opAnims) {
