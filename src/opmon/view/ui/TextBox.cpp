@@ -14,7 +14,7 @@ namespace OpMon{
         // Some default values for the left text
         for (uint32_t i = 0; i < linesCount; i++) {
             sf::Text newLeftText;
-            sf::Vector2f leftTextPosition(position.x + 24, position.y + 28 * (i+1));
+            sf::Vector2f leftTextPosition(position.x + 24, position.y + 24 * (i+1));
             newLeftText.setPosition(leftTextPosition);
             leftText.push_back(newLeftText);
 
