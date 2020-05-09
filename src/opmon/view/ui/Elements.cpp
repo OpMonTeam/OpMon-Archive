@@ -23,12 +23,8 @@ File under GNU GPL v3.0 license
 namespace OpMon {
     namespace Ui {
 
-        sf::Texture MapLayer::tileset;
-
-        MapLayer::MapLayer(sf::Vector2i size, const int tilesCodes[]) {
-            if(tileset.getSize() == sf::Vector2u(0, 0)) {
-                Utils::ResourceLoader::load(tileset, "tileset/tileset.png");
-            }
+        MapLayer::MapLayer(sf::Vector2i size, const int tilesCodes[], sf::Texture &tileset)
+        : tileset(tileset){
             tiles.setPrimitiveType(sf::Quads);
             tiles.resize(size.x * size.y * 4);
 

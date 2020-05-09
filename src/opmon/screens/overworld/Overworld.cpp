@@ -142,9 +142,9 @@ namespace OpMon {
         setMusic(current->getBg());
 
         //Recreates the layers
-        layer1 = std::make_unique<Ui::MapLayer>(current->getDimensions(), current->getLayer1());
-        layer2 = std::make_unique<Ui::MapLayer>(current->getDimensions(), current->getLayer2());
-        layer3 = std::make_unique<Ui::MapLayer>(current->getDimensions(), current->getLayer3());
+        layer1 = std::make_unique<Ui::MapLayer>(current->getDimensions(), current->getLayer1(), data.getTileset(current->getTileset()));
+        layer2 = std::make_unique<Ui::MapLayer>(current->getDimensions(), current->getLayer2(), data.getTileset(current->getTileset()));
+        layer3 = std::make_unique<Ui::MapLayer>(current->getDimensions(), current->getLayer3(), data.getTileset(current->getTileset()));
     }
 
     void Overworld::pause() {
@@ -166,9 +166,9 @@ namespace OpMon {
         resetCamera();
 
         setMusic(current->getBg());
-        layer1 = std::make_unique<Ui::MapLayer>(current->getDimensions(), current->getLayer1());
-        layer2 = std::make_unique<Ui::MapLayer>(current->getDimensions(), current->getLayer2());
-        layer3 = std::make_unique<Ui::MapLayer>(current->getDimensions(), current->getLayer3());
+        layer1 = std::make_unique<Ui::MapLayer>(current->getDimensions(), current->getLayer1(), data.getTileset(current->getTileset()));
+        layer2 = std::make_unique<Ui::MapLayer>(current->getDimensions(), current->getLayer2(), data.getTileset(current->getTileset()));
+        layer3 = std::make_unique<Ui::MapLayer>(current->getDimensions(), current->getLayer3(), data.getTileset(current->getTileset()));
         character.setScale(2, 2);
         character.setOrigin(16, 16);
 

@@ -9,6 +9,7 @@
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUE_HPP_
 
 #include <queue>
+#include <filesystem>
 
 #include "../view/ui/Elements.hpp"
 #include "../view/elements/Turn.hpp"
@@ -87,7 +88,7 @@ class Move;
          * \brief Initialises the moves and stores them in Move::moveList.
          * \param file The file containing the data to load (Json format).
          */
-        static void initMoves(std::string file);
+        static void initMoves(std::filesystem::directory_iterator dir);
 
         /*!
          * \brief Resets the current PP number to the maximum.
