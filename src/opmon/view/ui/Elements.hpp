@@ -57,10 +57,6 @@ namespace OpMon {
         class MapLayer : public sf::Drawable, public sf::Transformable {
           private:
             /*!
-             * \brief The map tileset.
-             */
-            static sf::Texture tileset;
-            /*!
              * \brief Method called by RenderTexture::draw.
              */
             virtual void draw(sf::RenderTarget &target, sf::RenderStates stats) const;
@@ -69,13 +65,18 @@ namespace OpMon {
              */
             sf::VertexArray tiles;
 
+            /*!
+             * \brief The tileset used in the map.
+             */
+            sf::Texture &tileset;
+
           public:
             /*!
              * \brief Builds a map layer.
              * \param size The dimentions of the map.
              * \param tilesCode An array containing the tiles codes to build the map.
              */
-            MapLayer(sf::Vector2i size, const int tilesCode[]);
+            MapLayer(sf::Vector2i size, const int tilesCode[], sf::Texture &tileset);
         };
 
         /*!
