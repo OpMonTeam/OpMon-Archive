@@ -32,7 +32,7 @@ namespace OpMon {
 
         using namespace Utils;
 
-        Move::initMoves(Path::getResourcePath() + "data/moves.json");
+        Move::initMoves(std::filesystem::directory_iterator(Path::getResourcePath() + "data/moves"));
 
         player->addOpToOpTeam(new OpMon("", uidata->getOp(4), 5, {Move::newMove("Tackle"), Move::newMove("Growl"), nullptr, nullptr}, Nature::QUIET));
 
@@ -80,30 +80,32 @@ namespace OpMon {
         Utils::ResourceLoader::loadTextureArray(elementsTextures["smoke"], "animations/chimneysmoke/chimneysmoke_%d.png", 32, 1);
 
         //Items initialisation
+        for(std::filesystem::directory_entry const& file : std::filesystem::directory_iterator(Path::getResourcePath() + "data/items")) {
+        	if(file.is_regular_file()){
+        		nlohmann::json itemsJson;
 
-        nlohmann::json itemsJson;
+        		std::ifstream itemsJsonFile(file.path());
 
-        std::ifstream itemsJsonFile(Path::getResourcePath() + "data/items.json");
+        		if(!itemsJsonFile) {
+        			throw Utils::LoadingException("items.json", true);
+        		}
 
-        if(!itemsJsonFile) {
-            throw Utils::LoadingException("items.json", true);
+        		itemsJsonFile >> itemsJson;
+
+        		for(auto itor = itemsJson.begin(); itor != itemsJson.end(); ++itor) {
+        			std::vector<std::unique_ptr<ItemEffect>> effects; //0 is opmon, 1 is player, 2 is held
+        			for(auto eitor = itor->at("effects").begin(); eitor != itor->at("effects").end(); ++eitor) {
+        				if(eitor->at("type") == "HpHealEffect") {
+        					effects.push_back(std::make_unique<Items::HpHealEffect>(eitor->at("healed")));
+        				} else {
+        					effects.push_back(nullptr);
+        				}
+        			}
+        			std::string itemId = itor->at("id");
+        			itemsList.emplace(itemId, std::make_unique<Item>(Utils::OpString(uidata->getStringKeys(), "items." + itemId + ".name"), itor->at("usable"), itor->at("onOpMon"), std::move(effects[0]), std::move(effects[1]), std::move(effects[2])));
+        		}
+        	}
         }
-
-        itemsJsonFile >> itemsJson;
-
-        for(auto itor = itemsJson.begin(); itor != itemsJson.end(); ++itor) {
-            std::vector<std::unique_ptr<ItemEffect>> effects; //0 is opmon, 1 is player, 2 is held
-            for(auto eitor = itor->at("effects").begin(); eitor != itor->at("effects").end(); ++eitor) {
-                if(eitor->at("type") == "HpHealEffect") {
-                    effects.push_back(std::make_unique<Items::HpHealEffect>(eitor->at("healed")));
-                } else {
-                    effects.push_back(nullptr);
-                }
-            }
-            std::string itemId = itor->at("id");
-            itemsList.emplace(itemId, std::make_unique<Item>(Utils::OpString(uidata->getStringKeys(), "items." + itemId + ".name"), itor->at("usable"), itor->at("onOpMon"), std::move(effects[0]), std::move(effects[1]), std::move(effects[2])));
-        }
-
 
         for(std::filesystem::directory_entry const& file : std::filesystem::directory_iterator(Path::getResourcePath() + "data/trainers")) {
         	if(file.is_regular_file()){
