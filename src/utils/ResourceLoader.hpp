@@ -43,7 +43,7 @@ namespace Utils {
          * \param fatal - if true, the program quit if there is an error.
          */
         template <typename T>
-        static void load(T &resource, const char *path, bool fatal = false);
+        static void load(T &resource, std::string path, bool fatal = false);
 
         /*!
          * \brief Loads an array of textures (multiple frames of the same animation).
@@ -55,14 +55,14 @@ namespace Utils {
          * \param path_offset - by default, the first frame number is 0. If set, the first frame number will be the
          *    offset.
          */
-        static void loadTextureArray(sf::Texture container[], const char *path, size_t nb_frame, size_t path_offset = 0);
+        static void loadTextureArray(sf::Texture container[], std::string path, size_t nb_frame, size_t path_offset = 0);
 
         /*!
          * \copydoc loadTextureArray(sf::Texture container[], const char *path, size_t nb_frame, size_t path_offset = 0)
          *
          * The container must be empty.
          */
-        static void loadTextureArray(std::vector<sf::Texture> &container, const char *path, size_t nb_frame, size_t path_offset = 0);
+        static void loadTextureArray(std::vector<sf::Texture> &container, std::string path, size_t nb_frame, size_t path_offset = 0);
 
         /*!
          * \brief Loads a music.
@@ -76,7 +76,7 @@ namespace Utils {
     };
 
     template <typename T>
-    void ResourceLoader::load(T &resource, const char *path, bool fatal) {
+    void ResourceLoader::load(T &resource, std::string path, bool fatal) {
         try{
             if(!resource.loadFromFile(ResourceLoader::getResourcePath() + path)) {
                 throw LoadingException(path, fatal);
