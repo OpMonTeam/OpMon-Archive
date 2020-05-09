@@ -79,21 +79,22 @@ namespace OpMon {
              */
             bool loaded = false;
 
+            /*!
+             * \brief The ID of the tileset used in the map.
+             */
+            std::string tileset;
 
             /*!
-             * \brief The collisions for each tile.
-             *
-             * \todo Add description of each number/collision type.
-             * \todo Move this in a json file and add multiple tileset support.
+             * \brief The collisions of the tileset.
              */
-            static int colTile[4096];
+            int* tilesetCol;
 
 
           public:
             /*!
              * \brief Creates a map and loads it at the same time, with all the information needed.
              */
-            Map(std::vector<int> const &layer1, std::vector<int> const &layer2, std::vector<int> const &layer3, int w, int h, bool indoor, std::string const &bg, std::vector<std::string> const &animatedElements = std::vector<std::string>());
+            Map(std::vector<int> const &layer1, std::vector<int> const &layer2, std::vector<int> const &layer3, int w, int h, bool indoor, std::string const& tileset, int* tilesetCol, std::string const &bg, std::vector<std::string> const &animatedElements = std::vector<std::string>());
             /*!
              * \brief Creates a map without loading it.
              * \details If you want to use the map, please call Map::loadMap before calling any other method.
@@ -126,6 +127,9 @@ namespace OpMon {
             }
             std::string getBg() const {
                 return bg;
+            }
+            std::string getTileset() const {
+            	return tileset;
             }
             const std::vector<std::string> &getAnimatedElements() const {
                 return animatedElements;
