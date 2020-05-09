@@ -69,6 +69,15 @@ namespace OpMon {
         				Utils::ResourceLoader::loadTextureArray(elementsTextures[element.at("id")], element.at("path"), element.at("frames"), element.value("offset", 1));
         			}
         		}
+        		if(listJson.contains("tilesets")) {
+        			for(nlohmann::json element : listJson.at("tilesets")) {
+        				Utils::ResourceLoader::load(tilesets[element.at("id")].first, element.at("path"));
+        				tilesets[element.at("id")].second = (int*) malloc(sizeof(int) * element.at("collisions").size());
+        				for(size_t i = 0; i < element.at("collisions").size(); i++){
+        					tilesets[element.at("id")].second[i] = element.at("collisions")[i];
+        				}
+        			}
+        		}
 
         	}
         }
@@ -146,6 +155,9 @@ namespace OpMon {
     OverworldData::~OverworldData() {
         for(auto &map : maps) {
             delete(map.second);
+        }
+        for(auto &pair : tilesets){
+        	free(pair.second.second);
         }
         delete(player);
     }
