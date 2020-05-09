@@ -51,33 +51,29 @@ namespace OpMon {
         walkingPP2Rect[(unsigned int)Side::TO_LEFT] = sf::IntRect(64, 32, 32, 32);
         walkingPP2Rect[(unsigned int)Side::TO_UP] = sf::IntRect(96, 32, 32, 32);
 
-        //Characters' textures initialization
-        Utils::ResourceLoader::loadTextureArray(eventsTextures["kid"], "sprites/chara/kid/kid%d.png", 12);
-        Utils::ResourceLoader::loadTextureArray(eventsTextures["fisherman"], "sprites/chara/fisherman/fisherman%d.png", 12);
-        Utils::ResourceLoader::loadTextureArray(eventsTextures["kiwai"], "sprites/chara/prof/prof%d.png", 12);
-        Utils::ResourceLoader::loadTextureArray(eventsTextures["playermom"], "sprites/chara/mom/mom%d.png", 12);
-        Utils::ResourceLoader::loadTextureArray(eventsTextures["sk"], "sprites/chara/rival/sk%d.png", 12);
-        Utils::ResourceLoader::loadTextureArray(eventsTextures["inferm"], "sprites/chara/inferm/inferm%d.png", 12);
-        Utils::ResourceLoader::loadTextureArray(eventsTextures["|_| -|- |-| |= |_| N"], "sprites/chara/beta/alphabeta/otheon%d.png", 12);
-        Utils::ResourceLoader::loadTextureArray(eventsTextures["beta"], "sprites/chara/beta/beta%d.png", 12);
-        Utils::ResourceLoader::loadTextureArray(eventsTextures["albd"], "sprites/chara/albd/albd%d.png", 12);
+        //Initialization of the textures of the events
+        for(std::filesystem::directory_entry const& file : std::filesystem::directory_iterator(Path::getResourcePath() + "data/resourcelist")) {
+        	if(file.is_regular_file()){
+        		std::ifstream listFile(file.path());
+        		nlohmann::json listJson;
+        		listFile >> listJson;
+        		if(listJson.contains("events")){
+        			for(nlohmann::json element : listJson.at("events")){
+        				Utils::ResourceLoader::loadTextureArray(eventsTextures[element.at("id")], element.at("path"), element.at("texturesnb"), element.value("offset", 0));
+        			}
+        		}
+        		if(listJson.contains("elements")) {
+        			for(nlohmann::json element : listJson.at("elements")){
+        				elementsCounter[element.at("id")] = 0;
+        				elementsPos[element.at("id")] = sf::Vector2f(element.at("position")[0], element.at("position")[1]);
+        				Utils::ResourceLoader::loadTextureArray(elementsTextures[element.at("id")], element.at("path"), element.at("frames"), element.value("offset", 1));
+        			}
+        		}
 
-        //Initialization of doors
-        Utils::ResourceLoader::loadTextureArray(eventsTextures["shop door"], "animations/shopdoor/shop_door%d.png", 4, 1);
-        Utils::ResourceLoader::loadTextureArray(eventsTextures["door"], "animations/basicdoor/basic_door%d.png", 4, 1);
+        	}
+        }
 
         eventsTextures.emplace("alpha", alphaTab);
-
-        //Initialization of animated elements
-        elementsCounter["windturbine"] = 0;
-        elementsPos["windturbine"] = sf::Vector2f(8 * 32 + 25 * 32 - 7, 3 * 32 + 15);
-
-        Utils::ResourceLoader::loadTextureArray(elementsTextures["windturbine"], "animations/windturbine/blade_%d.png", 16, 1);
-
-        elementsCounter["smoke"] = 0;
-        elementsPos["smoke"] = sf::Vector2f(8 * 32 + 18 * 32, 11 * 32);
-
-        Utils::ResourceLoader::loadTextureArray(elementsTextures["smoke"], "animations/chimneysmoke/chimneysmoke_%d.png", 32, 1);
 
         //Items initialisation
         for(std::filesystem::directory_entry const& file : std::filesystem::directory_iterator(Path::getResourcePath() + "data/items")) {
