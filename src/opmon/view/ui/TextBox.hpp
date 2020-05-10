@@ -69,6 +69,8 @@ namespace OpMon{
          */
         TextBox(sf::Texture texture, sf::Vector2f position, uint32_t width, uint32_t height, uint32_t linesCount = 1);
 
+        TextBox() = default;
+
         ~TextBox() = default;
 
         /**!
