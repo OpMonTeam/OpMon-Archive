@@ -18,7 +18,7 @@ class RenderTexture;
 
 namespace OpMon {
 class Player;
-class UiData;
+class GameData;
 
     /*!
      * \brief Manages the overworld.
@@ -65,7 +65,7 @@ class UiData;
         std::list<Elements::AbstractEvent*> usedList;
 
     public:
-        OverworldCtrl(Player &player, UiData *uidata);
+        OverworldCtrl(Player &player, GameData *gamedata);
 
         GameStatus checkEvent(sf::Event const &event) override;
         /*!

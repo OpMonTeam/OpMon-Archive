@@ -12,7 +12,7 @@
 #include <memory>
 
 #include "src/utils/StringKeys.hpp"
-#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/core/GameData.hpp"
 #include "src/opmon/screens/gamemenu/GameMenuData.hpp"
 #include "src/utils/defines.hpp"
 
@@ -25,16 +25,16 @@ namespace OpMon {
         for(size_t i = 0; i < 6; i++) {
             selections[i].setTexture(data.getSelectionTexture(i));
             selections[i].setPosition(data.getSelectionPos(i));
-            selectxt[i].setFont(data.getUiDataPtr()->getFont());
+            selectxt[i].setFont(data.getGameDataPtr()->getFont());
             selectxt[i].setCharacterSize(20);
             selectxt[i].setSfmlColor(sf::Color::White);
         }
-        selectxt[0].setString(data.getUiDataPtr()->getString("gamemenu.save"));
-        selectxt[1].setString(data.getUiDataPtr()->getString("gamemenu.id"));
-        selectxt[2].setString(data.getUiDataPtr()->getString("gamemenu.bag"));
-        selectxt[3].setString(data.getUiDataPtr()->getString("gamemenu.opmons"));
-        selectxt[4].setString(data.getUiDataPtr()->getString("gamemenu.opdex"));
-        selectxt[5].setString(data.getUiDataPtr()->getString("gamemenu.settings"));
+        selectxt[0].setString(data.getGameDataPtr()->getString("gamemenu.save"));
+        selectxt[1].setString(data.getGameDataPtr()->getString("gamemenu.id"));
+        selectxt[2].setString(data.getGameDataPtr()->getString("gamemenu.bag"));
+        selectxt[3].setString(data.getGameDataPtr()->getString("gamemenu.opmons"));
+        selectxt[4].setString(data.getGameDataPtr()->getString("gamemenu.opdex"));
+        selectxt[5].setString(data.getGameDataPtr()->getString("gamemenu.settings"));
 
         selectxt[0].setPosition(146, 143);
         selectxt[1].setPosition(260, 143);

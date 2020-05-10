@@ -6,11 +6,11 @@
 #pragma once
 
 #include "src/opmon/core/Player.hpp"
-#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/core/GameData.hpp"
 
 namespace OpMon {
 class Player;
-class UiData;
+class GameData;
 
     /*!
      * \brief Contains the data of the in-game menu used by View::GameMenu and Controller::GameMenuCtrl
@@ -23,7 +23,7 @@ class UiData;
         sf::Texture selectionTexture[6];
         sf::Vector2f selectionPos[6];
 
-        UiData *uidata;
+        GameData *gamedata;
         Player *player;
 
         /*!
@@ -34,10 +34,10 @@ class UiData;
     public:
         /*!
          * \brief Initialises all the data.
-         * \param data A pointer to the UiData object.
+         * \param data A pointer to the GameData object.
          * \param player A pointer to the Player object.
          */
-        GameMenuData(UiData *data, Player *player);
+        GameMenuData(GameData *data, Player *player);
 
         /*!
          * \brief Gets the background texture of the in-game menu.
@@ -68,9 +68,9 @@ class UiData;
         sf::Vector2f &getSelectionPos(int index) { return selectionPos[index]; }
 
         /*!
-         * \brief Gets a pointer to the UiData object.
+         * \brief Gets a pointer to the GameData object.
          */
-        UiData *getUiDataPtr() { return uidata; }
+        GameData *getGameDataPtr() { return gamedata; }
         /*!
          * \brief Gets a pointer to the Player object.
          */

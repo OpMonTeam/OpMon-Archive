@@ -8,10 +8,10 @@
 #include "src/utils/ResourceLoader.hpp"
 
 namespace OpMon {
-class UiData;
+class GameData;
 
-    MainMenuData::MainMenuData(UiData *ptr)
-        : uidata(ptr) {
+    MainMenuData::MainMenuData(GameData *ptr)
+        : gamedata(ptr) {
         Utils::ResourceLoader::load(arrChoice, "sprites/misc/arrChoiceScale.png");
     }
 } // namespace OpMon

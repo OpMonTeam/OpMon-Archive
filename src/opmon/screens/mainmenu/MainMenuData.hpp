@@ -7,10 +7,10 @@
 
 #include <SFML/Graphics/Texture.hpp>
 
-#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/core/GameData.hpp"
 
 namespace OpMon {
-class UiData;
+class GameData;
 
     /*!
      * \brief Contains the data for the main menu of the game.
@@ -20,7 +20,7 @@ class UiData;
     private:
         sf::Texture arrChoice;
 
-        UiData *uidata;
+        GameData *gamedata;
 
         /*!
          * \brief The copy constructor. Not defined, must not be used.
@@ -29,9 +29,9 @@ class UiData;
 
     public:
         /*!
-         * \brief Returns a pointer to the UiData object.
+         * \brief Returns a pointer to the GameData object.
          */
-        UiData *getUiDataPtr() const { return uidata; }
+        GameData *getGameDataPtr() const { return gamedata; }
 
         /*!
          * \brief Gets the cursor.
@@ -39,8 +39,8 @@ class UiData;
         sf::Texture const &getArrChoice() const { return arrChoice; }
         /*!
          * \brief Initialises all the data.
-         * \param ptr A pointer to the UiData object.
+         * \param ptr A pointer to the GameData object.
          */
-        MainMenuData(UiData *ptr);
+        MainMenuData(GameData *ptr);
     };
 } // namespace OpMon

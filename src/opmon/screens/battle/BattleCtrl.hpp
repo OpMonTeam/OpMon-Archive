@@ -20,7 +20,7 @@ class OpMon;
 class OpTeam;
 class Player;
 class Species;
-class UiData;
+class GameData;
 namespace Elements {
 	class BattleEvent;
 }
@@ -157,18 +157,18 @@ namespace Elements {
          * \brief Initialises a battle with two OpTeam.
          * \param one The player's team.
          * \param two The opponent's team.
-         * \param uidata The UiData object.
+         * \param gamedata The GameData object.
          * \param player The Player object.
          */
-        BattleCtrl(OpTeam *one, OpTeam *two, UiData *uidata, Player *player);
+        BattleCtrl(OpTeam *one, OpTeam *two, GameData *gamedata, Player *player);
         /*!
          * \brief Initialises a battle between the player and a trainer.
          * \param one The player's team.
          * \param two The opposite trainer.
-         * \param uidata The UiData object.
+         * \param gamedata The GameData object.
          * \param player The Player object.
          */
-        BattleCtrl(OpTeam *one, Elements::BattleEvent *two, UiData *uidata, Player *player);
+        BattleCtrl(OpTeam *one, Elements::BattleEvent *two, GameData *gamedata, Player *player);
         GameStatus checkEvent(sf::Event const &) override;
         GameStatus update(sf::RenderTexture &frame) override;
 

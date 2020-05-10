@@ -5,17 +5,17 @@
  */
 #pragma once
 
-#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/core/GameData.hpp"
 
 namespace OpMon {
-class UiData;
+class GameData;
 
     /*!
      * \brief Contains the data used in the options menu.
      */
     class OptionsMenuData {
     private:
-        UiData *uidata;
+        GameData *gamedata;
         sf::Texture background;
         sf::Texture selectBar;
         sf::Texture langBg;
@@ -59,13 +59,13 @@ class UiData;
          */
         sf::Texture const &getKeyChange() const { return keyChange; }
         /*!
-         * \brief Gets a pointer to the UiData object.
+         * \brief Gets a pointer to the GameData object.
          */
-        UiData *getUiDataPtr() { return uidata; }
+        GameData *getGameDataPtr() { return gamedata; }
         /*!
          * \brief Initialises all the data.
-         * \param ptr A pointer to the UiData object.
+         * \param ptr A pointer to the GameData object.
          */
-        OptionsMenuData(UiData *data);
+        OptionsMenuData(GameData *data);
     };
 } // namespace OpMon

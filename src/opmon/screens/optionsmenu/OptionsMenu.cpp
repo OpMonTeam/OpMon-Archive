@@ -15,7 +15,7 @@
 
 #include "src/utils/OptionsSave.hpp"
 #include "src/opmon/view/ui/TextBox.hpp"
-#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/core/GameData.hpp"
 #include "OptionsMenuData.hpp"
 #include "src/opmon/view/ui/Jukebox.hpp"
 #include "src/utils/CycleCounter.hpp"
@@ -29,74 +29,74 @@ namespace OpMon {
     int OPTIONS_MENU_ITEM_PADDING = 4;
 
     void OptionsMenu::initStrings() {
-        txtRetour.setString(data.getUiDataPtr()->getString("options.retour"));
-        txtRetour.setFont(data.getUiDataPtr()->getFont());
+        txtRetour.setString(data.getGameDataPtr()->getString("options.retour"));
+        txtRetour.setFont(data.getGameDataPtr()->getFont());
         txtRetour.setCharacterSize(FONT_SIZE_DEFAULT);
-        txtOptions.setString(data.getUiDataPtr()->getString("options.title"));
-        txtOptions.setFont(data.getUiDataPtr()->getFont());
+        txtOptions.setString(data.getGameDataPtr()->getString("options.title"));
+        txtOptions.setFont(data.getGameDataPtr()->getFont());
         txtOptions.setCharacterSize(FONT_SIZE_DEFAULT);
 
-        txtCred.setString(data.getUiDataPtr()->getString("options.cred.title"));
-        txtCred.setFont(data.getUiDataPtr()->getFont());
+        txtCred.setString(data.getGameDataPtr()->getString("options.cred.title"));
+        txtCred.setFont(data.getGameDataPtr()->getFont());
         txtCred.setCharacterSize(FONT_SIZE_DEFAULT);
 
-        txtCtrl.setString(data.getUiDataPtr()->getString("options.vol"));
-        txtCtrl.setFont(data.getUiDataPtr()->getFont());
+        txtCtrl.setString(data.getGameDataPtr()->getString("options.vol"));
+        txtCtrl.setFont(data.getGameDataPtr()->getFont());
         txtCtrl.setCharacterSize(FONT_SIZE_DEFAULT);
 
-        txtCre1.setString(data.getUiDataPtr()->getString("options.credit.1"));
-        txtCre1.setFont(data.getUiDataPtr()->getFont());
+        txtCre1.setString(data.getGameDataPtr()->getString("options.credit.1"));
+        txtCre1.setFont(data.getGameDataPtr()->getFont());
         txtCre1.setCharacterSize(14);
         txtCre1.setSfmlColor(sf::Color::Black);
-        txtCre2.setString(data.getUiDataPtr()->getString("options.credit.2"));
-        txtCre2.setFont(data.getUiDataPtr()->getFont());
+        txtCre2.setString(data.getGameDataPtr()->getString("options.credit.2"));
+        txtCre2.setFont(data.getGameDataPtr()->getFont());
         txtCre2.setCharacterSize(14);
         txtCre2.setSfmlColor(sf::Color::Black);
-        txtCre3.setString(data.getUiDataPtr()->getString("options.credit.3"));
-        txtCre3.setFont(data.getUiDataPtr()->getFont());
+        txtCre3.setString(data.getGameDataPtr()->getString("options.credit.3"));
+        txtCre3.setFont(data.getGameDataPtr()->getFont());
         txtCre3.setCharacterSize(14);
         txtCre3.setSfmlColor(sf::Color::Black);
-        txtCre4.setString(data.getUiDataPtr()->getString("options.credit.4"));
-        txtCre4.setFont(data.getUiDataPtr()->getFont());
+        txtCre4.setString(data.getGameDataPtr()->getString("options.credit.4"));
+        txtCre4.setFont(data.getGameDataPtr()->getFont());
         txtCre4.setCharacterSize(14);
         txtCre4.setSfmlColor(sf::Color::Black);
-        txtCre5.setString(data.getUiDataPtr()->getString("options.credit.5"));
-        txtCre5.setFont(data.getUiDataPtr()->getFont());
+        txtCre5.setString(data.getGameDataPtr()->getString("options.credit.5"));
+        txtCre5.setFont(data.getGameDataPtr()->getFont());
         txtCre5.setCharacterSize(14);
         txtCre5.setSfmlColor(sf::Color::Black);
-        txtCre6.setString(data.getUiDataPtr()->getString("options.credit.6"));
-        txtCre6.setFont(data.getUiDataPtr()->getFont());
+        txtCre6.setString(data.getGameDataPtr()->getString("options.credit.6"));
+        txtCre6.setFont(data.getGameDataPtr()->getFont());
         txtCre6.setCharacterSize(22);
         txtCre6.setSfmlColor(sf::Color::Black);
-        txtCre7.setString(data.getUiDataPtr()->getString("options.credit.7"));
-        txtCre7.setFont(data.getUiDataPtr()->getFont());
+        txtCre7.setString(data.getGameDataPtr()->getString("options.credit.7"));
+        txtCre7.setFont(data.getGameDataPtr()->getFont());
         txtCre7.setCharacterSize(18);
         txtCre7.setSfmlColor(sf::Color::Black);
-        txtCre8.setString(data.getUiDataPtr()->getString("options.credit.8"));
-        txtCre8.setFont(data.getUiDataPtr()->getFont());
+        txtCre8.setString(data.getGameDataPtr()->getString("options.credit.8"));
+        txtCre8.setFont(data.getGameDataPtr()->getFont());
         txtCre8.setCharacterSize(15);
-        txtCre81.setString(data.getUiDataPtr()->getString("options.credit.81"));
-        txtCre81.setFont(data.getUiDataPtr()->getFont());
+        txtCre81.setString(data.getGameDataPtr()->getString("options.credit.81"));
+        txtCre81.setFont(data.getGameDataPtr()->getFont());
         txtCre81.setCharacterSize(15);
-        txtCre82.setString(data.getUiDataPtr()->getString("options.credit.82"));
-        txtCre82.setFont(data.getUiDataPtr()->getFont());
+        txtCre82.setString(data.getGameDataPtr()->getString("options.credit.82"));
+        txtCre82.setFont(data.getGameDataPtr()->getFont());
         txtCre82.setCharacterSize(15);
-        txtCre83.setString(data.getUiDataPtr()->getString("options.credit.83"));
-        txtCre83.setFont(data.getUiDataPtr()->getFont());
+        txtCre83.setString(data.getGameDataPtr()->getString("options.credit.83"));
+        txtCre83.setFont(data.getGameDataPtr()->getFont());
         txtCre83.setCharacterSize(15);
-        txtCre84.setString(data.getUiDataPtr()->getString("options.credit.84"));
-        txtCre84.setFont(data.getUiDataPtr()->getFont());
+        txtCre84.setString(data.getGameDataPtr()->getString("options.credit.84"));
+        txtCre84.setFont(data.getGameDataPtr()->getFont());
         txtCre84.setCharacterSize(15);
-        txtCre9.setString(data.getUiDataPtr()->getString("options.credit.9"));
-        txtCre9.setFont(data.getUiDataPtr()->getFont());
+        txtCre9.setString(data.getGameDataPtr()->getString("options.credit.9"));
+        txtCre9.setFont(data.getGameDataPtr()->getFont());
         txtCre9.setCharacterSize(13);
-        txtCre10.setString(data.getUiDataPtr()->getString("options.credit.10"));
-        txtCre10.setFont(data.getUiDataPtr()->getFont());
+        txtCre10.setString(data.getGameDataPtr()->getString("options.credit.10"));
+        txtCre10.setFont(data.getGameDataPtr()->getFont());
         txtCre10.setCharacterSize(20);
         txtCre10.setSfmlColor(sf::Color::Blue);
 
-        txtCtrlChange.setString(data.getUiDataPtr()->getString("options.ctrl.change"));
-        txtCtrlChange.setFont(data.getUiDataPtr()->getFont());
+        txtCtrlChange.setString(data.getGameDataPtr()->getString("options.ctrl.change"));
+        txtCtrlChange.setFont(data.getGameDataPtr()->getFont());
         txtCtrlChange.setCharacterSize(FONT_SIZE_DEFAULT);
     }
 
@@ -107,13 +107,13 @@ namespace OpMon {
     OptionsMenu::OptionsMenu(OptionsMenuData &data)
         : data(data)
         , currentOptions(OptionType::ALL) {
-        float optionsMenuItemX = (data.getUiDataPtr()->getWindowWidth() - OPTIONS_MENU_ITEM_WIDTH)/2;
+        float optionsMenuItemX = (data.getGameDataPtr()->getWindowWidth() - OPTIONS_MENU_ITEM_WIDTH)/2;
 
         // Create text boxes for the main screen
         for(int i = 0; i < 6; i++) {
             sf::Vector2f position(optionsMenuItemX, OPTIONS_MENU_ITEM_PADDING + i * (OPTIONS_MENU_ITEM_HEIGHT + OPTIONS_MENU_ITEM_PADDING));
-            TextBox optionsMenuItem(data.getUiDataPtr()->getMenuFrame(), position, OPTIONS_MENU_ITEM_WIDTH, OPTIONS_MENU_ITEM_HEIGHT);
-            optionsMenuItem.setFont(data.getUiDataPtr()->getFont());
+            TextBox optionsMenuItem(data.getGameDataPtr()->getMenuFrame(), position, OPTIONS_MENU_ITEM_WIDTH, OPTIONS_MENU_ITEM_HEIGHT);
+            optionsMenuItem.setFont(data.getGameDataPtr()->getFont());
             optionsMenuItems.push_back(optionsMenuItem);
         }
         initOptionsMenuItemsName();
@@ -122,8 +122,8 @@ namespace OpMon {
         // Create text boxes for the language selection screen
         for(int i = 0; i < 6; i++) {
             sf::Vector2f position(optionsMenuItemX, OPTIONS_MENU_ITEM_PADDING + i * (OPTIONS_MENU_ITEM_HEIGHT + OPTIONS_MENU_ITEM_PADDING));
-            TextBox languagesMenuItem(data.getUiDataPtr()->getMenuFrame(), position, OPTIONS_MENU_ITEM_WIDTH, OPTIONS_MENU_ITEM_HEIGHT);
-            languagesMenuItem.setFont(data.getUiDataPtr()->getFont());
+            TextBox languagesMenuItem(data.getGameDataPtr()->getMenuFrame(), position, OPTIONS_MENU_ITEM_WIDTH, OPTIONS_MENU_ITEM_HEIGHT);
+            languagesMenuItem.setFont(data.getGameDataPtr()->getFont());
             languagesMenuItems.push_back(languagesMenuItem);
         }
         initLanguagesMenuItemsName();
@@ -168,17 +168,17 @@ namespace OpMon {
         txtCtrlTalk.setPosition(417.0, 216.0);
         txtCtrlInteract.setPosition(417.0, 339.0);
 
-        txtCtrlUp.setFont(data.getUiDataPtr()->getFont());
+        txtCtrlUp.setFont(data.getGameDataPtr()->getFont());
         txtCtrlUp.setCharacterSize(FONT_SIZE_DEFAULT - 4);
-        txtCtrlDown.setFont(data.getUiDataPtr()->getFont());
+        txtCtrlDown.setFont(data.getGameDataPtr()->getFont());
         txtCtrlDown.setCharacterSize(FONT_SIZE_DEFAULT - 4);
-        txtCtrlLeft.setFont(data.getUiDataPtr()->getFont());
+        txtCtrlLeft.setFont(data.getGameDataPtr()->getFont());
         txtCtrlLeft.setCharacterSize(FONT_SIZE_DEFAULT - 4);
-        txtCtrlRight.setFont(data.getUiDataPtr()->getFont());
+        txtCtrlRight.setFont(data.getGameDataPtr()->getFont());
         txtCtrlRight.setCharacterSize(FONT_SIZE_DEFAULT - 4);
-        txtCtrlTalk.setFont(data.getUiDataPtr()->getFont());
+        txtCtrlTalk.setFont(data.getGameDataPtr()->getFont());
         txtCtrlTalk.setCharacterSize(FONT_SIZE_DEFAULT - 4);
-        txtCtrlInteract.setFont(data.getUiDataPtr()->getFont());
+        txtCtrlInteract.setFont(data.getGameDataPtr()->getFont());
         txtCtrlInteract.setCharacterSize(FONT_SIZE_DEFAULT - 4);
 
         rectKeyChange.setTexture(data.getKeyChange());
@@ -336,12 +336,12 @@ namespace OpMon {
 
     GameStatus OptionsMenu::controlsLoop() {
         rectKeyChange.setPosition(posControls[currentKeyChange]);
-        txtCtrlUp.setString(data.getUiDataPtr()->getOptions().getParam("control.up").getValue());
-        txtCtrlDown.setString(data.getUiDataPtr()->getOptions().getParam("control.down").getValue());
-        txtCtrlLeft.setString(data.getUiDataPtr()->getOptions().getParam("control.left").getValue());
-        txtCtrlRight.setString(data.getUiDataPtr()->getOptions().getParam("control.right").getValue());
-        txtCtrlTalk.setString(data.getUiDataPtr()->getOptions().getParam("control.talk").getValue());
-        txtCtrlInteract.setString(data.getUiDataPtr()->getOptions().getParam("control.interact").getValue());
+        txtCtrlUp.setString(data.getGameDataPtr()->getOptions().getParam("control.up").getValue());
+        txtCtrlDown.setString(data.getGameDataPtr()->getOptions().getParam("control.down").getValue());
+        txtCtrlLeft.setString(data.getGameDataPtr()->getOptions().getParam("control.left").getValue());
+        txtCtrlRight.setString(data.getGameDataPtr()->getOptions().getParam("control.right").getValue());
+        txtCtrlTalk.setString(data.getGameDataPtr()->getOptions().getParam("control.talk").getValue());
+        txtCtrlInteract.setString(data.getGameDataPtr()->getOptions().getParam("control.interact").getValue());
         rectSurb.setPosition(curPosCtrl[curPosCtrlI.getValue()]);
         rectSurb.setScale(curSizeCtrl[curPosCtrlI.getValue()]);
         return GameStatus::CONTINUE;
@@ -377,18 +377,18 @@ namespace OpMon {
                 key = "credits";
                 break;
             }
-            optionsMenuItem.setLeftContent(data.getUiDataPtr()->getString("options." + key));
+            optionsMenuItem.setLeftContent(data.getGameDataPtr()->getString("options." + key));
             ++i;
         }
     }
 
     void OptionsMenu::initOptionsMenuItemsValue() {
         int i = 0;
-        int globalVolume = data.getUiDataPtr()->getJukebox().getGlobalVolume();
+        int globalVolume = data.getGameDataPtr()->getJukebox().getGlobalVolume();
         for(auto &optionsMenuItem : optionsMenuItems) {
             switch (i) {
             case 1:
-                if(data.getUiDataPtr()->getOptions().getParam("fullscreen").getValue() == "true") {
+                if(data.getGameDataPtr()->getOptions().getParam("fullscreen").getValue() == "true") {
                     optionsMenuItem.setRightContent("On");
                 } else {
                     optionsMenuItem.setRightContent("Off");
@@ -409,7 +409,7 @@ namespace OpMon {
         for(auto &languagesMenuItem : languagesMenuItems) {
             switch (i) {
             case 0:
-                languagesMenuItem.setLeftContent(data.getUiDataPtr()->getString("options.retour"));
+                languagesMenuItem.setLeftContent(data.getGameDataPtr()->getString("options.retour"));
                 break;
             case 1:
                 languagesMenuItem.setLeftContent("English");

@@ -18,7 +18,7 @@ class RenderTexture;
 }  // namespace sf
 
 namespace OpMon {
-class UiData;
+class GameData;
 
     /*!
      * \brief Manages the introduction scene and its three phases.
@@ -52,7 +52,7 @@ class UiData;
         sf::Texture screenTexture;
 
     public:
-        StartSceneCtrl(UiData *data);
+        StartSceneCtrl(GameData *data);
         GameStatus checkEvent(sf::Event const &event) override;
         GameStatus update(sf::RenderTexture &frame) override;
 

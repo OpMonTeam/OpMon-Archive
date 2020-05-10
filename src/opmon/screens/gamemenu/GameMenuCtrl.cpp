@@ -12,7 +12,7 @@ File under GNU GPL v3.0 license
 #include <memory>
 
 #include "src/opmon/screens/optionsmenu/OptionsMenuCtrl.hpp"
-#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/core/GameData.hpp"
 #include "GameMenu.hpp"
 #include "GameMenuData.hpp"
 #include "src/opmon/screens/base/AGameScreen.hpp"
@@ -43,19 +43,19 @@ namespace OpMon {
                     return GameStatus::PREVIOUS_NLS;
                 }
                 if(event.key.code == sf::Keyboard::Up) {
-                    data.getUiDataPtr()->getJukebox().playSound("arrow");
+                    data.getGameDataPtr()->getJukebox().playSound("arrow");
                     curPos -= 2;
                 }
                 if(event.key.code == sf::Keyboard::Down) {
-                    data.getUiDataPtr()->getJukebox().playSound("arrow");
+                    data.getGameDataPtr()->getJukebox().playSound("arrow");
                     curPos += 2;
                 }
                 if(event.key.code == sf::Keyboard::Left) {
-                    data.getUiDataPtr()->getJukebox().playSound("arrow");
+                    data.getGameDataPtr()->getJukebox().playSound("arrow");
                     curPos--;
                 }
                 if(event.key.code == sf::Keyboard::Right) {
-                    data.getUiDataPtr()->getJukebox().playSound("arrow");
+                    data.getGameDataPtr()->getJukebox().playSound("arrow");
                     curPos++;
                 }
                 if(event.key.code == sf::Keyboard::Return) {
@@ -64,7 +64,7 @@ namespace OpMon {
                         loadNext = LOAD_OPTIONS;
                         return GameStatus::NEXT_NLS;
                     default:
-                        data.getUiDataPtr()->getJukebox().playSound("nope");
+                        data.getGameDataPtr()->getJukebox().playSound("nope");
                         break;
                     }
                 }
@@ -84,7 +84,7 @@ namespace OpMon {
         void GameMenuCtrl::loadNextScreen() {
             switch(loadNext) {
             case LOAD_OPTIONS:
-                _next_gs = std::make_unique<OptionsMenuCtrl>(data.getUiDataPtr());
+                _next_gs = std::make_unique<OptionsMenuCtrl>(data.getGameDataPtr());
                 break;
             default:
                 throw Utils::UnexpectedValueException(std::to_string(loadNext), "a view to load in GameMenuCtrl::loadNextScreen()");

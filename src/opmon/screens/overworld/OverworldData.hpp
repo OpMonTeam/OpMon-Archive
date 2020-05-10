@@ -18,7 +18,7 @@ class String;
 namespace OpMon {
 class OpTeam;
 class Player;
-class UiData;
+class GameData;
 namespace Elements {
 class Map;
 }  // namespace Elements
@@ -41,7 +41,7 @@ class Map;
         sf::IntRect walkingPPRect[4];
         sf::IntRect walkingPP2Rect[4];
 
-        UiData *uidata;
+        GameData *gamedata;
 
         Player *player;
 
@@ -186,9 +186,9 @@ class Map;
         sf::IntRect &getWalkingPP2Rect(unsigned int id) { return walkingPP2Rect[((id < 4) ? id : 0)]; }
 
         /*!
-         * \brief Gets a pointer to the UiData object.
+         * \brief Gets a pointer to the GameData object.
          */
-        UiData *getUiDataPtr() { return uidata; }
+        GameData *getGameDataPtr() { return gamedata; }
         /*!
          * \brief Gets a pointer to the Player object.
          */
@@ -215,10 +215,10 @@ class Map;
 
         /*!
          * \brief Initialises all the data.
-         * \param data A pointer to the UiData object.
+         * \param data A pointer to the GameData object.
          * \param player A pointer to the Player object.
          */
-        OverworldData(UiData *uidata, Player *player);
+        OverworldData(GameData *gamedata, Player *player);
         ~OverworldData();
     };
 

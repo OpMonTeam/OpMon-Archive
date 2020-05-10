@@ -20,7 +20,7 @@ File under GNU GPL v3.0 license
 #include "../screens/mainmenu/MainMenuCtrl.hpp"
 #include "src/utils/ResourceLoader.hpp"
 #include "src/opmon/core/GameStatus.hpp"
-#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/core/GameData.hpp"
 #include "src/opmon/screens/base/AGameScreen.hpp"
 #include "src/opmon/view/ui/Window.hpp"
 #include "src/utils/exceptions.hpp"
@@ -28,8 +28,8 @@ File under GNU GPL v3.0 license
 namespace OpMon {
 
     GameLoop::GameLoop()
-      : uidata(std::make_unique<UiData>()) {
-        std::unique_ptr<AGameScreen> firstCtrl = std::make_unique<MainMenuCtrl>(uidata.get());
+      : gamedata(std::make_unique<GameData>()) {
+        std::unique_ptr<AGameScreen> firstCtrl = std::make_unique<MainMenuCtrl>(gamedata.get());
         _gameScreens.push(std::move(firstCtrl));
     }
 
@@ -38,14 +38,14 @@ namespace OpMon {
         std::unique_ptr<Ui::Window, std::function<void(Ui::Window *)>> window(new Ui::Window(), [](Ui::Window *w) {
             w->close();
         });
-        window->open(uidata->getOptions());
+        window->open(gamedata->getOptions());
 
         sf::Texture loadTx;
         Utils::ResourceLoader::load(loadTx, "backgrounds/loading.png");
         sf::Text loadingTxt;
-        loadingTxt.setString(uidata->getString("load.txt"));
+        loadingTxt.setString(gamedata->getString("load.txt"));
         loadingTxt.setPosition(250, 440);
-        loadingTxt.setFont(uidata->getFont());
+        loadingTxt.setFont(gamedata->getFont());
         loadingTxt.setCharacterSize(35);
 
         window->getFrame().clear(sf::Color(74, 81, 148));
@@ -86,7 +86,7 @@ namespace OpMon {
                 }
 
                 if(status == GameStatus::WIN_REBOOT) {
-                    window->reboot(uidata->getOptions());
+                    window->reboot(gamedata->getOptions());
                     status = GameStatus::CONTINUE;
                 }
 

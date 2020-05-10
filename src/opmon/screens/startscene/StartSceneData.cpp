@@ -14,10 +14,10 @@
 #include "src/opmon/view/elements/Position.hpp"
 
 namespace OpMon {
-class UiData;
+class GameData;
 
-    StartSceneData::StartSceneData(UiData *data)
-        : uidata(data)
+    StartSceneData::StartSceneData(GameData *data)
+        : gamedata(data)
         , player(new Player()) {
         Utils::ResourceLoader::load(background, "backgrounds/start/startscene.png");
         Utils::ResourceLoader::load(prof, "sprites/chara/prof/profkiwai.png");

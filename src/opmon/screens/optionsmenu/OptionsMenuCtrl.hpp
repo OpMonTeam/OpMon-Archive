@@ -21,7 +21,7 @@ class RenderTexture;
 }  // namespace sf
 
 namespace OpMon {
-class UiData;
+class GameData;
 
     class OptionsMenuCtrl : public AGameScreen {
     private:
@@ -42,7 +42,7 @@ class UiData;
         bool keyChangeActive{false};
 
     public:
-        OptionsMenuCtrl(UiData *data);
+        OptionsMenuCtrl(GameData *data);
         GameStatus checkEvent(sf::Event const &event) override;
         GameStatus update(sf::RenderTexture &frame) override;
 
