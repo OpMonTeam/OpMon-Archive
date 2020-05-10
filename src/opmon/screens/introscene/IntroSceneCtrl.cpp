@@ -1,10 +1,10 @@
 /*
-  StartSceneCtrl.cpp
+  IntroSceneCtrl.cpp
   Author : Cyrielle
   Contributor : BAKFR
   File under GNU GPL v3.0 license
 */
-#include "StartSceneCtrl.hpp"
+#include "IntroSceneCtrl.hpp"
 
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <SFML/System/String.hpp>
@@ -18,8 +18,8 @@
 #include "src/opmon/core/Player.hpp"
 #include "src/opmon/core/GameData.hpp"
 #include "src/opmon/screens/animation/Animations.hpp"
-#include "StartScene.hpp"
-#include "StartSceneData.hpp"
+#include "IntroScene.hpp"
+#include "IntroSceneData.hpp"
 #include "src/opmon/screens/base/AGameScreen.hpp"
 #include "src/opmon/view/ui/Dialog.hpp"
 
@@ -30,38 +30,38 @@
 
 namespace OpMon {
 
-    StartSceneCtrl::StartSceneCtrl(GameData *data)
+    IntroSceneCtrl::IntroSceneCtrl(GameData *data)
         : data(data)
         , view(this->data) {}
 
-    GameStatus StartSceneCtrl::checkEvent(sf::Event const &event) {
-        auto &startscene = view;
+    GameStatus IntroSceneCtrl::checkEvent(sf::Event const &event) {
+        auto &introscene = view;
 
         switch(event.type) {
         case sf::Event::KeyPressed:
-            if(event.key.code == data.getGameDataPtr()->getKeyTalk() && startscene.getDialog() != nullptr) {
-                startscene.getDialog()->pass();
+            if(event.key.code == data.getGameDataPtr()->getKeyTalk() && introscene.getDialog() != nullptr) {
+                introscene.getDialog()->pass();
             }
             //Part 1 is the part where the player enters his/her name
-            if(event.key.code == sf::Keyboard::Return && startscene.getPart() == 1) {
-                sf::String &pName = startscene.getpName();
+            if(event.key.code == sf::Keyboard::Return && introscene.getPart() == 1) {
+                sf::String &pName = introscene.getpName();
                 if(pName.isEmpty()) {
                     pName = "Player"; //We will find a default name some day
                 }
                 data.getPlayer().setName(pName);
-                startscene.delLoop1();
+                introscene.delLoop1();
                 animNext = true;
                 return GameStatus::CONTINUE;
             }
             //P is used to skip the introduction, but it must be disabled when entering the name
-            if(event.key.code == sf::Keyboard::P && startscene.getPart() != 1) {
+            if(event.key.code == sf::Keyboard::P && introscene.getPart() != 1) {
                 loadNext = LOAD_OVERWORLD;
                 return GameStatus::NEXT;
             }
             break;
         case sf::Event::TextEntered:
-            if(startscene.getPart() == 1) {
-                sf::String &pName = startscene.getpName();
+            if(introscene.getPart() == 1) {
+                sf::String &pName = introscene.getpName();
                 if(event.text.unicode == 8) { //Backspace
                     if(!pName.isEmpty()) {
                         pName = sf::String::fromUtf32(pName.begin(), pName.end() - 1);
@@ -84,7 +84,7 @@ namespace OpMon {
         return GameStatus::CONTINUE;
     }
 
-    void StartSceneCtrl::loadNextScreen() {
+    void IntroSceneCtrl::loadNextScreen() {
         switch(loadNext) {
         case LOAD_OVERWORLD:
             _next_gs = std::make_unique<OverworldCtrl>(data.getPlayer(), data.getGameDataPtr());
@@ -96,11 +96,11 @@ namespace OpMon {
             _next_gs = std::make_unique<AnimationCtrl>(std::make_unique<Animations::WinAnim>(screenTexture, false));
             break;
         default:
-            throw Utils::UnexpectedValueException(std::to_string(loadNext), "a view to load in StartSceneCtrl::loadNextScreen()");
+            throw Utils::UnexpectedValueException(std::to_string(loadNext), "a view to load in IntroSceneCtrl::loadNextScreen()");
         }
     }
 
-    GameStatus StartSceneCtrl::update(sf::RenderTexture &frame) {
+    GameStatus IntroSceneCtrl::update(sf::RenderTexture &frame) {
         //If the player have finished to enter his/her name, animNext must have been set to true. This part will launch the animation.
         if(animNext) {
             animNext = false;
@@ -125,18 +125,18 @@ namespace OpMon {
                 loadNext = LOAD_OVERWORLD;
                 break;
             default:
-                throw Utils::UnexpectedValueException(std::to_string(view.getPart()), "1 or 3 in StartScene::draw()");
+                throw Utils::UnexpectedValueException(std::to_string(view.getPart()), "1 or 3 in IntroScene::draw()");
             }
         }
 
         return toReturn;
     }
 
-    void StartSceneCtrl::suspend() {
+    void IntroSceneCtrl::suspend() {
         view.pause();
     }
 
-    void StartSceneCtrl::resume() {
+    void IntroSceneCtrl::resume() {
         view.play();
     }
 

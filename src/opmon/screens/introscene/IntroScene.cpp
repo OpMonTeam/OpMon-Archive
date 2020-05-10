@@ -1,10 +1,10 @@
 /*
-  StartScene.cpp
+  IntroScene.cpp
   Author : Cyrielle
   Contributors : BAKFR, JonnyPtn, torq, Navet56
   File under GNU GPL v3.0 license
 */
-#include "StartScene.hpp"
+#include "IntroScene.hpp"
 
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
@@ -15,19 +15,19 @@
 #include "src/opmon/view/ui/Dialog.hpp"
 #include "src/opmon/core/Player.hpp"
 #include "src/opmon/core/GameData.hpp"
-#include "StartSceneData.hpp"
+#include "IntroSceneData.hpp"
 #include "src/opmon/view/ui/Jukebox.hpp"
 
 namespace OpMon {
 
-    void StartScene::initStrings() {
+    void IntroScene::initStrings() {
 
         txtP1 = Utils::OpString(stringkeys, "prof.dialog.start.2", {data.getPlayer().getNameP()});
 
         textDesc.setString(data.getGameDataPtr()->getString("nameEntry.desc"));
     }
 
-    StartScene::StartScene(StartSceneData &data)
+    IntroScene::IntroScene(IntroSceneData &data)
         : data(data) {
         initStrings();
         textDesc.setPosition(310, 450);
@@ -67,11 +67,11 @@ namespace OpMon {
         dialog = std::make_unique<Ui::Dialog>(data.getGameDataPtr()->getString("prof.dialog.start.1"), data.getGameDataPtr());
     }
 
-    void StartScene::onLangChanged() {
+    void IntroScene::onLangChanged() {
         initStrings();
     }
 
-    GameStatus StartScene::update() {
+    GameStatus IntroScene::update() {
         switch(part) {
         case 0:
             if(!dialog->isDialogOver()) {
@@ -86,7 +86,7 @@ namespace OpMon {
 
         case 1:
             nameField.setString(pName);
-            return GameStatus::CONTINUE; // Everything is handled by StartSceneCtrl
+            return GameStatus::CONTINUE; // Everything is handled by IntroSceneCtrl
 
         case 2:
             if(!dialog->isDialogOver()) {
@@ -98,18 +98,18 @@ namespace OpMon {
             break;
 
         default:
-            throw Utils::UnexpectedValueException(std::to_string(part), "an integer in [0,2] in StartScene::update()");
+            throw Utils::UnexpectedValueException(std::to_string(part), "an integer in [0,2] in IntroScene::update()");
         }
         return GameStatus::CONTINUE;
     }
 
-    void StartScene::delLoop1() {
+    void IntroScene::delLoop1() {
         part++;
         // Init loop 2
         dialog = std::make_unique<Ui::Dialog>(txtP1.getString(data.getGameDataPtr()->getStringKeys()), data.getGameDataPtr());
     }
 
-    void StartScene::draw(sf::RenderTarget &frame, sf::RenderStates states) const {
+    void IntroScene::draw(sf::RenderTarget &frame, sf::RenderStates states) const {
         frame.clear(sf::Color::White);
         switch(part) {
         case 0:
@@ -125,14 +125,14 @@ namespace OpMon {
             break;
 
         default:
-            throw Utils::UnexpectedValueException(std::to_string(part), "an integer in [0,2] in StartScene::draw()");
+            throw Utils::UnexpectedValueException(std::to_string(part), "an integer in [0,2] in IntroScene::draw()");
         }
     }
 
-    void StartScene::play() {
+    void IntroScene::play() {
         data.getGameDataPtr()->getJukebox().play("Start");
     }
 
-    void StartScene::pause() {
+    void IntroScene::pause() {
     }
 } // namespace OpMon

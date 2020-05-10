@@ -1,5 +1,5 @@
 /**!
- * \file StartSceneData.hpp
+ * \file IntroSceneData.hpp
  * \author Cyrielle
  * \copyright GNU GPL v3.0 license
  */
@@ -13,9 +13,9 @@ class Player;
 class GameData;
 
     /*!
-     * \brief Contains the data used by View::StartScene and Controller::StartSceneCtrl
+     * \brief Contains the data used by View::IntroScene and Controller::IntroSceneCtrl
      */
-    class StartSceneData {
+    class IntroSceneData {
     private:
         sf::Texture background;
         sf::Texture prof;
@@ -28,7 +28,7 @@ class GameData;
         /*!
          * \brief The copy constructor. Not defined, must not be used.
          */
-        StartSceneData(StartSceneData const &);
+        IntroSceneData(IntroSceneData const &);
 
     public:
         /*!
@@ -59,7 +59,7 @@ class GameData;
          * \brief Initialises all the data.
          * \param ptr A pointer to the GameData object.
          */
-        StartSceneData(GameData *data);
+        IntroSceneData(GameData *data);
     };
 
 } // namespace OpMon
