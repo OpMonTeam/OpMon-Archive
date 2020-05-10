@@ -13,7 +13,7 @@
 
 #include "src/opmon/screens/optionsmenu/OptionsMenuCtrl.hpp"
 #include "src/opmon/screens/startscene/StartSceneCtrl.hpp"
-#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/core/GameData.hpp"
 #include "MainMenu.hpp"
 #include "MainMenuData.hpp"
 #include "src/opmon/screens/base/AGameScreen.hpp"
@@ -26,7 +26,7 @@
 
 namespace OpMon {
 
-    MainMenuCtrl::MainMenuCtrl(UiData *data)
+    MainMenuCtrl::MainMenuCtrl(GameData *data)
         : data(data)
         , view(this->data) {
     }
@@ -39,28 +39,28 @@ namespace OpMon {
                 switch(curPosI.getValue()) {
                 case 0:
                     loadNext = LOAD_STARTSCENE;
-                    data.getUiDataPtr()->getJukebox().playSound("push");
+                    data.getGameDataPtr()->getJukebox().playSound("push");
                     return GameStatus::NEXT;
                 case 1:
-                    data.getUiDataPtr()->getJukebox().playSound("nope");
+                    data.getGameDataPtr()->getJukebox().playSound("nope");
                     return GameStatus::CONTINUE;
                 case 2:
                     loadNext = LOAD_OPTIONS;
-                    data.getUiDataPtr()->getJukebox().playSound("push");
+                    data.getGameDataPtr()->getJukebox().playSound("push");
                     return GameStatus::NEXT_NLS;
                 case 3:
-                    data.getUiDataPtr()->getJukebox().playSound("push");
+                    data.getGameDataPtr()->getJukebox().playSound("push");
                     return GameStatus::STOP;
                 }
                 break;
                 //Moves the cursor
             case sf::Keyboard::Up:
                 curPosI--;
-                data.getUiDataPtr()->getJukebox().playSound("arrow");
+                data.getGameDataPtr()->getJukebox().playSound("arrow");
                 break;
             case sf::Keyboard::Down:
                 curPosI++;
-                data.getUiDataPtr()->getJukebox().playSound("arrow");
+                data.getGameDataPtr()->getJukebox().playSound("arrow");
                 break;
             default:
                 break;
@@ -78,10 +78,10 @@ namespace OpMon {
     void MainMenuCtrl::loadNextScreen() {
         switch(loadNext) {
         case LOAD_STARTSCENE:
-            _next_gs = std::make_unique<StartSceneCtrl>(data.getUiDataPtr());
+            _next_gs = std::make_unique<StartSceneCtrl>(data.getGameDataPtr());
             break;
         case LOAD_OPTIONS:
-            _next_gs = std::make_unique<OptionsMenuCtrl>(data.getUiDataPtr());
+            _next_gs = std::make_unique<OptionsMenuCtrl>(data.getGameDataPtr());
             break;
         default:
             throw Utils::UnexpectedValueException(std::to_string(loadNext), "a view to load in MainMenuCtrl::loadNextScreen()");

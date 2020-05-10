@@ -21,7 +21,7 @@ namespace OpMon {
 			for(unsigned int j = 1; j < dialogKeys.size(); j++) {
 				toAdd.push_back(data.getCompletion(dialogKeys[j]));
 			}
-			this->dialogKey = Utils::OpString(data.getUiDataPtr()->getStringKeys(), key, toAdd);
+			this->dialogKey = Utils::OpString(data.getGameDataPtr()->getStringKeys(), key, toAdd);
 			this->onLangChanged();
 		}
 

@@ -11,14 +11,14 @@
 #include "../ui/TextBox.hpp"
 #include <queue>
 
-#include "../../core/UiData.hpp"
+#include "../../core/GameData.hpp"
 
 namespace sf {
 class RenderTarget;
 }  // namespace sf
 
 namespace OpMon {
-class UiData;
+class GameData;
 
     namespace Ui {
 
@@ -63,7 +63,7 @@ class UiData;
              */
             sf::Sound dialogPass;
 
-            UiData *uidata;
+            GameData *gamedata;
 
             float arrDialX;
             float arrDialY;
@@ -77,12 +77,12 @@ class UiData;
              * \brief Initises a dialog with a queue of texts to print.
              * \param text A queue of texts. One element = one line.
              */
-            Dialog(std::queue<sf::String> text, UiData *uidata);
+            Dialog(std::queue<sf::String> text, GameData *gamedata);
             /*!
              * \brief Initialises a dialog.
              * \param text The text of the dialog.
              */
-            Dialog(sf::String text, UiData *uidata);
+            Dialog(sf::String text, GameData *gamedata);
 
             /*!
              * \brief Move forward in a dialog, in response to an event like a space key pressed.

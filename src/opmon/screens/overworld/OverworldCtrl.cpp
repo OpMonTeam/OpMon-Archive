@@ -16,7 +16,7 @@
 #include "src/opmon/screens/battle/BattleCtrl.hpp"
 #include "src/opmon/screens/gamemenu/GameMenuCtrl.hpp"
 #include "src/opmon/core/Player.hpp"
-#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/core/GameData.hpp"
 #include "src/opmon/screens/animation/Animations.hpp"
 #include "src/opmon/screens/gamemenu/GameMenuData.hpp"
 #include "Overworld.hpp"
@@ -35,8 +35,8 @@
 
 namespace OpMon {
 
-	OverworldCtrl::OverworldCtrl(Player &player, UiData *uidata)
-	: data(uidata, &player)
+	OverworldCtrl::OverworldCtrl(Player &player, GameData *gamedata)
+	: data(gamedata, &player)
 	, view("Player's room", this->data)
 	, player(player) {}
 
@@ -127,7 +127,7 @@ namespace OpMon {
 	GameStatus OverworldCtrl::checkEventsDialog(sf::Event const &events, Overworld &overworld) {
 		switch(events.type) {
 		case sf::Event::KeyPressed:
-			if(events.key.code == data.getUiDataPtr()->getKeyTalk()) {
+			if(events.key.code == data.getGameDataPtr()->getKeyTalk()) {
 				overworld.getDialog()->pass();
 			}
 			break;
@@ -169,7 +169,7 @@ namespace OpMon {
 		data.getGameMenuData().setBackground(screenTexture);
 		switch(loadNext) {
 		case LOAD_BATTLE:
-			_next_gs = std::make_unique<BattleCtrl>(data.getPlayer().getOpTeam(), view.getBattleDeclared(), data.getUiDataPtr(), data.getPlayerPtr());
+			_next_gs = std::make_unique<BattleCtrl>(data.getPlayer().getOpTeam(), view.getBattleDeclared(), data.getGameDataPtr(), data.getPlayerPtr());
 			break;
 		case LOAD_MENU_OPEN:
 			_next_gs = std::make_unique<AnimationCtrl>(std::make_unique<Animations::WooshAnim>(screenTexture, data.getGameMenuData().getMenuTexture(), Animations::WooshDir::UP, 15, true));
@@ -187,27 +187,27 @@ namespace OpMon {
 
 	void OverworldCtrl::suspend() {
 		if(loadNext == LOAD_BATTLE) {
-			data.getUiDataPtr()->getJukebox().pause();
+			data.getGameDataPtr()->getJukebox().pause();
 		}
 	}
 
 	void OverworldCtrl::resume() {
-		data.getUiDataPtr()->getJukebox().play(data.getCurrentMap()->getBg());
+		data.getGameDataPtr()->getJukebox().play(data.getCurrentMap()->getBg());
 	}
 
 	void OverworldCtrl::checkMove(Player &player, Overworld &overworld) {
 		if(!overworld.justTp && !player.getPosition().isAnim() && !player.getPosition().isLocked()) {
 			//TODO Factorise code
-			if(sf::Keyboard::isKeyPressed(overworld.getData().getUiDataPtr()->getKeyUp())) {
+			if(sf::Keyboard::isKeyPressed(overworld.getData().getGameDataPtr()->getKeyUp())) {
 				overworld.startPlayerAnimation();
 				move(Side::TO_UP, player, overworld);
-			} else if(sf::Keyboard::isKeyPressed(overworld.getData().getUiDataPtr()->getKeyDown())) {
+			} else if(sf::Keyboard::isKeyPressed(overworld.getData().getGameDataPtr()->getKeyDown())) {
 				overworld.startPlayerAnimation();
 				move(Side::TO_DOWN, player, overworld);
-			} else if(sf::Keyboard::isKeyPressed(overworld.getData().getUiDataPtr()->getKeyLeft())) {
+			} else if(sf::Keyboard::isKeyPressed(overworld.getData().getGameDataPtr()->getKeyLeft())) {
 				overworld.startPlayerAnimation();
 				move(Side::TO_LEFT, player, overworld);
-			} else if(sf::Keyboard::isKeyPressed(overworld.getData().getUiDataPtr()->getKeyRight())) {
+			} else if(sf::Keyboard::isKeyPressed(overworld.getData().getGameDataPtr()->getKeyRight())) {
 				overworld.startPlayerAnimation();
 				move(Side::TO_RIGHT, player, overworld);
 			}
@@ -226,7 +226,7 @@ namespace OpMon {
 		//If the player isn't moving, then this checks if the player want to activate an event.
 		if(!player.getPosition().isAnim()) {
 			//Get the event coordinates and activate it if the player interacted with it.
-			if(sf::Keyboard::isKeyPressed(overworld.getData().getUiDataPtr()->getKeyInteract())) {
+			if(sf::Keyboard::isKeyPressed(overworld.getData().getGameDataPtr()->getKeyInteract())) {
 				int lx = player.getPosition().getPosition().x;
 				int ly = player.getPosition().getPosition().y;
 				switch(player.getPosition().getDir()) {

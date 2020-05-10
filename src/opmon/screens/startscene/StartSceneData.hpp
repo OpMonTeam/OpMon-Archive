@@ -6,11 +6,11 @@
 #pragma once
 
 #include "src/opmon/core/Player.hpp"
-#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/core/GameData.hpp"
 
 namespace OpMon {
 class Player;
-class UiData;
+class GameData;
 
     /*!
      * \brief Contains the data used by View::StartScene and Controller::StartSceneCtrl
@@ -21,7 +21,7 @@ class UiData;
         sf::Texture prof;
         sf::Texture nameBg;
 
-        UiData *uidata;
+        GameData *gamedata;
 
         Player *player;
 
@@ -40,9 +40,9 @@ class UiData;
          */
         Player *getPlayerPtr() { return player; }
         /*!
-         * \brief Returns a pointer to the UiData object.
+         * \brief Returns a pointer to the GameData object.
          */
-        UiData *getUiDataPtr() { return uidata; }
+        GameData *getGameDataPtr() { return gamedata; }
         /*!
          * \brief Gets the background of the scene.
          */
@@ -57,9 +57,9 @@ class UiData;
         sf::Texture &getNameBg() { return nameBg; }
         /*!
          * \brief Initialises all the data.
-         * \param ptr A pointer to the UiData object.
+         * \param ptr A pointer to the GameData object.
          */
-        StartSceneData(UiData *data);
+        StartSceneData(GameData *data);
     };
 
 } // namespace OpMon

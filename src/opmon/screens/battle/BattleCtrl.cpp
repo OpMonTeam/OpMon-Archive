@@ -14,7 +14,7 @@
 #include <string>
 
 #include "src/utils/OpString.hpp"
-#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/core/GameData.hpp"
 #include "src/opmon/model/Move.hpp"
 #include "src/opmon/model/Enums.hpp"
 #include "src/opmon/model/OpMon.hpp"
@@ -30,14 +30,14 @@ namespace OpMon {
 class Player;
 class Species;
 
-    BattleCtrl::BattleCtrl(OpTeam *one, Elements::BattleEvent *two, UiData *uidata, Player *player)
-        : BattleCtrl(one, two->getOpTeam(), uidata, player) {
+    BattleCtrl::BattleCtrl(OpTeam *one, Elements::BattleEvent *two, GameData *gamedata, Player *player)
+        : BattleCtrl(one, two->getOpTeam(), gamedata, player) {
         this->trainer = two;
         next.type = Elements::TurnActionType::NEXT;
     }
 
-    BattleCtrl::BattleCtrl(OpTeam *one, OpTeam *two, UiData *uidata, Player *player)
-        : data(uidata, player)
+    BattleCtrl::BattleCtrl(OpTeam *one, OpTeam *two, GameData *gamedata, Player *player)
+        : data(gamedata, player)
         , playerTeam(one)
         , trainerTeam(two)
         , atk(one->getOp(0))
@@ -61,18 +61,18 @@ class Species;
                 //Selection events
             case sf::Keyboard::Left:
                 view.moveCur(Side::TO_LEFT);
-                data.getUiDataPtr()->getJukebox().playSound("arrow");
+                data.getGameDataPtr()->getJukebox().playSound("arrow");
                 break;
             case sf::Keyboard::Right:
-                data.getUiDataPtr()->getJukebox().playSound("arrow");
+                data.getGameDataPtr()->getJukebox().playSound("arrow");
                 view.moveCur(Side::TO_RIGHT);
                 break;
             case sf::Keyboard::Up:
-                data.getUiDataPtr()->getJukebox().playSound("arrow");
+                data.getGameDataPtr()->getJukebox().playSound("arrow");
                 view.moveCur(Side::TO_UP);
                 break;
             case sf::Keyboard::Down:
-                data.getUiDataPtr()->getJukebox().playSound("arrow");
+                data.getGameDataPtr()->getJukebox().playSound("arrow");
                 view.moveCur(Side::TO_DOWN);
                 break;
             case sf::Keyboard::Return:
@@ -86,7 +86,7 @@ class Species;
                         /*case 3:
                           return GameStatus::PREVIOUS; //Run*/
                     default:
-                        data.getUiDataPtr()->getJukebox().playSound("nope");
+                        data.getGameDataPtr()->getJukebox().playSound("nope");
                         break;
                     }
 
@@ -101,7 +101,7 @@ class Species;
                             turnActivated = true;
                         }
                     } else { //The move is invalid
-                        data.getUiDataPtr()->getJukebox().playSound("nope");
+                        data.getGameDataPtr()->getJukebox().playSound("nope");
                     }
                 } else if(turnActivated) {
                     view.passDialog();
@@ -259,20 +259,20 @@ class Species;
         if(opmon->getStatus() == Status::FROZEN) {
             //The OpMon have one chance out of 5 to be able to move again.
             if(Utils::Misc::randU(5) == 2) {
-                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.frozen.out", opName)));
+                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getGameDataPtr()->getStringKeys(), "battle.status.frozen.out", opName)));
                 opmon->setStatus(Status::NOTHING);
             } else {
-                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.frozen.move", opName)));
+                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getGameDataPtr()->getStringKeys(), "battle.status.frozen.move", opName)));
                 canMove = false;
             }
             //Checks if sleeping
         } else if(opmon->getStatus() == Status::SLEEPING) {
             //Checks the sleep counter.
             if(opmon->getSleepingCD() <= 0) {
-                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.sleep.out", opName)));
+                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getGameDataPtr()->getStringKeys(), "battle.status.sleep.out", opName)));
                 opmon->setStatus(Status::NOTHING);
             } else {
-                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.sleep.move", opName)));
+                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getGameDataPtr()->getStringKeys(), "battle.status.sleep.move", opName)));
                 canMove = false;
                 opmon->passCD(true);
             }
@@ -280,10 +280,10 @@ class Species;
         } else if(opmon->getStatus() == Status::PARALYSED) {
             //The opmon have one chance out of three to can't move when paralysed
             if(Utils::Misc::randU(4) == 2) {
-                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.paralysed.move.fail", opName)));
+                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getGameDataPtr()->getStringKeys(), "battle.status.paralysed.move.fail", opName)));
                 canMove = false;
             } else {
-                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.paralysed.move.success", opName)));
+                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getGameDataPtr()->getStringKeys(), "battle.status.paralysed.move.success", opName)));
             }
         }
         //Checks if confused
@@ -291,21 +291,21 @@ class Species;
             //Checks the confused counter
             if(opmon->getConfusedCD() <= 0) {
                 opmon->confused = false;
-                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.confused.out", opName)));
+                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getGameDataPtr()->getStringKeys(), "battle.status.confused.out", opName)));
             } else {
                 opmon->passCD(false);
                 //The OpMon have one chance out of two of failing their move.
                 if(Utils::Misc::randU(2) == 1) {
-                    actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.confused.move.fail", opName)));
+                    actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getGameDataPtr()->getStringKeys(), "battle.status.confused.move.fail", opName)));
                     opmon->attacked(opmon->getStatHP() / 8);
                 } else {
-                    actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.confused.move.success", opName)));
+                    actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getGameDataPtr()->getStringKeys(), "battle.status.confused.move.success", opName)));
                 }
             }
         }
         //Checks if afraid
         if(opmon->afraid) {
-            actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getUiDataPtr()->getStringKeys(), "battle.status.afraid", opName)));
+            actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getGameDataPtr()->getStringKeys(), "battle.status.afraid", opName)));
             opmon->afraid = false;
             canMove = false;
         }
@@ -315,10 +315,10 @@ class Species;
 #pragma GCC diagnostic pop
 
     void BattleCtrl::suspend() {
-        data.getUiDataPtr()->getJukebox().pause();
+        data.getGameDataPtr()->getJukebox().pause();
     }
 
     void BattleCtrl::resume() {
-        data.getUiDataPtr()->getJukebox().play("Wild Battle");
+        data.getGameDataPtr()->getJukebox().play("Wild Battle");
     }
 } // namespace OpMon

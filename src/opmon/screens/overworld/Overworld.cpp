@@ -26,7 +26,7 @@
 #include "src/opmon/view/ui/Dialog.hpp"
 #include "src/opmon/core/GameStatus.hpp"
 #include "src/opmon/core/Player.hpp"
-#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/core/GameData.hpp"
 #include "OverworldData.hpp"
 #include "src/opmon/view/elements/Map.hpp"
 #include "src/opmon/view/elements/Position.hpp"
@@ -36,7 +36,7 @@
 namespace OpMon {
 
     void Overworld::setMusic(std::string const &mus) {
-        data.getUiDataPtr()->getJukebox().play(mus);
+        data.getGameDataPtr()->getJukebox().play(mus);
     }
 
     bool Overworld::isCameraLocked() {
@@ -148,11 +148,11 @@ namespace OpMon {
     }
 
     void Overworld::pause() {
-        data.getUiDataPtr()->getJukebox().pause();
+        data.getGameDataPtr()->getJukebox().pause();
     }
 
     void Overworld::play() {
-        data.getUiDataPtr()->getJukebox().play(current->getBg());
+        data.getGameDataPtr()->getJukebox().play(current->getBg());
     }
 
     Overworld::Overworld(const std::string &mapId, OverworldData &data)
@@ -172,7 +172,7 @@ namespace OpMon {
         character.setScale(2, 2);
         character.setOrigin(16, 16);
 
-        data.getUiDataPtr()->getJukebox().play(current->getBg());
+        data.getGameDataPtr()->getJukebox().play(current->getBg());
 
         Utils::I18n::Translator::getInstance().setLang(Utils::I18n::Translator::getInstance().getLang());
     }
@@ -260,17 +260,17 @@ namespace OpMon {
 
             debugText.setString("Debug mode");
             debugText.setPosition(0, 0);
-            debugText.setFont(data.getUiDataPtr()->getFont());
+            debugText.setFont(data.getGameDataPtr()->getFont());
             debugText.setSfmlColor(sf::Color(127, 127, 127));
             debugText.setCharacterSize(40);
             fpsPrint.setPosition(0, 50);
-            fpsPrint.setFont(data.getUiDataPtr()->getFont());
+            fpsPrint.setFont(data.getGameDataPtr()->getFont());
             fpsPrint.setCharacterSize(48);
             std::ostringstream oss;
             oss << "Position : " << data.getPlayer().getPosition().getPosition().x << " - " << data.getPlayer().getPosition().getPosition().y << std::endl
                 << "PxPosition : " << character.getPosition().x << " - " << character.getPosition().y << std::endl;
             coordPrint.setString(oss.str());
-            coordPrint.setFont(data.getUiDataPtr()->getFont());
+            coordPrint.setFont(data.getGameDataPtr()->getFont());
             coordPrint.setPosition(0, 100);
             coordPrint.setSfmlColor(sf::Color(127, 127, 127));
             coordPrint.setCharacterSize(30);
@@ -378,7 +378,7 @@ namespace OpMon {
             this->dialog = nullptr;
         }
 
-        this->dialog = std::make_unique<Ui::Dialog>(dialog, data.getUiDataPtr());
+        this->dialog = std::make_unique<Ui::Dialog>(dialog, data.getGameDataPtr());
     }
 
 } // namespace OpMon

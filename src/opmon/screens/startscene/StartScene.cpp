@@ -14,7 +14,7 @@
 #include "src/utils/defines.hpp"
 #include "src/opmon/view/ui/Dialog.hpp"
 #include "src/opmon/core/Player.hpp"
-#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/core/GameData.hpp"
 #include "StartSceneData.hpp"
 #include "src/opmon/view/ui/Jukebox.hpp"
 
@@ -24,7 +24,7 @@ namespace OpMon {
 
         txtP1 = Utils::OpString(stringkeys, "prof.dialog.start.2", {data.getPlayer().getNameP()});
 
-        textDesc.setString(data.getUiDataPtr()->getString("nameEntry.desc"));
+        textDesc.setString(data.getGameDataPtr()->getString("nameEntry.desc"));
     }
 
     StartScene::StartScene(StartSceneData &data)
@@ -55,16 +55,16 @@ namespace OpMon {
 
         textDesc.setCharacterSize(FONT_SIZE_DEFAULT);
         textDesc.setSfmlColor(sf::Color::White);
-        textDesc.setFont(data.getUiDataPtr()->getFont());
+        textDesc.setFont(data.getGameDataPtr()->getFont());
 
         nameField.setSfmlColor(sf::Color::Black);
-        nameField.setFont(data.getUiDataPtr()->getFont());
+        nameField.setFont(data.getGameDataPtr()->getFont());
         nameField.setPosition(310, 255);
 
-        data.getUiDataPtr()->getJukebox().play("Start");
+        data.getGameDataPtr()->getJukebox().play("Start");
 
         // Init loop 0
-        dialog = std::make_unique<Ui::Dialog>(data.getUiDataPtr()->getString("prof.dialog.start.1"), data.getUiDataPtr());
+        dialog = std::make_unique<Ui::Dialog>(data.getGameDataPtr()->getString("prof.dialog.start.1"), data.getGameDataPtr());
     }
 
     void StartScene::onLangChanged() {
@@ -106,7 +106,7 @@ namespace OpMon {
     void StartScene::delLoop1() {
         part++;
         // Init loop 2
-        dialog = std::make_unique<Ui::Dialog>(txtP1.getString(data.getUiDataPtr()->getStringKeys()), data.getUiDataPtr());
+        dialog = std::make_unique<Ui::Dialog>(txtP1.getString(data.getGameDataPtr()->getStringKeys()), data.getGameDataPtr());
     }
 
     void StartScene::draw(sf::RenderTarget &frame, sf::RenderStates states) const {
@@ -130,7 +130,7 @@ namespace OpMon {
     }
 
     void StartScene::play() {
-        data.getUiDataPtr()->getJukebox().play("Start");
+        data.getGameDataPtr()->getJukebox().play("Start");
     }
 
     void StartScene::pause() {
