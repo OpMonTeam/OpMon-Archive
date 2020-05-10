@@ -19,7 +19,7 @@
 #include <stack>
 
 #include "../screens/base/AGameScreen.hpp"
-#include "UiData.hpp"
+#include "GameData.hpp"
 
 namespace sf {
 class Event;
@@ -61,9 +61,9 @@ class Window;
 
     private:
         /*!
-         * \brief The pointer containing the UiData object shared in the different data objects.
+         * \brief The pointer containing the GameData object shared in the different data objects.
          */
-        std::unique_ptr<UiData> uidata;
+        std::unique_ptr<GameData> gamedata;
         /*!
          * \brief The stack of game screens.
          */

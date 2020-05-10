@@ -19,24 +19,24 @@ namespace OpMon {
             unsigned int DIALOG_BOX_WIDTH = 504;
             unsigned int DIALOG_BOX_HEIGHT = 100;
 
-            float dialogBoxX = (uidata->getWindowWidth() - DIALOG_BOX_WIDTH)/2;
-            float dialogBoxY = uidata->getWindowHeight() - DIALOG_BOX_HEIGHT - 4;
+            float dialogBoxX = (gamedata->getWindowWidth() - DIALOG_BOX_WIDTH)/2;
+            float dialogBoxY = gamedata->getWindowHeight() - DIALOG_BOX_HEIGHT - 4;
 
             sf::Vector2f dialogBoxPosition(dialogBoxX, dialogBoxY);
-            dialogBox = new TextBox(uidata->getMenuFrame(), dialogBoxPosition, DIALOG_BOX_WIDTH, DIALOG_BOX_HEIGHT, 3);
-            dialogBox->setFont(uidata->getFont());
+            dialogBox = new TextBox(gamedata->getMenuFrame(), dialogBoxPosition, DIALOG_BOX_WIDTH, DIALOG_BOX_HEIGHT, 3);
+            dialogBox->setFont(gamedata->getFont());
 
             // Create the arrow that appears to prompt the player to press the action key
-            arrDial.setTexture(uidata->getDialogArrow());
+            arrDial.setTexture(gamedata->getDialogArrow());
             arrDialX = dialogBoxX + DIALOG_BOX_WIDTH - 32;
             arrDialY = dialogBoxY + DIALOG_BOX_HEIGHT - 32;
             arrDial.setPosition(arrDialX, arrDialY);
             arrDial.setScale(2, 2);
         }
 
-        Dialog::Dialog(std::queue<sf::String> text, UiData *uidata)
+        Dialog::Dialog(std::queue<sf::String> text, GameData *gamedata)
           : text(text)
-          , uidata(uidata) {
+          , gamedata(gamedata) {
             if(this->text.size() % 2 != 0) {
                 while(this->text.size() % 2 != 0) {
                     this->text.push(sf::String(" "));
@@ -49,9 +49,9 @@ namespace OpMon {
             init();
         }
 
-        Dialog::Dialog(sf::String text, UiData *uidata)
-          : uidata(uidata) {
-            this->text = Utils::StringKeys::autoNewLine(text, uidata->getFont(), 16, 456);
+        Dialog::Dialog(sf::String text, GameData *gamedata)
+          : gamedata(gamedata) {
+            this->text = Utils::StringKeys::autoNewLine(text, gamedata->getFont(), 16, 456);
 
             while(this->text.size() % 2 != 0) {
                 this->text.push(sf::String(" "));
@@ -72,7 +72,7 @@ namespace OpMon {
             } else if(text.size() > 0) {
                 // If the current lines are completely displayed, pass to the next set of lines when
                 // pressing space (if there is one)
-                uidata->getJukebox().playSound("dialog pass");
+                gamedata->getJukebox().playSound("dialog pass");
                 line = 0;
                 i = 0;
                 currentTxt[0] = sf::String(" ");

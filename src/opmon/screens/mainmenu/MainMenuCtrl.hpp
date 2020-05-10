@@ -16,7 +16,7 @@ class RenderTexture;
 }  // namespace sf
 
 namespace OpMon {
-class UiData;
+class GameData;
 
     /*!
      * \brief Manages the main menu of the game.
@@ -38,7 +38,7 @@ class UiData;
         Utils::CycleCounter curPosI = Utils::CycleCounter(4);
 
     public:
-        MainMenuCtrl(UiData *data);
+        MainMenuCtrl(GameData *data);
 
         GameStatus checkEvent(sf::Event const &event) override;
         GameStatus update(sf::RenderTexture &frame) override;

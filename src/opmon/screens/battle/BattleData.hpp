@@ -8,11 +8,11 @@
 #include <list>
 
 #include "src/opmon/core/Player.hpp"
-#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/core/GameData.hpp"
 
 namespace OpMon {
 class Player;
-class UiData;
+class GameData;
 
     /*!
      * \brief Contains the data used by View::Battle and Controller::BattleCtrl
@@ -33,7 +33,7 @@ class UiData;
         sf::Texture healthbar1;
         sf::Texture healthbar2;
 
-        UiData *uidata;
+        GameData *gamedata;
         Player *player;
 
         /*!
@@ -52,16 +52,16 @@ class UiData;
         Player &getPlayer() { return *player; }
 
         /*!
-         * \brief A pointer to the UiData object.
+         * \brief A pointer to the GameData object.
          */
-        UiData *getUiDataPtr() { return uidata; }
+        GameData *getGameDataPtr() { return gamedata; }
 
         /*!
          * \brief Initialises all the data.
-         * \param data A pointer to the UiData object.
+         * \param data A pointer to the GameData object.
          * \param player A pointer to the Player object.
          */
-        BattleData(UiData *data, Player *player);
+        BattleData(GameData *data, Player *player);
 
         /*!
          * \brief Gets one battle background.

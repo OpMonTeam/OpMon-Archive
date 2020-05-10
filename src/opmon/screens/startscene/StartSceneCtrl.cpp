@@ -16,7 +16,7 @@
 #include "src/opmon/screens/overworld/OverworldCtrl.hpp"
 #include "src/opmon/screens/animation/AnimationCtrl.hpp"
 #include "src/opmon/core/Player.hpp"
-#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/core/GameData.hpp"
 #include "src/opmon/screens/animation/Animations.hpp"
 #include "StartScene.hpp"
 #include "StartSceneData.hpp"
@@ -30,7 +30,7 @@
 
 namespace OpMon {
 
-    StartSceneCtrl::StartSceneCtrl(UiData *data)
+    StartSceneCtrl::StartSceneCtrl(GameData *data)
         : data(data)
         , view(this->data) {}
 
@@ -39,7 +39,7 @@ namespace OpMon {
 
         switch(event.type) {
         case sf::Event::KeyPressed:
-            if(event.key.code == data.getUiDataPtr()->getKeyTalk() && startscene.getDialog() != nullptr) {
+            if(event.key.code == data.getGameDataPtr()->getKeyTalk() && startscene.getDialog() != nullptr) {
                 startscene.getDialog()->pass();
             }
             //Part 1 is the part where the player enters his/her name
@@ -87,7 +87,7 @@ namespace OpMon {
     void StartSceneCtrl::loadNextScreen() {
         switch(loadNext) {
         case LOAD_OVERWORLD:
-            _next_gs = std::make_unique<OverworldCtrl>(data.getPlayer(), data.getUiDataPtr());
+            _next_gs = std::make_unique<OverworldCtrl>(data.getPlayer(), data.getGameDataPtr());
             break;
         case LOAD_ANIMATION_OPEN:
             _next_gs = std::make_unique<AnimationCtrl>(std::make_unique<Animations::WinAnim>(screenTexture, true));

@@ -19,7 +19,7 @@ namespace OpMon {
 		}
 
 		void SoundEvent::action(Player& player, Overworld& overworld){
-			Ui::Jukebox &jukebox = overworld.getData().getUiDataPtr()->getJukebox();
+			Ui::Jukebox &jukebox = overworld.getData().getGameDataPtr()->getJukebox();
 			if(toggle && playing && music){
 				jukebox.stop();
 				playing = false;

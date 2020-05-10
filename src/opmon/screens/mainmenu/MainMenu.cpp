@@ -14,7 +14,7 @@
 
 #include "src/utils/StringKeys.hpp"
 #include "src/opmon/view/ui/TextBox.hpp"
-#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/core/GameData.hpp"
 #include "MainMenuData.hpp"
 #include "src/opmon/view/ui/Jukebox.hpp"
 
@@ -27,25 +27,25 @@ namespace OpMon {
     MainMenu::MainMenu(MainMenuData &data)
         : data(data) {
 
-        float mainMenuItemX = (data.getUiDataPtr()->getWindowWidth() - MAIN_MENU_ITEM_WIDTH)/2;
+        float mainMenuItemX = (data.getGameDataPtr()->getWindowWidth() - MAIN_MENU_ITEM_WIDTH)/2;
 
         for(int i = 0; i < 4; i++) {
             sf::Vector2f position(mainMenuItemX, MAIN_MENU_ITEM_PADDING + i * (MAIN_MENU_ITEM_HEIGHT + MAIN_MENU_ITEM_PADDING));
-            TextBox mainMenuItem(data.getUiDataPtr()->getMenuFrame(), position, MAIN_MENU_ITEM_WIDTH, MAIN_MENU_ITEM_HEIGHT);
-            mainMenuItem.setFont(data.getUiDataPtr()->getFont());
+            TextBox mainMenuItem(data.getGameDataPtr()->getMenuFrame(), position, MAIN_MENU_ITEM_WIDTH, MAIN_MENU_ITEM_HEIGHT);
+            mainMenuItem.setFont(data.getGameDataPtr()->getFont());
             mainMenuItems.push_back(mainMenuItem);
         }
 
         initMainMenuItemsName();
 
-        data.getUiDataPtr()->getJukebox().play("Title");
+        data.getGameDataPtr()->getJukebox().play("Title");
     }
 
     void MainMenu::initMainMenuItemsName() {
 
         int i{0};
         for(auto &mainMenuItem : mainMenuItems) {
-            mainMenuItem.setLeftContent(data.getUiDataPtr()->getString("title." + std::to_string(i + 1)));
+            mainMenuItem.setLeftContent(data.getGameDataPtr()->getString("title." + std::to_string(i + 1)));
             ++i;
         }
     }
@@ -58,7 +58,7 @@ namespace OpMon {
     }
 
     void MainMenu::play() {
-        data.getUiDataPtr()->getJukebox().play("Title");
+        data.getGameDataPtr()->getJukebox().play("Title");
     }
 
     void MainMenu::update(int curPosI){

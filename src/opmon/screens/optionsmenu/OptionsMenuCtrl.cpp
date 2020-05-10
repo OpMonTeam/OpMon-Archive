@@ -15,7 +15,7 @@
 #include "src/utils/defines.hpp"
 #include "src/utils/OptionsSave.hpp"
 #include "src/utils/i18n/Translator.hpp"
-#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/core/GameData.hpp"
 #include "src/utils/KeyData.hpp"
 #include "OptionsMenu.hpp"
 #include "OptionsMenuData.hpp"
@@ -30,7 +30,7 @@ enum MenuOption { BACK = 0,
 
 namespace OpMon {
 
-    OptionsMenuCtrl::OptionsMenuCtrl(UiData *data)
+    OptionsMenuCtrl::OptionsMenuCtrl(GameData *data)
         : data(data)
         , view(this->data) {
     }
@@ -43,7 +43,7 @@ namespace OpMon {
                 if(currentKeyChange < controlsName.size()) {
                     const std::string &keyCode = Utils::KeyData::findNameKeyCode(event.key.code);
                     if(!keyCode.empty()) {
-                        data.getUiDataPtr()->getOptions().addParam(std::string("control.") + controlsName[currentKeyChange], keyCode.c_str());
+                        data.getGameDataPtr()->getOptions().addParam(std::string("control.") + controlsName[currentKeyChange], keyCode.c_str());
                     }
                     ++currentKeyChange;
                     view.setCurrentKeyChange(currentKeyChange + 1);
@@ -53,14 +53,14 @@ namespace OpMon {
                     currentKeyChange = 0;
                     keyChangeActive = false;
                     view.setCurrentKeyChange(currentKeyChange);
-                    data.getUiDataPtr()->getOptions().saveParams();
+                    data.getGameDataPtr()->getOptions().saveParams();
 
-                    data.getUiDataPtr()->setKeyUp(data.getUiDataPtr()->getOptions().getParam("control.up").getValue());
-                    data.getUiDataPtr()->setKeyDown(data.getUiDataPtr()->getOptions().getParam("control.down").getValue());
-                    data.getUiDataPtr()->setKeyLeft(data.getUiDataPtr()->getOptions().getParam("control.left").getValue());
-                    data.getUiDataPtr()->setKeyRight(data.getUiDataPtr()->getOptions().getParam("control.right").getValue());
-                    data.getUiDataPtr()->setKeyTalk(data.getUiDataPtr()->getOptions().getParam("control.talk").getValue());
-                    data.getUiDataPtr()->setKeyInteract(data.getUiDataPtr()->getOptions().getParam("control.interact").getValue());
+                    data.getGameDataPtr()->setKeyUp(data.getGameDataPtr()->getOptions().getParam("control.up").getValue());
+                    data.getGameDataPtr()->setKeyDown(data.getGameDataPtr()->getOptions().getParam("control.down").getValue());
+                    data.getGameDataPtr()->setKeyLeft(data.getGameDataPtr()->getOptions().getParam("control.left").getValue());
+                    data.getGameDataPtr()->setKeyRight(data.getGameDataPtr()->getOptions().getParam("control.right").getValue());
+                    data.getGameDataPtr()->setKeyTalk(data.getGameDataPtr()->getOptions().getParam("control.talk").getValue());
+                    data.getGameDataPtr()->setKeyInteract(data.getGameDataPtr()->getOptions().getParam("control.interact").getValue());
                 }
 
                 return GameStatus::CONTINUE;
@@ -70,33 +70,33 @@ namespace OpMon {
                 if(menu.getCurrentOption() == OptionType::ALL) {
                     switch(menu.cursorPosition()) {
                     case BACK:
-                        data.getUiDataPtr()->getJukebox().playSound("push");
+                        data.getGameDataPtr()->getJukebox().playSound("push");
                         return GameStatus::PREVIOUS;
                     case FULLSCREEN:
-                        data.getUiDataPtr()->getJukebox().playSound("push");
-                        if(data.getUiDataPtr()->getOptions().getParam("fullscreen").getValue() == "true") {
-                            data.getUiDataPtr()->getOptions().addOrModifParam("fullscreen", "false");
+                        data.getGameDataPtr()->getJukebox().playSound("push");
+                        if(data.getGameDataPtr()->getOptions().getParam("fullscreen").getValue() == "true") {
+                            data.getGameDataPtr()->getOptions().addOrModifParam("fullscreen", "false");
                         } else {
-                            data.getUiDataPtr()->getOptions().addOrModifParam("fullscreen", "true");
+                            data.getGameDataPtr()->getOptions().addOrModifParam("fullscreen", "true");
                         }
                         view.initOptionsMenuItemsValue();
                         return GameStatus::WIN_REBOOT;
                     case LANGUAGE:
-                        data.getUiDataPtr()->getJukebox().playSound("push");
+                        data.getGameDataPtr()->getJukebox().playSound("push");
                         menu.setCurrentOption(OptionType::LANG);
                         return GameStatus::CONTINUE;
                         break;
                     case CONTROLS:
-                        data.getUiDataPtr()->getJukebox().playSound("push");
+                        data.getGameDataPtr()->getJukebox().playSound("push");
                         menu.setCurrentOption(OptionType::CONTROLS);
                         return GameStatus::CONTINUE;
                         break;
                     case VOLUME:
-                        data.getUiDataPtr()->getJukebox().playSound("push");
+                        data.getGameDataPtr()->getJukebox().playSound("push");
                         toggleVolume();
                         break;
                     case CREDITS:
-                        data.getUiDataPtr()->getJukebox().playSound("push");
+                        data.getGameDataPtr()->getJukebox().playSound("push");
                         menu.setCurrentOption(OptionType::CREDITS);
                         return GameStatus::CONTINUE;
                         break;
@@ -104,29 +104,29 @@ namespace OpMon {
                 } else if(menu.getCurrentOption() == OptionType::LANG) { //Chooses language to print
 
                     auto &tr = Utils::I18n::Translator::getInstance();
-                    data.getUiDataPtr()->getJukebox().playSound("push");
+                    data.getGameDataPtr()->getJukebox().playSound("push");
                     switch(menu.cursorPosition()) {
                     case 0:
                         menu.setCurrentOption(OptionType::ALL);
                         return GameStatus::CONTINUE;
                     case 1:
-                        data.getUiDataPtr()->getOptions().editParam("lang", "en");
+                        data.getGameDataPtr()->getOptions().editParam("lang", "en");
                         tr.setLang("en");
                         break;
                     case 2:
-                        data.getUiDataPtr()->getOptions().editParam("lang", "es");
+                        data.getGameDataPtr()->getOptions().editParam("lang", "es");
                         tr.setLang("es");
                         break;
                     case 3:
-                        data.getUiDataPtr()->getOptions().editParam("lang", "fr");
+                        data.getGameDataPtr()->getOptions().editParam("lang", "fr");
                         tr.setLang("fr");
                         break;
                     case 4:
-                        data.getUiDataPtr()->getOptions().editParam("lang", "de");
+                        data.getGameDataPtr()->getOptions().editParam("lang", "de");
                         tr.setLang("de");
                         break;
                     case 5:
-                        data.getUiDataPtr()->getOptions().editParam("lang", "it");
+                        data.getGameDataPtr()->getOptions().editParam("lang", "it");
                         tr.setLang("it");
                         break;
                     }
@@ -135,17 +135,17 @@ namespace OpMon {
                     view.initOptionsMenuItemsName();
                 } else if(menu.getCurrentOption() == OptionType::CREDITS) {
                     //Only one choice is avilable on the credits : back.
-                    data.getUiDataPtr()->getJukebox().playSound("push");
+                    data.getGameDataPtr()->getJukebox().playSound("push");
                     menu.setCurrentOption(OptionType::ALL);
                     return GameStatus::CONTINUE;
                 } else if(menu.getCurrentOption() == OptionType::CONTROLS) {
                     switch(menu.cursorPosition()) {
                     case 0: //Back
-                        data.getUiDataPtr()->getJukebox().playSound("push");
+                        data.getGameDataPtr()->getJukebox().playSound("push");
                         menu.setCurrentOption(OptionType::ALL);
                         return GameStatus::CONTINUE;
                     case 1: //Set controls
-                        data.getUiDataPtr()->getJukebox().playSound("push");
+                        data.getGameDataPtr()->getJukebox().playSound("push");
                         keyChangeActive = true;
                         view.setCurrentKeyChange(currentKeyChange + 1);
                         break;
@@ -159,12 +159,12 @@ namespace OpMon {
             }
             if(event.key.code == sf::Keyboard::Up) {
                 menu.moveArrow(true);
-                data.getUiDataPtr()->getJukebox().playSound("arrow");
+                data.getGameDataPtr()->getJukebox().playSound("arrow");
             } else if(event.key.code == sf::Keyboard::Down) {
                 menu.moveArrow(false);
-                data.getUiDataPtr()->getJukebox().playSound("arrow");
+                data.getGameDataPtr()->getJukebox().playSound("arrow");
             } else if(event.key.code == sf::Keyboard::BackSpace) {
-                data.getUiDataPtr()->getJukebox().playSound("push");
+                data.getGameDataPtr()->getJukebox().playSound("push");
                 if(menu.getCurrentOption() == OptionType::ALL) {
                     //Returns to the previous game screen if backspace is pressed while in the options' main menu.
                     return GameStatus::PREVIOUS;
@@ -197,27 +197,27 @@ namespace OpMon {
     }
 
     void OptionsMenuCtrl::toggleVolume() {
-        if(data.getUiDataPtr()->getJukebox().getGlobalVolume() > 0) {
-            data.getUiDataPtr()->getJukebox().setGlobalVolume(0);
-            data.getUiDataPtr()->getOptions().editParam("volume", "0");
+        if(data.getGameDataPtr()->getJukebox().getGlobalVolume() > 0) {
+            data.getGameDataPtr()->getJukebox().setGlobalVolume(0);
+            data.getGameDataPtr()->getOptions().editParam("volume", "0");
         } else {
-            data.getUiDataPtr()->getJukebox().setGlobalVolume(100);
-            data.getUiDataPtr()->getOptions().editParam("volume", "100");
+            data.getGameDataPtr()->getJukebox().setGlobalVolume(100);
+            data.getGameDataPtr()->getOptions().editParam("volume", "100");
         }
         view.initOptionsMenuItemsValue();
     }
 
     void OptionsMenuCtrl::raiseVolume() {
-        const int newVolume = std::min(100, data.getUiDataPtr()->getJukebox().getGlobalVolume() + 10);
-        data.getUiDataPtr()->getJukebox().setGlobalVolume(newVolume);
-        data.getUiDataPtr()->getOptions().editParam("volume", std::to_string(newVolume));
+        const int newVolume = std::min(100, data.getGameDataPtr()->getJukebox().getGlobalVolume() + 10);
+        data.getGameDataPtr()->getJukebox().setGlobalVolume(newVolume);
+        data.getGameDataPtr()->getOptions().editParam("volume", std::to_string(newVolume));
         view.initOptionsMenuItemsValue();
     }
 
     void OptionsMenuCtrl::lowerVolume() {
-        const int newVolume = std::max(0, data.getUiDataPtr()->getJukebox().getGlobalVolume() - 10);
-        data.getUiDataPtr()->getJukebox().setGlobalVolume(newVolume);
-        data.getUiDataPtr()->getOptions().editParam("volume", std::to_string(newVolume));
+        const int newVolume = std::max(0, data.getGameDataPtr()->getJukebox().getGlobalVolume() - 10);
+        data.getGameDataPtr()->getJukebox().setGlobalVolume(newVolume);
+        data.getGameDataPtr()->getOptions().editParam("volume", std::to_string(newVolume));
         view.initOptionsMenuItemsValue();
     }
 

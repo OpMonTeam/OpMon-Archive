@@ -9,10 +9,10 @@
 
 namespace OpMon {
 class Player;
-class UiData;
+class GameData;
 
-    BattleData::BattleData(UiData *data, Player *player)
-        : uidata(data)
+    BattleData::BattleData(GameData *data, Player *player)
+        : gamedata(data)
         , player(player) {
         Utils::ResourceLoader::load(backgrounds["grass"], "backgrounds/battle_bkg/background_grass.png");
         Utils::ResourceLoader::load(dialog, "backgrounds/dialog/battle_dialog.png");

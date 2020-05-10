@@ -1,10 +1,10 @@
 /*
-  UiData.cpp
+  GameData.cpp
   Author : Cyrielle
   Contributors : BAKFR, Navet56
   File under GNU GPL v3.0 license
  */
-#include "UiData.hpp"
+#include "GameData.hpp"
 
 #include <fstream>
 #include <algorithm>
@@ -27,7 +27,7 @@
 namespace OpMon {
 class Evolution;
 
-UiData::UiData() {
+GameData::GameData() {
 
 	Utils::Log::oplog("Loading options");
 
@@ -52,7 +52,7 @@ UiData::UiData() {
 	}
 	tr.setLang(lang);
 
-	Utils::Log::oplog("Initializating UiData");
+	Utils::Log::oplog("Initializating GameData");
 
 	jukebox.addMusic("Title", "audio/music/title.ogg");
 	jukebox.addMusic("Start", "audio/music/intro.ogg");
@@ -221,11 +221,11 @@ UiData::UiData() {
 	}
 }
 
-UiData::~UiData() {
+GameData::~GameData() {
 	for(std::pair<unsigned int, Species*> spe : listOp) {
 		delete(spe.second);
 	}
 	delete(options);
-	Utils::Log::oplog("Deleted UiData");
+	Utils::Log::oplog("Deleted GameData");
 }
 } // namespace OpMon

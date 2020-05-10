@@ -15,7 +15,7 @@
 #include "src/opmon/core/system/path.hpp"
 #include "src/utils/ResourceLoader.hpp"
 #include "src/opmon/core/Player.hpp"
-#include "src/opmon/core/UiData.hpp"
+#include "src/opmon/core/GameData.hpp"
 #include "src/opmon/model/Move.hpp"
 #include "src/opmon/model/Enums.hpp"
 #include "src/opmon/model/Nature.hpp"
@@ -25,16 +25,16 @@
 
 namespace OpMon {
 
-    OverworldData::OverworldData(UiData *uidata, Player *player)
-        : uidata(uidata)
+    OverworldData::OverworldData(GameData *gamedata, Player *player)
+        : gamedata(gamedata)
         , player(player)
-        , gameMenuData(uidata, player) {
+        , gameMenuData(gamedata, player) {
 
         using namespace Utils;
 
         Move::initMoves(std::filesystem::directory_iterator(Path::getResourcePath() + "data/moves"));
 
-        player->addOpToOpTeam(new OpMon("", uidata->getOp(4), 5, {Move::newMove("Tackle"), Move::newMove("Growl"), nullptr, nullptr}, Nature::QUIET));
+        player->addOpToOpTeam(new OpMon("", gamedata->getOp(4), 5, {Move::newMove("Tackle"), Move::newMove("Growl"), nullptr, nullptr}, Nature::QUIET));
 
         //PP texture and rect loading
         Utils::ResourceLoader::load(texturePP, "sprites/chara/pp/pp_anim.png");
@@ -107,7 +107,7 @@ namespace OpMon {
         				}
         			}
         			std::string itemId = itor->at("id");
-        			itemsList.emplace(itemId, std::make_unique<Item>(Utils::OpString(uidata->getStringKeys(), "items." + itemId + ".name"), itor->at("usable"), itor->at("onOpMon"), std::move(effects[0]), std::move(effects[1]), std::move(effects[2])));
+        			itemsList.emplace(itemId, std::make_unique<Item>(Utils::OpString(gamedata->getStringKeys(), "items." + itemId + ".name"), itor->at("usable"), itor->at("onOpMon"), std::move(effects[0]), std::move(effects[1]), std::move(effects[2])));
         		}
         	}
         }
@@ -122,7 +122,7 @@ namespace OpMon {
         			OpTeam *team = new OpTeam(itor->at("name"));
         			for(auto opmonItor = itor->at("team").begin(); opmonItor != itor->at("team").end(); ++opmonItor) {
         				team->addOpMon(new OpMon(opmonItor->at("nickname"),
-        						uidata->getOp(opmonItor->at("species")),
+        						gamedata->getOp(opmonItor->at("species")),
 								opmonItor->at("level"),
 								{Move::newMove(opmonItor->at("moves")[0]),
 										Move::newMove(opmonItor->at("moves")[1]),

@@ -1,5 +1,5 @@
 /*!
- * \file UiData.hpp
+ * \file GameData.hpp
  * \authors Cyrielle
  * \authors BAKFR
  * \copyright GNU GPL v3.0
@@ -25,9 +25,8 @@ class Species;
     /*!
      * \brief Contains the data needed for the game in general.
      * \details One instance of it must be created in GameLoop, and then shared as a pointer in every "Data" classes.
-     * \todo Rename in GameData
      */
-    class UiData {
+    class GameData {
     private:
         std::vector<std::vector<sf::Texture>> opSprites;
         std::map<unsigned int, Species *> listOp;
@@ -57,7 +56,7 @@ class Species;
         /*!
          * \brief The copy constructor. Must not be used.
          */
-        UiData(UiData const &data) = delete;
+        GameData(GameData const &data) = delete;
 
     public:
         /*!
@@ -68,8 +67,8 @@ class Species;
          * \brief Gets a reference to the game's font.
          */
         sf::Font const &getFont() const { return font; }
-        UiData();
-        ~UiData();
+        GameData();
+        ~GameData();
         /*!
          * \brief Gets a texture of an OpMon.
          * \param id The identifier of the Species of the OpMon.

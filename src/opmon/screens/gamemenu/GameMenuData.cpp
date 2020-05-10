@@ -11,10 +11,10 @@
 
 namespace OpMon {
 class Player;
-class UiData;
+class GameData;
 
-    GameMenuData::GameMenuData(UiData *data, Player *player)
-        : uidata(data)
+    GameMenuData::GameMenuData(GameData *data, Player *player)
+        : gamedata(data)
         , player(player) {
         Utils::ResourceLoader::load(menuTexture, "backgrounds/menu.png");
         Utils::ResourceLoader::loadTextureArray(selectionTexture, "backgrounds/menuS%d.png", 6, 1);

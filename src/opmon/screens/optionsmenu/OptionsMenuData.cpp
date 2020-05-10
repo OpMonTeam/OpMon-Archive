@@ -8,10 +8,10 @@
 #include "src/utils/ResourceLoader.hpp"
 
 namespace OpMon {
-class UiData;
+class GameData;
 
-    OptionsMenuData::OptionsMenuData(UiData *data)
-        : uidata(data) {
+    OptionsMenuData::OptionsMenuData(GameData *data)
+        : gamedata(data) {
         Utils::ResourceLoader::load(selectBar, "sprites/misc/selectBar.png");
         Utils::ResourceLoader::load(creditsBg, "backgrounds/credits.png");
         Utils::ResourceLoader::load(controlsBg, "backgrounds/controls.png");
