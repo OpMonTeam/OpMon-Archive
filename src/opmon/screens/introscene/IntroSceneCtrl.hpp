@@ -1,5 +1,5 @@
 /*!
- * \file StartSceneCtrl.hpp
+ * \file IntroSceneCtrl.hpp
  * \authors Cyrielle
  * \authors BAKFR
  * \copyright GNU GPL v3.0
@@ -9,7 +9,7 @@
 
 #include <SFML/Window.hpp>
 
-#include "StartScene.hpp"
+#include "IntroScene.hpp"
 #include "src/opmon/screens/base/AGameScreen.hpp"
 
 namespace sf {
@@ -24,11 +24,11 @@ class GameData;
      * \brief Manages the introduction scene and its three phases.
      * \todo Change to IntroSceneCtrl
      */
-    class StartSceneCtrl : public AGameScreen {
+    class IntroSceneCtrl : public AGameScreen {
     protected:
-        StartSceneData data;
+        IntroSceneData data;
 
-        StartScene view;
+        IntroScene view;
         /*!
          * \brief If `true`, a closing Animations::WinAnim is launched. This is set to `true` when the player has finished entering their name.
          */
@@ -52,7 +52,7 @@ class GameData;
         sf::Texture screenTexture;
 
     public:
-        StartSceneCtrl(GameData *data);
+        IntroSceneCtrl(GameData *data);
         GameStatus checkEvent(sf::Event const &event) override;
         GameStatus update(sf::RenderTexture &frame) override;
 

@@ -12,7 +12,7 @@
 #include <memory>
 
 #include "src/opmon/screens/optionsmenu/OptionsMenuCtrl.hpp"
-#include "src/opmon/screens/startscene/StartSceneCtrl.hpp"
+#include "src/opmon/screens/introscene/IntroSceneCtrl.hpp"
 #include "src/opmon/core/GameData.hpp"
 #include "MainMenu.hpp"
 #include "MainMenuData.hpp"
@@ -78,7 +78,7 @@ namespace OpMon {
     void MainMenuCtrl::loadNextScreen() {
         switch(loadNext) {
         case LOAD_STARTSCENE:
-            _next_gs = std::make_unique<StartSceneCtrl>(data.getGameDataPtr());
+            _next_gs = std::make_unique<IntroSceneCtrl>(data.getGameDataPtr());
             break;
         case LOAD_OPTIONS:
             _next_gs = std::make_unique<OptionsMenuCtrl>(data.getGameDataPtr());

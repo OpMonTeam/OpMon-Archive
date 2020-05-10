@@ -1,10 +1,10 @@
 /*
-  StartSceneData.cpp
+  IntroSceneData.cpp
   Author : Cyrielle
   File under GNU GPL v3.0 license
 */
 
-#include "StartSceneData.hpp"
+#include "IntroSceneData.hpp"
 
 #include <memory>
 
@@ -16,10 +16,10 @@
 namespace OpMon {
 class GameData;
 
-    StartSceneData::StartSceneData(GameData *data)
+    IntroSceneData::IntroSceneData(GameData *data)
         : gamedata(data)
         , player(new Player()) {
-        Utils::ResourceLoader::load(background, "backgrounds/start/startscene.png");
+        Utils::ResourceLoader::load(background, "backgrounds/start/introscene.png");
         Utils::ResourceLoader::load(prof, "sprites/chara/prof/profkiwai.png");
         Utils::ResourceLoader::load(nameBg, "backgrounds/start/nameEntry.png");
 
