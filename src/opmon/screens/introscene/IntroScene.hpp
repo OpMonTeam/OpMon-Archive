@@ -1,5 +1,5 @@
 /*!
- * \file StartScene.hpp
+ * \file IntroScene.hpp
  * \authors Cyrielle
  * \authors BAKFR
  * \copyright GNU GPL v3.0
@@ -7,7 +7,7 @@
 #ifndef STARTSCENE_HPP
 #define STARTSCENE_HPP
 
-#include "StartSceneData.hpp"
+#include "IntroSceneData.hpp"
 #include "src/utils/i18n/ATranslatable.hpp"
 #include "src/opmon/view/ui/Dialog.hpp"
 #include "src/opmon/core/GameStatus.hpp"
@@ -17,16 +17,16 @@ class RenderTarget;
 }  // namespace sf
 
 namespace OpMon {
-class StartSceneData;
+class IntroSceneData;
 
     /*!
      * \brief View managing the introduction scene.
      * \todo Change name to IntroScene.
      */
-    class StartScene : public Utils::I18n::ATranslatable, public sf::Drawable {
+    class IntroScene : public Utils::I18n::ATranslatable, public sf::Drawable {
     public:
-        StartScene(StartSceneData &data);
-        ~StartScene() override = default;
+        IntroScene(IntroSceneData &data);
+        ~IntroScene() override = default;
 
         /*!
          * \brief Updates the screen.
@@ -51,7 +51,7 @@ class StartSceneData;
         }
 
         /*!
-         * \brief Returns StartScene::part
+         * \brief Returns IntroScene::part
          */
         int getPart() {
             return part;
@@ -102,7 +102,7 @@ class StartSceneData;
          * \brief The player's entered name.
          */
         sf::String pName;
-        StartSceneData &data;
+        IntroSceneData &data;
     };
 
 } // namespace OpMon
