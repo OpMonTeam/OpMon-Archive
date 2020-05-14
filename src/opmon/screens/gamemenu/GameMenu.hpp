@@ -16,6 +16,13 @@ class RenderTarget;
 }  // namespace sf
 
 namespace OpMon {
+
+/*!
+ * \brief Represent one of the submenu that can be accessed from the game menu.
+ */
+enum SubMenu { SETTINGS_MENU,
+               SAVE_MENU };
+
 class GameMenuData;
 
     /*!
