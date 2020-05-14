@@ -21,12 +21,11 @@
 #include "OptionsMenuData.hpp"
 #include "src/opmon/view/ui/Jukebox.hpp"
 
-enum MenuOption { BACK = 0,
-                  FULLSCREEN = 1,
-                  LANGUAGE = 2,
-                  CONTROLS = 3,
-                  VOLUME = 4,
-                  CREDITS = 5 };
+enum MenuOption { FULLSCREEN = 0,
+                  LANGUAGE = 1,
+                  CONTROLS = 2,
+                  VOLUME = 3,
+                  CREDITS = 4 };
 
 namespace OpMon {
 
@@ -69,9 +68,6 @@ namespace OpMon {
                 //If present on the options' main menu, checks what to do
                 if(menu.getCurrentOption() == OptionType::ALL) {
                     switch(menu.cursorPosition()) {
-                    case BACK:
-                        data.getGameDataPtr()->getJukebox().playSound("push");
-                        return GameStatus::PREVIOUS;
                     case FULLSCREEN:
                         data.getGameDataPtr()->getJukebox().playSound("push");
                         if(data.getGameDataPtr()->getOptions().getParam("fullscreen").getValue() == "true") {
