@@ -110,7 +110,7 @@ namespace OpMon {
         float optionsMenuItemX = (data.getGameDataPtr()->getWindowWidth() - OPTIONS_MENU_ITEM_WIDTH)/2;
 
         // Create text boxes for the main screen
-        for(int i = 0; i < 6; i++) {
+        for(int i = 0; i < 5; i++) {
             sf::Vector2f position(optionsMenuItemX, OPTIONS_MENU_ITEM_PADDING + i * (OPTIONS_MENU_ITEM_HEIGHT + OPTIONS_MENU_ITEM_PADDING));
             TextBox optionsMenuItem(data.getGameDataPtr()->getMenuFrame(), position, OPTIONS_MENU_ITEM_WIDTH, OPTIONS_MENU_ITEM_HEIGHT);
             optionsMenuItem.setFont(data.getGameDataPtr()->getFont());
@@ -359,21 +359,18 @@ namespace OpMon {
         for(auto &optionsMenuItem : optionsMenuItems) {
             switch (i) {
             case 0:
-                key = "retour";
-                break;
-            case 1:
                 key = "ecran";
                 break;
-            case 2:
+            case 1:
                 key = "lang";
                 break;
-            case 3:
+            case 2:
                 key = "controls";
                 break;
-            case 4:
+            case 3:
                 key = "volume";
                 break;
-            case 5:
+            case 4:
                 key = "credits";
                 break;
             }
@@ -394,7 +391,7 @@ namespace OpMon {
                     optionsMenuItem.setRightContent("Off");
                 }
                 break;
-            case 4:
+            case 3:
                 optionsMenuItem.setRightContent(std::to_string(globalVolume) + "%");
                 break;
             default:
