@@ -85,5 +85,21 @@ namespace OpMon::Elements {
 		bool move(Side direction, Map *map);
 
 		bool isOver() const {return !wantmove;}
+
+		/*!
+		 * \brief Changes the position of the event.
+		 *
+		 * This method moves the event by changing \ref position, but also \ref mapPos and the position of the \ref sprite.
+		 * The new position has to be in squares.
+		 */
+		virtual void setPosition(int x, int y) {setPosition(sf::Vector2i(x,y));}
+
+		/*!
+		 * \brief Changes the position of the event.
+		 *
+		 * This method moves the event by changing \ref position, but also \ref mapPos and the position of the \ref sprite.
+		 * \param xy The new position, in squares.
+		 */
+		virtual void setPosition(sf::Vector2i pos);
 	};
 }

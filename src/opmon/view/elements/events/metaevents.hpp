@@ -58,9 +58,16 @@ namespace OpMon::Elements {
 		 * This variable is set to `false` at the end of the battle (if not defeated) or dialog (if defeated).
 		 */
 		bool triggered = false;
+
+		/*!
+		 * \brief Contains the pointers to the pre battle and battle events when the objects are still used somewhere in the code.
+		 */
+		std::list<AbstractEvent*> garbage;
+
 	public:
 		TrainerEvent(TalkingCharaEvent* prebattlenpc, BattleEvent* battle, TalkingCharaEvent* postbattlenpc);
 		TrainerEvent(OverworldData &data, nlohmann::json jsonData);
+		~TrainerEvent();
 		void action(Player &player, Overworld &overworld);
 		void update(Player &player, Overworld &overworld);
 		bool isDefeated() {return defeated;}

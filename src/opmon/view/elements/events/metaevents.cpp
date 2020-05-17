@@ -13,10 +13,7 @@ namespace OpMon::Elements {
 				new TPEvent(data.getDoorsTexture(doorType), eventTrigger, position, tpCoord, map, ppDir, sides, passable),
 				nullptr})),
 			std::queue<bool>(std::deque<bool>({false, true, false, false}))){
-		this->position += sf::Vector2f(0, -6); //TODO : Fix the sprites to get rid of this little fix
-		if(doorType == "shop door") {
-			this->position.x -= 4;
-		}
+		this->sprite->setOrigin(5, 6); //The doors are a bit bigger than a square (42x36 instead of 32x32).
 	}
 
 	DoorEvent::DoorEvent(OverworldData &data, nlohmann::json jsonData)
@@ -72,24 +69,29 @@ namespace OpMon::Elements {
 	TrainerEvent::TrainerEvent(OverworldData &data, nlohmann::json jsonData)
 	: AbstractMetaEvent(std::queue<AbstractEvent*>(std::deque<AbstractEvent*>({
 		new TalkingCharaEvent(data, jsonData.at("prebattle")),
-				new BattleEvent(data, jsonData.at("battle")),
-				new TalkingCharaEvent(data, jsonData.at("postbattle"))
-	}))) {}
+				new BattleEvent(data, jsonData.at("prebattle"))
+	}))) {
+		// If "postbattle" field doesn't exist, the post battle character is the same as the pre battle one.
+		eventQueue.push(jsonData.contains("postbattle") ? new TalkingCharaEvent(data, jsonData.at("postbattle")) : eventQueue.front());
+	}
 
 	void TrainerEvent::update(Player &player, Overworld &overworld){
 		eventQueue.front()->update(player, overworld); //Updates the first event in the queue.
 		if(triggered && !defeated && eventQueue.front()->isOver()){ //If the event has been triggered, not defeated yet and that the current action is over,
 																	//it means that the player has interacted with the event, so the dialog has been launched
-																	//and is now over, and the battle can now start, or that the battle just ended.
-			delete(eventQueue.front()); //Deleting the pre-battle NPC or the battle event
+																	//and is now over, and the battle can now start.
+			garbage.push_back(eventQueue.front()); //Deleting the pre-battle NPC or the battle event
 			eventQueue.pop();
 			mainEvent = eventQueue.front();
-			if(eventQueue.size() == 2){ //If the only events left are the battle and the post-battle NPC
-				eventQueue.front()->action(player, overworld); //Starts the battle
-			}else{ //It can only mean one thing : one event left, and it is the post-battle NPC
-				defeated = true; //If the only event left is the post-battle NPC and the trainer is not defeated, it means the battle just ended.
-				triggered = false;
-			}
+			eventQueue.front()->action(player, overworld); //Starts the battle
+
+			garbage.push_back(eventQueue.front());
+			eventQueue.pop(); //Shows the post battle npc
+			defeated = true;
+			triggered = false;
+			if(eventQueue.front()->getPositionMap().getPosition() == sf::Vector2i(0,0))            //If the position of the new event is 0,0
+				eventQueue.front()->setPosition(garbage.front()->getPositionMap().getPosition());  //sets it to the position of the pre battle event
+			mainEvent = eventQueue.front();
 		}
 
 		AbstractMetaEvent::update(player, overworld);
@@ -98,8 +100,11 @@ namespace OpMon::Elements {
 	void TrainerEvent::action(Player &player, Overworld &overworld){
 		eventQueue.front()->action(player, overworld); //Triggers the first event in the queue.
 		triggered = true;
-		static unsigned int i = (i > 20) ? 0 : i;
-		i++;
-		std::cout << "Actionned " << i << " times !" << std::endl;
+	}
+
+	TrainerEvent::~TrainerEvent(){
+		for(AbstractEvent* event : garbage) {
+			delete(event);
+		}
 	}
 }
