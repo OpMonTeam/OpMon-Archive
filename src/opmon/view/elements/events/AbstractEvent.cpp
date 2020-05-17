@@ -32,6 +32,12 @@ namespace OpMon {
 			this->sprite->setPosition(position);
 			this->sprite->setTexture(*currentTexture);
 		}
+
+		void AbstractEvent::setPosition(sf::Vector2i pos) {
+			position = 32.0f * sf::Vector2f(pos.x, pos.y);
+			mapPos.setPosition(pos.x, pos.y);
+			sprite->setPosition(position);
+		}
 	}
 }
 

@@ -174,5 +174,10 @@ namespace OpMon {
 			this->movements = moves;
 		}
 
+		void CharacterEvent::setPosition(sf::Vector2i pos){
+			AbstractEvent::setPosition(pos);
+			this->position += sf::Vector2f(16, 0);
+		}
+
 	} /* namespace Elements */
 } /* namespace OpMon */

@@ -40,4 +40,9 @@ namespace OpMon::Elements {
 		position = mainEvent->getPosition();
 		mapPos = mainEvent->getPositionMap();
 	}
+
+	void AbstractMetaEvent::setPosition(sf::Vector2i pos){
+		mainEvent->setPosition(pos);
+		AbstractEvent::setPosition(pos);
+	}
 }

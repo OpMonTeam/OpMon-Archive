@@ -145,6 +145,21 @@ namespace OpMon{
 			 virtual bool isOver() const = 0;
 
 			std::vector<sf::Texture>& getTextures() {return otherTextures;}
+
+			/*!
+			 * \brief Changes the position of the event.
+			 *
+			 * This method moves the event by changing \ref position, but also \ref mapPos and the position of the \ref sprite.
+			 * The new position has to be in squares.
+			 */
+			virtual void setPosition(int x, int y) {setPosition(sf::Vector2i(x,y));}
+			/*!
+             * \brief Changes the position of the event.
+			 *
+			 * This method moves the event by changing \ref position, but also \ref mapPos and the position of the \ref sprite.
+			 * \param xy The new position, in squares.
+			 */
+			virtual void setPosition(sf::Vector2i pos);
 		};
 	}
 }
