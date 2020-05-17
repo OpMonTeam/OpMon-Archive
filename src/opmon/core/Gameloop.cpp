@@ -6,24 +6,25 @@ File under GNU GPL v3.0 license
 */
 #include "Gameloop.hpp"
 
+#include <SFML/Graphics/RenderTexture.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Window/Event.hpp>
-#include <SFML/Graphics/RenderTexture.hpp>
-#include <SFML/Graphics/RenderWindow.hpp>
-#include <functional>
+
 #include <algorithm>
+#include <functional>
 #include <utility>
 
+#include "../../utils/exceptions.hpp"
+#include "../../utils/ResourceLoader.hpp"
 #include "../../utils/StringKeys.hpp"
+#include "../screens/base/AGameScreen.hpp"
 #include "../screens/mainmenu/MainMenuCtrl.hpp"
-#include "src/utils/ResourceLoader.hpp"
-#include "src/opmon/core/GameStatus.hpp"
-#include "src/opmon/core/GameData.hpp"
-#include "src/opmon/screens/base/AGameScreen.hpp"
-#include "src/opmon/view/ui/Window.hpp"
-#include "src/utils/exceptions.hpp"
+#include "../view/ui/Window.hpp"
+#include "GameData.hpp"
+#include "GameStatus.hpp"
 
 namespace OpMon {
 
