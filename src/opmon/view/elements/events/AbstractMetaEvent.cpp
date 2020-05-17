@@ -25,6 +25,7 @@ namespace OpMon::Elements {
 			else if(type == "TalkingCharacter") eventQueue.push(new TrainerEvent(data, event));
 			else if(type == "Door") eventQueue.push(new DoorEvent(data, event));
 			else if(type == "LinearMeta") eventQueue.push(new LinearMetaEvent(data, event));
+			else if(type == "nullptr") eventQueue.push(nullptr);
 		}
 		mainEvent = eventQueue.front();
 	}
