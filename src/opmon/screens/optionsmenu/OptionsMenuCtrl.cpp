@@ -6,20 +6,21 @@
 */
 #include "OptionsMenuCtrl.hpp"
 
+#include <algorithm>
 #include <ext/alloc_traits.h>
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/Keyboard.hpp>
-#include <algorithm>
 
-#include "src/utils/defines.hpp"
-#include "src/utils/OptionsSave.hpp"
-#include "src/utils/i18n/Translator.hpp"
-#include "src/opmon/core/GameData.hpp"
-#include "src/utils/KeyData.hpp"
+#include "../../../utils/defines.hpp"
+#include "../../../utils/i18n/Translator.hpp"
+#include "../../../utils/Keyboard.hpp"
+#include "../../../utils/OptionsSave.hpp"
+#include "../../core/GameData.hpp"
+#include "../../view/ui/Jukebox.hpp"
 #include "OptionsMenu.hpp"
 #include "OptionsMenuData.hpp"
-#include "src/opmon/view/ui/Jukebox.hpp"
+#include <string>
 
 enum MenuOption { FULLSCREEN = 0,
                   LANGUAGE = 1,
@@ -40,7 +41,7 @@ namespace OpMon {
         case sf::Event::KeyPressed:
             if(menu.getCurrentOption() == OptionType::CONTROLS && keyChangeActive) {
                 if(currentKeyChange < controlsName.size()) {
-                    const std::string &keyCode = Utils::KeyData::findNameKeyCode(event.key.code);
+                    const std::string keyCode(keyToString(event.key.code));
                     if(!keyCode.empty()) {
                         data.getGameDataPtr()->getOptions().addParam(std::string("control.") + controlsName[currentKeyChange], keyCode.c_str());
                     }

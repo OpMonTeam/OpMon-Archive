@@ -1,8 +1,8 @@
 #include "Keyboard.hpp"
 
-namespace Utils {
+namespace OpMon {
     std::ostream &operator<<(std::ostream &os, sf::Keyboard::Key k) {
-        os << key_to_string(k);
+        os << keyToString(k);
         return os;
     }
-} // namespace Utils
+} // namespace OpMon

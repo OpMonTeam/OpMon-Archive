@@ -11,23 +11,23 @@
 #include <ext/alloc_traits.h>
 #include <map>
 
+#include "../../utils/Keyboard.hpp"
+#include "../../utils/OptionsSave.hpp"
+#include "../../utils/i18n/Translator.hpp"
+#include "../model/Species.hpp"
 #include "../view/ui/Jukebox.hpp"
 #include "../view/ui/Window.hpp"
-#include "../model/Species.hpp"
-#include "src/utils/KeyData.hpp"
-#include "src/utils/i18n/Translator.hpp"
-#include "src/utils/OptionsSave.hpp"
-
+#include "../../utils/StringKeys.hpp"
 
 namespace OpMon {
-class Species;
+    class Species;
 
     /*!
      * \brief Contains the data needed for the game in general.
      * \details One instance of it must be created in GameLoop, and then shared as a pointer in every "Data" classes.
      */
     class GameData {
-    private:
+      private:
         std::vector<std::vector<sf::Texture>> opSprites;
         std::map<unsigned int, Species *> listOp;
         std::vector<std::map<int, std::string>> atkOpLvl;
@@ -58,7 +58,7 @@ class Species;
          */
         GameData(GameData const &data) = delete;
 
-    public:
+      public:
         /*!
          * \brief Gets a reference to the Jukebox object.
          */
@@ -96,27 +96,27 @@ class Species;
         /*!
          * \brief Gets the key for the "up" action.
          */
-        sf::Keyboard::Key getKeyUp() const { return up; }
+        auto getKeyUp() const { return up; }
         /*!
          * \brief Gets the key for the "down" action.
          */
-        sf::Keyboard::Key getKeyDown() const { return down; }
+        auto getKeyDown() const { return down; }
         /*!
          * \brief Gets the key for the "left" action.
          */
-        sf::Keyboard::Key getKeyLeft() const { return left; }
+        auto getKeyLeft() const { return left; }
         /*!
          * \brief Gets the key for the "right" action.
          */
-        sf::Keyboard::Key getKeyRight() const { return right; }
+        auto getKeyRight() const { return right; }
         /*!
          * \brief Gets the key for the "interact" action.
          */
-        sf::Keyboard::Key getKeyInteract() const { return interact; }
+        auto getKeyInteract() const { return interact; }
         /*!
          * \brief Gets the key for the "talk" action.
          */
-        sf::Keyboard::Key getKeyTalk() const { return talk; }
+        auto getKeyTalk() const { return talk; }
 
         /*!
          * \brief Gets the heigth of the window
@@ -133,30 +133,43 @@ class Species;
         /*!
          * \brief Sets the key for the "up" action.
          */
-        void setKeyUp(const std::string upName) { up = Utils::KeyData::keysMap.at(upName); }
+        void setKeyUp(const std::string &upName) {
+            up = stringToKey(upName);
+        }
         /*!
          * \brief Sets the key for the "down" action.
          */
-        void setKeyDown(const std::string downName) { down = Utils::KeyData::keysMap.at(downName); }
-        void setKeyLeft(const std::string leftName) { left = Utils::KeyData::keysMap.at(leftName); }
+        void setKeyDown(const std::string downName) {
+            down = stringToKey(downName);
+        }
+
+        void setKeyLeft(const std::string leftName) {
+            left = stringToKey(leftName);
+        }
         /*!
          * \brief Sets the key for the "left" action.
          */
-        void setKeyRight(const std::string rightName) { right = Utils::KeyData::keysMap.at(rightName); }
+        void setKeyRight(const std::string rightName) {
+            right = stringToKey(rightName);
+        }
         /*!
          * \brief Sets the key for the "interact" action.
          */
-        void setKeyInteract(const std::string interactName) { interact = Utils::KeyData::keysMap.at(interactName); }
+        void setKeyInteract(const std::string interactName) {
+            interact = stringToKey(interactName);
+        }
         /*!
          * \brief Sets the key for the "talk" action.
          */
-        void setKeyTalk(const std::string talkName) { talk = Utils::KeyData::keysMap.at(talkName); }
+        void setKeyTalk(const std::string talkName) {
+            talk = stringToKey(talkName);
+        }
 
-        sf::String getString(std::string key) {return Utils::I18n::Translator::getInstance().getStringKeys().get(key);}
+        sf::String getString(std::string key) { return Utils::I18n::Translator::getInstance().getStringKeys().get(key); }
 
-        Utils::StringKeys& getStringKeys() {return Utils::I18n::Translator::getInstance().getStringKeys();}
+        Utils::StringKeys &getStringKeys() { return Utils::I18n::Translator::getInstance().getStringKeys(); }
 
-        Utils::OptionsSave& getOptions() {return *options;}
+        Utils::OptionsSave &getOptions() { return *options; }
 
         std::vector<sf::Texture> alpha = {sf::Texture()};
     };

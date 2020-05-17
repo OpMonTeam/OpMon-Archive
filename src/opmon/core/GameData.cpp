@@ -18,7 +18,7 @@
 #include "../model/evolutions.hpp"
 #include "src/utils/OptionsSave.hpp"
 #include "src/utils/ResourceLoader.hpp"
-#include "src/utils/KeyData.hpp"
+#include "src/utils/Keyboard.hpp"
 #include "src/opmon/model/Enums.hpp"
 #include "src/opmon/model/Species.hpp"
 #include "src/opmon/view/ui/Jukebox.hpp"
@@ -182,42 +182,42 @@ GameData::GameData() {
 		options->addParam("control.up", "Up");
 		up = sf::Keyboard::Up;
 	} else {
-		up = Utils::KeyData::keysMap.at(keyUp);
+		up = stringToKey(keyUp);
 	}
 	std::string keyDown = options->getParam("control.down").getValue();
 	if(keyDown == "NULL") {
 		options->addParam("control.down", "Down");
 		down = sf::Keyboard::Down;
 	} else {
-		down = Utils::KeyData::keysMap.at(keyDown);
+		down = stringToKey(keyDown);
 	}
 	std::string keyLeft = options->getParam("control.left").getValue();
 	if(keyLeft == "NULL") {
 		options->addParam("control.left", "Left");
 		left = sf::Keyboard::Left;
 	} else {
-		left = Utils::KeyData::keysMap.at(keyLeft);
+		left = stringToKey(keyLeft);
 	}
 	std::string keyRight = options->getParam("control.right").getValue();
 	if(keyRight == "NULL") {
 		options->addParam("control.right", "Right");
 		right = sf::Keyboard::Right;
 	} else {
-		right = Utils::KeyData::keysMap.at(keyRight);
+		right = stringToKey(keyRight);
 	}
 	std::string keyTalk = options->getParam("control.talk").getValue();
 	if(keyTalk == "NULL") {
 		options->addParam("control.talk", "Space");
 		talk = sf::Keyboard::Space;
 	} else {
-		talk = Utils::KeyData::keysMap.at(keyTalk);
+		talk = stringToKey(keyTalk);
 	}
 	std::string keyInteract = options->getParam("control.interact").getValue();
 	if(keyInteract == "NULL") {
 		options->addParam("control.interact", "Return");
 		interact = sf::Keyboard::Return;
 	} else {
-		interact = Utils::KeyData::keysMap.at(keyInteract);
+		interact = stringToKey(keyInteract);
 	}
 }
 

@@ -7,11 +7,11 @@
 #include <string_view>
 #include <utility>
 
-namespace Utils {
-    using key_string_pair = std::pair<sf::Keyboard::Key, std::string_view>;
-    using keymap_type = std::array<key_string_pair, sf::Keyboard::KeyCount + 2>;
+namespace OpMon {
+    using KeyStringPair = std::pair<sf::Keyboard::Key, std::string_view>;
+    using KeymapType = std::array<KeyStringPair, sf::Keyboard::KeyCount + 2>;
 
-    constexpr keymap_type keymap {
+    static inline constexpr KeymapType keymap {
             std::pair<sf::Keyboard::Key, std::string_view>
             { sf::Keyboard::Unknown, "Unknown" },
             { sf::Keyboard::A, "A" },
@@ -118,11 +118,11 @@ namespace Utils {
             { sf::Keyboard::KeyCount, "KeyCount" }
     };
 
-    inline constexpr auto key_to_string(sf::Keyboard::Key k) noexcept {
+    inline constexpr auto keyToString(sf::Keyboard::Key k) noexcept {
         return keymap[k + 1].second;
     }
 
-    inline constexpr auto string_to_key(std::string_view str) noexcept {
+    inline constexpr auto stringToKey(std::string_view str) noexcept {
         for(const auto &i : keymap)
             if(i.second == str)
                 return i.first;
@@ -130,4 +130,4 @@ namespace Utils {
     }
 
     std::ostream &operator<<(std::ostream &os, sf::Keyboard::Key k);
-} // namespace Utils
+} // namespace OpMon
