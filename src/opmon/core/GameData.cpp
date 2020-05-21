@@ -76,6 +76,7 @@ GameData::GameData() {
 
 	for(std::filesystem::directory_entry const& file : std::filesystem::directory_iterator(Path::getResourcePath() + "data/species")) {
 		if(file.is_regular_file()){
+			Utils::Log::oplog("Found opmon file " + file.path().generic_string());
 			std::ifstream opmonJsonFile(file.path());
 			if(!opmonJsonFile) {
 				throw Utils::LoadingException(Path::getResourcePath() + "data/opmon.json", true);

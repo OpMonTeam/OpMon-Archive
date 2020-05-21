@@ -33,8 +33,15 @@ class Map;
 
         std::map<std::string, OpTeam *> trainers;
 
-        std::map<std::string, Elements::Map *> maps;
-        std::map<std::string, Elements::Map *>::iterator mapsItor;
+        /*!
+         * \brief Contains the maps.
+         *
+         * The first element of the pair contains the json used to build the map.
+         * The second element contains the built map, or nullptr if the map has not
+         * been initialized yet.
+         */
+        std::map<std::string, std::pair<nlohmann::json, Elements::Map *> > maps;
+        std::map<std::string, std::pair<nlohmann::json, Elements::Map *> >::iterator mapsItor;
 
         sf::Texture texturePP;
         sf::IntRect texturePPRect[4];

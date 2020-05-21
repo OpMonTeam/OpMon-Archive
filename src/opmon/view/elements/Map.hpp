@@ -34,7 +34,6 @@ namespace OpMon {
         /*!
          * \brief Defines a specific place in a game, containing the event, the animated objects and the map layers.
          * \details To lower the loading time, a map object can be created without initialisation. The data of the map is stored in Map::jsonData, and the map can then be loaded by calling Map::loadMap. Using an unloaded map will crash the game.
-         * \todo Separate the class into MapBuilder (The unloaded map) and Map.
          */
         class Map {
           private:
@@ -71,15 +70,6 @@ namespace OpMon {
             std::vector<std::string> animatedElements;
 
             /*!
-             * \brief The map in json for the initialisation.
-             */
-            nlohmann::json jsonData;
-            /*!
-             * \brief If the map has been loaded or not.
-             */
-            bool loaded = false;
-
-            /*!
              * \brief The ID of the tileset used in the map.
              */
             std::string tileset;
@@ -99,7 +89,7 @@ namespace OpMon {
              * \brief Creates a map without loading it.
              * \details If you want to use the map, please call Map::loadMap before calling any other method.
              */
-            Map(nlohmann::json jsonData);
+            Map(nlohmann::json jsonData, OverworldData &data);
             ~Map();
             int getH() const {
                 return h;
@@ -109,9 +99,6 @@ namespace OpMon {
             }
             bool isIndoor() const {
                 return indoor;
-            }
-            bool isLoaded() const {
-                return loaded;
             }
             sf::Vector2i getDimensions() const {
                 return sf::Vector2i(w, h);
@@ -178,13 +165,6 @@ namespace OpMon {
              * \param pos The position of the collision to return.
              */
             int getCollision(sf::Vector2i const &pos) const;
-
-            /*!
-             * \brief Loads the map and returns it.
-             * \warning This method doesn't load the map in this object! It returns a new Map object loaded with the data contained in the current Map object.
-             * \returns A pointer to the loaded Map.
-             */
-            Map *loadMap(OverworldData &data);
 
             /*!
              * \brief Returns a string containing information on the Map.
