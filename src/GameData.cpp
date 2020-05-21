@@ -140,7 +140,7 @@ GameData::GameData() {
 
 	//Intializing types sprites
 #define LOAD_TYPE(type)                                                 \
-		Utils::ResourceLoader::load(tempTx, (std::string("sprites/types/") + #type + ".png").c_str()); \
+		Utils::ResourceLoader::load(tempTx, (std::string("sprites/battle/types/") + #type + ".png").c_str()); \
 		typesTextures.emplace(Type::type, sf::Texture(tempTx))
 
 	sf::Texture tempTx;

@@ -26,12 +26,12 @@ class GameData;
         charaBattleTextures["beta"].push_back(sf::Texture());
         Utils::ResourceLoader::load(charaBattleTextures["beta"][0], "sprites/chara/beta/beta_battle.png");
         battlePlayerAnim.push_back(charaBattleTextures["player"][0]);
-        Utils::ResourceLoader::load(infoboxPlayer, "sprites/square_1.png");
-        Utils::ResourceLoader::load(infoboxTrainer, "sprites/square_2.png");
-        Utils::ResourceLoader::load(healthbar1, "sprites/health_bar.png");
-        Utils::ResourceLoader::load(healthbar2, "sprites/health_jauge.png");
-        Utils::ResourceLoader::load(shadowPlayer, "sprites/shadow_2.png");
-        Utils::ResourceLoader::load(shadowTrainer, "sprites/shadow_1.png");
+        Utils::ResourceLoader::load(infoboxPlayer, "sprites/battle/square_1.png");
+        Utils::ResourceLoader::load(infoboxTrainer, "sprites/battle/square_2.png");
+        Utils::ResourceLoader::load(healthbar1, "sprites/battle/health_bar.png");
+        Utils::ResourceLoader::load(healthbar2, "sprites/battle/health_jauge.png");
+        Utils::ResourceLoader::load(shadowPlayer, "sprites/battle/shadow_2.png");
+        Utils::ResourceLoader::load(shadowTrainer, "sprites/battle/shadow_1.png");
 
         Utils::ResourceLoader::load(moveDialog, "backgrounds/dialog/moves_dialog.png");
     }
