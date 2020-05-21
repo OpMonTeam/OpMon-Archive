@@ -54,23 +54,24 @@ GameData::GameData() {
 
 	Utils::Log::oplog("Initializating GameData");
 
-	jukebox.addMusic("Title", "audio/music/title.ogg");
-	jukebox.addMusic("Start", "audio/music/intro.ogg");
-	jukebox.addMusic("Fauxbourg", "audio/music/faubourgeuvi.ogg");
-	jukebox.addMusic("Road 14", "audio/music/route14.ogg");
-	//jukebox.addMusic("OpCenter", "audio/music/opcenter.ogg");
-	jukebox.addMusic("Ms", "audio/music/mysterioucity.ogg");
-	jukebox.addMusic("Labo", "audio/music/labo.ogg");
-	jukebox.addMusic("Wild Battle", "audio/music/wildbattle.ogg");
-
-	//Loading sounds
-	jukebox.addSound("door", "audio/sounds/door.ogg");
-	jukebox.addSound("shop door", "audio/sounds/shopdoor.ogg");
-	jukebox.addSound("dialog pass", "audio/sounds/dialogChange.ogg");
-	jukebox.addSound("nope", "audio/sounds/nope.ogg");
-	jukebox.addSound("arrow", "audio/sounds/select.ogg");
-	jukebox.addSound("push", "audio/sounds/selectbuttons.ogg");
-	jukebox.addSound("hit", "audio/sounds/hit.ogg");
+	//Loading musics and sounds
+	for(std::filesystem::directory_entry const& file : std::filesystem::directory_iterator(Path::getResourcePath() + "data/resourcelist")){
+		if(file.is_regular_file()){
+			Utils::Log::oplog("Found resource list file " + file.path().generic_string());
+			std::ifstream resourcelistFile(file.path());
+			if(!resourcelistFile){
+				throw Utils::LoadingException(file.path().generic_string(), true);
+			}
+			nlohmann::json listJson;
+			resourcelistFile >> listJson;
+			for(auto itor = listJson.at("musics").begin(); itor != listJson.at("musics").end(); ++itor){
+				jukebox.addMusic(itor->at("id"), itor->at("path"));
+			}
+			for(auto itor = listJson.at("sounds").begin(); itor != listJson.at("sounds").end(); ++itor){
+				jukebox.addSound(itor->at("id"), itor->at("path"));
+			}
+		}
+	}
 
 	Utils::ResourceLoader::load(font, "fonts/Default.ttf", true);
 
@@ -79,7 +80,7 @@ GameData::GameData() {
 			Utils::Log::oplog("Found opmon file " + file.path().generic_string());
 			std::ifstream opmonJsonFile(file.path());
 			if(!opmonJsonFile) {
-				throw Utils::LoadingException(Path::getResourcePath() + "data/opmon.json", true);
+				throw Utils::LoadingException(file.path().generic_string(), true);
 			}
 			nlohmann::json opmonJson;
 			opmonJsonFile >> opmonJson;
