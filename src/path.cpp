@@ -48,14 +48,14 @@ namespace OpMon {
 
         const std::string getSavePath() {
 #ifdef _WIN32
-            return "saves/";
+            return "./saves/";
 #endif
             return _getConfigFilesPatch("saves");
         }
 
         const std::string getLogPath() {
 #ifdef _WIN32
-            return "log/";
+            return "./log/";
 #endif
             return _getConfigFilesPatch("log");
         }
@@ -65,8 +65,8 @@ namespace OpMon {
 #ifdef __APPLE__
             resPath = resourcePath();
 #endif
-            if(_isFolder(resPath + "GameData"))
-                return resPath + "GameData/";
+            if(_isFolder(resPath + "./GameData"))
+                return resPath + "./GameData/";
 #ifdef __WIN32__
             else throw Utils::LoadingException("Can't find the GameData directory in the game directory. Can't run the game without data, recheck your installation.", true);
 #endif
