@@ -27,7 +27,7 @@ namespace OpMon {
             selections[i].setPosition(data.getSelectionPos(i));
             selectxt[i].setFont(data.getGameDataPtr()->getFont());
             selectxt[i].setCharacterSize(20);
-            selectxt[i].setSfmlColor(sf::Color::White);
+            selectxt[i].setFillColor(sf::Color::White);
         }
         selectxt[0].setString(data.getGameDataPtr()->getString("gamemenu.save"));
         selectxt[1].setString(data.getGameDataPtr()->getString("gamemenu.id"));

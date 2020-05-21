@@ -297,17 +297,17 @@ namespace OpMon {
 
                 //Changes the text's color according to the number of PP left
                 if(atkTurn.opmon->getMoves()[curPos.getValue()]->getPP() <= (atkTurn.opmon->getMoves()[curPos.getValue()]->getPPMax() / 5) && atkTurn.opmon->getMoves()[curPos.getValue()]->getPP() > 0) {
-                    ppTxt.setSfmlColor(sf::Color::Yellow);
+                    ppTxt.setFillColor(sf::Color::Yellow);
                 } else if(atkTurn.opmon->getMoves()[curPos.getValue()]->getPP() == 0) {
-                    ppTxt.setSfmlColor(sf::Color::Red);
+                    ppTxt.setFillColor(sf::Color::Red);
                 } else {
-                    ppTxt.setSfmlColor(sf::Color::Black);
+                    ppTxt.setFillColor(sf::Color::Black);
                 }
                 ppTxt.setString(std::to_string(atkTurn.opmon->getMoves()[curPos.getValue()]->getPP()) + " / " + std::to_string(atkTurn.opmon->getMoves()[curPos.getValue()]->getPPMax()));
                 type.setTexture(data.getGameDataPtr()->getTypeTexture(atkTurn.opmon->getMoves()[curPos.getValue()]->getType()));
                 drawType = true;
             } else { //If there is no move, print this
-                ppTxt.setSfmlColor(sf::Color::Red);
+                ppTxt.setFillColor(sf::Color::Red);
                 ppTxt.setString("0 / 0");
             }
 
@@ -335,7 +335,7 @@ namespace OpMon {
                 moves[i].setPosition(posChoices[i]);
                 moves[i].setFont(data.getGameDataPtr()->getFont());
                 moves[i].setCharacterSize(22);
-                moves[i].setSfmlColor(sf::Color::Black);
+                moves[i].setFillColor(sf::Color::Black);
             }
             curPos = 0;
 
@@ -373,7 +373,7 @@ namespace OpMon {
             choicesTxt[i].setFont(data.getGameDataPtr()->getFont());
             choicesTxt[i].setCharacterSize(20);
 
-            choicesTxt[i].setSfmlColor(sf::Color::White);
+            choicesTxt[i].setFillColor(sf::Color::White);
         }
 
         posChoices[0].x = 300 + (99 - choicesTxt[0].getGlobalBounds().width) / 2;
@@ -432,18 +432,18 @@ namespace OpMon {
             opLevel[i].setFont(data.getGameDataPtr()->getFont());
             opName[i].setCharacterSize(22);
             opLevel[i].setCharacterSize(22);
-            opName[i].setSfmlColor(sf::Color::Black);
-            opLevel[i].setSfmlColor(sf::Color::Black);
+            opName[i].setFillColor(sf::Color::Black);
+            opLevel[i].setFillColor(sf::Color::Black);
         }
 
         opHp.setFont(data.getGameDataPtr()->getFont());
         opHp.setCharacterSize(14);
-        opHp.setSfmlColor(sf::Color::Black);
+        opHp.setFillColor(sf::Color::Black);
         opHp.setPosition(332, 264);
 
         waitText.setFont(data.getGameDataPtr()->getFont());
         waitText.setCharacterSize(22);
-        waitText.setSfmlColor(sf::Color::White);
+        waitText.setFillColor(sf::Color::White);
         waitText.setPosition(65, 410);
 
         ppStrTxt.setPosition(326, 380);
@@ -453,8 +453,8 @@ namespace OpMon {
         ppTxt.setFont(data.getGameDataPtr()->getFont());
         ppStrTxt.setCharacterSize(26);
         ppTxt.setCharacterSize(26);
-        ppStrTxt.setSfmlColor(sf::Color::Black);
-        ppTxt.setSfmlColor(sf::Color::Black);
+        ppStrTxt.setFillColor(sf::Color::Black);
+        ppTxt.setFillColor(sf::Color::Black);
 
         type.setPosition(326, 450);
     }

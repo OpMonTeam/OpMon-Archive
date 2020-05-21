@@ -47,31 +47,31 @@ namespace OpMon {
         txtCre1.setString(data.getGameDataPtr()->getString("options.credit.1"));
         txtCre1.setFont(data.getGameDataPtr()->getFont());
         txtCre1.setCharacterSize(14);
-        txtCre1.setSfmlColor(sf::Color::Black);
+        txtCre1.setFillColor(sf::Color::Black);
         txtCre2.setString(data.getGameDataPtr()->getString("options.credit.2"));
         txtCre2.setFont(data.getGameDataPtr()->getFont());
         txtCre2.setCharacterSize(14);
-        txtCre2.setSfmlColor(sf::Color::Black);
+        txtCre2.setFillColor(sf::Color::Black);
         txtCre3.setString(data.getGameDataPtr()->getString("options.credit.3"));
         txtCre3.setFont(data.getGameDataPtr()->getFont());
         txtCre3.setCharacterSize(14);
-        txtCre3.setSfmlColor(sf::Color::Black);
+        txtCre3.setFillColor(sf::Color::Black);
         txtCre4.setString(data.getGameDataPtr()->getString("options.credit.4"));
         txtCre4.setFont(data.getGameDataPtr()->getFont());
         txtCre4.setCharacterSize(14);
-        txtCre4.setSfmlColor(sf::Color::Black);
+        txtCre4.setFillColor(sf::Color::Black);
         txtCre5.setString(data.getGameDataPtr()->getString("options.credit.5"));
         txtCre5.setFont(data.getGameDataPtr()->getFont());
         txtCre5.setCharacterSize(14);
-        txtCre5.setSfmlColor(sf::Color::Black);
+        txtCre5.setFillColor(sf::Color::Black);
         txtCre6.setString(data.getGameDataPtr()->getString("options.credit.6"));
         txtCre6.setFont(data.getGameDataPtr()->getFont());
         txtCre6.setCharacterSize(22);
-        txtCre6.setSfmlColor(sf::Color::Black);
+        txtCre6.setFillColor(sf::Color::Black);
         txtCre7.setString(data.getGameDataPtr()->getString("options.credit.7"));
         txtCre7.setFont(data.getGameDataPtr()->getFont());
         txtCre7.setCharacterSize(18);
-        txtCre7.setSfmlColor(sf::Color::Black);
+        txtCre7.setFillColor(sf::Color::Black);
         txtCre8.setString(data.getGameDataPtr()->getString("options.credit.8"));
         txtCre8.setFont(data.getGameDataPtr()->getFont());
         txtCre8.setCharacterSize(15);
@@ -93,7 +93,7 @@ namespace OpMon {
         txtCre10.setString(data.getGameDataPtr()->getString("options.credit.10"));
         txtCre10.setFont(data.getGameDataPtr()->getFont());
         txtCre10.setCharacterSize(20);
-        txtCre10.setSfmlColor(sf::Color::Blue);
+        txtCre10.setFillColor(sf::Color::Blue);
 
         txtCtrlChange.setString(data.getGameDataPtr()->getString("options.ctrl.change"));
         txtCtrlChange.setFont(data.getGameDataPtr()->getFont());
@@ -294,6 +294,9 @@ namespace OpMon {
         case OptionType::CREDITS:
             return creditsLoop();
         }
+        
+        //unreachable
+        std::abort();
     }
 
     void OptionsMenu::moveArrow(bool move) {

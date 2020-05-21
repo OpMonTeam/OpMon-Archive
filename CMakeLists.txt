@@ -23,8 +23,6 @@ if(${CMAKE_CXX_COMPILER_ID} MATCHES ".*Clang")
     set(COMPILING_WITH_CLANG TRUE)
 elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU")
     set(COMPILING_WITH_GCC TRUE)
-elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL "Intel")
-    set(COMPILING_WITH_INTEL TRUE)
 elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC")
     set(COMPILING_WITH_MSVC TRUE)
 endif()
@@ -89,7 +87,7 @@ if(${COMPILING_WITH_CLANG})
     endif()
 
     target_compile_options(OpMon PRIVATE -Wall -Wextra -Werror=pedantic
-        -Wcast-align -Wcast-qual -Wconversion -Wdate-time -Werror=format=2
+        -Wcast-align -Wcast-qual -Wconversion -Wdate-time -Wformat=2
         -Werror=main -Wold-style-cast -Werror=return-type -Wfloat-equal
         -Werror=zero-as-null-pointer-constant -Wmissing-noreturn
         -Wnon-virtual-dtor -Woverloaded-virtual -Wno-unknown-pragmas
@@ -106,7 +104,7 @@ elseif(${COMPILING_WITH_GCC})
     endif()
 
     target_compile_options(OpMon PRIVATE -Wall -Wextra -Werror=pedantic
-        -Wcast-align -Wcast-qual -Wconversion -Wdate-time -Werror=format=2
+        -Wcast-align -Wcast-qual -Wconversion -Wdate-time -Wformat=2
         -Werror=main -Wold-style-cast -Werror=return-type -Wfloat-equal
         -Werror=zero-as-null-pointer-constant -Wmissing-noreturn
         -Wnon-virtual-dtor -Woverloaded-virtual -Wno-unknown-pragmas
@@ -122,19 +120,6 @@ elseif(${COMPILING_WITH_MSVC})
     endif()
 
     target_compile_options(/W4 /permissive- /w14640 /w14296)
-elseif(${COMPILING_WITH_INTEL})
-    
-    if(${WARNINGS_AS_ERRORS})
-        target_compile_options(OpMon PRIVATE -Werror)
-    endif()
-    
-    target_compile_options(OpMon PRIVATE -Wall -Wextra -Werror=pedantic
-        -Wcast-qual -Wconversion -Werror=format=2
-        -Werror=main -Werror=return-type -Wfloat-equal
-        -Werror=zero-as-null-pointer-constant
-        -Wnon-virtual-dtor -Woverloaded-virtual -Wno-unknown-pragmas
-        -Wdeprecated -Werror=keyword-macro -pedantic-errors -Wsign-promo
-        -Wswitch-enum -Wuninitialized)
 endif()
 
 #sanitizers
@@ -224,15 +209,21 @@ target_link_libraries(sfml-network PUBLIC sanitizers)
 
 install(TARGETS sanitizers EXPORT SFMLConfigExport)
 
+target_include_directories(OpMon SYSTEM PRIVATE external/SFML/include)
+
 #build fmt
 add_subdirectory(external/fmt)
 
 target_link_libraries(fmt PUBLIC sanitizers)
 
+target_include_directories(OpMon SYSTEM PRIVATE external/fmt/include)
+
 #build spdlog
 add_subdirectory(external/spdlog)
 
 target_link_libraries(spdlog PUBLIC sanitizers)
+
+target_include_directories(OpMon SYSTEM PRIVATE external/spdlog/include)
 
 #link to libraries
 target_link_libraries(OpMon PRIVATE
@@ -245,9 +236,11 @@ target_link_libraries(OpMon PRIVATE
     fmt
     spdlog)
     
-target_include_directories(OpMon PRIVATE external/tomlpp)
+target_include_directories(OpMon SYSTEM PRIVATE external/tomlpp)
 target_compile_definitions(OpMon PRIVATE -DTOML_ALL_INLINE=0 TOML_EXCEPTIONS=0)
 target_sources(OpMon PRIVATE external/tomlpp/toml_imp.cpp)
+
+target_include_directories(OpMon SYSTEM PRIVATE external/json)
 
 target_include_directories(OpMon PRIVATE src)
 
@@ -269,7 +262,7 @@ if(APPLE)
     set_source_files_properties(${CMAKE_SOURCE_DIR}/OpMon-Data/GameData PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
 
     target_sources(OpMon PRIVATE
-        ResourcePath.hpp ResourcePath.mm
+        src/ResourcePath.hpp src/ResourcePath.mm
         ${CMAKE_SOURCE_DIR}/icons/opmon_icon.icns
         ${CMAKE_SOURCE_DIR}/OpMon-Data/GameData)
 
@@ -354,7 +347,6 @@ target_sources(OpMon PRIVATE
     src/Player.cpp src/Player.hpp
     src/Position.cpp src/Position.hpp
     src/ResourceLoader.cpp src/ResourceLoader.hpp
-    src/ResourcePath.hpp src/ResourcePath.mm
     src/SaveMenu.cpp
     src/SaveMenuCtrl.cpp src/SaveMenuCtrl.hpp
     src/SaveMenuData.cpp src/SaveMenuData.hpp

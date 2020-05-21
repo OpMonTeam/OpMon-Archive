@@ -54,10 +54,10 @@ namespace OpMon {
         prof.setScale(1.5, 1.5);
 
         textDesc.setCharacterSize(FONT_SIZE_DEFAULT);
-        textDesc.setSfmlColor(sf::Color::White);
+        textDesc.setFillColor(sf::Color::White);
         textDesc.setFont(data.getGameDataPtr()->getFont());
 
-        nameField.setSfmlColor(sf::Color::Black);
+        nameField.setFillColor(sf::Color::Black);
         nameField.setFont(data.getGameDataPtr()->getFont());
         nameField.setPosition(310, 255);
 

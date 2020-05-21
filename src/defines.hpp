@@ -8,8 +8,9 @@
 #ifndef DEFINES_HPP
 #define DEFINES_HPP
 
-#include "config.hpp"
+#define OPMON_VERSION "0.16.0"
 
+//We have [[deprecated]] in c++14
 #ifdef __GNUC__
 #define OP_DEPRECATED __attribute__((deprecated))
 #elif defined(_MSC_VER)
@@ -20,18 +21,6 @@
  */
 #define OP_DEPRECATED
 #endif
-
-#ifdef SFML_COMPATIBILITY
-#define setSfmlColor setColor
-#else
-/*!
- * \brief Compatibility macro to avoir deprecation warning with earlier SFMl versions.
- * \details Redirects to setFillColor() if SFML_COMPATIBILITY is declared, or setColor() otherwise.
- */
-#define setSfmlColor setFillColor
-#endif
-
-#include <string>
 
 /*!
  * \brief Contains the default size font.

@@ -261,7 +261,7 @@ namespace OpMon {
             debugText.setString("Debug mode");
             debugText.setPosition(0, 0);
             debugText.setFont(data.getGameDataPtr()->getFont());
-            debugText.setSfmlColor(sf::Color(127, 127, 127));
+            debugText.setFillColor(sf::Color(127, 127, 127));
             debugText.setCharacterSize(40);
             fpsPrint.setPosition(0, 50);
             fpsPrint.setFont(data.getGameDataPtr()->getFont());
@@ -272,7 +272,7 @@ namespace OpMon {
             coordPrint.setString(oss.str());
             coordPrint.setFont(data.getGameDataPtr()->getFont());
             coordPrint.setPosition(0, 100);
-            coordPrint.setSfmlColor(sf::Color(127, 127, 127));
+            coordPrint.setFillColor(sf::Color(127, 127, 127));
             coordPrint.setCharacterSize(30);
         }
 

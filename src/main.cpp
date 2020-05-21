@@ -18,7 +18,6 @@ File under GNU GPL v3.0 license
 #include "ResourceLoader.hpp"
 #include "Gameloop.hpp"
 #include "Translator.hpp"
-#include "config.hpp"
 
 using Utils::Log::oplog;
 
