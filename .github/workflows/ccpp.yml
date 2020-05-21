@@ -9,9 +9,9 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
-    - name: Install SFML
-      run: sudo apt-get update && sudo apt-get install libsfml-dev
+    - name: Install SFML Deps
+      run: sudo apt-get update && sudo apt-get install libflac++-dev libsfml-dev libx11-dev libxrandr-dev libudev-dev libopengl0 libvorbis-dev libopenal-dev
     - name: Run CMake
-      run: cmake -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 .
+      run: cmake -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 --log-level=DEBUG .
     - name: Run Make
-      run: make
+      run: make -j$(nproc)

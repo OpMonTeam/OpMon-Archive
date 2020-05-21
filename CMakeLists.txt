@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.17.2)
+cmake_minimum_required(VERSION 3.17)
 
 project(OpMon
     VERSION 0.16.0
@@ -16,7 +16,6 @@ add_executable(OpMon)
 #known compilers
 set(COMPILING_WITH_CLANG FALSE)
 set(COMPILING_WITH_GCC FALSE)
-set(COMPILING_WITH_INTEL FALSE)
 set(COMPILING_WITH_MSVC FALSE)
 
 if(${CMAKE_CXX_COMPILER_ID} MATCHES ".*Clang")
