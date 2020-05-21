@@ -1,1 +1,0 @@
-This directory contains some utilities related to OpMon.

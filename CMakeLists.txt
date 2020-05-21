@@ -1,173 +1,391 @@
-cmake_minimum_required(VERSION 3.3.0)
-project(OpMon)
+cmake_minimum_required(VERSION 3.17.2)
 
-set(EXECUTABLE_NAME opmon)
+project(OpMon
+    VERSION 0.16.0
+    DESCRIPTION "An open source RPG monster fighting game"
+    HOMEPAGE_URL "http://opmon-game.ga/"
+    LANGUAGES CXX)
 
-
-set(OPMON_VERSION_MAJOR 0)
-set(OPMON_VERSION_MINOR 16)
-set(OPMON_VERSION_PATCH 0)
-
-set(OPMON_CONTACT "Cyrielle <cyriellecentori@uymail.com>")
-set(OPMON_DESCRIPTION_SUMMARY "An open source RPG monster fighting game")
-set(OPMON_HOMEPAGE "http://opmon-game.ga/")
-
-# libsfml is splited in many packages on debian:
-# libsfml-xxx2 (until 2.4), then libsfml-xxx2.4
-foreach(ARG system audio window graphics)
-    list(APPEND OPMON_DEBIAN_DEPENDS "libsfml-${ARG}2 (>= 2.3.2+dfsg-1) | libsfml-${ARG}2.4 | libsfml-dev (>= 2.3.2+dfsg-1)")
-endforeach()
-string(REPLACE ";" ", " OPMON_DEBIAN_DEPENDS "${OPMON_DEBIAN_DEPENDS}")
-
-set(OPMON_DEBIAN_CATEGORY games)
-
-set(OPMON_VERSION "${OPMON_VERSION_MAJOR}.${OPMON_VERSION_MINOR}.${OPMON_VERSION_PATCH}")
-
-
-# Make SFML_ROOT appear in cmake-gui
-set(SFML_ROOT "" CACHE PATH "SFML root directory.")
-
-
-# Compiler options
+#c++ standard
 set(CMAKE_CXX_STANDARD 20)
-if(NOT MSVC)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pedantic -Wextra")
-endif()
-set(CMAKE_DEBUG_POSTFIX "Debug")
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
+add_executable(OpMon)
 
-# Set the default build mode to "Release"
-if(NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE "Release" CACHE STRING
-            "Choose the type of build, options are: Debug Release RelWithDebInfo MinSizeRel."
-            FORCE)
-endif(NOT CMAKE_BUILD_TYPE)
+#known compilers
+set(COMPILING_WITH_CLANG FALSE)
+set(COMPILING_WITH_GCC FALSE)
+set(COMPILING_WITH_INTEL FALSE)
+set(COMPILING_WITH_MSVC FALSE)
 
-# build config.hpp (insert cmake variables)
-configure_file(config.hpp.in config.hpp)
-# Set include directory to find the generated "config.hpp" file
-include_directories(${PROJECT_BINARY_DIR})
-
-
-
-# list all .cpp files in src/
-# .hpp are handled automatically.
-file(GLOB_RECURSE SOURCE_FILES
-        src/*.[ch]pp
-
-        src/opmon/controller/*.[hc]pp
-        src/opmon/model/*.[hc]pp
-
-        src/opmon/start/i18n/*.[ch]pp
-        src/opmon/start/GameStatus.hpp
-        src/opmon/start/Gameloop.[ch]pp
-        src/opmon/start/Core.cpp
-        src/opmon/start/main.cpp
-        #src/opmon/start/Initializer.[hc]pp
-
-        #src/opmon/view/Animations.[hc]pp
-        src/opmon/view/Dialog.[hc]pp
-        src/opmon/view/Elements.[hc]pp
-        src/opmon/view/MainMenu.[ch]pp
-        src/opmon/view/MapLayer.hpp
-        src/opmon/view/OptionsMenu.[ch]pp
-        src/opmon/view/Overworld.[ch]pp
-        src/opmon/view/StartScene.[ch]pp
-        #src/opmon/view/Window.[ch]pp
-
-        src/utils/*.[ch]pp
-        )
-
-if (WIN32) # set the program icon
-    list(APPEND SOURCE_FILES resources.rc)
+if(${CMAKE_CXX_COMPILER_ID} MATCHES ".*Clang")
+    set(COMPILING_WITH_CLANG TRUE)
+elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU")
+    set(COMPILING_WITH_GCC TRUE)
+elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL "Intel")
+    set(COMPILING_WITH_INTEL TRUE)
+elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC")
+    set(COMPILING_WITH_MSVC TRUE)
 endif()
 
+message(STATUS "Compiler: ${CMAKE_CXX_COMPILER_ID}")
+message(STATUS "Version: ${CMAKE_CXX_COMPILER_VERSION}")
+
+#build type
+if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+    set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type." FORCE)
+    set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release"
+                                             "MinSizeRel" "RelWithDebInfo")
+endif()
+
+message(STATUS "Build Type: ${CMAKE_BUILD_TYPE}")
+
+STRING(COMPARE EQUAL ${CMAKE_BUILD_TYPE} "Debug" DEBUG_BUILD)
+STRING(COMPARE EQUAL ${CMAKE_BUILD_TYPE} "Release" RELEASE_BUILD)
+
+message(DEBUG "Debug: ${DEBUG_BUILD} Release: ${RELEASE_BUILD}")
+
+#compilation database
+set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE CACHE BOOL
+    "Export compile commands" FORCE)
+
+#ccache support
+message(CHECK_START "Looking for ccache")
+find_program(CCACHE ccache)
+if(CCACHE)
+    message(CHECK_PASS "Using ${CCACHE}")
+    set(CMAKE_CXX_COMPILER_LAUNCHER ${CCACHE})
+else()
+    message(CHECK_FAIL "not found")
+endif()
+
+#IPO
+set(USE_IPO ${RELEASE_BUILD} CACHE BOOL
+    "Enable Interprocedural Optimization")
+message(DEBUG "Using IPO: ${USE_IPO}")
+if(${USE_IPO})
+    message(CHECK_START "Checking if IPO supported")
+    include(CheckIPOSupported)
+    check_ipo_supported(RESULT result OUTPUT output)
+    if(result)
+        message(CHECK_PASS "yes")
+        set_property(TARGET OpMon PROPERTY CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
+    else()
+        message(CHECK_FAIL "IPO not supported")
+    endif()
+endif()
+
+#warnings
+set(WARNINGS_AS_ERRORS FALSE CACHE BOOL
+    "Treat compiler warnings as errors")
+
+message(DEBUG "Warnings as errors: ${WARNINGS_AS_ERRORS}")
+
+if(${COMPILING_WITH_CLANG})
+
+    if(${WARNINGS_AS_ERRORS})
+        target_compile_options(OpMon PRIVATE -Werror)
+    endif()
+
+    target_compile_options(OpMon PRIVATE -Wall -Wextra -Werror=pedantic
+        -Wcast-align -Wcast-qual -Wconversion -Wdate-time -Werror=format=2
+        -Werror=main -Wold-style-cast -Werror=return-type -Wfloat-equal
+        -Werror=zero-as-null-pointer-constant -Wmissing-noreturn
+        -Wnon-virtual-dtor -Woverloaded-virtual -Wno-unknown-pragmas
+        -Wabstract-vbase-init -Wcomma -Wduplicate-enum -Wempty-init-stmt
+        -Wdeprecated -Werror=keyword-macro -Wundefined-reinterpret-cast
+        -Wgcc-compat -Wheader-hygiene -Widiomatic-parentheses
+        -Wimplicit-fallthrough -Wlogical-op-parentheses -Wloop-analysis
+        -Wmismatched-tags -Wthread-safety -Wunreachable-code-aggressive)
+
+elseif(${COMPILING_WITH_GCC})
+
+    if(${WARNINGS_AS_ERRORS})
+        target_compile_options(OpMon PRIVATE -Werror)
+    endif()
+
+    target_compile_options(OpMon PRIVATE -Wall -Wextra -Werror=pedantic
+        -Wcast-align -Wcast-qual -Wconversion -Wdate-time -Werror=format=2
+        -Werror=main -Wold-style-cast -Werror=return-type -Wfloat-equal
+        -Werror=zero-as-null-pointer-constant -Wmissing-noreturn
+        -Wnon-virtual-dtor -Woverloaded-virtual -Wno-unknown-pragmas
+        -Wduplicated-branches -Wduplicated-cond -pedantic-errors
+        -Wimplicit-fallthrough=5 -Wlogical-op -Wnoexcept -Wnull-dereference
+        -Wplacement-new=2 -Wsign-promo -Wsuggest-override -Wswitch-enum
+        -Wuninitialized -Wuseless-cast -Wsuggest-final-types)
+
+elseif(${COMPILING_WITH_MSVC})
+
+    if(${WARNINGS_AS_ERRORS})
+        target_compile_options(OpMon PRIVATE /Wx)
+    endif()
+
+    target_compile_options(/W4 /permissive- /w14640 /w14296)
+elseif(${COMPILING_WITH_INTEL})
+    
+    if(${WARNINGS_AS_ERRORS})
+        target_compile_options(OpMon PRIVATE -Werror)
+    endif()
+    
+    target_compile_options(OpMon PRIVATE -Wall -Wextra -Werror=pedantic
+        -Wcast-qual -Wconversion -Werror=format=2
+        -Werror=main -Werror=return-type -Wfloat-equal
+        -Werror=zero-as-null-pointer-constant
+        -Wnon-virtual-dtor -Woverloaded-virtual -Wno-unknown-pragmas
+        -Wdeprecated -Werror=keyword-macro -pedantic-errors -Wsign-promo
+        -Wswitch-enum -Wuninitialized)
+endif()
+
+#sanitizers
+add_library(sanitizers INTERFACE)
+
+if(${COMPILING_WITH_GCC} OR ${COMPILING_WITH_CLANG})
+    set(USE_ADDRESS_SANITIZER ${DEBUG_BUILD} CACHE BOOL
+        "Use address sanitizer")
+
+    message(DEBUG "Using address sanitizer: ${USE_ADDRESS_SANITIZER}")
+
+    set(USE_THREAD_SANITIZER FALSE CACHE BOOL
+        "Use thread sanitizer")
+
+    message(DEBUG "Using thread sanitizer: ${USE_THREAD_SANITIZER}")
+
+    set(USE_MEMORY_SANITIZER FALSE CACHE BOOL
+        "Use memory sanitizer")
+
+    message(DEBUG "Using memory sanitizer: ${USE_MEMORY_SANITIZER}")
+
+    set(USE_UNDEFINED_SANITIZER ${DEBUG_BUILD} CACHE BOOL
+        "Use undefined behavior sanitizer")
+
+    message(DEBUG "Using undefined behavior sanitizer: ${USE_UNDEFINED_SANITIZER}")
+
+    set(USE_LEAK_SANITIZER ${DEBUG_BUILD} CACHE BOOL
+        "Use leak sanitizer")
+
+    message(DEBUG "Using leak sanitizer: ${USE_LEAK_SANITIZER}")
 
 
-# Note: the executable must be declared before adding libraries
-if (APPLE)
+    if(${USE_ADDRESS_SANITIZER})
+        target_compile_options(sanitizers INTERFACE -fsanitize=address)
+        target_link_libraries(sanitizers INTERFACE -fsanitize=address)
+    endif()
+
+    if(${USE_THREAD_SANITIZER})
+        target_compile_options(sanitizers INTERFACE -fsanitize=thread)
+        target_link_libraries(sanitizers INTERFACE -fsanitize=thread)
+    endif()
+
+    if(${USE_MEMORY_SANITIZER})
+        target_compile_options(sanitizers INTERFACE -fsanitize=memory)
+        target_link_libraries(sanitizers INTERFACE -fsanitize=memory)
+    endif()
+
+    if(${USE_UNDEFINED_SANITIZER})
+        target_compile_options(sanitizers INTERFACE -fsanitize=undefined)
+        target_link_libraries(sanitizers INTERFACE -fsanitize=undefined)
+    endif()
+
+    if(${USE_LEAK_SANITIZER})
+        target_compile_options(sanitizers INTERFACE -fsanitize=leak)
+        target_link_libraries(sanitizers INTERFACE -fsanitize=leak)
+    endif()
+endif()
+
+set(USE_CLANG_TIDY ${DEBUG_BUILD} CACHE BOOL
+    "Check code with clang-tidy")
+
+message(DEBUG "Using clang-tidy: ${USE_CLANG_TIDY}")
+
+#tidy support
+if(${USE_CLANG_TIDY})
+    message(CHECK_START "Looking for clang-tidy")
+    find_program(CLANG_TIDY clang-tidy)
+    if(CLANG_TIDY)
+        message(CHECK_PASS "Using ${CLANG_TIDY}")
+        set(CMAKE_CXX_CLANG_TIDY ${CLANG_TIDY})
+    else()
+        message(CHECK_FAIL "not found")
+    endif()
+endif()
+
+#build sfml
+set(BUILD_SHARED_LIBS OFF)
+set(SFML_INSTALL_PKGCONFIG_FILES OFF)
+set(SFML_INSTALL_XCODE_TEMPLATES OFF)
+add_subdirectory(external/SFML EXCLUDE_FROM_ALL)
+
+target_link_libraries(sfml-graphics PUBLIC sanitizers)
+target_link_libraries(sfml-window PUBLIC sanitizers)
+target_link_libraries(sfml-system PUBLIC sanitizers)
+target_link_libraries(sfml-audio PUBLIC sanitizers)
+target_link_libraries(sfml-network PUBLIC sanitizers)
+
+install(TARGETS sanitizers EXPORT SFMLConfigExport)
+
+#build fmt
+add_subdirectory(external/fmt)
+
+target_link_libraries(fmt PUBLIC sanitizers)
+
+#build spdlog
+add_subdirectory(external/spdlog)
+
+target_link_libraries(spdlog PUBLIC sanitizers)
+
+#link to libraries
+target_link_libraries(OpMon PRIVATE
+    sanitizers
+    sfml-graphics
+    sfml-window
+    sfml-system
+    sfml-audio
+    sfml-network
+    fmt
+    spdlog)
+    
+target_include_directories(OpMon PRIVATE external/tomlpp)
+target_compile_definitions(OpMon PRIVATE -DTOML_ALL_INLINE=0 TOML_EXCEPTIONS=0)
+target_sources(OpMon PRIVATE external/tomlpp/toml_imp.cpp)
+
+target_include_directories(OpMon PRIVATE src)
+
+#windows specific
+if(WIN32)
+    set_property(TARGET OpMon PROPERTY WIN32_EXECUTABLE TRUE)
+    target_sources(OpMon PRIVATE resources.rc)
+endif()
+
+#apple specific
+if(APPLE)
+    set_property(TARGET OpMon PROPERTY MACOSX_BUNDLE TRUE)
+    
     # Need Cocoa framework for Obj-C code
     find_library(COCOA_LIBRARY Cocoa)
 
     # On Apple, Create an app bundle, which includes all the game resources and dependencies
-    set_source_files_properties( ${CMAKE_SOURCE_DIR}/icons/opmon_icon.icns PROPERTIES MACOSX_PACKAGE_LOCATION Resources )
-    set_source_files_properties( ${CMAKE_SOURCE_DIR}/OpMon-Data/GameData PROPERTIES MACOSX_PACKAGE_LOCATION Resources )
+    set_source_files_properties(${CMAKE_SOURCE_DIR}/icons/opmon_icon.icns PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
+    set_source_files_properties(${CMAKE_SOURCE_DIR}/OpMon-Data/GameData PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
 
-    # Need some extra code to get the correct Resource folder in an app bundle
-    list(APPEND SOURCE_FILES src/utils/ResourcePath.hpp src/utils/ResourcePath.mm)
-    add_executable(${EXECUTABLE_NAME} MACOSX_BUNDLE ${SOURCE_FILES}
-    ${CMAKE_SOURCE_DIR}/icons/opmon_icon.icns
-    ${CMAKE_SOURCE_DIR}/OpMon-Data/GameData)
+    target_sources(OpMon PRIVATE
+        ResourcePath.hpp ResourcePath.mm
+        ${CMAKE_SOURCE_DIR}/icons/opmon_icon.icns
+        ${CMAKE_SOURCE_DIR}/OpMon-Data/GameData)
 
     # Add Cocoa framework to executable bundle
-    target_link_libraries(${EXECUTABLE_NAME} ${COCOA_LIBRARY})
+    target_link_libraries(OpMon PRIVATE ${COCOA_LIBRARY})
 
     # Set the icon
-    set_target_properties( ${EXECUTABLE_NAME} PROPERTIES MACOSX_BUNDLE_ICON_FILE opmon_icon.icns )
+    set_target_properties(OpMon PROPERTIES MACOSX_BUNDLE_ICON_FILE opmon_icon.icns )
 
-    include (BundleUtilities)
-else()
-    add_executable(${EXECUTABLE_NAME} WIN32 ${SOURCE_FILES})
+    include(BundleUtilities)
 endif()
-set(EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE})
 
+#general source files
+target_sources(OpMon PRIVATE
+    src/AbstractEvent.cpp src/AbstractEvent.hpp
+    src/AbstractMetaEvent.cpp src/AbstractMetaEvent.hpp
+    src/AGameScreen.hpp
+    src/AnimationCtrl.cpp src/AnimationCtrl.hpp
+    src/AnimationEvent.cpp src/AnimationEvent.hpp
+    src/Animations.cpp src/Animations.hpp
+    src/ATranslatable.cpp src/ATranslatable.hpp
+    src/Battle.cpp
+    src/BattleCtrl.cpp src/BattleCtrl.hpp
+    src/BattleData.cpp src/BattleData.hpp
+    src/BattleEvent.cpp src/BattleEvent.hpp
+    src/Battle.hpp
+    src/centerOrigin.hpp
+    src/CharacterEvent.cpp src/CharacterEvent.hpp
+    src/CurveExp.cpp src/CurveExp.hpp
+    src/CycleCounter.hpp
+    src/defines.hpp
+    src/Dialog.cpp src/Dialog.hpp
+    src/DialogEvent.cpp src/DialogEvent.hpp
+    src/EItem.cpp
+    src/Elements.cpp src/Elements.hpp
+    src/ELevel.cpp
+    src/Enums.cpp src/Enums.hpp
+    src/Evolution.cpp src/Evolution.hpp
+    src/evolutions.hpp
+    src/exceptions.cpp src/exceptions.hpp
+    src/fs.cpp src/fs.hpp
+    src/GameData.cpp src/GameData.hpp
+    src/Gameloop.cpp src/Gameloop.hpp
+    src/GameMenu.cpp
+    src/GameMenuCtrl.cpp src/GameMenuCtrl.hpp
+    src/GameMenuData.cpp src/GameMenuData.hpp
+    src/GameMenu.hpp
+    src/GameStatus.hpp
+    src/IntroScene.cpp
+    src/IntroSceneCtrl.cpp src/IntroSceneCtrl.hpp
+    src/IntroSceneData.cpp src/IntroSceneData.hpp
+    src/IntroScene.hpp
+    src/Item.cpp src/Item.hpp
+    src/Jukebox.cpp src/Jukebox.hpp
+    src/Keyboard.cpp src/Keyboard.hpp
+    src/LinearMetaEvent.cpp src/LinearMetaEvent.hpp
+    src/log.cpp src/log.hpp
+    src/main.cpp
+    src/MainMenu.cpp
+    src/MainMenuCtrl.cpp src/MainMenuCtrl.hpp
+    src/MainMenuData.cpp src/MainMenuData.hpp
+    src/MainMenu.hpp
+    src/Map.cpp src/Map.hpp
+    src/metaevents.cpp src/metaevents.hpp
+    src/misc.cpp src/misc.hpp
+    src/Move.cpp src/Move.hpp
+    src/Moves.cpp src/Moves.hpp
+    src/Nature.cpp src/Nature.hpp
+    src/OpMon.cpp src/OpMon.hpp
+    src/OpString.cpp src/OpString.hpp
+    src/OpTeam.cpp src/OpTeam.hpp
+    src/OptionsMenu.cpp
+    src/OptionsMenuCtrl.cpp src/OptionsMenuCtrl.hpp
+    src/OptionsMenuData.cpp src/OptionsMenuData.hpp
+    src/OptionsMenu.hpp
+    src/OptionsSave.cpp src/OptionsSave.hpp
+    src/Overworld.cpp
+    src/OverworldCtrl.cpp src/OverworldCtrl.hpp
+    src/OverworldData.cpp src/OverworldData.hpp
+    src/Overworld.hpp
+    src/path.cpp src/path.hpp
+    src/Player.cpp src/Player.hpp
+    src/Position.cpp src/Position.hpp
+    src/ResourceLoader.cpp src/ResourceLoader.hpp
+    src/ResourcePath.hpp src/ResourcePath.mm
+    src/SaveMenu.cpp
+    src/SaveMenuCtrl.cpp src/SaveMenuCtrl.hpp
+    src/SaveMenuData.cpp src/SaveMenuData.hpp
+    src/SaveMenu.hpp
+    src/SoundEvent.cpp src/SoundEvent.hpp
+    src/Species.cpp src/Species.hpp
+    src/StringKeys.cpp src/StringKeys.hpp
+    src/TextBox.cpp src/TextBox.hpp
+    src/time.cpp src/time.hpp
+    src/TPEvent.cpp src/TPEvent.hpp
+    src/Translator.cpp src/Translator.hpp
+    src/Turn.cpp src/Turn.hpp
+    src/Window.cpp src/Window.hpp)
 
-# Set the folder where to find cmake modules
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
-
-# Add SFML
-find_package(SFML 2.3 COMPONENTS graphics window system audio)
-if(NOT SFML_FOUND)
-    message(FATAL_ERROR "SFML not found; You should set SFML_ROOT to the SFML path")
-endif()
-target_link_libraries(${EXECUTABLE_NAME} ${SFML_LIBRARIES})
-include_directories(${SFML_INCLUDE_DIR})
-
-
-# Install target
-if (UNIX)
-    install(TARGETS ${EXECUTABLE_NAME} DESTINATION bin)
+#install
+if(UNIX)
+    install(TARGETS OpMon DESTINATION bin)
     install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/OpMon-Data/GameData/OPMon.desktop DESTINATION share/applications)
 
     # TODO: put resource files in the correct folder
     # Note: trailing slash "bin/" is important.
     install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/OpMon-Data/GameData/ DESTINATION share/OpMon)
 else()
-    install(TARGETS ${EXECUTABLE_NAME} DESTINATION .)
+    install(TARGETS OpMon DESTINATION .)
     install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/OpMon-Data/GameData DESTINATION .)
-    # TODO: copy only usefull DLL
-    # Note: trailing slash "bin/" is important.
-    install(DIRECTORY ${SFML_ROOT}/bin/ DESTINATION .) # copy SFML DLL
 endif()
 
-
-# CPack packaging
-if (APPLE)
-    set(CPACK_GENERATOR TGZ)
-else()
-    set(CPACK_GENERATOR TGZ DEB)
-endif()
-
-#CPACK_PACKAGE_NAME
-#CPACK_PACKAGE_VENDOR
-set(CPACK_PACKAGE_VERSION_MAJOR "${OPMON_VERSION_MAJOR}")
-set(CPACK_PACKAGE_VERSION_MINOR "${OPMON_VERSION_MINOR}")
-set(CPACK_PACKAGE_VERSION_PATCH "${OPMON_VERSION_PATCH}")
-#set(CPACK_PACKAGE_DIRECTORY "packages")
-# CPACK_PACKAGE_DESCRIPTION_FILE
-SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "${OPMON_DESCRIPTION_SUMMARY}") # short description
-# CPACK_PACKAGE_FILE_NAME
-# CPACK_PACKAGE_INSTALL_DIRECTORY
-# CPACK_PACKAGE_ICON
-set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/cmake/LICENSE.txt") # displayed by Windows installer
-# CPACK_RESOURCE_FILE_README
-# CPACK_RESOURCE_FILE_WELCOME
-# CPACK_PACKAGE_EXECUTABLES
-#set(CPACK_STRIP_FILES ${EXECUTABLE_NAME})
-
-set(CPACK_DEBIAN_PACKAGE_DEPENDS "${OPMON_DEBIAN_DEPENDS}")
-set(CPACK_PACKAGE_CONTACT ${OPMON_CONTACT})
-set(CPACK_DEBIAN_PACKAGE_SECTION ${OPMON_DEBIAN_CATEGORY})
-set(CPACK_DEBIAN_PACKAGE_HOMEPAGE "${OPMON_HOMEPAGE}")
-
+#cpack
 include(CPack)
+
+set(CPACK_GENERATOR "TGZ;DEB")
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE.txt")
+set(CPACK_PACKAGE_CONTACT "Cyrielle <cyriellecentori@uymail.com>")
+set(CPACK_DEBIAN_PACKAGE_SECTION "games")
