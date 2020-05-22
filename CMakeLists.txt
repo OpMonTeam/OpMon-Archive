@@ -1,19 +1,56 @@
 cmake_minimum_required(VERSION 3.17)
+set(CMAKE_ERROR_DEPRECATED TRUE)
+
+## General system information
+
+message(VERBOSE
+    "CMake version is ${CMAKE_VERSION}")
+
+message(VERBOSE
+    "  CMake root directory is '${CMAKE_ROOT}'")
+
+message(VERBOSE
+    "Generator is '${CMAKE_GENERATOR}'")
+
+message(VERBOSE ${CMAKE_SYSTEM})
+
+message(VERBOSE) #outputs a newline
+
+## Set up project
 
 project(OpMon
     VERSION 0.16.0
     DESCRIPTION "An open source RPG monster fighting game"
     HOMEPAGE_URL "http://opmon-game.ga/"
-    LANGUAGES CXX)
+    LANGUAGES C CXX)
 
-#c++ standard
+message(STATUS)
+
+message(STATUS
+    "Configuring ${PROJECT_NAME} "
+    "${${PROJECT_NAME}_VERSION}")
+
+message(VERBOSE
+    "  Source directory is '${CMAKE_SOURCE_DIR}'")
+
+message(VERBOSE
+    "  Build directory is '${CMAKE_BINARY_DIR}'")
+
+message(STATUS)
+
+## Set the required C++ standard to C++17
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-add_executable(OpMon)
+message(VERBOSE
+    "Using C++${CMAKE_CXX_STANDARD} mode")
 
-#known compilers
+message(VERBOSE)
+
+## Detect if using a known compiler
+
 set(COMPILING_WITH_CLANG FALSE)
 set(COMPILING_WITH_GCC FALSE)
 set(COMPILING_WITH_MSVC FALSE)
@@ -27,57 +64,101 @@ elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC")
 endif()
 
 message(STATUS "Compiler: ${CMAKE_CXX_COMPILER_ID}")
-message(STATUS "Version: ${CMAKE_CXX_COMPILER_VERSION}")
+message(STATUS "  Version: ${CMAKE_CXX_COMPILER_VERSION}")
 
-#build type
+message(STATUS)
+
+## Set default build type
+
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type." FORCE)
     set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release"
                                              "MinSizeRel" "RelWithDebInfo")
 endif()
 
-message(STATUS "Build Type: ${CMAKE_BUILD_TYPE}")
+message(STATUS "${CMAKE_BUILD_TYPE} build")
+
+message(STATUS)
 
 STRING(COMPARE EQUAL ${CMAKE_BUILD_TYPE} "Debug" DEBUG_BUILD)
 STRING(COMPARE EQUAL ${CMAKE_BUILD_TYPE} "Release" RELEASE_BUILD)
 
-message(DEBUG "Debug: ${DEBUG_BUILD} Release: ${RELEASE_BUILD}")
+## Generate compilation database
 
-#compilation database
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE CACHE BOOL
-    "Export compile commands" FORCE)
+    "Export compile_commands.json" FORCE)
 
-#ccache support
+## Use ccache if it is available
+
 message(CHECK_START "Looking for ccache")
+
 find_program(CCACHE ccache)
+
 if(CCACHE)
-    message(CHECK_PASS "Using ${CCACHE}")
+    message(CHECK_PASS "found ${CCACHE}")
     set(CMAKE_CXX_COMPILER_LAUNCHER ${CCACHE})
 else()
     message(CHECK_FAIL "not found")
 endif()
 
-#IPO
-set(USE_IPO ${RELEASE_BUILD} CACHE BOOL
-    "Enable Interprocedural Optimization")
-message(DEBUG "Using IPO: ${USE_IPO}")
-if(${USE_IPO})
-    message(CHECK_START "Checking if IPO supported")
-    include(CheckIPOSupported)
-    check_ipo_supported(RESULT result OUTPUT output)
-    if(result)
-        message(CHECK_PASS "yes")
-        set_property(TARGET OpMon PROPERTY CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
+message(STATUS)
+
+## Use clang-tidy if it is available
+## and (by default) when we are in debug mode
+
+set(USE_CLANG_TIDY ${DEBUG_BUILD} CACHE BOOL
+    "Check code with clang-tidy")
+
+if(${USE_CLANG_TIDY})
+
+    message(CHECK_START "Looking for clang-tidy")
+
+    find_program(CLANG_TIDY clang-tidy)
+
+    if(CLANG_TIDY)
+        message(CHECK_PASS "found ${CLANG_TIDY}")
+        set(CMAKE_CXX_CLANG_TIDY ${CLANG_TIDY})
     else()
-        message(CHECK_FAIL "IPO not supported")
+        message(CHECK_FAIL "not found")
     endif()
+
+    message(STATUS)
 endif()
 
-#warnings
+## Use cppcheck if it is available
+
+set(USE_CPPCHECK FALSE CACHE BOOL
+    "Check code with cppcheck")
+
+if(${USE_CPPCHECK})
+
+    message(CHECK_START "Looking for cppcheck")
+
+    find_program(CPPCHECK cppcheck)
+
+    if(CPPCHECK)
+        message(CHECK_PASS "found ${CPPCHECK}")
+        set(CMAKE_CXX_CPPCHECK ${CPPCHECK})
+    else()
+        message(CHECK_FAIL "not found")
+    endif()
+
+    message(STATUS)
+endif()
+
+## Add main target
+
+add_executable(OpMon)
+
+## Enable as many compiler warnings as possible
+
 set(WARNINGS_AS_ERRORS FALSE CACHE BOOL
     "Treat compiler warnings as errors")
 
-message(DEBUG "Warnings as errors: ${WARNINGS_AS_ERRORS}")
+if(WARNINGS_AS_ERRORS)
+    message(VERBOSE "Warnings are being treated as errors")
+    message(VERBOSE)
+endif()
 
 if(${COMPILING_WITH_CLANG})
 
@@ -121,81 +202,92 @@ elseif(${COMPILING_WITH_MSVC})
     target_compile_options(/W4 /permissive- /w14640 /w14296)
 endif()
 
-#sanitizers
+## Use IPO when available in release mode (by default)
+
+set(USE_IPO ${RELEASE_BUILD} CACHE BOOL
+    "Enable Interprocedural Optimization")
+
+if(${USE_IPO})
+    message(CHECK_START "Checking if IPO is supported")
+
+    include(CheckIPOSupported)
+
+    check_ipo_supported(RESULT ipo_supported OUTPUT output)
+
+    if(ipo_supported)
+        message(CHECK_PASS "yes")
+        set_property(TARGET OpMon
+                     PROPERTY CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
+    else()
+        message(CHECK_FAIL "IPO is not supported")
+        message(VERBOSE "${output}")
+    endif()
+
+    message(STATUS)
+endif()
+
+## Enable sanitizers in GCC and Clang.
+## Address, Undefined, and Leak sanitizers are
+## enabled by default in debug mode
+
 add_library(sanitizers INTERFACE)
 
 if(${COMPILING_WITH_GCC} OR ${COMPILING_WITH_CLANG})
     set(USE_ADDRESS_SANITIZER ${DEBUG_BUILD} CACHE BOOL
         "Use address sanitizer")
 
-    message(DEBUG "Using address sanitizer: ${USE_ADDRESS_SANITIZER}")
-
     set(USE_THREAD_SANITIZER FALSE CACHE BOOL
         "Use thread sanitizer")
-
-    message(DEBUG "Using thread sanitizer: ${USE_THREAD_SANITIZER}")
 
     set(USE_MEMORY_SANITIZER FALSE CACHE BOOL
         "Use memory sanitizer")
 
-    message(DEBUG "Using memory sanitizer: ${USE_MEMORY_SANITIZER}")
-
     set(USE_UNDEFINED_SANITIZER ${DEBUG_BUILD} CACHE BOOL
         "Use undefined behavior sanitizer")
-
-    message(DEBUG "Using undefined behavior sanitizer: ${USE_UNDEFINED_SANITIZER}")
 
     set(USE_LEAK_SANITIZER ${DEBUG_BUILD} CACHE BOOL
         "Use leak sanitizer")
 
-    message(DEBUG "Using leak sanitizer: ${USE_LEAK_SANITIZER}")
-
-
     if(${USE_ADDRESS_SANITIZER})
+        message(VERBOSE "Using address sanitizer")
         target_compile_options(sanitizers INTERFACE -fsanitize=address)
         target_link_libraries(sanitizers INTERFACE -fsanitize=address)
     endif()
 
     if(${USE_THREAD_SANITIZER})
+        message(VERBOSE "Using thread sanitizer")
         target_compile_options(sanitizers INTERFACE -fsanitize=thread)
         target_link_libraries(sanitizers INTERFACE -fsanitize=thread)
     endif()
 
     if(${USE_MEMORY_SANITIZER})
+        message(VERBOSE "Using memory sanitizer")
         target_compile_options(sanitizers INTERFACE -fsanitize=memory)
         target_link_libraries(sanitizers INTERFACE -fsanitize=memory)
     endif()
 
     if(${USE_UNDEFINED_SANITIZER})
+        message(VERBOSE "Using undefined behavior sanitizer")
         target_compile_options(sanitizers INTERFACE -fsanitize=undefined)
         target_link_libraries(sanitizers INTERFACE -fsanitize=undefined)
     endif()
 
     if(${USE_LEAK_SANITIZER})
+        message(VERBOSE "Using leak sanitizer")
         target_compile_options(sanitizers INTERFACE -fsanitize=leak)
         target_link_libraries(sanitizers INTERFACE -fsanitize=leak)
     endif()
 endif()
 
-set(USE_CLANG_TIDY ${DEBUG_BUILD} CACHE BOOL
-    "Check code with clang-tidy")
+## Build SFML
 
-message(DEBUG "Using clang-tidy: ${USE_CLANG_TIDY}")
+message(STATUS)
 
-#tidy support
-if(${USE_CLANG_TIDY})
-    message(CHECK_START "Looking for clang-tidy")
-    find_program(CLANG_TIDY clang-tidy)
-    if(CLANG_TIDY)
-        message(CHECK_PASS "Using ${CLANG_TIDY}")
-        set(CMAKE_CXX_CLANG_TIDY ${CLANG_TIDY})
-    else()
-        message(CHECK_FAIL "not found")
-    endif()
-endif()
+message(STATUS "Adding SFML")
 
-#build sfml
-set(BUILD_SHARED_LIBS OFF)
+message(STATUS)
+
+set(BUILD_SHARED_LIBS OFF) #for static SFML
 set(SFML_INSTALL_PKGCONFIG_FILES OFF)
 set(SFML_INSTALL_XCODE_TEMPLATES OFF)
 add_subdirectory(lib/SFML EXCLUDE_FROM_ALL)
@@ -210,21 +302,36 @@ install(TARGETS sanitizers EXPORT SFMLConfigExport)
 
 target_include_directories(OpMon SYSTEM PRIVATE lib/SFML/include)
 
-#build fmt
+## Build fmt
+
+message(STATUS)
+
+message(STATUS "Adding fmt")
+
+message(STATUS)
+
 add_subdirectory(lib/fmt)
 
 target_link_libraries(fmt PUBLIC sanitizers)
 
 target_include_directories(OpMon SYSTEM PRIVATE lib/fmt/include)
 
-#build spdlog
+## Build spdlog
+
+message(STATUS)
+
+message(STATUS "Adding spdlog")
+
+message(STATUS)
+
 add_subdirectory(lib/spdlog)
 
 target_link_libraries(spdlog PUBLIC sanitizers)
 
 target_include_directories(OpMon SYSTEM PRIVATE lib/spdlog/include)
 
-#link to libraries
+## Link to libraries
+
 target_link_libraries(OpMon PRIVATE
     sanitizers
     sfml-graphics
@@ -234,47 +341,21 @@ target_link_libraries(OpMon PRIVATE
     sfml-network
     fmt
     spdlog)
-    
+
+## Deal with header only libraries
+
 target_include_directories(OpMon SYSTEM PRIVATE lib/tomlpp)
 target_compile_definitions(OpMon PRIVATE -DTOML_ALL_INLINE=0 TOML_EXCEPTIONS=0)
 target_sources(OpMon PRIVATE lib/tomlpp/toml_imp.cpp)
 
 target_include_directories(OpMon SYSTEM PRIVATE lib/json)
 
+## Include paths for the game code
+
 target_include_directories(OpMon PRIVATE src)
 
-#windows specific
-if(WIN32)
-    set_property(TARGET OpMon PROPERTY WIN32_EXECUTABLE TRUE)
-    target_sources(OpMon PRIVATE resources.rc)
-endif()
+## Add the game's source files
 
-#apple specific
-if(APPLE)
-    set_property(TARGET OpMon PROPERTY MACOSX_BUNDLE TRUE)
-    
-    # Need Cocoa framework for Obj-C code
-    find_library(COCOA_LIBRARY Cocoa)
-
-    # On Apple, Create an app bundle, which includes all the game resources and dependencies
-    set_source_files_properties(${CMAKE_SOURCE_DIR}/icons/opmon_icon.icns PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
-    set_source_files_properties(${CMAKE_SOURCE_DIR}/OpMon-Data/GameData PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
-
-    target_sources(OpMon PRIVATE
-        src/ResourcePath.hpp src/ResourcePath.mm
-        ${CMAKE_SOURCE_DIR}/icons/opmon_icon.icns
-        ${CMAKE_SOURCE_DIR}/OpMon-Data/GameData)
-
-    # Add Cocoa framework to executable bundle
-    target_link_libraries(OpMon PRIVATE ${COCOA_LIBRARY})
-
-    # Set the icon
-    set_target_properties(OpMon PROPERTIES MACOSX_BUNDLE_ICON_FILE opmon_icon.icns )
-
-    include(BundleUtilities)
-endif()
-
-#general source files
 target_sources(OpMon PRIVATE
     src/AbstractEvent.cpp src/AbstractEvent.hpp
     src/AbstractMetaEvent.cpp src/AbstractMetaEvent.hpp
@@ -360,7 +441,43 @@ target_sources(OpMon PRIVATE
     src/Turn.cpp src/Turn.hpp
     src/Window.cpp src/Window.hpp)
 
-#install
+## Windows specific
+
+if(WIN32)
+    set_property(TARGET OpMon PROPERTY WIN32_EXECUTABLE TRUE)
+    target_sources(OpMon PRIVATE resources.rc)
+endif()
+
+## Apple specific
+# I don't know if this actually works
+
+if(APPLE)
+    set_property(TARGET OpMon PROPERTY MACOSX_BUNDLE TRUE)
+
+    # Need Cocoa framework for Obj-C code
+    find_library(COCOA_LIBRARY Cocoa)
+
+    # On Apple, Create an app bundle, which includes all the game resources and dependencies
+    set_source_files_properties(${CMAKE_SOURCE_DIR}/icons/opmon_icon.icns PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
+    set_source_files_properties(${CMAKE_SOURCE_DIR}/OpMon-Data/GameData PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
+
+    target_sources(OpMon PRIVATE
+        src/ResourcePath.hpp src/ResourcePath.mm
+        ${CMAKE_SOURCE_DIR}/icons/opmon_icon.icns
+        ${CMAKE_SOURCE_DIR}/OpMon-Data/GameData)
+
+    # Add Cocoa framework to executable bundle
+    target_link_libraries(OpMon PRIVATE ${COCOA_LIBRARY})
+
+    # Set the icon
+    set_target_properties(OpMon PROPERTIES MACOSX_BUNDLE_ICON_FILE opmon_icon.icns )
+
+    include(BundleUtilities)
+endif()
+
+
+## Install
+
 if(UNIX)
     install(TARGETS OpMon DESTINATION bin)
     install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/OpMon-Data/GameData/OPMon.desktop DESTINATION share/applications)
@@ -373,7 +490,8 @@ else()
     install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/OpMon-Data/GameData DESTINATION .)
 endif()
 
-#cpack
+## Cpack
+
 include(CPack)
 
 set(CPACK_GENERATOR "TGZ;DEB")
