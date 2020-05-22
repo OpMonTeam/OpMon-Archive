@@ -9,9 +9,11 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
-    - name: Install SFML Deps and Ninja
-      run: sudo apt-get update && sudo apt-get install ninja-build libflac++-dev libsfml-dev libx11-dev libxrandr-dev libudev-dev libopengl0 libvorbis-dev libopenal-dev
+    - name: Install Ninja
+      run: sudo apt-get update && sudo apt-get install ninja-build
+    - name: Install SFML Deps
+      run: sudo apt-get install libflac++-dev libsfml-dev libx11-dev libxrandr-dev libudev-dev libopengl0 libvorbis-dev libopenal-dev
     - name: Run CMake
-      run: mkdir build && cd build && cmake -G Ninja -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 --log-level=DEBUG ../
-    - name: Run Ninja
-      run: ninja
+      run: cmake -S . -B ../build -G Ninja -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 --log-level=DEBUG
+    - name: Build project
+      run: cmake --build ../build/
