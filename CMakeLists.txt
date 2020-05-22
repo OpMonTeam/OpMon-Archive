@@ -198,7 +198,7 @@ endif()
 set(BUILD_SHARED_LIBS OFF)
 set(SFML_INSTALL_PKGCONFIG_FILES OFF)
 set(SFML_INSTALL_XCODE_TEMPLATES OFF)
-add_subdirectory(external/SFML EXCLUDE_FROM_ALL)
+add_subdirectory(lib/SFML EXCLUDE_FROM_ALL)
 
 target_link_libraries(sfml-graphics PUBLIC sanitizers)
 target_link_libraries(sfml-window PUBLIC sanitizers)
@@ -208,21 +208,21 @@ target_link_libraries(sfml-network PUBLIC sanitizers)
 
 install(TARGETS sanitizers EXPORT SFMLConfigExport)
 
-target_include_directories(OpMon SYSTEM PRIVATE external/SFML/include)
+target_include_directories(OpMon SYSTEM PRIVATE lib/SFML/include)
 
 #build fmt
-add_subdirectory(external/fmt)
+add_subdirectory(lib/fmt)
 
 target_link_libraries(fmt PUBLIC sanitizers)
 
-target_include_directories(OpMon SYSTEM PRIVATE external/fmt/include)
+target_include_directories(OpMon SYSTEM PRIVATE lib/fmt/include)
 
 #build spdlog
-add_subdirectory(external/spdlog)
+add_subdirectory(lib/spdlog)
 
 target_link_libraries(spdlog PUBLIC sanitizers)
 
-target_include_directories(OpMon SYSTEM PRIVATE external/spdlog/include)
+target_include_directories(OpMon SYSTEM PRIVATE lib/spdlog/include)
 
 #link to libraries
 target_link_libraries(OpMon PRIVATE
@@ -235,11 +235,11 @@ target_link_libraries(OpMon PRIVATE
     fmt
     spdlog)
     
-target_include_directories(OpMon SYSTEM PRIVATE external/tomlpp)
+target_include_directories(OpMon SYSTEM PRIVATE lib/tomlpp)
 target_compile_definitions(OpMon PRIVATE -DTOML_ALL_INLINE=0 TOML_EXCEPTIONS=0)
-target_sources(OpMon PRIVATE external/tomlpp/toml_imp.cpp)
+target_sources(OpMon PRIVATE lib/tomlpp/toml_imp.cpp)
 
-target_include_directories(OpMon SYSTEM PRIVATE external/json)
+target_include_directories(OpMon SYSTEM PRIVATE lib/json)
 
 target_include_directories(OpMon PRIVATE src)
 
