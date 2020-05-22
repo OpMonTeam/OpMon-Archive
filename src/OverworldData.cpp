@@ -87,6 +87,7 @@ namespace OpMon {
         //Items initialisation
         for(std::filesystem::directory_entry const& file : std::filesystem::directory_iterator(Path::getResourcePath() + "data/items")) {
         	if(file.is_regular_file()){
+        		Utils::Log::oplog("Found items file " + file.path().generic_string());
         		nlohmann::json itemsJson;
 
         		std::ifstream itemsJsonFile(file.path());
@@ -114,6 +115,7 @@ namespace OpMon {
 
         for(std::filesystem::directory_entry const& file : std::filesystem::directory_iterator(Path::getResourcePath() + "data/trainers")) {
         	if(file.is_regular_file()){
+        		Utils::Log::oplog("Found trainers file " + file.path().generic_string());
         		std::ifstream trainersFile(file.path());
         		nlohmann::json trainersJson;
         		trainersFile >> trainersJson;
@@ -142,10 +144,11 @@ namespace OpMon {
         //Maps loading
         for(std::filesystem::directory_entry const& file : std::filesystem::directory_iterator(Path::getResourcePath() + "data/maps")) { //One map per JSON file
         	if(file.is_regular_file()){
+        		Utils::Log::oplog("Found map file " + file.path().generic_string());
         		nlohmann::json mapJson;
         		std::ifstream mapFile(file.path());
         		mapFile >> mapJson;
-        		maps.emplace(mapJson.at("id"), new Elements::Map(mapJson));
+        		maps.emplace(mapJson.at("id"), std::pair<nlohmann::json, Elements::Map *>(mapJson, nullptr));
         	}
         }
 
@@ -154,7 +157,7 @@ namespace OpMon {
 
     OverworldData::~OverworldData() {
         for(auto &map : maps) {
-            delete(map.second);
+            delete(map.second.second);
         }
         for(auto &pair : tilesets){
         	free(pair.second.second);
@@ -163,12 +166,10 @@ namespace OpMon {
     }
 
     Elements::Map *OverworldData::getMap(std::string const &map) {
-        if(!maps[map]->isLoaded()) {
-            Elements::Map *newMap = maps[map]->loadMap(*this);
-            delete(maps[map]);
-            maps[map] = newMap;
+        if(maps[map].second == nullptr) { //If the map has not been loaded yet
+        	maps[map].second = new Elements::Map(maps[map].first, *this); //Loads the map with the json data
         }
-        return maps[map];
+        return maps[map].second;
     }
 
     Elements::Map *OverworldData::getCurrentMap() {
