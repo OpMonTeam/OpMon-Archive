@@ -12,8 +12,6 @@ message(VERBOSE
 message(VERBOSE
     "Generator is '${CMAKE_GENERATOR}'")
 
-message(VERBOSE ${CMAKE_SYSTEM})
-
 message(VERBOSE) #outputs a newline
 
 ## Set up project
@@ -160,7 +158,10 @@ if(WARNINGS_AS_ERRORS)
     message(VERBOSE)
 endif()
 
-if(${COMPILING_WITH_CLANG})
+set(IGNORE_MOST_WARNINGS FALSE CACHE BOOL
+    "Don't pass extra warning flags" FORCE)
+
+if(${COMPILING_WITH_CLANG} AND NOT ${IGNORE_MOST_WARNINGS})
 
     if(${WARNINGS_AS_ERRORS})
         target_compile_options(OpMon PRIVATE -Werror)
@@ -177,7 +178,7 @@ if(${COMPILING_WITH_CLANG})
         -Wimplicit-fallthrough -Wlogical-op-parentheses -Wloop-analysis
         -Wmismatched-tags -Wthread-safety -Wunreachable-code-aggressive)
 
-elseif(${COMPILING_WITH_GCC})
+elseif(${COMPILING_WITH_GCC} AND NOT ${IGNORE_MOST_WARNINGS})
 
     if(${WARNINGS_AS_ERRORS})
         target_compile_options(OpMon PRIVATE -Werror)
@@ -193,7 +194,7 @@ elseif(${COMPILING_WITH_GCC})
         -Wplacement-new=2 -Wsign-promo -Wsuggest-override -Wswitch-enum
         -Wuninitialized -Wuseless-cast -Wsuggest-final-types)
 
-elseif(${COMPILING_WITH_MSVC})
+elseif(${COMPILING_WITH_MSVC} AND NOT ${IGNORE_MOST_WARNINGS})
 
     if(${WARNINGS_AS_ERRORS})
         target_compile_options(OpMon PRIVATE /Wx)

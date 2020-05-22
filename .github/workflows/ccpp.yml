@@ -1,6 +1,6 @@
 name: Build
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -14,6 +14,6 @@ jobs:
     - name: Install SFML Deps
       run: sudo apt-get install libflac++-dev libsfml-dev libx11-dev libxrandr-dev libudev-dev libopengl0 libvorbis-dev libopenal-dev
     - name: Run CMake
-      run: cmake -S . -B ../build -G Ninja -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 --log-level=DEBUG
+      run: cmake -S . -B ../build -G Ninja -DIGNORE_MOST_WARNINGS -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 --log-level=VERBOSE
     - name: Build project
       run: cmake --build ../build/
