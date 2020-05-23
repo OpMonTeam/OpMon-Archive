@@ -480,9 +480,7 @@ if(APPLE)
     target_link_libraries(OpMon PRIVATE ${COCOA_LIBRARY})
 
     # Set the icon
-    set_target_properties(OpMon PROPERTIES MACOSX_BUNDLE_ICON_FILE opmon_icon.icns )
-
-    include(BundleUtilities)
+    set_target_properties(OpMon PROPERTIES MACOSX_BUNDLE_ICON_FILE opmon_icon.icns)
 endif()
 
 
