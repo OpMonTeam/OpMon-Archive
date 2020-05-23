@@ -13,9 +13,9 @@ jobs:
       run: sudo apt-get update && sudo apt-get install ninja-build
     - name: Install SFML Deps
       run: sudo apt-get install libflac++-dev libsfml-dev libx11-dev libxrandr-dev libudev-dev libopengl0 libvorbis-dev libopenal-dev
-    - name: Run CMake
+    - name: Configure
       run: cmake -S . -B ../build -G Ninja -DIGNORE_MOST_WARNINGS=True -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 --log-level=VERBOSE
-    - name: Build project
+    - name: Build
       run: cmake --build ../build/
   windows_release_build:
 
@@ -25,7 +25,21 @@ jobs:
     - uses: actions/checkout@v2
     - name: Unzip SFML Deps
       run: "& 'C:/Program Files/7-Zip/7z.exe' x lib/SFML/extlibs/extlibs.7z -olib/SFML/extlibs/"
-    - name: Run CMake
+    - name: Configure
       run: cmake -S . -B ../build -DIGNORE_MOST_WARNINGS=True --log-level=VERBOSE
-    - name: Build project
+    - name: Build
       run: cmake --build ../build/ --config Release
+  mac_release_build:
+
+    runs-on: macOS-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install 7zip and Ninja
+      run: brew update && brew install p7zip ninja
+    - name: Unzip SFML Deps
+      run: 7za x lib/SFML/extlibs/extlibs.7z -olib/SFML/extlibs/"
+    - name: Configure
+      run: cmake -S . -B ../build -G Ninja -DIGNORE_MOST_WARNINGS=True -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ --log-level=VERBOSE
+    - name: Build
+      run: cmake --build ../build/
