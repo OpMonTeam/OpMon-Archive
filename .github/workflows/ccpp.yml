@@ -28,4 +28,4 @@ jobs:
     - name: Run CMake
       run: cmake -S . -B ../build -DIGNORE_MOST_WARNINGS=True --log-level=VERBOSE
     - name: Build project
-      run: cmake --build ../build/
+      run: cmake --build ../build/ --config Release
