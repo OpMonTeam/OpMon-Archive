@@ -458,33 +458,6 @@ if(WIN32)
     target_sources(OpMon PRIVATE resources.rc)
 endif()
 
-## Apple specific
-# I don't know if this actually works
-
-if(APPLE)
-    set_property(TARGET OpMon PROPERTY MACOSX_BUNDLE TRUE)
-
-    # Need Cocoa framework for Obj-C code
-    find_library(COCOA_LIBRARY Cocoa)
-
-    # On Apple, Create an app bundle, which includes all the game resources and dependencies
-    set_source_files_properties(${CMAKE_SOURCE_DIR}/icons/opmon_icon.icns PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
-    set_source_files_properties(${CMAKE_SOURCE_DIR}/OpMon-Data/GameData PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
-
-    target_sources(OpMon PRIVATE
-        src/ResourcePath.hpp src/ResourcePath.mm
-        ${CMAKE_SOURCE_DIR}/icons/opmon_icon.icns
-        ${CMAKE_SOURCE_DIR}/OpMon-Data/GameData)
-
-    # Add Cocoa framework to executable bundle
-    target_link_libraries(OpMon PRIVATE ${COCOA_LIBRARY})
-
-    # Set the icon
-    set_target_properties(OpMon PROPERTIES MACOSX_BUNDLE_ICON_FILE opmon_icon.icns)
-endif()
-
-
-
 ###### TODO: INSTALL correctly
 
 ## Install
