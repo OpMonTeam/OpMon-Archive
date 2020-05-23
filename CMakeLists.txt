@@ -142,7 +142,7 @@ if(${USE_CPPCHECK})
 
     if(CPPCHECK)
         message(CHECK_PASS "found ${CPPCHECK}")
-        set(CMAKE_CXX_CPPCHECK ${CPPCHECK} -i lib/ --project=compile_commands.json --enable=missingInclude,performance,portability)
+        set(CMAKE_CXX_CPPCHECK ${CPPCHECK} -i lib --clang --language=c++ --project=compile_commands.json --enable=all)
     else()
         message(CHECK_FAIL "not found")
     endif()

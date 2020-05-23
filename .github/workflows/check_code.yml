@@ -31,7 +31,7 @@ jobs:
     - name: Install SFML Deps
       run: sudo apt-get install libflac++-dev libsfml-dev libx11-dev libxrandr-dev libudev-dev libopengl0 libvorbis-dev libopenal-dev
     - name: Configure
-      run: cmake -S . -B ../build -G Ninja -DUSE_CPPCHECK=True -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 --log-level=VERBOSE
+      run: cmake -S . -B ../build -G Ninja -DUSE_CLANG_TIDY=True -DUSE_CPPCHECK=True -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 --log-level=VERBOSE
     - name: Link compile_commands
       run: ln -s ../build/compile_commands.json compile_commands.json
     - name: Build
