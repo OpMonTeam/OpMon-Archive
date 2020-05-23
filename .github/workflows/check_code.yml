@@ -12,8 +12,19 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Install Tools
-      run: sudo apt-get update && sudo apt-get install cppcheck ccache clang-tidy-9 && sudo ln -s /usr/bin/clang-tidy-9 /usr/bin/clang-tidy
+    - name: Install cppcheck deps
+      run: sudo apt-get update && sudo apt-get install libxml2-utils z3 libz3-dev
+    - name: Download cppcheck
+      run: git clone -q --depth 1 https://github.com/danmar/cppcheck.git ../cppcheck
+    - name: Configure cppcheck
+      run: cmake -S ../cppcheck -B ../cppcheck_build -G Ninja -DUSE_Z3=ON -DUSE_MATCHCOMPILER=ON -DHAVE_RULES=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9
+    - name: Build cppcheck
+      run: cmake --build ../cppcheck_build
+    - name: Install cppcheck
+      run: sudo cmake --install ../cppcheck_build
+          
+    - name: Install Other Tools
+      run: sudo apt-get install ccache clang-tidy-9 && sudo ln -s /usr/bin/clang-tidy-9 /usr/bin/clang-tidy
     - name: Install Ninja
       run: sudo apt-get install ninja-build
     - name: Install SFML Deps
