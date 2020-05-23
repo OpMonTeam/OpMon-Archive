@@ -159,7 +159,7 @@ if(WARNINGS_AS_ERRORS)
 endif()
 
 set(IGNORE_MOST_WARNINGS FALSE CACHE BOOL
-    "Don't pass extra warning flags" FORCE)
+    "Don't pass extra warning flags")
 
 if(${COMPILING_WITH_CLANG} AND NOT ${IGNORE_MOST_WARNINGS})
 
