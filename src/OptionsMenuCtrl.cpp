@@ -7,7 +7,6 @@
 #include "OptionsMenuCtrl.hpp"
 
 #include <algorithm>
-#include <ext/alloc_traits.h>
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/Keyboard.hpp>

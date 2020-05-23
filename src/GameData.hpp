@@ -8,7 +8,6 @@
 
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/Texture.hpp>
-#include <ext/alloc_traits.h>
 #include <map>
 
 #include "Keyboard.hpp"

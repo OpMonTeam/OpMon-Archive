@@ -78,8 +78,14 @@ message(STATUS "${CMAKE_BUILD_TYPE} build")
 
 message(STATUS)
 
-STRING(COMPARE EQUAL ${CMAKE_BUILD_TYPE} "Debug" DEBUG_BUILD)
-STRING(COMPARE EQUAL ${CMAKE_BUILD_TYPE} "Release" RELEASE_BUILD)
+set(DEBUG_BUILD FALSE)
+set(RELEASE_BUILD FALSE)
+
+if($<Config:Debug>)
+    set(DEBUG_BUILD TRUE)
+else()
+    set(RELEASE_BUILD TRUE)
+endif()
 
 ## Generate compilation database
 
@@ -303,6 +309,9 @@ install(TARGETS sanitizers EXPORT SFMLConfigExport)
 
 target_include_directories(OpMon SYSTEM PRIVATE lib/SFML/include)
 
+#For Windows
+target_compile_definitions(sfml-audio PUBLIC -D_HAS_AUTO_PTR_ETC=1)
+
 ## Build fmt
 
 message(STATUS)
@@ -476,6 +485,9 @@ if(APPLE)
     include(BundleUtilities)
 endif()
 
+
+
+###### TODO: INSTALL correctly
 
 ## Install
 

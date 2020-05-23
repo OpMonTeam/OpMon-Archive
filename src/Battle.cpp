@@ -7,7 +7,6 @@
 #include "Battle.hpp"
 
 #include <SFML/Graphics/Rect.hpp>
-#include <ext/alloc_traits.h>
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/Texture.hpp>

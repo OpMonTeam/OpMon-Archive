@@ -6,6 +6,8 @@
 */
 #pragma once
 
+#include <string>
+
 namespace OpMon {
     /*!
      * \brief Contains path-related utilites.

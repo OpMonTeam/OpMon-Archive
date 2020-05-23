@@ -6,7 +6,6 @@
 */
 #include "StringKeys.hpp"
 
-#include <ext/alloc_traits.h>
 #include <SFML/Config.hpp>
 #include "log.hpp"
 #include <SFML/Graphics.hpp>

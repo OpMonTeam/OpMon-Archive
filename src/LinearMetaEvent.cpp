@@ -14,7 +14,7 @@ namespace OpMon {
 
 		LinearMetaEvent::LinearMetaEvent(OverworldData &data, nlohmann::json jsonData)
 		: AbstractMetaEvent(data, jsonData)
-		, actionQueue(std::deque<bool>(jsonData.at("actions"))){
+		, actionQueue(std::deque<bool>{jsonData.at("actions")}){
 
 		}
 
