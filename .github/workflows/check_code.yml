@@ -1,0 +1,26 @@
+name: check_code
+
+on:
+  push:
+    branches: [develop]
+  pull_request:
+    branches: [develop]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Tools
+      run: sudo apt-get update && sudo apt-get install cppcheck ccache clang-tidy-9 && sudo ln -s /usr/bin/clang-tidy-9 /usr/bin/clang-tidy
+    - name: Install Ninja
+      run: sudo apt-get install ninja-build
+    - name: Install SFML Deps
+      run: sudo apt-get install libflac++-dev libsfml-dev libx11-dev libxrandr-dev libudev-dev libopengl0 libvorbis-dev libopenal-dev
+    - name: Configure
+      run: cmake -S . -B ../build -G Ninja -DUSE_CPPCHECK=True -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 --log-level=VERBOSE
+    - name: Link compile_commands
+      run: ln -s ../build/compile_commands.json compile_commands.json
+    - name: Build
+      run: cmake --build ../build/
