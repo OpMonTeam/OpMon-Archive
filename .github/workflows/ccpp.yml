@@ -24,7 +24,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Unzip SFML Deps
-      run: \"C://Program Files/7-Zip/7z.exe\" x lib/SFML/extlibs/extlibs.7z -olib/SFML/extlibs/
+      run: "& 'C:/Program Files/7-Zip/7z.exe/' x lib/SFML/extlibs/extlibs.7z -olib/SFML/extlibs/"
     - name: Run CMake
       run: cmake -S . -B ../build -DIGNORE_MOST_WARNINGS=True --log-level=VERBOSE
     - name: Build project
