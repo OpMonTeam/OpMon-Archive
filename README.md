@@ -19,15 +19,36 @@ OPMon is a Pokémon-inspired game project imagined in 2012 and started in septem
 Master (Last stable build) : ![Build](https://api.travis-ci.org/OpMonTeam/OpMon.svg?branch=master)  
 Develop (Development branch) : ![Build](https://github.com/OpMonTeam/OpMon/workflows/Build/badge.svg?branch=develop)
 
-The game data is stored as a git submodule in the OpMon-Data repository. The build system use *cmake*. Commands for GNU/Linux systems :
+The game data is stored as a git submodule in the OpMon-Data repository.
 
+This project uses [CMake](https://cmake.org/cmake/help/v3.17/manual/cmake.1.html).
+
+#### Building on Linux (simple)
 ```sh
-submodule update --init
-md build && cd build
-cmake ..            #If you want to build in Debug, use -DCMAKE_BUILD_TYPE=Debug
-make
-sudo make install   # install the game into your system
-make package        # generate both .deb package and .tar.gz package
+# Retrieve the source code
+git clone -q --depth 1 https://github.com/OpMonTeam/OpMon.git
+cd OpMon
+# Retrieve the game data
+git submodule update --init --depth 1
+# Configure
+cmake -S . -B build
+# Build
+cmake --build build
+# Install
+cmake --install build
+```
+
+#### Building on Linux (developers)
+```sh
+# Retrieve the source code
+git clone https://github.com/OpMonTeam/OpMon.git
+cd OpMon
+# Retrieve the game data
+git submodule update --init
+# Configure
+cmake -DCMAKE_BUILD_TYPE=Debug -S . -B build
+# Build
+cmake --build build
 ```
 
 You can see the dependencies for GNU/Linux systems [here](https://github.com/OpMonTeam/OpMon/wiki/Dependencies).
