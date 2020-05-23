@@ -14,6 +14,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install cppcheck deps
       run: sudo apt-get update && sudo apt-get install libxml2-utils z3 libz3-dev
+    - name: Install Ninja
+      run: sudo apt-get install ninja-build
     - name: Download cppcheck
       run: git clone -q --depth 1 https://github.com/danmar/cppcheck.git ../cppcheck
     - name: Configure cppcheck
@@ -25,8 +27,7 @@ jobs:
           
     - name: Install Other Tools
       run: sudo apt-get install ccache clang-tidy-9 && sudo ln -s /usr/bin/clang-tidy-9 /usr/bin/clang-tidy
-    - name: Install Ninja
-      run: sudo apt-get install ninja-build
+    
     - name: Install SFML Deps
       run: sudo apt-get install libflac++-dev libsfml-dev libx11-dev libxrandr-dev libudev-dev libopengl0 libvorbis-dev libopenal-dev
     - name: Configure
