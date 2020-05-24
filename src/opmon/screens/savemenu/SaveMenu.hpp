@@ -9,6 +9,13 @@
 namespace OpMon {
 
     /*!
+     * \brief Context in which the save menu was opened, i.e. is the player
+     * trying to save or load.
+     */
+    enum class SaveMenuContext { SAVING,
+                                 LOADING };
+
+    /*!
      * \brief State of the save menu, i.e. whether the player is currently
      * selecting a file or confirming the selected file.
      */
@@ -23,7 +30,7 @@ namespace OpMon {
 
     class SaveMenu : public Utils::I18n::ATranslatable, public sf::Drawable {
       public:
-        SaveMenu(SaveMenuData &data);
+        SaveMenu(SaveMenuData &data, SaveMenuContext context);
 
         ~SaveMenu() = default;
 

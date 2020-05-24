@@ -1,10 +1,12 @@
 #include "SaveMenuCtrl.hpp"
 
+#include "SaveMenu.hpp"
+
 namespace OpMon {
 
-    SaveMenuCtrl::SaveMenuCtrl(GameData *data)
+    SaveMenuCtrl::SaveMenuCtrl(GameData *data, SaveMenuContext context)
       : data(data)
-      , view(this->data) {
+      , view(this->data, context) {
     }
 
     GameStatus SaveMenuCtrl::checkEvent(sf::Event const &event) {
