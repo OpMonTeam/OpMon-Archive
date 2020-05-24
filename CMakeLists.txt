@@ -1,4 +1,7 @@
 cmake_minimum_required(VERSION 3.17)
+
+cmake_policy(SET CMP0077 NEW)
+
 set(CMAKE_ERROR_DEPRECATED TRUE)
 
 ## General system information
@@ -22,343 +25,29 @@ project(OpMon
     HOMEPAGE_URL "http://opmon-game.ga/"
     LANGUAGES C CXX)
 
-message(STATUS)
+include(cmake/globals.cmake)
 
 message(STATUS
     "Configuring ${PROJECT_NAME} "
     "${${PROJECT_NAME}_VERSION}")
 
 message(VERBOSE
-    "  Source directory is '${CMAKE_SOURCE_DIR}'")
+    "  Source directory is '${PROJECT_SOURCE_DIR}'")
 
 message(VERBOSE
-    "  Build directory is '${CMAKE_BINARY_DIR}'")
+    "  Build directory is '${PROJECT_BINARY_DIR}'")
 
 message(STATUS)
 
-## Set the required C++ standard to C++17
-
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
-
-message(VERBOSE
-    "Using C++${CMAKE_CXX_STANDARD} mode")
-
-message(VERBOSE)
-
-## Detect if using a known compiler
-
-set(COMPILING_WITH_CLANG FALSE)
-set(COMPILING_WITH_GCC FALSE)
-set(COMPILING_WITH_MSVC FALSE)
-
-if(${CMAKE_CXX_COMPILER_ID} MATCHES ".*Clang")
-    set(COMPILING_WITH_CLANG TRUE)
-elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU")
-    set(COMPILING_WITH_GCC TRUE)
-elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC")
-    set(COMPILING_WITH_MSVC TRUE)
-endif()
-
-message(STATUS "Compiler: ${CMAKE_CXX_COMPILER_ID}")
-message(STATUS "  Version: ${CMAKE_CXX_COMPILER_VERSION}")
-
-message(STATUS)
-
-## Set default build type
-
-if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
-    set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type." FORCE)
-    set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release"
-                                             "MinSizeRel" "RelWithDebInfo")
-endif()
-
-message(STATUS "${CMAKE_BUILD_TYPE} build")
-
-message(STATUS)
-
-set(DEBUG_BUILD FALSE)
-set(RELEASE_BUILD FALSE)
-
-if($<Config:Debug>)
-    set(DEBUG_BUILD TRUE)
-else()
-    set(RELEASE_BUILD TRUE)
-endif()
-
-## Generate compilation database
-
-set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE CACHE BOOL
-    "Export compile_commands.json" FORCE)
-
-## Use ccache if it is available
-
-message(CHECK_START "Looking for ccache")
-
-find_program(CCACHE ccache)
-
-if(CCACHE)
-    message(CHECK_PASS "found ${CCACHE}")
-    set(CMAKE_CXX_COMPILER_LAUNCHER ${CCACHE})
-else()
-    message(CHECK_FAIL "not found")
-endif()
-
-message(STATUS)
-
-## Use clang-tidy if it is available
-## and (by default) when we are in debug mode
-
-set(USE_CLANG_TIDY ${DEBUG_BUILD} CACHE BOOL
-    "Check code with clang-tidy")
-
-if(${USE_CLANG_TIDY})
-
-    message(CHECK_START "Looking for clang-tidy")
-
-    find_program(CLANG_TIDY clang-tidy)
-
-    if(CLANG_TIDY)
-        message(CHECK_PASS "found ${CLANG_TIDY}")
-        set(CMAKE_CXX_CLANG_TIDY ${CLANG_TIDY})
-    else()
-        message(CHECK_FAIL "not found")
-    endif()
-
-    message(STATUS)
-endif()
-
-## Use cppcheck if it is available
-
-set(USE_CPPCHECK FALSE CACHE BOOL
-    "Check code with cppcheck")
-
-if(${USE_CPPCHECK})
-
-    message(CHECK_START "Looking for cppcheck")
-
-    find_program(CPPCHECK cppcheck)
-
-    if(CPPCHECK)
-        message(CHECK_PASS "found ${CPPCHECK}")
-        set(CMAKE_CXX_CPPCHECK ${CPPCHECK} -i lib --clang --language=c++ --project=compile_commands.json --enable=all)
-    else()
-        message(CHECK_FAIL "not found")
-    endif()
-
-    message(STATUS)
-endif()
-
-## Add main target
-
-add_executable(OpMon)
-
-## Enable as many compiler warnings as possible
-
-set(WARNINGS_AS_ERRORS FALSE CACHE BOOL
-    "Treat compiler warnings as errors")
-
-if(WARNINGS_AS_ERRORS)
-    message(VERBOSE "Warnings are being treated as errors")
-    message(VERBOSE)
-endif()
-
-set(IGNORE_MOST_WARNINGS FALSE CACHE BOOL
-    "Don't pass extra warning flags")
-
-if(${COMPILING_WITH_CLANG} AND NOT ${IGNORE_MOST_WARNINGS})
-
-    if(${WARNINGS_AS_ERRORS})
-        target_compile_options(OpMon PRIVATE -Werror)
-    endif()
-
-    target_compile_options(OpMon PRIVATE -Wall -Wextra -Werror=pedantic
-        -Wcast-align -Wcast-qual -Wconversion -Wdate-time -Wformat=2
-        -Werror=main -Wold-style-cast -Werror=return-type -Wfloat-equal
-        -Werror=zero-as-null-pointer-constant -Wmissing-noreturn
-        -Wnon-virtual-dtor -Woverloaded-virtual -Wno-unknown-pragmas
-        -Wabstract-vbase-init -Wcomma -Wduplicate-enum -Wempty-init-stmt
-        -Wdeprecated -Werror=keyword-macro -Wundefined-reinterpret-cast
-        -Wgcc-compat -Wheader-hygiene -Widiomatic-parentheses
-        -Wimplicit-fallthrough -Wlogical-op-parentheses -Wloop-analysis
-        -Wmismatched-tags -Wthread-safety -Wunreachable-code-aggressive)
-
-elseif(${COMPILING_WITH_GCC} AND NOT ${IGNORE_MOST_WARNINGS})
-
-    if(${WARNINGS_AS_ERRORS})
-        target_compile_options(OpMon PRIVATE -Werror)
-    endif()
-
-    target_compile_options(OpMon PRIVATE -Wall -Wextra -Werror=pedantic
-        -Wcast-align -Wcast-qual -Wconversion -Wdate-time -Wformat=2
-        -Werror=main -Wold-style-cast -Werror=return-type -Wfloat-equal
-        -Werror=zero-as-null-pointer-constant -Wmissing-noreturn
-        -Wnon-virtual-dtor -Woverloaded-virtual -Wno-unknown-pragmas
-        -Wduplicated-branches -Wduplicated-cond -pedantic-errors
-        -Wimplicit-fallthrough=5 -Wlogical-op -Wnoexcept -Wnull-dereference
-        -Wplacement-new=2 -Wsign-promo -Wsuggest-override -Wswitch-enum
-        -Wuninitialized -Wuseless-cast -Wsuggest-final-types)
-
-elseif(${COMPILING_WITH_MSVC} AND NOT ${IGNORE_MOST_WARNINGS})
-
-    if(${WARNINGS_AS_ERRORS})
-        target_compile_options(OpMon PRIVATE /Wx)
-    endif()
-
-    target_compile_options(/W4 /permissive- /w14640 /w14296)
-endif()
-
-## Use IPO when available in release mode (by default)
-
-set(USE_IPO ${RELEASE_BUILD} CACHE BOOL
-    "Enable Interprocedural Optimization")
-
-if(${USE_IPO})
-    message(CHECK_START "Checking if IPO is supported")
-
-    include(CheckIPOSupported)
-
-    check_ipo_supported(RESULT ipo_supported OUTPUT output)
-
-    if(ipo_supported)
-        message(CHECK_PASS "yes")
-        set_property(TARGET OpMon
-                     PROPERTY CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
-    else()
-        message(CHECK_FAIL "IPO is not supported")
-        message(VERBOSE "${output}")
-    endif()
-
-    message(STATUS)
-endif()
-
-## Enable sanitizers in GCC and Clang.
-## Address, Undefined, and Leak sanitizers are
-## enabled by default in debug mode
-
-add_library(sanitizers INTERFACE)
-
-if(${COMPILING_WITH_GCC} OR ${COMPILING_WITH_CLANG})
-    set(USE_ADDRESS_SANITIZER ${DEBUG_BUILD} CACHE BOOL
-        "Use address sanitizer")
-
-    set(USE_THREAD_SANITIZER FALSE CACHE BOOL
-        "Use thread sanitizer")
-
-    set(USE_MEMORY_SANITIZER FALSE CACHE BOOL
-        "Use memory sanitizer")
-
-    set(USE_UNDEFINED_SANITIZER ${DEBUG_BUILD} CACHE BOOL
-        "Use undefined behavior sanitizer")
-
-    set(USE_LEAK_SANITIZER ${DEBUG_BUILD} CACHE BOOL
-        "Use leak sanitizer")
-
-    if(${USE_ADDRESS_SANITIZER})
-        message(VERBOSE "Using address sanitizer")
-        target_compile_options(sanitizers INTERFACE -fsanitize=address)
-        target_link_libraries(sanitizers INTERFACE -fsanitize=address)
-    endif()
-
-    if(${USE_THREAD_SANITIZER})
-        message(VERBOSE "Using thread sanitizer")
-        target_compile_options(sanitizers INTERFACE -fsanitize=thread)
-        target_link_libraries(sanitizers INTERFACE -fsanitize=thread)
-    endif()
-
-    if(${USE_MEMORY_SANITIZER})
-        message(VERBOSE "Using memory sanitizer")
-        target_compile_options(sanitizers INTERFACE -fsanitize=memory)
-        target_link_libraries(sanitizers INTERFACE -fsanitize=memory)
-    endif()
-
-    if(${USE_UNDEFINED_SANITIZER})
-        message(VERBOSE "Using undefined behavior sanitizer")
-        target_compile_options(sanitizers INTERFACE -fsanitize=undefined)
-        target_link_libraries(sanitizers INTERFACE -fsanitize=undefined)
-    endif()
-
-    if(${USE_LEAK_SANITIZER})
-        message(VERBOSE "Using leak sanitizer")
-        target_compile_options(sanitizers INTERFACE -fsanitize=leak)
-        target_link_libraries(sanitizers INTERFACE -fsanitize=leak)
-    endif()
-endif()
-
-## Build SFML
-
-message(STATUS)
-
-message(STATUS "Adding SFML")
-
-message(STATUS)
-
-set(BUILD_SHARED_LIBS OFF) #for static SFML
-set(SFML_INSTALL_PKGCONFIG_FILES OFF)
-set(SFML_INSTALL_XCODE_TEMPLATES OFF)
-add_subdirectory(lib/SFML EXCLUDE_FROM_ALL)
-
-target_link_libraries(sfml-graphics PUBLIC sanitizers)
-target_link_libraries(sfml-window PUBLIC sanitizers)
-target_link_libraries(sfml-system PUBLIC sanitizers)
-target_link_libraries(sfml-audio PUBLIC sanitizers)
-target_link_libraries(sfml-network PUBLIC sanitizers)
-
-install(TARGETS sanitizers EXPORT SFMLConfigExport)
-
-target_include_directories(OpMon SYSTEM PRIVATE lib/SFML/include)
-
-#For Windows
-target_compile_definitions(sfml-audio PUBLIC -D_HAS_AUTO_PTR_ETC=1)
-
-## Build fmt
-
-message(STATUS)
-
-message(STATUS "Adding fmt")
-
-message(STATUS)
-
-add_subdirectory(lib/fmt)
-
-target_link_libraries(fmt PUBLIC sanitizers)
-
-target_include_directories(OpMon SYSTEM PRIVATE lib/fmt/include)
-
-## Build spdlog
-
-message(STATUS)
-
-message(STATUS "Adding spdlog")
-
-message(STATUS)
-
-add_subdirectory(lib/spdlog)
-
-target_link_libraries(spdlog PUBLIC sanitizers)
-
-target_include_directories(OpMon SYSTEM PRIVATE lib/spdlog/include)
-
-## Link to libraries
-
-target_link_libraries(OpMon PRIVATE
-    sanitizers
-    sfml-graphics
-    sfml-window
-    sfml-system
-    sfml-audio
-    sfml-network
-    fmt
-    spdlog)
-
-## Deal with header only libraries
-
-target_include_directories(OpMon SYSTEM PRIVATE lib/tomlpp)
-target_compile_definitions(OpMon PRIVATE -DTOML_ALL_INLINE=0 TOML_EXCEPTIONS=0)
-target_sources(OpMon PRIVATE lib/tomlpp/toml_imp.cpp)
-
-target_include_directories(OpMon SYSTEM PRIVATE lib/json)
+## Add game target
+
+add_executable(${PROJECT_NAME})
+
+include(cmake/compiler_options.cmake)
+include(cmake/analysis.cmake)
+include(cmake/compiler_warnings.cmake)
+include(cmake/sanitize.cmake)
+include(cmake/dependencies.cmake)
 
 ## Include paths for the game code
 
