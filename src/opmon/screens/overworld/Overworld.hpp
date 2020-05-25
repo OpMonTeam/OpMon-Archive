@@ -37,7 +37,7 @@ class TrainerEvent;
     public:
         Overworld(const std::string &mapId, OverworldData &data);
 
-        sf::Sprite &getCharacter() {
+        Elements::PlayerEvent &getCharacter() {
             return character;
         }
 
@@ -201,7 +201,7 @@ class TrainerEvent;
 
         sf::Text debugText;
         sf::View camera;
-        sf::Sprite character;
+        Elements::PlayerEvent& character;
         /*!
          * \brief The map the player is currently in.
          */

@@ -19,6 +19,7 @@ namespace OpMon {
 			this->position += sf::Vector2f(16, 0);
 			setPredefinedMove(predefinedPath);
 			mapPos.setDir(posDir);
+			currentFrame = rectangles.begin();
 		}
 
 		CharacterEvent::CharacterEvent(OverworldData &data, nlohmann::json jsonData)

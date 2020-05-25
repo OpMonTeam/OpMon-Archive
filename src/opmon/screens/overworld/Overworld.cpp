@@ -137,7 +137,7 @@ namespace OpMon {
     void Overworld::tp(std::string toTp, sf::Vector2i pos) {
         data.getPlayer().tp(toTp, pos);
         current = data.getCurrentMap();
-        character.setPosition(pos.x SQUARES - 16, pos.y SQUARES);
+        character.setPosition(pos.x, pos.y);
         resetCamera();
         setMusic(current->getBg());
 
@@ -156,12 +156,11 @@ namespace OpMon {
     }
 
     Overworld::Overworld(const std::string &mapId, OverworldData &data)
-        : data(data) {
+        : data(data)
+    	, character(data.getPlayerEvent()) {
         current = data.getMap(mapId);
-        character.setTexture(data.getTexturePP());
-        character.setTextureRect(data.getTexturePPRect((unsigned int)Side::TO_DOWN));
         data.getPlayer().tp(mapId, sf::Vector2i(2, 4)); //TODO : Add a parameter to configure the default player's position
-        character.setPosition(2 SQUARES - 16, 4 SQUARES);
+        character.setPosition(2, 4);
         camera.setSize(sf::Vector2f(30 SQUARES, 16.875 SQUARES));
         resetCamera();
 
@@ -169,8 +168,6 @@ namespace OpMon {
         layer1 = std::make_unique<Ui::MapLayer>(current->getDimensions(), current->getLayer1(), data.getTileset(current->getTileset()));
         layer2 = std::make_unique<Ui::MapLayer>(current->getDimensions(), current->getLayer2(), data.getTileset(current->getTileset()));
         layer3 = std::make_unique<Ui::MapLayer>(current->getDimensions(), current->getLayer3(), data.getTileset(current->getTileset()));
-        character.setScale(2, 2);
-        character.setOrigin(16, 16);
 
         data.getGameDataPtr()->getJukebox().play(current->getBg());
 
@@ -197,7 +194,7 @@ namespace OpMon {
             }
         }
 
-        frame.draw(character);
+        frame.draw(*character.getSprite());
 
         //Drawing the events above the player
         for(const Elements::AbstractEvent *event : current->getEvents()) {
@@ -282,57 +279,15 @@ namespace OpMon {
 
         updateCamera();
 
-        //Drawing events under the player
+        //Updates events under the player
         for(Elements::AbstractEvent *event : current->getEvents()) {
             event->updateFrame();
         }
 
-        if(!is_in_dialog && data.getPlayer().getPosition().isAnim()) {
-            if(data.getPlayer().getPosition().isMoving()) {
-                switch(data.getPlayer().getPosition().getDir()) {
-                case Side::TO_UP:
-                    character.move(0, -4);
-                    break;
-                case Side::TO_DOWN:
-                    character.move(0, 4);
-                    break;
-                case Side::TO_LEFT:
-                    character.move(-4, 0);
-                    break;
-                case Side::TO_RIGHT:
-                    character.move(4, 0);
-                    break;
-                default:
-                    break;
-                }
-            }
-        }
+        character.move(data.getPlayer().getPosition().getDir(), current);
+        character.update(data.getPlayer(), *this);
 
-        //Sets the character's texture.
-        if(data.getPlayer().getPosition().isAnim() && !anims) {
-            character.setTextureRect(data.getWalkingPPRect((unsigned int)data.getPlayer().getPosition().getDir()));
-            anims = animsCounter >= 8;
-            if(anims) {
-                //Stops the caracter's movement every 8 frames
-                data.getPlayer().getPosition().stopMove();
-                animsCounter = 0;
-            }
-            animsCounter++;
-
-        } else if(data.getPlayer().getPosition().isAnim() && anims) {
-            character.setTextureRect(data.getWalkingPP2Rect((unsigned int)data.getPlayer().getPosition().getDir()));
-            if(animsCounter >= 8) {
-                //Stops the caracter's movement every 8 frames
-                data.getPlayer().getPosition().stopMove();
-                anims = false;
-                animsCounter = 0;
-            }
-            animsCounter++;
-        } else if(!data.getPlayer().getPosition().isAnim()) {
-            character.setTextureRect(data.getTexturePPRect((unsigned int)data.getPlayer().getPosition().getDir()));
-        }
-
-        //Drawing the events above the player
+        //Updates the events above the player
         for(Elements::AbstractEvent *event : current->getEvents()) {
             event->updateFrame();
         }
