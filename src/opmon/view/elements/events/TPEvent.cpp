@@ -4,10 +4,10 @@
 namespace OpMon {
 	namespace Elements {
 
-		TPEvent::TPEvent(std::vector<sf::Texture> &otherTextures, EventTrigger eventTrigger,
+		TPEvent::TPEvent(sf::Texture &texture, std::vector<sf::IntRect> rectangles, EventTrigger eventTrigger,
 				sf::Vector2f const &position, sf::Vector2i const &tpPos, std::string const &map, Side ppDir,
 				int sides, bool passable)
-		: AbstractEvent(otherTextures, eventTrigger, position, sides, passable)
+		: AbstractEvent(texture, rectangles, eventTrigger, position, sides, passable)
 		, tpCoord(tpPos)
 		, map(map)
 		, ppDir(ppDir) {
@@ -18,7 +18,8 @@ namespace OpMon {
 		, tpCoord(sf::Vector2f(jsonData.at("tp").at("position")[0], jsonData.at("tp").at("position")[1]))
 		, map(jsonData.at("tp").at("map"))
 		, ppDir(jsonData.at("tp").value("side", Side::NO_MOVE)){
-
+			this->rectangles = std::vector<sf::IntRect>{sf::IntRect(0, 0, texture.getSize().x, texture.getSize().y)};
+			this->currentFrame = rectangles.begin();
 		}
 
 		void TPEvent::action(Player &player, Overworld &overworld) {

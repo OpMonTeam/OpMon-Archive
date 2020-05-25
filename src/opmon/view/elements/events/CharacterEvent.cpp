@@ -2,13 +2,17 @@
 #include "src/opmon/screens/overworld/Overworld.hpp"
 #include "src/utils/misc.hpp"
 
+#define ANIM_1 0
+#define ANIM_2 4
+#define STAND_STILL 8
+
 namespace OpMon {
 	namespace Elements {
 
-		CharacterEvent::CharacterEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, Side posDir, MoveStyle moveStyle,
+		CharacterEvent::CharacterEvent(sf::Texture &texture, std::vector<sf::IntRect> rectangles, sf::Vector2f const &position, Side posDir, MoveStyle moveStyle,
 				EventTrigger eventTrigger, std::vector<Side> predefinedPath, bool passable,
 				int sides)
-		: AbstractEvent(textures, eventTrigger, position, sides, passable)
+		: AbstractEvent(texture, rectangles, eventTrigger, position, sides, passable)
 		, moveStyle(moveStyle) {
 			sprite->setScale(2, 2);
 			sprite->setOrigin(16, 16);
@@ -23,6 +27,8 @@ namespace OpMon {
 			sprite->setScale(2, 2);
 			sprite->setOrigin(16, 16);
 			this->position += sf::Vector2f(16, 0);
+
+			//Initialization of path
 			std::vector<std::vector<int>> prePath = jsonData.value("path", std::vector<std::vector<int>>());
 			std::vector<Side> charaPath;
 			if(!prePath.empty()) {
@@ -35,6 +41,13 @@ namespace OpMon {
 			}
 			setPredefinedMove(charaPath);
 			mapPos.setDir(jsonData.value("facing", Side::TO_DOWN));
+
+			//Initialization of rectangles
+			rectangles.clear();
+			for(unsigned int i = 0; i < 12; i++){
+				rectangles.push_back(sf::IntRect((i*32) % 128, (i / 4) * 32, 32, 32));
+			}
+			currentFrame = rectangles.begin();
 		}
 
 		void CharacterEvent::update(Player &player, Overworld &overworld) {
@@ -96,18 +109,18 @@ namespace OpMon {
 			}
 			//Changes the texture to print, handles the movement itself.
 			if(mapPos.isAnim() && !anims && mapPos.getDir() != Side::STAY) { //First part of the animation
-				currentTexture = otherTextures.begin() + ((int)mapPos.getDir() + 4);
+				currentFrame = rectangles.begin() + ((int)mapPos.getDir() + ANIM_1);
 				animsCounter++;
 				anims = animsCounter > 8;
 			} else if(mapPos.isAnim() && anims && mapPos.getDir() != Side::STAY) { //Second part of the animation
-				currentTexture = otherTextures.begin() + ((int)mapPos.getDir() + 8);
+				currentFrame = rectangles.begin() + ((int)mapPos.getDir() + ANIM_2);
 				animsCounter++;
 				if(animsCounter > 16) {
 					anims = false;
 					animsCounter = 0;
 				}
-			} else if(!mapPos.isAnim()) { //The NPC is resting. With all these movements, maybe it's tired.
-				currentTexture = otherTextures.begin() + (int)mapPos.getDir();
+			} else if(!mapPos.isAnim()) { //The NPC is resting. With all these movements, maybe they're tired.
+				currentFrame = rectangles.begin() + ((int)mapPos.getDir() + STAND_STILL);
 			}
 
 			//This part moves the sprite's position
@@ -155,8 +168,8 @@ namespace OpMon {
 					break;
 				}
 				//Put the correct texture to the NPC
-				currentTexture = getTextures().begin() + (int)mapPos.getDir();
-				updateTexture();
+				currentFrame = rectangles.begin() + ((int)mapPos.getDir() + STAND_STILL);
+				updateFrame();
 				wantmove = false;
 			}
 		}

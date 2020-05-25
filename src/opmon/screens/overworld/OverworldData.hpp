@@ -56,7 +56,7 @@ class Map;
         std::map<std::string, unsigned int> elementsCounter;
         std::map<std::string, std::vector<sf::Texture>> elementsTextures;
 
-        std::map<std::string, std::vector<sf::Texture>> eventsTextures;
+        std::map<std::string, sf::Texture> eventsTextures;
 
         std::map<std::string, std::unique_ptr<Item>> itemsList;
 
@@ -103,19 +103,9 @@ class Map;
         sf::Texture &getCurrentElementTexture(std::string const &id) { return elementsTextures[id][elementsCounter[id]]; }
 
         /*!
-         * \brief Gets the textures of a character.
-         * \deprecated Use getEventsTexture, charaTextures have been merged with eventsTextures.
-         */
-        OP_DEPRECATED std::vector<sf::Texture> &getCharaTexture(std::string const &key) { return eventsTextures[key]; }
-        /*!
-         * \brief Gets the textures of a door.
-         * \deprecated Use getEventsTexture, doorsTextures have been merged with eventsTextures.
-         */
-        OP_DEPRECATED std::vector<sf::Texture> &getDoorsTexture(std::string const &key) { return eventsTextures[key]; }
-        /*!
          * \brief Gets the textures of an event.
          */
-        std::vector<sf::Texture> &getEventsTexture(std::string const &key);
+        sf::Texture &getEventsTexture(std::string const &key);
 
         /*!
          * \brief Gets a completion.

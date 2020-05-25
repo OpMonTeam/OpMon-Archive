@@ -59,7 +59,7 @@ namespace OpMon {
         		listFile >> listJson;
         		if(listJson.contains("events")){
         			for(nlohmann::json element : listJson.at("events")){
-        				Utils::ResourceLoader::loadTextureArray(eventsTextures[element.at("id")], element.at("path"), element.at("texturesnb"), element.value("offset", 0));
+        				Utils::ResourceLoader::load(eventsTextures[element.at("id")], element.at("path"));
         			}
         		}
         		if(listJson.contains("elements")) {
@@ -81,8 +81,6 @@ namespace OpMon {
 
         	}
         }
-
-        eventsTextures.emplace("alpha", alphaTab);
 
         //Items initialisation
         for(std::filesystem::directory_entry const& file : std::filesystem::directory_iterator(Path::getResourcePath() + "data/items")) {
@@ -176,12 +174,12 @@ namespace OpMon {
         return getMap(player->getMapId());
     }
 
-    std::vector<sf::Texture> &OverworldData::getEventsTexture(std::string const &key) { //Uncomment commented lines when C++20 is commonly used
+    sf::Texture &OverworldData::getEventsTexture(std::string const &key) { //Uncomment commented lines when C++20 is commonly used
         //#if __cplusplus > 201703L
     	//if(!eventsTextures.contains(key)){
         //#else
     	bool contains = false;
-    	for(std::pair<std::string, std::vector<sf::Texture> > pair : eventsTextures){
+    	for(std::pair<std::string, sf::Texture> pair : eventsTextures){
     		if(pair.first == key) {
     			contains = true;
     			break;
@@ -190,7 +188,7 @@ namespace OpMon {
     	if(!contains){
             //#endif
     		Utils::Log::warn("Event texture key " + key + " not found. Returning alpha.");
-    		return eventsTextures["alpha"];
+    		return alpha;
     	}else return eventsTextures[key];
     }
 

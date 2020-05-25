@@ -25,7 +25,7 @@ namespace OpMon::Elements {
 		 */
 		bool over = true;
 	public:
-		BattleEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, OpTeam *team, EventTrigger eventTrigger = EventTrigger::PRESS, bool passable = false, int side = SIDE_ALL);
+		BattleEvent(sf::Texture &texture, std::vector<sf::IntRect> rectangles, sf::Vector2f const &position, OpTeam *team, EventTrigger eventTrigger = EventTrigger::PRESS, bool passable = false, int side = SIDE_ALL);
 		BattleEvent(OverworldData &data, nlohmann::json jsonData);
 
 		virtual void update(Player &player, Overworld &overworld);

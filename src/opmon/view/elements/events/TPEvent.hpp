@@ -36,7 +36,7 @@ namespace OpMon {
 			bool command = false;
 
 		public:
-			TPEvent(std::vector<sf::Texture> &otherTextures, EventTrigger eventTrigger, sf::Vector2f const &position, sf::Vector2i const &tpCoord, std::string const &map, Side ppDir = Side::NO_MOVE, int sides = SIDE_ALL, bool passable = true);
+			TPEvent(sf::Texture &texture, std::vector<sf::IntRect> rectangles, EventTrigger eventTrigger, sf::Vector2f const &position, sf::Vector2i const &tpCoord, std::string const &map, Side ppDir = Side::NO_MOVE, int sides = SIDE_ALL, bool passable = true);
 			TPEvent(OverworldData& data, nlohmann::json jsonData);
 			virtual void update(Player &player, Overworld &overworld);
 			virtual void action(Player &player, Overworld &overworld);

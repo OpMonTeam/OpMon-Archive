@@ -64,11 +64,11 @@ namespace OpMon{
             /*!
              * \brief Returns the texture of \ref mainEvent.
              */
-            virtual const sf::Texture &getTexture() {return mainEvent->getTexture();}
+            virtual const sf::IntRect &getFrameRect() {return mainEvent->getFrameRect();}
             /*!
              * \brief Updates the texture of \ref mainEvent.
              */
-            virtual void updateTexture() {mainEvent->updateTexture();}
+            virtual void updateFrame() {mainEvent->updateFrame();}
 
             /*!
              * \brief Changes the position of the event.

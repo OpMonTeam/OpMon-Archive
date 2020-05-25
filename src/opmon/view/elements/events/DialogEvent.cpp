@@ -4,8 +4,8 @@
 namespace OpMon {
 	namespace Elements {
 
-		DialogEvent::DialogEvent(std::vector<sf::Texture> &otherTextures, sf::Vector2f const &position, Utils::OpString const &dialogKey, int sides, EventTrigger eventTrigger, bool passable)
-		: AbstractEvent(otherTextures, eventTrigger, position, sides, passable)
+		DialogEvent::DialogEvent(sf::Texture &texture, std::vector<sf::IntRect> rectangles, sf::Vector2f const &position, Utils::OpString const &dialogKey, int sides, EventTrigger eventTrigger, bool passable)
+		: AbstractEvent(texture, rectangles, eventTrigger, position, sides, passable)
 		, Utils::I18n::ATranslatable()
 		, dialogKey(dialogKey) {
 			this->onLangChanged();
@@ -23,6 +23,9 @@ namespace OpMon {
 			}
 			this->dialogKey = Utils::OpString(data.getGameDataPtr()->getStringKeys(), key, toAdd);
 			this->onLangChanged();
+
+			this->rectangles = std::vector<sf::IntRect>{sf::IntRect(0, 0, texture.getSize().x, texture.getSize().y)};
+			this->currentFrame = rectangles.begin();
 		}
 
 		void DialogEvent::onLangChanged() {

@@ -9,6 +9,7 @@
 
 #include <memory>
 #include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Rect.hpp>
 #include "src/opmon/core/Player.hpp"
 #include "src/nlohmann/json.hpp"
 
@@ -79,20 +80,28 @@ namespace OpMon{
 			 * \brief The position of the even of the map.
 			 */
 			Position mapPos;
+
 			/*!
-			 * \brief Other textures used by the event.
+			 * \brief The texture used by the event.
 			 */
-			std::vector<sf::Texture> &otherTextures;
+			sf::Texture texture;
+
 			/*!
-			 * \brief An iterator to the current texture in \ref otherTextures.
+			 * \brief The list of rectangles used to animate the event if need.
+			 *
+			 * The texture can be a table of different frames for an animation, and this vector lists the bounds of each frame on the texture.
 			 */
-			std::vector<sf::Texture>::iterator currentTexture;
+			std::vector<sf::IntRect> rectangles;
+			/*!
+			 * \brief An iterator to the current frame in \ref rectangles.
+			 */
+			std::vector<sf::IntRect>::iterator currentFrame;
 
 		public:
 			/*!
 			 * \warning The parameter position represents the position in squares, unlike the field position which stores the position in pixels.
 			 */
-			AbstractEvent(std::vector<sf::Texture> &otherTextures, EventTrigger eventTrigger, sf::Vector2f const &position, int sides, bool passable);
+			AbstractEvent(sf::Texture &texture, std::vector<sf::IntRect> rectangles, EventTrigger eventTrigger, sf::Vector2f const &position, int sides, bool passable);
 			AbstractEvent(OverworldData &data, nlohmann::json jsonData);
 			virtual ~AbstractEvent() = default;
 			/*!
@@ -106,13 +115,13 @@ namespace OpMon{
 			/*!
 			 * \brief Updates \ref sprite with \ref currentTexture and \ref position.
 			 */
-			virtual void updateTexture();
+			virtual void updateFrame();
 
 			int getSide() const {
 				return sides;
 			}
-			virtual const sf::Texture &getTexture() {
-				return *currentTexture;
+			virtual const sf::IntRect &getFrameRect() {
+				return *currentFrame;
 			}
 			EventTrigger getEventTrigger() const {
 				return eventTrigger;
@@ -137,14 +146,14 @@ namespace OpMon{
 			/*!
 			 * \brief Sets the current texture to the first texture of \ref otherTextures.
 			 */
-			void resetTexture() {currentTexture = otherTextures.begin();}
+			void resetFrame() {currentFrame = rectangles.begin();}
 
 			/*!
 			 * \brief If the activation of the event is over, returns true. If the event is still doing something, returns false.
 			 */
 			 virtual bool isOver() const = 0;
 
-			std::vector<sf::Texture>& getTextures() {return otherTextures;}
+			std::vector<sf::IntRect>& getRectangles() {return rectangles;}
 
 			/*!
 			 * \brief Changes the position of the event.

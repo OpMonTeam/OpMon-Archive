@@ -284,7 +284,7 @@ namespace OpMon {
 
         //Drawing events under the player
         for(Elements::AbstractEvent *event : current->getEvents()) {
-            event->updateTexture();
+            event->updateFrame();
         }
 
         if(!is_in_dialog && data.getPlayer().getPosition().isAnim()) {
@@ -334,7 +334,7 @@ namespace OpMon {
 
         //Drawing the events above the player
         for(Elements::AbstractEvent *event : current->getEvents()) {
-            event->updateTexture();
+            event->updateFrame();
         }
 
         updateElements();

@@ -6,19 +6,10 @@
 #include <queue>
 
 namespace OpMon::Elements {
-	DoorEvent::DoorEvent(OverworldData &data, std::string doorType, sf::Vector2f const &position, sf::Vector2i const &tpCoord, std::string const &map, EventTrigger eventTrigger, Side ppDir, int sides, bool passable)
-	: LinearMetaEvent(std::queue<AbstractEvent*>(std::deque<AbstractEvent*>({
-		new AnimationEvent(data.getDoorsTexture(doorType), eventTrigger, position, 4, false, passable, sides),
-				new SoundEvent(data.getDoorsTexture(doorType), eventTrigger, position, doorType + " sound", false, false, sides, passable),
-				new TPEvent(data.getDoorsTexture(doorType), eventTrigger, position, tpCoord, map, ppDir, sides, passable),
-				nullptr})),
-			std::queue<bool>(std::deque<bool>({false, true, false, false}))){
-		this->sprite->setOrigin(5, 6); //The doors are a bit bigger than a square (42x36 instead of 32x32).
-	}
 
 	DoorEvent::DoorEvent(OverworldData &data, nlohmann::json jsonData)
 	: LinearMetaEvent(std::queue<AbstractEvent*>(std::deque<AbstractEvent*>({
-		new AnimationEvent(data, jsonData),
+		new AnimationEvent(data, jsonData, {sf::IntRect(0, 0, 42, 36), sf::IntRect(42, 0, 42, 36), sf::IntRect(84, 0, 42, 36), sf::IntRect(126, 0, 42, 36)}),
 				new SoundEvent(data, jsonData),
 				new TPEvent(data, jsonData),
 				nullptr})),
@@ -29,17 +20,9 @@ namespace OpMon::Elements {
 	void DoorEvent::update(Player &player, Overworld &overworld){
 		LinearMetaEvent::update(player, overworld);
 		if(!processing){
-			eventQueue.front()->resetTexture();
+			eventQueue.front()->resetFrame();
 		}
 	}
-
-
-	TalkingCharaEvent::TalkingCharaEvent(std::vector<sf::Texture> &textures, sf::Vector2f const &position, Utils::OpString const &dialogKey, Side posDir, EventTrigger eventTrigger, MoveStyle moveStyle, std::vector<Side> predefinedPath, bool passable, int side)
-	: LinearMetaEvent(std::queue<AbstractEvent*>(std::deque<AbstractEvent*>({
-		new CharacterEvent(textures, position, posDir, moveStyle, eventTrigger, predefinedPath, passable, sides),
-				new DialogEvent(textures, position, dialogKey, sides, eventTrigger, passable),
-				nullptr})),
-			std::queue<bool>(std::deque<bool>({false, false, false}))) {}
 
 	TalkingCharaEvent::TalkingCharaEvent(OverworldData &data, nlohmann::json jsonData)
 	: LinearMetaEvent(std::queue<AbstractEvent*>(std::deque<AbstractEvent*>({
