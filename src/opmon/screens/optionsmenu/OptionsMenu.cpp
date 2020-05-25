@@ -199,7 +199,7 @@ namespace OpMon {
         curSizeCtrl[0].x = 134 / rectSurb.getGlobalBounds().width;
         curSizeCtrl[0].y = 49 / rectSurb.getGlobalBounds().height;
 
-        for(int i = 1, j = 86; i < 6; i++) {
+        for(int i = 1, j = 86; i < 5; i++) {
             curPosOpt[i].x = 23;
             curPosOpt[i].y = j;
             curSizeOpt[i].x = 464 / rectSurb.getGlobalBounds().width;
@@ -384,7 +384,7 @@ namespace OpMon {
         int globalVolume = data.getGameDataPtr()->getJukebox().getGlobalVolume();
         for(auto &optionsMenuItem : optionsMenuItems) {
             switch (i) {
-            case 1:
+            case 0:
                 if(data.getGameDataPtr()->getOptions().getParam("fullscreen").getValue() == "true") {
                     optionsMenuItem.setRightContent("On");
                 } else {

@@ -138,10 +138,10 @@ class OptionsMenuData;
         sf::Text txtCre9;
         sf::Text txtCre10;
         sf::Sprite rectSurb;
-        sf::Vector2f curPosOpt[6] = {};
-        sf::Vector2f curSizeOpt[6];
+        sf::Vector2f curPosOpt[5] = {};
+        sf::Vector2f curSizeOpt[5];
         int optionSelect = -1;
-        Utils::CycleCounter curPosOptI = Utils::CycleCounter(6);
+        Utils::CycleCounter curPosOptI = Utils::CycleCounter(5);
         Utils::CycleCounter curPosLangI = Utils::CycleCounter(6);
         Utils::CycleCounter curPosCtrlI = Utils::CycleCounter(2);
         /*!
