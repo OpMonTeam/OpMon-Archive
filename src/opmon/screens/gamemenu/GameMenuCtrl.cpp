@@ -88,7 +88,7 @@ namespace OpMon {
         void GameMenuCtrl::loadNextScreen() {
             switch(submenuToLoadNext) {
             case SubMenu::SAVE_MENU:
-                _next_gs = std::make_unique<SaveMenuCtrl>(data.getGameDataPtr());
+                _next_gs = std::make_unique<SaveMenuCtrl>(data.getGameDataPtr(), SaveMenuContext::SAVING);
                 break;
             case SubMenu::SETTINGS_MENU:
                 _next_gs = std::make_unique<OptionsMenuCtrl>(data.getGameDataPtr());

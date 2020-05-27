@@ -11,24 +11,22 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <memory>
 
-#include "src/opmon/screens/optionsmenu/OptionsMenuCtrl.hpp"
-#include "src/opmon/screens/introscene/IntroSceneCtrl.hpp"
-#include "src/opmon/core/GameData.hpp"
 #include "MainMenu.hpp"
 #include "MainMenuData.hpp"
+#include "src/opmon/core/GameData.hpp"
 #include "src/opmon/screens/base/AGameScreen.hpp"
+#include "src/opmon/screens/introscene/IntroSceneCtrl.hpp"
+#include "src/opmon/screens/optionsmenu/OptionsMenuCtrl.hpp"
+#include "src/opmon/screens/savemenu/SaveMenu.hpp"
+#include "src/opmon/screens/savemenu/SaveMenuCtrl.hpp"
 #include "src/opmon/view/ui/Jukebox.hpp"
 #include "src/utils/CycleCounter.hpp"
-
-//Defines created to make the code easier to read
-#define LOAD_STARTSCENE 1
-#define LOAD_OPTIONS 2
 
 namespace OpMon {
 
     MainMenuCtrl::MainMenuCtrl(GameData *data)
-        : data(data)
-        , view(this->data) {
+      : data(data)
+      , view(this->data) {
     }
 
     GameStatus MainMenuCtrl::checkEvent(sf::Event const &event) {
@@ -38,14 +36,15 @@ namespace OpMon {
             case sf::Keyboard::Return:
                 switch(curPosI.getValue()) {
                 case 0:
-                    loadNext = LOAD_STARTSCENE;
+                    selectedOption = MainMenuOption::START_GAME;
                     data.getGameDataPtr()->getJukebox().playSound("push");
                     return GameStatus::NEXT;
                 case 1:
-                    data.getGameDataPtr()->getJukebox().playSound("nope");
-                    return GameStatus::CONTINUE;
+                    selectedOption = MainMenuOption::GO_TO_LOAD_MENU;
+                    data.getGameDataPtr()->getJukebox().playSound("push");
+                    return GameStatus::NEXT_NLS;
                 case 2:
-                    loadNext = LOAD_OPTIONS;
+                    selectedOption = MainMenuOption::GO_TO_SETTINGS_MENU;
                     data.getGameDataPtr()->getJukebox().playSound("push");
                     return GameStatus::NEXT_NLS;
                 case 3:
@@ -76,15 +75,18 @@ namespace OpMon {
     }
 
     void MainMenuCtrl::loadNextScreen() {
-        switch(loadNext) {
-        case LOAD_STARTSCENE:
+        switch(selectedOption) {
+        case MainMenuOption::START_GAME:
             _next_gs = std::make_unique<IntroSceneCtrl>(data.getGameDataPtr());
             break;
-        case LOAD_OPTIONS:
+        case MainMenuOption::GO_TO_LOAD_MENU:
+            _next_gs = std::make_unique<SaveMenuCtrl>(data.getGameDataPtr(), SaveMenuContext::LOADING);
+            break;
+        case MainMenuOption::GO_TO_SETTINGS_MENU:
             _next_gs = std::make_unique<OptionsMenuCtrl>(data.getGameDataPtr());
             break;
         default:
-            throw Utils::UnexpectedValueException(std::to_string(loadNext), "a view to load in MainMenuCtrl::loadNextScreen()");
+            throw Utils::UnexpectedValueException(std::to_string(selectedOption), "a view to load in MainMenuCtrl::selectedOptionScreen()");
         }
     }
 

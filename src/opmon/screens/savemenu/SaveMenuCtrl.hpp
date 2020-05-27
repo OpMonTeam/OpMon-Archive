@@ -14,7 +14,7 @@ namespace OpMon {
 
     class SaveMenuCtrl : public AGameScreen {
       public:
-        SaveMenuCtrl(GameData *data);
+        SaveMenuCtrl(GameData *data, SaveMenuContext context);
 
         GameStatus checkEvent(sf::Event const &event) override;
 

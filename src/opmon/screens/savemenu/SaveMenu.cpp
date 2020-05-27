@@ -9,14 +9,19 @@ namespace OpMon {
     int SAVE_MENU_ITEM_WIDTH = 504;
     int SAVE_MENU_ITEM_PADDING = 4;
 
-    SaveMenu::SaveMenu(SaveMenuData &data)
+    SaveMenu::SaveMenu(SaveMenuData &data, SaveMenuContext context)
       : data(data) {
         float saveMenuItemX = (data.getGameDataPtr()->getWindowWidth() - SAVE_MENU_ITEM_WIDTH) / 2;
 
         sf::Vector2f hintTextBoxPosition(saveMenuItemX, SAVE_MENU_ITEM_PADDING);
         hintTextBox = TextBox(data.getGameDataPtr()->getMenuFrame(), hintTextBoxPosition, SAVE_MENU_ITEM_WIDTH, 64);
         hintTextBox.setFont(data.getGameDataPtr()->getFont());
-        hintTextBox.setLeftContent("Select a file to save to:");
+
+        if (context == SaveMenuContext::SAVING) {
+            hintTextBox.setLeftContent("Select a file to save to:");
+        } else if (context == SaveMenuContext::LOADING) {
+            hintTextBox.setLeftContent("Select a file to load:");
+        }
 
         for(int i = 0; i < 3; i++) {
             sf::Vector2f position(saveMenuItemX, 64 + (2 * SAVE_MENU_ITEM_PADDING) + i * (96 + SAVE_MENU_ITEM_PADDING));

@@ -17,6 +17,14 @@ class RenderTarget;
 }  // namespace sf
 
 namespace OpMon {
+
+/*!
+ * \brief Represent one of the option that can be accessed from the main menu.
+ */
+enum MainMenuOption { START_GAME,
+                      GO_TO_LOAD_MENU,
+                      GO_TO_SETTINGS_MENU };
+
 class MainMenuData;
 
     /*!
