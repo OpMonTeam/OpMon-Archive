@@ -189,7 +189,7 @@ namespace OpMon {
         //Drawing events under the player
         for(const Elements::AbstractEvent *event : current->getEvents()) {
             const sf::Sprite *sprite = event->getSprite();
-            if(sprite->getPosition().y <= data.getPlayer().getPosition().getPositionPixel().y) {
+            if(sprite->getPosition().y <= character.getPosition().y) {
                 frame.draw(*sprite);
             }
         }

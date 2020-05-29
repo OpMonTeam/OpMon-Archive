@@ -137,18 +137,18 @@ namespace OpMon {
 					break;
 
 				case Side::TO_LEFT:
-					toMove = sf::Vector2f(4, 0);
+					toMove = sf::Vector2f(-4, 0);
 					break;
 
 				case Side::TO_RIGHT:
-					toMove = sf::Vector2f(-4, 0);
+					toMove = sf::Vector2f(4, 0);
 					break;
 				default:
 					break;
 				}
 				if(mapPos.isMoving())
-					position -= toMove;
-				if(frames - startFrames >= 7)
+					position += toMove;
+				if(frames - startFrames >= 8)
 					mapPos.stopMove();
 			}
 			if(wantmove && !mapPos.isAnim()){
