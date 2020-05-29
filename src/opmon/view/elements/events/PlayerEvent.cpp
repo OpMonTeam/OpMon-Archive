@@ -7,7 +7,12 @@ namespace OpMon {
 		PlayerEvent::PlayerEvent(OverworldData& data)
 		: CharacterEvent(data.getTexturePP(), data.getPPRect(), sf::Vector2f(0,0), Side::TO_DOWN, MoveStyle::NO_MOVE, EventTrigger::PRESS)
 		, player(data.getPlayerPtr()){
+			Elements::Position::setPlayerPos(&mapPos);
+		}
 
+		bool PlayerEvent::move(Side dir, Map *map, bool debugCol){
+			startFrames = frames;
+			return mapPos.move(dir, map, debugCol);
 		}
 
 	} /* namespace Elements */

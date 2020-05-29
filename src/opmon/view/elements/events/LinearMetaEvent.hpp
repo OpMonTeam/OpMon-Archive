@@ -35,7 +35,7 @@ namespace OpMon::Elements {
 	public:
 		LinearMetaEvent(std::queue<AbstractEvent*> eventQueue, std::queue<bool> actionQueue);
 		LinearMetaEvent(OverworldData &data, nlohmann::json jsonData);
-		void action(Player &player, Overworld &overworld);
-		void update(Player &player, Overworld &overworld);
+		void action(Overworld &overworld);
+		void update(Overworld &overworld);
 	};
 }

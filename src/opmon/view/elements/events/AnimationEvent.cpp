@@ -29,12 +29,12 @@ namespace OpMon {
 
 		}
 
-		void AnimationEvent::action(Player &player, Overworld &overworld){
+		void AnimationEvent::action(Overworld &overworld){
 			playing = !(playing && loop); //Stops playing only if it's a loop. Else, stay playing or start playing.
 			resetFrame();
 		}
 
-		void AnimationEvent::update(Player &player, Overworld &overworld){
+		void AnimationEvent::update(Overworld &overworld){
 			if(playing && (framecount >= framerate)){
 				++currentFrame;
 				framecount = 0;

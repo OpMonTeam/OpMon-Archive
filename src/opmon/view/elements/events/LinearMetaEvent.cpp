@@ -19,18 +19,18 @@ namespace OpMon {
 		}
 
 
-		void LinearMetaEvent::action(Player &player, Overworld &overworld){
+		void LinearMetaEvent::action(Overworld &overworld){
 			if(!processing){ //When triggered, start the process.
 				processing = true;
 				processingList.clear();
 			}
 		}
 
-		void LinearMetaEvent::update(Player &player, Overworld &overworld){
+		void LinearMetaEvent::update(Overworld &overworld){
 			//Updating all the events in the queue.
 			AbstractEvent* firstEvent = eventQueue.front(); //Storing the first event pointer to stop the loop.
 			do { //Loops until it gets back to start.
-				if(eventQueue.front() != nullptr) eventQueue.front()->update(player, overworld);
+				if(eventQueue.front() != nullptr) eventQueue.front()->update(overworld);
 				eventQueue.push(eventQueue.front());
 				eventQueue.pop();
 			} while(firstEvent != eventQueue.front());
@@ -48,7 +48,7 @@ namespace OpMon {
 							return;
 						}
 						processingList.push_back(eventQueue.front()); //Adds the event in the processing list.
-						eventQueue.front()->action(player, overworld); //Triggers the event.
+						eventQueue.front()->action(overworld); //Triggers the event.
 						//Puts the event at the end of the queue.
 						eventQueue.push(eventQueue.front());
 						eventQueue.pop();
@@ -58,7 +58,7 @@ namespace OpMon {
 				}
 			}
 
-			AbstractMetaEvent::update(player, overworld);
+			AbstractMetaEvent::update(overworld);
 		}
 
 	} /* namespace Elements */

@@ -37,7 +37,7 @@ namespace OpMon::Elements {
 		}
 	}
 
-	void AbstractMetaEvent::update(Player &player, Overworld &overworld){
+	void AbstractMetaEvent::update(Overworld &overworld){
 		position = mainEvent->getPosition();
 		mapPos = mainEvent->getPositionMap();
 	}

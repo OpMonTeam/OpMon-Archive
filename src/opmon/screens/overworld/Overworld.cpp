@@ -199,7 +199,7 @@ namespace OpMon {
         //Drawing the events above the player
         for(const Elements::AbstractEvent *event : current->getEvents()) {
             const sf::Sprite *sprite = event->getSprite();
-            if(sprite->getPosition().y > data.getPlayer().getPosition().getPositionPixel().y) {
+            if(sprite->getPosition().y > character.getPosition().y) {
                 frame.draw(*sprite);
             }
         }
@@ -248,7 +248,7 @@ namespace OpMon {
         if(debugMode) {
             std::cout << "Elapsed Time: " << Utils::Time::getElapsedSeconds() << "s" << std::endl;
             std::cout << "Loop : " << (is_in_dialog ? "Dialog" : "Normal") << std::endl;
-            std::cout << "PlayerPosition: " << data.getPlayer().getPosition().getPosition().x << " - " << data.getPlayer().getPosition().getPosition().y << std::endl;
+            std::cout << "PlayerPosition: " << character.getPositionMap().getPosition().x << " - " << character.getPositionMap().getPosition().y << std::endl;
             std::cout << "PlayerPositionPx: " << character.getPosition().x << " - " << character.getPosition().y << std::endl;
             std::cout << "Moving: " << (data.getPlayer().getPosition().isMoving() ? "true" : "false") << std::endl;
             std::cout << "Anim: " << (data.getPlayer().getPosition().isAnim() ? "true" : "false") << std::endl;
@@ -264,7 +264,7 @@ namespace OpMon {
             fpsPrint.setFont(data.getGameDataPtr()->getFont());
             fpsPrint.setCharacterSize(48);
             std::ostringstream oss;
-            oss << "Position : " << data.getPlayer().getPosition().getPosition().x << " - " << data.getPlayer().getPosition().getPosition().y << std::endl
+            oss << "Position : " << character.getPositionMap().getPosition().x << " - " << character.getPositionMap().getPosition().y << std::endl
                 << "PxPosition : " << character.getPosition().x << " - " << character.getPosition().y << std::endl;
             coordPrint.setString(oss.str());
             coordPrint.setFont(data.getGameDataPtr()->getFont());
@@ -284,8 +284,8 @@ namespace OpMon {
             event->updateFrame();
         }
 
-        character.move(data.getPlayer().getPosition().getDir(), current);
-        character.update(data.getPlayer(), *this);
+        character.update(*this);
+        character.updateFrame();
 
         //Updates the events above the player
         for(Elements::AbstractEvent *event : current->getEvents()) {

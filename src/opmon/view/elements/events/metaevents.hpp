@@ -19,7 +19,7 @@ namespace OpMon::Elements {
 	class DoorEvent: public LinearMetaEvent {
 	public:
 		DoorEvent(OverworldData &data, nlohmann::json jsonData);
-		void update(Player &player, Overworld &overworld);
+		void update(Overworld &overworld);
 	};
 
 	/*!
@@ -29,8 +29,8 @@ namespace OpMon::Elements {
 	class TalkingCharaEvent: public LinearMetaEvent {
 	public:
 		TalkingCharaEvent(OverworldData &data, nlohmann::json jsonData);
-		void action(Player &player, Overworld &overworld);
-		void update(Player &player, Overworld &overworld);
+		void action(Overworld &overworld);
+		void update(Overworld &overworld);
 	};
 
 	/*!
@@ -66,8 +66,8 @@ namespace OpMon::Elements {
 		TrainerEvent(TalkingCharaEvent* prebattlenpc, BattleEvent* battle, TalkingCharaEvent* postbattlenpc);
 		TrainerEvent(OverworldData &data, nlohmann::json jsonData);
 		~TrainerEvent();
-		void action(Player &player, Overworld &overworld);
-		void update(Player &player, Overworld &overworld);
+		void action(Overworld &overworld);
+		void update(Overworld &overworld);
 		bool isDefeated() {return defeated;}
 	};
 }

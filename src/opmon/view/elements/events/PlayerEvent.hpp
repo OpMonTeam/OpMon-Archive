@@ -17,5 +17,7 @@ namespace OpMon::Elements {
 		PlayerEvent(OverworldData &data);
 
 		Player* getPlayer() {return player;}
+
+		bool move(Side dir, Map *map, bool debugCol);
 	};
 }

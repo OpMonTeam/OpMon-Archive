@@ -16,14 +16,14 @@ namespace OpMon {
 			this->currentFrame = rectangles.begin();
 		}
 
-		void BattleEvent::action(Player &player, Overworld &overworld) {
+		void BattleEvent::action(Overworld &overworld) {
 			if(over){
 				overworld.declareBattle(this);
 				over = false;
 			}
 		}
 
-		void BattleEvent::update(Player &player, Overworld &overworld) {
+		void BattleEvent::update(Overworld &overworld) {
 		}
 
 		BattleEvent::~BattleEvent(){

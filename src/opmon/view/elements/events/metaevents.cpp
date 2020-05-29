@@ -17,8 +17,8 @@ namespace OpMon::Elements {
 		this->sprite->setOrigin(5, 6); //The doors are a bit bigger than a square (42x36 instead of 32x32).
 	}
 
-	void DoorEvent::update(Player &player, Overworld &overworld){
-		LinearMetaEvent::update(player, overworld);
+	void DoorEvent::update(Overworld &overworld){
+		LinearMetaEvent::update(overworld);
 		if(!processing){
 			eventQueue.front()->resetFrame();
 		}
@@ -31,13 +31,13 @@ namespace OpMon::Elements {
 				nullptr})),
 			std::queue<bool>(std::deque<bool>({false, false, false}))) {}
 
-	void TalkingCharaEvent::action(Player &player, Overworld& overworld){
+	void TalkingCharaEvent::action(Overworld& overworld){
 		mapPos.lockMove();
-		LinearMetaEvent::action(player, overworld);
+		LinearMetaEvent::action(overworld);
 	}
 
-	void TalkingCharaEvent::update(Player &player, Overworld &overworld){
-		LinearMetaEvent::update(player, overworld);
+	void TalkingCharaEvent::update(Overworld &overworld){
+		LinearMetaEvent::update(overworld);
 		if(processing && !mapPos.isAnim()){
 			mapPos.unlockMove();
 		}
@@ -58,15 +58,15 @@ namespace OpMon::Elements {
 		eventQueue.push(jsonData.contains("postbattle") ? new TalkingCharaEvent(data, jsonData.at("postbattle")) : eventQueue.front());
 	}
 
-	void TrainerEvent::update(Player &player, Overworld &overworld){
-		eventQueue.front()->update(player, overworld); //Updates the first event in the queue.
+	void TrainerEvent::update(Overworld &overworld){
+		eventQueue.front()->update(overworld); //Updates the first event in the queue.
 		if(triggered && !defeated && eventQueue.front()->isOver()){ //If the event has been triggered, not defeated yet and that the current action is over,
 																	//it means that the player has interacted with the event, so the dialog has been launched
 																	//and is now over, and the battle can now start.
 			garbage.push_back(eventQueue.front()); //Deleting the pre-battle NPC or the battle event
 			eventQueue.pop();
 			mainEvent = eventQueue.front();
-			eventQueue.front()->action(player, overworld); //Starts the battle
+			eventQueue.front()->action(overworld); //Starts the battle
 
 			garbage.push_back(eventQueue.front());
 			eventQueue.pop(); //Shows the post battle npc
@@ -77,11 +77,11 @@ namespace OpMon::Elements {
 			mainEvent = eventQueue.front();
 		}
 
-		AbstractMetaEvent::update(player, overworld);
+		AbstractMetaEvent::update(overworld);
 	}
 
-	void TrainerEvent::action(Player &player, Overworld &overworld){
-		eventQueue.front()->action(player, overworld); //Triggers the first event in the queue.
+	void TrainerEvent::action(Overworld &overworld){
+		eventQueue.front()->action(overworld); //Triggers the first event in the queue.
 		triggered = true;
 	}
 

@@ -75,7 +75,7 @@ class GameData;
         /*!
          * \brief Checks the necessary events when no dialog is currently playing.
          */
-        GameStatus checkEventsNoDialog(sf::Event const &events, Player &player);
+        GameStatus checkEventsNoDialog(sf::Event const &events);
         GameStatus update(sf::RenderTexture &frame) override;
 
         virtual void loadNextScreen();
@@ -86,13 +86,13 @@ class GameData;
          * \brief Checks the key pressed on the keyboard to see if the player wants to move.
          * \details Does not check if Overworld::justTp is `true`, if the player is currently animated or if their movement is locked (Position::moveLock). If a direction key is pressed and the player is able to move, calls PlayerCtrl::move.
          */
-        void checkMove(Player &player, Overworld &overworld);
+        void checkMove(Overworld &overworld);
 
         /*!
          * \brief Moves the player, and then triggers the events activated when the player is moving towards them.
          * \details Calls Position::move and EventsCtrl::actionEvents with Events::EventTrigger::GO_IN.
          */
-        void move(Side direction, Player &player, Overworld &overworld);
+        void move(Side direction, Overworld &overworld);
 
         /*!
          * \brief Calls Event::update for each event.
@@ -100,7 +100,7 @@ class GameData;
          * \param player A reference to the player object.
          * \param overworld A reference to the overworld view.
          */
-        void updateEvents(std::vector<Elements::AbstractEvent *> &events, Player &player, Overworld &overworld);
+        void updateEvents(std::vector<Elements::AbstractEvent *> &events, Overworld &overworld);
 
         /*!
          * \brief Calls Event::action for some events.
@@ -115,7 +115,7 @@ class GameData;
          * Event::action for the events with this EventTrigger.
          * \param overworld A reference to the overworld view.
          */
-        void actionEvents(std::list<Elements::AbstractEvent *> &events, Player &player, Elements::EventTrigger toTrigger, Overworld &overworld);
+        void actionEvents(std::list<Elements::AbstractEvent *> &events, Elements::EventTrigger toTrigger, Overworld &overworld);
 
         /*!
          * \brief Calls actionEvents for some events.
@@ -129,7 +129,7 @@ class GameData;
          * \param player A reference to the player object.
          * \param overworld A reference to the overworld view.
          */
-        void checkAction(sf::Event const &event, Player &player, Overworld &overworld);
+        void checkAction(sf::Event const &event, Overworld &overworld);
     };
 
 } // namespace OpMon

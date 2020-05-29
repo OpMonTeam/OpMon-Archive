@@ -24,7 +24,6 @@ namespace OpMon {
     Player::Player()
         : trainerID(Utils::Misc::randUI(0xFFFFFFFF))
         , opteam(name) {
-        Elements::Position::setPlayerPos(&position);
     }
 
     OpTeam *Player::getOpTeam() {

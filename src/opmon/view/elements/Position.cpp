@@ -14,29 +14,26 @@ File under GNU GPL v3.0 license
 
 namespace OpMon {
     namespace Elements {
-        Position::Position(bool event)
+        Position::Position()
           : posX(0)
           , posY(0)
           , dir(Side::TO_UP)
           , anim(false)
-          , movement(false)
-          , event(event) {}
+          , movement(false) {}
 
-        Position::Position(sf::Vector2i position, bool event, Side dir)
+        Position::Position(sf::Vector2i position, Side dir)
           : posX(position.x)
           , posY(position.y)
           , dir(dir)
           , anim(false)
-          , movement(false)
-          , event(event) {}
+          , movement(false){}
 
-        Position::Position(sf::Vector2f position, bool event, Side dir)
+        Position::Position(sf::Vector2f position, Side dir)
           : posX(position.x)
           , posY(position.y)
           , dir(dir)
           , anim(false)
-          , movement(false)
-          , event(event) {}
+          , movement(false) {}
 
         void Position::tp(sf::Vector2i position) {
             movement = false;
@@ -51,13 +48,13 @@ namespace OpMon {
             posY = y;
         }
 
-        bool Position::move(Side dir, Map *map, bool debugCol) {
+        bool Position::move(Side dir, Map *map, bool noclip) {
             if(!anim && !moveLock) {
                 this->dir = dir;
 
                 anim = true;
 
-                if((!event && debugCol) /*Noclip mode in the debug*/ || checkPass(dir, map)) {
+                if(noclip /*Noclip mode in the debug*/ || checkPass(dir, map)) {
                     justTP = false;
                     movement = true;
                     switch(dir) {
@@ -130,7 +127,7 @@ namespace OpMon {
                 int colLayer1 = map->getTileCollision(map->getCurrentTileCode(nextPos, 1));
                 int colLayer2 = map->getTileCollision(map->getCurrentTileCode(nextPos, 2));
                 if((colLayer1 == 0 || colLayer1 == exclusiveCol) && (colLayer2 == 0 || colLayer2 == exclusiveCol)) {           //Checks if the next tile is passable
-                    if(event ? !(nextPos.y == playerPos->getPosition().y && nextPos.x == playerPos->getPosition().x) : true) { //Checks if the player is not in the way, but only if it's an event (A player can not interact with itself.)
+                    if(!(nextPos.y == playerPos->getPosition().y && nextPos.x == playerPos->getPosition().x)) { //Checks if the player is not in the way, but only if it's an event (A player can not interact with itself.)
                         nextEvents = map->getEvent(nextPos);                                                                   //Searches the events at this position
                         for(AbstractEvent *nextEvent : nextEvents) {
                             if(!nextEvent->isPassable()) { //Checks if the event ahead of the player is passable
