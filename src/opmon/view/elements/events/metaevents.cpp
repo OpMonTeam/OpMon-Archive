@@ -3,6 +3,7 @@
 #include "SoundEvent.hpp"
 #include "TPEvent.hpp"
 #include "DialogEvent.hpp"
+#include "src/opmon/screens/overworld/Overworld.hpp"
 #include <queue>
 
 namespace OpMon::Elements {
@@ -19,7 +20,7 @@ namespace OpMon::Elements {
 
 	void DoorEvent::update(Overworld &overworld){
 		LinearMetaEvent::update(overworld);
-		if(!processing){
+		if(!processing && !overworld.getCharacter().getPositionMap().isLocked()){
 			eventQueue.front()->resetFrame();
 		}
 	}

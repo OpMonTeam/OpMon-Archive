@@ -60,15 +60,19 @@ class TrainerEvent;
          * \brief Teleports the player with a fading animation.
          * \param toTp The ID of the map in which teleport the player.
          * \param pos Where to teleport the player in the map.
+         * \param tpDir The direction the player will face after the teleportation.
+         * Side::NO_MOVE will keep the direction the player was facing before.
          */
-        void tp(std::string toTp, sf::Vector2i pos);
+        void tp(std::string toTp, sf::Vector2i pos, Side tpDir = Side::NO_MOVE);
 
         /*!
          * \brief Directly teleports the player without any animation.
          * \param toTp The ID of the map in which teleport the player.
          * \param pos Where to teleport the player in the map.
+         * \param tpDir The direction the player will face after the teleportation.
+         * Side::NO_MOVE will keep the direction the player was facing before.
          */
-        void tpNoAnim(std::string toTp, sf::Vector2i pos);
+        void tpNoAnim(std::string toTp, sf::Vector2i pos, Side tpDir = Side::NO_MOVE);
 
         /*!
          * \brief Returns a layer of the map the player is currently in.
@@ -263,6 +267,11 @@ class TrainerEvent;
          * \brief The position where the player has to TP during the fade animation.
          */
         sf::Vector2i tpPos;
+
+        /*!
+         * \brief The direction the player will face after the teleportation.
+         */
+        Side tpDir;
 
         int fpsCounter = 0;
         sf::Text fpsPrint;

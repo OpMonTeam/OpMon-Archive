@@ -134,14 +134,16 @@ namespace OpMon {
         }
     }
 
-    void Overworld::tp(std::string toTp, sf::Vector2i pos){
+    void Overworld::tp(std::string toTp, sf::Vector2i pos, Side tpDir){
     	this->toTp = toTp;
     	tpPos = pos;
+    	this->tpDir = tpDir;
     	fadeCountdown++;
     	fadeDir = true;
+    	character.getPositionMapRef().lockMove();
     }
 
-    void Overworld::tpNoAnim(std::string toTp, sf::Vector2i pos) {
+    void Overworld::tpNoAnim(std::string toTp, sf::Vector2i pos, Side tpDir) {
         data.setCurrentMap(toTp);
         current = data.getCurrentMap();
         character.setPosition(pos.x, pos.y);
@@ -152,6 +154,10 @@ namespace OpMon {
         layer1 = std::make_unique<Ui::MapLayer>(current->getDimensions(), current->getLayer1(), data.getTileset(current->getTileset()));
         layer2 = std::make_unique<Ui::MapLayer>(current->getDimensions(), current->getLayer2(), data.getTileset(current->getTileset()));
         layer3 = std::make_unique<Ui::MapLayer>(current->getDimensions(), current->getLayer3(), data.getTileset(current->getTileset()));
+
+        if(tpDir != Side::NO_MOVE) {
+        	character.getPositionMapRef().setDir(tpDir);
+        }
     }
 
     void Overworld::pause() {
@@ -310,7 +316,7 @@ namespace OpMon {
         if(fadeCountdown != 0) { //If the fading animation is occuring
         	if(fadeCountdown == fadeFrames && fadeDir){ //End of the first phase: teleports the player
         	   fadeDir = false;
-        	   tpNoAnim(toTp, tpPos);
+        	   tpNoAnim(toTp, tpPos, tpDir);
         	}else{ //Else just continues the fading
 				if(fadeDir) fadeCountdown++;
 				else 		fadeCountdown--;
@@ -322,7 +328,8 @@ namespace OpMon {
         screenCache.setPosition(data.getGameDataPtr()->mapPixelToCoords(sf::Vector2i(0,0)));
 
         if(fadeCountdown == 0 && !fadeDir) {
-        	character.getPositionMap().unlockMove();
+        	character.getPositionMapRef().unlockMove();
+        	fadeDir = true;
         }
 
         return GameStatus::CONTINUE;

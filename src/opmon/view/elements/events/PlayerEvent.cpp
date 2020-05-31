@@ -11,8 +11,10 @@ namespace OpMon {
 		}
 
 		bool PlayerEvent::move(Side dir, Map *map, bool debugCol){
-			startFrames = frames;
-			return mapPos.move(dir, map, debugCol);
+			if(!mapPos.isLocked()) {
+				startFrames = frames;
+				return mapPos.move(dir, map, debugCol);
+			} else return false;
 		}
 
 	} /* namespace Elements */

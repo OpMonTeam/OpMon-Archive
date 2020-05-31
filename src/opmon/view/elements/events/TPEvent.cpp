@@ -24,17 +24,13 @@ namespace OpMon {
 
 		void TPEvent::action(Overworld &overworld) {
 			command = true;
-			overworld.getCharacter().getPositionMap().lockMove();
+			overworld.getCharacter().getPositionMapRef().lockMove();
 		}
 
 		void TPEvent::update(Overworld &overworld) {
 			if(command && !overworld.getCharacter().getPositionMap().isMoving()){
 				if(!overworld.getCharacter().getPositionMap().justTP) {
-					overworld.tp(map, tpCoord);
-					//Sets the player's direction after the teleportation. If this->ppDir == -1, the old player position is kept
-					if(this->ppDir != -1) {
-						overworld.getCharacter().getPositionMap().setDir(this->ppDir);
-					}
+					overworld.tp(map, tpCoord, ppDir);
 					overworld.getCharacter().getPositionMapRef().justTP = true;
 				}
 				command = false;
