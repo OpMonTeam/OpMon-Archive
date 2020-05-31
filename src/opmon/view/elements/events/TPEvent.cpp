@@ -38,7 +38,7 @@ namespace OpMon {
 					overworld.getCharacter().getPositionMapRef().justTP = true;
 				}
 				command = false;
-				overworld.getCharacter().getPositionMap().unlockMove();
+				//The movement lock will be unlocked in Overworld
 			}
 		}
 

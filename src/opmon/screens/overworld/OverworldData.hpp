@@ -44,6 +44,8 @@ class Map;
         std::map<std::string, std::pair<nlohmann::json, Elements::Map *> > maps;
         std::map<std::string, std::pair<nlohmann::json, Elements::Map *> >::iterator mapsItor;
 
+        std::string currentMap = "Player's room";
+
         sf::Texture texturePP;
         std::vector<sf::IntRect> texturePPRect;
 
@@ -132,6 +134,10 @@ class Map;
          * \brief Gets the current map.
          */
         Elements::Map *getCurrentMap();
+        /*!
+         * \brief Sets the current map.
+         */
+        void setCurrentMap(std::string map) { currentMap = map; }
 
         /*!
          * \brief Gets the id of the map currently pointer by the map iterator.

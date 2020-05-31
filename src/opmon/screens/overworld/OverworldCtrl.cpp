@@ -156,7 +156,7 @@ namespace OpMon {
 	GameStatus OverworldCtrl::update(sf::RenderTexture &frame) {
 		bool is_dialog_open = view.getDialog() && !view.getDialog()->isDialogOver();
 		if(!is_dialog_open) {
-			updateEvents(data.getMap(player.getMapId())->getEvents(), view);
+			updateEvents(data.getCurrentMap()->getEvents(), view);
 		}
 
 		GameStatus toReturn = view.update();

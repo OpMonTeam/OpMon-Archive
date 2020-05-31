@@ -57,11 +57,18 @@ class TrainerEvent;
         void draw(sf::RenderTarget& frame, sf::RenderStates states) const;
 
         /*!
-         * \brief Teleports the player.
+         * \brief Teleports the player with a fading animation.
          * \param toTp The ID of the map in which teleport the player.
          * \param pos Where to teleport the player in the map.
          */
         void tp(std::string toTp, sf::Vector2i pos);
+
+        /*!
+         * \brief Directly teleports the player without any animation.
+         * \param toTp The ID of the map in which teleport the player.
+         * \param pos Where to teleport the player in the map.
+         */
+        void tpNoAnim(std::string toTp, sf::Vector2i pos);
 
         /*!
          * \brief Returns a layer of the map the player is currently in.
@@ -216,6 +223,46 @@ class TrainerEvent;
          * \details Since the animation has two frames, this variable alternates between `true` and `false` every half of the animation.
          */
         bool anims = false;
+
+        /*!
+         * \brief A rectangle with the same size as the screen.
+         *
+         * Used for the fading animation.
+         */
+        sf::RectangleShape screenCache;
+
+        /*!
+         * \brief The number of frames a fading lasts
+         *
+         * This is the numer of frames it takes for the fading animation
+         * to go from transparent to black or black to transparent.
+         */
+        const float fadeFrames = 15;
+
+        /*!
+         * \brief Counts the frame for the fading animation
+         *
+         * The counter increases when the animation starts,
+         * then stops at \ref fadeFrames and decreases back to 0.
+         */
+        float fadeCountdown = 0;
+
+        /*!
+         * \brief Sets the direction of the fading animation.
+         *
+         * `true` for transparent to black, `false` for the opposite.
+         */
+        bool fadeDir = true;
+
+        /*!
+         * \brief The map where the player has to TP during the fade animation.
+         */
+        std::string toTp;
+
+        /*!
+         * \brief The position where the player has to TP during the fade animation.
+         */
+        sf::Vector2i tpPos;
 
         int fpsCounter = 0;
         sf::Text fpsPrint;

@@ -129,13 +129,20 @@ namespace OpMon {
 
     void Overworld::printElements(sf::RenderTarget &frame) const {
         //"i" is the element's id
-        for(std::string const &i : current->getAnimatedElements()) {
-            frame.draw(elementsSprites.at(i));
+        for(const std::pair<std::string,sf::Sprite> &spr : elementsSprites) {
+            frame.draw(spr.second);
         }
     }
 
-    void Overworld::tp(std::string toTp, sf::Vector2i pos) {
-        data.getPlayer().tp(toTp, pos);
+    void Overworld::tp(std::string toTp, sf::Vector2i pos){
+    	this->toTp = toTp;
+    	tpPos = pos;
+    	fadeCountdown++;
+    	fadeDir = true;
+    }
+
+    void Overworld::tpNoAnim(std::string toTp, sf::Vector2i pos) {
+        data.setCurrentMap(toTp);
         current = data.getCurrentMap();
         character.setPosition(pos.x, pos.y);
         resetCamera();
@@ -159,7 +166,7 @@ namespace OpMon {
         : data(data)
     	, character(data.getPlayerEvent()) {
         current = data.getMap(mapId);
-        data.getPlayer().tp(mapId, sf::Vector2i(2, 4)); //TODO : Add a parameter to configure the default player's position
+        data.setCurrentMap(mapId);
         character.setPosition(2, 4);
         camera.setSize(sf::Vector2f(30 SQUARES, 16.875 SQUARES));
         resetCamera();
@@ -172,6 +179,10 @@ namespace OpMon {
         data.getGameDataPtr()->getJukebox().play(current->getBg());
 
         Utils::I18n::Translator::getInstance().setLang(Utils::I18n::Translator::getInstance().getLang());
+
+        screenCache = sf::RectangleShape(data.getGameDataPtr()->getWindowSize<float>());
+        screenCache.setSfmlColor(sf::Color(0, 0, 0, 0));
+        screenCache.setOrigin(0,0);
     }
 
     void Overworld::draw(sf::RenderTarget &frame, sf::RenderStates states) const {
@@ -223,6 +234,8 @@ namespace OpMon {
             frame.draw(*this->dialog);
         }
 
+        frame.draw(screenCache);
+
         if(debugMode) {
             frame.draw(debugText);
             frame.draw(fpsPrint);
@@ -250,9 +263,9 @@ namespace OpMon {
             std::cout << "Loop : " << (is_in_dialog ? "Dialog" : "Normal") << std::endl;
             std::cout << "PlayerPosition: " << character.getPositionMap().getPosition().x << " - " << character.getPositionMap().getPosition().y << std::endl;
             std::cout << "PlayerPositionPx: " << character.getPosition().x << " - " << character.getPosition().y << std::endl;
-            std::cout << "Moving: " << (data.getPlayer().getPosition().isMoving() ? "true" : "false") << std::endl;
-            std::cout << "Anim: " << (data.getPlayer().getPosition().isAnim() ? "true" : "false") << std::endl;
-            std::cout << "PlayerDirection: " << (int)data.getPlayer().getPosition().getDir() << std::endl;
+            std::cout << "Moving: " << (character.getPositionMap().isMoving() ? "true" : "false") << std::endl;
+            std::cout << "Anim: " << (character.getPositionMap().isAnim() ? "true" : "false") << std::endl;
+            std::cout << "PlayerDirection: " << (int)character.getPositionMap().getDir() << std::endl;
             std::cout << "Start player Animation Time: " << (double)startPlayerAnimationTime / 1000 << std::endl;
 
             debugText.setString("Debug mode");
@@ -293,6 +306,24 @@ namespace OpMon {
         }
 
         updateElements();
+
+        if(fadeCountdown != 0) { //If the fading animation is occuring
+        	if(fadeCountdown == fadeFrames && fadeDir){ //End of the first phase: teleports the player
+        	   fadeDir = false;
+        	   tpNoAnim(toTp, tpPos);
+        	}else{ //Else just continues the fading
+				if(fadeDir) fadeCountdown++;
+				else 		fadeCountdown--;
+        	}
+        }
+        //Updates the color of the cache
+        screenCache.setSfmlColor(sf::Color(0, 0, 0, (fadeCountdown / fadeFrames) * 255.0));
+        //Updates coordinates
+        screenCache.setPosition(data.getGameDataPtr()->mapPixelToCoords(sf::Vector2i(0,0)));
+
+        if(fadeCountdown == 0 && !fadeDir) {
+        	character.getPositionMap().unlockMove();
+        }
 
         return GameStatus::CONTINUE;
     }

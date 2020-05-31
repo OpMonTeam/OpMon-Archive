@@ -113,42 +113,12 @@ namespace OpMon {
             return opteam.isKo();
         }
 
-        int getPosX() {
-            return position.getPosition().x;
-        }
-
-        int getPosY() {
-            return position.getPosition().y;
-        }
-
-        Elements::Position &getPosition() {
-            return position;
-        }
-
-        const std::string &getMapId() {
-            return mapID;
-        }
-
-        void setMapID(std::string mapID) {
-            this->mapID = mapID;
-        }
-
-        /**
-         * \brief Teleports the player.
-         * \warning It will NOT move the Camera. You should call Overworld::tp instead.
-         * \param mapToTp The map in which teleport the player.
-         * \param position The position of the player in the map.
-         */
-        void tp(std::string mapToTp, sf::Vector2i position);
-
     private:
         sf::String name;
         const unsigned int trainerID; //Max : 8 digits in hexadecimal (Unimplemented yet)
         std::map<std::string, int> bag;
         std::vector<OpMon *> pc = std::vector<OpMon *>();
         OpTeam opteam;
-        std::string mapID = "Player's room"; //Player's room is the start room for the player
-        Elements::Position position;
     };
 } // namespace OpMon
 

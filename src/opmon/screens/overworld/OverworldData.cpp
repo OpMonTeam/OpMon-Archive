@@ -164,7 +164,7 @@ namespace OpMon {
     }
 
     Elements::Map *OverworldData::getCurrentMap() {
-        return getMap(player->getMapId());
+        return getMap(currentMap);
     }
 
     sf::Texture &OverworldData::getEventsTexture(std::string const &key) { //Uncomment commented lines when C++20 is commonly used

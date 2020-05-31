@@ -63,7 +63,7 @@ class Window;
         /*!
          * \brief The pointer containing the GameData object shared in the different data objects.
          */
-        std::unique_ptr<GameData> gamedata;
+        GameData *gamedata;
         /*!
          * \brief The stack of game screens.
          */
