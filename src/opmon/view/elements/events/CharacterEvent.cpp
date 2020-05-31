@@ -19,6 +19,7 @@ namespace OpMon {
 			this->position += sf::Vector2f(16, 0);
 			setPredefinedMove(predefinedPath);
 			mapPos.setDir(posDir);
+			currentFrame = rectangles.begin();
 		}
 
 		CharacterEvent::CharacterEvent(OverworldData &data, nlohmann::json jsonData)
@@ -50,7 +51,7 @@ namespace OpMon {
 			currentFrame = rectangles.begin();
 		}
 
-		void CharacterEvent::update(Player &player, Overworld &overworld) {
+		void CharacterEvent::update(Overworld &overworld) {
 			frames++;
 			if(!mapPos.isAnim()) { //Checks if not already moving
 				int randomMove;
@@ -136,22 +137,22 @@ namespace OpMon {
 					break;
 
 				case Side::TO_LEFT:
-					toMove = sf::Vector2f(4, 0);
+					toMove = sf::Vector2f(-4, 0);
 					break;
 
 				case Side::TO_RIGHT:
-					toMove = sf::Vector2f(-4, 0);
+					toMove = sf::Vector2f(4, 0);
 					break;
 				default:
 					break;
 				}
 				if(mapPos.isMoving())
-					position -= toMove;
-				if(frames - startFrames >= 7)
+					position += toMove;
+				if(frames - startFrames >= 8)
 					mapPos.stopMove();
 			}
 			if(wantmove && !mapPos.isAnim()){
-				switch(player.getPosition().getDir()) { //Put the character's face in front of the player's one
+				switch(overworld.getCharacter().getPositionMap().getDir()) { //Put the character's face in front of the player's one
 				case Side::TO_DOWN:
 					mapPos.setDir(Side::TO_UP);
 					break;
@@ -179,7 +180,7 @@ namespace OpMon {
 			return mapPos.move(direction, map);
 		}
 
-		void CharacterEvent::move(Side direction, Player &player, Overworld &overworld) {
+		void CharacterEvent::move(Side direction, Overworld &overworld) {
 			move(direction, overworld.getData().getCurrentMap());
 		}
 

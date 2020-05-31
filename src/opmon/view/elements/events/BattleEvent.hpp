@@ -28,8 +28,8 @@ namespace OpMon::Elements {
 		BattleEvent(sf::Texture &texture, std::vector<sf::IntRect> rectangles, sf::Vector2f const &position, OpTeam *team, EventTrigger eventTrigger = EventTrigger::PRESS, bool passable = false, int side = SIDE_ALL);
 		BattleEvent(OverworldData &data, nlohmann::json jsonData);
 
-		virtual void update(Player &player, Overworld &overworld);
-		virtual void action(Player &player, Overworld &overworld);
+		virtual void update(Overworld &overworld);
+		virtual void action(Overworld &overworld);
 
 		OpTeam *getOpTeam() {
 			return team;

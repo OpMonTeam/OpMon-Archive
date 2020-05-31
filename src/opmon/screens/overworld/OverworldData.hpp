@@ -10,6 +10,7 @@
 #include "src/utils/defines.hpp"
 #include "src/opmon/view/elements/Map.hpp"
 #include "src/opmon/screens/gamemenu/GameMenuData.hpp"
+#include "src/opmon/view/elements/events/PlayerEvent.hpp"
 
 namespace sf {
 class String;
@@ -43,10 +44,10 @@ class Map;
         std::map<std::string, std::pair<nlohmann::json, Elements::Map *> > maps;
         std::map<std::string, std::pair<nlohmann::json, Elements::Map *> >::iterator mapsItor;
 
+        std::string currentMap = "Player's room";
+
         sf::Texture texturePP;
-        sf::IntRect texturePPRect[4];
-        sf::IntRect walkingPPRect[4];
-        sf::IntRect walkingPP2Rect[4];
+        std::vector<sf::IntRect> texturePPRect;
 
         GameData *gamedata;
 
@@ -75,6 +76,8 @@ class Map;
          * \brief The copy constructor. Not defined, must not be used.
          */
         OverworldData(OverworldData const &);
+
+        Elements::PlayerEvent* playerEvent;
 
     public:
         /*!
@@ -131,6 +134,10 @@ class Map;
          * \brief Gets the current map.
          */
         Elements::Map *getCurrentMap();
+        /*!
+         * \brief Sets the current map.
+         */
+        void setCurrentMap(std::string map) { currentMap = map; }
 
         /*!
          * \brief Gets the id of the map currently pointer by the map iterator.
@@ -168,19 +175,21 @@ class Map;
          * \param id The side to get.
          * \todo Change the type of id for Side
          */
-        sf::IntRect &getTexturePPRect(unsigned int id) { return texturePPRect[((id < 4) ? id : 0)]; }
+        sf::IntRect &getTexturePPRect(unsigned int id) { return texturePPRect[((id < 4) ? id : 0) + 8]; }
         /*!
          * \brief Gets the rect of a character's moving texture (first frame)
          * \param id The side to get.
          * \todo Change the type of id for side
          */
-        sf::IntRect &getWalkingPPRect(unsigned int id) { return walkingPPRect[((id < 4) ? id : 0)]; }
+        sf::IntRect &getWalkingPPRect(unsigned int id) { return texturePPRect[((id < 4) ? id : 0)]; }
         /*!
          * \brief Gets the rect of a character's moving texture (second frame)
          * \param id The side to get.
          * \todo Change the type of id for side
          */
-        sf::IntRect &getWalkingPP2Rect(unsigned int id) { return walkingPP2Rect[((id < 4) ? id : 0)]; }
+        sf::IntRect &getWalkingPP2Rect(unsigned int id) { return texturePPRect[((id < 4) ? id : 0) + 4]; }
+
+        std::vector<sf::IntRect> getPPRect() {return texturePPRect;}
 
         /*!
          * \brief Gets a pointer to the GameData object.
@@ -209,6 +218,8 @@ class Map;
          * \brief Returns the collision array for a tileset.
          */
         int* getTilesetCol(std::string id) {return tilesets[id].second;}
+
+        Elements::PlayerEvent& getPlayerEvent() {return *playerEvent;}
 
         /*!
          * \brief Initialises all the data.

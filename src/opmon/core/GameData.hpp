@@ -67,7 +67,7 @@ class Species;
          * \brief Gets a reference to the game's font.
          */
         sf::Font const &getFont() const { return font; }
-        GameData();
+        GameData(Ui::Window &win);
         ~GameData();
         /*!
          * \brief Gets a texture of an OpMon.
@@ -128,6 +128,12 @@ class Species;
          */
         uint32_t getWindowWidth() const { return windowWidth; }
 
+        /*!
+         * \brief Gets the size of the window
+         */
+        template<typename T>
+        sf::Vector2<T> getWindowSize() const { return sf::Vector2<T>(windowWidth, windowHeight);}
+
         sf::Texture &getMenuFrame() { return menuFrame; }
 
         /*!
@@ -152,6 +158,11 @@ class Species;
          */
         void setKeyTalk(const std::string talkName) { talk = Utils::KeyData::keysMap.at(talkName); }
 
+        /*!
+         * \brief Converts pixels to map coords.
+         */
+        sf::Vector2f mapPixelToCoords(sf::Vector2i in) { return window.getFrame().mapPixelToCoords(in); }
+
         sf::String getString(std::string key) {return Utils::I18n::Translator::getInstance().getStringKeys().get(key);}
 
         Utils::StringKeys& getStringKeys() {return Utils::I18n::Translator::getInstance().getStringKeys();}
@@ -159,6 +170,8 @@ class Species;
         Utils::OptionsSave& getOptions() {return *options;}
 
         std::vector<sf::Texture> alpha = {sf::Texture()};
+
+        Ui::Window &window;
     };
 
 } // namespace OpMon

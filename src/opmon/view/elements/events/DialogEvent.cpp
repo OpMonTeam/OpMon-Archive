@@ -33,12 +33,12 @@ namespace OpMon {
 			dialog = dialogKey.getString(stringkeys);
 		}
 
-		void DialogEvent::action(Player &player, Overworld &overworld) {
+		void DialogEvent::action(Overworld &overworld) {
 			overworld.startDialog(this->dialog);
 			over = overworld.isDialogOver();
 		}
 
-		void DialogEvent::update(Player &player, Overworld &overworld) {
+		void DialogEvent::update(Overworld &overworld) {
 			over = overworld.isDialogOver();
 		}
 

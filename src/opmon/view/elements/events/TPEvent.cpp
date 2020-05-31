@@ -22,23 +22,19 @@ namespace OpMon {
 			this->currentFrame = rectangles.begin();
 		}
 
-		void TPEvent::action(Player &player, Overworld &overworld) {
+		void TPEvent::action(Overworld &overworld) {
 			command = true;
-			player.getPosition().lockMove();
+			overworld.getCharacter().getPositionMapRef().lockMove();
 		}
 
-		void TPEvent::update(Player &player, Overworld &overworld) {
-			if(command && !player.getPosition().isMoving()){
-				if(!player.getPosition().justTP) {
-					overworld.tp(map, tpCoord);
-					//Sets the player's direction after the teleportation. If this->ppDir == -1, the old player position is kept
-					if(this->ppDir != -1) {
-						player.getPosition().setDir(this->ppDir);
-					}
-					player.getPosition().justTP = true;
+		void TPEvent::update(Overworld &overworld) {
+			if(command && !overworld.getCharacter().getPositionMap().isMoving()){
+				if(!overworld.getCharacter().getPositionMap().justTP) {
+					overworld.tp(map, tpCoord, ppDir);
+					overworld.getCharacter().getPositionMapRef().justTP = true;
 				}
 				command = false;
-				player.getPosition().unlockMove();
+				//The movement lock will be unlocked in Overworld
 			}
 		}
 

@@ -22,10 +22,6 @@ class GameData;
         Utils::ResourceLoader::load(background, "backgrounds/start/introscene.png");
         Utils::ResourceLoader::load(prof, "sprites/chara/prof/profkiwai.png");
         Utils::ResourceLoader::load(nameBg, "backgrounds/start/nameEntry.png");
-
-        //Player initalization
-        player->setMapID("Player's room");
-        player->getPosition().setDir(Side::TO_UP);
     }
 
 } // namespace OpMon

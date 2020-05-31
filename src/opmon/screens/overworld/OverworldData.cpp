@@ -38,18 +38,9 @@ namespace OpMon {
 
         //PP texture and rect loading
         Utils::ResourceLoader::load(texturePP, "sprites/chara/pp/pp_anim.png");
-        texturePPRect[(unsigned int)Side::TO_DOWN] = sf::IntRect(0, 64, 32, 32);
-        texturePPRect[(unsigned int)Side::TO_RIGHT] = sf::IntRect(32, 64, 32, 32);
-        texturePPRect[(unsigned int)Side::TO_LEFT] = sf::IntRect(64, 64, 32, 32);
-        texturePPRect[(unsigned int)Side::TO_UP] = sf::IntRect(96, 64, 32, 32);
-        walkingPPRect[(unsigned int)Side::TO_DOWN] = sf::IntRect(0, 0, 32, 32);
-        walkingPPRect[(unsigned int)Side::TO_RIGHT] = sf::IntRect(32, 0, 32, 32);
-        walkingPPRect[(unsigned int)Side::TO_LEFT] = sf::IntRect(64, 0, 32, 32);
-        walkingPPRect[(unsigned int)Side::TO_UP] = sf::IntRect(96, 0, 32, 32);
-        walkingPP2Rect[(unsigned int)Side::TO_DOWN] = sf::IntRect(0, 32, 32, 32);
-        walkingPP2Rect[(unsigned int)Side::TO_RIGHT] = sf::IntRect(32, 32, 32, 32);
-        walkingPP2Rect[(unsigned int)Side::TO_LEFT] = sf::IntRect(64, 32, 32, 32);
-        walkingPP2Rect[(unsigned int)Side::TO_UP] = sf::IntRect(96, 32, 32, 32);
+        for(unsigned int i = 0; i < 12; i++){
+        	texturePPRect.push_back(sf::IntRect((i*32) % 128, (i / 4) * 32, 32, 32));
+        }
 
         //Initialization of the textures of the events
         for(std::filesystem::directory_entry const& file : std::filesystem::directory_iterator(Path::getResourcePath() + "data/resourcelist")) {
@@ -151,6 +142,8 @@ namespace OpMon {
         }
 
         mapsItor = maps.begin();
+
+        playerEvent = new Elements::PlayerEvent(*this);
     }
 
     OverworldData::~OverworldData() {
@@ -160,7 +153,7 @@ namespace OpMon {
         for(auto &pair : tilesets){
         	free(pair.second.second);
         }
-        delete(player);
+        delete(playerEvent);
     }
 
     Elements::Map *OverworldData::getMap(std::string const &map) {
@@ -171,7 +164,7 @@ namespace OpMon {
     }
 
     Elements::Map *OverworldData::getCurrentMap() {
-        return getMap(player->getMapId());
+        return getMap(currentMap);
     }
 
     sf::Texture &OverworldData::getEventsTexture(std::string const &key) { //Uncomment commented lines when C++20 is commonly used

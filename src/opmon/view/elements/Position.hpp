@@ -36,21 +36,19 @@ namespace OpMon {
           public:
             /*!
              * \brief Constructs a Position object with default position data.
-             * \param event If `true`, the position is for an event. Else, it's for the player.
              */
-            Position(bool event = false);
+            Position();
 
             /*!
              * \brief Constructs a Position object with predefined position data.
              * \param position The default position.
-             * \param event If `true`, the position is for an event. Else, it's for the player.
              * \param dir The direction the entity is facing.
              */
-            Position(sf::Vector2i position, bool event = false, Side dir = Side::TO_UP);
+            Position(sf::Vector2i position, Side dir = Side::TO_UP);
             /*!
              * \copydoc Position(sf::Vector2i position, bool event = false, Side dir = Side::TO_UP)
              */
-            Position(sf::Vector2f position, bool event = false, Side dir = Side::TO_UP);
+            Position(sf::Vector2f position, Side dir = Side::TO_UP);
 
             /*!
              * \brief Returns the position in map coordinates.
@@ -127,7 +125,7 @@ namespace OpMon {
              * \param debugCol If noclip is activated
              * \return `false` if the entity can't move, `true` if the movement has been initiated.
              */
-            bool move(Side dir, Map *map, bool debugCol = false);
+            bool move(Side dir, Map *map, bool noclip = false);
 
             /*!
              * \brief Sets the position of Position::playerPos
@@ -138,7 +136,7 @@ namespace OpMon {
             /*!
              * \brief Indicates if the player has just been teleported between two maps.
              */
-            bool justTP;
+            bool justTP = false;
 
           private:
             /*!
@@ -170,10 +168,6 @@ namespace OpMon {
              * \brief If the entity's movements are locked.
              */
             bool moveLock = false;
-            /*!
-             * \brief If the entity is an event.
-             */
-            bool event = false;
         };
     } // namespace Elements
 } // namespace OpMon

@@ -27,18 +27,21 @@ File under GNU GPL v3.0 license
 
 namespace OpMon {
 
-    GameLoop::GameLoop()
-      : gamedata(std::make_unique<GameData>()) {
-        std::unique_ptr<AGameScreen> firstCtrl = std::make_unique<MainMenuCtrl>(gamedata.get());
-        _gameScreens.push(std::move(firstCtrl));
+    GameLoop::GameLoop() {
+
     }
 
     GameStatus GameLoop::operator()() {
 
+
+
         std::unique_ptr<Ui::Window, std::function<void(Ui::Window *)>> window(new Ui::Window(), [](Ui::Window *w) {
             w->close();
         });
+        gamedata = new GameData(*window);
         window->open(gamedata->getOptions());
+        std::unique_ptr<AGameScreen> firstCtrl = std::make_unique<MainMenuCtrl>(gamedata);
+        _gameScreens.push(std::move(firstCtrl));
 
         sf::Texture loadTx;
         Utils::ResourceLoader::load(loadTx, "backgrounds/loading.png");
@@ -136,6 +139,7 @@ namespace OpMon {
 
         }
 
+        delete(gamedata);
         delete(window.release());
         return status;
     }

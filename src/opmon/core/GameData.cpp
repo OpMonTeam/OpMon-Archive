@@ -27,7 +27,8 @@
 namespace OpMon {
 class Evolution;
 
-GameData::GameData() {
+GameData::GameData(Ui::Window &win)
+: window(win){
 
 	Utils::Log::oplog("Loading options");
 

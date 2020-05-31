@@ -28,7 +28,7 @@ namespace OpMon::Elements {
 	 * When the NPC is triggered, it turns itself to face the player.
 	 */
 	class CharacterEvent : public AbstractEvent {
-	private:
+	protected:
 		/*!
 		 * \brief The way the npc moves.
 		 */
@@ -68,8 +68,8 @@ namespace OpMon::Elements {
 	public:
 		CharacterEvent(sf::Texture &texture, std::vector<sf::IntRect> rectangles, sf::Vector2f const &position, Side posDir = Side::TO_UP, MoveStyle moveStyle = MoveStyle::NO_MOVE, EventTrigger eventTrigger = EventTrigger::PRESS, std::vector<Side> predefinedPath = std::vector<Side>(), bool passable = false, int sides = SIDE_ALL);
 		CharacterEvent(OverworldData &data, nlohmann::json jsonData);
-		virtual void update(Player &player, Overworld &overworld);
-		virtual void action(Player &, Overworld &){wantmove = true;}
+		virtual void update(Overworld &overworld);
+		virtual void action(Overworld &){wantmove = true;}
 		/*!
 		 * \brief Sets the predefined movement.
 		 */
@@ -78,7 +78,7 @@ namespace OpMon::Elements {
 		 * \brief Moves the npc
 		 * \deprecated Use directly move(Side direction, Map *map). This method searches in overworld for the map, which is completely useless.
 		 */
-		OP_DEPRECATED void move(Side direction, Player &player, Overworld &overworld);
+		OP_DEPRECATED void move(Side direction, Overworld &overworld);
 		/*!
 		 * \brief Moves the npc
 		 */

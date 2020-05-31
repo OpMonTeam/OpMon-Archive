@@ -121,7 +121,7 @@ namespace OpMon {
 			}
 		}
 
-		return is_dialog_open ? checkEventsDialog(events, overworld) : checkEventsNoDialog(events, player);
+		return is_dialog_open ? checkEventsDialog(events, overworld) : checkEventsNoDialog(events);
 	}
 
 	GameStatus OverworldCtrl::checkEventsDialog(sf::Event const &events, Overworld &overworld) {
@@ -137,9 +137,9 @@ namespace OpMon {
 		return GameStatus::CONTINUE;
 	}
 
-	GameStatus OverworldCtrl::checkEventsNoDialog(sf::Event const &event, Player &player) {
-		checkAction(event, player, view);
-		checkMove(player, view);
+	GameStatus OverworldCtrl::checkEventsNoDialog(sf::Event const &event) {
+		checkAction(event, view);
+		checkMove(view);
 
 		if(view.getBattleDeclared() != nullptr) {
 			if(view.getBattleDeclared()->isOver()) {
@@ -156,7 +156,7 @@ namespace OpMon {
 	GameStatus OverworldCtrl::update(sf::RenderTexture &frame) {
 		bool is_dialog_open = view.getDialog() && !view.getDialog()->isDialogOver();
 		if(!is_dialog_open) {
-			updateEvents(data.getMap(player.getMapId())->getEvents(), player, view);
+			updateEvents(data.getCurrentMap()->getEvents(), view);
 		}
 
 		GameStatus toReturn = view.update();
@@ -195,41 +195,41 @@ namespace OpMon {
 		data.getGameDataPtr()->getJukebox().play(data.getCurrentMap()->getBg());
 	}
 
-	void OverworldCtrl::checkMove(Player &player, Overworld &overworld) {
-		if(!overworld.justTp && !player.getPosition().isAnim() && !player.getPosition().isLocked()) {
+	void OverworldCtrl::checkMove(Overworld &overworld) {
+		if(!overworld.justTp && !overworld.getCharacter().getPositionMap().isAnim() && !overworld.getCharacter().getPositionMap().isLocked()) {
 			//TODO Factorise code
 			if(sf::Keyboard::isKeyPressed(overworld.getData().getGameDataPtr()->getKeyUp())) {
 				overworld.startPlayerAnimation();
-				move(Side::TO_UP, player, overworld);
+				move(Side::TO_UP, overworld);
 			} else if(sf::Keyboard::isKeyPressed(overworld.getData().getGameDataPtr()->getKeyDown())) {
 				overworld.startPlayerAnimation();
-				move(Side::TO_DOWN, player, overworld);
+				move(Side::TO_DOWN, overworld);
 			} else if(sf::Keyboard::isKeyPressed(overworld.getData().getGameDataPtr()->getKeyLeft())) {
 				overworld.startPlayerAnimation();
-				move(Side::TO_LEFT, player, overworld);
+				move(Side::TO_LEFT, overworld);
 			} else if(sf::Keyboard::isKeyPressed(overworld.getData().getGameDataPtr()->getKeyRight())) {
 				overworld.startPlayerAnimation();
-				move(Side::TO_RIGHT, player, overworld);
+				move(Side::TO_RIGHT, overworld);
 			}
 		}
 	}
 
-	void OverworldCtrl::move(Side direction, Player &player, Overworld &overworld) {
-		player.getPosition().move(direction, overworld.getData().getCurrentMap(), debugCol);
+	void OverworldCtrl::move(Side direction, Overworld &overworld) {
+		overworld.getCharacter().move(direction, overworld.getCurrent(), debugCol);
 
 		Elements::Map *map = overworld.getData().getCurrentMap();
-		std::list<Elements::AbstractEvent*> eventList = map->getEvent(player.getPosition().getPosition());
-		actionEvents(eventList, player, Elements::EventTrigger::GO_IN, overworld);
+		std::list<Elements::AbstractEvent*> eventList = map->getEvent(overworld.getCharacter().getPositionMap().getPosition());
+		actionEvents(eventList, Elements::EventTrigger::GO_IN, overworld);
 	}
 
-	void OverworldCtrl::checkAction(sf::Event const &event, Player &player, Overworld &overworld) {
+	void OverworldCtrl::checkAction(sf::Event const &event, Overworld &overworld) {
 		//If the player isn't moving, then this checks if the player want to activate an event.
-		if(!player.getPosition().isAnim()) {
+		if(!overworld.getCharacter().getPositionMap().isAnim()) {
 			//Get the event coordinates and activate it if the player interacted with it.
 			if(sf::Keyboard::isKeyPressed(overworld.getData().getGameDataPtr()->getKeyInteract())) {
-				int lx = player.getPosition().getPosition().x;
-				int ly = player.getPosition().getPosition().y;
-				switch(player.getPosition().getDir()) {
+				int lx = overworld.getCharacter().getPositionMap().getPosition().x;
+				int ly = overworld.getCharacter().getPositionMap().getPosition().y;
+				switch(overworld.getCharacter().getPositionMap().getDir()) {
 				case Side::TO_UP:
 					ly--;
 					break;
@@ -266,22 +266,22 @@ namespace OpMon {
 				for(std::list<Elements::AbstractEvent *>::iterator itor : commonList)
 					eventList.erase(itor);
 
-				actionEvents(eventList, player, Elements::EventTrigger::PRESS, overworld);
+				actionEvents(eventList, Elements::EventTrigger::PRESS, overworld);
 			}
 		}
 
 		usedList.clear();
 
 		//Searches for events at the same position as the player and activates them if they are triggered when the playeris in them.
-		if(!player.getPosition().isMoving()) {
-			std::list<Elements::AbstractEvent *> eventList = overworld.getData().getCurrentMap()->getEvent(player.getPosition().getPosition());
-			actionEvents(eventList, player, Elements::EventTrigger::BE_IN, overworld);
+		if(!overworld.getCharacter().getPositionMap().isMoving()) {
+			std::list<Elements::AbstractEvent *> eventList = overworld.getData().getCurrentMap()->getEvent(overworld.getCharacter().getPositionMap().getPosition());
+			actionEvents(eventList, Elements::EventTrigger::BE_IN, overworld);
 		}
 	}
 
-	void OverworldCtrl::actionEvents(std::list<Elements::AbstractEvent *> &events, Player &player, Elements::EventTrigger toTrigger, Overworld &overworld) {
+	void OverworldCtrl::actionEvents(std::list<Elements::AbstractEvent *> &events, Elements::EventTrigger toTrigger, Overworld &overworld) {
 		//Checks if the player points at the right direction to activate the events. If yes, calls the events' action methods.
-		Side ppDir = player.getPosition().getDir();
+		Side ppDir = overworld.getCharacter().getPositionMap().getDir();
 		for(std::list<Elements::AbstractEvent*>::iterator itor = events.begin(); itor != events.end(); ++itor) {
 			if((*itor)->getEventTrigger() == toTrigger) {
 				bool go = false;
@@ -295,15 +295,15 @@ namespace OpMon {
 					go = true;
 				}
 				if(go) {
-					(*itor)->action(player, overworld);
+					(*itor)->action(overworld);
 				}
 			}
 		}
 	}
 
-	void OverworldCtrl::updateEvents(std::vector<Elements::AbstractEvent *> &events, Player &player, Overworld &overworld) {
+	void OverworldCtrl::updateEvents(std::vector<Elements::AbstractEvent *> &events, Overworld &overworld) {
 		for(Elements::AbstractEvent *event : events) {
-			event->update(player, overworld);
+			event->update(overworld);
 		}
 	}
 

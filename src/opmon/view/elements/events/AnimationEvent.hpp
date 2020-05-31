@@ -45,8 +45,8 @@ namespace OpMon::Elements {
 	public:
 		AnimationEvent(sf::Texture &texture, std::vector<sf::IntRect> rectangles, EventTrigger eventTrigger, sf::Vector2f const &position, unsigned int framerate, bool loop, bool passable, bool lastTexture = true, int sides = SIDE_ALL);
 		AnimationEvent(OverworldData &data, nlohmann::json jsonData, std::vector<sf::IntRect> rectangles = {});
-		void action(Player &player, Overworld &overworld);
-		void update(Player &player, Overworld &overworld);
+		void action(Overworld &overworld);
+		void update(Overworld &overworld);
 		bool isOver() const {return !playing;}
 	};
 }

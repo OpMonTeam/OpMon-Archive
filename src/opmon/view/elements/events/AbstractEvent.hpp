@@ -107,11 +107,11 @@ namespace OpMon{
 			/*!
 			 * \brief Method called each frame.
 			 */
-			virtual void update(Player &player, Overworld &overworld) = 0;
+			virtual void update(Overworld &overworld) = 0;
 			/**
 			 * \brief Method called when the player interacts with the event.
 			 */
-			virtual void action(Player &player, Overworld &overworld) = 0;
+			virtual void action(Overworld &overworld) = 0;
 			/*!
 			 * \brief Updates \ref sprite with \ref currentTexture and \ref position.
 			 */
@@ -132,6 +132,10 @@ namespace OpMon{
 			}
 
 			Position getPositionMap() const {
+				return mapPos;
+			}
+
+			Position& getPositionMapRef() {
 				return mapPos;
 			}
 

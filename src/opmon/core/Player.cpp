@@ -24,7 +24,6 @@ namespace OpMon {
     Player::Player()
         : trainerID(Utils::Misc::randUI(0xFFFFFFFF))
         , opteam(name) {
-        Elements::Position::setPlayerPos(&position);
     }
 
     OpTeam *Player::getOpTeam() {
@@ -72,10 +71,4 @@ namespace OpMon {
             return false;
         }
     }
-
-    void Player::tp(std::string mapToTp, sf::Vector2i newPos) {
-        mapID = mapToTp;
-        position.tp(newPos);
-    }
-
 } // namespace OpMon

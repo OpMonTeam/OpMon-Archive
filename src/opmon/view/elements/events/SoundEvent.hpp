@@ -37,8 +37,8 @@ namespace OpMon::Elements {
 	public:
 		SoundEvent(sf::Texture &texture, std::vector<sf::IntRect> rectangles, EventTrigger eventTrigger, sf::Vector2f const &position, std::string const& playID, bool music, bool toggle, int sides = SIDE_ALL, bool passable = true);
 		SoundEvent(OverworldData &data, nlohmann::json jsonData);
-		virtual void update(Player &player, Overworld &overworld) {}
-		virtual void action(Player &player, Overworld &overworld);
+		virtual void update(Overworld &overworld) {}
+		virtual void action(Overworld &overworld);
 		bool isOver() const {return !playing;}
 	};
 }

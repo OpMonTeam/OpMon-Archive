@@ -53,8 +53,8 @@ namespace OpMon{
         public:
             AbstractMetaEvent(std::queue<AbstractEvent*> eventQueue);
             AbstractMetaEvent(OverworldData &data, nlohmann::json jsonData);
-            virtual void action(Player &player, Overworld &overworld) = 0;
-            virtual void update(Player &player, Overworld &overworld);
+            virtual void action(Overworld &overworld) = 0;
+            virtual void update(Overworld &overworld);
             virtual bool isOver() const {return !processing;}
             virtual ~AbstractMetaEvent();
             /*!

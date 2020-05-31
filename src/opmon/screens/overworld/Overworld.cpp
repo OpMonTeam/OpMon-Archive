@@ -129,15 +129,24 @@ namespace OpMon {
 
     void Overworld::printElements(sf::RenderTarget &frame) const {
         //"i" is the element's id
-        for(std::string const &i : current->getAnimatedElements()) {
-            frame.draw(elementsSprites.at(i));
+        for(const std::pair<std::string,sf::Sprite> &spr : elementsSprites) {
+            frame.draw(spr.second);
         }
     }
 
-    void Overworld::tp(std::string toTp, sf::Vector2i pos) {
-        data.getPlayer().tp(toTp, pos);
+    void Overworld::tp(std::string toTp, sf::Vector2i pos, Side tpDir){
+    	this->toTp = toTp;
+    	tpPos = pos;
+    	this->tpDir = tpDir;
+    	fadeCountdown++;
+    	fadeDir = true;
+    	character.getPositionMapRef().lockMove();
+    }
+
+    void Overworld::tpNoAnim(std::string toTp, sf::Vector2i pos, Side tpDir) {
+        data.setCurrentMap(toTp);
         current = data.getCurrentMap();
-        character.setPosition(pos.x SQUARES - 16, pos.y SQUARES);
+        character.setPosition(pos.x, pos.y);
         resetCamera();
         setMusic(current->getBg());
 
@@ -145,6 +154,10 @@ namespace OpMon {
         layer1 = std::make_unique<Ui::MapLayer>(current->getDimensions(), current->getLayer1(), data.getTileset(current->getTileset()));
         layer2 = std::make_unique<Ui::MapLayer>(current->getDimensions(), current->getLayer2(), data.getTileset(current->getTileset()));
         layer3 = std::make_unique<Ui::MapLayer>(current->getDimensions(), current->getLayer3(), data.getTileset(current->getTileset()));
+
+        if(tpDir != Side::NO_MOVE) {
+        	character.getPositionMapRef().setDir(tpDir);
+        }
     }
 
     void Overworld::pause() {
@@ -156,12 +169,11 @@ namespace OpMon {
     }
 
     Overworld::Overworld(const std::string &mapId, OverworldData &data)
-        : data(data) {
+        : data(data)
+    	, character(data.getPlayerEvent()) {
         current = data.getMap(mapId);
-        character.setTexture(data.getTexturePP());
-        character.setTextureRect(data.getTexturePPRect((unsigned int)Side::TO_DOWN));
-        data.getPlayer().tp(mapId, sf::Vector2i(2, 4)); //TODO : Add a parameter to configure the default player's position
-        character.setPosition(2 SQUARES - 16, 4 SQUARES);
+        data.setCurrentMap(mapId);
+        character.setPosition(2, 4);
         camera.setSize(sf::Vector2f(30 SQUARES, 16.875 SQUARES));
         resetCamera();
 
@@ -169,12 +181,14 @@ namespace OpMon {
         layer1 = std::make_unique<Ui::MapLayer>(current->getDimensions(), current->getLayer1(), data.getTileset(current->getTileset()));
         layer2 = std::make_unique<Ui::MapLayer>(current->getDimensions(), current->getLayer2(), data.getTileset(current->getTileset()));
         layer3 = std::make_unique<Ui::MapLayer>(current->getDimensions(), current->getLayer3(), data.getTileset(current->getTileset()));
-        character.setScale(2, 2);
-        character.setOrigin(16, 16);
 
         data.getGameDataPtr()->getJukebox().play(current->getBg());
 
         Utils::I18n::Translator::getInstance().setLang(Utils::I18n::Translator::getInstance().getLang());
+
+        screenCache = sf::RectangleShape(data.getGameDataPtr()->getWindowSize<float>());
+        screenCache.setSfmlColor(sf::Color(0, 0, 0, 0));
+        screenCache.setOrigin(0,0);
     }
 
     void Overworld::draw(sf::RenderTarget &frame, sf::RenderStates states) const {
@@ -192,17 +206,17 @@ namespace OpMon {
         //Drawing events under the player
         for(const Elements::AbstractEvent *event : current->getEvents()) {
             const sf::Sprite *sprite = event->getSprite();
-            if(sprite->getPosition().y <= data.getPlayer().getPosition().getPositionPixel().y) {
+            if(sprite->getPosition().y <= character.getPosition().y) {
                 frame.draw(*sprite);
             }
         }
 
-        frame.draw(character);
+        frame.draw(*character.getSprite());
 
         //Drawing the events above the player
         for(const Elements::AbstractEvent *event : current->getEvents()) {
             const sf::Sprite *sprite = event->getSprite();
-            if(sprite->getPosition().y > data.getPlayer().getPosition().getPositionPixel().y) {
+            if(sprite->getPosition().y > character.getPosition().y) {
                 frame.draw(*sprite);
             }
         }
@@ -225,6 +239,8 @@ namespace OpMon {
         if(is_in_dialog) {
             frame.draw(*this->dialog);
         }
+
+        frame.draw(screenCache);
 
         if(debugMode) {
             frame.draw(debugText);
@@ -251,11 +267,11 @@ namespace OpMon {
         if(debugMode) {
             std::cout << "Elapsed Time: " << Utils::Time::getElapsedSeconds() << "s" << std::endl;
             std::cout << "Loop : " << (is_in_dialog ? "Dialog" : "Normal") << std::endl;
-            std::cout << "PlayerPosition: " << data.getPlayer().getPosition().getPosition().x << " - " << data.getPlayer().getPosition().getPosition().y << std::endl;
+            std::cout << "PlayerPosition: " << character.getPositionMap().getPosition().x << " - " << character.getPositionMap().getPosition().y << std::endl;
             std::cout << "PlayerPositionPx: " << character.getPosition().x << " - " << character.getPosition().y << std::endl;
-            std::cout << "Moving: " << (data.getPlayer().getPosition().isMoving() ? "true" : "false") << std::endl;
-            std::cout << "Anim: " << (data.getPlayer().getPosition().isAnim() ? "true" : "false") << std::endl;
-            std::cout << "PlayerDirection: " << (int)data.getPlayer().getPosition().getDir() << std::endl;
+            std::cout << "Moving: " << (character.getPositionMap().isMoving() ? "true" : "false") << std::endl;
+            std::cout << "Anim: " << (character.getPositionMap().isAnim() ? "true" : "false") << std::endl;
+            std::cout << "PlayerDirection: " << (int)character.getPositionMap().getDir() << std::endl;
             std::cout << "Start player Animation Time: " << (double)startPlayerAnimationTime / 1000 << std::endl;
 
             debugText.setString("Debug mode");
@@ -267,7 +283,7 @@ namespace OpMon {
             fpsPrint.setFont(data.getGameDataPtr()->getFont());
             fpsPrint.setCharacterSize(48);
             std::ostringstream oss;
-            oss << "Position : " << data.getPlayer().getPosition().getPosition().x << " - " << data.getPlayer().getPosition().getPosition().y << std::endl
+            oss << "Position : " << character.getPositionMap().getPosition().x << " - " << character.getPositionMap().getPosition().y << std::endl
                 << "PxPosition : " << character.getPosition().x << " - " << character.getPosition().y << std::endl;
             coordPrint.setString(oss.str());
             coordPrint.setFont(data.getGameDataPtr()->getFont());
@@ -282,62 +298,39 @@ namespace OpMon {
 
         updateCamera();
 
-        //Drawing events under the player
+        //Updates events under the player
         for(Elements::AbstractEvent *event : current->getEvents()) {
             event->updateFrame();
         }
 
-        if(!is_in_dialog && data.getPlayer().getPosition().isAnim()) {
-            if(data.getPlayer().getPosition().isMoving()) {
-                switch(data.getPlayer().getPosition().getDir()) {
-                case Side::TO_UP:
-                    character.move(0, -4);
-                    break;
-                case Side::TO_DOWN:
-                    character.move(0, 4);
-                    break;
-                case Side::TO_LEFT:
-                    character.move(-4, 0);
-                    break;
-                case Side::TO_RIGHT:
-                    character.move(4, 0);
-                    break;
-                default:
-                    break;
-                }
-            }
-        }
+        character.update(*this);
+        character.updateFrame();
 
-        //Sets the character's texture.
-        if(data.getPlayer().getPosition().isAnim() && !anims) {
-            character.setTextureRect(data.getWalkingPPRect((unsigned int)data.getPlayer().getPosition().getDir()));
-            anims = animsCounter >= 8;
-            if(anims) {
-                //Stops the caracter's movement every 8 frames
-                data.getPlayer().getPosition().stopMove();
-                animsCounter = 0;
-            }
-            animsCounter++;
-
-        } else if(data.getPlayer().getPosition().isAnim() && anims) {
-            character.setTextureRect(data.getWalkingPP2Rect((unsigned int)data.getPlayer().getPosition().getDir()));
-            if(animsCounter >= 8) {
-                //Stops the caracter's movement every 8 frames
-                data.getPlayer().getPosition().stopMove();
-                anims = false;
-                animsCounter = 0;
-            }
-            animsCounter++;
-        } else if(!data.getPlayer().getPosition().isAnim()) {
-            character.setTextureRect(data.getTexturePPRect((unsigned int)data.getPlayer().getPosition().getDir()));
-        }
-
-        //Drawing the events above the player
+        //Updates the events above the player
         for(Elements::AbstractEvent *event : current->getEvents()) {
             event->updateFrame();
         }
 
         updateElements();
+
+        if(fadeCountdown != 0) { //If the fading animation is occuring
+        	if(fadeCountdown == fadeFrames && fadeDir){ //End of the first phase: teleports the player
+        	   fadeDir = false;
+        	   tpNoAnim(toTp, tpPos, tpDir);
+        	}else{ //Else just continues the fading
+				if(fadeDir) fadeCountdown++;
+				else 		fadeCountdown--;
+        	}
+        }
+        //Updates the color of the cache
+        screenCache.setSfmlColor(sf::Color(0, 0, 0, (fadeCountdown / fadeFrames) * 255.0));
+        //Updates coordinates
+        screenCache.setPosition(data.getGameDataPtr()->mapPixelToCoords(sf::Vector2i(0,0)));
+
+        if(fadeCountdown == 0 && !fadeDir) {
+        	character.getPositionMapRef().unlockMove();
+        	fadeDir = true;
+        }
 
         return GameStatus::CONTINUE;
     }
