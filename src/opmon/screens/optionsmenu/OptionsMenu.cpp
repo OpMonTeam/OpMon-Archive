@@ -13,12 +13,12 @@
 #include <memory>
 #include <string>
 
-#include "src/utils/OptionsSave.hpp"
-#include "src/opmon/view/ui/TextBox.hpp"
-#include "src/opmon/core/GameData.hpp"
 #include "OptionsMenuData.hpp"
+#include "src/opmon/core/GameData.hpp"
 #include "src/opmon/view/ui/Jukebox.hpp"
+#include "src/opmon/view/ui/TextBox.hpp"
 #include "src/utils/CycleCounter.hpp"
+#include "src/utils/OptionsSave.hpp"
 #include "src/utils/StringKeys.hpp"
 #include "src/utils/defines.hpp"
 
@@ -36,7 +36,8 @@ namespace OpMon {
         txtOptions.setFont(data.getGameDataPtr()->getFont());
         txtOptions.setCharacterSize(FONT_SIZE_DEFAULT);
 
-        txtCred.setString(data.getGameDataPtr()->getString("options.cred.title"));
+        txtCred.setString(
+            data.getGameDataPtr()->getString("options.cred.title"));
         txtCred.setFont(data.getGameDataPtr()->getFont());
         txtCred.setCharacterSize(FONT_SIZE_DEFAULT);
 
@@ -75,44 +76,54 @@ namespace OpMon {
         txtCre8.setString(data.getGameDataPtr()->getString("options.credit.8"));
         txtCre8.setFont(data.getGameDataPtr()->getFont());
         txtCre8.setCharacterSize(15);
-        txtCre81.setString(data.getGameDataPtr()->getString("options.credit.81"));
+        txtCre81.setString(
+            data.getGameDataPtr()->getString("options.credit.81"));
         txtCre81.setFont(data.getGameDataPtr()->getFont());
         txtCre81.setCharacterSize(15);
-        txtCre82.setString(data.getGameDataPtr()->getString("options.credit.82"));
+        txtCre82.setString(
+            data.getGameDataPtr()->getString("options.credit.82"));
         txtCre82.setFont(data.getGameDataPtr()->getFont());
         txtCre82.setCharacterSize(15);
-        txtCre83.setString(data.getGameDataPtr()->getString("options.credit.83"));
+        txtCre83.setString(
+            data.getGameDataPtr()->getString("options.credit.83"));
         txtCre83.setFont(data.getGameDataPtr()->getFont());
         txtCre83.setCharacterSize(15);
-        txtCre84.setString(data.getGameDataPtr()->getString("options.credit.84"));
+        txtCre84.setString(
+            data.getGameDataPtr()->getString("options.credit.84"));
         txtCre84.setFont(data.getGameDataPtr()->getFont());
         txtCre84.setCharacterSize(15);
         txtCre9.setString(data.getGameDataPtr()->getString("options.credit.9"));
         txtCre9.setFont(data.getGameDataPtr()->getFont());
         txtCre9.setCharacterSize(13);
-        txtCre10.setString(data.getGameDataPtr()->getString("options.credit.10"));
+        txtCre10.setString(
+            data.getGameDataPtr()->getString("options.credit.10"));
         txtCre10.setFont(data.getGameDataPtr()->getFont());
         txtCre10.setCharacterSize(20);
         txtCre10.setSfmlColor(sf::Color::Blue);
 
-        txtCtrlChange.setString(data.getGameDataPtr()->getString("options.ctrl.change"));
+        txtCtrlChange.setString(
+            data.getGameDataPtr()->getString("options.ctrl.change"));
         txtCtrlChange.setFont(data.getGameDataPtr()->getFont());
         txtCtrlChange.setCharacterSize(FONT_SIZE_DEFAULT);
     }
 
-    void OptionsMenu::onLangChanged() {
-        initStrings();
-    }
+    void OptionsMenu::onLangChanged() { initStrings(); }
 
     OptionsMenu::OptionsMenu(OptionsMenuData &data)
-        : data(data)
-        , currentOptions(OptionType::ALL) {
-        float optionsMenuItemX = (data.getGameDataPtr()->getWindowWidth() - OPTIONS_MENU_ITEM_WIDTH)/2;
+        : data(data), currentOptions(OptionType::ALL) {
+        float optionsMenuItemX = (data.getGameDataPtr()->getWindowWidth() -
+                                  OPTIONS_MENU_ITEM_WIDTH) /
+                                 2;
 
         // Create text boxes for the main screen
         for(int i = 0; i < 5; i++) {
-            sf::Vector2f position(optionsMenuItemX, OPTIONS_MENU_ITEM_PADDING + i * (OPTIONS_MENU_ITEM_HEIGHT + OPTIONS_MENU_ITEM_PADDING));
-            TextBox optionsMenuItem(data.getGameDataPtr()->getMenuFrame(), position, OPTIONS_MENU_ITEM_WIDTH, OPTIONS_MENU_ITEM_HEIGHT);
+            sf::Vector2f position(
+                optionsMenuItemX,
+                OPTIONS_MENU_ITEM_PADDING +
+                    i * (OPTIONS_MENU_ITEM_HEIGHT + OPTIONS_MENU_ITEM_PADDING));
+            TextBox optionsMenuItem(data.getGameDataPtr()->getMenuFrame(),
+                                    position, OPTIONS_MENU_ITEM_WIDTH,
+                                    OPTIONS_MENU_ITEM_HEIGHT);
             optionsMenuItem.setFont(data.getGameDataPtr()->getFont());
             optionsMenuItems.push_back(optionsMenuItem);
         }
@@ -121,8 +132,13 @@ namespace OpMon {
 
         // Create text boxes for the language selection screen
         for(int i = 0; i < 6; i++) {
-            sf::Vector2f position(optionsMenuItemX, OPTIONS_MENU_ITEM_PADDING + i * (OPTIONS_MENU_ITEM_HEIGHT + OPTIONS_MENU_ITEM_PADDING));
-            TextBox languagesMenuItem(data.getGameDataPtr()->getMenuFrame(), position, OPTIONS_MENU_ITEM_WIDTH, OPTIONS_MENU_ITEM_HEIGHT);
+            sf::Vector2f position(
+                optionsMenuItemX,
+                OPTIONS_MENU_ITEM_PADDING +
+                    i * (OPTIONS_MENU_ITEM_HEIGHT + OPTIONS_MENU_ITEM_PADDING));
+            TextBox languagesMenuItem(data.getGameDataPtr()->getMenuFrame(),
+                                      position, OPTIONS_MENU_ITEM_WIDTH,
+                                      OPTIONS_MENU_ITEM_HEIGHT);
             languagesMenuItem.setFont(data.getGameDataPtr()->getFont());
             languagesMenuItems.push_back(languagesMenuItem);
         }
@@ -182,7 +198,8 @@ namespace OpMon {
         txtCtrlInteract.setCharacterSize(FONT_SIZE_DEFAULT - 4);
 
         rectKeyChange.setTexture(data.getKeyChange());
-        rectKeyChange.setScale(70 / rectKeyChange.getGlobalBounds().width, 43 / rectKeyChange.getGlobalBounds().height);
+        rectKeyChange.setScale(70 / rectKeyChange.getGlobalBounds().width,
+                               43 / rectKeyChange.getGlobalBounds().height);
 
         curPosOpt[0].x = 23;
         curPosOpt[0].y = 17;
@@ -226,89 +243,89 @@ namespace OpMon {
         curSizeCtrl[1].y = 63 / rectSurb.getGlobalBounds().height;
     }
 
-    void OptionsMenu::draw(sf::RenderTarget &frame, sf::RenderStates states) const {
+    void OptionsMenu::draw(sf::RenderTarget &frame,
+                           sf::RenderStates states) const {
         switch(currentOptions) {
-        case OptionType::CREDITS:
-            frame.clear(sf::Color::White);
-            frame.draw(bgCredits);
-            frame.draw(txtCre1);
-            frame.draw(txtCre2);
-            frame.draw(txtCre3);
-            frame.draw(txtCre4);
-            frame.draw(txtCre5);
-            frame.draw(txtCre6);
-            frame.draw(txtCre7);
-            frame.draw(txtCre8);
-            frame.draw(txtCre81);
-            frame.draw(txtCre82);
-            frame.draw(txtCre83);
-            frame.draw(txtCre84);
-            frame.draw(txtCre9);
-            frame.draw(txtCre10);
-            frame.draw(rectSurb);
-            frame.draw(txtRetour);
-            frame.draw(txtCred);
-            break;
+            case OptionType::CREDITS:
+                frame.clear(sf::Color::White);
+                frame.draw(bgCredits);
+                frame.draw(txtCre1);
+                frame.draw(txtCre2);
+                frame.draw(txtCre3);
+                frame.draw(txtCre4);
+                frame.draw(txtCre5);
+                frame.draw(txtCre6);
+                frame.draw(txtCre7);
+                frame.draw(txtCre8);
+                frame.draw(txtCre81);
+                frame.draw(txtCre82);
+                frame.draw(txtCre83);
+                frame.draw(txtCre84);
+                frame.draw(txtCre9);
+                frame.draw(txtCre10);
+                frame.draw(rectSurb);
+                frame.draw(txtRetour);
+                frame.draw(txtCred);
+                break;
 
-        case OptionType::CONTROLS:
-            frame.clear(sf::Color::White);
-            frame.draw(bgControls);
-            frame.draw(txtCtrlChange);
-            frame.draw(rectKeyChange);
-            frame.draw(txtCtrlUp);
-            frame.draw(txtCtrlDown);
-            frame.draw(txtCtrlLeft);
-            frame.draw(txtCtrlRight);
-            frame.draw(txtCtrlTalk);
-            frame.draw(txtCtrlInteract);
-            frame.draw(rectSurb);
-            frame.draw(txtRetour);
-            frame.draw(txtCtrl);
-            break;
+            case OptionType::CONTROLS:
+                frame.clear(sf::Color::White);
+                frame.draw(bgControls);
+                frame.draw(txtCtrlChange);
+                frame.draw(rectKeyChange);
+                frame.draw(txtCtrlUp);
+                frame.draw(txtCtrlDown);
+                frame.draw(txtCtrlLeft);
+                frame.draw(txtCtrlRight);
+                frame.draw(txtCtrlTalk);
+                frame.draw(txtCtrlInteract);
+                frame.draw(rectSurb);
+                frame.draw(txtRetour);
+                frame.draw(txtCtrl);
+                break;
 
-        case OptionType::LANG:
-            frame.clear(sf::Color(74, 81, 148));
-            for(auto &languagesMenuItem : languagesMenuItems) {
-                frame.draw(languagesMenuItem);
-            }
-            break;
+            case OptionType::LANG:
+                frame.clear(sf::Color(74, 81, 148));
+                for(auto &languagesMenuItem : languagesMenuItems) {
+                    frame.draw(languagesMenuItem);
+                }
+                break;
 
-        case OptionType::ALL:
-            frame.clear(sf::Color(74, 81, 148));
-            for(auto &optionsMenuItem : optionsMenuItems) {
-                frame.draw(optionsMenuItem);
-            }
-            break;
-
+            case OptionType::ALL:
+                frame.clear(sf::Color(74, 81, 148));
+                for(auto &optionsMenuItem : optionsMenuItems) {
+                    frame.draw(optionsMenuItem);
+                }
+                break;
         }
     }
 
     GameStatus OptionsMenu::update() {
         switch(currentOptions) {
-        case OptionType::ALL:
-            return loop();
-        case OptionType::LANG:
-            return langLoop();
-        case OptionType::CONTROLS:
-            return controlsLoop();
-        case OptionType::CREDITS:
-            return creditsLoop();
+            case OptionType::ALL:
+                return loop();
+            case OptionType::LANG:
+                return langLoop();
+            case OptionType::CONTROLS:
+                return controlsLoop();
+            case OptionType::CREDITS:
+                return creditsLoop();
         }
     }
 
     void OptionsMenu::moveArrow(bool move) {
         switch(currentOptions) {
-        case OptionType::ALL:
-            curPosOptI += (move ? -1 : 1);
-            break;
-        case OptionType::CONTROLS:
-            curPosCtrlI += (move ? -1 : 1);
-            break;
-        case OptionType::LANG:
-            curPosLangI += (move ? -1 : 1);
-            break;
-        default:
-            break;
+            case OptionType::ALL:
+                curPosOptI += (move ? -1 : 1);
+                break;
+            case OptionType::CONTROLS:
+                curPosCtrlI += (move ? -1 : 1);
+                break;
+            case OptionType::LANG:
+                curPosLangI += (move ? -1 : 1);
+                break;
+            default:
+                break;
         }
     }
 
@@ -328,20 +345,36 @@ namespace OpMon {
         return GameStatus::CONTINUE;
     }
 
-    void OptionsMenu::pause() {
-    }
+    void OptionsMenu::pause() {}
 
-    void OptionsMenu::play() {
-    }
+    void OptionsMenu::play() {}
 
     GameStatus OptionsMenu::controlsLoop() {
         rectKeyChange.setPosition(posControls[currentKeyChange]);
-        txtCtrlUp.setString(data.getGameDataPtr()->getOptions().getParam("control.up").getValue());
-        txtCtrlDown.setString(data.getGameDataPtr()->getOptions().getParam("control.down").getValue());
-        txtCtrlLeft.setString(data.getGameDataPtr()->getOptions().getParam("control.left").getValue());
-        txtCtrlRight.setString(data.getGameDataPtr()->getOptions().getParam("control.right").getValue());
-        txtCtrlTalk.setString(data.getGameDataPtr()->getOptions().getParam("control.talk").getValue());
-        txtCtrlInteract.setString(data.getGameDataPtr()->getOptions().getParam("control.interact").getValue());
+        txtCtrlUp.setString(data.getGameDataPtr()
+                                ->getOptions()
+                                .getParam("control.up")
+                                .getValue());
+        txtCtrlDown.setString(data.getGameDataPtr()
+                                  ->getOptions()
+                                  .getParam("control.down")
+                                  .getValue());
+        txtCtrlLeft.setString(data.getGameDataPtr()
+                                  ->getOptions()
+                                  .getParam("control.left")
+                                  .getValue());
+        txtCtrlRight.setString(data.getGameDataPtr()
+                                   ->getOptions()
+                                   .getParam("control.right")
+                                   .getValue());
+        txtCtrlTalk.setString(data.getGameDataPtr()
+                                  ->getOptions()
+                                  .getParam("control.talk")
+                                  .getValue());
+        txtCtrlInteract.setString(data.getGameDataPtr()
+                                      ->getOptions()
+                                      .getParam("control.interact")
+                                      .getValue());
         rectSurb.setPosition(curPosCtrl[curPosCtrlI.getValue()]);
         rectSurb.setScale(curSizeCtrl[curPosCtrlI.getValue()]);
         return GameStatus::CONTINUE;
@@ -357,45 +390,51 @@ namespace OpMon {
         std::string key;
         int i = 0;
         for(auto &optionsMenuItem : optionsMenuItems) {
-            switch (i) {
-            case 0:
-                key = "ecran";
-                break;
-            case 1:
-                key = "lang";
-                break;
-            case 2:
-                key = "controls";
-                break;
-            case 3:
-                key = "volume";
-                break;
-            case 4:
-                key = "credits";
-                break;
+            switch(i) {
+                case 0:
+                    key = "ecran";
+                    break;
+                case 1:
+                    key = "lang";
+                    break;
+                case 2:
+                    key = "controls";
+                    break;
+                case 3:
+                    key = "volume";
+                    break;
+                case 4:
+                    key = "credits";
+                    break;
             }
-            optionsMenuItem.setLeftContent(data.getGameDataPtr()->getString("options." + key));
+            optionsMenuItem.setLeftContent(
+                data.getGameDataPtr()->getString("options." + key));
             ++i;
         }
     }
 
     void OptionsMenu::initOptionsMenuItemsValue() {
         int i = 0;
-        int globalVolume = data.getGameDataPtr()->getJukebox().getGlobalVolume();
+        int globalVolume =
+            data.getGameDataPtr()->getJukebox().getGlobalVolume();
         for(auto &optionsMenuItem : optionsMenuItems) {
-            switch (i) {
-            case 0:
-                if(data.getGameDataPtr()->getOptions().getParam("fullscreen").getValue() == "true") {
-                    optionsMenuItem.setRightContent("On");
-                } else {
-                    optionsMenuItem.setRightContent("Off");
-                }
-                break;
-            case 3:
-                optionsMenuItem.setRightContent(std::to_string(globalVolume) + "%");
-                break;
-            default:
-                break;
+            switch(i) {
+                case 0:
+                    if(data.getGameDataPtr()
+                           ->getOptions()
+                           .getParam("fullscreen")
+                           .getValue() == "true") {
+                        optionsMenuItem.setRightContent("On");
+                    } else {
+                        optionsMenuItem.setRightContent("Off");
+                    }
+                    break;
+                case 3:
+                    optionsMenuItem.setRightContent(
+                        std::to_string(globalVolume) + "%");
+                    break;
+                default:
+                    break;
             }
             ++i;
         }
@@ -404,26 +443,26 @@ namespace OpMon {
     void OptionsMenu::initLanguagesMenuItemsName() {
         int i = 0;
         for(auto &languagesMenuItem : languagesMenuItems) {
-            switch (i) {
-            case 0:
-                languagesMenuItem.setLeftContent(data.getGameDataPtr()->getString("options.retour"));
-                break;
-            case 1:
-                languagesMenuItem.setLeftContent("English");
-                break;
-            case 2:
-                languagesMenuItem.setLeftContent(L"Espa\u00F1ol");
-                break;
-            case 3:
-                languagesMenuItem.setLeftContent(L"Francais");
-                break;
-            case 4:
-                languagesMenuItem.setLeftContent("Deutsch");
-                break;
-            case 5:
-                languagesMenuItem.setLeftContent("Italiano");
-                break;
-
+            switch(i) {
+                case 0:
+                    languagesMenuItem.setLeftContent(
+                        data.getGameDataPtr()->getString("options.retour"));
+                    break;
+                case 1:
+                    languagesMenuItem.setLeftContent("English");
+                    break;
+                case 2:
+                    languagesMenuItem.setLeftContent(L"Espa\u00F1ol");
+                    break;
+                case 3:
+                    languagesMenuItem.setLeftContent(L"Francais");
+                    break;
+                case 4:
+                    languagesMenuItem.setLeftContent("Deutsch");
+                    break;
+                case 5:
+                    languagesMenuItem.setLeftContent("Italiano");
+                    break;
             }
             ++i;
         }

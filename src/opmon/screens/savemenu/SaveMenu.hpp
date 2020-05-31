@@ -1,7 +1,6 @@
 #pragma once
 
 #include "SaveMenuData.hpp"
-
 #include "src/opmon/core/GameStatus.hpp"
 #include "src/opmon/view/ui/TextBox.hpp"
 #include "src/utils/i18n/ATranslatable.hpp"
@@ -12,21 +11,18 @@ namespace OpMon {
      * \brief Context in which the save menu was opened, i.e. is the player
      * trying to save or load.
      */
-    enum class SaveMenuContext { SAVING,
-                                 LOADING };
+    enum class SaveMenuContext { SAVING, LOADING };
 
     /*!
      * \brief State of the save menu, i.e. whether the player is currently
      * selecting a file or confirming the selected file.
      */
-    enum class SaveMenuState { FILE_SELECTION,
-                               FILE_CONFIRMATION };
+    enum class SaveMenuState { FILE_SELECTION, FILE_CONFIRMATION };
 
     /*!
      * \brief Confirmation options when the player has selected a file.
      */
-    enum class SaveMenuConfirmationOption { YES,
-                                            NO };
+    enum class SaveMenuConfirmationOption { YES, NO };
 
     class SaveMenu : public Utils::I18n::ATranslatable, public sf::Drawable {
       public:
@@ -90,7 +86,8 @@ namespace OpMon {
 
         int currentCursorPosition = 0;
 
-        SaveMenuConfirmationOption currentCursorConfirmationOption = SaveMenuConfirmationOption::NO;
+        SaveMenuConfirmationOption currentCursorConfirmationOption =
+            SaveMenuConfirmationOption::NO;
 
         SaveMenuState currentState = SaveMenuState::FILE_SELECTION;
     };

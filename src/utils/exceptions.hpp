@@ -13,10 +13,13 @@ namespace Utils {
     /*!
      * \brief Base class for exceptions containing some data.
      *
-     * This class inherits from the standard std::exception class, but also takes some data useful to treat the exception. It also defines a function to return the error in std::string format, and makes what() return desc().c_str().
+     * This class inherits from the standard std::exception class, but also
+     * takes some data useful to treat the exception. It also defines a function
+     * to return the error in std::string format, and makes what() return
+     * desc().c_str().
      */
     class Exception : public std::exception {
-    public:
+      public:
         /*!
          * \brief Returns a description of the exception.
          */
@@ -24,12 +27,13 @@ namespace Utils {
         /*!
          * \brief Returns desc().c_str().
          */
-        const char* what() const noexcept {return desc().c_str();}
+        const char *what() const noexcept { return desc().c_str(); }
         Exception(bool fatal, int returnId);
         /*!
          * \brief If the exception is fatal or not.
          *
-         * This variable should be set to `true` if the problem prevents the program from executing normally.
+         * This variable should be set to `true` if the problem prevents the
+         * program from executing normally.
          */
         const bool fatal;
         /*!
@@ -46,7 +50,7 @@ namespace Utils {
      * Return code: 2
      */
     class LoadingException : public Exception {
-    public:
+      public:
         const std::string desc() const noexcept;
         LoadingException(std::string path, bool fatal = false);
         /*!
@@ -61,7 +65,7 @@ namespace Utils {
      * Return code: 3
      */
     class NullptrException : public Exception {
-    public:
+      public:
         const std::string desc() const noexcept;
         NullptrException(std::string info, bool fatal = true);
         /*!
@@ -76,9 +80,10 @@ namespace Utils {
      * Return code: 4
      */
     class UnexpectedValueException : public Exception {
-    public:
+      public:
         const std::string desc() const noexcept;
-        UnexpectedValueException(std::string value, std::string expected, bool fatal = true);
+        UnexpectedValueException(std::string value, std::string expected,
+                                 bool fatal = true);
         /*!
          * \brief The unexpected value that caused the error.
          */
@@ -93,9 +98,10 @@ namespace Utils {
      * \brief Exception thrown when the program tries to access a variable which haven't been loaded.
      */
     class UnloadedResourceException : public Exception {
-    public:
+      public:
         const std::string desc() const noexcept;
-        UnloadedResourceException(std::string resource, std::string location, bool fatal = true);
+        UnloadedResourceException(std::string resource, std::string location,
+                                  bool fatal = true);
         /*!
          * \brief The unloaded resource the program is trying to access.
          */
@@ -105,4 +111,4 @@ namespace Utils {
          */
         const std::string location;
     };
-}
+} // namespace Utils

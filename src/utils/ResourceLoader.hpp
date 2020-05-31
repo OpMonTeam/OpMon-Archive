@@ -18,12 +18,12 @@
 namespace sf {
     class Music;
     class Texture;
-}  // namespace sf
+} // namespace sf
 
 namespace Utils {
 
     class ResourceLoader {
-    public:
+      public:
         static std::string getResourcePath();
 
         static void setResourcePath(std::string path);
@@ -55,14 +55,17 @@ namespace Utils {
          * \param path_offset - by default, the first frame number is 0. If set, the first frame number will be the
          *    offset.
          */
-        static void loadTextureArray(sf::Texture container[], std::string path, size_t nb_frame, size_t path_offset = 0);
+        static void loadTextureArray(sf::Texture container[], std::string path,
+                                     size_t nb_frame, size_t path_offset = 0);
 
         /*!
          * \copydoc loadTextureArray(sf::Texture container[], const char *path, size_t nb_frame, size_t path_offset = 0)
          *
          * The container must be empty.
          */
-        static void loadTextureArray(std::vector<sf::Texture> &container, std::string path, size_t nb_frame, size_t path_offset = 0);
+        static void loadTextureArray(std::vector<sf::Texture> &container,
+                                     std::string path, size_t nb_frame,
+                                     size_t path_offset = 0);
 
         /*!
          * \brief Loads a music.
@@ -70,20 +73,22 @@ namespace Utils {
          */
         static std::unique_ptr<sf::Music> loadMusic(const char *path);
 
-    private:
+      private:
         static std::string resourcePath;
-
     };
 
     template <typename T>
     void ResourceLoader::load(T &resource, std::string path, bool fatal) {
-        try{
-            if(!resource.loadFromFile(ResourceLoader::getResourcePath() + path)) {
+        try {
+            if(!resource.loadFromFile(ResourceLoader::getResourcePath() +
+                                      path)) {
                 throw LoadingException(path, fatal);
             }
-        } catch (LoadingException& e) {
-            if(e.fatal) throw;
-            else Log::warn(e.desc());
+        } catch(LoadingException &e) {
+            if(e.fatal)
+                throw;
+            else
+                Log::warn(e.desc());
         }
     }
 

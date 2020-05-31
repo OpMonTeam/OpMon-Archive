@@ -20,11 +20,11 @@
  *  \brief Contains different utilities.
  */
 namespace Utils {
-	/*!
+    /*!
      *  \brief Contains functions to manage game strings.
      */
     class StringKeys {
-    private:
+      private:
         /*!
          * \brief The array containing the keys.
          * \todo Replace it by one map.
@@ -45,7 +45,8 @@ namespace Utils {
          * \brief Reads a line from the input.
          */
         sf::String readLine(std::ifstream &input);
-    public:
+
+      public:
         /*!
          * \return The character string associated with the key.
          * \param key The key corresponding to the wanted string.
@@ -73,7 +74,8 @@ namespace Utils {
          * \param splitter The character used as the limit between the different parts.
          * \param part The index to return.
          */
-        OP_DEPRECATED sf::String split(sf::String const &str, char const &splitter, int const &part);
+        OP_DEPRECATED sf::String split(sf::String const &str,
+                                       char const &splitter, int const &part);
 
         /*!
          * \brief Splits a character string.
@@ -81,7 +83,8 @@ namespace Utils {
          * \param str The string to split.
          * \param splitter The character used as the limit between the different parts.
          */
-        static std::vector<sf::String> split(sf::String const &str, char const &splitter);
+        static std::vector<sf::String> split(sf::String const &str,
+                                             char const &splitter);
 
         /*!
          * \brief Converts a sf::String to a std::string without encoding problems.
@@ -111,11 +114,10 @@ namespace Utils {
          * \param characterSize The character size used to calculate the size of the text.
          * \param limit The size limit, 456 by default to fit in a standard OpMon dialog box.
          */
-        static std::queue<sf::String> autoNewLine(sf::String str,
-                                           sf::Font font,
-                                           unsigned int characterSize,
-                                           float limit);
-        };
+        static std::queue<sf::String> autoNewLine(sf::String str, sf::Font font,
+                                                  unsigned int characterSize,
+                                                  float limit);
+    };
 
 } // namespace Utils
 

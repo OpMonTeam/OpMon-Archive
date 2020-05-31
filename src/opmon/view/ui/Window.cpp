@@ -30,24 +30,29 @@ namespace OpMon {
             if(!options.checkParam("fullscreen")) {
                 options.addOrModifParam("fullscreen", "false");
             }
-            //settings.antialiasingLevel = 1;
+            // settings.antialiasingLevel = 1;
             if(options.getParam("fullscreen").getValue() == "true") {
                 fullScreen = true;
-                window.create(sf::VideoMode::getFullscreenModes().at(0), "OpMon Lazuli", sf::Style::Fullscreen, settings);
+                window.create(sf::VideoMode::getFullscreenModes().at(0),
+                              "OpMon Lazuli", sf::Style::Fullscreen, settings);
             } else {
-                window.create(sf::VideoMode(960, 540), "OpMon Lazuli", sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize, settings);
+                window.create(
+                    sf::VideoMode(960, 540), "OpMon Lazuli",
+                    sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize,
+                    settings);
             }
 
             sf::Image icon;
             Utils::ResourceLoader::load(icon, "opmon.png");
-            window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+            window.setIcon(icon.getSize().x, icon.getSize().y,
+                           icon.getPixelsPtr());
 
             frame.create(960, 540);
             sprite.setTexture(frame.getTexture());
             updateView();
 
             oplog("Window initialized!");
-            //window.setVerticalSyncEnabled(true);
+            // window.setVerticalSyncEnabled(true);
             window.setFramerateLimit(30);
             window.setKeyRepeatEnabled(false);
         }
@@ -76,11 +81,15 @@ namespace OpMon {
             sf::Vector2f windowSize(window.getSize());
             auto frameRatio = frameSize.x / frameSize.y;
 
-            // Computing the scaling factors : the sprite shouldn't be bigger than the screen,
-            // and any dimension shouldn't be bigger than the value computed from the ratio and the other dimension :
-            // we take the min of the two. We then divide by the original frame size to get the scaling factor.
-            auto xCoef = std::min(windowSize.y * frameRatio, windowSize.x) / frameSize.x;
-            auto yCoef = std::min(windowSize.x / frameRatio, windowSize.y) / frameSize.y;
+            // Computing the scaling factors : the sprite shouldn't be bigger
+            // than the screen, and any dimension shouldn't be bigger than the
+            // value computed from the ratio and the other dimension : we take
+            // the min of the two. We then divide by the original frame size to
+            // get the scaling factor.
+            auto xCoef =
+                std::min(windowSize.y * frameRatio, windowSize.x) / frameSize.x;
+            auto yCoef =
+                std::min(windowSize.x / frameRatio, windowSize.y) / frameSize.y;
             sprite.setScale(xCoef, yCoef);
 
             // update the sprite position
@@ -91,13 +100,9 @@ namespace OpMon {
             window.setView(sf::View({0.f, 0.f, windowSize.x, windowSize.y}));
         }
 
-        int Window::getBaseWindowWidth() {
-            return 960;
-        }
+        int Window::getBaseWindowWidth() { return 960; }
 
-        int Window::getBaseWindowHeight() {
-            return 540;
-        }
+        int Window::getBaseWindowHeight() { return 540; }
 
-    } // namespace UI
+    } // namespace Ui
 } // namespace OpMon

@@ -8,25 +8,28 @@ File under GNU GPL v3.0 license
 
 #include "../../../utils/StringKeys.hpp"
 #include "../../../utils/defines.hpp"
-#include "Window.hpp"
 #include "TextBox.hpp"
+#include "Window.hpp"
 
 namespace OpMon {
     namespace Ui {
 
         void Dialog::init() {
-
             unsigned int DIALOG_BOX_WIDTH = 504;
             unsigned int DIALOG_BOX_HEIGHT = 100;
 
-            float dialogBoxX = (gamedata->getWindowWidth() - DIALOG_BOX_WIDTH)/2;
-            float dialogBoxY = gamedata->getWindowHeight() - DIALOG_BOX_HEIGHT - 4;
+            float dialogBoxX =
+                (gamedata->getWindowWidth() - DIALOG_BOX_WIDTH) / 2;
+            float dialogBoxY =
+                gamedata->getWindowHeight() - DIALOG_BOX_HEIGHT - 4;
 
             sf::Vector2f dialogBoxPosition(dialogBoxX, dialogBoxY);
-            dialogBox = new TextBox(gamedata->getMenuFrame(), dialogBoxPosition, DIALOG_BOX_WIDTH, DIALOG_BOX_HEIGHT, 3);
+            dialogBox = new TextBox(gamedata->getMenuFrame(), dialogBoxPosition,
+                                    DIALOG_BOX_WIDTH, DIALOG_BOX_HEIGHT, 3);
             dialogBox->setFont(gamedata->getFont());
 
-            // Create the arrow that appears to prompt the player to press the action key
+            // Create the arrow that appears to prompt the player to press the
+            // action key
             arrDial.setTexture(gamedata->getDialogArrow());
             arrDialX = dialogBoxX + DIALOG_BOX_WIDTH - 32;
             arrDialY = dialogBoxY + DIALOG_BOX_HEIGHT - 32;
@@ -35,14 +38,14 @@ namespace OpMon {
         }
 
         Dialog::Dialog(std::queue<sf::String> text, GameData *gamedata)
-          : text(text)
-          , gamedata(gamedata) {
+            : text(text), gamedata(gamedata) {
             if(this->text.size() % 2 != 0) {
                 while(this->text.size() % 2 != 0) {
                     this->text.push(sf::String(" "));
                 }
                 if(this->text.size() % 2 != 0) {
-                    throw std::runtime_error("String missing in Dialog, even after trying to fix it.");
+                    throw std::runtime_error("String missing in Dialog, even "
+                                             "after trying to fix it.");
                 }
             }
 
@@ -50,8 +53,9 @@ namespace OpMon {
         }
 
         Dialog::Dialog(sf::String text, GameData *gamedata)
-          : gamedata(gamedata) {
-            this->text = Utils::StringKeys::autoNewLine(text, gamedata->getFont(), 16, 456);
+            : gamedata(gamedata) {
+            this->text = Utils::StringKeys::autoNewLine(
+                text, gamedata->getFont(), 16, 456);
 
             while(this->text.size() % 2 != 0) {
                 this->text.push(sf::String(" "));
@@ -62,16 +66,16 @@ namespace OpMon {
 
         void Dialog::pass() {
             if(changeDialog == false) {
-                // If the current lines are not completely displayed, display them in full when
-                // pressing space
+                // If the current lines are not completely displayed, display
+                // them in full when pressing space
                 for(uint32_t p = line; p < 2; p++) {
                     currentTxt[p] = text.front();
                     text.pop();
                 }
                 changeDialog = true;
             } else if(text.size() > 0) {
-                // If the current lines are completely displayed, pass to the next set of lines when
-                // pressing space (if there is one)
+                // If the current lines are completely displayed, pass to the
+                // next set of lines when pressing space (if there is one)
                 gamedata->getJukebox().playSound("dialog pass");
                 line = 0;
                 i = 0;
@@ -87,7 +91,6 @@ namespace OpMon {
         void Dialog::updateTextAnimation() {
             if(!changeDialog) {
                 if(i < text.front().toUtf32().size()) {
-
                     if(currentTxt[line] == sf::String(" ")) {
                         currentTxt[line] = text.front().toUtf32()[i];
                     } else if(text.front().toUtf32()[i] > 10) {
@@ -114,7 +117,8 @@ namespace OpMon {
             }
         }
 
-        void Dialog::draw(sf::RenderTarget &target, sf::RenderStates states) const {
+        void Dialog::draw(sf::RenderTarget &target,
+                          sf::RenderStates states) const {
             target.draw(*dialogBox);
             {
                 if(text.size() > 0 && changeDialog)
@@ -122,9 +126,7 @@ namespace OpMon {
             }
         }
 
-        bool Dialog::isDialogOver() {
-            return dialogOver;
-        }
+        bool Dialog::isDialogOver() { return dialogOver; }
 
     } // namespace Ui
 } // namespace OpMon

@@ -9,15 +9,15 @@
 #include "CharacterEvent.hpp"
 
 namespace OpMon::Elements {
-	class PlayerEvent : public CharacterEvent {
-	private:
-		Player *player;
+    class PlayerEvent : public CharacterEvent {
+      private:
+        Player *player;
 
-	public:
-		PlayerEvent(OverworldData &data);
+      public:
+        PlayerEvent(OverworldData &data);
 
-		Player* getPlayer() {return player;}
+        Player *getPlayer() { return player; }
 
-		bool move(Side dir, Map *map, bool debugCol);
-	};
-}
+        bool move(Side dir, Map *map, bool debugCol);
+    };
+} // namespace OpMon::Elements

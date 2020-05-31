@@ -13,19 +13,19 @@
 #include "src/opmon/screens/base/AGameScreen.hpp"
 
 namespace sf {
-class Event;
-class RenderTexture;
-}  // namespace sf
+    class Event;
+    class RenderTexture;
+} // namespace sf
 
 namespace OpMon {
-class GameData;
+    class GameData;
 
     /*!
      * \brief Manages the introduction scene and its three phases.
      * \todo Change to IntroSceneCtrl
      */
     class IntroSceneCtrl : public AGameScreen {
-    protected:
+      protected:
         IntroSceneData data;
 
         IntroScene view;
@@ -37,11 +37,16 @@ class GameData;
         /*!
          * \brief Determines which screen has to be loaded in loadNextScreen().
          *
-         * This integer is filled with some special values determined by macros in GameMenuCtrl.cpp. Currently, there is
-         * - LOAD_OVERWORLD : Loads OverworldCtrl at the end of the introduction scene.
-         * - LOAD_ANIMATION_OPEN : Loads an opening Animations::WinAnim as a transition for the name input part of the introduction.
-         * - LOAD_ANIMATION_CLOSE : Loads a closing Animations::WinAnim as a transition after the name input part of the introduction.
-         * Then, loadNextScreen() loads in _next_gs a game screen according the value of this variable.
+         * This integer is filled with some special values determined by macros
+         * in GameMenuCtrl.cpp. Currently, there is
+         * - LOAD_OVERWORLD : Loads OverworldCtrl at the end of the introduction
+         * scene.
+         * - LOAD_ANIMATION_OPEN : Loads an opening Animations::WinAnim as a
+         * transition for the name input part of the introduction.
+         * - LOAD_ANIMATION_CLOSE : Loads a closing Animations::WinAnim as a
+         * transition after the name input part of the introduction. Then,
+         * loadNextScreen() loads in _next_gs a game screen according the value
+         * of this variable.
          */
         int loadNext = 0;
 
@@ -51,7 +56,7 @@ class GameData;
          */
         sf::Texture screenTexture;
 
-    public:
+      public:
         IntroSceneCtrl(GameData *data);
         GameStatus checkEvent(sf::Event const &event) override;
         GameStatus update(sf::RenderTexture &frame) override;

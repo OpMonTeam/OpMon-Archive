@@ -5,18 +5,18 @@
  */
 #pragma once
 
-#include "src/opmon/core/Player.hpp"
 #include "src/opmon/core/GameData.hpp"
+#include "src/opmon/core/Player.hpp"
 
 namespace OpMon {
-class Player;
-class GameData;
+    class Player;
+    class GameData;
 
     /*!
      * \brief Contains the data of the in-game menu used by View::GameMenu and Controller::GameMenuCtrl
      */
     class GameMenuData {
-    private:
+      private:
         sf::Texture menuTexture;
         sf::Texture background;
 
@@ -31,7 +31,7 @@ class GameData;
          */
         GameMenuData(GameMenuData const &);
 
-    public:
+      public:
         /*!
          * \brief Initialises all the data.
          * \param data A pointer to the GameData object.
@@ -59,7 +59,9 @@ class GameData;
          * \details Each button of the menu has a selected counterpart which is shown when the cursor is currently on the button.
          * \param index The button whose texture has to be returned.
          */
-        sf::Texture &getSelectionTexture(int index) { return selectionTexture[index]; }
+        sf::Texture &getSelectionTexture(int index) {
+            return selectionTexture[index];
+        }
         /*!
          * \brief Returns the position of each button.
          * \details This position is used to position the textures of the selected buttons.

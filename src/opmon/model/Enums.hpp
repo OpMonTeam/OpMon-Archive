@@ -34,25 +34,20 @@ namespace OpMon {
      * \brief Enumerates the OpMon stats.
      */
     enum class Stats : int {
-        ATK = 6,/*!< Attack*/
-        DEF = 1,/*!< Defense*/
-        ATKSPE = 2,/*!< Special Attack*/
-        DEFSPE = 3,/*!< Special Defense*/
-        SPE = 4,/*!< Speed*/
-        HP = 5,/*!< Health Points*/
-        ACC = 7,/*!< Accuracy*/
-        EVA = 8,/*!< Evasion*/
+        ATK = 6,    /*!< Attack*/
+        DEF = 1,    /*!< Defense*/
+        ATKSPE = 2, /*!< Special Attack*/
+        DEFSPE = 3, /*!< Special Defense*/
+        SPE = 4,    /*!< Speed*/
+        HP = 5,     /*!< Health Points*/
+        ACC = 7,    /*!< Accuracy*/
+        EVA = 8,    /*!< Evasion*/
         NOTHING = 0
     };
     /*!
      * \brief Enumerates the bag categories
      */
-    enum class BagCat {
-        HEAL,
-        OBJECTS,
-        RARES,
-        HMS
-    };
+    enum class BagCat { HEAL, OBJECTS, RARES, HMS };
     /**
      * \brief Enumerates the OpMon types
      */
@@ -81,10 +76,12 @@ namespace OpMon {
      * \brief Enumerates the different types of contacts between events and the player.
      */
     enum class ActionType {
-        ENTER,/*!< Event activated by pressing the action key.*/
-        TOUCH,/*!< Event activated by the player being in an adjacent square from the event.*/
-        IN_,/*!< Event activated by the player being on the same square as the event.*/
-        VIEW/*!< Event activated as soon as it is on the screen.*/
+        ENTER, /*!< Event activated by pressing the action key.*/
+        TOUCH, /*!< Event activated by the player being in an adjacent square
+                  from the event.*/
+        IN_, /*!< Event activated by the player being on the same square as the
+                event.*/
+        VIEW /*!< Event activated as soon as it is on the screen.*/
     };
     /*!
      * \brief Enumerates sprite directions.
@@ -101,11 +98,7 @@ namespace OpMon {
     /*!
      * \brief Enumerates different encodings
      */
-    enum class Encoding {
-        LATIN,
-        UNICODE,
-        UTF8
-    };
+    enum class Encoding { LATIN, UNICODE, UTF8 };
 
     bool operator==(Side side, int integer);
     bool operator!=(Side side, int integer);

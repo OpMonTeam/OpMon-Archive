@@ -9,30 +9,27 @@
 #define MAINMENU_HPP
 
 #include "MainMenuData.hpp"
-#include "src/utils/i18n/ATranslatable.hpp"
 #include "src/opmon/view/ui/TextBox.hpp"
+#include "src/utils/i18n/ATranslatable.hpp"
 
 namespace sf {
-class RenderTarget;
-}  // namespace sf
+    class RenderTarget;
+} // namespace sf
 
 namespace OpMon {
 
-/*!
- * \brief Represent one of the option that can be accessed from the main menu.
- */
-enum MainMenuOption { START_GAME,
-                      GO_TO_LOAD_MENU,
-                      GO_TO_SETTINGS_MENU };
+    /*!
+     * \brief Represent one of the option that can be accessed from the main menu.
+     */
+    enum MainMenuOption { START_GAME, GO_TO_LOAD_MENU, GO_TO_SETTINGS_MENU };
 
-class MainMenuData;
+    class MainMenuData;
 
     /*!
      * \brief The view printing the main menu showing at the start of the game.
      */
     class MainMenu : public Utils::I18n::ATranslatable, public sf::Drawable {
-
-    public:
+      public:
         MainMenu(MainMenuData &data);
         ~MainMenu() override = default;
 
@@ -62,7 +59,7 @@ class MainMenuData;
          */
         void draw(sf::RenderTarget &frame, sf::RenderStates states) const;
 
-    private:
+      private:
         MainMenuData &data;
         /*!
          * \brief The background of the menu.

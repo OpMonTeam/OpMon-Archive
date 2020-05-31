@@ -26,11 +26,11 @@ namespace Utils {
      * \brief Defines a parameter.
      */
     class Param {
-    private:
+      private:
         std::string paramName;
         std::string value;
 
-    public:
+      public:
         /*!
          * \param name The parameter's name. Alphanumeric characters only.
          * \param value The parameter's value.
@@ -46,8 +46,7 @@ namespace Utils {
      *  \todo Save the parameters in JSON.
      */
     class OptionsSave {
-    public:
-
+      public:
         /*!
          * \returns The parameter with this name in OptionsSave::paramList. Returns an empty parameter if none exists with the given name.
          * \param name The name of the parameter.
@@ -90,8 +89,7 @@ namespace Utils {
 
         ~OptionsSave();
 
-    private:
-
+      private:
         /*!
          * \brief The list of the different parameters.
          * \todo Change this to an std::list ?
@@ -104,7 +102,6 @@ namespace Utils {
         std::string file;
 
         int searchParam(std::string const &name);
-
     };
 } // namespace Utils
 #endif // OPTIONSSAVE_HPP

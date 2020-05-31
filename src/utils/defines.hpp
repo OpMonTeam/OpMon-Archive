@@ -4,31 +4,31 @@
  * \authors BAKFR
  * \copyright GNU GPL v3.0 license
  * \date 31/10/17
-*/
+ */
 #ifndef DEFINES_HPP
 #define DEFINES_HPP
 
 #include "config.hpp"
 
 #ifdef __GNUC__
-#define OP_DEPRECATED __attribute__((deprecated))
+#    define OP_DEPRECATED __attribute__((deprecated))
 #elif defined(_MSC_VER)
-#define OP_DEPRECATED __declspec(deprecated)
+#    define OP_DEPRECATED __declspec(deprecated)
 #else
 /*!
  * \brief Indicates the deprecation of an object.
  */
-#define OP_DEPRECATED
+#    define OP_DEPRECATED
 #endif
 
 #ifdef SFML_COMPATIBILITY
-#define setSfmlColor setColor
+#    define setSfmlColor setColor
 #else
 /*!
  * \brief Compatibility macro to avoir deprecation warning with earlier SFMl versions.
  * \details Redirects to setFillColor() if SFML_COMPATIBILITY is declared, or setColor() otherwise.
  */
-#define setSfmlColor setFillColor
+#    define setSfmlColor setFillColor
 #endif
 
 #include <string>

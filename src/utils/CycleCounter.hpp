@@ -37,22 +37,37 @@ namespace Utils {
         int range;
 
       public:
-
         /*!
          * \param limitUp The upper limit of the counter.
          * \param limitDown The lower limit of the counter.
          * \param value The value of the counter.
          */
         CycleCounter(int limitUp, int limitDown = 0, int value = 0)
-          : value(value)
-          , limitDown(limitDown)
-          , limitUp(limitUp)
-          , range(limitUp - limitDown) {}
+            : value(value),
+              limitDown(limitDown),
+              limitUp(limitUp),
+              range(limitUp - limitDown) {}
 
-        CycleCounter operator+(int number) { return CycleCounter(limitUp, limitDown, ((range + ((value + number) - limitDown)) % range) + limitDown); }
-        CycleCounter operator-(int number) { return CycleCounter(limitUp, limitDown, ((range + ((value - number) - limitDown)) % range) + limitDown); }
-        CycleCounter operator*(int number) { return CycleCounter(limitUp, limitDown, ((range + ((value * number) - limitDown)) % range) + limitDown); }
-        CycleCounter operator/(int number) { return CycleCounter(limitUp, limitDown, ((range + ((value / number) - limitDown)) % range) + limitDown); }
+        CycleCounter operator+(int number) {
+            return CycleCounter(
+                limitUp, limitDown,
+                ((range + ((value + number) - limitDown)) % range) + limitDown);
+        }
+        CycleCounter operator-(int number) {
+            return CycleCounter(
+                limitUp, limitDown,
+                ((range + ((value - number) - limitDown)) % range) + limitDown);
+        }
+        CycleCounter operator*(int number) {
+            return CycleCounter(
+                limitUp, limitDown,
+                ((range + ((value * number) - limitDown)) % range) + limitDown);
+        }
+        CycleCounter operator/(int number) {
+            return CycleCounter(
+                limitUp, limitDown,
+                ((range + ((value / number) - limitDown)) % range) + limitDown);
+        }
 
         void operator++(int) { value = (*this + 1).value; }
         void operator--(int) { value = (*this - 1).value; }
@@ -62,7 +77,9 @@ namespace Utils {
         void operator*=(int number) { value = (*this * number).value; }
         void operator/=(int number) { value = (*this / number).value; }
 
-        void operator=(int number) { value = ((range + (number - limitDown)) % range) + limitDown; }
+        void operator=(int number) {
+            value = ((range + (number - limitDown)) % range) + limitDown;
+        }
 
         /*!
          * \return The value of the counter.

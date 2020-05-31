@@ -9,8 +9,7 @@
 
 namespace OpMon {
     namespace Evolutions {
-        E_Level::E_Level(int evo, int level)
-            : Evolution(evo) {
+        E_Level::E_Level(int evo, int level): Evolution(evo) {
             this->level = level;
         }
 

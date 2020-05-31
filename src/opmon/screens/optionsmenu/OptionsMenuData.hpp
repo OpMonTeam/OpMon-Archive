@@ -8,13 +8,13 @@
 #include "src/opmon/core/GameData.hpp"
 
 namespace OpMon {
-class GameData;
+    class GameData;
 
     /*!
      * \brief Contains the data used in the options menu.
      */
     class OptionsMenuData {
-    private:
+      private:
         GameData *gamedata;
         sf::Texture background;
         sf::Texture selectBar;
@@ -29,7 +29,7 @@ class GameData;
          */
         OptionsMenuData(OptionsMenuData const &);
 
-    public:
+      public:
         /*!
          * \brief Gets the background.
          */

@@ -2,7 +2,8 @@
  * \dir src/opmon/core
  * \brief Contains the core elements of the game.
  *
- * This directory contains the utilities, the main objects and the starting code for the game.
+ * This directory contains the utilities, the main objects and the starting code
+ * for the game.
  */
 /*!
  * \file Gameloop.hpp
@@ -12,7 +13,7 @@
  * \authors Navet56
  * \copyright GNU GPL v3.0
  * \date 02/11/17
-*/
+ */
 
 #pragma once
 
@@ -22,13 +23,13 @@
 #include "GameData.hpp"
 
 namespace sf {
-class Event;
-}  // namespace sf
+    class Event;
+} // namespace sf
 
 namespace OpMon {
-namespace Ui {
-class Window;
-}  // namespace Ui
+    namespace Ui {
+        class Window;
+    } // namespace Ui
 
     /*!
       \class GameLoop Gameloop.hpp "src/start/Gameloop.hpp"
@@ -57,9 +58,10 @@ class Window;
          * \param event The native SFML event
          * \param window A reference to the window in case an update is necessary
          */
-        void _checkWindowResize(const sf::Event &event, Ui::Window &window) const;
+        void _checkWindowResize(const sf::Event &event,
+                                Ui::Window &window) const;
 
-    private:
+      private:
         /*!
          * \brief The pointer containing the GameData object shared in the different data objects.
          */

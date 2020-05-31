@@ -5,24 +5,24 @@
  */
 #pragma once
 
-#include "src/utils/CycleCounter.hpp"
 #include "GameMenu.hpp"
 #include "src/opmon/screens/base/AGameScreen.hpp"
+#include "src/utils/CycleCounter.hpp"
 
 namespace sf {
-class Event;
-class RenderTexture;
-}  // namespace sf
+    class Event;
+    class RenderTexture;
+} // namespace sf
 
 namespace OpMon {
-class GameMenuData;
-class Player;
+    class GameMenuData;
+    class Player;
 
     /*!
      * \brief Controller of the in-game menu.
      */
     class GameMenuCtrl : public AGameScreen {
-    private:
+      private:
         GameMenuData &data;
 
         GameMenu view;
@@ -31,7 +31,10 @@ class Player;
         /*!
          * \brief Determines which screen has to be loaded in loadNextScreen().
          *
-         * This integer is filled with some special values determined by macros in GameMenuCtrl.cpp. Currently, there is LOAD_OPTIONS. Then, loadNextScreen() loads in _next_gs a game screen according the value of this variable.
+         * This integer is filled with some special values determined by macros
+         * in GameMenuCtrl.cpp. Currently, there is LOAD_OPTIONS. Then,
+         * loadNextScreen() loads in _next_gs a game screen according the value
+         * of this variable.
          */
         SubMenu submenuToLoadNext = SubMenu::SAVE_MENU;
 
@@ -40,7 +43,7 @@ class Player;
          */
         Utils::CycleCounter curPos = Utils::CycleCounter(6);
 
-    public:
+      public:
         ~GameMenuCtrl();
 
         GameMenuCtrl(GameMenuData &data, Player &player);

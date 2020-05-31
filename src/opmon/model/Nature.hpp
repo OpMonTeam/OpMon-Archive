@@ -15,10 +15,11 @@ namespace OpMon {
     /*!
      * \brief Defines a nature.
      *
-     * A natures brings a malus and a bonus on some stats. Each OpMon have a randomy-generated nature.
+     * A natures brings a malus and a bonus on some stats. Each OpMon have a
+     * randomy-generated nature.
      */
     class NatureClass {
-    public:
+      public:
         /*!
          * \brief The bonus brought by the nature.
          */
@@ -38,9 +39,7 @@ namespace OpMon {
          * \param id \copydoc NatureClass::id
          */
         NatureClass(Stats bonus, Stats malus, int id)
-            : bonus(bonus)
-            , malus(malus)
-            , id(id){};
+            : bonus(bonus), malus(malus), id(id) {};
     };
 
     /*!

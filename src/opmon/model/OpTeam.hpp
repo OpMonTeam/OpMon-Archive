@@ -16,15 +16,11 @@ namespace OpMon {
      * \brief Defines an OpMon team, used by the player and trainers.
      */
     class OpTeam {
-    public:
+      public:
         ~OpTeam();
         OpTeam(std::string const &name);
-        std::string getName() const {
-            return name;
-        }
-        std::vector<OpMon *> getOpTeam() {
-            return opteam;
-        }
+        std::string getName() const { return name; }
+        std::vector<OpMon *> getOpTeam() { return opteam; }
         /*!
          * \brief Heals all the OpMon.
          */
@@ -50,9 +46,7 @@ namespace OpMon {
          * \copydoc operator[]
          * \details Equivalent to OpTeam::operator[]
          */
-        OpMon *getOp(int id) const {
-            return (*this)[id];
-        }
+        OpMon *getOp(int id) const { return (*this)[id]; }
         /**
          * \brief Returns `true` if all the OpMon on the team are K.O.
          */
@@ -60,7 +54,7 @@ namespace OpMon {
         int getSize() const;
         void save();
 
-    private:
+      private:
         /*!
          * \brief The array containing the team.
          */

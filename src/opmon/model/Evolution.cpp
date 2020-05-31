@@ -7,12 +7,8 @@
 
 namespace OpMon {
 
-    Evolution::Evolution(int evo)
-        : evo(evo) {
-    }
+    Evolution::Evolution(int evo): evo(evo) {}
 
-    Species *Evolution::getEvolution() const {
-        return toEvolve;
-    }
+    Species *Evolution::getEvolution() const { return toEvolve; }
 
 } // namespace OpMon

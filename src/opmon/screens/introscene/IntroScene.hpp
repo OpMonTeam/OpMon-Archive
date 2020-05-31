@@ -8,23 +8,23 @@
 #define STARTSCENE_HPP
 
 #include "IntroSceneData.hpp"
-#include "src/utils/i18n/ATranslatable.hpp"
-#include "src/opmon/view/ui/Dialog.hpp"
 #include "src/opmon/core/GameStatus.hpp"
+#include "src/opmon/view/ui/Dialog.hpp"
+#include "src/utils/i18n/ATranslatable.hpp"
 
 namespace sf {
-class RenderTarget;
-}  // namespace sf
+    class RenderTarget;
+} // namespace sf
 
 namespace OpMon {
-class IntroSceneData;
+    class IntroSceneData;
 
     /*!
      * \brief View managing the introduction scene.
      * \todo Change name to IntroScene.
      */
     class IntroScene : public Utils::I18n::ATranslatable, public sf::Drawable {
-    public:
+      public:
         IntroScene(IntroSceneData &data);
         ~IntroScene() override = default;
 
@@ -46,30 +46,24 @@ class IntroSceneData;
         void initStrings();
         void onLangChanged() override;
 
-        Ui::Dialog *getDialog() {
-            return dialog.get();
-        }
+        Ui::Dialog *getDialog() { return dialog.get(); }
 
         /*!
          * \brief Returns IntroScene::part
          */
-        int getPart() {
-            return part;
-        }
+        int getPart() { return part; }
 
         /*!
          * \brief Returns the entered player name.
          */
-        sf::String &getpName() {
-            return pName;
-        }
+        sf::String &getpName() { return pName; }
 
         /*!
          * \brief Deletes the data used for the name input screen.
          */
         void delLoop1();
 
-    private:
+      private:
         sf::Sprite bg;
         sf::Sprite prof;
 

@@ -6,20 +6,19 @@
 
 #include "GameMenu.hpp"
 
-#include <cstddef>
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
+#include <cstddef>
 #include <memory>
 
-#include "src/utils/StringKeys.hpp"
 #include "src/opmon/core/GameData.hpp"
 #include "src/opmon/screens/gamemenu/GameMenuData.hpp"
+#include "src/utils/StringKeys.hpp"
 #include "src/utils/defines.hpp"
 
 namespace OpMon {
 
-    GameMenu::GameMenu(GameMenuData &data)
-        : data(data) {
+    GameMenu::GameMenu(GameMenuData &data): data(data) {
         background.setTexture(data.getBackground());
         menuBg.setTexture(data.getMenuTexture());
         for(size_t i = 0; i < 6; i++) {
@@ -29,12 +28,16 @@ namespace OpMon {
             selectxt[i].setCharacterSize(20);
             selectxt[i].setSfmlColor(sf::Color::White);
         }
-        selectxt[0].setString(data.getGameDataPtr()->getString("gamemenu.save"));
+        selectxt[0].setString(
+            data.getGameDataPtr()->getString("gamemenu.save"));
         selectxt[1].setString(data.getGameDataPtr()->getString("gamemenu.id"));
         selectxt[2].setString(data.getGameDataPtr()->getString("gamemenu.bag"));
-        selectxt[3].setString(data.getGameDataPtr()->getString("gamemenu.opmons"));
-        selectxt[4].setString(data.getGameDataPtr()->getString("gamemenu.opdex"));
-        selectxt[5].setString(data.getGameDataPtr()->getString("gamemenu.settings"));
+        selectxt[3].setString(
+            data.getGameDataPtr()->getString("gamemenu.opmons"));
+        selectxt[4].setString(
+            data.getGameDataPtr()->getString("gamemenu.opdex"));
+        selectxt[5].setString(
+            data.getGameDataPtr()->getString("gamemenu.settings"));
 
         selectxt[0].setPosition(146, 143);
         selectxt[1].setPosition(260, 143);
@@ -50,7 +53,8 @@ namespace OpMon {
         }
     }
 
-    void GameMenu::draw(sf::RenderTarget &frame, sf::RenderStates states) const {
+    void GameMenu::draw(sf::RenderTarget &frame,
+                        sf::RenderStates states) const {
         frame.draw(background);
         frame.draw(menuBg);
         frame.draw(selections[curPos]);

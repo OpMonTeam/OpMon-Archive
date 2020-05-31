@@ -20,7 +20,8 @@ namespace Utils {
          * \param searchKeyCode The key whose associated code is wanted.
          * \returns The code associated with the key.
          */
-        static const std::string &findNameKeyCode(sf::Keyboard::Key searchKeyCode);
+        static const std::string &findNameKeyCode(
+            sf::Keyboard::Key searchKeyCode);
 
         /*!
          * \brief A map associating a code to some keys.

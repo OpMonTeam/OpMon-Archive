@@ -7,28 +7,32 @@
 #ifndef OVERWORLDCTRL_HPP
 #define OVERWORLDCTRL_HPP
 
-#include "Overworld.hpp"
-#include "src/opmon/screens/base/AGameScreen.hpp"
 #include <list>
 
+#include "Overworld.hpp"
+#include "src/opmon/screens/base/AGameScreen.hpp"
+
 namespace sf {
-class Event;
-class RenderTexture;
-}  // namespace sf
+    class Event;
+    class RenderTexture;
+} // namespace sf
 
 namespace OpMon {
-class Player;
-class GameData;
+    class Player;
+    class GameData;
 
     /*!
      * \brief Manages the overworld.
      *
-     * This class checks for the different SFML events the player can trigger to interact with the overworld, like the directional keys to move the player, and then calls the associated methods/functions.
-     * It also manages the two overworld states : the free state where the player can move and explore, and the dialog state, when a dialog is currently on screen.
+     * This class checks for the different SFML events the player can trigger to
+     * interact with the overworld, like the directional keys to move the
+     * player, and then calls the associated methods/functions. It also manages
+     * the two overworld states : the free state where the player can move and
+     * explore, and the dialog state, when a dialog is currently on screen.
      * Finally, it updates the Event objects and manages the debug mode.
      */
     class OverworldCtrl : public AGameScreen {
-    private:
+      private:
         OverworldData data;
 
         Overworld view;
@@ -37,12 +41,18 @@ class GameData;
         /*!
          * \brief Determines which screen has to be loaded in loadNextScreen().
          *
-         * This integer is filled with some special values determined by macros in GameMenuCtrl.cpp. Currently, there is
+         * This integer is filled with some special values determined by macros
+         * in GameMenuCtrl.cpp. Currently, there is
          * - LOAD_BATTLE : Loads BattleCtrl
-         * - LOAD_MENU_OPEN : Loads the opening animation for the menu. Called when the player presses the menu key.
-         * - LOAD_MENU_CLOSE : Loads the closing animation for the menu. Called when OverworldCtrl::checkEvent is called right after the end of GameMenuCtrl.
-         * - LOAD_MENU : Loads GameMenuCtrl. Called when OverworldCtrl::checkEvent is called right after the end of the opening animation.
-         * Then, loadNextScreen() loads in _next_gs a game screen according the value of this variable.
+         * - LOAD_MENU_OPEN : Loads the opening animation for the menu. Called
+         * when the player presses the menu key.
+         * - LOAD_MENU_CLOSE : Loads the closing animation for the menu. Called
+         * when OverworldCtrl::checkEvent is called right after the end of
+         * GameMenuCtrl.
+         * - LOAD_MENU : Loads GameMenuCtrl. Called when
+         * OverworldCtrl::checkEvent is called right after the end of the
+         * opening animation. Then, loadNextScreen() loads in _next_gs a game
+         * screen according the value of this variable.
          */
         int loadNext = 0;
 
@@ -60,18 +70,20 @@ class GameData;
         /*!
          * \brief List of last activated events by pressing a button.
          *
-         * This list is used in checkAction to avoid AbstractEvent::action being called in two consecutive frames.
+         * This list is used in checkAction to avoid AbstractEvent::action being
+         * called in two consecutive frames.
          */
-        std::list<Elements::AbstractEvent*> usedList;
+        std::list<Elements::AbstractEvent *> usedList;
 
-    public:
+      public:
         OverworldCtrl(Player &player, GameData *gamedata);
 
         GameStatus checkEvent(sf::Event const &event) override;
         /*!
          * \brief Checks the necessary events when a dialog is currently playing.
          */
-        GameStatus checkEventsDialog(sf::Event const &events, Overworld &overworld);
+        GameStatus checkEventsDialog(sf::Event const &events,
+                                     Overworld &overworld);
         /*!
          * \brief Checks the necessary events when no dialog is currently playing.
          */
@@ -100,7 +112,8 @@ class GameData;
          * \param player A reference to the player object.
          * \param overworld A reference to the overworld view.
          */
-        void updateEvents(std::vector<Elements::AbstractEvent *> &events, Overworld &overworld);
+        void updateEvents(std::vector<Elements::AbstractEvent *> &events,
+                          Overworld &overworld);
 
         /*!
          * \brief Calls Event::action for some events.
@@ -115,7 +128,9 @@ class GameData;
          * Event::action for the events with this EventTrigger.
          * \param overworld A reference to the overworld view.
          */
-        void actionEvents(std::list<Elements::AbstractEvent *> &events, Elements::EventTrigger toTrigger, Overworld &overworld);
+        void actionEvents(std::list<Elements::AbstractEvent *> &events,
+                          Elements::EventTrigger toTrigger,
+                          Overworld &overworld);
 
         /*!
          * \brief Calls actionEvents for some events.

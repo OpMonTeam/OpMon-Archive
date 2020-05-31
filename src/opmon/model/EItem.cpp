@@ -10,20 +10,18 @@
 #include "src/opmon/model/Evolution.hpp"
 
 namespace OpMon {
-class OpMon;
-}  // namespace OpMon
+    class OpMon;
+} // namespace OpMon
 
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 namespace OpMon {
 
     namespace Evolutions {
         E_Item::E_Item(int evo, std::string const &itemId)
-            : Evolution(evo)
-            , itemID(itemId) {
-        }
+            : Evolution(evo), itemID(itemId) {}
 
         bool E_Item::checkEvolve(OpMon const &toCheck) const {
-            //Temporary
+            // Temporary
             return false;
         }
     } // namespace Evolutions

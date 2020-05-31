@@ -6,13 +6,14 @@
  * \authors BAKFR
  * \date 31/10/17
  * \copyright GNU GPL v3.0 license
-*/
+ */
 #ifndef OPSTRING_PROTECTED
 #define OPSTRING_PROTECTED
 #include <SFML/System/String.hpp>
 #include <iostream>
-#include <vector>
 #include <string>
+#include <vector>
+
 #include "StringKeys.hpp"
 
 /*! \namespace Utils
@@ -44,7 +45,8 @@ namespace Utils {
          * \param key The key allowing to get the character string from StringKeys.
          * \param obj A array of pointers to objects completing the string.
          */
-        OpString(StringKeys &instance, std::string const &key, std::vector<sf::String *> obj = {});
+        OpString(StringKeys &instance, std::string const &key,
+                 std::vector<sf::String *> obj = {});
         /*!
          * \brief Contructs an empty OpString with no key nor object.
          * \details It is not possible to set the key and the objects after. However, it is still possible to call getString(), which will return an empty string.
@@ -61,14 +63,12 @@ namespace Utils {
         /*!
          * \returns The key giving the string in StringKeys.
          */
-        const std::string &getKey() const {
-            return key;
-        }
+        const std::string &getKey() const { return key; }
         /*!
          * \brief Generates the completed string and returns it.
          * \returns The completed string.
          */
-        sf::String getString(StringKeys& instance) const;
+        sf::String getString(StringKeys &instance) const;
 
         /*!
          * \brief Creates an OpString and directly returns the result of getString().
@@ -76,7 +76,9 @@ namespace Utils {
          * \param key The key allowing to get the character string from StringKeys.
          * \param vstr The array of objects completing the string.
          */
-        static sf::String quickString(StringKeys &instance, std::string const &key, std::vector<std::string> vstr = {});
+        static sf::String quickString(StringKeys &instance,
+                                      std::string const &key,
+                                      std::vector<std::string> vstr = {});
     };
 
 } // namespace Utils

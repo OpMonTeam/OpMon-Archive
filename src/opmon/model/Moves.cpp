@@ -14,8 +14,8 @@
 #include "src/utils/OpString.hpp"
 
 namespace OpMon {
-class Move;
-}  // namespace OpMon
+    class Move;
+} // namespace OpMon
 
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 namespace OpMon {
@@ -25,17 +25,16 @@ namespace OpMon {
         using namespace Utils;
 
         ChangeStatEffect::ChangeStatEffect(Target target, Stats stat, int coef)
-            : target(target)
-            , stat(stat)
-            , coef(coef) {}
+            : target(target), stat(stat), coef(coef) {}
 
         ChangeStatEffect::ChangeStatEffect(nlohmann::json const &data)
-            : target(data.at("target"))
-            , stat(data.at("stat"))
-            , coef(data.at("coef")) {
-        }
+            : target(data.at("target")),
+              stat(data.at("stat")),
+              coef(data.at("coef")) {}
 
-        int ChangeStatEffect::apply(Move &, OpMon &attacker, OpMon &defender, std::queue<Elements::TurnAction> &turnQueue) {
+        int ChangeStatEffect::apply(
+            Move &, OpMon &attacker, OpMon &defender,
+            std::queue<Elements::TurnAction> &turnQueue) {
             std::map<Stats, int (OpMon::*)(int)> stat_to_method = {
                 {Stats::ACC, &OpMon::changeACC},
                 {Stats::ATK, &OpMon::changeATK},
@@ -53,10 +52,12 @@ namespace OpMon {
             newTurnAction(&statMod);
 
             if(target == Target::MOVEER) {
-                (attacker.*change_method)(coef); // diff_value = attacker.changeXXX(coef)
+                (attacker.*
+                 change_method)(coef); // diff_value = attacker.changeXXX(coef)
                 statMod.type = Elements::TurnActionType::ATK_STAT_MOD;
             } else {
-                (defender.*change_method)(coef); // diff_value = defender.changeXXX(coef)
+                (defender.*
+                 change_method)(coef); // diff_value = defender.changeXXX(coef)
                 statMod.type = Elements::TurnActionType::DEF_STAT_MOD;
             }
             statMod.statCoef = coef;

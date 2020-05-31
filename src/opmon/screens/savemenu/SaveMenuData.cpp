@@ -6,8 +6,6 @@ namespace OpMon {
 
     class GameData;
 
-    SaveMenuData::SaveMenuData(GameData *data)
-      : gamedata(data) {
-    }
+    SaveMenuData::SaveMenuData(GameData *data): gamedata(data) {}
 
 } // namespace OpMon

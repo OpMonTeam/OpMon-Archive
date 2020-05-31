@@ -10,26 +10,28 @@
 #define OPTIONSMENU_HPP
 
 #include "OptionsMenuData.hpp"
-#include "src/utils/i18n/ATranslatable.hpp"
+#include "src/opmon/core/GameStatus.hpp"
 #include "src/opmon/view/ui/Elements.hpp"
 #include "src/opmon/view/ui/TextBox.hpp"
 #include "src/utils/CycleCounter.hpp"
-#include "src/opmon/core/GameStatus.hpp"
+#include "src/utils/i18n/ATranslatable.hpp"
 
 namespace sf {
-class RenderTarget;
-}  // namespace sf
+    class RenderTarget;
+} // namespace sf
 
 namespace OpMon {
-class OptionsMenuData;
+    class OptionsMenuData;
 
     /*!
      * \brief The different screens of the settings.
      */
-    enum class OptionType { ALL,/*!< The main menu of the settings.*/
-                            LANG,/*!< The language menu.*/
-                            CONTROLS,/*!< The controls menu.*/
-                            CREDITS/*!< The credits screen.*/ };
+    enum class OptionType {
+        ALL,      /*!< The main menu of the settings.*/
+        LANG,     /*!< The language menu.*/
+        CONTROLS, /*!< The controls menu.*/
+        CREDITS   /*!< The credits screen.*/
+    };
 
     /*!
      * \brief The screen of the settings.
@@ -37,8 +39,8 @@ class OptionsMenuData;
      * \todo Make the addition of a language easier.
      * \todo Put some variables in arrays.
      */
-    class OptionsMenu : public Utils::I18n::ATranslatable, public sf::Drawable{
-    public:
+    class OptionsMenu : public Utils::I18n::ATranslatable, public sf::Drawable {
+      public:
         OptionsMenu(OptionsMenuData &data);
         ~OptionsMenu() = default;
 
@@ -71,20 +73,22 @@ class OptionsMenuData;
          */
         int cursorPosition() const {
             switch(currentOptions) {
-            case OptionType::ALL:
-                return curPosOptI.getValue();
-            case OptionType::LANG:
-                return curPosLangI.getValue();
-            case OptionType::CONTROLS:
-                return curPosCtrlI.getValue();
-            default:
-                return curPosOptI.getValue();
+                case OptionType::ALL:
+                    return curPosOptI.getValue();
+                case OptionType::LANG:
+                    return curPosLangI.getValue();
+                case OptionType::CONTROLS:
+                    return curPosCtrlI.getValue();
+                default:
+                    return curPosOptI.getValue();
             }
 
             return 0;
         }
 
-        void setCurrentKeyChange(int currentKeyChange_) { currentKeyChange = currentKeyChange_; }
+        void setCurrentKeyChange(int currentKeyChange_) {
+            currentKeyChange = currentKeyChange_;
+        }
 
         void play();
         void pause();
@@ -93,8 +97,7 @@ class OptionsMenuData;
         void initOptionsMenuItemsValue();
         void initLanguagesMenuItemsName();
 
-    private:
-
+      private:
         /*!
          * \brief Updates the main settings menu.
          */
@@ -111,7 +114,6 @@ class OptionsMenuData;
          * \brief Updates the credit screen.
          */
         GameStatus creditsLoop();
-
 
         OptionsMenuData &data;
         OptionType currentOptions;
@@ -147,7 +149,7 @@ class OptionsMenuData;
         /*!
          * \brief The currently selected key to change in the controls menu.
          */
-        int currentKeyChange{0};
+        int currentKeyChange {0};
         sf::Text txtCtrlChange;
         sf::Text txtCtrlUp;
         sf::Text txtCtrlDown;
@@ -157,7 +159,8 @@ class OptionsMenuData;
         sf::Text txtCtrlInteract;
         sf::Sprite rectKeyChange;
         const sf::Vector2f posControls[7] = {
-            {-500.0, -500.0}, {150.0, 175.0}, {148.0, 450.0}, {9.0, 311.0}, {298.0, 310.0}, {412.0, 211.0}, {412.0, 334.0}};
+            {-500.0, -500.0}, {150.0, 175.0}, {148.0, 450.0}, {9.0, 311.0},
+            {298.0, 310.0},   {412.0, 211.0}, {412.0, 334.0}};
 
         sf::Text txtCred;
         sf::Text txtCtrl;

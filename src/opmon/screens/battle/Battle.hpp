@@ -8,36 +8,41 @@
 
 #include <SFML/Graphics/Transform.hpp>
 
-#include "src/utils/CycleCounter.hpp"
-#include "src/opmon/view/elements/Turn.hpp"
 #include "BattleData.hpp"
+#include "src/opmon/core/GameStatus.hpp"
+#include "src/opmon/view/elements/Turn.hpp"
 #include "src/opmon/view/ui/Dialog.hpp"
 #include "src/opmon/view/ui/Elements.hpp"
-#include "src/opmon/core/GameStatus.hpp"
+#include "src/utils/CycleCounter.hpp"
 
 namespace sf {
-class RenderTarget;
-}  // namespace sf
+    class RenderTarget;
+} // namespace sf
 
 namespace OpMon {
 
     class OpTeam;
     class BattleData;
-class OpMon;
-namespace Ui {
-class Transformation;
-}  // namespace Ui
-
+    class OpMon;
+    namespace Ui {
+        class Transformation;
+    } // namespace Ui
 
     /*!
      * \brief Class managing the battles on the screen.
      *
      * The Battle view alternates between two phases :
-     * - The choices phase, with the different menus where the player has to choose between different actions and moves. The view will only manage these two choices, the other selection menus (OpMon and items) will be manages by other views.
-     * - The turns phase, in which the actions are being executed. Everything is calculated in BattleCtrl and stored in a queue of TurnAction. This class reads these objects corresponding to the different animations this view has to do according to the TurnActionType object in them.
+     * - The choices phase, with the different menus where the player has to
+     * choose between different actions and moves. The view will only manage
+     * these two choices, the other selection menus (OpMon and items) will be
+     * manages by other views.
+     * - The turns phase, in which the actions are being executed. Everything is
+     * calculated in BattleCtrl and stored in a queue of TurnAction. This class
+     * reads these objects corresponding to the different animations this view
+     * has to do according to the TurnActionType object in them.
      */
-    class Battle : public sf::Drawable{
-    private:
+    class Battle : public sf::Drawable {
+      private:
         /*!
          * \brief The sprite of the front OpMon.
          */
@@ -181,9 +186,10 @@ class Transformation;
          * During the battle, two phases alternate:
          * - Action selection (Menu with different actions)
          * - Turn action (Move, item and other actions)
-         * When the turn is launched, the variable BattleCtrl::turnActivated is set to true.
-         * When the turn is over, the variable BattleCtrl::turnActivated is set to false.
-         * Battle have its own variable, allowing to know when the variable has changed.
+         * When the turn is launched, the variable BattleCtrl::turnActivated is
+         * set to true. When the turn is over, the variable
+         * BattleCtrl::turnActivated is set to false. Battle have its own
+         * variable, allowing to know when the variable has changed.
          */
         int phase = 0;
 
@@ -201,7 +207,7 @@ class Transformation;
         /*!
          * \brief Updates the sprites when new OpMons join the battle.
          */
-        void initNewOp(OpMon const* atk, OpMon const* def);
+        void initNewOp(OpMon const *atk, OpMon const *def);
 
         /*!
          * \brief If the dialog has to be drawn on the screen.
@@ -223,7 +229,7 @@ class Transformation;
          */
         bool drawType = false;
 
-    public:
+      public:
         /*!
          * \brief Initialises a battle.
          * \param atkTeam The player's team.
@@ -232,7 +238,9 @@ class Transformation;
          * \param background The background of the battle.
          * \param data The data used for the battle.
          */
-        Battle(const OpTeam *atkTeam, const OpTeam *defTeam, std::string trainerClass, std::string background, BattleData &data);
+        Battle(const OpTeam *atkTeam, const OpTeam *defTeam,
+               std::string trainerClass, std::string background,
+               BattleData &data);
 
         void draw(sf::RenderTarget &frame, sf::RenderStates states) const;
 
@@ -245,12 +253,16 @@ class Transformation;
          * \param turnActivated A pointer to BattleCtrl::turnActivated. See Battle::phase for further explanation.
          * \param atkFirst If `true`, the player's turn is the first. Else, the opponent's turn is the first.
          */
-        GameStatus update(Elements::TurnData const &atk, Elements::TurnData const &def, std::queue<Elements::TurnAction> &actionQueue, bool *turnActivated, bool atkFirst);
+        GameStatus update(Elements::TurnData const &atk,
+                          Elements::TurnData const &def,
+                          std::queue<Elements::TurnAction> &actionQueue,
+                          bool *turnActivated, bool atkFirst);
 
         /*!
          * \brief Initializes the battle with the current data.
          */
-        void initialize(Elements::TurnData const &atk, Elements::TurnData const &def);
+        void initialize(Elements::TurnData const &atk,
+                        Elements::TurnData const &def);
 
         /*!
          * \brief Moves the cursor.

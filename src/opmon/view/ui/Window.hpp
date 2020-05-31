@@ -10,8 +10,8 @@
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Sprite.hpp>
-#include "src/utils/OptionsSave.hpp"
 
+#include "src/utils/OptionsSave.hpp"
 
 namespace OpMon {
     namespace Ui {

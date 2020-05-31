@@ -7,23 +7,23 @@
 
 #include <list>
 
-#include "src/opmon/core/Player.hpp"
 #include "src/opmon/core/GameData.hpp"
+#include "src/opmon/core/Player.hpp"
 
 namespace OpMon {
-class Player;
-class GameData;
+    class Player;
+    class GameData;
 
     /*!
      * \brief Contains the data used by View::Battle and Controller::BattleCtrl
      */
     class BattleData {
-    private:
+      private:
         std::map<std::string, sf::Texture> backgrounds;
         sf::Texture dialog;
         sf::Texture moveDialog;
         sf::Texture cursor;
-        //std::vector<sf::Texture> choices;
+        // std::vector<sf::Texture> choices;
         std::map<std::string, std::vector<sf::Texture>> charaBattleTextures;
         std::list<sf::Texture> battlePlayerAnim;
         sf::Texture infoboxPlayer;
@@ -41,7 +41,7 @@ class GameData;
          */
         BattleData(BattleData const &);
 
-    public:
+      public:
         /*!
          * \brief A pointer to the Player object.
          */
@@ -85,11 +85,15 @@ class GameData;
          * \brief Gets the character's battle textures.
          * \param id The identifier of the character's textures.
          */
-        std::vector<sf::Texture> &getCharaBattleTextures(std::string id) { return charaBattleTextures[id]; }
+        std::vector<sf::Texture> &getCharaBattleTextures(std::string id) {
+            return charaBattleTextures[id];
+        }
         /*!
          * \brief Gets the iterator to the first element of the list of textures for the player's sprite animation at the start of a battle.
          */
-        std::list<sf::Texture>::iterator getBattlePlayerAnimBegin() { return battlePlayerAnim.begin(); }
+        std::list<sf::Texture>::iterator getBattlePlayerAnimBegin() {
+            return battlePlayerAnim.begin();
+        }
         /*!
          * \brief Gets the texture of the infobox for the player's OpMon.
          */

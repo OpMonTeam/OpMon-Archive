@@ -18,13 +18,13 @@
 
 namespace sf {
     class RenderTarget;
-}  // namespace sf
+} // namespace sf
 
-namespace OpMon{
+namespace OpMon {
 
     /// \brief A class used to draw a UI box that can contain text or other elements.
     class TextBox : public sf::Drawable {
-    private:
+      private:
         sf::VertexArray vertexArray = sf::VertexArray(sf::Quads, 36);
 
         /// \brief The texture used to draw the box
@@ -56,9 +56,10 @@ namespace OpMon{
         sf::Color inactiveColor = sf::Color(50, 50, 50, 200);
 
         /// \brief Draw the box on the given render texture
-        virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+        virtual void draw(sf::RenderTarget &target,
+                          sf::RenderStates states) const;
 
-    public:
+      public:
         /**!
          * \brief Create a text box that can be later drawn on screen.
          * \param texture The texture used for the background of the box.
@@ -67,7 +68,8 @@ namespace OpMon{
          * \param height The height of the box.
          * \param linesCount The number of lines of text to display in the box.
          */
-        TextBox(sf::Texture texture, sf::Vector2f position, uint32_t width, uint32_t height, uint32_t linesCount = 1);
+        TextBox(sf::Texture texture, sf::Vector2f position, uint32_t width,
+                uint32_t height, uint32_t linesCount = 1);
 
         TextBox() = default;
 
@@ -77,20 +79,20 @@ namespace OpMon{
          * \brief Set the font used for the content of the text box.
          * \param font The font to use for the content of the text box.
          */
-        void setFont(const sf::Font& font);
+        void setFont(const sf::Font &font);
 
         /**!
          * \brief Set the string used for the content of the text in the left of the box.
          * \param content A string to use for the content.
          * \param line The index of the line for which the content will be set (start at 0).
          */
-        void setLeftContent(const sf::String& content, uint32_t line = 0);
+        void setLeftContent(const sf::String &content, uint32_t line = 0);
 
         /**!
          * \brief Set the string used for the content of the text in the right of the box.
          * \param content A string to use for the content.
          */
-        void setRightContent(const sf::String& content);
+        void setRightContent(const sf::String &content);
 
         /**!
          * \brief Set the box as inactive or active (i.e. greyed out or not).
@@ -99,5 +101,4 @@ namespace OpMon{
         void setActive(bool active);
     };
 
-
-}
+} // namespace OpMon

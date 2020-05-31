@@ -12,17 +12,15 @@
 namespace OpMon {
 
     class Species;
-class OpMon;
+    class OpMon;
 
     /**
      * \brief Defines an evolution type
      */
     class Evolution {
-    public:
+      public:
         virtual ~Evolution() {}
-        Evolution() {
-            evo = -1;
-        }
+        Evolution() { evo = -1; }
         Evolution(int evo);
         /**\brief Checks if the OpMon evolves.*/
         virtual bool checkEvolve(OpMon const &toCheck) const = 0;
@@ -31,7 +29,7 @@ class OpMon;
            \details Can't be done in the constructor, since the evolution might not be defined yet.*/
         void checkEvo();
 
-    protected:
+      protected:
         Species *toEvolve;
         int evo;
     };

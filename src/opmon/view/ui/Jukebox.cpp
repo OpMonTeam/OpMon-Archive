@@ -14,21 +14,25 @@ File under GNU GPL v3.0 license
 
 namespace OpMon {
     namespace Ui {
-        void Jukebox::addMusic(const std::string &name, const std::string &path, bool loop) {
+        void Jukebox::addMusic(const std::string &name, const std::string &path,
+                               bool loop) {
             try {
                 auto music = Utils::ResourceLoader::loadMusic(path.c_str());
                 music->setVolume(globalVolume);
                 music->setLoop(loop);
                 musList[name] = std::move(music);
-            } catch (Utils::LoadingException& e) {
+            } catch(Utils::LoadingException &e) {
                 Utils::Log::oplog(e.desc(), true);
-                Utils::Log::warn(std::string("Music '") + name + "' failed to load.");
+                Utils::Log::warn(std::string("Music '") + name +
+                                 "' failed to load.");
             }
         }
 
-        void Jukebox::addSound(const std::string &name, const std::string &path) {
-            try{
-                //Sounds are saved in the code as a pair of sf::SoundBuffer and sf::Sound.
+        void Jukebox::addSound(const std::string &name,
+                               const std::string &path) {
+            try {
+                // Sounds are saved in the code as a pair of sf::SoundBuffer and
+                // sf::Sound.
                 auto sb = std::make_unique<sf::SoundBuffer>();
                 Utils::ResourceLoader::load(*sb, path.c_str());
 
@@ -36,9 +40,10 @@ namespace OpMon {
                 soundsList[name].second = std::make_unique<sf::Sound>();
                 soundsList[name].second->setBuffer(*soundsList[name].first);
                 soundsList[name].second->setVolume(globalVolume);
-            } catch (Utils::LoadingException& e) {
+            } catch(Utils::LoadingException &e) {
                 Utils::Log::oplog(e.desc(), true);
-                Utils::Log::warn(std::string("Sound '") + name + "' failed to load.");
+                Utils::Log::warn(std::string("Sound '") + name +
+                                 "' failed to load.");
             }
         }
 
@@ -76,14 +81,16 @@ namespace OpMon {
 
         void Jukebox::setGlobalVolume(float globalVolume) {
             if(globalVolume > 100 || globalVolume < 0) {
-                Utils::Log::warn(std::string("Volume greater than 100 or lesser than 0."));
+                Utils::Log::warn(
+                    std::string("Volume greater than 100 or lesser than 0."));
                 return;
             }
 
             for(auto itor = musList.begin(); itor != musList.end(); ++itor) {
                 itor->second->setVolume(globalVolume);
             }
-            for(auto itor = soundsList.begin(); itor != soundsList.end(); ++itor) {
+            for(auto itor = soundsList.begin(); itor != soundsList.end();
+                ++itor) {
                 itor->second.second->setVolume(globalVolume);
             }
             this->globalVolume = globalVolume;
@@ -97,8 +104,6 @@ namespace OpMon {
             soundsList.at(sound).second->play();
         }
 
-        int Jukebox::getGlobalVolume() const {
-            return globalVolume;
-        }
+        int Jukebox::getGlobalVolume() const { return globalVolume; }
     } // namespace Ui
 } // namespace OpMon

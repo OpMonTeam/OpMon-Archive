@@ -33,7 +33,7 @@ namespace OpMon {
       \todo Finish to document the file when the changes are done.
     */
     class OpMon {
-    private:
+      private:
         sf::String nickname;
         int atkIV = Utils::Misc::randU(32);
         int defIV = Utils::Misc::randU(32);
@@ -48,18 +48,19 @@ namespace OpMon {
         int speEV = 0;
         int hpEV = 0;
 
-        //General stat
+        // General stat
         int statATK;
         int statDEF;
         int statATKSPE;
         int statDEFSPE;
         int statSPE;
-        //Other stats
+        // Other stats
         int statEVA;
         float statACC;
         int statHP;
         int statLove;
-        //Variables indicating stats variation level (See changeSTAT methods (Ex : changeATK) )
+        // Variables indicating stats variation level (See changeSTAT methods
+        // (Ex : changeATK) )
         int atkChange = 0;
         int defChange = 0;
         int defSpeChange = 0;
@@ -93,7 +94,7 @@ namespace OpMon {
         unsigned int confusedCD = 0;
         unsigned int sleepingCD = 0;
 
-    public:
+      public:
         bool confused = false;
         bool afraid = false;
         bool inLove = false;
@@ -106,16 +107,12 @@ namespace OpMon {
          * \param level The OpMon's level.
          * \param moves The OpMon's moves.
          */
-        OpMon(const std::string &nickname, const Species *species, int level, const std::vector<Move *> &moves,
-              Nature nature);
+        OpMon(const std::string &nickname, const Species *species, int level,
+              const std::vector<Move *> &moves, Nature nature);
 
-        int getConfusedCD() const {
-            return confusedCD;
-        }
+        int getConfusedCD() const { return confusedCD; }
 
-        int getSleepingCD() const {
-            return sleepingCD;
-        }
+        int getSleepingCD() const { return sleepingCD; }
 
         /*!
          * \brief Updates the sleep or confused countdown.
@@ -164,9 +161,7 @@ namespace OpMon {
          * \brief Returns if the OpMon is holding an item or not.
          * \returns `true` if the held item is not `nullptr`, `false` otherwise.
          */
-        bool isHoldingItem() const {
-            return (held != nullptr);
-        }
+        bool isHoldingItem() const { return (held != nullptr); }
 
         /*!
          * \brief Method called when the OpMon wins against another one.
@@ -206,7 +201,8 @@ namespace OpMon {
          * \param species The new species of the OpMon.
          * \param types The two new types of the OpMon.
          */
-        void setStats(int stats[], Move *moves[], const Species &species, Type types[]);
+        void setStats(int stats[], Move *moves[], const Species &species,
+                      Type types[]);
 
         /*!
          * \brief Makes the OpMon loose HP.
@@ -246,65 +242,43 @@ namespace OpMon {
          */
         int changeSPE(int power);
 
-        Status getStatus() {
-            return status;
-        }
+        Status getStatus() { return status; }
 
         bool setStatus(Status status);
 
-        int getStatHP() const {
-            return statHP;
-        }
+        int getStatHP() const { return statHP; }
 
-        int getStatLove() const {
-            return statLove;
-        }
+        int getStatLove() const { return statLove; }
 
-        int getHP() const {
-            return HP;
-        }
+        int getHP() const { return HP; }
 
         /*!
          * \brief Returns the OpMon's nickname.
          */
-        sf::String getNickname() const {
-            return nickname;
-        }
+        sf::String getNickname() const { return nickname; }
 
         /*!
          * \brief Returns a reference to the OpMon's nickname.
          */
-        sf::String &getNicknameRef() {
-            return nickname;
-        }
+        sf::String &getNicknameRef() { return nickname; }
 
         /*!
          * \brief Returns a pointer to the OpMon's nickname.
          */
-        sf::String *getNicknamePtr() {
-            return &nickname;
-        }
+        sf::String *getNicknamePtr() { return &nickname; }
 
         /*!
          * \brief Heals the OPMon (Opposite of move()). Makes sure the HP doesn't go higher than the maximum HP.
          */
         void heal(int HP);
 
-        int getLevel() const {
-            return level;
-        }
+        int getLevel() const { return level; }
 
-        std::vector<Move *> getMoves() {
-            return moves;
-        }
+        std::vector<Move *> getMoves() { return moves; }
 
-        int getStatEVA() const {
-            return statEVA;
-        }
+        int getStatEVA() const { return statEVA; }
 
-        int getStatACC() const {
-            return statACC;
-        }
+        int getStatACC() const { return statACC; }
 
         /*!
          * \brief Gives the OpMon the evs gained by defeating an OpMon.
@@ -312,46 +286,27 @@ namespace OpMon {
          */
         void getEvs(OpMon const &defeated);
 
-        Type getType1() const {
-            return type1;
-        }
+        Type getType1() const { return type1; }
 
-        Type getType2() const {
-            return type2;
-        }
+        Type getType2() const { return type2; }
 
         void setType1(Type type);
 
         void setType2(Type type);
 
-        int getStatATK() const {
-            return statATK;
-        }
+        int getStatATK() const { return statATK; }
 
-        int getStatATKSPE() const {
-            return statATKSPE;
-        }
+        int getStatATKSPE() const { return statATKSPE; }
 
-        int getStatDEF() const {
-            return statDEF;
-        }
+        int getStatDEF() const { return statDEF; }
 
-        int getStatDEFSPE() const {
-            return statDEFSPE;
-        }
+        int getStatDEFSPE() const { return statDEFSPE; }
 
-        int getStatSPE() const {
-            return statSPE;
-        }
+        int getStatSPE() const { return statSPE; }
 
-        const Species &getSpecies() const {
-            return *species;
-        }
+        const Species &getSpecies() const { return *species; }
 
-        Item *itemHeld() const {
-            return held;
-        }
-
+        Item *itemHeld() const { return held; }
     };
 
 } // namespace OpMon

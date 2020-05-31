@@ -5,7 +5,7 @@
  * \authors Navet56
  * \authors BAKFR
  * \copyright GNU GPL v3.0
-*/
+ */
 
 #ifndef POSITION_HPP
 #define POSITION_HPP
@@ -53,9 +53,7 @@ namespace OpMon {
             /*!
              * \brief Returns the position in map coordinates.
              */
-            sf::Vector2i getPosition() {
-                return sf::Vector2i(posX, posY);
-            }
+            sf::Vector2i getPosition() { return sf::Vector2i(posX, posY); }
             /*!
              * \brief Returns the position in pixels.
              */
@@ -63,21 +61,13 @@ namespace OpMon {
                 return sf::Vector2i(posX SQUARES, posY SQUARES);
             }
 
-            void setDir(Side dir) {
-                this->dir = dir;
-            }
+            void setDir(Side dir) { this->dir = dir; }
 
-            Side getDir() {
-                return dir;
-            }
+            Side getDir() { return dir; }
 
-            bool isAnim() {
-                return anim;
-            }
+            bool isAnim() { return anim; }
 
-            bool isMoving() {
-                return movement;
-            }
+            bool isMoving() { return movement; }
 
             /*!
              * \brief Stops the current movement.
@@ -90,23 +80,17 @@ namespace OpMon {
             /*!
              * \brief Stops the current animation.
              */
-            void stopAnim() {
-                anim = false;
-            }
+            void stopAnim() { anim = false; }
 
             /*!
              * \brief Prevents the entity from moving.
              */
-            void lockMove() {
-                moveLock = true;
-            }
+            void lockMove() { moveLock = true; }
 
             /*!
              * \brief Makes the entity able to move again.
              */
-            void unlockMove() {
-                moveLock = false;
-            }
+            void unlockMove() { moveLock = false; }
 
             bool isLocked() { return moveLock; }
 
@@ -131,7 +115,6 @@ namespace OpMon {
              * \brief Sets the position of Position::playerPos
              */
             static void setPlayerPos(Position *pos);
-
 
             /*!
              * \brief Indicates if the player has just been teleported between two maps.

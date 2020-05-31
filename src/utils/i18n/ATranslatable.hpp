@@ -3,7 +3,7 @@
  * \author BAKfr
  * \copyright GNU GPL v3.0
  * \date 12/01/18
-*/
+ */
 #pragma once
 
 #include "Translator.hpp"
@@ -23,7 +23,7 @@ namespace Utils {
             ATranslatable();
             virtual ~ATranslatable();
 
-            StringKeys& stringkeys = Translator::getInstance().getStringKeys();
+            StringKeys &stringkeys = Translator::getInstance().getStringKeys();
 
           public:
             /*!
@@ -33,4 +33,4 @@ namespace Utils {
         };
 
     } // namespace I18n
-} // namespace OpMon
+} // namespace Utils

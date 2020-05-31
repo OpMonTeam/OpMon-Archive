@@ -9,20 +9,21 @@
 #include "src/opmon/screens/base/AGameScreen.hpp"
 
 namespace sf {
-class RenderTexture;
-}  // namespace sf
+    class RenderTexture;
+} // namespace sf
 
 namespace OpMon {
     /*!
      * \brief A special game screen able to call any type of animation.
      *
-     * AnimationCtrl does nothing else than calling the method to update and draw the animation.
+     * AnimationCtrl does nothing else than calling the method to update and
+     * draw the animation.
      */
     class AnimationCtrl : public AGameScreen {
-    private:
+      private:
         std::unique_ptr<Animations::Animation> view;
 
-    public:
+      public:
         AnimationCtrl(std::unique_ptr<Animations::Animation> view);
         ~AnimationCtrl() = default;
 

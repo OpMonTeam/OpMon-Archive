@@ -6,8 +6,8 @@ File under GNU GPL v3.0
 */
 #include "./log.hpp"
 
-#include <iostream>
 #include <fstream>
+#include <iostream>
 
 #include "./fs.hpp"
 #include "./time.hpp"
@@ -45,12 +45,11 @@ namespace Utils {
                 throw NullptrException("log stream or error log stream", false);
             }
             std::ostream *logStream = error ? rerrLog : rlog;
-            *logStream << "[T = " << Time::getElapsedMilliseconds() << "] - " << toSay << std::endl;
+            *logStream << "[T = " << Time::getElapsedMilliseconds() << "] - "
+                       << toSay << std::endl;
         }
 
-        void warn(const std::string &toSay) {
-            oplog("[WARN] " + toSay);
-        }
+        void warn(const std::string &toSay) { oplog("[WARN] " + toSay); }
 
     } // namespace Log
 } // namespace Utils

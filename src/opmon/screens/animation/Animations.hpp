@@ -21,8 +21,8 @@
 #include "src/utils/defines.hpp"
 
 namespace sf {
-class RenderTarget;
-}  // namespace sf
+    class RenderTarget;
+} // namespace sf
 
 namespace OpMon {
     /*!
@@ -33,8 +33,8 @@ namespace OpMon {
         /*!
          * \brrief Base class defining an animation on the whole screen.
          */
-        class Animation : public sf::Drawable{
-        protected:
+        class Animation : public sf::Drawable {
+          protected:
             int counter = 0;
             /*!
              * \brief The sprite of the animation.
@@ -53,7 +53,7 @@ namespace OpMon {
              */
             sf::Texture afterTx;
 
-        public:
+          public:
             /*!
              * \brief Constructs an animation.
              * \param before The texture present before the animation.
@@ -67,15 +67,20 @@ namespace OpMon {
              * \brief Updates the animation.
              * \deprecated Use update() and then sf::RenderTexture::draw(sf::Drawable).
              */
-            OP_DEPRECATED virtual GameStatus operator()(sf::RenderTexture &frame) {GameStatus t = update(); frame.draw(*this); return t;};
+            OP_DEPRECATED virtual GameStatus operator()(
+                sf::RenderTexture &frame) {
+                GameStatus t = update();
+                frame.draw(*this);
+                return t;
+            };
         };
 
         /*!
          * \brief Animation played as a transition between the professor's dialog and the name input screen.
          */
         class WinAnim : public Animation {
-        private:
-            int frames{5};
+          private:
+            int frames {5};
             /*!
              * \brief The order of the animation.
              * \details If `true` : Opening movement, closing movement otherwise.
@@ -90,20 +95,20 @@ namespace OpMon {
              */
             static sf::Texture fen[6];
 
-        public:
-            WinAnim(sf::Texture const& bgTxt, bool order);
+          public:
+            WinAnim(sf::Texture const &bgTxt, bool order);
             virtual GameStatus update() override;
-            void draw(sf::RenderTarget& frame, sf::RenderStates state) const;
+            void draw(sf::RenderTarget &frame, sf::RenderStates state) const;
         };
 
         /*!
          * \brief The direction of the movement for WooshAnim.
          */
         enum class WooshDir : int {
-            UP = 0,/*!< The movement will be from the bottom to the top.*/
-            DOWN = 1,/*!< The movement will be from the top to the bottom.*/
-            LEFT = 2,/*!< The movement will be from right to left.*/
-            RIGHT = 3/*!< The movement will be from left to right.*/
+            UP = 0,   /*!< The movement will be from the bottom to the top.*/
+            DOWN = 1, /*!< The movement will be from the top to the bottom.*/
+            LEFT = 2, /*!< The movement will be from right to left.*/
+            RIGHT = 3 /*!< The movement will be from left to right.*/
         };
 
         /*!
@@ -111,7 +116,7 @@ namespace OpMon {
          * \details This animation makes a sprite move by one entire screen (512px), either from the outside of the screen to the screen, or the opposite. In the game, this animation is used for the in-game menu.
          */
         class WooshAnim : public Animation {
-        private:
+          private:
             /*!
              * \brief The direction of the movement.
              */
@@ -136,7 +141,7 @@ namespace OpMon {
              */
             bool outToIn;
 
-        public:
+          public:
             /*!
              * \brief Constructs a WooshAnim.
              * \param before The static texture, in the background. It won't move.
@@ -145,10 +150,11 @@ namespace OpMon {
              * \param duraction The duration of the movement, in frames.
              * \param outToIn The initial position of the mobile sprite.
              */
-            WooshAnim(sf::Texture const& before, sf::Texture const& after, WooshDir dir, int duration = 15, bool outToIn = true);
+            WooshAnim(sf::Texture const &before, sf::Texture const &after,
+                      WooshDir dir, int duration = 15, bool outToIn = true);
 
             GameStatus update();
-            void draw(sf::RenderTarget& frame, sf::RenderStates state) const;
+            void draw(sf::RenderTarget &frame, sf::RenderStates state) const;
         };
 
     } // namespace Animations

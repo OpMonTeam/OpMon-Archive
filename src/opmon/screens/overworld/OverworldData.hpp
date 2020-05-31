@@ -7,28 +7,28 @@
 
 #include <SFML/Graphics/Rect.hpp>
 
-#include "src/utils/defines.hpp"
-#include "src/opmon/view/elements/Map.hpp"
 #include "src/opmon/screens/gamemenu/GameMenuData.hpp"
+#include "src/opmon/view/elements/Map.hpp"
 #include "src/opmon/view/elements/events/PlayerEvent.hpp"
+#include "src/utils/defines.hpp"
 
 namespace sf {
-class String;
-}  // namespace sf
+    class String;
+} // namespace sf
 
 namespace OpMon {
-class OpTeam;
-class Player;
-class GameData;
-namespace Elements {
-class Map;
-}  // namespace Elements
+    class OpTeam;
+    class Player;
+    class GameData;
+    namespace Elements {
+        class Map;
+    } // namespace Elements
 
     /*!
      * \brief Contains the data used for the Overworld.
      */
     class OverworldData {
-    private:
+      private:
         sf::Texture alpha = sf::Texture();
         std::vector<sf::Texture> alphaTab = std::vector<sf::Texture>(1);
 
@@ -37,12 +37,13 @@ class Map;
         /*!
          * \brief Contains the maps.
          *
-         * The first element of the pair contains the json used to build the map.
-         * The second element contains the built map, or nullptr if the map has not
-         * been initialized yet.
+         * The first element of the pair contains the json used to build the
+         * map. The second element contains the built map, or nullptr if the map
+         * has not been initialized yet.
          */
-        std::map<std::string, std::pair<nlohmann::json, Elements::Map *> > maps;
-        std::map<std::string, std::pair<nlohmann::json, Elements::Map *> >::iterator mapsItor;
+        std::map<std::string, std::pair<nlohmann::json, Elements::Map *>> maps;
+        std::map<std::string,
+                 std::pair<nlohmann::json, Elements::Map *>>::iterator mapsItor;
 
         std::string currentMap = "Player's room";
 
@@ -66,9 +67,10 @@ class Map;
         /*!
          * \brief Contains the tilesets.
          *
-         * The first element of the pair represents the texture of the tileset, the second represents the array of collisions.
+         * The first element of the pair represents the texture of the tileset,
+         * the second represents the array of collisions.
          */
-        std::map<std::string, std::pair<sf::Texture, int*>> tilesets;
+        std::map<std::string, std::pair<sf::Texture, int *>> tilesets;
 
         GameMenuData gameMenuData;
 
@@ -77,33 +79,45 @@ class Map;
          */
         OverworldData(OverworldData const &);
 
-        Elements::PlayerEvent* playerEvent;
+        Elements::PlayerEvent *playerEvent;
 
-    public:
+      public:
         /*!
          * \brief Increments the animation counter for an element.
          */
-        void incrementElementCounter(std::string const &elementId) { elementsCounter[elementId]++; }
+        void incrementElementCounter(std::string const &elementId) {
+            elementsCounter[elementId]++;
+        }
         /*!
          * \brief Resets the animation counter for an element.
          */
-        void resetElementCounter(std::string const &id) { elementsCounter[id] = 0; }
+        void resetElementCounter(std::string const &id) {
+            elementsCounter[id] = 0;
+        }
         /*!
          * \brief Gets the animation counter for an element.
          */
-        unsigned int getElementCounter(std::string const &id) { return elementsCounter[id]; }
+        unsigned int getElementCounter(std::string const &id) {
+            return elementsCounter[id];
+        }
         /*!
          * \brief Gets the textures of an element.
          */
-        std::vector<sf::Texture> &getElementTextures(std::string const &id) { return elementsTextures[id]; }
+        std::vector<sf::Texture> &getElementTextures(std::string const &id) {
+            return elementsTextures[id];
+        }
         /*!
          * \brief Gets the position of an element.
          */
-        sf::Vector2f &getElementPos(std::string const &id) { return elementsPos[id]; }
+        sf::Vector2f &getElementPos(std::string const &id) {
+            return elementsPos[id];
+        }
         /*!
          * \brief Gets the current shown texture of an element.
          */
-        sf::Texture &getCurrentElementTexture(std::string const &id) { return elementsTextures[id][elementsCounter[id]]; }
+        sf::Texture &getCurrentElementTexture(std::string const &id) {
+            return elementsTextures[id][elementsCounter[id]];
+        }
 
         /*!
          * \brief Gets the textures of an event.
@@ -114,7 +128,9 @@ class Map;
          * \brief Gets a completion.
          * \details A completion is a pointer to a string which can change during the game (For exemple the player's name, changing when you're playing a new game)
          */
-        sf::String *getCompletion(std::string const &key) { return completions.at(key); }
+        sf::String *getCompletion(std::string const &key) {
+            return completions.at(key);
+        }
 
         /*!
          * \brief Gets the team of a trainer.
@@ -175,21 +191,27 @@ class Map;
          * \param id The side to get.
          * \todo Change the type of id for Side
          */
-        sf::IntRect &getTexturePPRect(unsigned int id) { return texturePPRect[((id < 4) ? id : 0) + 8]; }
+        sf::IntRect &getTexturePPRect(unsigned int id) {
+            return texturePPRect[((id < 4) ? id : 0) + 8];
+        }
         /*!
          * \brief Gets the rect of a character's moving texture (first frame)
          * \param id The side to get.
          * \todo Change the type of id for side
          */
-        sf::IntRect &getWalkingPPRect(unsigned int id) { return texturePPRect[((id < 4) ? id : 0)]; }
+        sf::IntRect &getWalkingPPRect(unsigned int id) {
+            return texturePPRect[((id < 4) ? id : 0)];
+        }
         /*!
          * \brief Gets the rect of a character's moving texture (second frame)
          * \param id The side to get.
          * \todo Change the type of id for side
          */
-        sf::IntRect &getWalkingPP2Rect(unsigned int id) { return texturePPRect[((id < 4) ? id : 0) + 4]; }
+        sf::IntRect &getWalkingPP2Rect(unsigned int id) {
+            return texturePPRect[((id < 4) ? id : 0) + 4];
+        }
 
-        std::vector<sf::IntRect> getPPRect() {return texturePPRect;}
+        std::vector<sf::IntRect> getPPRect() { return texturePPRect; }
 
         /*!
          * \brief Gets a pointer to the GameData object.
@@ -207,19 +229,21 @@ class Map;
         /*!
          * \brief Gets an item.
          */
-        std::unique_ptr<Item> &getItem(std::string const &str) { return itemsList[str]; }
+        std::unique_ptr<Item> &getItem(std::string const &str) {
+            return itemsList[str];
+        }
 
         /*!
          * \brief Returns a tileset.
          */
-        sf::Texture& getTileset(std::string id) {return tilesets[id].first;}
+        sf::Texture &getTileset(std::string id) { return tilesets[id].first; }
 
         /*!
          * \brief Returns the collision array for a tileset.
          */
-        int* getTilesetCol(std::string id) {return tilesets[id].second;}
+        int *getTilesetCol(std::string id) { return tilesets[id].second; }
 
-        Elements::PlayerEvent& getPlayerEvent() {return *playerEvent;}
+        Elements::PlayerEvent &getPlayerEvent() { return *playerEvent; }
 
         /*!
          * \brief Initialises all the data.

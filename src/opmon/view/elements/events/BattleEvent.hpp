@@ -9,39 +9,41 @@
 #include "AbstractEvent.hpp"
 
 namespace OpMon::Elements {
-	/*!
-	 * \brief An event that launches a battle.
-	 * \ingroup Events
-	 */
-	class BattleEvent : public AbstractEvent {
-	private:
-		/*!
-		 * \brief The trainer's team.
-		 */
-		OpTeam *team;
+    /*!
+     * \brief An event that launches a battle.
+     * \ingroup Events
+     */
+    class BattleEvent : public AbstractEvent {
+      private:
+        /*!
+         * \brief The trainer's team.
+         */
+        OpTeam *team;
 
-		/*!
-		 * \brief If the battle is over or has not begun.
-		 */
-		bool over = true;
-	public:
-		BattleEvent(sf::Texture &texture, std::vector<sf::IntRect> rectangles, sf::Vector2f const &position, OpTeam *team, EventTrigger eventTrigger = EventTrigger::PRESS, bool passable = false, int side = SIDE_ALL);
-		BattleEvent(OverworldData &data, nlohmann::json jsonData);
+        /*!
+         * \brief If the battle is over or has not begun.
+         */
+        bool over = true;
 
-		virtual void update(Overworld &overworld);
-		virtual void action(Overworld &overworld);
+      public:
+        BattleEvent(sf::Texture &texture, std::vector<sf::IntRect> rectangles,
+                    sf::Vector2f const &position, OpTeam *team,
+                    EventTrigger eventTrigger = EventTrigger::PRESS,
+                    bool passable = false, int side = SIDE_ALL);
+        BattleEvent(OverworldData &data, nlohmann::json jsonData);
 
-		OpTeam *getOpTeam() {
-			return team;
-		}
+        virtual void update(Overworld &overworld);
+        virtual void action(Overworld &overworld);
 
-		bool isOver() const {return over;}
+        OpTeam *getOpTeam() { return team; }
 
-		/*!
-		 * \brief Sets over to true.
-		 */
-		void setOver() {over = true;}
+        bool isOver() const { return over; }
 
-		virtual ~BattleEvent();
-	};
-}
+        /*!
+         * \brief Sets over to true.
+         */
+        void setOver() { over = true; }
+
+        virtual ~BattleEvent();
+    };
+} // namespace OpMon::Elements

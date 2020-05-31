@@ -3,7 +3,7 @@
  * \author BAKFR
  * \copyright GNU GPL v3.0
  * \date 08/01/18
-*/
+ */
 #pragma once
 
 #include <string>

@@ -2,7 +2,9 @@
  * \dir src/opmon/view/elements
  * \brief Contains graphical elements and animations tools.
  *
- * This directory contains some graphical elements unrelated to the user interface (the map for example) as well as tools used to animate/move sprites.
+ * This directory contains some graphical elements unrelated to the user
+ * interface (the map for example) as well as tools used to animate/move
+ * sprites.
  */
 /*!
   \file Map.hpp
@@ -20,8 +22,8 @@
 #include "../../../nlohmann/json.hpp"
 
 namespace sf {
-class RenderTexture;
-}  // namespace sf
+    class RenderTexture;
+} // namespace sf
 
 namespace OpMon {
 
@@ -77,47 +79,33 @@ namespace OpMon {
             /*!
              * \brief The collisions of the tileset.
              */
-            int* tilesetCol;
-
+            int *tilesetCol;
 
           public:
             /*!
              * \brief Creates a map and loads it at the same time, with all the information needed.
              */
-            Map(std::vector<int> const &layer1, std::vector<int> const &layer2, std::vector<int> const &layer3, int w, int h, bool indoor, std::string const& tileset, int* tilesetCol, std::string const &bg, std::vector<std::string> const &animatedElements = std::vector<std::string>());
+            Map(std::vector<int> const &layer1, std::vector<int> const &layer2,
+                std::vector<int> const &layer3, int w, int h, bool indoor,
+                std::string const &tileset, int *tilesetCol,
+                std::string const &bg,
+                std::vector<std::string> const &animatedElements =
+                    std::vector<std::string>());
             /*!
              * \brief Creates a map without loading it.
              * \details If you want to use the map, please call Map::loadMap before calling any other method.
              */
             Map(nlohmann::json jsonData, OverworldData &data);
             ~Map();
-            int getH() const {
-                return h;
-            }
-            int getW() const {
-                return w;
-            }
-            bool isIndoor() const {
-                return indoor;
-            }
-            sf::Vector2i getDimensions() const {
-                return sf::Vector2i(w, h);
-            }
-            const int *getLayer1() const {
-                return layer1;
-            }
-            const int *getLayer2() const {
-                return layer2;
-            }
-            const int *getLayer3() const {
-                return layer3;
-            }
-            std::string getBg() const {
-                return bg;
-            }
-            std::string getTileset() const {
-            	return tileset;
-            }
+            int getH() const { return h; }
+            int getW() const { return w; }
+            bool isIndoor() const { return indoor; }
+            sf::Vector2i getDimensions() const { return sf::Vector2i(w, h); }
+            const int *getLayer1() const { return layer1; }
+            const int *getLayer2() const { return layer2; }
+            const int *getLayer3() const { return layer3; }
+            std::string getBg() const { return bg; }
+            std::string getTileset() const { return tileset; }
             const std::vector<std::string> &getAnimatedElements() const {
                 return animatedElements;
             }
@@ -126,9 +114,7 @@ namespace OpMon {
              * \param event A pointer to an event.
              * \warning The given event will be deleted at the destruction of the map.
              */
-            void addEvent(AbstractEvent *event) {
-                events.push_back(event);
-            }
+            void addEvent(AbstractEvent *event) { events.push_back(event); }
             /*!
              * \brief Returns all the events in the given position.
              * \param position The position in which to search for event.
@@ -137,9 +123,7 @@ namespace OpMon {
             /*!
              * \brief Returns all the events of the map.
              */
-            std::vector<AbstractEvent *> &getEvents() {
-                return events;
-            }
+            std::vector<AbstractEvent *> &getEvents() { return events; }
             /*!
              * \brief Updates the animated elements by incrementing the animation.
              * \param frame A reference to the frame of the game.

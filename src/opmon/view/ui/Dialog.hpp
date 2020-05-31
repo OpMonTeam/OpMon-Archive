@@ -3,22 +3,22 @@
  * \authors BAKFR
  * \authors Cyrielle
  * \copyright GNU GPL 3.0
-*/
+ */
 
 #pragma once
 
 #include <SFML/System.hpp>
-#include "../ui/TextBox.hpp"
 #include <queue>
 
 #include "../../core/GameData.hpp"
+#include "../ui/TextBox.hpp"
 
 namespace sf {
-class RenderTarget;
-}  // namespace sf
+    class RenderTarget;
+} // namespace sf
 
 namespace OpMon {
-class GameData;
+    class GameData;
 
     namespace Ui {
 
@@ -40,7 +40,7 @@ class GameData;
              * \brief Checks if the dialog box is full.
              * \details If `true`, the dialog is fully displayed by the text animation, and the
              * next step (on user action) would be to display the next lines.
-            */
+             */
             bool changeDialog = false;
 
             /*!
@@ -87,11 +87,12 @@ class GameData;
             /*!
              * \brief Move forward in a dialog, in response to an event like a space key pressed.
              *
-             * If the current dialog lines aren't fully displayed (text animation
-             * ongoing), terminate the animation, wait 50ms, then ask for a dialog change.
-             * If the animation is over, and there still remaining lines to display,
-             * play a sound (dialogPass) then pass to the next lines.
-             * If there is no more line to display, the dialog is over.
+             * If the current dialog lines aren't fully displayed (text
+             * animation ongoing), terminate the animation, wait 50ms, then ask
+             * for a dialog change. If the animation is over, and there still
+             * remaining lines to display, play a sound (dialogPass) then pass
+             * to the next lines. If there is no more line to display, the
+             * dialog is over.
              */
             void pass();
 
@@ -103,7 +104,8 @@ class GameData;
             /*!
              * \brief Draw the dialog on the main frame.
              */
-            virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+            virtual void draw(sf::RenderTarget &target,
+                              sf::RenderStates states) const;
 
             /*!
              * \return `true` is the entire dialog has been displayed; `false` otherwise.

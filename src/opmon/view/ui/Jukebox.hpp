@@ -2,14 +2,15 @@
  * \dir src/opmon/view/ui
  * \brief Contains the elements of the user interface
  *
- * This directory contains the elements that are directly used in the user interface.
+ * This directory contains the elements that are directly used in the user
+ * interface.
  */
 /*!
  * \file Jukebox.hpp
  * \authors Cyrielle
  * \authors Samurai413x
  * \copyright GNU GPL v3.0
-*/
+ */
 #pragma once
 
 #include <SFML/Audio/Music.hpp>
@@ -21,10 +22,10 @@
 #include "src/utils/ResourceLoader.hpp"
 
 namespace sf {
-class Music;
-class Sound;
-class SoundBuffer;
-}  // namespace sf
+    class Music;
+    class Sound;
+    class SoundBuffer;
+} // namespace sf
 
 namespace OpMon {
     namespace Ui {
@@ -41,15 +42,18 @@ namespace OpMon {
             /*!
              * \brief A map of the different sounds in the game.
              */
-            std::unordered_map<std::string, std::pair<std::unique_ptr<sf::SoundBuffer>, std::unique_ptr<sf::Sound> > > soundsList;
+            std::unordered_map<std::string,
+                               std::pair<std::unique_ptr<sf::SoundBuffer>,
+                                         std::unique_ptr<sf::Sound>>>
+                soundsList;
             /*!
              * \brief A pointer to the currently playing music.
              */
-            sf::Music *playing{nullptr};
+            sf::Music *playing {nullptr};
             /*!
              * \brief The global volume of the musics and sounds.
              */
-            float globalVolume{50.0};
+            float globalVolume {50.0};
 
           public:
             Jukebox() = default;
@@ -61,7 +65,8 @@ namespace OpMon {
              * \param path The path of the music.
              * \param loop Sets if the music has to loop or not.
              */
-            void addMusic(const std::string &name, const std::string &path, bool loop = true);
+            void addMusic(const std::string &name, const std::string &path,
+                          bool loop = true);
 
             /*!
              * \brief Plays the selected music.

@@ -18,9 +18,7 @@ namespace OpMon {
         }
     }
 
-    OpTeam::OpTeam(std::string const &name) {
-        this->name = name;
-    }
+    OpTeam::OpTeam(std::string const &name) { this->name = name; }
 
     void OpTeam::heal() {
         for(OpMon *opmon : opteam) {
@@ -40,7 +38,7 @@ namespace OpMon {
     }
 
     OpMon *OpTeam::removeOp(int number) {
-        if(opteam.size() == 1) { //If there is only one OpMon, return nullptr
+        if(opteam.size() == 1) { // If there is only one OpMon, return nullptr
             return nullptr;
         }
         OpMon *toReturn = opteam[number];
@@ -48,9 +46,7 @@ namespace OpMon {
         return toReturn;
     }
 
-    OpMon *OpTeam::operator[](int id) const {
-        return opteam[id];
-    }
+    OpMon *OpTeam::operator[](int id) const { return opteam[id]; }
 
     bool OpTeam::isKo() const {
         unsigned int ko = 0;
@@ -62,8 +58,6 @@ namespace OpMon {
         return (ko == opteam.size());
     }
 
-    int OpTeam::getSize() const {
-        return opteam.size();
-    }
+    int OpTeam::getSize() const { return opteam.size(); }
 
 } // namespace OpMon

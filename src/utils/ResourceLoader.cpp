@@ -5,20 +5,18 @@
 */
 #include "ResourceLoader.hpp"
 
-#include <cstdio>
 #include <SFML/Audio/Music.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <algorithm>
+#include <cstdio>
 
 namespace Utils {
 
     std::string ResourceLoader::resourcePath = "";
 
-    std::string ResourceLoader::getResourcePath(){
-        return resourcePath;
-    }
+    std::string ResourceLoader::getResourcePath() { return resourcePath; }
 
-    void ResourceLoader::setResourcePath(std::string path){
+    void ResourceLoader::setResourcePath(std::string path) {
         resourcePath = path;
     }
 
@@ -26,7 +24,9 @@ namespace Utils {
         return !getResourcePath().empty();
     }
 
-    void ResourceLoader::loadTextureArray(sf::Texture container[], std::string path, size_t nb_frame, size_t path_offset) {
+    void ResourceLoader::loadTextureArray(sf::Texture container[],
+                                          std::string path, size_t nb_frame,
+                                          size_t path_offset) {
         for(size_t i = 0; i < nb_frame; ++i) {
             char buffer[2048];
 
@@ -36,7 +36,9 @@ namespace Utils {
         }
     }
 
-    void ResourceLoader::loadTextureArray(std::vector<sf::Texture> &container, std::string path, size_t nb_frame, size_t path_offset) {
+    void ResourceLoader::loadTextureArray(std::vector<sf::Texture> &container,
+                                          std::string path, size_t nb_frame,
+                                          size_t path_offset) {
         for(size_t i = 0; i < nb_frame; ++i) {
             char buffer[2048];
 
@@ -53,6 +55,5 @@ namespace Utils {
         }
         return music;
     }
-
 
 } // namespace Utils

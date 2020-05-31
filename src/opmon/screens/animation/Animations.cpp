@@ -6,53 +6,55 @@
 */
 #include "Animations.hpp"
 
-#include <cstddef>
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
+#include <cstddef>
 
-#include "src/utils/ResourceLoader.hpp"
 #include "src/opmon/core/GameStatus.hpp"
+#include "src/utils/ResourceLoader.hpp"
 
 namespace OpMon {
 
     namespace Animations {
 
-        //While false, the "WinAnim" animation's sprites are not loaded
+        // While false, the "WinAnim" animation's sprites are not loaded
         bool WinAnim::winInit = false;
-        //Array used by "WinAnim"
+        // Array used by "WinAnim"
         sf::Texture WinAnim::fen[6];
 
         Animation::Animation(sf::Texture bgTxt, sf::Texture after)
-            : bgTxt(bgTxt)
-            , afterTx(after) {
-        }
+            : bgTxt(bgTxt), afterTx(after) {}
 
-        WinAnim::WinAnim(sf::Texture const& bgTxt, bool order)
-            : Animation(bgTxt)
-            , order(order) {
+        WinAnim::WinAnim(sf::Texture const &bgTxt, bool order)
+            : Animation(bgTxt), order(order) {
             if(!winInit) {
                 winInit = true;
-                Utils::ResourceLoader::loadTextureArray(fen, "animations/winChange/animWindowFrame%d.png", 6, 1);
+                Utils::ResourceLoader::loadTextureArray(
+                    fen, "animations/winChange/animWindowFrame%d.png", 6, 1);
             }
         }
 
-        GameStatus WinAnim::update(){
+        GameStatus WinAnim::update() {
             bgSpr.setTexture(bgTxt);
             anim.setTexture(fen[(order ? counter : (frames - counter))]);
             counter++;
-            return (counter > frames) ? GameStatus::PREVIOUS_NLS : GameStatus::CONTINUE;
+            return (counter > frames) ? GameStatus::PREVIOUS_NLS :
+                                        GameStatus::CONTINUE;
         }
 
-        void WinAnim::draw(sf::RenderTarget &frame, sf::RenderStates states) const {
+        void WinAnim::draw(sf::RenderTarget &frame,
+                           sf::RenderStates states) const {
             frame.draw(bgSpr);
             frame.draw(anim);
         }
 
-        WooshAnim::WooshAnim(sf::Texture const& before, sf::Texture const& after, WooshDir dir, int duration, bool outToIn)
-            : Animation(before, after)
-            , dir(dir)
-            , duration(duration)
-            , outToIn(outToIn) {
+        WooshAnim::WooshAnim(sf::Texture const &before,
+                             sf::Texture const &after, WooshDir dir,
+                             int duration, bool outToIn)
+            : Animation(before, after),
+              dir(dir),
+              duration(duration),
+              outToIn(outToIn) {
             counter = duration;
             if(outToIn) {
                 initialPos[(int)WooshDir::DOWN] = sf::Vector2f(0, -512);
@@ -75,13 +77,16 @@ namespace OpMon {
             this->anim.setPosition(initialPos[(int)dir]);
         }
 
-        GameStatus WooshAnim::update(){
-            anim.move((counter == 0) ? sf::Vector2f(0, 0) : (mvDir[(int)dir] * (512.0f / duration)));
+        GameStatus WooshAnim::update() {
+            anim.move((counter == 0) ? sf::Vector2f(0, 0) :
+                                       (mvDir[(int)dir] * (512.0f / duration)));
             counter--;
-            return (counter < 0) ? GameStatus::PREVIOUS_NLS : GameStatus::CONTINUE;
+            return (counter < 0) ? GameStatus::PREVIOUS_NLS :
+                                   GameStatus::CONTINUE;
         }
 
-        void WooshAnim::draw(sf::RenderTarget &frame, sf::RenderStates state) const {
+        void WooshAnim::draw(sf::RenderTarget &frame,
+                             sf::RenderStates state) const {
             frame.clear(sf::Color::Black);
             frame.draw(bgSpr);
             frame.draw(anim);

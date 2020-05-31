@@ -5,18 +5,18 @@
  */
 #pragma once
 
-#include "src/opmon/core/Player.hpp"
 #include "src/opmon/core/GameData.hpp"
+#include "src/opmon/core/Player.hpp"
 
 namespace OpMon {
-class Player;
-class GameData;
+    class Player;
+    class GameData;
 
     /*!
      * \brief Contains the data used by View::IntroScene and Controller::IntroSceneCtrl
      */
     class IntroSceneData {
-    private:
+      private:
         sf::Texture background;
         sf::Texture prof;
         sf::Texture nameBg;
@@ -30,7 +30,7 @@ class GameData;
          */
         IntroSceneData(IntroSceneData const &);
 
-    public:
+      public:
         /*!
          * \brief Returns a reference to the Player object.
          */

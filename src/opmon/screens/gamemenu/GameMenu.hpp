@@ -12,24 +12,23 @@
 #include "GameMenuData.hpp"
 
 namespace sf {
-class RenderTarget;
-}  // namespace sf
+    class RenderTarget;
+} // namespace sf
 
 namespace OpMon {
 
-/*!
- * \brief Represent one of the submenu that can be accessed from the game menu.
- */
-enum SubMenu { SETTINGS_MENU,
-               SAVE_MENU };
+    /*!
+     * \brief Represent one of the submenu that can be accessed from the game menu.
+     */
+    enum SubMenu { SETTINGS_MENU, SAVE_MENU };
 
-class GameMenuData;
+    class GameMenuData;
 
     /*!
      * \brief View printing the in-game menu.
      */
     class GameMenu : public sf::Drawable {
-    private:
+      private:
         /*!
          * \brief The background displayed behind the menu (Usually a screenshot taken before opening the menu).
          */
@@ -57,10 +56,10 @@ class GameMenuData;
          */
         int curPos = 0;
 
-    public:
+      public:
         GameMenu(GameMenuData &data);
 
-        void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+        void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
         /*!
          * \brief Changed the position of the cursor.

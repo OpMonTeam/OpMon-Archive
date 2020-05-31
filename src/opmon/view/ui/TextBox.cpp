@@ -4,17 +4,15 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/Vertex.hpp>
 
-namespace OpMon{
-    TextBox::TextBox(sf::Texture texture, sf::Vector2f position, uint32_t width, uint32_t height, uint32_t linesCount)
-        : texture(texture)
-        , position(position)
-        , width(width)
-        , height(height) {
-
+namespace OpMon {
+    TextBox::TextBox(sf::Texture texture, sf::Vector2f position, uint32_t width,
+                     uint32_t height, uint32_t linesCount)
+        : texture(texture), position(position), width(width), height(height) {
         // Some default values for the left text
-        for (uint32_t i = 0; i < linesCount; i++) {
+        for(uint32_t i = 0; i < linesCount; i++) {
             sf::Text newLeftText;
-            sf::Vector2f leftTextPosition(position.x + 24, position.y + 24 * (i+1));
+            sf::Vector2f leftTextPosition(position.x + 24,
+                                          position.y + 24 * (i + 1));
             newLeftText.setPosition(leftTextPosition);
             leftText.push_back(newLeftText);
 
@@ -91,39 +89,47 @@ namespace OpMon{
                 }
 
                 quad[0].position = sf::Vector2f(currentQuadX, currentQuadY);
-                quad[1].position = sf::Vector2f(currentQuadX + currentQuadWidth, currentQuadY);
-                quad[2].position = sf::Vector2f(currentQuadX + currentQuadWidth, currentQuadY + currentQuadHeight);
-                quad[3].position = sf::Vector2f(currentQuadX, currentQuadY + currentQuadHeight);
+                quad[1].position =
+                    sf::Vector2f(currentQuadX + currentQuadWidth, currentQuadY);
+                quad[2].position =
+                    sf::Vector2f(currentQuadX + currentQuadWidth,
+                                 currentQuadY + currentQuadHeight);
+                quad[3].position = sf::Vector2f(
+                    currentQuadX, currentQuadY + currentQuadHeight);
 
                 quad[0].texCoords = sf::Vector2f(i * partSize, j * partSize);
-                quad[1].texCoords = sf::Vector2f((i + 1) * partSize, j * partSize);
-                quad[2].texCoords = sf::Vector2f((i + 1) * partSize, (j + 1) * partSize);
-                quad[3].texCoords = sf::Vector2f(i * partSize, (j + 1) * partSize);
+                quad[1].texCoords =
+                    sf::Vector2f((i + 1) * partSize, j * partSize);
+                quad[2].texCoords =
+                    sf::Vector2f((i + 1) * partSize, (j + 1) * partSize);
+                quad[3].texCoords =
+                    sf::Vector2f(i * partSize, (j + 1) * partSize);
             }
         }
     }
 
-    void TextBox::draw(sf::RenderTarget &target, sf::RenderStates states) const {
+    void TextBox::draw(sf::RenderTarget &target,
+                       sf::RenderStates states) const {
         states.texture = &this->texture;
         target.draw(this->vertexArray, states);
 
-        for (auto& text : leftText) {
+        for(auto &text : leftText) {
             target.draw(text, states);
         }
 
-        for (auto& text : rightText) {
+        for(auto &text : rightText) {
             target.draw(text, states);
         }
     }
 
     void TextBox::setFont(const sf::Font &font) {
-        for (auto& text : leftText) {
+        for(auto &text : leftText) {
             text.setFillColor(sf::Color::Black);
             text.setFont(font);
             text.setCharacterSize(16);
         }
 
-        for (auto& text : rightText) {
+        for(auto &text : rightText) {
             text.setFillColor(sf::Color::Black);
             text.setFont(font);
             text.setCharacterSize(16);
@@ -137,15 +143,16 @@ namespace OpMon{
     void TextBox::setRightContent(const sf::String &content) {
         rightText[0].setString(content);
 
-        // We need to recalculate the position of the right text each time we change its string
+        // We need to recalculate the position of the right text each time we
+        // change its string
         sf::FloatRect rightTextGlobalBound = rightText[0].getGlobalBounds();
         float rightTextWidth = rightTextGlobalBound.width;
-        sf::Vector2f rightTextPosition(position.x + width - rightTextWidth - 24, position.y + 24);
+        sf::Vector2f rightTextPosition(position.x + width - rightTextWidth - 24,
+                                       position.y + 24);
         rightText[0].setPosition(rightTextPosition);
     }
 
     void TextBox::setActive(bool active) {
-
         for(uint32_t i = 0; i < 3; ++i) {
             for(uint32_t j = 0; j < 3; ++j) {
                 sf::Vertex *quad = &this->vertexArray[(i * 3 + j) * 4];
@@ -165,5 +172,4 @@ namespace OpMon{
         }
     }
 
-
-} //namespace OpMon
+} // namespace OpMon

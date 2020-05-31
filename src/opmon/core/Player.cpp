@@ -15,28 +15,19 @@
 
 namespace OpMon {
 
-    Player::Player(sf::String const &name)
-        : Player() {
+    Player::Player(sf::String const &name): Player() {
         this->name = name;
         this->opteam = OpTeam(name);
     }
 
     Player::Player()
-        : trainerID(Utils::Misc::randUI(0xFFFFFFFF))
-        , opteam(name) {
-    }
+        : trainerID(Utils::Misc::randUI(0xFFFFFFFF)), opteam(name) {}
 
-    OpTeam *Player::getOpTeam() {
-        return &opteam;
-    }
+    OpTeam *Player::getOpTeam() { return &opteam; }
 
-    void Player::addItem(std::string const &itemID) {
-        bag[itemID]++;
-    }
+    void Player::addItem(std::string const &itemID) { bag[itemID]++; }
 
-    int Player::checkItem(std::string const &itemID) {
-        return bag[itemID];
-    }
+    int Player::checkItem(std::string const &itemID) { return bag[itemID]; }
 
     bool Player::deleteItem(std::string const &itemID) {
         if(bag[itemID] != 0) {
@@ -52,7 +43,7 @@ namespace OpMon {
         for(int i = 0; i < opteam.getSize(); i++) {
             OpMon *pkmn = opteam[i];
             if(pkmn != nullptr) {
-                //TODO : Reset status problems
+                // TODO : Reset status problems
                 for(int j = 0; j < 4; j++) {
                     Move *atk = (pkmn->getMoves())[j];
                     if(atk != nullptr) {

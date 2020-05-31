@@ -10,14 +10,14 @@
 #include "src/opmon/core/GameData.hpp"
 
 namespace OpMon {
-class GameData;
+    class GameData;
 
     /*!
      * \brief Contains the data for the main menu of the game.
      * \details Used by View::MainMenu and Controller:MainMenuCtrl
      */
     class MainMenuData {
-    private:
+      private:
         sf::Texture arrChoice;
 
         GameData *gamedata;
@@ -27,7 +27,7 @@ class GameData;
          */
         MainMenuData(MainMenuData const &);
 
-    public:
+      public:
         /*!
          * \brief Returns a pointer to the GameData object.
          */

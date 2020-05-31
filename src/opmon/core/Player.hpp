@@ -11,8 +11,8 @@
 #define _PLAYER_HPP_
 
 #include <SFML/System.hpp>
-#include <map>
 #include <algorithm>
+#include <map>
 
 #include "../model/Item.hpp"
 #include "../model/OpTeam.hpp"
@@ -26,7 +26,7 @@ namespace OpMon {
      * \brief Contains information about the player.
      */
     class Player {
-    public:
+      public:
         Player(sf::String const &name);
 
         Player();
@@ -51,52 +51,36 @@ namespace OpMon {
          */
         bool deleteItem(std::string const &itemID);
 
-        sf::String getName() const {
-            return name;
-        }
+        sf::String getName() const { return name; }
 
         /*!
          * \brief Returns a const pointer to the player's name.
          */
-        const sf::String *getNameP() const {
-            return &name;
-        }
+        const sf::String *getNameP() const { return &name; }
 
         /*!
          * \brief Returns a pointer to the player's name.
          */
-        sf::String *getNameP() {
-            return &name;
-        }
+        sf::String *getNameP() { return &name; }
 
-        void setName(sf::String const &name) {
-            this->name = name;
-        }
+        void setName(sf::String const &name) { this->name = name; }
 
-        int getTrainerID() const {
-            return trainerID;
-        }
+        int getTrainerID() const { return trainerID; }
 
         /*!
          * \brief Adds an OpMon to the computer.
          */
-        void addOpMonToPC(OpMon *toAdd) {
-            pc.push_back(toAdd);
-        }
+        void addOpMonToPC(OpMon *toAdd) { pc.push_back(toAdd); }
 
         /*!
          * \brief Returns an OpMon from the player's team.
          */
-        OpMon *getOp(int ID) const {
-            return opteam[ID];
-        }
+        OpMon *getOp(int ID) const { return opteam[ID]; }
 
         /*!
          * \brief Returns an OpMon from the computer.
          */
-        OpMon *getPcOp(int ID) const {
-            return pc[ID];
-        }
+        OpMon *getPcOp(int ID) const { return pc[ID]; }
 
         /*!
          * \brief  Heals all the player's OpMon
@@ -109,13 +93,12 @@ namespace OpMon {
          */
         bool addOpToOpTeam(OpMon *toAdd);
 
-        bool isKo() {
-            return opteam.isKo();
-        }
+        bool isKo() { return opteam.isKo(); }
 
-    private:
+      private:
         sf::String name;
-        const unsigned int trainerID; //Max : 8 digits in hexadecimal (Unimplemented yet)
+        const unsigned int
+            trainerID; // Max : 8 digits in hexadecimal (Unimplemented yet)
         std::map<std::string, int> bag;
         std::vector<OpMon *> pc = std::vector<OpMon *>();
         OpTeam opteam;

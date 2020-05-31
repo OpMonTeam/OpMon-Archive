@@ -12,7 +12,7 @@
 #include "Move.hpp"
 
 namespace OpMon {
-class OpMon;
+    class OpMon;
 
     /*!
      * \brief Contains the MoveEffects used in the game.
@@ -22,12 +22,16 @@ class OpMon;
          * \brief A generic effet to change an OpMon's statistic.
          */
         class ChangeStatEffect : public MoveEffect {
-        public:
+          public:
             /*!
              * \brief Sets the target for the effect.
              */
-            enum class Target : int { MOVEER = 0,/*!< The move user will receive the stat modification.*/
-                                      DEFENDER = 1 /*!< The attacked OpMon will receive the stat modification.*/};
+            enum class Target : int {
+                MOVEER =
+                    0, /*!< The move user will receive the stat modification.*/
+                DEFENDER = 1 /*!< The attacked OpMon will receive the stat
+                                modification.*/
+            };
             /*!
              * \param target The targeted OpMon.
              * \param stat The stat to change.
@@ -42,12 +46,13 @@ class OpMon;
             /*!
              * \brief Applies the stat modification.
              */
-            int apply(Move &move, OpMon &attacker, OpMon &defender, std::queue<Elements::TurnAction> &turnQueue) override;
+            int apply(Move &move, OpMon &attacker, OpMon &defender,
+                      std::queue<Elements::TurnAction> &turnQueue) override;
 
-        protected:
-            Target target;/*!<\brief The targeted OpMon.*/
-            Stats stat;/*!<\brief The stat to change.*/
-            int coef;/*!< \brief The coefficient of the modifications to apply.*/
+          protected:
+            Target target; /*!<\brief The targeted OpMon.*/
+            Stats stat;    /*!<\brief The stat to change.*/
+            int coef; /*!< \brief The coefficient of the modifications to apply.*/
         };
     } // namespace Moves
 } // namespace OpMon

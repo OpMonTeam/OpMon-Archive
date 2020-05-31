@@ -7,8 +7,8 @@
 #ifndef EVOLUTIONS_HPP_INCLUDED
 #define EVOLUTIONS_HPP_INCLUDED
 
-#include "Item.hpp"
 #include "Evolution.hpp"
+#include "Item.hpp"
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 namespace OpMon {
 
@@ -18,20 +18,20 @@ namespace OpMon {
     namespace Evolutions {
 
         class E_Item : public Evolution {
-        public:
+          public:
             E_Item(int evo, std::string const &itemID);
             bool checkEvolve(OpMon const &toCheck) const;
 
-        protected:
+          protected:
             const std::string itemID;
         };
 
         class E_Level : public Evolution {
-        public:
+          public:
             E_Level(int evo, int level);
             bool checkEvolve(OpMon const &toCheck) const;
 
-        private:
+          private:
             int level;
         };
     } // namespace Evolutions

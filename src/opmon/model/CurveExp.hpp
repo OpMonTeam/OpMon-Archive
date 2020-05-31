@@ -14,23 +14,23 @@ namespace OpMon {
      * \brief Defines the function used for the experience curves.
      */
     class CurveExp {
-    public:
+      public:
         /*!
          * \return The total experience points at the given level.
          * \param n The level.
          */
         virtual int getNeededExp(int n) = 0;
-        virtual ~CurveExp(){};
+        virtual ~CurveExp() {};
     };
 
     class CurveExpErratic : public CurveExp {
-    private:
+      private:
         /*!
          * \brief A intermediary function to calculate the needed exp.
          */
         float p(int x);
 
-    public:
+      public:
         /*!
          * \copydoc CurveExp::getNeededExp()
          */
@@ -38,7 +38,7 @@ namespace OpMon {
     };
 
     class CurveExpFluctuating : public CurveExp {
-    public:
+      public:
         /*!
          * \copydoc CurveExp::getNeededExp()
          */
@@ -46,7 +46,7 @@ namespace OpMon {
     };
 
     class CurveExpSlow : public CurveExp {
-    public:
+      public:
         /*!
          * \copydoc CurveExp::getNeededExp()
          */
@@ -54,7 +54,7 @@ namespace OpMon {
     };
 
     class CurveExpNormal : public CurveExp {
-    public:
+      public:
         /*!
          * \copydoc CurveExp::getNeededExp()
          */
@@ -62,7 +62,7 @@ namespace OpMon {
     };
 
     class CurveExpParabolic : public CurveExp {
-    public:
+      public:
         /*!
          * \copydoc CurveExp::getNeededExp()
          */
@@ -70,7 +70,7 @@ namespace OpMon {
     };
 
     class CurveExpQuick : public CurveExp {
-    public:
+      public:
         /*!
          * \copydoc CurveExp::getNeededExp()
          */

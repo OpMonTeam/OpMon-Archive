@@ -9,22 +9,22 @@
 
 #include <iosfwd>
 
-#include "src/opmon/core/system/path.hpp"
-#include "src/utils/OptionsSave.hpp"
-#include "src/opmon/screens/mainmenu/MainMenu.hpp"
 #include "OptionsMenu.hpp"
+#include "src/opmon/core/system/path.hpp"
 #include "src/opmon/screens/base/AGameScreen.hpp"
+#include "src/opmon/screens/mainmenu/MainMenu.hpp"
+#include "src/utils/OptionsSave.hpp"
 
 namespace sf {
-class Event;
-class RenderTexture;
-}  // namespace sf
+    class Event;
+    class RenderTexture;
+} // namespace sf
 
 namespace OpMon {
-class GameData;
+    class GameData;
 
     class OptionsMenuCtrl : public AGameScreen {
-    private:
+      private:
         OptionsMenuData data;
 
         OptionsMenu view;
@@ -35,13 +35,13 @@ class GameData;
         /*!
          * \brief The currently selected key to change in the controls menu.
          */
-        std::size_t currentKeyChange{0};
+        std::size_t currentKeyChange {0};
         /*!
          * \brief If the controls edition mode is on or off.
          */
-        bool keyChangeActive{false};
+        bool keyChangeActive {false};
 
-    public:
+      public:
         OptionsMenuCtrl(GameData *data);
         GameStatus checkEvent(sf::Event const &event) override;
         GameStatus update(sf::RenderTexture &frame) override;
@@ -49,7 +49,8 @@ class GameData;
         /*!
          * \brief The different names of the controls for the controls menu.
          */
-        const std::vector<std::string> controlsName{{"up", "down", "left", "right", "talk", "interact"}};
+        const std::vector<std::string> controlsName {
+            {"up", "down", "left", "right", "talk", "interact"}};
         void resume();
         void suspend();
     };

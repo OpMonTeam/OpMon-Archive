@@ -3,7 +3,7 @@
  * \author BAKFR
  * \copyright GNU GPL v3.0
  * \date 13/01/18
-*/
+ */
 #pragma once
 
 namespace OpMon {

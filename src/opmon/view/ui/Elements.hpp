@@ -4,7 +4,7 @@
  * \authors BAKFR
  * \copyright GNU GPL v3.0
  * \todo Separate this file in two: MapLayer and Transformation
-*/
+ */
 #ifndef ELEMENTS_HPP
 #define ELEMENTS_HPP
 
@@ -39,11 +39,11 @@
 #include "../../core/Player.hpp"
 
 namespace sf {
-class RenderTarget;
-class Sprite;
-class Texture;
-class Transform;
-}  // namespace sf
+    class RenderTarget;
+    class Sprite;
+    class Texture;
+    class Transform;
+} // namespace sf
 
 namespace OpMon {
     /*!
@@ -59,7 +59,8 @@ namespace OpMon {
             /*!
              * \brief Method called by RenderTexture::draw.
              */
-            virtual void draw(sf::RenderTarget &target, sf::RenderStates stats) const;
+            virtual void draw(sf::RenderTarget &target,
+                              sf::RenderStates stats) const;
             /*!
              * \brief The tiles.
              */
@@ -76,7 +77,8 @@ namespace OpMon {
              * \param size The dimentions of the map.
              * \param tilesCode An array containing the tiles codes to build the map.
              */
-            MapLayer(sf::Vector2i size, const int tilesCode[], sf::Texture &tileset);
+            MapLayer(sf::Vector2i size, const int tilesCode[],
+                     sf::Texture &tileset);
         };
 
         /*!
@@ -84,15 +86,17 @@ namespace OpMon {
          */
         enum class FormulaMode : unsigned int {
             /*!
-             * A polynomial formula. Each element of the array will be interpreted as the coefficient of the variable put to the power of the index of the element in the array.
-             * Exemple : {2, 8, 1, 6, 9} will be interpreted as 2 + 8t + t^2 + 6t^3 + 9t^4.
+             * A polynomial formula. Each element of the array will be
+             * interpreted as the coefficient of the variable put to the power
+             * of the index of the element in the array. Exemple : {2, 8, 1, 6,
+             * 9} will be interpreted as 2 + 8t + t^2 + 6t^3 + 9t^4.
              */
             POLYNOMIAL = 0,
             /*!
-             * A formula using different base fonctions. The interpretation will change according to the chosen function.
-             * Exemple : {#F_SINE, 2, 3, -5, #F_ABS, -3, 4, -2} will be interpreted as 2sin(3t - 5) - 3·|4t - 2|
-             * List of currently available functions :
-             * #F_NOTHING
+             * A formula using different base fonctions. The interpretation will
+             * change according to the chosen function. Exemple : {#F_SINE, 2,
+             * 3, -5, #F_ABS, -3, 4, -2} will be interpreted as 2sin(3t - 5) -
+             * 3·|4t - 2| List of currently available functions : #F_NOTHING
              * #F_SINE
              * #F_COSINE
              * #F_ABS
@@ -252,7 +256,8 @@ namespace OpMon {
              * \param t The value of t.
              * \returns The value of the formula with the given value of t.
              */
-            float calcFormula(std::vector<double> formula, FormulaMode mode, int t);
+            float calcFormula(std::vector<double> formula, FormulaMode mode,
+                              int t);
             /*!
              * \brief Rotates a vector.
              * \param vect The vector to rotate.
@@ -265,7 +270,8 @@ namespace OpMon {
              * \brief Reverses the sign of some coefficients to mirror the formula.
              * \returns The mirrored formula.
              */
-            std::vector<double> inverseFormula(std::vector<double> formula, FormulaMode mode);
+            std::vector<double> inverseFormula(std::vector<double> formula,
+                                               FormulaMode mode);
 
           public:
             /*!
@@ -276,7 +282,11 @@ namespace OpMon {
              * \param sd The data of the scaling.
              * \param sprite The sf::Transform in which apply the transformation.
              */
-            Transformation(unsigned int const &time, MovementData const md = MovementData(), RotationData const rd = RotationData(), ScaleData const sd = ScaleData(), sf::Transform *sprite = nullptr);
+            Transformation(unsigned int const &time,
+                           MovementData const md = MovementData(),
+                           RotationData const rd = RotationData(),
+                           ScaleData const sd = ScaleData(),
+                           sf::Transform *sprite = nullptr);
 
             /*!
              * \brief Attachs a Transform to the object.
@@ -302,7 +312,7 @@ namespace OpMon {
             /*!
              * \brief Apply the movement to the attached sprite, incrementing t and calculating the new coordinates.
              * \returns `false` if t reached the time limit or if no sprite is attached, `true` otherwise.
-            */
+             */
             bool apply();
 
             /*!
@@ -318,22 +328,32 @@ namespace OpMon {
              */
             Transformation inverse();
             /*!
-             * Calculates the coordinates of a the center of a sprite (width/2; height/2).
+             * Calculates the coordinates of a the center of a sprite (width/2;
+             * height/2).
              */
             static sf::Vector2f spriteCenter(sf::Sprite const &spr);
 
             /*!
              * \brief Creates a new MovementData.
              */
-            static const MovementData newMovementData(FormulaMode modeX, FormulaMode modeY, std::vector<double> xformula, std::vector<double> yformula, bool relative = true);
+            static const MovementData newMovementData(
+                FormulaMode modeX, FormulaMode modeY,
+                std::vector<double> xformula, std::vector<double> yformula,
+                bool relative = true);
             /*!
              * \brief Creates a new RotationData.
              */
-            static const RotationData newRotationData(FormulaMode formulaMode, std::vector<double> formula, sf::Vector2f origin);
+            static const RotationData newRotationData(
+                FormulaMode formulaMode, std::vector<double> formula,
+                sf::Vector2f origin);
             /*!
              * \brief Creates a new ScaleData.
              */
-            static const ScaleData newScaleData(FormulaMode modeX, FormulaMode modeY, std::vector<double> xformula, std::vector<double> yformula, sf::Vector2f origin);
+            static const ScaleData newScaleData(FormulaMode modeX,
+                                                FormulaMode modeY,
+                                                std::vector<double> xformula,
+                                                std::vector<double> yformula,
+                                                sf::Vector2f origin);
         };
 
     } // namespace Ui

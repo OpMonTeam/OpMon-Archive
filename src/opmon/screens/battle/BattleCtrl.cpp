@@ -13,127 +13,142 @@
 #include <algorithm>
 #include <string>
 
-#include "src/utils/OpString.hpp"
 #include "src/opmon/core/GameData.hpp"
-#include "src/opmon/model/Move.hpp"
 #include "src/opmon/model/Enums.hpp"
+#include "src/opmon/model/Move.hpp"
 #include "src/opmon/model/OpMon.hpp"
 #include "src/opmon/model/OpTeam.hpp"
 #include "src/opmon/screens/battle/Battle.hpp"
 #include "src/opmon/screens/battle/BattleData.hpp"
 #include "src/opmon/view/elements/Turn.hpp"
-#include "src/opmon/view/ui/Jukebox.hpp"
-#include "src/utils/misc.hpp"
 #include "src/opmon/view/elements/events/BattleEvent.hpp"
+#include "src/opmon/view/ui/Jukebox.hpp"
+#include "src/utils/OpString.hpp"
+#include "src/utils/misc.hpp"
 
 namespace OpMon {
-class Player;
-class Species;
+    class Player;
+    class Species;
 
-    BattleCtrl::BattleCtrl(OpTeam *one, Elements::BattleEvent *two, GameData *gamedata, Player *player)
+    BattleCtrl::BattleCtrl(OpTeam *one, Elements::BattleEvent *two,
+                           GameData *gamedata, Player *player)
         : BattleCtrl(one, two->getOpTeam(), gamedata, player) {
         this->trainer = two;
         next.type = Elements::TurnActionType::NEXT;
     }
 
-    BattleCtrl::BattleCtrl(OpTeam *one, OpTeam *two, GameData *gamedata, Player *player)
-        : data(gamedata, player)
-        , playerTeam(one)
-        , trainerTeam(two)
-        , atk(one->getOp(0))
-        , def(two->getOp(0))
-        , view(one, two, "beta", "grass", this->data) {
+    BattleCtrl::BattleCtrl(OpTeam *one, OpTeam *two, GameData *gamedata,
+                           Player *player)
+        : data(gamedata, player),
+          playerTeam(one),
+          trainerTeam(two),
+          atk(one->getOp(0)),
+          def(two->getOp(0)),
+          view(one, two, "beta", "grass", this->data) {
         initBattle(0, 0);
         next.type = Elements::TurnActionType::NEXT;
     }
 
     GameStatus BattleCtrl::update(sf::RenderTexture &frame) {
-        GameStatus returned = view.update(atkTurn, defTurn, actionsQueue, &turnActivated, atkFirst);
+        GameStatus returned = view.update(atkTurn, defTurn, actionsQueue,
+                                          &turnActivated, atkFirst);
         frame.draw(view);
         return returned;
     }
 
     GameStatus BattleCtrl::checkEvent(sf::Event const &event) {
-
         switch(event.type) {
-        case sf::Event::KeyPressed:
-            switch(event.key.code) {
-                //Selection events
-            case sf::Keyboard::Left:
-                view.moveCur(Side::TO_LEFT);
-                data.getGameDataPtr()->getJukebox().playSound("arrow");
-                break;
-            case sf::Keyboard::Right:
-                data.getGameDataPtr()->getJukebox().playSound("arrow");
-                view.moveCur(Side::TO_RIGHT);
-                break;
-            case sf::Keyboard::Up:
-                data.getGameDataPtr()->getJukebox().playSound("arrow");
-                view.moveCur(Side::TO_UP);
-                break;
-            case sf::Keyboard::Down:
-                data.getGameDataPtr()->getJukebox().playSound("arrow");
-                view.moveCur(Side::TO_DOWN);
-                break;
-            case sf::Keyboard::Return:
-                //If it the move selection screen is not the active screen, and if the turn is not activated, the battle's main menu is printed.
-                if(!view.isMoveChoice() && !turnActivated) {
-                    switch(view.getCurPos()) {
-                        //Currently, there is only one choice avilable, the "move" choice.
-                    case 0:
-                        view.toggleMoveChoice();
+            case sf::Event::KeyPressed:
+                switch(event.key.code) {
+                        // Selection events
+                    case sf::Keyboard::Left:
+                        view.moveCur(Side::TO_LEFT);
+                        data.getGameDataPtr()->getJukebox().playSound("arrow");
                         break;
-                        /*case 3:
-                          return GameStatus::PREVIOUS; //Run*/
-                    default:
-                        data.getGameDataPtr()->getJukebox().playSound("nope");
+                    case sf::Keyboard::Right:
+                        data.getGameDataPtr()->getJukebox().playSound("arrow");
+                        view.moveCur(Side::TO_RIGHT);
                         break;
-                    }
+                    case sf::Keyboard::Up:
+                        data.getGameDataPtr()->getJukebox().playSound("arrow");
+                        view.moveCur(Side::TO_UP);
+                        break;
+                    case sf::Keyboard::Down:
+                        data.getGameDataPtr()->getJukebox().playSound("arrow");
+                        view.moveCur(Side::TO_DOWN);
+                        break;
+                    case sf::Keyboard::Return:
+                        // If it the move selection screen is not the active
+                        // screen, and if the turn is not activated, the battle's
+                        // main menu is printed.
+                        if(!view.isMoveChoice() && !turnActivated) {
+                            switch(view.getCurPos()) {
+                                    // Currently, there is only one choice
+                                    // avilable, the "move" choice.
+                                case 0:
+                                    view.toggleMoveChoice();
+                                    break;
+                                    /*case 3:
+                                      return GameStatus::PREVIOUS; //Run*/
+                                default:
+                                    data.getGameDataPtr()
+                                        ->getJukebox()
+                                        .playSound("nope");
+                                    break;
+                            }
 
-                } else if(!turnActivated) { //In this case, the move selection screen is the active screen.
-                    //Gets the selected move, checks if it isn't a invalid move (PP check and existence check), and then launches the turn.
-                    atkTurn.moveUsed = atk->getMoves()[view.getCurPos()];
-                    if(atkTurn.moveUsed != nullptr) {
-                        if(atkTurn.moveUsed->getPP() > 0) {
-                            atkTurn.type = Elements::TurnType::MOVE;
-                            turn();
-                            view.toggleMoveChoice();
-                            turnActivated = true;
+                        } else if(!turnActivated) { // In this case, the move
+                                                    // selection screen is the
+                                                    // active screen.
+                            // Gets the selected move, checks if it isn't a
+                            // invalid move (PP check and existence check), and
+                            // then launches the turn.
+                            atkTurn.moveUsed =
+                                atk->getMoves()[view.getCurPos()];
+                            if(atkTurn.moveUsed != nullptr) {
+                                if(atkTurn.moveUsed->getPP() > 0) {
+                                    atkTurn.type = Elements::TurnType::MOVE;
+                                    turn();
+                                    view.toggleMoveChoice();
+                                    turnActivated = true;
+                                }
+                            } else { // The move is invalid
+                                data.getGameDataPtr()->getJukebox().playSound(
+                                    "nope");
+                            }
+                        } else if(turnActivated) {
+                            view.passDialog();
                         }
-                    } else { //The move is invalid
-                        data.getGameDataPtr()->getJukebox().playSound("nope");
-                    }
-                } else if(turnActivated) {
-                    view.passDialog();
-                }
 
-                break;
-            case sf::Keyboard::BackSpace:
-                //From the move selection screen, returns to the battle's main menu.
-                if(view.isMoveChoice()) {
-                    view.toggleMoveChoice();
-                }
-                break;
+                        break;
+                    case sf::Keyboard::BackSpace:
+                        // From the move selection screen, returns to the
+                        // battle's main menu.
+                        if(view.isMoveChoice()) {
+                            view.toggleMoveChoice();
+                        }
+                        break;
 
-            case sf::Keyboard::Space:
-                //During the dialogs, passes to the next one.
-                if(turnActivated) {
-                    view.passDialog();
+                    case sf::Keyboard::Space:
+                        // During the dialogs, passes to the next one.
+                        if(turnActivated) {
+                            view.passDialog();
+                        }
+                        break;
+                    default:
+                        break;
                 }
                 break;
             default:
                 break;
-            }
-            break;
-        default:
-            break;
         }
 
         return GameStatus::CONTINUE;
     }
 
     void BattleCtrl::initBattle(int opId, int opId2) {
-        //Saves the OpMons' stats before the battle, to reset the stats after it.
+        // Saves the OpMons' stats before the battle, to reset the stats after
+        // it.
         atk = playerTeam->getOp(opId);
         def = trainerTeam->getOp(opId2);
         oldStats[0][0] = atk->getStatATK();
@@ -166,17 +181,17 @@ class Species;
         atk->setStat(Stats::ACC, 100);
         def->setStat(Stats::EVA, 100);
         def->setStat(Stats::ACC, 100);
-        //Clear the turns
+        // Clear the turns
         newTurnData(&atkTurn);
         newTurnData(&defTurn);
 
-        //Register the opmons' addresses in the Turns
+        // Register the opmons' addresses in the Turns
         atkTurn.opmon = atk;
         defTurn.opmon = def;
     }
 
 #pragma GCC diagnostic ignored "-Wunused-parameter"
-    //Unfinished method, the IA will be programmed in the future.
+    // Unfinished method, the IA will be programmed in the future.
     Elements::TurnData *BattleCtrl::turnIA(int level) {
         defTurn.moveUsed = def->getMoves()[0];
         defTurn.type = Elements::TurnType::MOVE;
@@ -186,9 +201,11 @@ class Species;
 
     bool BattleCtrl::checkBattleEnd() {
         if(def->getHP() <= 0 || atk->getHP() <= 0) {
-        	trainer->setOver();
+            trainer->setOver();
             Elements::TurnAction batEnd;
-            batEnd.type = (def->getHP() <= 0) ? Elements::TurnActionType::VICTORY : Elements::TurnActionType::DEFEAT;
+            batEnd.type = (def->getHP() <= 0) ?
+                              Elements::TurnActionType::VICTORY :
+                              Elements::TurnActionType::DEFEAT;
             actionsQueue.push(batEnd);
             return true;
         }
@@ -196,29 +213,39 @@ class Species;
     }
 
     bool BattleCtrl::turn() {
-        //These variables are used to check if the turn of one of the OpMons' is over.
+        // These variables are used to check if the turn of one of the OpMons'
+        // is over.
         bool atkDone = false;
         bool defDone = false;
 
         turnIA(0);
 
         if(!actionsQueue.empty()) {
-            Utils::Log::warn("Battle: Action queue not empty when beginning a new turn. Emptying it, hope it won't mess everything up. Good luck.");
+            Utils::Log::warn(
+                "Battle: Action queue not empty when beginning a new turn. "
+                "Emptying it, hope it won't mess everything up. Good luck.");
             actionsQueue = std::queue<Elements::TurnAction>();
         }
 
-        //Item use or switching always comes before the move. It is calculated before everything else.
+        // Item use or switching always comes before the move. It is calculated
+        // before everything else.
         if(atkTurn.type != Elements::TurnType::MOVE) {
-            //Actions
+            // Actions
             atkDone = true;
         }
         if(defTurn.type != Elements::TurnType::MOVE) {
-            //Actions
+            // Actions
             defDone = true;
         }
-        //If the two of them move, then the priority must be calculated. Else, the only attacking OpMon will move, obviously.
-        if(defTurn.type == Elements::TurnType::MOVE && atkTurn.type == Elements::TurnType::MOVE) {
-            atkFirst = (atkTurn.moveUsed->getPriority() == defTurn.moveUsed->getPriority()) ? (atk->getStatSPE() > def->getStatSPE()) : (atkTurn.moveUsed->getPriority() > defTurn.moveUsed->getPriority());
+        // If the two of them move, then the priority must be calculated. Else,
+        // the only attacking OpMon will move, obviously.
+        if(defTurn.type == Elements::TurnType::MOVE &&
+           atkTurn.type == Elements::TurnType::MOVE) {
+            atkFirst = (atkTurn.moveUsed->getPriority() ==
+                        defTurn.moveUsed->getPriority()) ?
+                           (atk->getStatSPE() > def->getStatSPE()) :
+                           (atkTurn.moveUsed->getPriority() >
+                            defTurn.moveUsed->getPriority());
         } else {
             atkFirst = !atkDone;
         }
@@ -255,57 +282,82 @@ class Species;
         bool canMove = true;
         std::vector<sf::String *> opName(1);
         opName[0] = new sf::String(opmon->getNickname());
-        //Checks if frozen
+        // Checks if frozen
         if(opmon->getStatus() == Status::FROZEN) {
-            //The OpMon have one chance out of 5 to be able to move again.
+            // The OpMon have one chance out of 5 to be able to move again.
             if(Utils::Misc::randU(5) == 2) {
-                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getGameDataPtr()->getStringKeys(), "battle.status.frozen.out", opName)));
+                actionsQueue.push(Elements::createTurnDialogAction(
+                    Utils::OpString(data.getGameDataPtr()->getStringKeys(),
+                                    "battle.status.frozen.out", opName)));
                 opmon->setStatus(Status::NOTHING);
             } else {
-                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getGameDataPtr()->getStringKeys(), "battle.status.frozen.move", opName)));
+                actionsQueue.push(Elements::createTurnDialogAction(
+                    Utils::OpString(data.getGameDataPtr()->getStringKeys(),
+                                    "battle.status.frozen.move", opName)));
                 canMove = false;
             }
-            //Checks if sleeping
+            // Checks if sleeping
         } else if(opmon->getStatus() == Status::SLEEPING) {
-            //Checks the sleep counter.
+            // Checks the sleep counter.
             if(opmon->getSleepingCD() <= 0) {
-                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getGameDataPtr()->getStringKeys(), "battle.status.sleep.out", opName)));
+                actionsQueue.push(Elements::createTurnDialogAction(
+                    Utils::OpString(data.getGameDataPtr()->getStringKeys(),
+                                    "battle.status.sleep.out", opName)));
                 opmon->setStatus(Status::NOTHING);
             } else {
-                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getGameDataPtr()->getStringKeys(), "battle.status.sleep.move", opName)));
+                actionsQueue.push(Elements::createTurnDialogAction(
+                    Utils::OpString(data.getGameDataPtr()->getStringKeys(),
+                                    "battle.status.sleep.move", opName)));
                 canMove = false;
                 opmon->passCD(true);
             }
-            //Checks if paralysed
+            // Checks if paralysed
         } else if(opmon->getStatus() == Status::PARALYSED) {
-            //The opmon have one chance out of three to can't move when paralysed
+            // The opmon have one chance out of three to can't move when
+            // paralysed
             if(Utils::Misc::randU(4) == 2) {
-                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getGameDataPtr()->getStringKeys(), "battle.status.paralysed.move.fail", opName)));
+                actionsQueue.push(
+                    Elements::createTurnDialogAction(Utils::OpString(
+                        data.getGameDataPtr()->getStringKeys(),
+                        "battle.status.paralysed.move.fail", opName)));
                 canMove = false;
             } else {
-                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getGameDataPtr()->getStringKeys(), "battle.status.paralysed.move.success", opName)));
+                actionsQueue.push(
+                    Elements::createTurnDialogAction(Utils::OpString(
+                        data.getGameDataPtr()->getStringKeys(),
+                        "battle.status.paralysed.move.success", opName)));
             }
         }
-        //Checks if confused
+        // Checks if confused
         if(opmon->confused) {
-            //Checks the confused counter
+            // Checks the confused counter
             if(opmon->getConfusedCD() <= 0) {
                 opmon->confused = false;
-                actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getGameDataPtr()->getStringKeys(), "battle.status.confused.out", opName)));
+                actionsQueue.push(Elements::createTurnDialogAction(
+                    Utils::OpString(data.getGameDataPtr()->getStringKeys(),
+                                    "battle.status.confused.out", opName)));
             } else {
                 opmon->passCD(false);
-                //The OpMon have one chance out of two of failing their move.
+                // The OpMon have one chance out of two of failing their move.
                 if(Utils::Misc::randU(2) == 1) {
-                    actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getGameDataPtr()->getStringKeys(), "battle.status.confused.move.fail", opName)));
+                    actionsQueue.push(
+                        Elements::createTurnDialogAction(Utils::OpString(
+                            data.getGameDataPtr()->getStringKeys(),
+                            "battle.status.confused.move.fail", opName)));
                     opmon->attacked(opmon->getStatHP() / 8);
                 } else {
-                    actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getGameDataPtr()->getStringKeys(), "battle.status.confused.move.success", opName)));
+                    actionsQueue.push(
+                        Elements::createTurnDialogAction(Utils::OpString(
+                            data.getGameDataPtr()->getStringKeys(),
+                            "battle.status.confused.move.success", opName)));
                 }
             }
         }
-        //Checks if afraid
+        // Checks if afraid
         if(opmon->afraid) {
-            actionsQueue.push(Elements::createTurnDialogAction(Utils::OpString(data.getGameDataPtr()->getStringKeys(), "battle.status.afraid", opName)));
+            actionsQueue.push(Elements::createTurnDialogAction(
+                Utils::OpString(data.getGameDataPtr()->getStringKeys(),
+                                "battle.status.afraid", opName)));
             opmon->afraid = false;
             canMove = false;
         }
@@ -314,9 +366,7 @@ class Species;
     }
 #pragma GCC diagnostic pop
 
-    void BattleCtrl::suspend() {
-        data.getGameDataPtr()->getJukebox().pause();
-    }
+    void BattleCtrl::suspend() { data.getGameDataPtr()->getJukebox().pause(); }
 
     void BattleCtrl::resume() {
         data.getGameDataPtr()->getJukebox().play("Wild Battle");

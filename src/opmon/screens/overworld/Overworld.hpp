@@ -10,23 +10,23 @@
 #include <SFML/Graphics/View.hpp>
 
 #include "OverworldData.hpp"
-#include "src/opmon/view/ui/Dialog.hpp"
-#include "src/opmon/view/ui/Elements.hpp"
 #include "src/opmon/core/GameStatus.hpp"
 #include "src/opmon/view/elements/events/BattleEvent.hpp"
+#include "src/opmon/view/ui/Dialog.hpp"
+#include "src/opmon/view/ui/Elements.hpp"
 
 namespace sf {
-class RenderTarget;
-}  // namespace sf
+    class RenderTarget;
+} // namespace sf
 
 namespace OpMon {
-class OverworldData;
-namespace Elements {
-class Map;
-namespace Events {
-class TrainerEvent;
-}  // namespace Events
-}  // namespace Elements
+    class OverworldData;
+    namespace Elements {
+        class Map;
+        namespace Events {
+            class TrainerEvent;
+        } // namespace Events
+    }     // namespace Elements
 
     /*!
      * \brief The overworld.
@@ -34,27 +34,23 @@ class TrainerEvent;
      * \todo Unify the player animation system and the npc animation system.
      */
     class Overworld : public sf::Drawable {
-    public:
+      public:
         Overworld(const std::string &mapId, OverworldData &data);
 
-        Elements::PlayerEvent &getCharacter() {
-            return character;
-        }
+        Elements::PlayerEvent &getCharacter() { return character; }
 
         /*!
          * \brief Returns the map the player is in currently.
          * \todo Rename to getCurrentMap
          */
-        Elements::Map *getCurrent() {
-            return current;
-        }
+        Elements::Map *getCurrent() { return current; }
 
         /*!
          * \brief Updates the overworld.
          */
         GameStatus update();
 
-        void draw(sf::RenderTarget& frame, sf::RenderStates states) const;
+        void draw(sf::RenderTarget &frame, sf::RenderStates states) const;
 
         /*!
          * \brief Teleports the player with a fading animation.
@@ -72,7 +68,8 @@ class TrainerEvent;
          * \param tpDir The direction the player will face after the teleportation.
          * Side::NO_MOVE will keep the direction the player was facing before.
          */
-        void tpNoAnim(std::string toTp, sf::Vector2i pos, Side tpDir = Side::NO_MOVE);
+        void tpNoAnim(std::string toTp, sf::Vector2i pos,
+                      Side tpDir = Side::NO_MOVE);
 
         /*!
          * \brief Returns a layer of the map the player is currently in.
@@ -81,20 +78,18 @@ class TrainerEvent;
          */
         Ui::MapLayer *getMapLayer(int number) {
             switch(number) {
-            case 1:
-                return layer1.get();
-            case 2:
-                return layer2.get();
-            case 3:
-                return layer3.get();
-            default:
-                return nullptr;
+                case 1:
+                    return layer1.get();
+                case 2:
+                    return layer2.get();
+                case 3:
+                    return layer3.get();
+                default:
+                    return nullptr;
             }
         }
 
-        Ui::Dialog *getDialog() {
-            return dialog.get();
-        }
+        Ui::Dialog *getDialog() { return dialog.get(); }
 
         void moveCamera(Side dir);
         bool isCameraLocked();
@@ -122,9 +117,7 @@ class TrainerEvent;
          */
         void setMusic(std::string const &path);
 
-        Elements::BattleEvent *getBattleDeclared() {
-            return trainerToBattle;
-        }
+        Elements::BattleEvent *getBattleDeclared() { return trainerToBattle; }
 
         /*!
          * \brief Makes the overworld start a Battle.
@@ -135,20 +128,20 @@ class TrainerEvent;
             if(trainerToBattle == nullptr) {
                 trainerToBattle = trainer;
             } else {
-                throw std::runtime_error("Trying to set up a battle, but an another one is already set up. Recheck the code.");
+                throw std::runtime_error(
+                    "Trying to set up a battle, but an another one is already "
+                    "set up. Recheck the code.");
             }
         }
 
-        bool isInBattle() const {
-        	return !(trainerToBattle == nullptr);
-        }
+        bool isInBattle() const { return !(trainerToBattle == nullptr); }
 
         bool isDialogOver() const {
-        	if(dialog == nullptr){
-        		return true;
-        	}else{
-        		return dialog->isDialogOver();
-        	}
+            if(dialog == nullptr) {
+                return true;
+            } else {
+                return dialog->isDialogOver();
+            }
         }
 
         /*!
@@ -169,9 +162,7 @@ class TrainerEvent;
         /*!
          * \brief Animates the player.
          */
-        void startPlayerAnimation() {
-            initPlayerAnimation = true;
-        }
+        void startPlayerAnimation() { initPlayerAnimation = true; }
 
         OverworldData &getData() { return data; }
 
@@ -180,7 +171,7 @@ class TrainerEvent;
          */
         bool debugMode = false;
 
-    private:
+      private:
         /*!
          * \brief Prints the animated elements on the screen.
          */
@@ -212,7 +203,7 @@ class TrainerEvent;
 
         sf::Text debugText;
         sf::View camera;
-        Elements::PlayerEvent& character;
+        Elements::PlayerEvent &character;
         /*!
          * \brief The map the player is currently in.
          */

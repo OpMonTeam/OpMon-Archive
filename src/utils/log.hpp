@@ -3,7 +3,7 @@
  * \authors BAKFR
  * \authors Cyrielle
  * \copyright GNU GPL v3.0
-*/
+ */
 #pragma once
 
 #include <iostream>

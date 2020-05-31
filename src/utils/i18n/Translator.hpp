@@ -8,6 +8,7 @@
 #include <map>
 #include <string>
 #include <unordered_set>
+
 #include "../StringKeys.hpp"
 
 namespace Utils {
@@ -18,13 +19,14 @@ namespace Utils {
         /*!
          * \brief Class in charge of the lang setting. It load (and reload) language file.
          *
-         * When the lang changes, it informs all Translatable instances registered with subscribe().
+         * When the lang changes, it informs all Translatable instances
+         * registered with subscribe().
          *
          * \note This class is a singleton. It can only be acceded by using getInstance().
          */
         class Translator {
           public:
-            //Ensure Singleton can't be copied.
+            // Ensure Singleton can't be copied.
             Translator(Translator const &) = delete;
             void operator=(Translator const &) = delete;
 
@@ -46,7 +48,8 @@ namespace Utils {
             /*!
              * \return A map of available languages, the first element being the language code, and the second the name of the language in said language.
              */
-            const std::map<const std::string, const std::string> getAvailableLanguages();
+            const std::map<const std::string, const std::string>
+            getAvailableLanguages();
 
             void subscribe(ATranslatable *listener);
             void unsubscribe(ATranslatable *listener);
@@ -57,9 +60,10 @@ namespace Utils {
              *
              * The path for the file have to be from the data directory.
              */
-            void setAvailableLanguages(std::map<const std::string, const std::string> langMap);
+            void setAvailableLanguages(
+                std::map<const std::string, const std::string> langMap);
 
-            StringKeys& getStringKeys() {return stringkeys;}
+            StringKeys &getStringKeys() { return stringkeys; }
 
           private:
             Translator() = default;
@@ -73,4 +77,4 @@ namespace Utils {
         };
 
     } // namespace I18n
-} // namespace OpMon
+} // namespace Utils
