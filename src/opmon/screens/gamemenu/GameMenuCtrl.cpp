@@ -13,11 +13,11 @@ File under GNU GPL v3.0 license
 
 #include "GameMenu.hpp"
 #include "GameMenuData.hpp"
+#include "src/opmon/core/AGameScreen.hpp"
 #include "src/opmon/core/GameData.hpp"
-#include "src/opmon/screens/base/AGameScreen.hpp"
+#include "src/opmon/core/Jukebox.hpp"
 #include "src/opmon/screens/optionsmenu/OptionsMenuCtrl.hpp"
 #include "src/opmon/screens/savemenu/SaveMenuCtrl.hpp"
-#include "src/opmon/view/ui/Jukebox.hpp"
 #include "src/utils/CycleCounter.hpp"
 
 namespace OpMon {

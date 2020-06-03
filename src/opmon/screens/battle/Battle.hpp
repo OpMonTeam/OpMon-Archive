@@ -9,10 +9,10 @@
 #include <SFML/Graphics/Transform.hpp>
 
 #include "BattleData.hpp"
+#include "src/opmon/core/Dialog.hpp"
+#include "src/opmon/core/Elements.hpp"
 #include "src/opmon/core/GameStatus.hpp"
-#include "src/opmon/view/elements/Turn.hpp"
-#include "src/opmon/view/ui/Dialog.hpp"
-#include "src/opmon/view/ui/Elements.hpp"
+#include "src/opmon/model/Turn.hpp"
 #include "src/utils/CycleCounter.hpp"
 
 namespace sf {
@@ -253,16 +253,14 @@ namespace OpMon {
          * \param turnActivated A pointer to BattleCtrl::turnActivated. See Battle::phase for further explanation.
          * \param atkFirst If `true`, the player's turn is the first. Else, the opponent's turn is the first.
          */
-        GameStatus update(Elements::TurnData const &atk,
-                          Elements::TurnData const &def,
-                          std::queue<Elements::TurnAction> &actionQueue,
+        GameStatus update(TurnData const &atk, TurnData const &def,
+                          std::queue<TurnAction> &actionQueue,
                           bool *turnActivated, bool atkFirst);
 
         /*!
          * \brief Initializes the battle with the current data.
          */
-        void initialize(Elements::TurnData const &atk,
-                        Elements::TurnData const &def);
+        void initialize(TurnData const &atk, TurnData const &def);
 
         /*!
          * \brief Moves the cursor.

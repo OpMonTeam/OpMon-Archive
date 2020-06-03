@@ -13,19 +13,19 @@
 #include <memory>
 
 #include "Overworld.hpp"
+#include "src/opmon/core/AGameScreen.hpp"
+#include "src/opmon/core/Dialog.hpp"
 #include "src/opmon/core/GameData.hpp"
 #include "src/opmon/core/GameStatus.hpp"
+#include "src/opmon/core/Jukebox.hpp"
 #include "src/opmon/model/Player.hpp"
 #include "src/opmon/screens/animation/AnimationCtrl.hpp"
 #include "src/opmon/screens/animation/Animations.hpp"
-#include "src/opmon/screens/base/AGameScreen.hpp"
 #include "src/opmon/screens/battle/BattleCtrl.hpp"
 #include "src/opmon/screens/gamemenu/GameMenuCtrl.hpp"
 #include "src/opmon/screens/gamemenu/GameMenuData.hpp"
 #include "src/opmon/view/elements/Map.hpp"
 #include "src/opmon/view/elements/Position.hpp"
-#include "src/opmon/view/ui/Dialog.hpp"
-#include "src/opmon/view/ui/Jukebox.hpp"
 
 // Defines created to make the code easier to read
 #define LOAD_BATTLE 1
@@ -35,7 +35,8 @@
 
 namespace OpMon {
 
-    OverworldCtrl::OverworldCtrl(Player &player, GameData *gamedata, OpMonData* opmondata)
+    OverworldCtrl::OverworldCtrl(Player &player, GameData *gamedata,
+                                 OpMonData *opmondata)
         : data(gamedata, &player, opmondata),
           view("Player's room", this->data),
           player(player) {}
@@ -177,7 +178,8 @@ namespace OpMon {
             case LOAD_BATTLE:
                 _next_gs = std::make_unique<BattleCtrl>(
                     data.getPlayer().getOpTeam(), view.getBattleDeclared(),
-                    data.getGameDataPtr(), data.getPlayerPtr(), data.getOpMonDataPtr());
+                    data.getGameDataPtr(), data.getPlayerPtr(),
+                    data.getOpMonDataPtr());
                 break;
             case LOAD_MENU_OPEN:
                 _next_gs = std::make_unique<AnimationCtrl>(

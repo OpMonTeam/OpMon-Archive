@@ -11,13 +11,13 @@
 
 #include "src/nlohmann/json.hpp"
 #include "src/opmon/core/GameData.hpp"
-#include "src/opmon/model/Player.hpp"
-#include "src/opmon/core/system/path.hpp"
+#include "src/opmon/core/path.hpp"
 #include "src/opmon/model/Enums.hpp"
 #include "src/opmon/model/Move.hpp"
 #include "src/opmon/model/Nature.hpp"
 #include "src/opmon/model/OpMon.hpp"
 #include "src/opmon/model/OpTeam.hpp"
+#include "src/opmon/model/Player.hpp"
 #include "src/opmon/view/elements/Map.hpp"
 #include "src/utils/OpString.hpp"
 #include "src/utils/ResourceLoader.hpp"
@@ -202,7 +202,8 @@ namespace OpMon {
             free(pair.second.second);
         }
         delete(playerEvent);
-        if(autogenOpMonData) delete opmondata;
+        if(autogenOpMonData)
+            delete opmondata;
     }
 
     Elements::Map *OverworldData::getMap(std::string const &map) {

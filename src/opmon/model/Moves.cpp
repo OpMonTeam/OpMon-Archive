@@ -34,7 +34,7 @@ namespace OpMon {
 
         int ChangeStatEffect::apply(
             Move &, OpMon &attacker, OpMon &defender,
-            std::queue<Elements::TurnAction> &turnQueue) {
+            std::queue<TurnAction> &turnQueue) {
             std::map<Stats, int (OpMon::*)(int)> stat_to_method = {
                 {Stats::ACC, &OpMon::changeACC},
                 {Stats::ATK, &OpMon::changeATK},
@@ -48,17 +48,17 @@ namespace OpMon {
 
             // TODO : Add dialog if stat is at its min/max
 
-            Elements::TurnAction statMod;
+            TurnAction statMod;
             newTurnAction(&statMod);
 
             if(target == Target::MOVEER) {
                 (attacker.*
                  change_method)(coef); // diff_value = attacker.changeXXX(coef)
-                statMod.type = Elements::TurnActionType::ATK_STAT_MOD;
+                statMod.type = TurnActionType::ATK_STAT_MOD;
             } else {
                 (defender.*
                  change_method)(coef); // diff_value = defender.changeXXX(coef)
-                statMod.type = Elements::TurnActionType::DEF_STAT_MOD;
+                statMod.type = TurnActionType::DEF_STAT_MOD;
             }
             statMod.statCoef = coef;
             statMod.statMod = stat;

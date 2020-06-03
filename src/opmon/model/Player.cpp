@@ -10,7 +10,6 @@
 #include "../model/Move.hpp"
 #include "src/opmon/model/OpMon.hpp"
 #include "src/opmon/model/OpTeam.hpp"
-#include "src/opmon/view/elements/Position.hpp"
 #include "src/utils/misc.hpp"
 
 namespace OpMon {

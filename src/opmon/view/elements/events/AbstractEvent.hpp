@@ -9,10 +9,11 @@
 
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Texture.hpp>
 #include <memory>
 
+#include "../Position.hpp"
 #include "src/nlohmann/json.hpp"
-#include "src/opmon/model/Player.hpp"
 
 // Macros defining constants to know the side from where the events can be
 // triggered.

@@ -15,10 +15,10 @@ File under GNU GPL v3.0 license
 #include "../../utils/time.hpp"
 #include "Gameloop.hpp"
 #include "config.hpp"
+#include "path.hpp"
 #include "src/utils/OptionsSave.hpp"
 #include "src/utils/ResourceLoader.hpp"
 #include "src/utils/i18n/Translator.hpp"
-#include "system/path.hpp"
 
 using Utils::Log::oplog;
 

@@ -7,6 +7,7 @@
 #pragma once
 
 #include "CharacterEvent.hpp"
+#include "src/opmon/model/Player.hpp"
 
 namespace OpMon::Elements {
     class PlayerEvent : public CharacterEvent {

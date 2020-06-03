@@ -15,7 +15,7 @@
 #include "OptionsMenu.hpp"
 #include "OptionsMenuData.hpp"
 #include "src/opmon/core/GameData.hpp"
-#include "src/opmon/view/ui/Jukebox.hpp"
+#include "src/opmon/core/Jukebox.hpp"
 #include "src/utils/KeyData.hpp"
 #include "src/utils/OptionsSave.hpp"
 #include "src/utils/defines.hpp"

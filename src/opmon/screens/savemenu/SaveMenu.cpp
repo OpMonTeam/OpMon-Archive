@@ -1,7 +1,7 @@
 #include "SaveMenu.hpp"
 
 #include "src/opmon/core/GameData.hpp"
-#include "src/opmon/view/ui/TextBox.hpp"
+#include "src/opmon/core/TextBox.hpp"
 #include "src/utils/log.hpp"
 
 namespace OpMon {

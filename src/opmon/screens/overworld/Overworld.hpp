@@ -10,10 +10,10 @@
 #include <SFML/Graphics/View.hpp>
 
 #include "OverworldData.hpp"
+#include "src/opmon/core/Dialog.hpp"
+#include "src/opmon/core/Elements.hpp"
 #include "src/opmon/core/GameStatus.hpp"
 #include "src/opmon/view/elements/events/BattleEvent.hpp"
-#include "src/opmon/view/ui/Dialog.hpp"
-#include "src/opmon/view/ui/Elements.hpp"
 
 namespace sf {
     class RenderTarget;

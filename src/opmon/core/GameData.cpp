@@ -14,12 +14,12 @@
 #include "../../nlohmann/json.hpp"
 #include "../../utils/OpString.hpp"
 #include "../../utils/log.hpp"
-#include "src/opmon/view/ui/Jukebox.hpp"
+#include "Jukebox.hpp"
+#include "path.hpp"
 #include "src/utils/KeyData.hpp"
 #include "src/utils/OptionsSave.hpp"
 #include "src/utils/ResourceLoader.hpp"
 #include "src/utils/i18n/Translator.hpp"
-#include "system/path.hpp"
 
 namespace OpMon {
     class Evolution;

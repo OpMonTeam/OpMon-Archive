@@ -11,8 +11,8 @@
 #include <ext/alloc_traits.h>
 #include <map>
 
-#include "../view/ui/Jukebox.hpp"
-#include "../view/ui/Window.hpp"
+#include "../core/Jukebox.hpp"
+#include "../core/Window.hpp"
 #include "src/utils/KeyData.hpp"
 #include "src/utils/OptionsSave.hpp"
 #include "src/utils/i18n/Translator.hpp"
@@ -62,7 +62,6 @@ namespace OpMon {
         sf::Font const &getFont() const { return font; }
         GameData(Ui::Window &win);
         ~GameData();
-
 
         /*!
          * \brief Gets the texture of the dialog arrow.

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "SaveMenu.hpp"
-#include "src/opmon/screens/base/AGameScreen.hpp"
+#include "src/opmon/core/AGameScreen.hpp"
 
 namespace sf {
     class Event;

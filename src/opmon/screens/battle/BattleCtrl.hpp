@@ -6,8 +6,8 @@
 #pragma once
 
 #include "Battle.hpp"
+#include "src/opmon/core/AGameScreen.hpp"
 #include "src/opmon/model/Move.hpp"
-#include "src/opmon/screens/base/AGameScreen.hpp"
 
 namespace sf {
     class Event;
@@ -60,16 +60,16 @@ namespace OpMon {
          * \brief The queue of actions done in the turn.
          * \details These actions are then transmitted to the view (Battle) to animate the screen.
          */
-        std::queue<Elements::TurnAction> actionsQueue;
+        std::queue<TurnAction> actionsQueue;
 
         /*!
          * \brief The data of the player's turn.
          */
-        Elements::TurnData atkTurn;
+        TurnData atkTurn;
         /*!
          * \brief The data of the opponent's turn.
          */
-        Elements::TurnData defTurn;
+        TurnData defTurn;
         /*!
          * \brief `true` if the player's OpMon moves first, `false` otherwise.
          */
@@ -136,14 +136,14 @@ namespace OpMon {
          * \details This methods currently chooses the first move.
          * \param level The level of intelligence for the IA
          */
-        Elements::TurnData *turnIA(int level);
+        TurnData *turnIA(int level);
 
         /*!
          * \brief Checks if the OpMon can move.
          * \param opmon The OpMon to check.
          * \param opTurn The data of this turn.
          */
-        bool canMove(OpMon *opmon, Elements::TurnData *opTurn);
+        bool canMove(OpMon *opmon, TurnData *opTurn);
         /*!
          * \brief Checks if the battle is over.
          * \returns `true` if the battle is over, `false` otherwise.
@@ -159,7 +159,7 @@ namespace OpMon {
         /*!
          * \brief A shortcut to a TurnActionType::NEXT
          */
-        Elements::TurnAction next;
+        TurnAction next;
 
       public:
         virtual ~BattleCtrl() = default;
@@ -170,8 +170,8 @@ namespace OpMon {
          * \param gamedata The GameData object.
          * \param player The Player object.
          */
-        BattleCtrl(OpTeam *one, OpTeam *two, GameData *gamedata,
-                   Player *player, OpMonData* opmondata = nullptr);
+        BattleCtrl(OpTeam *one, OpTeam *two, GameData *gamedata, Player *player,
+                   OpMonData *opmondata = nullptr);
         /*!
          * \brief Initialises a battle between the player and a trainer.
          * \param one The player's team.
@@ -180,7 +180,7 @@ namespace OpMon {
          * \param player The Player object.
          */
         BattleCtrl(OpTeam *one, Elements::BattleEvent *two, GameData *gamedata,
-                   Player *player, OpMonData* opmondata = nullptr);
+                   Player *player, OpMonData *opmondata = nullptr);
         GameStatus checkEvent(sf::Event const &) override;
         GameStatus update(sf::RenderTexture &frame) override;
 

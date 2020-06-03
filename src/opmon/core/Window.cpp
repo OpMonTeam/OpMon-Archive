@@ -17,9 +17,9 @@ File under GNU GPL v3.0 license
 #include <string>
 #include <vector>
 
-#include "../../../utils/centerOrigin.hpp"
-#include "../../../utils/log.hpp"
 #include "src/utils/ResourceLoader.hpp"
+#include "src/utils/centerOrigin.hpp"
+#include "src/utils/log.hpp"
 
 using Utils::Log::oplog;
 

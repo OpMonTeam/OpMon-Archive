@@ -15,6 +15,9 @@
 
 namespace OpMon {
 
+    /*!
+     * \brief Contains important model-related data.
+     */
     class OpMonData {
       private:
         /*!

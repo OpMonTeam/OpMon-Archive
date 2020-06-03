@@ -7,7 +7,7 @@
 #pragma once
 
 #include "MainMenu.hpp"
-#include "src/opmon/screens/base/AGameScreen.hpp"
+#include "src/opmon/core/AGameScreen.hpp"
 #include "src/utils/CycleCounter.hpp"
 
 namespace sf {

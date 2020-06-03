@@ -7,6 +7,7 @@
 #pragma once
 
 #include "AbstractEvent.hpp"
+#include "src/opmon/model/OpTeam.hpp"
 
 namespace OpMon::Elements {
     /*!

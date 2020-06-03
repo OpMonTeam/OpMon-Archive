@@ -19,9 +19,9 @@
 #include "../../utils/log.hpp"
 #include "Moves.hpp"
 #include "OpMon.hpp"
+#include "Turn.hpp"
+#include "src/opmon/core/Elements.hpp"
 #include "src/opmon/model/Enums.hpp"
-#include "src/opmon/view/elements/Turn.hpp"
-#include "src/opmon/view/ui/Elements.hpp"
 #include "src/utils/OpString.hpp"
 #include "src/utils/misc.hpp"
 
@@ -164,7 +164,7 @@ namespace OpMon {
     Move::Move(std::string nameKey, int power, Type type, int accuracy,
                bool special, bool status, int criticalRate, bool neverFails,
                int ppMax, int priority,
-               std::vector<Elements::TurnActionType> animationOrder,
+               std::vector<TurnActionType> animationOrder,
                std::queue<Ui::Transformation> opAnimsAtk,
                std::queue<Ui::Transformation> opAnimsDef,
                std::queue<std::string> animations, MoveEffect *preEffect,
@@ -224,17 +224,17 @@ namespace OpMon {
      * If 1 is returned, it will do the same move at the next turn.
      * TODO : Create defines to make this more clear
      */
-    int Move::move(OpMon &atk, OpMon &def,
-                   std::queue<Elements::TurnAction> &turnQueue, bool attacker) {
+    int Move::move(OpMon &atk, OpMon &def, std::queue<TurnAction> &turnQueue,
+                   bool attacker) {
         pp--;
-        turnQueue.push(Elements::createTurnDialogAction(Utils::OpString(
+        turnQueue.push(createTurnDialogAction(Utils::OpString(
             stringkeys, "battle.dialog.move", {atk.getNicknamePtr(), &name})));
         // Move fail
         if((Utils::Misc::randU(100)) >
                (accuracy * (atk.getStatACC() / def.getStatEVA())) &&
            neverFails == false) {
-            Elements::TurnAction failAction;
-            turnQueue.push(Elements::createTurnDialogAction(Utils::OpString(
+            TurnAction failAction;
+            turnQueue.push(createTurnDialogAction(Utils::OpString(
                 stringkeys, "battle.dialog.fail", {atk.getNicknamePtr()})));
             failEffect->apply(*this, atk, def, turnQueue);
             return -2;
@@ -249,7 +249,7 @@ namespace OpMon {
         if(ArrayTypes::calcEffectiveness(type, def.getType1(),
                                          def.getType2()) == 0 &&
            (neverFails == false || status == false)) {
-            turnQueue.push(Elements::createTurnDialogAction(
+            turnQueue.push(createTurnDialogAction(
                 Utils::OpString(stringkeys, "battle.effectiveness.none",
                                 {atk.getNicknamePtr()})));
             if(failEffect != nullptr)
@@ -258,8 +258,8 @@ namespace OpMon {
         }
 
         // Animation time
-        for(Elements::TurnActionType tat : animationOrder) {
-            Elements::TurnAction ta;
+        for(TurnActionType tat : animationOrder) {
+            TurnAction ta;
             ta.type = tat;
             turnQueue.push(ta);
         }
@@ -286,25 +286,24 @@ namespace OpMon {
 
             def.attacked(hpLost);
 
-            Elements::TurnAction loosingHp;
+            TurnAction loosingHp;
             newTurnAction(&loosingHp);
-            loosingHp.type = attacker ?
-                                 Elements::TurnActionType::DEF_UPDATE_HBAR :
-                                 Elements::TurnActionType::ATK_UPDATE_HBAR;
+            loosingHp.type = attacker ? TurnActionType::DEF_UPDATE_HBAR :
+                                        TurnActionType::ATK_UPDATE_HBAR;
             loosingHp.hpLost = hpLost;
             turnQueue.push(loosingHp);
 
             if(effectiveness == 0.25)
-                turnQueue.push(Elements::createTurnDialogAction(Utils::OpString(
+                turnQueue.push(createTurnDialogAction(Utils::OpString(
                     stringkeys, "battle.effectiveness.almostnone")));
             else if(effectiveness == 0.5)
-                turnQueue.push(Elements::createTurnDialogAction(Utils::OpString(
+                turnQueue.push(createTurnDialogAction(Utils::OpString(
                     stringkeys, "battle.effectiveness.notvery")));
             else if(effectiveness == 2)
-                turnQueue.push(Elements::createTurnDialogAction(
+                turnQueue.push(createTurnDialogAction(
                     Utils::OpString(stringkeys, "battle.effectiveness.very")));
             else if(effectiveness == 4)
-                turnQueue.push(Elements::createTurnDialogAction(
+                turnQueue.push(createTurnDialogAction(
                     Utils::OpString(stringkeys, "battle.effectiveness.super")));
         }
         return postEffect ? postEffect->apply(*this, atk, def, turnQueue) : 0;

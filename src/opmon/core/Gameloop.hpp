@@ -19,7 +19,7 @@
 
 #include <stack>
 
-#include "../screens/base/AGameScreen.hpp"
+#include "AGameScreen.hpp"
 #include "GameData.hpp"
 
 namespace sf {

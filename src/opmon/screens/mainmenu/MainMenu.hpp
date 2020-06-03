@@ -9,7 +9,7 @@
 #define MAINMENU_HPP
 
 #include "MainMenuData.hpp"
-#include "src/opmon/view/ui/TextBox.hpp"
+#include "src/opmon/core/TextBox.hpp"
 #include "src/utils/i18n/ATranslatable.hpp"
 
 namespace sf {

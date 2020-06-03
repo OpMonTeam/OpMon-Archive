@@ -16,7 +16,6 @@
 
 #include "../model/Item.hpp"
 #include "../model/OpTeam.hpp"
-#include "../view/elements/Position.hpp"
 
 namespace OpMon {
 

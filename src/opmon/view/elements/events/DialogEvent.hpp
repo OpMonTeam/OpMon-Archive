@@ -7,6 +7,7 @@
 #pragma once
 
 #include "AbstractEvent.hpp"
+#include "src/utils/OpString.hpp"
 #include "src/utils/i18n/ATranslatable.hpp"
 
 namespace OpMon {

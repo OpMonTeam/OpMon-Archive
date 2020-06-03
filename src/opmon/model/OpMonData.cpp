@@ -11,7 +11,7 @@
 
 #include "evolutions.hpp"
 #include "src/nlohmann/json.hpp"
-#include "src/opmon/core/system/path.hpp"
+#include "src/opmon/core/path.hpp"
 #include "src/utils/exceptions.hpp"
 
 namespace OpMon {

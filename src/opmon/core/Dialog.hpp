@@ -10,8 +10,8 @@
 #include <SFML/System.hpp>
 #include <queue>
 
-#include "../../core/GameData.hpp"
-#include "../ui/TextBox.hpp"
+#include "GameData.hpp"
+#include "TextBox.hpp"
 
 namespace sf {
     class RenderTarget;

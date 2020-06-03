@@ -18,15 +18,15 @@
 #include <vector>
 
 #include "BattleData.hpp"
+#include "src/opmon/core/Dialog.hpp"
+#include "src/opmon/core/Elements.hpp"
 #include "src/opmon/core/GameData.hpp"
-#include "src/opmon/model/Player.hpp"
+#include "src/opmon/core/Jukebox.hpp"
 #include "src/opmon/model/Move.hpp"
 #include "src/opmon/model/OpMon.hpp"
+#include "src/opmon/model/Player.hpp"
 #include "src/opmon/model/Species.hpp"
-#include "src/opmon/view/elements/Turn.hpp"
-#include "src/opmon/view/ui/Dialog.hpp"
-#include "src/opmon/view/ui/Elements.hpp"
-#include "src/opmon/view/ui/Jukebox.hpp"
+#include "src/opmon/model/Turn.hpp"
 #include "src/utils/CycleCounter.hpp"
 #include "src/utils/OpString.hpp"
 #include "src/utils/StringKeys.hpp"
@@ -86,8 +86,7 @@ namespace OpMon {
         }
     }
 
-    void Battle::initialize(Elements::TurnData const &atkTurn,
-                            Elements::TurnData const &defTurn) {
+    void Battle::initialize(TurnData const &atkTurn, TurnData const &defTurn) {
         data.getGameDataPtr()->getJukebox().play("Wild Battle");
         initNewOp(atkTurn.opmon, defTurn.opmon);
         initialized = true;
@@ -110,9 +109,8 @@ namespace OpMon {
         defHp = def->getHP();
     }
 
-    GameStatus Battle::update(Elements::TurnData const &atkTurn,
-                              Elements::TurnData const &defTurn,
-                              std::queue<Elements::TurnAction> &actionQueue,
+    GameStatus Battle::update(TurnData const &atkTurn, TurnData const &defTurn,
+                              std::queue<TurnAction> &actionQueue,
                               bool *turnActivated, bool atkFirst) {
         drawDialog = false;
         drawMainDialog = false;
@@ -154,7 +152,7 @@ namespace OpMon {
 
         if(*turnActivated && turnNber <= 1) { // If it's turn phase
             // Organizes the turns priority
-            const Elements::TurnData *turns[2];
+            const TurnData *turns[2];
             if(atkFirst) {
                 turns[0] = &atkTurn;
                 turns[1] = &defTurn;
@@ -165,11 +163,10 @@ namespace OpMon {
 
             if(!actionQueue.empty()) {
                 /* Handles the actions which can happen on screen */
-                Elements::TurnAction &turnAct = actionQueue.front();
+                TurnAction &turnAct = actionQueue.front();
 
-                if(turnAct.type ==
-                   Elements::TurnActionType::DIALOG) { // If a dialog must be
-                                                       // printed
+                if(turnAct.type == TurnActionType::DIALOG) { // If a dialog must
+                                                             // be printed
                     if(dialogOver) { // A new dialog is created
                         if(dialog != nullptr) {
                             delete(dialog);
@@ -188,26 +185,24 @@ namespace OpMon {
                             dialogOver = true;
                         }
                     }
-                } else if(turnAct.type ==
-                              Elements::TurnActionType::ATK_UPDATE_HBAR ||
+                } else if(turnAct.type == TurnActionType::ATK_UPDATE_HBAR ||
                           turnAct.type ==
-                              Elements::TurnActionType::
+                              TurnActionType::
                                   DEF_UPDATE_HBAR) { // Updates the player's
                                                      // OpMon's healthbar.
                     data.getGameDataPtr()->getJukebox().playSound("hit");
                     auto &opmonHp =
-                        (turnAct.type ==
-                         Elements::TurnActionType::ATK_UPDATE_HBAR) ?
+                        (turnAct.type == TurnActionType::ATK_UPDATE_HBAR) ?
                             atkHp :
                             defHp;
                     opmonHp -= turnAct.hpLost;
                     opmonHp = (opmonHp < 0) ? 0 : opmonHp; // Don't drop below 0
                     actionQueue.pop();
-                } else if(turnAct.type ==
-                              Elements::TurnActionType::ATK_STAT_MOD ||
-                          turnAct.type == Elements::TurnActionType::
-                                              DEF_STAT_MOD) { // When an OpMon's
-                                                              // stat is modified
+                } else if(turnAct.type == TurnActionType::ATK_STAT_MOD ||
+                          turnAct.type ==
+                              TurnActionType::DEF_STAT_MOD) { // When an OpMon's
+                                                              // stat is
+                                                              // modified
 
                     // Animation part
                     if(currentOpAnims == nullptr) {
@@ -231,17 +226,16 @@ namespace OpMon {
                     }
                     if(currentOpAnims->front().empty()) {
                         currentOpAnims->front().attach(
-                            (turnAct.type ==
-                             Elements::TurnActionType::ATK_STAT_MOD) ?
+                            (turnAct.type == TurnActionType::ATK_STAT_MOD) ?
                                 &atkTr :
                                 &defTr);
                     }
 
                     // Dialog part
-                    auto &opTurn = (turnAct.type ==
-                                    Elements::TurnActionType::ATK_STAT_MOD) ?
-                                       atkTurn :
-                                       defTurn;
+                    auto &opTurn =
+                        (turnAct.type == TurnActionType::ATK_STAT_MOD) ?
+                            atkTurn :
+                            defTurn;
                     if(dialogOver) {
                         if(dialog != nullptr) {
                             delete(dialog);
@@ -269,7 +263,7 @@ namespace OpMon {
                         delete(currentOpAnims);
                         currentOpAnims = nullptr;
                     }
-                } else if(turnAct.type == Elements::TurnActionType::VICTORY) {
+                } else if(turnAct.type == TurnActionType::VICTORY) {
                     if(dialogOver) {
                         if(dialog != nullptr) {
                             delete(dialog);
@@ -290,7 +284,7 @@ namespace OpMon {
                             return GameStatus::PREVIOUS;
                         }
                     }
-                } else if(turnAct.type == Elements::TurnActionType::DEFEAT) {
+                } else if(turnAct.type == TurnActionType::DEFEAT) {
                     if(dialogOver) {
                         if(dialog != nullptr) {
                             delete(dialog);
@@ -311,7 +305,7 @@ namespace OpMon {
                             return GameStatus::PREVIOUS;
                         }
                     }
-                } else if(turnAct.type == Elements::TurnActionType::OPANIM) {
+                } else if(turnAct.type == TurnActionType::OPANIM) {
                     if(currentOpAnims == nullptr) {
                         currentOpAnims = new std::queue<Ui::Transformation>(
                             ((atkFirst && (turnNber == 0)) ||
@@ -336,7 +330,7 @@ namespace OpMon {
                             currentOpAnims = nullptr;
                         }
                     }
-                } else if(turnAct.type == Elements::TurnActionType::NEXT) {
+                } else if(turnAct.type == TurnActionType::NEXT) {
                     turnNber++;
                     actionQueue.pop();
                 } else {

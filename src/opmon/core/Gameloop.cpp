@@ -17,13 +17,16 @@ File under GNU GPL v3.0 license
 #include <utility>
 
 #include "../../utils/StringKeys.hpp"
-#include "../screens/mainmenu/MainMenuCtrl.hpp"
+#include "AGameScreen.hpp"
+#include "Window.hpp"
 #include "src/opmon/core/GameData.hpp"
 #include "src/opmon/core/GameStatus.hpp"
-#include "src/opmon/screens/base/AGameScreen.hpp"
-#include "src/opmon/view/ui/Window.hpp"
 #include "src/utils/ResourceLoader.hpp"
 #include "src/utils/exceptions.hpp"
+
+// Only include of another folder of the game by core
+// Used to determine the first screen to launch
+#include "src/opmon/screens/mainmenu/MainMenuCtrl.hpp"
 
 namespace OpMon {
 

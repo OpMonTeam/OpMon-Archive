@@ -7,6 +7,7 @@
 #pragma once
 
 #include "AbstractEvent.hpp"
+#include "src/utils/defines.hpp"
 
 namespace OpMon::Elements {
 

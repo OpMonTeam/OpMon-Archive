@@ -6,10 +6,10 @@ File under GNU GPL v3.0 license
 */
 #include "Dialog.hpp"
 
-#include "../../../utils/StringKeys.hpp"
-#include "../../../utils/defines.hpp"
 #include "TextBox.hpp"
 #include "Window.hpp"
+#include "src/utils/StringKeys.hpp"
+#include "src/utils/defines.hpp"
 
 namespace OpMon {
     namespace Ui {

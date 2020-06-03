@@ -10,7 +10,7 @@
 #include <list>
 
 #include "Overworld.hpp"
-#include "src/opmon/screens/base/AGameScreen.hpp"
+#include "src/opmon/core/AGameScreen.hpp"
 
 namespace sf {
     class Event;
@@ -76,7 +76,8 @@ namespace OpMon {
         std::list<Elements::AbstractEvent *> usedList;
 
       public:
-        OverworldCtrl(Player &player, GameData *gamedata, OpMonData* opmondata = nullptr);
+        OverworldCtrl(Player &player, GameData *gamedata,
+                      OpMonData *opmondata = nullptr);
 
         GameStatus checkEvent(sf::Event const &event) override;
         /*!

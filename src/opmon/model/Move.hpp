@@ -11,8 +11,8 @@
 #include <filesystem>
 #include <queue>
 
-#include "../view/elements/Turn.hpp"
-#include "../view/ui/Elements.hpp"
+#include "Turn.hpp"
+#include "src/opmon/core/Elements.hpp"
 #include "src/utils/i18n/ATranslatable.hpp"
 
 namespace OpMon {
@@ -30,7 +30,7 @@ namespace OpMon {
         */
         virtual int apply(Move & /*move*/, OpMon & /*attacker*/,
                           OpMon & /*defender*/,
-                          std::queue<Elements::TurnAction> & /* turnQueue */) {
+                          std::queue<TurnAction> & /* turnQueue */) {
             return 0;
         }
         virtual ~MoveEffect() {}
@@ -61,7 +61,7 @@ namespace OpMon {
             nullptr; /*!< \brief The move effect applied after the calculation of the damages.*/
         MoveEffect *ifFails =
             nullptr; /*!< \brief The move effect applied if the move fails.*/
-        std::vector<Elements::TurnActionType>
+        std::vector<TurnActionType>
             animationOrder; /*!< \brief The order in which the animations will occur.*/
         std::queue<Ui::Transformation>
             opAnimsAtk; /*!< \brief The animations linked to the attacking OpMon's sprite.*/
@@ -89,7 +89,7 @@ namespace OpMon {
         Move(std::string nameKey, int power, Type type, int accuracy,
              bool special, bool status, int criticalRate, bool neverFails,
              int ppMax, int priority,
-             std::vector<Elements::TurnActionType> animationOrder,
+             std::vector<TurnActionType> animationOrder,
              std::queue<Ui::Transformation> opAnimsAtk,
              std::queue<Ui::Transformation> opAnimsDef,
              std::queue<std::string> animations,
@@ -130,8 +130,8 @@ namespace OpMon {
          * \param turnQueue A reference to the action queue of the turn.
          * \param attacker If `true`, the OpMon attacking is the player's one (The one on the front of the screen.). Used to determine which health bar update.
          */
-        int move(OpMon &atk, OpMon &def,
-                 std::queue<Elements::TurnAction> &turnQueue, bool attacker);
+        int move(OpMon &atk, OpMon &def, std::queue<TurnAction> &turnQueue,
+                 bool attacker);
 
         void setPP(int PP) { this->pp = PP; }
 
@@ -184,7 +184,7 @@ namespace OpMon {
             postEffect; /*!< \brief The move effect applied after the calculation of the damages.*/
         MoveEffect *
             failEffect; /*!< \brief The move effect applied if the move fails.*/
-        std::vector<Elements::TurnActionType>
+        std::vector<TurnActionType>
             animationOrder; /*!< \brief The order in which the animations will occur.*/
         std::queue<Ui::Transformation>
             opAnimsAtk; /*!< \brief The animations linked to the attacking OpMon's sprite.*/

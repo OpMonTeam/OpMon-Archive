@@ -15,13 +15,13 @@
 
 #include "IntroScene.hpp"
 #include "IntroSceneData.hpp"
+#include "src/opmon/core/AGameScreen.hpp"
+#include "src/opmon/core/Dialog.hpp"
 #include "src/opmon/core/GameData.hpp"
 #include "src/opmon/model/Player.hpp"
 #include "src/opmon/screens/animation/AnimationCtrl.hpp"
 #include "src/opmon/screens/animation/Animations.hpp"
-#include "src/opmon/screens/base/AGameScreen.hpp"
 #include "src/opmon/screens/overworld/OverworldCtrl.hpp"
-#include "src/opmon/view/ui/Dialog.hpp"
 
 // Defines created to make the code easier to understand.
 #define LOAD_OVERWORLD 1

@@ -20,7 +20,7 @@
 #include <SFML/Window/Event.hpp>
 #include <memory>
 
-#include "../../core/GameStatus.hpp"
+#include "src/opmon/core/GameStatus.hpp"
 
 namespace OpMon {
 

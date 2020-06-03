@@ -47,7 +47,7 @@ namespace OpMon {
              * \brief Applies the stat modification.
              */
             int apply(Move &move, OpMon &attacker, OpMon &defender,
-                      std::queue<Elements::TurnAction> &turnQueue) override;
+                      std::queue<TurnAction> &turnQueue) override;
 
           protected:
             Target target; /*!<\brief The targeted OpMon.*/
