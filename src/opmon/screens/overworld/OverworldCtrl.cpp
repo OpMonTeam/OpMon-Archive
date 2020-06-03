@@ -15,7 +15,7 @@
 #include "Overworld.hpp"
 #include "src/opmon/core/GameData.hpp"
 #include "src/opmon/core/GameStatus.hpp"
-#include "src/opmon/core/Player.hpp"
+#include "src/opmon/model/Player.hpp"
 #include "src/opmon/screens/animation/AnimationCtrl.hpp"
 #include "src/opmon/screens/animation/Animations.hpp"
 #include "src/opmon/screens/base/AGameScreen.hpp"
@@ -35,8 +35,8 @@
 
 namespace OpMon {
 
-    OverworldCtrl::OverworldCtrl(Player &player, GameData *gamedata)
-        : data(gamedata, &player),
+    OverworldCtrl::OverworldCtrl(Player &player, GameData *gamedata, OpMonData* opmondata)
+        : data(gamedata, &player, opmondata),
           view("Player's room", this->data),
           player(player) {}
 
@@ -177,7 +177,7 @@ namespace OpMon {
             case LOAD_BATTLE:
                 _next_gs = std::make_unique<BattleCtrl>(
                     data.getPlayer().getOpTeam(), view.getBattleDeclared(),
-                    data.getGameDataPtr(), data.getPlayerPtr());
+                    data.getGameDataPtr(), data.getPlayerPtr(), data.getOpMonDataPtr());
                 break;
             case LOAD_MENU_OPEN:
                 _next_gs = std::make_unique<AnimationCtrl>(

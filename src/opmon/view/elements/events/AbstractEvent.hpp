@@ -12,7 +12,7 @@
 #include <memory>
 
 #include "src/nlohmann/json.hpp"
-#include "src/opmon/core/Player.hpp"
+#include "src/opmon/model/Player.hpp"
 
 // Macros defining constants to know the side from where the events can be
 // triggered.

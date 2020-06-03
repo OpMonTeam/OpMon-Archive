@@ -171,7 +171,7 @@ namespace OpMon {
          * \param player The Player object.
          */
         BattleCtrl(OpTeam *one, OpTeam *two, GameData *gamedata,
-                   Player *player);
+                   Player *player, OpMonData* opmondata = nullptr);
         /*!
          * \brief Initialises a battle between the player and a trainer.
          * \param one The player's team.
@@ -180,7 +180,7 @@ namespace OpMon {
          * \param player The Player object.
          */
         BattleCtrl(OpTeam *one, Elements::BattleEvent *two, GameData *gamedata,
-                   Player *player);
+                   Player *player, OpMonData* opmondata = nullptr);
         GameStatus checkEvent(sf::Event const &) override;
         GameStatus update(sf::RenderTexture &frame) override;
 

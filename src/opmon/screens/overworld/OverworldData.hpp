@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics/Rect.hpp>
 
+#include "src/opmon/model/OpMonData.hpp"
 #include "src/opmon/screens/gamemenu/GameMenuData.hpp"
 #include "src/opmon/view/elements/Map.hpp"
 #include "src/opmon/view/elements/events/PlayerEvent.hpp"
@@ -51,6 +52,9 @@ namespace OpMon {
         std::vector<sf::IntRect> texturePPRect;
 
         GameData *gamedata;
+
+        OpMonData *opmondata;
+        bool autogenOpMonData;
 
         Player *player;
 
@@ -226,6 +230,8 @@ namespace OpMon {
          */
         Player &getPlayer() { return *player; }
 
+        OpMonData* getOpMonDataPtr() { return opmondata; }
+
         /*!
          * \brief Gets an item.
          */
@@ -250,7 +256,7 @@ namespace OpMon {
          * \param data A pointer to the GameData object.
          * \param player A pointer to the Player object.
          */
-        OverworldData(GameData *gamedata, Player *player);
+        OverworldData(GameData *gamedata, Player *player, OpMonData *opmondata = nullptr);
         ~OverworldData();
     };
 

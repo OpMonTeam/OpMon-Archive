@@ -97,8 +97,7 @@ namespace OpMon {
 
       private:
         sf::String name;
-        const unsigned int
-            trainerID; // Max : 8 digits in hexadecimal (Unimplemented yet)
+        const unsigned int trainerID;
         std::map<std::string, int> bag;
         std::vector<OpMon *> pc = std::vector<OpMon *>();
         OpTeam opteam;

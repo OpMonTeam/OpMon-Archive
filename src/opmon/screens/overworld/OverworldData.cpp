@@ -11,7 +11,7 @@
 
 #include "src/nlohmann/json.hpp"
 #include "src/opmon/core/GameData.hpp"
-#include "src/opmon/core/Player.hpp"
+#include "src/opmon/model/Player.hpp"
 #include "src/opmon/core/system/path.hpp"
 #include "src/opmon/model/Enums.hpp"
 #include "src/opmon/model/Move.hpp"
@@ -25,15 +25,21 @@
 
 namespace OpMon {
 
-    OverworldData::OverworldData(GameData *gamedata, Player *player)
-        : gamedata(gamedata), player(player), gameMenuData(gamedata, player) {
+    OverworldData::OverworldData(GameData *gamedata, Player *player,
+                                 OpMonData *opmondata)
+        : gamedata(gamedata),
+          opmondata((opmondata == nullptr) ? new OpMonData(gamedata) :
+                                             opmondata),
+          autogenOpMonData(opmondata == nullptr),
+          player(player),
+          gameMenuData(gamedata, player) {
         using namespace Utils;
 
         Move::initMoves(std::filesystem::directory_iterator(
             Path::getResourcePath() + "data/moves"));
 
         player->addOpToOpTeam(new OpMon(
-            "", gamedata->getOp(4), 5,
+            "", this->opmondata->getOp(4), 5,
             {Move::newMove("Tackle"), Move::newMove("Growl"), nullptr, nullptr},
             Nature::QUIET));
 
@@ -149,7 +155,7 @@ namespace OpMon {
                         opmonItor != itor->at("team").end(); ++opmonItor) {
                         team->addOpMon(new OpMon(
                             opmonItor->at("nickname"),
-                            gamedata->getOp(opmonItor->at("species")),
+                            this->opmondata->getOp(opmonItor->at("species")),
                             opmonItor->at("level"),
                             {Move::newMove(opmonItor->at("moves")[0]),
                              Move::newMove(opmonItor->at("moves")[1]),
@@ -196,6 +202,7 @@ namespace OpMon {
             free(pair.second.second);
         }
         delete(playerEvent);
+        if(autogenOpMonData) delete opmondata;
     }
 
     Elements::Map *OverworldData::getMap(std::string const &map) {

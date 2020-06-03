@@ -31,15 +31,15 @@ namespace OpMon {
     class Species;
 
     BattleCtrl::BattleCtrl(OpTeam *one, Elements::BattleEvent *two,
-                           GameData *gamedata, Player *player)
-        : BattleCtrl(one, two->getOpTeam(), gamedata, player) {
+                           GameData *gamedata, Player *player, OpMonData* opmondata)
+        : BattleCtrl(one, two->getOpTeam(), gamedata, player, opmondata) {
         this->trainer = two;
         next.type = Elements::TurnActionType::NEXT;
     }
 
     BattleCtrl::BattleCtrl(OpTeam *one, OpTeam *two, GameData *gamedata,
-                           Player *player)
-        : data(gamedata, player),
+                           Player *player, OpMonData* opmondata)
+        : data(gamedata, player, opmondata),
           playerTeam(one),
           trainerTeam(two),
           atk(one->getOp(0)),

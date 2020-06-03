@@ -21,7 +21,7 @@
 #include "OverworldData.hpp"
 #include "src/opmon/core/GameData.hpp"
 #include "src/opmon/core/GameStatus.hpp"
-#include "src/opmon/core/Player.hpp"
+#include "src/opmon/model/Player.hpp"
 #include "src/opmon/model/Enums.hpp"
 #include "src/opmon/view/elements/Map.hpp"
 #include "src/opmon/view/elements/Position.hpp"

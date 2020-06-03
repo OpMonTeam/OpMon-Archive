@@ -11,7 +11,6 @@
 #include <ext/alloc_traits.h>
 #include <map>
 
-#include "../model/Species.hpp"
 #include "../view/ui/Jukebox.hpp"
 #include "../view/ui/Window.hpp"
 #include "src/utils/KeyData.hpp"
@@ -27,11 +26,6 @@ namespace OpMon {
      */
     class GameData {
       private:
-        std::vector<std::vector<sf::Texture>> opSprites;
-        std::map<unsigned int, Species *> listOp;
-        std::vector<std::map<int, std::string>> atkOpLvl;
-        std::unordered_map<Type, sf::Texture> typesTextures;
-
         sf::Texture dialogArrow;
         sf::Texture dialogBackground;
 
@@ -68,22 +62,7 @@ namespace OpMon {
         sf::Font const &getFont() const { return font; }
         GameData(Ui::Window &win);
         ~GameData();
-        /*!
-         * \brief Gets a texture of an OpMon.
-         * \param id The identifier of the Species of the OpMon.
-         * \param face If `true`, returns the face texture, if `false`, the back texture.
-         */
-        sf::Texture &getOpSprite(unsigned int id, bool face) {
-            return opSprites[id][(unsigned int)face];
-        }
-        /*!
-         * \brief Gets a pointer to a Species object.
-         */
-        Species *getOp(unsigned int id) { return listOp.at(id); }
-        /*!
-         * \brief Gets the texture of a type.
-         */
-        sf::Texture &getTypeTexture(Type type) { return typesTextures[type]; }
+
 
         /*!
          * \brief Gets the texture of the dialog arrow.

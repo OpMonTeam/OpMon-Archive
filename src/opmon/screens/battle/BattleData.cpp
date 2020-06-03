@@ -11,8 +11,11 @@ namespace OpMon {
     class Player;
     class GameData;
 
-    BattleData::BattleData(GameData *data, Player *player)
-        : gamedata(data), player(player) {
+    BattleData::BattleData(GameData *data, Player *player, OpMonData *opmondata)
+        : gamedata(data),
+          player(player),
+          opmondata((opmondata == nullptr) ? new OpMonData(data) : opmondata),
+          autogenOpMonData(opmondata == nullptr) {
         Utils::ResourceLoader::load(
             backgrounds["grass"],
             "backgrounds/battle_bkg/background_grass.png");
@@ -24,9 +27,6 @@ namespace OpMon {
         charaBattleTextures["player"].push_back(sf::Texture());
         Utils::ResourceLoader::load(charaBattleTextures["player"][0],
                                     "sprites/chara/pp/pp_battle.png");
-        // charaBattleTextures["cyrielle"].push_back(sf::Texture());
-        // Utils::ResourceLoader::load(charaBattleTextures["cyrielle"][0],
-        // "sprites/chara/cyrielle/cyrielle_battle.png");
         charaBattleTextures["beta"].push_back(sf::Texture());
         Utils::ResourceLoader::load(charaBattleTextures["beta"][0],
                                     "sprites/chara/beta/beta_battle.png");
@@ -47,5 +47,7 @@ namespace OpMon {
         Utils::ResourceLoader::load(moveDialog,
                                     "backgrounds/dialog/moves_dialog.png");
     }
+
+    BattleData::~BattleData() { if(autogenOpMonData) delete opmondata; }
 
 } // namespace OpMon

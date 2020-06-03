@@ -8,7 +8,8 @@
 #include <list>
 
 #include "src/opmon/core/GameData.hpp"
-#include "src/opmon/core/Player.hpp"
+#include "src/opmon/model/Player.hpp"
+#include "src/opmon/model/OpMonData.hpp"
 
 namespace OpMon {
     class Player;
@@ -35,6 +36,8 @@ namespace OpMon {
 
         GameData *gamedata;
         Player *player;
+        OpMonData* opmondata;
+        bool autogenOpMonData;
 
         /*!
          * \brief The copy constructor. Not defined, must not be used.
@@ -56,12 +59,17 @@ namespace OpMon {
          */
         GameData *getGameDataPtr() { return gamedata; }
 
+        OpMonData* getOpMonDataPtr() { return opmondata; }
+
         /*!
          * \brief Initialises all the data.
          * \param data A pointer to the GameData object.
          * \param player A pointer to the Player object.
+         * \param opmondata A pointer to an OpMonData object. If it's null, the object is created.
          */
-        BattleData(GameData *data, Player *player);
+        BattleData(GameData *data, Player *player, OpMonData* opmondata = nullptr);
+
+        ~BattleData();
 
         /*!
          * \brief Gets one battle background.

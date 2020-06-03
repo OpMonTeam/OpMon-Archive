@@ -76,7 +76,7 @@ namespace OpMon {
         std::list<Elements::AbstractEvent *> usedList;
 
       public:
-        OverworldCtrl(Player &player, GameData *gamedata);
+        OverworldCtrl(Player &player, GameData *gamedata, OpMonData* opmondata = nullptr);
 
         GameStatus checkEvent(sf::Event const &event) override;
         /*!

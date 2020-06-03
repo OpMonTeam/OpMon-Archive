@@ -6,7 +6,7 @@
 #pragma once
 
 #include "src/opmon/core/GameData.hpp"
-#include "src/opmon/core/Player.hpp"
+#include "src/opmon/model/Player.hpp"
 
 namespace OpMon {
     class Player;

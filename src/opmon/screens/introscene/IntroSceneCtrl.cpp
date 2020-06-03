@@ -16,7 +16,7 @@
 #include "IntroScene.hpp"
 #include "IntroSceneData.hpp"
 #include "src/opmon/core/GameData.hpp"
-#include "src/opmon/core/Player.hpp"
+#include "src/opmon/model/Player.hpp"
 #include "src/opmon/screens/animation/AnimationCtrl.hpp"
 #include "src/opmon/screens/animation/Animations.hpp"
 #include "src/opmon/screens/base/AGameScreen.hpp"

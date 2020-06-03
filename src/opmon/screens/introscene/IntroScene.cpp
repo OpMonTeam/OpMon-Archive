@@ -11,7 +11,7 @@
 
 #include "IntroSceneData.hpp"
 #include "src/opmon/core/GameData.hpp"
-#include "src/opmon/core/Player.hpp"
+#include "src/opmon/model/Player.hpp"
 #include "src/opmon/view/ui/Dialog.hpp"
 #include "src/opmon/view/ui/Jukebox.hpp"
 #include "src/utils/OpString.hpp"

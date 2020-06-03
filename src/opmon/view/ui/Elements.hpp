@@ -36,7 +36,7 @@
 #include <SFML/Graphics/Transformable.hpp>
 #include <SFML/Graphics/VertexArray.hpp>
 
-#include "../../core/Player.hpp"
+#include "src/opmon/model/Player.hpp"
 
 namespace sf {
     class RenderTarget;

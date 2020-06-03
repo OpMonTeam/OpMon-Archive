@@ -19,7 +19,7 @@
 
 #include "BattleData.hpp"
 #include "src/opmon/core/GameData.hpp"
-#include "src/opmon/core/Player.hpp"
+#include "src/opmon/model/Player.hpp"
 #include "src/opmon/model/Move.hpp"
 #include "src/opmon/model/OpMon.hpp"
 #include "src/opmon/model/Species.hpp"
@@ -101,9 +101,9 @@ namespace OpMon {
         opName[0].setString(atk->getNickname());
         opName[1].setString(def->getNickname());
 
-        this->atk.setTexture(data.getGameDataPtr()->getOpSprite(
+        this->atk.setTexture(data.getOpMonDataPtr()->getOpSprite(
             atk->getSpecies().getOpdexNumber(), false));
-        this->def.setTexture(data.getGameDataPtr()->getOpSprite(
+        this->def.setTexture(data.getOpMonDataPtr()->getOpSprite(
             def->getSpecies().getOpdexNumber(), true));
 
         atkHp = atk->getHP();
@@ -401,7 +401,7 @@ namespace OpMon {
                     " / " +
                     std::to_string(atkTurn.opmon->getMoves()[curPos.getValue()]
                                        ->getPPMax()));
-                type.setTexture(data.getGameDataPtr()->getTypeTexture(
+                type.setTexture(data.getOpMonDataPtr()->getTypeTexture(
                     atkTurn.opmon->getMoves()[curPos.getValue()]->getType()));
                 drawType = true;
             } else { // If there is no move, print this
