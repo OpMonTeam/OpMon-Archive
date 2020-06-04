@@ -7,6 +7,7 @@
 
 #include <iterator>
 #include <utility>
+#include <algorithm>
 
 namespace Utils {
     const std::string &KeyData::findNameKeyCode(

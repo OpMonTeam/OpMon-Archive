@@ -7,8 +7,9 @@
 
 #include <SFML/Audio/Music.hpp>
 #include <SFML/Graphics/Texture.hpp>
-#include <algorithm>
 #include <cstdio>
+
+#include "src/utils/exceptions.hpp"
 
 namespace Utils {
 

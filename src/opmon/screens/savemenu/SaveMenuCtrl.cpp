@@ -1,5 +1,7 @@
 #include "SaveMenuCtrl.hpp"
 
+#include <SFML/Window/Keyboard.hpp>
+
 #include "SaveMenu.hpp"
 
 namespace OpMon {

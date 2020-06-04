@@ -8,12 +8,19 @@
 #ifndef SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUE_HPP_
 #define SRCCPP_JLPPC_REGIMYS_OBJECTS_ATTAQUE_HPP_
 
+#include <SFML/System/String.hpp>
 #include <filesystem>
 #include <queue>
+#include <map>
+#include <string>
+#include <vector>
 
 #include "Turn.hpp"
 #include "src/opmon/core/Elements.hpp"
 #include "src/utils/i18n/ATranslatable.hpp"
+#include "src/opmon/model/Enums.hpp"
+#include "src/opmon/model/OpMon.hpp"
+#include "src/utils/OpString.hpp"
 
 namespace OpMon {
 
@@ -63,9 +70,9 @@ namespace OpMon {
             nullptr; /*!< \brief The move effect applied if the move fails.*/
         std::vector<TurnActionType>
             animationOrder; /*!< \brief The order in which the animations will occur.*/
-        std::queue<Ui::Transformation>
+        std::queue<Transformation>
             opAnimsAtk; /*!< \brief The animations linked to the attacking OpMon's sprite.*/
-        std::queue<Ui::Transformation>
+        std::queue<Transformation>
             opAnimsDef; /*!< \brief The animations linked to the attacked OpMon's sprite.*/
         std::queue<std::string>
             animations; /*!< \brief The animations played on the whole screen.*/
@@ -90,8 +97,8 @@ namespace OpMon {
              bool special, bool status, int criticalRate, bool neverFails,
              int ppMax, int priority,
              std::vector<TurnActionType> animationOrder,
-             std::queue<Ui::Transformation> opAnimsAtk,
-             std::queue<Ui::Transformation> opAnimsDef,
+             std::queue<Transformation> opAnimsAtk,
+             std::queue<Transformation> opAnimsDef,
              std::queue<std::string> animations,
              MoveEffect *preEffect = nullptr, MoveEffect *postEffect = nullptr,
              MoveEffect *fails = nullptr);
@@ -141,13 +148,9 @@ namespace OpMon {
 
         sf::String getName() { return name; }
 
-        std::queue<Ui::Transformation> getOpAnimsAtk() const {
-            return opAnimsAtk;
-        }
+        std::queue<Transformation> getOpAnimsAtk() const { return opAnimsAtk; }
 
-        std::queue<Ui::Transformation> getOpAnimsDef() const {
-            return opAnimsDef;
-        }
+        std::queue<Transformation> getOpAnimsDef() const { return opAnimsDef; }
 
         std::queue<std::string> getAnimations() const { return animations; }
 
@@ -186,9 +189,9 @@ namespace OpMon {
             failEffect; /*!< \brief The move effect applied if the move fails.*/
         std::vector<TurnActionType>
             animationOrder; /*!< \brief The order in which the animations will occur.*/
-        std::queue<Ui::Transformation>
+        std::queue<Transformation>
             opAnimsAtk; /*!< \brief The animations linked to the attacking OpMon's sprite.*/
-        std::queue<Ui::Transformation>
+        std::queue<Transformation>
             opAnimsDef; /*!< \brief The animations linked to the attacked OpMon's sprite.*/
         std::queue<std::string>
             animations; /*!< \brief The animations played on the whole screen.*/
@@ -211,8 +214,8 @@ namespace OpMon {
          * \brief Generates the other version of the OpMon animations.
          * \details The OpMon animations are created to be used with the player's OpMon. This method generates opposite OpMon versions by creating a symmetry from the origin.
          */
-        std::queue<Ui::Transformation> generateDefAnims(
-            std::queue<Ui::Transformation> opAnims);
+        std::queue<Transformation> generateDefAnims(
+            std::queue<Transformation> opAnims);
     };
 
 } // namespace OpMon

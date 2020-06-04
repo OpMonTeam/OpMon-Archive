@@ -8,6 +8,9 @@
 
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/Graphics/Rect.hpp>
+#include <SFML/System/Vector2.hpp>
+#include <string>
 
 #include "IntroSceneData.hpp"
 #include "src/opmon/core/Dialog.hpp"
@@ -15,8 +18,9 @@
 #include "src/opmon/core/Jukebox.hpp"
 #include "src/opmon/model/Player.hpp"
 #include "src/utils/OpString.hpp"
-#include "src/utils/StringKeys.hpp"
 #include "src/utils/defines.hpp"
+#include "src/opmon/core/Window.hpp"
+#include "src/utils/exceptions.hpp"
 
 namespace OpMon {
 
@@ -40,9 +44,9 @@ namespace OpMon {
         float backgroundWidth = backgroundGlobalBounds.width;
         float backgroundHeight = backgroundGlobalBounds.height;
         float backgroundScaleX =
-            (float)Ui::Window::getBaseWindowWidth() / backgroundWidth;
+            (float)Window::getBaseWindowWidth() / backgroundWidth;
         float backgroundScaleY =
-            (float)Ui::Window::getBaseWindowHeight() / backgroundHeight;
+            (float)Window::getBaseWindowHeight() / backgroundHeight;
         bg.setScale(sf::Vector2f(backgroundScaleX, backgroundScaleY));
 
         // Calculate professor sprite position
@@ -50,9 +54,9 @@ namespace OpMon {
         float professorWidth = professorGlobalBounds.width;
         float professorHeight = professorGlobalBounds.height;
         float professorX =
-            (Ui::Window::getBaseWindowWidth() - professorWidth) / 2 - 20;
+            (Window::getBaseWindowWidth() - professorWidth) / 2 - 20;
         float professorY =
-            (Ui::Window::getBaseWindowHeight() - professorHeight) / 2 - 26;
+            (Window::getBaseWindowHeight() - professorHeight) / 2 - 26;
         prof.setPosition(professorX, professorY);
         prof.setScale(1.5, 1.5);
 
@@ -67,7 +71,7 @@ namespace OpMon {
         data.getGameDataPtr()->getJukebox().play("Start");
 
         // Init loop 0
-        dialog = std::make_unique<Ui::Dialog>(
+        dialog = std::make_unique<Dialog>(
             data.getGameDataPtr()->getString("prof.dialog.start.1"),
             data.getGameDataPtr());
     }
@@ -112,7 +116,7 @@ namespace OpMon {
     void IntroScene::delLoop1() {
         part++;
         // Init loop 2
-        dialog = std::make_unique<Ui::Dialog>(
+        dialog = std::make_unique<Dialog>(
             txtP1.getString(data.getGameDataPtr()->getStringKeys()),
             data.getGameDataPtr());
     }

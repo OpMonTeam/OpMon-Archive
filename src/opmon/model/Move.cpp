@@ -7,7 +7,6 @@
 #include "Move.hpp"
 
 #include <SFML/System/Vector2.hpp>
-#include <algorithm>
 #include <cmath>
 #include <filesystem>
 #include <fstream>
@@ -101,11 +100,11 @@ namespace OpMon {
                                 nlohmann::json(
                                     nlohmann::json::value_t::object));
 
-                            Ui::MovementData mov;
-                            Ui::RotationData rot;
-                            Ui::ScaleData scal;
+                            MovementData mov;
+                            RotationData rot;
+                            ScaleData scal;
                             if(!transObj.empty()) {
-                                mov = Ui::Transformation::newMovementData(
+                                mov = Transformation::newMovementData(
                                     transObj.at("mode").at(0),
                                     transObj.at("mode").at(1),
                                     transObj.at("formulas").at(0),
@@ -114,14 +113,14 @@ namespace OpMon {
                             }
 
                             if(!rotObj.empty()) {
-                                rot = Ui::Transformation::newRotationData(
+                                rot = Transformation::newRotationData(
                                     rotObj.at("mode"), rotObj.at("formula"),
                                     sf::Vector2f(rotObj.at("origin").at(0),
                                                  rotObj.at("origin").at(1)));
                             }
 
                             if(!scalObj.empty()) {
-                                scal = Ui::Transformation::newScaleData(
+                                scal = Transformation::newScaleData(
                                     scalObj.at("mode").at(0),
                                     scalObj.at("mode").at(1),
                                     scalObj.at("formulas").at(0),
@@ -130,13 +129,11 @@ namespace OpMon {
                                                  scalObj.at("origin").at(1)));
                             }
                             if(i) {
-                                moveList[idStr].opAnimsAtk.push(
-                                    Ui::Transformation(aitor->at("time"), mov,
-                                                       rot, scal));
+                                moveList[idStr].opAnimsAtk.push(Transformation(
+                                    aitor->at("time"), mov, rot, scal));
                             } else {
-                                moveList[idStr].opAnimsDef.push(
-                                    Ui::Transformation(aitor->at("time"), mov,
-                                                       rot, scal));
+                                moveList[idStr].opAnimsDef.push(Transformation(
+                                    aitor->at("time"), mov, rot, scal));
                             }
                         }
                     }
@@ -151,9 +148,9 @@ namespace OpMon {
         }
     }
 
-    std::queue<Ui::Transformation> Move::generateDefAnims(
-        std::queue<Ui::Transformation> opAnims) {
-        std::queue<Ui::Transformation> opAnimsDef;
+    std::queue<Transformation> Move::generateDefAnims(
+        std::queue<Transformation> opAnims) {
+        std::queue<Transformation> opAnimsDef;
         while(!opAnims.empty()) {
             opAnimsDef.push(opAnims.front().inverse());
             opAnims.pop();
@@ -165,8 +162,8 @@ namespace OpMon {
                bool special, bool status, int criticalRate, bool neverFails,
                int ppMax, int priority,
                std::vector<TurnActionType> animationOrder,
-               std::queue<Ui::Transformation> opAnimsAtk,
-               std::queue<Ui::Transformation> opAnimsDef,
+               std::queue<Transformation> opAnimsAtk,
+               std::queue<Transformation> opAnimsDef,
                std::queue<std::string> animations, MoveEffect *preEffect,
                MoveEffect *postEffect, MoveEffect *fails)
         : nameKey(Utils::OpString(stringkeys, nameKey)),

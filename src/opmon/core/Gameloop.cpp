@@ -8,33 +8,31 @@ File under GNU GPL v3.0 license
 
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
-#include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Window/Event.hpp>
-#include <algorithm>
+#include <SFML/Graphics/Color.hpp>
 #include <functional>
 #include <utility>
 
-#include "../../utils/StringKeys.hpp"
 #include "AGameScreen.hpp"
 #include "Window.hpp"
 #include "src/opmon/core/GameData.hpp"
 #include "src/opmon/core/GameStatus.hpp"
 #include "src/utils/ResourceLoader.hpp"
 #include "src/utils/exceptions.hpp"
-
 // Only include of another folder of the game by core
 // Used to determine the first screen to launch
 #include "src/opmon/screens/mainmenu/MainMenuCtrl.hpp"
+#include "src/utils/log.hpp"
 
 namespace OpMon {
 
     GameLoop::GameLoop() {}
 
     GameStatus GameLoop::operator()() {
-        std::unique_ptr<Ui::Window, std::function<void(Ui::Window *)>> window(
-            new Ui::Window(), [](Ui::Window *w) {
+        std::unique_ptr<Window, std::function<void(Window *)>> window(
+            new Window(), [](Window *w) {
                 w->close();
             });
         gamedata = new GameData(*window);
@@ -166,7 +164,7 @@ namespace OpMon {
     }
 
     void GameLoop::_checkWindowResize(const sf::Event &event,
-                                      Ui::Window &window) const {
+                                      Window &window) const {
         if(event.type == sf::Event::Resized) {
             window.updateView();
         }

@@ -8,8 +8,11 @@
 
 #include "CharacterEvent.hpp"
 #include "src/opmon/model/Player.hpp"
+#include "src/opmon/model/Enums.hpp"
+#include "src/opmon/screens/overworld/Position.hpp"
+#include "src/opmon/screens/overworld/events/AbstractEvent.hpp"
 
-namespace OpMon::Elements {
+namespace OpMon {
     class PlayerEvent : public CharacterEvent {
       private:
         Player *player;
@@ -21,4 +24,4 @@ namespace OpMon::Elements {
 
         bool move(Side dir, Map *map, bool debugCol);
     };
-} // namespace OpMon::Elements
+} // namespace OpMon

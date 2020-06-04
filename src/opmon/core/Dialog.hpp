@@ -7,110 +7,108 @@
 
 #pragma once
 
+#include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/System.hpp>
+#include <stdint.h>
+#include <SFML/Audio/Sound.hpp>
+#include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/RenderStates.hpp>
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/System/String.hpp>
 #include <queue>
 
 #include "GameData.hpp"
 #include "TextBox.hpp"
 
-namespace sf {
-    class RenderTarget;
-} // namespace sf
-
 namespace OpMon {
-    class GameData;
+    class Dialog : public sf::Drawable {
+      private:
+        TextBox *dialogBox;
 
-    namespace Ui {
+        /*!
+         * \brief Array of all lines composing the dialog.
+         */
+        std::queue<sf::String> text;
 
-        class Dialog : public sf::Drawable {
-          private:
-            TextBox *dialogBox;
+        /*!
+         * \brief The 3 lines currently displayed.
+         */
+        sf::String currentTxt[2] = {sf::String(" "), sf::String(" ")};
 
-            /*!
-             * \brief Array of all lines composing the dialog.
-             */
-            std::queue<sf::String> text;
+        /*!
+         * \brief Checks if the dialog box is full.
+         * \details If `true`, the dialog is fully displayed by the text animation, and the
+         * next step (on user action) would be to display the next lines.
+         */
+        bool changeDialog = false;
 
-            /*!
-             * \brief The 3 lines currently displayed.
-             */
-            sf::String currentTxt[2] = {sf::String(" "), sf::String(" ")};
+        /*!
+         * \brief Number of completely displayed lines.
+         */
+        uint32_t line = 0;
 
-            /*!
-             * \brief Checks if the dialog box is full.
-             * \details If `true`, the dialog is fully displayed by the text animation, and the
-             * next step (on user action) would be to display the next lines.
-             */
-            bool changeDialog = false;
+        /*!
+         * \brief Index of the next character to display by the text animation.
+         */
+        uint32_t i = 0;
 
-            /*!
-             * \brief Number of completely displayed lines.
-             */
-            uint32_t line = 0;
+        /*!
+         * \brief Set to `true` when the entire dialog has been displayed.
+         */
+        bool dialogOver = false;
 
-            /*!
-             * \brief Index of the next character to display by the text animation.
-             */
-            uint32_t i = 0;
+        /*!
+         * \brief The sound played when a dialog is passed.
+         */
+        sf::Sound dialogPass;
 
-            /*!
-             * \brief Set to `true` when the entire dialog has been displayed.
-             */
-            bool dialogOver = false;
+        GameData *gamedata;
 
-            /*!
-             * \brief The sound played when a dialog is passed.
-             */
-            sf::Sound dialogPass;
+        float arrDialX;
+        float arrDialY;
 
-            GameData *gamedata;
+        sf::Sprite arrDial;
 
-            float arrDialX;
-            float arrDialY;
+        void init();
 
-            sf::Sprite arrDial;
+      public:
+        /*!
+         * \brief Initises a dialog with a queue of texts to print.
+         * \param text A queue of texts. One element = one line.
+         */
+        Dialog(std::queue<sf::String> text, GameData *gamedata);
+        /*!
+         * \brief Initialises a dialog.
+         * \param text The text of the dialog.
+         */
+        Dialog(sf::String text, GameData *gamedata);
 
-            void init();
+        /*!
+         * \brief Move forward in a dialog, in response to an event like a space key pressed.
+         *
+         * If the current dialog lines aren't fully displayed (text
+         * animation ongoing), terminate the animation, wait 50ms, then ask
+         * for a dialog change. If the animation is over, and there still
+         * remaining lines to display, play a sound (dialogPass) then pass
+         * to the next lines. If there is no more line to display, the
+         * dialog is over.
+         */
+        void pass();
 
-          public:
-            /*!
-             * \brief Initises a dialog with a queue of texts to print.
-             * \param text A queue of texts. One element = one line.
-             */
-            Dialog(std::queue<sf::String> text, GameData *gamedata);
-            /*!
-             * \brief Initialises a dialog.
-             * \param text The text of the dialog.
-             */
-            Dialog(sf::String text, GameData *gamedata);
+        /*!
+         * \brief Display the dialog character by character until the 3 lines are fully displayed.
+         */
+        void updateTextAnimation();
 
-            /*!
-             * \brief Move forward in a dialog, in response to an event like a space key pressed.
-             *
-             * If the current dialog lines aren't fully displayed (text
-             * animation ongoing), terminate the animation, wait 50ms, then ask
-             * for a dialog change. If the animation is over, and there still
-             * remaining lines to display, play a sound (dialogPass) then pass
-             * to the next lines. If there is no more line to display, the
-             * dialog is over.
-             */
-            void pass();
+        /*!
+         * \brief Draw the dialog on the main frame.
+         */
+        virtual void draw(sf::RenderTarget &target,
+                          sf::RenderStates states) const;
 
-            /*!
-             * \brief Display the dialog character by character until the 3 lines are fully displayed.
-             */
-            void updateTextAnimation();
-
-            /*!
-             * \brief Draw the dialog on the main frame.
-             */
-            virtual void draw(sf::RenderTarget &target,
-                              sf::RenderStates states) const;
-
-            /*!
-             * \return `true` is the entire dialog has been displayed; `false` otherwise.
-             */
-            bool isDialogOver();
-        };
-    } // namespace Ui
+        /*!
+         * \return `true` is the entire dialog has been displayed; `false` otherwise.
+         */
+        bool isDialogOver();
+    };
 } // namespace OpMon

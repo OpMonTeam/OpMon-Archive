@@ -9,13 +9,22 @@
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <ext/alloc_traits.h>
+#include <stdint.h>
+#include <SFML/Graphics/RenderTexture.hpp>
+#include <SFML/System/String.hpp>
+#include <SFML/System/Vector2.hpp>
+#include <SFML/Window/Keyboard.hpp>
 #include <map>
+#include <string>
+#include <unordered_map>
+#include <vector>
 
 #include "../core/Jukebox.hpp"
 #include "../core/Window.hpp"
 #include "src/utils/KeyData.hpp"
 #include "src/utils/OptionsSave.hpp"
 #include "src/utils/i18n/Translator.hpp"
+#include "src/utils/StringKeys.hpp"
 
 namespace OpMon {
     class Species;
@@ -29,7 +38,7 @@ namespace OpMon {
         sf::Texture dialogArrow;
         sf::Texture dialogBackground;
 
-        Ui::Jukebox jukebox;
+        Jukebox jukebox;
         sf::Font font;
 
         sf::Keyboard::Key up;
@@ -55,12 +64,12 @@ namespace OpMon {
         /*!
          * \brief Gets a reference to the Jukebox object.
          */
-        Ui::Jukebox &getJukebox() { return jukebox; }
+        Jukebox &getJukebox() { return jukebox; }
         /*!
          * \brief Gets a reference to the game's font.
          */
         sf::Font const &getFont() const { return font; }
-        GameData(Ui::Window &win);
+        GameData(Window &win);
         ~GameData();
 
         /*!
@@ -171,7 +180,7 @@ namespace OpMon {
 
         std::vector<sf::Texture> alpha = {sf::Texture()};
 
-        Ui::Window &window;
+        Window &window;
     };
 
 } // namespace OpMon

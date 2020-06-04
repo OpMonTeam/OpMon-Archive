@@ -15,6 +15,7 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/System/Vector2.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
 #include <iostream>
 
 #include "src/opmon/core/GameStatus.hpp"

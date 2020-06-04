@@ -12,26 +12,26 @@
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/System/Vector2.hpp>
 #include <algorithm>
 #include <iostream>
 #include <map>
-#include <sstream>
 #include <vector>
+#include <utility>
 
 #include "OverworldData.hpp"
 #include "src/opmon/core/Dialog.hpp"
-#include "src/opmon/core/Elements.hpp"
 #include "src/opmon/core/GameData.hpp"
 #include "src/opmon/core/GameStatus.hpp"
 #include "src/opmon/core/Jukebox.hpp"
 #include "src/opmon/model/Enums.hpp"
-#include "src/opmon/model/Player.hpp"
-#include "src/opmon/view/elements/Map.hpp"
-#include "src/opmon/view/elements/Position.hpp"
+#include "src/opmon/screens/overworld/Map.hpp"
+#include "src/opmon/screens/overworld/Position.hpp"
 #include "src/utils/defines.hpp"
 #include "src/utils/i18n/Translator.hpp"
 #include "src/utils/log.hpp"
 #include "src/utils/time.hpp"
+#include "src/opmon/screens/overworld/events/AbstractEvent.hpp"
 
 namespace OpMon {
 
@@ -154,13 +154,13 @@ namespace OpMon {
         setMusic(current->getBg());
 
         // Recreates the layers
-        layer1 = std::make_unique<Ui::MapLayer>(
+        layer1 = std::make_unique<MapLayer>(
             current->getDimensions(), current->getLayer1(),
             data.getTileset(current->getTileset()));
-        layer2 = std::make_unique<Ui::MapLayer>(
+        layer2 = std::make_unique<MapLayer>(
             current->getDimensions(), current->getLayer2(),
             data.getTileset(current->getTileset()));
-        layer3 = std::make_unique<Ui::MapLayer>(
+        layer3 = std::make_unique<MapLayer>(
             current->getDimensions(), current->getLayer3(),
             data.getTileset(current->getTileset()));
 
@@ -184,13 +184,13 @@ namespace OpMon {
         resetCamera();
 
         setMusic(current->getBg());
-        layer1 = std::make_unique<Ui::MapLayer>(
+        layer1 = std::make_unique<MapLayer>(
             current->getDimensions(), current->getLayer1(),
             data.getTileset(current->getTileset()));
-        layer2 = std::make_unique<Ui::MapLayer>(
+        layer2 = std::make_unique<MapLayer>(
             current->getDimensions(), current->getLayer2(),
             data.getTileset(current->getTileset()));
-        layer3 = std::make_unique<Ui::MapLayer>(
+        layer3 = std::make_unique<MapLayer>(
             current->getDimensions(), current->getLayer3(),
             data.getTileset(current->getTileset()));
 
@@ -219,7 +219,7 @@ namespace OpMon {
             frame.draw(*layer2);
         }
         // Drawing events under the player
-        for(const Elements::AbstractEvent *event : current->getEvents()) {
+        for(const AbstractEvent *event : current->getEvents()) {
             const sf::Sprite *sprite = event->getSprite();
             if(sprite->getPosition().y <= character.getPosition().y) {
                 frame.draw(*sprite);
@@ -229,7 +229,7 @@ namespace OpMon {
         frame.draw(*character.getSprite());
 
         // Drawing the events above the player
-        for(const Elements::AbstractEvent *event : current->getEvents()) {
+        for(const AbstractEvent *event : current->getEvents()) {
             const sf::Sprite *sprite = event->getSprite();
             if(sprite->getPosition().y > character.getPosition().y) {
                 frame.draw(*sprite);
@@ -330,7 +330,7 @@ namespace OpMon {
         updateCamera();
 
         // Updates events under the player
-        for(Elements::AbstractEvent *event : current->getEvents()) {
+        for(AbstractEvent *event : current->getEvents()) {
             event->updateFrame();
         }
 
@@ -338,7 +338,7 @@ namespace OpMon {
         character.updateFrame();
 
         // Updates the events above the player
-        for(Elements::AbstractEvent *event : current->getEvents()) {
+        for(AbstractEvent *event : current->getEvents()) {
             event->updateFrame();
         }
 
@@ -409,8 +409,7 @@ namespace OpMon {
             this->dialog = nullptr;
         }
 
-        this->dialog =
-            std::make_unique<Ui::Dialog>(dialog, data.getGameDataPtr());
+        this->dialog = std::make_unique<Dialog>(dialog, data.getGameDataPtr());
     }
 
 } // namespace OpMon

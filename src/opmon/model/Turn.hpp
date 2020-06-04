@@ -10,6 +10,9 @@
 #include <map>
 
 #include "src/opmon/model/Item.hpp"
+#include "src/opmon/model/Enums.hpp"
+#include "src/opmon/model/OpMon.hpp"
+#include "src/utils/OpString.hpp"
 
 namespace OpMon {
 

@@ -6,11 +6,10 @@ File under GNU GPL v3.0 license
 */
 #include "OpString.hpp"
 
-#include <algorithm>
 #include <cstddef>
-#include <iostream>
 
 #include "./log.hpp"
+#include "src/utils/StringKeys.hpp"
 
 namespace Utils {
 

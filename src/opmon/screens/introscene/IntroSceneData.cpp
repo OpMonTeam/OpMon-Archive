@@ -9,12 +9,10 @@
 #include <memory>
 
 #include "src/opmon/model/Player.hpp"
-#include "src/opmon/model/Enums.hpp"
-#include "src/opmon/view/elements/Position.hpp"
 #include "src/utils/ResourceLoader.hpp"
+#include "src/utils/exceptions.hpp"
 
 namespace OpMon {
-    class GameData;
 
     IntroSceneData::IntroSceneData(GameData *data)
         : gamedata(data), player(new Player()) {

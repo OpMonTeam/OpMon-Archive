@@ -6,12 +6,14 @@
 #pragma once
 
 #include <SFML/Graphics/Texture.hpp>
+#include <ext/alloc_traits.h>
 #include <map>
 #include <unordered_map>
 #include <vector>
 
 #include "Species.hpp"
 #include "src/opmon/core/GameData.hpp"
+#include "src/opmon/model/Enums.hpp"
 
 namespace OpMon {
 

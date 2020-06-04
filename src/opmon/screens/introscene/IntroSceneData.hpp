@@ -5,6 +5,8 @@
  */
 #pragma once
 
+#include <SFML/Graphics/Texture.hpp>
+
 #include "src/opmon/core/GameData.hpp"
 #include "src/opmon/model/Player.hpp"
 

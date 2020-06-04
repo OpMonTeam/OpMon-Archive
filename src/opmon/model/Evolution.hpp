@@ -8,6 +8,7 @@
 #define EVOLUTION_HPP
 
 #include "OpMon.hpp"
+#include "src/opmon/model/Species.hpp"
 
 namespace OpMon {
 

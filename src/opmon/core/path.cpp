@@ -5,11 +5,9 @@ Contributors : Cyrielle, jubalh, JonnyPtn
 File under GNU GPL v3.0 license
 */
 #include <sys/stat.h>
-
 #include <cstdlib>
 #include <string>
 
-#include "src/utils/exceptions.hpp"
 #include "src/utils/fs.hpp"
 
 // MSVC doesn't define S_ISDIR.

@@ -11,11 +11,15 @@
 #define _PLAYER_HPP_
 
 #include <SFML/System.hpp>
+#include <SFML/System/String.hpp>
 #include <algorithm>
 #include <map>
+#include <string>
+#include <vector>
 
 #include "../model/Item.hpp"
 #include "../model/OpTeam.hpp"
+#include "src/opmon/model/OpMon.hpp"
 
 namespace OpMon {
 

@@ -1,12 +1,20 @@
 #include "AbstractMetaEvent.hpp"
 
+#include <string>
+
 #include "AnimationEvent.hpp"
 #include "DialogEvent.hpp"
 #include "SoundEvent.hpp"
 #include "TPEvent.hpp"
 #include "metaevents.hpp"
+#include "src/opmon/screens/overworld/OverworldData.hpp"
+#include "src/opmon/screens/overworld/Position.hpp"
+#include "src/opmon/screens/overworld/events/AbstractEvent.hpp"
+#include "src/opmon/screens/overworld/events/BattleEvent.hpp"
+#include "src/opmon/screens/overworld/events/CharacterEvent.hpp"
+#include "src/opmon/screens/overworld/events/LinearMetaEvent.hpp"
 
-namespace OpMon::Elements {
+namespace OpMon {
     AbstractMetaEvent::AbstractMetaEvent(std::queue<AbstractEvent *> eventQueue)
         : AbstractEvent(*eventQueue.front()),
           eventQueue(eventQueue),
@@ -60,4 +68,4 @@ namespace OpMon::Elements {
         mainEvent->setPosition(pos);
         AbstractEvent::setPosition(pos);
     }
-} // namespace OpMon::Elements
+} // namespace OpMon

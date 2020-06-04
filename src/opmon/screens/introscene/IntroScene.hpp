@@ -7,10 +7,19 @@
 #ifndef STARTSCENE_HPP
 #define STARTSCENE_HPP
 
+#include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/RenderStates.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/System/String.hpp>
+#include <memory>
+
 #include "IntroSceneData.hpp"
-#include "src/opmon/core/GameStatus.hpp"
 #include "src/opmon/core/Dialog.hpp"
+#include "src/opmon/core/GameStatus.hpp"
 #include "src/utils/i18n/ATranslatable.hpp"
+#include "src/utils/OpString.hpp"
 
 namespace sf {
     class RenderTarget;
@@ -46,7 +55,7 @@ namespace OpMon {
         void initStrings();
         void onLangChanged() override;
 
-        Ui::Dialog *getDialog() { return dialog.get(); }
+        Dialog *getDialog() { return dialog.get(); }
 
         /*!
          * \brief Returns IntroScene::part
@@ -83,7 +92,7 @@ namespace OpMon {
          */
         Utils::OpString txtP1;
 
-        std::unique_ptr<Ui::Dialog> dialog;
+        std::unique_ptr<Dialog> dialog;
 
         /*!
          * \brief The texts shown during the name input screen.

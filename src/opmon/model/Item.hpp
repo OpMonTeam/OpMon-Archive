@@ -6,7 +6,10 @@
  */
 #pragma once
 
+#include <SFML/System/String.hpp>
 #include <memory>
+#include <utility>
+#include <vector>
 
 #include "../../utils/OpString.hpp"
 #include "OpMon.hpp"

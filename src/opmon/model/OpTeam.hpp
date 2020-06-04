@@ -6,6 +6,9 @@
 #ifndef SRCCPP_JLPPC_REGIMYS_PLAYERCORE_EQUIPE_HPP_
 #define SRCCPP_JLPPC_REGIMYS_PLAYERCORE_EQUIPE_HPP_
 
+#include <string>
+#include <vector>
+
 #include "OpMon.hpp"
 
 namespace OpMon {

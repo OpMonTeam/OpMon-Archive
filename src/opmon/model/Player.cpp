@@ -6,7 +6,6 @@
 */
 #include "Player.hpp"
 
-#include "../../utils/OpString.hpp"
 #include "../model/Move.hpp"
 #include "src/opmon/model/OpMon.hpp"
 #include "src/opmon/model/OpTeam.hpp"

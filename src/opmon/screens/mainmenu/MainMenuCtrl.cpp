@@ -10,6 +10,7 @@
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/Keyboard.hpp>
 #include <memory>
+#include <string>
 
 #include "MainMenu.hpp"
 #include "MainMenuData.hpp"
@@ -21,6 +22,7 @@
 #include "src/opmon/screens/savemenu/SaveMenu.hpp"
 #include "src/opmon/screens/savemenu/SaveMenuCtrl.hpp"
 #include "src/utils/CycleCounter.hpp"
+#include "src/utils/exceptions.hpp"
 
 namespace OpMon {
 

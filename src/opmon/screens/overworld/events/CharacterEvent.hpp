@@ -6,10 +6,18 @@
 
 #pragma once
 
+#include <SFML/Graphics/Rect.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/System/Vector2.hpp>
+#include <vector>
+
 #include "AbstractEvent.hpp"
 #include "src/utils/defines.hpp"
+#include "src/nlohmann/json.hpp"
+#include "src/opmon/model/Enums.hpp"
+#include "src/opmon/screens/overworld/Position.hpp"
 
-namespace OpMon::Elements {
+namespace OpMon {
 
     /*!
      * \brief Defines different ways of moving of the npcs.
@@ -111,4 +119,4 @@ namespace OpMon::Elements {
          */
         virtual void setPosition(sf::Vector2i pos);
     };
-} // namespace OpMon::Elements
+} // namespace OpMon

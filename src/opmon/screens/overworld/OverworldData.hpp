@@ -6,12 +6,25 @@
 #pragma once
 
 #include <SFML/Graphics/Rect.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/System/String.hpp>
+#include <SFML/System/Vector2.hpp>
+#include <map>
+#include <memory>
+#include <string>
+#include <utility>
+#include <vector>
 
+#include "Map.hpp"
+#include "events/PlayerEvent.hpp"
 #include "src/opmon/model/OpMonData.hpp"
 #include "src/opmon/screens/gamemenu/GameMenuData.hpp"
-#include "src/opmon/view/elements/Map.hpp"
-#include "src/opmon/view/elements/events/PlayerEvent.hpp"
 #include "src/utils/defines.hpp"
+#include "src/nlohmann/json.hpp"
+#include "src/opmon/core/GameData.hpp"
+#include "src/opmon/model/Item.hpp"
+#include "src/opmon/model/OpTeam.hpp"
+#include "src/opmon/model/Player.hpp"
 
 namespace sf {
     class String;
@@ -21,9 +34,7 @@ namespace OpMon {
     class OpTeam;
     class Player;
     class GameData;
-    namespace Elements {
-        class Map;
-    } // namespace Elements
+    class Map;
 
     /*!
      * \brief Contains the data used for the Overworld.
@@ -42,9 +53,9 @@ namespace OpMon {
          * map. The second element contains the built map, or nullptr if the map
          * has not been initialized yet.
          */
-        std::map<std::string, std::pair<nlohmann::json, Elements::Map *>> maps;
-        std::map<std::string,
-                 std::pair<nlohmann::json, Elements::Map *>>::iterator mapsItor;
+        std::map<std::string, std::pair<nlohmann::json, Map *>> maps;
+        std::map<std::string, std::pair<nlohmann::json, Map *>>::iterator
+            mapsItor;
 
         std::string currentMap = "Player's room";
 
@@ -83,7 +94,7 @@ namespace OpMon {
          */
         OverworldData(OverworldData const &);
 
-        Elements::PlayerEvent *playerEvent;
+        PlayerEvent *playerEvent;
 
       public:
         /*!
@@ -149,11 +160,11 @@ namespace OpMon {
         /*!
          * \brief Gets a map.
          */
-        Elements::Map *getMap(std::string const &map);
+        Map *getMap(std::string const &map);
         /*!
          * \brief Gets the current map.
          */
-        Elements::Map *getCurrentMap();
+        Map *getCurrentMap();
         /*!
          * \brief Sets the current map.
          */
@@ -230,7 +241,7 @@ namespace OpMon {
          */
         Player &getPlayer() { return *player; }
 
-        OpMonData* getOpMonDataPtr() { return opmondata; }
+        OpMonData *getOpMonDataPtr() { return opmondata; }
 
         /*!
          * \brief Gets an item.
@@ -249,14 +260,15 @@ namespace OpMon {
          */
         int *getTilesetCol(std::string id) { return tilesets[id].second; }
 
-        Elements::PlayerEvent &getPlayerEvent() { return *playerEvent; }
+        PlayerEvent &getPlayerEvent() { return *playerEvent; }
 
         /*!
          * \brief Initialises all the data.
          * \param data A pointer to the GameData object.
          * \param player A pointer to the Player object.
          */
-        OverworldData(GameData *gamedata, Player *player, OpMonData *opmondata = nullptr);
+        OverworldData(GameData *gamedata, Player *player,
+                      OpMonData *opmondata = nullptr);
         ~OverworldData();
     };
 

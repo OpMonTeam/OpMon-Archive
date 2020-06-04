@@ -7,10 +7,10 @@
 #include "StringKeys.hpp"
 
 #include <SFML/Config.hpp>
-#include <SFML/Graphics.hpp>
 #include <SFML/Graphics/Font.hpp>
-#include <algorithm>
-#include <cstdio>
+#include <SFML/Graphics/Rect.hpp>
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/System/String.hpp>
 #include <ext/alloc_traits.h>
 #include <fstream>
 #include <iostream>

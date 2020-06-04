@@ -10,7 +10,9 @@
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/Keyboard.hpp>
+#include <SFML/System/Vector2.hpp>
 #include <memory>
+#include <string>
 
 #include "Overworld.hpp"
 #include "src/opmon/core/AGameScreen.hpp"
@@ -24,8 +26,11 @@
 #include "src/opmon/screens/battle/BattleCtrl.hpp"
 #include "src/opmon/screens/gamemenu/GameMenuCtrl.hpp"
 #include "src/opmon/screens/gamemenu/GameMenuData.hpp"
-#include "src/opmon/view/elements/Map.hpp"
-#include "src/opmon/view/elements/Position.hpp"
+#include "src/opmon/screens/overworld/Map.hpp"
+#include "src/opmon/screens/overworld/Position.hpp"
+#include "src/opmon/screens/overworld/events/BattleEvent.hpp"
+#include "src/opmon/screens/overworld/events/PlayerEvent.hpp"
+#include "src/utils/exceptions.hpp"
 
 // Defines created to make the code easier to read
 #define LOAD_BATTLE 1
@@ -244,10 +249,10 @@ namespace OpMon {
         overworld.getCharacter().move(direction, overworld.getCurrent(),
                                       debugCol);
 
-        Elements::Map *map = overworld.getData().getCurrentMap();
-        std::list<Elements::AbstractEvent *> eventList = map->getEvent(
+        Map *map = overworld.getData().getCurrentMap();
+        std::list<AbstractEvent *> eventList = map->getEvent(
             overworld.getCharacter().getPositionMap().getPosition());
-        actionEvents(eventList, Elements::EventTrigger::GO_IN, overworld);
+        actionEvents(eventList, EventTrigger::GO_IN, overworld);
     }
 
     void OverworldCtrl::checkAction(sf::Event const &event,
@@ -280,21 +285,20 @@ namespace OpMon {
                         break;
                 }
 
-                std::list<Elements::AbstractEvent *> eventList =
+                std::list<AbstractEvent *> eventList =
                     overworld.getData().getCurrentMap()->getEvent(
                         sf::Vector2i(lx, ly));
 
                 // Checks if the event has been already triggered in the last
                 // frame. List of all elements present in eventList and already
                 // triggered in the last frame.
-                std::list<std::list<Elements::AbstractEvent *>::iterator>
-                    commonList;
-                for(std::list<Elements::AbstractEvent *>::iterator
-                        currentEvent = eventList.begin();
+                std::list<std::list<AbstractEvent *>::iterator> commonList;
+                for(std::list<AbstractEvent *>::iterator currentEvent =
+                        eventList.begin();
                     currentEvent != eventList.end(); ++currentEvent) {
                     bool alreadyUsed = false;
-                    for(std::list<Elements::AbstractEvent *>::iterator
-                            usedEvent = usedList.begin();
+                    for(std::list<AbstractEvent *>::iterator usedEvent =
+                            usedList.begin();
                         usedEvent != usedList.end(); ++usedEvent) {
                         if(*usedEvent == *currentEvent) {
                             alreadyUsed = true;
@@ -306,12 +310,10 @@ namespace OpMon {
                 usedList = eventList;
                 // Deletes from eventList all events already triggered in the
                 // last frame.
-                for(std::list<Elements::AbstractEvent *>::iterator itor :
-                    commonList)
+                for(std::list<AbstractEvent *>::iterator itor : commonList)
                     eventList.erase(itor);
 
-                actionEvents(eventList, Elements::EventTrigger::PRESS,
-                             overworld);
+                actionEvents(eventList, EventTrigger::PRESS, overworld);
             }
         }
 
@@ -320,21 +322,20 @@ namespace OpMon {
         // Searches for events at the same position as the player and activates
         // them if they are triggered when the playeris in them.
         if(!overworld.getCharacter().getPositionMap().isMoving()) {
-            std::list<Elements::AbstractEvent *> eventList =
+            std::list<AbstractEvent *> eventList =
                 overworld.getData().getCurrentMap()->getEvent(
                     overworld.getCharacter().getPositionMap().getPosition());
-            actionEvents(eventList, Elements::EventTrigger::BE_IN, overworld);
+            actionEvents(eventList, EventTrigger::BE_IN, overworld);
         }
     }
 
-    void OverworldCtrl::actionEvents(
-        std::list<Elements::AbstractEvent *> &events,
-        Elements::EventTrigger toTrigger, Overworld &overworld) {
+    void OverworldCtrl::actionEvents(std::list<AbstractEvent *> &events,
+                                     EventTrigger toTrigger,
+                                     Overworld &overworld) {
         // Checks if the player points at the right direction to activate the
         // events. If yes, calls the events' action methods.
         Side ppDir = overworld.getCharacter().getPositionMap().getDir();
-        for(std::list<Elements::AbstractEvent *>::iterator itor =
-                events.begin();
+        for(std::list<AbstractEvent *>::iterator itor = events.begin();
             itor != events.end(); ++itor) {
             if((*itor)->getEventTrigger() == toTrigger) {
                 bool go = false;
@@ -358,9 +359,9 @@ namespace OpMon {
         }
     }
 
-    void OverworldCtrl::updateEvents(
-        std::vector<Elements::AbstractEvent *> &events, Overworld &overworld) {
-        for(Elements::AbstractEvent *event : events) {
+    void OverworldCtrl::updateEvents(std::vector<AbstractEvent *> &events,
+                                     Overworld &overworld) {
+        for(AbstractEvent *event : events) {
             event->update(overworld);
         }
     }

@@ -9,6 +9,8 @@
 
 #include <fstream>
 #include <sstream>
+#include <string>
+#include <vector>
 
 #include "StringKeys.hpp"
 

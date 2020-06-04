@@ -8,7 +8,9 @@
 
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/System/Vector2.hpp>
 #include <cstddef>
+#include <memory>
 
 #include "src/opmon/core/GameStatus.hpp"
 #include "src/utils/ResourceLoader.hpp"

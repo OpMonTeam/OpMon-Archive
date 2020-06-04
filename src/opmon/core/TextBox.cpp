@@ -3,6 +3,9 @@
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/Vertex.hpp>
+#include <ext/alloc_traits.h>
+#include <SFML/System/Vector2.hpp>
+#include <memory>
 
 namespace OpMon {
     TextBox::TextBox(sf::Texture texture, sf::Vector2f position, uint32_t width,

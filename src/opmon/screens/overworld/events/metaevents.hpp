@@ -6,12 +6,17 @@
 
 #pragma once
 
+#include <list>
+
 #include "BattleEvent.hpp"
 #include "CharacterEvent.hpp"
 #include "LinearMetaEvent.hpp"
 #include "src/opmon/screens/overworld/OverworldData.hpp"
+#include "src/nlohmann/json.hpp"
+#include "src/opmon/screens/overworld/events/AbstractEvent.hpp"
+#include "src/opmon/screens/overworld/events/AbstractMetaEvent.hpp"
 
-namespace OpMon::Elements {
+namespace OpMon {
     /*!
      * \brief An shortcut for an door event.
      * \ingroup Events
@@ -73,4 +78,4 @@ namespace OpMon::Elements {
         void update(Overworld &overworld);
         bool isDefeated() { return defeated; }
     };
-} // namespace OpMon::Elements
+} // namespace OpMon

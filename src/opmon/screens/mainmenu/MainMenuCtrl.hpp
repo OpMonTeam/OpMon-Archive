@@ -6,9 +6,15 @@
  */
 #pragma once
 
+#include <SFML/Graphics/RenderTexture.hpp>
+#include <SFML/Window/Event.hpp>
+
 #include "MainMenu.hpp"
 #include "src/opmon/core/AGameScreen.hpp"
 #include "src/utils/CycleCounter.hpp"
+#include "src/opmon/core/GameData.hpp"
+#include "src/opmon/core/GameStatus.hpp"
+#include "src/opmon/screens/mainmenu/MainMenuData.hpp"
 
 namespace sf {
     class Event;

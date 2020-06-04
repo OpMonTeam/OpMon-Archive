@@ -5,7 +5,6 @@ File under GNU GPL v3.0
 */
 #include "./fs.hpp"
 
-#include <algorithm>
 #include <cerrno>
 #include <iostream>
 #include <string>

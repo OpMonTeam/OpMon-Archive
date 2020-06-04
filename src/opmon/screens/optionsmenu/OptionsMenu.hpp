@@ -9,9 +9,17 @@
 #ifndef OPTIONSMENU_HPP
 #define OPTIONSMENU_HPP
 
+#include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/RenderStates.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/System/Vector2.hpp>
+#include <vector>
+
 #include "OptionsMenuData.hpp"
-#include "src/opmon/core/GameStatus.hpp"
 #include "src/opmon/core/Elements.hpp"
+#include "src/opmon/core/GameStatus.hpp"
 #include "src/opmon/core/TextBox.hpp"
 #include "src/utils/CycleCounter.hpp"
 #include "src/utils/i18n/ATranslatable.hpp"

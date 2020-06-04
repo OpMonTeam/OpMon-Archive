@@ -10,7 +10,6 @@
 #include <SFML/System/String.hpp>
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/Keyboard.hpp>
-#include <algorithm>
 #include <string>
 
 #include "src/opmon/core/GameData.hpp"
@@ -22,17 +21,15 @@
 #include "src/opmon/model/Turn.hpp"
 #include "src/opmon/screens/battle/Battle.hpp"
 #include "src/opmon/screens/battle/BattleData.hpp"
-#include "src/opmon/view/elements/events/BattleEvent.hpp"
+#include "src/opmon/screens/overworld/events/BattleEvent.hpp"
 #include "src/utils/OpString.hpp"
 #include "src/utils/misc.hpp"
+#include "src/utils/log.hpp"
 
 namespace OpMon {
-    class Player;
-    class Species;
 
-    BattleCtrl::BattleCtrl(OpTeam *one, Elements::BattleEvent *two,
-                           GameData *gamedata, Player *player,
-                           OpMonData *opmondata)
+    BattleCtrl::BattleCtrl(OpTeam *one, BattleEvent *two, GameData *gamedata,
+                           Player *player, OpMonData *opmondata)
         : BattleCtrl(one, two->getOpTeam(), gamedata, player, opmondata) {
         this->trainer = two;
         next.type = TurnActionType::NEXT;

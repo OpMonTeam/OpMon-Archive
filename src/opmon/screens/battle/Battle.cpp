@@ -11,9 +11,8 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/System/String.hpp>
-#include <algorithm>
-#include <ext/alloc_traits.h>
-#include <map>
+#include <SFML/Graphics/Rect.hpp>
+#include <SFML/System/Vector2.hpp>
 #include <memory>
 #include <vector>
 
@@ -31,6 +30,7 @@
 #include "src/utils/OpString.hpp"
 #include "src/utils/StringKeys.hpp"
 #include "src/utils/defines.hpp"
+#include "src/opmon/model/OpMonData.hpp"
 
 namespace OpMon {
 
@@ -175,7 +175,7 @@ namespace OpMon {
                         dialogOver = false;
                         sf::String dialogs = turnAct.dialog.getString(
                             data.getGameDataPtr()->getStringKeys());
-                        dialog = new Ui::Dialog(dialogs, data.getGameDataPtr());
+                        dialog = new Dialog(dialogs, data.getGameDataPtr());
                     } else { // Continuing an old dialog
                         dialog->updateTextAnimation();
                         if(dialog->isDialogOver()) { // If the dialog is over,
@@ -206,12 +206,12 @@ namespace OpMon {
 
                     // Animation part
                     if(currentOpAnims == nullptr) {
-                        currentOpAnims = new std::queue<Ui::Transformation>();
-                        currentOpAnims->push(Ui::Transformation(
-                            40, Ui::MovementData(), Ui::RotationData(),
-                            Ui::Transformation::newScaleData(
-                                Ui::FormulaMode::MULTIFUNCTIONS,
-                                Ui::FormulaMode::MULTIFUNCTIONS,
+                        currentOpAnims = new std::queue<Transformation>();
+                        currentOpAnims->push(Transformation(
+                            40, MovementData(), RotationData(),
+                            Transformation::newScaleData(
+                                FormulaMode::MULTIFUNCTIONS,
+                                FormulaMode::MULTIFUNCTIONS,
                                 (turnAct.statCoef > 0) ?
                                     std::vector<double> {2, 0.1, 2 * PI / 20, 0,
                                                          0, 0.9} :
@@ -222,7 +222,7 @@ namespace OpMon {
                                                          0, 0.9} :
                                     std::vector<double> {2, -0.1, 2 * PI / 20,
                                                          0, 0, 1.1},
-                                Ui::Transformation::spriteCenter(atk))));
+                                Transformation::spriteCenter(atk))));
                     }
                     if(currentOpAnims->front().empty()) {
                         currentOpAnims->front().attach(
@@ -242,7 +242,7 @@ namespace OpMon {
                             dialog = nullptr;
                         }
                         dialogOver = false;
-                        dialog = new Ui::Dialog(
+                        dialog = new Dialog(
                             Utils::OpString::quickString(
                                 data.getGameDataPtr()->getStringKeys(),
                                 "battle.stat." +
@@ -270,7 +270,7 @@ namespace OpMon {
                             dialog = nullptr;
                         }
                         dialogOver = false;
-                        dialog = new Ui::Dialog(
+                        dialog = new Dialog(
                             Utils::OpString::quickString(
                                 data.getGameDataPtr()->getStringKeys(),
                                 "battle.victory", {data.getPlayer().getName()}),
@@ -291,7 +291,7 @@ namespace OpMon {
                             dialog = nullptr;
                         }
                         dialogOver = false;
-                        dialog = new Ui::Dialog(
+                        dialog = new Dialog(
                             Utils::OpString::quickString(
                                 data.getGameDataPtr()->getStringKeys(),
                                 "battle.defeat", {data.getPlayer().getName()}),
@@ -307,7 +307,7 @@ namespace OpMon {
                     }
                 } else if(turnAct.type == TurnActionType::OPANIM) {
                     if(currentOpAnims == nullptr) {
-                        currentOpAnims = new std::queue<Ui::Transformation>(
+                        currentOpAnims = new std::queue<Transformation>(
                             ((atkFirst && (turnNber == 0)) ||
                              (!atkFirst &&
                               (turnNber == 1))) /* Is it player's turn */ ?
@@ -342,7 +342,7 @@ namespace OpMon {
             }
 
             if(dialog == nullptr) { // Always show the dialog box (if possible)
-                dialog = new Ui::Dialog(" ", data.getGameDataPtr());
+                dialog = new Dialog(" ", data.getGameDataPtr());
             }
             drawDialog = true;
 

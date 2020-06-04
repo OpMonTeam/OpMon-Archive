@@ -8,7 +8,6 @@
 
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
-#include <algorithm>
 #include <memory>
 #include <string>
 
@@ -16,7 +15,6 @@
 #include "src/opmon/core/GameData.hpp"
 #include "src/opmon/core/Jukebox.hpp"
 #include "src/opmon/core/TextBox.hpp"
-#include "src/utils/StringKeys.hpp"
 
 namespace OpMon {
 

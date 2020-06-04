@@ -1,14 +1,24 @@
 #include "metaevents.hpp"
 
+#include <SFML/Graphics/Rect.hpp>
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/System/Vector2.hpp>
 #include <queue>
+#include <deque>
+#include <memory>
 
 #include "AnimationEvent.hpp"
 #include "DialogEvent.hpp"
 #include "SoundEvent.hpp"
 #include "TPEvent.hpp"
 #include "src/opmon/screens/overworld/Overworld.hpp"
+#include "src/opmon/screens/overworld/Position.hpp"
+#include "src/opmon/screens/overworld/events/BattleEvent.hpp"
+#include "src/opmon/screens/overworld/events/CharacterEvent.hpp"
+#include "src/opmon/screens/overworld/events/LinearMetaEvent.hpp"
+#include "src/opmon/screens/overworld/events/PlayerEvent.hpp"
 
-namespace OpMon::Elements {
+namespace OpMon {
 
     DoorEvent::DoorEvent(OverworldData &data, nlohmann::json jsonData)
         : LinearMetaEvent(
@@ -79,10 +89,10 @@ namespace OpMon::Elements {
         if(triggered && !defeated &&
            eventQueue.front()
                ->isOver()) { // If the event has been triggered, not defeated
-                             // yet and that the current action is over, it means
-                             // that the player has interacted with the event, so
-                             // the dialog has been launched and is now over, and
-                             // the battle can now start.
+                             // yet and that the current action is over, it
+                             // means that the player has interacted with the
+                             // event, so the dialog has been launched and is
+                             // now over, and the battle can now start.
             garbage.push_back(eventQueue.front()); // Deleting the pre-battle
                                                    // NPC or the battle event
             eventQueue.pop();
@@ -117,4 +127,4 @@ namespace OpMon::Elements {
             delete(event);
         }
     }
-} // namespace OpMon::Elements
+} // namespace OpMon

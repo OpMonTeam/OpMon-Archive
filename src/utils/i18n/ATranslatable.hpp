@@ -7,6 +7,7 @@
 #pragma once
 
 #include "Translator.hpp"
+#include "src/utils/StringKeys.hpp"
 
 namespace Utils {
     /*!

@@ -13,7 +13,6 @@
 
 #include "src/opmon/core/GameData.hpp"
 #include "src/opmon/screens/gamemenu/GameMenuData.hpp"
-#include "src/utils/StringKeys.hpp"
 #include "src/utils/defines.hpp"
 
 namespace OpMon {

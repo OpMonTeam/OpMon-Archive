@@ -6,11 +6,13 @@
 
 #include "GameMenuData.hpp"
 
+#include <SFML/System/Vector2.hpp>
+#include <memory>
+
 #include "src/utils/ResourceLoader.hpp"
+#include "src/utils/exceptions.hpp"
 
 namespace OpMon {
-    class Player;
-    class GameData;
 
     GameMenuData::GameMenuData(GameData *data, Player *player)
         : gamedata(data), player(player) {

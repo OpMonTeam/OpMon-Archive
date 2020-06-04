@@ -10,6 +10,7 @@
 #include <SFML/System/String.hpp>
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/Keyboard.hpp>
+#include <SFML/System/String.hpp>
 #include <memory>
 #include <string>
 
@@ -22,6 +23,7 @@
 #include "src/opmon/screens/animation/AnimationCtrl.hpp"
 #include "src/opmon/screens/animation/Animations.hpp"
 #include "src/opmon/screens/overworld/OverworldCtrl.hpp"
+#include "src/utils/exceptions.hpp"
 
 // Defines created to make the code easier to understand.
 #define LOAD_OVERWORLD 1

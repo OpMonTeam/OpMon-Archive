@@ -5,10 +5,12 @@
 */
 #include "MainMenuData.hpp"
 
+#include <memory>
+
 #include "src/utils/ResourceLoader.hpp"
+#include "src/utils/exceptions.hpp"
 
 namespace OpMon {
-    class GameData;
 
     MainMenuData::MainMenuData(GameData *ptr): gamedata(ptr) {
         Utils::ResourceLoader::load(arrChoice,

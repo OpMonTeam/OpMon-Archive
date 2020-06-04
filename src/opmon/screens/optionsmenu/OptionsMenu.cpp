@@ -9,7 +9,7 @@
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
-#include <algorithm>
+#include <SFML/System/Vector2.hpp>
 #include <memory>
 #include <string>
 
@@ -19,7 +19,6 @@
 #include "src/opmon/core/TextBox.hpp"
 #include "src/utils/CycleCounter.hpp"
 #include "src/utils/OptionsSave.hpp"
-#include "src/utils/StringKeys.hpp"
 #include "src/utils/defines.hpp"
 
 namespace OpMon {

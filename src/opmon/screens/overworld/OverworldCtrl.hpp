@@ -7,10 +7,21 @@
 #ifndef OVERWORLDCTRL_HPP
 #define OVERWORLDCTRL_HPP
 
+#include <SFML/Graphics/RenderTexture.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/Window/Event.hpp>
 #include <list>
+#include <vector>
 
 #include "Overworld.hpp"
 #include "src/opmon/core/AGameScreen.hpp"
+#include "src/opmon/core/GameData.hpp"
+#include "src/opmon/core/GameStatus.hpp"
+#include "src/opmon/model/Enums.hpp"
+#include "src/opmon/model/OpMonData.hpp"
+#include "src/opmon/model/Player.hpp"
+#include "src/opmon/screens/overworld/OverworldData.hpp"
+#include "src/opmon/screens/overworld/events/AbstractEvent.hpp"
 
 namespace sf {
     class Event;
@@ -73,7 +84,7 @@ namespace OpMon {
          * This list is used in checkAction to avoid AbstractEvent::action being
          * called in two consecutive frames.
          */
-        std::list<Elements::AbstractEvent *> usedList;
+        std::list<AbstractEvent *> usedList;
 
       public:
         OverworldCtrl(Player &player, GameData *gamedata,
@@ -113,7 +124,7 @@ namespace OpMon {
          * \param player A reference to the player object.
          * \param overworld A reference to the overworld view.
          */
-        void updateEvents(std::vector<Elements::AbstractEvent *> &events,
+        void updateEvents(std::vector<AbstractEvent *> &events,
                           Overworld &overworld);
 
         /*!
@@ -129,9 +140,8 @@ namespace OpMon {
          * Event::action for the events with this EventTrigger.
          * \param overworld A reference to the overworld view.
          */
-        void actionEvents(std::list<Elements::AbstractEvent *> &events,
-                          Elements::EventTrigger toTrigger,
-                          Overworld &overworld);
+        void actionEvents(std::list<AbstractEvent *> &events,
+                          EventTrigger toTrigger, Overworld &overworld);
 
         /*!
          * \brief Calls actionEvents for some events.

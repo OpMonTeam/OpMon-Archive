@@ -5,23 +5,26 @@
 */
 #include "OverworldData.hpp"
 
-#include <algorithm>
+#include <stdlib.h>
+#include <SFML/Graphics/Rect.hpp>
 #include <filesystem>
 #include <fstream>
 
 #include "src/nlohmann/json.hpp"
 #include "src/opmon/core/GameData.hpp"
 #include "src/opmon/core/path.hpp"
-#include "src/opmon/model/Enums.hpp"
 #include "src/opmon/model/Move.hpp"
 #include "src/opmon/model/Nature.hpp"
 #include "src/opmon/model/OpMon.hpp"
 #include "src/opmon/model/OpTeam.hpp"
 #include "src/opmon/model/Player.hpp"
-#include "src/opmon/view/elements/Map.hpp"
+#include "src/opmon/screens/overworld/Map.hpp"
 #include "src/utils/OpString.hpp"
 #include "src/utils/ResourceLoader.hpp"
 #include "src/utils/log.hpp"
+#include "src/opmon/screens/overworld/events/PlayerEvent.hpp"
+#include "src/utils/StringKeys.hpp"
+#include "src/utils/exceptions.hpp"
 
 namespace OpMon {
 
@@ -183,15 +186,14 @@ namespace OpMon {
                 nlohmann::json mapJson;
                 std::ifstream mapFile(file.path());
                 mapFile >> mapJson;
-                maps.emplace(mapJson.at("id"),
-                             std::pair<nlohmann::json, Elements::Map *>(
-                                 mapJson, nullptr));
+                maps.emplace(mapJson.at("id"), std::pair<nlohmann::json, Map *>(
+                                                   mapJson, nullptr));
             }
         }
 
         mapsItor = maps.begin();
 
-        playerEvent = new Elements::PlayerEvent(*this);
+        playerEvent = new PlayerEvent(*this);
     }
 
     OverworldData::~OverworldData() {
@@ -206,15 +208,15 @@ namespace OpMon {
             delete opmondata;
     }
 
-    Elements::Map *OverworldData::getMap(std::string const &map) {
+    Map *OverworldData::getMap(std::string const &map) {
         if(maps[map].second == nullptr) { // If the map has not been loaded yet
-            maps[map].second = new Elements::Map(
+            maps[map].second = new Map(
                 maps[map].first, *this); // Loads the map with the json data
         }
         return maps[map].second;
     }
 
-    Elements::Map *OverworldData::getCurrentMap() { return getMap(currentMap); }
+    Map *OverworldData::getCurrentMap() { return getMap(currentMap); }
 
     sf::Texture &OverworldData::getEventsTexture(
         std::string const

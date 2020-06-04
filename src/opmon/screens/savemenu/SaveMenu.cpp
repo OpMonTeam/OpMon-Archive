@@ -1,8 +1,13 @@
 #include "SaveMenu.hpp"
 
+#include <SFML/Graphics/Color.hpp>
+#include <SFML/System/Vector2.hpp>
+#include <memory>
+#include <string>
+
 #include "src/opmon/core/GameData.hpp"
 #include "src/opmon/core/TextBox.hpp"
-#include "src/utils/log.hpp"
+#include "src/opmon/screens/savemenu/SaveMenuData.hpp"
 
 namespace OpMon {
 

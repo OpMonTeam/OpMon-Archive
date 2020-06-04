@@ -5,13 +5,9 @@
 */
 #include <string>
 
-#include "../../utils/OpString.hpp"
 #include "evolutions.hpp"
 #include "src/opmon/model/Evolution.hpp"
-
-namespace OpMon {
-    class OpMon;
-} // namespace OpMon
+#include "src/opmon/model/OpMon.hpp"
 
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 namespace OpMon {

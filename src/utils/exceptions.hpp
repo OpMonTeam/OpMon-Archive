@@ -5,6 +5,7 @@
  */
 #pragma once
 
+#include <bits/exception.h>
 #include <exception>
 #include <string>
 

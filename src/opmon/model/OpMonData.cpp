@@ -8,11 +8,19 @@
 #include "OpMonData.hpp"
 
 #include <filesystem>
+#include <ios>
+#include <string>
+#include <utility>
 
 #include "evolutions.hpp"
 #include "src/nlohmann/json.hpp"
 #include "src/opmon/core/path.hpp"
 #include "src/utils/exceptions.hpp"
+#include "src/opmon/model/Evolution.hpp"
+#include "src/opmon/model/Species.hpp"
+#include "src/utils/ResourceLoader.hpp"
+#include "src/utils/StringKeys.hpp"
+#include "src/utils/log.hpp"
 
 namespace OpMon {
 

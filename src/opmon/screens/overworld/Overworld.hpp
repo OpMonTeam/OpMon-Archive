@@ -8,26 +8,30 @@
 #define OVERWORLD_HPP
 
 #include <SFML/Graphics/View.hpp>
+#include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
+#include <SFML/Graphics/RenderStates.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/System/String.hpp>
+#include <SFML/System/Vector2.hpp>
+#include <map>
+#include <memory>
+#include <stdexcept>
+#include <string>
 
 #include "OverworldData.hpp"
 #include "src/opmon/core/Dialog.hpp"
 #include "src/opmon/core/Elements.hpp"
 #include "src/opmon/core/GameStatus.hpp"
-#include "src/opmon/view/elements/events/BattleEvent.hpp"
-
-namespace sf {
-    class RenderTarget;
-} // namespace sf
+#include "src/opmon/screens/overworld/events/BattleEvent.hpp"
+#include "src/opmon/model/Enums.hpp"
+#include "src/opmon/screens/overworld/Map.hpp"
+#include "src/opmon/screens/overworld/events/PlayerEvent.hpp"
+#include "src/utils/log.hpp"
 
 namespace OpMon {
-    class OverworldData;
-    namespace Elements {
-        class Map;
-        namespace Events {
-            class TrainerEvent;
-        } // namespace Events
-    }     // namespace Elements
-
     /*!
      * \brief The overworld.
      * \details This class prints and manages the camera, the map, the events, the animated elements on the map, and the player's animation.
@@ -37,13 +41,13 @@ namespace OpMon {
       public:
         Overworld(const std::string &mapId, OverworldData &data);
 
-        Elements::PlayerEvent &getCharacter() { return character; }
+        PlayerEvent &getCharacter() { return character; }
 
         /*!
          * \brief Returns the map the player is in currently.
          * \todo Rename to getCurrentMap
          */
-        Elements::Map *getCurrent() { return current; }
+        Map *getCurrent() { return current; }
 
         /*!
          * \brief Updates the overworld.
@@ -53,7 +57,14 @@ namespace OpMon {
         void draw(sf::RenderTarget &frame, sf::RenderStates states) const;
 
         /*!
-         * \brief Teleports the player with a fading animation.
+         * \brief Teleports the player with a fading animation.    class OverworldData;
+
+        class Map;
+        namespace Events {
+            class TrainerEvent;
+        } // namespace Events
+    } // namespace OpMon
+         *
          * \param toTp The ID of the map in which teleport the player.
          * \param pos Where to teleport the player in the map.
          * \param tpDir The direction the player will face after the teleportation.
@@ -76,7 +87,7 @@ namespace OpMon {
          * \param number The number of the layer.
          * \returns The layer of the map. Returns nullptr if the number given is not 1, 2 or 3.
          */
-        Ui::MapLayer *getMapLayer(int number) {
+        MapLayer *getMapLayer(int number) {
             switch(number) {
                 case 1:
                     return layer1.get();
@@ -89,7 +100,7 @@ namespace OpMon {
             }
         }
 
-        Ui::Dialog *getDialog() { return dialog.get(); }
+        Dialog *getDialog() { return dialog.get(); }
 
         void moveCamera(Side dir);
         bool isCameraLocked();
@@ -117,14 +128,14 @@ namespace OpMon {
          */
         void setMusic(std::string const &path);
 
-        Elements::BattleEvent *getBattleDeclared() { return trainerToBattle; }
+        BattleEvent *getBattleDeclared() { return trainerToBattle; }
 
         /*!
          * \brief Makes the overworld start a Battle.
          * \details The controller will then start a Battle with the given trainer.
          * \param trainer The trainer to fight.
          */
-        void declareBattle(Elements::BattleEvent *trainer) {
+        void declareBattle(BattleEvent *trainer) {
             if(trainerToBattle == nullptr) {
                 trainerToBattle = trainer;
             } else {
@@ -199,20 +210,20 @@ namespace OpMon {
          */
         void resetCamera();
 
-        Elements::BattleEvent *trainerToBattle = nullptr;
+        BattleEvent *trainerToBattle = nullptr;
 
         sf::Text debugText;
         sf::View camera;
-        Elements::PlayerEvent &character;
+        PlayerEvent &character;
         /*!
          * \brief The map the player is currently in.
          */
-        Elements::Map *current = nullptr;
+        Map *current = nullptr;
 
-        std::unique_ptr<Ui::MapLayer> layer1;
-        std::unique_ptr<Ui::MapLayer> layer2;
-        std::unique_ptr<Ui::MapLayer> layer3;
-        std::unique_ptr<Ui::Dialog> dialog;
+        std::unique_ptr<MapLayer> layer1;
+        std::unique_ptr<MapLayer> layer2;
+        std::unique_ptr<MapLayer> layer3;
+        std::unique_ptr<Dialog> dialog;
         /*!
          * \brief Indicates the frame of the walking animation that must be used.
          * \details Since the animation has two frames, this variable alternates between `true` and `false` every half of the animation.

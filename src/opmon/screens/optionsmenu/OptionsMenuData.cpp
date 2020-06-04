@@ -5,10 +5,12 @@
 */
 #include "OptionsMenuData.hpp"
 
+#include <memory>
+
 #include "src/utils/ResourceLoader.hpp"
+#include "src/utils/exceptions.hpp"
 
 namespace OpMon {
-    class GameData;
 
     OptionsMenuData::OptionsMenuData(GameData *data): gamedata(data) {
         Utils::ResourceLoader::load(selectBar, "sprites/misc/selectBar.png");

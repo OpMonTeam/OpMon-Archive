@@ -7,6 +7,14 @@
 #pragma once
 
 #include <SFML/Graphics/Transform.hpp>
+#include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/RenderStates.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/System/Vector2.hpp>
+#include <queue>
+#include <string>
 
 #include "BattleData.hpp"
 #include "src/opmon/core/Dialog.hpp"
@@ -14,6 +22,9 @@
 #include "src/opmon/core/GameStatus.hpp"
 #include "src/opmon/model/Turn.hpp"
 #include "src/utils/CycleCounter.hpp"
+#include "src/opmon/model/Enums.hpp"
+#include "src/opmon/model/OpMon.hpp"
+#include "src/opmon/model/OpTeam.hpp"
 
 namespace sf {
     class RenderTarget;
@@ -24,9 +35,7 @@ namespace OpMon {
     class OpTeam;
     class BattleData;
     class OpMon;
-    namespace Ui {
-        class Transformation;
-    } // namespace Ui
+    class Transformation;
 
     /*!
      * \brief Class managing the battles on the screen.
@@ -73,7 +82,7 @@ namespace OpMon {
         /*!
          * \brief The current queue of OpMon animations.
          */
-        std::queue<Ui::Transformation> *currentOpAnims = nullptr;
+        std::queue<Transformation> *currentOpAnims = nullptr;
 
         /*!
          * \brief The HP of the front OpMon.
@@ -193,7 +202,7 @@ namespace OpMon {
          */
         int phase = 0;
 
-        Ui::Dialog *dialog = nullptr;
+        Dialog *dialog = nullptr;
 
         BattleData &data;
 

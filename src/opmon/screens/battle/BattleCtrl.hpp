@@ -5,25 +5,27 @@
  */
 #pragma once
 
+#include <SFML/Graphics/RenderTexture.hpp>
+#include <SFML/Window/Event.hpp>
+#include <queue>
+#include <vector>
+
 #include "Battle.hpp"
 #include "src/opmon/core/AGameScreen.hpp"
+#include "src/opmon/core/GameData.hpp"
 #include "src/opmon/model/Move.hpp"
-
-namespace sf {
-    class Event;
-    class RenderTexture;
-} // namespace sf
+#include "src/opmon/model/OpMon.hpp"
+#include "src/opmon/model/OpTeam.hpp"
+#include "src/opmon/model/Player.hpp"
+#include "src/opmon/model/Species.hpp"
+#include "src/opmon/screens/overworld/events/BattleEvent.hpp"
+#include "src/opmon/core/GameStatus.hpp"
+#include "src/opmon/model/Enums.hpp"
+#include "src/opmon/model/OpMonData.hpp"
+#include "src/opmon/model/Turn.hpp"
+#include "src/opmon/screens/battle/BattleData.hpp"
 
 namespace OpMon {
-    class Move;
-    class OpMon;
-    class OpTeam;
-    class Player;
-    class Species;
-    class GameData;
-    namespace Elements {
-        class BattleEvent;
-    }
 
     /*!
      * \brief Manages a battle.
@@ -154,7 +156,7 @@ namespace OpMon {
         /*!
          * \brief The opposite trainer.
          */
-        Elements::BattleEvent *trainer;
+        BattleEvent *trainer;
 
         /*!
          * \brief A shortcut to a TurnActionType::NEXT
@@ -179,7 +181,7 @@ namespace OpMon {
          * \param gamedata The GameData object.
          * \param player The Player object.
          */
-        BattleCtrl(OpTeam *one, Elements::BattleEvent *two, GameData *gamedata,
+        BattleCtrl(OpTeam *one, BattleEvent *two, GameData *gamedata,
                    Player *player, OpMonData *opmondata = nullptr);
         GameStatus checkEvent(sf::Event const &) override;
         GameStatus update(sf::RenderTexture &frame) override;

@@ -6,9 +6,15 @@
 
 #pragma once
 
-#include "AbstractEvent.hpp"
+#include <SFML/Graphics/Rect.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/System/Vector2.hpp>
+#include <vector>
 
-namespace OpMon::Elements {
+#include "AbstractEvent.hpp"
+#include "src/nlohmann/json.hpp"
+
+namespace OpMon {
 
     /*!
      * \brief An event that animates itself when triggered.
@@ -55,4 +61,4 @@ namespace OpMon::Elements {
         void update(Overworld &overworld);
         bool isOver() const { return !playing; }
     };
-} // namespace OpMon::Elements
+} // namespace OpMon

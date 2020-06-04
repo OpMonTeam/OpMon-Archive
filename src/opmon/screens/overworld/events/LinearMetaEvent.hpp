@@ -6,9 +6,13 @@
 
 #pragma once
 
-#include "AbstractMetaEvent.hpp"
+#include <queue>
 
-namespace OpMon::Elements {
+#include "AbstractMetaEvent.hpp"
+#include "src/nlohmann/json.hpp"
+#include "src/opmon/screens/overworld/events/AbstractEvent.hpp"
+
+namespace OpMon {
     /*!
      * \brief A meta event that calls one group of events after the other.
      * \ingroup Events
@@ -42,4 +46,4 @@ namespace OpMon::Elements {
         void action(Overworld &overworld);
         void update(Overworld &overworld);
     };
-} // namespace OpMon::Elements
+} // namespace OpMon

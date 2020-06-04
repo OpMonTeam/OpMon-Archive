@@ -1,7 +1,13 @@
 #pragma once
 
+#include <SFML/Graphics/RenderTexture.hpp>
+#include <SFML/Window/Event.hpp>
+
 #include "SaveMenu.hpp"
 #include "src/opmon/core/AGameScreen.hpp"
+#include "src/opmon/core/GameData.hpp"
+#include "src/opmon/core/GameStatus.hpp"
+#include "src/opmon/screens/savemenu/SaveMenuData.hpp"
 
 namespace sf {
     class Event;

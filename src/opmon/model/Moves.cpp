@@ -6,16 +6,12 @@
 */
 #include "Moves.hpp"
 
-#include <algorithm>
 #include <map>
 
 #include "src/nlohmann/json.hpp"
 #include "src/opmon/model/OpMon.hpp"
-#include "src/utils/OpString.hpp"
-
-namespace OpMon {
-    class Move;
-} // namespace OpMon
+#include "src/opmon/model/Move.hpp"
+#include "src/utils/StringKeys.hpp"
 
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 namespace OpMon {
@@ -32,9 +28,8 @@ namespace OpMon {
               stat(data.at("stat")),
               coef(data.at("coef")) {}
 
-        int ChangeStatEffect::apply(
-            Move &, OpMon &attacker, OpMon &defender,
-            std::queue<TurnAction> &turnQueue) {
+        int ChangeStatEffect::apply(Move &, OpMon &attacker, OpMon &defender,
+                                    std::queue<TurnAction> &turnQueue) {
             std::map<Stats, int (OpMon::*)(int)> stat_to_method = {
                 {Stats::ACC, &OpMon::changeACC},
                 {Stats::ATK, &OpMon::changeATK},

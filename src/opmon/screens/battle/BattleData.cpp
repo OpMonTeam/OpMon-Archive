@@ -6,10 +6,9 @@
 #include "BattleData.hpp"
 
 #include "src/utils/ResourceLoader.hpp"
+#include "src/utils/exceptions.hpp"
 
 namespace OpMon {
-    class Player;
-    class GameData;
 
     BattleData::BattleData(GameData *data, Player *player, OpMonData *opmondata)
         : gamedata(data),
@@ -48,6 +47,9 @@ namespace OpMon {
                                     "backgrounds/dialog/moves_dialog.png");
     }
 
-    BattleData::~BattleData() { if(autogenOpMonData) delete opmondata; }
+    BattleData::~BattleData() {
+        if(autogenOpMonData)
+            delete opmondata;
+    }
 
 } // namespace OpMon

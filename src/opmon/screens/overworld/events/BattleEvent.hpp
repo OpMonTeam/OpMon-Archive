@@ -6,10 +6,16 @@
 
 #pragma once
 
+#include <SFML/Graphics/Rect.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/System/Vector2.hpp>
+#include <vector>
+
 #include "AbstractEvent.hpp"
 #include "src/opmon/model/OpTeam.hpp"
+#include "src/nlohmann/json.hpp"
 
-namespace OpMon::Elements {
+namespace OpMon {
     /*!
      * \brief An event that launches a battle.
      * \ingroup Events
@@ -47,4 +53,4 @@ namespace OpMon::Elements {
 
         virtual ~BattleEvent();
     };
-} // namespace OpMon::Elements
+} // namespace OpMon

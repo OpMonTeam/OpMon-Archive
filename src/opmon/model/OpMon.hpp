@@ -14,10 +14,13 @@
 
 #include <SFML/System/String.hpp>
 #include <cmath>
+#include <string>
+#include <vector>
 
 #include "../../utils/misc.hpp"
 #include "Nature.hpp"
 #include "Species.hpp"
+#include "src/opmon/model/Enums.hpp"
 
 namespace OpMon {
 

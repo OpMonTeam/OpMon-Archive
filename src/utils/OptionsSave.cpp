@@ -7,7 +7,6 @@
 #include "OptionsSave.hpp"
 
 #include <SFML/System/String.hpp>
-#include <algorithm>
 #include <cstddef>
 #include <fstream>
 #include <memory>

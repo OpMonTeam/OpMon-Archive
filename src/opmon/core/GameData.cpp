@@ -6,13 +6,11 @@
  */
 #include "GameData.hpp"
 
-#include <algorithm>
 #include <filesystem>
 #include <fstream>
-#include <utility>
+#include <map>
 
 #include "../../nlohmann/json.hpp"
-#include "../../utils/OpString.hpp"
 #include "../../utils/log.hpp"
 #include "Jukebox.hpp"
 #include "path.hpp"
@@ -20,11 +18,12 @@
 #include "src/utils/OptionsSave.hpp"
 #include "src/utils/ResourceLoader.hpp"
 #include "src/utils/i18n/Translator.hpp"
+#include "src/opmon/core/Window.hpp"
+#include "src/utils/exceptions.hpp"
 
 namespace OpMon {
-    class Evolution;
 
-    GameData::GameData(Ui::Window &win): window(win) {
+    GameData::GameData(Window &win): window(win) {
         Utils::Log::oplog("Loading options");
 
         options =

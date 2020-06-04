@@ -17,19 +17,23 @@
 
 #pragma once
 
+#include <SFML/Window/Event.hpp>
+#include <SFML/Window/Keyboard.hpp>
 #include <stack>
+#include <memory>
 
 #include "AGameScreen.hpp"
 #include "GameData.hpp"
+#include "src/opmon/core/GameStatus.hpp"
+#include "src/opmon/core/Window.hpp"
 
 namespace sf {
     class Event;
 } // namespace sf
 
 namespace OpMon {
-    namespace Ui {
-        class Window;
-    } // namespace Ui
+
+    class Window;
 
     /*!
       \class GameLoop Gameloop.hpp "src/start/Gameloop.hpp"
@@ -58,8 +62,7 @@ namespace OpMon {
          * \param event The native SFML event
          * \param window A reference to the window in case an update is necessary
          */
-        void _checkWindowResize(const sf::Event &event,
-                                Ui::Window &window) const;
+        void _checkWindowResize(const sf::Event &event, Window &window) const;
 
       private:
         /*!

@@ -5,8 +5,12 @@
  */
 #pragma once
 
+#include <SFML/Graphics/RenderTexture.hpp>
+#include <memory>
+
 #include "Animations.hpp"
 #include "src/opmon/core/AGameScreen.hpp"
+#include "src/opmon/core/GameStatus.hpp"
 
 namespace sf {
     class RenderTexture;

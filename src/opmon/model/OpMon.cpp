@@ -16,6 +16,7 @@
 #include "src/opmon/model/Move.hpp"
 #include "src/opmon/model/Nature.hpp"
 #include "src/opmon/model/Species.hpp"
+#include "src/opmon/model/Item.hpp"
 
 namespace OpMon {
 

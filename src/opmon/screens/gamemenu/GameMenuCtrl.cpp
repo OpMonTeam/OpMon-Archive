@@ -10,6 +10,7 @@ File under GNU GPL v3.0 license
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/Keyboard.hpp>
 #include <memory>
+#include <string>
 
 #include "GameMenu.hpp"
 #include "GameMenuData.hpp"
@@ -19,10 +20,8 @@ File under GNU GPL v3.0 license
 #include "src/opmon/screens/optionsmenu/OptionsMenuCtrl.hpp"
 #include "src/opmon/screens/savemenu/SaveMenuCtrl.hpp"
 #include "src/utils/CycleCounter.hpp"
-
-namespace OpMon {
-    class Player;
-} // namespace OpMon
+#include "src/opmon/screens/savemenu/SaveMenu.hpp"
+#include "src/utils/exceptions.hpp"
 
 #define LOAD_OPTIONS 1
 

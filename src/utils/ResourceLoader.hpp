@@ -7,10 +7,13 @@
 
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio/Music.hpp>
+#include <SFML/Graphics/Texture.hpp>
 #include <cstddef>
 #include <fstream>
 #include <memory>
 #include <vector>
+#include <string>
 
 #include "exceptions.hpp"
 #include "log.hpp"

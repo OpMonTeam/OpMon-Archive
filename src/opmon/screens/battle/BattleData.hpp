@@ -5,11 +5,15 @@
  */
 #pragma once
 
+#include <SFML/Graphics/Texture.hpp>
 #include <list>
+#include <map>
+#include <string>
+#include <vector>
 
 #include "src/opmon/core/GameData.hpp"
-#include "src/opmon/model/Player.hpp"
 #include "src/opmon/model/OpMonData.hpp"
+#include "src/opmon/model/Player.hpp"
 
 namespace OpMon {
     class Player;
@@ -36,7 +40,7 @@ namespace OpMon {
 
         GameData *gamedata;
         Player *player;
-        OpMonData* opmondata;
+        OpMonData *opmondata;
         bool autogenOpMonData;
 
         /*!
@@ -59,7 +63,7 @@ namespace OpMon {
          */
         GameData *getGameDataPtr() { return gamedata; }
 
-        OpMonData* getOpMonDataPtr() { return opmondata; }
+        OpMonData *getOpMonDataPtr() { return opmondata; }
 
         /*!
          * \brief Initialises all the data.
@@ -67,7 +71,8 @@ namespace OpMon {
          * \param player A pointer to the Player object.
          * \param opmondata A pointer to an OpMonData object. If it's null, the object is created.
          */
-        BattleData(GameData *data, Player *player, OpMonData* opmondata = nullptr);
+        BattleData(GameData *data, Player *player,
+                   OpMonData *opmondata = nullptr);
 
         ~BattleData();
 

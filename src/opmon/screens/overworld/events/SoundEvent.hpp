@@ -6,9 +6,16 @@
 
 #pragma once
 
-#include "AbstractEvent.hpp"
+#include <SFML/Graphics/Rect.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/System/Vector2.hpp>
+#include <string>
+#include <vector>
 
-namespace OpMon::Elements {
+#include "AbstractEvent.hpp"
+#include "src/nlohmann/json.hpp"
+
+namespace OpMon {
     /*!
      * \brief An event that plays a sound or a music when triggered.
      * \ingroup Events
@@ -45,4 +52,4 @@ namespace OpMon::Elements {
         virtual void action(Overworld &overworld);
         bool isOver() const { return !playing; }
     };
-} // namespace OpMon::Elements
+} // namespace OpMon

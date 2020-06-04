@@ -4,21 +4,20 @@ Author : Cyrielle
 Contributors : Stelyus, Navet56
 File under GNU GPL v3.0 license
 */
+#include <bits/exception.h>
 #include <ctime>
 #include <iostream>
-#include <map>
 #include <string>
 
-#include "../../utils/defines.hpp"
 #include "../../utils/fs.hpp"
 #include "../../utils/log.hpp"
 #include "../../utils/time.hpp"
 #include "Gameloop.hpp"
 #include "config.hpp"
 #include "path.hpp"
-#include "src/utils/OptionsSave.hpp"
 #include "src/utils/ResourceLoader.hpp"
-#include "src/utils/i18n/Translator.hpp"
+#include "src/opmon/core/GameStatus.hpp"
+#include "src/utils/exceptions.hpp"
 
 using Utils::Log::oplog;
 

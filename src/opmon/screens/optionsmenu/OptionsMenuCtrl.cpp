@@ -9,8 +9,8 @@
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/Keyboard.hpp>
-#include <algorithm>
 #include <ext/alloc_traits.h>
+#include <algorithm>
 
 #include "OptionsMenu.hpp"
 #include "OptionsMenuData.hpp"
@@ -18,7 +18,6 @@
 #include "src/opmon/core/Jukebox.hpp"
 #include "src/utils/KeyData.hpp"
 #include "src/utils/OptionsSave.hpp"
-#include "src/utils/defines.hpp"
 #include "src/utils/i18n/Translator.hpp"
 
 enum MenuOption {

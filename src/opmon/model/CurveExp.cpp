@@ -6,7 +6,7 @@
 #include "CurveExp.hpp"
 
 #include <cmath>
-#include <memory>
+#include <string>
 
 #include "src/utils/exceptions.hpp"
 

@@ -15,6 +15,8 @@
 #include <SFML/Graphics/VertexArray.hpp>
 #include <SFML/System/String.hpp>
 #include <SFML/System/Vector2.hpp>
+#include <stdint.h>
+#include <vector>
 
 namespace sf {
     class RenderTarget;
