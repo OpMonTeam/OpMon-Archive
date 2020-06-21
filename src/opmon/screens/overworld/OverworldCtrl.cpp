@@ -37,7 +37,7 @@ namespace OpMon {
 
     OverworldCtrl::OverworldCtrl(Player &player, GameData *gamedata)
         : data(gamedata, &player),
-          view("Player's room", this->data),
+          view("player_room", this->data),
           player(player) {}
 
     GameStatus OverworldCtrl::checkEvent(sf::Event const &events) {

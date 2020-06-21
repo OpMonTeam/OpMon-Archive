@@ -45,7 +45,7 @@ namespace OpMon {
         std::map<std::string,
                  std::pair<nlohmann::json, Elements::Map *>>::iterator mapsItor;
 
-        std::string currentMap = "Player's room";
+        std::string currentMap = "player_room";
 
         sf::Texture texturePP;
         std::vector<sf::IntRect> texturePPRect;
