@@ -37,7 +37,7 @@ namespace OpMon {
 
     OverworldCtrl::OverworldCtrl(Player &player, GameData *gamedata)
         : data(gamedata, &player),
-          view("Player's room", this->data),
+          view("player_room", this->data),
           player(player) {}
 
     GameStatus OverworldCtrl::checkEvent(sf::Event const &events) {
@@ -99,7 +99,7 @@ namespace OpMon {
                                      sf::Vector2i(5, 5));
                     }
                     if(events.key.code == sf::Keyboard::B) {
-                        overworld.tp("Road 14", sf::Vector2i(10, 32));
+                        overworld.tp("road_14", sf::Vector2i(10, 32));
                     }
                 }
                 if(events.key.code == sf::Keyboard::M) {
